@@ -114,7 +114,7 @@ tests/
 
 ### Tier 4: Build/Projection Determinism Tests
 
-- [ ] Full deterministic rebuild consistency checks.
+- [x] Full deterministic rebuild consistency checks.
   - Module: `tests/integration/build/test_build_determinism.py`
 - [ ] Site-root `New` refresh policy per flow.
   - Module: `tests/integration/build/test_site_new_refresh_policy.py`

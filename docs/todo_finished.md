@@ -2042,3 +2042,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     updated manifest/README/comments-review expectations. Verified full harness test module
     (including invalid `--comments` failure case) passes. Updated `docs/testing_plan.md` to
     mark the comments-mode item complete.
+
+- [x] TODO-0301: Close Tier 4 full deterministic rebuild consistency checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0210
+  - scope: Finalize Tier 4 deterministic rebuild evidence by strengthening explicit assertions
+    that full build snapshots include canonical manifest/site outputs and remain identical
+    across repeated rebuilds.
+  - acceptance:
+    - `tests/integration/build/test_build_determinism.py` verifies repeated full rebuilds
+      produce identical deterministic output snapshots.
+    - The same module explicitly asserts canonical snapshot coverage includes site-root index,
+      space index, and build manifest outputs.
+    - `docs/testing_plan.md` marks the Tier 4 full deterministic rebuild checklist item
+      complete.
+  - notes: source `docs/testing_plan.md` Tier 4; `docs/design.md` Sections 2.2, 8
+  - evidence: Extended
+    `tests/integration/build/test_build_determinism.py` with explicit snapshot-presence
+    assertions for `site/index.html`, `spaces/alpha/site/index.html`, and
+    `outputs/build_site/manifest.json` prior to deterministic snapshot equality checks.
+    Verified the build determinism integration test passes and updated
+    `docs/testing_plan.md` to mark the Tier 4 deterministic rebuild item complete.

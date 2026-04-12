@@ -32,6 +32,9 @@ class BuildDeterminismIntegrationTests(unittest.TestCase):
             first_build = _run_build(site_path=site_path, incremental=False)
             self.assertEqual(first_build.returncode, 0, msg=first_build.stderr)
             first_snapshot = _capture_build_snapshot(site_path=site_path)
+            self.assertIn("outputs/build_site/manifest.json", first_snapshot)
+            self.assertIn("site/index.html", first_snapshot)
+            self.assertIn("spaces/alpha/site/index.html", first_snapshot)
 
             second_build = _run_build(site_path=site_path, incremental=False)
             self.assertEqual(second_build.returncode, 0, msg=second_build.stderr)
