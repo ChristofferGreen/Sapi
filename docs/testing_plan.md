@@ -103,7 +103,7 @@ tests/
   - Module: `tests/integration/pipelines/test_ingest_force_mode.py`
 - [x] Query output-mode behavior (`markdown` vs artifact manifest modes).
   - Module: `tests/integration/pipelines/test_query_pipeline_outputs.py`
-- [ ] Comments flow target defaults, count bounds, per-page semantic artifact pathing, merge stability (`comment_uid`), evidence snapshot contract.
+- [x] Comments flow target defaults, count bounds, per-page semantic artifact pathing, merge stability (`comment_uid`), evidence snapshot contract.
   - Module: `tests/integration/pipelines/test_comments_pipeline.py`
 - [x] Profiles flow writes profile JSON + history + run/lint metadata.
   - Module: `tests/integration/pipelines/test_profiles_pipeline.py`

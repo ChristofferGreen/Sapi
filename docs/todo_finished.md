@@ -1972,3 +1972,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     in the multi-persona profile generation scenario while retaining existing profile/history
     and lint artifact checks. Updated `docs/testing_plan.md` to mark the Tier 3 profiles
     item complete.
+
+- [x] TODO-0298: Close Tier 3 comments pipeline checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0223
+  - scope: Finalize Tier 3 comments pipeline evidence by strengthening explicit contract
+    assertions for semantic artifact page targeting while preserving existing bounds, merge,
+    and evidence snapshot coverage.
+  - acceptance:
+    - `tests/integration/pipelines/test_comments_pipeline.py` verifies default topic targeting
+      and per-page semantic artifact pathing contracts.
+    - The same module continues to cover count bounds, comment UID merge stability, and
+      web-augmented evidence snapshot path/schema contracts.
+    - `docs/testing_plan.md` marks the Tier 3 comments checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 3; `docs/design.md` Sections 7.6, 10
+  - evidence: Extended
+    `tests/integration/pipelines/test_comments_pipeline.py` to assert run-envelope
+    `semantic_flows`/`requested_count` and to validate each semantic artifact payload's
+    `page_ref` and `requested_count` against canonical topic targets. Existing integration
+    tests in the same module continue to enforce count bounds, merge stability for
+    `comment_uid`, and web-augmented snapshot path/schema behavior. Updated
+    `docs/testing_plan.md` to mark the Tier 3 comments item complete.

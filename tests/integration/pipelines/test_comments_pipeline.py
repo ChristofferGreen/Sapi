@@ -44,6 +44,8 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             run_dir = latest_run_directory(space_root)
             frontmatter = parse_run_frontmatter(run_dir / "run.md")
             self.assertEqual(frontmatter["flow_key"], "comment_section_pipeline")
+            self.assertEqual(frontmatter["semantic_flows"], ["comment_section_generation"])
+            self.assertEqual(frontmatter["requested_count"], 5)
             self.assertEqual(frontmatter["target_page_refs"], ["topic:topic-alpha", "topic:topic-beta"])
             self.assertEqual(
                 frontmatter["semantic_flow_invocation_counts"],
@@ -58,6 +60,11 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             semantic_dir = run_dir / "semantic" / "comment_section_generation"
             semantic_artifacts = sorted(semantic_dir.glob("*.json"))
             self.assertEqual([path.name for path in semantic_artifacts], ["topic--topic-alpha.json", "topic--topic-beta.json"])
+            semantic_payloads = {path.stem: json.loads(path.read_text()) for path in semantic_artifacts}
+            self.assertEqual(semantic_payloads["topic--topic-alpha"]["page_ref"], "topic:topic-alpha")
+            self.assertEqual(semantic_payloads["topic--topic-beta"]["page_ref"], "topic:topic-beta")
+            self.assertEqual(semantic_payloads["topic--topic-alpha"]["requested_count"], 5)
+            self.assertEqual(semantic_payloads["topic--topic-beta"]["requested_count"], 5)
 
             for topic_id in ("topic-alpha", "topic-beta"):
                 topic_payload = json.loads((space_root / "topics" / f"{topic_id}.json").read_text())
