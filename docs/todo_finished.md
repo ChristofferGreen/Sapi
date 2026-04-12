@@ -297,3 +297,20 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     write-time failure for invalid/missing `site_root`, subspace duplicate/nesting/missing-root
     validation checks for `space_subspaces_v1`, and explicit opt-in gating for compatibility
     legacy reads from `<space_root>/site.json`.
+
+- [x] TODO-0235: Implement wrapper normalization and compatibility-alias handling
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0200, TODO-0207
+  - scope: Implement canonical wrapper argument normalization and conflict handling across ingest/comments bootstrap rules.
+  - acceptance:
+    - Ingest alias `--query-only` normalizes to `--source-only` with deprecation warning.
+    - Comment aliases (`--user`, `--page`, legacy positional count) normalize to canonical flags.
+    - Canonical+alias duplicate argument combinations fail fast with usage error.
+  - evidence: Verified by `tests/unit/contracts/test_wrapper_alias_normalization.py`, covering
+    ingest `--query-only` normalization/deprecation, comment alias normalization for
+    `--user`/`--page` plus legacy positional count, and canonical+alias conflict failures for
+    ingest (`--source-only` + `--query-only`) and comments (`--comment-user` + `--user`,
+    `--comment-page` + `--page`, positional count + `--count`) with usage errors.

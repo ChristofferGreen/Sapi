@@ -90,6 +90,25 @@ class WrapperAliasNormalizationTests(unittest.TestCase):
             self.assertIn("cannot combine", result_user.stderr)
             self.assertIn("Usage:", result_user.stderr)
 
+            # conflict: canonical + alias for comment page
+            result_page = self._run(
+                [
+                    "bash",
+                    str(REPO_ROOT / "create_comments.sh"),
+                    str(site_path),
+                    "alpha",
+                    "--count",
+                    "5",
+                    "--comment-page",
+                    "topic:topic-a",
+                    "--page",
+                    "topic:topic-b",
+                ]
+            )
+            self.assertNotEqual(result_page.returncode, 0)
+            self.assertIn("cannot combine", result_page.stderr)
+            self.assertIn("Usage:", result_page.stderr)
+
             # conflict: canonical + alias for count
             result_count = self._run(
                 [
