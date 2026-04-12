@@ -330,3 +330,20 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     (deterministic-fallback rejection and all prohibited flow env-var toggles) and
     `tests/unit/contracts/test_wrapper_mock_mode_policy.py` (all semantic wrappers default to
     live LLM mode, require explicit `--mock-llm` for mock mode, and reject env-var flow controls).
+
+- [x] TODO-0241: Enforce canonical site/space storage layout and relocatability
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0208, TODO-0209, TODO-0207
+  - scope: Implement and validate canonical layout under `<site_path>` and `<space_root>` including relative-path persistence policy.
+  - acceptance:
+    - Site-level and space-level directories/files match Section 5.1/5.2 layout contracts.
+    - Canonical/derived artifacts write to correct roots (`site` vs `space` vs `repo` ownership).
+    - Persisted user-facing paths are relative where required for relocatability.
+  - evidence: Verified by `tests/unit/contracts/test_bootstrap_site_space.py`, including canonical
+    site/space layout assertions, site-vs-space-vs-repo ownership boundary checks
+    (`outputs/llm_traces`, `outputs/query`, source artifacts, persona catalog non-copying), and
+    relocatability proof by persisting relative `site_root`/`space_root`, moving the entire site
+    root, and resolving the same registry entries to the new filesystem location.

@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 import tempfile
 import tomllib
 import unittest
 from pathlib import Path
+
+from sapi.core.registry import resolve_space_root
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -82,6 +85,57 @@ class BootstrapSiteSpaceTests(unittest.TestCase):
                 with self.subTest(path=rel):
                     self.assertTrue((space_root / rel).is_dir())
             self.assertTrue((space_root / "imports.lock.md").is_file())
+
+    def test_layout_keeps_site_and_space_owned_artifacts_under_correct_roots(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            site_path = Path(tmp) / "site-a"
+            space_name = "alpha"
+            self._run(["bash", str(REPO_ROOT / "create_site.sh"), str(site_path), "My Site"])
+            self._run(["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), space_name])
+
+            space_root = site_path / "spaces" / space_name
+
+            # Site-scoped derived artifacts live under <site_path>/outputs.
+            self.assertTrue((site_path / "outputs" / "llm_traces").is_dir())
+            self.assertFalse((site_path / "outputs" / "query").exists())
+
+            # Space-scoped derived artifacts live under <space_root>/outputs.
+            self.assertTrue((space_root / "outputs" / "query").is_dir())
+            self.assertTrue((space_root / "outputs" / "persona_profile_history").is_dir())
+            self.assertTrue((space_root / "outputs" / "comment_quality").is_dir())
+            self.assertFalse((space_root / "outputs" / "llm_traces").exists())
+
+            # Space-owned source artifacts must not be written at site root.
+            self.assertTrue((space_root / "sources" / "artifacts").is_dir())
+            self.assertFalse((site_path / "sources").exists())
+
+            # Repository-owned persona catalog must not be copied into runtime site/space roots.
+            self.assertFalse((site_path / "personas").exists())
+            self.assertFalse((space_root / "personas").exists())
+
+    def test_registry_and_site_scope_persist_relative_paths_for_relocatability(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            site_path = tmp_path / "site-a"
+            moved_site_path = tmp_path / "site-b"
+            space_name = "alpha"
+
+            self._run(["bash", str(REPO_ROOT / "create_site.sh"), str(site_path), "My Site"])
+            self._run(["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), space_name])
+
+            site_scope = json.loads((site_path / "site.json").read_text())
+            self.assertEqual(site_scope["site_root"], ".")
+            self.assertFalse(Path(site_scope["site_root"]).is_absolute())
+
+            registry = tomllib.loads((site_path / "spaces.toml").read_text())
+            space_row = registry["spaces"][0]
+            self.assertEqual(space_row["space_root"], f"spaces/{space_name}")
+            self.assertFalse(Path(space_row["space_root"]).is_absolute())
+
+            shutil.move(str(site_path), str(moved_site_path))
+            resolved = resolve_space_root(moved_site_path / "spaces.toml", space_name)
+            self.assertEqual(resolved, (moved_site_path / "spaces" / space_name).resolve())
+            self.assertTrue(resolved.is_dir())
 
     def test_create_space_bootstraps_registry_when_create_site_not_run(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
