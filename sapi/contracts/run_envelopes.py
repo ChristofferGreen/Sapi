@@ -52,6 +52,13 @@ _REQUIRED_BASE_FRONTMATTER_KEYS: tuple[str, ...] = (
     "toolchain_versions",
 )
 
+_REQUIRED_RUN_MD_SECTIONS: tuple[str, ...] = (
+    "Summary",
+    "Changes",
+    "Lint Summary",
+    "Errors",
+)
+
 
 @dataclass
 class RunEnvelopeBase:
@@ -213,14 +220,15 @@ def _render_required_sections(
     lint_summary: str,
     errors: str,
 ) -> str:
-    sections = [
-        ("Summary", summary),
-        ("Changes", changes),
-        ("Lint Summary", lint_summary),
-        ("Errors", errors),
-    ]
+    section_bodies: dict[str, str] = {
+        "Summary": summary,
+        "Changes": changes,
+        "Lint Summary": lint_summary,
+        "Errors": errors,
+    }
     chunks: list[str] = []
-    for title, body in sections:
+    for title in _REQUIRED_RUN_MD_SECTIONS:
+        body = section_bodies[title]
         body_text = body.strip() or "(none)"
         chunks.append(f"## {title}\n{body_text}\n")
     return "\n".join(chunks)

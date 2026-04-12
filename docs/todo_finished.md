@@ -229,3 +229,21 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     coverage, and ingest-only `--force` guard) plus `tests/unit/core/test_pipeline_policy.py`
     (failure-mode run finalization behavior and enforced `force_mode=true`,
     `rollback_skipped=true` for retained ingest failure envelopes).
+
+- [x] TODO-0206: Run-envelope writer with flow-specific extensions
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0201, TODO-0208
+  - scope: Implement canonical run metadata writing with base fields and pipeline-specific extension fields.
+  - acceptance:
+    - Run records write to `<space_root>/runs/<run_id>/run.md`.
+    - Base envelope includes `semantic_flows` and `semantic_flow_invocation_counts`.
+    - Run body includes required sections: `## Summary`, `## Changes`, `## Lint Summary`, `## Errors`.
+    - Flow-specific extension fields are present and typed by pipeline.
+  - evidence: Verified by `tests/unit/contracts/test_run_envelope_semantic_flows.py` and
+    `tests/unit/contracts/test_run_envelope_metadata_invariants.py`, including canonical
+    `<space_root>/runs/<run_id>/run.md` path assertion, semantic flow + invocation-count frontmatter
+    checks, required section presence/order with `(none)` fallback, and per-pipeline extension-field
+    type enforcement.

@@ -64,6 +64,32 @@ class RunEnvelopeWriterTests(unittest.TestCase):
             self.assertIn("## Lint Summary", text)
             self.assertIn("## Errors", text)
 
+    def test_required_run_body_sections_are_emitted_in_order_with_none_fallback(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            base = _make_base(flow_key="query_pipeline")
+            run_path = write_run_record(
+                space_root=space_root,
+                base=base,
+                flow_fields=_query_fields(),
+                summary="",
+                changes="",
+                lint_summary="",
+                errors="",
+            )
+            text = run_path.read_text()
+            expected_sections = [
+                "## Summary\n(none)\n",
+                "## Changes\n(none)\n",
+                "## Lint Summary\n(none)\n",
+                "## Errors\n(none)\n",
+            ]
+            start = 0
+            for section in expected_sections:
+                offset = text.find(section, start)
+                self.assertNotEqual(offset, -1, f"Missing section block: {section!r}")
+                start = offset + len(section)
+
     def test_flow_specific_extension_fields_are_present_and_typed_by_pipeline(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "spaces" / "alpha"
