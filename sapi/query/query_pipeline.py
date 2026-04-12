@@ -3,15 +3,27 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 from typing import Any, Mapping
 
 
 _OUTPUT_MODES_WITH_MANIFEST: set[str] = {"mermaid", "images", "slides", "pdf"}
 _OUTPUT_MODE_MARKDOWN = "markdown"
+_RFC3339_UTC_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 _OPTIONAL_LIST_FIELDS: tuple[str, ...] = (
     "ancestor_pages_used",
     "inherited_conflicts",
     "synthesis_claim_ids",
+)
+_REQUIRED_RETRIEVAL_COUNT_KEYS: tuple[str, ...] = ("claims_retrieved", "sources_retrieved")
+_REQUIRED_OMITTED_BUDGET_KEYS: tuple[str, ...] = ("claims", "sources")
+_REQUIRED_LINT_SUMMARY_KEYS: tuple[str, ...] = ("error_count", "warning_count", "info_count")
+_REQUIRED_EXECUTION_KEYS: tuple[str, ...] = (
+    "execution_mode",
+    "llm_attempt_count",
+    "reasoning_effort",
+    "model_fingerprint",
+    "provider_fingerprint",
 )
 _REQUIRED_HIGH_SIGNAL_KEYS: tuple[str, ...] = (
     "query_id",
@@ -138,10 +150,55 @@ def validate_query_result_shape(
         "query_timestamp_utc",
     ):
         _require_non_empty_string(payload.get(key), field_name=key)
-    for key in ("retrieval_counts", "omitted_due_to_budget"):
-        _require_int_dict(payload.get(key), field_name=key)
-    for key in ("citation_coverage", "lint_summary", "execution"):
-        _require_object(payload.get(key), field_name=key)
+    query_timestamp_utc = _require_non_empty_string(
+        payload.get("query_timestamp_utc"),
+        field_name="query_timestamp_utc",
+    )
+    if not _RFC3339_UTC_RE.fullmatch(query_timestamp_utc):
+        raise ValueError("query_timestamp_utc must be RFC 3339 UTC with trailing Z.")
+
+    retrieval_counts = _require_int_dict(payload.get("retrieval_counts"), field_name="retrieval_counts")
+    _require_object_int_keys(
+        retrieval_counts,
+        field_name="retrieval_counts",
+        required_keys=_REQUIRED_RETRIEVAL_COUNT_KEYS,
+    )
+    omitted_due_to_budget = _require_int_dict(
+        payload.get("omitted_due_to_budget"),
+        field_name="omitted_due_to_budget",
+    )
+    _require_object_int_keys(
+        omitted_due_to_budget,
+        field_name="omitted_due_to_budget",
+        required_keys=_REQUIRED_OMITTED_BUDGET_KEYS,
+    )
+
+    _require_object(payload.get("citation_coverage"), field_name="citation_coverage")
+    lint_summary = _require_object(payload.get("lint_summary"), field_name="lint_summary")
+    _require_object_int_keys(
+        lint_summary,
+        field_name="lint_summary",
+        required_keys=_REQUIRED_LINT_SUMMARY_KEYS,
+    )
+    execution = _require_object(payload.get("execution"), field_name="execution")
+    for key in _REQUIRED_EXECUTION_KEYS:
+        if key not in execution:
+            raise ValueError(f"execution is missing required key: {key}")
+    _require_non_empty_string(execution.get("execution_mode"), field_name="execution.execution_mode")
+    _require_non_negative_int(execution.get("llm_attempt_count"), field_name="execution.llm_attempt_count")
+    _require_non_empty_string(
+        execution.get("reasoning_effort"),
+        field_name="execution.reasoning_effort",
+    )
+    _require_non_empty_string(
+        execution.get("model_fingerprint"),
+        field_name="execution.model_fingerprint",
+    )
+    _require_non_empty_string(
+        execution.get("provider_fingerprint"),
+        field_name="execution.provider_fingerprint",
+    )
+
     for key in ("claims_used", "sources_used"):
         _require_string_list(payload.get(key), field_name=key)
     _require_object_list(payload.get("falsification_signals"), field_name="falsification_signals")
@@ -262,6 +319,18 @@ def _require_int_dict(raw: Any, *, field_name: str) -> dict[str, int]:
         normalized_value = _require_non_negative_int(value, field_name=field_name)
         normalized[normalized_key] = normalized_value
     return normalized
+
+
+def _require_object_int_keys(
+    raw: Mapping[str, Any],
+    *,
+    field_name: str,
+    required_keys: tuple[str, ...],
+) -> None:
+    for key in required_keys:
+        if key not in raw:
+            raise ValueError(f"{field_name} is missing required key: {key}")
+        _require_non_negative_int(raw[key], field_name=f"{field_name}.{key}")
 
 
 def _normalize_optional_string_list(raw: Any, *, field_name: str) -> list[str] | None:

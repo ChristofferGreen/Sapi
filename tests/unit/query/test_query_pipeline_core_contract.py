@@ -89,6 +89,49 @@ class QueryPipelineCoreContractTests(unittest.TestCase):
             payload = json.loads(query_record_path.read_text())
             self.assertEqual(payload["mode"], "strict")
             self.assertEqual(payload["manifest_path"], None)
+            required_keys = {
+                "query_id",
+                "answer",
+                "claims_used",
+                "sources_used",
+                "retrieval_counts",
+                "contradictions_considered",
+                "falsification_signals",
+                "omitted_due_to_budget",
+                "mode",
+                "scope",
+                "run_id",
+                "query_timestamp_utc",
+                "citation_coverage",
+                "lint_summary",
+                "execution",
+                "warnings",
+                "manifest_path",
+            }
+            self.assertTrue(required_keys.issubset(set(payload.keys())))
+            self.assertTrue(
+                {
+                    "claims_retrieved",
+                    "sources_retrieved",
+                }.issubset(set(payload["retrieval_counts"].keys()))
+            )
+            self.assertTrue(
+                {
+                    "error_count",
+                    "warning_count",
+                    "info_count",
+                }.issubset(set(payload["lint_summary"].keys()))
+            )
+            self.assertTrue(
+                {
+                    "execution_mode",
+                    "llm_attempt_count",
+                    "reasoning_effort",
+                    "model_fingerprint",
+                    "provider_fingerprint",
+                }.issubset(set(payload["execution"].keys()))
+            )
+            self.assertIsInstance(payload["warnings"], list)
 
             run_paths = sorted((space_root / "runs").glob("*/run.md"))
             self.assertEqual(len(run_paths), 1)
@@ -175,4 +218,3 @@ def _run(cmd: list[str], *, check: bool = False) -> subprocess.CompletedProcess[
 
 if __name__ == "__main__":
     unittest.main()
-

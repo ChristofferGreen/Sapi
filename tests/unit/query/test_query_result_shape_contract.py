@@ -90,6 +90,57 @@ class QueryResultShapeContractTests(unittest.TestCase):
                     space_root=space_root,
                 )
 
+    def test_execution_and_lint_metadata_require_high_signal_subkeys(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space-a"
+            record = _build_sample_record(space_root=space_root, output_mode="markdown")
+            del record["execution"]["execution_mode"]
+            with self.assertRaises(ValueError):
+                validate_query_result_shape(
+                    record,
+                    output_mode="markdown",
+                    space_root=space_root,
+                )
+
+            record = _build_sample_record(space_root=space_root, output_mode="markdown")
+            del record["lint_summary"]["warning_count"]
+            with self.assertRaises(ValueError):
+                validate_query_result_shape(
+                    record,
+                    output_mode="markdown",
+                    space_root=space_root,
+                )
+
+    def test_query_timestamp_and_counter_blocks_must_match_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space-a"
+            record = _build_sample_record(space_root=space_root, output_mode="markdown")
+            record["query_timestamp_utc"] = "2026-04-12 12:00:00"
+            with self.assertRaises(ValueError):
+                validate_query_result_shape(
+                    record,
+                    output_mode="markdown",
+                    space_root=space_root,
+                )
+
+            record = _build_sample_record(space_root=space_root, output_mode="markdown")
+            del record["retrieval_counts"]["sources_retrieved"]
+            with self.assertRaises(ValueError):
+                validate_query_result_shape(
+                    record,
+                    output_mode="markdown",
+                    space_root=space_root,
+                )
+
+            record = _build_sample_record(space_root=space_root, output_mode="markdown")
+            del record["omitted_due_to_budget"]["sources"]
+            with self.assertRaises(ValueError):
+                validate_query_result_shape(
+                    record,
+                    output_mode="markdown",
+                    space_root=space_root,
+                )
+
 
 def _build_sample_record(
     *,

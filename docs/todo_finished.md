@@ -930,3 +930,28 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `tests/unit/query/test_query_citation_truncation_policy.py` to verify mode-specific citation
     coverage policy fields and deterministic rank/tie-break truncation with non-zero
     `omitted_due_to_budget` when budgets truncate results.
+
+- [x] TODO-0277: Enforce query result JSON shape and execution-metadata contracts
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 4
+  - depends_on: TODO-0220, TODO-0221, TODO-0255, TODO-0259
+  - scope: Implement and validate full recovered query result-shape contract including execution,
+    warnings, and optional fields.
+  - acceptance:
+    - Query JSON includes required high-signal keys (`query_id`, `answer`,
+      retrieval/falsification counters, mode/scope, run/timestamp, lint/execution blocks).
+    - Optional fields (`ancestor_pages_used`, `inherited_conflicts`, `synthesis_claim_ids`)
+      follow deterministic presence/absence rules.
+    - `manifest_path` behavior is consistent with output format contract and validated by tests.
+  - evidence: Tightened query-shape validation in `sapi/query/query_pipeline.py` to enforce RFC3339
+    UTC `query_timestamp_utc`, required retrieval/omission counter keys, required lint-summary keys,
+    and required execution metadata keys with type checks. Expanded
+    `tests/unit/query/test_query_result_shape_contract.py` with negative cases for missing execution
+    and lint keys, invalid timestamp format, and missing required counter keys. Expanded
+    `tests/unit/query/test_query_pipeline_core_contract.py` to assert required high-signal keys and
+    required execution/lint/retrieval subkeys in pipeline-produced `query.json`. Existing
+    manifest-path and optional-field contract tests remain green in
+    `tests/unit/query/test_query_result_shape_contract.py` and
+    `tests/unit/query/test_query_artifact_modes_contract.py`.
