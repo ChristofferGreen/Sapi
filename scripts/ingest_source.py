@@ -28,6 +28,7 @@ from sapi.ingest.records_writer import (
     ingest_source_artifacts_and_record,
     run_ingest_extraction_and_persist_canonical,
 )
+from sapi.ingest.source_content import SourceDateResolution, resolve_publication_date
 from sapi.ingest.topic_generator import (
     TopicGenerationPersistResult,
     derive_default_topic_id_for_source,
@@ -47,6 +48,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--source-family-id")
     parser.add_argument("--canonical-identifier")
     parser.add_argument("--source-date")
+    parser.add_argument("--require-source-date", action="store_true")
     parser.add_argument("--article-kind")
     parser.add_argument("--citation-count", type=float)
     parser.add_argument("--citation-count-as-of")
@@ -65,6 +67,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> int:
     args = build_parser().parse_args()
     source_only = False
+    source_date_resolution: SourceDateResolution | None = None
     started_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
     run_id = make_run_id()
     toolchain_versions = {"python": f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"}
@@ -87,6 +90,11 @@ def main() -> int:
 
     try:
         source_only = _normalize_source_only_mode(args)
+        source_date_resolution = resolve_publication_date(
+            explicit_source_date=args.source_date,
+            inferred_source_date=None,
+            require_source_date=args.require_source_date,
+        )
         runtime_policy = evaluate_semantic_runtime_policy(
             mock_llm=args.mock_llm,
             env=os.environ,
@@ -103,7 +111,7 @@ def main() -> int:
                 source_type_override=args.source_type,
                 source_family_id=args.source_family_id,
                 canonical_identifier=args.canonical_identifier,
-                source_date=args.source_date,
+                source_date=source_date_resolution.publication_date,
                 article_kind=args.article_kind,
                 citation_count=args.citation_count,
                 citation_count_as_of=args.citation_count_as_of,
@@ -131,7 +139,7 @@ def main() -> int:
                     llm_client=_BootstrapIngestExtractionClient(
                         source_id=result.source_id,
                         source_title=source_title if isinstance(source_title, str) else None,
-                        source_date=args.source_date,
+                        source_date_resolution=source_date_resolution,
                     ),
                 )
                 llm_attempt_count += 1
@@ -298,20 +306,15 @@ class _BootstrapIngestExtractionClient:
         *,
         source_id: str,
         source_title: str | None,
-        source_date: str | None,
+        source_date_resolution: SourceDateResolution,
     ) -> None:
         self._source_id = source_id
         self._source_title = source_title or source_id
-        self._source_date = source_date
+        self._source_date_resolution = source_date_resolution
 
     def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
         payload = {
-            "source_date_inference": {
-                "date": self._source_date,
-                "origin": "explicit" if self._source_date else "unknown",
-                "confidence": "high" if self._source_date else "unknown",
-                "rationale": None,
-            },
+            "source_date_inference": dict(self._source_date_resolution.source_date_inference),
             "source": {
                 "source_id": self._source_id,
                 "title": self._source_title,
@@ -324,16 +327,7 @@ class _BootstrapIngestExtractionClient:
             ],
             "relations": [],
             "summary": "Bootstrap ingest extraction completed.",
-            "warnings": (
-                []
-                if self._source_date
-                else [
-                    {
-                        "code": "missing_publication_date",
-                        "message": "Publication date could not be resolved; continuing with date=null.",
-                    }
-                ]
-            ),
+            "warnings": list(self._source_date_resolution.warnings),
         }
         return json.dumps(payload)
 

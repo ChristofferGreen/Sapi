@@ -4,6 +4,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0270: Enforce ingest date/title resolution and strict-date mode contracts
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 2
+  - depends_on: TODO-0210, TODO-0211, TODO-0214
+  - scope: Implement and validate recovered ingest date/title policies, warning semantics, and strict-date behavior.
+  - acceptance:
+    - Source title resolution follows the five-step priority contract exactly.
+    - Missing publication date behavior emits `missing_publication_date` warning and persists compliant `source_date_inference` fields.
+    - `--require-source-date` strict mode fails ingest when publication date cannot be resolved.
+  - evidence: Wired strict-date/date-resolution policy in `scripts/ingest_source.py` using `resolve_publication_date` with new `--require-source-date`, persisted normalized publication date + compliant `source_date_inference`/`missing_publication_date` warnings via ingest extraction output, extended source-title hint extraction and five-step priority wiring in `sapi/ingest/records_writer.py`, and added contract tests in `tests/unit/ingest/test_source_acquisition.py` and `tests/unit/ingest/test_ingest_mode_handling.py` for title-priority ordering, missing-date warning persistence, and strict-date failure behavior.
+
 - [x] TODO-0278: Enforce relation-type matrix semantics and normalization invariants
   - owner: ai
   - created_at: 2026-04-12

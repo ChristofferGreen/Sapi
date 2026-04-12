@@ -47,27 +47,26 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0270` Enforce ingest date/title resolution and strict-date mode contracts
-2. `TODO-0271` Enforce ingest comment-enrichment boundary contracts
-3. `TODO-0282` Resolve compatibility-reader sunset policy into a concrete contract update
+1. `TODO-0271` Enforce ingest comment-enrichment boundary contracts
+2. `TODO-0282` Resolve compatibility-reader sunset policy into a concrete contract update
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0270`
-2. `TODO-0271`
-3. `TODO-0216`
-4. `TODO-0217`
-5. `TODO-0218`
-6. `TODO-0219`
-7. `TODO-0220`
-8. `TODO-0246`
-9. `TODO-0245`
-10. `TODO-0244`
+1. `TODO-0271`
+2. `TODO-0216`
+3. `TODO-0217`
+4. `TODO-0218`
+5. `TODO-0219`
+6. `TODO-0220`
+7. `TODO-0246`
+8. `TODO-0245`
+9. `TODO-0244`
+10. `TODO-0242`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: `TODO-0216` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`
+- P1 Core product behavior: `TODO-0216` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0282`
 
@@ -77,7 +76,7 @@ Wave A (bootstrap + contracts):
 1. (none currently)
 
 Wave B (ingest + projection + lint):
-1. `TODO-0270` -> `TODO-0271`
+1. `TODO-0271`
 2. `TODO-0216` -> `TODO-0268` -> `TODO-0217` -> `TODO-0218`
 3. `TODO-0246` -> `TODO-0245` -> `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233` -> `TODO-0219`
 
@@ -100,7 +99,7 @@ Cross-cutting docs backlog:
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | `TODO-0218` |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | `TODO-0219`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
-| Section 7.1 ingest pipeline | `TODO-0270`, `TODO-0271` |
+| Section 7.1 ingest pipeline | `TODO-0271` |
 | Section 7.2 references/linking | - |
 | Section 7.3 query pipeline | `TODO-0220`, `TODO-0259`, `TODO-0255`, `TODO-0221`, `TODO-0277` |
 | Section 7.4 persona catalog | `TODO-0222` |
@@ -110,7 +109,7 @@ Cross-cutting docs backlog:
 | Section 8 site/UI/static build | `TODO-0216`, `TODO-0268`, `TODO-0217`, `TODO-0245`, `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
 | Section 9 observability/safety/runtime controls | `TODO-0226`, `TODO-0227`, `TODO-0254` |
 | Section 10 run envelopes/lifecycle status | `TODO-0234`, `TODO-0250` |
-| Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0276`, `TODO-0277`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
+| Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0276`, `TODO-0277`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0243`, `TODO-0260`, `TODO-0261` |
 | Section 13 definition of done | `TODO-0231`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
 
@@ -123,14 +122,14 @@ Cross-cutting docs backlog:
 | Section 5 (path + registry contracts) | `TODO-0218` |
 | Section 6 (semantic execution engine + retry/repair) | - |
 | Section 7 (transaction/rollback) | - |
-| Section 8 (pipeline execution contracts) | `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0220`, `TODO-0223`, `TODO-0224`, `TODO-0242` |
+| Section 8 (pipeline execution contracts) | `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0220`, `TODO-0223`, `TODO-0224`, `TODO-0242` |
 | Section 9 (deterministic build/projection) | `TODO-0216`, `TODO-0217`, `TODO-0246`, `TODO-0275` |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | `TODO-0218`, `TODO-0219` |
 | Section 12 (wrapper/script interfaces) | `TODO-0219`, `TODO-0254`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
 | Section 13 (observability/runtime controls/safety) | `TODO-0226`, `TODO-0227`, `TODO-0254` |
 | Section 14 (anti-drift and PR guardrails) | - |
-| Section 15 (test-plan binding) | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0270`, `TODO-0271`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
+| Section 15 (test-plan binding) | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0271`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 16 (change discipline) | `TODO-0243` |
 
 ### Testing Plan Coverage Snapshot
@@ -138,7 +137,7 @@ Cross-cutting docs backlog:
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (test module layout) | `TODO-0228`, `TODO-0267`, `TODO-0276`, `TODO-0229` |
-| Tier 0-3 (fast contract/failure/pipeline suites) | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0275`, `TODO-0276`, `TODO-0277` |
+| Tier 0-3 (fast contract/failure/pipeline suites) | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0275`, `TODO-0276`, `TODO-0277` |
 | Tier 4-6 (determinism/golden/live canary) | `TODO-0229` |
 | Section 4-5 (CI gating matrix + command wiring) | `TODO-0230` |
 | Section 6 (exit criteria gating) | `TODO-0263`, `TODO-0231` |
@@ -227,18 +226,6 @@ Cross-cutting docs backlog:
     - Any optional enrichment path requires explicit operator opt-in and preserves Section 7.6 comment pipeline contracts.
     - Run metadata/tests verify `semantic_flows`/invocation counts remain boundary-correct for ingest modes.
   - notes: source `design.md` Sections 4.4, 7.1 (comment-enrichment policy), 7.6
-
-- [ ] TODO-0270: Enforce ingest date/title resolution and strict-date mode contracts
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 2
-  - depends_on: TODO-0210, TODO-0211, TODO-0214
-  - scope: Implement and validate recovered ingest date/title policies, warning semantics, and strict-date behavior.
-  - acceptance:
-    - Source title resolution follows the five-step priority contract exactly.
-    - Missing publication date behavior emits `missing_publication_date` warning and persists compliant `source_date_inference` fields.
-    - `--require-source-date` strict mode fails ingest when publication date cannot be resolved.
-  - notes: source `design.md` Section 7.1
 
 - [ ] TODO-0268: Implement `regenerate_web.sh` wrapper-to-build entrypoint contract
   - owner: ai

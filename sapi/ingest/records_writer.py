@@ -29,6 +29,9 @@ _ALLOWED_ARTICLE_KINDS: set[str] = {
 }
 _ALLOWED_CITATION_CONFIDENCE: set[str] = {"unknown", "low", "medium", "high"}
 _CLAIM_ID_RE = re.compile(r"^claim-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$")
+_HTML_TITLE_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.IGNORECASE | re.DOTALL)
+_MARKDOWN_H1_RE = re.compile(r"^\s*#\s+(.+?)\s*$")
+_SPACE_RE = re.compile(r"\s+")
 
 
 @dataclass(frozen=True)
@@ -339,8 +342,8 @@ def ingest_source_artifacts_and_record(
 
     title = resolve_source_title(
         source_title_override=source_title_override,
-        source_metadata_title=None,
-        in_source_title_line=None,
+        source_metadata_title=source_input.source_metadata_title,
+        in_source_title_line=source_input.in_source_title_line,
         source_locator=source_input.locator_for_title,
     )
     source_slug = slugify(title)
@@ -401,6 +404,8 @@ class _LoadedSourceInput:
     media_type: str
     source_type: str
     id_payload: bytes
+    source_metadata_title: str | None
+    in_source_title_line: str | None
 
 
 def _load_source_input(
@@ -414,6 +419,11 @@ def _load_source_input(
         body, media_type = _read_url(raw_input)
         media_type = source_media_type_override or media_type or "application/octet-stream"
         source_type = source_type_override or "url"
+        source_metadata_title, in_source_title_line = _extract_title_hints(
+            body=body,
+            media_type=media_type,
+            locator=raw_input,
+        )
         id_payload = body + b"\n" + raw_input.encode("utf-8")
         return _LoadedSourceInput(
             body=body,
@@ -424,6 +434,8 @@ def _load_source_input(
             media_type=media_type,
             source_type=source_type,
             id_payload=id_payload,
+            source_metadata_title=source_metadata_title,
+            in_source_title_line=in_source_title_line,
         )
 
     source_file = Path(raw_input).expanduser()
@@ -438,6 +450,11 @@ def _load_source_input(
     media_type = source_media_type_override or _guess_media_type_from_suffix(source_file.suffix)
     source_type = source_type_override or "file"
     file_locator = source_file.name
+    source_metadata_title, in_source_title_line = _extract_title_hints(
+        body=body,
+        media_type=media_type,
+        locator=file_locator,
+    )
     id_payload = body + b"\n" + file_locator.encode("utf-8")
     return _LoadedSourceInput(
         body=body,
@@ -448,6 +465,8 @@ def _load_source_input(
         media_type=media_type,
         source_type=source_type,
         id_payload=id_payload,
+        source_metadata_title=source_metadata_title,
+        in_source_title_line=in_source_title_line,
     )
 
 
@@ -542,6 +561,74 @@ def _guess_media_type_from_suffix(suffix: str) -> str:
     if suffix_normalized in {".json"}:
         return "application/json"
     return "application/octet-stream"
+
+
+def _extract_title_hints(
+    *,
+    body: bytes,
+    media_type: str,
+    locator: str,
+) -> tuple[str | None, str | None]:
+    normalized_media_type = media_type.strip().lower()
+    suffix = Path(locator).suffix.lower()
+    is_text_like = (
+        normalized_media_type.startswith("text/")
+        or normalized_media_type in {"application/json", "application/xml"}
+        or suffix in {".md", ".markdown", ".txt", ".html", ".htm"}
+    )
+    if not is_text_like:
+        return None, None
+
+    decoded = body.decode("utf-8", errors="ignore")
+    if not decoded.strip():
+        return None, None
+
+    source_metadata_title = _extract_metadata_title(decoded, suffix=suffix, media_type=normalized_media_type)
+    in_source_title_line = _extract_in_source_title_line(decoded)
+    return source_metadata_title, in_source_title_line
+
+
+def _extract_metadata_title(raw_text: str, *, suffix: str, media_type: str) -> str | None:
+    is_html = suffix in {".html", ".htm"} or media_type in {"text/html", "application/xhtml+xml"}
+    if not is_html:
+        return None
+    match = _HTML_TITLE_RE.search(raw_text)
+    if match is None:
+        return None
+    return _normalize_candidate_title(match.group(1))
+
+
+def _extract_in_source_title_line(raw_text: str) -> str | None:
+    first_plausible_line: str | None = None
+    for raw_line in raw_text.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        h1_match = _MARKDOWN_H1_RE.match(line)
+        if h1_match is not None:
+            return _normalize_candidate_title(h1_match.group(1))
+        if first_plausible_line is None and _is_plausible_title_line(line):
+            first_plausible_line = line
+    if first_plausible_line is None:
+        return None
+    return _normalize_candidate_title(first_plausible_line)
+
+
+def _is_plausible_title_line(line: str) -> bool:
+    if line.startswith(("#", "-", "*", ">", "```")):
+        return False
+    if "<" in line and ">" in line:
+        return False
+    if len(line) > 200:
+        return False
+    return True
+
+
+def _normalize_candidate_title(raw_title: str) -> str | None:
+    normalized = _SPACE_RE.sub(" ", raw_title).strip()
+    if not normalized:
+        return None
+    return normalized[:200]
 
 
 def _render_overview_markdown(*, title: str, source_input: _LoadedSourceInput) -> str:

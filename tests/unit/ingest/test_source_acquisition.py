@@ -13,6 +13,65 @@ from sapi.ingest.records_writer import ingest_source_artifacts_and_record
 
 
 class SourceAcquisitionContractTests(unittest.TestCase):
+    def test_source_title_resolution_follows_five_step_priority_contract_in_ingest_path(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            space_root = tmp_root / "spaces" / "alpha"
+
+            html_source = tmp_root / "metadata-title.html"
+            html_source.write_text(
+                "<html><head><title>Metadata Title</title></head><body># In Source</body></html>\n"
+            )
+            markdown_source = tmp_root / "in-source-title.md"
+            markdown_source.write_text("# In-Source Title\n\nBody text.\n")
+            fallback_source = tmp_root / "fallback-title.pdf"
+            fallback_source.write_bytes(b"%PDF-1.7\n%fallback\n")
+
+            override_result = ingest_source_artifacts_and_record(
+                space_root=space_root,
+                source_path_or_url=str(html_source),
+                source_title_override="Override Title",
+            )
+            override_record = json.loads(override_result.record_path.read_text())
+            self.assertEqual(override_record["title"], "Override Title")
+
+            metadata_result = ingest_source_artifacts_and_record(
+                space_root=space_root,
+                source_path_or_url=str(html_source),
+                source_title_override=None,
+            )
+            metadata_record = json.loads(metadata_result.record_path.read_text())
+            self.assertEqual(metadata_record["title"], "Metadata Title")
+
+            in_source_result = ingest_source_artifacts_and_record(
+                space_root=space_root,
+                source_path_or_url=str(markdown_source),
+                source_title_override=None,
+            )
+            in_source_record = json.loads(in_source_result.record_path.read_text())
+            self.assertEqual(in_source_record["title"], "In-Source Title")
+
+            fallback_result = ingest_source_artifacts_and_record(
+                space_root=space_root,
+                source_path_or_url=str(fallback_source),
+                source_title_override=None,
+            )
+            fallback_record = json.loads(fallback_result.record_path.read_text())
+            self.assertEqual(fallback_record["title"], "fallback-title")
+
+            with _served_source_bytes(
+                body=b"%PDF-1.7\n%untitled\n",
+                content_type="application/pdf",
+                route_path="/",
+            ) as source_url:
+                untitled_result = ingest_source_artifacts_and_record(
+                    space_root=space_root,
+                    source_path_or_url=source_url,
+                    source_title_override=None,
+                )
+            untitled_record = json.loads(untitled_result.record_path.read_text())
+            self.assertEqual(untitled_record["title"], "Untitled Source")
+
     def test_file_ingest_persists_artifacts_under_source_id_directory(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "spaces" / "alpha"
@@ -163,9 +222,18 @@ class SourceAcquisitionContractTests(unittest.TestCase):
 
 
 @contextmanager
-def _served_source_bytes(*, body: bytes, content_type: str) -> Iterator[str]:
+def _served_source_bytes(
+    *,
+    body: bytes,
+    content_type: str,
+    route_path: str = "/source",
+) -> Iterator[str]:
     class _Handler(BaseHTTPRequestHandler):
         def do_GET(self) -> None:  # noqa: N802
+            if self.path != route_path:
+                self.send_response(404)
+                self.end_headers()
+                return
             self.send_response(200)
             self.send_header("Content-Type", content_type)
             self.send_header("Content-Length", str(len(body)))
@@ -180,7 +248,7 @@ def _served_source_bytes(*, body: bytes, content_type: str) -> Iterator[str]:
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     try:
-        yield f"http://{host}:{port}/source"
+        yield f"http://{host}:{port}{route_path}"
     finally:
         server.shutdown()
         thread.join(timeout=5)

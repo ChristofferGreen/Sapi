@@ -121,6 +121,70 @@ class IngestModeHandlingTests(unittest.TestCase):
             self.assertEqual(frontmatter["build_deferred"], False)
             self.assertIsNone(frontmatter["deferred_build_reason"])
 
+    def test_missing_publication_date_persists_warning_and_unknown_inference(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = _bootstrap_site_and_space(tmp_root, "alpha")
+            source_path = tmp_root / "source.txt"
+            source_path.write_text("missing publication date\n")
+
+            result = _run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            space_root = site_path / "spaces" / "alpha"
+            source_records = sorted((space_root / "sources" / "records").glob("source-*.json"))
+            self.assertEqual(len(source_records), 1)
+            source_record = json.loads(source_records[0].read_text())
+            self.assertIsNone(source_record["date"])
+            self.assertEqual(
+                source_record["source_date_inference"],
+                {
+                    "date": None,
+                    "origin": "unknown",
+                    "confidence": "unknown",
+                    "rationale": None,
+                },
+            )
+            self.assertEqual(source_record["warnings"][0]["code"], "missing_publication_date")
+
+    def test_require_source_date_fails_when_date_cannot_be_resolved(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = _bootstrap_site_and_space(tmp_root, "alpha")
+            source_path = tmp_root / "source.txt"
+            source_path.write_text("strict date failure\n")
+
+            result = _run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--require-source-date",
+                    "--mock-llm",
+                ]
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("strict-date mode (`--require-source-date`) is enabled", result.stderr)
+
+            space_root = site_path / "spaces" / "alpha"
+            source_records = sorted((space_root / "sources" / "records").glob("source-*.json"))
+            self.assertEqual(source_records, [])
+            run_paths = sorted((space_root / "runs").glob("*/run.md"))
+            self.assertEqual(run_paths, [])
+
 
 def _bootstrap_site_and_space(tmp_root: Path, space_name: str) -> Path:
     site_path = tmp_root / "site-a"
