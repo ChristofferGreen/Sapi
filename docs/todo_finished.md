@@ -4,6 +4,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0267: Implement wrapper compatibility and bootstrap-exception integration tests
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 5
+  - depends_on: TODO-0209, TODO-0235, TODO-0219, TODO-0228
+  - scope: Add dedicated wrapper integration tests for alias normalization/conflicts and bootstrap registry-path exceptions.
+  - acceptance:
+    - Wrapper test modules cover alias normalization and canonical+alias conflict failures.
+    - Bootstrap wrappers are explicitly tested for allowed missing operator-supplied `--registry-path`.
+    - Non-bootstrap wrappers are tested to require explicit/effective registry-path routing.
+  - evidence: Added dedicated integration modules under `tests/integration/wrappers/`:
+    `test_wrapper_alias_normalization.py` (alias normalization + deprecation coverage),
+    `test_wrapper_alias_conflicts.py` (canonical+alias conflict fail-fast coverage), and
+    `test_bootstrap_registry_exception.py` (bootstrap exception and non-bootstrap
+    explicit/effective registry-path routing coverage via script-failure + wrapper-success checks).
+
 - [x] TODO-0268: Implement `regenerate_web.sh` wrapper-to-build entrypoint contract
   - owner: ai
   - created_at: 2026-04-12
