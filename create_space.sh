@@ -15,6 +15,12 @@ space_name="$2"
 registry_path="$site_path/spaces.toml"
 space_root="$site_path/spaces/$space_name"
 
+if [[ ! "$space_name" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
+  echo "Error: <space_name> must be lowercase kebab-case." >&2
+  usage
+  exit 2
+fi
+
 mkdir -p \
   "$space_root/sources/records" \
   "$space_root/sources/artifacts" \
@@ -29,6 +35,7 @@ mkdir -p \
   "$space_root/outputs/comment_quality" \
   "$space_root/site" \
   "$space_root/raw/snapshots/comment_sections" \
+  "$space_root/.locks" \
   "$space_root/.cache"
 
 if [[ ! -f "$space_root/imports.lock.md" ]]; then

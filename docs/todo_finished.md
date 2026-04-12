@@ -157,3 +157,16 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     - Time/date fields use mandated RFC3339/ISO formats.
     - Path aliases/tokens resolve exactly per Section 5.0 rules.
   - evidence: Verified by `tests/unit/contracts/test_id_contracts.py`, including positive/negative suffix-constraint checks for deterministic and execution IDs, RFC3339/ISO/compact UTC temporal-format assertions, and canonical token/alias path-resolution + rejection coverage for prohibited/undocumented aliases.
+
+- [x] TODO-0209: Site and space bootstrap command implementation
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0200, TODO-0207
+  - scope: Implement `create_site` and `create_space` bootstrap behavior and generated runtime layout.
+  - acceptance:
+    - `create_site.sh` creates `site.json`, `spaces.toml`, and runtime skeleton.
+    - `create_space.sh` registers space and creates canonical space root layout.
+    - Bootstrap exception for missing `--registry-path` is enforced only for bootstrap commands.
+  - evidence: Verified by `tests/unit/contracts/test_bootstrap_site_space.py`, including canonical site bootstrap artifacts (`site.json`, `spaces.toml`, discussion-controls skeleton, runtime directories), space registration/layout idempotency, direct `create_space` bootstrap-registry behavior, slug-safe `<space_name>` enforcement, and non-bootstrap `--registry-path` requirement checks.

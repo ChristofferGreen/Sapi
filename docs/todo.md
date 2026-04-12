@@ -47,26 +47,25 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0209` Site and space bootstrap command implementation
-2. `TODO-0203` Generation-spec resolver and version pinning
-3. `TODO-0100` Capture incoming design recommendations into structured tasks
+1. `TODO-0203` Generation-spec resolver and version pinning
+2. `TODO-0100` Capture incoming design recommendations into structured tasks
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0209`
-2. `TODO-0203`
-3. `TODO-0204`
-4. `TODO-0205`
-5. `TODO-0206`
-6. `TODO-0262`
-7. `TODO-0269`
-8. `TODO-0236`
-9. `TODO-0235`
-10. `TODO-0238`
+1. `TODO-0203`
+2. `TODO-0204`
+3. `TODO-0205`
+4. `TODO-0206`
+5. `TODO-0262`
+6. `TODO-0269`
+7. `TODO-0236`
+8. `TODO-0235`
+9. `TODO-0238`
+10. `TODO-0240`
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: `TODO-0203` to `TODO-0206`, `TODO-0209`, `TODO-0235`, `TODO-0236`, `TODO-0238`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0262`, `TODO-0269`, `TODO-0272`
+- P0 Foundation/contracts: `TODO-0203` to `TODO-0206`, `TODO-0235`, `TODO-0236`, `TODO-0238`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0262`, `TODO-0269`, `TODO-0272`
 - P1 Core product behavior: `TODO-0210` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0100`, `TODO-0264`, `TODO-0265`
@@ -75,7 +74,7 @@ Task template:
 
 Wave A (bootstrap + contracts):
 1. `TODO-0203` -> `TODO-0204` -> `TODO-0205` -> `TODO-0206` -> `TODO-0262` -> `TODO-0269`
-2. `TODO-0209` -> `TODO-0236` -> `TODO-0235` -> `TODO-0240`
+2. `TODO-0236` -> `TODO-0235` -> `TODO-0240`
 3. `TODO-0238` -> `TODO-0272`
 
 Wave B (ingest + projection + lint):
@@ -964,18 +963,6 @@ Cross-cutting docs backlog:
     - Canonical source metadata and artifact pointers are persisted in source records.
     - Ingest lock behavior works (exclusive lock, stale lock recovery, release in finally).
   - notes: source `design.md` Sections 5.3, 7.1; title/date strictness in `TODO-0270`
-
-- [ ] TODO-0209: Site and space bootstrap command implementation
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 1
-  - depends_on: TODO-0200, TODO-0207
-  - scope: Implement `create_site` and `create_space` bootstrap behavior and generated runtime layout.
-  - acceptance:
-    - `create_site.sh` creates `site.json`, `spaces.toml`, and runtime skeleton.
-    - `create_space.sh` registers space and creates canonical space root layout.
-    - Bootstrap exception for missing `--registry-path` is enforced only for bootstrap commands.
-  - notes: source `design.md` Sections 4.1.1, 5.5, 6.1
 
 - [ ] TODO-0206: Run-envelope writer with flow-specific extensions
   - owner: ai

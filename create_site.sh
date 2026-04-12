@@ -16,13 +16,20 @@ site_name="$2"
 mkdir -p "$site_path/config" "$site_path/spaces" "$site_path/outputs/llm_traces"
 
 if [[ ! -f "$site_path/site.json" ]]; then
-  cat > "$site_path/site.json" <<JSON
-{
-  "schema_version": "site_scope_v1",
-  "site_root": ".",
-  "site_name": "$site_name"
+  python3 - "$site_name" "$site_path/site.json" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+site_name = sys.argv[1]
+site_json_path = Path(sys.argv[2])
+payload = {
+    "schema_version": "site_scope_v1",
+    "site_name": site_name,
+    "site_root": ".",
 }
-JSON
+site_json_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+PY
 fi
 
 if [[ ! -f "$site_path/spaces.toml" ]]; then
@@ -34,7 +41,9 @@ fi
 if [[ ! -f "$site_path/config/discussion_controls.json" ]]; then
   cat > "$site_path/config/discussion_controls.json" <<'JSON'
 {
-  "comment_sections_enabled": true
+  "schema_version": "comment_section_discussion_controls_v1",
+  "defaults": {},
+  "pages": {}
 }
 JSON
 fi

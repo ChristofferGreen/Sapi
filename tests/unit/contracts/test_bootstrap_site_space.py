@@ -26,9 +26,25 @@ class BootstrapSiteSpaceTests(unittest.TestCase):
             self.assertEqual(site_json["site_root"], ".")
 
             self.assertTrue((site_path / "spaces.toml").is_file())
-            self.assertTrue((site_path / "config" / "discussion_controls.json").is_file())
+            discussion_controls_path = site_path / "config" / "discussion_controls.json"
+            self.assertTrue(discussion_controls_path.is_file())
+            discussion_controls = json.loads(discussion_controls_path.read_text())
+            self.assertEqual(
+                discussion_controls["schema_version"],
+                "comment_section_discussion_controls_v1",
+            )
+            self.assertEqual(discussion_controls["defaults"], {})
+            self.assertEqual(discussion_controls["pages"], {})
             self.assertTrue((site_path / "spaces").is_dir())
             self.assertTrue((site_path / "outputs" / "llm_traces").is_dir())
+
+    def test_create_site_handles_json_escaped_site_names(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            site_path = Path(tmp) / "site-a"
+            site_name = 'My "Quoted" Site'
+            self._run(["bash", str(REPO_ROOT / "create_site.sh"), str(site_path), site_name])
+            site_json = json.loads((site_path / "site.json").read_text())
+            self.assertEqual(site_json["site_name"], site_name)
 
     def test_create_space_registers_space_and_creates_canonical_space_layout(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -59,12 +75,39 @@ class BootstrapSiteSpaceTests(unittest.TestCase):
                 "outputs/comment_quality",
                 "site",
                 "raw/snapshots/comment_sections",
+                ".locks",
                 ".cache",
             ]
             for rel in expected_dirs:
                 with self.subTest(path=rel):
                     self.assertTrue((space_root / rel).is_dir())
             self.assertTrue((space_root / "imports.lock.md").is_file())
+
+    def test_create_space_bootstraps_registry_when_create_site_not_run(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            site_path = Path(tmp) / "site-a"
+            space_name = "alpha"
+            self._run(["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), space_name])
+
+            registry = tomllib.loads((site_path / "spaces.toml").read_text())
+            spaces = registry.get("spaces", [])
+            self.assertEqual(len(spaces), 1)
+            self.assertEqual(spaces[0]["space_name"], space_name)
+            self.assertEqual(spaces[0]["space_root"], f"spaces/{space_name}")
+            self.assertTrue((site_path / "spaces" / space_name).is_dir())
+
+    def test_create_space_rejects_non_slug_space_names(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            site_path = Path(tmp) / "site-a"
+            result = subprocess.run(
+                ["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), "Alpha Space"],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(result.returncode, 2)
+            self.assertIn("lowercase kebab-case", result.stderr)
+            self.assertFalse((site_path / "spaces.toml").exists())
 
     def test_bootstrap_registry_exception_applies_only_to_bootstrap_commands(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
