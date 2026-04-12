@@ -8,6 +8,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DESIGN_DOC_PATH = REPO_ROOT / "docs" / "design.md"
 TODO_DOC_PATH = REPO_ROOT / "docs" / "todo.md"
+TODO_FINISHED_DOC_PATH = REPO_ROOT / "docs" / "todo_finished.md"
 
 
 class TodoRecommendationIntakeTests(unittest.TestCase):
@@ -40,6 +41,25 @@ class TodoRecommendationIntakeTests(unittest.TestCase):
             if "acceptance:" not in block:
                 continue
             self.assertNotIn("- ...", block, msg="placeholder acceptance bullet found in open task block")
+
+    def test_todo_0280_completion_records_owner_outcome_path_and_authoritative_sections(self) -> None:
+        finished_block = _task_block(
+            text=TODO_FINISHED_DOC_PATH.read_text(),
+            todo_id="TODO-0280",
+            open_task=False,
+        )
+        self.assertIn("owner: ai", finished_block)
+        self.assertIn("Section 1.3", finished_block)
+        self.assertIn("Section 4.1.3", finished_block)
+
+        successor_block = _task_block(
+            text=TODO_DOC_PATH.read_text(),
+            todo_id="TODO-0282",
+            open_task=True,
+        )
+        self.assertIn("owner: human", successor_block)
+        self.assertIn("decision_ref: compatibility-reader-sunset-policy-for-legacy-aliases", successor_block)
+        self.assertIn("Section 4.1.3", successor_block)
 
 
 def _open_tasks_section(todo_text: str) -> str:
@@ -88,6 +108,26 @@ def _open_task_blocks(todo_text: str) -> list[str]:
     if current:
         blocks.append(current)
     return ["\n".join(block) for block in blocks]
+
+
+def _task_block(*, text: str, todo_id: str, open_task: bool) -> str:
+    marker = f"- [{' ' if open_task else 'x'}] {todo_id}:"
+    lines = text.splitlines()
+    start_idx: int | None = None
+    for idx, line in enumerate(lines):
+        if line.startswith(marker):
+            start_idx = idx
+            break
+    if start_idx is None:
+        raise AssertionError(f"missing task block for {todo_id}")
+
+    block_lines: list[str] = []
+    for idx in range(start_idx, len(lines)):
+        line = lines[idx]
+        if idx > start_idx and re.match(r"^- \[[ x]\] TODO-\d{4}:", line):
+            break
+        block_lines.append(line)
+    return "\n".join(block_lines)
 
 
 def _slugify_for_decision_ref(value: str) -> str:
