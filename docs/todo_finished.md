@@ -4,6 +4,26 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0274: Integrate `evaluate_source.sh` comments mode and comment-review artifacts
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 5
+  - depends_on: TODO-0273, TODO-0223, TODO-0247
+  - scope: Add full comments integration to the user-facing evaluation harness so reviewers can inspect generated discussion quality in markdown artifacts.
+  - acceptance:
+    - `evaluate_source.sh --comments <n>` invokes comment generation with canonical flags and records effective targets/counts.
+    - Evaluation artifact folder includes `comments_review.md` with per-page/per-user counts and representative thread excerpts.
+    - Harness preserves deterministic output layout and fails fast on invalid comments-mode arguments.
+  - evidence: Extended `scripts/evaluate_source.py` comments-mode handling to compute and persist
+    deterministic effective targets/counts in both `comments_review.md` and `manifest.json`
+    (`comments` block with effective targets/distributions), while retaining canonical
+    `create_comments.py` invocation flags (`--count`, `--comment-user`, `--comment-page`) and
+    fail-fast invalid `--comments` argument behavior. Expanded
+    `tests/integration/wrappers/test_evaluate_source_harness.py` to assert canonical comments
+    command flags in `README.md`, manifest effective-target/count linkage, and per-page/per-user
+    count rows plus representative excerpt sections in `comments_review.md`.
+
 - [x] TODO-0267: Implement wrapper compatibility and bootstrap-exception integration tests
   - owner: ai
   - created_at: 2026-04-12

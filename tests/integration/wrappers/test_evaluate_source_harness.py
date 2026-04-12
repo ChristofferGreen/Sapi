@@ -127,6 +127,17 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             workflow_statuses = manifest.get("workflow_statuses", {})
             self.assertEqual(workflow_statuses.get("comments"), "success")
             self.assertIn("comments_review.md", set(manifest.get("markdown_artifacts", [])))
+            self.assertEqual(manifest.get("comments", {}).get("requested_count"), 6)
+            self.assertEqual(manifest.get("comments", {}).get("effective_page_targets"), ["topic-example"])
+            self.assertEqual(manifest.get("comments", {}).get("effective_user_targets"), ["persona-1"])
+            self.assertEqual(
+                manifest.get("comments", {}).get("effective_page_requested_counts"),
+                [{"target": "topic-example", "requested_count": 6}],
+            )
+            self.assertEqual(
+                manifest.get("comments", {}).get("effective_user_requested_counts"),
+                [{"target": "persona-1", "requested_count": 6}],
+            )
             self.assertIn("run_ids", manifest)
             self.assertIsInstance(manifest.get("run_ids"), dict)
             self.assertIsInstance(manifest.get("run_ids", {}).get("ingest"), str)
@@ -134,11 +145,19 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             default_evaluations_root = site_path / "spaces" / "alpha" / "outputs" / "evaluations"
             self.assertFalse(default_evaluations_root.exists())
 
+            readme_text = (out_dir / "README.md").read_text()
+            self.assertIn("create_comments:", readme_text)
+            self.assertIn("--count 6", readme_text)
+            self.assertIn("--comment-user persona-1", readme_text)
+            self.assertIn("--comment-page topic-example", readme_text)
+
             comments_review = (out_dir / "comments_review.md").read_text()
             self.assertIn("# Comments Review", comments_review)
             self.assertIn("## Per-Page Requested Counts", comments_review)
             self.assertIn("## Per-User Requested Counts", comments_review)
             self.assertIn("## Representative Thread Excerpt", comments_review)
+            self.assertIn("| `topic-example` | 6 |", comments_review)
+            self.assertIn("| `persona-1` | 6 |", comments_review)
 
     def test_invalid_comments_arg_fails_fast_without_partial_pack(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

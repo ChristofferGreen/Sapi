@@ -116,7 +116,13 @@ def main() -> int:
         )
 
         comments_result: StepResult | None = None
+        comments_effective: dict[str, object] | None = None
         if args.comments is not None and args.comments > 0:
+            comments_effective = _compute_effective_comments(
+                requested_count=args.comments,
+                comment_users=args.comment_user,
+                comment_pages=args.comment_page,
+            )
             comments_result = _run_checked(
                 [
                     sys.executable,
@@ -210,9 +216,7 @@ def main() -> int:
             comments_review_path = output_dir / "comments_review.md"
             comments_review_path.write_text(
                 _render_comments_review(
-                    requested_count=args.comments,
-                    comment_users=args.comment_user,
-                    comment_pages=args.comment_page,
+                    comments_effective=comments_effective,
                     comments_result=comments_result,
                 )
             )
@@ -249,6 +253,7 @@ def main() -> int:
             build_manifest_path=build_manifest_path if build_manifest_path.is_file() else None,
             comments_requested=args.comments,
             comments_result=comments_result,
+            comments_effective=comments_effective,
         )
         manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
 
@@ -546,15 +551,18 @@ def _render_site_links(*, site_path: Path, build_manifest: dict[str, object] | N
 
 def _render_comments_review(
     *,
-    requested_count: int,
-    comment_users: list[str],
-    comment_pages: list[str],
+    comments_effective: dict[str, object] | None,
     comments_result: StepResult,
 ) -> str:
-    page_targets = sorted(set(comment_pages)) if comment_pages else ["(default topic targets)"]
-    user_targets = sorted(set(comment_users)) if comment_users else ["(default persona mix)"]
-    page_counts = _distribute_requested_count(requested_count, page_targets)
-    user_counts = _distribute_requested_count(requested_count, user_targets)
+    requested_count = 0
+    page_counts: list[tuple[str, int]] = []
+    user_counts: list[tuple[str, int]] = []
+    if comments_effective is not None:
+        requested_value = comments_effective.get("requested_count")
+        if isinstance(requested_value, int):
+            requested_count = requested_value
+        page_counts = _pair_count_rows(comments_effective.get("effective_page_requested_counts"))
+        user_counts = _pair_count_rows(comments_effective.get("effective_user_requested_counts"))
 
     lines = [
         "# Comments Review",
@@ -604,6 +612,43 @@ def _distribute_requested_count(total: int, keys: list[str]) -> list[tuple[str, 
     return distribution
 
 
+def _pair_count_rows(payload: object) -> list[tuple[str, int]]:
+    pairs: list[tuple[str, int]] = []
+    if not isinstance(payload, list):
+        return pairs
+    for item in payload:
+        if not isinstance(item, dict):
+            continue
+        key = item.get("target")
+        count = item.get("requested_count")
+        if isinstance(key, str) and isinstance(count, int):
+            pairs.append((key, count))
+    return pairs
+
+
+def _compute_effective_comments(
+    *,
+    requested_count: int,
+    comment_users: list[str],
+    comment_pages: list[str],
+) -> dict[str, object]:
+    page_targets = sorted(set(comment_pages)) if comment_pages else ["(default topic targets)"]
+    user_targets = sorted(set(comment_users)) if comment_users else ["(default persona mix)"]
+    page_counts = _distribute_requested_count(requested_count, page_targets)
+    user_counts = _distribute_requested_count(requested_count, user_targets)
+    return {
+        "requested_count": requested_count,
+        "effective_page_targets": page_targets,
+        "effective_user_targets": user_targets,
+        "effective_page_requested_counts": [
+            {"target": target, "requested_count": count} for target, count in page_counts
+        ],
+        "effective_user_requested_counts": [
+            {"target": target, "requested_count": count} for target, count in user_counts
+        ],
+    }
+
+
 def _build_manifest(
     *,
     evaluation_id: str,
@@ -620,6 +665,7 @@ def _build_manifest(
     build_manifest_path: Path | None,
     comments_requested: int | None,
     comments_result: StepResult | None,
+    comments_effective: dict[str, object] | None,
 ) -> dict[str, object]:
     markdown_artifacts = sorted(str(path.relative_to(output_dir)) for path in artifact_paths)
     supporting_artifacts = sorted(str(path.relative_to(output_dir)) for path in supporting_paths)
@@ -657,6 +703,8 @@ def _build_manifest(
         manifest["build_manifest_path"] = str(build_manifest_path)
     if comments_requested is not None:
         manifest["comments_requested"] = comments_requested
+    if comments_effective is not None:
+        manifest["comments"] = comments_effective
     return manifest
 
 

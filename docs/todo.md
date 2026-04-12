@@ -66,7 +66,7 @@ Task template:
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: `TODO-0220` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0277`
-- P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0274`, `TODO-0275`
+- P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0282`
 
 ### Execution Queue (Recommended)
@@ -79,7 +79,7 @@ Wave B (ingest + projection + lint):
 
 Wave C (query + social + hardening + release):
 1. `TODO-0220` -> `TODO-0242` -> `TODO-0259` -> `TODO-0255` -> `TODO-0221` -> `TODO-0277`
-2. `TODO-0222` -> `TODO-0223` -> `TODO-0247` -> `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225` -> `TODO-0274`
+2. `TODO-0222` -> `TODO-0223` -> `TODO-0247` -> `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
 3. `TODO-0254` -> `TODO-0228` -> `TODO-0251` -> `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0243` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
@@ -95,20 +95,20 @@ Cross-cutting docs backlog:
 | Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | - |
-| Section 6 (wrapper UX + wrapper-to-entrypoint contract) | `TODO-0274` |
+| Section 6 (wrapper UX + wrapper-to-entrypoint contract) | - |
 | Section 7.1 ingest pipeline | - |
 | Section 7.2 references/linking | - |
 | Section 7.3 query pipeline | `TODO-0220`, `TODO-0259`, `TODO-0255`, `TODO-0221`, `TODO-0277` |
 | Section 7.4 persona catalog | `TODO-0222` |
 | Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
-| Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275`, `TODO-0274` |
+| Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
 | Section 7.7 comment quality harness | `TODO-0225` |
 | Section 8 site/UI/static build | `TODO-0245`, `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
 | Section 9 observability/safety/runtime controls | `TODO-0226`, `TODO-0227`, `TODO-0254` |
 | Section 10 run envelopes/lifecycle status | `TODO-0234`, `TODO-0250` |
-| Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0274`, `TODO-0277`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
+| Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0277`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0243`, `TODO-0260`, `TODO-0261` |
-| Section 13 definition of done | `TODO-0231`, `TODO-0274` |
+| Section 13 definition of done | `TODO-0231` |
 
 ### Low-Level Coverage Snapshot
 
@@ -119,11 +119,11 @@ Cross-cutting docs backlog:
 | Section 5 (path + registry contracts) | - |
 | Section 6 (semantic execution engine + retry/repair) | - |
 | Section 7 (transaction/rollback) | - |
-| Section 8 (pipeline execution contracts) | `TODO-0274`, `TODO-0275`, `TODO-0277`, `TODO-0220`, `TODO-0223`, `TODO-0224`, `TODO-0242` |
+| Section 8 (pipeline execution contracts) | `TODO-0275`, `TODO-0277`, `TODO-0220`, `TODO-0223`, `TODO-0224`, `TODO-0242` |
 | Section 9 (deterministic build/projection) | `TODO-0275` |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
-| Section 12 (wrapper/script interfaces) | `TODO-0254`, `TODO-0274` |
+| Section 12 (wrapper/script interfaces) | `TODO-0254` |
 | Section 13 (observability/runtime controls/safety) | `TODO-0226`, `TODO-0227`, `TODO-0254` |
 | Section 14 (anti-drift and PR guardrails) | - |
 | Section 15 (test-plan binding) | `TODO-0228`, `TODO-0266`, `TODO-0275`, `TODO-0277`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
@@ -134,7 +134,7 @@ Cross-cutting docs backlog:
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (test module layout) | `TODO-0228`, `TODO-0229` |
-| Tier 0-3 (fast contract/failure/pipeline suites) | `TODO-0228`, `TODO-0266`, `TODO-0274`, `TODO-0275`, `TODO-0277` |
+| Tier 0-3 (fast contract/failure/pipeline suites) | `TODO-0228`, `TODO-0266`, `TODO-0275`, `TODO-0277` |
 | Tier 4-6 (determinism/golden/live canary) | `TODO-0229` |
 | Section 4-5 (CI gating matrix + command wiring) | `TODO-0230` |
 | Section 6 (exit criteria gating) | `TODO-0263`, `TODO-0231` |
@@ -162,18 +162,6 @@ Cross-cutting docs backlog:
     - Optional fields (`ancestor_pages_used`, `inherited_conflicts`, `synthesis_claim_ids`) follow deterministic presence/absence rules.
     - `manifest_path` behavior is consistent with output format contract and validated by tests.
   - notes: source `design.md` Section 7.3 (query result shape + artifact output contract)
-
-- [ ] TODO-0274: Integrate `evaluate_source.sh` comments mode and comment-review artifacts
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 5
-  - depends_on: TODO-0273, TODO-0223, TODO-0247
-  - scope: Add full comments integration to the user-facing evaluation harness so reviewers can inspect generated discussion quality in markdown artifacts.
-  - acceptance:
-    - `evaluate_source.sh --comments <n>` invokes comment generation with canonical flags and records effective targets/counts.
-    - Evaluation artifact folder includes `comments_review.md` with per-page/per-user counts and representative thread excerpts.
-    - Harness preserves deterministic output layout and fails fast on invalid comments-mode arguments.
-  - notes: source `design.md` Sections 6.3, 7.6, 13
 
 - [ ] TODO-0275: Enforce site-root `New` refresh exclusions for non-mutating flows
   - owner: ai
