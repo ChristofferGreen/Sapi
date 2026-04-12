@@ -1813,3 +1813,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `test_profiles_terminal_failure_does_not_persist_run_container` (asserting no committed
     run container for simulated profile failure with default persona selection). Updated
     `docs/testing_plan.md` to mark the Tier 2 run-container checklist item complete.
+
+- [x] TODO-0291: Close Tier 2 repair-loop exhaustion rollback checklist across ingest/profile flows
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 2
+  - depends_on: TODO-0203, TODO-0224
+  - scope: Finalize Tier 2 repair-loop exhaustion evidence by proving terminal semantic
+    retry exhaustion causes rollback for both ingest and profile pipelines.
+  - acceptance:
+    - `tests/integration/failure/test_semantic_repair_exhaustion_rollback.py` retains ingest
+      rollback coverage for schema-repair exhaustion.
+    - The same module covers profile semantic-repair exhaustion rollback behavior.
+    - `docs/testing_plan.md` marks the Tier 2 repair-loop exhaustion checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 2; `docs/design.md` Section 2.1
+  - evidence: Extended
+    `tests/integration/failure/test_semantic_repair_exhaustion_rollback.py` with
+    `test_semantic_repair_exhaustion_rolls_back_default_profile_writes`, patching
+    profile semantic generation to return schema-invalid payloads until retry budget
+    exhaustion and asserting rollback leaves no committed profile/history/run artifacts.
+    Existing ingest exhaustion rollback assertions remain intact. Updated
+    `docs/testing_plan.md` to mark the Tier 2 repair-loop exhaustion item complete.

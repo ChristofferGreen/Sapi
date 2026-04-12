@@ -86,7 +86,7 @@ tests/
 
 ### Tier 2: Failure-Semantics Integration Tests
 
-- [ ] Repair-loop exhaustion causes terminal failure + rollback.
+- [x] Repair-loop exhaustion causes terminal failure + rollback.
   - Module: `tests/integration/failure/test_semantic_repair_exhaustion_rollback.py`
 - [ ] Deterministic post-processing failure rolls back invocation-scoped writes.
   - Module: `tests/integration/failure/test_postprocess_failure_rollback.py`

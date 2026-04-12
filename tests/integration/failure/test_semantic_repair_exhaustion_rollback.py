@@ -8,6 +8,7 @@ from contextlib import redirect_stderr
 from pathlib import Path
 from unittest.mock import patch
 
+import scripts.generate_profiles as generate_profiles
 import scripts.ingest_source as ingest_source
 from tests.conftest import (
     assert_no_run_containers,
@@ -50,6 +51,36 @@ class SemanticRepairExhaustionRollbackIntegrationTests(unittest.TestCase):
             self.assertEqual(list((space_root / "claims").glob("*.json")), [])
             self.assertEqual(list((space_root / "relations").glob("*.json")), [])
             self.assertEqual(list((space_root / "topics").glob("*.json")), [])
+            assert_no_run_containers(space_root)
+
+    def test_semantic_repair_exhaustion_rolls_back_default_profile_writes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+
+            stderr = io.StringIO()
+            argv = [
+                "generate_profiles.py",
+                "alpha",
+                "--registry-path",
+                str(site_path / "spaces.toml"),
+                "--mock-llm",
+            ]
+            # Return schema-invalid semantic output for every attempt to force retry exhaustion.
+            with patch.object(
+                generate_profiles._BootstrapPersonaProfileClient,
+                "generate_semantic_json",
+                return_value=json.dumps({"persona_id": "broken"}),
+            ):
+                with patch("sys.argv", argv):
+                    with redirect_stderr(stderr):
+                        exit_code = generate_profiles.main()
+
+            self.assertNotEqual(exit_code, 0)
+            self.assertIn("semantic flow", stderr.getvalue().lower())
+            self.assertEqual(list((space_root / "profiles").glob("persona-*.json")), [])
+            self.assertEqual(list((space_root / "outputs" / "persona_profile_history").glob("*.json")), [])
             assert_no_run_containers(space_root)
 
 
