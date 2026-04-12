@@ -15,6 +15,10 @@ class WrapperRuntimeFlagIntegrationTests(unittest.TestCase):
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
             source_path = Path(tmp) / "source.txt"
             source_path.write_text("runtime flag forwarding source\n")
+            topic_path = site_path / "spaces" / "alpha" / "topics" / "topic-runtime.json"
+            topic_path.write_text(
+                '{"topic_id":"topic-runtime","title":"Runtime Topic","structure_type":"wiki","sections":[],"claim_ids":[],"source_ids":[]}\n'
+            )
 
             runtime_args = [
                 "--mock-llm",

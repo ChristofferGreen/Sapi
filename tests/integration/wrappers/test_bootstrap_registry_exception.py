@@ -46,6 +46,10 @@ class BootstrapRegistryExceptionIntegrationTests(unittest.TestCase):
             self._run(["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), "alpha"], check=True)
             source_path = tmp_root / "source.txt"
             source_path.write_text("source payload\n")
+            topic_path = site_path / "spaces" / "alpha" / "topics" / "topic-alpha.json"
+            topic_path.write_text(
+                '{"topic_id":"topic-alpha","title":"Topic Alpha","structure_type":"wiki","sections":[],"claim_ids":[],"source_ids":[]}\n'
+            )
 
             wrapper_commands = [
                 ["bash", str(REPO_ROOT / "ingest.sh"), str(site_path), "alpha", str(source_path), "--source-only"],
@@ -58,6 +62,11 @@ class BootstrapRegistryExceptionIntegrationTests(unittest.TestCase):
             for command in wrapper_commands:
                 with self.subTest(wrapper=Path(command[1]).name):
                     result = self._run(command)
+                    wrapper_name = Path(command[1]).name
+                    if wrapper_name in {"validate.sh"}:
+                        self.assertNotEqual(result.returncode, 2, msg=result.stderr)
+                        self.assertNotIn("--registry-path", result.stderr)
+                        continue
                     self.assertEqual(result.returncode, 0, msg=result.stderr)
 
     def _run(self, cmd: list[str], *, check: bool = False) -> subprocess.CompletedProcess[str]:

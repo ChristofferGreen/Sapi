@@ -32,6 +32,8 @@ class WrapperAliasNormalizationTests(unittest.TestCase):
     def test_comment_aliases_and_legacy_positional_count_normalize(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
+            topic_path = site_path / "spaces" / "alpha" / "topics" / "topic-a.json"
+            topic_path.write_text('{"topic_id":"topic-a","title":"Topic A"}\n')
             result = self._run(
                 [
                     "bash",
@@ -49,7 +51,7 @@ class WrapperAliasNormalizationTests(unittest.TestCase):
             self.assertIn("positional count argument is deprecated", result.stderr)
             self.assertIn("--user is deprecated", result.stderr)
             self.assertIn("--page is deprecated", result.stderr)
-            self.assertIn("scripts/create_comments.py scaffold ready", result.stdout)
+            self.assertIn("scripts/create_comments.py comments created", result.stdout)
 
     def test_ingest_canonical_and_alias_conflict_fails_fast(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

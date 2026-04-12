@@ -4,6 +4,29 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0223: Comment pipeline batching, merge normalization, and evidence modes
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 5
+  - depends_on: TODO-0222, TODO-0216, TODO-0204, TODO-0218
+  - scope: Implement comment generation contract including per-page semantic artifacts, count bounds, merge behavior, and evidence snapshots.
+  - acceptance:
+    - Default targets parseable topic pages; explicit source/claim targeting works.
+    - One semantic artifact per targeted page is written under `runs/<run_id>/semantic/comment_section_generation/<page_ref_key>.json`.
+    - Merge preserves existing `comment_uid` values and assigns only for new comments.
+    - `web-augmented` mode writes snapshot at canonical path/schema.
+  - notes: source `design.md` Section 7.6
+  - evidence: Replaced `scripts/create_comments.py` scaffold with a full comment-section
+    pipeline path that enforces count bounds (`5..50`), applies default parseable-topic
+    targeting with explicit source/claim/topic targeting, emits one semantic artifact per
+    target page under `runs/<run_id>/semantic/comment_section_generation/`, merges deterministic
+    rows while preserving existing `comment_uid` values, and writes canonical web-augmented
+    snapshots under `raw/snapshots/comment_sections/comment-section-<seed>.json` with schema marker
+    `comment_section_evidence_snapshot_v1`. Added integration coverage in
+    `tests/integration/pipelines/test_comments_pipeline.py` for all acceptance criteria and
+    updated wrapper contract tests impacted by the non-stub comments execution path.
+
 - [x] TODO-0260: Enforce MVP Slice A exit gates for first end-to-end vertical slice
   - owner: ai
   - created_at: 2026-04-12

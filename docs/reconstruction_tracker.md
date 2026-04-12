@@ -95,16 +95,16 @@ Entry Criteria (TODO-linked):
 - query core pipeline contract available for downstream social workflows (`TODO-0220`)
 
 Exit Criteria (TODO-linked):
-- comments/personas/profiles/quality contracts complete (`TODO-0222`, `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0224`, `TODO-0275`, `TODO-0266`, `TODO-0225`)
+- comments/personas/profiles/quality contracts complete (`TODO-0222`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0224`, `TODO-0275`, `TODO-0266`, `TODO-0225`)
 
 Current Checkpoint:
 - status: pending
-- blocking TODOs: `TODO-0222`, `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0224`, `TODO-0275`, `TODO-0266`, `TODO-0225`
+- blocking TODOs: `TODO-0222`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0224`, `TODO-0275`, `TODO-0266`, `TODO-0225`
 
 ### Phase 6: Hardening
 
 Entry Criteria (TODO-linked):
-- social and query core contracts are landed (`TODO-0220`, `TODO-0223`, `TODO-0224`)
+- social and query core contracts are landed (`TODO-0220`, `TODO-0224`)
 
 Exit Criteria (TODO-linked):
 - hardening gates and DoD closure checks complete (`TODO-0254`, `TODO-0228`, `TODO-0229`, `TODO-0230`, `TODO-0263`, `TODO-0260`, `TODO-0261`, `TODO-0250`, `TODO-0231`)
@@ -127,5 +127,5 @@ Operator Verification Hook:
 
 Open gate blockers (by priority lane):
 - query core gate: `TODO-0220`, `TODO-0259`, `TODO-0255`, `TODO-0221`, `TODO-0277`
-- social subsystem gate: `TODO-0222`, `TODO-0223`, `TODO-0224`, `TODO-0247`, `TODO-0256`, `TODO-0275`, `TODO-0266`, `TODO-0225`
+- social subsystem gate: `TODO-0222`, `TODO-0224`, `TODO-0247`, `TODO-0256`, `TODO-0275`, `TODO-0266`, `TODO-0225`
 - hardening and release gate: `TODO-0254`, `TODO-0228`, `TODO-0229`, `TODO-0230`, `TODO-0263`, `TODO-0261`, `TODO-0250`, `TODO-0231`

@@ -48,6 +48,10 @@ class WrapperMockModePolicyTests(unittest.TestCase):
         site_path = tmp_root / "site-a"
         self._run(["bash", str(REPO_ROOT / "create_site.sh"), str(site_path), "My Site"], check=True)
         self._run(["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), space_name], check=True)
+        topic_path = site_path / "spaces" / space_name / "topics" / "topic-wrapper.json"
+        topic_path.write_text(
+            '{"topic_id":"topic-wrapper","title":"Wrapper Topic","structure_type":"wiki","sections":[],"claim_ids":[],"source_ids":[]}\n'
+        )
         return site_path
 
     def _semantic_wrapper_commands(

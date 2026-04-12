@@ -6,7 +6,20 @@
   "required": ["page_ref", "requested_count", "comments"],
   "properties": {
     "page_ref": {"type": "string"},
-    "requested_count": {"type": "integer", "minimum": 0},
-    "comments": {"type": "array"}
+    "requested_count": {"type": "integer", "minimum": 5, "maximum": 50},
+    "comments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["persona_id", "body"],
+        "properties": {
+          "comment_ref": {"type": "string"},
+          "persona_id": {"type": "string"},
+          "body": {"type": "string"},
+          "parent_ref": {"type": ["string", "null"]}
+        }
+      }
+    }
   }
 }
