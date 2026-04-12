@@ -738,8 +738,7 @@ class _BootstrapCommentSectionClient:
                     "comment_ref": comment_ref,
                     "persona_id": persona_id,
                     "body": (
-                        f"Generated comment {index + 1} for {self._page_ref} "
-                        f"by {persona_id}."
+                        f"Generated comment {index + 1} by {persona_id}."
                     ),
                     "parent_ref": parent_ref,
                 }

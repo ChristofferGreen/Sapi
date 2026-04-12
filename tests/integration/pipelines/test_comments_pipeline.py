@@ -159,7 +159,7 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                                 {
                                     "comment_uid": existing_uid,
                                     "persona_id": "commenter-1",
-                                    "body": f"Generated comment 1 for topic:{topic_id} by commenter-1.",
+                                    "body": "Generated comment 1 by commenter-1.",
                                     "parent_comment_uid": None,
                                     "comment_no": "pc-001",
                                 }

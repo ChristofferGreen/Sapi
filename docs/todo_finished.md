@@ -2016,3 +2016,29 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     assertions in `tests/integration/wrappers/test_evaluate_source_harness.py` to require both
     ingest and query run IDs resolve to committed run containers. Updated
     `docs/testing_plan.md` to mark the default evaluate_source checklist item complete.
+
+- [x] TODO-0300: Close Tier 3 evaluate_source comments-mode checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 4
+  - depends_on: TODO-0273
+  - scope: Finalize Tier 3 comments-enabled evaluate_source coverage by ensuring comments-mode
+    runs produce `comments_review.md` with valid comment target handling, while invalid
+    comments counts still fail fast with clear errors.
+  - acceptance:
+    - `tests/integration/wrappers/test_evaluate_source_harness.py` comments-mode run emits
+      `comments_review.md` and manifests effective per-page/per-user requested counts.
+    - Invalid comments count arguments continue to fail fast without partial artifact packs.
+    - `docs/testing_plan.md` marks the Tier 3 comments-mode evaluate_source checklist item
+      complete.
+  - notes: source `docs/testing_plan.md` Tier 3; `docs/design.md` Section 6.3
+  - evidence: Updated `scripts/create_comments.py` bootstrap comment body generation to avoid
+    embedding raw page refs that could trigger unclassified factual-claim validation for
+    comments-mode harness runs. Updated comments integration fixture in
+    `tests/integration/pipelines/test_comments_pipeline.py` accordingly. Extended
+    `tests/integration/wrappers/test_evaluate_source_harness.py` comments-mode scenario to use
+    canonical `--comment-page topic:<topic_id>` targeting with an explicit topic fixture and
+    updated manifest/README/comments-review expectations. Verified full harness test module
+    (including invalid `--comments` failure case) passes. Updated `docs/testing_plan.md` to
+    mark the comments-mode item complete.

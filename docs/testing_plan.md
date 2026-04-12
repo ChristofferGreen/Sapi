@@ -109,7 +109,7 @@ tests/
   - Module: `tests/integration/pipelines/test_profiles_pipeline.py`
 - [x] `evaluate_source.sh` default run emits required markdown artifact pack + manifest linkage.
   - Module: `tests/integration/wrappers/test_evaluate_source_harness.py`
-- [ ] `evaluate_source.sh --comments <n>` emits `comments_review.md`; invalid comments args fail fast with clear errors.
+- [x] `evaluate_source.sh --comments <n>` emits `comments_review.md`; invalid comments args fail fast with clear errors.
   - Module: `tests/integration/wrappers/test_evaluate_source_harness.py`
 
 ### Tier 4: Build/Projection Determinism Tests

@@ -90,6 +90,20 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
             site_path, source_path = self._bootstrap_site_space_and_source(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            (space_root / "topics" / "topic-example.json").write_text(
+                json.dumps(
+                    {
+                        "topic_id": "topic-example",
+                        "title": "Topic Example",
+                        "sections": [],
+                        "source_ids": [],
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n"
+            )
             out_dir = tmp_root / "custom-evaluation-pack"
             result = self._run(
                 [
@@ -105,7 +119,7 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
                     "--comment-user",
                     "persona-1",
                     "--comment-page",
-                    "topic-example",
+                    "topic:topic-example",
                     "--mock-llm",
                 ]
             )
@@ -130,11 +144,14 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             self.assertEqual(workflow_statuses.get("comments"), "success")
             self.assertIn("comments_review.md", set(manifest.get("markdown_artifacts", [])))
             self.assertEqual(manifest.get("comments", {}).get("requested_count"), 6)
-            self.assertEqual(manifest.get("comments", {}).get("effective_page_targets"), ["topic-example"])
+            self.assertEqual(
+                manifest.get("comments", {}).get("effective_page_targets"),
+                ["topic:topic-example"],
+            )
             self.assertEqual(manifest.get("comments", {}).get("effective_user_targets"), ["persona-1"])
             self.assertEqual(
                 manifest.get("comments", {}).get("effective_page_requested_counts"),
-                [{"target": "topic-example", "requested_count": 6}],
+                [{"target": "topic:topic-example", "requested_count": 6}],
             )
             self.assertEqual(
                 manifest.get("comments", {}).get("effective_user_requested_counts"),
@@ -151,14 +168,14 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             self.assertIn("create_comments:", readme_text)
             self.assertIn("--count 6", readme_text)
             self.assertIn("--comment-user persona-1", readme_text)
-            self.assertIn("--comment-page topic-example", readme_text)
+            self.assertIn("--comment-page topic:topic-example", readme_text)
 
             comments_review = (out_dir / "comments_review.md").read_text()
             self.assertIn("# Comments Review", comments_review)
             self.assertIn("## Per-Page Requested Counts", comments_review)
             self.assertIn("## Per-User Requested Counts", comments_review)
             self.assertIn("## Representative Thread Excerpt", comments_review)
-            self.assertIn("| `topic-example` | 6 |", comments_review)
+            self.assertIn("| `topic:topic-example` | 6 |", comments_review)
             self.assertIn("| `persona-1` | 6 |", comments_review)
 
     def test_invalid_comments_arg_fails_fast_without_partial_pack(self) -> None:
