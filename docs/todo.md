@@ -66,7 +66,7 @@ Task template:
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: `TODO-0220` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0277`
-- P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
+- P2 Social/eval/hardening: `TODO-0223` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0282`
 
 ### Execution Queue (Recommended)
@@ -79,7 +79,7 @@ Wave B (ingest + projection + lint):
 
 Wave C (query + social + hardening + release):
 1. `TODO-0220` -> `TODO-0242` -> `TODO-0259` -> `TODO-0255` -> `TODO-0221` -> `TODO-0277`
-2. `TODO-0222` -> `TODO-0223` -> `TODO-0247` -> `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
+2. `TODO-0223` -> `TODO-0247` -> `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
 3. `TODO-0254` -> `TODO-0228` -> `TODO-0251` -> `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
@@ -98,7 +98,7 @@ Cross-cutting docs backlog:
 | Section 7.1 ingest pipeline | - |
 | Section 7.2 references/linking | - |
 | Section 7.3 query pipeline | `TODO-0220`, `TODO-0259`, `TODO-0255`, `TODO-0221`, `TODO-0277` |
-| Section 7.4 persona catalog | `TODO-0222` |
+| Section 7.4 persona catalog | - |
 | Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
 | Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
 | Section 7.7 comment quality harness | `TODO-0225` |
@@ -549,18 +549,6 @@ Cross-cutting docs backlog:
     - Merge preserves existing `comment_uid` values and assigns only for new comments.
     - `web-augmented` mode writes snapshot at canonical path/schema.
   - notes: source `design.md` Section 7.6
-
-- [ ] TODO-0222: Repository-seeded persona catalog loading and validation
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 5
-  - depends_on: TODO-0201, TODO-0209
-  - scope: Implement strict loading/validation for shared persona catalog and profile image resolution.
-  - acceptance:
-    - Loader reads only `<repo_root>/personas/social_users.json` (with compatibility mirror support).
-    - `persona_id` normalization and alias validation rules are enforced.
-    - Profile image paths resolve at runtime; invalid rows fail fast.
-  - notes: source `design.md` Section 7.4
 
 - [ ] TODO-0221: Query artifact modes and deterministic manifest assembly
   - owner: ai

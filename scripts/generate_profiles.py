@@ -14,6 +14,7 @@ if str(_REPO_ROOT) not in sys.path:
 
 from sapi.core.registry import resolve_registry_path, resolve_space_root
 from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
+from sapi.profiles.persona_catalog import load_seeded_persona_catalog
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -32,10 +33,40 @@ def main() -> int:
         mock_llm=args.mock_llm,
         env=os.environ,
     )
-    registry_path = resolve_registry_path(args.registry_path)
-    resolve_space_root(registry_path, args.space_name)
-    print(f"scripts/generate_profiles.py scaffold ready (execution_mode={runtime_policy.execution_mode})")
+    try:
+        registry_path = resolve_registry_path(args.registry_path)
+        resolve_space_root(registry_path, args.space_name)
+        persona_catalog = load_seeded_persona_catalog(repo_root=_REPO_ROOT)
+        _validate_requested_persona_ids(args.persona_id, persona_catalog)
+    except (FileNotFoundError, TypeError, ValueError) as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 2
+
+    print(
+        "scripts/generate_profiles.py scaffold ready "
+        f"(execution_mode={runtime_policy.execution_mode}, personas_loaded={len(persona_catalog)})"
+    )
     return 0
+
+
+def _validate_requested_persona_ids(
+    requested_persona_ids: list[str],
+    persona_catalog: list[dict[str, object]],
+) -> None:
+    if not requested_persona_ids:
+        return
+    known_persona_ids = {str(row["persona_id"]) for row in persona_catalog}
+    unknown = sorted(
+        {
+            persona_id
+            for persona_id in requested_persona_ids
+            if persona_id not in known_persona_ids
+        }
+    )
+    if unknown:
+        raise ValueError(
+            "Unknown persona_id values requested via --persona-id: " + ", ".join(unknown)
+        )
 
 
 if __name__ == "__main__":

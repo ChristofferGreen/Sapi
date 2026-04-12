@@ -819,3 +819,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `tests/unit/contracts/test_reconstruction_tracker.py` to enforce tracker presence, phase/slice
     coverage, TODO-linked entry/exit criteria for each phase, and visible deferred-build/backlog
     blocker sections in one document.
+
+- [x] TODO-0222: Repository-seeded persona catalog loading and validation
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 5
+  - depends_on: TODO-0201, TODO-0209
+  - scope: Implement strict loading/validation for shared persona catalog and profile image
+    resolution.
+  - acceptance:
+    - Loader reads only `<repo_root>/personas/social_users.json` (with compatibility mirror support).
+    - `persona_id` normalization and alias validation rules are enforced.
+    - Profile image paths resolve at runtime; invalid rows fail fast.
+  - evidence: Added `sapi/profiles/persona_catalog.py` with canonical-path-first catalog loading
+    (`personas/social_users.json`) and optional compatibility mirror fallback (`personas/users.json`),
+    persona alias normalization (`id` -> `persona_id`) with mismatch rejection, duplicate/slug
+    validation, and runtime profile-image path enforcement under `personas/profile_images/`. Wired
+    `scripts/generate_profiles.py` to run catalog preflight validation before execution and reject
+    unknown `--persona-id` values. Added `tests/unit/profiles/test_persona_catalog_loader.py` with
+    explicit acceptance-criteria coverage for canonical loading behavior, compatibility mirror
+    fallback, alias normalization/mismatch rejection, persona-id invariants, and profile-image path
+    resolution failures.
