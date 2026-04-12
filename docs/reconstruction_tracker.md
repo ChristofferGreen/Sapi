@@ -36,8 +36,8 @@ Exit Criteria (TODO-linked):
 - test and CI gates wired for required tiers (`TODO-0230`, `TODO-0263`)
 
 Current Checkpoint:
-- status: pending
-- blocking TODOs: `TODO-0261`
+- status: complete
+- closed by: `TODO-0230`, `TODO-0263`, `TODO-0261`
 
 ## Phases
 
@@ -111,7 +111,7 @@ Exit Criteria (TODO-linked):
 
 Current Checkpoint:
 - status: pending
-- blocking TODOs: `TODO-0254`, `TODO-0228`, `TODO-0229`, `TODO-0230`, `TODO-0263`, `TODO-0261`, `TODO-0250`, `TODO-0231`
+- blocking TODOs: `TODO-0254`, `TODO-0228`, `TODO-0229`, `TODO-0230`, `TODO-0263`, `TODO-0250`, `TODO-0231`
 
 ## Deferred-Build Backlog
 
@@ -128,4 +128,4 @@ Operator Verification Hook:
 Open gate blockers (by priority lane):
 - query core gate: `TODO-0220`, `TODO-0259`, `TODO-0255`, `TODO-0221`, `TODO-0277`
 - social subsystem gate: `TODO-0222`, `TODO-0224`, `TODO-0256`, `TODO-0275`, `TODO-0266`, `TODO-0225`
-- hardening and release gate: `TODO-0254`, `TODO-0228`, `TODO-0229`, `TODO-0230`, `TODO-0263`, `TODO-0261`, `TODO-0250`, `TODO-0231`
+- hardening and release gate: `TODO-0254`, `TODO-0228`, `TODO-0229`, `TODO-0230`, `TODO-0263`, `TODO-0250`, `TODO-0231`

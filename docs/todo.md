@@ -47,8 +47,7 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0261`
-2. `TODO-0231`
+1. `TODO-0231`
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -58,7 +57,7 @@ Task template:
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0231`, `TODO-0261`
+- P2 Social/eval/hardening: `TODO-0231`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -71,7 +70,7 @@ Wave B (ingest + projection + lint):
 
 Wave C (query + social + hardening + release):
 1. (none currently)
-2. `TODO-0261` -> `TODO-0231`
+2. `TODO-0231`
 
 Cross-cutting docs backlog:
 1. (none currently)
@@ -97,7 +96,7 @@ Cross-cutting docs backlog:
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | - |
 | Section 11 testing strategy | - |
-| Section 12 reconstruction plan | `TODO-0261` |
+| Section 12 reconstruction plan | - |
 | Section 13 definition of done | `TODO-0231` |
 
 ### Low-Level Coverage Snapshot
@@ -129,23 +128,11 @@ Cross-cutting docs backlog:
 | Section 4-5 (CI gating matrix + command wiring) | - |
 | Section 6 (exit criteria gating) | `TODO-0231` |
 
-- [ ] TODO-0261: Enforce MVP Slice B exit gates before social/full hardening handoff
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 6
-  - depends_on: TODO-0260, TODO-0217, TODO-0228, TODO-0229
-  - scope: Convert MVP Slice B exit criteria into explicit verification checks and block downstream milestone closure until all pass.
-  - acceptance:
-    - Slice B reliability/determinism/operator-usability exit criteria are represented as verifiable checks.
-    - Checks run in CI or scripted local verification path with evidence artifacts.
-    - Slice B cannot be marked complete while any gate remains open.
-  - notes: source `design.md` Section 12.1
-
 - [ ] TODO-0231: Definition-of-Done sweep and release readiness verification
   - owner: ai
   - created_at: 2026-04-12
   - phase: Phase 6
-  - depends_on: TODO-0228, TODO-0229, TODO-0230, TODO-0243, TODO-0263
+  - depends_on: TODO-0228, TODO-0229, TODO-0230, TODO-0243, TODO-0263, TODO-0261
   - scope: Execute final DoD verification across wrappers, runtime behavior, deferred-build backlog, and contract tests before first implementation milestone is considered complete.
   - acceptance:
     - All wrapper commands in DoD execute successfully on a representative site/space.

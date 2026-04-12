@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "ingest_build_query_contracts_green": true,
+    "operator_wrapper_usability_green": true,
+    "reliability_determinism_green": true
+  },
+  "completed_at": "2026-04-12T22:56:52Z",
+  "errors": [],
+  "manifest_path": "/private/tmp/sapi-slice-b-verify/outputs/verification/slice_b/slice-b-20260412T225652Z/manifest.json",
+  "scope": "mvp_slice_b_exit_gates",
+  "status": "success",
+  "verification_id": "slice-b-20260412T225652Z"
+}

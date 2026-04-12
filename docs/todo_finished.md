@@ -1590,3 +1590,26 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `tests/unit/contracts/test_verify_testing_exit_criteria.py` for pass/fail gate behavior and
     `tests/unit/contracts/test_dod_exit_gate_closure.py` to enforce that closing `TODO-0231`
     requires a committed passing exit-gate evidence artifact.
+
+- [x] TODO-0261: Enforce MVP Slice B exit gates before social/full hardening handoff
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0260, TODO-0217, TODO-0228, TODO-0229
+  - scope: Convert MVP Slice B exit criteria into explicit verification checks and block downstream milestone closure until all pass.
+  - acceptance:
+    - Slice B reliability/determinism/operator-usability exit criteria are represented as verifiable checks.
+    - Checks run in CI or scripted local verification path with evidence artifacts.
+    - Slice B cannot be marked complete while any gate remains open.
+  - notes: source `design.md` Section 12.1
+  - evidence: Added `scripts/verify_slice_b.py` as a scripted verification path that
+    encodes Slice B gates as explicit checks for (1) repeated-run reliability/determinism via
+    deterministic build equivalence tests, (2) ingest/build/query contract signal via targeted
+    pipeline + run-envelope + golden coverage, and (3) operator wrapper usability via wrapper
+    contract suites. The verifier writes a manifest under
+    `<site_path>/outputs/verification/slice_b/<verification_id>/manifest.json` and committed
+    latest evidence at `docs/verification/slice_b_exit_criteria.latest.json`. Added unit
+    coverage in `tests/unit/contracts/test_verify_slice_b.py` and closure gating in
+    `tests/unit/contracts/test_slice_b_exit_gate_closure.py` so `TODO-0261` cannot be treated
+    as complete when any Slice B gate is open.
