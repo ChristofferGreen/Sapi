@@ -4,6 +4,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0100: Capture incoming design recommendations into structured tasks
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Cross-cutting
+  - depends_on: none
+  - scope: As new recommendations arrive, convert each into a discrete TODO with clear acceptance criteria and cross-doc targets.
+  - acceptance:
+    - Every recommendation gets a task ID.
+    - Each task links target docs/sections.
+    - No ambiguous "do later" items without acceptance criteria.
+  - evidence: Added explicit recommendation-capture tasks `TODO-0280` and `TODO-0281` mapped from unresolved design decision-register recommendations with section-linked notes, and added `tests/unit/contracts/test_todo_recommendation_intake.py` to enforce decision-to-task intake coverage and ambiguity guards.
+
 - [x] TODO-0210: Source ingest acquisition, normalization, and artifact persistence
   - owner: ai
   - created_at: 2026-04-12

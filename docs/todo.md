@@ -47,7 +47,7 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0100` Capture incoming design recommendations into structured tasks
+1. `TODO-0211` Ingest extraction semantic flow and canonical claim/relation writes
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -67,7 +67,7 @@ Task template:
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: `TODO-0211` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
-- P3 Continuous docs governance: `TODO-0100`, `TODO-0264`, `TODO-0265`
+- P3 Continuous docs governance: `TODO-0280`, `TODO-0281`, `TODO-0264`, `TODO-0265`
 
 ### Execution Queue (Recommended)
 
@@ -86,13 +86,13 @@ Wave C (query + social + hardening + release):
 
 Cross-cutting docs backlog:
 1. `TODO-0265` -> `TODO-0264` -> `TODO-0243`
-2. `TODO-0100` (continuous intake)
+2. `TODO-0280` -> `TODO-0281`
 
 ### Design Coverage Snapshot
 
 | Design area | Primary TODO IDs |
 | --- | --- |
-| Section 1 (scope/authority/reading) | `TODO-0243`, `TODO-0100` |
+| Section 1 (scope/authority/reading) | `TODO-0243`, `TODO-0280`, `TODO-0281` |
 | Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0214`, `TODO-0246`, `TODO-0275` |
 | Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
@@ -140,6 +140,30 @@ Cross-cutting docs backlog:
 | Tier 4-6 (determinism/golden/live canary) | `TODO-0229` |
 | Section 4-5 (CI gating matrix + command wiring) | `TODO-0230` |
 | Section 6 (exit criteria gating) | `TODO-0263`, `TODO-0231` |
+
+- [ ] TODO-0281: Define default `evaluate_source.sh` query-mode recommendation as an explicit contract task
+  - owner: ai
+  - created_at: 2026-04-12
+  - phase: Cross-cutting
+  - depends_on: TODO-0280
+  - scope: Convert unresolved recommendation about default query-mode coverage in `evaluate_source.sh` into an explicit tracked decision task with clear acceptance and contract target.
+  - acceptance:
+    - Task references the unresolved recommendation from the design decision register and assigns one owner/outcome path.
+    - Acceptance criteria require explicit contract destination in `design.md` Section 6.3 once resolved.
+    - Task notes link to the authoritative recommendation source section.
+  - notes: source `design.md` Section 1.3 (decision register), Section 6.3; decision_ref: additional-query-modes-in-evaluate-source-sh-default-evaluation-pack
+
+- [ ] TODO-0280: Define compatibility-reader sunset recommendation as an explicit contract task
+  - owner: ai
+  - created_at: 2026-04-12
+  - phase: Cross-cutting
+  - depends_on: none
+  - scope: Convert unresolved compatibility-reader sunset recommendation into an explicit tracked task with owner, acceptance criteria, and target contract section.
+  - acceptance:
+    - Task references the unresolved recommendation from the design decision register and assigns one owner/outcome path.
+    - Acceptance criteria require explicit contract destination in `design.md` Section 4.1.3 once resolved.
+    - Task notes link to the authoritative recommendation source section.
+  - notes: source `design.md` Section 1.3 (decision register), Section 4.1.3; decision_ref: compatibility-reader-sunset-policy-for-legacy-aliases
 
 - [ ] TODO-0278: Enforce relation-type matrix semantics and normalization invariants
   - owner: ai
@@ -840,15 +864,3 @@ Cross-cutting docs backlog:
     - Canonical claim/relation writes follow ID/path contracts.
     - Relation normalization/writer behavior aligns with canonical relation persistence contracts.
   - notes: source `design.md` Sections 4.1.4, 7.1
-
-- [ ] TODO-0100: Capture incoming design recommendations into structured tasks
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Cross-cutting
-  - depends_on: none
-  - scope: As new recommendations arrive, convert each into a discrete TODO with clear acceptance criteria and cross-doc targets.
-  - acceptance:
-    - Every recommendation gets a task ID.
-    - Each task links target docs/sections.
-    - No ambiguous "do later" items without acceptance criteria.
-  - notes: source `design.md` Sections 1, 13
