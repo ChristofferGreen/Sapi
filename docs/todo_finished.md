@@ -4,6 +4,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0276: Add deterministic mechanical integration tests for `evaluate_source.sh` harness
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 4
+  - depends_on: TODO-0273
+  - scope: Verify the user-facing evaluation harness contract in CI with deterministic mock-LLM runs so regressions are caught mechanically.
+  - acceptance:
+    - Integration test module `tests/integration/wrappers/test_evaluate_source_harness.py` validates default artifact-pack layout and required markdown outputs.
+    - Tests assert `manifest.json` linkage to emitted markdown artifacts and referenced run IDs.
+    - Tests cover `--comments <n>` mode and invalid comments arguments fail-fast behavior without partially committed evaluation packs.
+  - evidence: Hardened `tests/integration/wrappers/test_evaluate_source_harness.py` with
+    deterministic assertions for required markdown artifact content keys (README/summary/ingest/lint/site-links/strict query),
+    explicit `manifest.json` linkage checks for all emitted markdown artifacts and referenced ingest
+    run IDs, comments-mode assertions for `comments_review.md` structural sections, and fail-fast
+    invalid comments argument behavior without partial evaluation-pack writes.
+
 - [x] TODO-0273: Implement `evaluate_source.sh` user-facing evaluation harness (markdown-first artifact pack)
   - owner: ai
   - created_at: 2026-04-12

@@ -49,12 +49,15 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             manifest = json.loads((evaluation_dir / "manifest.json").read_text())
             self.assertEqual(manifest["evaluation_id"], evaluation_dir.name)
             self.assertEqual(manifest["workflow_key"], "evaluate_source_quality")
+            self.assertEqual(manifest.get("workflow_statuses", {}).get("comments"), "skipped")
 
             run_ids = manifest.get("run_ids")
             self.assertIsInstance(run_ids, dict)
             ingest_run_id = run_ids.get("ingest")
             self.assertIsInstance(ingest_run_id, str)
             self.assertTrue((space_root / "runs" / ingest_run_id).is_dir())
+            self.assertIsNone(run_ids.get("query"))
+            self.assertIsNone(run_ids.get("comments"))
 
             markdown_artifacts = set(manifest.get("markdown_artifacts", []))
             self.assertSetEqual(
@@ -68,6 +71,18 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
                     "query_answers/strict.md",
                 },
             )
+            for rel in markdown_artifacts:
+                self.assertTrue((evaluation_dir / rel).is_file(), rel)
+
+            self.assertIn("# Source Evaluation Artifact Pack", (evaluation_dir / "README.md").read_text())
+            self.assertIn("## Execution Summary", (evaluation_dir / "README.md").read_text())
+            self.assertIn("# Evaluation Summary", (evaluation_dir / "summary.md").read_text())
+            self.assertIn("## Checklist", (evaluation_dir / "summary.md").read_text())
+            self.assertIn("# Ingest Run", (evaluation_dir / "ingest_run.md").read_text())
+            self.assertIn("ingest_run_id", (evaluation_dir / "ingest_run.md").read_text())
+            self.assertIn("# Lint Summary", (evaluation_dir / "lint_summary.md").read_text())
+            self.assertIn("# Site Links", (evaluation_dir / "site_links.md").read_text())
+            self.assertIn("# Strict Query Answer", (evaluation_dir / "query_answers" / "strict.md").read_text())
 
     def test_out_override_and_comments_mode_emit_comments_review(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -112,9 +127,18 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             workflow_statuses = manifest.get("workflow_statuses", {})
             self.assertEqual(workflow_statuses.get("comments"), "success")
             self.assertIn("comments_review.md", set(manifest.get("markdown_artifacts", [])))
+            self.assertIn("run_ids", manifest)
+            self.assertIsInstance(manifest.get("run_ids"), dict)
+            self.assertIsInstance(manifest.get("run_ids", {}).get("ingest"), str)
 
             default_evaluations_root = site_path / "spaces" / "alpha" / "outputs" / "evaluations"
             self.assertFalse(default_evaluations_root.exists())
+
+            comments_review = (out_dir / "comments_review.md").read_text()
+            self.assertIn("# Comments Review", comments_review)
+            self.assertIn("## Per-Page Requested Counts", comments_review)
+            self.assertIn("## Per-User Requested Counts", comments_review)
+            self.assertIn("## Representative Thread Excerpt", comments_review)
 
     def test_invalid_comments_arg_fails_fast_without_partial_pack(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
