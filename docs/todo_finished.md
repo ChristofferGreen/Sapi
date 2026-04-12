@@ -525,3 +525,20 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     (`file://`, `dir://`, `missing://`, `unsupported://`) before invocation; validated by
     expanded `tests/unit/semantic/test_input_envelope_contract.py` covering all canonical semantic
     flows, request-envelope field forwarding, prompt pointer hygiene, and drift rejection.
+
+- [x] TODO-0212: Topic generation semantic flow and canonical topic persistence
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 2
+  - depends_on: TODO-0211, TODO-0203, TODO-0204
+  - scope: Implement topic semantic generation and canonical topic artifact writes including structure-type support.
+  - acceptance:
+    - Topic flow resolves spec/schema from authoritative map.
+    - Canonical topic JSON writes to `topics/<topic_id>.json`.
+    - Deterministic post-processing/build triggers run per policy.
+  - evidence: Implemented canonical topic-generation flow in `sapi/ingest/topic_generator.py` using
+    generation-spec flow-map resolution and strict semantic validation, integrated topic generation +
+    deterministic `build_site` trigger into `scripts/ingest_source.py`, and validated behavior with
+    `tests/unit/ingest/test_topic_generation_flow.py` (spec/schema resolution assertions, canonical
+    `topics/<topic_id>.json` persistence, and deterministic build-manifest emission).

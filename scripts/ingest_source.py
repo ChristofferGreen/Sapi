@@ -8,18 +8,23 @@ import os
 from pathlib import Path
 import sys
 import json
+import subprocess
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from sapi.core.registry import resolve_registry_path, resolve_space_root
+from sapi.core.registry import resolve_registry_path, resolve_site_path_from_registry, resolve_space_root
 from sapi.core.locks import IngestLockHeldError, ingest_lock
 from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
 from sapi.contracts.ids import make_run_id
 from sapi.ingest.records_writer import (
     ingest_source_artifacts_and_record,
     run_ingest_extraction_and_persist_canonical,
+)
+from sapi.ingest.topic_generator import (
+    derive_default_topic_id_for_source,
+    run_topic_generation_and_persist_canonical,
 )
 from sapi.llm.client import SemanticLlmRequest
 
@@ -55,6 +60,7 @@ def main() -> int:
             env=os.environ,
         )
         registry_path = resolve_registry_path(args.registry_path)
+        site_path = resolve_site_path_from_registry(registry_path)
         space_root = resolve_space_root(registry_path, args.space_name)
         with ingest_lock(space_root):
             result = ingest_source_artifacts_and_record(
@@ -73,6 +79,8 @@ def main() -> int:
                 citation_count_confidence=args.citation_count_confidence,
             )
             extraction_result = None
+            topic_result = None
+            build_manifest_path = None
             if not args.source_only:
                 source_record = json.loads(result.record_path.read_text())
                 source_title = source_record.get("title")
@@ -86,6 +94,27 @@ def main() -> int:
                         source_title=source_title if isinstance(source_title, str) else None,
                         source_date=args.source_date,
                     ),
+                )
+                topic_id = derive_default_topic_id_for_source(
+                    space_root=space_root,
+                    source_id=result.source_id,
+                )
+                topic_result = run_topic_generation_and_persist_canonical(
+                    space_root=space_root,
+                    source_id=result.source_id,
+                    run_id=run_id,
+                    topic_id=topic_id,
+                    llm_client=_BootstrapTopicGenerationClient(
+                        source_id=result.source_id,
+                        source_title=source_title if isinstance(source_title, str) else None,
+                        topic_id=topic_id,
+                        claim_ids=[path.stem for path in extraction_result.claim_paths],
+                    ),
+                )
+                build_manifest_path = _trigger_deterministic_topic_postprocess(
+                    registry_path=registry_path,
+                    space_name=args.space_name,
+                    site_path=site_path,
                 )
     except IngestLockHeldError as exc:
         print(str(exc), file=sys.stderr)
@@ -106,6 +135,13 @@ def main() -> int:
             f"claims_written={len(extraction_result.claim_paths)}, "
             f"relations_written={len(extraction_result.relation_paths)}"
         )
+    if topic_result is not None:
+        summary += (
+            f", topic_id={topic_result.topic_id}, "
+            f"topic_path={topic_result.topic_path}"
+        )
+    if build_manifest_path is not None:
+        summary += f", build_manifest_path={build_manifest_path}"
     summary += ")"
     print(summary)
     return 0
@@ -157,6 +193,66 @@ class _BootstrapIngestExtractionClient:
             ),
         }
         return json.dumps(payload)
+
+
+class _BootstrapTopicGenerationClient:
+    """Repository-local deterministic topic-generation client for reconstruction bootstrap."""
+
+    def __init__(
+        self,
+        *,
+        source_id: str,
+        source_title: str | None,
+        topic_id: str,
+        claim_ids: list[str],
+    ) -> None:
+        self._source_id = source_id
+        self._source_title = source_title or source_id
+        self._topic_id = topic_id
+        self._claim_ids = claim_ids
+
+    def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
+        payload = {
+            "topic_id": self._topic_id,
+            "title": f"Topic: {self._source_title}",
+            "structure_type": "wiki",
+            "sections": [
+                {
+                    "heading": "Summary",
+                    "body": f"Auto-generated topic scaffold for source `{self._source_title}`.",
+                }
+            ],
+            "claim_ids": list(self._claim_ids),
+            "source_ids": [self._source_id],
+        }
+        return json.dumps(payload)
+
+
+def _trigger_deterministic_topic_postprocess(
+    *,
+    registry_path: Path,
+    space_name: str,
+    site_path: Path,
+) -> Path:
+    command = [
+        "python3",
+        str(_REPO_ROOT / "scripts" / "build_site.py"),
+        "--workflow-key",
+        "build_site",
+        "--registry-path",
+        str(registry_path),
+        space_name,
+    ]
+    result = subprocess.run(command, capture_output=True, text=True)
+    if result.returncode != 0:
+        raise RuntimeError(
+            "Topic deterministic post-processing failed: "
+            f"stdout={result.stdout.strip()} stderr={result.stderr.strip()}"
+        )
+    manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
+    if not manifest_path.is_file():
+        raise RuntimeError("Topic deterministic post-processing did not emit build manifest.")
+    return manifest_path
 
 
 if __name__ == "__main__":
