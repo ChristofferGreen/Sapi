@@ -4,6 +4,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0247: Implement comment turn-marker normalization and turn-schema validation
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 5
+  - depends_on: TODO-0223, TODO-0211
+  - scope: Implement canonical turn-marker handling and strict/social turn validation rules for comment rows.
+  - acceptance:
+    - Canonical marker `<<turn:{...}>>` is supported; legacy marker compatibility is normalized.
+    - Argumentative turns enforce required claim/evidence/confidence constraints.
+    - Social turns are validated under lightweight rules and rejected when they include unclassified factual claims.
+  - notes: source `design.md` Section 7.6
+  - evidence: Extended `sapi/comments/merge_normalize.py` to parse canonical
+    `<<turn:{...}>>` and legacy `<!-- turn:{...} -->` markers, normalize marker content into
+    canonical `turn` payloads, enforce strict argumentative validation
+    (`claim_ids`/`evidence_refs`/`confidence`), and reject social comments that carry
+    unclassified factual claim/source references without argumentative metadata. Added focused
+    unit coverage in `tests/unit/comments/test_turn_marker_validation.py` and end-to-end
+    pipeline coverage in `tests/integration/pipelines/test_comments_pipeline.py`, including
+    command-level failure assertions with rollback-clean run-container behavior.
+
 - [x] TODO-0223: Comment pipeline batching, merge normalization, and evidence modes
   - owner: ai
   - created_at: 2026-04-12

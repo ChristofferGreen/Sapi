@@ -1,0 +1,176 @@
+from __future__ import annotations
+
+import unittest
+
+from sapi.comments.merge_normalize import merge_comment_section
+
+
+_VALID_CLAIM_ID = "claim-evidence-point--abcdefabcdef"
+_VALID_SOURCE_ID = "source-primary-study--1234abcd5678"
+
+
+class TurnMarkerValidationUnitTests(unittest.TestCase):
+    def test_canonical_turn_marker_is_supported_for_argumentative_turns(self) -> None:
+        result = merge_comment_section(
+            page_ref="topic:topic-alpha",
+            page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+            semantic_comments=[
+                {
+                    "persona_id": "commenter-1",
+                    "body": (
+                        '<<turn:{"position":"support","claim_ids":["'
+                        + _VALID_CLAIM_ID
+                        + '"],"evidence_refs":["claim:'
+                        + _VALID_CLAIM_ID
+                        + '"],"confidence":0.81}>>'
+                        "Argumentative support text."
+                    ),
+                }
+            ],
+        )
+        self.assertEqual(result.comments_added, 1)
+        row = result.merged_comments[0]
+        self.assertEqual(row["body"], "Argumentative support text.")
+        self.assertEqual(row["turn"]["position"], "support")
+        self.assertEqual(row["turn"]["claim_ids"], [_VALID_CLAIM_ID])
+        self.assertEqual(row["turn"]["evidence_refs"], [f"claim:{_VALID_CLAIM_ID}"])
+        self.assertEqual(row["turn"]["confidence"], 0.81)
+
+    def test_legacy_turn_marker_is_normalized(self) -> None:
+        existing_uid = "comment-existing--abcde12345"
+        result = merge_comment_section(
+            page_ref="topic:topic-alpha",
+            page_payload={
+                "topic_id": "topic-alpha",
+                "title": "Alpha",
+                "comment_section": {
+                    "page_ref": "topic:topic-alpha",
+                    "comments": [
+                        {
+                            "comment_uid": existing_uid,
+                            "persona_id": "commenter-1",
+                            "body": (
+                                "<!-- turn:{"
+                                '"position":"challenge","claim_ids":["'
+                                + _VALID_CLAIM_ID
+                                + '"],"evidence_refs":["source:'
+                                + _VALID_SOURCE_ID
+                                + '"],"confidence":0.22} -->'
+                                "Legacy marker challenge text."
+                            ),
+                            "comment_no": "pc-001",
+                        }
+                    ],
+                },
+            },
+            semantic_comments=[],
+        )
+        self.assertEqual(result.comments_added, 0)
+        self.assertEqual(len(result.merged_comments), 1)
+        row = result.merged_comments[0]
+        self.assertEqual(row["comment_uid"], existing_uid)
+        self.assertEqual(row["body"], "Legacy marker challenge text.")
+        self.assertEqual(row["turn"]["position"], "challenge")
+        self.assertEqual(row["turn"]["evidence_refs"], [f"source:{_VALID_SOURCE_ID}"])
+
+    def test_argumentative_turn_requires_claims_evidence_and_confidence(self) -> None:
+        with self.assertRaisesRegex(ValueError, "claim_ids"):
+            merge_comment_section(
+                page_ref="topic:topic-alpha",
+                page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+                semantic_comments=[
+                    {
+                        "persona_id": "commenter-1",
+                        "body": (
+                            '<<turn:{"position":"support","evidence_refs":["claim:'
+                            + _VALID_CLAIM_ID
+                            + '"],"confidence":0.5}>>'
+                            "Missing claims should fail."
+                        ),
+                    }
+                ],
+            )
+
+        with self.assertRaisesRegex(ValueError, "evidence_refs"):
+            merge_comment_section(
+                page_ref="topic:topic-alpha",
+                page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+                semantic_comments=[
+                    {
+                        "persona_id": "commenter-1",
+                        "body": (
+                            '<<turn:{"position":"support","claim_ids":["'
+                            + _VALID_CLAIM_ID
+                            + '"],"confidence":0.5}>>'
+                            "Missing evidence should fail."
+                        ),
+                    }
+                ],
+            )
+
+        with self.assertRaisesRegex(ValueError, "confidence"):
+            merge_comment_section(
+                page_ref="topic:topic-alpha",
+                page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+                semantic_comments=[
+                    {
+                        "persona_id": "commenter-1",
+                        "body": (
+                            '<<turn:{"position":"support","claim_ids":["'
+                            + _VALID_CLAIM_ID
+                            + '"],"evidence_refs":["claim:'
+                            + _VALID_CLAIM_ID
+                            + '"],"confidence":1.2}>>'
+                            "Out of range confidence should fail."
+                        ),
+                    }
+                ],
+            )
+
+    def test_social_turns_reject_unclassified_factual_claims(self) -> None:
+        with self.assertRaisesRegex(ValueError, "factual claim references"):
+            merge_comment_section(
+                page_ref="topic:topic-alpha",
+                page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+                semantic_comments=[
+                    {
+                        "persona_id": "commenter-1",
+                        "body": (
+                            '<<turn:{"position":"social"}>>'
+                            f"This casual line references {_VALID_CLAIM_ID}."
+                        ),
+                    }
+                ],
+            )
+
+        with self.assertRaisesRegex(ValueError, "factual claim references"):
+            merge_comment_section(
+                page_ref="topic:topic-alpha",
+                page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+                semantic_comments=[
+                    {
+                        "persona_id": "commenter-1",
+                        "body": f"No marker but factual reference to {_VALID_SOURCE_ID}.",
+                    }
+                ],
+            )
+
+    def test_lightweight_social_turn_allows_empty_claim_fields(self) -> None:
+        result = merge_comment_section(
+            page_ref="topic:topic-alpha",
+            page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+            semantic_comments=[
+                {
+                    "persona_id": "commenter-1",
+                    "body": '<<turn:{"position":"social","confidence":0.33}>>Friendly chat reply.',
+                }
+            ],
+        )
+        self.assertEqual(result.comments_added, 1)
+        row = result.merged_comments[0]
+        self.assertEqual(row["body"], "Friendly chat reply.")
+        self.assertEqual(row["turn"], {"position": "social", "confidence": 0.33})
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -52,21 +52,21 @@ Task template:
 ### Immediate Next 10 (After Ready Now)
 
 1. `TODO-0266`
-2. `TODO-0247`
-3. `TODO-0275`
-4. `TODO-0258`
-5. `TODO-0248`
-6. `TODO-0249`
-7. `TODO-0250`
-8. `TODO-0225`
-9. `TODO-0224`
-10. `TODO-0256`
+2. `TODO-0275`
+3. `TODO-0258`
+4. `TODO-0248`
+5. `TODO-0249`
+6. `TODO-0250`
+7. `TODO-0225`
+8. `TODO-0224`
+9. `TODO-0256`
+10. `TODO-0229`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0224` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
+- P2 Social/eval/hardening: `TODO-0224` to `TODO-0231`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -79,7 +79,7 @@ Wave B (ingest + projection + lint):
 
 Wave C (query + social + hardening + release):
 1. (none currently)
-2. `TODO-0247` -> `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
+2. `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
 3. `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
@@ -100,7 +100,7 @@ Cross-cutting docs backlog:
 | Section 7.3 query pipeline | - |
 | Section 7.4 persona catalog | - |
 | Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
-| Section 7.6 comments pipeline/rendering | `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
+| Section 7.6 comments pipeline/rendering | `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
 | Section 7.7 comment quality harness | `TODO-0225` |
 | Section 8 site/UI/static build | `TODO-0256` |
 | Section 9 observability/safety/runtime controls | - |
@@ -246,17 +246,6 @@ Cross-cutting docs backlog:
     - New writes target canonical page JSON metadata, not markdown frontmatter.
   - notes: source `design.md` Section 7.6
 
-- [ ] TODO-0247: Implement comment turn-marker normalization and turn-schema validation
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 5
-  - depends_on: TODO-0223, TODO-0211
-  - scope: Implement canonical turn-marker handling and strict/social turn validation rules for comment rows.
-  - acceptance:
-    - Canonical marker `<<turn:{...}>>` is supported; legacy marker compatibility is normalized.
-    - Argumentative turns enforce required claim/evidence/confidence constraints.
-    - Social turns are validated under lightweight rules and rejected when they include unclassified factual claims.
-  - notes: source `design.md` Section 7.6
 
 
 - [ ] TODO-0231: Definition-of-Done sweep and release readiness verification

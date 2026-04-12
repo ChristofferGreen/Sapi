@@ -3,9 +3,21 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import json
+import math
+import re
 from typing import Any
 
 from sapi.contracts.ids import format_comment_no, make_comment_uid, slugify
+
+
+_TURN_POSITION_ARGUMENTATIVE = {"support", "challenge", "rebuttal", "synthesis"}
+_TURN_POSITION_SOCIAL = "social"
+_CLAIM_ID_RE = re.compile(r"^claim-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$")
+_SOURCE_ID_RE = re.compile(r"^source-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$")
+_UNCLASSIFIED_FACTUAL_CLAIM_RE = re.compile(
+    r"(?:\[\[claims:[^\]]+\]\])|(?:\b(?:claim|source)-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}\b)"
+)
 
 
 @dataclass(frozen=True)
@@ -28,12 +40,17 @@ def merge_comment_section(
         if _normalize_string(comment.get("comment_no")) is not None
         and _normalize_string(comment.get("comment_uid")) is not None
     }
-    existing_by_key: dict[tuple[str, str, str | None], dict[str, Any]] = {}
+    existing_by_key: dict[tuple[str, str, str | None, str | None], dict[str, Any]] = {}
     known_comment_uids: set[str] = set()
     merged_comments: list[dict[str, Any]] = []
     for comment in existing_comments:
         normalized = _normalize_existing_comment(comment, existing_by_comment_no=existing_by_comment_no)
-        key = (normalized["persona_id"], normalized["body"], normalized["parent_comment_uid"])
+        key = (
+            normalized["persona_id"],
+            normalized["body"],
+            normalized["parent_comment_uid"],
+            _turn_key(normalized.get("turn")),
+        )
         existing_by_key[key] = normalized
         merged_comments.append(normalized)
         known_comment_uids.add(normalized["comment_uid"])
@@ -48,7 +65,12 @@ def merge_comment_section(
             existing_by_comment_no=existing_by_comment_no,
             draft_ref_map=draft_ref_map,
         )
-        key = (normalized["persona_id"], normalized["body"], parent_comment_uid)
+        key = (
+            normalized["persona_id"],
+            normalized["body"],
+            parent_comment_uid,
+            _turn_key(normalized.get("turn")),
+        )
         if key in existing_by_key:
             comment_uid = existing_by_key[key]["comment_uid"]
         else:
@@ -61,6 +83,7 @@ def merge_comment_section(
                     "persona_id": normalized["persona_id"],
                     "body": normalized["body"],
                     "parent_comment_uid": parent_comment_uid,
+                    **({"turn": normalized["turn"]} if normalized.get("turn") is not None else {}),
                 }
             )
             known_comment_uids.add(comment_uid)
@@ -117,7 +140,11 @@ def _normalize_existing_comment(
 ) -> dict[str, Any]:
     comment_uid = _require_non_empty_string(raw_comment.get("comment_uid"), "comment_uid")
     persona_id = _require_non_empty_string(raw_comment.get("persona_id"), "persona_id")
-    body = _require_non_empty_string(raw_comment.get("body"), "body")
+    body, turn = _normalize_body_and_turn(
+        raw_body=raw_comment.get("body"),
+        raw_turn=raw_comment.get("turn"),
+        field_name_prefix="existing comments[].",
+    )
 
     parent_comment_uid = _normalize_parent_reference(
         raw_comment.get("parent_comment_uid"),
@@ -134,22 +161,276 @@ def _normalize_existing_comment(
     normalized["persona_id"] = persona_id
     normalized["body"] = body
     normalized["parent_comment_uid"] = parent_comment_uid
+    if turn is not None:
+        normalized["turn"] = turn
+    elif "turn" in normalized:
+        normalized.pop("turn", None)
     return normalized
 
 
-def _normalize_semantic_comment(raw_comment: dict[str, Any]) -> dict[str, str | None]:
+def _normalize_semantic_comment(raw_comment: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(raw_comment, dict):
         raise ValueError("Generated comment rows must be JSON objects.")
     persona_id = _require_non_empty_string(raw_comment.get("persona_id"), "comments[].persona_id")
-    body = _require_non_empty_string(raw_comment.get("body"), "comments[].body")
+    body, turn = _normalize_body_and_turn(
+        raw_body=raw_comment.get("body"),
+        raw_turn=raw_comment.get("turn"),
+        field_name_prefix="comments[].",
+    )
     parent_ref = _normalize_string(raw_comment.get("parent_ref"))
     comment_ref = _normalize_string(raw_comment.get("comment_ref"))
-    return {
+    normalized: dict[str, Any] = {
         "persona_id": persona_id,
         "body": body,
         "parent_ref": parent_ref,
         "comment_ref": comment_ref,
     }
+    if turn is not None:
+        normalized["turn"] = turn
+    return normalized
+
+
+def _normalize_body_and_turn(
+    *,
+    raw_body: Any,
+    raw_turn: Any,
+    field_name_prefix: str,
+) -> tuple[str, dict[str, Any] | None]:
+    raw_body_text = _require_non_empty_string(raw_body, f"{field_name_prefix}body")
+    body_without_marker, marker_turn = _extract_inline_turn_marker(raw_body_text)
+    turn_from_row = _normalize_turn_payload(
+        raw_turn,
+        body=body_without_marker,
+        field_name_prefix=field_name_prefix,
+    )
+    if marker_turn is not None and turn_from_row is not None and marker_turn != turn_from_row:
+        raise ValueError(
+            f"{field_name_prefix}turn must match inline turn marker when both are provided."
+        )
+    normalized_turn = marker_turn if marker_turn is not None else turn_from_row
+    if normalized_turn is None:
+        _reject_unclassified_factual_claims_in_social_body(
+            body_without_marker,
+            field_name_prefix=field_name_prefix,
+        )
+    return body_without_marker, normalized_turn
+
+
+def _extract_inline_turn_marker(body: str) -> tuple[str, dict[str, Any] | None]:
+    canonical = _extract_marker(body, prefix="<<turn:", suffix=">>")
+    legacy = _extract_marker(body, prefix="<!-- turn:", suffix="-->")
+    if canonical is not None and legacy is not None:
+        raise ValueError("Comment body must not contain both canonical and legacy turn markers.")
+    marker = canonical if canonical is not None else legacy
+    if marker is None:
+        return body, None
+    marker_start, marker_end, marker_payload = marker
+    try:
+        parsed_payload = json.loads(marker_payload)
+    except json.JSONDecodeError as exc:
+        raise ValueError("Inline turn marker JSON is invalid.") from exc
+    marker_turn = _normalize_turn_payload(
+        parsed_payload,
+        body=(body[:marker_start] + body[marker_end:]).strip(),
+        field_name_prefix="inline turn marker ",
+    )
+    assert marker_turn is not None
+    normalized_body = (body[:marker_start] + " " + body[marker_end:]).strip()
+    if not normalized_body:
+        raise ValueError("Comment body must include text outside the inline turn marker.")
+    return normalized_body, marker_turn
+
+
+def _extract_marker(
+    body: str,
+    *,
+    prefix: str,
+    suffix: str,
+) -> tuple[int, int, str] | None:
+    start = body.find(prefix)
+    if start < 0:
+        return None
+    second_start = body.find(prefix, start + len(prefix))
+    if second_start >= 0:
+        raise ValueError("Comment body must not contain more than one inline turn marker.")
+    payload_start = start + len(prefix)
+    end = body.find(suffix, payload_start)
+    if end < 0:
+        raise ValueError("Inline turn marker is missing a closing delimiter.")
+    return start, end + len(suffix), body[payload_start:end].strip()
+
+
+def _normalize_turn_payload(
+    raw_turn: Any,
+    *,
+    body: str,
+    field_name_prefix: str,
+) -> dict[str, Any] | None:
+    if raw_turn is None:
+        return None
+    if not isinstance(raw_turn, dict):
+        raise ValueError(f"{field_name_prefix}turn must be a JSON object when provided.")
+
+    position = _require_non_empty_string(raw_turn.get("position"), f"{field_name_prefix}turn.position")
+    if position in _TURN_POSITION_ARGUMENTATIVE:
+        claim_ids = _normalize_claim_ids(
+            raw_turn.get("claim_ids"),
+            field_name=f"{field_name_prefix}turn.claim_ids",
+            required_non_empty=True,
+        )
+        counter_claim_ids = _normalize_claim_ids(
+            raw_turn.get("counter_claim_ids"),
+            field_name=f"{field_name_prefix}turn.counter_claim_ids",
+            required_non_empty=False,
+        )
+        evidence_refs = _normalize_evidence_refs(
+            raw_turn.get("evidence_refs"),
+            field_name=f"{field_name_prefix}turn.evidence_refs",
+            required_non_empty=True,
+        )
+        confidence = _normalize_confidence(
+            raw_turn.get("confidence"),
+            field_name=f"{field_name_prefix}turn.confidence",
+            required=True,
+        )
+        normalized: dict[str, Any] = {
+            "position": position,
+            "claim_ids": claim_ids,
+            "evidence_refs": evidence_refs,
+            "confidence": confidence,
+        }
+        if counter_claim_ids:
+            normalized["counter_claim_ids"] = counter_claim_ids
+        return normalized
+
+    if position == _TURN_POSITION_SOCIAL:
+        claim_ids = _normalize_claim_ids(
+            raw_turn.get("claim_ids"),
+            field_name=f"{field_name_prefix}turn.claim_ids",
+            required_non_empty=False,
+        )
+        counter_claim_ids = _normalize_claim_ids(
+            raw_turn.get("counter_claim_ids"),
+            field_name=f"{field_name_prefix}turn.counter_claim_ids",
+            required_non_empty=False,
+        )
+        evidence_refs = _normalize_evidence_refs(
+            raw_turn.get("evidence_refs"),
+            field_name=f"{field_name_prefix}turn.evidence_refs",
+            required_non_empty=False,
+        )
+        if claim_ids or counter_claim_ids or evidence_refs:
+            raise ValueError(
+                f"{field_name_prefix}turn social position must not include claim/evidence references."
+            )
+        _reject_unclassified_factual_claims_in_social_body(
+            body,
+            field_name_prefix=field_name_prefix,
+        )
+        confidence = _normalize_confidence(
+            raw_turn.get("confidence"),
+            field_name=f"{field_name_prefix}turn.confidence",
+            required=False,
+        )
+        normalized = {"position": _TURN_POSITION_SOCIAL}
+        if confidence is not None:
+            normalized["confidence"] = confidence
+        return normalized
+
+    raise ValueError(
+        f"{field_name_prefix}turn.position must be one of support/challenge/rebuttal/synthesis/social."
+    )
+
+
+def _normalize_claim_ids(
+    raw_values: Any,
+    *,
+    field_name: str,
+    required_non_empty: bool,
+) -> list[str]:
+    if raw_values is None:
+        if required_non_empty:
+            raise ValueError(f"{field_name} must be a non-empty array.")
+        return []
+    if not isinstance(raw_values, list):
+        raise ValueError(f"{field_name} must be an array when provided.")
+    normalized: list[str] = []
+    for item in raw_values:
+        value = _require_non_empty_string(item, field_name)
+        if not _CLAIM_ID_RE.fullmatch(value):
+            raise ValueError(f"{field_name} contains invalid claim_id: {value}")
+        normalized.append(value)
+    if required_non_empty and not normalized:
+        raise ValueError(f"{field_name} must be a non-empty array.")
+    return normalized
+
+
+def _normalize_evidence_refs(
+    raw_values: Any,
+    *,
+    field_name: str,
+    required_non_empty: bool,
+) -> list[str]:
+    if raw_values is None:
+        if required_non_empty:
+            raise ValueError(f"{field_name} must be a non-empty array.")
+        return []
+    if not isinstance(raw_values, list):
+        raise ValueError(f"{field_name} must be an array when provided.")
+    normalized: list[str] = []
+    for item in raw_values:
+        value = _require_non_empty_string(item, field_name)
+        if value.startswith("claim:"):
+            claim_id = value.split(":", 1)[1]
+            if not _CLAIM_ID_RE.fullmatch(claim_id):
+                raise ValueError(f"{field_name} contains invalid claim evidence ref: {value}")
+        elif value.startswith("source:"):
+            source_id = value.split(":", 1)[1]
+            if not _SOURCE_ID_RE.fullmatch(source_id):
+                raise ValueError(f"{field_name} contains invalid source evidence ref: {value}")
+        else:
+            raise ValueError(f"{field_name} refs must start with claim: or source:.")
+        normalized.append(value)
+    if required_non_empty and not normalized:
+        raise ValueError(f"{field_name} must be a non-empty array.")
+    return normalized
+
+
+def _normalize_confidence(
+    raw_value: Any,
+    *,
+    field_name: str,
+    required: bool,
+) -> float | None:
+    if raw_value is None:
+        if required:
+            raise ValueError(f"{field_name} is required.")
+        return None
+    if not isinstance(raw_value, (int, float)) or isinstance(raw_value, bool):
+        raise ValueError(f"{field_name} must be numeric.")
+    confidence = float(raw_value)
+    if not math.isfinite(confidence) or confidence < 0.0 or confidence > 1.0:
+        raise ValueError(f"{field_name} must be finite and in [0.0, 1.0].")
+    return confidence
+
+
+def _reject_unclassified_factual_claims_in_social_body(
+    body: str,
+    *,
+    field_name_prefix: str,
+) -> None:
+    if _UNCLASSIFIED_FACTUAL_CLAIM_RE.search(body):
+        raise ValueError(
+            f"{field_name_prefix}body contains factual claim references without argumentative turn metadata."
+        )
+
+
+def _turn_key(raw_turn: Any) -> str | None:
+    if raw_turn is None:
+        return None
+    if not isinstance(raw_turn, dict):
+        raise ValueError("turn payload must be a JSON object.")
+    return json.dumps(raw_turn, sort_keys=True)
 
 
 def _resolve_parent_reference(
