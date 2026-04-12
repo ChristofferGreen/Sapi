@@ -52,16 +52,15 @@ Task template:
 ### Immediate Next 10 (After Ready Now)
 
 1. `TODO-0256`
-2. `TODO-0229`
-3. `TODO-0263`
-4. `TODO-0261`
-5. `TODO-0231`
+2. `TODO-0263`
+3. `TODO-0261`
+4. `TODO-0231`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0229`, `TODO-0231`, `TODO-0256`, `TODO-0261`, `TODO-0263`
+- P2 Social/eval/hardening: `TODO-0231`, `TODO-0256`, `TODO-0261`, `TODO-0263`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -75,7 +74,7 @@ Wave B (ingest + projection + lint):
 Wave C (query + social + hardening + release):
 1. (none currently)
 2. `TODO-0256`
-3. `TODO-0229` -> `TODO-0263` -> `TODO-0261` -> `TODO-0231`
+3. `TODO-0263` -> `TODO-0261` -> `TODO-0231`
 
 Cross-cutting docs backlog:
 1. (none currently)
@@ -100,7 +99,7 @@ Cross-cutting docs backlog:
 | Section 8 site/UI/static build | `TODO-0256` |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | - |
-| Section 11 testing strategy | `TODO-0229`, `TODO-0263` |
+| Section 11 testing strategy | `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0261` |
 | Section 13 definition of done | `TODO-0231` |
 
@@ -120,16 +119,16 @@ Cross-cutting docs backlog:
 | Section 12 (wrapper/script interfaces) | - |
 | Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | - |
-| Section 15 (test-plan binding) | `TODO-0229`, `TODO-0263` |
+| Section 15 (test-plan binding) | `TODO-0263` |
 | Section 16 (change discipline) | - |
 
 ### Testing Plan Coverage Snapshot
 
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
-| Section 2 (test module layout) | `TODO-0229` |
+| Section 2 (test module layout) | - |
 | Tier 0-3 (fast contract/failure/pipeline suites) | - |
-| Tier 4-6 (determinism/golden/live canary) | `TODO-0229` |
+| Tier 4-6 (determinism/golden/live canary) | - |
 | Section 4-5 (CI gating matrix + command wiring) | - |
 | Section 6 (exit criteria gating) | `TODO-0263`, `TODO-0231` |
 
@@ -180,15 +179,3 @@ Cross-cutting docs backlog:
     - No runs remain with `build_deferred: true`.
     - DoD bullets from `docs/design.md` Section 13 are checked explicitly with evidence links.
   - notes: source `design.md` Section 13
-
-- [ ] TODO-0229: Tier 4-6 determinism, golden, and live-canary tests
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 6
-  - depends_on: TODO-0228, TODO-0266, TODO-0216, TODO-0220, TODO-0223
-  - scope: Implement slower determinism/golden/live checks after core pipelines are stable.
-  - acceptance:
-    - Tier 4 tests cover deterministic rebuild and incremental/full equivalence.
-    - Tier 5 snapshots exist for site/query/run envelope outputs.
-    - Tier 6 live canary exists and is non-blocking.
-  - notes: source `testing_plan.md` Tier 4-6

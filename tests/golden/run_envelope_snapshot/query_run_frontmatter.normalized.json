@@ -1,0 +1,31 @@
+{
+  "claims_used": 0,
+  "completed_at": "<completed_at>",
+  "contradictions_considered": 0,
+  "execution_mode": "mock_llm_test",
+  "flow_key": "query_pipeline",
+  "lint_error_count": 0,
+  "lint_info_count": 0,
+  "lint_warning_count": 0,
+  "llm_attempt_count": 1,
+  "manifest_path": null,
+  "mode": "strict",
+  "model_fingerprint": "mock_bootstrap",
+  "provider_fingerprint": "mock",
+  "query_id": "<query_id>",
+  "reasoning_effort": "high",
+  "run_id": "<run_id>",
+  "scope": "default",
+  "semantic_flow_invocation_counts": {
+    "query_synthesis": 1
+  },
+  "semantic_flows": [
+    "query_synthesis"
+  ],
+  "sources_used": 0,
+  "started_at": "<started_at>",
+  "status": "success",
+  "toolchain_versions": {
+    "python": "<python_version>"
+  }
+}

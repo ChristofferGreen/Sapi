@@ -1,0 +1,58 @@
+{
+  "answer": "No canonical retrieval context is currently available to answer: 'What is available?'. Run ingest first, then re-run query.",
+  "citation_coverage": {
+    "claims_cited": 0,
+    "factual_sentence_ratio": 0.0,
+    "meets_target": false,
+    "mode": "strict",
+    "policy_version": "query_citation_coverage_v1",
+    "sources_cited": 0,
+    "target_threshold": 0.9
+  },
+  "claims_used": [],
+  "contradictions_considered": 0,
+  "execution": {
+    "execution_mode": "mock_llm_test",
+    "include_disputed": false,
+    "include_warnings": true,
+    "llm_attempt_count": 1,
+    "model_fingerprint": "mock_bootstrap",
+    "provider_fingerprint": "mock",
+    "reasoning_effort": "high",
+    "retrieval_budget": {
+      "max_claims": 120,
+      "max_sources": 40
+    }
+  },
+  "falsification_signals": [],
+  "lint_summary": {
+    "error_count": 0,
+    "info_count": 0,
+    "warning_count": 0
+  },
+  "manifest_path": null,
+  "mode": "strict",
+  "omitted_due_to_budget": {
+    "claims": 0,
+    "sources": 0
+  },
+  "query_id": "<query_id>",
+  "query_timestamp_utc": "<query_timestamp_utc>",
+  "retrieval_counts": {
+    "claims_retrieved": 0,
+    "sources_retrieved": 0
+  },
+  "run_id": "<run_id>",
+  "scope": "default",
+  "sources_used": [],
+  "warnings": [
+    {
+      "code": "no_claim_context",
+      "message": "No claims were available for retrieval."
+    },
+    {
+      "code": "no_source_context",
+      "message": "No source records were available for retrieval."
+    }
+  ]
+}

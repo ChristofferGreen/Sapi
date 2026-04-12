@@ -1515,3 +1515,28 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     suites; `-m "live_llm"` for live canary). Added live canary module
     `tests/live/test_live_llm_canary.py`, marker registration in `pytest.ini`, and contract
     coverage in `tests/unit/contracts/test_ci_tier_matrix_wiring.py`.
+
+- [x] TODO-0229: Tier 4-6 determinism, golden, and live-canary tests
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0228, TODO-0266, TODO-0216, TODO-0220, TODO-0223
+  - scope: Implement slower determinism/golden/live checks after core pipelines are stable.
+  - acceptance:
+    - Tier 4 tests cover deterministic rebuild and incremental/full equivalence.
+    - Tier 5 snapshots exist for site/query/run envelope outputs.
+    - Tier 6 live canary exists and is non-blocking.
+  - notes: source `testing_plan.md` Tier 4-6
+  - evidence: Added Tier 4 integration coverage in
+    `tests/integration/build/test_build_determinism.py` and
+    `tests/integration/build/test_incremental_vs_full_equivalence.py` to validate repeated
+    deterministic rebuild stability and full-vs-incremental rendered-output equivalence.
+    Replaced the temporary build placeholder with concrete assertions. Added Tier 5 golden
+    snapshot coverage in `tests/golden/test_query_snapshot.py` and
+    `tests/golden/test_run_envelope_snapshot.py` with snapshot fixtures under
+    `tests/golden/query_snapshot/` and `tests/golden/run_envelope_snapshot/`, complementing the
+    existing site snapshot suite. Updated `tests/live/test_live_llm_canary.py` into an opt-in
+    live-mode query smoke test marked `@pytest.mark.live_llm`; nightly CI continues to run
+    this marker in a non-blocking step (`continue-on-error: true`) from
+    `.github/workflows/ci.yml`.
