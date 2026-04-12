@@ -2107,3 +2107,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     presence assertions for `site/index.html` and `spaces/alpha/site/index.html` prior to full
     vs incremental rendered-output equality checks. Verified test pass and updated
     `docs/testing_plan.md` to mark the Tier 4 incremental equivalence item complete.
+
+- [x] TODO-0304: Close Tier 5 site snapshot checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0251
+  - scope: Finalize Tier 5 site-page snapshot evidence by extending golden coverage for core
+    navigation/content contracts beyond space-home-only assertions.
+  - acceptance:
+    - `tests/golden/test_site_snapshot.py` validates a site-root navigation/content snapshot.
+    - Existing space-home snapshot coverage remains in the same module.
+    - `docs/testing_plan.md` marks the Tier 5 site snapshot checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 5; `docs/design.md` Section 8
+  - evidence: Added golden fixture
+    `tests/golden/site_snapshot/site_root_index_empty.html` and extended
+    `tests/golden/test_site_snapshot.py` with a deterministic assertion for
+    `site/index.html` while preserving the existing `spaces/alpha/site/index.html`
+    snapshot assertion. Verified the golden module passes and updated
+    `docs/testing_plan.md` to mark the Tier 5 site snapshot item complete.

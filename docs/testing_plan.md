@@ -123,7 +123,7 @@ tests/
 
 ### Tier 5: Golden Snapshot Tests
 
-- [ ] Site page snapshot coverage for core navigation/content contracts.
+- [x] Site page snapshot coverage for core navigation/content contracts.
   - Module: `tests/golden/test_site_snapshot.py`
 - [ ] Query artifact snapshot coverage for key output modes.
   - Module: `tests/golden/test_query_snapshot.py`
