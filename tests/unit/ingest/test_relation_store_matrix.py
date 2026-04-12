@@ -126,6 +126,54 @@ class RelationStoreMatrixTests(unittest.TestCase):
                 relation_file_id_from_relation_id("contradictory:claim-a|claim-z"),
             )
 
+    def test_falsifies_status_values_are_preserved(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space-a"
+            for status in ("falsify", "not_falsify", "ambiguous"):
+                with self.subTest(status=status):
+                    relation_path = write_relation(
+                        {
+                            "relation_type": "falsifies",
+                            "src_claim_id": "claim-a",
+                            "dst_claim_id": "claim-b",
+                            "status": status,
+                        },
+                        space_root,
+                    )
+                    payload = json.loads(relation_path.read_text())
+                    self.assertEqual(payload["status"], status)
+
+    def test_duplicate_merge_keeps_existing_status_and_confidence_band_when_incoming_omits_them(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space-a"
+            first = write_relation(
+                {
+                    "relation_type": "falsifies",
+                    "src_claim_id": "claim-a",
+                    "dst_claim_id": "claim-b",
+                    "status": "falsify",
+                    "contradiction_confidence_band": "high",
+                    "below_040_streak": 2,
+                    "last_evaluated_run_id": "run-001",
+                },
+                space_root,
+            )
+            second = write_relation(
+                {
+                    "relation_type": "falsifies",
+                    "src_claim_id": "claim-a",
+                    "dst_claim_id": "claim-b",
+                    "below_040_streak": 5,
+                },
+                space_root,
+            )
+            self.assertEqual(first, second)
+            payload = json.loads(second.read_text())
+            self.assertEqual(payload["status"], "falsify")
+            self.assertEqual(payload["contradiction_confidence_band"], "high")
+            self.assertEqual(payload["below_040_streak"], 5)
+            self.assertEqual(payload["last_evaluated_run_id"], "run-001")
+
     def test_write_relation_path_uses_hash_derived_relation_file_id(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "space-a"

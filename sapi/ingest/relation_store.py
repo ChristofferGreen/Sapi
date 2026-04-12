@@ -48,7 +48,11 @@ def write_relation(relation: dict[str, Any], space_root: Path) -> Path:
 
     if relation_path.is_file():
         existing = read_relation(relation_path)
-        merged = merge_relation_records(existing=existing, incoming=normalized)
+        merged = merge_relation_records(
+            existing=existing,
+            incoming=normalized,
+            incoming_raw=relation,
+        )
     else:
         merged = normalized
 
@@ -152,7 +156,17 @@ def _validate_provided_relation_identity(
             )
 
 
-def merge_relation_records(*, existing: dict[str, Any], incoming: dict[str, Any]) -> dict[str, Any]:
+def merge_relation_records(
+    *,
+    existing: dict[str, Any],
+    incoming: dict[str, Any],
+    incoming_raw: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    explicit_fields_source = incoming if incoming_raw is None else incoming_raw
+    incoming_has_explicit_status = explicit_fields_source.get("status") is not None
+    incoming_has_explicit_confidence_band = (
+        explicit_fields_source.get("contradiction_confidence_band") is not None
+    )
     existing_normalized = normalize_relation_for_write(existing)
     incoming_normalized = normalize_relation_for_write(incoming)
     if existing_normalized["relation_id"] != incoming_normalized["relation_id"]:
@@ -160,13 +174,24 @@ def merge_relation_records(*, existing: dict[str, Any], incoming: dict[str, Any]
 
     merged = dict(existing_normalized)
     for key, value in incoming_normalized.items():
+        if key in {"status", "contradiction_confidence_band"}:
+            continue
         if value is not None:
             merged[key] = value
 
-    merged["status"] = _merge_status(
-        existing_status=existing_normalized["status"],
-        incoming_status=incoming_normalized["status"],
-    )
+    if incoming_has_explicit_status:
+        merged["status"] = _merge_status(
+            existing_status=existing_normalized["status"],
+            incoming_status=incoming_normalized["status"],
+        )
+    else:
+        merged["status"] = existing_normalized["status"]
+
+    if incoming_has_explicit_confidence_band:
+        merged["contradiction_confidence_band"] = incoming_normalized["contradiction_confidence_band"]
+    else:
+        merged["contradiction_confidence_band"] = existing_normalized["contradiction_confidence_band"]
+
     merged["below_040_streak"] = max(
         int(existing_normalized["below_040_streak"]),
         int(incoming_normalized["below_040_streak"]),

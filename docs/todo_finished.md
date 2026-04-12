@@ -4,6 +4,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0278: Enforce relation-type matrix semantics and normalization invariants
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 2
+  - depends_on: TODO-0211, TODO-0213
+  - scope: Implement relation semantics beyond storage-key hashing, including type-specific canonical ID formation and normalization rules.
+  - acceptance:
+    - Relation ID generation follows the canonical matrix for directed/undirected relation types.
+    - Undirected relations sort claim IDs lexicographically; directed relations preserve semantic source/target order.
+    - Canonical relation-write normalization includes required status/field handling and deterministic merge behavior for duplicate relation IDs.
+  - evidence: Hardened duplicate relation merge normalization in `sapi/ingest/relation_store.py` so omitted incoming status/confidence-band fields no longer overwrite explicit existing values, while keeping canonical relation ID/hash mapping and matrix semantics intact; expanded `tests/unit/ingest/test_relation_store_matrix.py` with explicit `falsify/not_falsify/ambiguous` status handling and deterministic duplicate-merge preservation checks.
+
 - [x] TODO-0211: Ingest extraction semantic flow and canonical claim/relation writes
   - owner: ai
   - created_at: 2026-04-12
