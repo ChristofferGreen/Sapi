@@ -74,7 +74,10 @@ class TodoRecommendationIntakeTests(unittest.TestCase):
         self.assertNotIn("TODO-0282", todo_text)
         self.assertIn("| Section 1 (scope/authority/reading) | - |", todo_text)
         self.assertIn("### Ready Now (No Unmet TODO Dependencies)", todo_text)
-        self.assertIn("1. (none currently)", todo_text)
+        self.assertRegex(
+            todo_text,
+            r"### Ready Now \(No Unmet TODO Dependencies\)\n\n(?:1\. \(none currently\)|1\. `TODO-\d{4}`)",
+        )
 
         design_text = DESIGN_DOC_PATH.read_text()
         self.assertIn(

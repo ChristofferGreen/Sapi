@@ -47,19 +47,18 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. (none currently)
+1. `TODO-0261`
+2. `TODO-0231`
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0263`
-2. `TODO-0261`
-3. `TODO-0231`
+1. (none currently)
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0231`, `TODO-0261`, `TODO-0263`
+- P2 Social/eval/hardening: `TODO-0231`, `TODO-0261`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -72,7 +71,7 @@ Wave B (ingest + projection + lint):
 
 Wave C (query + social + hardening + release):
 1. (none currently)
-2. `TODO-0263` -> `TODO-0261` -> `TODO-0231`
+2. `TODO-0261` -> `TODO-0231`
 
 Cross-cutting docs backlog:
 1. (none currently)
@@ -97,7 +96,7 @@ Cross-cutting docs backlog:
 | Section 8 site/UI/static build | - |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | - |
-| Section 11 testing strategy | `TODO-0263` |
+| Section 11 testing strategy | - |
 | Section 12 reconstruction plan | `TODO-0261` |
 | Section 13 definition of done | `TODO-0231` |
 
@@ -117,7 +116,7 @@ Cross-cutting docs backlog:
 | Section 12 (wrapper/script interfaces) | - |
 | Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | - |
-| Section 15 (test-plan binding) | `TODO-0263` |
+| Section 15 (test-plan binding) | - |
 | Section 16 (change discipline) | - |
 
 ### Testing Plan Coverage Snapshot
@@ -128,19 +127,7 @@ Cross-cutting docs backlog:
 | Tier 0-3 (fast contract/failure/pipeline suites) | - |
 | Tier 4-6 (determinism/golden/live canary) | - |
 | Section 4-5 (CI gating matrix + command wiring) | - |
-| Section 6 (exit criteria gating) | `TODO-0263`, `TODO-0231` |
-
-- [ ] TODO-0263: Enforce testing-plan exit criteria gates before DoD closure
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 6
-  - depends_on: TODO-0228, TODO-0266, TODO-0229, TODO-0230
-  - scope: Implement explicit checks for testing-plan exit criteria and block DoD completion when any test-gate condition is open.
-  - acceptance:
-    - Verification step asserts PR-required tiers are green and determinism checks have passing evidence.
-    - Verification step enforces no rollback/leak regressions and no deferred-build backlog before DoD.
-    - `TODO-0231` cannot be marked complete while any exit-criteria gate fails.
-  - notes: source `testing_plan.md` Section 6; `design.md` Sections 11, 13
+| Section 6 (exit criteria gating) | `TODO-0231` |
 
 - [ ] TODO-0261: Enforce MVP Slice B exit gates before social/full hardening handoff
   - owner: ai
@@ -158,7 +145,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-12
   - phase: Phase 6
-  - depends_on: TODO-0228, TODO-0229, TODO-0230, TODO-0243
+  - depends_on: TODO-0228, TODO-0229, TODO-0230, TODO-0243, TODO-0263
   - scope: Execute final DoD verification across wrappers, runtime behavior, deferred-build backlog, and contract tests before first implementation milestone is considered complete.
   - acceptance:
     - All wrapper commands in DoD execute successfully on a representative site/space.

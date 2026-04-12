@@ -1566,3 +1566,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `tests/unit/comments/test_turn_marker_validation.py` and end-to-end pipeline/render
     coverage in `tests/integration/pipelines/test_comments_pipeline.py`, including
     repeat-run determinism checks.
+
+- [x] TODO-0263: Enforce testing-plan exit criteria gates before DoD closure
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0228, TODO-0266, TODO-0229, TODO-0230
+  - scope: Implement explicit checks for testing-plan exit criteria and block DoD completion when any test-gate condition is open.
+  - acceptance:
+    - Verification step asserts PR-required tiers are green and determinism checks have passing evidence.
+    - Verification step enforces no rollback/leak regressions and no deferred-build backlog before DoD.
+    - `TODO-0231` cannot be marked complete while any exit-criteria gate fails.
+  - notes: source `testing_plan.md` Section 6; `design.md` Sections 11, 13
+  - evidence: Added `scripts/verify_testing_exit_criteria.py` to run explicit exit-gate
+    verification for PR-required tiers (`npm run test:pr`), determinism/golden checks
+    (`npm run test:tier4-5`), rollback/leakage regression coverage
+    (`pytest -q tests/integration/failure -m "not live_llm"`), and per-space deferred-build
+    backlog audits. The script now writes both a machine-readable manifest under
+    `<site_path>/outputs/verification/testing_exit_criteria/<verification_id>/manifest.json`
+    and canonical gate evidence at
+    `docs/verification/testing_exit_criteria.latest.json`. Added focused coverage in
+    `tests/unit/contracts/test_verify_testing_exit_criteria.py` for pass/fail gate behavior and
+    `tests/unit/contracts/test_dod_exit_gate_closure.py` to enforce that closing `TODO-0231`
+    requires a committed passing exit-gate evidence artifact.
