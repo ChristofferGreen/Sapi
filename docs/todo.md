@@ -58,13 +58,13 @@ Task template:
 5. `TODO-0269`
 6. `TODO-0236`
 7. `TODO-0235`
-8. `TODO-0238`
-9. `TODO-0240`
-10. `TODO-0241`
+8. `TODO-0240`
+9. `TODO-0241`
+10. `TODO-0239`
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: `TODO-0204` to `TODO-0206`, `TODO-0235`, `TODO-0236`, `TODO-0238`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0262`, `TODO-0269`, `TODO-0272`
+- P0 Foundation/contracts: `TODO-0204` to `TODO-0206`, `TODO-0235`, `TODO-0236`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0262`, `TODO-0269`, `TODO-0272`
 - P1 Core product behavior: `TODO-0210` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0100`, `TODO-0264`, `TODO-0265`
@@ -74,7 +74,7 @@ Task template:
 Wave A (bootstrap + contracts):
 1. `TODO-0204` -> `TODO-0205` -> `TODO-0206` -> `TODO-0262` -> `TODO-0269`
 2. `TODO-0236` -> `TODO-0235` -> `TODO-0240`
-3. `TODO-0238` -> `TODO-0272`
+3. `TODO-0272`
 
 Wave B (ingest + projection + lint):
 1. `TODO-0210` -> `TODO-0211` -> `TODO-0213` -> `TODO-0278` -> `TODO-0212` -> `TODO-0214` -> `TODO-0270` -> `TODO-0271`
@@ -97,7 +97,7 @@ Cross-cutting docs backlog:
 | Section 1 (scope/authority/reading) | `TODO-0243`, `TODO-0100` |
 | Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0240`, `TODO-0204`, `TODO-0214`, `TODO-0205`, `TODO-0246`, `TODO-0272`, `TODO-0275` |
 | Section 3 (core concepts + identity invariants) | `TODO-0239` |
-| Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0238`, `TODO-0242` |
+| Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | `TODO-0241`, `TODO-0236`, `TODO-0237`, `TODO-0218` |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | `TODO-0235`, `TODO-0219`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
 | Section 7.1 ingest pipeline | `TODO-0210`, `TODO-0211`, `TODO-0212`, `TODO-0213`, `TODO-0214`, `TODO-0270`, `TODO-0271`, `TODO-0272`, `TODO-0278` |
@@ -612,18 +612,6 @@ Cross-cutting docs backlog:
     - Identity alias constraints (`persona_id` vs `id`, `topic_id` vs `narrative_id`) are enforced.
     - Invariant checks fail fast on invalid identity or boundary relationships.
   - notes: source `design.md` Section 3
-
-- [ ] TODO-0238: Implement prompt-asset precedence contract (`.skill` vs generation specs)
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 1
-  - depends_on: TODO-0202, TODO-0203
-  - scope: Enforce semantic contract ownership so generation specs remain authoritative when orchestration text differs.
-  - acceptance:
-    - Semantic output contract (schema/output path/context roots) is sourced from generation specs, not `.skill` text.
-    - Any `.skill` and generation-spec disagreement resolves in favor of generation spec.
-    - Deterministic render/build logic never redefines semantic schemas outside spec/schema files.
-  - notes: source `design.md` Section 4.1.2
 
 - [ ] TODO-0237: Implement source metadata extensions for paper-focused ingest
   - owner: ai

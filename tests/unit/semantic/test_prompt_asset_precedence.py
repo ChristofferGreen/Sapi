@@ -6,6 +6,7 @@ from pathlib import Path
 from sapi.contracts.semantic_specs import (
     SkillSemanticContract,
     resolve_semantic_contract_with_precedence,
+    resolve_semantic_invocation_spec,
 )
 
 
@@ -13,6 +14,18 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 class PromptAssetPrecedenceTests(unittest.TestCase):
+    def test_generation_spec_contract_resolution_has_no_conflicts_without_skill_text(self) -> None:
+        result = resolve_semantic_contract_with_precedence(
+            "topic_generation",
+            repo_root=REPO_ROOT,
+        )
+        self.assertEqual(result.conflict_fields, [])
+        self.assertEqual(result.conflict_details, {})
+        self.assertEqual(
+            result.resolved_spec.output_json_path_template,
+            "<space_root>/topics/<topic_id>.json",
+        )
+
     def test_semantic_output_contract_is_sourced_from_generation_specs_not_skill_text(self) -> None:
         result = resolve_semantic_contract_with_precedence(
             "query_synthesis",
@@ -67,6 +80,18 @@ class PromptAssetPrecedenceTests(unittest.TestCase):
             resolve_semantic_contract_with_precedence(
                 "topic_generation",
                 repo_root=REPO_ROOT,
+                deterministic_schema_override="schemas/attempted-override.schema.json",
+            )
+
+    def test_deterministic_schema_override_is_rejected_for_invocation_resolution_too(self) -> None:
+        with self.assertRaises(ValueError):
+            resolve_semantic_invocation_spec(
+                "topic_generation",
+                repo_root=REPO_ROOT,
+                path_tokens={
+                    "space_root": REPO_ROOT / ".tmp/tests/space",
+                    "topic_id": "topic-a",
+                },
                 deterministic_schema_override="schemas/attempted-override.schema.json",
             )
 

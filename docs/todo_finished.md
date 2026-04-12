@@ -183,3 +183,16 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     - `persona_comment_generation` normalizes to `comment_section_generation` at input boundaries.
     - Incompatible schema changes require explicit major-version files and flow-map update.
   - evidence: Verified by `tests/unit/semantic/test_spec_resolution.py`, including flow-map-only resolution checks, alias normalization at both resolver and invocation-input boundaries (with deprecation warning), explicit major-version mismatch rejection, and pinned-v1 resolution behavior even when `v2` files are present without flow-map update.
+
+- [x] TODO-0238: Implement prompt-asset precedence contract (`.skill` vs generation specs)
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0202, TODO-0203
+  - scope: Enforce semantic contract ownership so generation specs remain authoritative when orchestration text differs.
+  - acceptance:
+    - Semantic output contract (schema/output path/context roots) is sourced from generation specs, not `.skill` text.
+    - Any `.skill` and generation-spec disagreement resolves in favor of generation spec.
+    - Deterministic render/build logic never redefines semantic schemas outside spec/schema files.
+  - evidence: Verified by `tests/unit/semantic/test_prompt_asset_precedence.py`, including authoritative contract resolution without skill text, explicit conflict-field diagnostics for `.skill` disagreements, and deterministic schema-override rejection in both contract and invocation-resolution paths.
