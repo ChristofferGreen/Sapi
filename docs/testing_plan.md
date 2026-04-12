@@ -95,7 +95,7 @@ tests/
 
 ### Tier 3: Pipeline Integration Tests (mock LLM, deterministic)
 
-- [ ] Ingest happy path writes canonical artifacts + run/lint metadata.
+- [x] Ingest happy path writes canonical artifacts + run/lint metadata.
   - Module: `tests/integration/pipelines/test_ingest_pipeline.py`
 - [ ] Ingest `--source-only` keeps `semantic_flows=[]` and skips semantic writes.
   - Module: `tests/integration/pipelines/test_ingest_source_only.py`

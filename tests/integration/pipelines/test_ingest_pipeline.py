@@ -40,9 +40,11 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
 
             source_records = sorted((space_root / "sources" / "records").glob("source-*.json"))
             claim_records = sorted((space_root / "claims").glob("claim-*.json"))
+            relation_records = sorted((space_root / "relations").glob("rel-*.json"))
             topic_records = sorted((space_root / "topics").glob("topic-*.json"))
             self.assertEqual(len(source_records), 1)
             self.assertGreaterEqual(len(claim_records), 1)
+            self.assertTrue((space_root / "relations").is_dir())
             self.assertEqual(len(topic_records), 1)
 
             run_dir = latest_run_directory(space_root)
@@ -56,14 +58,24 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
             self.assertEqual(frontmatter["status"], "success")
             self.assertEqual(frontmatter["execution_mode"], "mock_llm_test")
             self.assertEqual(frontmatter["semantic_flows"], ["ingest_extraction", "topic_generation"])
+            self.assertEqual(frontmatter["source_ids"], [source_records[0].stem])
+            self.assertEqual(frontmatter["claims_changed"], len(claim_records))
+            self.assertEqual(frontmatter["relations_changed"], len(relation_records))
+            self.assertEqual(frontmatter["topic_pages_changed"], len(topic_records))
+            self.assertEqual(frontmatter["lint_error_count"], 0)
+            self.assertEqual(frontmatter["lint_warning_count"], 0)
+            self.assertEqual(frontmatter["lint_info_count"], 0)
             self.assertEqual(
                 frontmatter["semantic_flow_invocation_counts"],
                 {"ingest_extraction": 1, "topic_generation": 1},
             )
+            self.assertEqual(frontmatter["run_id"], run_dir.name)
 
             lint_payload = json.loads(lint_path.read_text())
             self.assertEqual(lint_payload["workflow"], "ingest_source")
             self.assertEqual(lint_payload["error_count"], 0)
+            self.assertEqual(lint_payload["warning_count"], 0)
+            self.assertEqual(lint_payload["info_count"], 0)
 
             build_manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
             self.assertTrue(build_manifest_path.is_file())

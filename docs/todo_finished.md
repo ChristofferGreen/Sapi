@@ -1860,3 +1860,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     Existing ingest post-processing rollback coverage remains intact. Updated
     `docs/testing_plan.md` to mark the Tier 2 deterministic post-processing item
     complete.
+
+- [x] TODO-0293: Close Tier 3 ingest happy-path pipeline checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0210
+  - scope: Finalize Tier 3 ingest happy-path integration evidence by proving canonical
+    artifact writes plus committed run/lint metadata invariants in one mock-mode ingest run.
+  - acceptance:
+    - `tests/integration/pipelines/test_ingest_pipeline.py` covers canonical ingest
+      artifacts across source, claim, relation, and topic records.
+    - The same module verifies committed ingest run metadata includes flow identity,
+      invocation counts, changed-count fields, and lint totals.
+    - `docs/testing_plan.md` marks the Tier 3 ingest happy-path checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 3; `docs/design.md` Sections 2.1, 10
+  - evidence: Extended
+    `tests/integration/pipelines/test_ingest_pipeline.py` to assert relation artifact
+    contract pathing and changed-count consistency, run-frontmatter source/lint fields, run-id directory
+    alignment, and lint artifact warning/info totals in addition to existing canonical
+    artifact and semantic-flow checks. Updated `docs/testing_plan.md` to mark the
+    Tier 3 ingest happy-path item complete.
