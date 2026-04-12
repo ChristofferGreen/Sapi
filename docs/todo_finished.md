@@ -1401,3 +1401,30 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     coverage in `tests/integration/wrappers/test_wrapper_runtime_flags.py`, and end-to-end
     evaluate harness forwarding assertions in
     `tests/integration/wrappers/test_evaluate_source_harness.py`.
+
+## 2026-04-13
+
+- [x] TODO-0224: Persona profile generation and space-local accountability history
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-13
+  - phase: Phase 5
+  - depends_on: TODO-0222, TODO-0223, TODO-0216
+  - scope: Implement profile semantic flow, canonical profile writes, and history update semantics per space.
+  - acceptance:
+    - Profiles write to `profiles/persona-<persona_id>.json`.
+    - History writes to `outputs/persona_profile_history/<persona_id>.json` with same-day/new-day semantics.
+    - Profile/page projection stats and run-envelope fields are emitted.
+  - notes: source `design.md` Section 7.5
+  - evidence: Replaced `scripts/generate_profiles.py` scaffold with a full
+    `persona_profile_pipeline` implementation that executes semantic flow
+    `persona_profile_generation`, writes canonical profile records to
+    `profiles/persona-<persona_id>.json`, and persists run metadata with canonical
+    pipeline/semantic flow fields and history counters. Implemented
+    space-local history update semantics in `sapi/profiles/history.py` with
+    first-write generate behavior, same-day overwrite-on-change, new-day
+    append-on-change, and unchanged reuse behavior. Added persona selection and
+    semantic payload validation helpers in `sapi/profiles/profiles_pipeline.py`.
+    Added integration coverage in `tests/integration/pipelines/test_profiles_pipeline.py`
+    and history-semantics unit coverage in
+    `tests/unit/profiles/test_history_update_semantics.py`.

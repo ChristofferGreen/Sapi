@@ -54,19 +54,18 @@ Task template:
 1. `TODO-0266`
 2. `TODO-0275`
 3. `TODO-0250`
-4. `TODO-0224`
-5. `TODO-0256`
-6. `TODO-0229`
-7. `TODO-0230`
-8. `TODO-0263`
-9. `TODO-0261`
-10. `TODO-0231`
+4. `TODO-0256`
+5. `TODO-0229`
+6. `TODO-0230`
+7. `TODO-0263`
+8. `TODO-0261`
+9. `TODO-0231`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0224`, `TODO-0229`, `TODO-0230`, `TODO-0231`, `TODO-0250`, `TODO-0256`, `TODO-0261`, `TODO-0263`, `TODO-0266`, `TODO-0275`
+- P2 Social/eval/hardening: `TODO-0229`, `TODO-0230`, `TODO-0231`, `TODO-0250`, `TODO-0256`, `TODO-0261`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -79,7 +78,7 @@ Wave B (ingest + projection + lint):
 
 Wave C (query + social + hardening + release):
 1. (none currently)
-2. `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266`
+2. `TODO-0256` -> `TODO-0275` -> `TODO-0266`
 3. `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
@@ -99,7 +98,7 @@ Cross-cutting docs backlog:
 | Section 7.2 references/linking | - |
 | Section 7.3 query pipeline | - |
 | Section 7.4 persona catalog | - |
-| Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
+| Section 7.5 profile pages/history | `TODO-0275` |
 | Section 7.6 comments pipeline/rendering | `TODO-0256`, `TODO-0275` |
 | Section 7.7 comment quality harness | - |
 | Section 8 site/UI/static build | `TODO-0256` |
@@ -118,7 +117,7 @@ Cross-cutting docs backlog:
 | Section 5 (path + registry contracts) | - |
 | Section 6 (semantic execution engine + retry/repair) | - |
 | Section 7 (transaction/rollback) | - |
-| Section 8 (pipeline execution contracts) | `TODO-0275`, `TODO-0224` |
+| Section 8 (pipeline execution contracts) | `TODO-0275` |
 | Section 9 (deterministic build/projection) | `TODO-0275` |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
@@ -245,15 +244,3 @@ Cross-cutting docs backlog:
     - Tier 5 snapshots exist for site/query/run envelope outputs.
     - Tier 6 live canary exists and is non-blocking.
   - notes: source `testing_plan.md` Tier 4-6
-
-- [ ] TODO-0224: Persona profile generation and space-local accountability history
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 5
-  - depends_on: TODO-0222, TODO-0223, TODO-0216
-  - scope: Implement profile semantic flow, canonical profile writes, and history update semantics per space.
-  - acceptance:
-    - Profiles write to `profiles/persona-<persona_id>.json`.
-    - History writes to `outputs/persona_profile_history/<persona_id>.json` with same-day/new-day semantics.
-    - Profile/page projection stats and run-envelope fields are emitted.
-  - notes: source `design.md` Section 7.5
