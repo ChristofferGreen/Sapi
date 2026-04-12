@@ -26,6 +26,7 @@ from sapi.core.registry import resolve_registry_path, resolve_space_root
 from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
 from sapi.core.transactions import ArtifactTransaction
 from sapi.query.query_pipeline import build_query_result_record
+from sapi.query.renderers import build_query_artifacts
 from sapi.query.retrieval import retrieve_query_context
 
 
@@ -56,7 +57,11 @@ def build_parser() -> argparse.ArgumentParser:
         action=argparse.BooleanOptionalAction,
         default=None,
     )
-    parser.add_argument("--output-format", choices=("markdown",), default="markdown")
+    parser.add_argument(
+        "--output-format",
+        choices=("markdown", "mermaid", "images", "slides", "pdf"),
+        default="markdown",
+    )
     parser.add_argument("--mock-llm", action="store_true")
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--simulate-terminal-failure", action="store_true", help=argparse.SUPPRESS)
@@ -153,17 +158,43 @@ def main() -> int:
             json.dumps(query_payload, indent=2, sort_keys=True) + "\n",
             transaction=transaction,
         )
-        _write_new_file(
-            query_output_root / "answer.md",
-            _render_markdown_answer(
+        if args.output_format == "markdown":
+            _write_new_file(
+                query_output_root / "answer.md",
+                _render_markdown_answer(
+                    question=args.question,
+                    answer=answer,
+                    mode=options.mode,
+                    claims_used=claims_used,
+                    sources_used=sources_used,
+                ),
+                transaction=transaction,
+            )
+        else:
+            rendered = build_query_artifacts(
+                output_mode=args.output_format,
+                query_payload=query_payload,
                 question=args.question,
-                answer=answer,
-                mode=options.mode,
-                claims_used=claims_used,
-                sources_used=sources_used,
-            ),
-            transaction=transaction,
-        )
+            )
+            if rendered is None:
+                raise RuntimeError("Non-markdown output mode must produce rendered artifacts.")
+            for relative_path, file_contents in rendered.files.items():
+                _write_new_file(
+                    query_output_root / relative_path,
+                    file_contents,
+                    transaction=transaction,
+                )
+            manifest_path = query_output_root / "manifest.json"
+            _write_new_file(
+                manifest_path,
+                json.dumps(rendered.manifest, indent=2, sort_keys=True) + "\n",
+                transaction=transaction,
+            )
+            expected_manifest_path = query_payload.get("manifest_path")
+            if expected_manifest_path != str(manifest_path.resolve()):
+                raise RuntimeError(
+                    "Query result manifest_path must match canonical manifest file path."
+                )
 
         if args.simulate_terminal_failure:
             raise RuntimeError("Simulated terminal query failure.")

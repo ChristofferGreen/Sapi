@@ -887,3 +887,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     include-disputed defaults, include-warnings default/override reflection in query JSON metadata,
     deterministic budget defaults/overrides with auditable retrieval counts and truncation fields,
     and fail-fast invalid `strict + include-disputed` behavior before retrieval/generation writes.
+
+- [x] TODO-0221: Query artifact modes and deterministic manifest assembly
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 4
+  - depends_on: TODO-0220
+  - scope: Implement deterministic non-markdown query output modes and manifest generation without extra LLM steps.
+  - acceptance:
+    - `mermaid/images/slides/pdf` modes emit canonical `manifest.json`.
+    - `markdown` mode emits no manifest and keeps `manifest_path` null/omitted.
+    - Manifest keys and artifact hash contracts match doc requirements.
+  - evidence: Added deterministic query artifact assembly in `sapi/query/renderers.py` for
+    `mermaid/images/slides/pdf` output modes with canonical manifest payload fields and
+    `artifact_hashes` computed from emitted artifact contents. Extended `scripts/query.py` to
+    support non-markdown output modes, write manifest/artifact files under
+    `<space_root>/outputs/query/<query_id>/`, and enforce `query.json` `manifest_path` parity with
+    canonical `manifest.json` while preserving markdown mode behavior (`manifest_path` null and no
+    manifest file). Added `tests/unit/query/test_query_artifact_modes_contract.py` to verify
+    non-markdown manifest emission, markdown no-manifest behavior, required manifest keys, declared
+    hash integrity against actual artifact bytes, and mode-specific artifact row fields.
