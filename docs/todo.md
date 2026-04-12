@@ -103,7 +103,7 @@ Cross-cutting docs backlog:
 | Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
 | Section 7.7 comment quality harness | `TODO-0225` |
 | Section 8 site/UI/static build | `TODO-0245`, `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
-| Section 9 observability/safety/runtime controls | `TODO-0226`, `TODO-0227`, `TODO-0254` |
+| Section 9 observability/safety/runtime controls | `TODO-0226`, `TODO-0254` |
 | Section 10 run envelopes/lifecycle status | `TODO-0234`, `TODO-0250` |
 | Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0260`, `TODO-0261` |
@@ -123,7 +123,7 @@ Cross-cutting docs backlog:
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
 | Section 12 (wrapper/script interfaces) | `TODO-0254` |
-| Section 13 (observability/runtime controls/safety) | `TODO-0226`, `TODO-0227`, `TODO-0254` |
+| Section 13 (observability/runtime controls/safety) | `TODO-0226`, `TODO-0254` |
 | Section 14 (anti-drift and PR guardrails) | - |
 | Section 15 (test-plan binding) | `TODO-0228`, `TODO-0266`, `TODO-0275`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 16 (change discipline) | - |
@@ -439,18 +439,6 @@ Cross-cutting docs backlog:
     - Tier 2 rollback/failure semantics tests pass.
     - Tier 3 ingest/query integration tests pass in mock LLM mode.
   - notes: source `design.md` Section 11; `testing_plan.md` Tier 0-3
-
-- [ ] TODO-0227: Runtime safety guards for cleanup and file operations
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 6
-  - depends_on: TODO-0205
-  - scope: Implement destructive-operation safeguards and path restrictions in all cleanup and rollback paths.
-  - acceptance:
-    - Cleanup blocks dangerous roots (`/`, home, repo root, empty).
-    - Deletion stays within explicit staging/temp roots.
-    - Safety behavior has dedicated tests for reject cases.
-  - notes: source `design.md` Section 9
 
 - [ ] TODO-0226: Observability and LLM trace artifact pipeline
   - owner: ai

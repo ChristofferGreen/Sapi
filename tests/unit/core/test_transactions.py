@@ -117,6 +117,27 @@ class TransactionRollbackTests(unittest.TestCase):
                 self.assertFalse(path.exists(), f"expected rollback removal for {path}")
             self.assertFalse(run_container.exists())
 
+    def test_cleanup_rejects_home_directory_target(self) -> None:
+        tx = ArtifactTransaction()
+        with self.assertRaises(ValueError):
+            apply_terminal_failure_policy(
+                transaction=tx,
+                pipeline_flow_key="query_pipeline",
+                force_mode=False,
+                run_container_path=Path.home(),
+            )
+
+    def test_cleanup_rejects_repo_root_target(self) -> None:
+        tx = ArtifactTransaction()
+        repo_root = Path(__file__).resolve().parents[3]
+        with self.assertRaises(ValueError):
+            apply_terminal_failure_policy(
+                transaction=tx,
+                pipeline_flow_key="query_pipeline",
+                force_mode=False,
+                run_container_path=repo_root,
+            )
+
 
 def _write_file(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)

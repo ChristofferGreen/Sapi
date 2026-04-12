@@ -977,3 +977,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     Query non-mutation behavior remains enforced by
     `tests/unit/query/test_query_pipeline_core_contract.py`, and guardrail failures are enforced by
     the lint entrypoint (`scripts/lint.py`) during validation gates.
+
+- [x] TODO-0227: Runtime safety guards for cleanup and file operations
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 6
+  - depends_on: TODO-0205
+  - scope: Implement destructive-operation safeguards and path restrictions in all cleanup and
+    rollback paths.
+  - acceptance:
+    - Cleanup blocks dangerous roots (`/`, home, repo root, empty).
+    - Deletion stays within explicit staging/temp roots.
+    - Safety behavior has dedicated tests for reject cases.
+  - evidence: Hardened rollback/cleanup safety in `sapi/core/transactions.py` by adding guarded
+    delete validation that rejects dangerous cleanup targets (filesystem root, home, repo root,
+    empty/current directory) and allows deletion only for explicit transaction/run cleanup targets.
+    Wired the safe-delete checks through rollback, commit backup cleanup, restore-from-backup, and
+    terminal-failure run-container removal paths. Added reject-case tests in
+    `tests/unit/core/test_transactions.py` for home/repo-root cleanup targets and kept rollback
+    coverage green for canonical/derived/run artifacts under explicit temporary roots.
