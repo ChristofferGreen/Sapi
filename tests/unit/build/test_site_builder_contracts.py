@@ -323,6 +323,136 @@ class SiteBuilderContractTests(unittest.TestCase):
             debug_manifest = json.loads((site_path / "outputs" / "build_site" / "manifest.json").read_text())
             self.assertEqual(debug_manifest["site_presentation_mode"], "debug")
 
+    def test_topic_renderer_selection_is_deterministic_from_topic_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(space_root, source_id="source-only", title="Only Source")
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-wiki--111111111111",
+                title="Wiki Topic",
+                source_ids=[],
+                structure_type="wiki",
+            )
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-mirror--222222222222",
+                title="Mirror Topic",
+                source_ids=["source-only"],
+                structure_type="source_mirror",
+                source_structure_outline=["Methods / approach", "Results / findings"],
+                sections=[
+                    {"heading": "Results / findings", "body": "Synthesis of the primary findings."},
+                    {"heading": "Methods / approach", "body": "Synthesis of the study method."},
+                ],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            wiki_page = (space_root / "site" / "topics" / "topic-wiki--111111111111.html").read_text()
+            mirror_page = (space_root / "site" / "topics" / "topic-mirror--222222222222.html").read_text()
+            self.assertIn("data-structure-type=\"wiki\"", wiki_page)
+            self.assertIn("data-structure-type=\"source_mirror\"", mirror_page)
+
+    def test_wiki_renderer_enforces_required_section_order(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-order--333333333333",
+                title="Ordered Wiki Topic",
+                source_ids=[],
+                structure_type="wiki",
+                sections=[
+                    {"heading": "References", "body": "Refs body."},
+                    {"heading": "Lead summary", "body": "Lead body."},
+                    {"heading": "Key points", "body": "Key points body."},
+                ],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+            page = (space_root / "site" / "topics" / "topic-order--333333333333.html").read_text()
+            lead_idx = page.index("<h2>Lead summary</h2>")
+            key_idx = page.index("<h2>Key points</h2>")
+            refs_idx = page.index("<h2>References</h2>")
+            self.assertLess(lead_idx, key_idx)
+            self.assertLess(key_idx, refs_idx)
+
+    def test_source_mirror_renderer_follows_outline_and_rejects_verbatim_restatements(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(space_root, source_id="source-single", title="Single Source")
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-mirror-order--444444444444",
+                title="Mirror Ordered Topic",
+                source_ids=["source-single"],
+                structure_type="source_mirror",
+                source_structure_outline=["Methods / approach", "Results / findings"],
+                sections=[
+                    {"heading": "Results / findings", "body": "Summarized findings and implications."},
+                    {"heading": "Methods / approach", "body": "Summarized method overview."},
+                ],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+            page = (space_root / "site" / "topics" / "topic-mirror-order--444444444444.html").read_text()
+            methods_idx = page.index("<h2>Methods / approach</h2>")
+            results_idx = page.index("<h2>Results / findings</h2>")
+            self.assertLess(methods_idx, results_idx)
+
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-mirror-invalid--555555555555",
+                title="Mirror Invalid Topic",
+                source_ids=["source-single"],
+                structure_type="source_mirror",
+                sections=[
+                    {"heading": "Methods / approach", "body": "Methods / approach"},
+                ],
+            )
+            invalid_result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertNotEqual(invalid_result.returncode, 0)
+            self.assertIn("source_mirror section body must not mirror heading verbatim", invalid_result.stderr)
+
     def test_build_fails_fast_on_template_conversion_errors(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
@@ -464,16 +594,20 @@ class SiteBuilderContractTests(unittest.TestCase):
         title: str,
         source_ids: list[str],
         sections: list[dict[str, str]] | None = None,
+        structure_type: str = "wiki",
+        source_structure_outline: list[str] | None = None,
         pinned_parent_ref: dict[str, str] | None = None,
     ) -> None:
         payload = {
             "topic_id": topic_id,
             "title": title,
-            "structure_type": "wiki",
+            "structure_type": structure_type,
             "sections": sections if sections is not None else [{"heading": "Summary", "body": "Body"}],
             "claim_ids": [],
             "source_ids": source_ids,
         }
+        if source_structure_outline is not None:
+            payload["source_structure_outline"] = source_structure_outline
         if pinned_parent_ref is not None:
             payload["pinned_parent_ref"] = pinned_parent_ref
         path = space_root / "topics" / f"{topic_id}.json"

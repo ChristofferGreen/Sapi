@@ -11,6 +11,17 @@ import re
 from sapi.build.projection import SpaceProjection, load_space_projection
 from sapi.lint.lint_engine import LintSummary, default_lint_summary
 
+_WIKI_SECTION_ORDER: tuple[str, ...] = (
+    "lead summary",
+    "key points",
+    "background and context",
+    "main concepts/subtopics",
+    "evidence and claims",
+    "related sources",
+    "open questions / disagreements",
+    "references",
+)
+
 
 @dataclass(frozen=True)
 class BuildResult:
@@ -181,7 +192,8 @@ def _render_source_page(source: dict[str, object]) -> str:
 def _render_topic_page(topic: dict[str, object], *, site_presentation_mode: str) -> str:
     if site_presentation_mode not in {"public", "debug"}:
         raise ValueError(f"Unsupported site_presentation_mode: {site_presentation_mode!r}")
-    sections = topic["sections"]
+    structure_type = _resolve_topic_structure_type(topic)
+    sections = _ordered_topic_sections(topic, structure_type=structure_type)
     assert isinstance(sections, list)
     section_rows = "\n".join(
         _render_topic_section(
@@ -198,10 +210,89 @@ def _render_topic_page(topic: dict[str, object], *, site_presentation_mode: str)
         + escape(str(topic["title"]))
         + "</title></head><body>\n"
         + f"<h1>{escape(str(topic['title']))}</h1>\n"
+        + (
+            "<p class=\"topic-structure\" "
+            f"data-structure-type=\"{escape(structure_type)}\">Structure: {escape(structure_type)}</p>\n"
+        )
         + parent_link_row
         + section_rows
         + "\n</body></html>\n"
     )
+
+
+def _resolve_topic_structure_type(topic: dict[str, object]) -> str:
+    raw_structure_type = topic.get("structure_type")
+    if isinstance(raw_structure_type, str) and raw_structure_type.strip():
+        normalized = raw_structure_type.strip()
+        if normalized in {"wiki", "source_mirror"}:
+            return normalized
+        raise ValueError(f"Unsupported topic structure_type: {normalized!r}")
+    source_ids = topic.get("source_ids")
+    source_structure_outline = topic.get("source_structure_outline")
+    if (
+        isinstance(source_ids, list)
+        and len(source_ids) == 1
+        and isinstance(source_structure_outline, list)
+        and any(isinstance(item, str) and item.strip() for item in source_structure_outline)
+    ):
+        return "source_mirror"
+    return "wiki"
+
+
+def _ordered_topic_sections(topic: dict[str, object], *, structure_type: str) -> list[dict[str, object]]:
+    raw_sections = topic["sections"]
+    assert isinstance(raw_sections, list)
+    sections: list[dict[str, object]] = [section for section in raw_sections if isinstance(section, dict)]
+    if structure_type == "wiki":
+        return _ordered_wiki_sections(sections)
+    assert structure_type == "source_mirror"
+    return _ordered_source_mirror_sections(topic, sections=sections)
+
+
+def _ordered_wiki_sections(sections: list[dict[str, object]]) -> list[dict[str, object]]:
+    preferred_rank = {heading: rank for rank, heading in enumerate(_WIKI_SECTION_ORDER)}
+    keyed_sections = []
+    for index, section in enumerate(sections):
+        normalized_heading = _normalize_heading(str(section.get("heading", "")))
+        rank = preferred_rank.get(normalized_heading, len(preferred_rank))
+        keyed_sections.append((rank, normalized_heading, index, section))
+    keyed_sections.sort(key=lambda row: (row[0], row[1], row[2]))
+    return [row[3] for row in keyed_sections]
+
+
+def _ordered_source_mirror_sections(
+    topic: dict[str, object],
+    *,
+    sections: list[dict[str, object]],
+) -> list[dict[str, object]]:
+    outline = topic.get("source_structure_outline")
+    outline_rank: dict[str, int] = {}
+    if isinstance(outline, list):
+        for rank, item in enumerate(outline):
+            if not isinstance(item, str) or not item.strip():
+                continue
+            normalized = _normalize_heading(item)
+            outline_rank.setdefault(normalized, rank)
+
+    keyed_sections = []
+    for index, section in enumerate(sections):
+        heading_raw = str(section.get("heading", ""))
+        body_raw = str(section.get("body", ""))
+        if _normalize_heading(heading_raw) == _normalize_heading(body_raw):
+            raise ValueError(
+                f"source_mirror section body must not mirror heading verbatim: {heading_raw!r}"
+            )
+        normalized_heading = _normalize_heading(heading_raw)
+        rank = outline_rank.get(normalized_heading, len(outline_rank))
+        keyed_sections.append((rank, index, section))
+    keyed_sections.sort(key=lambda row: (row[0], row[1]))
+    return [row[2] for row in keyed_sections]
+
+
+def _normalize_heading(value: str) -> str:
+    normalized = value.strip().lower()
+    normalized = re.sub(r"\s+", " ", normalized)
+    return normalized
 
 
 def _render_topic_section(

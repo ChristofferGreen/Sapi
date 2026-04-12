@@ -52,20 +52,20 @@ Task template:
 ### Immediate Next 10 (After Ready Now)
 
 1. `TODO-0253`
-2. `TODO-0252`
-3. `TODO-0257`
-4. `TODO-0234`
-5. `TODO-0233`
-6. `TODO-0266`
-7. `TODO-0223`
-8. `TODO-0247`
-9. `TODO-0275`
-10. `TODO-0258`
+2. `TODO-0257`
+3. `TODO-0234`
+4. `TODO-0233`
+5. `TODO-0266`
+6. `TODO-0223`
+7. `TODO-0247`
+8. `TODO-0275`
+9. `TODO-0258`
+10. `TODO-0248`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: `TODO-0252`, `TODO-0253`, `TODO-0257`
+- P1 Core product behavior: `TODO-0253`, `TODO-0257`
 - P2 Social/eval/hardening: `TODO-0223` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: (none currently)
 
@@ -75,7 +75,7 @@ Wave A (bootstrap + contracts):
 1. (none currently)
 
 Wave B (ingest + projection + lint):
-1. `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233`
+1. `TODO-0253` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233`
 
 Wave C (query + social + hardening + release):
 1. (none currently)
@@ -102,7 +102,7 @@ Cross-cutting docs backlog:
 | Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
 | Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
 | Section 7.7 comment quality harness | `TODO-0225` |
-| Section 8 site/UI/static build | `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
+| Section 8 site/UI/static build | `TODO-0253`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | `TODO-0234`, `TODO-0250` |
 | Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
@@ -234,18 +234,6 @@ Cross-cutting docs backlog:
     - Users-tab scope behavior (site vs space) and space-scoped profile link resolution are implemented.
   - notes: source `design.md` Section 8
 
-- [ ] TODO-0252: Implement topic-page structure renderers (`wiki` and `source_mirror`)
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 3
-  - depends_on: TODO-0212, TODO-0216
-  - scope: Implement deterministic topic renderer selection and section rendering contracts for both topic structures.
-  - acceptance:
-    - Renderer selection between `wiki` and `source_mirror` is deterministic from topic metadata.
-    - Required section ordering and content expectations are enforced for both structures.
-    - Source-mirror pages preserve structural correspondence without becoming verbatim restatements.
-  - notes: source `design.md` Section 8
-
 - [ ] TODO-0257: Implement source-preview asset pipeline and page/feed integration
   - owner: ai
   - created_at: 2026-04-12
@@ -335,7 +323,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-12
   - phase: Phase 3
-  - depends_on: TODO-0252, TODO-0253
+  - depends_on: TODO-0253
   - scope: Integrate and validate UI/IA renderer contracts end-to-end after specialized Section 8 tasks land.
   - acceptance:
     - Section 8 specialized contract tasks produce coherent, non-conflicting site output across page types.

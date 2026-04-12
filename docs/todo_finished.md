@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0252: Implement topic-page structure renderers (`wiki` and `source_mirror`)
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 3
+  - depends_on: TODO-0212, TODO-0216
+  - scope: Implement deterministic topic renderer selection and section rendering contracts for both topic structures.
+  - acceptance:
+    - Renderer selection between `wiki` and `source_mirror` is deterministic from topic metadata.
+    - Required section ordering and content expectations are enforced for both structures.
+    - Source-mirror pages preserve structural correspondence without becoming verbatim restatements.
+  - notes: source `design.md` Section 8
+  - evidence: Implemented structure-specific topic rendering in `sapi/build/site_builder.py` with
+    deterministic renderer selection (`wiki`/`source_mirror`) from topic metadata, wiki preferred
+    section ordering, source-mirror outline-aware ordering, and explicit rejection of verbatim
+    heading-as-body mirror sections. Added deterministic build tests in
+    `tests/unit/build/test_site_builder_contracts.py` covering renderer selection, enforced wiki
+    ordering, source-mirror ordering from `source_structure_outline`, and non-verbatim content guard.
+
 - [x] TODO-0244: Implement claim-reference rendering/public-debug visibility contracts
   - owner: ai
   - created_at: 2026-04-12
