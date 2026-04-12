@@ -4,6 +4,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0211: Ingest extraction semantic flow and canonical claim/relation writes
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 2
+  - depends_on: TODO-0210, TODO-0202, TODO-0203, TODO-0204
+  - scope: Implement ingest extraction flow from source artifacts to canonical claims/relations plus summary/warnings.
+  - acceptance:
+    - Semantic output validates against ingest schema.
+    - Canonical claim/relation writes follow ID/path contracts.
+    - Relation normalization/writer behavior aligns with canonical relation persistence contracts.
+  - evidence: Added ingest extraction semantic execution + deterministic canonical writes in `sapi/ingest/records_writer.py` and `scripts/ingest_source.py`, including claim writes under `<space_root>/claims/`, relation writes through canonical relation store under `<space_root>/relations/`, and source-record summary/warnings/date-inference persistence; covered by `tests/unit/ingest/test_ingest_extraction_canonical_writes.py` (schema validation gate, canonical ID/path writes, relation normalization behavior, source summary/warning/date-inference persistence).
+
 - [x] TODO-0213: Relation storage-key hashing and relation consistency validation
   - owner: ai
   - created_at: 2026-04-12

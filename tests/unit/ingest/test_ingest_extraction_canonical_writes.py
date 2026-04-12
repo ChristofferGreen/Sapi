@@ -160,6 +160,40 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
                 relation_file_id_from_relation_id(relation_payload["relation_id"]),
             )
 
+    def test_ingest_extraction_persists_summary_warnings_and_source_date_inference(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root, source_id = self._bootstrap_source(Path(tmp))
+            semantic_output = {
+                "source_date_inference": {
+                    "date": None,
+                    "origin": "unknown",
+                    "confidence": "unknown",
+                    "rationale": "no publication date found",
+                },
+                "source": {"source_id": source_id, "title": "Summary Source"},
+                "claims": [{"text": "One claim extracted."}],
+                "relations": [],
+                "summary": "Extraction summary text.",
+                "warnings": [
+                    {
+                        "code": "missing_publication_date",
+                        "message": "Publication date could not be resolved; continuing with date=null.",
+                    }
+                ],
+            }
+
+            result = run_ingest_extraction_and_persist_canonical(
+                space_root=space_root,
+                source_id=source_id,
+                run_id="run-source-summary",
+                llm_client=_StaticSemanticClient(semantic_output),
+            )
+
+            source_record = json.loads(result.source_record_path.read_text())
+            self.assertEqual(source_record["source_date_inference"], semantic_output["source_date_inference"])
+            self.assertEqual(source_record["summary"], semantic_output["summary"])
+            self.assertEqual(source_record["warnings"], semantic_output["warnings"])
+
     def _bootstrap_source(self, tmp_root: Path) -> tuple[Path, str]:
         space_root = tmp_root / "spaces" / "alpha"
         source_path = tmp_root / "source.txt"

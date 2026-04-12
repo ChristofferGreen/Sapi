@@ -47,12 +47,14 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0211` Ingest extraction semantic flow and canonical claim/relation writes
-2. `TODO-0282` Resolve compatibility-reader sunset policy into a concrete contract update
+1. `TODO-0278` Enforce relation-type matrix semantics and normalization invariants
+2. `TODO-0212` Topic generation semantic flow and canonical topic persistence
+3. `TODO-0215` Reference extraction, structured normalization, and local link backfill
+4. `TODO-0282` Resolve compatibility-reader sunset policy into a concrete contract update
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0211`
+1. `TODO-0278`
 2. `TODO-0212`
 3. `TODO-0214`
 4. `TODO-0215`
@@ -66,7 +68,7 @@ Task template:
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: `TODO-0211` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
+- P1 Core product behavior: `TODO-0212` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0282`
 
@@ -76,7 +78,7 @@ Wave A (bootstrap + contracts):
 1. (none currently)
 
 Wave B (ingest + projection + lint):
-1. `TODO-0211` -> `TODO-0278` -> `TODO-0212` -> `TODO-0214` -> `TODO-0270` -> `TODO-0271`
+1. `TODO-0278` -> `TODO-0212` -> `TODO-0214` -> `TODO-0270` -> `TODO-0271`
 2. `TODO-0215` -> `TODO-0216` -> `TODO-0268` -> `TODO-0217` -> `TODO-0218`
 3. `TODO-0246` -> `TODO-0245` -> `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233` -> `TODO-0219`
 
@@ -99,7 +101,7 @@ Cross-cutting docs backlog:
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | `TODO-0218` |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | `TODO-0219`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
-| Section 7.1 ingest pipeline | `TODO-0211`, `TODO-0212`, `TODO-0214`, `TODO-0270`, `TODO-0271`, `TODO-0278` |
+| Section 7.1 ingest pipeline | `TODO-0212`, `TODO-0214`, `TODO-0270`, `TODO-0271`, `TODO-0278` |
 | Section 7.2 references/linking | `TODO-0215` |
 | Section 7.3 query pipeline | `TODO-0220`, `TODO-0259`, `TODO-0255`, `TODO-0221`, `TODO-0277` |
 | Section 7.4 persona catalog | `TODO-0222` |
@@ -793,15 +795,3 @@ Cross-cutting docs backlog:
     - Canonical topic JSON writes to `topics/<topic_id>.json`.
     - Deterministic post-processing/build triggers run per policy.
   - notes: source `design.md` Sections 2.2, 4.1.3, 7.1
-
-- [ ] TODO-0211: Ingest extraction semantic flow and canonical claim/relation writes
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 2
-  - depends_on: TODO-0210, TODO-0202, TODO-0203, TODO-0204
-  - scope: Implement ingest extraction flow from source artifacts to canonical claims/relations plus summary/warnings.
-  - acceptance:
-    - Semantic output validates against ingest schema.
-    - Canonical claim/relation writes follow ID/path contracts.
-    - Relation normalization/writer behavior aligns with canonical relation persistence contracts.
-  - notes: source `design.md` Sections 4.1.4, 7.1
