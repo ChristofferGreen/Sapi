@@ -1453,3 +1453,22 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     to assert PR-required suite wiring includes `tests/integration/pipelines`, that Tier 3
     testing-plan entries list both social modules, and that both integration modules run in
     deterministic `--mock-llm` mode.
+
+- [x] TODO-0275: Enforce site-root `New` refresh exclusions for non-mutating flows
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-13
+  - phase: Phase 5
+  - depends_on: TODO-0217, TODO-0220, TODO-0223, TODO-0224
+  - scope: Enforce and test cross-flow site-root refresh policy so query/comment/profile
+    flows do not refresh `New` unless they mutate canonical source/topic artifacts.
+  - acceptance:
+    - Query flow never refreshes site-root `New`.
+    - Comment/profile flows only refresh site-root `New` when canonical source/topic mutation occurs.
+    - Deterministic tests validate policy across ingest/query/comment/profile execution paths.
+  - notes: source `design.md` Sections 2.2, 7.3, 7.5, 7.6; `low_level.md` Section 9
+  - evidence: Added `tests/integration/pipelines/test_site_new_refresh_policy.py` with
+    deterministic integration coverage validating that a second ingest refreshes site-root
+    `site/new/index.html` while query, comments, and profiles pipeline executions leave the same
+    site-root `New` artifact untouched for the same site. Existing ingest/query/comments/profiles
+    integration suites remain green under mock-LLM mode with this refresh-policy coverage added.

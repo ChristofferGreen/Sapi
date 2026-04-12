@@ -51,20 +51,19 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0275`
-2. `TODO-0250`
-3. `TODO-0256`
-4. `TODO-0229`
-5. `TODO-0230`
-6. `TODO-0263`
-7. `TODO-0261`
-8. `TODO-0231`
+1. `TODO-0250`
+2. `TODO-0256`
+3. `TODO-0229`
+4. `TODO-0230`
+5. `TODO-0263`
+6. `TODO-0261`
+7. `TODO-0231`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0229`, `TODO-0230`, `TODO-0231`, `TODO-0250`, `TODO-0256`, `TODO-0261`, `TODO-0263`, `TODO-0275`
+- P2 Social/eval/hardening: `TODO-0229`, `TODO-0230`, `TODO-0231`, `TODO-0250`, `TODO-0256`, `TODO-0261`, `TODO-0263`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -77,7 +76,7 @@ Wave B (ingest + projection + lint):
 
 Wave C (query + social + hardening + release):
 1. (none currently)
-2. `TODO-0256` -> `TODO-0275`
+2. `TODO-0256`
 3. `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
@@ -88,7 +87,7 @@ Cross-cutting docs backlog:
 | Design area | Primary TODO IDs |
 | --- | --- |
 | Section 1 (scope/authority/reading) | - |
-| Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0275` |
+| Section 2 (runtime policy + semantic loop + mock mode) | - |
 | Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | - |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | - |
@@ -97,8 +96,8 @@ Cross-cutting docs backlog:
 | Section 7.2 references/linking | - |
 | Section 7.3 query pipeline | - |
 | Section 7.4 persona catalog | - |
-| Section 7.5 profile pages/history | `TODO-0275` |
-| Section 7.6 comments pipeline/rendering | `TODO-0256`, `TODO-0275` |
+| Section 7.5 profile pages/history | - |
+| Section 7.6 comments pipeline/rendering | `TODO-0256` |
 | Section 7.7 comment quality harness | - |
 | Section 8 site/UI/static build | `TODO-0256` |
 | Section 9 observability/safety/runtime controls | - |
@@ -116,14 +115,14 @@ Cross-cutting docs backlog:
 | Section 5 (path + registry contracts) | - |
 | Section 6 (semantic execution engine + retry/repair) | - |
 | Section 7 (transaction/rollback) | - |
-| Section 8 (pipeline execution contracts) | `TODO-0275` |
-| Section 9 (deterministic build/projection) | `TODO-0275` |
+| Section 8 (pipeline execution contracts) | - |
+| Section 9 (deterministic build/projection) | - |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
 | Section 12 (wrapper/script interfaces) | - |
 | Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | - |
-| Section 15 (test-plan binding) | `TODO-0275`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
+| Section 15 (test-plan binding) | `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 16 (change discipline) | - |
 
 ### Testing Plan Coverage Snapshot
@@ -131,22 +130,10 @@ Cross-cutting docs backlog:
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (test module layout) | `TODO-0229` |
-| Tier 0-3 (fast contract/failure/pipeline suites) | `TODO-0275` |
+| Tier 0-3 (fast contract/failure/pipeline suites) | - |
 | Tier 4-6 (determinism/golden/live canary) | `TODO-0229` |
 | Section 4-5 (CI gating matrix + command wiring) | `TODO-0230` |
 | Section 6 (exit criteria gating) | `TODO-0263`, `TODO-0231` |
-
-- [ ] TODO-0275: Enforce site-root `New` refresh exclusions for non-mutating flows
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 5
-  - depends_on: TODO-0217, TODO-0220, TODO-0223, TODO-0224
-  - scope: Enforce and test cross-flow site-root refresh policy so query/comment/profile flows do not refresh `New` unless they mutate canonical source/topic artifacts.
-  - acceptance:
-    - Query flow never refreshes site-root `New`.
-    - Comment/profile flows only refresh site-root `New` when canonical source/topic mutation occurs.
-    - Deterministic tests validate policy across ingest/query/comment/profile execution paths.
-  - notes: source `design.md` Sections 2.2, 7.3, 7.5, 7.6; `low_level.md` Section 9
 
 - [ ] TODO-0263: Enforce testing-plan exit criteria gates before DoD closure
   - owner: ai
