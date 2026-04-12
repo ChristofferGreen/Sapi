@@ -136,6 +136,10 @@ def main() -> int:
                 "provider_fingerprint": _provider_fingerprint(runtime_policy.execution_mode),
                 "include_disputed": options.include_disputed,
                 "include_warnings": options.include_warnings,
+                "retrieval_budget": {
+                    "max_claims": options.max_claims,
+                    "max_sources": options.max_sources,
+                },
             },
             warnings=warnings,
             output_mode=args.output_format,

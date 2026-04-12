@@ -865,3 +865,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `tests/unit/query/test_query_pipeline_core_contract.py` covering preflight failure behavior,
     query-write path boundaries/no site rebuild mutation, and rollback cleanup on simulated terminal
     failure.
+
+- [x] TODO-0259: Implement query mode defaults and retrieval-budget policy contracts
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 4
+  - depends_on: TODO-0220
+  - scope: Implement recovered mode defaults and retrieval-budget policy behavior for
+    strict/exploratory/comparative query execution.
+  - acceptance:
+    - Mode defaults for `include_disputed` are implemented exactly by mode.
+    - `include_warnings` defaults to `true` unless explicitly overridden and is reflected in output
+      metadata.
+    - Retrieval budget defaults and override behavior are deterministic and auditable in outputs.
+    - Invalid mode/flag combinations fail fast before retrieval/generation.
+  - evidence: Extended `scripts/query.py` mode policy metadata to include effective
+    `execution.retrieval_budget` (`max_claims`, `max_sources`) alongside effective
+    `include_disputed`/`include_warnings` flags. Added
+    `tests/unit/query/test_query_mode_defaults_policy.py` to validate strict/exploratory/comparative
+    include-disputed defaults, include-warnings default/override reflection in query JSON metadata,
+    deterministic budget defaults/overrides with auditable retrieval counts and truncation fields,
+    and fail-fast invalid `strict + include-disputed` behavior before retrieval/generation writes.
