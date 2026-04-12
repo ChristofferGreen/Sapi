@@ -132,6 +132,20 @@ class TopicGenerationFlowTests(unittest.TestCase):
             self.assertIn(source_record["title"], site_new_html)
             self.assertIn(topic_payload["title"], site_new_html)
 
+            runs_root = space_root / "runs"
+            run_dirs = sorted(path for path in runs_root.glob("run-*") if path.is_dir())
+            self.assertEqual(len(run_dirs), 1)
+            run_md_path = run_dirs[0] / "run.md"
+            lint_path = run_dirs[0] / "lint.json"
+            self.assertTrue(run_md_path.is_file())
+            self.assertTrue(lint_path.is_file())
+            self.assertIn("## Lint Summary", run_md_path.read_text())
+            lint_payload = json.loads(lint_path.read_text())
+            self.assertEqual(lint_payload["workflow"], "ingest_source")
+            self.assertEqual(lint_payload["error_count"], 0)
+            self.assertEqual(lint_payload["warning_count"], 0)
+            self.assertEqual(lint_payload["info_count"], 0)
+
 
 def _bootstrap_source(tmp_root: Path) -> tuple[Path, str]:
     space_root = tmp_root / "spaces" / "alpha"

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -121,6 +122,13 @@ class PipelinePolicyTests(unittest.TestCase):
             self.assertTrue(forced.rollback_disposition.rollback_skipped)  # type: ignore[union-attr]
             self.assertTrue((space_root / "runs" / ingest_base.run_id).exists())
             self.assertTrue(source_artifact.exists())
+            forced_lint_path = space_root / "runs" / ingest_base.run_id / "lint.json"
+            self.assertTrue(forced_lint_path.is_file())
+            forced_lint_payload = json.loads(forced_lint_path.read_text())
+            self.assertEqual(forced_lint_payload["workflow"], "ingest_source")
+            self.assertEqual(forced_lint_payload["error_count"], 0)
+            self.assertEqual(forced_lint_payload["warning_count"], 0)
+            self.assertEqual(forced_lint_payload["info_count"], 0)
 
     def test_ingest_force_failure_requires_force_and_rollback_flags_in_run_fields(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -179,6 +187,36 @@ class PipelinePolicyTests(unittest.TestCase):
                     self.assertIsNotNone(result.rollback_disposition)
                     self.assertTrue(result.rollback_disposition.rollback_applied)  # type: ignore[union-attr]
                     self.assertFalse((space_root / "runs" / run_id).exists())
+
+    def test_success_run_writes_run_md_with_lint_summary_and_lint_json(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space"
+            base = _base(flow_key="ingest_pipeline", run_id="run-20260412T120006Z--ingest003")
+            base.status = "success"
+            tx = ArtifactTransaction()
+
+            result = finalize_pipeline_run(
+                space_root=space_root,
+                base=base,
+                flow_fields=_ingest_fields(),
+                transaction=tx,
+                force_mode=False,
+                lint_summary="lint_error_count=0 lint_warning_count=0 lint_info_count=0",
+            )
+
+            self.assertEqual(result.exit_code, 0)
+            assert result.run_record_path is not None
+            run_md_text = result.run_record_path.read_text()
+            self.assertIn("## Lint Summary", run_md_text)
+            self.assertIn("lint_error_count=0 lint_warning_count=0 lint_info_count=0", run_md_text)
+
+            lint_path = space_root / "runs" / base.run_id / "lint.json"
+            self.assertTrue(lint_path.is_file())
+            lint_payload = json.loads(lint_path.read_text())
+            self.assertEqual(lint_payload["workflow"], "ingest_source")
+            self.assertEqual(lint_payload["error_count"], 0)
+            self.assertEqual(lint_payload["warning_count"], 0)
+            self.assertEqual(lint_payload["info_count"], 0)
 
 
 def _base(*, flow_key: str, run_id: str) -> RunEnvelopeBase:

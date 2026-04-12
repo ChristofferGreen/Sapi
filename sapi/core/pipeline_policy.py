@@ -17,6 +17,7 @@ from sapi.core.transactions import (
     TerminalFailureDisposition,
     apply_terminal_failure_policy,
 )
+from sapi.lint.lint_engine import LintSummary, write_lint_artifact
 
 
 SUCCESS_STATUSES: frozenset[RunStatus] = frozenset({"success", "success_with_warnings"})
@@ -95,6 +96,12 @@ def finalize_pipeline_run(
             lint_summary=lint_summary,
             errors=errors,
         )
+        write_lint_artifact(
+            space_root=space_root,
+            run_id=base.run_id,
+            workflow=_workflow_key_for_pipeline(base.flow_key),
+            summary=_lint_summary_from_base(base),
+        )
         transaction.commit()
         return PipelineFinalizeResult(
             status=base.status,
@@ -121,6 +128,12 @@ def finalize_pipeline_run(
             lint_summary=lint_summary,
             errors=errors,
         )
+        write_lint_artifact(
+            space_root=space_root,
+            run_id=base.run_id,
+            workflow=_workflow_key_for_pipeline(base.flow_key),
+            summary=_lint_summary_from_base(base),
+        )
         transaction.commit()
 
     return PipelineFinalizeResult(
@@ -144,3 +157,25 @@ def _validate_force_mode_ingest_failure_fields(
         raise ValueError(
             "Ingest force-mode retained failures must record force_mode=true and rollback_skipped=true."
         )
+
+
+def _lint_summary_from_base(base: RunEnvelopeBase) -> LintSummary:
+    return LintSummary(
+        error_count=base.lint_error_count,
+        warning_count=base.lint_warning_count,
+        info_count=base.lint_info_count,
+        issues=(),
+    )
+
+
+def _workflow_key_for_pipeline(pipeline_flow_key: str) -> str:
+    flow_map = {
+        "ingest_pipeline": "ingest_source",
+        "query_pipeline": "query",
+        "comment_section_pipeline": "create_comments",
+        "persona_profile_pipeline": "generate_profiles",
+    }
+    try:
+        return flow_map[pipeline_flow_key]
+    except KeyError as exc:
+        raise ValueError(f"Unsupported pipeline flow key: {pipeline_flow_key}") from exc

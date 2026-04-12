@@ -4,6 +4,26 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0218: Lint severity engine and warning-threshold status mapping
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 3
+  - depends_on: TODO-0206
+  - scope: Implement lint severities, workflow-specific gate behavior, warning-threshold status mapping, and lint artifact writes.
+  - acceptance:
+    - Severity levels and example checks are enforced (`error/warning/info`).
+    - Gate behavior matches workflow key table.
+    - `lint.json` and `## Lint Summary` are emitted for committed runs.
+  - evidence: Implemented canonical lint severity/check mapping and gate evaluation in
+    `sapi/lint/severity.py` and `sapi/lint/lint_engine.py` (including warning-budget parsing,
+    workflow-key gate policy, and lint artifact writer); wired committed-run lint artifact emission
+    into `sapi/core/pipeline_policy.py`; added tests in
+    `tests/unit/lint/test_warning_budget_gate.py` for severity/gate contracts and warning-budget
+    validation; and extended `tests/unit/core/test_pipeline_policy.py` plus
+    `tests/unit/ingest/test_topic_generation_flow.py` to assert committed runs emit both
+    `runs/<run_id>/lint.json` and `run.md` `## Lint Summary`.
+
 - [x] TODO-0217: Site-root `New` feed refresh policy and incremental/full equivalence
   - owner: ai
   - created_at: 2026-04-12
