@@ -1702,3 +1702,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     invocation-count keys not present in `semantic_flows`, and non-positive invocation counts.
     Updated `docs/testing_plan.md` to mark the Tier 1 run-envelope semantic-flow-cardinality
     checklist item complete.
+
+- [x] TODO-0286: Close Tier 1 semantic-spec flow-map and alias-normalization checklist
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 2
+  - depends_on: TODO-0203
+  - scope: Finalize Tier 1 semantic-spec resolution checklist coverage by asserting canonical
+    flow-key handling does not emit alias-deprecation warnings while preserving mapped alias
+    behavior and flow-map pinning.
+  - acceptance:
+    - `tests/unit/semantic/test_spec_resolution.py` explicitly covers canonical-key no-warning behavior.
+    - Existing flow-map resolution/version-pinning/alias-normalization coverage remains green.
+    - `docs/testing_plan.md` marks the semantic-spec Tier 1 item complete.
+  - notes: source `docs/testing_plan.md` Tier 1; `docs/design.md` Section 4.1.3
+  - evidence: Extended `tests/unit/semantic/test_spec_resolution.py` with
+    `test_canonical_flow_key_does_not_emit_alias_deprecation_warning`, asserting canonical
+    `comment_section_generation` input remains unchanged, resolves successfully through the
+    authoritative flow map, and does not produce deprecation warnings reserved for compatibility
+    aliases. Updated `docs/testing_plan.md` to mark the Tier 1 semantic-spec checklist item
+    complete.

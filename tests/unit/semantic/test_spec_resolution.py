@@ -55,6 +55,20 @@ class SpecResolutionTests(unittest.TestCase):
         self.assertTrue(caught)
         self.assertIn("deprecated", str(caught[-1].message).lower())
 
+    def test_canonical_flow_key_does_not_emit_alias_deprecation_warning(self) -> None:
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            normalized = normalize_semantic_flow_key("comment_section_generation")
+            resolved = resolve_semantic_spec("comment_section_generation", repo_root=REPO_ROOT)
+        self.assertEqual(normalized, "comment_section_generation")
+        self.assertEqual(resolved.flow_key, "comment_section_generation")
+        alias_warnings = [
+            warning
+            for warning in caught
+            if "deprecated" in str(warning.message).lower()
+        ]
+        self.assertEqual(alias_warnings, [])
+
     def test_alias_normalizes_at_invocation_input_boundary(self) -> None:
         with warnings.catch_warnings(record=True) as caught:
             warnings.simplefilter("always")

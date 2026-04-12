@@ -73,7 +73,7 @@ tests/
   - Module: `tests/unit/contracts/test_registry_paths.py`
 - [ ] ID/format/path contract checks used by writes (including suffix-length and timestamp-format constraints).
   - Module: `tests/unit/contracts/test_id_contracts.py`
-- [ ] Semantic spec flow-map resolution, version pinning, and input alias normalization.
+- [x] Semantic spec flow-map resolution, version pinning, and input alias normalization.
   - Module: `tests/unit/semantic/test_spec_resolution.py`
 - [ ] Retry budget math and attempt counting (`max_repair_loops`, `max_attempts`, `llm_attempt_count`).
   - Module: `tests/unit/semantic/test_retry_budget.py`
