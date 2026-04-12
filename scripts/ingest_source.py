@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from datetime import UTC, datetime
 import os
 from pathlib import Path
 import sys
@@ -14,15 +15,20 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
+from sapi.contracts.ids import format_timestamp_rfc3339_utc, make_run_id
+from sapi.contracts.run_envelopes import IngestRunFields, RunEnvelopeBase, RunStatus
 from sapi.core.registry import resolve_registry_path, resolve_site_path_from_registry, resolve_space_root
 from sapi.core.locks import IngestLockHeldError, ingest_lock
+from sapi.core.pipeline_policy import finalize_pipeline_run
 from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
-from sapi.contracts.ids import make_run_id
+from sapi.core.transactions import ArtifactTransaction
 from sapi.ingest.records_writer import (
+    IngestExtractionPersistResult,
     ingest_source_artifacts_and_record,
     run_ingest_extraction_and_persist_canonical,
 )
 from sapi.ingest.topic_generator import (
+    TopicGenerationPersistResult,
     derive_default_topic_id_for_source,
     run_topic_generation_and_persist_canonical,
 )
@@ -46,15 +52,39 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--citation-count-provider")
     parser.add_argument("--citation-count-confidence")
     parser.add_argument("--source-only", action="store_true")
+    parser.add_argument("--query-only", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--build-deferred", action="store_true")
     parser.add_argument("--mock-llm", action="store_true")
+    parser.add_argument("--simulate-terminal-failure", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--verbose", action="store_true")
     return parser
 
 
 def main() -> int:
     args = build_parser().parse_args()
+    source_only = False
+    started_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
+    run_id = make_run_id()
+    toolchain_versions = {"python": f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"}
+
+    runtime_policy = None
+    registry_path = None
+    site_path = None
+    space_root = None
+    result = None
+    extraction_result = None
+    topic_result = None
+    build_manifest_path = None
+    build_deferred = False
+    deferred_build_reason = None
+    semantic_flows: list[str] = []
+    semantic_flow_invocation_counts: dict[str, int] = {}
+    llm_attempt_count = 0
+    transaction = ArtifactTransaction()
+
     try:
+        source_only = _normalize_source_only_mode(args)
         runtime_policy = evaluate_semantic_runtime_policy(
             mock_llm=args.mock_llm,
             env=os.environ,
@@ -78,13 +108,16 @@ def main() -> int:
                 citation_count_provider=args.citation_count_provider,
                 citation_count_confidence=args.citation_count_confidence,
             )
-            extraction_result = None
-            topic_result = None
-            build_manifest_path = None
-            if not args.source_only:
+            if args.simulate_terminal_failure:
+                raise RuntimeError("Simulated terminal ingest failure.")
+            if not source_only:
                 source_record = json.loads(result.record_path.read_text())
                 source_title = source_record.get("title")
-                run_id = make_run_id()
+                _record_semantic_invocation(
+                    flow_key="ingest_extraction",
+                    semantic_flows=semantic_flows,
+                    semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+                )
                 extraction_result = run_ingest_extraction_and_persist_canonical(
                     space_root=space_root,
                     source_id=result.source_id,
@@ -95,9 +128,15 @@ def main() -> int:
                         source_date=args.source_date,
                     ),
                 )
+                llm_attempt_count += 1
                 topic_id = derive_default_topic_id_for_source(
                     space_root=space_root,
                     source_id=result.source_id,
+                )
+                _record_semantic_invocation(
+                    flow_key="topic_generation",
+                    semantic_flows=semantic_flows,
+                    semantic_flow_invocation_counts=semantic_flow_invocation_counts,
                 )
                 topic_result = run_topic_generation_and_persist_canonical(
                     space_root=space_root,
@@ -111,27 +150,119 @@ def main() -> int:
                         claim_ids=[path.stem for path in extraction_result.claim_paths],
                     ),
                 )
-                build_manifest_path = _trigger_deterministic_topic_postprocess(
-                    registry_path=registry_path,
-                    space_name=args.space_name,
-                    site_path=site_path,
-                )
+                llm_attempt_count += 1
+                if args.build_deferred:
+                    build_deferred = True
+                    deferred_build_reason = "operator_requested_build_deferred"
+                else:
+                    build_manifest_path = _trigger_deterministic_topic_postprocess(
+                        registry_path=registry_path,
+                        space_name=args.space_name,
+                        site_path=site_path,
+                    )
     except IngestLockHeldError as exc:
         print(str(exc), file=sys.stderr)
         return 1
     except Exception as exc:  # pragma: no cover - exercised by CLI contract tests.
+        if args.force and space_root is not None and runtime_policy is not None:
+            completed_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
+            base = _make_run_base(
+                run_id=run_id,
+                status="failed",
+                started_at=started_at,
+                completed_at=completed_at,
+                execution_mode=runtime_policy.execution_mode,
+                semantic_flows=semantic_flows,
+                semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+                llm_attempt_count=llm_attempt_count,
+                toolchain_versions=toolchain_versions,
+            )
+            flow_fields = _make_ingest_flow_fields(
+                source_id=result.source_id if result is not None else None,
+                extraction_result=extraction_result,
+                topic_result=topic_result,
+                build_deferred=build_deferred,
+                deferred_build_reason=deferred_build_reason,
+                force_mode=True,
+                rollback_skipped=True,
+            )
+            finalized = finalize_pipeline_run(
+                space_root=space_root,
+                base=base,
+                flow_fields=flow_fields,
+                transaction=transaction,
+                force_mode=True,
+                summary="Ingest failed in force mode; invocation artifacts preserved for forensics.",
+                errors=str(exc),
+            )
+            print(
+                "scripts/ingest_source.py source ingested "
+                f"(execution_mode={runtime_policy.execution_mode}, "
+                f"run_id={run_id}, "
+                f"status={finalized.status}, "
+                f"run_record_path={finalized.run_record_path}, "
+                f"error={str(exc)})",
+                file=sys.stderr,
+            )
         print(str(exc), file=sys.stderr)
         return 1
+
+    assert runtime_policy is not None
+    assert result is not None
+    assert space_root is not None
+    completed_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
+    status = "success_with_warnings" if build_deferred else "success"
+    base = _make_run_base(
+        run_id=run_id,
+        status=status,
+        started_at=started_at,
+        completed_at=completed_at,
+        execution_mode=runtime_policy.execution_mode,
+        semantic_flows=semantic_flows,
+        semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+        llm_attempt_count=llm_attempt_count,
+        toolchain_versions=toolchain_versions,
+    )
+    flow_fields = _make_ingest_flow_fields(
+        source_id=result.source_id,
+        extraction_result=extraction_result,
+        topic_result=topic_result,
+        build_deferred=build_deferred,
+        deferred_build_reason=deferred_build_reason,
+        force_mode=False,
+        rollback_skipped=False,
+    )
+    finalized = finalize_pipeline_run(
+        space_root=space_root,
+        base=base,
+        flow_fields=flow_fields,
+        transaction=transaction,
+        force_mode=False,
+        summary="Ingest completed successfully.",
+        changes=(
+            f"claims_changed={flow_fields.claims_changed}, "
+            f"relations_changed={flow_fields.relations_changed}, "
+            f"topic_pages_changed={flow_fields.topic_pages_changed}"
+        ),
+        lint_summary="lint_error_count=0 lint_warning_count=0 lint_info_count=0",
+        errors="",
+    )
 
     summary = (
         "scripts/ingest_source.py source ingested "
         f"(execution_mode={runtime_policy.execution_mode}, "
+        f"run_id={run_id}, "
+        f"status={status}, "
         f"source_id={result.source_id}, "
-        f"record_path={result.record_path}"
+        f"record_path={result.record_path}, "
+        f"semantic_flows={semantic_flows}, "
+        f"semantic_flow_invocation_counts={semantic_flow_invocation_counts}, "
+        f"build_deferred={build_deferred}, "
+        f"deferred_build_reason={deferred_build_reason}, "
+        f"run_record_path={finalized.run_record_path}"
     )
     if extraction_result is not None:
         summary += (
-            f", run_id={extraction_result.run_id}, "
             f"claims_written={len(extraction_result.claim_paths)}, "
             f"relations_written={len(extraction_result.relation_paths)}"
         )
@@ -144,7 +275,7 @@ def main() -> int:
         summary += f", build_manifest_path={build_manifest_path}"
     summary += ")"
     print(summary)
-    return 0
+    return finalized.exit_code
 
 
 class _BootstrapIngestExtractionClient:
@@ -253,6 +384,90 @@ def _trigger_deterministic_topic_postprocess(
     if not manifest_path.is_file():
         raise RuntimeError("Topic deterministic post-processing did not emit build manifest.")
     return manifest_path
+
+
+def _normalize_source_only_mode(args: argparse.Namespace) -> bool:
+    if args.source_only and args.query_only:
+        raise ValueError("cannot combine --source-only with alias --query-only")
+    if args.query_only:
+        print("Warning: --query-only is deprecated; use --source-only.", file=sys.stderr)
+    return bool(args.source_only or args.query_only)
+
+
+def _record_semantic_invocation(
+    *,
+    flow_key: str,
+    semantic_flows: list[str],
+    semantic_flow_invocation_counts: dict[str, int],
+) -> None:
+    if flow_key not in semantic_flow_invocation_counts:
+        semantic_flows.append(flow_key)
+        semantic_flow_invocation_counts[flow_key] = 0
+    semantic_flow_invocation_counts[flow_key] += 1
+
+
+def _make_run_base(
+    *,
+    run_id: str,
+    status: RunStatus,
+    started_at: str,
+    completed_at: str,
+    execution_mode: str,
+    semantic_flows: list[str],
+    semantic_flow_invocation_counts: dict[str, int],
+    llm_attempt_count: int,
+    toolchain_versions: dict[str, str],
+) -> RunEnvelopeBase:
+    return RunEnvelopeBase(
+        run_id=run_id,
+        flow_key="ingest_pipeline",
+        semantic_flows=semantic_flows,
+        semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+        status=status,
+        started_at=started_at,
+        completed_at=completed_at,
+        model_fingerprint="mock_bootstrap" if execution_mode == "mock_llm_test" else "live_unspecified",
+        provider_fingerprint="mock" if execution_mode == "mock_llm_test" else "live_unspecified",
+        reasoning_effort="high",
+        execution_mode=execution_mode,
+        llm_attempt_count=llm_attempt_count,
+        lint_error_count=0,
+        lint_warning_count=0,
+        lint_info_count=0,
+        toolchain_versions=toolchain_versions,
+    )
+
+
+def _make_ingest_flow_fields(
+    *,
+    source_id: str | None,
+    extraction_result: IngestExtractionPersistResult | None,
+    topic_result: TopicGenerationPersistResult | None,
+    build_deferred: bool,
+    deferred_build_reason: str | None,
+    force_mode: bool,
+    rollback_skipped: bool,
+) -> IngestRunFields:
+    claims_changed = 0
+    relations_changed = 0
+    topic_pages_changed = 0
+    if extraction_result is not None:
+        claims_changed = len(extraction_result.claim_paths)
+        relations_changed = len(extraction_result.relation_paths)
+    if topic_result is not None:
+        topic_pages_changed = 1
+    return IngestRunFields(
+        ingest_scope="space",
+        source_ids=[source_id] if source_id is not None else [],
+        parent_run_id=None,
+        claims_changed=claims_changed,
+        relations_changed=relations_changed,
+        topic_pages_changed=topic_pages_changed,
+        build_deferred=build_deferred,
+        deferred_build_reason=deferred_build_reason,
+        force_mode=force_mode,
+        rollback_skipped=rollback_skipped,
+    )
 
 
 if __name__ == "__main__":

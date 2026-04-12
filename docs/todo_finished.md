@@ -542,3 +542,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     deterministic `build_site` trigger into `scripts/ingest_source.py`, and validated behavior with
     `tests/unit/ingest/test_topic_generation_flow.py` (spec/schema resolution assertions, canonical
     `topics/<topic_id>.json` persistence, and deterministic build-manifest emission).
+
+- [x] TODO-0214: Ingest mode handling (`--source-only`, `--force`, deferred build)
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 2
+  - depends_on: TODO-0210, TODO-0211, TODO-0212, TODO-0205
+  - scope: Implement ingest mode-specific behavior for skipping semantic flows, rollback overrides, and bootstrap deferred-build metadata.
+  - acceptance:
+    - `--source-only` skips semantic generation, normalizes compatibility alias `--query-only`, and writes empty semantic-flow metadata accordingly.
+    - `--force` may preserve failed invocation artifacts and writes `force_mode/rollback_skipped`.
+    - Deferred-build runs include required metadata and are trackable for backfill.
+  - evidence: Extended `scripts/ingest_source.py` to normalize script-level `--query-only` aliasing,
+    persist ingest run metadata with empty semantic-flow fields for source-only mode, write
+    force-mode failure run metadata (`force_mode=true`, `rollback_skipped=true`) when rollback is
+    intentionally skipped, and support bootstrap deferred-build runs with
+    `build_deferred/deferred_build_reason` tracking; validated by
+    `tests/unit/ingest/test_ingest_mode_handling.py` and companion regressions in
+    `tests/unit/contracts/test_wrapper_alias_normalization.py` and
+    `tests/unit/ingest/test_topic_generation_flow.py`.
