@@ -20,6 +20,12 @@ from sapi.contracts.run_envelopes import IngestRunFields, RunEnvelopeBase, RunSt
 from sapi.core.registry import resolve_registry_path, resolve_site_path_from_registry, resolve_space_root
 from sapi.core.locks import IngestLockHeldError, ingest_lock
 from sapi.core.pipeline_policy import finalize_pipeline_run
+from sapi.core.runtime_flags import (
+    add_runtime_flag_arguments,
+    runtime_flags_summary_dict,
+    snapshot_runtime_flags,
+    validate_runtime_flag_arguments,
+)
 from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
 from sapi.core.transactions import ArtifactTransaction
 from sapi.ingest.citations import run_reference_extraction_and_link_backfill
@@ -63,9 +69,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--query-only", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--build-deferred", action="store_true")
-    parser.add_argument("--mock-llm", action="store_true")
     parser.add_argument("--simulate-terminal-failure", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--verbose", action="store_true")
+    add_runtime_flag_arguments(parser)
     return parser
 
 
@@ -94,6 +100,7 @@ def main() -> int:
     llm_attempt_count = 0
     trace_ctx: SiteLlmTraceContext | None = None
     transaction = ArtifactTransaction()
+    runtime_flags = None
 
     try:
         source_only = _normalize_source_only_mode(args)
@@ -113,8 +120,10 @@ def main() -> int:
             inferred_source_date=None,
             require_source_date=args.require_source_date,
         )
+        validate_runtime_flag_arguments(args)
+        runtime_flags = snapshot_runtime_flags(args)
         runtime_policy = evaluate_semantic_runtime_policy(
-            mock_llm=args.mock_llm,
+            mock_llm=runtime_flags.mock_llm,
             env=os.environ,
         )
         registry_path = resolve_registry_path(args.registry_path)
@@ -203,7 +212,7 @@ def main() -> int:
         print(str(exc), file=sys.stderr)
         return 1
     except Exception as exc:  # pragma: no cover - exercised by CLI contract tests.
-        if args.force and space_root is not None and runtime_policy is not None:
+        if args.force and space_root is not None and runtime_policy is not None and runtime_flags is not None:
             completed_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
             base = _make_run_base(
                 run_id=run_id,
@@ -211,6 +220,7 @@ def main() -> int:
                 started_at=started_at,
                 completed_at=completed_at,
                 execution_mode=runtime_policy.execution_mode,
+                reasoning_effort=runtime_flags.llm_reasoning_effort,
                 semantic_flows=semantic_flows,
                 semantic_flow_invocation_counts=semantic_flow_invocation_counts,
                 llm_attempt_count=llm_attempt_count,
@@ -247,6 +257,7 @@ def main() -> int:
         return 1
 
     assert runtime_policy is not None
+    assert runtime_flags is not None
     assert result is not None
     assert space_root is not None
     completed_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
@@ -257,6 +268,7 @@ def main() -> int:
         started_at=started_at,
         completed_at=completed_at,
         execution_mode=runtime_policy.execution_mode,
+        reasoning_effort=runtime_flags.llm_reasoning_effort,
         semantic_flows=semantic_flows,
         semantic_flow_invocation_counts=semantic_flow_invocation_counts,
         llm_attempt_count=llm_attempt_count,
@@ -325,6 +337,7 @@ def main() -> int:
     if build_manifest_path is not None:
         summary += f", build_manifest_path={build_manifest_path}"
     summary += ")"
+    summary += f" runtime_flags={runtime_flags_summary_dict(runtime_flags)}"
     print(summary)
     return finalized.exit_code
 
@@ -464,6 +477,7 @@ def _make_run_base(
     started_at: str,
     completed_at: str,
     execution_mode: str,
+    reasoning_effort: str,
     semantic_flows: list[str],
     semantic_flow_invocation_counts: dict[str, int],
     llm_attempt_count: int,
@@ -479,7 +493,7 @@ def _make_run_base(
         completed_at=completed_at,
         model_fingerprint="mock_bootstrap" if execution_mode == "mock_llm_test" else "live_unspecified",
         provider_fingerprint="mock" if execution_mode == "mock_llm_test" else "live_unspecified",
-        reasoning_effort="high",
+        reasoning_effort=reasoning_effort,
         execution_mode=execution_mode,
         llm_attempt_count=llm_attempt_count,
         lint_error_count=0,

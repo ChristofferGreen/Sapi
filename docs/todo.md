@@ -66,7 +66,7 @@ Task template:
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: `TODO-0244`, `TODO-0245`, `TODO-0252`, `TODO-0253`, `TODO-0257`
-- P2 Social/eval/hardening: `TODO-0223` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
+- P2 Social/eval/hardening: `TODO-0223` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -80,7 +80,7 @@ Wave B (ingest + projection + lint):
 Wave C (query + social + hardening + release):
 1. (none currently)
 2. `TODO-0223` -> `TODO-0247` -> `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
-3. `TODO-0254` -> `TODO-0228` -> `TODO-0251` -> `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
+3. `TODO-0228` -> `TODO-0251` -> `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
 1. (none currently)
@@ -103,7 +103,7 @@ Cross-cutting docs backlog:
 | Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
 | Section 7.7 comment quality harness | `TODO-0225` |
 | Section 8 site/UI/static build | `TODO-0245`, `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
-| Section 9 observability/safety/runtime controls | `TODO-0254` |
+| Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | `TODO-0234`, `TODO-0250` |
 | Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0260`, `TODO-0261` |
@@ -122,8 +122,8 @@ Cross-cutting docs backlog:
 | Section 9 (deterministic build/projection) | `TODO-0275` |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
-| Section 12 (wrapper/script interfaces) | `TODO-0254` |
-| Section 13 (observability/runtime controls/safety) | `TODO-0254` |
+| Section 12 (wrapper/script interfaces) | - |
+| Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | - |
 | Section 15 (test-plan binding) | `TODO-0228`, `TODO-0266`, `TODO-0275`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 16 (change discipline) | - |
@@ -221,18 +221,6 @@ Cross-cutting docs backlog:
     - Deterministic social-vote rendering uses stable inputs and preserves repeatable output.
     - Thread permalinks/expansion state remain keyed by `comment_uid`.
   - notes: source `design.md` Sections 7.6, 8
-
-- [ ] TODO-0254: Implement runtime-flag surface parity and validation across wrappers/entrypoints
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 6
-  - depends_on: TODO-0235, TODO-0226, TODO-0240
-  - scope: Ensure high-signal runtime/control flags are exposed consistently, validated, and forwarded from wrappers to entrypoints.
-  - acceptance:
-    - Wrapper flag surface includes required runtime/tracing/testing controls with consistent behavior.
-    - Invalid/unsupported flag combinations fail fast with clear errors.
-    - Runtime defaults and forwarding behavior are documented and tested end-to-end.
-  - notes: source `design.md` Sections 6.2, 9
 
 - [ ] TODO-0253: Implement navigation/tabs/feed/pagination information-architecture contracts
   - owner: ai

@@ -23,6 +23,12 @@ from sapi.contracts.ids import (
 from sapi.contracts.run_envelopes import QueryRunFields, RunEnvelopeBase
 from sapi.core.pipeline_policy import finalize_pipeline_run
 from sapi.core.registry import resolve_registry_path, resolve_space_root
+from sapi.core.runtime_flags import (
+    add_runtime_flag_arguments,
+    runtime_flags_summary_dict,
+    snapshot_runtime_flags,
+    validate_runtime_flag_arguments,
+)
 from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
 from sapi.core.transactions import ArtifactTransaction
 from sapi.query.query_pipeline import build_query_result_record
@@ -62,9 +68,9 @@ def build_parser() -> argparse.ArgumentParser:
         choices=("markdown", "mermaid", "images", "slides", "pdf"),
         default="markdown",
     )
-    parser.add_argument("--mock-llm", action="store_true")
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--simulate-terminal-failure", action="store_true", help=argparse.SUPPRESS)
+    add_runtime_flag_arguments(parser)
     return parser
 
 
@@ -83,8 +89,10 @@ def main() -> int:
     contradictions_considered = 0
 
     try:
+        validate_runtime_flag_arguments(args)
+        runtime_flags = snapshot_runtime_flags(args)
         runtime_policy = evaluate_semantic_runtime_policy(
-            mock_llm=args.mock_llm,
+            mock_llm=runtime_flags.mock_llm,
             env=os.environ,
         )
         registry_path = resolve_registry_path(args.registry_path)
@@ -137,7 +145,7 @@ def main() -> int:
             execution={
                 "execution_mode": runtime_policy.execution_mode,
                 "llm_attempt_count": 1,
-                "reasoning_effort": "high",
+                "reasoning_effort": runtime_flags.llm_reasoning_effort,
                 "model_fingerprint": _model_fingerprint(runtime_policy.execution_mode),
                 "provider_fingerprint": _provider_fingerprint(runtime_policy.execution_mode),
                 "include_disputed": options.include_disputed,
@@ -207,6 +215,7 @@ def main() -> int:
             started_at=started_at,
             completed_at=completed_at,
             execution_mode=runtime_policy.execution_mode,
+            reasoning_effort=runtime_flags.llm_reasoning_effort,
             llm_attempt_count=1,
             toolchain_versions=toolchain_versions,
         )
@@ -231,7 +240,8 @@ def main() -> int:
         print(
             "scripts/query.py query failed "
             f"(execution_mode={runtime_policy.execution_mode}, "
-            f"run_id={run_id}, query_id={query_id}, status={finalized.status}, error={exc})",
+            f"run_id={run_id}, query_id={query_id}, status={finalized.status}, "
+            f"runtime_flags={runtime_flags_summary_dict(runtime_flags)}, error={exc})",
             file=sys.stderr,
         )
         return finalized.exit_code
@@ -243,6 +253,7 @@ def main() -> int:
         started_at=started_at,
         completed_at=completed_at,
         execution_mode=runtime_policy.execution_mode,
+        reasoning_effort=runtime_flags.llm_reasoning_effort,
         llm_attempt_count=1,
         toolchain_versions=toolchain_versions,
     )
@@ -273,7 +284,8 @@ def main() -> int:
         "scripts/query.py query complete "
         f"(execution_mode={runtime_policy.execution_mode}, run_id={run_id}, "
         f"query_id={query_id}, mode={options.mode}, scope={options.scope}, "
-        f"query_record_path={query_record_path}, run_record_path={finalized.run_record_path})"
+        f"query_record_path={query_record_path}, run_record_path={finalized.run_record_path}, "
+        f"runtime_flags={runtime_flags_summary_dict(runtime_flags)})"
     )
     return finalized.exit_code
 
@@ -430,6 +442,7 @@ def _make_run_base(
     started_at: str,
     completed_at: str,
     execution_mode: str,
+    reasoning_effort: str,
     llm_attempt_count: int,
     toolchain_versions: dict[str, str],
 ) -> RunEnvelopeBase:
@@ -443,7 +456,7 @@ def _make_run_base(
         completed_at=completed_at,
         model_fingerprint=_model_fingerprint(execution_mode),
         provider_fingerprint=_provider_fingerprint(execution_mode),
-        reasoning_effort="high",
+        reasoning_effort=reasoning_effort,
         execution_mode=execution_mode,
         llm_attempt_count=llm_attempt_count,
         lint_error_count=0,

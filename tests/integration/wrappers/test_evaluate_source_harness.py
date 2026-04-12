@@ -182,6 +182,55 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             run_dirs = list((space_root / "runs").glob("run-*")) if (space_root / "runs").exists() else []
             self.assertEqual(run_dirs, [])
 
+    def test_runtime_flags_are_forwarded_and_documented_in_readme_commands(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            site_path, source_path = self._bootstrap_site_space_and_source(Path(tmp), "alpha")
+            result = self._run(
+                [
+                    "bash",
+                    str(REPO_ROOT / "evaluate_source.sh"),
+                    str(site_path),
+                    "alpha",
+                    str(source_path),
+                    "--comments",
+                    "5",
+                    "--llm-backend",
+                    "backend-forwarded",
+                    "--llm-model",
+                    "model-forwarded",
+                    "--llm-reasoning-effort",
+                    "low",
+                    "--llm-timeout-secs",
+                    "42",
+                    "--llm-trace",
+                    "--warning-budget",
+                    "88",
+                    "--run-search-visibility",
+                    "on",
+                    "--site-presentation-mode",
+                    "debug",
+                    "--enable-source-index",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            space_root = site_path / "spaces" / "alpha"
+            evaluations_root = space_root / "outputs" / "evaluations"
+            evaluation_dirs = sorted(path for path in evaluations_root.iterdir() if path.is_dir())
+            self.assertEqual(len(evaluation_dirs), 1)
+            readme_text = (evaluation_dirs[0] / "README.md").read_text()
+            self.assertIn("--llm-backend backend-forwarded", readme_text)
+            self.assertIn("--llm-model model-forwarded", readme_text)
+            self.assertIn("--llm-reasoning-effort low", readme_text)
+            self.assertIn("--llm-timeout-secs 42", readme_text)
+            self.assertIn("--llm-trace", readme_text)
+            self.assertIn("--warning-budget 88", readme_text)
+            self.assertIn("--run-search-visibility on", readme_text)
+            self.assertIn("--site-presentation-mode debug", readme_text)
+            self.assertIn("--enable-source-index", readme_text)
+            self.assertIn("validate_lint:", readme_text)
+
     def _bootstrap_site_space_and_source(self, tmp_root: Path, space_name: str) -> tuple[Path, Path]:
         site_path = tmp_root / "site-a"
         self._run(["bash", str(REPO_ROOT / "create_site.sh"), str(site_path), "My Site"], check=True)

@@ -1037,3 +1037,26 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     reconstruction and post-reconstruction phases. Synchronized open-backlog references in
     `docs/todo.md` by removing `TODO-0282` from open tasks, ready/backlog queues, and coverage
     snapshot mapping.
+
+- [x] TODO-0254: Implement runtime-flag surface parity and validation across wrappers/entrypoints
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 6
+  - depends_on: TODO-0235, TODO-0226, TODO-0240
+  - scope: Ensure high-signal runtime/control flags are exposed consistently, validated, and forwarded from wrappers to entrypoints.
+  - acceptance:
+    - Wrapper flag surface includes required runtime/tracing/testing controls with consistent behavior.
+    - Invalid/unsupported flag combinations fail fast with clear errors.
+    - Runtime defaults and forwarding behavior are documented and tested end-to-end.
+  - evidence: Added shared runtime/control flag contract wiring in `sapi/core/runtime_flags.py`
+    and integrated it into semantic entrypoints (`scripts/ingest_source.py`, `scripts/query.py`,
+    `scripts/create_comments.py`, `scripts/generate_profiles.py`, `scripts/evaluate_source.py`)
+    so high-signal runtime/tracing/testing flags are parsed with consistent defaults and validation.
+    Added wrapper forwarding support for value-bearing runtime flags in `create_comments.sh`.
+    Documented defaults and forwarding/validation expectations in `README.md`. Added tests for
+    parser surface/defaults and invalid trace-dir combination failures in
+    `tests/unit/contracts/test_runtime_flag_surface.py`, wrapper forwarding/fast-fail integration
+    coverage in `tests/integration/wrappers/test_wrapper_runtime_flags.py`, and end-to-end
+    evaluate harness forwarding assertions in
+    `tests/integration/wrappers/test_evaluate_source_harness.py`.

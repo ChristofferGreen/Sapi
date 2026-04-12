@@ -75,6 +75,21 @@ Registry rule:
 
 - non-bootstrap commands use explicit `--registry-path <site_path>/spaces.toml`
 
+Runtime/control flag defaults and forwarding:
+
+- semantic wrappers/entrypoints expose and forward common runtime controls:
+  `--llm-backend`, `--llm-model`, `--llm-reasoning-effort`, `--llm-timeout-secs`,
+  `--llm-trace`, `--llm-trace-dir`, `--trace-llm-io`, `--mock-llm`, `--warning-budget`,
+  `--run-search-visibility`, `--site-presentation-mode`, `--enable-source-index`.
+- defaults:
+  - `--llm-backend openai`
+  - `--llm-model gpt-5`
+  - `--llm-reasoning-effort high`
+  - `--llm-timeout-secs 120`
+  - `--warning-budget 200`
+- invalid tracing combination guard:
+  - `--llm-trace-dir` requires one of `--llm-trace`, `--trace-llm-io`, or `--verbose`.
+
 ## Architecture and Contracts
 
 The project is contract-first. `docs/design.md` is authoritative for:

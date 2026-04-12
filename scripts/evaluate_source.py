@@ -23,6 +23,12 @@ from sapi.core.registry import (
     resolve_site_path_from_registry,
     resolve_space_root,
 )
+from sapi.core.runtime_flags import (
+    RuntimeFlagSnapshot,
+    add_runtime_flag_arguments,
+    snapshot_runtime_flags,
+    validate_runtime_flag_arguments,
+)
 
 _RUN_ID_RE = re.compile(r"run_id=(run-[^,\s)]+)")
 _FIELD_RE_CACHE: dict[str, re.Pattern[str]] = {}
@@ -45,14 +51,17 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--comments", type=int)
     parser.add_argument("--comment-user", action="append", default=[])
     parser.add_argument("--comment-page", action="append", default=[])
+    parser.add_argument("--require-source-date", action="store_true")
     parser.add_argument("--verbose", action="store_true")
-    parser.add_argument("--mock-llm", action="store_true", help=argparse.SUPPRESS)
+    add_runtime_flag_arguments(parser)
     return parser
 
 
 def main() -> int:
     args = build_parser().parse_args()
     try:
+        validate_runtime_flag_arguments(args)
+        runtime_flags = snapshot_runtime_flags(args)
         _validate_comments_arg(args.comments)
         registry_path = resolve_registry_path(args.registry_path)
         site_path = resolve_site_path_from_registry(registry_path)
@@ -68,8 +77,8 @@ def main() -> int:
                 args.source_path_or_url,
                 "--registry-path",
                 str(registry_path),
-                *(["--mock-llm"] if args.mock_llm else []),
-                *(["--verbose"] if args.verbose else []),
+                *_runtime_flag_args_for_forwarding(runtime_flags, verbose=args.verbose),
+                *(["--require-source-date"] if args.require_source_date else []),
             ],
             step_name="ingest_source",
         )
@@ -92,6 +101,8 @@ def main() -> int:
                 "ingest_source",
                 "--run-id",
                 ingest_run_id,
+                "--warning-budget",
+                str(runtime_flags.warning_budget),
                 *(["--verbose"] if args.verbose else []),
             ],
             step_name="validate_lint",
@@ -109,8 +120,7 @@ def main() -> int:
                 strict_question,
                 "--registry-path",
                 str(registry_path),
-                *(["--mock-llm"] if args.mock_llm else []),
-                *(["--verbose"] if args.verbose else []),
+                *_runtime_flag_args_for_forwarding(runtime_flags, verbose=args.verbose),
             ],
             step_name="query_strict",
         )
@@ -134,8 +144,7 @@ def main() -> int:
                     str(args.comments),
                     *[item for value in args.comment_user for item in ("--comment-user", value)],
                     *[item for value in args.comment_page for item in ("--comment-page", value)],
-                    *(["--mock-llm"] if args.mock_llm else []),
-                    *(["--verbose"] if args.verbose else []),
+                    *_runtime_flag_args_for_forwarding(runtime_flags, verbose=args.verbose),
                 ],
                 step_name="create_comments",
             )
@@ -273,6 +282,42 @@ def _validate_comments_arg(comments: int | None) -> None:
         return
     if comments <= 0:
         raise ValueError("--comments must be a positive integer when provided.")
+
+
+def _runtime_flag_args_for_forwarding(
+    runtime_flags: RuntimeFlagSnapshot,
+    *,
+    verbose: bool,
+) -> list[str]:
+    args: list[str] = [
+        "--llm-backend",
+        str(runtime_flags.llm_backend),
+        "--llm-model",
+        str(runtime_flags.llm_model),
+        "--llm-reasoning-effort",
+        str(runtime_flags.llm_reasoning_effort),
+        "--llm-timeout-secs",
+        str(runtime_flags.llm_timeout_secs),
+        "--warning-budget",
+        str(runtime_flags.warning_budget),
+        "--run-search-visibility",
+        str(runtime_flags.run_search_visibility),
+        "--site-presentation-mode",
+        str(runtime_flags.site_presentation_mode),
+    ]
+    if runtime_flags.llm_trace:
+        args.append("--llm-trace")
+    if runtime_flags.llm_trace_dir is not None:
+        args.extend(["--llm-trace-dir", str(runtime_flags.llm_trace_dir)])
+    if runtime_flags.trace_llm_io:
+        args.append("--trace-llm-io")
+    if runtime_flags.mock_llm:
+        args.append("--mock-llm")
+    if runtime_flags.enable_source_index:
+        args.append("--enable-source-index")
+    if verbose:
+        args.append("--verbose")
+    return args
 
 
 def _run_checked(command: list[str], *, step_name: str) -> StepResult:
