@@ -347,3 +347,20 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     (`outputs/llm_traces`, `outputs/query`, source artifacts, persona catalog non-copying), and
     relocatability proof by persisting relative `site_root`/`space_root`, moving the entire site
     root, and resolving the same registry entries to the new filesystem location.
+
+- [x] TODO-0239: Implement core domain models and boundary invariants
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0201
+  - scope: Define typed domain models for site/space/sub-space/source/claim/relation/topic/persona/comment with boundary invariants.
+  - acceptance:
+    - Core entities from system boundary contract are represented in typed models.
+    - Identity alias constraints (`persona_id` vs `id`, `topic_id` vs `narrative_id`) are enforced.
+    - Invariant checks fail fast on invalid identity or boundary relationships.
+  - evidence: Added `sapi/contracts/domain_models.py` with typed dataclasses for Site/Space/SubSpace/
+    Source/Claim/Relation/TopicPage/Persona/Comment plus boundary validation utilities; verified by
+    `tests/unit/contracts/test_domain_models.py` covering valid typed-model instantiation,
+    persona/topic alias mismatch failures, and boundary invariant failures for cross-space records,
+    unknown source/claim references, and invalid comment page linkage.

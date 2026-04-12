@@ -51,20 +51,20 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0239`
-2. `TODO-0272`
-3. `TODO-0210`
-4. `TODO-0211`
-5. `TODO-0213`
-6. `TODO-0212`
-7. `TODO-0214`
-8. `TODO-0215`
-9. `TODO-0216`
-10. `TODO-0217`
+1. `TODO-0272`
+2. `TODO-0210`
+3. `TODO-0211`
+4. `TODO-0213`
+5. `TODO-0212`
+6. `TODO-0214`
+7. `TODO-0215`
+8. `TODO-0216`
+9. `TODO-0217`
+10. `TODO-0218`
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: `TODO-0239`, `TODO-0272`
+- P0 Foundation/contracts: `TODO-0272`
 - P1 Core product behavior: `TODO-0210` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0100`, `TODO-0264`, `TODO-0265`
@@ -94,7 +94,7 @@ Cross-cutting docs backlog:
 | --- | --- |
 | Section 1 (scope/authority/reading) | `TODO-0243`, `TODO-0100` |
 | Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0214`, `TODO-0246`, `TODO-0272`, `TODO-0275` |
-| Section 3 (core concepts + identity invariants) | `TODO-0239` |
+| Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | `TODO-0237`, `TODO-0218` |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | `TODO-0219`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
@@ -117,7 +117,7 @@ Cross-cutting docs backlog:
 | Low-level area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (runtime model and flow namespaces) | `TODO-0214` |
-| Section 4 (core data types/run envelope types) | `TODO-0239` |
+| Section 4 (core data types/run envelope types) | - |
 | Section 5 (path + registry contracts) | `TODO-0210`, `TODO-0218`, `TODO-0237` |
 | Section 6 (semantic execution engine + retry/repair) | `TODO-0272` |
 | Section 7 (transaction/rollback) | `TODO-0214` |
@@ -550,18 +550,6 @@ Cross-cutting docs backlog:
     - JS-off fallback includes minimal static claim-details links.
     - Public mode hides internal IDs/paths/hashes; debug mode exposes internal metadata as configured.
   - notes: source `design.md` Section 8
-
-- [ ] TODO-0239: Implement core domain models and boundary invariants
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 1
-  - depends_on: TODO-0201
-  - scope: Define typed domain models for site/space/sub-space/source/claim/relation/topic/persona/comment with boundary invariants.
-  - acceptance:
-    - Core entities from system boundary contract are represented in typed models.
-    - Identity alias constraints (`persona_id` vs `id`, `topic_id` vs `narrative_id`) are enforced.
-    - Invariant checks fail fast on invalid identity or boundary relationships.
-  - notes: source `design.md` Section 3
 
 - [ ] TODO-0237: Implement source metadata extensions for paper-focused ingest
   - owner: ai
