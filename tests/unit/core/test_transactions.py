@@ -8,6 +8,16 @@ from sapi.core.transactions import ArtifactTransaction, apply_terminal_failure_p
 
 
 class TransactionRollbackTests(unittest.TestCase):
+    def test_force_mode_override_is_ingest_only(self) -> None:
+        tx = ArtifactTransaction()
+        with self.assertRaises(ValueError):
+            apply_terminal_failure_policy(
+                transaction=tx,
+                pipeline_flow_key="query_pipeline",
+                force_mode=True,
+                run_container_path=None,
+            )
+
     def test_default_failure_rolls_back_writes_and_removes_run_container(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

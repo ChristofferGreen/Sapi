@@ -212,3 +212,20 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     (`DEFAULT_MAX_REPAIR_LOOPS=3`, `DEFAULT_MAX_ATTEMPTS=4`), repair-context assertions
     (invalid JSON + machine-readable validation errors + schema), and overwrite protection proving
     invalid outputs do not replace existing canonical artifacts.
+
+- [x] TODO-0205: Artifact transaction journal and rollback semantics
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0201, TODO-0208
+  - scope: Implement transaction-scoped artifact journaling and rollback behavior for terminal failures.
+  - acceptance:
+    - Default failures rollback invocation-scoped writes and remove committed run containers.
+    - Ingest `--force` failures may preserve artifacts and committed failure run envelope.
+    - Rollback coverage includes canonical + derived + invocation run/lint artifacts.
+  - evidence: Verified by `tests/unit/core/test_transactions.py` (default rollback/removal of
+    run containers, ingest `--force` artifact retention, canonical+derived+run/lint rollback
+    coverage, and ingest-only `--force` guard) plus `tests/unit/core/test_pipeline_policy.py`
+    (failure-mode run finalization behavior and enforced `force_mode=true`,
+    `rollback_skipped=true` for retained ingest failure envelopes).

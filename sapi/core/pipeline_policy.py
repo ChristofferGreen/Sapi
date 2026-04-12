@@ -7,6 +7,7 @@ from pathlib import Path
 
 from sapi.contracts.run_envelopes import (
     FlowSpecificFields,
+    IngestRunFields,
     RunEnvelopeBase,
     RunStatus,
     write_run_record,
@@ -110,6 +111,7 @@ def finalize_pipeline_run(
     )
     run_path: Path | None = None
     if rollback_disposition.rollback_skipped:
+        _validate_force_mode_ingest_failure_fields(base=base, flow_fields=flow_fields)
         run_path = write_run_record(
             space_root=space_root,
             base=base,
@@ -127,3 +129,18 @@ def finalize_pipeline_run(
         run_record_path=run_path,
         rollback_disposition=rollback_disposition,
     )
+
+
+def _validate_force_mode_ingest_failure_fields(
+    *,
+    base: RunEnvelopeBase,
+    flow_fields: FlowSpecificFields,
+) -> None:
+    if base.flow_key != "ingest_pipeline":
+        raise ValueError("rollback_skipped run retention is only valid for ingest_pipeline.")
+    if not isinstance(flow_fields, IngestRunFields):
+        raise TypeError("ingest_pipeline requires IngestRunFields for force-mode failure retention.")
+    if not flow_fields.force_mode or not flow_fields.rollback_skipped:
+        raise ValueError(
+            "Ingest force-mode retained failures must record force_mode=true and rollback_skipped=true."
+        )

@@ -114,6 +114,33 @@ class PipelinePolicyTests(unittest.TestCase):
             self.assertTrue((space_root / "runs" / ingest_base.run_id).exists())
             self.assertTrue(source_artifact.exists())
 
+    def test_ingest_force_failure_requires_force_and_rollback_flags_in_run_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space"
+            ingest_base = _base(flow_key="ingest_pipeline", run_id="run-20260412T120003Z--ingest00002")
+            ingest_base.status = "failed"
+            ingest_tx = ArtifactTransaction()
+
+            with self.assertRaises(ValueError):
+                finalize_pipeline_run(
+                    space_root=space_root,
+                    base=ingest_base,
+                    flow_fields=IngestRunFields(
+                        ingest_scope="space",
+                        source_ids=["source-a"],
+                        parent_run_id=None,
+                        claims_changed=0,
+                        relations_changed=0,
+                        topic_pages_changed=0,
+                        build_deferred=False,
+                        deferred_build_reason=None,
+                        force_mode=False,
+                        rollback_skipped=False,
+                    ),
+                    transaction=ingest_tx,
+                    force_mode=True,
+                )
+
 
 def _base(*, flow_key: str, run_id: str) -> RunEnvelopeBase:
     return RunEnvelopeBase(
