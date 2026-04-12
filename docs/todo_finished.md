@@ -4,6 +4,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0237: Implement source metadata extensions for paper-focused ingest
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 2
+  - depends_on: TODO-0210, TODO-0211
+  - scope: Add paper-taxonomy and citation metadata fields to canonical source records with defaults and validation.
+  - acceptance:
+    - `article_kind` and citation metadata fields are persisted with allowed values/contracts.
+    - Unknown/unavailable citation values use specified defaults.
+    - Schema and writer validation reject out-of-contract values.
+  - evidence: Added source-record metadata extension persistence and validation in `sapi/ingest/records_writer.py`, exposed ingest CLI flags in `scripts/ingest_source.py`, and covered defaults/valid writes/reject-invalid cases in `tests/unit/ingest/test_source_acquisition.py`.
+
 - [x] TODO-0100: Capture incoming design recommendations into structured tasks
   - owner: ai
   - created_at: 2026-04-12

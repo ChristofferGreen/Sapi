@@ -59,8 +59,8 @@ Task template:
 6. `TODO-0216`
 7. `TODO-0217`
 8. `TODO-0218`
-9. `TODO-0237`
-10. `TODO-0219`
+9. `TODO-0219`
+10. `TODO-0220`
 
 ### Priority Lanes (Current)
 
@@ -76,7 +76,7 @@ Wave A (bootstrap + contracts):
 
 Wave B (ingest + projection + lint):
 1. `TODO-0211` -> `TODO-0213` -> `TODO-0278` -> `TODO-0212` -> `TODO-0214` -> `TODO-0270` -> `TODO-0271`
-2. `TODO-0237` -> `TODO-0215` -> `TODO-0216` -> `TODO-0268` -> `TODO-0217` -> `TODO-0218`
+2. `TODO-0215` -> `TODO-0216` -> `TODO-0268` -> `TODO-0217` -> `TODO-0218`
 3. `TODO-0246` -> `TODO-0245` -> `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233` -> `TODO-0219`
 
 Wave C (query + social + hardening + release):
@@ -96,7 +96,7 @@ Cross-cutting docs backlog:
 | Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0214`, `TODO-0246`, `TODO-0275` |
 | Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
-| Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | `TODO-0237`, `TODO-0218` |
+| Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | `TODO-0218` |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | `TODO-0219`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
 | Section 7.1 ingest pipeline | `TODO-0211`, `TODO-0212`, `TODO-0213`, `TODO-0214`, `TODO-0270`, `TODO-0271`, `TODO-0278` |
 | Section 7.2 references/linking | `TODO-0215` |
@@ -118,7 +118,7 @@ Cross-cutting docs backlog:
 | --- | --- |
 | Section 2 (runtime model and flow namespaces) | `TODO-0214` |
 | Section 4 (core data types/run envelope types) | - |
-| Section 5 (path + registry contracts) | `TODO-0218`, `TODO-0237` |
+| Section 5 (path + registry contracts) | `TODO-0218` |
 | Section 6 (semantic execution engine + retry/repair) | - |
 | Section 7 (transaction/rollback) | `TODO-0214` |
 | Section 8 (pipeline execution contracts) | `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0278`, `TODO-0220`, `TODO-0223`, `TODO-0224`, `TODO-0242` |
@@ -562,18 +562,6 @@ Cross-cutting docs backlog:
     - JS-off fallback includes minimal static claim-details links.
     - Public mode hides internal IDs/paths/hashes; debug mode exposes internal metadata as configured.
   - notes: source `design.md` Section 8
-
-- [ ] TODO-0237: Implement source metadata extensions for paper-focused ingest
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 2
-  - depends_on: TODO-0210, TODO-0211
-  - scope: Add paper-taxonomy and citation metadata fields to canonical source records with defaults and validation.
-  - acceptance:
-    - `article_kind` and citation metadata fields are persisted with allowed values/contracts.
-    - Unknown/unavailable citation values use specified defaults.
-    - Schema and writer validation reject out-of-contract values.
-  - notes: source `design.md` Section 5.6
 
 - [ ] TODO-0234: Implement topic lifecycle transitions and final-page contradiction gating
   - owner: ai

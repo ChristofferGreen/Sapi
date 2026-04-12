@@ -80,6 +80,87 @@ class SourceAcquisitionContractTests(unittest.TestCase):
             self.assertEqual(result.source_artifact_path.name, "source.pdf")
             self.assertTrue(result.source_artifact_path.is_file())
 
+    def test_source_record_metadata_extensions_use_unknown_defaults_when_unavailable(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            input_file = Path(tmp) / "paper.txt"
+            input_file.write_text("paper\n")
+
+            result = ingest_source_artifacts_and_record(
+                space_root=space_root,
+                source_path_or_url=str(input_file),
+                source_title_override="Defaulted Paper",
+            )
+            record = json.loads(result.record_path.read_text())
+
+            self.assertIsNone(record["article_kind"])
+            self.assertIsNone(record["citation_count"])
+            self.assertIsNone(record["citation_count_as_of"])
+            self.assertEqual(record["citation_count_provider"], "unknown")
+            self.assertEqual(record["citation_count_confidence"], "unknown")
+
+    def test_source_record_metadata_extensions_persist_valid_values(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            input_file = Path(tmp) / "paper.txt"
+            input_file.write_text("paper\n")
+
+            result = ingest_source_artifacts_and_record(
+                space_root=space_root,
+                source_path_or_url=str(input_file),
+                source_title_override="Empirical Paper",
+                article_kind="empirical",
+                citation_count=128,
+                citation_count_as_of="2026-04-12",
+                citation_count_provider="crossref",
+                citation_count_confidence="high",
+            )
+            record = json.loads(result.record_path.read_text())
+
+            self.assertEqual(record["article_kind"], "empirical")
+            self.assertEqual(record["citation_count"], 128)
+            self.assertEqual(record["citation_count_as_of"], "2026-04-12")
+            self.assertEqual(record["citation_count_provider"], "crossref")
+            self.assertEqual(record["citation_count_confidence"], "high")
+
+    def test_source_record_metadata_extensions_reject_out_of_contract_values(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            input_file = Path(tmp) / "paper.txt"
+            input_file.write_text("paper\n")
+
+            with self.assertRaises(ValueError):
+                ingest_source_artifacts_and_record(
+                    space_root=space_root,
+                    source_path_or_url=str(input_file),
+                    source_title_override="Bad Kind",
+                    article_kind="blog_post",
+                )
+
+            with self.assertRaises(ValueError):
+                ingest_source_artifacts_and_record(
+                    space_root=space_root,
+                    source_path_or_url=str(input_file),
+                    source_title_override="Bad Confidence",
+                    citation_count_confidence="certain",
+                )
+
+            with self.assertRaises(ValueError):
+                ingest_source_artifacts_and_record(
+                    space_root=space_root,
+                    source_path_or_url=str(input_file),
+                    source_title_override="Bad As Of",
+                    citation_count_as_of="2026/04/12",
+                )
+
+            with self.assertRaises(ValueError):
+                ingest_source_artifacts_and_record(
+                    space_root=space_root,
+                    source_path_or_url=str(input_file),
+                    source_title_override="Bad Count",
+                    citation_count=-1,
+                )
+
 
 @contextmanager
 def _served_source_bytes(*, body: bytes, content_type: str) -> Iterator[str]:

@@ -11,8 +11,18 @@ from typing import Any
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
+from sapi.contracts.ids import ISO_DATE_RE, RFC3339_UTC_RE
 from sapi.contracts.ids import make_source_id, slugify
 from sapi.ingest.source_content import resolve_source_title
+
+_ALLOWED_ARTICLE_KINDS: set[str] = {
+    "empirical",
+    "theoretical",
+    "review",
+    "meta_analysis",
+    "editorial",
+}
+_ALLOWED_CITATION_CONFIDENCE: set[str] = {"unknown", "low", "medium", "high"}
 
 
 @dataclass(frozen=True)
@@ -34,6 +44,11 @@ def ingest_source_artifacts_and_record(
     source_family_id: str | None = None,
     canonical_identifier: str | None = None,
     source_date: str | None = None,
+    article_kind: str | None = None,
+    citation_count: int | float | None = None,
+    citation_count_as_of: str | None = None,
+    citation_count_provider: str | None = None,
+    citation_count_confidence: str | None = None,
 ) -> SourceIngestResult:
     """Acquire one source input and persist managed artifacts + canonical source record."""
     raw_input = _require_non_empty(source_path_or_url, "source_path_or_url")
@@ -78,6 +93,11 @@ def ingest_source_artifacts_and_record(
         source_family_id=source_family_id,
         canonical_identifier=canonical_identifier,
         source_date=source_date,
+        article_kind=article_kind,
+        citation_count=citation_count,
+        citation_count_as_of=citation_count_as_of,
+        citation_count_provider=citation_count_provider,
+        citation_count_confidence=citation_count_confidence,
     )
     record_path = space_root / "sources" / "records" / f"{source_id}.json"
     record_path.parent.mkdir(parents=True, exist_ok=True)
@@ -162,7 +182,20 @@ def _build_source_record_payload(
     source_family_id: str | None,
     canonical_identifier: str | None,
     source_date: str | None,
+    article_kind: str | None,
+    citation_count: int | float | None,
+    citation_count_as_of: str | None,
+    citation_count_provider: str | None,
+    citation_count_confidence: str | None,
 ) -> dict[str, Any]:
+    metadata_extensions = _resolve_source_metadata_extensions(
+        article_kind=article_kind,
+        citation_count=citation_count,
+        citation_count_as_of=citation_count_as_of,
+        citation_count_provider=citation_count_provider,
+        citation_count_confidence=citation_count_confidence,
+    )
+
     record: dict[str, Any] = {
         "schema_version": "source_record_v1",
         "source_id": source_id,
@@ -179,6 +212,7 @@ def _build_source_record_payload(
             "overview_markdown": str(overview_markdown_rel),
             "front_page_image": None,
         },
+        **metadata_extensions,
     }
     if source_family_id is not None:
         record["source_family_id"] = source_family_id
@@ -251,3 +285,70 @@ def _require_non_empty(value: str | None, field_name: str) -> str:
 
 def _utc_now_rfc3339() -> str:
     return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _resolve_source_metadata_extensions(
+    *,
+    article_kind: str | None,
+    citation_count: int | float | None,
+    citation_count_as_of: str | None,
+    citation_count_provider: str | None,
+    citation_count_confidence: str | None,
+) -> dict[str, Any]:
+    return {
+        "article_kind": _normalize_article_kind(article_kind),
+        "citation_count": _normalize_citation_count(citation_count),
+        "citation_count_as_of": _normalize_citation_count_as_of(citation_count_as_of),
+        "citation_count_provider": _normalize_citation_count_provider(citation_count_provider),
+        "citation_count_confidence": _normalize_citation_count_confidence(citation_count_confidence),
+    }
+
+
+def _normalize_article_kind(raw: str | None) -> str | None:
+    if raw is None:
+        return None
+    value = _require_non_empty(raw, "article_kind")
+    if value not in _ALLOWED_ARTICLE_KINDS:
+        raise ValueError(
+            "article_kind must be one of: " + ", ".join(sorted(_ALLOWED_ARTICLE_KINDS))
+        )
+    return value
+
+
+def _normalize_citation_count(raw: int | float | None) -> int | float | None:
+    if raw is None:
+        return None
+    if isinstance(raw, bool):
+        raise ValueError("citation_count must be a number or null.")
+    if not isinstance(raw, (int, float)):
+        raise ValueError("citation_count must be a number or null.")
+    if raw < 0:
+        raise ValueError("citation_count must be >= 0 when provided.")
+    return raw
+
+
+def _normalize_citation_count_as_of(raw: str | None) -> str | None:
+    if raw is None:
+        return None
+    value = _require_non_empty(raw, "citation_count_as_of")
+    if ISO_DATE_RE.fullmatch(value) or RFC3339_UTC_RE.fullmatch(value):
+        return value
+    raise ValueError("citation_count_as_of must be ISO date or RFC3339 UTC timestamp.")
+
+
+def _normalize_citation_count_provider(raw: str | None) -> str:
+    if raw is None:
+        return "unknown"
+    return _require_non_empty(raw, "citation_count_provider")
+
+
+def _normalize_citation_count_confidence(raw: str | None) -> str:
+    if raw is None:
+        return "unknown"
+    value = _require_non_empty(raw, "citation_count_confidence")
+    if value not in _ALLOWED_CITATION_CONFIDENCE:
+        raise ValueError(
+            "citation_count_confidence must be one of: "
+            + ", ".join(sorted(_ALLOWED_CITATION_CONFIDENCE))
+        )
+    return value

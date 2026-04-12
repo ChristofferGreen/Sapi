@@ -29,6 +29,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--source-family-id")
     parser.add_argument("--canonical-identifier")
     parser.add_argument("--source-date")
+    parser.add_argument("--article-kind")
+    parser.add_argument("--citation-count", type=float)
+    parser.add_argument("--citation-count-as-of")
+    parser.add_argument("--citation-count-provider")
+    parser.add_argument("--citation-count-confidence")
     parser.add_argument("--source-only", action="store_true")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--mock-llm", action="store_true")
@@ -55,6 +60,11 @@ def main() -> int:
                 source_family_id=args.source_family_id,
                 canonical_identifier=args.canonical_identifier,
                 source_date=args.source_date,
+                article_kind=args.article_kind,
+                citation_count=args.citation_count,
+                citation_count_as_of=args.citation_count_as_of,
+                citation_count_provider=args.citation_count_provider,
+                citation_count_confidence=args.citation_count_confidence,
             )
     except IngestLockHeldError as exc:
         print(str(exc), file=sys.stderr)
