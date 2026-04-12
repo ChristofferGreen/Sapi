@@ -1723,3 +1723,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     authoritative flow map, and does not produce deprecation warnings reserved for compatibility
     aliases. Updated `docs/testing_plan.md` to mark the Tier 1 semantic-spec checklist item
     complete.
+
+- [x] TODO-0287: Close Tier 1 retry-budget checklist with explicit custom-loop coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 2
+  - depends_on: TODO-0203
+  - scope: Finalize Tier 1 retry-budget checklist evidence by explicitly validating custom
+    `max_repair_loops` behavior and returned attempt counts used for run-level
+    `llm_attempt_count` accounting.
+  - acceptance:
+    - `tests/unit/semantic/test_retry_budget.py` verifies `max_repair_loops` controls
+      `max_attempts`.
+    - Tests verify returned semantic attempt count matches expected total attempts for the
+      configured repair-loop budget.
+    - `docs/testing_plan.md` marks the retry-budget Tier 1 item complete.
+  - notes: source `docs/testing_plan.md` Tier 1; `docs/design.md` Section 2.1
+  - evidence: Added
+    `test_custom_repair_loop_budget_controls_max_attempts_and_returned_attempt_count` to
+    `tests/unit/semantic/test_retry_budget.py`, asserting `max_repair_loops=1` yields
+    `max_attempts=2`, the semantic call succeeds on the final allowed attempt, and returned
+    `attempt_count` equals the configured total-attempt budget used by pipeline-level
+    `llm_attempt_count` aggregation. Updated `docs/testing_plan.md` to mark the Tier 1
+    retry-budget checklist item complete.

@@ -49,6 +49,26 @@ class RetryBudgetTests(unittest.TestCase):
             self.assertEqual(error.max_attempts, DEFAULT_MAX_ATTEMPTS)
             self.assertFalse(output_path.exists())
 
+    def test_custom_repair_loop_budget_controls_max_attempts_and_returned_attempt_count(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            schema_path = _write_schema(tmp_root)
+            output_path = tmp_root / "space/topics/topic-b.json"
+            spec = _build_spec(schema_path=schema_path, output_path=output_path, context_paths=[])
+
+            # One initial invalid attempt + one repair attempt that succeeds.
+            client = _FakeLlmClient(outputs=["{}", '{"value":"fixed"}'])
+            result, attempt_count = run_semantic_flow(
+                spec=spec,
+                llm_client=client,
+                max_repair_loops=1,
+            )
+
+            self.assertEqual(result, {"value": "fixed"})
+            self.assertEqual(attempt_count, max_attempts_from_repair_loops(1))
+            self.assertEqual(attempt_count, 2)
+            self.assertEqual(client.call_count, 2)
+
     def test_attempt_budget_helper_uses_initial_attempt_plus_repairs(self) -> None:
         self.assertEqual(max_attempts_from_repair_loops(0), 1)
         self.assertEqual(max_attempts_from_repair_loops(DEFAULT_MAX_REPAIR_LOOPS), DEFAULT_MAX_ATTEMPTS)

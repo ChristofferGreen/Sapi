@@ -75,7 +75,7 @@ tests/
   - Module: `tests/unit/contracts/test_id_contracts.py`
 - [x] Semantic spec flow-map resolution, version pinning, and input alias normalization.
   - Module: `tests/unit/semantic/test_spec_resolution.py`
-- [ ] Retry budget math and attempt counting (`max_repair_loops`, `max_attempts`, `llm_attempt_count`).
+- [x] Retry budget math and attempt counting (`max_repair_loops`, `max_attempts`, `llm_attempt_count`).
   - Module: `tests/unit/semantic/test_retry_budget.py`
 - [x] Warning-threshold (`--warning-budget`) and status mapping behavior.
   - Module: `tests/unit/lint/test_warning_budget_gate.py`
