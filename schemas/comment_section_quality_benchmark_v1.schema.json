@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "comment_section_quality_benchmark_v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "benchmark_id",
+    "dimensions",
+    "thresholds"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "comment_section_quality_benchmark_v1"
+    },
+    "benchmark_id": {
+      "const": "comment-quality-v1"
+    },
+    "dimensions": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "persona_consistency",
+          "novelty",
+          "relevance",
+          "argument_quality",
+          "human_likeness"
+        ]
+      }
+    },
+    "thresholds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "overall_min",
+        "dimension_mins"
+      ],
+      "properties": {
+        "overall_min": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "dimension_mins": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "persona_consistency",
+            "novelty",
+            "relevance",
+            "argument_quality",
+            "human_likeness"
+          ],
+          "properties": {
+            "persona_consistency": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "novelty": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "relevance": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "argument_quality": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "human_likeness": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            }
+          }
+        }
+      }
+    }
+  }
+}

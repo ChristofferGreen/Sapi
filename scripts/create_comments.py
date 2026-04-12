@@ -33,6 +33,7 @@ from sapi.comments.merge_normalize import (
     apply_merged_comments_to_page,
     merge_comment_section,
 )
+from sapi.comments.quality import build_comment_quality_manifest
 from sapi.contracts.ids import format_timestamp_rfc3339_utc, make_run_id
 from sapi.contracts.run_envelopes import CommentRunFields, RunEnvelopeBase
 from sapi.core.pipeline_policy import finalize_pipeline_run
@@ -101,6 +102,8 @@ def main() -> int:
     llm_attempt_count = 0
     adjudication_summary = _empty_adjudication_summary()
     generation_isolation_summary = _empty_generation_isolation_summary()
+    comments_by_page_for_quality: dict[str, list[dict[str, object]]] = {}
+    comment_quality_manifest_path: Path | None = None
 
     try:
         validate_runtime_flag_arguments(args)
@@ -198,6 +201,7 @@ def main() -> int:
                 ),
             )
             target_new_comment_uids[target.page_ref] = merge_result.new_comment_uids
+            comments_by_page_for_quality[target.page_ref] = list(merge_result.merged_comments)
             updated_page_payload = apply_merged_comments_to_page(
                 page_payload=page_payload,
                 page_ref=target.page_ref,
@@ -226,6 +230,18 @@ def main() -> int:
                 ),
                 transaction=transaction,
             )
+
+        comment_quality_manifest_path, comment_quality_manifest_payload = build_comment_quality_manifest(
+            repo_root=_REPO_ROOT,
+            space_root=space_root,
+            comments_by_page=comments_by_page_for_quality,
+            snapshot_path=evidence_snapshot_path,
+        )
+        _write_json_with_transaction(
+            comment_quality_manifest_path,
+            comment_quality_manifest_payload,
+            transaction=transaction,
+        )
 
         if args.simulate_terminal_failure:
             raise RuntimeError("Simulated terminal comments failure.")
@@ -319,6 +335,7 @@ def main() -> int:
         f"target_page_refs={target_page_refs}, comments_added={comments_added}, "
         f"adjudication={adjudication_summary}, generation_isolation={generation_isolation_summary}, "
         f"evidence_mode={evidence_mode}, evidence_snapshot_path={flow_fields.evidence_snapshot_path}, "
+        f"comment_quality_manifest_path={comment_quality_manifest_path}, "
         f"run_record_path={finalized.run_record_path}, "
         f"runtime_flags={runtime_flags_summary_dict(runtime_flags)})"
     )

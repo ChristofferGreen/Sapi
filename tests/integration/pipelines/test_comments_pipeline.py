@@ -211,6 +211,57 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             self.assertEqual(frontmatter["evidence_mode"], "web-augmented")
             self.assertEqual(frontmatter["evidence_snapshot_path"], str(snapshot_path.resolve()))
 
+    def test_comment_quality_manifest_writes_to_canonical_path_and_is_deterministic(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            self._write_topic(space_root, topic_id="topic-alpha", title="Alpha")
+
+            def _run_comments_and_load_manifest() -> dict[str, object]:
+                result = run_command(
+                    [
+                        "python3",
+                        str(REPO_ROOT / "scripts" / "create_comments.py"),
+                        "alpha",
+                        "--registry-path",
+                        str(site_path / "spaces.toml"),
+                        "--count",
+                        "5",
+                        "--mock-llm",
+                    ]
+                )
+                self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+                quality_manifests = sorted(
+                    (space_root / "outputs" / "comment_quality").glob("CQ-*/manifest.json")
+                )
+                self.assertEqual(len(quality_manifests), 1)
+                manifest_path = quality_manifests[0]
+                manifest_payload = json.loads(manifest_path.read_text())
+                self.assertEqual(
+                    manifest_path,
+                    space_root
+                    / "outputs"
+                    / "comment_quality"
+                    / manifest_payload["evaluation_id"]
+                    / "manifest.json",
+                )
+                self.assertEqual(
+                    manifest_payload["schema_version"],
+                    "comment_section_quality_eval_manifest_v1",
+                )
+                self.assertRegex(manifest_payload["evaluation_id"], r"^CQ-[0-9a-f]{12}$")
+                self.assertIn("pass", manifest_payload)
+                self.assertIn("fail_reasons", manifest_payload)
+                return manifest_payload
+
+            first_manifest = _run_comments_and_load_manifest()
+            second_manifest = _run_comments_and_load_manifest()
+            self.assertEqual(first_manifest["evaluation_id"], second_manifest["evaluation_id"])
+            self.assertEqual(first_manifest["pass"], second_manifest["pass"])
+            self.assertEqual(first_manifest["fail_reasons"], second_manifest["fail_reasons"])
+
     def test_turn_marker_normalization_supports_canonical_and_legacy_markers(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)

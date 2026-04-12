@@ -1,0 +1,21 @@
+{
+  "schema_version": "comment_section_quality_benchmark_v1",
+  "benchmark_id": "comment-quality-v1",
+  "dimensions": [
+    "persona_consistency",
+    "novelty",
+    "relevance",
+    "argument_quality",
+    "human_likeness"
+  ],
+  "thresholds": {
+    "overall_min": 0.62,
+    "dimension_mins": {
+      "persona_consistency": 0.5,
+      "novelty": 0.5,
+      "relevance": 0.55,
+      "argument_quality": 0.55,
+      "human_likeness": 0.55
+    }
+  }
+}

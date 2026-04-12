@@ -2,6 +2,31 @@
 
 This file is append-only history for completed tasks moved out of `docs/todo.md`.
 
+## 2026-04-13
+
+- [x] TODO-0225: Comment quality benchmark and evaluation manifest pipeline
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-13
+  - phase: Phase 5
+  - depends_on: TODO-0223
+  - scope: Implement benchmark scoring and evaluation manifest generation for comment quality checks.
+  - acceptance:
+    - Benchmark artifact and schema contracts are implemented.
+    - Evaluation manifest writes to `outputs/comment_quality/<evaluation_id>/manifest.json`.
+    - Threshold pass/fail and fail reasons are persisted deterministically.
+  - notes: source `design.md` Section 7.7
+  - evidence: Added canonical benchmark and schema contracts at
+    `sapi/benchmarks/comment_quality_benchmark_v1.json`,
+    `schemas/comment_section_quality_benchmark_v1.schema.json`, and
+    `schemas/comment_section_quality_eval_manifest_v1.schema.json`. Implemented deterministic
+    benchmark loading/scoring/threshold evaluation in `sapi/comments/quality.py`, including
+    canonical `evaluation_id` generation (`CQ-<sha256-prefix>`) and deterministic fail-reason
+    ordering. Wired `scripts/create_comments.py` to emit a validated quality manifest at
+    `outputs/comment_quality/<evaluation_id>/manifest.json` for comment runs. Added coverage in
+    `tests/unit/comments/test_comment_quality_manifest.py` and
+    `tests/integration/pipelines/test_comments_pipeline.py`.
+
 ## 2026-04-12
 
 - [x] TODO-0248: Implement discussion-controls precedence and canonical metadata integration
