@@ -80,7 +80,7 @@ Wave B (ingest + projection + lint):
 Wave C (query + social + hardening + release):
 1. (none currently)
 2. `TODO-0223` -> `TODO-0247` -> `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
-3. `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
+3. `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
 1. (none currently)
@@ -106,7 +106,7 @@ Cross-cutting docs backlog:
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | `TODO-0250` |
 | Section 11 testing strategy | `TODO-0266`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
-| Section 12 reconstruction plan | `TODO-0260`, `TODO-0261` |
+| Section 12 reconstruction plan | `TODO-0261` |
 | Section 13 definition of done | `TODO-0231` |
 
 ### Low-Level Coverage Snapshot
@@ -184,18 +184,6 @@ Cross-cutting docs backlog:
     - Slice B reliability/determinism/operator-usability exit criteria are represented as verifiable checks.
     - Checks run in CI or scripted local verification path with evidence artifacts.
     - Slice B cannot be marked complete while any gate remains open.
-  - notes: source `design.md` Section 12.1
-
-- [ ] TODO-0260: Enforce MVP Slice A exit gates for first end-to-end vertical slice
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 5
-  - depends_on: TODO-0209, TODO-0214, TODO-0216, TODO-0220, TODO-0219
-  - scope: Convert MVP Slice A exit criteria into explicit checks with evidence requirements.
-  - acceptance:
-    - One-source end-to-end path (`create site/space -> ingest -> build -> query -> validate`) is executed and captured.
-    - Semantic outputs and run-envelope requirements for ingest/query are validated against contracts.
-    - Deferred-build backlog check for Slice A runs is automated and enforced.
   - notes: source `design.md` Section 12.1
 
 - [ ] TODO-0258: Implement rebuttal-steelman and claim-badge rendering contracts for comments

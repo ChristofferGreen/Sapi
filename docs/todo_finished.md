@@ -4,6 +4,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0260: Enforce MVP Slice A exit gates for first end-to-end vertical slice
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 5
+  - depends_on: TODO-0209, TODO-0214, TODO-0216, TODO-0220, TODO-0219
+  - scope: Convert MVP Slice A exit criteria into explicit checks with evidence requirements.
+  - acceptance:
+    - One-source end-to-end path (`create site/space -> ingest -> build -> query -> validate`) is executed and captured.
+    - Semantic outputs and run-envelope requirements for ingest/query are validated against contracts.
+    - Deferred-build backlog check for Slice A runs is automated and enforced.
+  - notes: source `design.md` Section 12.1
+  - evidence: Added `scripts/verify_slice_a.py` as a scripted local verification path that
+    executes the full Slice A vertical path (create site/space, ingest, deterministic build,
+    query, validate gate checks) and writes a machine-readable evidence manifest under
+    `<site_path>/outputs/verification/slice_a/<verification_id>/manifest.json`. Added reusable
+    gate helpers in `sapi/core/slice_a_gates.py` for ingest/query run-envelope contract checks and
+    deferred-build backlog detection. Added focused coverage in
+    `tests/unit/core/test_slice_a_gates.py` and
+    `tests/integration/wrappers/test_verify_slice_a.py`.
+
 - [x] TODO-0251: Preserve historical test-footprint contracts and golden asset layout
   - owner: ai
   - created_at: 2026-04-12
