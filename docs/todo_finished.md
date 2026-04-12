@@ -2086,3 +2086,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `tests/integration/pipelines/test_site_new_refresh_policy.py` to canonical Tier 4 path
     `tests/integration/build/test_site_new_refresh_policy.py` and verified the module passes.
     Updated `docs/testing_plan.md` to mark the Tier 4 site-root refresh policy item complete.
+
+- [x] TODO-0303: Close Tier 4 incremental-vs-full build equivalence checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0210
+  - scope: Finalize Tier 4 incremental build equivalence evidence by strengthening explicit
+    assertions for canonical rendered outputs in the full snapshot before equivalence checks.
+  - acceptance:
+    - `tests/integration/build/test_incremental_vs_full_equivalence.py` verifies incremental
+      build snapshots equal full build snapshots.
+    - The same module asserts canonical site-root and space index outputs are present in the
+      compared snapshot set.
+    - `docs/testing_plan.md` marks the Tier 4 incremental equivalence checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 4; `docs/design.md` Sections 2.2, 8
+  - evidence: Extended
+    `tests/integration/build/test_incremental_vs_full_equivalence.py` with explicit snapshot
+    presence assertions for `site/index.html` and `spaces/alpha/site/index.html` prior to full
+    vs incremental rendered-output equality checks. Verified test pass and updated
+    `docs/testing_plan.md` to mark the Tier 4 incremental equivalence item complete.

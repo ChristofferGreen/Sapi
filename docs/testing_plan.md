@@ -118,7 +118,7 @@ tests/
   - Module: `tests/integration/build/test_build_determinism.py`
 - [x] Site-root `New` refresh policy per flow.
   - Module: `tests/integration/build/test_site_new_refresh_policy.py`
-- [ ] Incremental output equivalence with full rebuild output.
+- [x] Incremental output equivalence with full rebuild output.
   - Module: `tests/integration/build/test_incremental_vs_full_equivalence.py`
 
 ### Tier 5: Golden Snapshot Tests

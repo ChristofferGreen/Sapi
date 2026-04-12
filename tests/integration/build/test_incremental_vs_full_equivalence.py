@@ -32,6 +32,8 @@ class IncrementalBuildEquivalenceIntegrationTests(unittest.TestCase):
             full_build = _run_build(site_path=site_path, incremental=False)
             self.assertEqual(full_build.returncode, 0, msg=full_build.stderr)
             full_snapshot = _capture_rendered_snapshot(site_path=site_path)
+            self.assertIn("site/index.html", full_snapshot)
+            self.assertIn("spaces/alpha/site/index.html", full_snapshot)
 
             incremental_build = _run_build(site_path=site_path, incremental=True)
             self.assertEqual(incremental_build.returncode, 0, msg=incremental_build.stderr)
