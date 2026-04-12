@@ -1613,3 +1613,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     coverage in `tests/unit/contracts/test_verify_slice_b.py` and closure gating in
     `tests/unit/contracts/test_slice_b_exit_gate_closure.py` so `TODO-0261` cannot be treated
     as complete when any Slice B gate is open.
+
+- [x] TODO-0231: Definition-of-Done sweep and release readiness verification
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0228, TODO-0229, TODO-0230, TODO-0243, TODO-0263, TODO-0261
+  - scope: Execute final DoD verification across wrappers, runtime behavior, deferred-build backlog, and contract tests before first implementation milestone is considered complete.
+  - acceptance:
+    - All wrapper commands in DoD execute successfully on a representative site/space.
+    - No runs remain with `build_deferred: true`.
+    - DoD bullets from `docs/design.md` Section 13 are checked explicitly with evidence links.
+  - notes: source `design.md` Section 13
+  - evidence: Added `scripts/verify_dod.py` to execute a representative full wrapper sweep
+    (`create_site.sh`, `create_space.sh`, `ingest.sh`, `query.sh`, `create_comments.sh`,
+    `generate_profiles.sh`, `regenerate_web.sh`, `validate.sh`, `evaluate_source.sh`) and
+    emit a machine-readable DoD manifest with explicit per-bullet Section 13 checks and evidence
+    links at `<site_path>/outputs/verification/dod/<verification_id>/manifest.json`. Added
+    committed latest DoD evidence at `docs/verification/dod_verification.latest.json` plus
+    updated upstream gate evidence at `docs/verification/testing_exit_criteria.latest.json` and
+    `docs/verification/slice_b_exit_criteria.latest.json`, including refreshed execution of
+    `scripts/verify_testing_exit_criteria.py` before final DoD closure. Added closure contract coverage in
+    `tests/unit/contracts/test_dod_exit_gate_closure.py` and end-to-end verifier coverage in
+    `tests/integration/wrappers/test_verify_dod.py`.

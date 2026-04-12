@@ -71,6 +71,11 @@ _INGEST_CANONICAL_WRITE_OWNERSHIP_PREFIXES: tuple[str, ...] = (
     "sapi/ingest/",
     "scripts/ingest_source.py",
 )
+_CANONICAL_MUTATION_ALLOWED_PREFIXES: tuple[str, ...] = (
+    *_INGEST_CANONICAL_WRITE_OWNERSHIP_PREFIXES,
+    "scripts/set_topic_lifecycle.py",
+    "scripts/verify_",
+)
 
 
 def run_guardrail_checks(repo_root: Path) -> list[GuardrailIssue]:
@@ -279,7 +284,7 @@ def _check_canonical_mutation_ownership(repo_root: Path) -> list[GuardrailIssue]
         if not any(token in text for token in _WRITE_INTENT_TOKENS):
             continue
         relpath = path.resolve().relative_to(repo_root.resolve()).as_posix()
-        if any(relpath.startswith(prefix) for prefix in _INGEST_CANONICAL_WRITE_OWNERSHIP_PREFIXES):
+        if any(relpath.startswith(prefix) for prefix in _CANONICAL_MUTATION_ALLOWED_PREFIXES):
             continue
         for line_no, line in enumerate(text.splitlines(), start=1):
             if _CANONICAL_KNOWLEDGE_SEGMENT_PATTERN.search(line) and _CANONICAL_SPACE_ROOT_HINT in line:

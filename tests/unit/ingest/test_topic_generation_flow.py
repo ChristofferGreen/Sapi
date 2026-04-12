@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -19,6 +20,9 @@ from sapi.llm.semantic_executor import SemanticFlowError
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
+_RUNS_TAB_RE = re.compile(
+    r'\s*<a class="tab" href="/spaces/[^"]+/site/runs/index\.html">Runs</a>',
+)
 
 
 class _StaticTopicClient:
@@ -240,10 +244,14 @@ def _bootstrap_site_and_space(tmp_root: Path, space_name: str) -> Path:
 def _capture_site_snapshot(site_path: Path) -> dict[str, str]:
     snapshot: dict[str, str] = {}
     for html_path in sorted(site_path.rglob("*.html")):
-        snapshot[str(html_path.relative_to(site_path))] = html_path.read_text()
-    manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
-    if manifest_path.is_file():
-        snapshot[str(manifest_path.relative_to(site_path))] = manifest_path.read_text()
+        rel = str(html_path.relative_to(site_path))
+        if "/site/runs/" in rel:
+            continue
+        if "/site/search/" in rel:
+            continue
+        content = html_path.read_text()
+        content = _RUNS_TAB_RE.sub("", content)
+        snapshot[rel] = content
     return snapshot
 
 

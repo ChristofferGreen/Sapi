@@ -117,6 +117,44 @@ class GuardrailChecksTests(unittest.TestCase):
                 any(issue.check_id == "canonical_mutation_ownership" for issue in issues)
             )
 
+    def test_guardrail_allows_manual_topic_lifecycle_mutation_entrypoint(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write(
+                root,
+                "scripts/set_topic_lifecycle.py",
+                """
+                from pathlib import Path
+
+                def mutate(space_root: Path) -> None:
+                    topic_path = space_root / "topics/topic-a.json"
+                    topic_path.write_text("{}")
+                """,
+            )
+            issues = run_guardrail_checks(root)
+            self.assertFalse(
+                any(issue.check_id == "canonical_mutation_ownership" for issue in issues)
+            )
+
+    def test_guardrail_allows_verify_script_reading_canonical_artifact_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write(
+                root,
+                "scripts/verify_example.py",
+                """
+                from pathlib import Path
+
+                def write_report(space_root: Path, out_path: Path) -> None:
+                    source_record = space_root / "sources/records/source-a.json"
+                    out_path.write_text(str(source_record))
+                """,
+            )
+            issues = run_guardrail_checks(root)
+            self.assertFalse(
+                any(issue.check_id == "canonical_mutation_ownership" for issue in issues)
+            )
+
     def test_validate_entrypoint_reports_guardrail_failures_with_clear_message(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_root = Path(tmp)

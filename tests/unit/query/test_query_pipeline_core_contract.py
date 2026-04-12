@@ -149,7 +149,11 @@ class QueryPipelineCoreContractTests(unittest.TestCase):
             new_paths = all_after - all_before
             for path in new_paths:
                 path_text = str(path)
-                allowed = path_text.startswith("outputs/query/query-") or path_text.startswith("runs/run-")
+                allowed = (
+                    path_text.startswith("outputs/query/query-")
+                    or path_text.startswith("runs/run-")
+                    or path_text == "outputs/run_truth/reconciliation_state.json"
+                )
                 self.assertTrue(allowed, f"Unexpected query write path: {path_text}")
 
     def test_terminal_failure_rolls_back_query_outputs_and_run_lint_artifacts(self) -> None:

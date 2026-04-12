@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "deferred_build_backlog_clear": true,
+    "determinism_checks_green": true,
+    "pr_required_tiers_green": true,
+    "rollback_leakage_regressions_absent": true
+  },
+  "completed_at": "2026-04-12T23:08:36Z",
+  "errors": [],
+  "manifest_path": "/private/var/folders/dw/20lzppxd4wb92wccyqh_g6zm0000gn/T/tmp.Goj5ylQvJh/site/outputs/verification/testing_exit_criteria/testing-exit-20260412T230836Z/manifest.json",
+  "scope": "testing_plan_exit_criteria",
+  "status": "success",
+  "verification_id": "testing-exit-20260412T230836Z"
+}

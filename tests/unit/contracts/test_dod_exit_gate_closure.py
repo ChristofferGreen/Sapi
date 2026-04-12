@@ -10,6 +10,7 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 TODO_DOC_PATH = REPO_ROOT / "docs" / "todo.md"
 TODO_FINISHED_DOC_PATH = REPO_ROOT / "docs" / "todo_finished.md"
 EXIT_GATE_EVIDENCE_PATH = REPO_ROOT / "docs" / "verification" / "testing_exit_criteria.latest.json"
+DOD_EVIDENCE_PATH = REPO_ROOT / "docs" / "verification" / "dod_verification.latest.json"
 
 
 class DodExitGateClosureTests(unittest.TestCase):
@@ -40,6 +41,21 @@ class DodExitGateClosureTests(unittest.TestCase):
         self.assertIn("TODO-0231", finished_text)
         finished_block = _finished_task_block(finished_text, todo_id="TODO-0231")
         self.assertIn("verify_testing_exit_criteria.py", finished_block)
+        self.assertIn("verify_dod.py", finished_block)
+
+        self.assertTrue(
+            DOD_EVIDENCE_PATH.is_file(),
+            msg=(
+                "Closing TODO-0231 requires committed DoD verification evidence at "
+                "docs/verification/dod_verification.latest.json."
+            ),
+        )
+        dod_evidence = json.loads(DOD_EVIDENCE_PATH.read_text())
+        self.assertEqual(dod_evidence.get("status"), "success")
+        dod_checks = dod_evidence.get("checks")
+        self.assertIsInstance(dod_checks, dict)
+        self.assertEqual(dod_checks.get("dod_13_1_wrappers_execute_successfully"), True)
+        self.assertEqual(dod_checks.get("dod_13_10_no_deferred_build_backlog"), True)
 
 
 def _is_open_todo(*, todo_text: str, todo_id: str) -> bool:
