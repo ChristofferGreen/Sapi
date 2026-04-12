@@ -908,3 +908,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     manifest file). Added `tests/unit/query/test_query_artifact_modes_contract.py` to verify
     non-markdown manifest emission, markdown no-manifest behavior, required manifest keys, declared
     hash integrity against actual artifact bytes, and mode-specific artifact row fields.
+
+- [x] TODO-0255: Implement query citation-coverage and deterministic truncation policies
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 4
+  - depends_on: TODO-0220, TODO-0213
+  - scope: Enforce mode-specific citation coverage targets and deterministic truncation/tie-break
+    behavior in query outputs.
+  - acceptance:
+    - Coverage policies for `strict`, `exploratory`, and `comparative` modes are implemented and
+      auditable.
+    - Truncation order and tie-break behavior are deterministic and consistent with contracts.
+    - `omitted_due_to_budget` is populated whenever truncation occurs.
+  - evidence: Updated `scripts/query.py` to emit auditable citation coverage metadata including
+    mode-specific thresholds (`strict=0.9`, non-strict=0.7), policy version, cited counts, and
+    pass/fail evaluation. Updated `sapi/query/retrieval.py` to enforce deterministic truncation
+    ordering by retrieval rank (descending) with lexical canonical ID tie-breaks, then budget
+    slicing and omitted-count tracking. Added
+    `tests/unit/query/test_query_citation_truncation_policy.py` to verify mode-specific citation
+    coverage policy fields and deterministic rank/tie-break truncation with non-zero
+    `omitted_due_to_budget` when budgets truncate results.

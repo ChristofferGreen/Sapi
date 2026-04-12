@@ -128,10 +128,11 @@ def main() -> int:
             scope=options.scope,
             run_id=run_id,
             query_timestamp_utc=format_timestamp_rfc3339_utc(datetime.now(UTC)),
-            citation_coverage={
-                "factual_sentence_ratio": 1.0 if claims_used else 0.0,
-                "target_threshold": 0.9 if options.mode == "strict" else 0.7,
-            },
+            citation_coverage=_build_citation_coverage(
+                mode=options.mode,
+                claims_used=claims_used,
+                sources_used=sources_used,
+            ),
             lint_summary={"error_count": 0, "warning_count": 0, "info_count": 0},
             execution={
                 "execution_mode": runtime_policy.execution_mode,
@@ -361,6 +362,25 @@ def _build_answer(
         f"Query mode `{mode}` synthesized a deterministic reconstruction answer for: {question!r}. "
         f"claims_used={len(claims_used)}, sources_used={len(sources_used)}."
     )
+
+
+def _build_citation_coverage(
+    *,
+    mode: str,
+    claims_used: list[str],
+    sources_used: list[str],
+) -> dict[str, float | bool | int | str]:
+    target_threshold = 0.9 if mode == "strict" else 0.7
+    factual_sentence_ratio = 1.0 if claims_used else 0.0
+    return {
+        "mode": mode,
+        "policy_version": "query_citation_coverage_v1",
+        "target_threshold": target_threshold,
+        "factual_sentence_ratio": factual_sentence_ratio,
+        "meets_target": factual_sentence_ratio >= target_threshold,
+        "claims_cited": len(claims_used),
+        "sources_cited": len(sources_used),
+    }
 
 
 def _render_markdown_answer(
