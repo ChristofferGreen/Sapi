@@ -22,6 +22,7 @@ from sapi.core.locks import IngestLockHeldError, ingest_lock
 from sapi.core.pipeline_policy import finalize_pipeline_run
 from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
 from sapi.core.transactions import ArtifactTransaction
+from sapi.ingest.citations import run_reference_extraction_and_link_backfill
 from sapi.ingest.records_writer import (
     IngestExtractionPersistResult,
     ingest_source_artifacts_and_record,
@@ -78,6 +79,7 @@ def main() -> int:
     build_manifest_path = None
     build_deferred = False
     deferred_build_reason = None
+    reference_result = None
     semantic_flows: list[str] = []
     semantic_flow_invocation_counts: dict[str, int] = {}
     llm_attempt_count = 0
@@ -107,6 +109,10 @@ def main() -> int:
                 citation_count_as_of=args.citation_count_as_of,
                 citation_count_provider=args.citation_count_provider,
                 citation_count_confidence=args.citation_count_confidence,
+            )
+            reference_result = run_reference_extraction_and_link_backfill(
+                space_root=space_root,
+                source_id=result.source_id,
             )
             if args.simulate_terminal_failure:
                 raise RuntimeError("Simulated terminal ingest failure.")
@@ -261,6 +267,12 @@ def main() -> int:
         f"deferred_build_reason={deferred_build_reason}, "
         f"run_record_path={finalized.run_record_path}"
     )
+    if reference_result is not None:
+        summary += (
+            f", references_extracted={reference_result.reference_count}, "
+            f"linked_source_ids={reference_result.linked_source_ids}, "
+            f"backfilled_source_ids={reference_result.backfilled_source_ids}"
+        )
     if extraction_result is not None:
         summary += (
             f"claims_written={len(extraction_result.claim_paths)}, "

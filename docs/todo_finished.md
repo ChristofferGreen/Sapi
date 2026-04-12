@@ -562,3 +562,21 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `tests/unit/ingest/test_ingest_mode_handling.py` and companion regressions in
     `tests/unit/contracts/test_wrapper_alias_normalization.py` and
     `tests/unit/ingest/test_topic_generation_flow.py`.
+
+- [x] TODO-0215: Reference extraction, structured normalization, and local link backfill
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 2
+  - depends_on: TODO-0210
+  - scope: Implement reference extraction and matching pipeline for reference-heavy sources.
+  - acceptance:
+    - References normalize to structured rows.
+    - Local source matching in same space persists `linked_source_ids`.
+    - Backfill links runs for older records after new ingest.
+  - evidence: Replaced `sapi/ingest/citations.py` stub with deterministic reference extraction,
+    structured row normalization (`title/authors/year/doi/arxiv/url`), same-space source matching,
+    and older-record backfill of `linked_source_ids`; integrated the flow into
+    `scripts/ingest_source.py` for every ingest run, and validated contracts via
+    `tests/unit/ingest/test_reference_linking.py` (structured rows, local matching persistence,
+    and backfill behavior on new ingest).
