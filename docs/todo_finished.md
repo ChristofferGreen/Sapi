@@ -4,6 +4,26 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0244: Implement claim-reference rendering/public-debug visibility contracts
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 3
+  - depends_on: TODO-0216
+  - scope: Implement claim annotation rendering behavior with auditability and metadata visibility modes.
+  - acceptance:
+    - HTML view avoids always-visible raw claim IDs in sentence text while preserving clickable audit access.
+    - JS-off fallback includes minimal static claim-details links.
+    - Public mode hides internal IDs/paths/hashes; debug mode exposes internal metadata as configured.
+  - notes: source `design.md` Section 8
+  - evidence: Added deterministic claim-annotation rendering in `sapi/build/site_builder.py` so
+    inline `[[claims:...]]` markers are removed from sentence text while claim details remain
+    clickable/auditable via section-scoped details links and JS-off `<noscript>` fallback links.
+    Wired `--site-presentation-mode {public,debug}` through `scripts/build_site.py` and
+    `regenerate_web.sh`, with debug-mode metadata exposure and public-mode suppression of
+    debug-only claim metadata. Expanded `tests/unit/build/test_site_builder_contracts.py` and
+    `tests/unit/contracts/test_regenerate_web_wrapper_contract.py` to cover all acceptance clauses.
+
 - [x] TODO-0245: Implement cross-space pinned-link import contract and error rendering
   - owner: ai
   - created_at: 2026-04-12

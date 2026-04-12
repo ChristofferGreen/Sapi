@@ -2,7 +2,7 @@
 set -euo pipefail
 
 usage() {
-  echo "Usage: regenerate_web.sh <site_path> [space_name] [--verbose]" >&2
+  echo "Usage: regenerate_web.sh <site_path> [space_name] [--verbose] [--site-presentation-mode <public|debug>]" >&2
 }
 
 if [[ $# -lt 1 ]]; then
@@ -25,6 +25,30 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --verbose)
       normalized_args+=("--verbose")
+      shift
+      ;;
+    --site-presentation-mode)
+      if [[ $# -lt 2 ]]; then
+        echo "Error: --site-presentation-mode requires a value." >&2
+        usage
+        exit 2
+      fi
+      if [[ "$2" != "public" && "$2" != "debug" ]]; then
+        echo "Error: --site-presentation-mode must be 'public' or 'debug'." >&2
+        usage
+        exit 2
+      fi
+      normalized_args+=("--site-presentation-mode" "$2")
+      shift 2
+      ;;
+    --site-presentation-mode=*)
+      mode_value="${1#*=}"
+      if [[ "$mode_value" != "public" && "$mode_value" != "debug" ]]; then
+        echo "Error: --site-presentation-mode must be 'public' or 'debug'." >&2
+        usage
+        exit 2
+      fi
+      normalized_args+=("--site-presentation-mode" "$mode_value")
       shift
       ;;
     --registry-path|--registry-path=*)

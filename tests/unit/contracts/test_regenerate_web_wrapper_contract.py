@@ -69,6 +69,23 @@ class RegenerateWebWrapperContractTests(unittest.TestCase):
             second_manifest_text = manifest_path.read_text()
             self.assertEqual(first_manifest_text, second_manifest_text)
 
+    def test_wrapper_forwards_site_presentation_mode_to_build_entrypoint(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
+            result = self._run(
+                [
+                    "bash",
+                    str(REPO_ROOT / "regenerate_web.sh"),
+                    str(site_path),
+                    "alpha",
+                    "--site-presentation-mode",
+                    "debug",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+            manifest = json.loads((site_path / "outputs" / "build_site" / "manifest.json").read_text())
+            self.assertEqual(manifest["site_presentation_mode"], "debug")
+
     def _bootstrap_site_and_space(self, tmp_root: Path, space_name: str) -> Path:
         site_path = tmp_root / "site-a"
         self._run(["bash", str(REPO_ROOT / "create_site.sh"), str(site_path), "My Site"], check=True)

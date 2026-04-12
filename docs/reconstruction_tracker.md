@@ -71,11 +71,11 @@ Entry Criteria (TODO-linked):
 - canonical ingest outputs available for projection/build (`TODO-0210`, `TODO-0212`)
 
 Exit Criteria (TODO-linked):
-- section-8 renderer/information-architecture contracts complete (`TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0257`, `TODO-0234`, `TODO-0233`)
+- section-8 renderer/information-architecture contracts complete (`TODO-0253`, `TODO-0252`, `TODO-0257`, `TODO-0234`, `TODO-0233`)
 
 Current Checkpoint:
 - status: pending
-- blocking TODOs: `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0257`, `TODO-0234`, `TODO-0233`
+- blocking TODOs: `TODO-0253`, `TODO-0252`, `TODO-0257`, `TODO-0234`, `TODO-0233`
 
 ### Phase 4: Query and core evaluation
 

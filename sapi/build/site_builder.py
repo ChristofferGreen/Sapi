@@ -6,6 +6,7 @@ from dataclasses import dataclass
 import hashlib
 from html import escape
 from pathlib import Path
+import re
 
 from sapi.build.projection import SpaceProjection, load_space_projection
 from sapi.lint.lint_engine import LintSummary, default_lint_summary
@@ -22,7 +23,12 @@ class BuildResult:
     lint_summary: LintSummary
 
 
-def build_space_site(space_root: Path, *, incremental: bool) -> BuildResult:
+def build_space_site(
+    space_root: Path,
+    *,
+    incremental: bool,
+    site_presentation_mode: str = "public",
+) -> BuildResult:
     """Build deterministic space HTML from canonical JSON artifacts only."""
     projection = load_space_projection(space_root)
     space_name = space_root.name
@@ -34,7 +40,12 @@ def build_space_site(space_root: Path, *, incremental: bool) -> BuildResult:
         _write_source_pages(output_root=output_root, projection=projection, incremental=incremental)
     )
     generated_files.extend(
-        _write_topic_pages(output_root=output_root, projection=projection, incremental=incremental)
+        _write_topic_pages(
+            output_root=output_root,
+            projection=projection,
+            incremental=incremental,
+            site_presentation_mode=site_presentation_mode,
+        )
     )
 
     index_path = output_root / "index.html"
@@ -114,13 +125,18 @@ def _write_topic_pages(
     output_root: Path,
     projection: SpaceProjection,
     incremental: bool,
+    site_presentation_mode: str,
 ) -> list[Path]:
     topics_dir = output_root / "topics"
     topics_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
     for topic in sorted(projection.topics, key=lambda item: item["topic_id"]):
         topic_path = topics_dir / f"{topic['topic_id']}.html"
-        _write_text_file(topic_path, _render_topic_page(topic), incremental=incremental)
+        _write_text_file(
+            topic_path,
+            _render_topic_page(topic, site_presentation_mode=site_presentation_mode),
+            incremental=incremental,
+        )
         written.append(topic_path)
     return written
 
@@ -162,12 +178,18 @@ def _render_source_page(source: dict[str, object]) -> str:
     )
 
 
-def _render_topic_page(topic: dict[str, object]) -> str:
+def _render_topic_page(topic: dict[str, object], *, site_presentation_mode: str) -> str:
+    if site_presentation_mode not in {"public", "debug"}:
+        raise ValueError(f"Unsupported site_presentation_mode: {site_presentation_mode!r}")
     sections = topic["sections"]
     assert isinstance(sections, list)
     section_rows = "\n".join(
-        f"<section><h2>{escape(str(section['heading']))}</h2><p>{escape(str(section['body']))}</p></section>"
-        for section in sections
+        _render_topic_section(
+            section=section,
+            section_index=index,
+            site_presentation_mode=site_presentation_mode,
+        )
+        for index, section in enumerate(sections, start=1)
     )
     parent_link_row = _render_pinned_parent_link(topic)
     return (
@@ -180,6 +202,100 @@ def _render_topic_page(topic: dict[str, object]) -> str:
         + section_rows
         + "\n</body></html>\n"
     )
+
+
+def _render_topic_section(
+    *,
+    section: dict[str, object],
+    section_index: int,
+    site_presentation_mode: str,
+) -> str:
+    heading = escape(str(section["heading"]))
+    body = str(section["body"])
+    clean_body, annotation_groups = _extract_claim_annotations(body)
+    rows = [
+        "<section>",
+        f"<h2>{heading}</h2>",
+        f"<p class=\"topic-section-body\">{escape(clean_body)}</p>",
+    ]
+    if annotation_groups:
+        rows.append(_render_claim_annotation_links(annotation_groups, section_index=section_index))
+        rows.append(
+            _render_claim_annotation_details(
+                annotation_groups,
+                section_index=section_index,
+                site_presentation_mode=site_presentation_mode,
+            )
+        )
+    rows.append("</section>")
+    return "".join(rows)
+
+
+def _extract_claim_annotations(body: str) -> tuple[str, list[list[str]]]:
+    pattern = re.compile(r"\[\[claims:([^\]]+)\]\]")
+    annotation_groups: list[list[str]] = []
+    for match in pattern.finditer(body):
+        refs = [token.strip() for token in match.group(1).split(",") if token.strip()]
+        if refs:
+            annotation_groups.append(refs)
+    clean_body = pattern.sub("", body)
+    clean_body = re.sub(r"\s{2,}", " ", clean_body).strip()
+    return clean_body, annotation_groups
+
+
+def _render_claim_annotation_links(annotation_groups: list[list[str]], *, section_index: int) -> str:
+    rows = []
+    for annotation_index, _ in enumerate(annotation_groups, start=1):
+        details_id = f"claim-details-s{section_index}-a{annotation_index}"
+        rows.append(
+            f"<a class=\"claim-details-link\" href=\"#{details_id}\">Claim details {annotation_index}</a>"
+        )
+    return "<p class=\"claim-details-links\">" + " ".join(rows) + "</p>"
+
+
+def _render_claim_annotation_details(
+    annotation_groups: list[list[str]],
+    *,
+    section_index: int,
+    site_presentation_mode: str,
+) -> str:
+    details_rows: list[str] = []
+    for annotation_index, claim_ids in enumerate(annotation_groups, start=1):
+        details_id = f"claim-details-s{section_index}-a{annotation_index}"
+        claim_link_rows = []
+        fallback_rows = []
+        for claim_index, claim_id in enumerate(claim_ids, start=1):
+            href = f"../claims/{claim_id}.html"
+            if site_presentation_mode == "debug":
+                claim_link_rows.append(
+                    "<li class=\"claim-details-item debug\" "
+                    f"data-claim-id=\"{escape(claim_id)}\" "
+                    f"data-claim-href=\"{escape(href)}\">"
+                    f"<a href=\"{escape(href)}\">{escape(claim_id)}</a></li>"
+                )
+                fallback_rows.append(f"<li><a href=\"{escape(href)}\">{escape(claim_id)}</a></li>")
+            else:
+                claim_link_rows.append(
+                    "<li class=\"claim-details-item\">"
+                    f"<a href=\"{escape(href)}\">Claim reference {claim_index}</a></li>"
+                )
+                fallback_rows.append(
+                    f"<li><a href=\"{escape(href)}\">Claim reference {claim_index}</a></li>"
+                )
+        details_rows.append(
+            (
+                f"<details id=\"{details_id}\" class=\"claim-details\">"
+                "<summary>Claim details</summary>"
+                "<ul class=\"claim-details-list\">"
+                + "".join(claim_link_rows)
+                + "</ul>"
+                "<noscript><ul class=\"claim-details-fallback\">"
+                + "".join(fallback_rows)
+                + "</ul></noscript>"
+                "</details>"
+            )
+        )
+    return "".join(details_rows)
 
 
 def _render_site_new_index(entries: list[tuple[str, str, str, str, str]]) -> str:

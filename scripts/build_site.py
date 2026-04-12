@@ -27,6 +27,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--registry-path", required=True)
     parser.add_argument("--workflow-key", default="build_site", choices=["build_site"])
     parser.add_argument("--incremental", action="store_true")
+    parser.add_argument(
+        "--site-presentation-mode",
+        default="public",
+        choices=["public", "debug"],
+    )
     parser.add_argument("space_name", nargs="?")
     parser.add_argument("--verbose", action="store_true")
     return parser
@@ -49,7 +54,11 @@ def main() -> int:
         lint_issue_rows: list[dict[str, object]] = []
         for space_name in space_targets:
             space_root = resolve_space_root(registry_path, space_name)
-            build = build_space_site(space_root, incremental=args.incremental)
+            build = build_space_site(
+                space_root,
+                incremental=args.incremental,
+                site_presentation_mode=args.site_presentation_mode,
+            )
             lint_summary = build.lint_summary
             lint_issue_rows.extend(
                 {
@@ -91,6 +100,7 @@ def main() -> int:
         "space_targets": space_targets,
         "semantic_flows_executed": [],
         "build_mode": "incremental" if args.incremental else "deterministic",
+        "site_presentation_mode": args.site_presentation_mode,
         "space_builds": builds,
         "lint": {
             "error_count": lint_error_count,

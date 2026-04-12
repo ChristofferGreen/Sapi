@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import tempfile
 import unittest
@@ -195,6 +196,133 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(issues[0]["severity"], "error")
             self.assertEqual(issues[0]["space_name"], "child")
 
+    def test_claim_reference_rendering_hides_raw_ids_from_sentence_and_keeps_clickable_audit_access(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            claim_id = "claim-finding--aaaaaaaaaaaa"
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-claims--aaaaaaaaaaaa",
+                title="Claim Rendering Topic",
+                source_ids=[],
+                sections=[
+                    {
+                        "heading": "Summary",
+                        "body": f"A factual sentence [[claims:{claim_id}]] with annotation.",
+                    }
+                ],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            topic_page_text = (space_root / "site" / "topics" / "topic-claims--aaaaaaaaaaaa.html").read_text()
+            self.assertNotIn("[[claims:", topic_page_text)
+            body_match = re.search(r"<p class=\"topic-section-body\">(.*?)</p>", topic_page_text)
+            self.assertIsNotNone(body_match)
+            assert body_match is not None
+            self.assertNotIn(claim_id, body_match.group(1))
+            self.assertIn("class=\"claim-details-link\"", topic_page_text)
+            self.assertIn("href=\"#claim-details-s1-a1\"", topic_page_text)
+            self.assertIn("id=\"claim-details-s1-a1\"", topic_page_text)
+
+    def test_claim_reference_rendering_includes_js_off_fallback_links(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            claim_id = "claim-fallback--bbbbbbbbbbbb"
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-fallback--bbbbbbbbbbbb",
+                title="Fallback Topic",
+                source_ids=[],
+                sections=[
+                    {
+                        "heading": "Summary",
+                        "body": f"Sentence [[claims:{claim_id}]].",
+                    }
+                ],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            topic_page_text = (space_root / "site" / "topics" / "topic-fallback--bbbbbbbbbbbb.html").read_text()
+            self.assertIn("<noscript><ul class=\"claim-details-fallback\">", topic_page_text)
+            self.assertIn(
+                f"<a href=\"../claims/{claim_id}.html\">Claim reference 1</a>",
+                topic_page_text,
+            )
+
+    def test_site_presentation_mode_public_hides_internal_metadata_and_debug_exposes_it(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            claim_id = "claim-debug--cccccccccccc"
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-debug--cccccccccccc",
+                title="Debug Topic",
+                source_ids=[],
+                sections=[
+                    {
+                        "heading": "Summary",
+                        "body": f"Sentence [[claims:{claim_id}]].",
+                    }
+                ],
+            )
+
+            public_result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(public_result.returncode, 0, msg=public_result.stderr)
+            public_page_text = (space_root / "site" / "topics" / "topic-debug--cccccccccccc.html").read_text()
+            self.assertNotIn("data-claim-id=", public_page_text)
+            self.assertNotIn(f">{claim_id}<", public_page_text)
+            public_manifest = json.loads((site_path / "outputs" / "build_site" / "manifest.json").read_text())
+            self.assertEqual(public_manifest["site_presentation_mode"], "public")
+
+            debug_result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--site-presentation-mode",
+                    "debug",
+                    "alpha",
+                ]
+            )
+            self.assertEqual(debug_result.returncode, 0, msg=debug_result.stderr)
+            debug_page_text = (space_root / "site" / "topics" / "topic-debug--cccccccccccc.html").read_text()
+            self.assertIn(f"data-claim-id=\"{claim_id}\"", debug_page_text)
+            self.assertIn(f">{claim_id}<", debug_page_text)
+            debug_manifest = json.loads((site_path / "outputs" / "build_site" / "manifest.json").read_text())
+            self.assertEqual(debug_manifest["site_presentation_mode"], "debug")
+
     def test_build_fails_fast_on_template_conversion_errors(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
@@ -335,13 +463,14 @@ class SiteBuilderContractTests(unittest.TestCase):
         topic_id: str,
         title: str,
         source_ids: list[str],
+        sections: list[dict[str, str]] | None = None,
         pinned_parent_ref: dict[str, str] | None = None,
     ) -> None:
         payload = {
             "topic_id": topic_id,
             "title": title,
             "structure_type": "wiki",
-            "sections": [{"heading": "Summary", "body": "Body"}],
+            "sections": sections if sections is not None else [{"heading": "Summary", "body": "Body"}],
             "claim_ids": [],
             "source_ids": source_ids,
         }
