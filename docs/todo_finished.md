@@ -79,3 +79,16 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     - No duplicate authority claims for the same contract.
     - Readers can locate authoritative contract text in under one minute.
   - evidence: Added `docs/contract_index.md`, linked it from `README.md`, and added `tests/unit/contracts/test_contract_index.py` to enforce one-table authority mapping with unique contract areas and explicit section pointers.
+
+- [x] TODO-0101: Add unresolved decisions table to the design docs
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Cross-cutting
+  - depends_on: TODO-0102
+  - scope: Add a compact decision register (decision, options, chosen status, owner, due date) in the docs.
+  - acceptance:
+    - Decision table exists in docs.
+    - Each unresolved decision has explicit owner and due date.
+    - Resolved decisions link to the final contract location.
+  - evidence: Added `### 1.3 Decision register` in `docs/design.md` with explicit owner/due-date columns and final-location links, plus `tests/unit/contracts/test_design_decision_register.py` to enforce unresolved owner/due-date and resolved contract-link requirements.

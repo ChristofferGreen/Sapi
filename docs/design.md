@@ -51,6 +51,17 @@ Change ownership guide:
 - update Section 8 for web/UI/rendering requirements.
 - update Section 10 for run output and lifecycle semantics.
 
+### 1.3 Decision register
+
+Use this table to track active architecture decisions without losing contract linkage.
+
+| Decision | Options considered | Status | Owner | Due date | Final contract location |
+| --- | --- | --- | --- | --- | --- |
+| Comment subsystem canonical namespace | `comment_section_*` vs `persona_comment_*` | resolved | ai | 2026-04-12 | [Section 7.6](/Users/chrgre01/src/Sapi/docs/design.md#76-comment-section-generation-and-rendering) |
+| Run-envelope semantic flow cardinality shape | ordered flow list only vs ordered list + invocation count map | resolved | ai | 2026-04-12 | [Section 10](/Users/chrgre01/src/Sapi/docs/design.md#10-run-status-and-output-envelopes) |
+| Compatibility reader sunset policy for legacy aliases | keep indefinitely vs phased deprecation removal | unresolved | human | 2026-05-15 | - |
+| Additional query modes in `evaluate_source.sh` default evaluation pack | strict-only default vs strict + exploratory + comparative default | unresolved | ai | 2026-05-20 | - |
+
 ## 2. Non-Negotiable Runtime Policy
 
 - production/operator semantic generation MUST be LLM-driven.
