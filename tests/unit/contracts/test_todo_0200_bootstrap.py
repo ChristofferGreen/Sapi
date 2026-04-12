@@ -78,6 +78,7 @@ class Todo0200BootstrapTests(unittest.TestCase):
     def test_readme_points_to_authoritative_docs_and_reconstruction_status(self) -> None:
         readme = (REPO_ROOT / "README.md").read_text()
         self.assertIn("This repository is in reconstruction mode", readme)
+        self.assertIn("docs/contract_index.md", readme)
         self.assertIn("docs/design.md", readme)
         self.assertIn("docs/low_level.md", readme)
         self.assertIn("docs/testing_plan.md", readme)

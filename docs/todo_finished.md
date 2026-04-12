@@ -92,3 +92,16 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     - Each unresolved decision has explicit owner and due date.
     - Resolved decisions link to the final contract location.
   - evidence: Added `### 1.3 Decision register` in `docs/design.md` with explicit owner/due-date columns and final-location links, plus `tests/unit/contracts/test_design_decision_register.py` to enforce unresolved owner/due-date and resolved contract-link requirements.
+
+- [x] TODO-0200: Repository skeleton and wrapper surface bootstrap
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: none
+  - scope: Recreate repository root skeleton, wrapper scripts, and baseline metadata files for reconstruction.
+  - acceptance:
+    - Root layout includes wrappers, docs, schemas, generation-spec dirs, tests, and runtime pin/lockfile constraints.
+    - Wrapper interface signatures match `design.md` Section 6.1.
+    - README points to authoritative docs and reconstruction status.
+  - evidence: Verified by `tests/unit/contracts/test_todo_0200_bootstrap.py` (root layout + wrapper usage contract + README authoritative docs), with README check updated to include `docs/contract_index.md`.
