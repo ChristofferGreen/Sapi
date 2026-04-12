@@ -19,7 +19,7 @@ class GuardrailIssue:
 
 
 _REGISTRY_FALLBACK_PATTERN = re.compile(r"(~\/\.sapi\/spaces\.toml|\.sapi\/spaces\.toml)")
-_QUERY_CANONICAL_SEGMENT_PATTERN = re.compile(
+_CANONICAL_KNOWLEDGE_SEGMENT_PATTERN = re.compile(
     r"""["'](?:sources|claims|relations|topics|profiles)(?:/|["'])"""
 )
 
@@ -66,6 +66,11 @@ _PIPELINE_CHECKLIST_REQUIRED_QUESTIONS: tuple[str, ...] = (
 _PIPELINE_CHECKLIST_DOCS_SYNC_ITEM = (
     "Docs Sync: Contract-level changes follow `design.md` -> `low_level.md` -> code/tests order"
 )
+_CANONICAL_SPACE_ROOT_HINT = "space_root"
+_INGEST_CANONICAL_WRITE_OWNERSHIP_PREFIXES: tuple[str, ...] = (
+    "sapi/ingest/",
+    "scripts/ingest_source.py",
+)
 
 
 def run_guardrail_checks(repo_root: Path) -> list[GuardrailIssue]:
@@ -75,6 +80,7 @@ def run_guardrail_checks(repo_root: Path) -> list[GuardrailIssue]:
     issues.extend(_check_registry_fallback_literals(repo_root))
     issues.extend(_check_env_flow_controls(repo_root))
     issues.extend(_check_semantic_contract_duplication(repo_root))
+    issues.extend(_check_canonical_mutation_ownership(repo_root))
     issues.extend(_check_query_canonical_mutation_patterns(repo_root))
     return sorted(
         issues,
@@ -252,7 +258,7 @@ def _check_query_canonical_mutation_patterns(repo_root: Path) -> list[GuardrailI
         if not any(token in text for token in _WRITE_INTENT_TOKENS):
             continue
         for line_no, line in enumerate(text.splitlines(), start=1):
-            if _QUERY_CANONICAL_SEGMENT_PATTERN.search(line):
+            if _CANONICAL_KNOWLEDGE_SEGMENT_PATTERN.search(line):
                 issues.append(
                     GuardrailIssue(
                         check_id="query_canonical_mutation",
@@ -260,6 +266,31 @@ def _check_query_canonical_mutation_patterns(repo_root: Path) -> list[GuardrailI
                         line=line_no,
                         message=(
                             "Query flow must not target canonical sources/claims/relations/topics/profiles paths."
+                        ),
+                    )
+                )
+    return issues
+
+
+def _check_canonical_mutation_ownership(repo_root: Path) -> list[GuardrailIssue]:
+    issues: list[GuardrailIssue] = []
+    for path in _iter_code_files(repo_root):
+        text = path.read_text()
+        if not any(token in text for token in _WRITE_INTENT_TOKENS):
+            continue
+        relpath = path.resolve().relative_to(repo_root.resolve()).as_posix()
+        if any(relpath.startswith(prefix) for prefix in _INGEST_CANONICAL_WRITE_OWNERSHIP_PREFIXES):
+            continue
+        for line_no, line in enumerate(text.splitlines(), start=1):
+            if _CANONICAL_KNOWLEDGE_SEGMENT_PATTERN.search(line) and _CANONICAL_SPACE_ROOT_HINT in line:
+                issues.append(
+                    GuardrailIssue(
+                        check_id="canonical_mutation_ownership",
+                        path=path,
+                        line=line_no,
+                        message=(
+                            "Canonical sources/claims/relations/topics/profiles mutations are ingest-owned "
+                            "and must not be written from non-ingest components."
                         ),
                     )
                 )

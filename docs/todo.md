@@ -53,19 +53,19 @@ Task template:
 
 1. `TODO-0245`
 2. `TODO-0244`
-3. `TODO-0242`
-4. `TODO-0253`
-5. `TODO-0252`
-6. `TODO-0257`
-7. `TODO-0234`
-8. `TODO-0233`
-9. `TODO-0266`
-10. `TODO-0223`
+3. `TODO-0253`
+4. `TODO-0252`
+5. `TODO-0257`
+6. `TODO-0234`
+7. `TODO-0233`
+8. `TODO-0266`
+9. `TODO-0223`
+10. `TODO-0247`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0252`, `TODO-0253`, `TODO-0257`
+- P1 Core product behavior: `TODO-0244`, `TODO-0245`, `TODO-0252`, `TODO-0253`, `TODO-0257`
 - P2 Social/eval/hardening: `TODO-0223` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0282`
 
@@ -78,7 +78,7 @@ Wave B (ingest + projection + lint):
 1. `TODO-0245` -> `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233`
 
 Wave C (query + social + hardening + release):
-1. `TODO-0242`
+1. (none currently)
 2. `TODO-0223` -> `TODO-0247` -> `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
 3. `TODO-0254` -> `TODO-0228` -> `TODO-0251` -> `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
@@ -92,7 +92,7 @@ Cross-cutting docs backlog:
 | Section 1 (scope/authority/reading) | `TODO-0282` |
 | Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0275` |
 | Section 3 (core concepts + identity invariants) | - |
-| Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
+| Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | - |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | - |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | - |
 | Section 7.1 ingest pipeline | - |
@@ -118,7 +118,7 @@ Cross-cutting docs backlog:
 | Section 5 (path + registry contracts) | - |
 | Section 6 (semantic execution engine + retry/repair) | - |
 | Section 7 (transaction/rollback) | - |
-| Section 8 (pipeline execution contracts) | `TODO-0275`, `TODO-0223`, `TODO-0224`, `TODO-0242` |
+| Section 8 (pipeline execution contracts) | `TODO-0275`, `TODO-0223`, `TODO-0224` |
 | Section 9 (deterministic build/projection) | `TODO-0275` |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
@@ -185,18 +185,6 @@ Cross-cutting docs backlog:
     - Verification step enforces no rollback/leak regressions and no deferred-build backlog before DoD.
     - `TODO-0231` cannot be marked complete while any exit-criteria gate fails.
   - notes: source `testing_plan.md` Section 6; `design.md` Sections 11, 13
-
-- [ ] TODO-0242: Enforce ingest/query capability ownership boundaries
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 4
-  - depends_on: TODO-0201, TODO-0211, TODO-0220
-  - scope: Encode capability boundaries so ingest owns canonical mutations and query remains read/synthesize-only.
-  - acceptance:
-    - Ingest-owned components are the only paths that mutate canonical `sources/claims/relations/topics/profiles`.
-    - Query pipeline cannot write canonical knowledge artifacts by contract and tests.
-    - Boundary violations fail CI through contract tests/static checks.
-  - notes: source `design.md` Section 4.4
 
 - [ ] TODO-0261: Enforce MVP Slice B exit gates before social/full hardening handoff
   - owner: ai

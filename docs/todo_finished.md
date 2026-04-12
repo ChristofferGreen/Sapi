@@ -955,3 +955,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     manifest-path and optional-field contract tests remain green in
     `tests/unit/query/test_query_result_shape_contract.py` and
     `tests/unit/query/test_query_artifact_modes_contract.py`.
+
+- [x] TODO-0242: Enforce ingest/query capability ownership boundaries
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 4
+  - depends_on: TODO-0201, TODO-0211, TODO-0220
+  - scope: Encode capability boundaries so ingest owns canonical mutations and query remains
+    read/synthesize-only.
+  - acceptance:
+    - Ingest-owned components are the only paths that mutate canonical
+      `sources/claims/relations/topics/profiles`.
+    - Query pipeline cannot write canonical knowledge artifacts by contract and tests.
+    - Boundary violations fail CI through contract tests/static checks.
+  - evidence: Added a canonical-mutation ownership guardrail in `sapi/lint/guardrails.py` that
+    flags non-ingest code paths writing canonical space artifacts (`sources/claims/relations/topics/
+    profiles`) while allowing ingest-owned write paths (`sapi/ingest/`, `scripts/ingest_source.py`).
+    Expanded `tests/unit/lint/test_guardrail_checks.py` to prove ownership violations fail guardrails,
+    ingest-owned canonical writes are allowed, and query canonical mutation patterns remain blocked.
+    Query non-mutation behavior remains enforced by
+    `tests/unit/query/test_query_pipeline_core_contract.py`, and guardrail failures are enforced by
+    the lint entrypoint (`scripts/lint.py`) during validation gates.

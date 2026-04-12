@@ -75,6 +75,47 @@ class GuardrailChecksTests(unittest.TestCase):
             )
             issues = run_guardrail_checks(root)
             self.assertTrue(any(issue.check_id == "query_canonical_mutation" for issue in issues))
+            self.assertTrue(
+                any(issue.check_id == "canonical_mutation_ownership" for issue in issues)
+            )
+
+    def test_guardrail_flags_non_ingest_canonical_mutation_ownership(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write(
+                root,
+                "sapi/build/bad_mutation.py",
+                """
+                from pathlib import Path
+
+                def mutate(space_root: Path) -> None:
+                    target = space_root / "topics/topic-a.json"
+                    target.write_text("{}")
+                """,
+            )
+            issues = run_guardrail_checks(root)
+            self.assertTrue(
+                any(issue.check_id == "canonical_mutation_ownership" for issue in issues)
+            )
+
+    def test_guardrail_allows_ingest_owned_canonical_mutation_write(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write(
+                root,
+                "sapi/ingest/allowed_mutation.py",
+                """
+                from pathlib import Path
+
+                def mutate(space_root: Path) -> None:
+                    target = space_root / "claims/claim-a.json"
+                    target.write_text("{}")
+                """,
+            )
+            issues = run_guardrail_checks(root)
+            self.assertFalse(
+                any(issue.check_id == "canonical_mutation_ownership" for issue in issues)
+            )
 
     def test_validate_entrypoint_reports_guardrail_failures_with_clear_message(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
