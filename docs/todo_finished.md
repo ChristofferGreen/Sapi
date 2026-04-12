@@ -4,6 +4,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0216: Deterministic projection/site builder and frontend toolchain reproducibility
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 3
+  - depends_on: TODO-0210, TODO-0212, TODO-0208
+  - scope: Implement deterministic HTML renderer, Tailwind build integration, and strict Node/package-manager reproducibility rules.
+  - acceptance:
+    - Build consumes canonical JSON only and never invokes LLM.
+    - Build fails on unresolved template/link/conversion errors.
+    - `package.json`, single lockfile, Node pin, and frozen install mode are enforced.
+  - evidence: Implemented canonical-JSON projection + deterministic HTML build pipeline in
+    `sapi/build/projection.py`, `sapi/build/site_builder.py`, and `scripts/build_site.py`,
+    including hard-fail validation for unresolved topic source links and malformed template/section
+    payloads; added frontend-toolchain reproducibility enforcement (declared `packageManager`,
+    single lockfile, node pin, and package-manager-specific frozen install command) with
+    build-manifest toolchain metadata; updated `package.json` to declare package-manager family;
+    and added `tests/unit/build/test_site_builder_contracts.py` plus wrapper contract adjustments
+    in `tests/unit/contracts/test_regenerate_web_wrapper_contract.py` proving deterministic output
+    and acceptance-criteria failure modes.
+
 - [x] TODO-0271: Enforce ingest comment-enrichment boundary contracts
   - owner: ai
   - created_at: 2026-04-12

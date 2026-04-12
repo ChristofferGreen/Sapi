@@ -24,7 +24,7 @@ class RegenerateWebWrapperContractTests(unittest.TestCase):
                 ]
             )
             self.assertEqual(result.returncode, 0, msg=result.stderr)
-            self.assertIn("scripts/build_site.py scaffold ready", result.stdout)
+            self.assertIn("scripts/build_site.py deterministic build complete", result.stdout)
             self.assertIn("workflow_key=build_site", result.stdout)
             self.assertIn(str(site_path / "spaces.toml"), result.stdout)
 
