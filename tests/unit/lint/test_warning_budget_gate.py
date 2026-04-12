@@ -68,6 +68,31 @@ class WarningBudgetGateTests(unittest.TestCase):
         self.assertFalse(query_gate.blocked)
         self.assertEqual(query_gate.status, "success")
 
+    def test_warning_threshold_boundary_applies_consistently_for_lint_gated_workflows(self) -> None:
+        at_threshold = LintSummary(error_count=0, warning_count=1, info_count=0)
+        over_threshold = LintSummary(error_count=0, warning_count=2, info_count=0)
+
+        for workflow in (
+            "ingest_source",
+            "create_comments",
+            "generate_profiles",
+            "rebuild_topic_collection",
+        ):
+            with self.subTest(workflow=workflow, case="at-threshold"):
+                gate = evaluate_lint_gate(workflow, at_threshold, warning_threshold=1)
+                self.assertFalse(gate.blocked)
+                self.assertEqual(gate.status, "success")
+            with self.subTest(workflow=workflow, case="over-threshold"):
+                gate = evaluate_lint_gate(workflow, over_threshold, warning_threshold=1)
+                self.assertFalse(gate.blocked)
+                self.assertEqual(gate.status, "success_with_warnings")
+
+    def test_query_workflow_remains_non_blocking_even_when_lint_counts_are_high(self) -> None:
+        noisy_summary = LintSummary(error_count=3, warning_count=99, info_count=0)
+        gate = evaluate_lint_gate("query", noisy_summary, warning_threshold=1)
+        self.assertFalse(gate.blocked)
+        self.assertEqual(gate.status, "success")
+
     def test_lint_artifact_writes_canonical_run_path(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "space-a"

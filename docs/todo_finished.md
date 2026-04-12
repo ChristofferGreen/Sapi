@@ -1659,3 +1659,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `tests/unit/query/test_query_mode_defaults_policy.py` so preflight behavior is owned by
     the dedicated module, and marked the Tier 1 query preflight checklist item complete in
     `docs/testing_plan.md`.
+
+- [x] TODO-0284: Close Tier 1 warning-budget checklist with boundary matrix tests
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0218
+  - scope: Finalize the Tier 1 warning-threshold checklist item by proving threshold-boundary
+    behavior across all lint-gated workflows and preserving query non-blocking semantics.
+  - acceptance:
+    - `tests/unit/lint/test_warning_budget_gate.py` includes explicit threshold-boundary checks
+      for lint-gated workflows.
+    - Test coverage confirms query remains non-blocking regardless of lint totals.
+    - `docs/testing_plan.md` marks the warning-threshold Tier 1 item complete.
+  - notes: source `docs/testing_plan.md` Tier 1; `docs/design.md` Section 5.8
+  - evidence: Extended `tests/unit/lint/test_warning_budget_gate.py` with
+    subtest-based threshold-boundary assertions for `ingest_source`, `create_comments`,
+    `generate_profiles`, and `rebuild_topic_collection` (`warning_count == threshold` =>
+    `success`; `warning_count > threshold` => `success_with_warnings`) and added an explicit
+    high-count query assertion proving non-blocking `success` status even with errors/warnings.
+    Updated `docs/testing_plan.md` to mark the Tier 1 warning-threshold checklist item complete.

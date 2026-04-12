@@ -77,7 +77,7 @@ tests/
   - Module: `tests/unit/semantic/test_spec_resolution.py`
 - [ ] Retry budget math and attempt counting (`max_repair_loops`, `max_attempts`, `llm_attempt_count`).
   - Module: `tests/unit/semantic/test_retry_budget.py`
-- [ ] Warning-threshold (`--warning-budget`) and status mapping behavior.
+- [x] Warning-threshold (`--warning-budget`) and status mapping behavior.
   - Module: `tests/unit/lint/test_warning_budget_gate.py`
 - [x] Query preflight mode checks (`strict + include-disputed` invalid).
   - Module: `tests/unit/query/test_query_mode_preflight.py`
