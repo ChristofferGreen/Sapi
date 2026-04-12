@@ -13,6 +13,7 @@ from sapi.contracts.ids import format_comment_no, make_comment_uid, slugify
 
 _TURN_POSITION_ARGUMENTATIVE = {"support", "challenge", "rebuttal", "synthesis"}
 _TURN_POSITION_SOCIAL = "social"
+_CLAIM_BADGE_ALLOWED_STATUSES = {"verified", "unverified", "disputed"}
 _CLAIM_ID_RE = re.compile(r"^claim-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$")
 _SOURCE_ID_RE = re.compile(r"^source-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$")
 _UNCLASSIFIED_FACTUAL_CLAIM_RE = re.compile(
@@ -40,7 +41,7 @@ def merge_comment_section(
         if _normalize_string(comment.get("comment_no")) is not None
         and _normalize_string(comment.get("comment_uid")) is not None
     }
-    existing_by_key: dict[tuple[str, str, str | None, str | None], dict[str, Any]] = {}
+    existing_by_key: dict[tuple[str, str, str | None, str | None, str | None], dict[str, Any]] = {}
     known_comment_uids: set[str] = set()
     merged_comments: list[dict[str, Any]] = []
     for comment in existing_comments:
@@ -50,6 +51,7 @@ def merge_comment_section(
             normalized["body"],
             normalized["parent_comment_uid"],
             _turn_key(normalized.get("turn")),
+            _claim_badges_key(normalized.get("claim_badges")),
         )
         existing_by_key[key] = normalized
         merged_comments.append(normalized)
@@ -70,6 +72,7 @@ def merge_comment_section(
             normalized["body"],
             parent_comment_uid,
             _turn_key(normalized.get("turn")),
+            _claim_badges_key(normalized.get("claim_badges")),
         )
         if key in existing_by_key:
             comment_uid = existing_by_key[key]["comment_uid"]
@@ -84,6 +87,11 @@ def merge_comment_section(
                     "body": normalized["body"],
                     "parent_comment_uid": parent_comment_uid,
                     **({"turn": normalized["turn"]} if normalized.get("turn") is not None else {}),
+                    **(
+                        {"claim_badges": normalized["claim_badges"]}
+                        if normalized.get("claim_badges")
+                        else {}
+                    ),
                 }
             )
             known_comment_uids.add(comment_uid)
@@ -145,6 +153,10 @@ def _normalize_existing_comment(
         raw_turn=raw_comment.get("turn"),
         field_name_prefix="existing comments[].",
     )
+    claim_badges = _normalize_claim_badges(
+        raw_comment.get("claim_badges"),
+        field_name_prefix="existing comments[].",
+    )
 
     parent_comment_uid = _normalize_parent_reference(
         raw_comment.get("parent_comment_uid"),
@@ -165,6 +177,10 @@ def _normalize_existing_comment(
         normalized["turn"] = turn
     elif "turn" in normalized:
         normalized.pop("turn", None)
+    if claim_badges:
+        normalized["claim_badges"] = claim_badges
+    elif "claim_badges" in normalized:
+        normalized.pop("claim_badges", None)
     return normalized
 
 
@@ -179,6 +195,10 @@ def _normalize_semantic_comment(raw_comment: dict[str, Any]) -> dict[str, Any]:
     )
     parent_ref = _normalize_string(raw_comment.get("parent_ref"))
     comment_ref = _normalize_string(raw_comment.get("comment_ref"))
+    claim_badges = _normalize_claim_badges(
+        raw_comment.get("claim_badges"),
+        field_name_prefix="comments[].",
+    )
     normalized: dict[str, Any] = {
         "persona_id": persona_id,
         "body": body,
@@ -187,6 +207,8 @@ def _normalize_semantic_comment(raw_comment: dict[str, Any]) -> dict[str, Any]:
     }
     if turn is not None:
         normalized["turn"] = turn
+    if claim_badges:
+        normalized["claim_badges"] = claim_badges
     return normalized
 
 
@@ -301,6 +323,17 @@ def _normalize_turn_payload(
         }
         if counter_claim_ids:
             normalized["counter_claim_ids"] = counter_claim_ids
+        if position == "rebuttal":
+            strongest_opposing_point_ack = _normalize_rebuttal_steelman_ack(
+                raw_turn,
+                field_name_prefix=field_name_prefix,
+            )
+            _validate_rebuttal_body_steelman_prefix(
+                body=body,
+                strongest_opposing_point_ack=strongest_opposing_point_ack,
+                field_name_prefix=field_name_prefix,
+            )
+            normalized["strongest_opposing_point_ack"] = strongest_opposing_point_ack
         return normalized
 
     if position == _TURN_POSITION_SOCIAL:
@@ -425,12 +458,102 @@ def _reject_unclassified_factual_claims_in_social_body(
         )
 
 
+def _normalize_rebuttal_steelman_ack(
+    raw_turn: dict[str, Any],
+    *,
+    field_name_prefix: str,
+) -> str:
+    primary_field = f"{field_name_prefix}turn.strongest_opposing_point_ack"
+    alias_field = f"{field_name_prefix}turn.steelman_before_rebuttal"
+    strongest_opposing_point_ack = _normalize_string(raw_turn.get("strongest_opposing_point_ack"))
+    steelman_alias = _normalize_string(raw_turn.get("steelman_before_rebuttal"))
+
+    if strongest_opposing_point_ack is None and steelman_alias is None:
+        raise ValueError(
+            f"{primary_field} is required for rebuttal turns."
+        )
+    if strongest_opposing_point_ack is not None and steelman_alias is not None:
+        if strongest_opposing_point_ack != steelman_alias:
+            raise ValueError(
+                f"{primary_field} must match {alias_field} when both are provided."
+            )
+        return strongest_opposing_point_ack
+    if strongest_opposing_point_ack is not None:
+        return strongest_opposing_point_ack
+    assert steelman_alias is not None
+    return steelman_alias
+
+
+def _validate_rebuttal_body_steelman_prefix(
+    *,
+    body: str,
+    strongest_opposing_point_ack: str,
+    field_name_prefix: str,
+) -> None:
+    body_normalized = " ".join(body.split()).strip().lower()
+    ack_normalized = " ".join(strongest_opposing_point_ack.split()).strip().lower()
+    if not body_normalized.startswith(ack_normalized):
+        raise ValueError(
+            f"{field_name_prefix}turn.strongest_opposing_point_ack must appear at the start of rebuttal body text."
+        )
+    if body_normalized == ack_normalized:
+        raise ValueError(
+            f"{field_name_prefix}body must include rebuttal text after strongest_opposing_point_ack."
+        )
+
+
+def _normalize_claim_badges(
+    raw_claim_badges: Any,
+    *,
+    field_name_prefix: str,
+) -> list[dict[str, Any]]:
+    if raw_claim_badges is None:
+        return []
+    if not isinstance(raw_claim_badges, list):
+        raise ValueError(f"{field_name_prefix}claim_badges must be an array when provided.")
+    normalized: list[dict[str, Any]] = []
+    for index, raw_badge in enumerate(raw_claim_badges):
+        field_base = f"{field_name_prefix}claim_badges[{index}]"
+        if not isinstance(raw_badge, dict):
+            raise ValueError(f"{field_base} must be an object.")
+        claim_id = _require_non_empty_string(raw_badge.get("claim_id"), f"{field_base}.claim_id")
+        if not _CLAIM_ID_RE.fullmatch(claim_id):
+            raise ValueError(f"{field_base}.claim_id contains invalid claim_id: {claim_id}")
+        raw_status = _normalize_string(raw_badge.get("status"))
+        if raw_status is None:
+            status = "unverified"
+        else:
+            candidate = raw_status.lower()
+            status = candidate if candidate in _CLAIM_BADGE_ALLOWED_STATUSES else "unverified"
+        confidence = _normalize_confidence(
+            raw_badge.get("confidence"),
+            field_name=f"{field_base}.confidence",
+            required=False,
+        )
+        normalized_badge: dict[str, Any] = {
+            "claim_id": claim_id,
+            "status": status,
+        }
+        if confidence is not None:
+            normalized_badge["confidence"] = confidence
+        normalized.append(normalized_badge)
+    return normalized
+
+
 def _turn_key(raw_turn: Any) -> str | None:
     if raw_turn is None:
         return None
     if not isinstance(raw_turn, dict):
         raise ValueError("turn payload must be a JSON object.")
     return json.dumps(raw_turn, sort_keys=True)
+
+
+def _claim_badges_key(raw_claim_badges: Any) -> str | None:
+    if raw_claim_badges is None:
+        return None
+    if not isinstance(raw_claim_badges, list):
+        raise ValueError("claim_badges payload must be an array when provided.")
+    return json.dumps(raw_claim_badges, sort_keys=True)
 
 
 def _resolve_parent_reference(

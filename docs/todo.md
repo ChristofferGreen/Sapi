@@ -53,20 +53,20 @@ Task template:
 
 1. `TODO-0266`
 2. `TODO-0275`
-3. `TODO-0258`
-4. `TODO-0248`
-5. `TODO-0249`
-6. `TODO-0250`
-7. `TODO-0225`
-8. `TODO-0224`
-9. `TODO-0256`
-10. `TODO-0229`
+3. `TODO-0248`
+4. `TODO-0249`
+5. `TODO-0250`
+6. `TODO-0225`
+7. `TODO-0224`
+8. `TODO-0256`
+9. `TODO-0229`
+10. `TODO-0230`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0224` to `TODO-0231`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
+- P2 Social/eval/hardening: `TODO-0224` to `TODO-0231`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0256`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -79,7 +79,7 @@ Wave B (ingest + projection + lint):
 
 Wave C (query + social + hardening + release):
 1. (none currently)
-2. `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
+2. `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
 3. `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
@@ -100,7 +100,7 @@ Cross-cutting docs backlog:
 | Section 7.3 query pipeline | - |
 | Section 7.4 persona catalog | - |
 | Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
-| Section 7.6 comments pipeline/rendering | `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
+| Section 7.6 comments pipeline/rendering | `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
 | Section 7.7 comment quality harness | `TODO-0225` |
 | Section 8 site/UI/static build | `TODO-0256` |
 | Section 9 observability/safety/runtime controls | - |
@@ -185,18 +185,6 @@ Cross-cutting docs backlog:
     - Checks run in CI or scripted local verification path with evidence artifacts.
     - Slice B cannot be marked complete while any gate remains open.
   - notes: source `design.md` Section 12.1
-
-- [ ] TODO-0258: Implement rebuttal-steelman and claim-badge rendering contracts for comments
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 5
-  - depends_on: TODO-0223, TODO-0247
-  - scope: Enforce rebuttal structure and claim-badge vocabulary rules in generated/normalized/rendered comments.
-  - acceptance:
-    - Rebuttal turns include strongest-opposing-point acknowledgment before rebuttal text.
-    - Claim-badge status vocabulary is constrained to contract values with deterministic fallback behavior.
-    - Rendering and validation tests cover badge/status consistency and rebuttal formatting.
-  - notes: source `design.md` Section 7.6
 
 - [ ] TODO-0256: Implement comment moderator/outcome blocks and deterministic social-vote rendering
   - owner: ai

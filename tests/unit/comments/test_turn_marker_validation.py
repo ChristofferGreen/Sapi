@@ -171,6 +171,112 @@ class TurnMarkerValidationUnitTests(unittest.TestCase):
         self.assertEqual(row["body"], "Friendly chat reply.")
         self.assertEqual(row["turn"], {"position": "social", "confidence": 0.33})
 
+    def test_rebuttal_turn_requires_steelman_ack_and_prefix_ordering(self) -> None:
+        with self.assertRaisesRegex(ValueError, "strongest_opposing_point_ack"):
+            merge_comment_section(
+                page_ref="topic:topic-alpha",
+                page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+                semantic_comments=[
+                    {
+                        "persona_id": "commenter-1",
+                        "body": (
+                            '<<turn:{"position":"rebuttal","claim_ids":["'
+                            + _VALID_CLAIM_ID
+                            + '"],"evidence_refs":["claim:'
+                            + _VALID_CLAIM_ID
+                            + '"],"confidence":0.71}>>'
+                            "I disagree because the evidence does not support that point."
+                        ),
+                    }
+                ],
+            )
+
+        with self.assertRaisesRegex(ValueError, "start of rebuttal body"):
+            merge_comment_section(
+                page_ref="topic:topic-alpha",
+                page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+                semantic_comments=[
+                    {
+                        "persona_id": "commenter-1",
+                        "body": (
+                            "I disagree because the evidence does not support that point. "
+                            "You correctly note that publication lag can distort counts."
+                        ),
+                        "turn": {
+                            "position": "rebuttal",
+                            "claim_ids": [_VALID_CLAIM_ID],
+                            "evidence_refs": [f"claim:{_VALID_CLAIM_ID}"],
+                            "confidence": 0.71,
+                            "strongest_opposing_point_ack": (
+                                "You correctly note that publication lag can distort counts."
+                            ),
+                        },
+                    }
+                ],
+            )
+
+        result = merge_comment_section(
+            page_ref="topic:topic-alpha",
+            page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+            semantic_comments=[
+                {
+                    "persona_id": "commenter-1",
+                    "body": (
+                        "You correctly note that publication lag can distort counts. "
+                        "I still disagree because the source shows the trend persisted after normalization."
+                    ),
+                    "turn": {
+                        "position": "rebuttal",
+                        "claim_ids": [_VALID_CLAIM_ID],
+                        "evidence_refs": [f"claim:{_VALID_CLAIM_ID}"],
+                        "confidence": 0.71,
+                        "strongest_opposing_point_ack": (
+                            "You correctly note that publication lag can distort counts."
+                        ),
+                    },
+                }
+            ],
+        )
+        self.assertEqual(result.comments_added, 1)
+        turn = result.merged_comments[0]["turn"]
+        self.assertEqual(turn["position"], "rebuttal")
+        self.assertEqual(
+            turn["strongest_opposing_point_ack"],
+            "You correctly note that publication lag can distort counts.",
+        )
+
+    def test_claim_badges_normalize_status_vocabulary_with_deterministic_fallback(self) -> None:
+        result = merge_comment_section(
+            page_ref="topic:topic-alpha",
+            page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+            semantic_comments=[
+                {
+                    "persona_id": "commenter-1",
+                    "body": "Claim badge normalization check.",
+                    "turn": {
+                        "position": "support",
+                        "claim_ids": [_VALID_CLAIM_ID],
+                        "evidence_refs": [f"claim:{_VALID_CLAIM_ID}"],
+                        "confidence": 0.66,
+                    },
+                    "claim_badges": [
+                        {"claim_id": _VALID_CLAIM_ID, "status": "verified", "confidence": 0.92},
+                        {"claim_id": _VALID_CLAIM_ID, "status": "needs-review"},
+                        {"claim_id": _VALID_CLAIM_ID},
+                    ],
+                }
+            ],
+        )
+        badges = result.merged_comments[0]["claim_badges"]
+        self.assertEqual(
+            badges,
+            [
+                {"claim_id": _VALID_CLAIM_ID, "status": "verified", "confidence": 0.92},
+                {"claim_id": _VALID_CLAIM_ID, "status": "unverified"},
+                {"claim_id": _VALID_CLAIM_ID, "status": "unverified"},
+            ],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

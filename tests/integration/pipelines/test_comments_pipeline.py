@@ -381,6 +381,133 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             self.assertIn("factual claim references", result.stderr)
             assert_no_run_containers(space_root)
 
+    def test_rebuttal_steelman_and_claim_badges_are_normalized_in_pipeline(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            topic_id = "topic-alpha"
+            rebuttal_ack = "You are right that early samples were noisy."
+            existing_uid = "comment-rebuttal--abcde12345"
+            (space_root / "topics" / f"{topic_id}.json").write_text(
+                json.dumps(
+                    {
+                        "topic_id": topic_id,
+                        "title": "Alpha",
+                        "comment_section": {
+                            "page_ref": f"topic:{topic_id}",
+                            "comments": [
+                                {
+                                    "comment_uid": existing_uid,
+                                    "persona_id": "commenter-1",
+                                    "body": (
+                                        '<<turn:{"position":"rebuttal","claim_ids":["'
+                                        + self._VALID_CLAIM_ID
+                                        + '"],"evidence_refs":["claim:'
+                                        + self._VALID_CLAIM_ID
+                                        + '"],"confidence":0.78,"strongest_opposing_point_ack":"'
+                                        + rebuttal_ack
+                                        + '"}>>'
+                                        + rebuttal_ack
+                                        + " I still disagree because later quarters show the same trend."
+                                    ),
+                                    "claim_badges": [
+                                        {"claim_id": self._VALID_CLAIM_ID, "status": "verified", "confidence": 0.91},
+                                        {"claim_id": self._VALID_CLAIM_ID, "status": "pending-review"},
+                                    ],
+                                    "comment_no": "pc-001",
+                                }
+                            ],
+                        },
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n"
+            )
+
+            result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "create_comments.py"),
+                    "alpha",
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--count",
+                    "5",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            topic_payload = json.loads((space_root / "topics" / f"{topic_id}.json").read_text())
+            rows = {
+                row["comment_uid"]: row
+                for row in topic_payload["comment_section"]["comments"]
+            }
+            rebuttal_row = rows[existing_uid]
+            self.assertEqual(rebuttal_row["turn"]["position"], "rebuttal")
+            self.assertEqual(rebuttal_row["turn"]["strongest_opposing_point_ack"], rebuttal_ack)
+            self.assertEqual(
+                rebuttal_row["claim_badges"],
+                [
+                    {"claim_id": self._VALID_CLAIM_ID, "status": "verified", "confidence": 0.91},
+                    {"claim_id": self._VALID_CLAIM_ID, "status": "unverified"},
+                ],
+            )
+
+    def test_rebuttal_without_steelman_ack_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            topic_id = "topic-alpha"
+            (space_root / "topics" / f"{topic_id}.json").write_text(
+                json.dumps(
+                    {
+                        "topic_id": topic_id,
+                        "title": "Alpha",
+                        "comment_section": {
+                            "page_ref": f"topic:{topic_id}",
+                            "comments": [
+                                {
+                                    "comment_uid": "comment-missing-steelman--abcde12345",
+                                    "persona_id": "commenter-1",
+                                    "body": (
+                                        '<<turn:{"position":"rebuttal","claim_ids":["'
+                                        + self._VALID_CLAIM_ID
+                                        + '"],"evidence_refs":["claim:'
+                                        + self._VALID_CLAIM_ID
+                                        + '"],"confidence":0.78}>>'
+                                        "I disagree with the conclusion."
+                                    ),
+                                    "comment_no": "pc-001",
+                                }
+                            ],
+                        },
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n"
+            )
+
+            result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "create_comments.py"),
+                    "alpha",
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--count",
+                    "5",
+                    "--mock-llm",
+                ]
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("strongest_opposing_point_ack", result.stderr)
+            assert_no_run_containers(space_root)
+
     def _write_topic(self, space_root: Path, *, topic_id: str, title: str) -> None:
         (space_root / "topics" / f"{topic_id}.json").write_text(
             json.dumps(

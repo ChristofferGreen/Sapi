@@ -4,6 +4,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0258: Implement rebuttal-steelman and claim-badge rendering contracts for comments
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 5
+  - depends_on: TODO-0223, TODO-0247
+  - scope: Enforce rebuttal structure and claim-badge vocabulary rules in generated/normalized/rendered comments.
+  - acceptance:
+    - Rebuttal turns include strongest-opposing-point acknowledgment before rebuttal text.
+    - Claim-badge status vocabulary is constrained to contract values with deterministic fallback behavior.
+    - Rendering and validation tests cover badge/status consistency and rebuttal formatting.
+  - notes: source `design.md` Section 7.6
+  - evidence: Extended `sapi/comments/merge_normalize.py` to require rebuttal turns to carry
+    `strongest_opposing_point_ack` (with compatibility alias `steelman_before_rebuttal`) and
+    validate that rebuttal body text starts with the acknowledgment before additional rebuttal
+    content. Added deterministic `claim_badges` normalization with status vocabulary enforcement
+    (`verified|unverified|disputed`) and fallback-to-`unverified` behavior for missing/unknown
+    statuses. Added coverage in `tests/unit/comments/test_turn_marker_validation.py` and
+    `tests/integration/pipelines/test_comments_pipeline.py` for rebuttal formatting validation,
+    claim-badge normalization consistency, and command-level failure semantics.
+
 - [x] TODO-0247: Implement comment turn-marker normalization and turn-schema validation
   - owner: ai
   - created_at: 2026-04-12
