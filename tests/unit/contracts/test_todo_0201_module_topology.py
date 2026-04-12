@@ -97,6 +97,16 @@ class Todo0201ModuleTopologyTests(unittest.TestCase):
 
         scripts_init = (REPO_ROOT / "scripts/__init__.py").read_text()
         self.assertIn("Wrapper-target entrypoints", scripts_init)
+        for mapping in [
+            "ingest.sh -> scripts/ingest_source.py",
+            "query.sh -> scripts/query.py",
+            "create_comments.sh -> scripts/create_comments.py",
+            "generate_profiles.sh -> scripts/generate_profiles.py",
+            "regenerate_web.sh -> scripts/build_site.py",
+            "validate.sh -> scripts/lint.py",
+            "evaluate_source.sh -> scripts/evaluate_source.py",
+        ]:
+            self.assertIn(mapping, scripts_init)
 
 
 if __name__ == "__main__":

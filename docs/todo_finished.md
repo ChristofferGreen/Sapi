@@ -105,3 +105,16 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     - Wrapper interface signatures match `design.md` Section 6.1.
     - README points to authoritative docs and reconstruction status.
   - evidence: Verified by `tests/unit/contracts/test_todo_0200_bootstrap.py` (root layout + wrapper usage contract + README authoritative docs), with README check updated to include `docs/contract_index.md`.
+
+- [x] TODO-0201: Recreate canonical package/module topology
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0200
+  - scope: Scaffold `sapi/` and `scripts/` to authoritative low-level topology before implementing behavior.
+  - acceptance:
+    - Package/module paths match `docs/low_level.md` Section 3.
+    - Wrapper-target script files exist with stub entrypoints.
+    - Module boundaries are documented in package `__init__` or equivalent.
+  - evidence: Verified by `tests/unit/contracts/test_todo_0201_module_topology.py`, including package/module existence, wrapper-target script stub entrypoints, and explicit wrapper-target mapping documentation in `scripts/__init__.py`.

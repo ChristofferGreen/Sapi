@@ -47,27 +47,27 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0201` Recreate canonical package/module topology
-2. `TODO-0207` Registry path resolution and targeting contract enforcement
+1. `TODO-0207` Registry path resolution and targeting contract enforcement
+2. `TODO-0208` Canonical ID/time/path contract helpers
 3. `TODO-0202` Create v1 generation-spec and JSON schema inventory
 4. `TODO-0100` Capture incoming design recommendations into structured tasks
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0201`
-2. `TODO-0207`
-3. `TODO-0208`
-4. `TODO-0202`
-5. `TODO-0203`
-6. `TODO-0204`
-7. `TODO-0205`
-8. `TODO-0206`
-9. `TODO-0262`
-10. `TODO-0269`
+1. `TODO-0207`
+2. `TODO-0208`
+3. `TODO-0202`
+4. `TODO-0203`
+5. `TODO-0204`
+6. `TODO-0205`
+7. `TODO-0206`
+8. `TODO-0262`
+9. `TODO-0269`
+10. `TODO-0209`
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: `TODO-0201` to `TODO-0209`, `TODO-0235`, `TODO-0236`, `TODO-0238`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0262`, `TODO-0269`, `TODO-0272`
+- P0 Foundation/contracts: `TODO-0202` to `TODO-0209`, `TODO-0235`, `TODO-0236`, `TODO-0238`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0262`, `TODO-0269`, `TODO-0272`
 - P1 Core product behavior: `TODO-0210` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0100`, `TODO-0264`, `TODO-0265`
@@ -75,7 +75,7 @@ Task template:
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. `TODO-0201` -> `TODO-0207` -> `TODO-0208`
+1. `TODO-0207` -> `TODO-0208`
 2. `TODO-0202` -> `TODO-0203` -> `TODO-0204` -> `TODO-0205` -> `TODO-0206` -> `TODO-0262` -> `TODO-0269`
 3. `TODO-0209` -> `TODO-0236` -> `TODO-0235` -> `TODO-0240`
 4. `TODO-0238` -> `TODO-0272`
@@ -101,7 +101,7 @@ Cross-cutting docs backlog:
 | Section 1 (scope/authority/reading) | `TODO-0243`, `TODO-0100` |
 | Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0240`, `TODO-0204`, `TODO-0214`, `TODO-0205`, `TODO-0246`, `TODO-0272`, `TODO-0275` |
 | Section 3 (core concepts + identity invariants) | `TODO-0239` |
-| Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0201`, `TODO-0202`, `TODO-0203`, `TODO-0238`, `TODO-0242` |
+| Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0202`, `TODO-0203`, `TODO-0238`, `TODO-0242` |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | `TODO-0208`, `TODO-0241`, `TODO-0207`, `TODO-0236`, `TODO-0237`, `TODO-0218` |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | `TODO-0235`, `TODO-0219`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
 | Section 7.1 ingest pipeline | `TODO-0210`, `TODO-0211`, `TODO-0212`, `TODO-0213`, `TODO-0214`, `TODO-0270`, `TODO-0271`, `TODO-0272`, `TODO-0278` |
@@ -1063,18 +1063,6 @@ Cross-cutting docs backlog:
     - Each spec has required machine-readable header fields.
     - Each schema enforces top-level object constraints and required keys.
   - notes: source `design.md` Section 4.1.4
-
-- [ ] TODO-0201: Recreate canonical package/module topology
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 1
-  - depends_on: TODO-0200
-  - scope: Scaffold `sapi/` and `scripts/` to authoritative low-level topology before implementing behavior.
-  - acceptance:
-    - Package/module paths match `docs/low_level.md` Section 3.
-    - Wrapper-target script files exist with stub entrypoints.
-    - Module boundaries are documented in package `__init__` or equivalent.
-  - notes: source `low_level.md` Section 3
 
 - [ ] TODO-0100: Capture incoming design recommendations into structured tasks
   - owner: ai
