@@ -51,20 +51,20 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0236`
-2. `TODO-0235`
-3. `TODO-0240`
-4. `TODO-0241`
-5. `TODO-0239`
-6. `TODO-0272`
-7. `TODO-0210`
-8. `TODO-0211`
-9. `TODO-0213`
-10. `TODO-0212`
+1. `TODO-0235`
+2. `TODO-0240`
+3. `TODO-0241`
+4. `TODO-0239`
+5. `TODO-0272`
+6. `TODO-0210`
+7. `TODO-0211`
+8. `TODO-0213`
+9. `TODO-0212`
+10. `TODO-0214`
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: `TODO-0235`, `TODO-0236`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0272`
+- P0 Foundation/contracts: `TODO-0235`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0272`
 - P1 Core product behavior: `TODO-0210` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0100`, `TODO-0264`, `TODO-0265`
@@ -72,7 +72,7 @@ Task template:
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. `TODO-0236` -> `TODO-0235` -> `TODO-0240`
+1. `TODO-0235` -> `TODO-0240`
 2. `TODO-0272`
 
 Wave B (ingest + projection + lint):
@@ -97,7 +97,7 @@ Cross-cutting docs backlog:
 | Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0240`, `TODO-0214`, `TODO-0246`, `TODO-0272`, `TODO-0275` |
 | Section 3 (core concepts + identity invariants) | `TODO-0239` |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
-| Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | `TODO-0241`, `TODO-0236`, `TODO-0237`, `TODO-0218` |
+| Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | `TODO-0241`, `TODO-0237`, `TODO-0218` |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | `TODO-0235`, `TODO-0219`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
 | Section 7.1 ingest pipeline | `TODO-0210`, `TODO-0211`, `TODO-0212`, `TODO-0213`, `TODO-0214`, `TODO-0270`, `TODO-0271`, `TODO-0272`, `TODO-0278` |
 | Section 7.2 references/linking | `TODO-0215` |
@@ -599,18 +599,6 @@ Cross-cutting docs backlog:
     - Unknown/unavailable citation values use specified defaults.
     - Schema and writer validation reject out-of-contract values.
   - notes: source `design.md` Section 5.6
-
-- [ ] TODO-0236: Implement site/scope/subspace metadata contracts
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 1
-  - depends_on: TODO-0209
-  - scope: Implement `site.json` and `subspaces.json` contracts including validation and resolution rules.
-  - acceptance:
-    - Site scope contract (`site_scope_v1`) is validated and written at canonical site path.
-    - Subspace metadata contract (`space_subspaces_v1`) validates duplicates, nesting rules, and root existence.
-    - Compatibility-only read paths are supported only where explicitly allowed.
-  - notes: source `design.md` Sections 5.7, 8
 
 - [ ] TODO-0235: Implement wrapper normalization and compatibility-alias handling
   - owner: ai

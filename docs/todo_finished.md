@@ -280,3 +280,20 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     coverage across all committed flows, semantic-flow key/order/count invariants (duplicate/missing/
     extra/unknown/non-positive cases), RFC3339 UTC timestamp validation for `started_at` and
     `completed_at`, and consistent integer lint-total policy checks for no-lint/no-build flows.
+
+- [x] TODO-0236: Implement site/scope/subspace metadata contracts
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0209
+  - scope: Implement `site.json` and `subspaces.json` contracts including validation and resolution rules.
+  - acceptance:
+    - Site scope contract (`site_scope_v1`) is validated and written at canonical site path.
+    - Subspace metadata contract (`space_subspaces_v1`) validates duplicates, nesting rules, and root existence.
+    - Compatibility-only read paths are supported only where explicitly allowed.
+  - evidence: Verified by `tests/unit/core/test_site_scope_contracts.py`, including canonical
+    `<site_path>/site.json` writes with validated relative `site_root` resolution semantics,
+    write-time failure for invalid/missing `site_root`, subspace duplicate/nesting/missing-root
+    validation checks for `space_subspaces_v1`, and explicit opt-in gating for compatibility
+    legacy reads from `<space_root>/site.json`.

@@ -20,17 +20,26 @@ class SiteScopeContractTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             site_path = Path(tmp) / "site-a"
             site_path.mkdir(parents=True)
+            (site_path / "space-root").mkdir(parents=True)
 
-            path = write_site_scope(site_path=site_path, site_name="My Site", site_root=".")
+            path = write_site_scope(site_path=site_path, site_name="My Site", site_root="space-root")
             self.assertEqual(path, site_path / "site.json")
             data = json.loads(path.read_text())
             self.assertEqual(data["schema_version"], SITE_SCOPE_SCHEMA_VERSION)
             self.assertEqual(data["site_name"], "My Site")
-            self.assertEqual(data["site_root"], ".")
+            self.assertEqual(data["site_root"], "space-root")
 
             loaded = load_site_scope(site_path=site_path)
             self.assertEqual(loaded.schema_version, SITE_SCOPE_SCHEMA_VERSION)
             self.assertEqual(loaded.site_name, "My Site")
+            self.assertEqual(loaded.site_root, "space-root")
+
+    def test_site_scope_write_fails_when_site_root_resolution_is_invalid(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            site_path = Path(tmp) / "site-a"
+            site_path.mkdir(parents=True)
+            with self.assertRaises(ValueError):
+                write_site_scope(site_path=site_path, site_name="My Site", site_root="missing-root")
 
     def test_subspace_metadata_contract_validates_duplicates_nesting_and_root_existence(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

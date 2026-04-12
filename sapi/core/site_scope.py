@@ -56,6 +56,9 @@ def write_site_scope(
         _require_non_empty(site_base_url, "site_base_url")
         payload["site_base_url"] = site_base_url
 
+    # Enforce contract validation at write time, including site_root resolution rules.
+    validate_site_scope_document(payload, site_path=site_path)
+
     site_json_path = site_path / "site.json"
     site_json_path.parent.mkdir(parents=True, exist_ok=True)
     site_json_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
