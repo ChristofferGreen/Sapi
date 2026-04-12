@@ -196,3 +196,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     - Any `.skill` and generation-spec disagreement resolves in favor of generation spec.
     - Deterministic render/build logic never redefines semantic schemas outside spec/schema files.
   - evidence: Verified by `tests/unit/semantic/test_prompt_asset_precedence.py`, including authoritative contract resolution without skill text, explicit conflict-field diagnostics for `.skill` disagreements, and deterministic schema-override rejection in both contract and invocation-resolution paths.
+
+- [x] TODO-0204: Shared semantic executor with repair-loop retry policy
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0202, TODO-0203
+  - scope: Implement one semantic executor for all flows using strict schema validation and repair retries.
+  - acceptance:
+    - `max_repair_loops=3`, `max_attempts=4` behavior is enforced.
+    - Repair attempts include prior invalid JSON + machine-readable validation errors + schema.
+    - Invalid outputs are never committed as canonical artifacts.
+  - evidence: Verified by `tests/unit/semantic/test_retry_budget.py`, with explicit default budget checks
+    (`DEFAULT_MAX_REPAIR_LOOPS=3`, `DEFAULT_MAX_ATTEMPTS=4`), repair-context assertions
+    (invalid JSON + machine-readable validation errors + schema), and overwrite protection proving
+    invalid outputs do not replace existing canonical artifacts.

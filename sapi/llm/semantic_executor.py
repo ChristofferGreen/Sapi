@@ -15,6 +15,10 @@ from sapi.contracts.semantic_specs import (
 from sapi.llm.client import LlmClient, SemanticLlmRequest, SemanticRepairContext
 
 
+DEFAULT_MAX_REPAIR_LOOPS = 3
+DEFAULT_MAX_ATTEMPTS = 1 + DEFAULT_MAX_REPAIR_LOOPS
+
+
 @dataclass(frozen=True)
 class SemanticSpec:
     """Runtime semantic flow invocation contract."""
@@ -87,14 +91,11 @@ def run_semantic_flow(
     *,
     spec: SemanticSpec,
     llm_client: LlmClient,
-    max_repair_loops: int = 3,
+    max_repair_loops: int = DEFAULT_MAX_REPAIR_LOOPS,
     trace_ctx: TraceContext | None = None,
 ) -> tuple[dict[str, Any], int]:
     """Run one semantic flow with strict schema validation and repair retries."""
-    if max_repair_loops < 0:
-        raise ValueError("max_repair_loops must be >= 0")
-
-    max_attempts = 1 + max_repair_loops
+    max_attempts = max_attempts_from_repair_loops(max_repair_loops)
     schema = load_json_schema(spec.schema_path)
     spec_text = spec.spec_path.read_text() if spec.spec_path is not None else ""
     context_by_path = _gather_context_by_path(spec.context_paths)
@@ -141,6 +142,13 @@ def run_semantic_flow(
         )
 
     raise AssertionError("Unreachable attempt loop termination.")
+
+
+def max_attempts_from_repair_loops(max_repair_loops: int) -> int:
+    """Translate repair-loop budget to total attempt budget."""
+    if max_repair_loops < 0:
+        raise ValueError("max_repair_loops must be >= 0")
+    return 1 + max_repair_loops
 
 
 def _gather_context_by_path(context_paths: list[Path]) -> dict[str, str]:

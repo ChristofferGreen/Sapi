@@ -51,20 +51,20 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0204`
-2. `TODO-0205`
-3. `TODO-0206`
-4. `TODO-0262`
-5. `TODO-0269`
-6. `TODO-0236`
-7. `TODO-0235`
-8. `TODO-0240`
-9. `TODO-0241`
-10. `TODO-0239`
+1. `TODO-0205`
+2. `TODO-0206`
+3. `TODO-0262`
+4. `TODO-0269`
+5. `TODO-0236`
+6. `TODO-0235`
+7. `TODO-0240`
+8. `TODO-0241`
+9. `TODO-0239`
+10. `TODO-0272`
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: `TODO-0204` to `TODO-0206`, `TODO-0235`, `TODO-0236`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0262`, `TODO-0269`, `TODO-0272`
+- P0 Foundation/contracts: `TODO-0205` to `TODO-0206`, `TODO-0235`, `TODO-0236`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0262`, `TODO-0269`, `TODO-0272`
 - P1 Core product behavior: `TODO-0210` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0100`, `TODO-0264`, `TODO-0265`
@@ -72,7 +72,7 @@ Task template:
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. `TODO-0204` -> `TODO-0205` -> `TODO-0206` -> `TODO-0262` -> `TODO-0269`
+1. `TODO-0205` -> `TODO-0206` -> `TODO-0262` -> `TODO-0269`
 2. `TODO-0236` -> `TODO-0235` -> `TODO-0240`
 3. `TODO-0272`
 
@@ -95,7 +95,7 @@ Cross-cutting docs backlog:
 | Design area | Primary TODO IDs |
 | --- | --- |
 | Section 1 (scope/authority/reading) | `TODO-0243`, `TODO-0100` |
-| Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0240`, `TODO-0204`, `TODO-0214`, `TODO-0205`, `TODO-0246`, `TODO-0272`, `TODO-0275` |
+| Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0240`, `TODO-0214`, `TODO-0205`, `TODO-0246`, `TODO-0272`, `TODO-0275` |
 | Section 3 (core concepts + identity invariants) | `TODO-0239` |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | `TODO-0241`, `TODO-0236`, `TODO-0237`, `TODO-0218` |
@@ -121,7 +121,7 @@ Cross-cutting docs backlog:
 | Section 2 (runtime model and flow namespaces) | `TODO-0206`, `TODO-0214`, `TODO-0262`, `TODO-0269` |
 | Section 4 (core data types/run envelope types) | `TODO-0239`, `TODO-0206`, `TODO-0262`, `TODO-0269` |
 | Section 5 (path + registry contracts) | `TODO-0241` |
-| Section 6 (semantic execution engine + retry/repair) | `TODO-0204`, `TODO-0272` |
+| Section 6 (semantic execution engine + retry/repair) | `TODO-0272` |
 | Section 7 (transaction/rollback) | `TODO-0205`, `TODO-0214` |
 | Section 8 (pipeline execution contracts) | `TODO-0210`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0278`, `TODO-0220`, `TODO-0223`, `TODO-0224`, `TODO-0242`, `TODO-0262`, `TODO-0269` |
 | Section 9 (deterministic build/projection) | `TODO-0216`, `TODO-0217`, `TODO-0246`, `TODO-0275` |
@@ -975,18 +975,6 @@ Cross-cutting docs backlog:
     - Ingest `--force` failures may preserve artifacts and committed failure run envelope.
     - Rollback coverage includes canonical + derived + invocation run/lint artifacts.
   - notes: source `design.md` Section 2.1
-
-- [ ] TODO-0204: Shared semantic executor with repair-loop retry policy
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 1
-  - depends_on: TODO-0202, TODO-0203
-  - scope: Implement one semantic executor for all flows using strict schema validation and repair retries.
-  - acceptance:
-    - `max_repair_loops=3`, `max_attempts=4` behavior is enforced.
-    - Repair attempts include prior invalid JSON + machine-readable validation errors + schema.
-    - Invalid outputs are never committed as canonical artifacts.
-  - notes: source `design.md` Sections 2.1, 4.1.3
 
 - [ ] TODO-0100: Capture incoming design recommendations into structured tasks
   - owner: ai

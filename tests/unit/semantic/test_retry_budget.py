@@ -6,7 +6,14 @@ import unittest
 from pathlib import Path
 
 from sapi.llm.client import SemanticLlmRequest
-from sapi.llm.semantic_executor import SemanticFlowError, SemanticSpec, run_semantic_flow
+from sapi.llm.semantic_executor import (
+    DEFAULT_MAX_ATTEMPTS,
+    DEFAULT_MAX_REPAIR_LOOPS,
+    SemanticFlowError,
+    SemanticSpec,
+    max_attempts_from_repair_loops,
+    run_semantic_flow,
+)
 
 
 class _FakeLlmClient:
@@ -35,10 +42,20 @@ class RetryBudgetTests(unittest.TestCase):
                 run_semantic_flow(spec=spec, llm_client=client)
 
             error = raised.exception
-            self.assertEqual(client.call_count, 4)
-            self.assertEqual(error.attempt_count, 4)
-            self.assertEqual(error.max_attempts, 4)
+            self.assertEqual(DEFAULT_MAX_REPAIR_LOOPS, 3)
+            self.assertEqual(DEFAULT_MAX_ATTEMPTS, 4)
+            self.assertEqual(client.call_count, DEFAULT_MAX_ATTEMPTS)
+            self.assertEqual(error.attempt_count, DEFAULT_MAX_ATTEMPTS)
+            self.assertEqual(error.max_attempts, DEFAULT_MAX_ATTEMPTS)
             self.assertFalse(output_path.exists())
+
+    def test_attempt_budget_helper_uses_initial_attempt_plus_repairs(self) -> None:
+        self.assertEqual(max_attempts_from_repair_loops(0), 1)
+        self.assertEqual(max_attempts_from_repair_loops(DEFAULT_MAX_REPAIR_LOOPS), DEFAULT_MAX_ATTEMPTS)
+
+    def test_attempt_budget_helper_rejects_negative_repair_loops(self) -> None:
+        with self.assertRaises(ValueError):
+            max_attempts_from_repair_loops(-1)
 
     def test_repair_attempt_receives_invalid_json_validation_errors_and_schema(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
