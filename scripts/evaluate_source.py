@@ -124,6 +124,9 @@ def main() -> int:
             ],
             step_name="query_strict",
         )
+        query_run_id = _extract_run_id(query_result.stdout)
+        if query_run_id is None:
+            raise RuntimeError("Unable to resolve query run_id from query output.")
 
         comments_result: StepResult | None = None
         comments_effective: dict[str, object] | None = None
@@ -256,6 +259,7 @@ def main() -> int:
             source_path_or_url=args.source_path_or_url,
             space_name=args.space_name,
             ingest_run_id=ingest_run_id,
+            query_run_id=query_run_id,
             lint_envelope=lint_envelope,
             artifact_paths=artifact_paths,
             supporting_paths=copied_supporting_paths,
@@ -704,6 +708,7 @@ def _build_manifest(
     source_path_or_url: str,
     space_name: str,
     ingest_run_id: str,
+    query_run_id: str,
     lint_envelope: dict[str, object],
     artifact_paths: list[Path],
     supporting_paths: list[Path],
@@ -736,7 +741,7 @@ def _build_manifest(
         "output_dir": str(output_dir),
         "run_ids": {
             "ingest": ingest_run_id,
-            "query": None,
+            "query": query_run_id,
             "comments": None,
         },
         "workflow_statuses": statuses,

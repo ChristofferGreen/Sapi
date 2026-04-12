@@ -107,7 +107,7 @@ tests/
   - Module: `tests/integration/pipelines/test_comments_pipeline.py`
 - [x] Profiles flow writes profile JSON + history + run/lint metadata.
   - Module: `tests/integration/pipelines/test_profiles_pipeline.py`
-- [ ] `evaluate_source.sh` default run emits required markdown artifact pack + manifest linkage.
+- [x] `evaluate_source.sh` default run emits required markdown artifact pack + manifest linkage.
   - Module: `tests/integration/wrappers/test_evaluate_source_harness.py`
 - [ ] `evaluate_source.sh --comments <n>` emits `comments_review.md`; invalid comments args fail fast with clear errors.
   - Module: `tests/integration/wrappers/test_evaluate_source_harness.py`

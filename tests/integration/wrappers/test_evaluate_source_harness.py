@@ -54,9 +54,11 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             run_ids = manifest.get("run_ids")
             self.assertIsInstance(run_ids, dict)
             ingest_run_id = run_ids.get("ingest")
+            query_run_id = run_ids.get("query")
             self.assertIsInstance(ingest_run_id, str)
+            self.assertIsInstance(query_run_id, str)
             self.assertTrue((space_root / "runs" / ingest_run_id).is_dir())
-            self.assertIsNone(run_ids.get("query"))
+            self.assertTrue((space_root / "runs" / query_run_id).is_dir())
             self.assertIsNone(run_ids.get("comments"))
 
             markdown_artifacts = set(manifest.get("markdown_artifacts", []))

@@ -1996,3 +1996,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     tests in the same module continue to enforce count bounds, merge stability for
     `comment_uid`, and web-augmented snapshot path/schema behavior. Updated
     `docs/testing_plan.md` to mark the Tier 3 comments item complete.
+
+- [x] TODO-0299: Close Tier 3 evaluate_source default artifact-pack checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 4
+  - depends_on: TODO-0273
+  - scope: Finalize Tier 3 default `evaluate_source.sh` evidence by ensuring manifest linkage
+    includes strict-query run metadata in addition to ingest linkage for the default pack flow.
+  - acceptance:
+    - `tests/integration/wrappers/test_evaluate_source_harness.py` verifies default run emits
+      required markdown artifact pack and manifest linkage.
+    - Manifest linkage includes committed ingest and query run IDs for the default flow.
+    - `docs/testing_plan.md` marks the Tier 3 default evaluate_source checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 3; `docs/design.md` Sections 7.3, 10
+  - evidence: Updated `scripts/evaluate_source.py` to capture strict-query `run_id` from query
+    output and persist it to manifest `run_ids.query`. Extended default harness integration
+    assertions in `tests/integration/wrappers/test_evaluate_source_harness.py` to require both
+    ingest and query run IDs resolve to committed run containers. Updated
+    `docs/testing_plan.md` to mark the default evaluate_source checklist item complete.
