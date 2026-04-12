@@ -53,6 +53,28 @@ space_root = "spaces/alpha"
             resolved = resolve_space_root(registry_path, "alpha")
             self.assertEqual(resolved, (registry_dir / "spaces/alpha").resolve())
 
+    def test_relative_registry_path_resolves_against_cwd_without_home_fallback(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            cwd = tmp_path / "workspace"
+            cwd.mkdir(parents=True)
+            registry_path = cwd / "spaces.toml"
+            registry_path.write_text(
+                """
+[[spaces]]
+space_name = "alpha"
+space_root = "spaces/alpha"
+""".strip()
+            )
+
+            old_cwd = Path.cwd()
+            try:
+                os.chdir(cwd)
+                resolved = resolve_registry_path("spaces.toml")
+                self.assertEqual(resolved, registry_path.resolve())
+            finally:
+                os.chdir(old_cwd)
+
     def test_no_fallback_or_merge_with_home_registry(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)

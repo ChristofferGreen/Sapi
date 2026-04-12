@@ -1747,3 +1747,26 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `attempt_count` equals the configured total-attempt budget used by pipeline-level
     `llm_attempt_count` aggregation. Updated `docs/testing_plan.md` to mark the Tier 1
     retry-budget checklist item complete.
+
+- [x] TODO-0288: Close Tier 1 registry-path checklist with explicit relative-path resolution test
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 1
+  - depends_on: TODO-0205
+  - scope: Finalize Tier 1 registry-path checklist evidence with an explicit test for resolving
+    relative `--registry-path` arguments against the current working directory while preserving
+    the no-home-fallback contract.
+  - acceptance:
+    - `tests/unit/contracts/test_registry_paths.py` covers relative registry-path resolution.
+    - Existing coverage for relative `space_root` resolution and no implicit home fallback
+      remains green.
+    - `docs/testing_plan.md` marks the Tier 1 registry-path checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 1; `docs/design.md` Section 5.5
+  - evidence: Added
+    `test_relative_registry_path_resolves_against_cwd_without_home_fallback` to
+    `tests/unit/contracts/test_registry_paths.py`, asserting `resolve_registry_path("spaces.toml")`
+    resolves to an absolute path under the active working directory. Existing no-fallback tests
+    continue to validate that missing explicit registry paths fail and `~/.sapi/spaces.toml`
+    is not used implicitly. Updated `docs/testing_plan.md` to mark the Tier 1 registry-path
+    checklist item complete.
