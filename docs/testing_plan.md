@@ -81,7 +81,7 @@ tests/
   - Module: `tests/unit/lint/test_warning_budget_gate.py`
 - [x] Query preflight mode checks (`strict + include-disputed` invalid).
   - Module: `tests/unit/query/test_query_mode_preflight.py`
-- [ ] Run-envelope semantic flow cardinality (`semantic_flows` ordered-unique + `semantic_flow_invocation_counts` consistency).
+- [x] Run-envelope semantic flow cardinality (`semantic_flows` ordered-unique + `semantic_flow_invocation_counts` consistency).
   - Module: `tests/unit/contracts/test_run_envelope_semantic_flows.py`
 
 ### Tier 2: Failure-Semantics Integration Tests

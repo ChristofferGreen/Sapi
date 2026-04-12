@@ -1680,3 +1680,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `success`; `warning_count > threshold` => `success_with_warnings`) and added an explicit
     high-count query assertion proving non-blocking `success` status even with errors/warnings.
     Updated `docs/testing_plan.md` to mark the Tier 1 warning-threshold checklist item complete.
+
+- [x] TODO-0285: Close Tier 1 run-envelope semantic-flow cardinality checklist
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 4
+  - depends_on: TODO-0206
+  - scope: Finalize Tier 1 run-envelope semantic-flow-cardinality coverage by adding explicit
+    invalid-shape contract checks for `semantic_flows` and
+    `semantic_flow_invocation_counts`.
+  - acceptance:
+    - `tests/unit/contracts/test_run_envelope_semantic_flows.py` proves duplicate
+      `semantic_flows` are rejected.
+    - Tests prove missing/extra/non-positive invocation-count map entries are rejected.
+    - `docs/testing_plan.md` marks the run-envelope-cardinality Tier 1 item complete.
+  - notes: source `docs/testing_plan.md` Tier 1; `docs/design.md` Section 10
+  - evidence: Extended
+    `tests/unit/contracts/test_run_envelope_semantic_flows.py` with explicit negative-path
+    assertions for duplicate semantic-flow entries, missing invocation-count keys, extra
+    invocation-count keys not present in `semantic_flows`, and non-positive invocation counts.
+    Updated `docs/testing_plan.md` to mark the Tier 1 run-envelope semantic-flow-cardinality
+    checklist item complete.

@@ -48,6 +48,60 @@ class RunEnvelopeWriterTests(unittest.TestCase):
                 {"ingest_extraction": 1, "topic_generation": 1},
             )
 
+    def test_semantic_flow_cardinality_validation_rejects_duplicates_missing_extra_and_non_positive_counts(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+
+            duplicate_flows = _make_base(flow_key="ingest_pipeline")
+            duplicate_flows.semantic_flows = ["ingest_extraction", "ingest_extraction"]
+            duplicate_flows.semantic_flow_invocation_counts = {"ingest_extraction": 1}
+            with self.subTest(case="duplicate-semantic-flows"):
+                with self.assertRaisesRegex(ValueError, "ordered-unique"):
+                    write_run_record(
+                        space_root=space_root,
+                        base=duplicate_flows,
+                        flow_fields=_ingest_fields(),
+                    )
+
+            missing_count = _make_base(flow_key="ingest_pipeline")
+            missing_count.semantic_flows = ["ingest_extraction", "topic_generation"]
+            missing_count.semantic_flow_invocation_counts = {"ingest_extraction": 1}
+            with self.subTest(case="missing-count-key"):
+                with self.assertRaisesRegex(ValueError, "must include every semantic flow"):
+                    write_run_record(
+                        space_root=space_root,
+                        base=missing_count,
+                        flow_fields=_ingest_fields(),
+                    )
+
+            extra_count = _make_base(flow_key="ingest_pipeline")
+            extra_count.semantic_flows = ["ingest_extraction"]
+            extra_count.semantic_flow_invocation_counts = {
+                "ingest_extraction": 1,
+                "topic_generation": 1,
+            }
+            with self.subTest(case="extra-count-key"):
+                with self.assertRaisesRegex(
+                    ValueError,
+                    "keys must be represented in semantic_flows",
+                ):
+                    write_run_record(
+                        space_root=space_root,
+                        base=extra_count,
+                        flow_fields=_ingest_fields(),
+                    )
+
+            non_positive_count = _make_base(flow_key="ingest_pipeline")
+            non_positive_count.semantic_flows = ["ingest_extraction"]
+            non_positive_count.semantic_flow_invocation_counts = {"ingest_extraction": 0}
+            with self.subTest(case="non-positive-count"):
+                with self.assertRaisesRegex(ValueError, "must be positive"):
+                    write_run_record(
+                        space_root=space_root,
+                        base=non_positive_count,
+                        flow_fields=_ingest_fields(),
+                    )
+
     def test_required_run_body_sections_are_always_present(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "spaces" / "alpha"
