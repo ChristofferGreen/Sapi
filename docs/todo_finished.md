@@ -1637,3 +1637,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `scripts/verify_testing_exit_criteria.py` before final DoD closure. Added closure contract coverage in
     `tests/unit/contracts/test_dod_exit_gate_closure.py` and end-to-end verifier coverage in
     `tests/integration/wrappers/test_verify_dod.py`.
+
+- [x] TODO-0276: Add dedicated query mode preflight test module
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 4
+  - depends_on: TODO-0218
+  - scope: Align query preflight contract coverage with testing-plan module ownership by
+    placing strict/include-disputed fail-fast checks in a dedicated
+    `tests/unit/query/test_query_mode_preflight.py` module.
+  - acceptance:
+    - Dedicated unit test module `tests/unit/query/test_query_mode_preflight.py` exists.
+    - Test coverage proves `--mode strict --include-disputed` fails fast before query artifacts
+      or run metadata are written.
+    - `docs/testing_plan.md` Tier 1 query preflight checklist item is marked complete.
+  - notes: source `docs/testing_plan.md` Tier 1; `docs/design.md` Section 7.3
+  - evidence: Added `tests/unit/query/test_query_mode_preflight.py` with an explicit
+    fail-fast contract test asserting exit code `2`, expected error text, and no new query/run
+    artifact directories. Moved the same invalid-combination assertion out of
+    `tests/unit/query/test_query_mode_defaults_policy.py` so preflight behavior is owned by
+    the dedicated module, and marked the Tier 1 query preflight checklist item complete in
+    `docs/testing_plan.md`.
