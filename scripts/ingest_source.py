@@ -23,6 +23,7 @@ from sapi.core.pipeline_policy import finalize_pipeline_run
 from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
 from sapi.core.transactions import ArtifactTransaction
 from sapi.ingest.citations import run_reference_extraction_and_link_backfill
+from sapi.ingest.ingest_pipeline import plan_ingest_semantic_execution
 from sapi.ingest.records_writer import (
     IngestExtractionPersistResult,
     ingest_source_artifacts_and_record,
@@ -54,6 +55,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--citation-count-as-of")
     parser.add_argument("--citation-count-provider")
     parser.add_argument("--citation-count-confidence")
+    parser.add_argument("--enable-comment-enrichment", action="store_true", help=argparse.SUPPRESS)
+    parser.add_argument("--comment-count", type=int, help=argparse.SUPPRESS)
+    parser.add_argument("--comment-page", action="append", default=[], help=argparse.SUPPRESS)
     parser.add_argument("--source-only", action="store_true")
     parser.add_argument("--query-only", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--force", action="store_true")
@@ -67,6 +71,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> int:
     args = build_parser().parse_args()
     source_only = False
+    ingest_semantic_plan = None
     source_date_resolution: SourceDateResolution | None = None
     started_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
     run_id = make_run_id()
@@ -90,6 +95,17 @@ def main() -> int:
 
     try:
         source_only = _normalize_source_only_mode(args)
+        ingest_semantic_plan = plan_ingest_semantic_execution(
+            source_only=source_only,
+            enable_comment_enrichment=args.enable_comment_enrichment,
+            requested_comment_count=args.comment_count,
+            comment_target_page_refs=args.comment_page if args.comment_page else None,
+        )
+        if ingest_semantic_plan.comment_enrichment_enabled:
+            raise ValueError(
+                "Inline ingest comment enrichment is not available yet; run create_comments.sh as an explicit "
+                "follow-up step after ingest."
+            )
         source_date_resolution = resolve_publication_date(
             explicit_source_date=args.source_date,
             inferred_source_date=None,
@@ -246,6 +262,12 @@ def main() -> int:
         force_mode=False,
         rollback_skipped=False,
     )
+    if ingest_semantic_plan is not None and semantic_flow_invocation_counts != ingest_semantic_plan.semantic_flow_invocation_counts:
+        raise RuntimeError(
+            "Ingest semantic flow invocation counts violated boundary contract "
+            f"(expected={ingest_semantic_plan.semantic_flow_invocation_counts}, "
+            f"actual={semantic_flow_invocation_counts})."
+        )
     finalized = finalize_pipeline_run(
         space_root=space_root,
         base=base,

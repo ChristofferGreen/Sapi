@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0271: Enforce ingest comment-enrichment boundary contracts
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 2
+  - depends_on: TODO-0214, TODO-0211
+  - scope: Ensure ingest does not implicitly trigger comment generation and preserves explicit pipeline boundaries for comment enrichment.
+  - acceptance:
+    - Default ingest path invokes only ingest/topic semantic flows and never `comment_section_generation`.
+    - Any optional enrichment path requires explicit operator opt-in and preserves Section 7.6 comment pipeline contracts.
+    - Run metadata/tests verify `semantic_flows`/invocation counts remain boundary-correct for ingest modes.
+  - evidence: Enforced ingest boundary preflight in `scripts/ingest_source.py` via
+    `plan_ingest_semantic_execution` so inline comment parameters require explicit opt-in, contract
+    bounds/target validation are applied, and inline enrichment attempts fail fast with an explicit
+    follow-up workflow requirement (`create_comments.sh`). Added CLI-mode tests in
+    `tests/unit/ingest/test_ingest_mode_handling.py` covering default/source-only boundary metadata,
+    opt-in requirement enforcement, contract-bound validation (`count` range and target scope), and
+    non-mutating failure behavior before ingest writes.
+
 - [x] TODO-0270: Enforce ingest date/title resolution and strict-date mode contracts
   - owner: ai
   - created_at: 2026-04-12

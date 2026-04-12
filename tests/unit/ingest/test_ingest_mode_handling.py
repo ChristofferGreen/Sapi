@@ -185,6 +185,91 @@ class IngestModeHandlingTests(unittest.TestCase):
             run_paths = sorted((space_root / "runs").glob("*/run.md"))
             self.assertEqual(run_paths, [])
 
+    def test_comment_inputs_require_explicit_opt_in_flag(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = _bootstrap_site_and_space(tmp_root, "alpha")
+            source_path = tmp_root / "source.txt"
+            source_path.write_text("comment opt-in boundary\n")
+
+            result = _run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--comment-count",
+                    "10",
+                    "--comment-page",
+                    "topic:topic-a",
+                    "--mock-llm",
+                ]
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("require explicit opt-in", result.stderr)
+
+            space_root = site_path / "spaces" / "alpha"
+            source_records = sorted((space_root / "sources" / "records").glob("source-*.json"))
+            self.assertEqual(source_records, [])
+
+    def test_inline_comment_enrichment_requires_explicit_follow_up_workflow(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = _bootstrap_site_and_space(tmp_root, "alpha")
+            source_path = tmp_root / "source.txt"
+            source_path.write_text("inline enrichment boundary\n")
+
+            result = _run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--enable-comment-enrichment",
+                    "--comment-count",
+                    "10",
+                    "--comment-page",
+                    "topic:topic-a",
+                    "--mock-llm",
+                ]
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("run create_comments.sh as an explicit follow-up step", result.stderr)
+
+            space_root = site_path / "spaces" / "alpha"
+            source_records = sorted((space_root / "sources" / "records").glob("source-*.json"))
+            self.assertEqual(source_records, [])
+
+    def test_inline_comment_enrichment_enforces_comment_pipeline_contract_bounds(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = _bootstrap_site_and_space(tmp_root, "alpha")
+            source_path = tmp_root / "source.txt"
+            source_path.write_text("inline enrichment contract bounds\n")
+
+            result = _run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--enable-comment-enrichment",
+                    "--comment-count",
+                    "4",
+                    "--comment-page",
+                    "topic:topic-a",
+                    "--mock-llm",
+                ]
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("requested_comment_count must be in [5, 50]", result.stderr)
+
 
 def _bootstrap_site_and_space(tmp_root: Path, space_name: str) -> Path:
     site_path = tmp_root / "site-a"
