@@ -35,12 +35,23 @@ class SemanticSpec:
 class TraceContext(Protocol):
     """Optional tracing sink for semantic attempts."""
 
+    def begin_semantic_attempt(
+        self,
+        *,
+        flow_key: str,
+        attempt: int,
+        max_attempts: int,
+        request: SemanticLlmRequest,
+    ) -> None: ...
+
     def record_semantic_attempt(
         self,
         *,
         flow_key: str,
         attempt: int,
         max_attempts: int,
+        request: SemanticLlmRequest,
+        raw_output: str,
         valid: bool,
         validation_errors: list[dict[str, Any]] | None,
     ) -> None: ...
@@ -115,6 +126,13 @@ def run_semantic_flow(
             context_by_path=context_by_path,
             repair_context=repair_context,
         )
+        _begin_attempt(
+            trace_ctx=trace_ctx,
+            flow_key=spec.flow_key,
+            attempt=attempt,
+            max_attempts=max_attempts,
+            request=request,
+        )
         raw_output = llm_client.generate_semantic_json(request)
         parsed_output, validation_errors = _validate_attempt_output(raw_output=raw_output, schema=schema)
 
@@ -123,6 +141,8 @@ def run_semantic_flow(
             flow_key=spec.flow_key,
             attempt=attempt,
             max_attempts=max_attempts,
+            request=request,
+            raw_output=raw_output,
             valid=not validation_errors,
             validation_errors=validation_errors or None,
         )
@@ -225,6 +245,8 @@ def _record_attempt(
     flow_key: str,
     attempt: int,
     max_attempts: int,
+    request: SemanticLlmRequest,
+    raw_output: str,
     valid: bool,
     validation_errors: list[dict[str, Any]] | None,
 ) -> None:
@@ -234,6 +256,26 @@ def _record_attempt(
         flow_key=flow_key,
         attempt=attempt,
         max_attempts=max_attempts,
+        request=request,
+        raw_output=raw_output,
         valid=valid,
         validation_errors=validation_errors,
+    )
+
+
+def _begin_attempt(
+    *,
+    trace_ctx: TraceContext | None,
+    flow_key: str,
+    attempt: int,
+    max_attempts: int,
+    request: SemanticLlmRequest,
+) -> None:
+    if trace_ctx is None:
+        return
+    trace_ctx.begin_semantic_attempt(
+        flow_key=flow_key,
+        attempt=attempt,
+        max_attempts=max_attempts,
+        request=request,
     )

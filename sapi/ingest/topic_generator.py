@@ -10,7 +10,12 @@ from typing import Any
 from sapi.contracts.ids import make_topic_id, slugify
 from sapi.contracts.semantic_specs import resolve_semantic_invocation_spec
 from sapi.llm.client import LlmClient
-from sapi.llm.semantic_executor import DEFAULT_MAX_REPAIR_LOOPS, SemanticSpec, run_semantic_flow
+from sapi.llm.semantic_executor import (
+    DEFAULT_MAX_REPAIR_LOOPS,
+    SemanticSpec,
+    TraceContext,
+    run_semantic_flow,
+)
 
 
 @dataclass(frozen=True)
@@ -46,6 +51,7 @@ def run_topic_generation_and_persist_canonical(
     llm_client: LlmClient,
     topic_id: str | None = None,
     max_repair_loops: int = DEFAULT_MAX_REPAIR_LOOPS,
+    trace_ctx: TraceContext | None = None,
 ) -> TopicGenerationPersistResult:
     """Run topic_generation semantic flow and persist canonical topic JSON."""
     canonical_topic_id = topic_id or derive_default_topic_id_for_source(
@@ -65,6 +71,7 @@ def run_topic_generation_and_persist_canonical(
         spec=_to_runtime_spec(resolved),
         llm_client=llm_client,
         max_repair_loops=max_repair_loops,
+        trace_ctx=trace_ctx,
     )
 
     generated_topic_id = semantic_output.get("topic_id")

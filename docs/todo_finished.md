@@ -997,3 +997,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     terminal-failure run-container removal paths. Added reject-case tests in
     `tests/unit/core/test_transactions.py` for home/repo-root cleanup targets and kept rollback
     coverage green for canonical/derived/run artifacts under explicit temporary roots.
+
+- [x] TODO-0226: Observability and LLM trace artifact pipeline
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 6
+  - depends_on: TODO-0204, TODO-0209
+  - scope: Implement verbose mode behavior, trace-dir output, and trace artifact persistence for all semantic calls.
+  - acceptance:
+    - `--verbose` prints prompt, stream output, and trace dir early.
+    - Trace artifacts are written under `<site_path>/outputs/llm_traces/...`.
+    - Trace file set includes prompt/context/response/meta files per contract.
+  - evidence: Implemented concrete per-attempt trace persistence in `sapi/llm/trace.py` and
+    extended `sapi/llm/semantic_executor.py` to emit trace lifecycle hooks before/after each
+    semantic attempt, including request/raw response payload capture and metadata validation
+    outcomes. Wired verbose trace context through ingest semantic calls in
+    `scripts/ingest_source.py`, `sapi/ingest/records_writer.py`, and `sapi/ingest/topic_generator.py`
+    so trace directories are announced early and prompt/stream output is printed in verbose mode.
+    Added deterministic tests in `tests/unit/semantic/test_llm_trace_artifacts.py` and
+    `tests/unit/ingest/test_ingest_mode_handling.py` to assert canonical site-root trace paths,
+    required trace file sets, and verbose output ordering/visibility.

@@ -18,7 +18,12 @@ from sapi.contracts.semantic_specs import resolve_semantic_invocation_spec
 from sapi.ingest.relation_store import write_relation
 from sapi.ingest.source_content import resolve_source_title
 from sapi.llm.client import LlmClient
-from sapi.llm.semantic_executor import DEFAULT_MAX_REPAIR_LOOPS, SemanticSpec, run_semantic_flow
+from sapi.llm.semantic_executor import (
+    DEFAULT_MAX_REPAIR_LOOPS,
+    SemanticSpec,
+    TraceContext,
+    run_semantic_flow,
+)
 
 _ALLOWED_ARTICLE_KINDS: set[str] = {
     "empirical",
@@ -50,6 +55,7 @@ def run_ingest_extraction_and_persist_canonical(
     run_id: str,
     llm_client: LlmClient,
     max_repair_loops: int = DEFAULT_MAX_REPAIR_LOOPS,
+    trace_ctx: TraceContext | None = None,
 ) -> IngestExtractionPersistResult:
     """Run ingest_extraction semantic flow and persist canonical claim/relation writes."""
     repo_root = Path(__file__).resolve().parents[2]
@@ -65,6 +71,7 @@ def run_ingest_extraction_and_persist_canonical(
         spec=_to_runtime_spec(resolved),
         llm_client=llm_client,
         max_repair_loops=max_repair_loops,
+        trace_ctx=trace_ctx,
     )
 
     claims = semantic_output.get("claims")

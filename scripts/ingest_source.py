@@ -36,6 +36,7 @@ from sapi.ingest.topic_generator import (
     run_topic_generation_and_persist_canonical,
 )
 from sapi.llm.client import SemanticLlmRequest
+from sapi.llm.trace import SiteLlmTraceContext
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -91,6 +92,7 @@ def main() -> int:
     semantic_flows: list[str] = []
     semantic_flow_invocation_counts: dict[str, int] = {}
     llm_attempt_count = 0
+    trace_ctx: SiteLlmTraceContext | None = None
     transaction = ArtifactTransaction()
 
     try:
@@ -118,6 +120,11 @@ def main() -> int:
         registry_path = resolve_registry_path(args.registry_path)
         site_path = resolve_site_path_from_registry(registry_path)
         space_root = resolve_space_root(registry_path, args.space_name)
+        if args.verbose:
+            trace_ctx = SiteLlmTraceContext(
+                site_path=site_path,
+                verbose=True,
+            )
         with ingest_lock(space_root):
             result = ingest_source_artifacts_and_record(
                 space_root=space_root,
@@ -157,6 +164,7 @@ def main() -> int:
                         source_title=source_title if isinstance(source_title, str) else None,
                         source_date_resolution=source_date_resolution,
                     ),
+                    trace_ctx=trace_ctx,
                 )
                 llm_attempt_count += 1
                 topic_id = derive_default_topic_id_for_source(
@@ -179,6 +187,7 @@ def main() -> int:
                         topic_id=topic_id,
                         claim_ids=[path.stem for path in extraction_result.claim_paths],
                     ),
+                    trace_ctx=trace_ctx,
                 )
                 llm_attempt_count += 1
                 if args.build_deferred:

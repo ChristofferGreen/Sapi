@@ -270,6 +270,51 @@ class IngestModeHandlingTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("requested_comment_count must be in [5, 50]", result.stderr)
 
+    def test_verbose_mode_prints_prompt_stream_trace_dir_and_writes_trace_artifacts(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = _bootstrap_site_and_space(tmp_root, "alpha")
+            source_path = tmp_root / "source.txt"
+            source_path.write_text("verbose trace contract\n")
+
+            result = _run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Verbose Trace Source",
+                    "--verbose",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+            self.assertIn("LLM trace dir", result.stdout)
+            self.assertIn("Final LLM prompt", result.stdout)
+            self.assertIn("LLM stream output", result.stdout)
+            self.assertLess(
+                result.stdout.index("LLM trace dir"),
+                result.stdout.index("scripts/ingest_source.py source ingested"),
+            )
+
+            trace_root = site_path / "outputs" / "llm_traces"
+            self.assertTrue(trace_root.is_dir())
+            trace_dirs = sorted(path for path in trace_root.glob("*") if path.is_dir())
+            self.assertGreaterEqual(len(trace_dirs), 2)
+            self.assertFalse((site_path / "spaces" / "alpha" / "outputs" / "llm_traces").exists())
+            for trace_dir in trace_dirs:
+                self.assertRegex(
+                    trace_dir.name,
+                    r"^\d{8}T\d{6}Z-[a-z0-9_-]+-\d+-\d+(?:-\d+)?$",
+                )
+                self.assertTrue(any(trace_dir.glob("*.prompt.txt")))
+                self.assertTrue(any(trace_dir.glob("*.context.json")))
+                self.assertTrue(any(trace_dir.glob("*.response.*")))
+                self.assertTrue(any(trace_dir.glob("*.meta.json")))
+
 
 def _bootstrap_site_and_space(tmp_root: Path, space_name: str) -> Path:
     site_path = tmp_root / "site-a"
