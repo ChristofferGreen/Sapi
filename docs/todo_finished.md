@@ -17,6 +17,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     - Task notes link to the authoritative recommendation source section.
   - evidence: Recommendation intake is now explicit and traceable via successor task `TODO-0282` (`owner: human`) with decision_ref mapping and contract outcome path targeting `design.md` Section 4.1.3; references remain linked to `design.md` Section 1.3 decision register.
 
+- [x] TODO-0281: Define default `evaluate_source.sh` query-mode recommendation as an explicit contract task
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Cross-cutting
+  - depends_on: TODO-0280
+  - scope: Convert unresolved recommendation about default query-mode coverage in `evaluate_source.sh` into an explicit tracked decision task with clear acceptance and contract target.
+  - acceptance:
+    - Task references the unresolved recommendation from the design decision register and assigns one owner/outcome path.
+    - Acceptance criteria require explicit contract destination in `design.md` Section 6.3 once resolved.
+    - Task notes link to the authoritative recommendation source section.
+  - evidence: Recommendation intake is now explicit and traceable via successor task `TODO-0283` (`owner: ai`) with decision_ref mapping and contract outcome path targeting `design.md` Section 6.3; references remain linked to `design.md` Section 1.3 decision register.
+
 - [x] TODO-0237: Implement source metadata extensions for paper-focused ingest
   - owner: ai
   - created_at: 2026-04-12

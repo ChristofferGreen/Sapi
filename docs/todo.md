@@ -48,7 +48,8 @@ Task template:
 ### Ready Now (No Unmet TODO Dependencies)
 
 1. `TODO-0211` Ingest extraction semantic flow and canonical claim/relation writes
-2. `TODO-0281` Define default `evaluate_source.sh` query-mode recommendation as an explicit contract task
+2. `TODO-0282` Resolve compatibility-reader sunset policy into a concrete contract update
+3. `TODO-0283` Resolve default `evaluate_source.sh` query-mode recommendation into a concrete contract update
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -68,7 +69,7 @@ Task template:
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: `TODO-0211` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
-- P3 Continuous docs governance: `TODO-0282`, `TODO-0281`, `TODO-0264`, `TODO-0265`
+- P3 Continuous docs governance: `TODO-0282`, `TODO-0283`, `TODO-0264`, `TODO-0265`
 
 ### Execution Queue (Recommended)
 
@@ -87,13 +88,13 @@ Wave C (query + social + hardening + release):
 
 Cross-cutting docs backlog:
 1. `TODO-0265` -> `TODO-0264` -> `TODO-0243`
-2. `TODO-0282` -> `TODO-0281`
+2. `TODO-0282` -> `TODO-0283`
 
 ### Design Coverage Snapshot
 
 | Design area | Primary TODO IDs |
 | --- | --- |
-| Section 1 (scope/authority/reading) | `TODO-0243`, `TODO-0282`, `TODO-0281` |
+| Section 1 (scope/authority/reading) | `TODO-0243`, `TODO-0282`, `TODO-0283` |
 | Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0214`, `TODO-0246`, `TODO-0275` |
 | Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
@@ -154,16 +155,16 @@ Cross-cutting docs backlog:
     - Any affected TODO dependencies/docs coverage references are synchronized.
   - notes: source `design.md` Section 1.3 (decision register), Section 4.1.3; decision_ref: compatibility-reader-sunset-policy-for-legacy-aliases
 
-- [ ] TODO-0281: Define default `evaluate_source.sh` query-mode recommendation as an explicit contract task
+- [ ] TODO-0283: Resolve default `evaluate_source.sh` query-mode recommendation into a concrete contract update
   - owner: ai
   - created_at: 2026-04-12
   - phase: Cross-cutting
-  - depends_on: TODO-0280
-  - scope: Convert unresolved recommendation about default query-mode coverage in `evaluate_source.sh` into an explicit tracked decision task with clear acceptance and contract target.
+  - depends_on: TODO-0281
+  - scope: Resolve the unresolved query-mode recommendation for `evaluate_source.sh` into explicit default behavior and contract wording in the authoritative section.
   - acceptance:
-    - Task references the unresolved recommendation from the design decision register and assigns one owner/outcome path.
-    - Acceptance criteria require explicit contract destination in `design.md` Section 6.3 once resolved.
-    - Task notes link to the authoritative recommendation source section.
+    - Decision outcome is recorded in `design.md` decision register with resolved status and final contract location.
+    - Contract update lands in `design.md` Section 6.3 with explicit default evaluation-pack query modes and optional-mode boundaries.
+    - Any affected TODO dependencies/docs coverage references are synchronized.
   - notes: source `design.md` Section 1.3 (decision register), Section 6.3; decision_ref: additional-query-modes-in-evaluate-source-sh-default-evaluation-pack
 
 - [ ] TODO-0278: Enforce relation-type matrix semantics and normalization invariants

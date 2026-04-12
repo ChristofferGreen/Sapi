@@ -61,6 +61,26 @@ class TodoRecommendationIntakeTests(unittest.TestCase):
         self.assertIn("decision_ref: compatibility-reader-sunset-policy-for-legacy-aliases", successor_block)
         self.assertIn("Section 4.1.3", successor_block)
 
+    def test_todo_0281_completion_records_owner_outcome_path_and_authoritative_sections(self) -> None:
+        finished_block = _task_block(
+            text=TODO_FINISHED_DOC_PATH.read_text(),
+            todo_id="TODO-0281",
+            open_task=False,
+        )
+        self.assertIn("owner: ai", finished_block)
+        self.assertIn("Section 1.3", finished_block)
+        self.assertIn("Section 6.3", finished_block)
+
+        successor_block = _task_block(
+            text=TODO_DOC_PATH.read_text(),
+            todo_id="TODO-0283",
+            open_task=True,
+        )
+        self.assertIn("owner: ai", successor_block)
+        self.assertIn("depends_on: TODO-0281", successor_block)
+        self.assertIn("decision_ref: additional-query-modes-in-evaluate-source-sh-default-evaluation-pack", successor_block)
+        self.assertIn("Section 6.3", successor_block)
+
 
 def _open_tasks_section(todo_text: str) -> str:
     start = todo_text.index("## Open Tasks")
