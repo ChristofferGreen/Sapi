@@ -800,3 +800,22 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `scripts/ingest_source.py` for every ingest run, and validated contracts via
     `tests/unit/ingest/test_reference_linking.py` (structured rows, local matching persistence,
     and backfill behavior on new ingest).
+
+- [x] TODO-0243: Track reconstruction-plan phase/slice progress explicitly
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Cross-cutting
+  - depends_on: TODO-0102
+  - scope: Add a lightweight phase/slice tracker so each backlog item maps to MVP Slice A/B and
+    Phase 1-6 progress checkpoints.
+  - acceptance:
+    - Progress tracker includes MVP Slice A/B and Phase 1-6 checkpoints.
+    - Each phase has explicit entry/exit criteria tied to TODO IDs.
+    - Deferred-build backlog and phase-gate blockers are visible in one place.
+  - evidence: Added `docs/reconstruction_tracker.md` with explicit MVP Slice A/B entry/exit gates,
+    Phase 1-6 entry/exit checkpoint mapping to TODO IDs, a dedicated deferred-build backlog section
+    (`build_deferred: true` policy checkpoint), and consolidated phase-gate blockers. Added
+    `tests/unit/contracts/test_reconstruction_tracker.py` to enforce tracker presence, phase/slice
+    coverage, TODO-linked entry/exit criteria for each phase, and visible deferred-build/backlog
+    blocker sections in one document.
