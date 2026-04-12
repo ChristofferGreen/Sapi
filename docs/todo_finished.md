@@ -4,6 +4,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0268: Implement `regenerate_web.sh` wrapper-to-build entrypoint contract
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 3
+  - depends_on: TODO-0209, TODO-0216, TODO-0235
+  - scope: Implement and validate `regenerate_web.sh` behavior as the canonical wrapper for deterministic site build/projection entrypoints.
+  - acceptance:
+    - `regenerate_web.sh` dispatches to the intended build entrypoint/workflow key with explicit `--registry-path` handling for non-bootstrap execution.
+    - Wrapper argument normalization and conflict handling match wrapper contract rules.
+    - End-to-end wrapper invocation produces deterministic build outputs without semantic-flow execution.
+  - evidence: Added deterministic wrapper integration coverage in
+    `tests/integration/wrappers/test_regenerate_web_wrapper_contract.py` verifying wrapper-managed
+    registry-path dispatch to `scripts/build_site.py` with workflow key `build_site`, explicit
+    conflict rejection when `--registry-path` override is supplied, and deterministic repeated
+    wrapper execution producing identical `outputs/build_site/manifest.json` with
+    `semantic_flows_executed: []`.
+
 - [x] TODO-0276: Add deterministic mechanical integration tests for `evaluate_source.sh` harness
   - owner: ai
   - created_at: 2026-04-12

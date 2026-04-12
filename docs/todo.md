@@ -60,12 +60,12 @@ Task template:
 7. `TODO-0257`
 8. `TODO-0234`
 9. `TODO-0233`
-10. `TODO-0268`
+10. `TODO-0267`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: `TODO-0220` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0277`
+- P1 Core product behavior: `TODO-0220` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0277`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0282`
 
@@ -75,8 +75,7 @@ Wave A (bootstrap + contracts):
 1. (none currently)
 
 Wave B (ingest + projection + lint):
-1. `TODO-0268`
-2. `TODO-0245` -> `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233`
+1. `TODO-0245` -> `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233`
 
 Wave C (query + social + hardening + release):
 1. `TODO-0220` -> `TODO-0242` -> `TODO-0259` -> `TODO-0255` -> `TODO-0221` -> `TODO-0277`
@@ -96,7 +95,7 @@ Cross-cutting docs backlog:
 | Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | - |
-| Section 6 (wrapper UX + wrapper-to-entrypoint contract) | `TODO-0268`, `TODO-0267`, `TODO-0274` |
+| Section 6 (wrapper UX + wrapper-to-entrypoint contract) | `TODO-0267`, `TODO-0274` |
 | Section 7.1 ingest pipeline | - |
 | Section 7.2 references/linking | - |
 | Section 7.3 query pipeline | `TODO-0220`, `TODO-0259`, `TODO-0255`, `TODO-0221`, `TODO-0277` |
@@ -104,7 +103,7 @@ Cross-cutting docs backlog:
 | Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
 | Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275`, `TODO-0274` |
 | Section 7.7 comment quality harness | `TODO-0225` |
-| Section 8 site/UI/static build | `TODO-0268`, `TODO-0245`, `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
+| Section 8 site/UI/static build | `TODO-0245`, `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
 | Section 9 observability/safety/runtime controls | `TODO-0226`, `TODO-0227`, `TODO-0254` |
 | Section 10 run envelopes/lifecycle status | `TODO-0234`, `TODO-0250` |
 | Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0277`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
@@ -124,7 +123,7 @@ Cross-cutting docs backlog:
 | Section 9 (deterministic build/projection) | `TODO-0275` |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
-| Section 12 (wrapper/script interfaces) | `TODO-0254`, `TODO-0268`, `TODO-0267`, `TODO-0274` |
+| Section 12 (wrapper/script interfaces) | `TODO-0254`, `TODO-0267`, `TODO-0274` |
 | Section 13 (observability/runtime controls/safety) | `TODO-0226`, `TODO-0227`, `TODO-0254` |
 | Section 14 (anti-drift and PR guardrails) | - |
 | Section 15 (test-plan binding) | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0275`, `TODO-0277`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
@@ -187,18 +186,6 @@ Cross-cutting docs backlog:
     - Comment/profile flows only refresh site-root `New` when canonical source/topic mutation occurs.
     - Deterministic tests validate policy across ingest/query/comment/profile execution paths.
   - notes: source `design.md` Sections 2.2, 7.3, 7.5, 7.6; `low_level.md` Section 9
-
-- [ ] TODO-0268: Implement `regenerate_web.sh` wrapper-to-build entrypoint contract
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 3
-  - depends_on: TODO-0209, TODO-0216, TODO-0235
-  - scope: Implement and validate `regenerate_web.sh` behavior as the canonical wrapper for deterministic site build/projection entrypoints.
-  - acceptance:
-    - `regenerate_web.sh` dispatches to the intended build entrypoint/workflow key with explicit `--registry-path` handling for non-bootstrap execution.
-    - Wrapper argument normalization and conflict handling match wrapper contract rules.
-    - End-to-end wrapper invocation produces deterministic build outputs without semantic-flow execution.
-  - notes: source `design.md` Sections 6.1, 8; `low_level.md` Section 12
 
 - [ ] TODO-0267: Implement wrapper compatibility and bootstrap-exception integration tests
   - owner: ai
