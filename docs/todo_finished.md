@@ -1791,3 +1791,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     suffix-length constraints, and added a timezone-offset timestamp case proving
     `format_timestamp_rfc3339_utc` normalizes to canonical UTC (`...Z`). Updated
     `docs/testing_plan.md` to mark the Tier 1 ID/format/path checklist item complete.
+
+- [x] TODO-0290: Close Tier 2 failed-run container cleanup checklist across comment/profile flows
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 2
+  - depends_on: TODO-0223, TODO-0224
+  - scope: Finalize Tier 2 failed-run cleanup coverage by proving default-mode terminal
+    failures in comment/profile pipelines do not persist committed run containers.
+  - acceptance:
+    - `tests/integration/failure/test_run_container_not_persisted.py` covers comment pipeline
+      terminal failure run-container non-persistence.
+    - The same module covers profile pipeline terminal failure run-container non-persistence.
+    - `docs/testing_plan.md` marks the Tier 2 run-container checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 2; `docs/design.md` Sections 2.1, 10
+  - evidence: Extended
+    `tests/integration/failure/test_run_container_not_persisted.py` with
+    `test_comments_terminal_failure_does_not_persist_new_run_container` (asserting no new
+    `runs/run-*` directory is committed after simulated comment failure) and
+    `test_profiles_terminal_failure_does_not_persist_run_container` (asserting no committed
+    run container for simulated profile failure with default persona selection). Updated
+    `docs/testing_plan.md` to mark the Tier 2 run-container checklist item complete.
