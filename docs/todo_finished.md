@@ -4,6 +4,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0210: Source ingest acquisition, normalization, and artifact persistence
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 2
+  - depends_on: TODO-0207, TODO-0208, TODO-0205, TODO-0209
+  - scope: Implement source intake from file/URL, normalization to managed artifact set, and source metadata persistence.
+  - acceptance:
+    - Source artifacts persist under `<space_root>/sources/artifacts/<source_id>/`.
+    - Canonical source metadata and artifact pointers are persisted in source records.
+    - Ingest lock behavior works (exclusive lock, stale lock recovery, release in finally).
+  - evidence: Implemented `scripts/ingest_source.py` acquisition flow with lock-guarded writes, added source persistence helpers in `sapi/ingest/records_writer.py`, implemented lock semantics in `sapi/core/locks.py`, and verified via `tests/unit/ingest/test_source_acquisition.py` and `tests/unit/core/test_locks.py`.
+
 - [x] TODO-0001: Align comment semantic-output path with per-page batching
   - owner: ai
   - created_at: 2026-04-12

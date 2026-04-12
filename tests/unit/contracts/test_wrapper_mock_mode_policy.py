@@ -14,7 +14,8 @@ class WrapperMockModePolicyTests(unittest.TestCase):
     def test_wrapper_default_does_not_silently_enable_mock_mode(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
-            for wrapper_name, command in self._semantic_wrapper_commands(site_path):
+            source_path = self._make_source_file(Path(tmp))
+            for wrapper_name, command in self._semantic_wrapper_commands(site_path, source_path):
                 with self.subTest(wrapper=wrapper_name):
                     result = self._run(command)
                     self.assertEqual(result.returncode, 0, msg=result.stderr)
@@ -23,7 +24,8 @@ class WrapperMockModePolicyTests(unittest.TestCase):
     def test_wrapper_explicit_mock_mode_is_forwarded_and_auditable(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
-            for wrapper_name, command in self._semantic_wrapper_commands(site_path):
+            source_path = self._make_source_file(Path(tmp))
+            for wrapper_name, command in self._semantic_wrapper_commands(site_path, source_path):
                 with self.subTest(wrapper=wrapper_name):
                     result = self._run([*command, "--mock-llm"])
                     self.assertEqual(result.returncode, 0, msg=result.stderr)
@@ -32,8 +34,9 @@ class WrapperMockModePolicyTests(unittest.TestCase):
     def test_env_var_flow_control_is_rejected_even_when_wrapper_invoked(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
+            source_path = self._make_source_file(Path(tmp))
             for prohibited_key in ("SAPI_MOCK_LLM", "SAPI_ENABLE_DETERMINISTIC_SEMANTICS"):
-                for wrapper_name, command in self._semantic_wrapper_commands(site_path):
+                for wrapper_name, command in self._semantic_wrapper_commands(site_path, source_path):
                     with self.subTest(wrapper=wrapper_name, env_key=prohibited_key):
                         env = os.environ.copy()
                         env[prohibited_key] = "1"
@@ -47,7 +50,11 @@ class WrapperMockModePolicyTests(unittest.TestCase):
         self._run(["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), space_name], check=True)
         return site_path
 
-    def _semantic_wrapper_commands(self, site_path: Path) -> list[tuple[str, list[str]]]:
+    def _semantic_wrapper_commands(
+        self,
+        site_path: Path,
+        source_path: Path,
+    ) -> list[tuple[str, list[str]]]:
         return [
             (
                 "ingest.sh",
@@ -56,7 +63,7 @@ class WrapperMockModePolicyTests(unittest.TestCase):
                     str(REPO_ROOT / "ingest.sh"),
                     str(site_path),
                     "alpha",
-                    "https://example.com/source",
+                    str(source_path),
                 ],
             ),
             (
@@ -90,6 +97,11 @@ class WrapperMockModePolicyTests(unittest.TestCase):
                 ],
             ),
         ]
+
+    def _make_source_file(self, tmp_root: Path) -> Path:
+        source_path = tmp_root / "source.txt"
+        source_path.write_text("wrapper test source\n")
+        return source_path
 
     def _run(
         self,

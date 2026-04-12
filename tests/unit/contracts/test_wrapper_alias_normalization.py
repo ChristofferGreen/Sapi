@@ -13,19 +13,21 @@ class WrapperAliasNormalizationTests(unittest.TestCase):
     def test_ingest_query_only_alias_normalizes_to_source_only_with_warning(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
+            source_path = Path(tmp) / "source.txt"
+            source_path.write_text("sample source\n")
             result = self._run(
                 [
                     "bash",
                     str(REPO_ROOT / "ingest.sh"),
                     str(site_path),
                     "alpha",
-                    "dummy-source",
+                    str(source_path),
                     "--query-only",
                 ]
             )
             self.assertEqual(result.returncode, 0, msg=result.stderr)
             self.assertIn("deprecated", result.stderr)
-            self.assertIn("scripts/ingest_source.py scaffold ready", result.stdout)
+            self.assertIn("scripts/ingest_source.py source ingested", result.stdout)
 
     def test_comment_aliases_and_legacy_positional_count_normalize(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -52,13 +54,15 @@ class WrapperAliasNormalizationTests(unittest.TestCase):
     def test_ingest_canonical_and_alias_conflict_fails_fast(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
+            source_path = Path(tmp) / "source.txt"
+            source_path.write_text("sample source\n")
             result = self._run(
                 [
                     "bash",
                     str(REPO_ROOT / "ingest.sh"),
                     str(site_path),
                     "alpha",
-                    "dummy-source",
+                    str(source_path),
                     "--source-only",
                     "--query-only",
                 ]
