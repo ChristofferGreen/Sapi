@@ -7,13 +7,18 @@ from datetime import UTC, datetime
 import hashlib
 import json
 from pathlib import Path
+import re
 from typing import Any
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 from sapi.contracts.ids import ISO_DATE_RE, RFC3339_UTC_RE
-from sapi.contracts.ids import make_source_id, slugify
+from sapi.contracts.ids import make_claim_id, make_source_id, slugify
+from sapi.contracts.semantic_specs import resolve_semantic_invocation_spec
+from sapi.ingest.relation_store import write_relation
 from sapi.ingest.source_content import resolve_source_title
+from sapi.llm.client import LlmClient
+from sapi.llm.semantic_executor import DEFAULT_MAX_REPAIR_LOOPS, SemanticSpec, run_semantic_flow
 
 _ALLOWED_ARTICLE_KINDS: set[str] = {
     "empirical",
@@ -23,6 +28,280 @@ _ALLOWED_ARTICLE_KINDS: set[str] = {
     "editorial",
 }
 _ALLOWED_CITATION_CONFIDENCE: set[str] = {"unknown", "low", "medium", "high"}
+_CLAIM_ID_RE = re.compile(r"^claim-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$")
+
+
+@dataclass(frozen=True)
+class IngestExtractionPersistResult:
+    run_id: str
+    semantic_output_path: Path
+    claim_paths: list[Path]
+    relation_paths: list[Path]
+    source_record_path: Path
+
+
+def run_ingest_extraction_and_persist_canonical(
+    *,
+    space_root: Path,
+    source_id: str,
+    run_id: str,
+    llm_client: LlmClient,
+    max_repair_loops: int = DEFAULT_MAX_REPAIR_LOOPS,
+) -> IngestExtractionPersistResult:
+    """Run ingest_extraction semantic flow and persist canonical claim/relation writes."""
+    repo_root = Path(__file__).resolve().parents[2]
+    resolved = resolve_semantic_invocation_spec(
+        "ingest_extraction",
+        repo_root=repo_root,
+        path_tokens={
+            "space_root": space_root,
+            "run_id": run_id,
+        },
+    )
+    semantic_output, _ = run_semantic_flow(
+        spec=_to_runtime_spec(resolved),
+        llm_client=llm_client,
+        max_repair_loops=max_repair_loops,
+    )
+
+    claims = semantic_output.get("claims")
+    if not isinstance(claims, list):
+        raise ValueError("ingest_extraction semantic output requires `claims` as an array.")
+    relations = semantic_output.get("relations")
+    if not isinstance(relations, list):
+        raise ValueError("ingest_extraction semantic output requires `relations` as an array.")
+
+    claim_paths, claim_ref_map = _write_claim_records(
+        space_root=space_root,
+        source_id=source_id,
+        claims=claims,
+    )
+    relation_paths = _write_relation_records(
+        space_root=space_root,
+        relations=relations,
+        claim_ref_map=claim_ref_map,
+    )
+    source_record_path = _update_source_record_with_ingest_extraction_fields(
+        space_root=space_root,
+        source_id=source_id,
+        semantic_output=semantic_output,
+    )
+
+    return IngestExtractionPersistResult(
+        run_id=run_id,
+        semantic_output_path=resolved.output_json_path,
+        claim_paths=claim_paths,
+        relation_paths=relation_paths,
+        source_record_path=source_record_path,
+    )
+
+
+def _to_runtime_spec(resolved: Any) -> SemanticSpec:
+    return SemanticSpec(
+        flow_key=resolved.flow_key,
+        version=resolved.version,
+        schema_path=resolved.schema_path,
+        output_json_path=resolved.output_json_path,
+        context_paths=resolved.context_paths,
+        spec_path=resolved.spec_path,
+    )
+
+
+def _write_claim_records(
+    *,
+    space_root: Path,
+    source_id: str,
+    claims: list[Any],
+) -> tuple[list[Path], dict[str, str]]:
+    claim_paths: list[Path] = []
+    claim_ref_map: dict[str, str] = {}
+
+    for index, raw_claim in enumerate(claims):
+        claim_payload, claim_id, claim_refs = _normalize_claim_payload(
+            raw_claim=raw_claim,
+            source_id=source_id,
+            index=index,
+        )
+        claim_path = space_root / "claims" / f"{claim_id}.json"
+        claim_path.parent.mkdir(parents=True, exist_ok=True)
+        claim_path.write_text(json.dumps(claim_payload, indent=2, sort_keys=True) + "\n")
+        claim_paths.append(claim_path)
+
+        for claim_ref in claim_refs:
+            claim_ref_map[claim_ref] = claim_id
+        claim_ref_map[claim_id] = claim_id
+
+    return claim_paths, claim_ref_map
+
+
+def _normalize_claim_payload(
+    *,
+    raw_claim: Any,
+    source_id: str,
+    index: int,
+) -> tuple[dict[str, Any], str, set[str]]:
+    if isinstance(raw_claim, str):
+        claim_text = _require_non_empty(raw_claim, "claims[].text")
+        raw_claim_dict: dict[str, Any] = {}
+    elif isinstance(raw_claim, dict):
+        raw_claim_dict = dict(raw_claim)
+        claim_text = _resolve_claim_text(raw_claim_dict)
+    else:
+        raise TypeError("claims[] items must be strings or objects.")
+
+    provided_claim_id = raw_claim_dict.get("claim_id")
+    claim_id = _resolve_claim_id(
+        provided_claim_id=provided_claim_id,
+        claim_text=claim_text,
+        source_id=source_id,
+        index=index,
+    )
+    evidence_excerpts = _normalize_evidence_excerpts(raw_claim_dict.get("evidence_excerpts"))
+    if not evidence_excerpts:
+        evidence_excerpts = _normalize_evidence_excerpts(raw_claim_dict.get("evidence"))
+
+    claim_payload = {
+        "schema_version": "claim_record_v1",
+        "claim_id": claim_id,
+        "source_id": source_id,
+        "text": claim_text,
+        "evidence_excerpts": evidence_excerpts,
+    }
+
+    claim_refs: set[str] = {str(index), f"#{index}"}
+    claim_key = raw_claim_dict.get("claim_key")
+    if isinstance(claim_key, str) and claim_key.strip():
+        claim_refs.add(claim_key.strip())
+    if isinstance(provided_claim_id, str) and provided_claim_id.strip():
+        claim_refs.add(provided_claim_id.strip())
+
+    return claim_payload, claim_id, claim_refs
+
+
+def _resolve_claim_text(raw_claim_dict: dict[str, Any]) -> str:
+    for key in ("text", "statement", "claim"):
+        value = raw_claim_dict.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    raise ValueError("claims[] objects must include non-empty `text`, `statement`, or `claim`.")
+
+
+def _resolve_claim_id(
+    *,
+    provided_claim_id: Any,
+    claim_text: str,
+    source_id: str,
+    index: int,
+) -> str:
+    if isinstance(provided_claim_id, str) and provided_claim_id.strip():
+        claim_id = provided_claim_id.strip()
+        if not _CLAIM_ID_RE.fullmatch(claim_id):
+            raise ValueError(f"Invalid claim_id format in semantic output: {claim_id}")
+        return claim_id
+
+    slug = slugify(claim_text)
+    canonical_payload = json.dumps(
+        {
+            "source_id": source_id,
+            "text": claim_text,
+            "position": index,
+        },
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+    return make_claim_id(slug=slug, canonical_payload=canonical_payload)
+
+
+def _normalize_evidence_excerpts(raw_value: Any) -> list[str]:
+    if raw_value is None:
+        return []
+    if not isinstance(raw_value, list):
+        raise TypeError("evidence_excerpts/evidence must be arrays when provided.")
+    normalized: list[str] = []
+    for raw_item in raw_value:
+        if isinstance(raw_item, str):
+            text = raw_item.strip()
+            if text:
+                normalized.append(text)
+            continue
+        if isinstance(raw_item, dict):
+            excerpt = raw_item.get("excerpt")
+            if isinstance(excerpt, str) and excerpt.strip():
+                normalized.append(excerpt.strip())
+                continue
+        raise TypeError("evidence items must be strings or objects with non-empty `excerpt`.")
+    return normalized
+
+
+def _write_relation_records(
+    *,
+    space_root: Path,
+    relations: list[Any],
+    claim_ref_map: dict[str, str],
+) -> list[Path]:
+    relation_paths: list[Path] = []
+    for raw_relation in relations:
+        if not isinstance(raw_relation, dict):
+            raise TypeError("relations[] items must be JSON objects.")
+        relation_payload = dict(raw_relation)
+        relation_payload["src_claim_id"] = _resolve_relation_claim_endpoint(
+            relation=relation_payload,
+            endpoint_key="src_claim_id",
+            endpoint_ref_key="src_claim_ref",
+            claim_ref_map=claim_ref_map,
+        )
+        relation_payload["dst_claim_id"] = _resolve_relation_claim_endpoint(
+            relation=relation_payload,
+            endpoint_key="dst_claim_id",
+            endpoint_ref_key="dst_claim_ref",
+            claim_ref_map=claim_ref_map,
+        )
+        relation_path = write_relation(relation_payload, space_root)
+        relation_paths.append(relation_path)
+    return relation_paths
+
+
+def _resolve_relation_claim_endpoint(
+    *,
+    relation: dict[str, Any],
+    endpoint_key: str,
+    endpoint_ref_key: str,
+    claim_ref_map: dict[str, str],
+) -> str:
+    raw = relation.get(endpoint_key)
+    if raw is None:
+        raw = relation.get(endpoint_ref_key)
+    if not isinstance(raw, str) or not raw.strip():
+        raise ValueError(f"relations[] requires `{endpoint_key}` or `{endpoint_ref_key}`.")
+    claim_ref = raw.strip()
+    if claim_ref not in claim_ref_map:
+        raise ValueError(f"relations[] references unknown claim: {claim_ref}")
+    return claim_ref_map[claim_ref]
+
+
+def _update_source_record_with_ingest_extraction_fields(
+    *,
+    space_root: Path,
+    source_id: str,
+    semantic_output: dict[str, Any],
+) -> Path:
+    source_record_path = space_root / "sources" / "records" / f"{source_id}.json"
+    if not source_record_path.is_file():
+        raise FileNotFoundError(f"Canonical source record missing for source_id {source_id}.")
+
+    source_record = json.loads(source_record_path.read_text())
+    if not isinstance(source_record, dict):
+        raise ValueError(f"Source record must be a JSON object: {source_record_path}")
+
+    source_semantic = semantic_output.get("source")
+    if not isinstance(source_semantic, dict):
+        raise ValueError("ingest_extraction semantic output requires `source` as a JSON object.")
+    source_record["source_semantic"] = source_semantic
+    source_record["source_date_inference"] = semantic_output.get("source_date_inference")
+    source_record["summary"] = semantic_output.get("summary")
+    source_record["warnings"] = semantic_output.get("warnings")
+    source_record_path.write_text(json.dumps(source_record, indent=2, sort_keys=True) + "\n")
+    return source_record_path
 
 
 @dataclass(frozen=True)

@@ -7,6 +7,7 @@ import argparse
 import os
 from pathlib import Path
 import sys
+import json
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
@@ -15,7 +16,12 @@ if str(_REPO_ROOT) not in sys.path:
 from sapi.core.registry import resolve_registry_path, resolve_space_root
 from sapi.core.locks import IngestLockHeldError, ingest_lock
 from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
-from sapi.ingest.records_writer import ingest_source_artifacts_and_record
+from sapi.contracts.ids import make_run_id
+from sapi.ingest.records_writer import (
+    ingest_source_artifacts_and_record,
+    run_ingest_extraction_and_persist_canonical,
+)
+from sapi.llm.client import SemanticLlmRequest
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -66,6 +72,21 @@ def main() -> int:
                 citation_count_provider=args.citation_count_provider,
                 citation_count_confidence=args.citation_count_confidence,
             )
+            extraction_result = None
+            if not args.source_only:
+                source_record = json.loads(result.record_path.read_text())
+                source_title = source_record.get("title")
+                run_id = make_run_id()
+                extraction_result = run_ingest_extraction_and_persist_canonical(
+                    space_root=space_root,
+                    source_id=result.source_id,
+                    run_id=run_id,
+                    llm_client=_BootstrapIngestExtractionClient(
+                        source_id=result.source_id,
+                        source_title=source_title if isinstance(source_title, str) else None,
+                        source_date=args.source_date,
+                    ),
+                )
     except IngestLockHeldError as exc:
         print(str(exc), file=sys.stderr)
         return 1
@@ -73,13 +94,69 @@ def main() -> int:
         print(str(exc), file=sys.stderr)
         return 1
 
-    print(
+    summary = (
         "scripts/ingest_source.py source ingested "
         f"(execution_mode={runtime_policy.execution_mode}, "
         f"source_id={result.source_id}, "
-        f"record_path={result.record_path})"
+        f"record_path={result.record_path}"
     )
+    if extraction_result is not None:
+        summary += (
+            f", run_id={extraction_result.run_id}, "
+            f"claims_written={len(extraction_result.claim_paths)}, "
+            f"relations_written={len(extraction_result.relation_paths)}"
+        )
+    summary += ")"
+    print(summary)
     return 0
+
+
+class _BootstrapIngestExtractionClient:
+    """Repository-local deterministic semantic client used for reconstruction bootstrap."""
+
+    def __init__(
+        self,
+        *,
+        source_id: str,
+        source_title: str | None,
+        source_date: str | None,
+    ) -> None:
+        self._source_id = source_id
+        self._source_title = source_title or source_id
+        self._source_date = source_date
+
+    def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
+        payload = {
+            "source_date_inference": {
+                "date": self._source_date,
+                "origin": "explicit" if self._source_date else "unknown",
+                "confidence": "high" if self._source_date else "unknown",
+                "rationale": None,
+            },
+            "source": {
+                "source_id": self._source_id,
+                "title": self._source_title,
+            },
+            "claims": [
+                {
+                    "text": f"Source `{self._source_title}` was ingested successfully.",
+                    "evidence_excerpts": [],
+                }
+            ],
+            "relations": [],
+            "summary": "Bootstrap ingest extraction completed.",
+            "warnings": (
+                []
+                if self._source_date
+                else [
+                    {
+                        "code": "missing_publication_date",
+                        "message": "Publication date could not be resolved; continuing with date=null.",
+                    }
+                ]
+            ),
+        }
+        return json.dumps(payload)
 
 
 if __name__ == "__main__":
