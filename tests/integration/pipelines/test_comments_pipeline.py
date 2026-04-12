@@ -513,6 +513,52 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             self.assertIn("strongest_opposing_point_ack", result.stderr)
             assert_no_run_containers(space_root)
 
+    def test_legacy_frontmatter_controls_are_written_to_canonical_page_json_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            topic_id = "topic-alpha"
+            frontmatter_controls = {
+                "persona_discussion_enabled": False,
+                "persona_discussion_roster": ["alice", "bob"],
+                "persona_discussion_max_turns": 4,
+            }
+            (space_root / "topics" / f"{topic_id}.json").write_text(
+                json.dumps(
+                    {
+                        "topic_id": topic_id,
+                        "title": "Alpha",
+                        "frontmatter": frontmatter_controls,
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n"
+            )
+
+            result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "create_comments.py"),
+                    "alpha",
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--count",
+                    "5",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            topic_payload = json.loads((space_root / "topics" / f"{topic_id}.json").read_text())
+            self.assertEqual(
+                topic_payload["discussion_controls"],
+                {"enabled": False, "roster": ["alice", "bob"], "max_turns": 4},
+            )
+            self.assertEqual(topic_payload["frontmatter"], frontmatter_controls)
+            self.assertNotIn("persona_discussion_enabled", topic_payload)
+
     def _write_topic(self, space_root: Path, *, topic_id: str, title: str) -> None:
         (space_root / "topics" / f"{topic_id}.json").write_text(
             json.dumps(

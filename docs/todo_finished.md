@@ -4,6 +4,28 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0248: Implement discussion-controls precedence and canonical metadata integration
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-13
+  - phase: Phase 5
+  - depends_on: TODO-0223, TODO-0236
+  - scope: Implement discussion-controls loading and precedence (`defaults -> per-page controls -> canonical page metadata`) with compatibility readers.
+  - acceptance:
+    - Site controls are read from canonical file/schema and fallback safely when missing/invalid.
+    - Canonical page JSON metadata overrides frontmatter when both are present.
+    - New writes target canonical page JSON metadata, not markdown frontmatter.
+  - notes: source `design.md` Section 7.6
+  - evidence: Implemented discussion-controls loading and precedence in
+    `sapi/comments/controls.py`, including canonical schema loading with safe empty fallback,
+    compatibility alias normalization, and explicit precedence
+    (`defaults -> per-page controls -> canonical page metadata`) with canonical-over-frontmatter
+    behavior. Wired canonical metadata writeback into `scripts/create_comments.py` so legacy
+    frontmatter-derived controls are written to canonical page JSON `discussion_controls` without
+    mutating frontmatter fields. Added unit coverage in
+    `tests/unit/comments/test_discussion_controls.py` and integration coverage in
+    `tests/integration/pipelines/test_comments_pipeline.py`.
+
 - [x] TODO-0249: Implement comment generation-isolation and adjudication summary contracts
   - owner: ai
   - created_at: 2026-04-12

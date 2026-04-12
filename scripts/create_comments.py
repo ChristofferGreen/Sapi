@@ -23,6 +23,12 @@ from sapi.comments.comments_pipeline import (
     page_ref_key,
     validate_comment_count,
 )
+from sapi.comments.controls import (
+    SiteDiscussionControls,
+    apply_canonical_page_discussion_controls,
+    load_site_discussion_controls,
+    resolve_page_discussion_controls,
+)
 from sapi.comments.merge_normalize import (
     apply_merged_comments_to_page,
     merge_comment_section,
@@ -83,6 +89,7 @@ def main() -> int:
     runtime_policy = None
     runtime_flags = None
     space_root: Path | None = None
+    site_controls = SiteDiscussionControls(defaults={}, pages={})
     requested_count = 0
     evidence_mode = "canonical-only"
     comment_user_filters: list[str] = []
@@ -117,6 +124,7 @@ def main() -> int:
             space_root=space_root,
             explicit_page_refs=_normalize_comment_page_refs(args),
         )
+        site_controls = load_site_discussion_controls(site_path=site_path)
         target_page_refs = [target.page_ref for target in targets]
     except (FileNotFoundError, KeyError, TypeError, ValueError) as exc:
         print(str(exc), file=sys.stderr)
@@ -126,6 +134,18 @@ def main() -> int:
 
     try:
         for target in targets:
+            page_controls = resolve_page_discussion_controls(
+                site_controls=site_controls,
+                page_ref=target.page_ref,
+                page_payload=target.page_payload,
+            )
+            page_payload = target.page_payload
+            if page_controls.canonical_page_controls_to_write is not None:
+                page_payload = apply_canonical_page_discussion_controls(
+                    page_payload=page_payload,
+                    canonical_page_controls=page_controls.canonical_page_controls_to_write,
+                )
+
             _record_semantic_invocation(
                 flow_key="comment_section_generation",
                 semantic_flows=semantic_flows,
@@ -163,7 +183,7 @@ def main() -> int:
 
             merge_result = merge_comment_section(
                 page_ref=target.page_ref,
-                page_payload=target.page_payload,
+                page_payload=page_payload,
                 semantic_comments=_extract_semantic_comments(
                     semantic_payload=semantic_payload,
                     expected_page_ref=target.page_ref,
@@ -179,7 +199,7 @@ def main() -> int:
             )
             target_new_comment_uids[target.page_ref] = merge_result.new_comment_uids
             updated_page_payload = apply_merged_comments_to_page(
-                page_payload=target.page_payload,
+                page_payload=page_payload,
                 page_ref=target.page_ref,
                 merged_comments=merge_result.merged_comments,
             )
@@ -245,7 +265,7 @@ def main() -> int:
             errors=str(exc),
         )
         print(
-        "scripts/create_comments.py comments failed "
+            "scripts/create_comments.py comments failed "
             f"(execution_mode={runtime_policy.execution_mode}, run_id={run_id}, "
             f"status={finalized.status}, adjudication={adjudication_summary}, "
             f"generation_isolation={generation_isolation_summary}, error={exc})",
