@@ -1950,3 +1950,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `QueryRunFields.manifest_path` so run metadata matches the emitted query artifact
     contract. Updated `docs/testing_plan.md` to mark the Tier 3 query output-mode item
     complete.
+
+- [x] TODO-0297: Close Tier 3 profiles pipeline checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0224
+  - scope: Finalize Tier 3 persona profiles evidence by proving profile JSON/history writes
+    alongside committed run/lint metadata invariants for multi-persona runs.
+  - acceptance:
+    - `tests/integration/pipelines/test_profiles_pipeline.py` verifies canonical profile JSON
+      and profile-history writes for selected personas.
+    - The same module verifies committed run metadata includes flow identity, status,
+      execution mode, semantic invocation counts, and lint totals.
+    - `docs/testing_plan.md` marks the Tier 3 profiles checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 3; `docs/design.md` Sections 7.5, 10
+  - evidence: Extended
+    `tests/integration/pipelines/test_profiles_pipeline.py` with explicit run-envelope
+    assertions (`status`, `execution_mode`, `run_id` alignment, and `llm_attempt_count`)
+    in the multi-persona profile generation scenario while retaining existing profile/history
+    and lint artifact checks. Updated `docs/testing_plan.md` to mark the Tier 3 profiles
+    item complete.

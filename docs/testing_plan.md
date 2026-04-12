@@ -105,7 +105,7 @@ tests/
   - Module: `tests/integration/pipelines/test_query_pipeline_outputs.py`
 - [ ] Comments flow target defaults, count bounds, per-page semantic artifact pathing, merge stability (`comment_uid`), evidence snapshot contract.
   - Module: `tests/integration/pipelines/test_comments_pipeline.py`
-- [ ] Profiles flow writes profile JSON + history + run/lint metadata.
+- [x] Profiles flow writes profile JSON + history + run/lint metadata.
   - Module: `tests/integration/pipelines/test_profiles_pipeline.py`
 - [ ] `evaluate_source.sh` default run emits required markdown artifact pack + manifest linkage.
   - Module: `tests/integration/wrappers/test_evaluate_source_harness.py`

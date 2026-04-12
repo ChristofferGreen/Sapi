@@ -44,11 +44,15 @@ class ProfilesPipelineIntegrationTests(unittest.TestCase):
             run_dir = latest_run_directory(space_root)
             frontmatter = parse_run_frontmatter(run_dir / "run.md")
             self.assertEqual(frontmatter["flow_key"], "persona_profile_pipeline")
+            self.assertEqual(frontmatter["status"], "success")
+            self.assertEqual(frontmatter["execution_mode"], "mock_llm_test")
+            self.assertEqual(frontmatter["run_id"], run_dir.name)
             self.assertEqual(frontmatter["semantic_flows"], ["persona_profile_generation"])
             self.assertEqual(
                 frontmatter["semantic_flow_invocation_counts"],
                 {"persona_profile_generation": 2},
             )
+            self.assertEqual(frontmatter["llm_attempt_count"], 2)
             self.assertEqual(frontmatter["lint_error_count"], 0)
             self.assertEqual(frontmatter["lint_warning_count"], 0)
             self.assertEqual(frontmatter["lint_info_count"], 0)
