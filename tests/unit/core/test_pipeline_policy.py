@@ -4,7 +4,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from sapi.contracts.run_envelopes import IngestRunFields, QueryRunFields, RunEnvelopeBase
+from sapi.contracts.run_envelopes import (
+    CommentRunFields,
+    IngestRunFields,
+    PersonaProfileRunFields,
+    QueryRunFields,
+    RunEnvelopeBase,
+)
 from sapi.core.pipeline_policy import (
     exit_code_for_status,
     finalize_pipeline_run,
@@ -65,6 +71,8 @@ class PipelinePolicyTests(unittest.TestCase):
         self.assertEqual(exit_code_for_status("success_with_warnings"), 0)
         self.assertNotEqual(exit_code_for_status("failed"), 0)
         self.assertNotEqual(exit_code_for_status("aborted"), 0)
+        with self.assertRaises(ValueError):
+            exit_code_for_status("pending")
 
     def test_default_failure_prunes_run_container_while_ingest_force_preserves(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -141,6 +149,37 @@ class PipelinePolicyTests(unittest.TestCase):
                     force_mode=True,
                 )
 
+    def test_default_failure_prunes_run_container_for_comment_and_profile_pipelines(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space"
+
+            cases = [
+                ("comment_section_pipeline", _comment_fields(), "run-20260412T120004Z--comments000"),
+                ("persona_profile_pipeline", _profile_fields(), "run-20260412T120005Z--profiles000"),
+            ]
+            for flow_key, flow_fields, run_id in cases:
+                with self.subTest(flow_key=flow_key):
+                    base = _base(flow_key=flow_key, run_id=run_id)
+                    base.status = "failed"
+                    tx = ArtifactTransaction()
+                    run_md = space_root / "runs" / run_id / "run.md"
+                    _write_file(run_md, "transient")
+                    tx.mark_mkdir(run_md.parent)
+                    tx.mark_create(run_md)
+
+                    result = finalize_pipeline_run(
+                        space_root=space_root,
+                        base=base,
+                        flow_fields=flow_fields,
+                        transaction=tx,
+                        force_mode=False,
+                    )
+                    self.assertEqual(result.exit_code, 1)
+                    self.assertIsNone(result.run_record_path)
+                    self.assertIsNotNone(result.rollback_disposition)
+                    self.assertTrue(result.rollback_disposition.rollback_applied)  # type: ignore[union-attr]
+                    self.assertFalse((space_root / "runs" / run_id).exists())
+
 
 def _base(*, flow_key: str, run_id: str) -> RunEnvelopeBase:
     return RunEnvelopeBase(
@@ -187,6 +226,27 @@ def _ingest_fields() -> IngestRunFields:
         deferred_build_reason=None,
         force_mode=True,
         rollback_skipped=True,
+    )
+
+
+def _comment_fields() -> CommentRunFields:
+    return CommentRunFields(
+        target_page_refs=["topic:topic-a"],
+        comment_user_filters=["alice"],
+        requested_count=3,
+        comments_added=0,
+        evidence_mode="none",
+        evidence_snapshot_path=None,
+    )
+
+
+def _profile_fields() -> PersonaProfileRunFields:
+    return PersonaProfileRunFields(
+        persona_ids=["alice"],
+        history_generated=0,
+        history_updated=0,
+        history_reused=0,
+        pages_changed=0,
     )
 
 

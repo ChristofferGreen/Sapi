@@ -51,20 +51,20 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0262`
-2. `TODO-0269`
-3. `TODO-0236`
-4. `TODO-0235`
-5. `TODO-0240`
-6. `TODO-0241`
-7. `TODO-0239`
-8. `TODO-0272`
-9. `TODO-0210`
-10. `TODO-0211`
+1. `TODO-0269`
+2. `TODO-0236`
+3. `TODO-0235`
+4. `TODO-0240`
+5. `TODO-0241`
+6. `TODO-0239`
+7. `TODO-0272`
+8. `TODO-0210`
+9. `TODO-0211`
+10. `TODO-0213`
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: `TODO-0235`, `TODO-0236`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0262`, `TODO-0269`, `TODO-0272`
+- P0 Foundation/contracts: `TODO-0235`, `TODO-0236`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0269`, `TODO-0272`
 - P1 Core product behavior: `TODO-0210` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0100`, `TODO-0264`, `TODO-0265`
@@ -72,7 +72,7 @@ Task template:
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. `TODO-0262` -> `TODO-0269`
+1. `TODO-0269`
 2. `TODO-0236` -> `TODO-0235` -> `TODO-0240`
 3. `TODO-0272`
 
@@ -109,7 +109,7 @@ Cross-cutting docs backlog:
 | Section 7.7 comment quality harness | `TODO-0225` |
 | Section 8 site/UI/static build | `TODO-0216`, `TODO-0268`, `TODO-0217`, `TODO-0245`, `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
 | Section 9 observability/safety/runtime controls | `TODO-0226`, `TODO-0227`, `TODO-0240`, `TODO-0254` |
-| Section 10 run envelopes/lifecycle status | `TODO-0262`, `TODO-0269`, `TODO-0234`, `TODO-0250` |
+| Section 10 run envelopes/lifecycle status | `TODO-0269`, `TODO-0234`, `TODO-0250` |
 | Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0276`, `TODO-0277`, `TODO-0278`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0243`, `TODO-0260`, `TODO-0261` |
 | Section 13 definition of done | `TODO-0231`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
@@ -118,12 +118,12 @@ Cross-cutting docs backlog:
 
 | Low-level area | Primary TODO IDs |
 | --- | --- |
-| Section 2 (runtime model and flow namespaces) | `TODO-0214`, `TODO-0262`, `TODO-0269` |
-| Section 4 (core data types/run envelope types) | `TODO-0239`, `TODO-0262`, `TODO-0269` |
+| Section 2 (runtime model and flow namespaces) | `TODO-0214`, `TODO-0269` |
+| Section 4 (core data types/run envelope types) | `TODO-0239`, `TODO-0269` |
 | Section 5 (path + registry contracts) | `TODO-0241` |
 | Section 6 (semantic execution engine + retry/repair) | `TODO-0272` |
 | Section 7 (transaction/rollback) | `TODO-0214` |
-| Section 8 (pipeline execution contracts) | `TODO-0210`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0278`, `TODO-0220`, `TODO-0223`, `TODO-0224`, `TODO-0242`, `TODO-0262`, `TODO-0269` |
+| Section 8 (pipeline execution contracts) | `TODO-0210`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0278`, `TODO-0220`, `TODO-0223`, `TODO-0224`, `TODO-0242`, `TODO-0269` |
 | Section 9 (deterministic build/projection) | `TODO-0216`, `TODO-0217`, `TODO-0246`, `TODO-0275` |
 | Section 10 (relation persistence) | `TODO-0213`, `TODO-0278` |
 | Section 11 (lint/warning threshold) | `TODO-0218`, `TODO-0219` |
@@ -335,18 +335,6 @@ Cross-cutting docs backlog:
     - Verification step enforces no rollback/leak regressions and no deferred-build backlog before DoD.
     - `TODO-0231` cannot be marked complete while any exit-criteria gate fails.
   - notes: source `testing_plan.md` Section 6; `design.md` Sections 11, 13
-
-- [ ] TODO-0262: Enforce common pipeline status/exit-code and commit policy contracts
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 1
-  - depends_on: TODO-0205, TODO-0206
-  - scope: Centralize and enforce pipeline state-machine transitions, exit-code mapping, and default commit/rollback policy across ingest/query/comments/profiles.
-  - acceptance:
-    - Status transitions (`pending`, `success`, `success_with_warnings`, `failed`, `aborted`) follow one shared contract implementation.
-    - Exit-code mapping is consistent (`0` only for success statuses, non-zero for failed/aborted).
-    - Default-mode failure handling never leaves committed run containers, with ingest `--force` exception explicitly tested.
-  - notes: source `low_level.md` Sections 2, 8.0; `design.md` Section 10
 
 - [ ] TODO-0242: Enforce ingest/query capability ownership boundaries
   - owner: ai

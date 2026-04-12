@@ -247,3 +247,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `<space_root>/runs/<run_id>/run.md` path assertion, semantic flow + invocation-count frontmatter
     checks, required section presence/order with `(none)` fallback, and per-pipeline extension-field
     type enforcement.
+
+- [x] TODO-0262: Enforce common pipeline status/exit-code and commit policy contracts
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0205, TODO-0206
+  - scope: Centralize and enforce pipeline state-machine transitions, exit-code mapping, and default commit/rollback policy across ingest/query/comments/profiles.
+  - acceptance:
+    - Status transitions (`pending`, `success`, `success_with_warnings`, `failed`, `aborted`) follow one shared contract implementation.
+    - Exit-code mapping is consistent (`0` only for success statuses, non-zero for failed/aborted).
+    - Default-mode failure handling never leaves committed run containers, with ingest `--force` exception explicitly tested.
+  - evidence: Verified by `tests/unit/core/test_pipeline_policy.py`, including shared status
+    transition checks, exit-code mapping checks (`0` only for success statuses and rejection of
+    non-terminal `pending`), default failure run-container pruning for query/comments/profiles,
+    and explicit ingest `--force` retained-failure exception coverage.
