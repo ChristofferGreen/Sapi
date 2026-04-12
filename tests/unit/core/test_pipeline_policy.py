@@ -273,6 +273,17 @@ def _comment_fields() -> CommentRunFields:
         comment_user_filters=["alice"],
         requested_count=3,
         comments_added=0,
+        adjudication={
+            "rubric_id": "comment_section_adjudication_v1",
+            "checks": {},
+            "failures": {},
+        },
+        generation_isolation={
+            "schema_version": "comment_section_generation_context_v1",
+            "prompt_leak_count": 0,
+            "context_leak_count": 0,
+            "total_leak_count": 0,
+        },
         evidence_mode="none",
         evidence_snapshot_path=None,
     )

@@ -49,6 +49,11 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                 frontmatter["semantic_flow_invocation_counts"],
                 {"comment_section_generation": 2},
             )
+            self.assertEqual(frontmatter["generation_isolation"]["schema_version"], "comment_section_generation_context_v1")
+            self.assertEqual(frontmatter["generation_isolation"]["total_leak_count"], 0)
+            self.assertEqual(frontmatter["adjudication"]["rubric_id"], "comment_section_adjudication_v1")
+            self.assertIn("checks", frontmatter["adjudication"])
+            self.assertIn("failures", frontmatter["adjudication"])
 
             semantic_dir = run_dir / "semantic" / "comment_section_generation"
             semantic_artifacts = sorted(semantic_dir.glob("*.json"))

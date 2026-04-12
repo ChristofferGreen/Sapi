@@ -4,6 +4,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0249: Implement comment generation-isolation and adjudication summary contracts
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 5
+  - depends_on: TODO-0223
+  - scope: Implement anti-gaming generation isolation checks and adjudication summary outputs for comment runs.
+  - acceptance:
+    - Comment-generation prompts/context do not expose adjudication rubric internals.
+    - Generation-isolation metadata uses canonical marker/schema version and leak counters.
+    - Adjudication summary fields (`rubric_id`, checks, failures) are emitted in projection/run outputs.
+  - notes: source `design.md` Sections 7.6, 7.7
+  - evidence: Extended `scripts/create_comments.py` with explicit generation-isolation auditing
+    for semantic request payloads and leak detection against adjudication-rubric terms,
+    persisted canonical generation-isolation metadata (`schema_version=comment_section_generation_context_v1`)
+    with leak counters into comment run outputs, and added deterministic adjudication summary
+    emission (`rubric_id=comment_section_adjudication_v1`, `checks`, `failures`, `pages_with_failures`)
+    to comment run metadata. Updated `CommentRunFields` in `sapi/contracts/run_envelopes.py`
+    and added tests in `tests/unit/comments/test_generation_isolation_audit.py`,
+    `tests/integration/pipelines/test_comments_pipeline.py`, and run-envelope contract suites.
+
 - [x] TODO-0258: Implement rebuttal-steelman and claim-badge rendering contracts for comments
   - owner: ai
   - created_at: 2026-04-12

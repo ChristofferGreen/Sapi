@@ -54,19 +54,19 @@ Task template:
 1. `TODO-0266`
 2. `TODO-0275`
 3. `TODO-0248`
-4. `TODO-0249`
-5. `TODO-0250`
-6. `TODO-0225`
-7. `TODO-0224`
-8. `TODO-0256`
-9. `TODO-0229`
-10. `TODO-0230`
+4. `TODO-0250`
+5. `TODO-0225`
+6. `TODO-0224`
+7. `TODO-0256`
+8. `TODO-0229`
+9. `TODO-0230`
+10. `TODO-0263`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0224` to `TODO-0231`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0256`, `TODO-0263`, `TODO-0266`, `TODO-0275`
+- P2 Social/eval/hardening: `TODO-0224` to `TODO-0231`, `TODO-0248`, `TODO-0250`, `TODO-0256`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -79,7 +79,7 @@ Wave B (ingest + projection + lint):
 
 Wave C (query + social + hardening + release):
 1. (none currently)
-2. `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
+2. `TODO-0248` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
 3. `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
@@ -100,7 +100,7 @@ Cross-cutting docs backlog:
 | Section 7.3 query pipeline | - |
 | Section 7.4 persona catalog | - |
 | Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
-| Section 7.6 comments pipeline/rendering | `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
+| Section 7.6 comments pipeline/rendering | `TODO-0248`, `TODO-0256`, `TODO-0275` |
 | Section 7.7 comment quality harness | `TODO-0225` |
 | Section 8 site/UI/static build | `TODO-0256` |
 | Section 9 observability/safety/runtime controls | - |
@@ -209,18 +209,6 @@ Cross-cutting docs backlog:
     - `failed` and `aborted` runs are excluded from consecutive-run resolution logic.
     - Advancement behavior is tested for ingest/query/comment/profile pipelines.
   - notes: source `design.md` Section 10
-
-- [ ] TODO-0249: Implement comment generation-isolation and adjudication summary contracts
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 5
-  - depends_on: TODO-0223
-  - scope: Implement anti-gaming generation isolation checks and adjudication summary outputs for comment runs.
-  - acceptance:
-    - Comment-generation prompts/context do not expose adjudication rubric internals.
-    - Generation-isolation metadata uses canonical marker/schema version and leak counters.
-    - Adjudication summary fields (`rubric_id`, checks, failures) are emitted in projection/run outputs.
-  - notes: source `design.md` Sections 7.6, 7.7
 
 - [ ] TODO-0248: Implement discussion-controls precedence and canonical metadata integration
   - owner: ai

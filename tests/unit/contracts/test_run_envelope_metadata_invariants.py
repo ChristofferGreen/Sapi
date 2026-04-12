@@ -39,7 +39,13 @@ class RunEnvelopeMetadataInvariantTests(unittest.TestCase):
             expected_extension_keys = {
                 "ingest_pipeline": {"ingest_scope", "source_ids", "force_mode", "rollback_skipped"},
                 "query_pipeline": {"query_id", "mode", "scope", "manifest_path"},
-                "comment_section_pipeline": {"target_page_refs", "requested_count", "comments_added"},
+                "comment_section_pipeline": {
+                    "target_page_refs",
+                    "requested_count",
+                    "comments_added",
+                    "adjudication",
+                    "generation_isolation",
+                },
                 "persona_profile_pipeline": {"persona_ids", "history_generated", "history_updated", "pages_changed"},
             }
 
@@ -202,6 +208,17 @@ def _extension_for(flow_key: str) -> object:
             comment_user_filters=["alice"],
             requested_count=5,
             comments_added=4,
+            adjudication={
+                "rubric_id": "comment_section_adjudication_v1",
+                "checks": {},
+                "failures": {},
+            },
+            generation_isolation={
+                "schema_version": "comment_section_generation_context_v1",
+                "prompt_leak_count": 0,
+                "context_leak_count": 0,
+                "total_leak_count": 0,
+            },
             evidence_mode="none",
             evidence_snapshot_path=None,
         )

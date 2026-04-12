@@ -113,6 +113,8 @@ class CommentRunFields:
     comment_user_filters: list[str]
     requested_count: int
     comments_added: int
+    adjudication: dict[str, object]
+    generation_isolation: dict[str, object]
     evidence_mode: str
     evidence_snapshot_path: str | None
 

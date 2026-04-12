@@ -43,6 +43,16 @@ from sapi.llm.client import SemanticLlmRequest
 from sapi.llm.semantic_executor import build_semantic_spec_from_contract, run_semantic_flow
 from sapi.profiles.persona_catalog import load_seeded_persona_catalog
 
+_ARGUMENTATIVE_POSITIONS = {"support", "challenge", "rebuttal", "synthesis"}
+_GENERATION_ISOLATION_SCHEMA_VERSION = "comment_section_generation_context_v1"
+_ADJUDICATION_RUBRIC_ID = "comment_section_adjudication_v1"
+_GENERATION_ISOLATION_LEAK_TERMS: tuple[str, ...] = (
+    "adjudication rubric",
+    "scoring rubric",
+    "score weights",
+    "rubric criteria",
+)
+
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
@@ -82,6 +92,8 @@ def main() -> int:
     semantic_flows: list[str] = []
     semantic_flow_invocation_counts: dict[str, int] = {}
     llm_attempt_count = 0
+    adjudication_summary = _empty_adjudication_summary()
+    generation_isolation_summary = _empty_generation_isolation_summary()
 
     try:
         validate_runtime_flag_arguments(args)
@@ -129,15 +141,20 @@ def main() -> int:
                     "page_ref_key": page_ref_key(target.page_ref),
                 },
             )
+            comment_llm_client = _BootstrapCommentSectionClient(
+                page_ref=target.page_ref,
+                requested_count=requested_count,
+                persona_ids=selected_persona_ids,
+            )
             semantic_payload, attempt_count = run_semantic_flow(
                 spec=spec,
-                llm_client=_BootstrapCommentSectionClient(
-                    page_ref=target.page_ref,
-                    requested_count=requested_count,
-                    persona_ids=selected_persona_ids,
-                ),
+                llm_client=comment_llm_client,
             )
             llm_attempt_count += attempt_count
+            generation_isolation_summary = _merge_generation_isolation_summary(
+                generation_isolation_summary,
+                comment_llm_client.generation_isolation_summary,
+            )
             if not spec.output_json_path.exists():
                 raise RuntimeError(
                     "comment_section_generation semantic output was not persisted to the canonical path."
@@ -153,6 +170,13 @@ def main() -> int:
                 ),
             )
             comments_added += merge_result.comments_added
+            adjudication_summary = _merge_adjudication_summary(
+                adjudication_summary,
+                _summarize_page_adjudication(
+                    page_ref=target.page_ref,
+                    comments=merge_result.merged_comments,
+                ),
+            )
             target_new_comment_uids[target.page_ref] = merge_result.new_comment_uids
             updated_page_payload = apply_merged_comments_to_page(
                 page_payload=target.page_payload,
@@ -204,6 +228,8 @@ def main() -> int:
             comment_user_filters=comment_user_filters,
             requested_count=requested_count,
             comments_added=comments_added,
+            adjudication=adjudication_summary,
+            generation_isolation=generation_isolation_summary,
             evidence_mode=evidence_mode,
             evidence_snapshot_path=(
                 str(evidence_snapshot_path.resolve()) if evidence_snapshot_path is not None else None
@@ -219,9 +245,10 @@ def main() -> int:
             errors=str(exc),
         )
         print(
-            "scripts/create_comments.py comments failed "
+        "scripts/create_comments.py comments failed "
             f"(execution_mode={runtime_policy.execution_mode}, run_id={run_id}, "
-            f"status={finalized.status}, error={exc})",
+            f"status={finalized.status}, adjudication={adjudication_summary}, "
+            f"generation_isolation={generation_isolation_summary}, error={exc})",
             file=sys.stderr,
         )
         return finalized.exit_code
@@ -244,6 +271,8 @@ def main() -> int:
         comment_user_filters=comment_user_filters,
         requested_count=requested_count,
         comments_added=comments_added,
+        adjudication=adjudication_summary,
+        generation_isolation=generation_isolation_summary,
         evidence_mode=evidence_mode,
         evidence_snapshot_path=(
             str(evidence_snapshot_path.resolve()) if evidence_snapshot_path is not None else None
@@ -268,6 +297,7 @@ def main() -> int:
         "scripts/create_comments.py comments created "
         f"(execution_mode={runtime_policy.execution_mode}, run_id={run_id}, "
         f"target_page_refs={target_page_refs}, comments_added={comments_added}, "
+        f"adjudication={adjudication_summary}, generation_isolation={generation_isolation_summary}, "
         f"evidence_mode={evidence_mode}, evidence_snapshot_path={flow_fields.evidence_snapshot_path}, "
         f"run_record_path={finalized.run_record_path}, "
         f"runtime_flags={runtime_flags_summary_dict(runtime_flags)})"
@@ -429,6 +459,206 @@ def _make_run_base(
     )
 
 
+def _empty_generation_isolation_summary() -> dict[str, object]:
+    return {
+        "schema_version": _GENERATION_ISOLATION_SCHEMA_VERSION,
+        "prompt_leak_count": 0,
+        "context_leak_count": 0,
+        "total_leak_count": 0,
+        "detected_terms": [],
+    }
+
+
+def _merge_generation_isolation_summary(
+    left: dict[str, object],
+    right: dict[str, object],
+) -> dict[str, object]:
+    combined_terms = sorted(
+        set(_as_str_list(left.get("detected_terms"))) | set(_as_str_list(right.get("detected_terms")))
+    )
+    prompt_leak_count = int(left.get("prompt_leak_count", 0)) + int(right.get("prompt_leak_count", 0))
+    context_leak_count = int(left.get("context_leak_count", 0)) + int(right.get("context_leak_count", 0))
+    total_leak_count = int(left.get("total_leak_count", 0)) + int(right.get("total_leak_count", 0))
+    return {
+        "schema_version": _GENERATION_ISOLATION_SCHEMA_VERSION,
+        "prompt_leak_count": prompt_leak_count,
+        "context_leak_count": context_leak_count,
+        "total_leak_count": total_leak_count,
+        "detected_terms": combined_terms,
+    }
+
+
+def _audit_generation_isolation_request(request: SemanticLlmRequest) -> dict[str, object]:
+    prompt_blob = request.spec_text
+    context_blob = "\n".join(
+        f"{path}={pointer}"
+        for path, pointer in sorted(request.context_by_path.items())
+    )
+    prompt_leak_count, prompt_terms = _count_generation_isolation_leaks(prompt_blob)
+    context_leak_count, context_terms = _count_generation_isolation_leaks(context_blob)
+    detected_terms = sorted(prompt_terms | context_terms)
+    return {
+        "schema_version": _GENERATION_ISOLATION_SCHEMA_VERSION,
+        "prompt_leak_count": prompt_leak_count,
+        "context_leak_count": context_leak_count,
+        "total_leak_count": prompt_leak_count + context_leak_count,
+        "detected_terms": detected_terms,
+    }
+
+
+def _count_generation_isolation_leaks(text: str) -> tuple[int, set[str]]:
+    normalized = text.lower()
+    terms: set[str] = set()
+    leak_count = 0
+    for term in _GENERATION_ISOLATION_LEAK_TERMS:
+        count = normalized.count(term)
+        if count <= 0:
+            continue
+        terms.add(term)
+        leak_count += count
+    return leak_count, terms
+
+
+def _empty_adjudication_summary() -> dict[str, object]:
+    return {
+        "rubric_id": _ADJUDICATION_RUBRIC_ID,
+        "rows": 0,
+        "checks": {
+            "claim_citation": 0,
+            "anti_repetition": 0,
+            "strongest_opposing_point_ack": 0,
+        },
+        "failures": {
+            "claim_citation": 0,
+            "anti_repetition": 0,
+            "strongest_opposing_point_ack": 0,
+            "total": 0,
+        },
+        "pages_with_failures": [],
+    }
+
+
+def _summarize_page_adjudication(
+    *,
+    page_ref: str,
+    comments: list[dict[str, object]],
+) -> dict[str, object]:
+    rows = len(comments)
+    checks = {
+        "claim_citation": 0,
+        "anti_repetition": rows,
+        "strongest_opposing_point_ack": 0,
+    }
+    failures = {
+        "claim_citation": 0,
+        "anti_repetition": 0,
+        "strongest_opposing_point_ack": 0,
+        "total": 0,
+    }
+    seen_comment_bodies: set[tuple[str, str]] = set()
+    page_failed = False
+    for comment in comments:
+        if not isinstance(comment, dict):
+            continue
+        persona_id = str(comment.get("persona_id") or "")
+        body = str(comment.get("body") or "")
+        body_key = (persona_id.strip(), " ".join(body.split()).strip().lower())
+        if body_key in seen_comment_bodies:
+            failures["anti_repetition"] += 1
+            page_failed = True
+        else:
+            seen_comment_bodies.add(body_key)
+
+        turn = comment.get("turn")
+        if not isinstance(turn, dict):
+            continue
+        position = str(turn.get("position") or "").strip().lower()
+        if position in _ARGUMENTATIVE_POSITIONS:
+            checks["claim_citation"] += 1
+            evidence_refs = turn.get("evidence_refs")
+            if not isinstance(evidence_refs, list) or not evidence_refs:
+                failures["claim_citation"] += 1
+                page_failed = True
+        if position == "rebuttal":
+            checks["strongest_opposing_point_ack"] += 1
+            ack = turn.get("strongest_opposing_point_ack")
+            if not isinstance(ack, str) or not ack.strip():
+                failures["strongest_opposing_point_ack"] += 1
+                page_failed = True
+
+    failures["total"] = (
+        failures["claim_citation"]
+        + failures["anti_repetition"]
+        + failures["strongest_opposing_point_ack"]
+    )
+    return {
+        "rubric_id": _ADJUDICATION_RUBRIC_ID,
+        "rows": rows,
+        "checks": checks,
+        "failures": failures,
+        "pages_with_failures": [page_ref] if page_failed else [],
+    }
+
+
+def _merge_adjudication_summary(
+    left: dict[str, object],
+    right: dict[str, object],
+) -> dict[str, object]:
+    left_checks = _as_int_map(left.get("checks"))
+    right_checks = _as_int_map(right.get("checks"))
+    left_failures = _as_int_map(left.get("failures"))
+    right_failures = _as_int_map(right.get("failures"))
+    checks = {
+        "claim_citation": left_checks.get("claim_citation", 0) + right_checks.get("claim_citation", 0),
+        "anti_repetition": left_checks.get("anti_repetition", 0) + right_checks.get("anti_repetition", 0),
+        "strongest_opposing_point_ack": left_checks.get("strongest_opposing_point_ack", 0)
+        + right_checks.get("strongest_opposing_point_ack", 0),
+    }
+    failures = {
+        "claim_citation": left_failures.get("claim_citation", 0) + right_failures.get("claim_citation", 0),
+        "anti_repetition": left_failures.get("anti_repetition", 0) + right_failures.get("anti_repetition", 0),
+        "strongest_opposing_point_ack": left_failures.get("strongest_opposing_point_ack", 0)
+        + right_failures.get("strongest_opposing_point_ack", 0),
+    }
+    failures["total"] = (
+        failures["claim_citation"]
+        + failures["anti_repetition"]
+        + failures["strongest_opposing_point_ack"]
+    )
+    return {
+        "rubric_id": _ADJUDICATION_RUBRIC_ID,
+        "rows": int(left.get("rows", 0)) + int(right.get("rows", 0)),
+        "checks": checks,
+        "failures": failures,
+        "pages_with_failures": sorted(
+            set(_as_str_list(left.get("pages_with_failures")))
+            | set(_as_str_list(right.get("pages_with_failures")))
+        ),
+    }
+
+
+def _as_str_list(value: object) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    result: list[str] = []
+    for item in value:
+        if isinstance(item, str):
+            result.append(item)
+    return result
+
+
+def _as_int_map(value: object) -> dict[str, int]:
+    if not isinstance(value, dict):
+        return {}
+    result: dict[str, int] = {}
+    for key, item in value.items():
+        if not isinstance(key, str):
+            continue
+        if isinstance(item, int):
+            result[key] = item
+    return result
+
+
 def _model_fingerprint(execution_mode: str) -> str:
     return "mock_bootstrap" if execution_mode == "mock_llm_test" else "live_unspecified"
 
@@ -448,8 +678,19 @@ class _BootstrapCommentSectionClient:
         self._page_ref = page_ref
         self._requested_count = requested_count
         self._persona_ids = persona_ids
+        self._generation_isolation_summary = _empty_generation_isolation_summary()
 
-    def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
+    @property
+    def generation_isolation_summary(self) -> dict[str, object]:
+        return dict(self._generation_isolation_summary)
+
+    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
+        generation_isolation_summary = _audit_generation_isolation_request(request)
+        self._generation_isolation_summary = generation_isolation_summary
+        if int(generation_isolation_summary.get("total_leak_count", 0)) > 0:
+            raise ValueError(
+                "comment-generation prompts/context exposed adjudication rubric details."
+            )
         comments: list[dict[str, object]] = []
         for index in range(self._requested_count):
             persona_id = self._persona_ids[index % len(self._persona_ids)]
