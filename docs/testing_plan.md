@@ -101,7 +101,7 @@ tests/
   - Module: `tests/integration/pipelines/test_ingest_source_only.py`
 - [x] Ingest `--force` preserves partial artifacts on terminal failure and marks run metadata (`force_mode=true`, `rollback_skipped=true`).
   - Module: `tests/integration/pipelines/test_ingest_force_mode.py`
-- [ ] Query output-mode behavior (`markdown` vs artifact manifest modes).
+- [x] Query output-mode behavior (`markdown` vs artifact manifest modes).
   - Module: `tests/integration/pipelines/test_query_pipeline_outputs.py`
 - [ ] Comments flow target defaults, count bounds, per-page semantic artifact pathing, merge stability (`comment_uid`), evidence snapshot contract.
   - Module: `tests/integration/pipelines/test_comments_pipeline.py`

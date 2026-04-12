@@ -1927,3 +1927,26 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     committed run/lint artifacts, and run frontmatter captures failed status with
     `force_mode=true` and `rollback_skipped=true`. Updated `docs/testing_plan.md` to
     mark the Tier 3 ingest force-mode item complete.
+
+- [x] TODO-0296: Close Tier 3 query output-mode manifest contract checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0220
+  - scope: Finalize Tier 3 query output-mode evidence by proving markdown and non-markdown
+    query runs persist manifest metadata consistently across query artifacts and run records.
+  - acceptance:
+    - `tests/integration/pipelines/test_query_pipeline_outputs.py` verifies markdown mode
+      omits manifest artifacts and keeps run/query `manifest_path` null.
+    - The same module verifies non-markdown mode writes `manifest.json` and records the
+      canonical manifest path in run frontmatter.
+    - `docs/testing_plan.md` marks the Tier 3 query output-mode checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 3; `docs/design.md` Sections 7.3, 10
+  - evidence: Extended
+    `tests/integration/pipelines/test_query_pipeline_outputs.py` to assert run-frontmatter
+    `manifest_path` behavior for both markdown and mermaid output modes. Updated
+    `scripts/query.py` to propagate the canonical non-markdown manifest path into
+    `QueryRunFields.manifest_path` so run metadata matches the emitted query artifact
+    contract. Updated `docs/testing_plan.md` to mark the Tier 3 query output-mode item
+    complete.

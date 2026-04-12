@@ -84,6 +84,7 @@ def main() -> int:
     }
     transaction = ArtifactTransaction()
     query_record_path: Path | None = None
+    run_manifest_path: str | None = None
     claims_used: list[str] = []
     sources_used: list[str] = []
     contradictions_considered = 0
@@ -199,8 +200,9 @@ def main() -> int:
                 json.dumps(rendered.manifest, indent=2, sort_keys=True) + "\n",
                 transaction=transaction,
             )
+            run_manifest_path = str(manifest_path.resolve())
             expected_manifest_path = query_payload.get("manifest_path")
-            if expected_manifest_path != str(manifest_path.resolve()):
+            if expected_manifest_path != run_manifest_path:
                 raise RuntimeError(
                     "Query result manifest_path must match canonical manifest file path."
                 )
@@ -264,7 +266,7 @@ def main() -> int:
         claims_used=len(claims_used),
         sources_used=len(sources_used),
         contradictions_considered=contradictions_considered,
-        manifest_path=None,
+        manifest_path=run_manifest_path,
     )
     finalized = finalize_pipeline_run(
         space_root=space_root,

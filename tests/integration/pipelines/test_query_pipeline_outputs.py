@@ -47,6 +47,7 @@ class QueryPipelineOutputsIntegrationTests(unittest.TestCase):
             self.assertEqual(frontmatter["execution_mode"], "mock_llm_test")
             self.assertEqual(frontmatter["semantic_flows"], ["query_synthesis"])
             self.assertEqual(frontmatter["semantic_flow_invocation_counts"], {"query_synthesis": 1})
+            self.assertIsNone(frontmatter["manifest_path"])
             self.assertTrue((run_dir / "lint.json").is_file())
 
             self.assertFalse((site_path / "outputs" / "build_site" / "manifest.json").exists())
@@ -76,6 +77,11 @@ class QueryPipelineOutputsIntegrationTests(unittest.TestCase):
             manifest_path = output_dir / "manifest.json"
             self.assertTrue(manifest_path.is_file())
             self.assertEqual(query_payload["manifest_path"], str(manifest_path.resolve()))
+
+            run_dir = latest_run_directory(space_root)
+            frontmatter = parse_run_frontmatter(run_dir / "run.md")
+            self.assertEqual(frontmatter["flow_key"], "query_pipeline")
+            self.assertEqual(frontmatter["manifest_path"], str(manifest_path.resolve()))
 
 
 def _latest_query_output_dir(space_root: Path) -> Path:
