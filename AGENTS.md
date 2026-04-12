@@ -1,0 +1,63 @@
+# AGENTS
+
+## Commit Message Rules
+
+Use this format for every commit:
+
+```text
+<type>(<scope>): <subject>
+
+<body>
+
+Refs: TODO-XXXX
+```
+
+### 1) Subject line
+
+- Keep it under 72 characters.
+- Use imperative mood (`add`, `fix`, `refactor`, `remove`), not past tense.
+- Start lowercase after `:`.
+- Describe behavior/change, not process.
+- Do not end with a period.
+
+### 2) Allowed `type` values
+
+- `feat`: new user-visible behavior
+- `fix`: bug fix or contract-correction
+- `refactor`: internal restructuring with no behavior change
+- `test`: tests only
+- `docs`: docs only
+- `chore`: tooling/build/maintenance
+
+### 3) Scope
+
+- Use a real subsystem, e.g. `ingest`, `query`, `comments`, `profiles`, `build`, `lint`, `docs`, `wrappers`.
+- Keep scope stable across commits for the same area.
+
+### 4) Body requirements
+
+- Explain why the change is needed (context/problem).
+- List key behavioral changes and important non-changes.
+- Mention risks, migrations, or compatibility impact when relevant.
+- Use real line breaks in commit bodies; do not write escaped `\n` sequences.
+- Wrap body lines at ~100 chars.
+
+### 5) Traceability
+
+- Include at least one backlog reference: `Refs: TODO-XXXX`.
+- If closing an item completely, use `Closes: TODO-XXXX`.
+- If multiple TODOs are touched, list each explicitly.
+
+### 6) Commit hygiene
+
+- One logical change per commit.
+- Do not mix unrelated refactors with behavior changes.
+- Do not commit failing tests unless explicitly marked as intentional in body.
+- Never use vague subjects like `update`, `stuff`, `fixes`.
+
+### Good examples
+
+- `feat(query): add deterministic manifest writer for slide output`
+- `fix(ingest): enforce source-only semantic flow suppression`
+- `test(comments): cover turn-marker normalization edge cases`
+- `docs(todo): split query result-shape contract into explicit task`
