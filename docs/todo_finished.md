@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0245: Implement cross-space pinned-link import contract and error rendering
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 3
+  - depends_on: TODO-0216, TODO-0218
+  - scope: Implement cross-space topic linking via pinned imports with deterministic unresolved-link behavior.
+  - acceptance:
+    - Pinned parent links resolve through `imports.lock.md` snapshot entries only.
+    - Unresolved pinned parent links render disabled markers and emit lint `error`.
+    - Parent linkage metadata (`parent_space_name`, `parent_snapshot`, `parent_site_base_url`) persists as required.
+  - notes: source `design.md` Section 8
+  - evidence: Added pinned-parent import resolution in `sapi/build/projection.py` using `imports.lock.md`
+    snapshot entries only, with unresolved pins materialized as lint issues (`unresolved_pinned_parent_link`)
+    instead of hard build failures. Updated `sapi/build/site_builder.py` and `scripts/build_site.py` to render
+    resolved/unresolved parent markers deterministically and emit lint errors in build output/manifest. Extended
+    `tests/unit/build/test_site_builder_contracts.py` with coverage for lock-only resolution, unresolved disabled
+    marker rendering, lint-error emission, and persisted parent-link metadata.
+
 - [x] TODO-0274: Integrate `evaluate_source.sh` comments mode and comment-review artifacts
   - owner: ai
   - created_at: 2026-04-12

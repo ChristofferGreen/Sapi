@@ -5,7 +5,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 import json
 from pathlib import Path
+import re
 from typing import Any
+
+from sapi.lint.lint_engine import LintIssue
 
 
 class ProjectionContractError(ValueError):
@@ -18,14 +21,16 @@ class SpaceProjection:
 
     sources: list[dict[str, Any]]
     topics: list[dict[str, Any]]
+    lint_issues: list[LintIssue]
 
 
 def load_space_projection(space_root: Path) -> SpaceProjection:
     """Load deterministic build input from canonical source/topic JSON artifacts."""
     sources = _load_source_records(space_root)
     topics = _load_topic_records(space_root)
+    lint_issues = _resolve_pinned_parent_links(space_root=space_root, topics=topics)
     _validate_topic_links(sources=sources, topics=topics)
-    return SpaceProjection(sources=sources, topics=topics)
+    return SpaceProjection(sources=sources, topics=topics, lint_issues=lint_issues)
 
 
 def _load_source_records(space_root: Path) -> list[dict[str, Any]]:
@@ -64,6 +69,26 @@ def _load_topic_records(space_root: Path) -> list[dict[str, Any]]:
             raise ProjectionContractError(f"{topic_path}: sections must be an array.")
         if not isinstance(source_ids, list):
             raise ProjectionContractError(f"{topic_path}: source_ids must be an array.")
+        pinned_parent_ref = payload.get("pinned_parent_ref")
+        if pinned_parent_ref is not None:
+            if not isinstance(pinned_parent_ref, dict):
+                raise ProjectionContractError(
+                    f"{topic_path}: pinned_parent_ref must be an object when present."
+                )
+            parent_space = pinned_parent_ref.get("space_name")
+            parent_topic_id = pinned_parent_ref.get("topic_id")
+            if not isinstance(parent_space, str) or not parent_space.strip():
+                raise ProjectionContractError(
+                    f"{topic_path}: pinned_parent_ref.space_name must be a non-empty string."
+                )
+            if not isinstance(parent_topic_id, str) or not parent_topic_id.strip():
+                raise ProjectionContractError(
+                    f"{topic_path}: pinned_parent_ref.topic_id must be a non-empty string."
+                )
+            payload["pinned_parent_ref"] = {
+                "space_name": parent_space.strip(),
+                "topic_id": parent_topic_id.strip(),
+            }
         for index, section in enumerate(sections):
             if not isinstance(section, dict):
                 raise ProjectionContractError(f"{topic_path}: sections[{index}] must be an object.")
@@ -79,6 +104,109 @@ def _load_topic_records(space_root: Path) -> list[dict[str, Any]]:
                 )
         topics.append(payload)
     return topics
+
+
+def _resolve_pinned_parent_links(*, space_root: Path, topics: list[dict[str, Any]]) -> list[LintIssue]:
+    pinned_entries = _load_import_lock_entries(space_root)
+    lint_issues: list[LintIssue] = []
+    for topic in topics:
+        topic_id = topic["topic_id"]
+        pinned_parent_ref = topic.get("pinned_parent_ref")
+        if not isinstance(pinned_parent_ref, dict):
+            continue
+        parent_space_name = str(pinned_parent_ref["space_name"])
+        parent_topic_id = str(pinned_parent_ref["topic_id"])
+        match = pinned_entries.get((parent_space_name, parent_topic_id))
+        if match is None:
+            topic["pinned_parent_link"] = {
+                "resolved": False,
+                "space_name": parent_space_name,
+                "topic_id": parent_topic_id,
+            }
+            lint_issues.append(
+                LintIssue(
+                    check_id="unresolved_pinned_parent_link",
+                    severity="error",
+                    message=(
+                        f"{topic_id}: unresolved pinned parent link `{parent_space_name}/{parent_topic_id}` "
+                        "not found in imports.lock.md snapshot entries."
+                    ),
+                    path=f"topics/{topic_id}.json",
+                )
+            )
+            continue
+        topic["pinned_parent_link"] = {
+            "resolved": True,
+            "space_name": parent_space_name,
+            "topic_id": parent_topic_id,
+            "parent_space_name": match["parent_space_name"],
+            "parent_snapshot": match["parent_snapshot"],
+            "parent_site_base_url": match["parent_site_base_url"],
+        }
+    return lint_issues
+
+
+def _load_import_lock_entries(space_root: Path) -> dict[tuple[str, str], dict[str, str]]:
+    lock_path = space_root / "imports.lock.md"
+    if not lock_path.is_file():
+        return {}
+
+    match = re.search(
+        r"```json\s*(\{.*?\})\s*```",
+        lock_path.read_text(),
+        flags=re.DOTALL,
+    )
+    if match is None:
+        return {}
+
+    try:
+        payload = json.loads(match.group(1))
+    except json.JSONDecodeError as exc:
+        raise ProjectionContractError(f"{lock_path}: invalid JSON imports lock block ({exc}).") from exc
+    if not isinstance(payload, dict):
+        raise ProjectionContractError(f"{lock_path}: imports lock block must be a JSON object.")
+
+    entries = payload.get("imports")
+    if not isinstance(entries, list):
+        raise ProjectionContractError(f"{lock_path}: imports lock JSON block must include an imports[] array.")
+
+    resolved: dict[tuple[str, str], dict[str, str]] = {}
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            raise ProjectionContractError(
+                f"{lock_path}: imports[{index}] must be a JSON object."
+            )
+        parent_space_name = entry.get("parent_space_name")
+        parent_topic_id = entry.get("parent_topic_id")
+        parent_snapshot = entry.get("parent_snapshot")
+        parent_site_base_url = entry.get("parent_site_base_url")
+        if not isinstance(parent_space_name, str) or not parent_space_name.strip():
+            raise ProjectionContractError(
+                f"{lock_path}: imports[{index}].parent_space_name must be a non-empty string."
+            )
+        if not isinstance(parent_topic_id, str) or not parent_topic_id.strip():
+            raise ProjectionContractError(
+                f"{lock_path}: imports[{index}].parent_topic_id must be a non-empty string."
+            )
+        if not isinstance(parent_snapshot, str) or not parent_snapshot.strip():
+            raise ProjectionContractError(
+                f"{lock_path}: imports[{index}].parent_snapshot must be a non-empty string."
+            )
+        if not isinstance(parent_site_base_url, str) or not parent_site_base_url.strip():
+            raise ProjectionContractError(
+                f"{lock_path}: imports[{index}].parent_site_base_url must be a non-empty string."
+            )
+        key = (parent_space_name.strip(), parent_topic_id.strip())
+        if key in resolved:
+            raise ProjectionContractError(
+                f"{lock_path}: duplicate imports lock entry for parent {key[0]}/{key[1]}."
+            )
+        resolved[key] = {
+            "parent_space_name": key[0],
+            "parent_snapshot": parent_snapshot.strip(),
+            "parent_site_base_url": parent_site_base_url.strip(),
+        }
+    return resolved
 
 
 def _validate_topic_links(*, sources: list[dict[str, Any]], topics: list[dict[str, Any]]) -> None:

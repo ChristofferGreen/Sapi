@@ -51,21 +51,21 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0245`
-2. `TODO-0244`
-3. `TODO-0253`
-4. `TODO-0252`
-5. `TODO-0257`
-6. `TODO-0234`
-7. `TODO-0233`
-8. `TODO-0266`
-9. `TODO-0223`
-10. `TODO-0247`
+1. `TODO-0244`
+2. `TODO-0253`
+3. `TODO-0252`
+4. `TODO-0257`
+5. `TODO-0234`
+6. `TODO-0233`
+7. `TODO-0266`
+8. `TODO-0223`
+9. `TODO-0247`
+10. `TODO-0275`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: `TODO-0244`, `TODO-0245`, `TODO-0252`, `TODO-0253`, `TODO-0257`
+- P1 Core product behavior: `TODO-0244`, `TODO-0252`, `TODO-0253`, `TODO-0257`
 - P2 Social/eval/hardening: `TODO-0223` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: (none currently)
 
@@ -75,7 +75,7 @@ Wave A (bootstrap + contracts):
 1. (none currently)
 
 Wave B (ingest + projection + lint):
-1. `TODO-0245` -> `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233`
+1. `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233`
 
 Wave C (query + social + hardening + release):
 1. (none currently)
@@ -102,7 +102,7 @@ Cross-cutting docs backlog:
 | Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
 | Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
 | Section 7.7 comment quality harness | `TODO-0225` |
-| Section 8 site/UI/static build | `TODO-0245`, `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
+| Section 8 site/UI/static build | `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | `TODO-0234`, `TODO-0250` |
 | Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
@@ -319,18 +319,6 @@ Cross-cutting docs backlog:
   - notes: source `design.md` Section 7.6
 
 
-- [ ] TODO-0245: Implement cross-space pinned-link import contract and error rendering
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 3
-  - depends_on: TODO-0216, TODO-0218
-  - scope: Implement cross-space topic linking via pinned imports with deterministic unresolved-link behavior.
-  - acceptance:
-    - Pinned parent links resolve through `imports.lock.md` snapshot entries only.
-    - Unresolved pinned parent links render disabled markers and emit lint `error`.
-    - Parent linkage metadata (`parent_space_name`, `parent_snapshot`, `parent_site_base_url`) persists as required.
-  - notes: source `design.md` Section 8
-
 - [ ] TODO-0244: Implement claim-reference rendering/public-debug visibility contracts
   - owner: ai
   - created_at: 2026-04-12
@@ -359,7 +347,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-12
   - phase: Phase 3
-  - depends_on: TODO-0244, TODO-0245, TODO-0252, TODO-0253
+  - depends_on: TODO-0244, TODO-0252, TODO-0253
   - scope: Integrate and validate UI/IA renderer contracts end-to-end after specialized Section 8 tasks land.
   - acceptance:
     - Section 8 specialized contract tasks produce coherent, non-conflicting site output across page types.

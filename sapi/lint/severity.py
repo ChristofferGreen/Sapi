@@ -17,6 +17,7 @@ _CHECK_SEVERITY_BY_ID: dict[str, LintSeverity] = {
     "missing_required_canonical_field": "error",
     "invalid_canonical_id_format": "error",
     "final_disputed_contradiction": "error",
+    "unresolved_pinned_parent_link": "error",
     "missing_publication_date": "warning",
     "weak_support_single_source": "warning",
     "sparse_backlinks": "warning",

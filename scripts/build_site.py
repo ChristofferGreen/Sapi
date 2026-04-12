@@ -46,21 +46,43 @@ def main() -> int:
             space_targets = sorted(space.space_name for space in registry["spaces"])
 
         builds = []
+        lint_issue_rows: list[dict[str, object]] = []
         for space_name in space_targets:
             space_root = resolve_space_root(registry_path, space_name)
             build = build_space_site(space_root, incremental=args.incremental)
+            lint_summary = build.lint_summary
+            lint_issue_rows.extend(
+                {
+                    "space_name": space_name,
+                    "check_id": issue.check_id,
+                    "severity": issue.severity,
+                    "message": issue.message,
+                    "path": issue.path,
+                    "line": issue.line,
+                }
+                for issue in lint_summary.issues
+            )
             builds.append(
                 {
                     "space_name": build.space_name,
                     "output_root": str(build.output_root),
                     "generated_files": [str(path) for path in build.generated_files],
                     "content_hashes": build.content_hashes,
+                    "lint": {
+                        "error_count": lint_summary.error_count,
+                        "warning_count": lint_summary.warning_count,
+                        "info_count": lint_summary.info_count,
+                    },
                 }
             )
         site_new_index_path = refresh_site_new_index(site_path, incremental=args.incremental)
     except (ProjectionContractError, ValueError, KeyError, FileNotFoundError) as exc:
         print(f"Build failed: {exc}", file=sys.stderr)
         return 1
+
+    lint_error_count = sum(int(build["lint"]["error_count"]) for build in builds)
+    lint_warning_count = sum(int(build["lint"]["warning_count"]) for build in builds)
+    lint_info_count = sum(int(build["lint"]["info_count"]) for build in builds)
 
     manifest = {
         "workflow_key": args.workflow_key,
@@ -70,6 +92,12 @@ def main() -> int:
         "semantic_flows_executed": [],
         "build_mode": "incremental" if args.incremental else "deterministic",
         "space_builds": builds,
+        "lint": {
+            "error_count": lint_error_count,
+            "warning_count": lint_warning_count,
+            "info_count": lint_info_count,
+            "issues": lint_issue_rows,
+        },
         "site_new_index_path": str(site_new_index_path),
         "toolchain_versions": {
             "node": toolchain["node"],
@@ -81,6 +109,16 @@ def main() -> int:
     manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+
+    for lint_issue in lint_issue_rows:
+        if lint_issue["severity"] != "error":
+            continue
+        issue_path = lint_issue["path"] if lint_issue["path"] else "<unknown>"
+        print(
+            "lint error "
+            f"[{lint_issue['check_id']}] {lint_issue['space_name']}:{issue_path}: {lint_issue['message']}",
+            file=sys.stderr,
+        )
 
     print(
         "scripts/build_site.py deterministic build complete "

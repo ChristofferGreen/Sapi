@@ -8,6 +8,7 @@ from html import escape
 from pathlib import Path
 
 from sapi.build.projection import SpaceProjection, load_space_projection
+from sapi.lint.lint_engine import LintSummary, default_lint_summary
 
 
 @dataclass(frozen=True)
@@ -18,6 +19,7 @@ class BuildResult:
     output_root: Path
     generated_files: list[Path]
     content_hashes: dict[str, str]
+    lint_summary: LintSummary
 
 
 def build_space_site(space_root: Path, *, incremental: bool) -> BuildResult:
@@ -44,11 +46,13 @@ def build_space_site(space_root: Path, *, incremental: bool) -> BuildResult:
     generated_files.append(index_path)
 
     content_hashes = {str(path.relative_to(output_root)): _sha256(path) for path in sorted(generated_files)}
+    lint_summary = default_lint_summary(issues=projection.lint_issues)
     return BuildResult(
         space_name=space_name,
         output_root=output_root,
         generated_files=sorted(generated_files),
         content_hashes=content_hashes,
+        lint_summary=lint_summary,
     )
 
 
@@ -165,12 +169,14 @@ def _render_topic_page(topic: dict[str, object]) -> str:
         f"<section><h2>{escape(str(section['heading']))}</h2><p>{escape(str(section['body']))}</p></section>"
         for section in sections
     )
+    parent_link_row = _render_pinned_parent_link(topic)
     return (
         "<!doctype html>\n"
         "<html><head><meta charset=\"utf-8\"><title>"
         + escape(str(topic["title"]))
         + "</title></head><body>\n"
         + f"<h1>{escape(str(topic['title']))}</h1>\n"
+        + parent_link_row
         + section_rows
         + "\n</body></html>\n"
     )
@@ -205,3 +211,43 @@ def _write_text_file(path: Path, content: str, *, incremental: bool) -> None:
     if incremental and path.is_file() and path.read_text() == content:
         return
     path.write_text(content)
+
+
+def _render_pinned_parent_link(topic: dict[str, object]) -> str:
+    pinned_parent_link = topic.get("pinned_parent_link")
+    if not isinstance(pinned_parent_link, dict):
+        return ""
+    space_name = escape(str(pinned_parent_link.get("space_name", "")))
+    topic_id = escape(str(pinned_parent_link.get("topic_id", "")))
+    resolved = bool(pinned_parent_link.get("resolved"))
+    if resolved:
+        parent_space_name = escape(str(pinned_parent_link.get("parent_space_name", "")))
+        parent_snapshot = escape(str(pinned_parent_link.get("parent_snapshot", "")))
+        parent_site_base_url = escape(str(pinned_parent_link.get("parent_site_base_url", "")))
+        parent_href = _render_parent_topic_href(
+            parent_site_base_url=str(pinned_parent_link.get("parent_site_base_url", "")),
+            parent_space_name=str(pinned_parent_link.get("parent_space_name", "")),
+            topic_id=str(pinned_parent_link.get("topic_id", "")),
+        )
+        return (
+            "<p class=\"pinned-parent-link\""
+            + f" data-space-name=\"{space_name}\""
+            + f" data-topic-id=\"{topic_id}\""
+            + f" data-parent-space-name=\"{parent_space_name}\""
+            + f" data-parent-snapshot=\"{parent_snapshot}\""
+            + f" data-parent-site-base-url=\"{parent_site_base_url}\">"
+            + f"Parent topic: <a href=\"{escape(parent_href)}\">{space_name}/{topic_id}</a></p>\n"
+        )
+    return (
+        "<p class=\"pinned-parent-link disabled\" aria-disabled=\"true\""
+        + f" data-space-name=\"{space_name}\""
+        + f" data-topic-id=\"{topic_id}\">"
+        + f"Parent topic unavailable: {space_name}/{topic_id} (unresolved pinned import)</p>\n"
+    )
+
+
+def _render_parent_topic_href(*, parent_site_base_url: str, parent_space_name: str, topic_id: str) -> str:
+    normalized_base = parent_site_base_url.rstrip("/")
+    if not normalized_base:
+        return "#"
+    return f"{normalized_base}/spaces/{parent_space_name}/site/topics/{topic_id}.html"
