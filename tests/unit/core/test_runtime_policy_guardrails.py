@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 from sapi.contracts.run_envelopes import QueryRunFields, RunEnvelopeBase, write_run_record
-from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
+from sapi.core.runtime_policy import DISALLOWED_FLOW_ENV_VARS, evaluate_semantic_runtime_policy
 
 
 class RuntimePolicyGuardrailsTests(unittest.TestCase):
@@ -19,11 +19,13 @@ class RuntimePolicyGuardrailsTests(unittest.TestCase):
             )
 
     def test_flow_behavior_cannot_be_controlled_by_env_vars(self) -> None:
-        with self.assertRaises(ValueError):
-            evaluate_semantic_runtime_policy(
-                mock_llm=False,
-                env={"SAPI_MOCK_LLM": "1"},
-            )
+        for key in DISALLOWED_FLOW_ENV_VARS:
+            with self.subTest(env_key=key):
+                with self.assertRaises(ValueError):
+                    evaluate_semantic_runtime_policy(
+                        mock_llm=False,
+                        env={key: "1"},
+                    )
 
     def test_mock_mode_is_test_only_and_auditable_via_execution_mode_in_run_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

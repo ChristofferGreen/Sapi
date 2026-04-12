@@ -51,20 +51,20 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0240`
-2. `TODO-0241`
-3. `TODO-0239`
-4. `TODO-0272`
-5. `TODO-0210`
-6. `TODO-0211`
-7. `TODO-0213`
-8. `TODO-0212`
-9. `TODO-0214`
-10. `TODO-0215`
+1. `TODO-0241`
+2. `TODO-0239`
+3. `TODO-0272`
+4. `TODO-0210`
+5. `TODO-0211`
+6. `TODO-0213`
+7. `TODO-0212`
+8. `TODO-0214`
+9. `TODO-0215`
+10. `TODO-0216`
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0272`
+- P0 Foundation/contracts: `TODO-0239`, `TODO-0241`, `TODO-0272`
 - P1 Core product behavior: `TODO-0210` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0100`, `TODO-0264`, `TODO-0265`
@@ -72,8 +72,7 @@ Task template:
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. `TODO-0240`
-2. `TODO-0272`
+1. `TODO-0272`
 
 Wave B (ingest + projection + lint):
 1. `TODO-0210` -> `TODO-0211` -> `TODO-0213` -> `TODO-0278` -> `TODO-0212` -> `TODO-0214` -> `TODO-0270` -> `TODO-0271`
@@ -94,7 +93,7 @@ Cross-cutting docs backlog:
 | Design area | Primary TODO IDs |
 | --- | --- |
 | Section 1 (scope/authority/reading) | `TODO-0243`, `TODO-0100` |
-| Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0240`, `TODO-0214`, `TODO-0246`, `TODO-0272`, `TODO-0275` |
+| Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0214`, `TODO-0246`, `TODO-0272`, `TODO-0275` |
 | Section 3 (core concepts + identity invariants) | `TODO-0239` |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | `TODO-0241`, `TODO-0237`, `TODO-0218` |
@@ -107,7 +106,7 @@ Cross-cutting docs backlog:
 | Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275`, `TODO-0274` |
 | Section 7.7 comment quality harness | `TODO-0225` |
 | Section 8 site/UI/static build | `TODO-0216`, `TODO-0268`, `TODO-0217`, `TODO-0245`, `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
-| Section 9 observability/safety/runtime controls | `TODO-0226`, `TODO-0227`, `TODO-0240`, `TODO-0254` |
+| Section 9 observability/safety/runtime controls | `TODO-0226`, `TODO-0227`, `TODO-0254` |
 | Section 10 run envelopes/lifecycle status | `TODO-0234`, `TODO-0250` |
 | Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0276`, `TODO-0277`, `TODO-0278`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0243`, `TODO-0260`, `TODO-0261` |
@@ -127,7 +126,7 @@ Cross-cutting docs backlog:
 | Section 10 (relation persistence) | `TODO-0213`, `TODO-0278` |
 | Section 11 (lint/warning threshold) | `TODO-0218`, `TODO-0219` |
 | Section 12 (wrapper/script interfaces) | `TODO-0219`, `TODO-0254`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
-| Section 13 (observability/runtime controls/safety) | `TODO-0226`, `TODO-0227`, `TODO-0240`, `TODO-0254` |
+| Section 13 (observability/runtime controls/safety) | `TODO-0226`, `TODO-0227`, `TODO-0254` |
 | Section 14 (anti-drift and PR guardrails) | `TODO-0265`, `TODO-0264` |
 | Section 15 (test-plan binding) | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0270`, `TODO-0271`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0278`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 16 (change discipline) | `TODO-0264`, `TODO-0243` |
@@ -563,18 +562,6 @@ Cross-cutting docs backlog:
     - Canonical/derived artifacts write to correct roots (`site` vs `space` vs `repo` ownership).
     - Persisted user-facing paths are relative where required for relocatability.
   - notes: source `design.md` Sections 5.1, 5.2, 5.3
-
-- [ ] TODO-0240: Enforce non-negotiable runtime policy guardrails
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 1
-  - depends_on: TODO-0201, TODO-0204
-  - scope: Implement explicit runtime guardrails for LLM-only semantic execution, test-only mock mode, and no-env-var flow controls.
-  - acceptance:
-    - Production/operator semantic flows cannot fall back to deterministic semantics.
-    - `--mock-llm` is test-only, auditable in run metadata, and never silently enabled by wrappers.
-    - Flow behavior cannot be changed by environment variables; CLI args are the only control surface.
-  - notes: source `design.md` Sections 2, 2.3, 9
 
 - [ ] TODO-0239: Implement core domain models and boundary invariants
   - owner: ai

@@ -314,3 +314,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `--user`/`--page` plus legacy positional count, and canonical+alias conflict failures for
     ingest (`--source-only` + `--query-only`) and comments (`--comment-user` + `--user`,
     `--comment-page` + `--page`, positional count + `--count`) with usage errors.
+
+- [x] TODO-0240: Enforce non-negotiable runtime policy guardrails
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0201, TODO-0204
+  - scope: Implement explicit runtime guardrails for LLM-only semantic execution, test-only mock mode, and no-env-var flow controls.
+  - acceptance:
+    - Production/operator semantic flows cannot fall back to deterministic semantics.
+    - `--mock-llm` is test-only, auditable in run metadata, and never silently enabled by wrappers.
+    - Flow behavior cannot be changed by environment variables; CLI args are the only control surface.
+  - evidence: Verified by `sapi/core/runtime_policy.py` plus `tests/unit/core/test_runtime_policy_guardrails.py`
+    (deterministic-fallback rejection and all prohibited flow env-var toggles) and
+    `tests/unit/contracts/test_wrapper_mock_mode_policy.py` (all semantic wrappers default to
+    live LLM mode, require explicit `--mock-llm` for mock mode, and reject env-var flow controls).
