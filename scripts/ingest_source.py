@@ -32,6 +32,7 @@ from sapi.ingest.citations import run_reference_extraction_and_link_backfill
 from sapi.ingest.ingest_pipeline import plan_ingest_semantic_execution
 from sapi.ingest.records_writer import (
     IngestExtractionPersistResult,
+    SourceIngestResult,
     ingest_source_artifacts_and_record,
     run_ingest_extraction_and_persist_canonical,
 )
@@ -150,6 +151,10 @@ def main() -> int:
                 citation_count_provider=args.citation_count_provider,
                 citation_count_confidence=args.citation_count_confidence,
             )
+            _track_source_ingest_writes_for_rollback(
+                transaction=transaction,
+                result=result,
+            )
             reference_result = run_reference_extraction_and_link_backfill(
                 space_root=space_root,
                 source_id=result.source_id,
@@ -175,6 +180,12 @@ def main() -> int:
                     ),
                     trace_ctx=trace_ctx,
                 )
+                _track_ingest_extraction_writes_for_rollback(
+                    transaction=transaction,
+                    space_root=space_root,
+                    run_id=run_id,
+                    extraction_result=extraction_result,
+                )
                 llm_attempt_count += 1
                 topic_id = derive_default_topic_id_for_source(
                     space_root=space_root,
@@ -198,6 +209,10 @@ def main() -> int:
                     ),
                     trace_ctx=trace_ctx,
                 )
+                _track_topic_generation_writes_for_rollback(
+                    transaction=transaction,
+                    topic_result=topic_result,
+                )
                 llm_attempt_count += 1
                 if args.build_deferred:
                     build_deferred = True
@@ -212,7 +227,7 @@ def main() -> int:
         print(str(exc), file=sys.stderr)
         return 1
     except Exception as exc:  # pragma: no cover - exercised by CLI contract tests.
-        if args.force and space_root is not None and runtime_policy is not None and runtime_flags is not None:
+        if space_root is not None and runtime_policy is not None and runtime_flags is not None:
             completed_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
             base = _make_run_base(
                 run_id=run_id,
@@ -232,27 +247,35 @@ def main() -> int:
                 topic_result=topic_result,
                 build_deferred=build_deferred,
                 deferred_build_reason=deferred_build_reason,
-                force_mode=True,
-                rollback_skipped=True,
+                force_mode=bool(args.force),
+                rollback_skipped=bool(args.force),
             )
             finalized = finalize_pipeline_run(
                 space_root=space_root,
                 base=base,
                 flow_fields=flow_fields,
                 transaction=transaction,
-                force_mode=True,
-                summary="Ingest failed in force mode; invocation artifacts preserved for forensics.",
+                force_mode=bool(args.force),
+                summary=(
+                    "Ingest failed in force mode; invocation artifacts preserved for forensics."
+                    if args.force
+                    else "Ingest failed; invocation-scoped outputs rolled back."
+                ),
                 errors=str(exc),
             )
-            print(
-                "scripts/ingest_source.py source ingested "
-                f"(execution_mode={runtime_policy.execution_mode}, "
-                f"run_id={run_id}, "
-                f"status={finalized.status}, "
-                f"run_record_path={finalized.run_record_path}, "
-                f"error={str(exc)})",
-                file=sys.stderr,
-            )
+            if args.force:
+                print(
+                    "scripts/ingest_source.py source ingested "
+                    f"(execution_mode={runtime_policy.execution_mode}, "
+                    f"run_id={run_id}, "
+                    f"status={finalized.status}, "
+                    f"run_record_path={finalized.run_record_path}, "
+                    f"error={str(exc)})",
+                    file=sys.stderr,
+                )
+            else:
+                print(str(exc), file=sys.stderr)
+            return finalized.exit_code
         print(str(exc), file=sys.stderr)
         return 1
 
@@ -533,6 +556,39 @@ def _make_ingest_flow_fields(
         force_mode=force_mode,
         rollback_skipped=rollback_skipped,
     )
+
+
+def _track_source_ingest_writes_for_rollback(
+    *,
+    transaction: ArtifactTransaction,
+    result: SourceIngestResult,
+) -> None:
+    transaction.mark_create(result.source_artifact_path)
+    transaction.mark_create(result.overview_markdown_path)
+    transaction.mark_create(result.record_path)
+
+
+def _track_ingest_extraction_writes_for_rollback(
+    *,
+    transaction: ArtifactTransaction,
+    space_root: Path,
+    run_id: str,
+    extraction_result: IngestExtractionPersistResult,
+) -> None:
+    transaction.mark_mkdir(space_root / "runs" / run_id)
+    transaction.mark_create(extraction_result.semantic_output_path)
+    for claim_path in extraction_result.claim_paths:
+        transaction.mark_create(claim_path)
+    for relation_path in extraction_result.relation_paths:
+        transaction.mark_create(relation_path)
+
+
+def _track_topic_generation_writes_for_rollback(
+    *,
+    transaction: ArtifactTransaction,
+    topic_result: TopicGenerationPersistResult,
+) -> None:
+    transaction.mark_create(topic_result.topic_path)
 
 
 if __name__ == "__main__":

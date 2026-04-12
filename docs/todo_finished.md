@@ -4,6 +4,30 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0228: Tier 0-2 plus ingest/query Tier 3 foundational test implementation
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 4
+  - depends_on: TODO-0204, TODO-0205, TODO-0206, TODO-0220
+  - scope: Implement unit/failure tests and initial deterministic Tier 3 ingest/query integration coverage for core contracts.
+  - acceptance:
+    - Tier 0 harness fixtures are present.
+    - Tier 1 contract tests pass including ID/time formats and semantic-flow cardinality.
+    - Tier 2 rollback/failure semantics tests pass.
+    - Tier 3 ingest/query integration tests pass in mock LLM mode.
+  - notes: source `design.md` Section 11; `testing_plan.md` Tier 0-3
+  - evidence: Added Tier 0 harness helpers in `tests/conftest.py` for isolated site/space
+    bootstrap, deterministic command execution, run-frontmatter parsing, and rollback assertions.
+    Added Tier 2 failure integration modules under `tests/integration/failure/`
+    (`test_semantic_repair_exhaustion_rollback.py`, `test_postprocess_failure_rollback.py`,
+    `test_run_container_not_persisted.py`) covering semantic retry exhaustion rollback,
+    deterministic post-processing rollback, and failed-run container non-persistence in default
+    mode. Added Tier 3 mock-mode pipeline integration modules under
+    `tests/integration/pipelines/` (`test_ingest_pipeline.py`, `test_query_pipeline_outputs.py`)
+    covering ingest canonical writes + run/lint envelopes and query output-mode manifest
+    contracts. Verified Tier 1/Tier 2/Tier 3 criteria with targeted unittest runs.
+
 - [x] TODO-0233: Implement UI information architecture and rendering contracts
   - owner: ai
   - created_at: 2026-04-12

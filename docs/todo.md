@@ -60,7 +60,7 @@ Task template:
 7. `TODO-0249`
 8. `TODO-0250`
 9. `TODO-0251`
-10. `TODO-0228`
+10. `TODO-0225`
 
 ### Priority Lanes (Current)
 
@@ -80,7 +80,7 @@ Wave B (ingest + projection + lint):
 Wave C (query + social + hardening + release):
 1. (none currently)
 2. `TODO-0223` -> `TODO-0247` -> `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
-3. `TODO-0228` -> `TODO-0251` -> `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
+3. `TODO-0251` -> `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
 1. (none currently)
@@ -105,7 +105,7 @@ Cross-cutting docs backlog:
 | Section 8 site/UI/static build | `TODO-0256` |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | `TODO-0250` |
-| Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
+| Section 11 testing strategy | `TODO-0266`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0260`, `TODO-0261` |
 | Section 13 definition of done | `TODO-0231` |
 
@@ -125,15 +125,15 @@ Cross-cutting docs backlog:
 | Section 12 (wrapper/script interfaces) | - |
 | Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | - |
-| Section 15 (test-plan binding) | `TODO-0228`, `TODO-0266`, `TODO-0275`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
+| Section 15 (test-plan binding) | `TODO-0266`, `TODO-0275`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 16 (change discipline) | - |
 
 ### Testing Plan Coverage Snapshot
 
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
-| Section 2 (test module layout) | `TODO-0228`, `TODO-0229` |
-| Tier 0-3 (fast contract/failure/pipeline suites) | `TODO-0228`, `TODO-0266`, `TODO-0275` |
+| Section 2 (test module layout) | `TODO-0229` |
+| Tier 0-3 (fast contract/failure/pipeline suites) | `TODO-0266`, `TODO-0275` |
 | Tier 4-6 (determinism/golden/live canary) | `TODO-0229` |
 | Section 4-5 (CI gating matrix + command wiring) | `TODO-0230` |
 | Section 6 (exit criteria gating) | `TODO-0263`, `TODO-0231` |
@@ -318,19 +318,6 @@ Cross-cutting docs backlog:
     - Tier 5 snapshots exist for site/query/run envelope outputs.
     - Tier 6 live canary exists and is non-blocking.
   - notes: source `testing_plan.md` Tier 4-6
-
-- [ ] TODO-0228: Tier 0-2 plus ingest/query Tier 3 foundational test implementation
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 4
-  - depends_on: TODO-0204, TODO-0205, TODO-0206, TODO-0220
-  - scope: Implement unit/failure tests and initial deterministic Tier 3 ingest/query integration coverage for core contracts.
-  - acceptance:
-    - Tier 0 harness fixtures are present.
-    - Tier 1 contract tests pass including ID/time formats and semantic-flow cardinality.
-    - Tier 2 rollback/failure semantics tests pass.
-    - Tier 3 ingest/query integration tests pass in mock LLM mode.
-  - notes: source `design.md` Section 11; `testing_plan.md` Tier 0-3
 
 - [ ] TODO-0225: Comment quality benchmark and evaluation manifest pipeline
   - owner: ai
