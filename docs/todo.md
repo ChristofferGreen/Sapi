@@ -51,16 +51,16 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0233`
-2. `TODO-0266`
-3. `TODO-0223`
-4. `TODO-0247`
-5. `TODO-0275`
-6. `TODO-0258`
-7. `TODO-0248`
-8. `TODO-0249`
-9. `TODO-0250`
-10. `TODO-0251`
+1. `TODO-0266`
+2. `TODO-0223`
+3. `TODO-0247`
+4. `TODO-0275`
+5. `TODO-0258`
+6. `TODO-0248`
+7. `TODO-0249`
+8. `TODO-0250`
+9. `TODO-0251`
+10. `TODO-0228`
 
 ### Priority Lanes (Current)
 
@@ -75,7 +75,7 @@ Wave A (bootstrap + contracts):
 1. (none currently)
 
 Wave B (ingest + projection + lint):
-1. `TODO-0233`
+1. (none currently)
 
 Wave C (query + social + hardening + release):
 1. (none currently)
@@ -102,7 +102,7 @@ Cross-cutting docs backlog:
 | Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
 | Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
 | Section 7.7 comment quality harness | `TODO-0225` |
-| Section 8 site/UI/static build | `TODO-0256`, `TODO-0233` |
+| Section 8 site/UI/static build | `TODO-0256` |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | `TODO-0250` |
 | Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
@@ -282,18 +282,6 @@ Cross-cutting docs backlog:
     - Social turns are validated under lightweight rules and rejected when they include unclassified factual claims.
   - notes: source `design.md` Section 7.6
 
-
-- [ ] TODO-0233: Implement UI information architecture and rendering contracts
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 3
-  - depends_on: TODO-0253
-  - scope: Integrate and validate UI/IA renderer contracts end-to-end after specialized Section 8 tasks land.
-  - acceptance:
-    - Section 8 specialized contract tasks produce coherent, non-conflicting site output across page types.
-    - Cross-page navigation/search/feed behavior is consistent after integrating all specialized renderers.
-    - Final integration pass closes known UI contract gaps and regressions with snapshot evidence.
-  - notes: source `design.md` Section 8
 
 - [ ] TODO-0231: Definition-of-Done sweep and release readiness verification
   - owner: ai

@@ -56,6 +56,15 @@ class _SourcePreviewEntry:
 
 
 @dataclass(frozen=True)
+class _SearchIndexEntry:
+    item_type: str
+    item_id: str
+    title: str
+    href: str
+    search_text: str
+
+
+@dataclass(frozen=True)
 class _SpaceLayoutContext:
     site_name: str
     space_name: str
@@ -114,6 +123,15 @@ def build_space_site(
             output_root=output_root,
             context=context,
             persona_rows=persona_rows,
+            incremental=incremental,
+        )
+    )
+    generated_files.extend(
+        _write_space_search_page(
+            output_root=output_root,
+            projection=projection,
+            context=context,
+            run_ids=run_ids,
             incremental=incremental,
         )
     )
@@ -825,6 +843,119 @@ def _write_space_user_profile_pages(
     return written
 
 
+def _write_space_search_page(
+    *,
+    output_root: Path,
+    projection: SpaceProjection,
+    context: _SpaceLayoutContext,
+    run_ids: list[str],
+    incremental: bool,
+) -> list[Path]:
+    search_root = output_root / "search"
+    search_root.mkdir(parents=True, exist_ok=True)
+    search_path = search_root / "index.html"
+    entries = _space_search_entries(
+        space_name=context.space_name,
+        projection=projection,
+        run_ids=run_ids,
+    )
+    rows = "\n".join(
+        (
+            "<li class=\"search-index-row\" data-search-text=\""
+            + escape(entry.search_text)
+            + "\"><span class=\"meta\">"
+            + escape(entry.item_type)
+            + "</span> <a href=\""
+            + escape(entry.href)
+            + "\">"
+            + escape(entry.title)
+            + "</a></li>"
+        )
+        for entry in entries
+    )
+    body = (
+        "<h1>Search</h1>\n"
+        + "<p id=\"search-results-summary\" class=\"search-results-summary\">"
+        + f"{len(entries)} indexed item(s)</p>\n"
+        + "<ul class=\"search-index\">\n"
+        + rows
+        + "\n</ul>\n"
+        + "<script>\n"
+        + "(function(){\n"
+        + "  var params=new URLSearchParams(window.location.search);\n"
+        + "  var query=(params.get('q')||'').toLowerCase().trim();\n"
+        + "  var rows=document.querySelectorAll('.search-index-row');\n"
+        + "  var visible=0;\n"
+        + "  rows.forEach(function(row){\n"
+        + "    var haystack=(row.getAttribute('data-search-text')||'').toLowerCase();\n"
+        + "    var show=!query||haystack.indexOf(query)!==-1;\n"
+        + "    row.style.display=show?'':'none';\n"
+        + "    if(show){visible+=1;}\n"
+        + "  });\n"
+        + "  var summary=document.getElementById('search-results-summary');\n"
+        + "  if(summary){\n"
+        + "    summary.textContent=query?visible+' result(s) for \"'+query+'\"':visible+' indexed item(s)';\n"
+        + "  }\n"
+        + "})();\n"
+        + "</script>\n"
+    )
+    _write_text_file(
+        search_path,
+        _render_space_layout(
+            title=f"{context.space_name} - Search",
+            body=body,
+            context=context,
+            current_tab=None,
+        ),
+        incremental=incremental,
+    )
+    return [search_path]
+
+
+def _space_search_entries(
+    *,
+    space_name: str,
+    projection: SpaceProjection,
+    run_ids: list[str],
+) -> list[_SearchIndexEntry]:
+    entries: list[_SearchIndexEntry] = []
+    for source in sorted(projection.sources, key=lambda item: str(item["source_id"])):
+        source_id = str(source["source_id"])
+        title = str(source["title"])
+        entries.append(
+            _SearchIndexEntry(
+                item_type="source",
+                item_id=source_id,
+                title=title,
+                href=f"/spaces/{space_name}/site/sources/{source_id}.html",
+                search_text=f"source {source_id} {title}",
+            )
+        )
+    for topic in sorted(projection.topics, key=lambda item: str(item["topic_id"])):
+        topic_id = str(topic["topic_id"])
+        title = str(topic["title"])
+        entries.append(
+            _SearchIndexEntry(
+                item_type="topic",
+                item_id=topic_id,
+                title=title,
+                href=f"/spaces/{space_name}/site/topics/{topic_id}.html",
+                search_text=f"topic {topic_id} {title}",
+            )
+        )
+    for run_id in sorted(run_ids, reverse=True):
+        entries.append(
+            _SearchIndexEntry(
+                item_type="run",
+                item_id=run_id,
+                title=run_id,
+                href=f"/spaces/{space_name}/runs/{run_id}/run.md",
+                search_text=f"run {run_id}",
+            )
+        )
+    return entries
+
+
 def _render_space_layout(
     *,
     title: str,
@@ -838,8 +969,11 @@ def _render_space_layout(
         "<html><head><meta charset=\"utf-8\"><title>"
         + escape(title)
         + "</title></head><body>\n"
-        + "<div class=\"top-search\" style=\"position:relative;z-index:1\">"
-        + "<label>Search <input type=\"search\" name=\"q\"/></label></div>\n"
+        + "<form class=\"top-search\" style=\"position:relative;z-index:1\" action=\"/spaces/"
+        + escape(context.space_name)
+        + "/site/search/index.html\" method=\"get\">"
+        + "<label for=\"space-search-q\">Search</label> "
+        + "<input id=\"space-search-q\" type=\"search\" name=\"q\"/></form>\n"
         + _render_space_sidebar(context=context, current_page=current_page)
         + "<main>\n"
         + _render_space_tabs(context=context, current_tab=current_tab)

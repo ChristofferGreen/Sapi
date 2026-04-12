@@ -626,6 +626,94 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertNotIn("?tab_page=2", site_new_page_1)
             self.assertIn("?feed_page=1", site_new_page_2)
 
+    def test_cross_page_search_control_and_index_consistency_across_page_types(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(space_root, source_id="source-search-a", title="Search Source A")
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-search-a",
+                title="Search Topic A",
+                source_ids=["source-search-a"],
+            )
+            run_id = "run-20260412T120000Z--search0001"
+            run_dir = space_root / "runs" / run_id
+            run_dir.mkdir(parents=True, exist_ok=True)
+            (run_dir / "run.md").write_text("# run\n")
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            expected_action = "action=\"/spaces/alpha/site/search/index.html\""
+            pages = [
+                space_root / "site" / "index.html",
+                space_root / "site" / "sources" / "source-search-a.html",
+                space_root / "site" / "topics" / "topic-search-a.html",
+                space_root / "site" / "users" / "index.html",
+                space_root / "site" / "runs" / "index.html",
+                space_root / "site" / "search" / "index.html",
+            ]
+            for page_path in pages:
+                page_text = page_path.read_text()
+                self.assertIn(expected_action, page_text)
+                self.assertEqual(page_text.count("class=\"top-search\""), 1)
+
+            search_page = (space_root / "site" / "search" / "index.html").read_text()
+            self.assertIn("source-search-a", search_page)
+            self.assertIn("topic-search-a", search_page)
+            self.assertIn(run_id, search_page)
+            self.assertIn("/spaces/alpha/site/sources/source-search-a.html", search_page)
+            self.assertIn("/spaces/alpha/site/topics/topic-search-a.html", search_page)
+            self.assertIn(f"/spaces/alpha/runs/{run_id}/run.md", search_page)
+            self.assertIn("URLSearchParams(window.location.search)", search_page)
+            self.assertIn("3 indexed item(s)", search_page)
+
+    def test_ui_information_architecture_integration_snapshot_is_deterministic(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._bootstrap_site_space(tmp_root, "beta")
+            self._write_source_record(space_root, source_id="source-ui-a", title="UI Source A")
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-ui-a",
+                title="UI Topic A",
+                source_ids=["source-ui-a"],
+            )
+            run_id = "run-20260412T130000Z--ui00000001"
+            run_dir = space_root / "runs" / run_id
+            run_dir.mkdir(parents=True, exist_ok=True)
+            (run_dir / "run.md").write_text("# run\n")
+
+            command = [
+                "python3",
+                str(REPO_ROOT / "scripts" / "build_site.py"),
+                "--registry-path",
+                str(site_path / "spaces.toml"),
+                "alpha",
+            ]
+            first = self._run(command)
+            self.assertEqual(first.returncode, 0, msg=first.stderr)
+            first_snapshot = self._capture_html_snapshot(site_path)
+
+            second = self._run(command)
+            self.assertEqual(second.returncode, 0, msg=second.stderr)
+            second_snapshot = self._capture_html_snapshot(site_path)
+            self.assertEqual(first_snapshot, second_snapshot)
+
+            self.assertIn("spaces/alpha/site/search/index.html", second_snapshot)
+            self.assertIn("spaces/alpha/site/runs/index.html", second_snapshot)
+            self.assertIn("site/new/index.html", second_snapshot)
+
     def test_source_preview_assets_are_written_to_canonical_site_asset_path(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)

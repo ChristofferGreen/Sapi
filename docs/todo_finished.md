@@ -4,6 +4,26 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0233: Implement UI information architecture and rendering contracts
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 3
+  - depends_on: TODO-0253
+  - scope: Integrate and validate UI/IA renderer contracts end-to-end after specialized Section 8 tasks land.
+  - acceptance:
+    - Section 8 specialized contract tasks produce coherent, non-conflicting site output across page types.
+    - Cross-page navigation/search/feed behavior is consistent after integrating all specialized renderers.
+    - Final integration pass closes known UI contract gaps and regressions with snapshot evidence.
+  - notes: source `design.md` Section 8
+  - evidence: Extended `sapi/build/site_builder.py` with a deterministic space search index page
+    (`site/search/index.html`) that indexes sources/topics/runs and wired a single consistent
+    cross-page search control (`/spaces/<space_name>/site/search/index.html?q=...`) into the
+    shared space layout. Added integration assertions in
+    `tests/unit/build/test_site_builder_contracts.py` validating search-control consistency
+    across page types, indexed page/run coverage, and deterministic full snapshot stability across
+    repeated builds.
+
 - [x] TODO-0234: Implement topic lifecycle transitions and final-page contradiction gating
   - owner: ai
   - created_at: 2026-04-12
