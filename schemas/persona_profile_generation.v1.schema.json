@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "persona_profile_generation.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "persona_id",
+    "space_name",
+    "profile_sections",
+    "profile_image_path",
+    "accountability_summary"
+  ],
+  "properties": {
+    "persona_id": {"type": "string"},
+    "space_name": {"type": "string"},
+    "profile_sections": {"type": "array"},
+    "profile_image_path": {"type": ["string", "null"]},
+    "accountability_summary": {"type": "string"}
+  }
+}

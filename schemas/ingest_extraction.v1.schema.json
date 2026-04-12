@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ingest_extraction.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_date_inference",
+    "source",
+    "claims",
+    "relations",
+    "summary",
+    "warnings"
+  ],
+  "properties": {
+    "source_date_inference": {"type": ["object", "null"]},
+    "source": {"type": "object"},
+    "claims": {"type": "array"},
+    "relations": {"type": "array"},
+    "summary": {"type": "string"},
+    "warnings": {"type": "array"}
+  }
+}

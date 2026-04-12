@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  echo "Usage: create_space.sh <site_path> <space_name>" >&2
+}
+
+if [[ $# -ne 2 ]]; then
+  usage
+  exit 2
+fi
+
+site_path="$1"
+space_name="$2"
+registry_path="$site_path/spaces.toml"
+space_root="$site_path/spaces/$space_name"
+
+mkdir -p \
+  "$space_root/sources/records" \
+  "$space_root/sources/artifacts" \
+  "$space_root/claims" \
+  "$space_root/relations" \
+  "$space_root/topics" \
+  "$space_root/profiles" \
+  "$space_root/projections/markdown" \
+  "$space_root/runs" \
+  "$space_root/outputs/query" \
+  "$space_root/outputs/persona_profile_history" \
+  "$space_root/outputs/comment_quality" \
+  "$space_root/site" \
+  "$space_root/raw/snapshots/comment_sections" \
+  "$space_root/.cache"
+
+if [[ ! -f "$space_root/imports.lock.md" ]]; then
+  cat > "$space_root/imports.lock.md" <<'MD'
+# imports.lock.md
+MD
+fi
+
+if [[ ! -f "$registry_path" ]]; then
+  mkdir -p "$site_path"
+  cat > "$registry_path" <<'TOML'
+# Sapi space registry bootstrap scaffold
+TOML
+fi
+
+if ! grep -Eq "^[[:space:]]*(space_name|name)[[:space:]]*=[[:space:]]*\"$space_name\"[[:space:]]*$" "$registry_path"; then
+  cat >> "$registry_path" <<TOML
+
+[[spaces]]
+space_name = "$space_name"
+space_root = "spaces/$space_name"
+TOML
+fi
+
+printf 'Initialized space scaffold at %s\n' "$space_root"

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "query_synthesis.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "query_id",
+    "answer",
+    "claims_used",
+    "sources_used",
+    "retrieval_counts",
+    "contradictions_considered",
+    "falsification_signals",
+    "mode",
+    "scope",
+    "execution",
+    "warnings"
+  ],
+  "properties": {
+    "query_id": {"type": "string"},
+    "answer": {"type": "string"},
+    "claims_used": {"type": "array"},
+    "sources_used": {"type": "array"},
+    "retrieval_counts": {"type": "object"},
+    "contradictions_considered": {"type": "integer"},
+    "falsification_signals": {"type": "array"},
+    "mode": {"type": "string"},
+    "scope": {"type": "string"},
+    "execution": {"type": "object"},
+    "warnings": {"type": "array"}
+  }
+}

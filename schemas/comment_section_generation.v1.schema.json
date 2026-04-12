@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "comment_section_generation.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["page_ref", "requested_count", "comments"],
+  "properties": {
+    "page_ref": {"type": "string"},
+    "requested_count": {"type": "integer", "minimum": 0},
+    "comments": {"type": "array"}
+  }
+}
