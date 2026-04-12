@@ -144,3 +144,16 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     - Each spec has required machine-readable header fields.
     - Each schema enforces top-level object constraints and required keys.
   - evidence: Verified by `tests/unit/contracts/test_todo_0202_spec_schema_inventory.py`, including file inventory presence, required machine-readable generation-spec header fields, v1 naming checks, and schema top-level object/`required`/`additionalProperties` contract assertions.
+
+- [x] TODO-0208: Canonical ID/time/path contract helpers
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0201
+  - scope: Implement helper library for ID generation, timestamp/date formatting, and canonical path token resolution.
+  - acceptance:
+    - ID classes and suffix constraints match Section 5.4 contracts.
+    - Time/date fields use mandated RFC3339/ISO formats.
+    - Path aliases/tokens resolve exactly per Section 5.0 rules.
+  - evidence: Verified by `tests/unit/contracts/test_id_contracts.py`, including positive/negative suffix-constraint checks for deterministic and execution IDs, RFC3339/ISO/compact UTC temporal-format assertions, and canonical token/alias path-resolution + rejection coverage for prohibited/undocumented aliases.

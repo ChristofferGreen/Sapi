@@ -18,6 +18,7 @@ from sapi.contracts.ids import (
     make_claim_id,
     make_comment_uid,
     make_concept_id,
+    make_deterministic_content_id,
     make_family_id,
     make_query_id,
     make_run_id,
@@ -79,6 +80,23 @@ class IdContractTests(unittest.TestCase):
         self.assertRegex(comment_match.group(2), EXECUTION_SUFFIX_RE)
         self.assertEqual(format_comment_no(7), "pc-007")
 
+    def test_id_suffix_constraints_are_enforced(self) -> None:
+        with self.assertRaises(ValueError):
+            make_deterministic_content_id(
+                "source",
+                slug="policy-check",
+                canonical_payload="payload",
+                suffix_length=11,
+            )
+        with self.assertRaises(ValueError):
+            make_run_id(suffix_length=9)
+        with self.assertRaises(ValueError):
+            make_query_id(slug="policy-check", suffix_length=9)
+        with self.assertRaises(ValueError):
+            make_comment_uid(slug="thread-root", suffix_length=9)
+        with self.assertRaises(ValueError):
+            make_run_id(suffix="ABCDEF1234")
+
     def test_temporal_format_helpers_match_contract(self) -> None:
         moment = datetime(2026, 4, 12, 9, 30, 45, tzinfo=UTC)
         self.assertEqual(format_timestamp_rfc3339_utc(moment), "2026-04-12T09:30:45Z")
@@ -86,6 +104,8 @@ class IdContractTests(unittest.TestCase):
         self.assertEqual(format_compact_utc_timestamp(moment), "20260412T093045Z")
         self.assertRegex(format_compact_utc_timestamp(moment), COMPACT_UTC_TIMESTAMP_RE)
         self.assertEqual(format_date_iso(date(2026, 4, 12)), "2026-04-12")
+        naive_moment = datetime(2026, 4, 12, 9, 30, 45)
+        self.assertEqual(format_timestamp_rfc3339_utc(naive_moment), "2026-04-12T09:30:45Z")
 
 
 class PathContractTests(unittest.TestCase):
@@ -162,6 +182,33 @@ class PathContractTests(unittest.TestCase):
                 ),
                 (repo_root / "personas/social_users.json").resolve(),
             )
+            self.assertEqual(
+                resolve_contract_path(
+                    "<repo_root>",
+                    repo_root=repo_root,
+                    site_path=site_path,
+                    space_root=space_root,
+                ),
+                repo_root.resolve(),
+            )
+            self.assertEqual(
+                resolve_contract_path(
+                    "<site_path>",
+                    repo_root=repo_root,
+                    site_path=site_path,
+                    space_root=space_root,
+                ),
+                site_path.resolve(),
+            )
+            self.assertEqual(
+                resolve_contract_path(
+                    "<space_root>",
+                    repo_root=repo_root,
+                    site_path=site_path,
+                    space_root=space_root,
+                ),
+                space_root.resolve(),
+            )
 
     def test_resolve_contract_path_rejects_prohibited_or_undocumented_aliases(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -183,6 +230,13 @@ class PathContractTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 resolve_contract_path(
                     "claims/claim-foo.html",
+                    repo_root=repo_root,
+                    site_path=site_path,
+                    space_root=space_root,
+                )
+            with self.assertRaises(ValueError):
+                resolve_contract_path(
+                    "  ",
                     repo_root=repo_root,
                     site_path=site_path,
                     space_root=space_root,
