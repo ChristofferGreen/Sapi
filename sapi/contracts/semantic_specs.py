@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 import re
 from typing import Any, Mapping
+import warnings
 
 
 @dataclass(frozen=True)
@@ -107,7 +108,17 @@ FLOW_MAP: dict[str, SemanticSpecMapEntry] = {
 
 def normalize_semantic_flow_key(flow_key: str) -> str:
     """Normalize compatibility aliases to canonical flow keys."""
-    return FLOW_ALIAS_MAP.get(flow_key, flow_key)
+    canonical_flow_key = FLOW_ALIAS_MAP.get(flow_key, flow_key)
+    if canonical_flow_key != flow_key:
+        warnings.warn(
+            (
+                f"Semantic flow key alias `{flow_key}` is deprecated; "
+                f"use `{canonical_flow_key}`."
+            ),
+            DeprecationWarning,
+            stacklevel=2,
+        )
+    return canonical_flow_key
 
 
 def resolve_semantic_spec(flow_key: str, *, repo_root: Path) -> ResolvedSemanticSpec:

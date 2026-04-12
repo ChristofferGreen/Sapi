@@ -170,3 +170,16 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     - `create_space.sh` registers space and creates canonical space root layout.
     - Bootstrap exception for missing `--registry-path` is enforced only for bootstrap commands.
   - evidence: Verified by `tests/unit/contracts/test_bootstrap_site_space.py`, including canonical site bootstrap artifacts (`site.json`, `spaces.toml`, discussion-controls skeleton, runtime directories), space registration/layout idempotency, direct `create_space` bootstrap-registry behavior, slug-safe `<space_name>` enforcement, and non-bootstrap `--registry-path` requirement checks.
+
+- [x] TODO-0203: Generation-spec resolver and version pinning
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0202
+  - scope: Implement explicit flow-map-based spec/schema resolution and compatibility alias normalization.
+  - acceptance:
+    - Specs resolve only via authoritative flow map.
+    - `persona_comment_generation` normalizes to `comment_section_generation` at input boundaries.
+    - Incompatible schema changes require explicit major-version files and flow-map update.
+  - evidence: Verified by `tests/unit/semantic/test_spec_resolution.py`, including flow-map-only resolution checks, alias normalization at both resolver and invocation-input boundaries (with deprecation warning), explicit major-version mismatch rejection, and pinned-v1 resolution behavior even when `v2` files are present without flow-map update.
