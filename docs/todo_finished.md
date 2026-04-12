@@ -1904,3 +1904,26 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     and committed run metadata with empty semantic flow fields plus zero changed-count and
     `llm_attempt_count` values. Updated `docs/testing_plan.md` to mark the Tier 3
     source-only item complete.
+
+- [x] TODO-0295: Close Tier 3 ingest force-mode failure retention checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0210
+  - scope: Finalize Tier 3 ingest `--force` evidence by proving terminal failure preserves
+    invocation artifacts and commits failed-run metadata with force retention fields.
+  - acceptance:
+    - `tests/integration/pipelines/test_ingest_force_mode.py` verifies failed ingest with
+      `--force` preserves partial artifacts instead of rolling them back.
+    - The same module verifies run metadata records `force_mode=true` and
+      `rollback_skipped=true`.
+    - `docs/testing_plan.md` marks the Tier 3 ingest force-mode checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 3; `docs/design.md` Sections 2.1, 7.1, 10
+  - evidence: Added
+    `tests/integration/pipelines/test_ingest_force_mode.py` with
+    `test_force_mode_failure_preserves_partial_artifacts_and_force_flags`,
+    asserting simulated terminal ingest failure with `--force` keeps source record and
+    committed run/lint artifacts, and run frontmatter captures failed status with
+    `force_mode=true` and `rollback_skipped=true`. Updated `docs/testing_plan.md` to
+    mark the Tier 3 ingest force-mode item complete.
