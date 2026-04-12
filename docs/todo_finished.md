@@ -131,3 +131,16 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     - Relative `space_root` values resolve against registry directory.
     - No fallback/merge with `~/.sapi/spaces.toml`.
   - evidence: Verified by `tests/unit/contracts/test_registry_paths.py`, including explicit `--registry-path` enforcement across non-bootstrap scripts, relative `space_root` resolution against registry directory, and a dedicated non-merge test proving explicit registry authority even when `~/.sapi/spaces.toml` exists.
+
+- [x] TODO-0202: Create v1 generation-spec and JSON schema inventory
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0200
+  - scope: Add required `ai_flows/generation_specs/*.v1.md` and `schemas/*.v1.schema.json` files for all semantic flows.
+  - acceptance:
+    - All required v1 spec/schema files from contract inventory exist.
+    - Each spec has required machine-readable header fields.
+    - Each schema enforces top-level object constraints and required keys.
+  - evidence: Verified by `tests/unit/contracts/test_todo_0202_spec_schema_inventory.py`, including file inventory presence, required machine-readable generation-spec header fields, v1 naming checks, and schema top-level object/`required`/`additionalProperties` contract assertions.

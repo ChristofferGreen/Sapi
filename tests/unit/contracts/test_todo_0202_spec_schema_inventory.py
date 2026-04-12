@@ -88,6 +88,20 @@ class Todo0202SpecSchemaInventoryTests(unittest.TestCase):
             self.assertIn("output_json_path:", header, flow_key)
             self.assertIn("context_paths:", header, flow_key)
             self.assertRegex(header, r"(?m)^\s*-\s+\S+", flow_key)
+            self.assertRegex(header, r"(?m)^output_json_path:\s+\S+", flow_key)
+
+    def test_spec_and_schema_paths_follow_v1_inventory_naming(self) -> None:
+        for flow_key, contract in SPEC_CONTRACT.items():
+            self.assertEqual(
+                Path(contract["spec"]).name,
+                f"{flow_key}.v1.md",
+                flow_key,
+            )
+            self.assertEqual(
+                Path(contract["schema"]).name,
+                f"{flow_key}.v1.schema.json",
+                flow_key,
+            )
 
     def test_each_schema_enforces_top_level_object_and_required_keys(self) -> None:
         for flow_key, contract in SPEC_CONTRACT.items():
