@@ -89,6 +89,11 @@ def normalize_relation_for_write(relation: dict[str, Any]) -> dict[str, Any]:
         dst_claim_id=dst_claim_id,
     )
     relation_file_id = relation_file_id_from_relation_id(relation_id)
+    _validate_provided_relation_identity(
+        relation=relation,
+        canonical_relation_id=relation_id,
+        canonical_relation_file_id=relation_file_id,
+    )
 
     normalized_status = _normalize_status(relation.get("status"))
     below_040_streak_raw = relation.get("below_040_streak", 0)
@@ -120,6 +125,31 @@ def normalize_relation_for_write(relation: dict[str, Any]) -> dict[str, Any]:
         }
     )
     return normalized
+
+
+def _validate_provided_relation_identity(
+    *,
+    relation: dict[str, Any],
+    canonical_relation_id: str,
+    canonical_relation_file_id: str,
+) -> None:
+    provided_relation_id = relation.get("relation_id")
+    if provided_relation_id is not None:
+        if not isinstance(provided_relation_id, str) or not provided_relation_id.strip():
+            raise ValueError("relation_id must be a non-empty string when provided.")
+        if provided_relation_id.strip() != canonical_relation_id:
+            raise ValueError(
+                "relation_id mismatch: provided value does not match canonical relation grammar."
+            )
+
+    provided_relation_file_id = relation.get("relation_file_id")
+    if provided_relation_file_id is not None:
+        if not isinstance(provided_relation_file_id, str) or not provided_relation_file_id.strip():
+            raise ValueError("relation_file_id must be a non-empty string when provided.")
+        if provided_relation_file_id.strip() != canonical_relation_file_id:
+            raise ValueError(
+                "relation_file_id mismatch: provided value does not match hash-derived storage key."
+            )
 
 
 def merge_relation_records(*, existing: dict[str, Any], incoming: dict[str, Any]) -> dict[str, Any]:

@@ -4,6 +4,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0213: Relation storage-key hashing and relation consistency validation
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 2
+  - depends_on: TODO-0211
+  - scope: Implement relation-file mapping (`relation_id` -> `relation_file_id`) and strict consistency checks.
+  - acceptance:
+    - Relation files are written to `<space_root>/relations/rel-<sha256(relation_id)>.json`.
+    - Persisted `relation_file_id` mismatch fails validation on read/write.
+    - Readers treat `relation_id` as semantic source of truth and `relation_file_id` as derived storage key.
+  - evidence: Tightened write-time consistency checks in `sapi/ingest/relation_store.py` to reject provided `relation_id`/`relation_file_id` mismatches against canonical/hash-derived values, and expanded `tests/unit/ingest/test_relation_store_matrix.py` to cover hash-derived write path IDs, write-time mismatch failures, and reader semantics keyed off payload `relation_id`.
+
 - [x] TODO-0264: Add pipeline-change PR checklist and docs-sync discipline
   - owner: ai
   - created_at: 2026-04-12

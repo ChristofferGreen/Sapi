@@ -126,6 +126,50 @@ class RelationStoreMatrixTests(unittest.TestCase):
                 relation_file_id_from_relation_id("contradictory:claim-a|claim-z"),
             )
 
+    def test_write_relation_path_uses_hash_derived_relation_file_id(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space-a"
+            relation_path = write_relation(
+                {
+                    "relation_type": "supports",
+                    "src_claim_id": "claim-a",
+                    "dst_claim_id": "claim-b",
+                },
+                space_root,
+            )
+            payload = json.loads(relation_path.read_text())
+            expected_file_id = relation_file_id_from_relation_id(payload["relation_id"])
+            self.assertEqual(payload["relation_file_id"], expected_file_id)
+            self.assertEqual(relation_path, space_root / "relations" / f"{expected_file_id}.json")
+
+    def test_write_relation_fails_when_provided_relation_file_id_mismatches_hash(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space-a"
+            with self.assertRaises(ValueError):
+                write_relation(
+                    {
+                        "relation_type": "supports",
+                        "src_claim_id": "claim-a",
+                        "dst_claim_id": "claim-b",
+                        "relation_file_id": "rel-deadbeef",
+                    },
+                    space_root,
+                )
+
+    def test_write_relation_fails_when_provided_relation_id_mismatches_canonical_id(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space-a"
+            with self.assertRaises(ValueError):
+                write_relation(
+                    {
+                        "relation_type": "supports",
+                        "src_claim_id": "claim-a",
+                        "dst_claim_id": "claim-b",
+                        "relation_id": "supports:claim-b->claim-a",
+                    },
+                    space_root,
+                )
+
     def test_read_relation_fails_when_relation_file_id_does_not_match_relation_id_hash(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "relations" / "rel-invalid.json"
@@ -141,6 +185,23 @@ class RelationStoreMatrixTests(unittest.TestCase):
             )
             with self.assertRaises(ValueError):
                 read_relation(path)
+
+    def test_reader_uses_relation_id_payload_as_semantic_source_of_truth(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "relations" / "custom-name.json"
+            path.parent.mkdir(parents=True, exist_ok=True)
+            relation_id = "supports:claim-a->claim-b"
+            path.write_text(
+                json.dumps(
+                    {
+                        "relation_id": relation_id,
+                        "relation_file_id": relation_file_id_from_relation_id(relation_id),
+                    }
+                )
+                + "\n"
+            )
+            payload = read_relation(path)
+            self.assertEqual(payload["relation_id"], relation_id)
 
 
 if __name__ == "__main__":

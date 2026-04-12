@@ -53,15 +53,15 @@ Task template:
 ### Immediate Next 10 (After Ready Now)
 
 1. `TODO-0211`
-2. `TODO-0213`
-3. `TODO-0212`
-4. `TODO-0214`
-5. `TODO-0215`
-6. `TODO-0216`
-7. `TODO-0217`
-8. `TODO-0218`
-9. `TODO-0219`
-10. `TODO-0220`
+2. `TODO-0212`
+3. `TODO-0214`
+4. `TODO-0215`
+5. `TODO-0216`
+6. `TODO-0217`
+7. `TODO-0218`
+8. `TODO-0219`
+9. `TODO-0220`
+10. `TODO-0246`
 
 ### Priority Lanes (Current)
 
@@ -76,7 +76,7 @@ Wave A (bootstrap + contracts):
 1. (none currently)
 
 Wave B (ingest + projection + lint):
-1. `TODO-0211` -> `TODO-0213` -> `TODO-0278` -> `TODO-0212` -> `TODO-0214` -> `TODO-0270` -> `TODO-0271`
+1. `TODO-0211` -> `TODO-0278` -> `TODO-0212` -> `TODO-0214` -> `TODO-0270` -> `TODO-0271`
 2. `TODO-0215` -> `TODO-0216` -> `TODO-0268` -> `TODO-0217` -> `TODO-0218`
 3. `TODO-0246` -> `TODO-0245` -> `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233` -> `TODO-0219`
 
@@ -99,7 +99,7 @@ Cross-cutting docs backlog:
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | `TODO-0218` |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | `TODO-0219`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
-| Section 7.1 ingest pipeline | `TODO-0211`, `TODO-0212`, `TODO-0213`, `TODO-0214`, `TODO-0270`, `TODO-0271`, `TODO-0278` |
+| Section 7.1 ingest pipeline | `TODO-0211`, `TODO-0212`, `TODO-0214`, `TODO-0270`, `TODO-0271`, `TODO-0278` |
 | Section 7.2 references/linking | `TODO-0215` |
 | Section 7.3 query pipeline | `TODO-0220`, `TODO-0259`, `TODO-0255`, `TODO-0221`, `TODO-0277` |
 | Section 7.4 persona catalog | `TODO-0222` |
@@ -124,7 +124,7 @@ Cross-cutting docs backlog:
 | Section 7 (transaction/rollback) | `TODO-0214` |
 | Section 8 (pipeline execution contracts) | `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0274`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0278`, `TODO-0220`, `TODO-0223`, `TODO-0224`, `TODO-0242` |
 | Section 9 (deterministic build/projection) | `TODO-0216`, `TODO-0217`, `TODO-0246`, `TODO-0275` |
-| Section 10 (relation persistence) | `TODO-0213`, `TODO-0278` |
+| Section 10 (relation persistence) | `TODO-0278` |
 | Section 11 (lint/warning threshold) | `TODO-0218`, `TODO-0219` |
 | Section 12 (wrapper/script interfaces) | `TODO-0219`, `TODO-0254`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
 | Section 13 (observability/runtime controls/safety) | `TODO-0226`, `TODO-0227`, `TODO-0254` |
@@ -781,18 +781,6 @@ Cross-cutting docs backlog:
     - `--force` may preserve failed invocation artifacts and writes `force_mode/rollback_skipped`.
     - Deferred-build runs include required metadata and are trackable for backfill.
   - notes: source `design.md` Sections 2.1, 7.1
-
-- [ ] TODO-0213: Relation storage-key hashing and relation consistency validation
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 2
-  - depends_on: TODO-0211
-  - scope: Implement relation-file mapping (`relation_id` -> `relation_file_id`) and strict consistency checks.
-  - acceptance:
-    - Relation files are written to `<space_root>/relations/rel-<sha256(relation_id)>.json`.
-    - Persisted `relation_file_id` mismatch fails validation on read/write.
-    - Readers treat `relation_id` as semantic source of truth and `relation_file_id` as derived storage key.
-  - notes: source `design.md` Section 7.1
 
 - [ ] TODO-0212: Topic generation semantic flow and canonical topic persistence
   - owner: ai
