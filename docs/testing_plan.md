@@ -88,7 +88,7 @@ tests/
 
 - [x] Repair-loop exhaustion causes terminal failure + rollback.
   - Module: `tests/integration/failure/test_semantic_repair_exhaustion_rollback.py`
-- [ ] Deterministic post-processing failure rolls back invocation-scoped writes.
+- [x] Deterministic post-processing failure rolls back invocation-scoped writes.
   - Module: `tests/integration/failure/test_postprocess_failure_rollback.py`
 - [x] Default-mode failed runs leave no committed `runs/<run_id>/` container.
   - Module: `tests/integration/failure/test_run_container_not_persisted.py`

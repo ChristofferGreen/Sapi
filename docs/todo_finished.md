@@ -1835,3 +1835,28 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     exhaustion and asserting rollback leaves no committed profile/history/run artifacts.
     Existing ingest exhaustion rollback assertions remain intact. Updated
     `docs/testing_plan.md` to mark the Tier 2 repair-loop exhaustion item complete.
+
+- [x] TODO-0292: Close Tier 2 deterministic post-processing rollback checklist for ingest/query
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 2
+  - depends_on: TODO-0220, TODO-0222
+  - scope: Finalize Tier 2 deterministic post-processing failure evidence by proving
+    rollback semantics for invocation-scoped writes in both ingest and query paths.
+  - acceptance:
+    - `tests/integration/failure/test_postprocess_failure_rollback.py` retains ingest
+      deterministic post-processing failure rollback coverage.
+    - The same module covers query non-markdown deterministic post-processing failure
+      rollback behavior.
+    - `docs/testing_plan.md` marks the Tier 2 deterministic post-processing checklist
+      item complete.
+  - notes: source `docs/testing_plan.md` Tier 2; `docs/design.md` Section 2.1
+  - evidence: Extended
+    `tests/integration/failure/test_postprocess_failure_rollback.py` with
+    `test_query_non_markdown_postprocess_failure_rolls_back_query_outputs`,
+    patching query deterministic artifact rendering to fail and asserting rollback
+    removes invocation-scoped query outputs and leaves no committed run container.
+    Existing ingest post-processing rollback coverage remains intact. Updated
+    `docs/testing_plan.md` to mark the Tier 2 deterministic post-processing item
+    complete.
