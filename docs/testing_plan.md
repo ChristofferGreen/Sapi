@@ -97,7 +97,7 @@ tests/
 
 - [x] Ingest happy path writes canonical artifacts + run/lint metadata.
   - Module: `tests/integration/pipelines/test_ingest_pipeline.py`
-- [ ] Ingest `--source-only` keeps `semantic_flows=[]` and skips semantic writes.
+- [x] Ingest `--source-only` keeps `semantic_flows=[]` and skips semantic writes.
   - Module: `tests/integration/pipelines/test_ingest_source_only.py`
 - [ ] Ingest `--force` preserves partial artifacts on terminal failure and marks run metadata (`force_mode=true`, `rollback_skipped=true`).
   - Module: `tests/integration/pipelines/test_ingest_force_mode.py`

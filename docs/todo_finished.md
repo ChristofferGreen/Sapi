@@ -1882,3 +1882,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     alignment, and lint artifact warning/info totals in addition to existing canonical
     artifact and semantic-flow checks. Updated `docs/testing_plan.md` to mark the
     Tier 3 ingest happy-path item complete.
+
+- [x] TODO-0294: Close Tier 3 ingest source-only semantic bypass checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0210
+  - scope: Finalize Tier 3 source-only ingest evidence by proving semantic generation is
+    skipped while source ingestion and run/lint metadata still commit successfully.
+  - acceptance:
+    - `tests/integration/pipelines/test_ingest_source_only.py` verifies
+      `semantic_flows=[]` and empty `semantic_flow_invocation_counts` for `--source-only`.
+    - The same module asserts semantic artifact writes (claims/relations/topics) are skipped.
+    - `docs/testing_plan.md` marks the Tier 3 ingest source-only checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 3; `docs/design.md` Sections 2.2, 10
+  - evidence: Added
+    `tests/integration/pipelines/test_ingest_source_only.py` with
+    `test_ingest_source_only_skips_semantic_writes_and_records_empty_semantic_flows`,
+    asserting source record persistence, no claim/relation/topic writes, no build manifest,
+    and committed run metadata with empty semantic flow fields plus zero changed-count and
+    `llm_attempt_count` values. Updated `docs/testing_plan.md` to mark the Tier 3
+    source-only item complete.
