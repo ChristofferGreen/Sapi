@@ -59,14 +59,14 @@ Task template:
 6. `TODO-0248`
 7. `TODO-0249`
 8. `TODO-0250`
-9. `TODO-0251`
-10. `TODO-0225`
+9. `TODO-0225`
+10. `TODO-0224`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0223` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
+- P2 Social/eval/hardening: `TODO-0223` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -80,7 +80,7 @@ Wave B (ingest + projection + lint):
 Wave C (query + social + hardening + release):
 1. (none currently)
 2. `TODO-0223` -> `TODO-0247` -> `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
-3. `TODO-0251` -> `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
+3. `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
 1. (none currently)
@@ -105,7 +105,7 @@ Cross-cutting docs backlog:
 | Section 8 site/UI/static build | `TODO-0256` |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | `TODO-0250` |
-| Section 11 testing strategy | `TODO-0266`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
+| Section 11 testing strategy | `TODO-0266`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0260`, `TODO-0261` |
 | Section 13 definition of done | `TODO-0231` |
 
@@ -233,18 +233,6 @@ Cross-cutting docs backlog:
     - `failed` and `aborted` runs are excluded from consecutive-run resolution logic.
     - Advancement behavior is tested for ingest/query/comment/profile pipelines.
   - notes: source `design.md` Section 10
-
-- [ ] TODO-0251: Preserve historical test-footprint contracts and golden asset layout
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 6
-  - depends_on: TODO-0228
-  - scope: Implement and verify historical testing-footprint expectations that should remain part of reconstruction quality signal.
-  - acceptance:
-    - Legacy broad `tests/test_*.py` footprint equivalents are represented in modernized test layout.
-    - Golden snapshot directories for site and skill assets are created and wired to CI test commands.
-    - High-value historical test intents from Section 11 are mapped to concrete tests/modules.
-  - notes: source `design.md` Section 11
 
 - [ ] TODO-0249: Implement comment generation-isolation and adjudication summary contracts
   - owner: ai

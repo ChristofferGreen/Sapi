@@ -5,6 +5,9 @@
   "packageManager": "npm@10.9.2",
   "description": "Sapi reconstruction workspace",
   "scripts": {
-    "test": "python3 -m unittest discover -s tests -p 'test_*.py'"
+    "test": "npm run test:pr",
+    "test:pr": "python3 -m unittest discover -s tests/unit -p 'test_*.py' && python3 -m unittest discover -s tests/integration/failure -p 'test_*.py' && python3 -m unittest discover -s tests/integration/pipelines -p 'test_*.py'",
+    "test:golden": "python3 -m unittest discover -s tests/golden -p 'test_*.py'",
+    "test:live": "python3 -m unittest discover -s tests/live -p 'test_*.py'"
   }
 }

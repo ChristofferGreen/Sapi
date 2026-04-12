@@ -4,6 +4,26 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0251: Preserve historical test-footprint contracts and golden asset layout
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 6
+  - depends_on: TODO-0228
+  - scope: Implement and verify historical testing-footprint expectations that should remain part of reconstruction quality signal.
+  - acceptance:
+    - Legacy broad `tests/test_*.py` footprint equivalents are represented in modernized test layout.
+    - Golden snapshot directories for site and skill assets are created and wired to CI test commands.
+    - High-value historical test intents from Section 11 are mapped to concrete tests/modules.
+  - notes: source `design.md` Section 11
+  - evidence: Added root-level footprint mapping test `tests/test_historical_footprint_equivalents.py`
+    that preserves a broad `tests/test_*.py` entrypoint and asserts explicit mappings from
+    historical high-value tests to current module coverage. Added golden snapshot assets under
+    `tests/golden/site_snapshot/` and `tests/golden/skills/` plus golden validation modules
+    `tests/golden/test_site_snapshot.py` and `tests/golden/test_skill_snapshot.py`. Added
+    CI-target command wiring in `package.json` (`test:pr`, `test:golden`, `test:live`) and
+    validated `test:golden` plus focused mapping tests.
+
 - [x] TODO-0228: Tier 0-2 plus ingest/query Tier 3 foundational test implementation
   - owner: ai
   - created_at: 2026-04-12
