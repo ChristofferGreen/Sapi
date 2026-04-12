@@ -841,3 +841,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     explicit acceptance-criteria coverage for canonical loading behavior, compatibility mirror
     fallback, alias normalization/mismatch rejection, persona-id invariants, and profile-image path
     resolution failures.
+
+- [x] TODO-0220: Query pipeline core contracts and preflight rules
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 4
+  - depends_on: TODO-0204, TODO-0206, TODO-0207, TODO-0213
+  - scope: Implement query semantic flow, retrieval contracts, strict/non-strict mode behavior, and
+    rollback semantics.
+  - acceptance:
+    - Mode validation rejects explicit `strict + include-disputed`.
+    - Query writes only under `outputs/query/<query_id>/...` plus run/lint metadata.
+    - Query never mutates canonical knowledge artifacts or triggers site rebuild.
+    - Terminal query failures rollback invocation-scoped query outputs and run/lint artifacts.
+  - evidence: Replaced `scripts/query.py` scaffold with a query pipeline implementation that enforces
+    strict-mode preflight (`--mode strict --include-disputed` fails before retrieval), resolves
+    deterministic mode defaults, writes query artifacts only under
+    `<space_root>/outputs/query/<query_id>/` (`query.json` and `answer.md`), emits canonical
+    `query_pipeline` run/lint metadata via shared pipeline policy, and applies default terminal
+    rollback using invocation-scoped artifact transactions. Added deterministic retrieval helper in
+    `sapi/query/retrieval.py` and acceptance tests in
+    `tests/unit/query/test_query_pipeline_core_contract.py` covering preflight failure behavior,
+    query-write path boundaries/no site rebuild mutation, and rollback cleanup on simulated terminal
+    failure.

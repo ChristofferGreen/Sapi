@@ -51,21 +51,21 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0220`
-2. `TODO-0245`
-3. `TODO-0244`
-4. `TODO-0242`
-5. `TODO-0253`
-6. `TODO-0252`
-7. `TODO-0257`
-8. `TODO-0234`
-9. `TODO-0233`
-10. `TODO-0266`
+1. `TODO-0245`
+2. `TODO-0244`
+3. `TODO-0242`
+4. `TODO-0253`
+5. `TODO-0252`
+6. `TODO-0257`
+7. `TODO-0234`
+8. `TODO-0233`
+9. `TODO-0266`
+10. `TODO-0259`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: `TODO-0220` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0277`
+- P1 Core product behavior: `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0277`
 - P2 Social/eval/hardening: `TODO-0223` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0282`
 
@@ -78,7 +78,7 @@ Wave B (ingest + projection + lint):
 1. `TODO-0245` -> `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233`
 
 Wave C (query + social + hardening + release):
-1. `TODO-0220` -> `TODO-0242` -> `TODO-0259` -> `TODO-0255` -> `TODO-0221` -> `TODO-0277`
+1. `TODO-0242` -> `TODO-0259` -> `TODO-0255` -> `TODO-0221` -> `TODO-0277`
 2. `TODO-0223` -> `TODO-0247` -> `TODO-0258` -> `TODO-0248` -> `TODO-0249` -> `TODO-0256` -> `TODO-0224` -> `TODO-0275` -> `TODO-0266` -> `TODO-0225`
 3. `TODO-0254` -> `TODO-0228` -> `TODO-0251` -> `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
@@ -97,7 +97,7 @@ Cross-cutting docs backlog:
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | - |
 | Section 7.1 ingest pipeline | - |
 | Section 7.2 references/linking | - |
-| Section 7.3 query pipeline | `TODO-0220`, `TODO-0259`, `TODO-0255`, `TODO-0221`, `TODO-0277` |
+| Section 7.3 query pipeline | `TODO-0259`, `TODO-0255`, `TODO-0221`, `TODO-0277` |
 | Section 7.4 persona catalog | - |
 | Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
 | Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
@@ -118,7 +118,7 @@ Cross-cutting docs backlog:
 | Section 5 (path + registry contracts) | - |
 | Section 6 (semantic execution engine + retry/repair) | - |
 | Section 7 (transaction/rollback) | - |
-| Section 8 (pipeline execution contracts) | `TODO-0275`, `TODO-0277`, `TODO-0220`, `TODO-0223`, `TODO-0224`, `TODO-0242` |
+| Section 8 (pipeline execution contracts) | `TODO-0275`, `TODO-0277`, `TODO-0223`, `TODO-0224`, `TODO-0242` |
 | Section 9 (deterministic build/projection) | `TODO-0275` |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
@@ -560,17 +560,4 @@ Cross-cutting docs backlog:
     - `mermaid/images/slides/pdf` modes emit canonical `manifest.json`.
     - `markdown` mode emits no manifest and keeps `manifest_path` null/omitted.
     - Manifest keys and artifact hash contracts match doc requirements.
-  - notes: source `design.md` Section 7.3
-
-- [ ] TODO-0220: Query pipeline core contracts and preflight rules
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 4
-  - depends_on: TODO-0204, TODO-0206, TODO-0207, TODO-0213
-  - scope: Implement query semantic flow, retrieval contracts, strict/non-strict mode behavior, and rollback semantics.
-  - acceptance:
-    - Mode validation rejects explicit `strict + include-disputed`.
-    - Query writes only under `outputs/query/<query_id>/...` plus run/lint metadata.
-    - Query never mutates canonical knowledge artifacts or triggers site rebuild.
-    - Terminal query failures rollback invocation-scoped query outputs and run/lint artifacts.
   - notes: source `design.md` Section 7.3
