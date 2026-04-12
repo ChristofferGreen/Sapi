@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0219: `validate.sh` workflow dispatch and lint-engine integration
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 4
+  - depends_on: TODO-0218, TODO-0235
+  - scope: Implement workflow-aware lint entrypoint dispatch from `validate.sh` to `scripts/lint.py`.
+  - acceptance:
+    - `validate.sh` accepts `--workflow` and optional `--run-id`.
+    - Selected workflow key maps to gating behavior from Section 5.8.
+    - Command exits and envelopes reflect lint-engine outcomes consistently.
+  - evidence: Implemented workflow-dispatch lint entrypoint behavior in `scripts/lint.py`
+    (workflow/run-id selection, warning-budget parsing, run lint artifact loading, workflow-key gate
+    evaluation, and deterministic JSON lint-gate envelope output/exit codes) backed by
+    `sapi/lint/lint_engine.py`; added focused dispatch coverage in
+    `tests/unit/lint/test_validate_workflow_dispatch.py`; and retained/verified guardrail + checklist
+    gate integration through `tests/unit/lint/test_guardrail_checks.py` and
+    `tests/unit/lint/test_pipeline_pr_checklist_gate.py`.
+
 - [x] TODO-0218: Lint severity engine and warning-threshold status mapping
   - owner: ai
   - created_at: 2026-04-12
