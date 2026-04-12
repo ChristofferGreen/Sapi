@@ -2066,3 +2066,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `outputs/build_site/manifest.json` prior to deterministic snapshot equality checks.
     Verified the build determinism integration test passes and updated
     `docs/testing_plan.md` to mark the Tier 4 deterministic rebuild item complete.
+
+- [x] TODO-0302: Close Tier 4 site-root New refresh policy checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0210, TODO-0220, TODO-0223, TODO-0224
+  - scope: Finalize Tier 4 site-root `New` refresh policy evidence by placing integration
+    coverage in the build determinism suite location defined by the testing plan and verifying
+    flow-scoped refresh/no-refresh behavior.
+  - acceptance:
+    - `tests/integration/build/test_site_new_refresh_policy.py` verifies query/profile/comments
+      flows do not refresh site-root `New`.
+    - The same module verifies subsequent ingest refreshes site-root `New`.
+    - `docs/testing_plan.md` marks the Tier 4 site-root refresh policy checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 4; `docs/design.md` Section 2.2
+  - evidence: Moved site-root refresh policy integration coverage from
+    `tests/integration/pipelines/test_site_new_refresh_policy.py` to canonical Tier 4 path
+    `tests/integration/build/test_site_new_refresh_policy.py` and verified the module passes.
+    Updated `docs/testing_plan.md` to mark the Tier 4 site-root refresh policy item complete.
