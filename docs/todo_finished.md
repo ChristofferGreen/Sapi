@@ -4,6 +4,26 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0273: Implement `evaluate_source.sh` user-facing evaluation harness (markdown-first artifact pack)
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 4
+  - depends_on: TODO-0200, TODO-0210, TODO-0216, TODO-0219, TODO-0220
+  - scope: Implement a single operator command that runs source evaluation and emits a human-readable artifact folder for manual quality review.
+  - acceptance:
+    - Wrapper/entrypoint pair exists (`evaluate_source.sh` -> `scripts/evaluate_source.py`) with explicit `--registry-path` routing.
+    - Default artifact pack includes `README.md`, `summary.md`, `ingest_run.md`, `lint_summary.md`, `site_links.md`, and `query_answers/strict.md`.
+    - Companion machine-readable `manifest.json` indexes produced artifacts and referenced run IDs.
+    - Artifact output defaults to `<space_root>/outputs/evaluations/<evaluation_id>/` and supports `--out` override.
+  - evidence: Replaced the evaluate harness scaffold with a working orchestration in
+    `scripts/evaluate_source.py` that executes ingest + validation + strict query (+ optional
+    comments), writes the required markdown-first artifact pack, emits `manifest.json` with run/artifact
+    linkage, and defaults output to `<space_root>/outputs/evaluations/<evaluation_id>/` with `--out`
+    override support. Added deterministic integration coverage in
+    `tests/integration/wrappers/test_evaluate_source_harness.py` for default artifact-pack output,
+    `--out` + `--comments <n>` behavior, and invalid comments argument fail-fast behavior.
+
 - [x] TODO-0246: Implement chained-flow coalescing and trigger-equivalence checks
   - owner: ai
   - created_at: 2026-04-12
