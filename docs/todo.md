@@ -51,21 +51,21 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0257`
-2. `TODO-0234`
-3. `TODO-0233`
-4. `TODO-0266`
-5. `TODO-0223`
-6. `TODO-0247`
-7. `TODO-0275`
-8. `TODO-0258`
-9. `TODO-0248`
-10. `TODO-0249`
+1. `TODO-0234`
+2. `TODO-0233`
+3. `TODO-0266`
+4. `TODO-0223`
+5. `TODO-0247`
+6. `TODO-0275`
+7. `TODO-0258`
+8. `TODO-0248`
+9. `TODO-0249`
+10. `TODO-0250`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: `TODO-0257`
+- P1 Core product behavior: (none currently)
 - P2 Social/eval/hardening: `TODO-0223` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
 - P3 Continuous docs governance: (none currently)
 
@@ -75,7 +75,7 @@ Wave A (bootstrap + contracts):
 1. (none currently)
 
 Wave B (ingest + projection + lint):
-1. `TODO-0257` -> `TODO-0234` -> `TODO-0233`
+1. `TODO-0234` -> `TODO-0233`
 
 Wave C (query + social + hardening + release):
 1. (none currently)
@@ -102,7 +102,7 @@ Cross-cutting docs backlog:
 | Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
 | Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275` |
 | Section 7.7 comment quality harness | `TODO-0225` |
-| Section 8 site/UI/static build | `TODO-0256`, `TODO-0257`, `TODO-0233` |
+| Section 8 site/UI/static build | `TODO-0256`, `TODO-0233` |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | `TODO-0234`, `TODO-0250` |
 | Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
@@ -221,18 +221,6 @@ Cross-cutting docs backlog:
     - Deterministic social-vote rendering uses stable inputs and preserves repeatable output.
     - Thread permalinks/expansion state remain keyed by `comment_uid`.
   - notes: source `design.md` Sections 7.6, 8
-
-- [ ] TODO-0257: Implement source-preview asset pipeline and page/feed integration
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 3
-  - depends_on: TODO-0210, TODO-0216, TODO-0253
-  - scope: Implement deterministic source-preview asset generation and integration into source/detail/feed views.
-  - acceptance:
-    - Source preview assets are generated under canonical site asset path with deterministic naming.
-    - Source detail and optional feed-row integrations render preview assets per contract.
-    - Preview generation/integration is deterministic and covered by snapshot tests.
-  - notes: source `design.md` Section 8 (historical source preview assets)
 
 - [ ] TODO-0250: Implement run-truth advancement and reconciliation-state semantics
   - owner: ai

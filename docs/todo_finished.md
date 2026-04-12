@@ -4,6 +4,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0257: Implement source-preview asset pipeline and page/feed integration
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 3
+  - depends_on: TODO-0210, TODO-0216, TODO-0253
+  - scope: Implement deterministic source-preview asset generation and integration into source/detail/feed views.
+  - acceptance:
+    - Source preview assets are generated under canonical site asset path with deterministic naming.
+    - Source detail and optional feed-row integrations render preview assets per contract.
+    - Preview generation/integration is deterministic and covered by snapshot tests.
+  - notes: source `design.md` Section 8 (historical source preview assets)
+  - evidence: Added deterministic source-preview asset generation to
+    `sapi/build/site_builder.py`, writing canonical assets at
+    `site/assets/source_previews/<source_id>.svg` during site-root refresh. Integrated preview
+    rendering into source detail pages (summary + preview image linked to canonical source-file
+    path when present) and feed rows (`site/new` and space `new` tab) via compact preview
+    thumbnails. Extended `tests/unit/build/test_site_builder_contracts.py` with acceptance tests
+    for canonical preview-asset path/naming, source/detail/feed integration, and deterministic
+    snapshot equivalence across repeated builds.
+
 - [x] TODO-0253: Implement navigation/tabs/feed/pagination information-architecture contracts
   - owner: ai
   - created_at: 2026-04-12

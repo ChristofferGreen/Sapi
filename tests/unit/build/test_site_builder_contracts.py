@@ -626,6 +626,111 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertNotIn("?tab_page=2", site_new_page_1)
             self.assertIn("?feed_page=1", site_new_page_2)
 
+    def test_source_preview_assets_are_written_to_canonical_site_asset_path(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-preview-a",
+                title="Preview Source A",
+                summary="Deterministic summary text for preview.",
+                source_file_rel="sources/artifacts/source-preview-a/source.pdf",
+            )
+
+            cmd = [
+                "python3",
+                str(REPO_ROOT / "scripts" / "build_site.py"),
+                "--registry-path",
+                str(site_path / "spaces.toml"),
+            ]
+            first = self._run(cmd)
+            self.assertEqual(first.returncode, 0, msg=first.stderr)
+
+            preview_path = site_path / "site" / "assets" / "source_previews" / "source-preview-a.svg"
+            self.assertTrue(preview_path.is_file())
+            first_svg = preview_path.read_text()
+            self.assertIn("Preview Source A", first_svg)
+            self.assertIn("source-preview-a", first_svg)
+
+            second = self._run(cmd)
+            self.assertEqual(second.returncode, 0, msg=second.stderr)
+            self.assertEqual(first_svg, preview_path.read_text())
+
+    def test_source_detail_and_feed_rows_render_preview_assets_and_source_pdf_link(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-preview-b",
+                title="Preview Source B",
+                summary="Source summary appears near top.",
+                source_file_rel="sources/artifacts/source-preview-b/source.pdf",
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            source_page = (alpha_space_root / "site" / "sources" / "source-preview-b.html").read_text()
+            self.assertIn("class=\"source-summary\"", source_page)
+            self.assertIn("Source summary appears near top.", source_page)
+            self.assertIn("class=\"source-preview-link\"", source_page)
+            self.assertIn("/site/assets/source_previews/source-preview-b.svg", source_page)
+            self.assertIn("/spaces/alpha/sources/artifacts/source-preview-b/source.pdf", source_page)
+
+            site_new_page = (site_path / "site" / "new" / "index.html").read_text()
+            self.assertIn("class=\"source-preview-feed\"", site_new_page)
+            self.assertIn("/site/assets/source_previews/source-preview-b.svg", site_new_page)
+
+            space_new_page = (alpha_space_root / "site" / "new" / "index.html").read_text()
+            self.assertIn("class=\"source-preview-feed\"", space_new_page)
+            self.assertIn("/site/assets/source_previews/source-preview-b.svg", space_new_page)
+
+    def test_source_preview_generation_and_markup_are_deterministic_snapshots(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-preview-c",
+                title="Preview Source C",
+                summary="Snapshot stable preview.",
+                source_file_rel="sources/artifacts/source-preview-c/source.pdf",
+            )
+
+            cmd = [
+                "python3",
+                str(REPO_ROOT / "scripts" / "build_site.py"),
+                "--registry-path",
+                str(site_path / "spaces.toml"),
+            ]
+            first = self._run(cmd)
+            self.assertEqual(first.returncode, 0, msg=first.stderr)
+            first_snapshot = {
+                "preview_svg": (site_path / "site" / "assets" / "source_previews" / "source-preview-c.svg").read_text(),
+                "source_page": (alpha_space_root / "site" / "sources" / "source-preview-c.html").read_text(),
+                "site_new_page": (site_path / "site" / "new" / "index.html").read_text(),
+                "space_new_page": (alpha_space_root / "site" / "new" / "index.html").read_text(),
+            }
+
+            second = self._run(cmd)
+            self.assertEqual(second.returncode, 0, msg=second.stderr)
+            second_snapshot = {
+                "preview_svg": (site_path / "site" / "assets" / "source_previews" / "source-preview-c.svg").read_text(),
+                "source_page": (alpha_space_root / "site" / "sources" / "source-preview-c.html").read_text(),
+                "site_new_page": (site_path / "site" / "new" / "index.html").read_text(),
+                "space_new_page": (alpha_space_root / "site" / "new" / "index.html").read_text(),
+            }
+            self.assertEqual(first_snapshot, second_snapshot)
+
     def test_users_tab_scope_and_space_profile_link_resolution(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
@@ -735,6 +840,8 @@ class SiteBuilderContractTests(unittest.TestCase):
         source_id: str,
         title: str,
         ingested_at: str = "2026-04-12T00:00:00Z",
+        summary: str | None = None,
+        source_file_rel: str | None = None,
     ) -> None:
         payload = {
             "schema_version": "source_record_v1",
@@ -743,6 +850,14 @@ class SiteBuilderContractTests(unittest.TestCase):
             "date": ingested_at.split("T", 1)[0],
             "ingested_at": ingested_at,
         }
+        if summary is not None:
+            payload["summary"] = summary
+        if source_file_rel is not None:
+            payload["artifacts"] = {
+                "source_file": source_file_rel,
+                "overview_markdown": f"sources/artifacts/{source_id}/overview.md",
+                "front_page_image": None,
+            }
         path = space_root / "sources" / "records" / f"{source_id}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")

@@ -49,6 +49,13 @@ class _FeedEntry:
 
 
 @dataclass(frozen=True)
+class _SourcePreviewEntry:
+    source_id: str
+    title: str
+    summary: str
+
+
+@dataclass(frozen=True)
 class _SpaceLayoutContext:
     site_name: str
     space_name: str
@@ -138,6 +145,7 @@ def refresh_site_new_index(site_path: Path, *, incremental: bool) -> Path:
     """Refresh site-root New index from canonical source/topic artifacts across spaces."""
     spaces_root = site_path / "spaces"
     entries: list[_FeedEntry] = []
+    preview_entries: dict[str, _SourcePreviewEntry] = {}
     space_names: list[str] = []
     subspaces_by_space: dict[str, list[tuple[str, str | None]]] = {}
     for space_root in sorted(spaces_root.glob("*")):
@@ -147,6 +155,15 @@ def refresh_site_new_index(site_path: Path, *, incremental: bool) -> Path:
         space_names.append(space_name)
         projection = load_space_projection(space_root)
         entries.extend(_space_feed_entries(space_name=space_name, projection=projection))
+        for source in projection.sources:
+            source_id = str(source["source_id"])
+            if source_id in preview_entries:
+                continue
+            preview_entries[source_id] = _SourcePreviewEntry(
+                source_id=source_id,
+                title=str(source["title"]),
+                summary=_compact_summary(str(source.get("summary") or source.get("context") or "")),
+            )
         subspaces_by_space[space_name] = _load_subspaces(space_root)
 
     _sort_feed_entries(entries)
@@ -170,6 +187,11 @@ def refresh_site_new_index(site_path: Path, *, incremental: bool) -> Path:
         site_name=site_name,
         persona_rows=persona_rows,
         space_names=space_names,
+        incremental=incremental,
+    )
+    _write_source_preview_assets(
+        site_path=site_path,
+        preview_entries=preview_entries,
         incremental=incremental,
     )
 
@@ -203,8 +225,33 @@ def _write_source_pages(
     written: list[Path] = []
     for source in sorted(projection.sources, key=lambda item: item["source_id"]):
         source_path = sources_dir / f"{source['source_id']}.html"
+        source_summary = _compact_summary(str(source.get("summary") or source.get("context") or ""))
+        source_file_href = _source_file_href(source=source, space_name=context.space_name)
+        source_preview_href = _source_preview_site_href(str(source["source_id"]))
+        source_preview_row = (
+            "<a class=\"source-preview-link\" href=\""
+            + escape(source_file_href if source_file_href else "#")
+            + "\">"
+            + "<img class=\"source-preview\" src=\""
+            + escape(source_preview_href)
+            + "\" alt=\"Preview for "
+            + escape(str(source["title"]))
+            + "\" /></a>\n"
+        )
+        source_file_row = (
+            "<p class=\"source-file-link\">"
+            + (
+                f"<a href=\"{escape(source_file_href)}\">Open source PDF</a>"
+                if source_file_href
+                else "Source file unavailable"
+            )
+            + "</p>\n"
+        )
         body = (
             f"<h1>{escape(str(source['title']))}</h1>\n"
+            + (f"<p class=\"source-summary\">{escape(source_summary)}</p>\n" if source_summary else "")
+            + source_preview_row
+            + source_file_row
             + f"<p>source_id: {escape(str(source['source_id']))}</p>\n"
         )
         _write_text_file(
@@ -669,6 +716,7 @@ def _write_space_tab_pages(
         "new": [
             (
                 "<li>"
+                + _render_feed_preview_thumb(entry)
                 + f"<span class=\"meta\">{escape(entry.timestamp or 'unknown')} | {escape(entry.item_type)}</span> "
                 + f"<a href=\"/spaces/{escape(entry.space_name)}/site/{escape(entry.item_type)}s/{escape(entry.item_id)}.html\">"
                 + escape(entry.title)
@@ -1028,6 +1076,7 @@ def _render_site_new_page(
     rows = "\n".join(
         (
             "<li>"
+            + _render_feed_preview_thumb(entry)
             + f"<span class=\"meta\">{escape(entry.timestamp or 'unknown')} | {escape(entry.space_name)} | "
             + f"{escape(entry.item_type)}</span> "
             + f"<a href=\"/spaces/{escape(entry.space_name)}/site/{escape(entry.item_type)}s/{escape(entry.item_id)}.html\">"
@@ -1053,4 +1102,75 @@ def _render_site_new_page(
             base_href="/site/new",
         )
         + "</body></html>\n"
+    )
+
+
+def _render_feed_preview_thumb(entry: _FeedEntry) -> str:
+    if entry.item_type != "source":
+        return ""
+    source_page_href = (
+        f"/spaces/{entry.space_name}/site/sources/{entry.item_id}.html"
+    )
+    return (
+        "<a class=\"source-preview-feed-link\" href=\""
+        + escape(source_page_href)
+        + "\">"
+        + "<img class=\"source-preview-feed\" src=\""
+        + escape(_source_preview_site_href(entry.item_id))
+        + "\" alt=\"Preview for "
+        + escape(entry.title)
+        + "\" /></a> "
+    )
+
+
+def _source_preview_site_href(source_id: str) -> str:
+    return f"/site/assets/source_previews/{source_id}.svg"
+
+
+def _source_file_href(*, source: dict[str, Any], space_name: str) -> str | None:
+    artifacts = source.get("artifacts")
+    if not isinstance(artifacts, dict):
+        return None
+    source_file = artifacts.get("source_file")
+    if not isinstance(source_file, str) or not source_file.strip():
+        return None
+    if Path(source_file).is_absolute():
+        return None
+    encoded_parts = [escape(part) for part in Path(source_file).parts if part and part != "."]
+    if not encoded_parts:
+        return None
+    return f"/spaces/{escape(space_name)}/" + "/".join(encoded_parts)
+
+
+def _write_source_preview_assets(
+    *,
+    site_path: Path,
+    preview_entries: dict[str, _SourcePreviewEntry],
+    incremental: bool,
+) -> None:
+    previews_root = site_path / "site" / "assets" / "source_previews"
+    previews_root.mkdir(parents=True, exist_ok=True)
+    for source_id in sorted(preview_entries):
+        entry = preview_entries[source_id]
+        preview_path = previews_root / f"{entry.source_id}.svg"
+        _write_text_file(
+            preview_path,
+            _render_source_preview_svg(entry),
+            incremental=incremental,
+        )
+
+
+def _render_source_preview_svg(entry: _SourcePreviewEntry) -> str:
+    safe_title = escape(entry.title)
+    safe_summary = escape(entry.summary or "No summary")
+    safe_source_id = escape(entry.source_id)
+    return (
+        "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"480\" height=\"240\" viewBox=\"0 0 480 240\">"
+        "<rect x=\"0\" y=\"0\" width=\"480\" height=\"240\" fill=\"#f6f3ea\"/>"
+        "<rect x=\"16\" y=\"16\" width=\"448\" height=\"208\" rx=\"8\" fill=\"#ffffff\" stroke=\"#d9d2c4\"/>"
+        "<text x=\"32\" y=\"56\" font-size=\"14\" font-family=\"Arial, sans-serif\" fill=\"#5f5a52\">Source preview</text>"
+        f"<text x=\"32\" y=\"92\" font-size=\"20\" font-family=\"Arial, sans-serif\" fill=\"#1f1f1f\">{safe_title}</text>"
+        f"<text x=\"32\" y=\"132\" font-size=\"13\" font-family=\"Arial, sans-serif\" fill=\"#4b4b4b\">{safe_summary}</text>"
+        f"<text x=\"32\" y=\"198\" font-size=\"12\" font-family=\"Arial, sans-serif\" fill=\"#777\">{safe_source_id}</text>"
+        "</svg>\n"
     )
