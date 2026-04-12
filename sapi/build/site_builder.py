@@ -271,6 +271,10 @@ def _write_source_pages(
             + source_preview_row
             + source_file_row
             + f"<p>source_id: {escape(str(source['source_id']))}</p>\n"
+            + _render_page_comment_section(
+                page_payload=source,
+                default_page_ref=f"source:{source['source_id']}",
+            )
         )
         _write_text_file(
             source_path,
@@ -372,6 +376,10 @@ def _render_topic_page(
         )
         + parent_link_row
         + section_rows
+        + _render_page_comment_section(
+            page_payload=topic,
+            default_page_ref=f"topic:{topic['topic_id']}",
+        )
     )
     return _render_space_layout(
         title=str(topic["title"]),
@@ -399,6 +407,135 @@ def _resolve_topic_structure_type(topic: dict[str, object]) -> str:
     ):
         return "source_mirror"
     return "wiki"
+
+
+def _render_page_comment_section(*, page_payload: dict[str, object], default_page_ref: str) -> str:
+    comment_section = page_payload.get("comment_section")
+    if not isinstance(comment_section, dict):
+        return ""
+    comments = comment_section.get("comments")
+    if not isinstance(comments, list):
+        return ""
+    page_ref = str(comment_section.get("page_ref") or default_page_ref)
+    rows: list[str] = []
+    for comment in comments:
+        if not isinstance(comment, dict):
+            continue
+        comment_uid = str(comment.get("comment_uid") or "").strip()
+        if not comment_uid:
+            continue
+        persona_id = str(comment.get("persona_id") or "").strip()
+        comment_no = str(comment.get("comment_no") or "")
+        body = str(comment.get("body") or "")
+        parent_uid_raw = comment.get("parent_comment_uid")
+        parent_uid = str(parent_uid_raw).strip() if isinstance(parent_uid_raw, str) else ""
+        social_vote = _resolve_comment_social_vote(page_ref=page_ref, comment=comment)
+        permalink = str(comment.get("permalink") or f"#{comment_uid}")
+        thread_state_key = str(comment.get("thread_state_key") or comment_uid)
+        thread_expansion_key = str(comment.get("thread_expansion_key") or comment_uid)
+        rows.append(
+            (
+                f"<article class=\"comment-row\" id=\"{escape(comment_uid)}\" "
+                f"data-thread-state-key=\"{escape(thread_state_key)}\" "
+                f"data-thread-expansion-key=\"{escape(thread_expansion_key)}\">"
+                f"<header><a class=\"comment-permalink\" href=\"{escape(permalink)}\">Permalink</a> "
+                f"<span class=\"comment-no\">{escape(comment_no)}</span> "
+                f"<span class=\"comment-persona\">{escape(persona_id)}</span></header>"
+                f"<p class=\"comment-body\">{escape(body)}</p>"
+                + (
+                    f"<p class=\"comment-parent\">Replying to {escape(parent_uid)}</p>"
+                    if parent_uid
+                    else ""
+                )
+                + (
+                    "<p class=\"comment-score\" "
+                    f"data-upvotes=\"{social_vote['upvotes']}\" "
+                    f"data-downvotes=\"{social_vote['downvotes']}\" "
+                    f"data-score=\"{social_vote['score']}\">"
+                    f"upvotes={social_vote['upvotes']} downvotes={social_vote['downvotes']} "
+                    f"score={social_vote['score']}</p>"
+                )
+                + "</article>"
+            )
+        )
+
+    moderator_rows = _render_moderator_outcomes(comment_section=comment_section)
+    if not rows and not moderator_rows:
+        return ""
+    return (
+        "<section class=\"comment-thread\">"
+        "<h2>Comment Thread</h2>"
+        + "".join(rows)
+        + moderator_rows
+        + "</section>"
+    )
+
+
+def _resolve_comment_social_vote(*, page_ref: str, comment: dict[str, object]) -> dict[str, int]:
+    social_vote = comment.get("social_vote")
+    if (
+        isinstance(social_vote, dict)
+        and isinstance(social_vote.get("upvotes"), int)
+        and isinstance(social_vote.get("downvotes"), int)
+        and isinstance(social_vote.get("score"), int)
+    ):
+        return {
+            "upvotes": int(social_vote["upvotes"]),
+            "downvotes": int(social_vote["downvotes"]),
+            "score": int(social_vote["score"]),
+        }
+    comment_uid = str(comment.get("comment_uid") or "").strip()
+    persona_id = str(comment.get("persona_id") or "").strip()
+    body = str(comment.get("body") or "")
+    turn = comment.get("turn")
+    position = "social"
+    if isinstance(turn, dict) and isinstance(turn.get("position"), str) and turn.get("position"):
+        position = str(turn["position"]).strip()
+    seed = f"{page_ref}|{comment_uid}|{persona_id}|{position}|{body[:120]}"
+    digest = hashlib.sha256(seed.encode("utf-8")).hexdigest()
+    upvotes = int(digest[:8], 16) % 31 + 5
+    downvotes = int(digest[8:16], 16) % 21
+    if position in {"support", "synthesis"}:
+        upvotes += 4
+    elif position in {"challenge", "rebuttal"}:
+        downvotes += 4
+    return {"upvotes": upvotes, "downvotes": downvotes, "score": upvotes - downvotes}
+
+
+def _render_moderator_outcomes(*, comment_section: dict[str, object]) -> str:
+    outcomes = comment_section.get("moderator_outcomes")
+    if not isinstance(outcomes, dict):
+        return ""
+    moderator_check = str(outcomes.get("moderator_check") or "").strip()
+    guardrail_checks = outcomes.get("guardrail_checks")
+    outcome_sections = outcomes.get("outcome_sections")
+    rows: list[str] = []
+    if moderator_check:
+        rows.append(f"<p class=\"moderator-check\">{escape(moderator_check)}</p>")
+    if isinstance(guardrail_checks, dict):
+        rows.append("<ul class=\"moderator-guardrails\">")
+        for key in ("claim_citation", "anti_repetition", "strongest_opposing_point_ack"):
+            check_row = guardrail_checks.get(key)
+            if not isinstance(check_row, dict):
+                continue
+            passed = int(check_row.get("passed", 0))
+            failed = int(check_row.get("failed", 0))
+            rows.append(
+                f"<li data-check-key=\"{escape(key)}\">{escape(key)}: passed={passed} failed={failed}</li>"
+            )
+        rows.append("</ul>")
+    if isinstance(outcome_sections, dict):
+        for section_key in ("Consensus", "Open Disagreements", "Missing Evidence Priorities"):
+            section_rows = outcome_sections.get(section_key)
+            rows.append(f"<h3>{escape(section_key)}</h3>")
+            if isinstance(section_rows, list) and section_rows:
+                rows.append("<ul>")
+                for row in section_rows:
+                    rows.append(f"<li>{escape(str(row))}</li>")
+                rows.append("</ul>")
+            else:
+                rows.append("<p>(none)</p>")
+    return "".join(rows)
 
 
 def _ordered_topic_sections(topic: dict[str, object], *, structure_type: str) -> list[dict[str, object]]:

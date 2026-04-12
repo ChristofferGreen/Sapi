@@ -195,6 +195,85 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             for uid in new_uids:
                 self.assertTrue(uid.startswith("comment-"))
 
+    def test_moderator_outcomes_social_vote_and_permalink_keys_are_deterministic(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            topic_id = "topic-alpha"
+            self._write_topic(space_root, topic_id=topic_id, title="Alpha")
+
+            command = [
+                "python3",
+                str(REPO_ROOT / "scripts" / "create_comments.py"),
+                "alpha",
+                "--registry-path",
+                str(site_path / "spaces.toml"),
+                "--count",
+                "5",
+                "--mock-llm",
+            ]
+            first = run_command(command)
+            self.assertEqual(first.returncode, 0, msg=first.stderr)
+
+            first_topic_payload = json.loads((space_root / "topics" / f"{topic_id}.json").read_text())
+            first_comment_section = first_topic_payload["comment_section"]
+            self.assertIn("moderator_outcomes", first_comment_section)
+            moderator_outcomes = first_comment_section["moderator_outcomes"]
+            self.assertTrue(moderator_outcomes["moderator_check"].startswith("- Moderator Check:"))
+            self.assertIn("claim_citation", moderator_outcomes["guardrail_checks"])
+            self.assertIn("anti_repetition", moderator_outcomes["guardrail_checks"])
+            self.assertIn("strongest_opposing_point_ack", moderator_outcomes["guardrail_checks"])
+            self.assertIn("Consensus", moderator_outcomes["outcome_sections"])
+            self.assertIn("Open Disagreements", moderator_outcomes["outcome_sections"])
+            self.assertIn("Missing Evidence Priorities", moderator_outcomes["outcome_sections"])
+
+            first_rows = first_comment_section["comments"]
+            first_vote_map: dict[str, dict[str, int]] = {}
+            for row in first_rows:
+                comment_uid = row["comment_uid"]
+                self.assertEqual(row["permalink"], f"#{comment_uid}")
+                self.assertEqual(row["thread_state_key"], comment_uid)
+                self.assertEqual(row["thread_expansion_key"], comment_uid)
+                social_vote = row["social_vote"]
+                self.assertIsInstance(social_vote["upvotes"], int)
+                self.assertIsInstance(social_vote["downvotes"], int)
+                self.assertIsInstance(social_vote["score"], int)
+                first_vote_map[comment_uid] = dict(social_vote)
+
+            second = run_command(command)
+            self.assertEqual(second.returncode, 0, msg=second.stderr)
+            second_topic_payload = json.loads((space_root / "topics" / f"{topic_id}.json").read_text())
+            second_rows = second_topic_payload["comment_section"]["comments"]
+            second_vote_map = {row["comment_uid"]: row["social_vote"] for row in second_rows}
+            self.assertEqual(first_vote_map, second_vote_map)
+
+            build_result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(build_result.returncode, 0, msg=build_result.stderr)
+
+            topic_html = (space_root / "site" / "topics" / f"{topic_id}.html").read_text()
+            sample_uid = second_rows[0]["comment_uid"]
+            sample_vote = second_rows[0]["social_vote"]
+            self.assertIn("Comment Thread", topic_html)
+            self.assertIn("Moderator Check", topic_html)
+            self.assertIn("Open Disagreements", topic_html)
+            self.assertIn("Missing Evidence Priorities", topic_html)
+            self.assertIn(f"id=\"{sample_uid}\"", topic_html)
+            self.assertIn(f"href=\"#{sample_uid}\"", topic_html)
+            self.assertIn(f"data-thread-state-key=\"{sample_uid}\"", topic_html)
+            self.assertIn(f"data-thread-expansion-key=\"{sample_uid}\"", topic_html)
+            self.assertIn(f"data-upvotes=\"{sample_vote['upvotes']}\"", topic_html)
+            self.assertIn(f"data-downvotes=\"{sample_vote['downvotes']}\"", topic_html)
+            self.assertIn(f"data-score=\"{sample_vote['score']}\"", topic_html)
+
     def test_web_augmented_mode_writes_canonical_snapshot_path_and_schema_marker(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
@@ -642,6 +721,7 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                     "topic_id": topic_id,
                     "title": title,
                     "sections": [],
+                    "source_ids": [],
                 },
                 indent=2,
                 sort_keys=True,

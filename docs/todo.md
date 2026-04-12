@@ -51,16 +51,15 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0256`
-2. `TODO-0263`
-3. `TODO-0261`
-4. `TODO-0231`
+1. `TODO-0263`
+2. `TODO-0261`
+3. `TODO-0231`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0231`, `TODO-0256`, `TODO-0261`, `TODO-0263`
+- P2 Social/eval/hardening: `TODO-0231`, `TODO-0261`, `TODO-0263`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -73,8 +72,7 @@ Wave B (ingest + projection + lint):
 
 Wave C (query + social + hardening + release):
 1. (none currently)
-2. `TODO-0256`
-3. `TODO-0263` -> `TODO-0261` -> `TODO-0231`
+2. `TODO-0263` -> `TODO-0261` -> `TODO-0231`
 
 Cross-cutting docs backlog:
 1. (none currently)
@@ -94,9 +92,9 @@ Cross-cutting docs backlog:
 | Section 7.3 query pipeline | - |
 | Section 7.4 persona catalog | - |
 | Section 7.5 profile pages/history | - |
-| Section 7.6 comments pipeline/rendering | `TODO-0256` |
+| Section 7.6 comments pipeline/rendering | - |
 | Section 7.7 comment quality harness | - |
-| Section 8 site/UI/static build | `TODO-0256` |
+| Section 8 site/UI/static build | - |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | - |
 | Section 11 testing strategy | `TODO-0263` |
@@ -155,18 +153,6 @@ Cross-cutting docs backlog:
     - Checks run in CI or scripted local verification path with evidence artifacts.
     - Slice B cannot be marked complete while any gate remains open.
   - notes: source `design.md` Section 12.1
-
-- [ ] TODO-0256: Implement comment moderator/outcome blocks and deterministic social-vote rendering
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 5
-  - depends_on: TODO-0223, TODO-0247, TODO-0233
-  - scope: Implement moderator checks, outcome summaries, and deterministic social-vote/permalink behavior for rendered comment threads.
-  - acceptance:
-    - Moderator check keys and outcome sections are generated per contract.
-    - Deterministic social-vote rendering uses stable inputs and preserves repeatable output.
-    - Thread permalinks/expansion state remain keyed by `comment_uid`.
-  - notes: source `design.md` Sections 7.6, 8
 
 - [ ] TODO-0231: Definition-of-Done sweep and release readiness verification
   - owner: ai

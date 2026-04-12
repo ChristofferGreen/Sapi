@@ -1540,3 +1540,29 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     live-mode query smoke test marked `@pytest.mark.live_llm`; nightly CI continues to run
     this marker in a non-blocking step (`continue-on-error: true`) from
     `.github/workflows/ci.yml`.
+
+- [x] TODO-0256: Implement comment moderator/outcome blocks and deterministic social-vote rendering
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-13
+  - phase: Phase 5
+  - depends_on: TODO-0223, TODO-0247, TODO-0233
+  - scope: Implement moderator checks, outcome summaries, and deterministic social-vote/permalink behavior for rendered comment threads.
+  - acceptance:
+    - Moderator check keys and outcome sections are generated per contract.
+    - Deterministic social-vote rendering uses stable inputs and preserves repeatable output.
+    - Thread permalinks/expansion state remain keyed by `comment_uid`.
+  - notes: source `design.md` Sections 7.6, 8
+  - evidence: Extended comment merge/normalization contracts in
+    `sapi/comments/merge_normalize.py` to deterministically attach social-vote fields
+    (`upvotes`, `downvotes`, `score`), canonical permalink/thread keys
+    (`permalink`, `thread_state_key`, `thread_expansion_key`) keyed by immutable
+    `comment_uid`, and canonical moderator/outcome summary blocks including
+    `- Moderator Check:` with guardrail check keys (`claim_citation`, `anti_repetition`,
+    `strongest_opposing_point_ack`) plus outcome sections (`Consensus`, `Open Disagreements`,
+    `Missing Evidence Priorities`). Updated deterministic page rendering in
+    `sapi/build/site_builder.py` to render comment threads, moderator blocks, and score rows
+    using these canonical keys/values. Added focused validation in
+    `tests/unit/comments/test_turn_marker_validation.py` and end-to-end pipeline/render
+    coverage in `tests/integration/pipelines/test_comments_pipeline.py`, including
+    repeat-run determinism checks.

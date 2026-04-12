@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import hashlib
 import json
 import math
 import re
@@ -105,6 +106,7 @@ def merge_comment_section(
 
     for ordinal, comment in enumerate(merged_comments, start=1):
         comment["comment_no"] = format_comment_no(ordinal)
+    _attach_render_contract_fields(page_ref=page_ref, comments=merged_comments)
 
     return MergeNormalizeResult(
         merged_comments=merged_comments,
@@ -123,8 +125,154 @@ def apply_merged_comments_to_page(
     updated["comment_section"] = {
         "page_ref": page_ref,
         "comments": merged_comments,
+        "moderator_outcomes": _build_moderator_outcome_summary(comments=merged_comments),
     }
     return updated
+
+
+def _attach_render_contract_fields(*, page_ref: str, comments: list[dict[str, Any]]) -> None:
+    for comment in comments:
+        comment_uid = _require_non_empty_string(comment.get("comment_uid"), "comment_uid")
+        persona_id = _require_non_empty_string(comment.get("persona_id"), "persona_id")
+        body = _require_non_empty_string(comment.get("body"), "body")
+        turn_position = _turn_position(comment.get("turn"))
+        social_vote = _deterministic_social_vote(
+            page_ref=page_ref,
+            comment_uid=comment_uid,
+            persona_id=persona_id,
+            turn_position=turn_position,
+            body=body,
+        )
+        comment["social_vote"] = social_vote
+        comment["permalink"] = f"#{comment_uid}"
+        comment["thread_state_key"] = comment_uid
+        comment["thread_expansion_key"] = comment_uid
+
+
+def _turn_position(raw_turn: Any) -> str:
+    if not isinstance(raw_turn, dict):
+        return _TURN_POSITION_SOCIAL
+    position = _normalize_string(raw_turn.get("position"))
+    return position if position is not None else _TURN_POSITION_SOCIAL
+
+
+def _deterministic_social_vote(
+    *,
+    page_ref: str,
+    comment_uid: str,
+    persona_id: str,
+    turn_position: str,
+    body: str,
+) -> dict[str, int]:
+    seed = f"{page_ref}|{comment_uid}|{persona_id}|{turn_position}|{body[:120]}"
+    digest = hashlib.sha256(seed.encode("utf-8")).hexdigest()
+    upvotes = int(digest[:8], 16) % 31 + 5
+    downvotes = int(digest[8:16], 16) % 21
+    if turn_position in {"support", "synthesis"}:
+        upvotes += 4
+    elif turn_position in {"challenge", "rebuttal"}:
+        downvotes += 4
+    score = upvotes - downvotes
+    return {
+        "upvotes": upvotes,
+        "downvotes": downvotes,
+        "score": score,
+    }
+
+
+def _build_moderator_outcome_summary(*, comments: list[dict[str, Any]]) -> dict[str, Any]:
+    checks = {
+        "claim_citation": {"passed": 0, "failed": 0},
+        "anti_repetition": {"passed": 0, "failed": 0},
+        "strongest_opposing_point_ack": {"passed": 0, "failed": 0},
+    }
+    seen_comment_bodies: set[tuple[str, str]] = set()
+    support_count = 0
+    challenge_count = 0
+    missing_evidence_priorities: list[str] = []
+
+    for comment in comments:
+        if not isinstance(comment, dict):
+            continue
+        persona_id = _normalize_string(comment.get("persona_id")) or ""
+        body = _normalize_string(comment.get("body")) or ""
+
+        body_key = (persona_id, " ".join(body.split()).strip().lower())
+        if body_key in seen_comment_bodies:
+            checks["anti_repetition"]["failed"] += 1
+        else:
+            checks["anti_repetition"]["passed"] += 1
+            seen_comment_bodies.add(body_key)
+
+        turn = comment.get("turn")
+        position = _turn_position(turn)
+        if position in {"support", "synthesis"}:
+            support_count += 1
+        elif position in {"challenge", "rebuttal"}:
+            challenge_count += 1
+
+        if not isinstance(turn, dict):
+            continue
+        if position in _TURN_POSITION_ARGUMENTATIVE:
+            evidence_refs = turn.get("evidence_refs")
+            if isinstance(evidence_refs, list) and len(evidence_refs) > 0:
+                checks["claim_citation"]["passed"] += 1
+            else:
+                checks["claim_citation"]["failed"] += 1
+                missing_evidence_priorities.append(
+                    "Add evidence_refs for argumentative turns missing claim/source citations."
+                )
+        if position == "rebuttal":
+            ack = _normalize_string(turn.get("strongest_opposing_point_ack"))
+            if ack is not None:
+                checks["strongest_opposing_point_ack"]["passed"] += 1
+            else:
+                checks["strongest_opposing_point_ack"]["failed"] += 1
+                missing_evidence_priorities.append(
+                    "Add strongest_opposing_point_ack before rebuttal text."
+                )
+
+    if support_count > challenge_count:
+        consensus_rows = [
+            "Supportive/synthesis turns currently outnumber challenge/rebuttal turns."
+        ]
+        disagreement_rows = ["No dominant open disagreement signal detected."]
+    elif challenge_count > support_count:
+        consensus_rows = ["No dominant consensus signal detected."]
+        disagreement_rows = [
+            "Challenge/rebuttal turns currently outnumber support/synthesis turns."
+        ]
+    else:
+        consensus_rows = ["Support and challenge signals are currently balanced."]
+        disagreement_rows = ["Open disagreements remain balanced across positions."]
+
+    deduped_priorities: list[str] = []
+    for item in missing_evidence_priorities:
+        if item not in deduped_priorities:
+            deduped_priorities.append(item)
+    if not deduped_priorities:
+        deduped_priorities = ["No immediate evidence-priority gaps detected."]
+
+    moderator_check = (
+        "- Moderator Check: "
+        f"claim_citation={_check_status_label(checks['claim_citation'])}; "
+        f"anti_repetition={_check_status_label(checks['anti_repetition'])}; "
+        "strongest_opposing_point_ack="
+        f"{_check_status_label(checks['strongest_opposing_point_ack'])}"
+    )
+    return {
+        "moderator_check": moderator_check,
+        "guardrail_checks": checks,
+        "outcome_sections": {
+            "Consensus": consensus_rows,
+            "Open Disagreements": disagreement_rows,
+            "Missing Evidence Priorities": deduped_priorities,
+        },
+    }
+
+
+def _check_status_label(check_row: dict[str, int]) -> str:
+    return "pass" if check_row.get("failed", 0) == 0 else "fail"
 
 
 def _load_existing_comments(page_payload: dict[str, Any]) -> list[dict[str, Any]]:

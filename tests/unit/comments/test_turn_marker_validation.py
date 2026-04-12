@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from sapi.comments.merge_normalize import merge_comment_section
+from sapi.comments.merge_normalize import apply_merged_comments_to_page, merge_comment_section
 
 
 _VALID_CLAIM_ID = "claim-evidence-point--abcdefabcdef"
@@ -276,6 +276,97 @@ class TurnMarkerValidationUnitTests(unittest.TestCase):
                 {"claim_id": _VALID_CLAIM_ID, "status": "unverified"},
             ],
         )
+
+    def test_render_fields_and_moderator_outcomes_follow_comment_uid_contract(self) -> None:
+        first = merge_comment_section(
+            page_ref="topic:topic-alpha",
+            page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+            semantic_comments=[
+                {
+                    "persona_id": "commenter-1",
+                    "body": (
+                        '<<turn:{"position":"support","claim_ids":["'
+                        + _VALID_CLAIM_ID
+                        + '"],"evidence_refs":["claim:'
+                        + _VALID_CLAIM_ID
+                        + '"],"confidence":0.81}>>'
+                        "Supportive row."
+                    ),
+                },
+                {
+                    "persona_id": "commenter-2",
+                    "body": (
+                        '<<turn:{"position":"challenge","claim_ids":["'
+                        + _VALID_CLAIM_ID
+                        + '"],"evidence_refs":["source:'
+                        + _VALID_SOURCE_ID
+                        + '"],"confidence":0.42}>>'
+                        "Challenge row."
+                    ),
+                    "parent_ref": "draft-1",
+                },
+            ],
+        )
+        second = merge_comment_section(
+            page_ref="topic:topic-alpha",
+            page_payload={
+                "topic_id": "topic-alpha",
+                "title": "Alpha",
+                "comment_section": {
+                    "page_ref": "topic:topic-alpha",
+                    "comments": first.merged_comments,
+                },
+            },
+            semantic_comments=[
+                {
+                    "persona_id": "commenter-1",
+                    "body": (
+                        '<<turn:{"position":"support","claim_ids":["'
+                        + _VALID_CLAIM_ID
+                        + '"],"evidence_refs":["claim:'
+                        + _VALID_CLAIM_ID
+                        + '"],"confidence":0.81}>>'
+                        "Supportive row."
+                    ),
+                },
+                {
+                    "persona_id": "commenter-2",
+                    "body": (
+                        '<<turn:{"position":"challenge","claim_ids":["'
+                        + _VALID_CLAIM_ID
+                        + '"],"evidence_refs":["source:'
+                        + _VALID_SOURCE_ID
+                        + '"],"confidence":0.42}>>'
+                        "Challenge row."
+                    ),
+                    "parent_ref": "draft-1",
+                },
+            ],
+        )
+        self.assertEqual(first.comments_added, 2)
+        first_by_uid = {row["comment_uid"]: row for row in first.merged_comments}
+        second_by_uid = {row["comment_uid"]: row for row in second.merged_comments}
+        self.assertEqual(set(first_by_uid.keys()), set(second_by_uid.keys()))
+        for comment_uid, row in first_by_uid.items():
+            self.assertEqual(row["permalink"], f"#{comment_uid}")
+            self.assertEqual(row["thread_state_key"], comment_uid)
+            self.assertEqual(row["thread_expansion_key"], comment_uid)
+            self.assertEqual(row["social_vote"], second_by_uid[comment_uid]["social_vote"])
+
+        updated_page = apply_merged_comments_to_page(
+            page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+            page_ref="topic:topic-alpha",
+            merged_comments=first.merged_comments,
+        )
+        moderator_outcomes = updated_page["comment_section"]["moderator_outcomes"]
+        self.assertTrue(moderator_outcomes["moderator_check"].startswith("- Moderator Check:"))
+        self.assertEqual(
+            set(moderator_outcomes["guardrail_checks"].keys()),
+            {"claim_citation", "anti_repetition", "strongest_opposing_point_ack"},
+        )
+        self.assertIn("Consensus", moderator_outcomes["outcome_sections"])
+        self.assertIn("Open Disagreements", moderator_outcomes["outcome_sections"])
+        self.assertIn("Missing Evidence Priorities", moderator_outcomes["outcome_sections"])
 
 
 if __name__ == "__main__":
