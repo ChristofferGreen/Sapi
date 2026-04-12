@@ -51,16 +51,16 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0234`
-2. `TODO-0233`
-3. `TODO-0266`
-4. `TODO-0223`
-5. `TODO-0247`
-6. `TODO-0275`
-7. `TODO-0258`
-8. `TODO-0248`
-9. `TODO-0249`
-10. `TODO-0250`
+1. `TODO-0233`
+2. `TODO-0266`
+3. `TODO-0223`
+4. `TODO-0247`
+5. `TODO-0275`
+6. `TODO-0258`
+7. `TODO-0248`
+8. `TODO-0249`
+9. `TODO-0250`
+10. `TODO-0251`
 
 ### Priority Lanes (Current)
 
@@ -75,7 +75,7 @@ Wave A (bootstrap + contracts):
 1. (none currently)
 
 Wave B (ingest + projection + lint):
-1. `TODO-0234` -> `TODO-0233`
+1. `TODO-0233`
 
 Wave C (query + social + hardening + release):
 1. (none currently)
@@ -104,7 +104,7 @@ Cross-cutting docs backlog:
 | Section 7.7 comment quality harness | `TODO-0225` |
 | Section 8 site/UI/static build | `TODO-0256`, `TODO-0233` |
 | Section 9 observability/safety/runtime controls | - |
-| Section 10 run envelopes/lifecycle status | `TODO-0234`, `TODO-0250` |
+| Section 10 run envelopes/lifecycle status | `TODO-0250` |
 | Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0260`, `TODO-0261` |
 | Section 13 definition of done | `TODO-0231` |
@@ -282,18 +282,6 @@ Cross-cutting docs backlog:
     - Social turns are validated under lightweight rules and rejected when they include unclassified factual claims.
   - notes: source `design.md` Section 7.6
 
-
-- [ ] TODO-0234: Implement topic lifecycle transitions and final-page contradiction gating
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 3
-  - depends_on: TODO-0216, TODO-0218
-  - scope: Implement lifecycle state transitions and contradiction handling gates for topic publication.
-  - acceptance:
-    - Lifecycle states/transitions match contract including manual-only finalization/demotion paths.
-    - `final_disputed_contradiction` blocks publication workflows without auto-demoting final pages.
-    - Manual remediation flow via lifecycle command is supported and auditable.
-  - notes: source `design.md` Sections 5.8, 10
 
 - [ ] TODO-0233: Implement UI information architecture and rendering contracts
   - owner: ai

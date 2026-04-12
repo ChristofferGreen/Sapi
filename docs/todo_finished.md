@@ -4,6 +4,28 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0234: Implement topic lifecycle transitions and final-page contradiction gating
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 3
+  - depends_on: TODO-0216, TODO-0218
+  - scope: Implement lifecycle state transitions and contradiction handling gates for topic publication.
+  - acceptance:
+    - Lifecycle states/transitions match contract including manual-only finalization/demotion paths.
+    - `final_disputed_contradiction` blocks publication workflows without auto-demoting final pages.
+    - Manual remediation flow via lifecycle command is supported and auditable.
+  - notes: source `design.md` Sections 5.8, 10
+  - evidence: Added topic lifecycle resolution in `sapi/build/topic_lifecycle.py` and
+    integrated it into deterministic projection loading via `sapi/build/projection.py`, including
+    automatic `draft -> stable` and `stable -> draft` transitions while preserving non-auto-demoted
+    `final` pages. Added publication-gating enforcement for
+    `final_disputed_contradiction` in `scripts/build_site.py`. Implemented manual lifecycle
+    remediation command `scripts/set_topic_lifecycle.py` with auditable lifecycle transition
+    entries and finalization metadata updates. Added acceptance coverage in
+    `tests/unit/build/test_topic_lifecycle_contracts.py` for transition semantics, publication
+    blocking behavior, and auditable manual remediation flows.
+
 - [x] TODO-0257: Implement source-preview asset pipeline and page/feed integration
   - owner: ai
   - created_at: 2026-04-12

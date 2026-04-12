@@ -21,6 +21,8 @@ from sapi.core.registry import (
     resolve_space_root,
 )
 
+_PUBLICATION_BLOCKING_CHECK_IDS: frozenset[str] = frozenset({"final_disputed_contradiction"})
+
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
@@ -129,6 +131,19 @@ def main() -> int:
             f"[{lint_issue['check_id']}] {lint_issue['space_name']}:{issue_path}: {lint_issue['message']}",
             file=sys.stderr,
         )
+
+    blocking_lint_issues = [
+        issue
+        for issue in lint_issue_rows
+        if issue["check_id"] in _PUBLICATION_BLOCKING_CHECK_IDS and issue["severity"] == "error"
+    ]
+    if blocking_lint_issues:
+        print(
+            "Build blocked by publication-gating lint errors: "
+            + ", ".join(sorted(str(issue["check_id"]) for issue in blocking_lint_issues)),
+            file=sys.stderr,
+        )
+        return 1
 
     print(
         "scripts/build_site.py deterministic build complete "

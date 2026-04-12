@@ -8,6 +8,7 @@ from pathlib import Path
 import re
 from typing import Any
 
+from sapi.build.topic_lifecycle import resolve_topic_lifecycle
 from sapi.lint.lint_engine import LintIssue
 
 
@@ -29,6 +30,7 @@ def load_space_projection(space_root: Path) -> SpaceProjection:
     sources = _load_source_records(space_root)
     topics = _load_topic_records(space_root)
     lint_issues = _resolve_pinned_parent_links(space_root=space_root, topics=topics)
+    lint_issues.extend(_resolve_topic_lifecycle_states(topics=topics))
     _validate_topic_links(sources=sources, topics=topics)
     return SpaceProjection(sources=sources, topics=topics, lint_issues=lint_issues)
 
@@ -143,6 +145,21 @@ def _resolve_pinned_parent_links(*, space_root: Path, topics: list[dict[str, Any
             "parent_snapshot": match["parent_snapshot"],
             "parent_site_base_url": match["parent_site_base_url"],
         }
+    return lint_issues
+
+
+def _resolve_topic_lifecycle_states(*, topics: list[dict[str, Any]]) -> list[LintIssue]:
+    lint_issues: list[LintIssue] = []
+    for topic in topics:
+        topic_id = str(topic["topic_id"])
+        try:
+            resolution = resolve_topic_lifecycle(topic=topic, topic_id=topic_id)
+        except ValueError as exc:
+            raise ProjectionContractError(str(exc)) from exc
+        topic["lifecycle_declared_state"] = resolution.declared_state
+        topic["lifecycle_effective_state"] = resolution.effective_state
+        topic["lifecycle_auto_transition"] = resolution.auto_transition
+        lint_issues.extend(resolution.lint_issues)
     return lint_issues
 
 
