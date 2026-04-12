@@ -185,7 +185,7 @@ def main() -> int:
                     build_deferred = True
                     deferred_build_reason = "operator_requested_build_deferred"
                 else:
-                    build_manifest_path = _trigger_deterministic_topic_postprocess(
+                    build_manifest_path = _run_coalesced_ingest_topic_postprocess(
                         registry_path=registry_path,
                         space_name=args.space_name,
                         site_path=site_path,
@@ -412,6 +412,20 @@ def _trigger_deterministic_topic_postprocess(
     if not manifest_path.is_file():
         raise RuntimeError("Topic deterministic post-processing did not emit build manifest.")
     return manifest_path
+
+
+def _run_coalesced_ingest_topic_postprocess(
+    *,
+    registry_path: Path,
+    space_name: str,
+    site_path: Path,
+) -> Path:
+    """Run one coalesced deterministic post-processing pass for chained ingest+topic flows."""
+    return _trigger_deterministic_topic_postprocess(
+        registry_path=registry_path,
+        space_name=space_name,
+        site_path=site_path,
+    )
 
 
 def _normalize_source_only_mode(args: argparse.Namespace) -> bool:

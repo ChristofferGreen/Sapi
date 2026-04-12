@@ -2,10 +2,13 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
+import scripts.ingest_source as ingest_source_entrypoint
 from sapi.ingest.records_writer import ingest_source_artifacts_and_record
 from sapi.ingest.topic_generator import (
     derive_default_topic_id_for_source,
@@ -146,6 +149,74 @@ class TopicGenerationFlowTests(unittest.TestCase):
             self.assertEqual(lint_payload["warning_count"], 0)
             self.assertEqual(lint_payload["info_count"], 0)
 
+    def test_chained_ingest_topic_flow_coalesces_to_one_postprocess_pass(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = _bootstrap_site_and_space(tmp_root, "alpha")
+            source_path = tmp_root / "source.txt"
+            source_path.write_text("coalesced deterministic post-process\n")
+
+            with patch.object(
+                ingest_source_entrypoint,
+                "_run_coalesced_ingest_topic_postprocess",
+                wraps=ingest_source_entrypoint._run_coalesced_ingest_topic_postprocess,
+            ) as coalesced_postprocess:
+                with patch.object(
+                    sys,
+                    "argv",
+                    [
+                        "ingest_source.py",
+                        "alpha",
+                        str(source_path),
+                        "--registry-path",
+                        str(site_path / "spaces.toml"),
+                        "--source-title",
+                        "Coalesced Source",
+                        "--mock-llm",
+                    ],
+                ):
+                    exit_code = ingest_source_entrypoint.main()
+
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(coalesced_postprocess.call_count, 1)
+
+    def test_coalesced_output_matches_independent_follow_up_build(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = _bootstrap_site_and_space(tmp_root, "alpha")
+            source_path = tmp_root / "source.txt"
+            source_path.write_text("equivalence test input\n")
+
+            ingest_result = _run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Equivalence Source",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(ingest_result.returncode, 0, msg=ingest_result.stderr)
+            coalesced_snapshot = _capture_site_snapshot(site_path)
+
+            independent_build = _run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(independent_build.returncode, 0, msg=independent_build.stderr)
+            independent_snapshot = _capture_site_snapshot(site_path)
+
+            self.assertEqual(coalesced_snapshot, independent_snapshot)
+
 
 def _bootstrap_source(tmp_root: Path) -> tuple[Path, str]:
     space_root = tmp_root / "spaces" / "alpha"
@@ -164,6 +235,16 @@ def _bootstrap_site_and_space(tmp_root: Path, space_name: str) -> Path:
     _run(["bash", str(REPO_ROOT / "create_site.sh"), str(site_path), "My Site"], check=True)
     _run(["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), space_name], check=True)
     return site_path
+
+
+def _capture_site_snapshot(site_path: Path) -> dict[str, str]:
+    snapshot: dict[str, str] = {}
+    for html_path in sorted(site_path.rglob("*.html")):
+        snapshot[str(html_path.relative_to(site_path))] = html_path.read_text()
+    manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
+    if manifest_path.is_file():
+        snapshot[str(manifest_path.relative_to(site_path))] = manifest_path.read_text()
+    return snapshot
 
 
 def _run(cmd: list[str], *, check: bool = False) -> subprocess.CompletedProcess[str]:

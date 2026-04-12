@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0246: Implement chained-flow coalescing and trigger-equivalence checks
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 3
+  - depends_on: TODO-0211, TODO-0212, TODO-0216
+  - scope: Implement optional ingest+topic post-processing coalescing with strict equivalence to independent trigger behavior.
+  - acceptance:
+    - Ingest/topic chained execution may coalesce deterministic post-processing into one final pass.
+    - Coalesced output is equivalent to independent post-processing execution.
+    - Tests cover trigger policy and equivalence behavior.
+  - evidence: Introduced explicit coalesced ingest/topic post-processing helper in
+    `scripts/ingest_source.py` (`_run_coalesced_ingest_topic_postprocess`) and routed chained
+    ingest/topic executions through that single final deterministic pass; expanded
+    `tests/unit/ingest/test_topic_generation_flow.py` with
+    `test_chained_ingest_topic_flow_coalesces_to_one_postprocess_pass` (asserting one coalesced
+    deterministic pass) and `test_coalesced_output_matches_independent_follow_up_build` (proving
+    output equivalence against an independent follow-up `scripts/build_site.py` execution).
+
 - [x] TODO-0219: `validate.sh` workflow dispatch and lint-engine integration
   - owner: ai
   - created_at: 2026-04-12

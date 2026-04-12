@@ -52,20 +52,20 @@ Task template:
 ### Immediate Next 10 (After Ready Now)
 
 1. `TODO-0220`
-2. `TODO-0246`
-3. `TODO-0245`
-4. `TODO-0244`
-5. `TODO-0242`
-6. `TODO-0253`
-7. `TODO-0252`
-8. `TODO-0257`
-9. `TODO-0234`
-10. `TODO-0233`
+2. `TODO-0245`
+3. `TODO-0244`
+4. `TODO-0242`
+5. `TODO-0253`
+6. `TODO-0252`
+7. `TODO-0257`
+8. `TODO-0234`
+9. `TODO-0233`
+10. `TODO-0268`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: `TODO-0220` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0273`, `TODO-0276`, `TODO-0277`
+- P1 Core product behavior: `TODO-0220` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0273`, `TODO-0276`, `TODO-0277`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0282`
 
@@ -76,7 +76,7 @@ Wave A (bootstrap + contracts):
 
 Wave B (ingest + projection + lint):
 1. `TODO-0268`
-2. `TODO-0246` -> `TODO-0245` -> `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233`
+2. `TODO-0245` -> `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233`
 
 Wave C (query + social + hardening + release):
 1. `TODO-0220` -> `TODO-0242` -> `TODO-0259` -> `TODO-0255` -> `TODO-0221` -> `TODO-0277` -> `TODO-0273` -> `TODO-0276`
@@ -92,7 +92,7 @@ Cross-cutting docs backlog:
 | Design area | Primary TODO IDs |
 | --- | --- |
 | Section 1 (scope/authority/reading) | `TODO-0243`, `TODO-0282` |
-| Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0246`, `TODO-0275` |
+| Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0275` |
 | Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0242` |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | - |
@@ -121,7 +121,7 @@ Cross-cutting docs backlog:
 | Section 6 (semantic execution engine + retry/repair) | - |
 | Section 7 (transaction/rollback) | - |
 | Section 8 (pipeline execution contracts) | `TODO-0273`, `TODO-0274`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0220`, `TODO-0223`, `TODO-0224`, `TODO-0242` |
-| Section 9 (deterministic build/projection) | `TODO-0246`, `TODO-0275` |
+| Section 9 (deterministic build/projection) | `TODO-0275` |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
 | Section 12 (wrapper/script interfaces) | `TODO-0254`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
@@ -454,17 +454,6 @@ Cross-cutting docs backlog:
     - Social turns are validated under lightweight rules and rejected when they include unclassified factual claims.
   - notes: source `design.md` Section 7.6
 
-- [ ] TODO-0246: Implement chained-flow coalescing and trigger-equivalence checks
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 3
-  - depends_on: TODO-0211, TODO-0212, TODO-0216
-  - scope: Implement optional ingest+topic post-processing coalescing with strict equivalence to independent trigger behavior.
-  - acceptance:
-    - Ingest/topic chained execution may coalesce deterministic post-processing into one final pass.
-    - Coalesced output is equivalent to independent post-processing execution.
-    - Tests cover trigger policy and equivalence behavior.
-  - notes: source `design.md` Section 2.2
 
 - [ ] TODO-0245: Implement cross-space pinned-link import contract and error rendering
   - owner: ai
