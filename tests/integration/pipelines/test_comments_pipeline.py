@@ -109,6 +109,31 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             self.assertIn("comment_section", claim_payload)
             self.assertNotIn("comment_section", topic_payload)
 
+    def test_count_bounds_fail_fast_outside_allowed_range(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            self._write_topic(space_root, topic_id="topic-alpha", title="Alpha")
+
+            for invalid_count in (4, 51):
+                with self.subTest(invalid_count=invalid_count):
+                    result = run_command(
+                        [
+                            "python3",
+                            str(REPO_ROOT / "scripts" / "create_comments.py"),
+                            "alpha",
+                            "--registry-path",
+                            str(site_path / "spaces.toml"),
+                            "--count",
+                            str(invalid_count),
+                            "--mock-llm",
+                        ]
+                    )
+                    self.assertEqual(result.returncode, 2)
+                    self.assertIn("--count must be in [5, 50]", result.stderr)
+                    assert_no_run_containers(space_root)
+
     def test_merge_preserves_existing_comment_uid_and_assigns_only_for_new_rows(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)

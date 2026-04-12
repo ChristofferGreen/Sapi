@@ -51,21 +51,20 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0266`
-2. `TODO-0275`
-3. `TODO-0250`
-4. `TODO-0256`
-5. `TODO-0229`
-6. `TODO-0230`
-7. `TODO-0263`
-8. `TODO-0261`
-9. `TODO-0231`
+1. `TODO-0275`
+2. `TODO-0250`
+3. `TODO-0256`
+4. `TODO-0229`
+5. `TODO-0230`
+6. `TODO-0263`
+7. `TODO-0261`
+8. `TODO-0231`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0229`, `TODO-0230`, `TODO-0231`, `TODO-0250`, `TODO-0256`, `TODO-0261`, `TODO-0263`, `TODO-0266`, `TODO-0275`
+- P2 Social/eval/hardening: `TODO-0229`, `TODO-0230`, `TODO-0231`, `TODO-0250`, `TODO-0256`, `TODO-0261`, `TODO-0263`, `TODO-0275`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -78,7 +77,7 @@ Wave B (ingest + projection + lint):
 
 Wave C (query + social + hardening + release):
 1. (none currently)
-2. `TODO-0256` -> `TODO-0275` -> `TODO-0266`
+2. `TODO-0256` -> `TODO-0275`
 3. `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
@@ -104,7 +103,7 @@ Cross-cutting docs backlog:
 | Section 8 site/UI/static build | `TODO-0256` |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | `TODO-0250` |
-| Section 11 testing strategy | `TODO-0266`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
+| Section 11 testing strategy | `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0261` |
 | Section 13 definition of done | `TODO-0231` |
 
@@ -124,7 +123,7 @@ Cross-cutting docs backlog:
 | Section 12 (wrapper/script interfaces) | - |
 | Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | - |
-| Section 15 (test-plan binding) | `TODO-0266`, `TODO-0275`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
+| Section 15 (test-plan binding) | `TODO-0275`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 16 (change discipline) | - |
 
 ### Testing Plan Coverage Snapshot
@@ -132,7 +131,7 @@ Cross-cutting docs backlog:
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (test module layout) | `TODO-0229` |
-| Tier 0-3 (fast contract/failure/pipeline suites) | `TODO-0266`, `TODO-0275` |
+| Tier 0-3 (fast contract/failure/pipeline suites) | `TODO-0275` |
 | Tier 4-6 (determinism/golden/live canary) | `TODO-0229` |
 | Section 4-5 (CI gating matrix + command wiring) | `TODO-0230` |
 | Section 6 (exit criteria gating) | `TODO-0263`, `TODO-0231` |
@@ -148,18 +147,6 @@ Cross-cutting docs backlog:
     - Comment/profile flows only refresh site-root `New` when canonical source/topic mutation occurs.
     - Deterministic tests validate policy across ingest/query/comment/profile execution paths.
   - notes: source `design.md` Sections 2.2, 7.3, 7.5, 7.6; `low_level.md` Section 9
-
-- [ ] TODO-0266: Implement Tier 3 comments/profiles integration test coverage
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 5
-  - depends_on: TODO-0223, TODO-0224, TODO-0228
-  - scope: Add social-pipeline integration tests from Tier 3 after comments/profiles behaviors are implemented.
-  - acceptance:
-    - `tests/integration/pipelines/test_comments_pipeline.py` covers target defaults, count bounds, merge stability, and evidence snapshot behavior.
-    - `tests/integration/pipelines/test_profiles_pipeline.py` covers profile outputs, history updates, and run/lint metadata.
-    - Tier 3 social tests run in deterministic mock-LLM mode and are included in PR-required suites.
-  - notes: source `testing_plan.md` Tier 3; `design.md` Sections 7.5, 7.6
 
 - [ ] TODO-0263: Enforce testing-plan exit criteria gates before DoD closure
   - owner: ai

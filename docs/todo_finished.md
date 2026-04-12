@@ -1428,3 +1428,28 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     Added integration coverage in `tests/integration/pipelines/test_profiles_pipeline.py`
     and history-semantics unit coverage in
     `tests/unit/profiles/test_history_update_semantics.py`.
+
+- [x] TODO-0266: Implement Tier 3 comments/profiles integration test coverage
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-13
+  - phase: Phase 5
+  - depends_on: TODO-0223, TODO-0224, TODO-0228
+  - scope: Add social-pipeline integration tests from Tier 3 after comments/profiles
+    behaviors are implemented.
+  - acceptance:
+    - `tests/integration/pipelines/test_comments_pipeline.py` covers target defaults, count
+      bounds, merge stability, and evidence snapshot behavior.
+    - `tests/integration/pipelines/test_profiles_pipeline.py` covers profile outputs, history
+      updates, and run/lint metadata.
+    - Tier 3 social tests run in deterministic mock-LLM mode and are included in PR-required suites.
+  - notes: source `testing_plan.md` Tier 3; `design.md` Sections 7.5, 7.6
+  - evidence: Added explicit count-bounds failure coverage to
+    `tests/integration/pipelines/test_comments_pipeline.py` while preserving existing
+    default-target, merge-stability (`comment_uid`), and evidence-snapshot assertions.
+    Expanded `tests/integration/pipelines/test_profiles_pipeline.py` to assert run-envelope lint
+    totals, `runs/<run_id>/lint.json` metadata, and same-day history `updated` semantics when
+    persona metrics change. Added `tests/unit/contracts/test_tier3_social_pr_suite_wiring.py`
+    to assert PR-required suite wiring includes `tests/integration/pipelines`, that Tier 3
+    testing-plan entries list both social modules, and that both integration modules run in
+    deterministic `--mock-llm` mode.
