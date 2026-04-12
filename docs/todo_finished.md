@@ -263,3 +263,20 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     transition checks, exit-code mapping checks (`0` only for success statuses and rejection of
     non-terminal `pending`), default failure run-container pruning for query/comments/profiles,
     and explicit ingest `--force` retained-failure exception coverage.
+
+- [x] TODO-0269: Enforce canonical run-envelope metadata completeness and invariants
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0206, TODO-0262
+  - scope: Enforce full base run-envelope field coverage and semantic-flow invariants for all committed pipeline runs.
+  - acceptance:
+    - Base frontmatter includes all required runtime/fingerprint/toolchain/lint fields for every committed flow.
+    - `semantic_flows` ordered-unique semantics and `semantic_flow_invocation_counts` positivity/key coverage invariants are enforced.
+    - Flows without lint/build stages follow one consistent null-or-zero lint-total policy with tests.
+  - evidence: Verified by `tests/unit/contracts/test_run_envelope_metadata_invariants.py` and
+    `tests/unit/contracts/test_run_envelope_semantic_flows.py`, including required base-field
+    coverage across all committed flows, semantic-flow key/order/count invariants (duplicate/missing/
+    extra/unknown/non-positive cases), RFC3339 UTC timestamp validation for `started_at` and
+    `completed_at`, and consistent integer lint-total policy checks for no-lint/no-build flows.

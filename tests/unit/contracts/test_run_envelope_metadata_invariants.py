@@ -93,6 +93,21 @@ class RunEnvelopeMetadataInvariantTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 write_run_record(space_root=space_root, base=extra_count_key, flow_fields=_extension_for("query_pipeline"))
 
+            unknown_flow = _base(flow_key="query_pipeline")
+            unknown_flow.semantic_flows = ["unknown_flow"]  # type: ignore[list-item]
+            unknown_flow.semantic_flow_invocation_counts = {"unknown_flow": 1}  # type: ignore[dict-item]
+            with self.assertRaises(ValueError):
+                write_run_record(space_root=space_root, base=unknown_flow, flow_fields=_extension_for("query_pipeline"))
+
+            unknown_count_key = _base(flow_key="query_pipeline")
+            unknown_count_key.semantic_flows = ["query_synthesis"]
+            unknown_count_key.semantic_flow_invocation_counts = {
+                "query_synthesis": 1,
+                "unknown_flow": 1,  # type: ignore[dict-item]
+            }
+            with self.assertRaises(ValueError):
+                write_run_record(space_root=space_root, base=unknown_count_key, flow_fields=_extension_for("query_pipeline"))
+
     def test_flows_without_lint_build_use_consistent_zero_lint_totals_policy(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "spaces" / "alpha"
@@ -110,6 +125,28 @@ class RunEnvelopeMetadataInvariantTests(unittest.TestCase):
             invalid.lint_error_count = None  # type: ignore[assignment]
             with self.assertRaises(TypeError):
                 write_run_record(space_root=space_root, base=invalid, flow_fields=_extension_for("comment_section_pipeline"))
+
+    def test_started_and_completed_timestamps_require_rfc3339_utc_with_trailing_z(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+
+            invalid_started = _base(flow_key="query_pipeline")
+            invalid_started.started_at = "2026-04-12 12:00:00"
+            with self.assertRaises(ValueError):
+                write_run_record(
+                    space_root=space_root,
+                    base=invalid_started,
+                    flow_fields=_extension_for("query_pipeline"),
+                )
+
+            invalid_completed = _base(flow_key="query_pipeline")
+            invalid_completed.completed_at = "2026-04-12T12:00:05+00:00"
+            with self.assertRaises(ValueError):
+                write_run_record(
+                    space_root=space_root,
+                    base=invalid_completed,
+                    flow_fields=_extension_for("query_pipeline"),
+                )
 
 
 def _base(*, flow_key: str) -> RunEnvelopeBase:

@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 from typing import Literal
 
+from sapi.contracts.ids import RFC3339_UTC_RE
+
 
 SemanticFlowKey = Literal[
     "ingest_extraction",
@@ -245,13 +247,13 @@ def _validate_base_fields(base: RunEnvelopeBase) -> None:
     _require_non_empty_string(base.run_id, "run_id")
     _require_non_empty_string(base.flow_key, "flow_key")
     _require_non_empty_string(base.status, "status")
-    _require_non_empty_string(base.started_at, "started_at")
+    _require_rfc3339_utc(base.started_at, "started_at")
     _require_non_empty_string(base.model_fingerprint, "model_fingerprint")
     _require_non_empty_string(base.provider_fingerprint, "provider_fingerprint")
     _require_non_empty_string(base.reasoning_effort, "reasoning_effort")
     _require_non_empty_string(base.execution_mode, "execution_mode")
     if base.completed_at is not None:
-        _require_non_empty_string(base.completed_at, "completed_at")
+        _require_rfc3339_utc(base.completed_at, "completed_at")
 
     _require_non_negative_int(base.llm_attempt_count, "llm_attempt_count")
     # Chosen implementation-wide policy for flows without lint/build: always write integer totals (zero default).
@@ -276,3 +278,10 @@ def _require_non_negative_int(value: object, field_name: str) -> None:
         raise TypeError(f"{field_name} must be an integer.")
     if value < 0:
         raise ValueError(f"{field_name} must be >= 0.")
+
+
+def _require_rfc3339_utc(value: object, field_name: str) -> None:
+    _require_non_empty_string(value, field_name)
+    assert isinstance(value, str)
+    if not RFC3339_UTC_RE.fullmatch(value):
+        raise ValueError(f"{field_name} must be RFC3339 UTC with trailing Z.")
