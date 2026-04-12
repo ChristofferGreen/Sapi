@@ -4,6 +4,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0265: Automate low-level anti-drift guardrails
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Cross-cutting
+  - depends_on: TODO-0102
+  - scope: Convert anti-drift constraints into automated checks that fail fast when contracts drift.
+  - acceptance:
+    - Checks fail on implicit registry fallback, environment-variable flow controls, or duplicate schema/output ownership.
+    - Checks flag query-path canonical mutations and other rejected failure patterns from guardrails.
+    - Guardrail checks are wired into validation/CI path with clear failure messaging.
+  - evidence: Added `sapi/lint/guardrails.py` automated checks for registry fallback literals, disallowed env-var flow controls, semantic-contract ownership duplication, and query canonical mutation patterns; wired guardrail execution/failure output into `scripts/lint.py` (invoked by `validate.sh`); and added `tests/unit/lint/test_guardrail_checks.py` coverage validating each acceptance condition plus validate-entrypoint failure messaging.
+
 - [x] TODO-0280: Define compatibility-reader sunset recommendation as an explicit contract task
   - owner: ai
   - created_at: 2026-04-12

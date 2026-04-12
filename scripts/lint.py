@@ -12,6 +12,7 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from sapi.core.registry import resolve_registry_path, resolve_space_root
+from sapi.lint.guardrails import GuardrailIssue, run_guardrail_checks
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -24,12 +25,30 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main() -> int:
-    args = build_parser().parse_args()
+def _format_guardrail_issue(issue: GuardrailIssue, *, repo_root: Path) -> str:
+    try:
+        display_path = issue.path.resolve().relative_to(repo_root.resolve())
+    except ValueError:
+        display_path = issue.path.resolve()
+    return f"- [{issue.check_id}] {display_path}:{issue.line}: {issue.message}"
+
+
+def run_main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
     registry_path = resolve_registry_path(args.registry_path)
     resolve_space_root(registry_path, args.space_name)
+    issues = run_guardrail_checks(_REPO_ROOT)
+    if issues:
+        print("Guardrail checks failed:", file=sys.stderr)
+        for issue in issues:
+            print(_format_guardrail_issue(issue, repo_root=_REPO_ROOT), file=sys.stderr)
+        return 1
     print("scripts/lint.py scaffold ready")
     return 0
+
+
+def main() -> int:
+    return run_main()
 
 
 if __name__ == "__main__":

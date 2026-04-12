@@ -49,6 +49,7 @@ Task template:
 
 1. `TODO-0211` Ingest extraction semantic flow and canonical claim/relation writes
 2. `TODO-0282` Resolve compatibility-reader sunset policy into a concrete contract update
+3. `TODO-0264` Add pipeline-change PR checklist and docs-sync discipline
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -68,7 +69,7 @@ Task template:
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: `TODO-0211` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
-- P3 Continuous docs governance: `TODO-0282`, `TODO-0264`, `TODO-0265`
+- P3 Continuous docs governance: `TODO-0282`, `TODO-0264`
 
 ### Execution Queue (Recommended)
 
@@ -86,7 +87,7 @@ Wave C (query + social + hardening + release):
 3. `TODO-0254` -> `TODO-0228` -> `TODO-0251` -> `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0243` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
-1. `TODO-0265` -> `TODO-0264` -> `TODO-0243`
+1. `TODO-0264` -> `TODO-0243`
 2. `TODO-0282`
 
 ### Design Coverage Snapshot
@@ -128,7 +129,7 @@ Cross-cutting docs backlog:
 | Section 11 (lint/warning threshold) | `TODO-0218`, `TODO-0219` |
 | Section 12 (wrapper/script interfaces) | `TODO-0219`, `TODO-0254`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
 | Section 13 (observability/runtime controls/safety) | `TODO-0226`, `TODO-0227`, `TODO-0254` |
-| Section 14 (anti-drift and PR guardrails) | `TODO-0265`, `TODO-0264` |
+| Section 14 (anti-drift and PR guardrails) | `TODO-0264` |
 | Section 15 (test-plan binding) | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0270`, `TODO-0271`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0278`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 16 (change discipline) | `TODO-0264`, `TODO-0243` |
 
@@ -274,18 +275,6 @@ Cross-cutting docs backlog:
     - Bootstrap wrappers are explicitly tested for allowed missing operator-supplied `--registry-path`.
     - Non-bootstrap wrappers are tested to require explicit/effective registry-path routing.
   - notes: source `testing_plan.md` Section 2 (`tests/integration/wrappers/*`); `low_level.md` Section 12
-
-- [ ] TODO-0265: Automate low-level anti-drift guardrails
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Cross-cutting
-  - depends_on: TODO-0102
-  - scope: Convert anti-drift constraints into automated checks that fail fast when contracts drift.
-  - acceptance:
-    - Checks fail on implicit registry fallback, environment-variable flow controls, or duplicate schema/output ownership.
-    - Checks flag query-path canonical mutations and other rejected failure patterns from guardrails.
-    - Guardrail checks are wired into validation/CI path with clear failure messaging.
-  - notes: source `low_level.md` Sections 14.1, 14.3
 
 - [ ] TODO-0264: Add pipeline-change PR checklist and docs-sync discipline
   - owner: ai
