@@ -4,6 +4,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0217: Site-root `New` feed refresh policy and incremental/full equivalence
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 3
+  - depends_on: TODO-0216, TODO-0211, TODO-0212
+  - scope: Implement ingest/topic-driven site-root refresh semantics and equivalence checks for full vs incremental updates.
+  - acceptance:
+    - Ingest/topic updates refresh site-root `New` for same site.
+    - Incremental output is equivalent to deterministic full rebuild.
+  - evidence: Added explicit incremental build mode plumbing in `scripts/build_site.py` and
+    deterministic incremental-write behavior in `sapi/build/site_builder.py` for both space pages
+    and site-root `site/new/index.html`; expanded `tests/unit/ingest/test_topic_generation_flow.py`
+    to assert ingest/topic runs refresh site-root `New` content; and added
+    `tests/unit/build/test_site_builder_contracts.py::test_incremental_build_output_is_equivalent_to_full_rebuild`
+    to verify incremental HTML output equivalence with full deterministic rebuild output.
+
 - [x] TODO-0216: Deterministic projection/site builder and frontend toolchain reproducibility
   - owner: ai
   - created_at: 2026-04-12

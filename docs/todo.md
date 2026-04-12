@@ -51,21 +51,21 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0217`
-2. `TODO-0218`
-3. `TODO-0219`
-4. `TODO-0220`
-5. `TODO-0246`
-6. `TODO-0245`
-7. `TODO-0244`
-8. `TODO-0242`
-9. `TODO-0253`
-10. `TODO-0252`
+1. `TODO-0218`
+2. `TODO-0219`
+3. `TODO-0220`
+4. `TODO-0246`
+5. `TODO-0245`
+6. `TODO-0244`
+7. `TODO-0242`
+8. `TODO-0253`
+9. `TODO-0252`
+10. `TODO-0257`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: `TODO-0217` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0273`, `TODO-0276`, `TODO-0277`
+- P1 Core product behavior: `TODO-0218` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0273`, `TODO-0276`, `TODO-0277`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
 - P3 Continuous docs governance: `TODO-0282`
 
@@ -75,7 +75,7 @@ Wave A (bootstrap + contracts):
 1. (none currently)
 
 Wave B (ingest + projection + lint):
-1. `TODO-0268` -> `TODO-0217` -> `TODO-0218`
+1. `TODO-0268` -> `TODO-0218`
 2. `TODO-0246` -> `TODO-0245` -> `TODO-0244` -> `TODO-0253` -> `TODO-0252` -> `TODO-0257` -> `TODO-0234` -> `TODO-0233` -> `TODO-0219`
 
 Wave C (query + social + hardening + release):
@@ -104,7 +104,7 @@ Cross-cutting docs backlog:
 | Section 7.5 profile pages/history | `TODO-0224`, `TODO-0275` |
 | Section 7.6 comments pipeline/rendering | `TODO-0223`, `TODO-0247`, `TODO-0258`, `TODO-0248`, `TODO-0249`, `TODO-0256`, `TODO-0275`, `TODO-0274` |
 | Section 7.7 comment quality harness | `TODO-0225` |
-| Section 8 site/UI/static build | `TODO-0268`, `TODO-0217`, `TODO-0245`, `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
+| Section 8 site/UI/static build | `TODO-0268`, `TODO-0245`, `TODO-0244`, `TODO-0253`, `TODO-0252`, `TODO-0256`, `TODO-0257`, `TODO-0233` |
 | Section 9 observability/safety/runtime controls | `TODO-0226`, `TODO-0227`, `TODO-0254` |
 | Section 10 run envelopes/lifecycle status | `TODO-0234`, `TODO-0250` |
 | Section 11 testing strategy | `TODO-0228`, `TODO-0266`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276`, `TODO-0277`, `TODO-0251`, `TODO-0229`, `TODO-0230`, `TODO-0263` |
@@ -121,7 +121,7 @@ Cross-cutting docs backlog:
 | Section 6 (semantic execution engine + retry/repair) | - |
 | Section 7 (transaction/rollback) | - |
 | Section 8 (pipeline execution contracts) | `TODO-0273`, `TODO-0274`, `TODO-0275`, `TODO-0276`, `TODO-0277`, `TODO-0220`, `TODO-0223`, `TODO-0224`, `TODO-0242` |
-| Section 9 (deterministic build/projection) | `TODO-0217`, `TODO-0246`, `TODO-0275` |
+| Section 9 (deterministic build/projection) | `TODO-0246`, `TODO-0275` |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | `TODO-0218`, `TODO-0219` |
 | Section 12 (wrapper/script interfaces) | `TODO-0219`, `TODO-0254`, `TODO-0268`, `TODO-0267`, `TODO-0273`, `TODO-0274`, `TODO-0276` |
@@ -696,14 +696,3 @@ Cross-cutting docs backlog:
     - Gate behavior matches workflow key table.
     - `lint.json` and `## Lint Summary` are emitted for committed runs.
   - notes: source `design.md` Section 5.8
-
-- [ ] TODO-0217: Site-root `New` feed refresh policy and incremental/full equivalence
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 3
-  - depends_on: TODO-0216, TODO-0211, TODO-0212
-  - scope: Implement ingest/topic-driven site-root refresh semantics and equivalence checks for full vs incremental updates.
-  - acceptance:
-    - Ingest/topic updates refresh site-root `New` for same site.
-    - Incremental output is equivalent to deterministic full rebuild.
-  - notes: source `design.md` Section 2.2; query/comment/profile exclusions in `TODO-0275`

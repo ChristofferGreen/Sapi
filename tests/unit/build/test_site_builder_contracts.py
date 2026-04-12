@@ -121,6 +121,50 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("sections[0].body", result.stderr)
 
+    def test_incremental_build_output_is_equivalent_to_full_rebuild(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                space_root,
+                source_id="source-a",
+                title="Source Alpha",
+            )
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-a",
+                title="Topic Alpha",
+                source_ids=["source-a"],
+            )
+
+            full_result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                ]
+            )
+            self.assertEqual(full_result.returncode, 0, msg=full_result.stderr)
+            full_snapshot = self._capture_html_snapshot(site_path)
+
+            incremental_result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--incremental",
+                ]
+            )
+            self.assertEqual(incremental_result.returncode, 0, msg=incremental_result.stderr)
+            incremental_snapshot = self._capture_html_snapshot(site_path)
+            self.assertEqual(full_snapshot, incremental_snapshot)
+
+            manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
+            manifest_payload = json.loads(manifest_path.read_text())
+            self.assertEqual(manifest_payload["build_mode"], "incremental")
+
     def test_toolchain_reproducibility_validation_enforces_package_manager_lockfile_node_pin(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp)
@@ -213,6 +257,12 @@ class SiteBuilderContractTests(unittest.TestCase):
             "packages": {"": {"name": name, "version": version}},
         }
         (repo_root / "package-lock.json").write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+
+    def _capture_html_snapshot(self, site_path: Path) -> dict[str, str]:
+        snapshot: dict[str, str] = {}
+        for html_path in sorted(site_path.rglob("*.html")):
+            snapshot[str(html_path.relative_to(site_path))] = html_path.read_text()
+        return snapshot
 
     def _run(self, cmd: list[str], *, check: bool = False) -> subprocess.CompletedProcess[str]:
         result = subprocess.run(

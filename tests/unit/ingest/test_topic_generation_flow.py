@@ -117,13 +117,20 @@ class TopicGenerationFlowTests(unittest.TestCase):
             topic_files = sorted(topics_dir.glob("topic-*.json"))
             self.assertEqual(len(topic_files), 1)
             topic_payload = json.loads(topic_files[0].read_text())
-            self.assertEqual(topic_payload["source_ids"], [json.loads(next((space_root / "sources" / "records").glob("*.json")).read_text())["source_id"]])
+            source_record = json.loads(next((space_root / "sources" / "records").glob("*.json")).read_text())
+            self.assertEqual(topic_payload["source_ids"], [source_record["source_id"]])
 
             manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
             self.assertTrue(manifest_path.is_file())
             manifest_payload = json.loads(manifest_path.read_text())
             self.assertEqual(manifest_payload["workflow_key"], "build_site")
             self.assertEqual(manifest_payload["space_targets"], ["alpha"])
+
+            site_new_index_path = site_path / "site" / "new" / "index.html"
+            self.assertTrue(site_new_index_path.is_file())
+            site_new_html = site_new_index_path.read_text()
+            self.assertIn(source_record["title"], site_new_html)
+            self.assertIn(topic_payload["title"], site_new_html)
 
 
 def _bootstrap_source(tmp_root: Path) -> tuple[Path, str]:

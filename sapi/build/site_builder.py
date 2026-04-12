@@ -22,18 +22,25 @@ class BuildResult:
 
 def build_space_site(space_root: Path, *, incremental: bool) -> BuildResult:
     """Build deterministic space HTML from canonical JSON artifacts only."""
-    _ = incremental  # Incremental mode is accepted for contract compatibility.
     projection = load_space_projection(space_root)
     space_name = space_root.name
     output_root = space_root / "site"
     output_root.mkdir(parents=True, exist_ok=True)
 
     generated_files: list[Path] = []
-    generated_files.extend(_write_source_pages(output_root=output_root, projection=projection))
-    generated_files.extend(_write_topic_pages(output_root=output_root, projection=projection))
+    generated_files.extend(
+        _write_source_pages(output_root=output_root, projection=projection, incremental=incremental)
+    )
+    generated_files.extend(
+        _write_topic_pages(output_root=output_root, projection=projection, incremental=incremental)
+    )
 
     index_path = output_root / "index.html"
-    index_path.write_text(_render_space_index(space_name=space_name, projection=projection))
+    _write_text_file(
+        index_path,
+        _render_space_index(space_name=space_name, projection=projection),
+        incremental=incremental,
+    )
     generated_files.append(index_path)
 
     content_hashes = {str(path.relative_to(output_root)): _sha256(path) for path in sorted(generated_files)}
@@ -47,7 +54,6 @@ def build_space_site(space_root: Path, *, incremental: bool) -> BuildResult:
 
 def refresh_site_new_index(site_path: Path, *, incremental: bool) -> Path:
     """Refresh site-root New index from canonical source/topic artifacts across spaces."""
-    _ = incremental  # Incremental mode is accepted for contract compatibility.
     spaces_root = site_path / "spaces"
     entries: list[tuple[str, str, str, str, str]] = []
     for space_root in sorted(spaces_root.glob("*")):
@@ -79,28 +85,38 @@ def refresh_site_new_index(site_path: Path, *, incremental: bool) -> Path:
     new_root = site_path / "site" / "new"
     new_root.mkdir(parents=True, exist_ok=True)
     index_path = new_root / "index.html"
-    index_path.write_text(_render_site_new_index(entries))
+    _write_text_file(index_path, _render_site_new_index(entries), incremental=incremental)
     return index_path
 
 
-def _write_source_pages(*, output_root: Path, projection: SpaceProjection) -> list[Path]:
+def _write_source_pages(
+    *,
+    output_root: Path,
+    projection: SpaceProjection,
+    incremental: bool,
+) -> list[Path]:
     sources_dir = output_root / "sources"
     sources_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
     for source in sorted(projection.sources, key=lambda item: item["source_id"]):
         source_path = sources_dir / f"{source['source_id']}.html"
-        source_path.write_text(_render_source_page(source))
+        _write_text_file(source_path, _render_source_page(source), incremental=incremental)
         written.append(source_path)
     return written
 
 
-def _write_topic_pages(*, output_root: Path, projection: SpaceProjection) -> list[Path]:
+def _write_topic_pages(
+    *,
+    output_root: Path,
+    projection: SpaceProjection,
+    incremental: bool,
+) -> list[Path]:
     topics_dir = output_root / "topics"
     topics_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
     for topic in sorted(projection.topics, key=lambda item: item["topic_id"]):
         topic_path = topics_dir / f"{topic['topic_id']}.html"
-        topic_path.write_text(_render_topic_page(topic))
+        _write_text_file(topic_path, _render_topic_page(topic), incremental=incremental)
         written.append(topic_path)
     return written
 
@@ -183,3 +199,9 @@ def _render_site_new_index(entries: list[tuple[str, str, str, str, str]]) -> str
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _write_text_file(path: Path, content: str, *, incremental: bool) -> None:
+    if incremental and path.is_file() and path.read_text() == content:
+        return
+    path.write_text(content)
