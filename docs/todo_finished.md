@@ -1018,3 +1018,22 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     Added deterministic tests in `tests/unit/semantic/test_llm_trace_artifacts.py` and
     `tests/unit/ingest/test_ingest_mode_handling.py` to assert canonical site-root trace paths,
     required trace file sets, and verbose output ordering/visibility.
+
+- [x] TODO-0282: Resolve compatibility-reader sunset policy into a concrete contract update
+  - owner: human
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Cross-cutting
+  - depends_on: TODO-0280
+  - scope: Resolve the unresolved compatibility-reader sunset recommendation into an explicit policy decision and update the canonical contract destination section.
+  - acceptance:
+    - Decision outcome is recorded in `design.md` decision register with resolved status and final contract location.
+    - Contract update lands in `design.md` Section 4.1.3 with explicit compatibility-reader sunset policy and enforcement boundaries.
+    - Any affected TODO dependencies/docs coverage references are synchronized.
+  - evidence: Updated `design.md` decision register entry for compatibility-reader sunset policy to
+    `resolved` in Section 1.3 with final contract location set to Section 4.1.3, and added explicit normative
+    Section 4.1.3 policy text defining scope boundaries (read/import/CLI compatibility only), write
+    boundary requirements (canonical names only), and phased enforcement behavior across
+    reconstruction and post-reconstruction phases. Synchronized open-backlog references in
+    `docs/todo.md` by removing `TODO-0282` from open tasks, ready/backlog queues, and coverage
+    snapshot mapping.

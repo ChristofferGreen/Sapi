@@ -59,7 +59,7 @@ Use this table to track active architecture decisions without losing contract li
 | --- | --- | --- | --- | --- | --- |
 | Comment subsystem canonical namespace | `comment_section_*` vs `persona_comment_*` | resolved | ai | 2026-04-12 | [Section 7.6](/Users/chrgre01/src/Sapi/docs/design.md#76-comment-section-generation-and-rendering) |
 | Run-envelope semantic flow cardinality shape | ordered flow list only vs ordered list + invocation count map | resolved | ai | 2026-04-12 | [Section 10](/Users/chrgre01/src/Sapi/docs/design.md#10-run-status-and-output-envelopes) |
-| Compatibility reader sunset policy for legacy aliases | keep indefinitely vs phased deprecation removal | unresolved | human | 2026-05-15 | - |
+| Compatibility reader sunset policy for legacy aliases | keep indefinitely vs phased deprecation removal | resolved | human | 2026-05-15 | [Section 4.1.3](/Users/chrgre01/src/Sapi/docs/design.md#413-generation-spec-discovery-and-versioning-normative) |
 | Additional query modes in `evaluate_source.sh` default evaluation pack | strict-only default vs strict + exploratory + comparative default | resolved | ai | 2026-05-20 | [Section 6.3](/Users/chrgre01/src/Sapi/docs/design.md#63-user-facing-source-evaluation-harness-normative) |
 
 ## 2. Non-Negotiable Runtime Policy
@@ -266,6 +266,12 @@ Discovery and pinning rules:
 - incompatible schema shape/output-path contract changes MUST create new major-version files and update this flow map explicitly.
 - path templates MAY contain runtime tokens (for example `<space_root>`, `<run_id>`, `<query_id>`, `<topic_id>`, `<persona_id>`, `<page_ref_key>`); tokens MUST be resolved to absolute paths before LLM invocation and validation.
 - for comment-section semantic outputs, `<page_ref_key>` MUST be a deterministic filesystem-safe key derived from the canonical `page_ref` (for example `<page_type>--<page_id>`).
+
+Compatibility-reader sunset policy for legacy aliases (normative):
+- this policy applies to compatibility aliases accepted at read/import/CLI/config boundaries only.
+- canonical writes, canonical schema keys, generation-spec flow keys, and run-envelope metadata MUST use canonical names only.
+- reconstruction window (through Section 13 first-milestone DoD verification): compatibility readers MAY accept documented legacy aliases, but implementations SHOULD emit explicit deprecation warnings with canonical replacements.
+- post-reconstruction enforcement (after Section 13 first-milestone DoD verification): compatibility readers for legacy aliases MUST fail fast by default with configuration/usage errors, unless a given alias is explicitly retained by a new decision-register entry.
 
 ### 4.1.4 Generation spec and schema file contents (normative)
 

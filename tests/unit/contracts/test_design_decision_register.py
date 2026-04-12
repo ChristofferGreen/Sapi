@@ -40,8 +40,6 @@ class DesignDecisionRegisterTests(unittest.TestCase):
     def test_unresolved_rows_define_owner_and_due_date(self) -> None:
         rows = self._decision_rows()
         unresolved = [row for row in rows if row[2] == "unresolved"]
-        self.assertGreaterEqual(len(unresolved), 1)
-
         for _decision, _options, _status, owner, due_date, _location in unresolved:
             self.assertTrue(owner and owner != "-")
             self.assertRegex(due_date, r"^\d{4}-\d{2}-\d{2}$")

@@ -47,7 +47,7 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0282` Resolve compatibility-reader sunset policy into a concrete contract update
+1. (none currently)
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -67,7 +67,7 @@ Task template:
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: `TODO-0244`, `TODO-0245`, `TODO-0252`, `TODO-0253`, `TODO-0257`
 - P2 Social/eval/hardening: `TODO-0223` to `TODO-0231`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0275`
-- P3 Continuous docs governance: `TODO-0282`
+- P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
 
@@ -83,13 +83,13 @@ Wave C (query + social + hardening + release):
 3. `TODO-0254` -> `TODO-0228` -> `TODO-0251` -> `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
-1. `TODO-0282`
+1. (none currently)
 
 ### Design Coverage Snapshot
 
 | Design area | Primary TODO IDs |
 | --- | --- |
-| Section 1 (scope/authority/reading) | `TODO-0282` |
+| Section 1 (scope/authority/reading) | - |
 | Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0275` |
 | Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | - |
@@ -137,18 +137,6 @@ Cross-cutting docs backlog:
 | Tier 4-6 (determinism/golden/live canary) | `TODO-0229` |
 | Section 4-5 (CI gating matrix + command wiring) | `TODO-0230` |
 | Section 6 (exit criteria gating) | `TODO-0263`, `TODO-0231` |
-
-- [ ] TODO-0282: Resolve compatibility-reader sunset policy into a concrete contract update
-  - owner: human
-  - created_at: 2026-04-12
-  - phase: Cross-cutting
-  - depends_on: TODO-0280
-  - scope: Resolve the unresolved compatibility-reader sunset recommendation into an explicit policy decision and update the canonical contract destination section.
-  - acceptance:
-    - Decision outcome is recorded in `design.md` decision register with resolved status and final contract location.
-    - Contract update lands in `design.md` Section 4.1.3 with explicit compatibility-reader sunset policy and enforcement boundaries.
-    - Any affected TODO dependencies/docs coverage references are synchronized.
-  - notes: source `design.md` Section 1.3 (decision register), Section 4.1.3; decision_ref: compatibility-reader-sunset-policy-for-legacy-aliases
 
 - [ ] TODO-0275: Enforce site-root `New` refresh exclusions for non-mutating flows
   - owner: ai
