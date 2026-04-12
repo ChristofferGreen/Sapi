@@ -49,6 +49,7 @@ Task template:
 
 1. `TODO-0200` Repository skeleton and wrapper surface bootstrap
 2. `TODO-0100` Capture incoming design recommendations into structured tasks
+3. `TODO-0101` Add unresolved decisions table to the design docs
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -68,7 +69,7 @@ Task template:
 - P0 Foundation/contracts: `TODO-0200` to `TODO-0209`, `TODO-0235`, `TODO-0236`, `TODO-0238`, `TODO-0239`, `TODO-0240`, `TODO-0241`, `TODO-0262`, `TODO-0269`, `TODO-0272`
 - P1 Core product behavior: `TODO-0210` to `TODO-0221`, `TODO-0242`, `TODO-0244`, `TODO-0245`, `TODO-0246`, `TODO-0252`, `TODO-0253`, `TODO-0255`, `TODO-0257`, `TODO-0259`, `TODO-0268`, `TODO-0270`, `TODO-0271`, `TODO-0273`, `TODO-0276`, `TODO-0277`, `TODO-0278`
 - P2 Social/eval/hardening: `TODO-0222` to `TODO-0231`, `TODO-0243`, `TODO-0247`, `TODO-0248`, `TODO-0249`, `TODO-0250`, `TODO-0251`, `TODO-0254`, `TODO-0256`, `TODO-0258`, `TODO-0263`, `TODO-0266`, `TODO-0267`, `TODO-0274`, `TODO-0275`
-- P3 Continuous docs governance: `TODO-0100`, `TODO-0101`, `TODO-0102`, `TODO-0264`, `TODO-0265`
+- P3 Continuous docs governance: `TODO-0100`, `TODO-0101`, `TODO-0264`, `TODO-0265`
 
 ### Execution Queue (Recommended)
 
@@ -89,14 +90,14 @@ Wave C (query + social + hardening + release):
 3. `TODO-0254` -> `TODO-0228` -> `TODO-0251` -> `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0243` -> `TODO-0260` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
 
 Cross-cutting docs backlog:
-1. `TODO-0102` -> `TODO-0265` -> `TODO-0264` -> `TODO-0243` -> `TODO-0101`
+1. `TODO-0265` -> `TODO-0264` -> `TODO-0243` -> `TODO-0101`
 2. `TODO-0100` (continuous intake)
 
 ### Design Coverage Snapshot
 
 | Design area | Primary TODO IDs |
 | --- | --- |
-| Section 1 (scope/authority/reading) | `TODO-0102`, `TODO-0243`, `TODO-0101`, `TODO-0100` |
+| Section 1 (scope/authority/reading) | `TODO-0243`, `TODO-0101`, `TODO-0100` |
 | Section 2 (runtime policy + semantic loop + mock mode) | `TODO-0240`, `TODO-0204`, `TODO-0214`, `TODO-0205`, `TODO-0246`, `TODO-0272`, `TODO-0275` |
 | Section 3 (core concepts + identity invariants) | `TODO-0239` |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | `TODO-0200`, `TODO-0201`, `TODO-0202`, `TODO-0203`, `TODO-0238`, `TODO-0242` |
@@ -1085,18 +1086,6 @@ Cross-cutting docs backlog:
     - Wrapper interface signatures match `design.md` Section 6.1.
     - README points to authoritative docs and reconstruction status.
   - notes: source `design.md` Sections 4.1, 6.1
-
-- [ ] TODO-0102: Add a cross-document contract index
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Cross-cutting
-  - depends_on: TODO-0201
-  - scope: Create a quick index that maps core contracts to authoritative sections in `design.md`, `low_level.md`, and `testing_plan.md`.
-  - acceptance:
-    - One consolidated index exists.
-    - No duplicate authority claims for the same contract.
-    - Readers can locate authoritative contract text in under one minute.
-  - notes: source `design.md` Sections 1.2, 1.1
 
 - [ ] TODO-0101: Add unresolved decisions table to the design docs
   - owner: ai

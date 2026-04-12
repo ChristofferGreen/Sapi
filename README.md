@@ -14,6 +14,7 @@ This repository is in reconstruction mode.
 
 Start with:
 
+- [docs/contract_index.md](/Users/chrgre01/src/Sapi/docs/contract_index.md)
 - [docs/design.md](/Users/chrgre01/src/Sapi/docs/design.md)
 - [docs/low_level.md](/Users/chrgre01/src/Sapi/docs/low_level.md)
 - [docs/testing_plan.md](/Users/chrgre01/src/Sapi/docs/testing_plan.md)

@@ -66,3 +66,16 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
   - finished_at: 2026-04-12
   - scope: Add a compact mapping table from each major design section to one or more TODO IDs to prevent backlog blind spots.
   - evidence: Added and maintained `Design Coverage Snapshot` in `docs/todo.md` covering Sections 1-13 with mapped TODO IDs.
+
+- [x] TODO-0102: Add a cross-document contract index
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Cross-cutting
+  - depends_on: TODO-0201
+  - scope: Create a quick index that maps core contracts to authoritative sections in `design.md`, `low_level.md`, and `testing_plan.md`.
+  - acceptance:
+    - One consolidated index exists.
+    - No duplicate authority claims for the same contract.
+    - Readers can locate authoritative contract text in under one minute.
+  - evidence: Added `docs/contract_index.md`, linked it from `README.md`, and added `tests/unit/contracts/test_contract_index.py` to enforce one-table authority mapping with unique contract areas and explicit section pointers.
