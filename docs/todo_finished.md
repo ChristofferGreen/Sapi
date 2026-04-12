@@ -1472,3 +1472,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `site/new/index.html` while query, comments, and profiles pipeline executions leave the same
     site-root `New` artifact untouched for the same site. Existing ingest/query/comments/profiles
     integration suites remain green under mock-LLM mode with this refresh-policy coverage added.
+
+- [x] TODO-0250: Implement run-truth advancement and reconciliation-state semantics
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0206, TODO-0214, TODO-0220, TODO-0223, TODO-0224
+  - scope: Implement run-truth rules so only successful runs advance reconciliation/verification state across pipelines.
+  - acceptance:
+    - Only `success` and `success_with_warnings` runs advance reconciliation state.
+    - `failed` and `aborted` runs are excluded from consecutive-run resolution logic.
+    - Advancement behavior is tested for ingest/query/comment/profile pipelines.
+  - notes: source `design.md` Section 10
+  - evidence: Added centralized run-truth reconciliation advancement logic in
+    `sapi/core/run_truth.py` and integrated it into successful pipeline finalization via
+    `sapi/core/pipeline_policy.py`. Reconciliation state now advances only on
+    `success` and `success_with_warnings` statuses and tracks per-pipeline consecutive advanced
+    run counts and last advanced run metadata under
+    `outputs/run_truth/reconciliation_state.json`. Added unit coverage in
+    `tests/unit/core/test_run_truth.py` to enforce status advancement rules and integration
+    coverage in `tests/integration/pipelines/test_run_truth_advancement.py` validating
+    advancement/non-advancement semantics across ingest/query/comment/profile pipelines.

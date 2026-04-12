@@ -17,6 +17,7 @@ from sapi.core.transactions import (
     TerminalFailureDisposition,
     apply_terminal_failure_policy,
 )
+from sapi.core.run_truth import advance_reconciliation_state
 from sapi.lint.lint_engine import LintSummary, write_lint_artifact
 
 
@@ -101,6 +102,11 @@ def finalize_pipeline_run(
             run_id=base.run_id,
             workflow=_workflow_key_for_pipeline(base.flow_key),
             summary=_lint_summary_from_base(base),
+        )
+        advance_reconciliation_state(
+            space_root=space_root,
+            base=base,
+            transaction=transaction,
         )
         transaction.commit()
         return PipelineFinalizeResult(

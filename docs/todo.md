@@ -51,19 +51,18 @@ Task template:
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0250`
-2. `TODO-0256`
-3. `TODO-0229`
-4. `TODO-0230`
-5. `TODO-0263`
-6. `TODO-0261`
-7. `TODO-0231`
+1. `TODO-0256`
+2. `TODO-0229`
+3. `TODO-0230`
+4. `TODO-0263`
+5. `TODO-0261`
+6. `TODO-0231`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0229`, `TODO-0230`, `TODO-0231`, `TODO-0250`, `TODO-0256`, `TODO-0261`, `TODO-0263`
+- P2 Social/eval/hardening: `TODO-0229`, `TODO-0230`, `TODO-0231`, `TODO-0256`, `TODO-0261`, `TODO-0263`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -77,7 +76,7 @@ Wave B (ingest + projection + lint):
 Wave C (query + social + hardening + release):
 1. (none currently)
 2. `TODO-0256`
-3. `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0261` -> `TODO-0250` -> `TODO-0231`
+3. `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0261` -> `TODO-0231`
 
 Cross-cutting docs backlog:
 1. (none currently)
@@ -101,7 +100,7 @@ Cross-cutting docs backlog:
 | Section 7.7 comment quality harness | - |
 | Section 8 site/UI/static build | `TODO-0256` |
 | Section 9 observability/safety/runtime controls | - |
-| Section 10 run envelopes/lifecycle status | `TODO-0250` |
+| Section 10 run envelopes/lifecycle status | - |
 | Section 11 testing strategy | `TODO-0229`, `TODO-0230`, `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0261` |
 | Section 13 definition of done | `TODO-0231` |
@@ -170,18 +169,6 @@ Cross-cutting docs backlog:
     - Deterministic social-vote rendering uses stable inputs and preserves repeatable output.
     - Thread permalinks/expansion state remain keyed by `comment_uid`.
   - notes: source `design.md` Sections 7.6, 8
-
-- [ ] TODO-0250: Implement run-truth advancement and reconciliation-state semantics
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 6
-  - depends_on: TODO-0206, TODO-0214, TODO-0220, TODO-0223, TODO-0224
-  - scope: Implement run-truth rules so only successful runs advance reconciliation/verification state across pipelines.
-  - acceptance:
-    - Only `success` and `success_with_warnings` runs advance reconciliation state.
-    - `failed` and `aborted` runs are excluded from consecutive-run resolution logic.
-    - Advancement behavior is tested for ingest/query/comment/profile pipelines.
-  - notes: source `design.md` Section 10
 
 - [ ] TODO-0231: Definition-of-Done sweep and release readiness verification
   - owner: ai
