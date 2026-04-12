@@ -22,6 +22,9 @@ class SemanticLlmRequest:
 
     flow_key: str
     version: str
+    schema_path: str
+    output_json_path: str
+    context_paths: list[str]
     spec_text: str
     schema: dict[str, Any]
     context_by_path: dict[str, str]

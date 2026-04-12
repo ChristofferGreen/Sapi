@@ -364,3 +364,21 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `tests/unit/contracts/test_domain_models.py` covering valid typed-model instantiation,
     persona/topic alias mismatch failures, and boundary invariant failures for cross-space records,
     unknown source/claim references, and invalid comment page linkage.
+
+- [x] TODO-0272: Enforce semantic-flow input envelope and prompt payload contracts
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0203, TODO-0204, TODO-0238
+  - scope: Enforce canonical semantic invocation envelope and prompt input hygiene across all semantic flows.
+  - acceptance:
+    - Every semantic invocation is passed canonical `schema_path`, `output_json_path`, and `context_paths[]` fields from generation-spec contracts.
+    - Semantic prompt assembly passes filesystem pointers/evidence paths instead of pre-expanded semantic dumps except where explicitly required by schema contract.
+    - Validation/tests prevent silent drift from canonical envelope fields or prompt-input policy.
+  - evidence: Updated `sapi/llm/client.py` and `sapi/llm/semantic_executor.py` so every semantic
+    LLM request now carries explicit invocation-envelope fields (`schema_path`,
+    `output_json_path`, `context_paths`) and enforces pointer-only prompt context payloads
+    (`file://`, `dir://`, `missing://`, `unsupported://`) before invocation; validated by
+    expanded `tests/unit/semantic/test_input_envelope_contract.py` covering all canonical semantic
+    flows, request-envelope field forwarding, prompt pointer hygiene, and drift rejection.

@@ -5,11 +5,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from sapi.contracts.semantic_specs import validate_semantic_invocation_spec
+from sapi.contracts.semantic_specs import FLOW_MAP, validate_semantic_invocation_spec
 from sapi.llm.client import SemanticLlmRequest
 from sapi.llm.semantic_executor import (
     SemanticSpec,
     build_semantic_spec_from_contract,
+    ensure_context_pointer_payload,
     run_semantic_flow,
 )
 
@@ -28,6 +29,32 @@ class _CapturingLlmClient:
 
 
 class SemanticInputEnvelopeContractTests(unittest.TestCase):
+    def test_all_semantic_flows_resolve_canonical_invocation_envelope_fields(self) -> None:
+        space_root = (REPO_ROOT / ".tmp/tests/space").resolve()
+        site_path = (REPO_ROOT / ".tmp/tests/site").resolve()
+        common_tokens: dict[str, str | Path] = {
+            "space_root": space_root,
+            "site_path": site_path,
+            "run_id": "run-001",
+            "query_id": "query-001",
+            "topic_id": "topic-001",
+            "persona_id": "persona-001",
+            "page_ref_key": "topic--topic-001",
+        }
+
+        for flow_key in FLOW_MAP:
+            with self.subTest(flow_key=flow_key):
+                spec = build_semantic_spec_from_contract(
+                    flow_key,
+                    repo_root=REPO_ROOT,
+                    path_tokens=common_tokens,
+                )
+                self.assertEqual(spec.schema_path, (REPO_ROOT / FLOW_MAP[flow_key].schema_relpath).resolve())
+                self.assertTrue(spec.output_json_path.is_absolute())
+                self.assertGreater(len(spec.context_paths), 0)
+                for context_path in spec.context_paths:
+                    self.assertTrue(context_path.is_absolute())
+
     def test_semantic_invocation_uses_canonical_contract_fields(self) -> None:
         space_root = (REPO_ROOT / ".tmp/tests/space").resolve()
         spec = build_semantic_spec_from_contract(
@@ -92,6 +119,9 @@ class SemanticInputEnvelopeContractTests(unittest.TestCase):
             run_semantic_flow(spec=spec, llm_client=client)
 
             request = client.requests[0]
+            self.assertEqual(request.schema_path, str(schema_path.resolve()))
+            self.assertEqual(request.output_json_path, str(output_path.resolve()))
+            self.assertEqual(request.context_paths, [str(context_file.resolve()), str(context_dir.resolve())])
             file_payload = request.context_by_path[str(context_file.resolve())]
             dir_payload = request.context_by_path[str(context_dir.resolve())]
             self.assertEqual(file_payload, f"file://{context_file.resolve()}")
@@ -115,6 +145,14 @@ class SemanticInputEnvelopeContractTests(unittest.TestCase):
                     (space_root / "claims").resolve(),
                     (space_root / "relations").resolve(),
                 ],
+            )
+
+    def test_prompt_context_payload_guard_rejects_non_pointer_payload(self) -> None:
+        with self.assertRaises(ValueError):
+            ensure_context_pointer_payload(
+                {
+                    str((REPO_ROOT / "claims").resolve()): '{"inline":"not-allowed"}',
+                }
             )
 
 

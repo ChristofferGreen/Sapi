@@ -17,6 +17,7 @@ from sapi.llm.client import LlmClient, SemanticLlmRequest, SemanticRepairContext
 
 DEFAULT_MAX_REPAIR_LOOPS = 3
 DEFAULT_MAX_ATTEMPTS = 1 + DEFAULT_MAX_REPAIR_LOOPS
+_CONTEXT_POINTER_PREFIXES: tuple[str, ...] = ("file://", "dir://", "missing://", "unsupported://")
 
 
 @dataclass(frozen=True)
@@ -99,12 +100,16 @@ def run_semantic_flow(
     schema = load_json_schema(spec.schema_path)
     spec_text = spec.spec_path.read_text() if spec.spec_path is not None else ""
     context_by_path = _gather_context_by_path(spec.context_paths)
+    ensure_context_pointer_payload(context_by_path)
 
     repair_context: SemanticRepairContext | None = None
     for attempt in range(1, max_attempts + 1):
         request = SemanticLlmRequest(
             flow_key=spec.flow_key,
             version=spec.version,
+            schema_path=str(spec.schema_path.resolve()),
+            output_json_path=str(spec.output_json_path.resolve()),
+            context_paths=[str(path.resolve()) for path in spec.context_paths],
             spec_text=spec_text,
             schema=schema,
             context_by_path=context_by_path,
@@ -165,6 +170,19 @@ def _gather_context_by_path(context_paths: list[Path]) -> dict[str, str]:
         else:
             snapshots[str(resolved)] = f"unsupported://{resolved}"
     return snapshots
+
+
+def ensure_context_pointer_payload(context_by_path: Mapping[str, str]) -> None:
+    """Fail fast if prompt context payload drifts from filesystem-pointer policy."""
+    for raw_path, pointer in context_by_path.items():
+        resolved_path = Path(raw_path)
+        if not resolved_path.is_absolute():
+            raise ValueError(f"context_by_path key must be an absolute path: {raw_path}")
+        if not any(pointer.startswith(prefix) for prefix in _CONTEXT_POINTER_PREFIXES):
+            raise ValueError(
+                "Prompt context payload must use filesystem pointer prefixes "
+                "(file://, dir://, missing://, unsupported://)."
+            )
 
 
 def _validate_attempt_output(*, raw_output: str, schema: dict[str, Any]) -> tuple[dict[str, Any], list[dict[str, Any]]]:
