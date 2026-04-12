@@ -33,6 +33,40 @@ _WRITE_INTENT_TOKENS: tuple[str, ...] = (
     ".rename(",
 )
 
+_PIPELINE_AFFECTING_PATH_PREFIXES: tuple[str, ...] = (
+    "sapi/ingest/",
+    "sapi/query/",
+    "sapi/comments/",
+    "sapi/profiles/",
+    "sapi/build/",
+    "scripts/ingest_source.py",
+    "scripts/query.py",
+    "scripts/create_comments.py",
+    "scripts/generate_profiles.py",
+    "scripts/build_site.py",
+    "scripts/evaluate_source.py",
+    "ingest.sh",
+    "query.sh",
+    "create_comments.sh",
+    "generate_profiles.sh",
+    "regenerate_web.sh",
+    "evaluate_source.sh",
+)
+
+_PIPELINE_CHECKLIST_REQUIRED_QUESTIONS: tuple[str, ...] = (
+    "Q1 Which canonical artifacts can this command mutate?",
+    "Q2 Which semantic flow keys can run, and in what order?",
+    "Q3 What exactly is rolled back on terminal failure?",
+    "Q4 Does run envelope include correct `flow_key`, ordered-unique `semantic_flows[]`, `semantic_flow_invocation_counts`, and required extension fields?",
+    "Q5 Are manifest outputs conditional by query format as required?",
+    "Q6 Are comments default-target rules, count bounds, and `comment_uid` stability preserved?",
+    "Q7 Are profile/history links canonical in rendered output?",
+    "Q8 Are site-root `New` refresh decisions correct for this flow?",
+)
+_PIPELINE_CHECKLIST_DOCS_SYNC_ITEM = (
+    "Docs Sync: Contract-level changes follow `design.md` -> `low_level.md` -> code/tests order"
+)
+
 
 def run_guardrail_checks(repo_root: Path) -> list[GuardrailIssue]:
     """Run repository anti-drift checks and return all discovered issues."""
@@ -46,6 +80,74 @@ def run_guardrail_checks(repo_root: Path) -> list[GuardrailIssue]:
         issues,
         key=lambda issue: (issue.check_id, str(issue.path), issue.line, issue.message),
     )
+
+
+def evaluate_pipeline_pr_evidence(
+    *,
+    repo_root: Path,
+    changed_files: list[str],
+    checklist_path: str | None,
+) -> list[GuardrailIssue]:
+    """Validate pipeline-change PR checklist evidence for quality-gate use."""
+    repo_root = repo_root.resolve()
+    normalized_paths = [path.strip() for path in changed_files if path.strip()]
+    pipeline_paths = [path for path in normalized_paths if _is_pipeline_affecting_path(path)]
+    if not pipeline_paths:
+        return []
+
+    if checklist_path is None or not checklist_path.strip():
+        return [
+            GuardrailIssue(
+                check_id="pipeline_pr_checklist_missing",
+                path=repo_root,
+                line=1,
+                message=(
+                    "Pipeline-affecting changes require --pipeline-pr-checklist evidence with completed "
+                    "review questions and docs-sync confirmation."
+                ),
+            )
+        ]
+
+    resolved_checklist_path = Path(checklist_path).expanduser()
+    if not resolved_checklist_path.is_absolute():
+        resolved_checklist_path = (repo_root / resolved_checklist_path).resolve()
+    else:
+        resolved_checklist_path = resolved_checklist_path.resolve()
+
+    if not resolved_checklist_path.is_file():
+        return [
+            GuardrailIssue(
+                check_id="pipeline_pr_checklist_missing",
+                path=resolved_checklist_path,
+                line=1,
+                message="Pipeline PR checklist evidence file not found.",
+            )
+        ]
+
+    lines = resolved_checklist_path.read_text().splitlines()
+    issues: list[GuardrailIssue] = []
+    for prompt in _PIPELINE_CHECKLIST_REQUIRED_QUESTIONS + (_PIPELINE_CHECKLIST_DOCS_SYNC_ITEM,):
+        line_no = _find_line_containing(lines, prompt)
+        if line_no is None:
+            issues.append(
+                GuardrailIssue(
+                    check_id="pipeline_pr_checklist_incomplete",
+                    path=resolved_checklist_path,
+                    line=1,
+                    message=f"Missing checklist evidence item: {prompt}",
+                )
+            )
+            continue
+        if not _is_checked_line(lines[line_no - 1]):
+            issues.append(
+                GuardrailIssue(
+                    check_id="pipeline_pr_checklist_incomplete",
+                    path=resolved_checklist_path,
+                    line=line_no,
+                    message=f"Checklist item must be checked '[x]': {prompt}",
+                )
+            )
+    return issues
 
 
 def _iter_code_files(repo_root: Path) -> list[Path]:
@@ -162,3 +264,19 @@ def _check_query_canonical_mutation_patterns(repo_root: Path) -> list[GuardrailI
                     )
                 )
     return issues
+
+
+def _is_pipeline_affecting_path(path: str) -> bool:
+    normalized = path.strip().replace("\\", "/").lstrip("./")
+    return any(normalized.startswith(prefix) for prefix in _PIPELINE_AFFECTING_PATH_PREFIXES)
+
+
+def _find_line_containing(lines: list[str], needle: str) -> int | None:
+    for index, line in enumerate(lines, start=1):
+        if needle in line:
+            return index
+    return None
+
+
+def _is_checked_line(line: str) -> bool:
+    return re.match(r"^\s*-\s*\[x\]\s+", line) is not None

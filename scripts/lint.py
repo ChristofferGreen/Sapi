@@ -12,7 +12,7 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from sapi.core.registry import resolve_registry_path, resolve_space_root
-from sapi.lint.guardrails import GuardrailIssue, run_guardrail_checks
+from sapi.lint.guardrails import GuardrailIssue, evaluate_pipeline_pr_evidence, run_guardrail_checks
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -21,6 +21,17 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--registry-path", required=True)
     parser.add_argument("--workflow", action="append", default=[])
     parser.add_argument("--run-id", action="append", default=[])
+    parser.add_argument(
+        "--changed-file",
+        action="append",
+        default=[],
+        help="Repo-relative changed file path (repeatable) for pipeline checklist quality gates.",
+    )
+    parser.add_argument(
+        "--pipeline-pr-checklist",
+        default=None,
+        help="Path to completed pipeline PR checklist evidence markdown.",
+    )
     parser.add_argument("--verbose", action="store_true")
     return parser
 
@@ -38,6 +49,13 @@ def run_main(argv: list[str] | None = None) -> int:
     registry_path = resolve_registry_path(args.registry_path)
     resolve_space_root(registry_path, args.space_name)
     issues = run_guardrail_checks(_REPO_ROOT)
+    issues.extend(
+        evaluate_pipeline_pr_evidence(
+            repo_root=_REPO_ROOT,
+            changed_files=args.changed_file,
+            checklist_path=args.pipeline_pr_checklist,
+        )
+    )
     if issues:
         print("Guardrail checks failed:", file=sys.stderr)
         for issue in issues:

@@ -4,6 +4,19 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0264: Add pipeline-change PR checklist and docs-sync discipline
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Cross-cutting
+  - depends_on: TODO-0265
+  - scope: Add review checklist and contribution guardrails so pipeline-changing PRs answer the required contract questions and keep docs/code ordering disciplined.
+  - acceptance:
+    - PR template/checklist includes the eight required low-level review questions for pipeline changes.
+    - Contribution docs enforce `design.md` -> `low_level.md` -> code change order for contract-level changes.
+    - Pipeline-affecting PRs fail quality gate when checklist/docs-sync evidence is missing.
+  - evidence: Added `.github/pull_request_template.md` with the eight low-level pipeline review questions plus docs-sync checklist item, added `docs/contributing.md` documenting enforced `design.md` -> `low_level.md` -> code/tests order, and extended `scripts/lint.py` + `sapi/lint/guardrails.py` pipeline PR quality gate logic (`--changed-file`, `--pipeline-pr-checklist`) to fail when pipeline-affecting changes lack completed checklist/docs-sync evidence; covered by `tests/unit/lint/test_pipeline_pr_checklist_gate.py`.
+
 - [x] TODO-0265: Automate low-level anti-drift guardrails
   - owner: ai
   - created_at: 2026-04-12
