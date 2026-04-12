@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import UTC, date, datetime
+from datetime import UTC, date, datetime, timedelta, timezone
 import re
 import tempfile
 import unittest
@@ -96,6 +96,10 @@ class IdContractTests(unittest.TestCase):
             make_comment_uid(slug="thread-root", suffix_length=9)
         with self.assertRaises(ValueError):
             make_run_id(suffix="ABCDEF1234")
+        with self.assertRaises(ValueError):
+            make_query_id(slug="policy-check", suffix="short123")
+        with self.assertRaises(ValueError):
+            make_comment_uid(slug="thread-root", suffix="short123")
 
     def test_temporal_format_helpers_match_contract(self) -> None:
         moment = datetime(2026, 4, 12, 9, 30, 45, tzinfo=UTC)
@@ -106,6 +110,8 @@ class IdContractTests(unittest.TestCase):
         self.assertEqual(format_date_iso(date(2026, 4, 12)), "2026-04-12")
         naive_moment = datetime(2026, 4, 12, 9, 30, 45)
         self.assertEqual(format_timestamp_rfc3339_utc(naive_moment), "2026-04-12T09:30:45Z")
+        offset_moment = datetime(2026, 4, 12, 11, 30, 45, tzinfo=timezone(timedelta(hours=2)))
+        self.assertEqual(format_timestamp_rfc3339_utc(offset_moment), "2026-04-12T09:30:45Z")
 
 
 class PathContractTests(unittest.TestCase):

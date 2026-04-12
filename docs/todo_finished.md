@@ -1770,3 +1770,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     continue to validate that missing explicit registry paths fail and `~/.sapi/spaces.toml`
     is not used implicitly. Updated `docs/testing_plan.md` to mark the Tier 1 registry-path
     checklist item complete.
+
+- [x] TODO-0289: Close Tier 1 ID/format/path checklist with explicit suffix and UTC-normalization checks
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 1
+  - depends_on: TODO-0206
+  - scope: Finalize Tier 1 ID/format/path checklist coverage with explicit checks for provided
+    execution/comment suffix constraints and timezone-aware timestamp normalization to UTC.
+  - acceptance:
+    - `tests/unit/contracts/test_id_contracts.py` covers invalid explicit suffix values for
+      query/comment IDs.
+    - Temporal format tests assert timezone-aware input normalizes to RFC3339 UTC with trailing `Z`.
+    - `docs/testing_plan.md` marks the Tier 1 ID/format/path checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 1; `docs/design.md` Section 5.4
+  - evidence: Extended `tests/unit/contracts/test_id_contracts.py` to assert
+    `make_query_id(..., suffix=\"short123\")` and
+    `make_comment_uid(..., suffix=\"short123\")` fail fast for violating minimum
+    suffix-length constraints, and added a timezone-offset timestamp case proving
+    `format_timestamp_rfc3339_utc` normalizes to canonical UTC (`...Z`). Updated
+    `docs/testing_plan.md` to mark the Tier 1 ID/format/path checklist item complete.

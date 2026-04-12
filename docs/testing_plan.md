@@ -71,7 +71,7 @@ tests/
 
 - [x] Registry path resolution, relative `space_root`, and no implicit fallback.
   - Module: `tests/unit/contracts/test_registry_paths.py`
-- [ ] ID/format/path contract checks used by writes (including suffix-length and timestamp-format constraints).
+- [x] ID/format/path contract checks used by writes (including suffix-length and timestamp-format constraints).
   - Module: `tests/unit/contracts/test_id_contracts.py`
 - [x] Semantic spec flow-map resolution, version pinning, and input alias normalization.
   - Module: `tests/unit/semantic/test_spec_resolution.py`
