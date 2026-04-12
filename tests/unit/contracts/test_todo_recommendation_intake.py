@@ -71,15 +71,31 @@ class TodoRecommendationIntakeTests(unittest.TestCase):
         self.assertIn("Section 1.3", finished_block)
         self.assertIn("Section 6.3", finished_block)
 
-        successor_block = _task_block(
-            text=TODO_DOC_PATH.read_text(),
+    def test_todo_0283_completion_records_resolved_decision_and_section_63_contract(self) -> None:
+        finished_block = _task_block(
+            text=TODO_FINISHED_DOC_PATH.read_text(),
             todo_id="TODO-0283",
-            open_task=True,
+            open_task=False,
         )
-        self.assertIn("owner: ai", successor_block)
-        self.assertIn("depends_on: TODO-0281", successor_block)
-        self.assertIn("decision_ref: additional-query-modes-in-evaluate-source-sh-default-evaluation-pack", successor_block)
-        self.assertIn("Section 6.3", successor_block)
+        self.assertIn("owner: ai", finished_block)
+        self.assertIn("depends_on: TODO-0281", finished_block)
+        self.assertIn("Section 1.3", finished_block)
+        self.assertIn("Section 6.3", finished_block)
+
+        design_text = DESIGN_DOC_PATH.read_text()
+        self.assertIn(
+            "| Additional query modes in `evaluate_source.sh` default evaluation pack | strict-only default vs strict + exploratory + comparative default | resolved | ai | 2026-05-20 | [Section 6.3]",
+            design_text,
+        )
+        section_63 = _section_text(
+            text=design_text,
+            heading="### 6.3 User-facing source evaluation harness (normative)",
+        )
+        self.assertIn("default invocation without additional query-mode arguments MUST emit strict-only query artifacts.", section_63)
+        self.assertIn(
+            "wrapper MAY run additional exploratory/comparative queries only when explicitly requested; strict-mode output remains mandatory.",
+            section_63,
+        )
 
 
 def _open_tasks_section(todo_text: str) -> str:
@@ -148,6 +164,14 @@ def _task_block(*, text: str, todo_id: str, open_task: bool) -> str:
             break
         block_lines.append(line)
     return "\n".join(block_lines)
+
+
+def _section_text(*, text: str, heading: str) -> str:
+    start = text.index(heading)
+    end = text.find("\n## ", start + 1)
+    if end == -1:
+        end = len(text)
+    return text[start:end]
 
 
 def _slugify_for_decision_ref(value: str) -> str:

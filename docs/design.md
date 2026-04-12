@@ -60,7 +60,7 @@ Use this table to track active architecture decisions without losing contract li
 | Comment subsystem canonical namespace | `comment_section_*` vs `persona_comment_*` | resolved | ai | 2026-04-12 | [Section 7.6](/Users/chrgre01/src/Sapi/docs/design.md#76-comment-section-generation-and-rendering) |
 | Run-envelope semantic flow cardinality shape | ordered flow list only vs ordered list + invocation count map | resolved | ai | 2026-04-12 | [Section 10](/Users/chrgre01/src/Sapi/docs/design.md#10-run-status-and-output-envelopes) |
 | Compatibility reader sunset policy for legacy aliases | keep indefinitely vs phased deprecation removal | unresolved | human | 2026-05-15 | - |
-| Additional query modes in `evaluate_source.sh` default evaluation pack | strict-only default vs strict + exploratory + comparative default | unresolved | ai | 2026-05-20 | - |
+| Additional query modes in `evaluate_source.sh` default evaluation pack | strict-only default vs strict + exploratory + comparative default | resolved | ai | 2026-05-20 | [Section 6.3](/Users/chrgre01/src/Sapi/docs/design.md#63-user-facing-source-evaluation-harness-normative) |
 
 ## 2. Non-Negotiable Runtime Policy
 
@@ -746,8 +746,9 @@ Execution contract:
 - wrapper MUST invoke ingest for the provided source.
 - wrapper MUST run validation (`validate.sh`) and include lint outcomes in artifacts.
 - if `--comments <n>` is provided and `n > 0`, wrapper MUST run comment generation and include comment-review artifacts.
-- wrapper SHOULD run at least one strict markdown query and include the query answer artifact.
-- wrapper MAY run additional exploratory/comparative queries for reviewer context.
+- wrapper MUST run strict query mode and include `query_answers/strict.md` in every evaluation pack.
+- default invocation without additional query-mode arguments MUST emit strict-only query artifacts.
+- wrapper MAY run additional exploratory/comparative queries only when explicitly requested; strict-mode output remains mandatory.
 
 Artifact location contract:
 - if `--out` is provided, write artifacts under that directory.
