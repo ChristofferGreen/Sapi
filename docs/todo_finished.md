@@ -1494,3 +1494,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `tests/unit/core/test_run_truth.py` to enforce status advancement rules and integration
     coverage in `tests/integration/pipelines/test_run_truth_advancement.py` validating
     advancement/non-advancement semantics across ingest/query/comment/profile pipelines.
+
+- [x] TODO-0230: CI matrix and test execution wiring
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0228, TODO-0229
+  - scope: Wire test tiers to PR/nightly jobs exactly as specified in the testing checklist.
+  - acceptance:
+    - PR CI runs required tiers (Tier 1-3).
+    - Nightly CI runs Tier 4-6.
+    - `live_llm` marker is excluded from default PR jobs and included only where intended.
+  - notes: source `testing_plan.md` Sections 4-5
+  - evidence: Added CI workflow wiring in `.github/workflows/ci.yml` with a PR-required job
+    running Tier 1-3 (`npm run test:pr`) and a nightly/manual job running Tier 4-5
+    (`npm run test:tier4-5`) plus Tier 6 live canary (`npm run test:live`) as a
+    non-blocking step. Updated `package.json` scripts to use the checklist’s pytest tier
+    commands with explicit marker policy (`-m "not live_llm"` for PR and deterministic/golden
+    suites; `-m "live_llm"` for live canary). Added live canary module
+    `tests/live/test_live_llm_canary.py`, marker registration in `pytest.ini`, and contract
+    coverage in `tests/unit/contracts/test_ci_tier_matrix_wiring.py`.

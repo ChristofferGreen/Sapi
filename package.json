@@ -6,8 +6,9 @@
   "description": "Sapi reconstruction workspace",
   "scripts": {
     "test": "npm run test:pr",
-    "test:pr": "python3 -m unittest discover -s tests/unit -p 'test_*.py' && python3 -m unittest discover -s tests/integration/failure -p 'test_*.py' && python3 -m unittest discover -s tests/integration/pipelines -p 'test_*.py'",
-    "test:golden": "python3 -m unittest discover -s tests/golden -p 'test_*.py'",
-    "test:live": "python3 -m unittest discover -s tests/live -p 'test_*.py'"
+    "test:pr": "pytest -q tests/unit tests/integration/failure tests/integration/pipelines -m \"not live_llm\"",
+    "test:tier4-5": "pytest -q tests/integration/build tests/golden -m \"not live_llm\"",
+    "test:golden": "npm run test:tier4-5",
+    "test:live": "pytest -q tests/live -m \"live_llm\""
   }
 }

@@ -53,16 +53,15 @@ Task template:
 
 1. `TODO-0256`
 2. `TODO-0229`
-3. `TODO-0230`
-4. `TODO-0263`
-5. `TODO-0261`
-6. `TODO-0231`
+3. `TODO-0263`
+4. `TODO-0261`
+5. `TODO-0231`
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: `TODO-0229`, `TODO-0230`, `TODO-0231`, `TODO-0256`, `TODO-0261`, `TODO-0263`
+- P2 Social/eval/hardening: `TODO-0229`, `TODO-0231`, `TODO-0256`, `TODO-0261`, `TODO-0263`
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -76,7 +75,7 @@ Wave B (ingest + projection + lint):
 Wave C (query + social + hardening + release):
 1. (none currently)
 2. `TODO-0256`
-3. `TODO-0229` -> `TODO-0230` -> `TODO-0263` -> `TODO-0261` -> `TODO-0231`
+3. `TODO-0229` -> `TODO-0263` -> `TODO-0261` -> `TODO-0231`
 
 Cross-cutting docs backlog:
 1. (none currently)
@@ -101,7 +100,7 @@ Cross-cutting docs backlog:
 | Section 8 site/UI/static build | `TODO-0256` |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | - |
-| Section 11 testing strategy | `TODO-0229`, `TODO-0230`, `TODO-0263` |
+| Section 11 testing strategy | `TODO-0229`, `TODO-0263` |
 | Section 12 reconstruction plan | `TODO-0261` |
 | Section 13 definition of done | `TODO-0231` |
 
@@ -121,7 +120,7 @@ Cross-cutting docs backlog:
 | Section 12 (wrapper/script interfaces) | - |
 | Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | - |
-| Section 15 (test-plan binding) | `TODO-0229`, `TODO-0230`, `TODO-0263` |
+| Section 15 (test-plan binding) | `TODO-0229`, `TODO-0263` |
 | Section 16 (change discipline) | - |
 
 ### Testing Plan Coverage Snapshot
@@ -131,7 +130,7 @@ Cross-cutting docs backlog:
 | Section 2 (test module layout) | `TODO-0229` |
 | Tier 0-3 (fast contract/failure/pipeline suites) | - |
 | Tier 4-6 (determinism/golden/live canary) | `TODO-0229` |
-| Section 4-5 (CI gating matrix + command wiring) | `TODO-0230` |
+| Section 4-5 (CI gating matrix + command wiring) | - |
 | Section 6 (exit criteria gating) | `TODO-0263`, `TODO-0231` |
 
 - [ ] TODO-0263: Enforce testing-plan exit criteria gates before DoD closure
@@ -181,18 +180,6 @@ Cross-cutting docs backlog:
     - No runs remain with `build_deferred: true`.
     - DoD bullets from `docs/design.md` Section 13 are checked explicitly with evidence links.
   - notes: source `design.md` Section 13
-
-- [ ] TODO-0230: CI matrix and test execution wiring
-  - owner: ai
-  - created_at: 2026-04-12
-  - phase: Phase 6
-  - depends_on: TODO-0228, TODO-0229
-  - scope: Wire test tiers to PR/nightly jobs exactly as specified in the testing checklist.
-  - acceptance:
-    - PR CI runs required tiers (Tier 1-3).
-    - Nightly CI runs Tier 4-6.
-    - `live_llm` marker is excluded from default PR jobs and included only where intended.
-  - notes: source `testing_plan.md` Sections 4-5
 
 - [ ] TODO-0229: Tier 4-6 determinism, golden, and live-canary tests
   - owner: ai
