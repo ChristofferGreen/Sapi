@@ -118,3 +118,16 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     - Wrapper-target script files exist with stub entrypoints.
     - Module boundaries are documented in package `__init__` or equivalent.
   - evidence: Verified by `tests/unit/contracts/test_todo_0201_module_topology.py`, including package/module existence, wrapper-target script stub entrypoints, and explicit wrapper-target mapping documentation in `scripts/__init__.py`.
+
+- [x] TODO-0207: Registry path resolution and targeting contract enforcement
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 1
+  - depends_on: TODO-0200
+  - scope: Implement strict registry loading/space resolution and no-fallback behavior for non-bootstrap commands.
+  - acceptance:
+    - Non-bootstrap commands require explicit `--registry-path`.
+    - Relative `space_root` values resolve against registry directory.
+    - No fallback/merge with `~/.sapi/spaces.toml`.
+  - evidence: Verified by `tests/unit/contracts/test_registry_paths.py`, including explicit `--registry-path` enforcement across non-bootstrap scripts, relative `space_root` resolution against registry directory, and a dedicated non-merge test proving explicit registry authority even when `~/.sapi/spaces.toml` exists.

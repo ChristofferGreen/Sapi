@@ -96,6 +96,41 @@ space_root = "/tmp/home-space"
                 else:
                     os.environ["HOME"] = old_home
 
+    def test_explicit_registry_is_authoritative_without_home_registry_merge(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            home = tmp_path / "home"
+            home_registry_dir = home / ".sapi"
+            home_registry_dir.mkdir(parents=True)
+            (home_registry_dir / "spaces.toml").write_text(
+                """
+[[spaces]]
+space_name = "home-space"
+space_root = "/tmp/home-space"
+""".strip()
+            )
+
+            explicit_registry = tmp_path / "site" / "spaces.toml"
+            explicit_registry.parent.mkdir(parents=True)
+            explicit_registry.write_text(
+                """
+[[spaces]]
+space_name = "explicit-space"
+space_root = "spaces/explicit"
+""".strip()
+            )
+
+            old_home = os.environ.get("HOME")
+            os.environ["HOME"] = str(home)
+            try:
+                with self.assertRaises(KeyError):
+                    resolve_space_root(explicit_registry, "home-space")
+            finally:
+                if old_home is None:
+                    os.environ.pop("HOME", None)
+                else:
+                    os.environ["HOME"] = old_home
+
     def test_duplicate_space_names_fail_fast(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             registry_path = Path(tmp) / "spaces.toml"
