@@ -7,9 +7,12 @@ import hashlib
 from html import escape
 from pathlib import Path
 import re
+from typing import Any
 
 from sapi.build.projection import SpaceProjection, load_space_projection
+from sapi.core.site_scope import load_site_scope, load_subspaces_metadata
 from sapi.lint.lint_engine import LintSummary, default_lint_summary
+from sapi.profiles.persona_catalog import load_seeded_persona_catalog
 
 _WIKI_SECTION_ORDER: tuple[str, ...] = (
     "lead summary",
@@ -21,6 +24,7 @@ _WIKI_SECTION_ORDER: tuple[str, ...] = (
     "open questions / disagreements",
     "references",
 )
+TAB_PAGE_SIZE = 50
 
 
 @dataclass(frozen=True)
@@ -34,6 +38,26 @@ class BuildResult:
     lint_summary: LintSummary
 
 
+@dataclass(frozen=True)
+class _FeedEntry:
+    timestamp: str
+    space_name: str
+    item_type: str
+    item_id: str
+    title: str
+    summary: str
+
+
+@dataclass(frozen=True)
+class _SpaceLayoutContext:
+    site_name: str
+    space_name: str
+    all_space_names: list[str]
+    subspaces: list[tuple[str, str | None]]
+    topics: list[dict[str, Any]]
+    tabs: tuple[str, ...]
+
+
 def build_space_site(
     space_root: Path,
     *,
@@ -45,10 +69,19 @@ def build_space_site(
     space_name = space_root.name
     output_root = space_root / "site"
     output_root.mkdir(parents=True, exist_ok=True)
+    site_path = space_root.parent.parent
+    context = _build_layout_context(space_root=space_root, projection=projection, site_path=site_path)
+    persona_rows = _load_persona_rows()
+    run_ids = _load_run_ids(space_root)
 
     generated_files: list[Path] = []
     generated_files.extend(
-        _write_source_pages(output_root=output_root, projection=projection, incremental=incremental)
+        _write_source_pages(
+            output_root=output_root,
+            projection=projection,
+            incremental=incremental,
+            context=context,
+        )
     )
     generated_files.extend(
         _write_topic_pages(
@@ -56,13 +89,36 @@ def build_space_site(
             projection=projection,
             incremental=incremental,
             site_presentation_mode=site_presentation_mode,
+            context=context,
+        )
+    )
+    generated_files.extend(
+        _write_space_tab_pages(
+            output_root=output_root,
+            projection=projection,
+            context=context,
+            persona_rows=persona_rows,
+            run_ids=run_ids,
+            incremental=incremental,
+        )
+    )
+    generated_files.extend(
+        _write_space_user_profile_pages(
+            output_root=output_root,
+            context=context,
+            persona_rows=persona_rows,
+            incremental=incremental,
         )
     )
 
     index_path = output_root / "index.html"
     _write_text_file(
         index_path,
-        _render_space_index(space_name=space_name, projection=projection),
+        _render_space_index(
+            space_name=space_name,
+            projection=projection,
+            context=context,
+        ),
         incremental=incremental,
     )
     generated_files.append(index_path)
@@ -81,38 +137,58 @@ def build_space_site(
 def refresh_site_new_index(site_path: Path, *, incremental: bool) -> Path:
     """Refresh site-root New index from canonical source/topic artifacts across spaces."""
     spaces_root = site_path / "spaces"
-    entries: list[tuple[str, str, str, str, str]] = []
+    entries: list[_FeedEntry] = []
+    space_names: list[str] = []
+    subspaces_by_space: dict[str, list[tuple[str, str | None]]] = {}
     for space_root in sorted(spaces_root.glob("*")):
         if not space_root.is_dir():
             continue
+        space_name = space_root.name
+        space_names.append(space_name)
         projection = load_space_projection(space_root)
-        for source in projection.sources:
-            entries.append(
-                (
-                    str(source.get("ingested_at") or source.get("date") or ""),
-                    space_root.name,
-                    "source",
-                    source["source_id"],
-                    source["title"],
-                )
-            )
-        for topic in projection.topics:
-            entries.append(
-                (
-                    str(topic.get("updated_at") or topic.get("created_at") or ""),
-                    space_root.name,
-                    "topic",
-                    topic["topic_id"],
-                    topic["title"],
-                )
-            )
+        entries.extend(_space_feed_entries(space_name=space_name, projection=projection))
+        subspaces_by_space[space_name] = _load_subspaces(space_root)
 
-    entries.sort(key=lambda row: (row[0], row[1], row[2], row[3]), reverse=True)
-    new_root = site_path / "site" / "new"
+    _sort_feed_entries(entries)
+
+    site_name = _resolve_site_name(site_path)
+    site_root = site_path / "site"
+    site_root.mkdir(parents=True, exist_ok=True)
+    _write_text_file(
+        site_root / "index.html",
+        _render_site_root_index(
+            site_name=site_name,
+            space_names=space_names,
+            subspaces_by_space=subspaces_by_space,
+        ),
+        incremental=incremental,
+    )
+
+    persona_rows = _load_persona_rows()
+    _write_site_users_pages(
+        site_root=site_root,
+        site_name=site_name,
+        persona_rows=persona_rows,
+        space_names=space_names,
+        incremental=incremental,
+    )
+
+    new_root = site_root / "new"
     new_root.mkdir(parents=True, exist_ok=True)
-    index_path = new_root / "index.html"
-    _write_text_file(index_path, _render_site_new_index(entries), incremental=incremental)
-    return index_path
+    pages = _paginate(entries, TAB_PAGE_SIZE)
+    for page_number, page_entries in enumerate(pages, start=1):
+        page_path = _paginated_page_path(new_root, page_number=page_number)
+        _write_text_file(
+            page_path,
+            _render_site_new_page(
+                site_name=site_name,
+                page_entries=page_entries,
+                page_number=page_number,
+                page_count=len(pages),
+            ),
+            incremental=incremental,
+        )
+    return _paginated_page_path(new_root, page_number=1)
 
 
 def _write_source_pages(
@@ -120,13 +196,27 @@ def _write_source_pages(
     output_root: Path,
     projection: SpaceProjection,
     incremental: bool,
+    context: _SpaceLayoutContext,
 ) -> list[Path]:
     sources_dir = output_root / "sources"
     sources_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
     for source in sorted(projection.sources, key=lambda item: item["source_id"]):
         source_path = sources_dir / f"{source['source_id']}.html"
-        _write_text_file(source_path, _render_source_page(source), incremental=incremental)
+        body = (
+            f"<h1>{escape(str(source['title']))}</h1>\n"
+            + f"<p>source_id: {escape(str(source['source_id']))}</p>\n"
+        )
+        _write_text_file(
+            source_path,
+            _render_space_layout(
+                title=str(source["title"]),
+                body=body,
+                context=context,
+                current_tab="sources",
+            ),
+            incremental=incremental,
+        )
         written.append(source_path)
     return written
 
@@ -137,6 +227,7 @@ def _write_topic_pages(
     projection: SpaceProjection,
     incremental: bool,
     site_presentation_mode: str,
+    context: _SpaceLayoutContext,
 ) -> list[Path]:
     topics_dir = output_root / "topics"
     topics_dir.mkdir(parents=True, exist_ok=True)
@@ -145,14 +236,23 @@ def _write_topic_pages(
         topic_path = topics_dir / f"{topic['topic_id']}.html"
         _write_text_file(
             topic_path,
-            _render_topic_page(topic, site_presentation_mode=site_presentation_mode),
+            _render_topic_page(
+                topic,
+                site_presentation_mode=site_presentation_mode,
+                context=context,
+            ),
             incremental=incremental,
         )
         written.append(topic_path)
     return written
 
 
-def _render_space_index(*, space_name: str, projection: SpaceProjection) -> str:
+def _render_space_index(
+    *,
+    space_name: str,
+    projection: SpaceProjection,
+    context: _SpaceLayoutContext,
+) -> str:
     source_rows = "\n".join(
         f"<li><a href=\"./sources/{escape(source['source_id'])}.html\">{escape(source['title'])}</a></li>"
         for source in sorted(projection.sources, key=lambda item: item["source_id"])
@@ -161,35 +261,30 @@ def _render_space_index(*, space_name: str, projection: SpaceProjection) -> str:
         f"<li><a href=\"./topics/{escape(topic['topic_id'])}.html\">{escape(topic['title'])}</a></li>"
         for topic in sorted(projection.topics, key=lambda item: item["topic_id"])
     )
-    return (
-        "<!doctype html>\n"
-        "<html><head><meta charset=\"utf-8\"><title>"
-        + escape(space_name)
-        + " - Space Home</title></head><body>\n"
-        + f"<h1>{escape(space_name)}</h1>\n"
-        + "<h2>Sources</h2>\n<ul>\n"
+    body = (
+        f"<h1>{escape(space_name)}</h1>\n"
+        "<h2>Sources</h2>\n<ul>\n"
         + source_rows
         + "\n</ul>\n"
         + "<h2>Topics</h2>\n<ul>\n"
         + topic_rows
         + "\n</ul>\n"
-        + "</body></html>\n"
+    )
+    return _render_space_layout(
+        title=f"{space_name} - Space Home",
+        body=body,
+        context=context,
+        current_tab=None,
+        current_page="space_home",
     )
 
 
-def _render_source_page(source: dict[str, object]) -> str:
-    return (
-        "<!doctype html>\n"
-        "<html><head><meta charset=\"utf-8\"><title>"
-        + escape(str(source["title"]))
-        + "</title></head><body>\n"
-        + f"<h1>{escape(str(source['title']))}</h1>\n"
-        + f"<p>source_id: {escape(str(source['source_id']))}</p>\n"
-        + "</body></html>\n"
-    )
-
-
-def _render_topic_page(topic: dict[str, object], *, site_presentation_mode: str) -> str:
+def _render_topic_page(
+    topic: dict[str, object],
+    *,
+    site_presentation_mode: str,
+    context: _SpaceLayoutContext,
+) -> str:
     if site_presentation_mode not in {"public", "debug"}:
         raise ValueError(f"Unsupported site_presentation_mode: {site_presentation_mode!r}")
     structure_type = _resolve_topic_structure_type(topic)
@@ -204,19 +299,21 @@ def _render_topic_page(topic: dict[str, object], *, site_presentation_mode: str)
         for index, section in enumerate(sections, start=1)
     )
     parent_link_row = _render_pinned_parent_link(topic)
-    return (
-        "<!doctype html>\n"
-        "<html><head><meta charset=\"utf-8\"><title>"
-        + escape(str(topic["title"]))
-        + "</title></head><body>\n"
-        + f"<h1>{escape(str(topic['title']))}</h1>\n"
+    body = (
+        f"<h1>{escape(str(topic['title']))}</h1>\n"
         + (
             "<p class=\"topic-structure\" "
             f"data-structure-type=\"{escape(structure_type)}\">Structure: {escape(structure_type)}</p>\n"
         )
         + parent_link_row
         + section_rows
-        + "\n</body></html>\n"
+    )
+    return _render_space_layout(
+        title=str(topic["title"]),
+        body=body,
+        context=context,
+        current_tab="topics",
+        current_page=f"topic:{topic['topic_id']}",
     )
 
 
@@ -389,27 +486,6 @@ def _render_claim_annotation_details(
     return "".join(details_rows)
 
 
-def _render_site_new_index(entries: list[tuple[str, str, str, str, str]]) -> str:
-    rows = "\n".join(
-        (
-            "<li>"
-            + f"{escape(timestamp or 'unknown')} | {escape(space_name)} | {escape(item_type)} | "
-            + f"<a href=\"../spaces/{escape(space_name)}/{escape(item_type)}s/{escape(item_id)}.html\">"
-            + escape(title)
-            + "</a></li>"
-        )
-        for timestamp, space_name, item_type, item_id, title in entries
-    )
-    return (
-        "<!doctype html>\n"
-        "<html><head><meta charset=\"utf-8\"><title>New</title></head><body>\n"
-        "<h1>New</h1>\n<ul>\n"
-        + rows
-        + "\n</ul>\n"
-        + "</body></html>\n"
-    )
-
-
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -417,6 +493,7 @@ def _sha256(path: Path) -> str:
 def _write_text_file(path: Path, content: str, *, incremental: bool) -> None:
     if incremental and path.is_file() and path.read_text() == content:
         return
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content)
 
 
@@ -458,3 +535,522 @@ def _render_parent_topic_href(*, parent_site_base_url: str, parent_space_name: s
     if not normalized_base:
         return "#"
     return f"{normalized_base}/spaces/{parent_space_name}/site/topics/{topic_id}.html"
+
+
+def _build_layout_context(
+    *,
+    space_root: Path,
+    projection: SpaceProjection,
+    site_path: Path,
+) -> _SpaceLayoutContext:
+    return _SpaceLayoutContext(
+        site_name=_resolve_site_name(site_path),
+        space_name=space_root.name,
+        all_space_names=_discover_site_spaces(site_path),
+        subspaces=_load_subspaces(space_root),
+        topics=sorted(projection.topics, key=lambda item: str(item.get("topic_id", ""))),
+        tabs=tuple(_resolve_space_tabs(space_root)),
+    )
+
+
+def _resolve_site_name(site_path: Path) -> str:
+    try:
+        scope = load_site_scope(site_path=site_path)
+    except (FileNotFoundError, TypeError, ValueError):
+        return site_path.name
+    return scope.site_name
+
+
+def _discover_site_spaces(site_path: Path) -> list[str]:
+    spaces_root = site_path / "spaces"
+    if not spaces_root.exists():
+        return []
+    return sorted(path.name for path in spaces_root.iterdir() if path.is_dir())
+
+
+def _load_subspaces(space_root: Path) -> list[tuple[str, str | None]]:
+    try:
+        metadata = load_subspaces_metadata(space_root=space_root)
+    except FileNotFoundError:
+        return []
+    return sorted((entry.space_name, entry.title) for entry in metadata.subspaces)
+
+
+def _load_run_ids(space_root: Path) -> list[str]:
+    runs_root = space_root / "runs"
+    if not runs_root.exists():
+        return []
+    run_ids: list[str] = []
+    for candidate in sorted(runs_root.glob("*")):
+        if not candidate.is_dir():
+            continue
+        if (candidate / "run.md").is_file():
+            run_ids.append(candidate.name)
+    return run_ids
+
+
+def _resolve_space_tabs(space_root: Path) -> list[str]:
+    tabs = ["new", "sources", "topics", "users"]
+    if _load_run_ids(space_root):
+        tabs.append("runs")
+    return tabs
+
+
+def _load_persona_rows() -> list[dict[str, Any]]:
+    repo_root = Path(__file__).resolve().parents[2]
+    rows = load_seeded_persona_catalog(repo_root=repo_root)
+    return sorted(rows, key=lambda row: str(row["persona_id"]))
+
+
+def _space_feed_entries(*, space_name: str, projection: SpaceProjection) -> list[_FeedEntry]:
+    entries: list[_FeedEntry] = []
+    for source in projection.sources:
+        entries.append(
+            _FeedEntry(
+                timestamp=str(source.get("ingested_at") or source.get("date") or ""),
+                space_name=space_name,
+                item_type="source",
+                item_id=str(source["source_id"]),
+                title=str(source["title"]),
+                summary=_compact_summary(str(source.get("summary") or source.get("context") or "")),
+            )
+        )
+    for topic in projection.topics:
+        summary = ""
+        if isinstance(topic.get("summary"), str):
+            summary = topic["summary"]
+        else:
+            sections = topic.get("sections")
+            if isinstance(sections, list) and sections:
+                first = sections[0]
+                if isinstance(first, dict) and isinstance(first.get("body"), str):
+                    summary = first["body"]
+        entries.append(
+            _FeedEntry(
+                timestamp=str(topic.get("updated_at") or topic.get("created_at") or ""),
+                space_name=space_name,
+                item_type="topic",
+                item_id=str(topic["topic_id"]),
+                title=str(topic["title"]),
+                summary=_compact_summary(summary),
+            )
+        )
+    return entries
+
+
+def _sort_feed_entries(entries: list[_FeedEntry]) -> None:
+    entries.sort(key=lambda item: (item.space_name, item.item_type, item.item_id))
+    entries.sort(key=lambda item: item.timestamp, reverse=True)
+
+
+def _compact_summary(text: str, *, limit: int = 120) -> str:
+    normalized = re.sub(r"\s+", " ", text).strip()
+    if not normalized:
+        return ""
+    if len(normalized) <= limit:
+        return normalized
+    return normalized[: limit - 3].rstrip() + "..."
+
+
+def _write_space_tab_pages(
+    *,
+    output_root: Path,
+    projection: SpaceProjection,
+    context: _SpaceLayoutContext,
+    persona_rows: list[dict[str, Any]],
+    run_ids: list[str],
+    incremental: bool,
+) -> list[Path]:
+    written: list[Path] = []
+    feed_entries = _space_feed_entries(space_name=context.space_name, projection=projection)
+    _sort_feed_entries(feed_entries)
+
+    tab_rows: dict[str, list[str]] = {
+        "new": [
+            (
+                "<li>"
+                + f"<span class=\"meta\">{escape(entry.timestamp or 'unknown')} | {escape(entry.item_type)}</span> "
+                + f"<a href=\"/spaces/{escape(entry.space_name)}/site/{escape(entry.item_type)}s/{escape(entry.item_id)}.html\">"
+                + escape(entry.title)
+                + "</a>"
+                + (f"<p class=\"summary\">{escape(entry.summary)}</p>" if entry.summary else "")
+                + "</li>"
+            )
+            for entry in feed_entries
+        ],
+        "sources": [
+            (
+                f"<li><a href=\"/spaces/{escape(context.space_name)}/site/sources/{escape(str(source['source_id']))}.html\">"
+                + escape(str(source["title"]))
+                + "</a></li>"
+            )
+            for source in sorted(projection.sources, key=lambda item: str(item["source_id"]))
+        ],
+        "topics": [
+            (
+                f"<li><a href=\"/spaces/{escape(context.space_name)}/site/topics/{escape(str(topic['topic_id']))}.html\">"
+                + escape(str(topic["title"]))
+                + "</a></li>"
+            )
+            for topic in sorted(projection.topics, key=lambda item: str(item["topic_id"]))
+        ],
+        "users": [
+            (
+                f"<li><a href=\"/spaces/{escape(context.space_name)}/site/users/persona-{escape(str(row['persona_id']))}.html\">"
+                + escape(str(row["display_name"]))
+                + "</a></li>"
+            )
+            for row in persona_rows
+        ],
+    }
+    if "runs" in context.tabs:
+        tab_rows["runs"] = [
+            f"<li><a href=\"/spaces/{escape(context.space_name)}/runs/{escape(run_id)}/run.md\">{escape(run_id)}</a></li>"
+            for run_id in sorted(run_ids, reverse=True)
+        ]
+
+    for tab_key in context.tabs:
+        rows = tab_rows.get(tab_key, [])
+        tab_title = tab_key.capitalize()
+        tab_root = output_root / tab_key
+        tab_root.mkdir(parents=True, exist_ok=True)
+        pages = _paginate(rows, TAB_PAGE_SIZE)
+        for page_number, page_rows in enumerate(pages, start=1):
+            page_path = _paginated_page_path(tab_root, page_number=page_number)
+            pagination = _render_pagination(
+                page_number=page_number,
+                page_count=len(pages),
+                mode="tab",
+                base_href=f"/spaces/{context.space_name}/site/{tab_key}",
+            )
+            body = (
+                f"<h1>{escape(tab_title)}</h1>\n"
+                + f"<p class=\"tab-page-size\" data-tab-page-size=\"{TAB_PAGE_SIZE}\">Page size: {TAB_PAGE_SIZE}</p>\n"
+                + "<ul>\n"
+                + "\n".join(page_rows)
+                + "\n</ul>\n"
+                + pagination
+            )
+            _write_text_file(
+                page_path,
+                _render_space_layout(
+                    title=f"{context.space_name} - {tab_title}",
+                    body=body,
+                    context=context,
+                    current_tab=tab_key,
+                ),
+                incremental=incremental,
+            )
+            written.append(page_path)
+    return written
+
+
+def _write_space_user_profile_pages(
+    *,
+    output_root: Path,
+    context: _SpaceLayoutContext,
+    persona_rows: list[dict[str, Any]],
+    incremental: bool,
+) -> list[Path]:
+    users_root = output_root / "users"
+    users_root.mkdir(parents=True, exist_ok=True)
+    written: list[Path] = []
+    for row in persona_rows:
+        persona_id = str(row["persona_id"])
+        path = users_root / f"persona-{persona_id}.html"
+        body = (
+            f"<h1>{escape(str(row['display_name']))}</h1>\n"
+            + f"<p>persona_id: {escape(persona_id)}</p>\n"
+            + "<p>Space-scoped profile page for this persona.</p>\n"
+        )
+        _write_text_file(
+            path,
+            _render_space_layout(
+                title=f"{context.space_name} - persona-{persona_id}",
+                body=body,
+                context=context,
+                current_tab="users",
+            ),
+            incremental=incremental,
+        )
+        written.append(path)
+    return written
+
+
+def _render_space_layout(
+    *,
+    title: str,
+    body: str,
+    context: _SpaceLayoutContext,
+    current_tab: str | None,
+    current_page: str | None = None,
+) -> str:
+    return (
+        "<!doctype html>\n"
+        "<html><head><meta charset=\"utf-8\"><title>"
+        + escape(title)
+        + "</title></head><body>\n"
+        + "<div class=\"top-search\" style=\"position:relative;z-index:1\">"
+        + "<label>Search <input type=\"search\" name=\"q\"/></label></div>\n"
+        + _render_space_sidebar(context=context, current_page=current_page)
+        + "<main>\n"
+        + _render_space_tabs(context=context, current_tab=current_tab)
+        + body
+        + "\n</main>\n"
+        + "</body></html>\n"
+    )
+
+
+def _render_space_sidebar(*, context: _SpaceLayoutContext, current_page: str | None) -> str:
+    space_rows = "\n".join(
+        (
+            "<li><a"
+            + (" class=\"current\"" if space_name == context.space_name else "")
+            + f" href=\"/spaces/{escape(space_name)}/site/index.html\">{escape(space_name)}</a></li>"
+        )
+        for space_name in context.all_space_names
+    )
+    if context.subspaces:
+        subspace_rows = "\n".join(
+            (
+                f"<li><a href=\"/spaces/{escape(subspace_name)}/site/index.html\">"
+                + escape(title if title else subspace_name)
+                + "</a></li>"
+            )
+            for subspace_name, title in context.subspaces
+        )
+    else:
+        subspace_rows = "<li><span>None</span></li>"
+    topic_rows = "\n".join(
+        (
+            "<li><a"
+            + (" class=\"current\"" if current_page == f"topic:{topic['topic_id']}" else "")
+            + f" href=\"/spaces/{escape(context.space_name)}/site/topics/{escape(str(topic['topic_id']))}.html\">"
+            + escape(str(topic["title"]))
+            + "</a></li>"
+        )
+        for topic in context.topics
+    )
+    return (
+        "<aside class=\"sidebar\" style=\"position:relative;z-index:2\">\n"
+        + f"<p class=\"site-name\">{escape(context.site_name)}</p>\n"
+        + f"<p class=\"space-name\">{escape(context.space_name)}</p>\n"
+        + "<nav>\n"
+        + "<ul><li><a"
+        + (" class=\"current\"" if current_page == "space_home" else "")
+        + f" href=\"/spaces/{escape(context.space_name)}/site/index.html\">Space Home</a></li></ul>\n"
+        + "<details class=\"sidebar-spaces\" open><summary>Spaces</summary><ul>\n"
+        + space_rows
+        + "\n</ul></details>\n"
+        + "<details class=\"sidebar-subspaces\" open><summary>Subspaces</summary><ul>\n"
+        + subspace_rows
+        + "\n</ul></details>\n"
+        + "<details class=\"sidebar-topics\" open><summary>Topics</summary><ul>\n"
+        + topic_rows
+        + "\n</ul></details>\n"
+        + "</nav>\n"
+        + "</aside>\n"
+    )
+
+
+def _render_space_tabs(*, context: _SpaceLayoutContext, current_tab: str | None) -> str:
+    tab_labels = {
+        "new": "New",
+        "sources": "Sources",
+        "topics": "Topics",
+        "users": "Users",
+        "runs": "Runs",
+    }
+    rows = []
+    for tab_key in context.tabs:
+        label = tab_labels.get(tab_key, tab_key.capitalize())
+        rows.append(
+            "<a class=\"tab"
+            + (" current" if current_tab == tab_key else "")
+            + f"\" href=\"/spaces/{escape(context.space_name)}/site/{escape(tab_key)}/index.html\">"
+            + escape(label)
+            + "</a>"
+        )
+    rows.append(
+        "<a class=\"claims-secondary\" href=\"/spaces/"
+        + escape(context.space_name)
+        + "/site/claims/index.html\">Claims</a>"
+    )
+    return "<nav class=\"tabs\" aria-label=\"Primary tabs\">" + " ".join(rows) + "</nav>\n"
+
+
+def _paginate(items: list[Any], page_size: int) -> list[list[Any]]:
+    if not items:
+        return [[]]
+    return [items[index : index + page_size] for index in range(0, len(items), page_size)]
+
+
+def _paginated_page_path(root: Path, *, page_number: int) -> Path:
+    if page_number == 1:
+        return root / "index.html"
+    return root / "page" / str(page_number) / "index.html"
+
+
+def _render_pagination(
+    *,
+    page_number: int,
+    page_count: int,
+    mode: str,
+    base_href: str,
+) -> str:
+    if page_count <= 1:
+        return ""
+    param_key = "feed_page" if mode == "feed" else "tab_page"
+    links = []
+    for number in range(1, page_count + 1):
+        if number == 1:
+            href = f"{base_href}/index.html?{param_key}={number}"
+        else:
+            href = f"{base_href}/page/{number}/index.html?{param_key}={number}"
+        links.append(
+            "<a class=\"page-link"
+            + (" current" if number == page_number else "")
+            + f"\" href=\"{escape(href)}\">{number}</a>"
+        )
+    return "<nav class=\"pagination\" aria-label=\"Pagination\">" + " ".join(links) + "</nav>\n"
+
+
+def _write_site_users_pages(
+    *,
+    site_root: Path,
+    site_name: str,
+    persona_rows: list[dict[str, Any]],
+    space_names: list[str],
+    incremental: bool,
+) -> None:
+    users_root = site_root / "users"
+    users_root.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for row in persona_rows:
+        persona_id = str(row["persona_id"])
+        space_links = " ".join(
+            (
+                f"<a href=\"/spaces/{escape(space_name)}/site/users/persona-{escape(persona_id)}.html\">"
+                + escape(space_name)
+                + "</a>"
+            )
+            for space_name in sorted(space_names)
+        )
+        rows.append(
+            "<li>"
+            + escape(str(row["display_name"]))
+            + f" ({escape(persona_id)})"
+            + (f"<div class=\"space-scoped-links\">{space_links}</div>" if space_links else "")
+            + "</li>"
+        )
+
+    pages = _paginate(rows, TAB_PAGE_SIZE)
+    for page_number, page_rows in enumerate(pages, start=1):
+        page_path = _paginated_page_path(users_root, page_number=page_number)
+        body = (
+            f"<h1>{escape(site_name)} Users</h1>\n"
+            + "<ul>\n"
+            + "\n".join(page_rows)
+            + "\n</ul>\n"
+            + _render_pagination(
+                page_number=page_number,
+                page_count=len(pages),
+                mode="tab",
+                base_href="/site/users",
+            )
+        )
+        _write_text_file(
+            page_path,
+            "<!doctype html>\n<html><head><meta charset=\"utf-8\"><title>"
+            + escape(site_name)
+            + " Users</title></head><body>\n"
+            + "<nav class=\"site-tabs\"><a href=\"/site/new/index.html\">New</a> "
+            + "<a class=\"current\" href=\"/site/users/index.html\">Users</a></nav>\n"
+            + body
+            + "\n</body></html>\n",
+            incremental=incremental,
+        )
+
+
+def _render_site_root_index(
+    *,
+    site_name: str,
+    space_names: list[str],
+    subspaces_by_space: dict[str, list[tuple[str, str | None]]],
+) -> str:
+    rows = []
+    for space_name in sorted(space_names):
+        subspaces = subspaces_by_space.get(space_name, [])
+        if subspaces:
+            subspace_rows = "<ul>" + "".join(
+                (
+                    "<li>"
+                    + escape(title if title else subspace_name)
+                    + " ("
+                    + escape(subspace_name)
+                    + ")</li>"
+                )
+                for subspace_name, title in subspaces
+            ) + "</ul>"
+        else:
+            subspace_rows = ""
+        rows.append(
+            "<li><a href=\"/spaces/"
+            + escape(space_name)
+            + "/site/index.html\">"
+            + escape(space_name)
+            + "</a>"
+            + subspace_rows
+            + "</li>"
+        )
+    return (
+        "<!doctype html>\n"
+        "<html><head><meta charset=\"utf-8\"><title>"
+        + escape(site_name)
+        + "</title></head><body>\n"
+        + f"<h1>{escape(site_name)}</h1>\n"
+        + "<nav class=\"site-tabs\"><a href=\"/site/new/index.html\">New</a> "
+        + "<a href=\"/site/users/index.html\">Users</a></nav>\n"
+        + "<h2>Spaces</h2>\n<ul>\n"
+        + "\n".join(rows)
+        + "\n</ul>\n"
+        + "</body></html>\n"
+    )
+
+
+def _render_site_new_page(
+    *,
+    site_name: str,
+    page_entries: list[_FeedEntry],
+    page_number: int,
+    page_count: int,
+) -> str:
+    rows = "\n".join(
+        (
+            "<li>"
+            + f"<span class=\"meta\">{escape(entry.timestamp or 'unknown')} | {escape(entry.space_name)} | "
+            + f"{escape(entry.item_type)}</span> "
+            + f"<a href=\"/spaces/{escape(entry.space_name)}/site/{escape(entry.item_type)}s/{escape(entry.item_id)}.html\">"
+            + escape(entry.title)
+            + "</a>"
+            + (f"<p class=\"summary\">{escape(entry.summary)}</p>" if entry.summary else "")
+            + "</li>"
+        )
+        for entry in page_entries
+    )
+    return (
+        "<!doctype html>\n"
+        "<html><head><meta charset=\"utf-8\"><title>New</title></head><body>\n"
+        + "<nav class=\"site-tabs\"><a class=\"current\" href=\"/site/new/index.html\">New</a> "
+        + "<a href=\"/site/users/index.html\">Users</a></nav>\n"
+        + f"<h1>New</h1>\n<p>{escape(site_name)}</p>\n<ul>\n"
+        + rows
+        + "\n</ul>\n"
+        + _render_pagination(
+            page_number=page_number,
+            page_count=page_count,
+            mode="feed",
+            base_href="/site/new",
+        )
+        + "</body></html>\n"
+    )

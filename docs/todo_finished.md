@@ -4,6 +4,28 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-12
 
+- [x] TODO-0253: Implement navigation/tabs/feed/pagination information-architecture contracts
+  - owner: ai
+  - created_at: 2026-04-12
+  - finished_at: 2026-04-12
+  - phase: Phase 3
+  - depends_on: TODO-0216
+  - scope: Implement deterministic navigation/sidebar/tab/feed/search/pagination behavior and scope-aware users tab behavior.
+  - acceptance:
+    - Sidebar hierarchy, space switcher, tab set, and page-size behavior match contract.
+    - Feed ordering, tie-break rules, and pagination URL semantics are deterministic.
+    - Users-tab scope behavior (site vs space) and space-scoped profile link resolution are implemented.
+  - notes: source `design.md` Section 8
+  - evidence: Extended `sapi/build/site_builder.py` to implement Section 8 IA contracts with
+    deterministic sidebar hierarchy and persistent space switcher, canonical tab set (`New`,
+    `Sources`, `Topics`, `Users`, optional `Runs`), fixed `TAB_PAGE_SIZE = 50` tab pagination,
+    deterministic site-root `New` feed ordering with explicit tie-breaks and feed-vs-tab pagination
+    URL semantics (`feed_page` vs `tab_page`), site-root spaces/subspaces listing, and site/space
+    users-tab rendering with space-scoped persona profile links at
+    `spaces/<space>/site/users/persona-<persona_id>.html`. Added acceptance coverage in
+    `tests/unit/build/test_site_builder_contracts.py` for navigation/tabs/page-size contracts,
+    deterministic feed ordering + pagination semantics, and users-tab scope/profile-link resolution.
+
 - [x] TODO-0252: Implement topic-page structure renderers (`wiki` and `source_mirror`)
   - owner: ai
   - created_at: 2026-04-12

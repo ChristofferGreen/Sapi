@@ -8,6 +8,7 @@ import unittest
 from pathlib import Path
 
 from scripts.build_site import _validate_frontend_toolchain_reproducibility
+from sapi.profiles.persona_catalog import load_seeded_persona_catalog
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -526,6 +527,159 @@ class SiteBuilderContractTests(unittest.TestCase):
             manifest_payload = json.loads(manifest_path.read_text())
             self.assertEqual(manifest_payload["build_mode"], "incremental")
 
+    def test_navigation_sidebar_tabs_and_tab_page_size_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._bootstrap_site_space(tmp_root, "beta")
+
+            for index in range(51):
+                self._write_source_record(
+                    alpha_space_root,
+                    source_id=f"source-{index:03d}",
+                    title=f"Source {index:03d}",
+                )
+            self._write_topic_record(
+                alpha_space_root,
+                topic_id="topic-a",
+                title="Topic A",
+                source_ids=["source-000"],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            space_home = (alpha_space_root / "site" / "index.html").read_text()
+            self.assertIn("class=\"sidebar\" style=\"position:relative;z-index:2\"", space_home)
+            self.assertIn("class=\"top-search\" style=\"position:relative;z-index:1\"", space_home)
+            self.assertIn("<summary>Spaces</summary>", space_home)
+            self.assertIn(">Space Home</a>", space_home)
+            self.assertIn("/spaces/alpha/site/index.html", space_home)
+            self.assertIn("/spaces/beta/site/index.html", space_home)
+            self.assertIn("<summary>Topics</summary>", space_home)
+            self.assertIn("/spaces/alpha/site/new/index.html", space_home)
+            self.assertIn("/spaces/alpha/site/sources/index.html", space_home)
+            self.assertIn("/spaces/alpha/site/topics/index.html", space_home)
+            self.assertIn("/spaces/alpha/site/users/index.html", space_home)
+
+            sources_page_1 = (alpha_space_root / "site" / "sources" / "index.html").read_text()
+            sources_page_2 = (alpha_space_root / "site" / "sources" / "page" / "2" / "index.html").read_text()
+            self.assertIn("data-tab-page-size=\"50\"", sources_page_1)
+            self.assertIn("Page size: 50", sources_page_1)
+            self.assertIn("?tab_page=2", sources_page_1)
+            self.assertNotIn("?feed_page=2", sources_page_1)
+            self.assertEqual(sources_page_1.count("/site/sources/source-"), 50)
+            self.assertEqual(sources_page_2.count("/site/sources/source-"), 1)
+
+    def test_site_feed_ordering_tiebreak_and_feed_pagination_url_semantics(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            _site_path_2, beta_space_root = self._bootstrap_site_space(tmp_root, "beta")
+
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-alpha-latest",
+                title="Alpha Latest",
+                ingested_at="2026-04-12T10:00:00Z",
+            )
+            self._write_source_record(
+                beta_space_root,
+                source_id="source-beta-latest",
+                title="Beta Latest",
+                ingested_at="2026-04-12T10:00:00Z",
+            )
+            for index in range(50):
+                self._write_source_record(
+                    alpha_space_root,
+                    source_id=f"source-alpha-old-{index:03d}",
+                    title=f"Alpha Old {index:03d}",
+                    ingested_at="2026-04-01T00:00:00Z",
+                )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            site_new_page_1 = (site_path / "site" / "new" / "index.html").read_text()
+            site_new_page_2 = (site_path / "site" / "new" / "page" / "2" / "index.html").read_text()
+            alpha_latest_href = "/spaces/alpha/site/sources/source-alpha-latest.html"
+            beta_latest_href = "/spaces/beta/site/sources/source-beta-latest.html"
+            self.assertIn(alpha_latest_href, site_new_page_1)
+            self.assertIn(beta_latest_href, site_new_page_1)
+            self.assertLess(site_new_page_1.index(alpha_latest_href), site_new_page_1.index(beta_latest_href))
+            self.assertIn("?feed_page=2", site_new_page_1)
+            self.assertNotIn("?tab_page=2", site_new_page_1)
+            self.assertIn("?feed_page=1", site_new_page_2)
+
+    def test_users_tab_scope_and_space_profile_link_resolution(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._bootstrap_site_space(tmp_root, "beta")
+            catalog_path = REPO_ROOT / "personas" / "social_users.json"
+            original_catalog = catalog_path.read_text()
+            try:
+                seeded_catalog = {
+                    "schema_version": "social_users_v1",
+                    "count": 1,
+                    "users": [
+                        {
+                            "persona_id": "persona-one",
+                            "display_name": "Persona One",
+                            "full_name": "Persona One",
+                            "account_status": "active",
+                            "stance_profile": "neutral",
+                            "profile_image_path": "personas/profile_images/.gitkeep",
+                        }
+                    ],
+                }
+                catalog_path.write_text(json.dumps(seeded_catalog, indent=2, sort_keys=True) + "\n")
+
+                result = self._run(
+                    [
+                        "python3",
+                        str(REPO_ROOT / "scripts" / "build_site.py"),
+                        "--registry-path",
+                        str(site_path / "spaces.toml"),
+                    ]
+                )
+                self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+                persona_rows = load_seeded_persona_catalog(repo_root=REPO_ROOT)
+                self.assertGreater(len(persona_rows), 0)
+                persona_id = str(persona_rows[0]["persona_id"])
+
+                site_users_page = (site_path / "site" / "users" / "index.html").read_text()
+                alpha_profile_href = f"/spaces/alpha/site/users/persona-{persona_id}.html"
+                beta_profile_href = f"/spaces/beta/site/users/persona-{persona_id}.html"
+                self.assertIn(alpha_profile_href, site_users_page)
+                self.assertIn(beta_profile_href, site_users_page)
+
+                alpha_users_page = (alpha_space_root / "site" / "users" / "index.html").read_text()
+                self.assertIn(alpha_profile_href, alpha_users_page)
+                self.assertNotIn(beta_profile_href, alpha_users_page)
+
+                alpha_profile_page = alpha_space_root / "site" / "users" / f"persona-{persona_id}.html"
+                self.assertTrue(alpha_profile_page.is_file())
+                self.assertIn(f"persona_id: {persona_id}", alpha_profile_page.read_text())
+            finally:
+                catalog_path.write_text(original_catalog)
+
     def test_toolchain_reproducibility_validation_enforces_package_manager_lockfile_node_pin(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp)
@@ -574,13 +728,20 @@ class SiteBuilderContractTests(unittest.TestCase):
         space_root = site_path / "spaces" / space_name
         return site_path, space_root
 
-    def _write_source_record(self, space_root: Path, *, source_id: str, title: str) -> None:
+    def _write_source_record(
+        self,
+        space_root: Path,
+        *,
+        source_id: str,
+        title: str,
+        ingested_at: str = "2026-04-12T00:00:00Z",
+    ) -> None:
         payload = {
             "schema_version": "source_record_v1",
             "source_id": source_id,
             "title": title,
-            "date": "2026-04-12",
-            "ingested_at": "2026-04-12T00:00:00Z",
+            "date": ingested_at.split("T", 1)[0],
+            "ingested_at": ingested_at,
         }
         path = space_root / "sources" / "records" / f"{source_id}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
