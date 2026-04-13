@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Accountability metrics are maintained in space-local persona profile history.",
+  "persona_id": "persona-eli-okafor",
+  "profile_image_path": "personas/profile_images/eli-okafor.jpg",
+  "profile_sections": [
+    {
+      "content": "Eli Okafor participates in space `alpha` as `persona-eli-okafor`.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring an operator's mindset to every conversation. I translate strategy into ownership, monitoring, and recovery plans before anyone mistakes optimism for readiness. I focus on practical clarity and collaborative problem-solving, and I push teams to design for the day things break, not just the day a launch deck looks good.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "Primary argument style: scenario-based and operational.",
+      "title": "Debate style"
+    },
+    {
+      "content": "- operations\n- infrastructure\n- service reliability",
+      "title": "Interests"
+    },
+    {
+      "content": "- Site Reliability Lead, Meridian Cloud Systems (2022-present)\n- Infrastructure Engineer, HarborStack Forgeworks (2018-2022)\n- BEng, Computer Engineering, Kintara Institute of Technology (2013-2017)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "alpha"
+}

@@ -71,6 +71,12 @@ Canonical operator wrappers (target interface during reconstruction):
 - `regenerate_web.sh <site_path> [space_name] [--verbose]`
 - `validate.sh <site_path> <space_name> [--workflow ...] [--run-id ...]`
 
+Persona image generation utility:
+
+- `python3 scripts/generate_profile_images.py [--persona-id <persona_id> ...] [--model imagen-4.0-generate-001] [--verbose]`
+- requires `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) in environment
+- reads prompts from `personas/social_users.json` (`profile_image_prompt`) and writes `.jpg` profile photos plus smaller `-thumb.jpg` avatar companions under `personas/profile_images/`
+
 Registry rule:
 
 - non-bootstrap commands use explicit `--registry-path <site_path>/spaces.toml`

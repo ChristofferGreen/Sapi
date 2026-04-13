@@ -12,10 +12,10 @@ class BootstrapPersonaProfileClientTests(unittest.TestCase):
             persona_row={
                 "persona_id": "persona-test",
                 "display_name": "Persona Test",
-                "profile_image_path": "personas/profile_images/test.png",
+                "profile_image_path": "personas/profile_images/test.jpg",
                 "biography_profile": (
-                    "Persona Test is known for practical judgment and clear communication that helps "
-                    "teams make defensible decisions under pressure."
+                    "I am known for practical judgment and clear communication that helps teams make "
+                    "defensible decisions under pressure."
                 ),
                 "short_cv": [
                     "Lead Analyst, Example Org (2021-present)",

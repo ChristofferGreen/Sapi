@@ -127,12 +127,12 @@ class PathContractTests(unittest.TestCase):
 
             self.assertEqual(
                 resolve_contract_path(
-                    "<repo_root>/personas/users.json",
+                    "<repo_root>/personas/social_users.json",
                     repo_root=repo_root,
                     site_path=site_path,
                     space_root=space_root,
                 ),
-                (repo_root / "personas/users.json").resolve(),
+                (repo_root / "personas/social_users.json").resolve(),
             )
             self.assertEqual(
                 resolve_contract_path(

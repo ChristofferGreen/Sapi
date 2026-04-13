@@ -268,6 +268,7 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
 
             topic_html = (space_root / "site" / "topics" / f"{topic_id}.html").read_text()
             sample_uid = second_rows[0]["comment_uid"]
+            sample_persona_id = second_rows[0]["persona_id"]
             sample_vote = second_rows[0]["social_vote"]
             self.assertIn("Comment Thread", topic_html)
             self.assertIn("Moderator Check", topic_html)
@@ -280,6 +281,14 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             self.assertIn(f"data-upvotes=\"{sample_vote['upvotes']}\"", topic_html)
             self.assertIn(f"data-downvotes=\"{sample_vote['downvotes']}\"", topic_html)
             self.assertIn(f"data-score=\"{sample_vote['score']}\"", topic_html)
+            self.assertIn(
+                f"src=\"/spaces/alpha/site/assets/persona_avatars/{sample_persona_id}.jpg\"",
+                topic_html,
+            )
+            avatar_asset = (
+                space_root / "site" / "assets" / "persona_avatars" / f"{sample_persona_id}.jpg"
+            )
+            self.assertTrue(avatar_asset.is_file())
 
     def test_web_augmented_mode_writes_canonical_snapshot_path_and_schema_marker(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

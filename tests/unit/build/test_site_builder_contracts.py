@@ -850,14 +850,14 @@ class SiteBuilderContractTests(unittest.TestCase):
                                 "can audit and improve decisions together."
                             ),
                             "biography_profile": (
-                                "Persona One is a practical evidence reviewer known for translating complex "
-                                "arguments into clear decisions. Their profile emphasizes reliability, transparent "
-                                "tradeoffs, and steady communication under operational pressure."
+                                "I am a practical evidence reviewer known for translating complex arguments "
+                                "into clear decisions. I emphasize reliability, transparent tradeoffs, and "
+                                "steady communication under operational pressure."
                             ),
                             "interests": ["risk management"],
                             "hot_topics": ["operational readiness"],
                             "anger_topics": ["misleading claims"],
-                            "profile_image_path": "personas/profile_images/maya-santoro.png",
+                            "profile_image_path": "personas/profile_images/maya-santoro.jpg",
                             "profile_image_prompt": (
                                 "Photorealistic portrait photo of this person at home in a study, natural "
                                 "window light, calm expression, realistic skin detail, documentary style."
@@ -902,7 +902,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                 self.assertIn(f"persona_id: {persona_id}", alpha_profile_html)
                 self.assertIn("Biography", alpha_profile_html)
                 self.assertIn("Short CV", alpha_profile_html)
-                self.assertIn("practical evidence reviewer", alpha_profile_html)
+                self.assertIn("I am a practical evidence reviewer", alpha_profile_html)
                 self.assertIn("Operations Advisor, Example Systems", alpha_profile_html)
             finally:
                 catalog_path.write_text(original_catalog)

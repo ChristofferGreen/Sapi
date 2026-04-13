@@ -1,0 +1,50 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>alpha - Search</title></head><body>
+<form class="top-search" style="position:relative;z-index:1" action="/spaces/alpha/site/search/index.html" method="get"><label for="space-search-q">Search</label> <input id="space-search-q" type="search" name="q"/></form>
+<aside class="sidebar" style="position:relative;z-index:2">
+<p class="site-name">Testing Exit Site</p>
+<p class="space-name">alpha</p>
+<nav>
+<ul><li><a href="/spaces/alpha/site/index.html">Space Home</a></li></ul>
+<details class="sidebar-spaces" open><summary>Spaces</summary><ul>
+<li><a class="current" href="/spaces/alpha/site/index.html">alpha</a></li>
+</ul></details>
+<details class="sidebar-subspaces" open><summary>Subspaces</summary><ul>
+<li><span>None</span></li>
+</ul></details>
+<details class="sidebar-topics" open><summary>Topics</summary><ul>
+
+</ul></details>
+</nav>
+</aside>
+<main>
+<nav class="tabs" aria-label="Primary tabs"><a class="tab" href="/spaces/alpha/site/new/index.html">New</a> <a class="tab" href="/spaces/alpha/site/sources/index.html">Sources</a> <a class="tab" href="/spaces/alpha/site/topics/index.html">Topics</a> <a class="tab" href="/spaces/alpha/site/users/index.html">Users</a> <a class="tab" href="/spaces/alpha/site/runs/index.html">Runs</a> <a class="claims-secondary" href="/spaces/alpha/site/claims/index.html">Claims</a></nav>
+<h1>Search</h1>
+<p id="search-results-summary" class="search-results-summary">4 indexed item(s)</p>
+<ul class="search-index">
+<li class="search-index-row" data-search-text="run run-20260413T065944Z--3qx2js0lnw"><span class="meta">run</span> <a href="/spaces/alpha/runs/run-20260413T065944Z--3qx2js0lnw/run.md">run-20260413T065944Z--3qx2js0lnw</a></li>
+<li class="search-index-row" data-search-text="run run-20260413T063515Z--4xwc5r1z3c"><span class="meta">run</span> <a href="/spaces/alpha/runs/run-20260413T063515Z--4xwc5r1z3c/run.md">run-20260413T063515Z--4xwc5r1z3c</a></li>
+<li class="search-index-row" data-search-text="run run-20260413T062311Z--gz0y26lyt9"><span class="meta">run</span> <a href="/spaces/alpha/runs/run-20260413T062311Z--gz0y26lyt9/run.md">run-20260413T062311Z--gz0y26lyt9</a></li>
+<li class="search-index-row" data-search-text="run run-20260413T055309Z--npjghqe3bw"><span class="meta">run</span> <a href="/spaces/alpha/runs/run-20260413T055309Z--npjghqe3bw/run.md">run-20260413T055309Z--npjghqe3bw</a></li>
+</ul>
+<script>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var query=(params.get('q')||'').toLowerCase().trim();
+  var rows=document.querySelectorAll('.search-index-row');
+  var visible=0;
+  rows.forEach(function(row){
+    var haystack=(row.getAttribute('data-search-text')||'').toLowerCase();
+    var show=!query||haystack.indexOf(query)!==-1;
+    row.style.display=show?'':'none';
+    if(show){visible+=1;}
+  });
+  var summary=document.getElementById('search-results-summary');
+  if(summary){
+    summary.textContent=query?visible+' result(s) for "'+query+'"':visible+' indexed item(s)';
+  }
+})();
+</script>
+
+</main>
+</body></html>

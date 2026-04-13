@@ -19,10 +19,13 @@ class PersonaBiographyVoiceContractTests(unittest.TestCase):
         self.assertIn("`90..180` words (`220` hard upper bound)", section)
         self.assertIn("core worldview, evidence/decision style, priorities, and friction points", section)
         self.assertIn("`biography_profile` is required for profile-page display copy", section)
+        self.assertIn("`biography_profile` MUST also be written in first person voice", section)
         self.assertIn("`short_cv` is required and MUST be a non-empty list", section)
+        self.assertIn("`short_cv` entries MUST use fictional organizations and educational institutions", section)
         self.assertIn("required `profile_image_prompt` used for persona-image generation", section)
-        self.assertIn("required `profile_image_path` (repo-relative `.png` path under `personas/profile_images/`)", section)
-        self.assertIn("`profile_image_path` MUST resolve to an existing `.png` image file at runtime", section)
+        self.assertIn("required `profile_image_path` (repo-relative `.jpg` path under `personas/profile_images/`)", section)
+        self.assertIn("`profile_image_path` MUST resolve to an existing `.jpg` image file at runtime", section)
+        self.assertIn("`profile_image_thumb_path` SHOULD exist alongside `profile_image_path`", section)
         self.assertIn("`profile_image_prompt` MUST request a photorealistic single-person image", section)
 
 

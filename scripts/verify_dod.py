@@ -318,7 +318,6 @@ def main() -> int:
                     space_root=space_root,
                 ),
                 "evidence_links": [
-                    str(_REPO_ROOT / "personas" / "users.json"),
                     str(_REPO_ROOT / "personas" / "social_users.json"),
                     str(users_index_path),
                     str(comment_topic_path),
@@ -653,11 +652,11 @@ def _check_seeded_users_social_profile(
     topic_payload: dict[str, object],
     space_root: Path,
 ) -> bool:
-    users_catalog = _read_json_if_exists(_REPO_ROOT / "personas" / "users.json")
     social_catalog = _read_json_if_exists(_REPO_ROOT / "personas" / "social_users.json")
-    if not isinstance(users_catalog, list) or len(users_catalog) != 100:
+    if not isinstance(social_catalog, dict):
         return False
-    if not isinstance(social_catalog, list) or len(social_catalog) != 100:
+    users_rows = social_catalog.get("users")
+    if not isinstance(users_rows, list) or len(users_rows) != 100:
         return False
 
     comment_section = topic_payload.get("comment_section")

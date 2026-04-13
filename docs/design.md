@@ -1032,7 +1032,7 @@ Seeded catalog requirements:
 - persona catalog is checked into repository at `<repo_root>/personas/social_users.json`
 - default catalog cardinality is exactly `100` users
 - runtime user generation for sites/spaces is disabled; no per-site/per-space catalog creation
-- profile photos are checked into `<repo_root>/personas/profile_images/*.png`
+- profile photos are checked into `<repo_root>/personas/profile_images/*.jpg`
 
 Primary catalog file:
 - `personas/social_users.json`
@@ -1045,8 +1045,9 @@ Recovered user-row fields (high signal):
 - `interests`, `hot_topics`, `anger_topics`
 - `prompt_fields` (`core_belief`, `argument_style`, `tone`, `evidence_preference`)
 - optional `liked_spaces` filtered to known site/space IDs
-- required `profile_image_path` (repo-relative `.png` path under `personas/profile_images/`)
+- required `profile_image_path` (repo-relative `.jpg` path under `personas/profile_images/`)
 - required `profile_image_prompt` used for persona-image generation
+- derived companion thumbnail path `profile_image_thumb_path` (same basename with `-thumb.jpg` suffix, under `personas/profile_images/`)
 - optional compatibility alias `id` where `id == persona_id`
 
 Normalization rules:
@@ -1057,10 +1058,13 @@ Normalization rules:
 - `biography` SHOULD be high-signal and usually target `90..180` words (`220` hard upper bound) so persona behavior is specific without becoming verbose.
 - `biography` SHOULD cover the persona's core worldview, evidence/decision style, priorities, and friction points.
 - `biography_profile` is required for profile-page display copy and SHOULD be distinct from `biography`.
+- `biography_profile` MUST also be written in first person voice from the persona's perspective.
 - `biography_profile` SHOULD be flavorful public-profile prose and usually target `25..120` words (`160` hard upper bound).
 - `short_cv` is required and MUST be a non-empty list of concise role/study timeline entries suitable for profile-page display.
+- `short_cv` entries MUST use fictional organizations and educational institutions (no real-world entities).
 - biography/topic fields normalized for minimum richness
-- `profile_image_path` MUST resolve to an existing `.png` image file at runtime
+- `profile_image_path` MUST resolve to an existing `.jpg` image file at runtime
+- `profile_image_thumb_path` SHOULD exist alongside `profile_image_path` as a smaller square avatar image.
 - `profile_image_prompt` MUST request a photorealistic single-person image that reflects the biography and stance.
 - `profile_image_prompt` MAY vary scene and appearance details (for example at home, on vacation, in space, with a funny hat, bald) while keeping identity cues consistent with the biography.
 - catalog `count` MUST equal the number of user rows and SHOULD be `100` in default checked-in seed
@@ -1277,7 +1281,7 @@ Historical memory schema marker:
 
 Comment UI affordances (historical UX contract):
 - threaded tree rendering
-- avatar and full-name attribution
+- avatar and full-name attribution (avatar SHOULD use the smaller `profile_image_thumb_path` companion image)
 - score-based collapse behavior with expand/collapse toggles
 - stable comment permalinks and thread expansion state keyed by `comment_uid` (not `pc-###`)
 

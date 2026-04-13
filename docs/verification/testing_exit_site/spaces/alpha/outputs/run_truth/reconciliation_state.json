@@ -1,0 +1,17 @@
+{
+  "flow_states": {
+    "persona_profile_pipeline": {
+      "advanced_run_ids": [
+        "run-20260413T055309Z--npjghqe3bw",
+        "run-20260413T062311Z--gz0y26lyt9",
+        "run-20260413T063515Z--4xwc5r1z3c",
+        "run-20260413T065944Z--3qx2js0lnw"
+      ],
+      "consecutive_advanced_runs": 4,
+      "last_advanced_completed_at": "2026-04-13T06:59:44Z",
+      "last_advanced_run_id": "run-20260413T065944Z--3qx2js0lnw",
+      "last_advanced_status": "success"
+    }
+  },
+  "schema_version": "run_truth_reconciliation_v1"
+}

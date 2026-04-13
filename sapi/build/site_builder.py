@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import lru_cache
 import hashlib
 from html import escape
 from pathlib import Path
@@ -12,7 +13,7 @@ from typing import Any
 from sapi.build.projection import SpaceProjection, load_space_projection
 from sapi.core.site_scope import load_site_scope, load_subspaces_metadata
 from sapi.lint.lint_engine import LintSummary, default_lint_summary
-from sapi.profiles.persona_catalog import load_seeded_persona_catalog
+from sapi.profiles.persona_catalog import derive_profile_image_thumb_path, load_seeded_persona_catalog
 
 _WIKI_SECTION_ORDER: tuple[str, ...] = (
     "lead summary",
@@ -122,6 +123,13 @@ def build_space_site(
         _write_space_user_profile_pages(
             output_root=output_root,
             context=context,
+            persona_rows=persona_rows,
+            incremental=incremental,
+        )
+    )
+    generated_files.extend(
+        _write_space_persona_avatar_assets(
+            output_root=output_root,
             persona_rows=persona_rows,
             incremental=incremental,
         )
@@ -274,6 +282,7 @@ def _write_source_pages(
             + _render_page_comment_section(
                 page_payload=source,
                 default_page_ref=f"source:{source['source_id']}",
+                space_name=context.space_name,
             )
         )
         _write_text_file(
@@ -379,6 +388,7 @@ def _render_topic_page(
         + _render_page_comment_section(
             page_payload=topic,
             default_page_ref=f"topic:{topic['topic_id']}",
+            space_name=context.space_name,
         )
     )
     return _render_space_layout(
@@ -409,7 +419,12 @@ def _resolve_topic_structure_type(topic: dict[str, object]) -> str:
     return "wiki"
 
 
-def _render_page_comment_section(*, page_payload: dict[str, object], default_page_ref: str) -> str:
+def _render_page_comment_section(
+    *,
+    page_payload: dict[str, object],
+    default_page_ref: str,
+    space_name: str,
+) -> str:
     comment_section = page_payload.get("comment_section")
     if not isinstance(comment_section, dict):
         return ""
@@ -425,6 +440,7 @@ def _render_page_comment_section(*, page_payload: dict[str, object], default_pag
         if not comment_uid:
             continue
         persona_id = str(comment.get("persona_id") or "").strip()
+        avatar_href = _persona_avatar_site_href(space_name=space_name, persona_id=persona_id)
         comment_no = str(comment.get("comment_no") or "")
         body = str(comment.get("body") or "")
         parent_uid_raw = comment.get("parent_comment_uid")
@@ -440,7 +456,12 @@ def _render_page_comment_section(*, page_payload: dict[str, object], default_pag
                 f"data-thread-expansion-key=\"{escape(thread_expansion_key)}\">"
                 f"<header><a class=\"comment-permalink\" href=\"{escape(permalink)}\">Permalink</a> "
                 f"<span class=\"comment-no\">{escape(comment_no)}</span> "
-                f"<span class=\"comment-persona\">{escape(persona_id)}</span></header>"
+                + (
+                    f"<img class=\"comment-avatar\" src=\"{escape(avatar_href)}\" alt=\"Avatar for {escape(persona_id)}\" loading=\"lazy\" /> "
+                    if avatar_href
+                    else ""
+                )
+                + f"<span class=\"comment-persona\">{escape(persona_id)}</span></header>"
                 f"<p class=\"comment-body\">{escape(body)}</p>"
                 + (
                     f"<p class=\"comment-parent\">Replying to {escape(parent_uid)}</p>"
@@ -699,6 +720,13 @@ def _write_text_file(path: Path, content: str, *, incremental: bool) -> None:
     path.write_text(content)
 
 
+def _write_binary_file(path: Path, content: bytes, *, incremental: bool) -> None:
+    if incremental and path.is_file() and path.read_bytes() == content:
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(content)
+
+
 def _render_pinned_parent_link(topic: dict[str, object]) -> str:
     pinned_parent_link = topic.get("pinned_parent_link")
     if not isinstance(pinned_parent_link, dict):
@@ -798,10 +826,25 @@ def _resolve_space_tabs(space_root: Path) -> list[str]:
     return tabs
 
 
+def _repo_root() -> Path:
+    return Path(__file__).resolve().parents[2]
+
+
 def _load_persona_rows() -> list[dict[str, Any]]:
-    repo_root = Path(__file__).resolve().parents[2]
+    repo_root = _repo_root()
     rows = load_seeded_persona_catalog(repo_root=repo_root)
     return sorted(rows, key=lambda row: str(row["persona_id"]))
+
+
+def _persona_avatar_site_href(*, space_name: str, persona_id: str) -> str:
+    if not persona_id or persona_id not in _persona_ids():
+        return ""
+    return f"/spaces/{space_name}/site/assets/persona_avatars/{persona_id}.jpg"
+
+
+@lru_cache(maxsize=1)
+def _persona_ids() -> set[str]:
+    return {str(row["persona_id"]) for row in _load_persona_rows()}
 
 
 def _space_feed_entries(*, space_name: str, projection: SpaceProjection) -> list[_FeedEntry]:
@@ -991,6 +1034,42 @@ def _write_space_user_profile_pages(
         )
         written.append(path)
     return written
+
+
+def _write_space_persona_avatar_assets(
+    *,
+    output_root: Path,
+    persona_rows: list[dict[str, Any]],
+    incremental: bool,
+) -> list[Path]:
+    assets_root = output_root / "assets" / "persona_avatars"
+    assets_root.mkdir(parents=True, exist_ok=True)
+    written: list[Path] = []
+    for row in persona_rows:
+        persona_id = str(row["persona_id"])
+        source_path = _resolve_persona_avatar_source_path(row)
+        if source_path is None:
+            continue
+        target_path = assets_root / f"{persona_id}.jpg"
+        _write_binary_file(target_path, source_path.read_bytes(), incremental=incremental)
+        written.append(target_path)
+    return written
+
+
+def _resolve_persona_avatar_source_path(row: dict[str, Any]) -> Path | None:
+    profile_image_path = str(row.get("profile_image_path") or "").strip()
+    if not profile_image_path:
+        return None
+    thumb_path = _repo_root() / str(
+        row.get("profile_image_thumb_path")
+        or derive_profile_image_thumb_path(profile_image_path=profile_image_path)
+    )
+    if thumb_path.is_file():
+        return thumb_path
+    profile_path = _repo_root() / profile_image_path
+    if profile_path.is_file():
+        return profile_path
+    return None
 
 
 def _write_space_search_page(

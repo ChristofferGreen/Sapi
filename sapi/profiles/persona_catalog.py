@@ -34,6 +34,7 @@ def canonical_persona_catalog_path(*, repo_root: Path) -> Path:
 def load_seeded_persona_catalog(
     *,
     repo_root: Path | None = None,
+    require_image_files: bool = True,
 ) -> list[dict[str, Any]]:
     resolved_repo_root = _resolve_repo_root(repo_root)
     canonical_path = canonical_persona_catalog_path(repo_root=resolved_repo_root)
@@ -45,7 +46,11 @@ def load_seeded_persona_catalog(
             f"Persona catalog not found at canonical path {canonical_path}."
         )
 
-    return _normalize_and_validate_rows(rows, repo_root=resolved_repo_root)
+    return _normalize_and_validate_rows(
+        rows,
+        repo_root=resolved_repo_root,
+        require_image_files=require_image_files,
+    )
 
 
 def _resolve_repo_root(repo_root: Path | None) -> Path:
@@ -78,12 +83,18 @@ def _normalize_and_validate_rows(
     rows: list[dict[str, Any]],
     *,
     repo_root: Path,
+    require_image_files: bool,
 ) -> list[dict[str, Any]]:
     normalized_rows: list[dict[str, Any]] = []
     seen_persona_ids: set[str] = set()
 
     for index, raw_row in enumerate(rows):
-        row = _normalize_row(raw_row, row_index=index, repo_root=repo_root)
+        row = _normalize_row(
+            raw_row,
+            row_index=index,
+            repo_root=repo_root,
+            require_image_files=require_image_files,
+        )
         persona_id = row["persona_id"]
         if persona_id in seen_persona_ids:
             raise ValueError(f"Duplicate persona_id detected: {persona_id}")
@@ -98,6 +109,7 @@ def _normalize_row(
     *,
     row_index: int,
     repo_root: Path,
+    require_image_files: bool,
 ) -> dict[str, Any]:
     if not isinstance(raw_row, dict):
         raise TypeError(f"Persona row at index {row_index} must be an object.")
@@ -168,6 +180,10 @@ def _normalize_row(
         profile_image_path=row["profile_image_path"],
         repo_root=repo_root,
         row_index=row_index,
+        require_image_files=require_image_files,
+    )
+    row["profile_image_thumb_path"] = derive_profile_image_thumb_path(
+        profile_image_path=row["profile_image_path"]
     )
     _validate_profile_image_prompt(
         prompt=row["profile_image_prompt"],
@@ -181,6 +197,7 @@ def _resolve_profile_image_path(
     profile_image_path: str,
     repo_root: Path,
     row_index: int,
+    require_image_files: bool,
 ) -> Path:
     relative_path = Path(profile_image_path)
     if relative_path.is_absolute():
@@ -193,9 +210,9 @@ def _resolve_profile_image_path(
         raise ValueError(
             f"users[{row_index}].profile_image_path must be under personas/profile_images/."
         )
-    if relative_path.suffix.lower() != ".png":
+    if relative_path.suffix.lower() != ".jpg":
         raise ValueError(
-            f"users[{row_index}].profile_image_path must reference a .png image under personas/profile_images/."
+            f"users[{row_index}].profile_image_path must reference a .jpg image under personas/profile_images/."
         )
 
     profile_root = (repo_root / _PROFILE_IMAGES_DIR).resolve()
@@ -206,7 +223,7 @@ def _resolve_profile_image_path(
         raise ValueError(
             f"users[{row_index}].profile_image_path escapes personas/profile_images/."
         ) from exc
-    if not resolved.is_file():
+    if require_image_files and not resolved.is_file():
         raise ValueError(
             f"users[{row_index}].profile_image_path does not resolve to an existing image file."
         )
@@ -246,6 +263,8 @@ def _validate_profile_biography_contract(
     biography: str,
     field_name: str,
 ) -> None:
+    if not biography_profile.startswith("I "):
+        raise ValueError(f"{field_name} must start with first-person voice ('I ...').")
     words = _WORD_RE.findall(biography_profile)
     word_count = len(words)
     if word_count < _BIOGRAPHY_PROFILE_MIN_WORDS or word_count > _BIOGRAPHY_PROFILE_MAX_WORDS:
@@ -266,3 +285,9 @@ def _validate_profile_image_prompt(*, prompt: str, field_name: str) -> None:
         raise ValueError(f"{field_name} must explicitly request a photorealistic/photo style image.")
     if "person" not in normalized and "portrait" not in normalized:
         raise ValueError(f"{field_name} must clearly describe a single-person portrait subject.")
+
+
+def derive_profile_image_thumb_path(*, profile_image_path: str) -> str:
+    """Return repository-relative companion thumbnail path for a profile image."""
+    relative_path = Path(profile_image_path)
+    return str(relative_path.with_name(f"{relative_path.stem}-thumb.jpg"))

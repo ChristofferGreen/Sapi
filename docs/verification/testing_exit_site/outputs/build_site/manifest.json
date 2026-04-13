@@ -1,0 +1,73 @@
+{
+  "build_mode": "deterministic",
+  "frozen_install_mode": "npm ci",
+  "lint": {
+    "error_count": 0,
+    "info_count": 0,
+    "issues": [],
+    "warning_count": 0
+  },
+  "registry_path": "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces.toml",
+  "semantic_flows_executed": [],
+  "site_new_index_path": "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/site/new/index.html",
+  "site_path": "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site",
+  "site_presentation_mode": "public",
+  "space_builds": [
+    {
+      "content_hashes": {
+        "assets/persona_avatars/persona-eli-okafor.jpg": "1bb677e3af808a0f312227a978b419a74c2214574d27db6b21ad356cb96ce5d2",
+        "assets/persona_avatars/persona-lina-kovac.jpg": "7014dc2a2cccba883b5c59ff982578928930a2c9bcf8e62dfb15cbb8adb0be38",
+        "assets/persona_avatars/persona-maya-santoro.jpg": "20ce601b5b60b8f247c2b3a2c477462a25a80c098551b382b1a280d5f086c246",
+        "assets/persona_avatars/persona-rory-chen.jpg": "5ff08e4513421223c3ba1ce34173e9a2edac5d2cb8886acf474f29a2120b2312",
+        "assets/persona_avatars/persona-samira-haddad.jpg": "84d2c819106b96f7e9fef829e59dbc5ee650209b00cb3f622c3dbba1904a46df",
+        "index.html": "700d5c75b1080bd72e217b609f62dfbdd9c4e53d88f5577bb37f8e3598e32586",
+        "new/index.html": "6cd809b1eb9c4f2b876824fb1fc68332420727febd990b245ad865c835fb03f3",
+        "runs/index.html": "dcef37e939ca8145d251f64e6a260df30fd0b6a58c0cb415aa64612151f213e9",
+        "search/index.html": "10f02787686bd5810832d9fd6fbdfd5d4e8799129385c907933e98f71a7dff61",
+        "sources/index.html": "cfc65ebf8e201f51063333cc2f9a5cf4662d7ddb6a475760491a93cb354f384e",
+        "topics/index.html": "cb4755f4db72e9375a81725e7d88ef27fae41d879fa1534e361f969a1ca674ee",
+        "users/index.html": "4d21966eaa72dc47513b7c6cc6c2d0393c6fce7182b229e1004a54951ecc31c6",
+        "users/persona-persona-eli-okafor.html": "998681a8161d5b2c78f0ef98ad4703267bcccf46a9753bb08591dc11e2f5ec40",
+        "users/persona-persona-lina-kovac.html": "0a0e67040ec7b85e444c7183aaabed3934451c7a10c07b8dca76e99e6e145f42",
+        "users/persona-persona-maya-santoro.html": "3c9b7339456df3bcde15da14daf3afafd82bd39564c930550e3fe7e5109a71bd",
+        "users/persona-persona-rory-chen.html": "5814b2cffc940f1f9f87cf640e73430a7fbd8a5c3848e9507f185f2df152e0f4",
+        "users/persona-persona-samira-haddad.html": "b6a8560a1f4a1b2e6cda4c420bb78874d2f878f2b89256c01207de8f253bc848"
+      },
+      "generated_files": [
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/assets/persona_avatars/persona-eli-okafor.jpg",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/assets/persona_avatars/persona-lina-kovac.jpg",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/assets/persona_avatars/persona-maya-santoro.jpg",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/assets/persona_avatars/persona-rory-chen.jpg",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/assets/persona_avatars/persona-samira-haddad.jpg",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/index.html",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/new/index.html",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/runs/index.html",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/search/index.html",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/sources/index.html",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/topics/index.html",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/users/index.html",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/users/persona-persona-eli-okafor.html",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/users/persona-persona-lina-kovac.html",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/users/persona-persona-maya-santoro.html",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/users/persona-persona-rory-chen.html",
+        "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site/users/persona-persona-samira-haddad.html"
+      ],
+      "lint": {
+        "error_count": 0,
+        "info_count": 0,
+        "warning_count": 0
+      },
+      "output_root": "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/alpha/site",
+      "space_name": "alpha"
+    }
+  ],
+  "space_targets": [
+    "alpha"
+  ],
+  "toolchain_versions": {
+    "node": "20",
+    "package_manager": "npm@10.9.2",
+    "tailwind_cli": "not_declared"
+  },
+  "workflow_key": "build_site"
+}

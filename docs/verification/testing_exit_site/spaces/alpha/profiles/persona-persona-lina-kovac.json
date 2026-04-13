@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Accountability metrics are maintained in space-local persona profile history.",
+  "persona_id": "persona-lina-kovac",
+  "profile_image_path": "personas/profile_images/lina-kovac.jpg",
+  "profile_sections": [
+    {
+      "content": "Lina Kovac participates in space `alpha` as `persona-lina-kovac`.",
+      "title": "Identity"
+    },
+    {
+      "content": "I am a public-interest communicator who makes complex systems understandable without simplifying away the stakes. I combine empathy with sharp analysis, asking who gains, who is left out, and whether affected people can challenge decisions in plain language. I focus on trust-building work across policy, community engagement, and accessibility design.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "Primary argument style: values-aware with concrete examples.",
+      "title": "Debate style"
+    },
+    {
+      "content": "- equity\n- public communication\n- community outcomes",
+      "title": "Interests"
+    },
+    {
+      "content": "- Community Strategy Director, OpenCity Foundation (2020-present)\n- Public Communication Advisor, Better Services Initiative (2016-2020)\n- MA, Public Policy and Society, Danovar School of Civic Governance (2014-2016)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "alpha"
+}

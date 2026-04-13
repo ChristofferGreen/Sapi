@@ -12,14 +12,14 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
     def test_loader_reads_canonical_catalog_and_ignores_site_local_copies(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp) / "repo"
-            self._write_image(repo_root, "alice.png")
+            self._write_image(repo_root, "alice.jpg")
             self._write_catalog(
                 repo_root / "personas" / "social_users.json",
                 [
                     self._persona_row(
                         persona_id="persona-alice",
                         id="persona-alice",
-                        profile_image_path="personas/profile_images/alice.png",
+                        profile_image_path="personas/profile_images/alice.jpg",
                     )
                 ],
             )
@@ -49,14 +49,14 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
     def test_loader_normalizes_legacy_id_alias_and_rejects_mismatched_alias(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp) / "repo"
-            self._write_image(repo_root, "alias.png")
+            self._write_image(repo_root, "alias.jpg")
             self._write_catalog(
                 repo_root / "personas" / "social_users.json",
                 [
                     self._persona_row(
                         id="persona-alias",
                         persona_id=None,
-                        profile_image_path="personas/profile_images/alias.png",
+                        profile_image_path="personas/profile_images/alias.jpg",
                     )
                 ],
             )
@@ -74,19 +74,19 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
     def test_loader_rejects_duplicate_or_invalid_persona_ids(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp) / "repo"
-            self._write_image(repo_root, "dup.png")
+            self._write_image(repo_root, "dup.jpg")
             self._write_catalog(
                 repo_root / "personas" / "social_users.json",
                 [
                     self._persona_row(
                         persona_id="persona-dup",
                         id="persona-dup",
-                        profile_image_path="personas/profile_images/dup.png",
+                        profile_image_path="personas/profile_images/dup.jpg",
                     ),
                     self._persona_row(
                         persona_id="persona-dup",
                         id="persona-dup",
-                        profile_image_path="personas/profile_images/dup.png",
+                        profile_image_path="personas/profile_images/dup.jpg",
                     ),
                 ],
             )
@@ -103,28 +103,29 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
     def test_loader_requires_profile_image_under_repo_seeded_profile_images(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp) / "repo"
-            self._write_image(repo_root, "ok.png")
+            self._write_image(repo_root, "ok.jpg")
 
             self._write_catalog(
                 repo_root / "personas" / "social_users.json",
-                [self._persona_row(profile_image_path="personas/profile_images/missing.png")],
+                [self._persona_row(profile_image_path="personas/profile_images/missing.jpg")],
             )
             with self.assertRaises(ValueError):
                 load_seeded_persona_catalog(repo_root=repo_root)
 
             self._write_catalog(
                 repo_root / "personas" / "social_users.json",
-                [self._persona_row(profile_image_path="personas/not-profile-images/ok.png")],
+                [self._persona_row(profile_image_path="personas/not-profile-images/ok.jpg")],
             )
             with self.assertRaises(ValueError):
                 load_seeded_persona_catalog(repo_root=repo_root)
 
             self._write_catalog(
                 repo_root / "personas" / "social_users.json",
-                [self._persona_row(profile_image_path="personas/profile_images/ok.png")],
+                [self._persona_row(profile_image_path="personas/profile_images/ok.jpg")],
             )
             rows = load_seeded_persona_catalog(repo_root=repo_root)
             self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["profile_image_thumb_path"], "personas/profile_images/ok-thumb.jpg")
 
             self._write_image(repo_root, "ok.svg")
             self._write_catalog(
@@ -137,7 +138,7 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
     def test_loader_enforces_biography_voice_length_and_topic_richness(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp) / "repo"
-            self._write_image(repo_root, "ok.png")
+            self._write_image(repo_root, "ok.jpg")
 
             self._write_catalog(
                 repo_root / "personas" / "social_users.json",
@@ -175,6 +176,18 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 load_seeded_persona_catalog(repo_root=repo_root)
 
+            third_person_profile = (
+                "Default Persona is a pragmatic reviewer who helps teams balance evidence, uncertainty, and "
+                "delivery pressure with clear tradeoffs. They keep discussions focused and improve decisions "
+                "with concrete implementation checks and explicit risk ownership."
+            )
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [self._persona_row(biography_profile=third_person_profile)],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
             same_text = (
                 "I evaluate ideas by tracing assumptions, evidence quality, and real-world tradeoffs before "
                 "I endorse a claim. I prefer transparent methods over charisma, and I routinely ask what "
@@ -202,7 +215,7 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
     def test_loader_enforces_profile_image_prompt_contract(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp) / "repo"
-            self._write_image(repo_root, "ok.png")
+            self._write_image(repo_root, "ok.jpg")
 
             self._write_catalog(
                 repo_root / "personas" / "social_users.json",
@@ -238,7 +251,7 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
         *,
         persona_id: str | None = "persona-default",
         id: str | None = None,
-        profile_image_path: str = "personas/profile_images/ok.png",
+        profile_image_path: str = "personas/profile_images/ok.jpg",
         profile_image_prompt: str | None = None,
         biography: str | None = None,
         biography_profile: str | None = None,
@@ -260,9 +273,9 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
             else biography
         )
         biography_profile_text = (
-            "Default Persona is known for crisp, evidence-aware judgment and clear communication under "
-            "pressure. They turn messy debates into explicit tradeoffs, make uncertainty visible early, "
-            "and help collaborators ship decisions that can be defended and improved."
+            "I am known for crisp, evidence-aware judgment and clear communication under pressure. I turn "
+            "messy debates into explicit tradeoffs, make uncertainty visible early, and help collaborators "
+            "ship decisions that can be defended and improved."
             if biography_profile is None
             else biography_profile
         )
