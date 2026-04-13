@@ -2172,3 +2172,22 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     normalized dynamic fields (`run_id`, timestamps, source IDs, target page refs, python
     version) in assertions. Updated `docs/testing_plan.md` to mark the run-envelope item
     complete.
+
+- [x] TODO-0307: Close Tier 6 live LLM canary checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0210, TODO-0220
+  - scope: Finalize Tier 6 non-blocking live-canary coverage with a minimal real-backend
+    end-to-end smoke path and explicit opt-in execution controls.
+  - acceptance:
+    - `tests/live/test_live_llm_canary.py` is marked `@pytest.mark.live_llm`.
+    - Live canary executes a minimal real-backend smoke for integration drift detection.
+    - `docs/testing_plan.md` marks the Tier 6 live canary checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 6; `docs/design.md` Sections 2, 11
+  - evidence: Updated `tests/live/test_live_llm_canary.py` to run opt-in
+    `ingest_source.py -> query.py` live smoke execution (no `--mock-llm`) with gating on
+    `SAPI_RUN_LIVE_CANARY=1` and `OPENAI_API_KEY` presence, and assertions on newly created
+    run envelopes for `ingest_pipeline` and `query_pipeline` with `execution_mode=live_llm`.
+    Updated `docs/testing_plan.md` to mark Tier 6 live canary complete.

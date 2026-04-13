@@ -132,7 +132,7 @@ tests/
 
 ### Tier 6: Live LLM Canary (non-blocking)
 
-- [ ] Minimal real-backend smoke test for end-to-end integration drift detection.
+- [x] Minimal real-backend smoke test for end-to-end integration drift detection.
   - Module: `tests/live/test_live_llm_canary.py`
   - Mark: `@pytest.mark.live_llm` and exclude from default PR runs.
 
