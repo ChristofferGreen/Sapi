@@ -47,33 +47,33 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. (none currently)
+1. `TODO-0310`
 
 ### Immediate Next 10 (After Ready Now)
 
-1. (none currently)
+1. `TODO-0311`
+2. `TODO-0312`
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: (none currently)
+- P0 Foundation/contracts: TODO-0310
+- P1 Core product behavior: TODO-0311
 - P2 Social/eval/hardening: (none currently)
-- P3 Continuous docs governance: (none currently)
+- P3 Continuous docs governance: TODO-0312
 
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. (none currently)
+1. TODO-0310
 
 Wave B (ingest + projection + lint):
-1. (none currently)
+1. TODO-0311
 
 Wave C (query + social + hardening + release):
-1. (none currently)
-2. (none currently)
+1. TODO-0312
 
 Cross-cutting docs backlog:
-1. (none currently)
+1. TODO-0312
 
 ### Design Coverage Snapshot
 
@@ -93,11 +93,11 @@ Cross-cutting docs backlog:
 | Section 7.6 comments pipeline/rendering | - |
 | Section 7.7 comment quality harness | - |
 | Section 8 site/UI/static build | - |
-| Section 9 observability/safety/runtime controls | - |
-| Section 10 run envelopes/lifecycle status | - |
-| Section 11 testing strategy | - |
-| Section 12 reconstruction plan | - |
-| Section 13 definition of done | - |
+| Section 9 observability/safety/runtime controls | TODO-0311 |
+| Section 10 run envelopes/lifecycle status | TODO-0311 |
+| Section 11 testing strategy | TODO-0310, TODO-0311, TODO-0312 |
+| Section 12 reconstruction plan | TODO-0311 |
+| Section 13 definition of done | TODO-0312 |
 
 ### Low-Level Coverage Snapshot
 
@@ -107,23 +107,60 @@ Cross-cutting docs backlog:
 | Section 4 (core data types/run envelope types) | - |
 | Section 5 (path + registry contracts) | - |
 | Section 6 (semantic execution engine + retry/repair) | - |
-| Section 7 (transaction/rollback) | - |
+| Section 7 (transaction/rollback) | TODO-0311 |
 | Section 8 (pipeline execution contracts) | - |
 | Section 9 (deterministic build/projection) | - |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
 | Section 12 (wrapper/script interfaces) | - |
 | Section 13 (observability/runtime controls/safety) | - |
-| Section 14 (anti-drift and PR guardrails) | - |
-| Section 15 (test-plan binding) | - |
-| Section 16 (change discipline) | - |
+| Section 14 (anti-drift and PR guardrails) | TODO-0311 |
+| Section 15 (test-plan binding) | TODO-0310, TODO-0311, TODO-0312 |
+| Section 16 (change discipline) | TODO-0312 |
 
 ### Testing Plan Coverage Snapshot
 
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
-| Section 2 (test module layout) | - |
-| Tier 0-3 (fast contract/failure/pipeline suites) | - |
-| Tier 4-6 (determinism/golden/live canary) | - |
-| Section 4-5 (CI gating matrix + command wiring) | - |
-| Section 6 (exit criteria gating) | - |
+| Section 2 (test module layout) | TODO-0310, TODO-0311 |
+| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0310, TODO-0311 |
+| Tier 4-6 (determinism/golden/live canary) | TODO-0312 |
+| Section 4-5 (CI gating matrix + command wiring) | TODO-0312 |
+| Section 6 (exit criteria gating) | TODO-0312 |
+
+### Task Blocks
+
+- [ ] TODO-0312: Close Section 6 testing exit criteria with explicit evidence
+  - owner: ai
+  - created_at: 2026-04-13
+  - phase: Cross-cutting
+  - depends_on: TODO-0311
+  - scope: Convert remaining Section 6 exit criteria into explicit verification evidence and only then mark criteria complete.
+  - acceptance:
+    - Exit criteria checks produce concrete evidence references (commands/artifacts) for each unchecked Section 6 bullet.
+    - `docs/testing_plan.md` Section 6 checkboxes are updated only with linked evidence.
+    - `docs/todo_finished.md` records completion evidence for this gate.
+  - notes: source `docs/testing_plan.md` Section 6
+
+- [ ] TODO-0311: Add deterministic helpers for run/lint and rollback assertions
+  - owner: ai
+  - created_at: 2026-04-13
+  - phase: Phase 4
+  - depends_on: TODO-0310
+  - scope: Add reusable helpers in `tests/conftest.py` for `run.md`, `lint.json`, and rollback-cleanup assertions, then adopt them in failure tests.
+  - acceptance:
+    - `tests/conftest.py` includes helper APIs for run-frontmatter assertions, lint artifact assertions, and rollback cleanup checks.
+    - At least one failure integration module uses the new helpers.
+    - Tier 0 helper checklist item is marked complete in `docs/testing_plan.md`.
+  - notes: source `docs/testing_plan.md` Tier 0
+
+- [ ] TODO-0310: Add deterministic mock LLM fixture modes for contract tests
+  - owner: ai
+  - created_at: 2026-04-13
+  - phase: Phase 4
+  - scope: Add mock LLM fixture utilities in `tests/conftest.py` for `valid`, `invalid_then_repair`, and `repair_exhausted` modes.
+  - acceptance:
+    - Fixture factory exposes all three required modes with deterministic payloads.
+    - Existing semantic retry/spec tests can consume the fixture utilities without behavior regressions.
+    - Tier 0 mock fixture checklist item is marked complete in `docs/testing_plan.md`.
+  - notes: source `docs/testing_plan.md` Tier 0

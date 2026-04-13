@@ -2213,3 +2213,22 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     distinct registry files, and registry-scoped `resolve_space_root(...)` behavior for
     multiple fixtures. Updated `docs/testing_plan.md` to mark the Tier 0 fixture-factory item
     complete.
+
+- [x] TODO-0309: Track rebuilt Tier 0 foundation queue after open TODO reset
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Cross-cutting
+  - scope: Reconstitute open TODO queue from unchecked testing-plan work after clearing
+    `docs/todo.md`.
+  - acceptance:
+    - `docs/todo.md` contains concrete open task blocks mapped to unchecked testing-plan work.
+    - Ready/queue/coverage snapshot sections reflect those open tasks consistently.
+    - New tasks use stable IDs and dependency ordering.
+  - notes: source `docs/todo.md` operating rules; `docs/testing_plan.md` unchecked items
+  - evidence: Rebuilt `docs/todo.md` open queue around remaining unchecked testing-plan work
+    (`TODO-0310`, `TODO-0311`, `TODO-0312`), moved `TODO-0310` into Ready Now after removing
+    the resolved dependency on `TODO-0309`, and synchronized priority lanes, execution queue,
+    and design/low-level/testing-plan coverage snapshots to the remaining open IDs. Added
+    `tests/unit/contracts/test_todo_0309_queue_reconstitution.py` to lock these queue and
+    dependency invariants.
