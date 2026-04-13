@@ -74,10 +74,10 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("Topic A", first_index_text)
             self.assertIn("Source A", first_index_text)
             self.assertIn('<meta name="viewport" content="width=device-width, initial-scale=1">', first_index_text)
-            self.assertIn('<link rel="stylesheet" href="/spaces/alpha/site/assets/site.css">', first_index_text)
+            self.assertIn('<link rel="stylesheet" href="assets/site.css">', first_index_text)
             site_new_text = site_new_path.read_text()
             self.assertIn('<meta name="viewport" content="width=device-width, initial-scale=1">', site_new_text)
-            self.assertIn('<link rel="stylesheet" href="/site/assets/site.css">', site_new_text)
+            self.assertIn('<link rel="stylesheet" href="../assets/site.css">', site_new_text)
 
             second = self._run(command)
             self.assertEqual(second.returncode, 0, msg=second.stderr)

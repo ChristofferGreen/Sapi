@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from functools import lru_cache
 import hashlib
 from html import escape
+import os
 from pathlib import Path
 import re
 from typing import Any
@@ -154,6 +155,7 @@ def build_space_site(
             space_name=space_name,
             projection=projection,
             context=context,
+            stylesheet_href=_relative_href(from_file=index_path, to_file=stylesheet_path),
         ),
         incremental=incremental,
     )
@@ -207,12 +209,14 @@ def refresh_site_new_index(
     site_root.mkdir(parents=True, exist_ok=True)
     site_stylesheet_path = site_root / "assets" / "site.css"
     _write_binary_file(site_stylesheet_path, compiled_stylesheet, incremental=incremental)
+    site_index_path = site_root / "index.html"
     _write_text_file(
-        site_root / "index.html",
+        site_index_path,
         _render_site_root_index(
             site_name=site_name,
             space_names=space_names,
             subspaces_by_space=subspaces_by_space,
+            stylesheet_href=_relative_href(from_file=site_index_path, to_file=site_stylesheet_path),
         ),
         incremental=incremental,
     )
@@ -243,6 +247,7 @@ def refresh_site_new_index(
                 page_entries=page_entries,
                 page_number=page_number,
                 page_count=len(pages),
+                stylesheet_href=_relative_href(from_file=page_path, to_file=site_stylesheet_path),
             ),
             incremental=incremental,
         )
@@ -261,6 +266,10 @@ def _write_source_pages(
     written: list[Path] = []
     for source in sorted(projection.sources, key=lambda item: item["source_id"]):
         source_path = sources_dir / f"{source['source_id']}.html"
+        stylesheet_href = _relative_href(
+            from_file=source_path,
+            to_file=output_root / "assets" / "site.css",
+        )
         source_summary = _compact_summary(str(source.get("summary") or source.get("context") or ""))
         source_file_href = _source_file_href(source=source, space_name=context.space_name)
         source_preview_href = _source_preview_site_href(str(source["source_id"]))
@@ -302,6 +311,7 @@ def _write_source_pages(
                 body=body,
                 context=context,
                 current_tab="sources",
+                stylesheet_href=stylesheet_href,
             ),
             incremental=incremental,
         )
@@ -328,6 +338,10 @@ def _write_topic_pages(
                 topic,
                 site_presentation_mode=site_presentation_mode,
                 context=context,
+                stylesheet_href=_relative_href(
+                    from_file=topic_path,
+                    to_file=output_root / "assets" / "site.css",
+                ),
             ),
             incremental=incremental,
         )
@@ -340,6 +354,7 @@ def _render_space_index(
     space_name: str,
     projection: SpaceProjection,
     context: _SpaceLayoutContext,
+    stylesheet_href: str,
 ) -> str:
     source_rows = "\n".join(
         f"<li><a href=\"./sources/{escape(source['source_id'])}.html\">{escape(source['title'])}</a></li>"
@@ -364,6 +379,7 @@ def _render_space_index(
         context=context,
         current_tab=None,
         current_page="space_home",
+        stylesheet_href=stylesheet_href,
     )
 
 
@@ -372,6 +388,7 @@ def _render_topic_page(
     *,
     site_presentation_mode: str,
     context: _SpaceLayoutContext,
+    stylesheet_href: str,
 ) -> str:
     if site_presentation_mode not in {"public", "debug"}:
         raise ValueError(f"Unsupported site_presentation_mode: {site_presentation_mode!r}")
@@ -407,6 +424,7 @@ def _render_topic_page(
         context=context,
         current_tab="topics",
         current_page=f"topic:{topic['topic_id']}",
+        stylesheet_href=stylesheet_href,
     )
 
 
@@ -994,6 +1012,10 @@ def _write_space_tab_pages(
                     body=body,
                     context=context,
                     current_tab=tab_key,
+                    stylesheet_href=_relative_href(
+                        from_file=page_path,
+                        to_file=output_root / "assets" / "site.css",
+                    ),
                 ),
                 incremental=incremental,
             )
@@ -1039,6 +1061,10 @@ def _write_space_user_profile_pages(
                 body=body,
                 context=context,
                 current_tab="users",
+                stylesheet_href=_relative_href(
+                    from_file=path,
+                    to_file=output_root / "assets" / "site.css",
+                ),
             ),
             incremental=incremental,
         )
@@ -1145,6 +1171,10 @@ def _write_space_search_page(
             body=body,
             context=context,
             current_tab=None,
+            stylesheet_href=_relative_href(
+                from_file=search_path,
+                to_file=output_root / "assets" / "site.css",
+            ),
         ),
         incremental=incremental,
     )
@@ -1201,9 +1231,9 @@ def _render_space_layout(
     body: str,
     context: _SpaceLayoutContext,
     current_tab: str | None,
+    stylesheet_href: str,
     current_page: str | None = None,
 ) -> str:
-    stylesheet_href = f"/spaces/{context.space_name}/site/assets/site.css"
     return (
         "<!doctype html>\n"
         "<html lang=\"en\"><head><meta charset=\"utf-8\">"
@@ -1327,6 +1357,10 @@ def _paginated_page_path(root: Path, *, page_number: int) -> Path:
     return root / "page" / str(page_number) / "index.html"
 
 
+def _relative_href(*, from_file: Path, to_file: Path) -> str:
+    return Path(os.path.relpath(to_file, start=from_file.parent)).as_posix()
+
+
 def _render_pagination(
     *,
     page_number: int,
@@ -1361,6 +1395,7 @@ def _write_site_users_pages(
 ) -> None:
     users_root = site_root / "users"
     users_root.mkdir(parents=True, exist_ok=True)
+    site_stylesheet_path = site_root / "assets" / "site.css"
     rows = []
     for row in persona_rows:
         persona_id = str(row["persona_id"])
@@ -1402,6 +1437,7 @@ def _write_site_users_pages(
                 site_name=site_name,
                 body=body,
                 current_tab="users",
+                stylesheet_href=_relative_href(from_file=page_path, to_file=site_stylesheet_path),
             ),
             incremental=incremental,
         )
@@ -1412,6 +1448,7 @@ def _render_site_root_index(
     site_name: str,
     space_names: list[str],
     subspaces_by_space: dict[str, list[tuple[str, str | None]]],
+    stylesheet_href: str,
 ) -> str:
     rows = []
     for space_name in sorted(space_names):
@@ -1442,6 +1479,7 @@ def _render_site_root_index(
         title=site_name,
         site_name=site_name,
         current_tab=None,
+        stylesheet_href=stylesheet_href,
         body=(
             f"<h1>{escape(site_name)}</h1>\n"
             + "<h2>Spaces</h2>\n<ul class=\"feed-list\">\n"
@@ -1457,6 +1495,7 @@ def _render_site_new_page(
     page_entries: list[_FeedEntry],
     page_number: int,
     page_count: int,
+    stylesheet_href: str,
 ) -> str:
     rows = "\n".join(
         (
@@ -1476,6 +1515,7 @@ def _render_site_new_page(
         title="New",
         site_name=site_name,
         current_tab="new",
+        stylesheet_href=stylesheet_href,
         body=(
             f"<h1>New</h1>\n<p>{escape(site_name)}</p>\n<ul class=\"feed-list\">\n"
             + rows
@@ -1496,6 +1536,7 @@ def _render_site_layout(
     site_name: str,
     body: str,
     current_tab: str | None,
+    stylesheet_href: str,
 ) -> str:
     nav_rows = [
         "<a class=\"site-tab"
@@ -1512,7 +1553,9 @@ def _render_site_layout(
         "<title>"
         + escape(title)
         + "</title>"
-        + "<link rel=\"stylesheet\" href=\"/site/assets/site.css\">"
+        + "<link rel=\"stylesheet\" href=\""
+        + escape(stylesheet_href)
+        + "\">"
         + "</head><body class=\"site-shell site-root-shell\">\n"
         + "<main class=\"site-main site-root-main\">"
         + "<section class=\"content-card\">"

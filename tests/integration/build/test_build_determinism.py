@@ -38,9 +38,9 @@ class BuildDeterminismIntegrationTests(unittest.TestCase):
             self.assertIn("site/assets/site.css", first_snapshot)
             self.assertIn("spaces/alpha/site/assets/site.css", first_snapshot)
             self.assertIn('<meta name="viewport" content="width=device-width, initial-scale=1">', first_snapshot["site/index.html"])
-            self.assertIn('<link rel="stylesheet" href="/site/assets/site.css">', first_snapshot["site/index.html"])
+            self.assertIn('<link rel="stylesheet" href="assets/site.css">', first_snapshot["site/index.html"])
             self.assertIn(
-                '<link rel="stylesheet" href="/spaces/alpha/site/assets/site.css">',
+                '<link rel="stylesheet" href="assets/site.css">',
                 first_snapshot["spaces/alpha/site/index.html"],
             )
 
