@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from sapi.profiles.persona_catalog import load_seeded_persona_catalog
 from tests.conftest import REPO_ROOT, bootstrap_site_and_space, latest_run_directory, parse_run_frontmatter, run_command
 
 
@@ -18,10 +19,7 @@ class ProfilesPipelineIntegrationTests(unittest.TestCase):
             site_path = bootstrap_site_and_space(tmp_root, "alpha")
             space_root = site_path / "spaces" / "alpha"
 
-            selected_persona_ids = [
-                "commenter-1",
-                "commenter-2",
-            ]
+            selected_persona_ids = _seeded_persona_ids(count=2)
 
             result = run_command(
                 [
@@ -91,7 +89,7 @@ class ProfilesPipelineIntegrationTests(unittest.TestCase):
             tmp_root = Path(tmp)
             site_path = bootstrap_site_and_space(tmp_root, "alpha")
             space_root = site_path / "spaces" / "alpha"
-            persona_id = "commenter-1"
+            persona_id = _seeded_persona_ids(count=1)[0]
 
             first_run = run_command(
                 [
@@ -137,7 +135,7 @@ class ProfilesPipelineIntegrationTests(unittest.TestCase):
             tmp_root = Path(tmp)
             site_path = bootstrap_site_and_space(tmp_root, "alpha")
             space_root = site_path / "spaces" / "alpha"
-            persona_id = "commenter-1"
+            persona_id = _seeded_persona_ids(count=1)[0]
 
             first_run = run_command(
                 [
@@ -207,6 +205,11 @@ class ProfilesPipelineIntegrationTests(unittest.TestCase):
         if match is None:
             raise AssertionError(f"Unable to locate run_id in command output: {stdout}")
         return match.group(1)
+
+
+def _seeded_persona_ids(*, count: int) -> list[str]:
+    rows = load_seeded_persona_catalog(repo_root=REPO_ROOT, require_image_files=False)
+    return [str(row["persona_id"]) for row in rows[:count]]
 
 
 if __name__ == "__main__":

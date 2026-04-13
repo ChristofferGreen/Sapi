@@ -21,6 +21,7 @@ from sapi.core.registry import resolve_registry_path, resolve_site_path_from_reg
 from sapi.core.locks import IngestLockHeldError, ingest_lock
 from sapi.core.pipeline_policy import finalize_pipeline_run
 from sapi.core.runtime_flags import (
+    RuntimeFlagSnapshot,
     add_runtime_flag_arguments,
     runtime_flags_summary_dict,
     snapshot_runtime_flags,
@@ -43,6 +44,10 @@ from sapi.ingest.topic_generator import (
     run_topic_generation_and_persist_canonical,
 )
 from sapi.llm.client import SemanticLlmRequest
+from sapi.llm.runtime_backend import (
+    SemanticBackendConfig,
+    generate_semantic_json_live,
+)
 from sapi.llm.trace import SiteLlmTraceContext
 
 
@@ -173,10 +178,12 @@ def main() -> int:
                     space_root=space_root,
                     source_id=result.source_id,
                     run_id=run_id,
-                    llm_client=_BootstrapIngestExtractionClient(
+                    llm_client=_build_ingest_extraction_client(
+                        runtime_flags=runtime_flags,
                         source_id=result.source_id,
                         source_title=source_title if isinstance(source_title, str) else None,
                         source_date_resolution=source_date_resolution,
+                        source_record=source_record if isinstance(source_record, dict) else {},
                     ),
                     trace_ctx=trace_ctx,
                 )
@@ -201,7 +208,9 @@ def main() -> int:
                     source_id=result.source_id,
                     run_id=run_id,
                     topic_id=topic_id,
-                    llm_client=_BootstrapTopicGenerationClient(
+                    llm_client=_build_topic_generation_client(
+                        runtime_flags=runtime_flags,
+                        space_root=space_root,
                         source_id=result.source_id,
                         source_title=source_title if isinstance(source_title, str) else None,
                         topic_id=topic_id,
@@ -235,6 +244,8 @@ def main() -> int:
                 started_at=started_at,
                 completed_at=completed_at,
                 execution_mode=runtime_policy.execution_mode,
+                llm_backend=runtime_flags.llm_backend,
+                llm_model=runtime_flags.llm_model,
                 reasoning_effort=runtime_flags.llm_reasoning_effort,
                 semantic_flows=semantic_flows,
                 semantic_flow_invocation_counts=semantic_flow_invocation_counts,
@@ -291,6 +302,8 @@ def main() -> int:
         started_at=started_at,
         completed_at=completed_at,
         execution_mode=runtime_policy.execution_mode,
+        llm_backend=runtime_flags.llm_backend,
+        llm_model=runtime_flags.llm_model,
         reasoning_effort=runtime_flags.llm_reasoning_effort,
         semantic_flows=semantic_flows,
         semantic_flow_invocation_counts=semantic_flow_invocation_counts,
@@ -365,73 +378,6 @@ def main() -> int:
     return finalized.exit_code
 
 
-class _BootstrapIngestExtractionClient:
-    """Repository-local deterministic semantic client used for reconstruction bootstrap."""
-
-    def __init__(
-        self,
-        *,
-        source_id: str,
-        source_title: str | None,
-        source_date_resolution: SourceDateResolution,
-    ) -> None:
-        self._source_id = source_id
-        self._source_title = source_title or source_id
-        self._source_date_resolution = source_date_resolution
-
-    def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
-        payload = {
-            "source_date_inference": dict(self._source_date_resolution.source_date_inference),
-            "source": {
-                "source_id": self._source_id,
-                "title": self._source_title,
-            },
-            "claims": [
-                {
-                    "text": f"Source `{self._source_title}` was ingested successfully.",
-                    "evidence_excerpts": [],
-                }
-            ],
-            "relations": [],
-            "summary": "Bootstrap ingest extraction completed.",
-            "warnings": list(self._source_date_resolution.warnings),
-        }
-        return json.dumps(payload)
-
-
-class _BootstrapTopicGenerationClient:
-    """Repository-local deterministic topic-generation client for reconstruction bootstrap."""
-
-    def __init__(
-        self,
-        *,
-        source_id: str,
-        source_title: str | None,
-        topic_id: str,
-        claim_ids: list[str],
-    ) -> None:
-        self._source_id = source_id
-        self._source_title = source_title or source_id
-        self._topic_id = topic_id
-        self._claim_ids = claim_ids
-
-    def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
-        payload = {
-            "topic_id": self._topic_id,
-            "title": f"Topic: {self._source_title}",
-            "structure_type": "wiki",
-            "sections": [
-                {
-                    "heading": "Summary",
-                    "body": f"Auto-generated topic scaffold for source `{self._source_title}`.",
-                }
-            ],
-            "claim_ids": list(self._claim_ids),
-            "source_ids": [self._source_id],
-        }
-        return json.dumps(payload)
-
-
 def _trigger_deterministic_topic_postprocess(
     *,
     registry_path: Path,
@@ -500,6 +446,8 @@ def _make_run_base(
     started_at: str,
     completed_at: str,
     execution_mode: str,
+    llm_backend: str,
+    llm_model: str,
     reasoning_effort: str,
     semantic_flows: list[str],
     semantic_flow_invocation_counts: dict[str, int],
@@ -514,8 +462,8 @@ def _make_run_base(
         status=status,
         started_at=started_at,
         completed_at=completed_at,
-        model_fingerprint="mock_bootstrap" if execution_mode == "mock_llm_test" else "live_unspecified",
-        provider_fingerprint="mock" if execution_mode == "mock_llm_test" else "live_unspecified",
+        model_fingerprint="mock_semantic_fixture" if execution_mode == "mock_llm_test" else llm_model,
+        provider_fingerprint="mock" if execution_mode == "mock_llm_test" else llm_backend,
         reasoning_effort=reasoning_effort,
         execution_mode=execution_mode,
         llm_attempt_count=llm_attempt_count,
@@ -589,6 +537,264 @@ def _track_topic_generation_writes_for_rollback(
     topic_result: TopicGenerationPersistResult,
 ) -> None:
     transaction.mark_create(topic_result.topic_path)
+
+
+def _build_ingest_extraction_client(
+    *,
+    runtime_flags: RuntimeFlagSnapshot,
+    source_id: str,
+    source_title: str | None,
+    source_date_resolution: SourceDateResolution,
+    source_record: dict[str, object],
+):
+    if runtime_flags.mock_llm:
+        return _MockIngestExtractionClient(
+            source_id=source_id,
+            source_title=source_title,
+            source_date_resolution=source_date_resolution,
+        )
+    return _LiveIngestExtractionClient(
+        backend_config=_backend_config_from_runtime_flags(runtime_flags),
+        source_id=source_id,
+        source_title=source_title,
+        source_date_resolution=source_date_resolution,
+        source_record=source_record,
+    )
+
+
+def _build_topic_generation_client(
+    *,
+    runtime_flags: RuntimeFlagSnapshot,
+    space_root: Path,
+    source_id: str,
+    source_title: str | None,
+    topic_id: str,
+    claim_ids: list[str],
+):
+    if runtime_flags.mock_llm:
+        return _MockTopicGenerationClient(
+            source_id=source_id,
+            source_title=source_title,
+            topic_id=topic_id,
+            claim_ids=claim_ids,
+        )
+    claims_context = _load_claim_context(space_root=space_root)
+    sources_context = _load_source_context(space_root=space_root)
+    return _LiveTopicGenerationClient(
+        backend_config=_backend_config_from_runtime_flags(runtime_flags),
+        source_id=source_id,
+        source_title=source_title,
+        topic_id=topic_id,
+        claim_ids=claim_ids,
+        claims_context=claims_context,
+        sources_context=sources_context,
+    )
+
+
+def _backend_config_from_runtime_flags(runtime_flags: RuntimeFlagSnapshot) -> SemanticBackendConfig:
+    return SemanticBackendConfig(
+        backend=runtime_flags.llm_backend,
+        model=runtime_flags.llm_model,
+        reasoning_effort=runtime_flags.llm_reasoning_effort,
+        timeout_secs=runtime_flags.llm_timeout_secs,
+    )
+
+
+class _MockIngestExtractionClient:
+    """Deterministic semantic client for explicit --mock-llm test mode."""
+
+    def __init__(
+        self,
+        *,
+        source_id: str,
+        source_title: str | None,
+        source_date_resolution: SourceDateResolution,
+    ) -> None:
+        self._source_id = source_id
+        self._source_title = source_title or source_id
+        self._source_date_resolution = source_date_resolution
+
+    def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
+        payload = {
+            "source_date_inference": dict(self._source_date_resolution.source_date_inference),
+            "source": {
+                "source_id": self._source_id,
+                "title": self._source_title,
+            },
+            "claims": [
+                {
+                    "text": f"Key proposition from `{self._source_title}` requires synthesis.",
+                    "evidence_excerpts": [],
+                }
+            ],
+            "relations": [],
+            "summary": "Mock ingest extraction completed.",
+            "warnings": list(self._source_date_resolution.warnings),
+        }
+        return json.dumps(payload)
+
+
+class _LiveIngestExtractionClient:
+    def __init__(
+        self,
+        *,
+        backend_config: SemanticBackendConfig,
+        source_id: str,
+        source_title: str | None,
+        source_date_resolution: SourceDateResolution,
+        source_record: dict[str, object],
+    ) -> None:
+        self._backend_config = backend_config
+        self._source_id = source_id
+        self._source_title = source_title or source_id
+        self._source_date_resolution = source_date_resolution
+        self._source_record = source_record
+
+    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
+        return generate_semantic_json_live(
+            request=request,
+            backend_config=self._backend_config,
+            task_context={
+                "task_requirements": {
+                    "must_include_source_id": self._source_id,
+                    "must_include_source_title": self._source_title,
+                    "minimum_claim_count": 3,
+                    "maximum_claim_count": 12,
+                    "relation_policy": (
+                        "Emit relations only when src/dst claims are grounded and can reference "
+                        "generated claim indices or IDs."
+                    ),
+                },
+                "source_date_inference": dict(self._source_date_resolution.source_date_inference),
+                "source_date_warnings": list(self._source_date_resolution.warnings),
+                "source_record": self._source_record,
+            },
+        )
+
+
+class _MockTopicGenerationClient:
+    """Deterministic topic-generation client for explicit --mock-llm mode."""
+
+    def __init__(
+        self,
+        *,
+        source_id: str,
+        source_title: str | None,
+        topic_id: str,
+        claim_ids: list[str],
+    ) -> None:
+        self._source_id = source_id
+        self._source_title = source_title or source_id
+        self._topic_id = topic_id
+        self._claim_ids = claim_ids
+
+    def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
+        payload = {
+            "topic_id": self._topic_id,
+            "title": f"Topic: {self._source_title}",
+            "structure_type": "wiki",
+            "sections": [
+                {
+                    "heading": "Summary",
+                    "body": (
+                        f"Mock topic synthesis for `{self._source_title}` with "
+                        "cross-source synthesis deferred to live mode."
+                    ),
+                }
+            ],
+            "claim_ids": list(self._claim_ids),
+            "source_ids": [self._source_id],
+        }
+        return json.dumps(payload)
+
+
+class _LiveTopicGenerationClient:
+    def __init__(
+        self,
+        *,
+        backend_config: SemanticBackendConfig,
+        source_id: str,
+        source_title: str | None,
+        topic_id: str,
+        claim_ids: list[str],
+        claims_context: list[dict[str, object]],
+        sources_context: list[dict[str, object]],
+    ) -> None:
+        self._backend_config = backend_config
+        self._source_id = source_id
+        self._source_title = source_title or source_id
+        self._topic_id = topic_id
+        self._claim_ids = list(claim_ids)
+        self._claims_context = claims_context
+        self._sources_context = sources_context
+
+    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
+        return generate_semantic_json_live(
+            request=request,
+            backend_config=self._backend_config,
+            task_context={
+                "task_requirements": {
+                    "must_use_topic_id": self._topic_id,
+                    "must_include_source_id": self._source_id,
+                    "must_include_claim_ids": self._claim_ids,
+                    "target_style": "Synthesize abstractions across multiple related sources when possible.",
+                },
+                "seed_source": {
+                    "source_id": self._source_id,
+                    "source_title": self._source_title,
+                },
+                "available_sources": self._sources_context,
+                "available_claims": self._claims_context,
+            },
+        )
+
+
+def _load_claim_context(*, space_root: Path, limit: int = 180) -> list[dict[str, object]]:
+    claims_root = space_root / "claims"
+    if not claims_root.is_dir():
+        return []
+    claim_rows: list[dict[str, object]] = []
+    for claim_path in sorted(claims_root.glob("claim-*.json"))[:limit]:
+        try:
+            payload = json.loads(claim_path.read_text())
+        except (OSError, json.JSONDecodeError):
+            continue
+        if not isinstance(payload, dict):
+            continue
+        claim_rows.append(
+            {
+                "claim_id": payload.get("claim_id"),
+                "source_id": payload.get("source_id"),
+                "text": payload.get("text"),
+                "evidence_excerpts": payload.get("evidence_excerpts"),
+            }
+        )
+    return claim_rows
+
+
+def _load_source_context(*, space_root: Path, limit: int = 80) -> list[dict[str, object]]:
+    sources_root = space_root / "sources" / "records"
+    if not sources_root.is_dir():
+        return []
+    source_rows: list[dict[str, object]] = []
+    for source_path in sorted(sources_root.glob("source-*.json"))[:limit]:
+        try:
+            payload = json.loads(source_path.read_text())
+        except (OSError, json.JSONDecodeError):
+            continue
+        if not isinstance(payload, dict):
+            continue
+        source_rows.append(
+            {
+                "source_id": payload.get("source_id"),
+                "title": payload.get("title"),
+                "date": payload.get("date"),
+                "summary": payload.get("summary"),
+                "article_kind": payload.get("article_kind"),
+                "citation_count": payload.get("citation_count"),
+            }
+        )
+    return source_rows
 
 
 if __name__ == "__main__":

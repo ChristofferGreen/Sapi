@@ -147,8 +147,16 @@ def main() -> int:
                 "execution_mode": runtime_policy.execution_mode,
                 "llm_attempt_count": 1,
                 "reasoning_effort": runtime_flags.llm_reasoning_effort,
-                "model_fingerprint": _model_fingerprint(runtime_policy.execution_mode),
-                "provider_fingerprint": _provider_fingerprint(runtime_policy.execution_mode),
+                "model_fingerprint": (
+                    "mock_semantic_fixture"
+                    if runtime_policy.execution_mode == "mock_llm_test"
+                    else runtime_flags.llm_model
+                ),
+                "provider_fingerprint": (
+                    "mock"
+                    if runtime_policy.execution_mode == "mock_llm_test"
+                    else runtime_flags.llm_backend
+                ),
                 "include_disputed": options.include_disputed,
                 "include_warnings": options.include_warnings,
                 "retrieval_budget": {
@@ -217,6 +225,8 @@ def main() -> int:
             started_at=started_at,
             completed_at=completed_at,
             execution_mode=runtime_policy.execution_mode,
+            llm_backend=runtime_flags.llm_backend,
+            llm_model=runtime_flags.llm_model,
             reasoning_effort=runtime_flags.llm_reasoning_effort,
             llm_attempt_count=1,
             toolchain_versions=toolchain_versions,
@@ -255,6 +265,8 @@ def main() -> int:
         started_at=started_at,
         completed_at=completed_at,
         execution_mode=runtime_policy.execution_mode,
+        llm_backend=runtime_flags.llm_backend,
+        llm_model=runtime_flags.llm_model,
         reasoning_effort=runtime_flags.llm_reasoning_effort,
         llm_attempt_count=1,
         toolchain_versions=toolchain_versions,
@@ -444,6 +456,8 @@ def _make_run_base(
     started_at: str,
     completed_at: str,
     execution_mode: str,
+    llm_backend: str,
+    llm_model: str,
     reasoning_effort: str,
     llm_attempt_count: int,
     toolchain_versions: dict[str, str],
@@ -456,8 +470,8 @@ def _make_run_base(
         status=status,  # type: ignore[arg-type]
         started_at=started_at,
         completed_at=completed_at,
-        model_fingerprint=_model_fingerprint(execution_mode),
-        provider_fingerprint=_provider_fingerprint(execution_mode),
+        model_fingerprint="mock_semantic_fixture" if execution_mode == "mock_llm_test" else llm_model,
+        provider_fingerprint="mock" if execution_mode == "mock_llm_test" else llm_backend,
         reasoning_effort=reasoning_effort,
         execution_mode=execution_mode,
         llm_attempt_count=llm_attempt_count,
@@ -466,14 +480,6 @@ def _make_run_base(
         lint_info_count=0,
         toolchain_versions=toolchain_versions,
     )
-
-
-def _model_fingerprint(execution_mode: str) -> str:
-    return "mock_bootstrap" if execution_mode == "mock_llm_test" else "live_unspecified"
-
-
-def _provider_fingerprint(execution_mode: str) -> str:
-    return "mock" if execution_mode == "mock_llm_test" else "live_unspecified"
 
 
 if __name__ == "__main__":

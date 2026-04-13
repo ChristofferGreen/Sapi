@@ -3,12 +3,12 @@ from __future__ import annotations
 import json
 import unittest
 
-from scripts.generate_profiles import _BootstrapPersonaProfileClient
+from scripts.generate_profiles import _MockPersonaProfileClient
 
 
-class BootstrapPersonaProfileClientTests(unittest.TestCase):
+class MockPersonaProfileClientTests(unittest.TestCase):
     def test_generate_semantic_json_includes_profile_biography_and_short_cv_sections(self) -> None:
-        client = _BootstrapPersonaProfileClient(
+        client = _MockPersonaProfileClient(
             persona_row={
                 "persona_id": "persona-test",
                 "display_name": "Persona Test",

@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from sapi.profiles.persona_catalog import load_seeded_persona_catalog
 from tests.conftest import (
     REPO_ROOT,
     bootstrap_site_and_space,
@@ -141,6 +142,7 @@ class RunEnvelopeSnapshotGoldenTests(unittest.TestCase):
             tmp_root = Path(tmp)
             site_path = bootstrap_site_and_space(tmp_root, "alpha")
             space_root = site_path / "spaces" / "alpha"
+            persona_id = _seeded_persona_ids(count=1)[0]
 
             profiles_frontmatter = _run_and_capture_new_frontmatter(
                 space_root=space_root,
@@ -151,7 +153,7 @@ class RunEnvelopeSnapshotGoldenTests(unittest.TestCase):
                     "--registry-path",
                     str(site_path / "spaces.toml"),
                     "--persona-id",
-                    "commenter-1",
+                    persona_id,
                     "--mock-llm",
                 ],
             )
@@ -174,6 +176,9 @@ def _normalize_frontmatter(frontmatter: dict[str, object]) -> dict[str, object]:
     target_page_refs = normalized.get("target_page_refs")
     if isinstance(target_page_refs, list):
         normalized["target_page_refs"] = ["<target_page_ref>" for _ in target_page_refs]
+    persona_ids = normalized.get("persona_ids")
+    if isinstance(persona_ids, list):
+        normalized["persona_ids"] = ["<persona_id>" for _ in persona_ids]
     toolchain_versions = normalized.get("toolchain_versions")
     if isinstance(toolchain_versions, dict) and "python" in toolchain_versions:
         toolchain_versions["python"] = "<python_version>"
@@ -194,6 +199,11 @@ def _run_and_capture_new_frontmatter(*, space_root: Path, cmd: list[str]) -> dic
             f"after={[path.name for path in after_runs]}"
         )
     return parse_run_frontmatter(created_runs[0] / "run.md")
+
+
+def _seeded_persona_ids(*, count: int) -> list[str]:
+    rows = load_seeded_persona_catalog(repo_root=REPO_ROOT, require_image_files=False)
+    return [str(row["persona_id"]) for row in rows[:count]]
 
 
 if __name__ == "__main__":

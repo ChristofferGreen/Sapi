@@ -16,7 +16,7 @@
     "include_disputed": false,
     "include_warnings": true,
     "llm_attempt_count": 1,
-    "model_fingerprint": "mock_bootstrap",
+    "model_fingerprint": "mock_semantic_fixture",
     "provider_fingerprint": "mock",
     "reasoning_effort": "high",
     "retrieval_budget": {

@@ -119,7 +119,7 @@ def _base_frontmatter(
         "status": "success",
         "started_at": "2026-04-12T12:00:00Z",
         "completed_at": "2026-04-12T12:00:05Z",
-        "model_fingerprint": "mock_bootstrap",
+        "model_fingerprint": "mock_semantic_fixture",
         "provider_fingerprint": "mock",
         "reasoning_effort": "high",
         "execution_mode": "mock_llm_test",

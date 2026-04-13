@@ -21,6 +21,7 @@ from sapi.contracts.run_envelopes import PersonaProfileRunFields, RunEnvelopeBas
 from sapi.core.pipeline_policy import finalize_pipeline_run
 from sapi.core.registry import resolve_registry_path, resolve_space_root
 from sapi.core.runtime_flags import (
+    RuntimeFlagSnapshot,
     add_runtime_flag_arguments,
     runtime_flags_summary_dict,
     snapshot_runtime_flags,
@@ -29,6 +30,10 @@ from sapi.core.runtime_flags import (
 from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
 from sapi.core.transactions import ArtifactTransaction
 from sapi.llm.client import SemanticLlmRequest
+from sapi.llm.runtime_backend import (
+    SemanticBackendConfig,
+    generate_semantic_json_live,
+)
 from sapi.llm.semantic_executor import build_semantic_spec_from_contract, run_semantic_flow
 from sapi.profiles.history import (
     apply_persona_history_update,
@@ -112,7 +117,8 @@ def main() -> int:
             )
             previous_profile_payload = _read_json_dict_if_exists(semantic_spec.output_json_path)
             _track_path_for_write(semantic_spec.output_json_path, transaction=transaction)
-            profile_llm_client = _BootstrapPersonaProfileClient(
+            profile_llm_client = _build_profile_client(
+                runtime_flags=runtime_flags,
                 persona_row=selected.row,
                 space_name=args.space_name,
             )
@@ -173,6 +179,8 @@ def main() -> int:
             started_at=started_at,
             completed_at=completed_at,
             execution_mode=runtime_policy.execution_mode,
+            llm_backend=runtime_flags.llm_backend,
+            llm_model=runtime_flags.llm_model,
             reasoning_effort=runtime_flags.llm_reasoning_effort,
             semantic_flows=semantic_flows,
             semantic_flow_invocation_counts=semantic_flow_invocation_counts,
@@ -227,6 +235,8 @@ def main() -> int:
         started_at=started_at,
         completed_at=completed_at,
         execution_mode=runtime_policy.execution_mode,
+        llm_backend=runtime_flags.llm_backend,
+        llm_model=runtime_flags.llm_model,
         reasoning_effort=runtime_flags.llm_reasoning_effort,
         semantic_flows=semantic_flows,
         semantic_flow_invocation_counts=semantic_flow_invocation_counts,
@@ -318,6 +328,8 @@ def _make_run_base(
     started_at: str,
     completed_at: str,
     execution_mode: str,
+    llm_backend: str,
+    llm_model: str,
     reasoning_effort: str,
     semantic_flows: list[str],
     semantic_flow_invocation_counts: dict[str, int],
@@ -332,8 +344,8 @@ def _make_run_base(
         status=status,  # type: ignore[arg-type]
         started_at=started_at,
         completed_at=completed_at,
-        model_fingerprint=_model_fingerprint(execution_mode),
-        provider_fingerprint=_provider_fingerprint(execution_mode),
+        model_fingerprint="mock_semantic_fixture" if execution_mode == "mock_llm_test" else llm_model,
+        provider_fingerprint="mock" if execution_mode == "mock_llm_test" else llm_backend,
         reasoning_effort=reasoning_effort,
         execution_mode=execution_mode,
         llm_attempt_count=llm_attempt_count,
@@ -344,15 +356,30 @@ def _make_run_base(
     )
 
 
-def _model_fingerprint(execution_mode: str) -> str:
-    return "mock_bootstrap" if execution_mode == "mock_llm_test" else "live_unspecified"
+def _build_profile_client(
+    *,
+    runtime_flags: RuntimeFlagSnapshot,
+    persona_row: dict[str, object],
+    space_name: str,
+):
+    if runtime_flags.mock_llm:
+        return _MockPersonaProfileClient(
+            persona_row=persona_row,
+            space_name=space_name,
+        )
+    return _LivePersonaProfileClient(
+        backend_config=SemanticBackendConfig(
+            backend=runtime_flags.llm_backend,
+            model=runtime_flags.llm_model,
+            reasoning_effort=runtime_flags.llm_reasoning_effort,
+            timeout_secs=runtime_flags.llm_timeout_secs,
+        ),
+        persona_row=persona_row,
+        space_name=space_name,
+    )
 
 
-def _provider_fingerprint(execution_mode: str) -> str:
-    return "mock" if execution_mode == "mock_llm_test" else "live_unspecified"
-
-
-class _BootstrapPersonaProfileClient:
+class _MockPersonaProfileClient:
     def __init__(
         self,
         *,
@@ -413,6 +440,40 @@ class _BootstrapPersonaProfileClient:
             ),
         }
         return json.dumps(payload)
+
+
+class _LivePersonaProfileClient:
+    def __init__(
+        self,
+        *,
+        backend_config: SemanticBackendConfig,
+        persona_row: dict[str, object],
+        space_name: str,
+    ) -> None:
+        self._backend_config = backend_config
+        self._persona_row = persona_row
+        self._space_name = space_name
+
+    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
+        return generate_semantic_json_live(
+            request=request,
+            backend_config=self._backend_config,
+            task_context={
+                "task_requirements": {
+                    "persona_id": str(self._persona_row.get("persona_id")),
+                    "space_name": self._space_name,
+                    "section_expectations": [
+                        "Identity",
+                        "Profile biography",
+                        "Debate style",
+                        "Interests",
+                        "Short CV",
+                    ],
+                    "biography_voice": "first_person",
+                },
+                "persona_row": self._persona_row,
+            },
+        )
 
 
 if __name__ == "__main__":

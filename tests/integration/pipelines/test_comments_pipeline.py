@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from sapi.profiles.persona_catalog import load_seeded_persona_catalog
 from tests.conftest import (
     REPO_ROOT,
     assert_no_run_containers,
@@ -148,6 +149,7 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             space_root = site_path / "spaces" / "alpha"
             topic_id = "topic-alpha"
             existing_uid = "comment-existing--abcde12345"
+            persona_id = _seeded_persona_ids(count=1)[0]
             (space_root / "topics" / f"{topic_id}.json").write_text(
                 json.dumps(
                     {
@@ -158,8 +160,8 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                             "comments": [
                                 {
                                     "comment_uid": existing_uid,
-                                    "persona_id": "commenter-1",
-                                    "body": "Generated comment 1 by commenter-1.",
+                                    "persona_id": persona_id,
+                                    "body": f"Generated comment 1 by {persona_id}.",
                                     "parent_comment_uid": None,
                                     "comment_no": "pc-001",
                                 }
@@ -774,3 +776,8 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def _seeded_persona_ids(*, count: int) -> list[str]:
+    rows = load_seeded_persona_catalog(repo_root=REPO_ROOT, require_image_files=False)
+    return [str(row["persona_id"]) for row in rows[:count]]

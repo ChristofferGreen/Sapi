@@ -36,7 +36,7 @@ class SemanticRepairExhaustionRollbackIntegrationTests(unittest.TestCase):
             ]
             # Return schema-invalid semantic output for every attempt to force retry exhaustion.
             with patch.object(
-                ingest_source._BootstrapIngestExtractionClient,
+                ingest_source._MockIngestExtractionClient,
                 "generate_semantic_json",
                 return_value=json.dumps({"claims": [], "relations": []}),
             ):
@@ -69,7 +69,7 @@ class SemanticRepairExhaustionRollbackIntegrationTests(unittest.TestCase):
             ]
             # Return schema-invalid semantic output for every attempt to force retry exhaustion.
             with patch.object(
-                generate_profiles._BootstrapPersonaProfileClient,
+                generate_profiles._MockPersonaProfileClient,
                 "generate_semantic_json",
                 return_value=json.dumps({"persona_id": "broken"}),
             ):

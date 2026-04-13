@@ -10,7 +10,7 @@
   "llm_attempt_count": 1,
   "manifest_path": null,
   "mode": "strict",
-  "model_fingerprint": "mock_bootstrap",
+  "model_fingerprint": "mock_semantic_fixture",
   "provider_fingerprint": "mock",
   "query_id": "<query_id>",
   "reasoning_effort": "high",

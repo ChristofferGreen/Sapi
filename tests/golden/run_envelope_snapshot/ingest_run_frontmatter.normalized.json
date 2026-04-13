@@ -11,7 +11,7 @@
   "lint_info_count": 0,
   "lint_warning_count": 0,
   "llm_attempt_count": 2,
-  "model_fingerprint": "mock_bootstrap",
+  "model_fingerprint": "mock_semantic_fixture",
   "parent_run_id": null,
   "provider_fingerprint": "mock",
   "reasoning_effort": "high",

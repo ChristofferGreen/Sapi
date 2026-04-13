@@ -3,7 +3,7 @@ from __future__ import annotations
 import unittest
 
 from sapi.llm.client import SemanticLlmRequest
-from scripts.create_comments import _BootstrapCommentSectionClient, _audit_generation_isolation_request
+from scripts.create_comments import _MockCommentSectionClient, _audit_generation_isolation_request
 
 
 class GenerationIsolationAuditTests(unittest.TestCase):
@@ -27,8 +27,8 @@ class GenerationIsolationAuditTests(unittest.TestCase):
         self.assertGreater(summary["total_leak_count"], 0)
         self.assertIn("adjudication rubric", summary["detected_terms"])
 
-    def test_bootstrap_client_rejects_request_when_leaks_are_detected(self) -> None:
-        client = _BootstrapCommentSectionClient(
+    def test_mock_client_rejects_request_when_leaks_are_detected(self) -> None:
+        client = _MockCommentSectionClient(
             page_ref="topic:topic-alpha",
             requested_count=5,
             persona_ids=["commenter-1", "commenter-2"],

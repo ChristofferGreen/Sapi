@@ -39,6 +39,7 @@ from sapi.contracts.run_envelopes import CommentRunFields, RunEnvelopeBase
 from sapi.core.pipeline_policy import finalize_pipeline_run
 from sapi.core.registry import resolve_registry_path, resolve_site_path_from_registry, resolve_space_root
 from sapi.core.runtime_flags import (
+    RuntimeFlagSnapshot,
     add_runtime_flag_arguments,
     runtime_flags_summary_dict,
     snapshot_runtime_flags,
@@ -47,6 +48,10 @@ from sapi.core.runtime_flags import (
 from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
 from sapi.core.transactions import ArtifactTransaction
 from sapi.llm.client import SemanticLlmRequest
+from sapi.llm.runtime_backend import (
+    SemanticBackendConfig,
+    generate_semantic_json_live,
+)
 from sapi.llm.semantic_executor import build_semantic_spec_from_contract, run_semantic_flow
 from sapi.profiles.persona_catalog import load_seeded_persona_catalog
 
@@ -164,10 +169,12 @@ def main() -> int:
                     "page_ref_key": page_ref_key(target.page_ref),
                 },
             )
-            comment_llm_client = _BootstrapCommentSectionClient(
+            comment_llm_client = _build_comment_section_client(
+                runtime_flags=runtime_flags,
                 page_ref=target.page_ref,
                 requested_count=requested_count,
                 persona_ids=selected_persona_ids,
+                page_payload=page_payload,
             )
             semantic_payload, attempt_count = run_semantic_flow(
                 spec=spec,
@@ -253,6 +260,8 @@ def main() -> int:
             started_at=started_at,
             completed_at=completed_at,
             execution_mode=runtime_policy.execution_mode,
+            llm_backend=runtime_flags.llm_backend,
+            llm_model=runtime_flags.llm_model,
             reasoning_effort=runtime_flags.llm_reasoning_effort,
             semantic_flows=semantic_flows,
             semantic_flow_invocation_counts=semantic_flow_invocation_counts,
@@ -296,6 +305,8 @@ def main() -> int:
         started_at=started_at,
         completed_at=completed_at,
         execution_mode=runtime_policy.execution_mode,
+        llm_backend=runtime_flags.llm_backend,
+        llm_model=runtime_flags.llm_model,
         reasoning_effort=runtime_flags.llm_reasoning_effort,
         semantic_flows=semantic_flows,
         semantic_flow_invocation_counts=semantic_flow_invocation_counts,
@@ -470,6 +481,8 @@ def _make_run_base(
     started_at: str,
     completed_at: str,
     execution_mode: str,
+    llm_backend: str,
+    llm_model: str,
     reasoning_effort: str,
     semantic_flows: list[str],
     semantic_flow_invocation_counts: dict[str, int],
@@ -484,8 +497,8 @@ def _make_run_base(
         status=status,  # type: ignore[arg-type]
         started_at=started_at,
         completed_at=completed_at,
-        model_fingerprint=_model_fingerprint(execution_mode),
-        provider_fingerprint=_provider_fingerprint(execution_mode),
+        model_fingerprint="mock_semantic_fixture" if execution_mode == "mock_llm_test" else llm_model,
+        provider_fingerprint="mock" if execution_mode == "mock_llm_test" else llm_backend,
         reasoning_effort=reasoning_effort,
         execution_mode=execution_mode,
         llm_attempt_count=llm_attempt_count,
@@ -696,15 +709,35 @@ def _as_int_map(value: object) -> dict[str, int]:
     return result
 
 
-def _model_fingerprint(execution_mode: str) -> str:
-    return "mock_bootstrap" if execution_mode == "mock_llm_test" else "live_unspecified"
+def _build_comment_section_client(
+    *,
+    runtime_flags: RuntimeFlagSnapshot,
+    page_ref: str,
+    requested_count: int,
+    persona_ids: list[str],
+    page_payload: dict[str, object],
+):
+    if runtime_flags.mock_llm:
+        return _MockCommentSectionClient(
+            page_ref=page_ref,
+            requested_count=requested_count,
+            persona_ids=persona_ids,
+        )
+    return _LiveCommentSectionClient(
+        backend_config=SemanticBackendConfig(
+            backend=runtime_flags.llm_backend,
+            model=runtime_flags.llm_model,
+            reasoning_effort=runtime_flags.llm_reasoning_effort,
+            timeout_secs=runtime_flags.llm_timeout_secs,
+        ),
+        page_ref=page_ref,
+        requested_count=requested_count,
+        persona_ids=persona_ids,
+        page_payload=page_payload,
+    )
 
 
-def _provider_fingerprint(execution_mode: str) -> str:
-    return "mock" if execution_mode == "mock_llm_test" else "live_unspecified"
-
-
-class _BootstrapCommentSectionClient:
+class _MockCommentSectionClient:
     def __init__(
         self,
         *,
@@ -749,6 +782,51 @@ class _BootstrapCommentSectionClient:
             "comments": comments,
         }
         return json.dumps(payload)
+
+
+class _LiveCommentSectionClient:
+    def __init__(
+        self,
+        *,
+        backend_config: SemanticBackendConfig,
+        page_ref: str,
+        requested_count: int,
+        persona_ids: list[str],
+        page_payload: dict[str, object],
+    ) -> None:
+        self._backend_config = backend_config
+        self._page_ref = page_ref
+        self._requested_count = requested_count
+        self._persona_ids = persona_ids
+        self._page_payload = page_payload
+        self._generation_isolation_summary = _empty_generation_isolation_summary()
+
+    @property
+    def generation_isolation_summary(self) -> dict[str, object]:
+        return dict(self._generation_isolation_summary)
+
+    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
+        generation_isolation_summary = _audit_generation_isolation_request(request)
+        self._generation_isolation_summary = generation_isolation_summary
+        if int(generation_isolation_summary.get("total_leak_count", 0)) > 0:
+            raise ValueError(
+                "comment-generation prompts/context exposed adjudication rubric details."
+            )
+        return generate_semantic_json_live(
+            request=request,
+            backend_config=self._backend_config,
+            task_context={
+                "task_requirements": {
+                    "must_use_page_ref": self._page_ref,
+                    "requested_count": self._requested_count,
+                    "allowed_persona_ids": self._persona_ids,
+                    "threading_rule": (
+                        "Use parent_ref null for root comments and draft-N references for replies."
+                    ),
+                },
+                "page_payload": self._page_payload,
+            },
+        )
 
 
 if __name__ == "__main__":
