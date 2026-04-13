@@ -47,27 +47,26 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0310`
+1. `TODO-0311`
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0311`
-2. `TODO-0312`
+1. `TODO-0312`
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: TODO-0310
-- P1 Core product behavior: TODO-0311
+- P0 Foundation/contracts: TODO-0311
+- P1 Core product behavior: (none currently)
 - P2 Social/eval/hardening: (none currently)
 - P3 Continuous docs governance: TODO-0312
 
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. TODO-0310
+1. TODO-0311
 
 Wave B (ingest + projection + lint):
-1. TODO-0311
+1. (none currently)
 
 Wave C (query + social + hardening + release):
 1. TODO-0312
@@ -95,7 +94,7 @@ Cross-cutting docs backlog:
 | Section 8 site/UI/static build | - |
 | Section 9 observability/safety/runtime controls | TODO-0311 |
 | Section 10 run envelopes/lifecycle status | TODO-0311 |
-| Section 11 testing strategy | TODO-0310, TODO-0311, TODO-0312 |
+| Section 11 testing strategy | TODO-0311, TODO-0312 |
 | Section 12 reconstruction plan | TODO-0311 |
 | Section 13 definition of done | TODO-0312 |
 
@@ -115,15 +114,15 @@ Cross-cutting docs backlog:
 | Section 12 (wrapper/script interfaces) | - |
 | Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | TODO-0311 |
-| Section 15 (test-plan binding) | TODO-0310, TODO-0311, TODO-0312 |
+| Section 15 (test-plan binding) | TODO-0311, TODO-0312 |
 | Section 16 (change discipline) | TODO-0312 |
 
 ### Testing Plan Coverage Snapshot
 
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
-| Section 2 (test module layout) | TODO-0310, TODO-0311 |
-| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0310, TODO-0311 |
+| Section 2 (test module layout) | TODO-0311 |
+| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0311 |
 | Tier 4-6 (determinism/golden/live canary) | TODO-0312 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0312 |
 | Section 6 (exit criteria gating) | TODO-0312 |
@@ -146,21 +145,9 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-13
   - phase: Phase 4
-  - depends_on: TODO-0310
   - scope: Add reusable helpers in `tests/conftest.py` for `run.md`, `lint.json`, and rollback-cleanup assertions, then adopt them in failure tests.
   - acceptance:
     - `tests/conftest.py` includes helper APIs for run-frontmatter assertions, lint artifact assertions, and rollback cleanup checks.
     - At least one failure integration module uses the new helpers.
     - Tier 0 helper checklist item is marked complete in `docs/testing_plan.md`.
-  - notes: source `docs/testing_plan.md` Tier 0
-
-- [ ] TODO-0310: Add deterministic mock LLM fixture modes for contract tests
-  - owner: ai
-  - created_at: 2026-04-13
-  - phase: Phase 4
-  - scope: Add mock LLM fixture utilities in `tests/conftest.py` for `valid`, `invalid_then_repair`, and `repair_exhausted` modes.
-  - acceptance:
-    - Fixture factory exposes all three required modes with deterministic payloads.
-    - Existing semantic retry/spec tests can consume the fixture utilities without behavior regressions.
-    - Tier 0 mock fixture checklist item is marked complete in `docs/testing_plan.md`.
   - notes: source `docs/testing_plan.md` Tier 0

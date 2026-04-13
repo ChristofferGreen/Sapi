@@ -62,7 +62,7 @@ tests/
 
 - [x] Add site/space temp fixture factory with isolated registries.
   - Module: `tests/conftest.py`
-- [ ] Add deterministic mock LLM fixture with modes: valid, invalid-then-repair, repair-exhausted.
+- [x] Add deterministic mock LLM fixture with modes: valid, invalid-then-repair, repair-exhausted.
   - Module: `tests/conftest.py`
 - [ ] Add common assertions/helpers for `run.md`, `lint.json`, and rollback cleanup.
   - Module: `tests/conftest.py`

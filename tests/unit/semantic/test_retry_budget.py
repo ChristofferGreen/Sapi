@@ -5,7 +5,6 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from sapi.llm.client import SemanticLlmRequest
 from sapi.llm.semantic_executor import (
     DEFAULT_MAX_ATTEMPTS,
     DEFAULT_MAX_REPAIR_LOOPS,
@@ -14,19 +13,7 @@ from sapi.llm.semantic_executor import (
     max_attempts_from_repair_loops,
     run_semantic_flow,
 )
-
-
-class _FakeLlmClient:
-    def __init__(self, outputs: list[str]) -> None:
-        self._outputs = outputs
-        self.requests: list[SemanticLlmRequest] = []
-        self.call_count = 0
-
-    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
-        self.requests.append(request)
-        index = min(self.call_count, len(self._outputs) - 1)
-        self.call_count += 1
-        return self._outputs[index]
+from tests.conftest import create_deterministic_mock_llm_fixture
 
 
 class RetryBudgetTests(unittest.TestCase):
@@ -37,7 +24,7 @@ class RetryBudgetTests(unittest.TestCase):
             output_path = tmp_root / "space/runs/run-1/semantic/topic_generation.json"
             spec = _build_spec(schema_path=schema_path, output_path=output_path, context_paths=[])
 
-            client = _FakeLlmClient(outputs=["{}", "{}", "{}", "{}"])
+            client = create_deterministic_mock_llm_fixture(mode="repair_exhausted")
             with self.assertRaises(SemanticFlowError) as raised:
                 run_semantic_flow(spec=spec, llm_client=client)
 
@@ -57,7 +44,10 @@ class RetryBudgetTests(unittest.TestCase):
             spec = _build_spec(schema_path=schema_path, output_path=output_path, context_paths=[])
 
             # One initial invalid attempt + one repair attempt that succeeds.
-            client = _FakeLlmClient(outputs=["{}", '{"value":"fixed"}'])
+            client = create_deterministic_mock_llm_fixture(
+                mode="invalid_then_repair",
+                valid_payload={"value": "fixed"},
+            )
             result, attempt_count = run_semantic_flow(
                 spec=spec,
                 llm_client=client,
@@ -84,7 +74,7 @@ class RetryBudgetTests(unittest.TestCase):
             output_path = tmp_root / "space/topics/topic-a.json"
             spec = _build_spec(schema_path=schema_path, output_path=output_path, context_paths=[])
 
-            client = _FakeLlmClient(outputs=["{}", '{"value":"ok"}'])
+            client = create_deterministic_mock_llm_fixture(mode="invalid_then_repair")
             result, attempt_count = run_semantic_flow(spec=spec, llm_client=client)
 
             self.assertEqual(attempt_count, 2)
@@ -117,7 +107,7 @@ class RetryBudgetTests(unittest.TestCase):
             output_path.write_text('{"value":"stable"}\n')
             spec = _build_spec(schema_path=schema_path, output_path=output_path, context_paths=[])
 
-            client = _FakeLlmClient(outputs=["{}", "{}", "{}", "{}"])
+            client = create_deterministic_mock_llm_fixture(mode="repair_exhausted")
             with self.assertRaises(SemanticFlowError):
                 run_semantic_flow(spec=spec, llm_client=client)
 

@@ -2232,3 +2232,22 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     and design/low-level/testing-plan coverage snapshots to the remaining open IDs. Added
     `tests/unit/contracts/test_todo_0309_queue_reconstitution.py` to lock these queue and
     dependency invariants.
+
+- [x] TODO-0310: Add deterministic mock LLM fixture modes for contract tests
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 4
+  - scope: Add mock LLM fixture utilities in `tests/conftest.py` for `valid`,
+    `invalid_then_repair`, and `repair_exhausted` modes.
+  - acceptance:
+    - Fixture factory exposes all three required modes with deterministic payloads.
+    - Existing semantic retry/spec tests can consume the fixture utilities without behavior regressions.
+    - Tier 0 mock fixture checklist item is marked complete in `docs/testing_plan.md`.
+  - notes: source `docs/testing_plan.md` Tier 0; `docs/design.md` Section 11
+  - evidence: Added `DeterministicMockLlmFixture` and
+    `create_deterministic_mock_llm_fixture(...)` in `tests/conftest.py` with the required
+    modes and deterministic outputs. Updated `tests/unit/semantic/test_retry_budget.py` to
+    consume the shared fixture utilities and added dedicated fixture-mode coverage in
+    `tests/unit/semantic/test_mock_llm_fixture_modes.py`. Updated `docs/testing_plan.md` to
+    mark the Tier 0 mock-fixture item complete.

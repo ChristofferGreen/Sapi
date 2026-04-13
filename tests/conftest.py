@@ -6,6 +6,8 @@ import subprocess
 from pathlib import Path
 from typing import Sequence
 
+from sapi.llm.client import SemanticLlmRequest
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -17,6 +19,47 @@ class IsolatedSiteSpaceFixture:
     registry_path: Path
     space_name: str
     space_root: Path
+
+
+@dataclass
+class DeterministicMockLlmFixture:
+    mode: str
+    valid_output: str
+    invalid_output: str
+    requests: list[SemanticLlmRequest]
+    call_count: int = 0
+
+    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
+        self.requests.append(request)
+        self.call_count += 1
+        if self.mode == "valid":
+            return self.valid_output
+        if self.mode == "invalid_then_repair":
+            return self.invalid_output if self.call_count == 1 else self.valid_output
+        if self.mode == "repair_exhausted":
+            return self.invalid_output
+        raise AssertionError(f"Unsupported deterministic mock LLM mode: {self.mode}")
+
+
+def create_deterministic_mock_llm_fixture(
+    *,
+    mode: str,
+    valid_payload: dict[str, object] | None = None,
+    invalid_output: str = "{}",
+) -> DeterministicMockLlmFixture:
+    if mode not in {"valid", "invalid_then_repair", "repair_exhausted"}:
+        raise ValueError(
+            "Unsupported deterministic mock LLM mode. "
+            "Expected one of: valid, invalid_then_repair, repair_exhausted."
+        )
+
+    payload = {"value": "ok"} if valid_payload is None else valid_payload
+    return DeterministicMockLlmFixture(
+        mode=mode,
+        valid_output=json.dumps(payload, sort_keys=True),
+        invalid_output=invalid_output,
+        requests=[],
+    )
 
 
 def run_command(
