@@ -47,29 +47,36 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. TODO-0313
+1. `TODO-0331`
+2. `TODO-0313`
 
 ### Immediate Next 10 (After Ready Now)
 
-1. TODO-0314
-2. TODO-0315
-3. TODO-0316
-4. TODO-0317
-5. TODO-0318
-6. TODO-0319
-7. TODO-0320
-8. TODO-0321
-9. TODO-0322
-10. TODO-0323
+1. TODO-0332
+2. TODO-0333
+3. TODO-0314
+4. TODO-0315
+5. TODO-0316
+6. TODO-0317
+7. TODO-0318
+8. TODO-0319
+9. TODO-0320
+10. TODO-0321
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: TODO-0313, TODO-0317, TODO-0318, TODO-0319, TODO-0324, TODO-0325
-- P1 Core product behavior: TODO-0314, TODO-0315, TODO-0316
-- P2 Social/eval/hardening: TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0326, TODO-0327
-- P3 Continuous docs governance: TODO-0313, TODO-0327
+- P1 Web presentation modernization: TODO-0331, TODO-0332, TODO-0333
+- P2 Core product behavior: TODO-0314, TODO-0315, TODO-0316
+- P3 Social/eval/hardening: TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0326, TODO-0327
+- P4 Continuous docs governance: TODO-0313, TODO-0327
 
 ### Execution Queue (Recommended)
+
+Wave 0 (presentation tooling + renderer):
+1. TODO-0331
+2. TODO-0332
+3. TODO-0333
 
 Wave A (bootstrap + contracts):
 1. TODO-0313
@@ -111,10 +118,10 @@ Cross-cutting docs backlog:
 | Section 7.5 profile pages/history | - |
 | Section 7.6 comments pipeline/rendering | TODO-0315, TODO-0316, TODO-0320, TODO-0321, TODO-0322, TODO-0323 |
 | Section 7.7 comment quality harness | - |
-| Section 8 site/UI/static build | - |
+| Section 8 site/UI/static build | TODO-0331, TODO-0332, TODO-0333 |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | - |
-| Section 11 testing strategy | - |
+| Section 11 testing strategy | TODO-0333 |
 | Section 12 reconstruction plan | - |
 | Section 13 definition of done | - |
 
@@ -128,7 +135,7 @@ Cross-cutting docs backlog:
 | Section 6 (semantic execution engine + retry/repair) | TODO-0317 |
 | Section 7 (transaction/rollback) | - |
 | Section 8 (pipeline execution contracts) | TODO-0314, TODO-0315, TODO-0316, TODO-0320, TODO-0321, TODO-0322, TODO-0323 |
-| Section 9 (deterministic build/projection) | - |
+| Section 9 (deterministic build/projection) | TODO-0331, TODO-0332, TODO-0333 |
 | Section 10 (relation persistence) | TODO-0326 |
 | Section 11 (lint/warning threshold) | - |
 | Section 12 (wrapper/script interfaces) | TODO-0314, TODO-0315, TODO-0316 |
@@ -141,13 +148,46 @@ Cross-cutting docs backlog:
 
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
-| Section 2 (test module layout) | TODO-0327 |
-| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0314, TODO-0315, TODO-0316, TODO-0317, TODO-0318, TODO-0319, TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0324, TODO-0325, TODO-0326 |
-| Tier 4-6 (determinism/golden/live canary) | - |
+| Section 2 (test module layout) | TODO-0327, TODO-0333 |
+| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0314, TODO-0315, TODO-0316, TODO-0317, TODO-0318, TODO-0319, TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0324, TODO-0325, TODO-0326, TODO-0331, TODO-0332, TODO-0333 |
+| Tier 4-6 (determinism/golden/live canary) | TODO-0333 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0313, TODO-0327 |
-| Section 6 (exit criteria gating) | - |
+| Section 6 (exit criteria gating) | TODO-0333 |
 
 ### Task Blocks
+
+- [ ] TODO-0333: Add deterministic style-output and presentation contract tests
+  - owner: ai
+  - created_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0331, TODO-0332
+  - scope: Add/refresh tests to prove stylesheet linking, generated CSS assets, and deterministic/stable styled output contracts.
+  - acceptance:
+    - Unit/integration tests assert rendered pages include canonical stylesheet link and responsive viewport metadata.
+    - Build contract tests assert compiled CSS asset exists and deterministic rebuild output remains byte-stable.
+    - Wrapper/build tests fail when CSS asset generation contract is broken.
+
+- [ ] TODO-0332: Modernize deterministic HTML renderer layout and component structure
+  - owner: ai
+  - created_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0330, TODO-0331
+  - scope: Refactor site HTML rendering to modern, responsive semantic component structure (cards/nav/sidebar/feed/topic/source pages) while preserving deterministic output rules.
+  - acceptance:
+    - `sapi/build/site_builder.py` removes inline style attributes and emits stable semantic class structure for primary pages.
+    - Space/site/topic/source/user/feed pages render with consistent modern layout hooks and accessibility-focused nav/focus semantics.
+    - Existing deterministic render contracts remain green with updated snapshots/assertions where required.
+
+- [ ] TODO-0331: Implement Tailwind/PostCSS asset pipeline in deterministic site build
+  - owner: ai
+  - created_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0330
+  - scope: Add actual CSS toolchain execution (Tailwind + PostCSS/autoprefixer) and deterministic stylesheet emission under build outputs.
+  - acceptance:
+    - `package.json` + lockfile declare/pin required frontend dependencies (`tailwindcss`, `postcss`, `autoprefixer`) and reproducible build scripts.
+    - `scripts/build_site.py` compiles canonical CSS into site assets and hard-fails on toolchain/CSS build errors.
+    - Build manifest captures concrete Tailwind toolchain version (not `not_declared`) and emitted CSS artifact metadata.
 
 - [ ] TODO-0327: Purge compatibility/deprecation tests and add strict no-legacy coverage
   - owner: ai

@@ -4,6 +4,32 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-13
 
+- [x] TODO-0330: Define canonical web-presentation contract for modern styled output
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Cross-cutting
+  - scope: Update contracts to require modern deterministic UI presentation semantics
+    (stylesheet contract, responsive metadata, semantic component classes, deterministic CSS
+    asset policy).
+  - acceptance:
+    - `docs/design.md` Section 8 and corresponding `docs/low_level.md` sections define
+      normative styling/render contracts including CSS asset ownership and determinism
+      boundaries.
+    - `docs/testing_plan.md` includes explicit coverage requirements for presentation
+      contract checks.
+    - Contract wording resolves current Tailwind/toolchain ambiguity by distinguishing
+      declaration-only metadata from required build behavior.
+  - notes: source `docs/design.md` Section 8; `docs/low_level.md` Section 9;
+    `docs/testing_plan.md` Tier 4
+  - evidence: Added normative "Canonical presentation contract" requirements in
+    `docs/design.md` (viewport tag, canonical stylesheet link, semantic class hooks, ownership
+    boundary, and metadata-vs-build ambiguity guardrail), plus implementation-boundary clauses
+    in `docs/low_level.md` Section 9 and explicit presentation test requirements in
+    `docs/testing_plan.md`. Added
+    `tests/unit/contracts/test_web_presentation_contracts.py` to assert these contracts are
+    present and synchronized across all three docs.
+
 - [x] TODO-0312: Close Section 6 testing exit criteria with explicit evidence
   - owner: ai
   - created_at: 2026-04-13

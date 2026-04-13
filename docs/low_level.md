@@ -477,6 +477,14 @@ Builder contracts:
 - no LLM calls
 - hard-fail on unresolved links/templates/conversion errors
 
+Presentation asset and ownership contracts (normative implementation boundary):
+- deterministic build MUST emit canonical stylesheet assets at `<render_root>/assets/site.css`
+- rendered pages MUST include one viewport meta tag and one stylesheet link to `assets/site.css`
+- template/render layer owns semantic HTML class hooks (`site-shell`, `site-sidebar`, `site-main`, `content-card`, `feed-list`, `topic-section`, `source-summary`)
+- CSS toolchain stage owns stylesheet compilation; missing or failed stylesheet generation is a build error
+- build validation MUST assert stylesheet file existence and HTML link references before reporting success
+- run/build metadata key `toolchain_versions.tailwind_cli` is informational only and MUST NOT be treated as compilation success evidence
+
 High-level API:
 
 ```python

@@ -1428,6 +1428,23 @@ Static build requirements:
 - unresolved conversion/template/link errors should hard-fail build
 - static build stage MUST NOT invoke LLMs
 
+Canonical presentation contract (normative):
+- every rendered HTML document MUST include canonical responsive viewport metadata:
+  - `<meta name="viewport" content="width=device-width, initial-scale=1">`
+- every rendered HTML document MUST include exactly one canonical stylesheet link emitted by deterministic templates:
+  - `<link rel="stylesheet" href=".../assets/site.css">`
+- renderer output MUST include stable semantic layout class hooks so modern styling stays deterministic across page types:
+  - `site-shell`, `site-sidebar`, `site-main`, `content-card`, `feed-list`, `topic-section`, `source-summary`
+- ownership boundary:
+  - canonical JSON + deterministic templates own HTML structure and semantic class naming
+  - deterministic CSS toolchain stage owns stylesheet compilation
+  - static site build/runtime MUST NOT synthesize CSS via LLM or non-deterministic runtime mutation
+- determinism boundary:
+  - emitted stylesheet bytes MUST be a deterministic function of checked-in style sources and lockfile-pinned toolchain inputs
+  - build success MUST require emitted stylesheet asset presence plus HTML link references; metadata alone is insufficient
+- ambiguity guardrail:
+  - `toolchain_versions.tailwind_cli` is declaration-only metadata and MUST NOT be treated as proof that stylesheet compilation occurred
+
 Frontend toolchain reproducibility contract:
 - repository MUST check in `package.json` plus exactly one lockfile (`package-lock.json`, `pnpm-lock.yaml`, or `yarn.lock`)
 - selected package manager MUST be declared via `packageManager` in `package.json`

@@ -121,6 +121,14 @@ tests/
 - [x] Incremental output equivalence with full rebuild output.
   - Module: `tests/integration/build/test_incremental_vs_full_equivalence.py`
 
+Presentation contract coverage requirements (Section 8 / Section 9):
+- Tier 1 contract test MUST assert docs require canonical viewport meta, stylesheet link contract, semantic class hooks, and metadata-vs-build boundary wording.
+  - Module: `tests/unit/contracts/test_web_presentation_contracts.py`
+- Tier 4 integration coverage MUST assert built HTML pages include canonical viewport meta and stylesheet link, and deterministic CSS assets are emitted.
+  - Module: `tests/integration/build/test_build_determinism.py` (extend for stylesheet assertions)
+- Tier 4 failure coverage MUST assert site build fails when stylesheet emission or stylesheet-link contract is broken.
+  - Module: `tests/integration/build/test_build_determinism.py` (extend for failure cases)
+
 ### Tier 5: Golden Snapshot Tests
 
 - [x] Site page snapshot coverage for core navigation/content contracts.
