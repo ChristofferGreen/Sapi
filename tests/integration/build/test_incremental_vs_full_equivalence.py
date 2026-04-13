@@ -34,6 +34,8 @@ class IncrementalBuildEquivalenceIntegrationTests(unittest.TestCase):
             full_snapshot = _capture_rendered_snapshot(site_path=site_path)
             self.assertIn("site/index.html", full_snapshot)
             self.assertIn("spaces/alpha/site/index.html", full_snapshot)
+            self.assertIn("site/assets/site.css", full_snapshot)
+            self.assertIn("spaces/alpha/site/assets/site.css", full_snapshot)
 
             incremental_build = _run_build(site_path=site_path, incremental=True)
             self.assertEqual(incremental_build.returncode, 0, msg=incremental_build.stderr)
@@ -61,7 +63,7 @@ def _capture_rendered_snapshot(*, site_path: Path) -> dict[str, str]:
         for path in sorted(root.rglob("*")):
             if not path.is_file():
                 continue
-            if path.suffix not in {".html", ".svg"}:
+            if path.suffix not in {".html", ".svg", ".css"}:
                 continue
             snapshot[str(path.relative_to(site_path))] = path.read_text()
     return snapshot

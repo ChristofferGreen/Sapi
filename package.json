@@ -6,9 +6,18 @@
   "description": "Sapi reconstruction workspace",
   "scripts": {
     "test": "npm run test:pr",
+    "build:styles:tailwind": "tailwindcss --config web/styles/tailwind.config.cjs --input web/styles/site.css --output web/styles/.generated/site.tailwind.css --minify",
+    "build:styles:postcss": "postcss web/styles/.generated/site.tailwind.css --config web/styles/postcss.config.cjs --output web/styles/.generated/site.css",
+    "build:styles": "mkdir -p web/styles/.generated && npm run build:styles:tailwind && npm run build:styles:postcss",
     "test:pr": "pytest -q tests/unit tests/integration/failure tests/integration/pipelines -m \"not live_llm\"",
     "test:tier4-5": "pytest -q tests/integration/build tests/golden -m \"not live_llm\"",
     "test:golden": "npm run test:tier4-5",
     "test:live": "pytest -q tests/live -m \"live_llm\""
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.47",
+    "postcss-cli": "11.0.0",
+    "tailwindcss": "3.4.14"
   }
 }

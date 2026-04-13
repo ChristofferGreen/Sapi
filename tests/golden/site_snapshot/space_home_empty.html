@@ -1,10 +1,10 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><title>alpha - Space Home</title></head><body>
-<form class="top-search" style="position:relative;z-index:1" action="/spaces/alpha/site/search/index.html" method="get"><label for="space-search-q">Search</label> <input id="space-search-q" type="search" name="q"/></form>
-<aside class="sidebar" style="position:relative;z-index:2">
-<p class="site-name">My Site</p>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>alpha - Space Home</title><link rel="stylesheet" href="/spaces/alpha/site/assets/site.css"></head><body class="site-shell">
+<div class="site-shell-grid">
+<aside class="site-sidebar">
+<div class="site-sidebar-head"><p class="site-name">My Site</p>
 <p class="space-name">alpha</p>
-<nav>
+</div><nav class="site-sidebar-nav">
 <ul><li><a class="current" href="/spaces/alpha/site/index.html">Space Home</a></li></ul>
 <details class="sidebar-spaces" open><summary>Spaces</summary><ul>
 <li><a class="current" href="/spaces/alpha/site/index.html">alpha</a></li>
@@ -17,17 +17,20 @@
 </ul></details>
 </nav>
 </aside>
-<main>
-<nav class="tabs" aria-label="Primary tabs"><a class="tab" href="/spaces/alpha/site/new/index.html">New</a> <a class="tab" href="/spaces/alpha/site/sources/index.html">Sources</a> <a class="tab" href="/spaces/alpha/site/topics/index.html">Topics</a> <a class="tab" href="/spaces/alpha/site/users/index.html">Users</a> <a class="claims-secondary" href="/spaces/alpha/site/claims/index.html">Claims</a></nav>
-<h1>alpha</h1>
+<main class="site-main">
+<header class="site-topbar"><form class="top-search" action="/spaces/alpha/site/search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
+<nav class="tabs" aria-label="Primary tabs"><a class="tab" href="/spaces/alpha/site/new/index.html">New</a> <a class="tab" href="/spaces/alpha/site/sources/index.html">Sources</a> <a class="tab" href="/spaces/alpha/site/topics/index.html">Topics</a> <a class="tab" href="/spaces/alpha/site/users/index.html">Users</a> <a class="tab claims-secondary" href="/spaces/alpha/site/claims/index.html">Claims</a></nav>
+<section class="content-card"><h1>alpha</h1>
 <h2>Sources</h2>
-<ul>
+<ul class="feed-list">
 
 </ul>
 <h2>Topics</h2>
-<ul>
+<ul class="feed-list">
 
 </ul>
+</section>
 
 </main>
+</div>
 </body></html>

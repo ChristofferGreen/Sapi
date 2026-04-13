@@ -4,9 +4,12 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
+import subprocess
 import sys
+import tempfile
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
@@ -51,15 +54,27 @@ def main() -> int:
         else:
             registry = load_registry(registry_path)
             space_targets = sorted(space.space_name for space in registry["spaces"])
+        space_roots = {
+            space_name: resolve_space_root(registry_path, space_name) for space_name in space_targets
+        }
+        stylesheet_artifacts = _compile_site_stylesheet_assets(
+            repo_root=_REPO_ROOT,
+            site_path=site_path,
+            space_roots=space_roots,
+            package_manager_family=toolchain["package_manager_family"],
+            incremental=args.incremental,
+        )
+        compiled_stylesheet = stylesheet_artifacts["compiled_css_bytes"]
 
         builds = []
         lint_issue_rows: list[dict[str, object]] = []
         for space_name in space_targets:
-            space_root = resolve_space_root(registry_path, space_name)
+            space_root = space_roots[space_name]
             build = build_space_site(
                 space_root,
                 incremental=args.incremental,
                 site_presentation_mode=args.site_presentation_mode,
+                compiled_stylesheet=compiled_stylesheet,
             )
             lint_summary = build.lint_summary
             lint_issue_rows.extend(
@@ -86,7 +101,11 @@ def main() -> int:
                     },
                 }
             )
-        site_new_index_path = refresh_site_new_index(site_path, incremental=args.incremental)
+        site_new_index_path = refresh_site_new_index(
+            site_path,
+            incremental=args.incremental,
+            compiled_stylesheet=compiled_stylesheet,
+        )
     except (ProjectionContractError, ValueError, KeyError, FileNotFoundError) as exc:
         print(f"Build failed: {exc}", file=sys.stderr)
         return 1
@@ -117,6 +136,21 @@ def main() -> int:
             "tailwind_cli": toolchain["tailwind_cli"],
         },
         "frozen_install_mode": toolchain["frozen_install_mode"],
+        "stylesheet_assets": [
+            {
+                "path": stylesheet_artifacts["site_asset_path"],
+                "sha256": stylesheet_artifacts["site_asset_sha256"],
+                "bytes": stylesheet_artifacts["site_asset_bytes"],
+            },
+            *[
+                {
+                    "path": asset["path"],
+                    "sha256": asset["sha256"],
+                    "bytes": asset["bytes"],
+                }
+                for asset in stylesheet_artifacts["space_assets"]
+            ],
+        ],
     }
     manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
@@ -216,6 +250,7 @@ def _validate_frontend_toolchain_reproducibility(repo_root: Path) -> dict[str, s
     return {
         "node": node_pin_value,
         "package_manager": package_manager_decl,
+        "package_manager_family": package_manager_family,
         "tailwind_cli": tailwind_cli,
         "frozen_install_mode": frozen_install_by_pm[package_manager_family],
     }
@@ -230,6 +265,131 @@ def _resolve_node_pin(repo_root: Path) -> str:
             if value:
                 return value
     raise ValueError("Missing required Node runtime pin (.nvmrc or .node-version).")
+
+
+def _compile_site_stylesheet_assets(
+    *,
+    repo_root: Path,
+    site_path: Path,
+    space_roots: dict[str, Path],
+    package_manager_family: str,
+    incremental: bool,
+) -> dict[str, object]:
+    input_css_path = repo_root / "web" / "styles" / "site.css"
+    tailwind_config_path = repo_root / "web" / "styles" / "tailwind.config.cjs"
+    postcss_config_path = repo_root / "web" / "styles" / "postcss.config.cjs"
+    for path in (input_css_path, tailwind_config_path, postcss_config_path):
+        if not path.is_file():
+            raise ValueError(f"Missing required stylesheet pipeline contract file: {path}")
+
+    _ensure_node_style_toolchain(repo_root=repo_root, package_manager_family=package_manager_family)
+
+    with tempfile.TemporaryDirectory(prefix="sapi-style-compile-") as tmp_dir:
+        tmp_root = Path(tmp_dir)
+        tailwind_out = tmp_root / "site.tailwind.css"
+        compiled_out = tmp_root / "site.css"
+        _run_style_command(
+            [
+                "npm",
+                "exec",
+                "--",
+                "tailwindcss",
+                "--config",
+                str(tailwind_config_path),
+                "--input",
+                str(input_css_path),
+                "--output",
+                str(tailwind_out),
+                "--minify",
+            ],
+            cwd=repo_root,
+            failure_hint="tailwind_css_compile_failed",
+        )
+        _run_style_command(
+            [
+                "npm",
+                "exec",
+                "--",
+                "postcss",
+                str(tailwind_out),
+                "--config",
+                str(postcss_config_path),
+                "--output",
+                str(compiled_out),
+            ],
+            cwd=repo_root,
+            failure_hint="postcss_autoprefixer_compile_failed",
+        )
+        compiled_css_bytes = compiled_out.read_bytes()
+
+    if not compiled_css_bytes:
+        raise ValueError("Compiled stylesheet is empty; stylesheet emission contract violated.")
+
+    site_asset_path = site_path / "site" / "assets" / "site.css"
+    _write_binary_file(site_asset_path, compiled_css_bytes, incremental=incremental)
+    space_assets: list[dict[str, object]] = []
+    for space_name, space_root in sorted(space_roots.items()):
+        space_asset_path = space_root / "site" / "assets" / "site.css"
+        _write_binary_file(space_asset_path, compiled_css_bytes, incremental=incremental)
+        space_assets.append(
+            {
+                "space_name": space_name,
+                "path": str(space_asset_path),
+                "sha256": hashlib.sha256(compiled_css_bytes).hexdigest(),
+                "bytes": len(compiled_css_bytes),
+            }
+        )
+
+    return {
+        "compiled_css_bytes": compiled_css_bytes,
+        "site_asset_path": str(site_asset_path),
+        "site_asset_sha256": hashlib.sha256(compiled_css_bytes).hexdigest(),
+        "site_asset_bytes": len(compiled_css_bytes),
+        "space_assets": space_assets,
+    }
+
+
+def _ensure_node_style_toolchain(*, repo_root: Path, package_manager_family: str) -> None:
+    tailwind_bin = repo_root / "node_modules" / ".bin" / "tailwindcss"
+    postcss_bin = repo_root / "node_modules" / ".bin" / "postcss"
+    if tailwind_bin.is_file() and postcss_bin.is_file():
+        return
+    if package_manager_family != "npm":
+        raise ValueError(
+            "Only npm packageManager family is currently supported for deterministic stylesheet compilation."
+        )
+    result = subprocess.run(
+        ["npm", "ci", "--silent"],
+        cwd=repo_root,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        raise ValueError(
+            "npm ci failed while preparing deterministic stylesheet toolchain.\n"
+            + result.stderr.strip()
+        )
+    if not tailwind_bin.is_file() or not postcss_bin.is_file():
+        raise ValueError(
+            "Deterministic stylesheet toolchain missing required binaries after npm ci."
+        )
+
+
+def _run_style_command(cmd: list[str], *, cwd: Path, failure_hint: str) -> None:
+    result = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
+    if result.returncode != 0:
+        raise ValueError(
+            f"{failure_hint}: {' '.join(cmd)}\n"
+            f"stdout:\n{result.stdout.strip()}\n"
+            f"stderr:\n{result.stderr.strip()}"
+        )
+
+
+def _write_binary_file(path: Path, content: bytes, *, incremental: bool) -> None:
+    if incremental and path.is_file() and path.read_bytes() == content:
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(content)
 
 
 if __name__ == "__main__":

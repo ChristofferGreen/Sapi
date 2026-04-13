@@ -4,6 +4,62 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-13
 
+- [x] TODO-0333: Add deterministic style-output and presentation contract tests
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0331, TODO-0332
+  - scope: Add/refresh tests to prove stylesheet linking, generated CSS assets, and deterministic/stable styled output contracts.
+  - acceptance:
+    - Unit/integration tests assert rendered pages include canonical stylesheet link and responsive viewport metadata.
+    - Build contract tests assert compiled CSS asset exists and deterministic rebuild output remains byte-stable.
+    - Wrapper/build tests fail when CSS asset generation contract is broken.
+  - notes: source `docs/testing_plan.md` Tier 4; `docs/design.md` Section 8; `docs/low_level.md` Section 9
+  - evidence: Extended unit and integration coverage to assert viewport + stylesheet-link contracts and deterministic stylesheet assets:
+    `tests/unit/build/test_site_builder_contracts.py`,
+    `tests/integration/build/test_build_determinism.py`,
+    and `tests/integration/build/test_incremental_vs_full_equivalence.py`.
+    Added an explicit stylesheet-contract failure test by removing required pipeline input
+    file (`web/styles/site.css`) and verifying `scripts/build_site.py` fails fast.
+
+- [x] TODO-0332: Modernize deterministic HTML renderer layout and component structure
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0330, TODO-0331
+  - scope: Refactor site HTML rendering to modern, responsive semantic component structure (cards/nav/sidebar/feed/topic/source pages) while preserving deterministic output rules.
+  - acceptance:
+    - `sapi/build/site_builder.py` removes inline style attributes and emits stable semantic class structure for primary pages.
+    - Space/site/topic/source/user/feed pages render with consistent modern layout hooks and accessibility-focused nav/focus semantics.
+    - Existing deterministic render contracts remain green with updated snapshots/assertions where required.
+  - notes: source `docs/design.md` Section 8
+  - evidence: Reworked layout rendering in `sapi/build/site_builder.py` to emit semantic hooks
+    (`site-shell`, `site-sidebar`, `site-main`, `content-card`, `feed-list`, `topic-section`,
+    `source-summary`), removed inline style attributes, and standardized viewport/stylesheet
+    metadata across space and site-root pages. Updated golden fixtures in
+    `tests/golden/site_snapshot/space_home_empty.html` and
+    `tests/golden/site_snapshot/site_root_index_empty.html`.
+
+- [x] TODO-0331: Implement Tailwind/PostCSS asset pipeline in deterministic site build
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 3
+  - depends_on: TODO-0330
+  - scope: Add actual CSS toolchain execution (Tailwind + PostCSS/autoprefixer) and deterministic stylesheet emission under build outputs.
+  - acceptance:
+    - `package.json` + lockfile declare/pin required frontend dependencies (`tailwindcss`, `postcss`, `autoprefixer`) and reproducible build scripts.
+    - `scripts/build_site.py` compiles canonical CSS into site assets and hard-fails on toolchain/CSS build errors.
+    - Build manifest captures concrete Tailwind toolchain version (not `not_declared`) and emitted CSS artifact metadata.
+  - notes: source `docs/design.md` Section 8; `docs/low_level.md` Section 9
+  - evidence: Added deterministic stylesheet pipeline files under `web/styles/` and wired
+    `scripts/build_site.py` to run Tailwind + PostCSS, emit `site/assets/site.css` and
+    `spaces/<space>/site/assets/site.css`, and persist `stylesheet_assets` metadata in
+    `outputs/build_site/manifest.json`. Updated `package.json` + `package-lock.json` with
+    pinned `tailwindcss`, `postcss`, `postcss-cli`, and `autoprefixer`.
+
 - [x] TODO-0330: Define canonical web-presentation contract for modern styled output
   - owner: ai
   - created_at: 2026-04-13

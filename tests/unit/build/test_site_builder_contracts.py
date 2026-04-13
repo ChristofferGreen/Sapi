@@ -51,25 +51,40 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("node", first_manifest["toolchain_versions"])
             self.assertIn("package_manager", first_manifest["toolchain_versions"])
             self.assertIn("tailwind_cli", first_manifest["toolchain_versions"])
+            self.assertNotEqual(first_manifest["toolchain_versions"]["tailwind_cli"], "not_declared")
+            self.assertIn("stylesheet_assets", first_manifest)
+            self.assertGreaterEqual(len(first_manifest["stylesheet_assets"]), 2)
 
             space_index_path = space_root / "site" / "index.html"
             topic_page_path = space_root / "site" / "topics" / "topic-a.html"
             source_page_path = space_root / "site" / "sources" / "source-a.html"
             site_new_path = site_path / "site" / "new" / "index.html"
+            site_css_path = site_path / "site" / "assets" / "site.css"
+            space_css_path = space_root / "site" / "assets" / "site.css"
             self.assertTrue(space_index_path.is_file())
             self.assertTrue(topic_page_path.is_file())
             self.assertTrue(source_page_path.is_file())
             self.assertTrue(site_new_path.is_file())
+            self.assertTrue(site_css_path.is_file())
+            self.assertTrue(space_css_path.is_file())
+            self.assertGreater(site_css_path.stat().st_size, 0)
+            self.assertEqual(site_css_path.read_bytes(), space_css_path.read_bytes())
 
             first_index_text = space_index_path.read_text()
             self.assertIn("Topic A", first_index_text)
             self.assertIn("Source A", first_index_text)
+            self.assertIn('<meta name="viewport" content="width=device-width, initial-scale=1">', first_index_text)
+            self.assertIn('<link rel="stylesheet" href="/spaces/alpha/site/assets/site.css">', first_index_text)
+            site_new_text = site_new_path.read_text()
+            self.assertIn('<meta name="viewport" content="width=device-width, initial-scale=1">', site_new_text)
+            self.assertIn('<link rel="stylesheet" href="/site/assets/site.css">', site_new_text)
 
             second = self._run(command)
             self.assertEqual(second.returncode, 0, msg=second.stderr)
             second_manifest_text = manifest_path.read_text()
             self.assertEqual(first_manifest_text, second_manifest_text)
             self.assertEqual(first_index_text, space_index_path.read_text())
+            self.assertEqual(site_css_path.read_bytes(), space_css_path.read_bytes())
 
     def test_build_fails_fast_on_unresolved_topic_source_links(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -393,9 +408,9 @@ class SiteBuilderContractTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0, msg=result.stderr)
             page = (space_root / "site" / "topics" / "topic-order--333333333333.html").read_text()
-            lead_idx = page.index("<h2>Lead summary</h2>")
-            key_idx = page.index("<h2>Key points</h2>")
-            refs_idx = page.index("<h2>References</h2>")
+            lead_idx = page.index("<h2 class=\"topic-section-heading\">Lead summary</h2>")
+            key_idx = page.index("<h2 class=\"topic-section-heading\">Key points</h2>")
+            refs_idx = page.index("<h2 class=\"topic-section-heading\">References</h2>")
             self.assertLess(lead_idx, key_idx)
             self.assertLess(key_idx, refs_idx)
 
@@ -428,8 +443,8 @@ class SiteBuilderContractTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0, msg=result.stderr)
             page = (space_root / "site" / "topics" / "topic-mirror-order--444444444444.html").read_text()
-            methods_idx = page.index("<h2>Methods / approach</h2>")
-            results_idx = page.index("<h2>Results / findings</h2>")
+            methods_idx = page.index("<h2 class=\"topic-section-heading\">Methods / approach</h2>")
+            results_idx = page.index("<h2 class=\"topic-section-heading\">Results / findings</h2>")
             self.assertLess(methods_idx, results_idx)
 
             self._write_topic_record(
@@ -482,6 +497,28 @@ class SiteBuilderContractTests(unittest.TestCase):
             )
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("sections[0].body", result.stderr)
+
+    def test_build_fails_when_stylesheet_contract_files_are_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, _space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            stylesheet_path = REPO_ROOT / "web" / "styles" / "site.css"
+            original = stylesheet_path.read_text()
+            stylesheet_path.unlink()
+            try:
+                result = self._run(
+                    [
+                        "python3",
+                        str(REPO_ROOT / "scripts" / "build_site.py"),
+                        "--registry-path",
+                        str(site_path / "spaces.toml"),
+                        "alpha",
+                    ]
+                )
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("Missing required stylesheet pipeline contract file", result.stderr)
+            finally:
+                stylesheet_path.write_text(original)
 
     def test_incremental_build_output_is_equivalent_to_full_rebuild(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -558,8 +595,11 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stderr)
 
             space_home = (alpha_space_root / "site" / "index.html").read_text()
-            self.assertIn("class=\"sidebar\" style=\"position:relative;z-index:2\"", space_home)
-            self.assertIn("class=\"top-search\" style=\"position:relative;z-index:1\"", space_home)
+            self.assertIn("class=\"site-sidebar\"", space_home)
+            self.assertIn("class=\"site-main\"", space_home)
+            self.assertIn("class=\"content-card\"", space_home)
+            self.assertIn("class=\"top-search\"", space_home)
+            self.assertIn("class=\"feed-list\"", space_home)
             self.assertIn("<summary>Spaces</summary>", space_home)
             self.assertIn(">Space Home</a>", space_home)
             self.assertIn("/spaces/alpha/site/index.html", space_home)
@@ -832,9 +872,9 @@ class SiteBuilderContractTests(unittest.TestCase):
                     "count": 1,
                     "users": [
                         {
-                            "persona_id": "persona-one",
-                            "display_name": "Persona One",
-                            "full_name": "Persona One",
+                            "persona_id": "persona-maya-santoro",
+                            "display_name": "Maya Santoro",
+                            "full_name": "Maya Santoro",
                             "account_status": "active",
                             "stance_profile": "neutral",
                             "biography": (

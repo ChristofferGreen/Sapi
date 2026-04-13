@@ -35,6 +35,14 @@ class BuildDeterminismIntegrationTests(unittest.TestCase):
             self.assertIn("outputs/build_site/manifest.json", first_snapshot)
             self.assertIn("site/index.html", first_snapshot)
             self.assertIn("spaces/alpha/site/index.html", first_snapshot)
+            self.assertIn("site/assets/site.css", first_snapshot)
+            self.assertIn("spaces/alpha/site/assets/site.css", first_snapshot)
+            self.assertIn('<meta name="viewport" content="width=device-width, initial-scale=1">', first_snapshot["site/index.html"])
+            self.assertIn('<link rel="stylesheet" href="/site/assets/site.css">', first_snapshot["site/index.html"])
+            self.assertIn(
+                '<link rel="stylesheet" href="/spaces/alpha/site/assets/site.css">',
+                first_snapshot["spaces/alpha/site/index.html"],
+            )
 
             second_build = _run_build(site_path=site_path, incremental=False)
             self.assertEqual(second_build.returncode, 0, msg=second_build.stderr)
@@ -61,12 +69,12 @@ def _capture_build_snapshot(*, site_path: Path) -> dict[str, str]:
     for path in sorted((site_path / "site").rglob("*")):
         if not path.is_file():
             continue
-        if path.suffix not in {".html", ".svg"}:
+        if path.suffix not in {".html", ".svg", ".css"}:
             continue
         snapshot[str(path.relative_to(site_path))] = path.read_text()
 
     for path in sorted((site_path / "spaces" / "alpha" / "site").rglob("*")):
-        if not path.is_file() or path.suffix != ".html":
+        if not path.is_file() or path.suffix not in {".html", ".css"}:
             continue
         snapshot[str(path.relative_to(site_path))] = path.read_text()
 

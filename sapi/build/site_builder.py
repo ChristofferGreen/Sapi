@@ -80,18 +80,21 @@ def build_space_site(
     *,
     incremental: bool,
     site_presentation_mode: str = "public",
+    compiled_stylesheet: bytes,
 ) -> BuildResult:
     """Build deterministic space HTML from canonical JSON artifacts only."""
     projection = load_space_projection(space_root)
     space_name = space_root.name
     output_root = space_root / "site"
     output_root.mkdir(parents=True, exist_ok=True)
+    stylesheet_path = output_root / "assets" / "site.css"
+    _write_binary_file(stylesheet_path, compiled_stylesheet, incremental=incremental)
     site_path = space_root.parent.parent
     context = _build_layout_context(space_root=space_root, projection=projection, site_path=site_path)
     persona_rows = _load_persona_rows()
     run_ids = _load_run_ids(space_root)
 
-    generated_files: list[Path] = []
+    generated_files: list[Path] = [stylesheet_path]
     generated_files.extend(
         _write_source_pages(
             output_root=output_root,
@@ -167,7 +170,12 @@ def build_space_site(
     )
 
 
-def refresh_site_new_index(site_path: Path, *, incremental: bool) -> Path:
+def refresh_site_new_index(
+    site_path: Path,
+    *,
+    incremental: bool,
+    compiled_stylesheet: bytes,
+) -> Path:
     """Refresh site-root New index from canonical source/topic artifacts across spaces."""
     spaces_root = site_path / "spaces"
     entries: list[_FeedEntry] = []
@@ -197,6 +205,8 @@ def refresh_site_new_index(site_path: Path, *, incremental: bool) -> Path:
     site_name = _resolve_site_name(site_path)
     site_root = site_path / "site"
     site_root.mkdir(parents=True, exist_ok=True)
+    site_stylesheet_path = site_root / "assets" / "site.css"
+    _write_binary_file(site_stylesheet_path, compiled_stylesheet, incremental=incremental)
     _write_text_file(
         site_root / "index.html",
         _render_site_root_index(
@@ -341,10 +351,10 @@ def _render_space_index(
     )
     body = (
         f"<h1>{escape(space_name)}</h1>\n"
-        "<h2>Sources</h2>\n<ul>\n"
+        "<h2>Sources</h2>\n<ul class=\"feed-list\">\n"
         + source_rows
         + "\n</ul>\n"
-        + "<h2>Topics</h2>\n<ul>\n"
+        + "<h2>Topics</h2>\n<ul class=\"feed-list\">\n"
         + topic_rows
         + "\n</ul>\n"
     )
@@ -625,8 +635,8 @@ def _render_topic_section(
     body = str(section["body"])
     clean_body, annotation_groups = _extract_claim_annotations(body)
     rows = [
-        "<section>",
-        f"<h2>{heading}</h2>",
+        "<section class=\"topic-section\">",
+        f"<h2 class=\"topic-section-heading\">{heading}</h2>",
         f"<p class=\"topic-section-body\">{escape(clean_body)}</p>",
     ]
     if annotation_groups:
@@ -972,7 +982,7 @@ def _write_space_tab_pages(
             body = (
                 f"<h1>{escape(tab_title)}</h1>\n"
                 + f"<p class=\"tab-page-size\" data-tab-page-size=\"{TAB_PAGE_SIZE}\">Page size: {TAB_PAGE_SIZE}</p>\n"
-                + "<ul>\n"
+                + "<ul class=\"feed-list\">\n"
                 + "\n".join(page_rows)
                 + "\n</ul>\n"
                 + pagination
@@ -1018,7 +1028,7 @@ def _write_space_user_profile_pages(
             + "<h2>Biography</h2>\n"
             + f"<p>{escape(biography_profile)}</p>\n"
             + "<h2>Short CV</h2>\n"
-            + "<ul>\n"
+            + "<ul class=\"feed-list\">\n"
             + ("\n".join(short_cv_items) if short_cv_items else "<li>(none listed)</li>")
             + "\n</ul>\n"
         )
@@ -1106,7 +1116,7 @@ def _write_space_search_page(
         "<h1>Search</h1>\n"
         + "<p id=\"search-results-summary\" class=\"search-results-summary\">"
         + f"{len(entries)} indexed item(s)</p>\n"
-        + "<ul class=\"search-index\">\n"
+        + "<ul class=\"search-index feed-list\">\n"
         + rows
         + "\n</ul>\n"
         + "<script>\n"
@@ -1193,21 +1203,34 @@ def _render_space_layout(
     current_tab: str | None,
     current_page: str | None = None,
 ) -> str:
+    stylesheet_href = f"/spaces/{context.space_name}/site/assets/site.css"
     return (
         "<!doctype html>\n"
-        "<html><head><meta charset=\"utf-8\"><title>"
+        "<html lang=\"en\"><head><meta charset=\"utf-8\">"
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+        "<title>"
         + escape(title)
-        + "</title></head><body>\n"
-        + "<form class=\"top-search\" style=\"position:relative;z-index:1\" action=\"/spaces/"
+        + "</title>"
+        + "<link rel=\"stylesheet\" href=\""
+        + escape(stylesheet_href)
+        + "\">"
+        + "</head><body class=\"site-shell\">\n"
+        + "<div class=\"site-shell-grid\">\n"
+        + _render_space_sidebar(context=context, current_page=current_page)
+        + "<main class=\"site-main\">\n"
+        + "<header class=\"site-topbar\">"
+        + "<form class=\"top-search\" action=\"/spaces/"
         + escape(context.space_name)
         + "/site/search/index.html\" method=\"get\">"
-        + "<label for=\"space-search-q\">Search</label> "
-        + "<input id=\"space-search-q\" type=\"search\" name=\"q\"/></form>\n"
-        + _render_space_sidebar(context=context, current_page=current_page)
-        + "<main>\n"
+        + "<label class=\"top-search-label\" for=\"space-search-q\">Search</label> "
+        + "<input class=\"top-search-input\" id=\"space-search-q\" type=\"search\" name=\"q\" placeholder=\"Search this space\"/></form>"
+        + "</header>\n"
         + _render_space_tabs(context=context, current_tab=current_tab)
+        + "<section class=\"content-card\">"
         + body
+        + "</section>\n"
         + "\n</main>\n"
+        + "</div>\n"
         + "</body></html>\n"
     )
 
@@ -1243,10 +1266,12 @@ def _render_space_sidebar(*, context: _SpaceLayoutContext, current_page: str | N
         for topic in context.topics
     )
     return (
-        "<aside class=\"sidebar\" style=\"position:relative;z-index:2\">\n"
+        "<aside class=\"site-sidebar\">\n"
+        + "<div class=\"site-sidebar-head\">"
         + f"<p class=\"site-name\">{escape(context.site_name)}</p>\n"
         + f"<p class=\"space-name\">{escape(context.space_name)}</p>\n"
-        + "<nav>\n"
+        + "</div>"
+        + "<nav class=\"site-sidebar-nav\">\n"
         + "<ul><li><a"
         + (" class=\"current\"" if current_page == "space_home" else "")
         + f" href=\"/spaces/{escape(context.space_name)}/site/index.html\">Space Home</a></li></ul>\n"
@@ -1283,7 +1308,7 @@ def _render_space_tabs(*, context: _SpaceLayoutContext, current_tab: str | None)
             + "</a>"
         )
     rows.append(
-        "<a class=\"claims-secondary\" href=\"/spaces/"
+        "<a class=\"tab claims-secondary\" href=\"/spaces/"
         + escape(context.space_name)
         + "/site/claims/index.html\">Claims</a>"
     )
@@ -1360,7 +1385,7 @@ def _write_site_users_pages(
         page_path = _paginated_page_path(users_root, page_number=page_number)
         body = (
             f"<h1>{escape(site_name)} Users</h1>\n"
-            + "<ul>\n"
+            + "<ul class=\"feed-list\">\n"
             + "\n".join(page_rows)
             + "\n</ul>\n"
             + _render_pagination(
@@ -1372,13 +1397,12 @@ def _write_site_users_pages(
         )
         _write_text_file(
             page_path,
-            "<!doctype html>\n<html><head><meta charset=\"utf-8\"><title>"
-            + escape(site_name)
-            + " Users</title></head><body>\n"
-            + "<nav class=\"site-tabs\"><a href=\"/site/new/index.html\">New</a> "
-            + "<a class=\"current\" href=\"/site/users/index.html\">Users</a></nav>\n"
-            + body
-            + "\n</body></html>\n",
+            _render_site_layout(
+                title=f"{site_name} Users",
+                site_name=site_name,
+                body=body,
+                current_tab="users",
+            ),
             incremental=incremental,
         )
 
@@ -1414,18 +1438,16 @@ def _render_site_root_index(
             + subspace_rows
             + "</li>"
         )
-    return (
-        "<!doctype html>\n"
-        "<html><head><meta charset=\"utf-8\"><title>"
-        + escape(site_name)
-        + "</title></head><body>\n"
-        + f"<h1>{escape(site_name)}</h1>\n"
-        + "<nav class=\"site-tabs\"><a href=\"/site/new/index.html\">New</a> "
-        + "<a href=\"/site/users/index.html\">Users</a></nav>\n"
-        + "<h2>Spaces</h2>\n<ul>\n"
-        + "\n".join(rows)
-        + "\n</ul>\n"
-        + "</body></html>\n"
+    return _render_site_layout(
+        title=site_name,
+        site_name=site_name,
+        current_tab=None,
+        body=(
+            f"<h1>{escape(site_name)}</h1>\n"
+            + "<h2>Spaces</h2>\n<ul class=\"feed-list\">\n"
+            + "\n".join(rows)
+            + "\n</ul>\n"
+        ),
     )
 
 
@@ -1450,20 +1472,57 @@ def _render_site_new_page(
         )
         for entry in page_entries
     )
+    return _render_site_layout(
+        title="New",
+        site_name=site_name,
+        current_tab="new",
+        body=(
+            f"<h1>New</h1>\n<p>{escape(site_name)}</p>\n<ul class=\"feed-list\">\n"
+            + rows
+            + "\n</ul>\n"
+            + _render_pagination(
+                page_number=page_number,
+                page_count=page_count,
+                mode="feed",
+                base_href="/site/new",
+            )
+        ),
+    )
+
+
+def _render_site_layout(
+    *,
+    title: str,
+    site_name: str,
+    body: str,
+    current_tab: str | None,
+) -> str:
+    nav_rows = [
+        "<a class=\"site-tab"
+        + (" current" if current_tab == "new" else "")
+        + "\" href=\"/site/new/index.html\">New</a>",
+        "<a class=\"site-tab"
+        + (" current" if current_tab == "users" else "")
+        + "\" href=\"/site/users/index.html\">Users</a>",
+    ]
     return (
         "<!doctype html>\n"
-        "<html><head><meta charset=\"utf-8\"><title>New</title></head><body>\n"
-        + "<nav class=\"site-tabs\"><a class=\"current\" href=\"/site/new/index.html\">New</a> "
-        + "<a href=\"/site/users/index.html\">Users</a></nav>\n"
-        + f"<h1>New</h1>\n<p>{escape(site_name)}</p>\n<ul>\n"
-        + rows
-        + "\n</ul>\n"
-        + _render_pagination(
-            page_number=page_number,
-            page_count=page_count,
-            mode="feed",
-            base_href="/site/new",
-        )
+        "<html lang=\"en\"><head><meta charset=\"utf-8\">"
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+        "<title>"
+        + escape(title)
+        + "</title>"
+        + "<link rel=\"stylesheet\" href=\"/site/assets/site.css\">"
+        + "</head><body class=\"site-shell site-root-shell\">\n"
+        + "<main class=\"site-main site-root-main\">"
+        + "<section class=\"content-card\">"
+        + f"<p class=\"site-name\">{escape(site_name)}</p>"
+        + "<nav class=\"site-tabs\">"
+        + " ".join(nav_rows)
+        + "</nav>"
+        + body
+        + "</section>"
+        + "</main>"
         + "</body></html>\n"
     )
 
