@@ -837,7 +837,36 @@ class SiteBuilderContractTests(unittest.TestCase):
                             "full_name": "Persona One",
                             "account_status": "active",
                             "stance_profile": "neutral",
-                            "profile_image_path": "personas/profile_images/.gitkeep",
+                            "biography": (
+                                "I test claims by examining assumptions, evidence quality, and practical "
+                                "tradeoffs before I decide whether a proposal is trustworthy. I map failure "
+                                "modes, clarify who owns each mitigation, and check whether teams can detect "
+                                "and recover from routine incidents under pressure. I value transparent "
+                                "reasoning, explicit uncertainty, and implementation plans with measurable "
+                                "checkpoints. I push back when summaries replace primary evidence or when "
+                                "important caveats are hidden behind confident language. I communicate "
+                                "directly, cite sources, and revise quickly when stronger data changes the "
+                                "expected outcome. I also document alternatives and residual risk so collaborators "
+                                "can audit and improve decisions together."
+                            ),
+                            "biography_profile": (
+                                "Persona One is a practical evidence reviewer known for translating complex "
+                                "arguments into clear decisions. Their profile emphasizes reliability, transparent "
+                                "tradeoffs, and steady communication under operational pressure."
+                            ),
+                            "interests": ["risk management"],
+                            "hot_topics": ["operational readiness"],
+                            "anger_topics": ["misleading claims"],
+                            "profile_image_path": "personas/profile_images/maya-santoro.png",
+                            "profile_image_prompt": (
+                                "Photorealistic portrait photo of this person at home in a study, natural "
+                                "window light, calm expression, realistic skin detail, documentary style."
+                            ),
+                            "short_cv": [
+                                "Operations Advisor, Example Systems (2022-present)",
+                                "SRE Manager, Example Infra (2018-2022)",
+                                "MSc, Reliability Engineering, Example University (2016-2018)",
+                            ],
                         }
                     ],
                 }
@@ -869,7 +898,12 @@ class SiteBuilderContractTests(unittest.TestCase):
 
                 alpha_profile_page = alpha_space_root / "site" / "users" / f"persona-{persona_id}.html"
                 self.assertTrue(alpha_profile_page.is_file())
-                self.assertIn(f"persona_id: {persona_id}", alpha_profile_page.read_text())
+                alpha_profile_html = alpha_profile_page.read_text()
+                self.assertIn(f"persona_id: {persona_id}", alpha_profile_html)
+                self.assertIn("Biography", alpha_profile_html)
+                self.assertIn("Short CV", alpha_profile_html)
+                self.assertIn("practical evidence reviewer", alpha_profile_html)
+                self.assertIn("Operations Advisor, Example Systems", alpha_profile_html)
             finally:
                 catalog_path.write_text(original_catalog)
 

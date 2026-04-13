@@ -9,16 +9,21 @@ from typing import Any
 
 
 _PERSONA_ID_RE = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
+_WORD_RE = re.compile(r"[A-Za-z0-9']+")
 _CATALOG_DIR = Path("personas")
 _CANONICAL_CATALOG_FILE = _CATALOG_DIR / "social_users.json"
-_COMPATIBILITY_CATALOG_FILE = _CATALOG_DIR / "users.json"
 _PROFILE_IMAGES_DIR = _CATALOG_DIR / "profile_images"
+_BIOGRAPHY_MIN_WORDS = 90
+_BIOGRAPHY_MAX_WORDS = 220
+_BIOGRAPHY_PROFILE_MIN_WORDS = 25
+_BIOGRAPHY_PROFILE_MAX_WORDS = 160
 _REQUIRED_USER_FIELDS: tuple[str, ...] = (
     "display_name",
     "full_name",
     "account_status",
     "stance_profile",
     "profile_image_path",
+    "profile_image_prompt",
 )
 
 
@@ -26,27 +31,18 @@ def canonical_persona_catalog_path(*, repo_root: Path) -> Path:
     return (repo_root / _CANONICAL_CATALOG_FILE).resolve()
 
 
-def compatibility_persona_catalog_path(*, repo_root: Path) -> Path:
-    return (repo_root / _COMPATIBILITY_CATALOG_FILE).resolve()
-
-
 def load_seeded_persona_catalog(
     *,
     repo_root: Path | None = None,
-    allow_compatibility_mirror: bool = True,
 ) -> list[dict[str, Any]]:
     resolved_repo_root = _resolve_repo_root(repo_root)
     canonical_path = canonical_persona_catalog_path(repo_root=resolved_repo_root)
-    compatibility_path = compatibility_persona_catalog_path(repo_root=resolved_repo_root)
 
     if canonical_path.is_file():
         rows = _load_catalog_rows(canonical_path)
-    elif allow_compatibility_mirror and compatibility_path.is_file():
-        rows = _load_catalog_rows(compatibility_path)
     else:
         raise FileNotFoundError(
-            "Persona catalog not found at canonical path "
-            f"{canonical_path} or compatibility mirror {compatibility_path}."
+            f"Persona catalog not found at canonical path {canonical_path}."
         )
 
     return _normalize_and_validate_rows(rows, repo_root=resolved_repo_root)
@@ -134,11 +130,48 @@ def _normalize_row(
             row.get(field_name),
             field_name=f"users[{row_index}].{field_name}",
         )
+    row["biography"] = _require_non_empty_string(
+        row.get("biography"),
+        field_name=f"users[{row_index}].biography",
+    )
+    row["biography_profile"] = _require_non_empty_string(
+        row.get("biography_profile"),
+        field_name=f"users[{row_index}].biography_profile",
+    )
+    _validate_biography_contract(
+        biography=row["biography"],
+        field_name=f"users[{row_index}].biography",
+    )
+    _validate_profile_biography_contract(
+        biography_profile=row["biography_profile"],
+        biography=row["biography"],
+        field_name=f"users[{row_index}].biography_profile",
+    )
+    row["short_cv"] = _require_non_empty_string_list(
+        row.get("short_cv"),
+        field_name=f"users[{row_index}].short_cv",
+    )
+    row["interests"] = _require_non_empty_string_list(
+        row.get("interests"),
+        field_name=f"users[{row_index}].interests",
+    )
+    row["hot_topics"] = _require_non_empty_string_list(
+        row.get("hot_topics"),
+        field_name=f"users[{row_index}].hot_topics",
+    )
+    row["anger_topics"] = _require_non_empty_string_list(
+        row.get("anger_topics"),
+        field_name=f"users[{row_index}].anger_topics",
+    )
 
     _resolve_profile_image_path(
         profile_image_path=row["profile_image_path"],
         repo_root=repo_root,
         row_index=row_index,
+    )
+    _validate_profile_image_prompt(
+        prompt=row["profile_image_prompt"],
+        field_name=f"users[{row_index}].profile_image_prompt",
     )
     return row
 
@@ -159,6 +192,10 @@ def _resolve_profile_image_path(
     if relative_path.parts[: len(required_prefix)] != required_prefix:
         raise ValueError(
             f"users[{row_index}].profile_image_path must be under personas/profile_images/."
+        )
+    if relative_path.suffix.lower() != ".png":
+        raise ValueError(
+            f"users[{row_index}].profile_image_path must reference a .png image under personas/profile_images/."
         )
 
     profile_root = (repo_root / _PROFILE_IMAGES_DIR).resolve()
@@ -181,3 +218,51 @@ def _require_non_empty_string(raw: Any, *, field_name: str) -> str:
         raise ValueError(f"{field_name} must be a non-empty string.")
     return raw.strip()
 
+
+def _require_non_empty_string_list(raw: Any, *, field_name: str) -> list[str]:
+    if not isinstance(raw, list):
+        raise ValueError(f"{field_name} must be a non-empty list of strings.")
+    normalized = [_require_non_empty_string(item, field_name=field_name) for item in raw]
+    if not normalized:
+        raise ValueError(f"{field_name} must be a non-empty list of strings.")
+    return normalized
+
+
+def _validate_biography_contract(*, biography: str, field_name: str) -> None:
+    if not biography.startswith("I "):
+        raise ValueError(f"{field_name} must start with first-person voice ('I ...').")
+
+    words = _WORD_RE.findall(biography)
+    word_count = len(words)
+    if word_count < _BIOGRAPHY_MIN_WORDS or word_count > _BIOGRAPHY_MAX_WORDS:
+        raise ValueError(
+            f"{field_name} must be {_BIOGRAPHY_MIN_WORDS}..{_BIOGRAPHY_MAX_WORDS} words; got {word_count}."
+        )
+
+
+def _validate_profile_biography_contract(
+    *,
+    biography_profile: str,
+    biography: str,
+    field_name: str,
+) -> None:
+    words = _WORD_RE.findall(biography_profile)
+    word_count = len(words)
+    if word_count < _BIOGRAPHY_PROFILE_MIN_WORDS or word_count > _BIOGRAPHY_PROFILE_MAX_WORDS:
+        raise ValueError(
+            f"{field_name} must be {_BIOGRAPHY_PROFILE_MIN_WORDS}..{_BIOGRAPHY_PROFILE_MAX_WORDS} words; got {word_count}."
+        )
+    if biography_profile.strip() == biography.strip():
+        raise ValueError(f"{field_name} must differ from users[].biography.")
+
+
+def _validate_profile_image_prompt(*, prompt: str, field_name: str) -> None:
+    words = _WORD_RE.findall(prompt)
+    if len(words) < 12:
+        raise ValueError(f"{field_name} must be descriptive (at least 12 words).")
+
+    normalized = prompt.lower()
+    if "photo" not in normalized and "photograph" not in normalized and "photorealistic" not in normalized:
+        raise ValueError(f"{field_name} must explicitly request a photorealistic/photo style image.")
+    if "person" not in normalized and "portrait" not in normalized:
+        raise ValueError(f"{field_name} must clearly describe a single-person portrait subject.")

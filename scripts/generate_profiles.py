@@ -375,10 +375,20 @@ class _BootstrapPersonaProfileClient:
             interests_lines = [f"- {str(item)}" for item in interests[:3] if str(item).strip()]
         else:
             interests_lines = []
+        biography_profile = str(self._persona_row.get("biography_profile") or "").strip()
+        short_cv = self._persona_row.get("short_cv")
+        if isinstance(short_cv, list):
+            short_cv_lines = [f"- {str(item)}" for item in short_cv if str(item).strip()]
+        else:
+            short_cv_lines = []
         profile_sections = [
             {
                 "title": "Identity",
                 "content": f"{display_name} participates in space `{self._space_name}` as `{persona_id}`.",
+            },
+            {
+                "title": "Profile biography",
+                "content": biography_profile or "(not provided)",
             },
             {
                 "title": "Debate style",
@@ -387,6 +397,10 @@ class _BootstrapPersonaProfileClient:
             {
                 "title": "Interests",
                 "content": "\n".join(interests_lines) if interests_lines else "- (none listed)",
+            },
+            {
+                "title": "Short CV",
+                "content": "\n".join(short_cv_lines) if short_cv_lines else "- (none listed)",
             },
         ]
         payload = {

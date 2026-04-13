@@ -652,6 +652,7 @@ Minimum test groups for this low-level design:
   - web-augmented evidence snapshot path/schema contract
 - profiles:
   - `generate_profiles.sh` path produces profile + history outputs
+  - persona-catalog loader enforces biography quality contract (generation-facing first-person `biography`, profile-facing `biography_profile`), required `short_cv` timeline rows, non-empty topic arrays, `.png` profile image path contract, and photorealistic `profile_image_prompt` contract.
 - site refresh behavior:
   - ingest/topic refresh site-root `New`
   - query/comment/profile do not refresh site-root `New` unless source/topic mutation occurs

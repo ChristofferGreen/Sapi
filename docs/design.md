@@ -190,7 +190,6 @@ Sapi/
     maintenance.skill
   personas/
     social_users.json
-    users.json
     profile_images/*
   sapi/
   scripts/
@@ -404,7 +403,6 @@ Repository-seeded persona storage (checked in):
 ```text
 <repo_root>/personas/
   social_users.json
-  users.json
   profile_images/*
 ```
 
@@ -1034,31 +1032,37 @@ Seeded catalog requirements:
 - persona catalog is checked into repository at `<repo_root>/personas/social_users.json`
 - default catalog cardinality is exactly `100` users
 - runtime user generation for sites/spaces is disabled; no per-site/per-space catalog creation
-- profile photos are checked into `<repo_root>/personas/profile_images/*`
+- profile photos are checked into `<repo_root>/personas/profile_images/*.png`
 
 Primary catalog file:
 - `personas/social_users.json`
 - schema: `social_users_v1`
 - keys: `schema_version`, `count`, `generated_at`, `users`
 
-Compatibility mirror:
-- `personas/users.json` with equivalent user rows for legacy readers
-
 Recovered user-row fields (high signal):
 - `persona_id`, `display_name`, `full_name`, `account_status`, `stance_profile`
-- `personality`, `biography`
+- `personality`, `biography`, `biography_profile`, `short_cv`
 - `interests`, `hot_topics`, `anger_topics`
 - `prompt_fields` (`core_belief`, `argument_style`, `tone`, `evidence_preference`)
 - optional `liked_spaces` filtered to known site/space IDs
-- required `profile_image_path` (repo-relative path under `personas/profile_images/`)
+- required `profile_image_path` (repo-relative `.png` path under `personas/profile_images/`)
+- required `profile_image_prompt` used for persona-image generation
 - optional compatibility alias `id` where `id == persona_id`
 
 Normalization rules:
 - `persona_id` matches slug pattern `[a-z0-9][a-z0-9_-]*` and must be unique
 - if legacy row has `id` but no `persona_id`, loader MUST map `persona_id = id`
 - if both `id` and `persona_id` exist and differ, validation MUST fail
+- `biography` MUST be written in first person voice from the persona's perspective.
+- `biography` SHOULD be high-signal and usually target `90..180` words (`220` hard upper bound) so persona behavior is specific without becoming verbose.
+- `biography` SHOULD cover the persona's core worldview, evidence/decision style, priorities, and friction points.
+- `biography_profile` is required for profile-page display copy and SHOULD be distinct from `biography`.
+- `biography_profile` SHOULD be flavorful public-profile prose and usually target `25..120` words (`160` hard upper bound).
+- `short_cv` is required and MUST be a non-empty list of concise role/study timeline entries suitable for profile-page display.
 - biography/topic fields normalized for minimum richness
-- `profile_image_path` MUST resolve to an existing image file at runtime
+- `profile_image_path` MUST resolve to an existing `.png` image file at runtime
+- `profile_image_prompt` MUST request a photorealistic single-person image that reflects the biography and stance.
+- `profile_image_prompt` MAY vary scene and appearance details (for example at home, on vacation, in space, with a funny hat, bald) while keeping identity cues consistent with the biography.
 - catalog `count` MUST equal the number of user rows and SHOULD be `100` in default checked-in seed
 
 Catalog loading behavior:
@@ -1078,7 +1082,7 @@ Profile page generation:
 - canonical record: `profiles/persona-<persona_id>.json`
 - optional projection: `projections/markdown/persona-<persona_id>.md`
 - page type: `persona_profile`
-- includes identity/viewpoint/debate-style sections and profile image link
+- includes identity/viewpoint/debate-style sections, profile biography/CV sections, and profile image link
 
 Projection emits `persona_profiles` stats:
 - `generated`, `updated`, `reused`, `pages`, `topic_ids`

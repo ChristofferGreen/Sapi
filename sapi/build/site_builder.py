@@ -960,11 +960,24 @@ def _write_space_user_profile_pages(
     written: list[Path] = []
     for row in persona_rows:
         persona_id = str(row["persona_id"])
+        biography_profile = str(row.get("biography_profile") or "").strip()
+        short_cv = row.get("short_cv")
+        if isinstance(short_cv, list):
+            short_cv_items = [f"<li>{escape(str(item))}</li>" for item in short_cv if str(item).strip()]
+        else:
+            short_cv_items = []
         path = users_root / f"persona-{persona_id}.html"
         body = (
             f"<h1>{escape(str(row['display_name']))}</h1>\n"
+            + f"<p>full_name: {escape(str(row.get('full_name') or ''))}</p>\n"
             + f"<p>persona_id: {escape(persona_id)}</p>\n"
             + "<p>Space-scoped profile page for this persona.</p>\n"
+            + "<h2>Biography</h2>\n"
+            + f"<p>{escape(biography_profile)}</p>\n"
+            + "<h2>Short CV</h2>\n"
+            + "<ul>\n"
+            + ("\n".join(short_cv_items) if short_cv_items else "<li>(none listed)</li>")
+            + "\n</ul>\n"
         )
         _write_text_file(
             path,

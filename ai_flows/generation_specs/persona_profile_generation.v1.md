@@ -3,7 +3,7 @@ version: v1
 schema_path: schemas/persona_profile_generation.v1.schema.json
 output_json_path: <space_root>/profiles/persona-<persona_id>.json
 context_paths:
-  - personas/users.json
+  - personas/social_users.json
   - <space_root>/comments
 ---
 ## Task
@@ -13,6 +13,7 @@ Generate one strict JSON object for persona profile generation at `output_json_p
 - Use only seeded persona catalog and space comment context declared in `context_paths`.
 - Keep profile narratives evidence-grounded and avoid unsupported claims.
 - Do not invent persona identities beyond schema fields.
+- Incorporate seeded `biography_profile` and `short_cv` into profile sections when present.
 
 ## Strict Output Rules
 - Return JSON object only.

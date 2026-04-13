@@ -40,29 +40,11 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
             rows = load_seeded_persona_catalog(repo_root=repo_root)
             self.assertEqual([row["persona_id"] for row in rows], ["persona-alice"])
 
-    def test_loader_supports_compatibility_mirror_when_canonical_catalog_missing(self) -> None:
+    def test_loader_requires_canonical_catalog(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp) / "repo"
-            self._write_image(repo_root, "mirror.png")
-            self._write_catalog(
-                repo_root / "personas" / "users.json",
-                [
-                    self._persona_row(
-                        id="persona-mirror",
-                        persona_id=None,
-                        profile_image_path="personas/profile_images/mirror.png",
-                    )
-                ],
-            )
-
-            rows = load_seeded_persona_catalog(repo_root=repo_root, allow_compatibility_mirror=True)
-            self.assertEqual(rows[0]["persona_id"], "persona-mirror")
-
             with self.assertRaises(FileNotFoundError):
-                load_seeded_persona_catalog(
-                    repo_root=repo_root,
-                    allow_compatibility_mirror=False,
-                )
+                load_seeded_persona_catalog(repo_root=repo_root)
 
     def test_loader_normalizes_legacy_id_alias_and_rejects_mismatched_alias(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -144,6 +126,98 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
             rows = load_seeded_persona_catalog(repo_root=repo_root)
             self.assertEqual(len(rows), 1)
 
+            self._write_image(repo_root, "ok.svg")
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [self._persona_row(profile_image_path="personas/profile_images/ok.svg")],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
+    def test_loader_enforces_biography_voice_length_and_topic_richness(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "repo"
+            self._write_image(repo_root, "ok.png")
+
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [self._persona_row(biography="This biography is third person and too short.")],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [self._persona_row(biography="I am brief.")],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
+            long_bio = "I " + "word " * 260
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [self._persona_row(biography=long_bio)],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [self._persona_row(interests=[])],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [self._persona_row(biography_profile="Short profile blurb.")],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
+            same_text = (
+                "I evaluate ideas by tracing assumptions, evidence quality, and real-world tradeoffs before "
+                "I endorse a claim. I prefer transparent methods over charisma, and I routinely ask what "
+                "data is missing, who bears risk, and what would falsify the argument. I prioritize "
+                "durable outcomes, clear accountability, and practical implementation details that survive "
+                "pressure. I become skeptical when confidence outruns proof, when caveats are hidden, or "
+                "when policy choices ignore operational constraints. I communicate directly, cite sources "
+                "precisely, and revise my position when stronger evidence appears. I also document "
+                "uncertainty explicitly so collaborators can challenge assumptions early."
+            )
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [self._persona_row(biography=same_text, biography_profile=same_text)],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [self._persona_row(short_cv=[])],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
+    def test_loader_enforces_profile_image_prompt_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "repo"
+            self._write_image(repo_root, "ok.png")
+
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [self._persona_row(profile_image_prompt="draw an icon")],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [self._persona_row(profile_image_prompt="Photorealistic landscape with mountains and no visible person in frame.")],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
     def _write_image(self, repo_root: Path, file_name: str) -> None:
         image_path = repo_root / "personas" / "profile_images" / file_name
         image_path.parent.mkdir(parents=True, exist_ok=True)
@@ -165,17 +239,54 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
         persona_id: str | None = "persona-default",
         id: str | None = None,
         profile_image_path: str = "personas/profile_images/ok.png",
+        profile_image_prompt: str | None = None,
+        biography: str | None = None,
+        biography_profile: str | None = None,
+        short_cv: list[str] | None = None,
+        interests: list[str] | None = None,
+        hot_topics: list[str] | None = None,
+        anger_topics: list[str] | None = None,
     ) -> dict[str, object]:
+        biography_text = (
+            "I evaluate ideas by tracing assumptions, evidence quality, and real-world tradeoffs before "
+            "I endorse a claim. I prefer transparent methods over charisma, and I routinely ask what "
+            "data is missing, who bears risk, and what would falsify the argument. I prioritize "
+            "durable outcomes, clear accountability, and practical implementation details that survive "
+            "pressure. I become skeptical when confidence outruns proof, when caveats are hidden, or "
+            "when policy choices ignore operational constraints. I communicate directly, cite sources "
+            "precisely, and revise my position when stronger evidence appears. I also document "
+            "uncertainty explicitly so collaborators can challenge assumptions early."
+            if biography is None
+            else biography
+        )
+        biography_profile_text = (
+            "Default Persona is known for crisp, evidence-aware judgment and clear communication under "
+            "pressure. They turn messy debates into explicit tradeoffs, make uncertainty visible early, "
+            "and help collaborators ship decisions that can be defended and improved."
+            if biography_profile is None
+            else biography_profile
+        )
+        short_cv_rows = (
+            [
+                "Senior Analyst, Example Institute (2021-present)",
+                "Research Associate, Example Lab (2018-2021)",
+                "MSc, Policy Analysis, Example University (2016-2018)",
+            ]
+            if short_cv is None
+            else short_cv
+        )
         row: dict[str, object] = {
             "display_name": "Default Persona",
             "full_name": "Default Persona",
             "account_status": "active",
             "stance_profile": "neutral",
             "personality": "measured",
-            "biography": "Short biography",
-            "interests": ["policy"],
-            "hot_topics": ["planning"],
-            "anger_topics": ["misinformation"],
+            "biography": biography_text,
+            "biography_profile": biography_profile_text,
+            "short_cv": short_cv_rows,
+            "interests": ["policy"] if interests is None else interests,
+            "hot_topics": ["planning"] if hot_topics is None else hot_topics,
+            "anger_topics": ["misinformation"] if anger_topics is None else anger_topics,
             "prompt_fields": {
                 "core_belief": "Evidence over rhetoric",
                 "argument_style": "structured",
@@ -183,6 +294,12 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
                 "evidence_preference": "citations",
             },
             "profile_image_path": profile_image_path,
+            "profile_image_prompt": (
+                "Photorealistic portrait photo of this person at home office, matching their evidence-first "
+                "persona and communication style, natural lighting, candid expression."
+                if profile_image_prompt is None
+                else profile_image_prompt
+            ),
         }
         if persona_id is not None:
             row["persona_id"] = persona_id
