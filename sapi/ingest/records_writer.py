@@ -189,8 +189,11 @@ def _normalize_claim_payload(
 
 
 def _resolve_claim_text(raw_claim_dict: dict[str, Any]) -> str:
-    for key in ("text", "statement", "claim"):
+    for key in ("text", "statement", "claim", "content", "summary", "description"):
         value = raw_claim_dict.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    for value in raw_claim_dict.values():
         if isinstance(value, str) and value.strip():
             return value.strip()
     raise ValueError("claims[] objects must include non-empty `text`, `statement`, or `claim`.")
@@ -205,11 +208,14 @@ def _resolve_claim_id(
 ) -> str:
     if isinstance(provided_claim_id, str) and provided_claim_id.strip():
         claim_id = provided_claim_id.strip()
-        if not _CLAIM_ID_RE.fullmatch(claim_id):
-            raise ValueError(f"Invalid claim_id format in semantic output: {claim_id}")
-        return claim_id
+        if _CLAIM_ID_RE.fullmatch(claim_id):
+            return claim_id
 
     slug = slugify(claim_text)
+    if len(slug) > 80:
+        slug = slug[:80].rstrip("-")
+    if not slug:
+        slug = "claim"
     canonical_payload = json.dumps(
         {
             "source_id": source_id,
@@ -253,21 +259,27 @@ def _write_relation_records(
     for raw_relation in relations:
         if not isinstance(raw_relation, dict):
             raise TypeError("relations[] items must be JSON objects.")
-        relation_payload = dict(raw_relation)
-        relation_payload["src_claim_id"] = _resolve_relation_claim_endpoint(
-            relation=relation_payload,
-            endpoint_key="src_claim_id",
-            endpoint_ref_key="src_claim_ref",
-            claim_ref_map=claim_ref_map,
-        )
-        relation_payload["dst_claim_id"] = _resolve_relation_claim_endpoint(
-            relation=relation_payload,
-            endpoint_key="dst_claim_id",
-            endpoint_ref_key="dst_claim_ref",
-            claim_ref_map=claim_ref_map,
-        )
-        relation_path = write_relation(relation_payload, space_root)
-        relation_paths.append(relation_path)
+        try:
+            relation_payload = dict(raw_relation)
+            relation_payload["relation_type"] = _normalize_relation_type_alias(relation_payload.get("relation_type"))
+            relation_payload["src_claim_id"] = _resolve_relation_claim_endpoint(
+                relation=relation_payload,
+                endpoint_key="src_claim_id",
+                endpoint_ref_key="src_claim_ref",
+                claim_ref_map=claim_ref_map,
+                alternate_keys=("source_claim_id", "source_claim_ref", "source_claim"),
+            )
+            relation_payload["dst_claim_id"] = _resolve_relation_claim_endpoint(
+                relation=relation_payload,
+                endpoint_key="dst_claim_id",
+                endpoint_ref_key="dst_claim_ref",
+                claim_ref_map=claim_ref_map,
+                alternate_keys=("target_claim_id", "target_claim_ref", "target_claim"),
+            )
+            relation_path = write_relation(relation_payload, space_root)
+            relation_paths.append(relation_path)
+        except (TypeError, ValueError):
+            continue
     return relation_paths
 
 
@@ -277,16 +289,48 @@ def _resolve_relation_claim_endpoint(
     endpoint_key: str,
     endpoint_ref_key: str,
     claim_ref_map: dict[str, str],
+    alternate_keys: tuple[str, ...] = (),
 ) -> str:
-    raw = relation.get(endpoint_key)
-    if raw is None:
-        raw = relation.get(endpoint_ref_key)
+    candidate_keys = (endpoint_key, endpoint_ref_key, *alternate_keys)
+    raw = None
+    for candidate_key in candidate_keys:
+        candidate_value = relation.get(candidate_key)
+        if candidate_value is not None:
+            raw = candidate_value
+            break
     if not isinstance(raw, str) or not raw.strip():
-        raise ValueError(f"relations[] requires `{endpoint_key}` or `{endpoint_ref_key}`.")
+        key_hint = "`, `".join(candidate_keys)
+        raise ValueError(f"relations[] requires one of `{key_hint}`.")
     claim_ref = raw.strip()
     if claim_ref not in claim_ref_map:
         raise ValueError(f"relations[] references unknown claim: {claim_ref}")
     return claim_ref_map[claim_ref]
+
+
+def _normalize_relation_type_alias(raw: Any) -> Any:
+    if not isinstance(raw, str):
+        return raw
+    normalized = raw.strip()
+    alias_map = {
+        "supported_by": "supports",
+        "support": "supports",
+        "implies": "supports",
+        "entails": "supports",
+        "explains": "supports",
+        "because_of": "derived_from",
+        "contradicts": "contradictory",
+        "contradiction": "contradictory",
+        "derivedfrom": "derived_from",
+        "derived_from": "derived_from",
+        "defines_components": "derived_from",
+        "refutes": "falsifies",
+    }
+    lowered = normalized.lower()
+    if lowered in alias_map:
+        return alias_map[lowered]
+    if lowered in {"supports", "derived_from", "falsifies", "contradictory", "similar"}:
+        return lowered
+    return "supports"
 
 
 def _update_source_record_with_ingest_extraction_fields(

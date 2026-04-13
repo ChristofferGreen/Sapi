@@ -86,6 +86,16 @@ def run_topic_generation_and_persist_canonical(
     source_ids = _require_string_list(semantic_output.get("source_ids"), field_name="source_ids")
     if source_id not in source_ids:
         raise ValueError("topic_generation semantic output source_ids must include source_id.")
+    title = semantic_output.get("title")
+    if not isinstance(title, str) or not title.strip():
+        raise ValueError("topic_generation semantic output requires non-empty `title`.")
+    structure_type = semantic_output.get("structure_type")
+    if not isinstance(structure_type, str) or not structure_type.strip():
+        raise ValueError("topic_generation semantic output requires non-empty `structure_type`.")
+    semantic_output["sections"] = _normalize_topic_sections(semantic_output.get("sections"))
+    semantic_output["title"] = title.strip()
+    semantic_output["structure_type"] = structure_type.strip()
+    resolved.output_json_path.write_text(json.dumps(semantic_output, indent=2, sort_keys=True) + "\n")
 
     return TopicGenerationPersistResult(
         run_id=run_id,
@@ -125,4 +135,26 @@ def _require_string_list(raw: Any, *, field_name: str) -> list[str]:
         if not isinstance(item, str) or not item.strip():
             raise ValueError(f"{field_name} entries must be non-empty strings.")
         normalized.append(item.strip())
+    return normalized
+
+
+def _normalize_topic_sections(raw: Any) -> list[dict[str, str]]:
+    if not isinstance(raw, list):
+        raise ValueError("topic_generation semantic output requires `sections` as an array.")
+    normalized: list[dict[str, str]] = []
+    for index, section in enumerate(raw, start=1):
+        if not isinstance(section, dict):
+            continue
+        heading_raw = section.get("heading")
+        heading = heading_raw.strip() if isinstance(heading_raw, str) and heading_raw.strip() else f"Section {index}"
+        body_raw = section.get("body")
+        if not isinstance(body_raw, str) or not body_raw.strip():
+            alt = section.get("content")
+            if isinstance(alt, str) and alt.strip():
+                body_raw = alt
+        if not isinstance(body_raw, str) or not body_raw.strip():
+            continue
+        normalized.append({"heading": heading, "body": body_raw.strip()})
+    if not normalized:
+        raise ValueError("topic_generation semantic output requires at least one section with non-empty body.")
     return normalized
