@@ -570,6 +570,8 @@ Bootstrap exception:
 Tracing/runtime controls:
 - support runtime flags: `--verbose`, `--llm-trace`, `--llm-trace-dir`, `--trace-llm-io`, `--llm-timeout-secs`
 - support LLM/runtime flags: `--llm-backend`, `--llm-model`, `--llm-reasoning-effort`, `--mock-llm`
+- live semantic execution is Codex-only (`--llm-backend codex`); non-codex backend values are invalid in live mode
+- default live model/reasoning are `gpt-5.4` and `high`
 - when tracing is enabled, persist prompt/context/response/meta trace artifacts under site outputs
 
 Mock-mode contract:

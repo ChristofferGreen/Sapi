@@ -75,8 +75,8 @@ class RuntimeFlagSurfaceContractTests(unittest.TestCase):
         for parser, argv in parser_cases:
             with self.subTest(parser=parser.prog):
                 args = parser.parse_args(argv)
-                self.assertEqual(args.llm_backend, "openai")
-                self.assertEqual(args.llm_model, "gpt-5")
+                self.assertEqual(args.llm_backend, "codex")
+                self.assertEqual(args.llm_model, "gpt-5.4")
                 self.assertEqual(args.llm_reasoning_effort, "high")
                 self.assertEqual(args.llm_timeout_secs, 120)
                 self.assertEqual(args.warning_budget, 200)

@@ -88,8 +88,8 @@ Runtime/control flag defaults and forwarding:
   `--llm-trace`, `--llm-trace-dir`, `--trace-llm-io`, `--mock-llm`, `--warning-budget`,
   `--run-search-visibility`, `--site-presentation-mode`, `--enable-source-index`.
 - defaults:
-  - `--llm-backend openai`
-  - `--llm-model gpt-5`
+  - `--llm-backend codex`
+  - `--llm-model gpt-5.4`
   - `--llm-reasoning-effort high`
   - `--llm-timeout-secs 120`
   - `--warning-budget 200`

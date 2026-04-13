@@ -73,7 +73,8 @@ Use this table to track active architecture decisions without losing contract li
 - Invalid LLM output MUST enter a schema-repair retry loop: feed the invalid JSON, schema, and validation errors back to the LLM for correction; fail loudly after the retry cap.
 - Recovered default repair-loop cap: `max_repair_loops = 3` before hard failure.
 - Effective default attempt budget per semantic generation invocation is `max_attempts = 1 + max_repair_loops` (initial attempt + up to three repair attempts).
-- LLM backend, model, and reasoning effort MUST be runtime-configurable via CLI arguments and are not fixed by this policy section.
+- live semantic generation MUST execute through Codex CLI (`--llm-backend codex`).
+- model and reasoning effort MUST be runtime-configurable via CLI arguments.
 - runtime configuration SHOULD define explicit defaults; recommended precedence is: CLI flag -> wrapper/project default.
 - flow behavior/configuration MUST NOT be controlled by environment variables.
 - historical baseline defaults (non-normative, may change): backend and model come from wrapper/runtime configuration, with default reasoning effort typically `high` unless a flow intentionally lowers it.
@@ -1459,6 +1460,7 @@ High-signal CLI runtime flags:
 - deprecated compatibility gates MUST be exposed as explicit CLI flags (if kept) and MUST NOT trigger deterministic fallback semantics in production/operator mode.
 - tests/local contract checks that need non-live execution MUST use `--mock-llm` while preserving schema/output contracts.
 - advanced comment controls (if implemented) SHOULD be explicit CLI flags.
+- live semantic defaults SHOULD be `--llm-backend codex`, `--llm-model gpt-5.4`, and `--llm-reasoning-effort high`.
 - backend/model defaults are deployment/runtime policy and SHOULD be changed via CLI/wrapper config rather than by editing non-negotiable semantic contracts.
 - flow behavior MUST be determined from command-line arguments only; environment variables MUST NOT change semantic/pipeline behavior.
 

@@ -1,16 +1,20 @@
-"""Live semantic JSON backend adapters for OpenAI and Gemini providers."""
+"""Live semantic JSON backend adapter for Codex CLI execution."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 import json
-import os
-from typing import Any
-from urllib.error import HTTPError, URLError
-from urllib.parse import quote_plus
-from urllib.request import Request, urlopen
+from pathlib import Path
+import subprocess
+import sys
+import threading
+from typing import Any, TextIO
 
 from sapi.llm.client import SemanticLlmRequest
+
+
+DEFAULT_CODEX_MODEL = "gpt-5.4"
+_MAX_ERROR_TAIL_CHARS = 4000
 
 
 @dataclass(frozen=True)
@@ -28,21 +32,17 @@ def generate_semantic_json_live(
     task_context: dict[str, Any] | None = None,
 ) -> str:
     """Generate strict semantic JSON in live mode for one semantic-flow request."""
-    prompt = _build_prompt(request=request, task_context=task_context)
     backend = backend_config.backend.strip().lower()
-    if backend == "openai":
-        return _generate_with_openai(
-            prompt=prompt,
-            backend_config=backend_config,
+    if backend != "codex":
+        raise RuntimeError(
+            "Unsupported --llm-backend value for live semantic generation: "
+            f"{backend_config.backend!r}. Supported values: codex."
         )
-    if backend == "gemini":
-        return _generate_with_gemini(
-            prompt=prompt,
-            backend_config=backend_config,
-        )
-    raise RuntimeError(
-        "Unsupported --llm-backend value for live semantic generation: "
-        f"{backend_config.backend!r}. Supported values: openai, gemini."
+    prompt = _build_prompt(request=request, task_context=task_context)
+    return _generate_with_codex(
+        prompt=prompt,
+        backend_config=backend_config,
+        output_json_path=Path(request.output_json_path).resolve(),
     )
 
 
@@ -66,10 +66,11 @@ def _build_prompt(*, request: SemanticLlmRequest, task_context: dict[str, Any] |
         }
     instruction_lines = [
         "You are generating one strict JSON object for a semantic pipeline.",
-        "Return JSON only. Do not wrap in markdown or code fences.",
-        "Follow the provided schema exactly.",
-        "Do not invent IDs that conflict with provided canonical IDs.",
-        "Use task_context as primary evidence; context_by_path values are filesystem pointers only.",
+        "Use filesystem evidence from context_paths/context_by_path and task_context.",
+        "Write exactly one JSON object to output_json_path on disk (UTF-8).",
+        "Create parent directories if needed and overwrite output_json_path if it exists.",
+        "Do not modify any other files.",
+        "Do not wrap JSON in markdown or code fences.",
     ]
     return (
         "\n".join(instruction_lines)
@@ -78,174 +79,132 @@ def _build_prompt(*, request: SemanticLlmRequest, task_context: dict[str, Any] |
     )
 
 
-def _generate_with_openai(*, prompt: str, backend_config: SemanticBackendConfig) -> str:
-    api_key = os.environ.get("OPENAI_API_KEY", "").strip()
-    if not api_key:
-        raise RuntimeError(
-            "Missing OPENAI_API_KEY for --llm-backend openai live semantic generation."
-        )
-    model = backend_config.model.strip() or "gpt-5"
-    payload: dict[str, Any] = {
-        "model": model,
-        "messages": [
-            {
-                "role": "system",
-                "content": "Return only one strict JSON object.",
-            },
-            {
-                "role": "user",
-                "content": prompt,
-            },
-        ],
-        "response_format": {"type": "json_object"},
-        "temperature": 0.2,
-    }
-    endpoint = "https://api.openai.com/v1/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json",
-    }
-    try:
-        raw = _post_json(
-            endpoint=endpoint,
-            headers=headers,
-            payload=payload,
-            timeout_secs=backend_config.timeout_secs,
-        )
-    except RuntimeError as exc:
-        # Some model/endpoints may reject response_format json_object; retry once without it.
-        if "response_format" not in str(exc):
-            raise
-        payload_without_response_format = dict(payload)
-        payload_without_response_format.pop("response_format", None)
-        raw = _post_json(
-            endpoint=endpoint,
-            headers=headers,
-            payload=payload_without_response_format,
-            timeout_secs=backend_config.timeout_secs,
-        )
-    choices = raw.get("choices")
-    if not isinstance(choices, list) or not choices:
-        raise RuntimeError("OpenAI response missing `choices` array.")
-    first = choices[0]
-    if not isinstance(first, dict):
-        raise RuntimeError("OpenAI response choice must be an object.")
-    message = first.get("message")
-    if not isinstance(message, dict):
-        raise RuntimeError("OpenAI response missing `message` object.")
-    content = message.get("content")
-    rendered = _normalize_openai_content(content)
-    if not rendered:
-        raise RuntimeError("OpenAI response did not include text content.")
-    return rendered
-
-
-def _normalize_openai_content(content: object) -> str:
-    if isinstance(content, str):
-        return content.strip()
-    if isinstance(content, list):
-        chunks: list[str] = []
-        for item in content:
-            if not isinstance(item, dict):
-                continue
-            text = item.get("text")
-            if isinstance(text, str):
-                chunks.append(text)
-        return "\n".join(chunks).strip()
-    return ""
-
-
-def _generate_with_gemini(*, prompt: str, backend_config: SemanticBackendConfig) -> str:
-    api_key = _resolve_gemini_api_key()
-    requested_model = backend_config.model.strip()
-    model = "gemini-2.5-pro" if requested_model in {"", "gpt-5"} else requested_model
-    endpoint = (
-        "https://generativelanguage.googleapis.com/v1beta/models/"
-        f"{quote_plus(model)}:generateContent?key={quote_plus(api_key)}"
-    )
-    payload = {
-        "contents": [
-            {
-                "role": "user",
-                "parts": [{"text": prompt}],
-            }
-        ],
-        "generationConfig": {
-            "responseMimeType": "application/json",
-            "temperature": 0.2,
-        },
-    }
-    raw = _post_json(
-        endpoint=endpoint,
-        headers={"Content-Type": "application/json"},
-        payload=payload,
-        timeout_secs=backend_config.timeout_secs,
-    )
-    candidates = raw.get("candidates")
-    if not isinstance(candidates, list) or not candidates:
-        raise RuntimeError("Gemini response missing `candidates` array.")
-    first = candidates[0]
-    if not isinstance(first, dict):
-        raise RuntimeError("Gemini candidate must be an object.")
-    content = first.get("content")
-    if not isinstance(content, dict):
-        raise RuntimeError("Gemini candidate missing `content` object.")
-    parts = content.get("parts")
-    if not isinstance(parts, list):
-        raise RuntimeError("Gemini content missing `parts` array.")
-    chunks: list[str] = []
-    for part in parts:
-        if not isinstance(part, dict):
-            continue
-        text = part.get("text")
-        if isinstance(text, str):
-            chunks.append(text)
-    rendered = "\n".join(chunks).strip()
-    if not rendered:
-        raise RuntimeError("Gemini response did not include text content.")
-    return rendered
-
-
-def _resolve_gemini_api_key() -> str:
-    primary = os.environ.get("GEMINI_API_KEY", "").strip()
-    if primary:
-        return primary
-    fallback = os.environ.get("GOOGLE_API_KEY", "").strip()
-    if fallback:
-        return fallback
-    raise RuntimeError(
-        "Missing GEMINI_API_KEY/GOOGLE_API_KEY for --llm-backend gemini live semantic generation."
-    )
-
-
-def _post_json(
+def _generate_with_codex(
     *,
-    endpoint: str,
-    headers: dict[str, str],
-    payload: dict[str, Any],
-    timeout_secs: int,
-) -> dict[str, Any]:
-    request = Request(
-        endpoint,
-        data=json.dumps(payload).encode("utf-8"),
-        headers=headers,
-        method="POST",
-    )
+    prompt: str,
+    backend_config: SemanticBackendConfig,
+    output_json_path: Path,
+) -> str:
+    output_json_path.parent.mkdir(parents=True, exist_ok=True)
+    model = backend_config.model.strip() or DEFAULT_CODEX_MODEL
+    reasoning_effort = backend_config.reasoning_effort.strip() or "high"
+    command = [
+        "codex",
+        "exec",
+        "--json",
+        "--sandbox",
+        "workspace-write",
+        "--model",
+        model,
+        "-c",
+        f"model_reasoning_effort={json.dumps(reasoning_effort)}",
+        "--cd",
+        str(_repo_root()),
+        "-",
+    ]
     try:
-        with urlopen(request, timeout=timeout_secs) as response:
-            raw_body = response.read().decode("utf-8")
-    except HTTPError as exc:  # pragma: no cover - network/provider dependent
-        body = exc.read().decode("utf-8", errors="replace")
+        process = subprocess.Popen(
+            command,
+            cwd=str(_repo_root()),
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            bufsize=1,
+        )
+    except FileNotFoundError as exc:
         raise RuntimeError(
-            f"LLM backend HTTP {exc.code}: {body}"
+            "Codex CLI not found for live semantic generation. Install `codex` and retry."
         ) from exc
-    except URLError as exc:  # pragma: no cover - network/provider dependent
-        raise RuntimeError(f"LLM backend request failed: {exc.reason}") from exc
+    except OSError as exc:
+        raise RuntimeError(f"Failed to launch Codex CLI: {exc}") from exc
+
+    if process.stdin is None:
+        raise RuntimeError("Codex subprocess stdin was not available.")
+    process.stdin.write(prompt)
+    process.stdin.close()
+
+    stdout_chunks: list[str] = []
+    stderr_chunks: list[str] = []
+    stdout_thread = threading.Thread(
+        target=_stream_process_output,
+        args=(process.stdout, stdout_chunks, sys.stdout),
+        daemon=True,
+    )
+    stderr_thread = threading.Thread(
+        target=_stream_process_output,
+        args=(process.stderr, stderr_chunks, sys.stderr),
+        daemon=True,
+    )
+    stdout_thread.start()
+    stderr_thread.start()
 
     try:
-        decoded = json.loads(raw_body)
+        return_code = process.wait(timeout=backend_config.timeout_secs)
+    except subprocess.TimeoutExpired as exc:
+        process.kill()
+        process.wait()
+        stdout_thread.join()
+        stderr_thread.join()
+        raise RuntimeError(
+            "Codex semantic generation timed out after "
+            f"{backend_config.timeout_secs} seconds for `{output_json_path}`."
+        ) from exc
+
+    stdout_thread.join()
+    stderr_thread.join()
+
+    if return_code != 0:
+        raise RuntimeError(
+            "Codex semantic generation failed with non-zero exit status "
+            f"{return_code}: {_tail(''.join(stderr_chunks))}"
+        )
+
+    if not output_json_path.is_file():
+        raise RuntimeError(
+            "Codex semantic generation completed but did not write output_json_path "
+            f"`{output_json_path}`."
+        )
+
+    raw_output = output_json_path.read_text()
+    _require_json_object(raw_output=raw_output, output_json_path=output_json_path)
+    return raw_output
+
+
+def _stream_process_output(
+    stream: TextIO | None,
+    sink: list[str],
+    target: TextIO,
+) -> None:
+    if stream is None:
+        return
+    for line in iter(stream.readline, ""):
+        sink.append(line)
+        print(line, file=target, end="", flush=True)
+    stream.close()
+
+
+def _require_json_object(*, raw_output: str, output_json_path: Path) -> None:
+    try:
+        parsed = json.loads(raw_output)
     except json.JSONDecodeError as exc:
-        raise RuntimeError(f"LLM backend returned non-JSON response: {exc}") from exc
-    if not isinstance(decoded, dict):
-        raise RuntimeError("LLM backend response must decode to a JSON object.")
-    return decoded
+        raise RuntimeError(
+            "Codex wrote invalid JSON to output_json_path "
+            f"`{output_json_path}`: {exc.msg}."
+        ) from exc
+    if not isinstance(parsed, dict):
+        raise RuntimeError(
+            "Codex semantic output must be a JSON object at output_json_path "
+            f"`{output_json_path}`."
+        )
+
+
+def _tail(text: str, *, max_chars: int = _MAX_ERROR_TAIL_CHARS) -> str:
+    normalized = text.strip()
+    if len(normalized) <= max_chars:
+        return normalized
+    return "..." + normalized[-max_chars:]
+
+
+def _repo_root() -> Path:
+    return Path(__file__).resolve().parents[2]

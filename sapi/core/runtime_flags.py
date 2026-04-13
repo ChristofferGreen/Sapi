@@ -7,8 +7,8 @@ from dataclasses import dataclass
 from typing import Any
 
 
-DEFAULT_LLM_BACKEND = "openai"
-DEFAULT_LLM_MODEL = "gpt-5"
+DEFAULT_LLM_BACKEND = "codex"
+DEFAULT_LLM_MODEL = "gpt-5.4"
 DEFAULT_LLM_REASONING_EFFORT = "high"
 DEFAULT_LLM_TIMEOUT_SECS = 120
 DEFAULT_WARNING_BUDGET = 200

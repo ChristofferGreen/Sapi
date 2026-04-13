@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
 
@@ -21,8 +22,8 @@ class LiveLlmCanaryTests(unittest.TestCase):
     def test_live_llm_canary_ingest_then_query_smoke_test(self) -> None:
         if os.environ.get("SAPI_RUN_LIVE_CANARY") != "1":
             self.skipTest("Set SAPI_RUN_LIVE_CANARY=1 to execute live LLM canary checks.")
-        if not os.environ.get("OPENAI_API_KEY"):
-            self.skipTest("Set OPENAI_API_KEY to execute live LLM canary checks.")
+        if shutil.which("codex") is None:
+            self.skipTest("Install Codex CLI to execute live LLM canary checks.")
 
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
