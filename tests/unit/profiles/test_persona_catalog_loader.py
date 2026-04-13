@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -88,6 +89,54 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
                         id="persona-dup",
                         profile_image_path="personas/profile_images/dup.jpg",
                     ),
+                ],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
+    def test_loader_enforces_name_slug_mapping_for_ids_and_profile_image_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "repo"
+            self._write_image(repo_root, "alice-example.jpg")
+            self._write_image(repo_root, "alice-mismatch.jpg")
+
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [
+                    self._persona_row(
+                        full_name="Alice Example",
+                        persona_id="persona-alice-example",
+                        id="persona-alice-example",
+                        profile_image_path="personas/profile_images/alice-example.jpg",
+                    )
+                ],
+            )
+            rows = load_seeded_persona_catalog(repo_root=repo_root)
+            self.assertEqual(rows[0]["persona_id"], "persona-alice-example")
+
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [
+                    self._persona_row(
+                        full_name="Alice Example",
+                        persona_id="persona-alice-mismatch",
+                        id="persona-alice-mismatch",
+                        profile_image_path="personas/profile_images/alice-example.jpg",
+                    )
+                ],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [
+                    self._persona_row(
+                        full_name="Alice Example",
+                        persona_id="persona-alice-example",
+                        id="persona-alice-example",
+                        profile_image_path="personas/profile_images/alice-mismatch.jpg",
+                    )
                 ],
             )
             with self.assertRaises(ValueError):
@@ -249,9 +298,11 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
     def _persona_row(
         self,
         *,
-        persona_id: str | None = "persona-default",
+        persona_id: str | None = None,
         id: str | None = None,
-        profile_image_path: str = "personas/profile_images/ok.jpg",
+        full_name: str | None = None,
+        display_name: str | None = None,
+        profile_image_path: str | None = None,
         profile_image_prompt: str | None = None,
         biography: str | None = None,
         biography_profile: str | None = None,
@@ -260,6 +311,21 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
         hot_topics: list[str] | None = None,
         anger_topics: list[str] | None = None,
     ) -> dict[str, object]:
+        slug = self._default_slug(
+            persona_id=persona_id,
+            legacy_id=id,
+            full_name=full_name,
+            profile_image_path=profile_image_path,
+        )
+        if full_name is None:
+            full_name = " ".join(part.capitalize() for part in slug.split("-"))
+        if display_name is None:
+            display_name = full_name
+        if profile_image_path is None:
+            profile_image_path = f"personas/profile_images/{slug}.jpg"
+        if persona_id is None and id is None:
+            persona_id = f"persona-{slug}"
+
         biography_text = (
             "I evaluate ideas by tracing assumptions, evidence quality, and real-world tradeoffs before "
             "I endorse a claim. I prefer transparent methods over charisma, and I routinely ask what "
@@ -289,8 +355,8 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
             else short_cv
         )
         row: dict[str, object] = {
-            "display_name": "Default Persona",
-            "full_name": "Default Persona",
+            "display_name": display_name,
+            "full_name": full_name,
             "account_status": "active",
             "stance_profile": "neutral",
             "personality": "measured",
@@ -319,6 +385,29 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
         if id is not None:
             row["id"] = id
         return row
+
+    @staticmethod
+    def _default_slug(
+        *,
+        persona_id: str | None,
+        legacy_id: str | None,
+        full_name: str | None,
+        profile_image_path: str | None,
+    ) -> str:
+        if full_name:
+            tokens = re.findall(r"[a-z0-9]+", full_name.lower())
+            if tokens:
+                return "-".join(tokens)
+        if isinstance(persona_id, str) and persona_id.startswith("persona-"):
+            return persona_id.removeprefix("persona-")
+        if isinstance(legacy_id, str) and legacy_id.startswith("persona-"):
+            return legacy_id.removeprefix("persona-")
+        if profile_image_path:
+            stem = Path(profile_image_path).stem
+            if stem.endswith("-thumb"):
+                stem = stem.removesuffix("-thumb")
+            return stem
+        return "ok"
 
 
 if __name__ == "__main__":

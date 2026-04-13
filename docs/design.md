@@ -1051,7 +1051,11 @@ Recovered user-row fields (high signal):
 - optional compatibility alias `id` where `id == persona_id`
 
 Normalization rules:
+- derive `name_slug` from `full_name` by lowercasing and joining alphanumeric tokens with `-`
 - `persona_id` matches slug pattern `[a-z0-9][a-z0-9_-]*` and must be unique
+- `persona_id` MUST equal `persona-<name_slug>` derived from `full_name`
+- if compatibility alias `id` is present, `id` MUST equal `persona_id`
+- `profile_image_path` MUST equal `personas/profile_images/<name_slug>.jpg` derived from `full_name`
 - if legacy row has `id` but no `persona_id`, loader MUST map `persona_id = id`
 - if both `id` and `persona_id` exist and differ, validation MUST fail
 - `biography` MUST be written in first person voice from the persona's perspective.

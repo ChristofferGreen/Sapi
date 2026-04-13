@@ -10,6 +10,7 @@ from typing import Any
 
 _PERSONA_ID_RE = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
 _WORD_RE = re.compile(r"[A-Za-z0-9']+")
+_NAME_SLUG_TOKEN_RE = re.compile(r"[a-z0-9]+")
 _CATALOG_DIR = Path("personas")
 _CANONICAL_CATALOG_FILE = _CATALOG_DIR / "social_users.json"
 _PROFILE_IMAGES_DIR = _CATALOG_DIR / "profile_images"
@@ -142,6 +143,22 @@ def _normalize_row(
             row.get(field_name),
             field_name=f"users[{row_index}].{field_name}",
         )
+    expected_name_slug = _derive_name_slug_from_full_name(
+        full_name=row["full_name"],
+        field_name=f"users[{row_index}].full_name",
+    )
+    expected_persona_id = f"persona-{expected_name_slug}"
+    if persona_id != expected_persona_id:
+        raise ValueError(
+            f"users[{row_index}].persona_id must equal '{expected_persona_id}' derived from users[{row_index}].full_name."
+        )
+
+    expected_profile_image_path = f"personas/profile_images/{expected_name_slug}.jpg"
+    if Path(row["profile_image_path"]).as_posix() != expected_profile_image_path:
+        raise ValueError(
+            f"users[{row_index}].profile_image_path must equal '{expected_profile_image_path}' derived from users[{row_index}].full_name."
+        )
+
     row["biography"] = _require_non_empty_string(
         row.get("biography"),
         field_name=f"users[{row_index}].biography",
@@ -243,6 +260,13 @@ def _require_non_empty_string_list(raw: Any, *, field_name: str) -> list[str]:
     if not normalized:
         raise ValueError(f"{field_name} must be a non-empty list of strings.")
     return normalized
+
+
+def _derive_name_slug_from_full_name(*, full_name: str, field_name: str) -> str:
+    slug_tokens = _NAME_SLUG_TOKEN_RE.findall(full_name.lower())
+    if not slug_tokens:
+        raise ValueError(f"{field_name} must contain at least one alphanumeric token.")
+    return "-".join(slug_tokens)
 
 
 def _validate_biography_contract(*, biography: str, field_name: str) -> None:
