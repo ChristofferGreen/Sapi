@@ -43,6 +43,7 @@ def generate_semantic_json_live(
         prompt=prompt,
         backend_config=backend_config,
         output_json_path=Path(request.output_json_path).resolve(),
+        add_dirs=_collect_codex_add_dirs(request=request),
     )
 
 
@@ -84,6 +85,7 @@ def _generate_with_codex(
     prompt: str,
     backend_config: SemanticBackendConfig,
     output_json_path: Path,
+    add_dirs: list[Path],
 ) -> str:
     output_json_path.parent.mkdir(parents=True, exist_ok=True)
     model = backend_config.model.strip() or DEFAULT_CODEX_MODEL
@@ -102,6 +104,8 @@ def _generate_with_codex(
         str(_repo_root()),
         "-",
     ]
+    for add_dir in add_dirs:
+        command.extend(["--add-dir", str(add_dir)])
     try:
         process = subprocess.Popen(
             command,
@@ -208,3 +212,27 @@ def _tail(text: str, *, max_chars: int = _MAX_ERROR_TAIL_CHARS) -> str:
 
 def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
+
+
+def _collect_codex_add_dirs(*, request: SemanticLlmRequest) -> list[Path]:
+    repo_root = _repo_root()
+    candidates: list[Path] = [Path(request.output_json_path).resolve().parent]
+    for raw_context_path in request.context_paths:
+        context_path = Path(raw_context_path).resolve()
+        if context_path.is_file():
+            candidates.append(context_path.parent)
+        else:
+            candidates.append(context_path)
+
+    add_dirs: list[Path] = []
+    seen: set[Path] = set()
+    for candidate in candidates:
+        if candidate in seen:
+            continue
+        seen.add(candidate)
+        try:
+            candidate.relative_to(repo_root)
+            continue
+        except ValueError:
+            add_dirs.append(candidate)
+    return add_dirs

@@ -99,6 +99,8 @@ class RuntimeBackendCodexTests(unittest.TestCase):
             self.assertIn("workspace-write", command)
             self.assertIn("-c", command)
             self.assertIn('model_reasoning_effort="high"', command)
+            self.assertIn("--add-dir", command)
+            self.assertIn(str(output_path.parent.resolve()), command)
             self.assertTrue(kwargs["text"])
             self.assertEqual(kwargs["bufsize"], 1)
             self.assertEqual(json.loads(output_path.read_text())["ok"], True)
