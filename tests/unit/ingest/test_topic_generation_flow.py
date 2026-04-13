@@ -95,6 +95,33 @@ class TopicGenerationFlowTests(unittest.TestCase):
                 )
             self.assertFalse((space_root / "topics" / f"{topic_id}.json").exists())
 
+    def test_topic_flow_accepts_section_title_summary_aliases(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root, source_id = _bootstrap_source(Path(tmp))
+            topic_id = derive_default_topic_id_for_source(space_root=space_root, source_id=source_id)
+            payload = {
+                "topic_id": topic_id,
+                "title": "Alias Topic",
+                "structure_type": "wiki",
+                "sections": [
+                    {
+                        "title": "Overview",
+                        "summary": "Alias summary body.",
+                    }
+                ],
+                "claim_ids": ["claim-a--111111111111"],
+                "source_ids": [source_id],
+            }
+            result = run_topic_generation_and_persist_canonical(
+                space_root=space_root,
+                source_id=source_id,
+                run_id="run-topic-aliases",
+                topic_id=topic_id,
+                llm_client=_StaticTopicClient(payload),
+            )
+            stored = json.loads(result.topic_path.read_text())
+            self.assertEqual(stored["sections"], [{"heading": "Overview", "body": "Alias summary body."}])
+
     def test_ingest_entrypoint_triggers_topic_generation_and_deterministic_build(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)

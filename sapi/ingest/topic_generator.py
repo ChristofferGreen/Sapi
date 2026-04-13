@@ -146,10 +146,18 @@ def _normalize_topic_sections(raw: Any) -> list[dict[str, str]]:
         if not isinstance(section, dict):
             continue
         heading_raw = section.get("heading")
+        if not isinstance(heading_raw, str) or not heading_raw.strip():
+            heading_raw = section.get("title")
+        if not isinstance(heading_raw, str) or not heading_raw.strip():
+            heading_raw = section.get("name")
         heading = heading_raw.strip() if isinstance(heading_raw, str) and heading_raw.strip() else f"Section {index}"
         body_raw = section.get("body")
         if not isinstance(body_raw, str) or not body_raw.strip():
             alt = section.get("content")
+            if isinstance(alt, str) and alt.strip():
+                body_raw = alt
+        if not isinstance(body_raw, str) or not body_raw.strip():
+            alt = section.get("summary")
             if isinstance(alt, str) and alt.strip():
                 body_raw = alt
         if not isinstance(body_raw, str) or not body_raw.strip():

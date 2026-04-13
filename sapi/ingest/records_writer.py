@@ -241,11 +241,21 @@ def _normalize_evidence_excerpts(raw_value: Any) -> list[str]:
                 normalized.append(text)
             continue
         if isinstance(raw_item, dict):
-            excerpt = raw_item.get("excerpt")
-            if isinstance(excerpt, str) and excerpt.strip():
-                normalized.append(excerpt.strip())
-                continue
-        raise TypeError("evidence items must be strings or objects with non-empty `excerpt`.")
+            for key in ("excerpt", "quote", "text", "content"):
+                excerpt = raw_item.get(key)
+                if isinstance(excerpt, str) and excerpt.strip():
+                    normalized.append(excerpt.strip())
+                    break
+            else:
+                raise TypeError(
+                    "evidence items must be strings or objects with non-empty "
+                    "`excerpt`/`quote`/`text`/`content`."
+                )
+            continue
+        raise TypeError(
+            "evidence items must be strings or objects with non-empty "
+            "`excerpt`/`quote`/`text`/`content`."
+        )
     return normalized
 
 

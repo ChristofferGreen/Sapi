@@ -194,6 +194,45 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
             self.assertEqual(source_record["summary"], semantic_output["summary"])
             self.assertEqual(source_record["warnings"], semantic_output["warnings"])
 
+    def test_ingest_extraction_accepts_evidence_object_alias_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root, source_id = self._bootstrap_source(Path(tmp))
+            semantic_output = {
+                "source_date_inference": {
+                    "date": None,
+                    "origin": "unknown",
+                    "confidence": "unknown",
+                    "rationale": None,
+                },
+                "source": {"source_id": source_id, "title": "Evidence Alias Source"},
+                "claims": [
+                    {
+                        "text": "Alias evidence extraction claim.",
+                        "evidence": [
+                            {"quote": "quoted excerpt"},
+                            {"text": "text excerpt"},
+                            {"content": "content excerpt"},
+                            {"excerpt": "excerpt excerpt"},
+                        ],
+                    }
+                ],
+                "relations": [],
+                "summary": "Evidence aliases normalized.",
+                "warnings": [],
+            }
+
+            result = run_ingest_extraction_and_persist_canonical(
+                space_root=space_root,
+                source_id=source_id,
+                run_id="run-evidence-aliases",
+                llm_client=_StaticSemanticClient(semantic_output),
+            )
+            claim_payload = json.loads(result.claim_paths[0].read_text())
+            self.assertEqual(
+                claim_payload["evidence_excerpts"],
+                ["quoted excerpt", "text excerpt", "content excerpt", "excerpt excerpt"],
+            )
+
     def _bootstrap_source(self, tmp_root: Path) -> tuple[Path, str]:
         space_root = tmp_root / "spaces" / "alpha"
         source_path = tmp_root / "source.txt"
