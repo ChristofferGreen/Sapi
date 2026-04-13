@@ -2127,3 +2127,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `site/index.html` while preserving the existing `spaces/alpha/site/index.html`
     snapshot assertion. Verified the golden module passes and updated
     `docs/testing_plan.md` to mark the Tier 5 site snapshot item complete.
+
+- [x] TODO-0305: Close Tier 5 query artifact snapshot checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0220
+  - scope: Finalize Tier 5 query artifact golden evidence by snapshotting key output modes
+    instead of a single default-mode payload.
+  - acceptance:
+    - `tests/golden/test_query_snapshot.py` verifies normalized query payload output for
+      markdown mode.
+    - The same module verifies normalized artifact-manifest output for a non-markdown mode.
+    - `docs/testing_plan.md` marks the Tier 5 query artifact snapshot checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 5; `docs/design.md` Sections 2.2, 7.3
+  - evidence: Extended `tests/golden/test_query_snapshot.py` with an additional mermaid-mode
+    golden assertion and added fixture
+    `tests/golden/query_snapshot/empty_space_mermaid_manifest.normalized.json` with normalized
+    `query_id`/`run_id` and hash placeholders. Existing markdown payload snapshot coverage
+    remains in the same module. Updated `docs/testing_plan.md` to mark the Tier 5 query
+    artifact snapshot item complete.

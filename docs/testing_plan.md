@@ -125,7 +125,7 @@ tests/
 
 - [x] Site page snapshot coverage for core navigation/content contracts.
   - Module: `tests/golden/test_site_snapshot.py`
-- [ ] Query artifact snapshot coverage for key output modes.
+- [x] Query artifact snapshot coverage for key output modes.
   - Module: `tests/golden/test_query_snapshot.py`
 - [ ] Run-envelope snapshot coverage for all pipelines.
   - Module: `tests/golden/test_run_envelope_snapshot.py`

@@ -1,0 +1,24 @@
+{
+  "artifact_hashes": {
+    "diagram.mmd": "<sha256>",
+    "diagram.svg": "<sha256>"
+  },
+  "artifacts": [
+    {
+      "claim_ids": [],
+      "file": "diagram.mmd",
+      "mode": "mermaid"
+    },
+    {
+      "claim_ids": [],
+      "file": "diagram.svg",
+      "mode": "mermaid"
+    }
+  ],
+  "claims_used": [],
+  "mode": "mermaid",
+  "query_id": "<query_id>",
+  "question": "What is available?",
+  "run_id": "<run_id>",
+  "sources_used": []
+}
