@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 import json
 import subprocess
 from pathlib import Path
@@ -7,6 +8,15 @@ from typing import Sequence
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+@dataclass(frozen=True)
+class IsolatedSiteSpaceFixture:
+    fixture_root: Path
+    site_path: Path
+    registry_path: Path
+    space_name: str
+    space_root: Path
 
 
 def run_command(
@@ -28,10 +38,16 @@ def run_command(
     return result
 
 
-def bootstrap_site_and_space(tmp_root: Path, space_name: str = "alpha") -> Path:
-    site_path = tmp_root / "site-a"
+def bootstrap_site_and_space(
+    tmp_root: Path,
+    space_name: str = "alpha",
+    *,
+    site_dir_name: str = "site-a",
+    site_name: str = "My Site",
+) -> Path:
+    site_path = tmp_root / site_dir_name
     run_command(
-        ["bash", str(REPO_ROOT / "create_site.sh"), str(site_path), "My Site"],
+        ["bash", str(REPO_ROOT / "create_site.sh"), str(site_path), site_name],
         check=True,
     )
     run_command(
@@ -39,6 +55,36 @@ def bootstrap_site_and_space(tmp_root: Path, space_name: str = "alpha") -> Path:
         check=True,
     )
     return site_path
+
+
+def create_isolated_site_space_fixture(
+    tmp_root: Path,
+    *,
+    fixture_name: str,
+    space_name: str = "alpha",
+    site_name: str = "My Site",
+) -> IsolatedSiteSpaceFixture:
+    fixture_root = tmp_root / fixture_name
+    fixture_root.mkdir(parents=True, exist_ok=False)
+    site_path = bootstrap_site_and_space(
+        fixture_root,
+        space_name=space_name,
+        site_dir_name="site-a",
+        site_name=site_name,
+    )
+    registry_path = site_path / "spaces.toml"
+    if not registry_path.is_file():
+        raise AssertionError(f"Expected isolated registry file at {registry_path}")
+    space_root = site_path / "spaces" / space_name
+    if not space_root.is_dir():
+        raise AssertionError(f"Expected isolated space root at {space_root}")
+    return IsolatedSiteSpaceFixture(
+        fixture_root=fixture_root,
+        site_path=site_path,
+        registry_path=registry_path,
+        space_name=space_name,
+        space_root=space_root,
+    )
 
 
 def write_source_fixture(

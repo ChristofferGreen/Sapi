@@ -60,7 +60,7 @@ tests/
 
 ### Tier 0: Harness and Fixtures (foundation)
 
-- [ ] Add site/space temp fixture factory with isolated registries.
+- [x] Add site/space temp fixture factory with isolated registries.
   - Module: `tests/conftest.py`
 - [ ] Add deterministic mock LLM fixture with modes: valid, invalid-then-repair, repair-exhausted.
   - Module: `tests/conftest.py`

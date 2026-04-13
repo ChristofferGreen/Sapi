@@ -2191,3 +2191,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `SAPI_RUN_LIVE_CANARY=1` and `OPENAI_API_KEY` presence, and assertions on newly created
     run envelopes for `ingest_pipeline` and `query_pipeline` with `execution_mode=live_llm`.
     Updated `docs/testing_plan.md` to mark Tier 6 live canary complete.
+
+- [x] TODO-0308: Close Tier 0 isolated fixture-factory checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 4
+  - depends_on: TODO-0200
+  - scope: Add a dedicated site/space fixture factory for tests that guarantees isolated
+    registry roots and explicit fixture metadata for downstream contract tests.
+  - acceptance:
+    - `tests/conftest.py` provides a site/space temp fixture factory with isolated registries.
+    - Tests prove separate fixture instances do not share registry resolution scope.
+    - `docs/testing_plan.md` marks the Tier 0 fixture-factory item complete.
+  - notes: source `docs/testing_plan.md` Tier 0; `docs/design.md` Sections 5, 11
+  - evidence: Added `IsolatedSiteSpaceFixture` and
+    `create_isolated_site_space_fixture(...)` to `tests/conftest.py`, plus optional
+    site-name/site-dir parameters for `bootstrap_site_and_space(...)` while preserving default
+    behavior. Added focused coverage in
+    `tests/unit/contracts/test_harness_fixture_factory.py` to assert isolated fixture roots,
+    distinct registry files, and registry-scoped `resolve_space_root(...)` behavior for
+    multiple fixtures. Updated `docs/testing_plan.md` to mark the Tier 0 fixture-factory item
+    complete.
