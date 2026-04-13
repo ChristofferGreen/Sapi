@@ -10,7 +10,7 @@ from unittest.mock import patch
 import scripts.ingest_source as ingest_source
 import scripts.query as query_entrypoint
 from tests.conftest import (
-    assert_no_run_containers,
+    assert_rollback_cleanup,
     bootstrap_site_and_space,
     write_source_fixture,
 )
@@ -47,12 +47,16 @@ class PostprocessFailureRollbackIntegrationTests(unittest.TestCase):
             self.assertNotEqual(exit_code, 0)
             self.assertIn("forced deterministic postprocess failure", stderr.getvalue())
 
-            self.assertEqual(list((space_root / "sources" / "records").glob("*.json")), [])
-            self.assertEqual(list((space_root / "claims").glob("*.json")), [])
-            self.assertEqual(list((space_root / "relations").glob("*.json")), [])
-            self.assertEqual(list((space_root / "topics").glob("*.json")), [])
-            self.assertFalse((site_path / "outputs" / "build_site" / "manifest.json").exists())
-            assert_no_run_containers(space_root)
+            assert_rollback_cleanup(
+                space_root,
+                empty_globs=(
+                    "sources/records/*.json",
+                    "claims/*.json",
+                    "relations/*.json",
+                    "topics/*.json",
+                ),
+                absent_paths=(site_path / "outputs" / "build_site" / "manifest.json",),
+            )
 
     def test_query_non_markdown_postprocess_failure_rolls_back_query_outputs(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -82,8 +86,10 @@ class PostprocessFailureRollbackIntegrationTests(unittest.TestCase):
 
             self.assertNotEqual(exit_code, 0)
             self.assertIn("forced query postprocess failure", stderr.getvalue())
-            self.assertEqual(list((space_root / "outputs" / "query").glob("query-*")), [])
-            assert_no_run_containers(space_root)
+            assert_rollback_cleanup(
+                space_root,
+                empty_globs=("outputs/query/query-*",),
+            )
 
 
 if __name__ == "__main__":

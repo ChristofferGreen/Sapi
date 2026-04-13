@@ -64,7 +64,7 @@ tests/
   - Module: `tests/conftest.py`
 - [x] Add deterministic mock LLM fixture with modes: valid, invalid-then-repair, repair-exhausted.
   - Module: `tests/conftest.py`
-- [ ] Add common assertions/helpers for `run.md`, `lint.json`, and rollback cleanup.
+- [x] Add common assertions/helpers for `run.md`, `lint.json`, and rollback cleanup.
   - Module: `tests/conftest.py`
 
 ### Tier 1: Core Contract Unit Tests (fast PR gate)

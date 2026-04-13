@@ -1,15 +1,15 @@
 from __future__ import annotations
 
-import json
 import tempfile
 import unittest
 from pathlib import Path
 
 from tests.conftest import (
     REPO_ROOT,
+    assert_lint_artifact,
+    assert_run_frontmatter_fields,
     bootstrap_site_and_space,
     latest_run_directory,
-    parse_run_frontmatter,
     run_command,
     write_source_fixture,
 )
@@ -50,32 +50,36 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
             run_dir = latest_run_directory(space_root)
             run_md_path = run_dir / "run.md"
             lint_path = run_dir / "lint.json"
-            self.assertTrue(run_md_path.is_file())
-            self.assertTrue(lint_path.is_file())
 
-            frontmatter = parse_run_frontmatter(run_md_path)
-            self.assertEqual(frontmatter["flow_key"], "ingest_pipeline")
-            self.assertEqual(frontmatter["status"], "success")
-            self.assertEqual(frontmatter["execution_mode"], "mock_llm_test")
-            self.assertEqual(frontmatter["semantic_flows"], ["ingest_extraction", "topic_generation"])
-            self.assertEqual(frontmatter["source_ids"], [source_records[0].stem])
-            self.assertEqual(frontmatter["claims_changed"], len(claim_records))
-            self.assertEqual(frontmatter["relations_changed"], len(relation_records))
-            self.assertEqual(frontmatter["topic_pages_changed"], len(topic_records))
-            self.assertEqual(frontmatter["lint_error_count"], 0)
-            self.assertEqual(frontmatter["lint_warning_count"], 0)
-            self.assertEqual(frontmatter["lint_info_count"], 0)
+            frontmatter = assert_run_frontmatter_fields(
+                run_md_path,
+                expected_fields={
+                    "flow_key": "ingest_pipeline",
+                    "status": "success",
+                    "execution_mode": "mock_llm_test",
+                    "semantic_flows": ["ingest_extraction", "topic_generation"],
+                    "source_ids": [source_records[0].stem],
+                    "claims_changed": len(claim_records),
+                    "relations_changed": len(relation_records),
+                    "topic_pages_changed": len(topic_records),
+                    "lint_error_count": 0,
+                    "lint_warning_count": 0,
+                    "lint_info_count": 0,
+                },
+            )
             self.assertEqual(
                 frontmatter["semantic_flow_invocation_counts"],
                 {"ingest_extraction": 1, "topic_generation": 1},
             )
             self.assertEqual(frontmatter["run_id"], run_dir.name)
 
-            lint_payload = json.loads(lint_path.read_text())
-            self.assertEqual(lint_payload["workflow"], "ingest_source")
-            self.assertEqual(lint_payload["error_count"], 0)
-            self.assertEqual(lint_payload["warning_count"], 0)
-            self.assertEqual(lint_payload["info_count"], 0)
+            assert_lint_artifact(
+                lint_path,
+                expected_workflow="ingest_source",
+                expected_error_count=0,
+                expected_warning_count=0,
+                expected_info_count=0,
+            )
 
             build_manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
             self.assertTrue(build_manifest_path.is_file())

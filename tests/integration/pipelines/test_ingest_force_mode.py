@@ -6,8 +6,9 @@ from pathlib import Path
 
 from tests.conftest import (
     REPO_ROOT,
+    assert_lint_artifact,
+    assert_run_frontmatter_fields,
     latest_run_directory,
-    parse_run_frontmatter,
     run_command,
     bootstrap_site_and_space,
     write_source_fixture,
@@ -45,15 +46,20 @@ class IngestForceModeIntegrationTests(unittest.TestCase):
             run_dir = latest_run_directory(space_root)
             run_md_path = run_dir / "run.md"
             lint_path = run_dir / "lint.json"
-            self.assertTrue(run_md_path.is_file())
-            self.assertTrue(lint_path.is_file())
-
-            frontmatter = parse_run_frontmatter(run_md_path)
-            self.assertEqual(frontmatter["flow_key"], "ingest_pipeline")
-            self.assertEqual(frontmatter["status"], "failed")
-            self.assertEqual(frontmatter["execution_mode"], "mock_llm_test")
-            self.assertEqual(frontmatter["force_mode"], True)
-            self.assertEqual(frontmatter["rollback_skipped"], True)
+            assert_run_frontmatter_fields(
+                run_md_path,
+                expected_fields={
+                    "flow_key": "ingest_pipeline",
+                    "status": "failed",
+                    "execution_mode": "mock_llm_test",
+                    "force_mode": True,
+                    "rollback_skipped": True,
+                },
+            )
+            assert_lint_artifact(
+                lint_path,
+                expected_workflow="ingest_source",
+            )
 
 
 if __name__ == "__main__":

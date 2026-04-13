@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-13
 
+- [x] TODO-0311: Add deterministic helpers for run/lint and rollback assertions
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 4
+  - scope: Add reusable helpers in `tests/conftest.py` for `run.md`, `lint.json`, and rollback-cleanup assertions, then adopt them in failure tests.
+  - acceptance:
+    - `tests/conftest.py` includes helper APIs for run-frontmatter assertions, lint artifact assertions, and rollback cleanup checks.
+    - At least one failure integration module uses the new helpers.
+    - Tier 0 helper checklist item is marked complete in `docs/testing_plan.md`.
+  - notes: source `docs/testing_plan.md` Tier 0
+  - evidence: Added helper APIs in `tests/conftest.py`
+    (`assert_run_frontmatter_fields`, `assert_lint_artifact`, `assert_rollback_cleanup`) and
+    wired them into integration tests: rollback assertions in
+    `tests/integration/failure/test_postprocess_failure_rollback.py` and run/lint assertions in
+    `tests/integration/pipelines/test_ingest_pipeline.py` and
+    `tests/integration/pipelines/test_ingest_force_mode.py`. Marked Tier 0 helper checklist item
+    complete in `docs/testing_plan.md`.
+
 - [x] TODO-0225: Comment quality benchmark and evaluation manifest pipeline
   - owner: ai
   - created_at: 2026-04-12

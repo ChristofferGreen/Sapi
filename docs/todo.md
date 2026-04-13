@@ -47,15 +47,15 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0311`
+1. `TODO-0312`
 
 ### Immediate Next 10 (After Ready Now)
 
-1. `TODO-0312`
+1. (none currently)
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: TODO-0311
+- P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
 - P2 Social/eval/hardening: (none currently)
 - P3 Continuous docs governance: TODO-0312
@@ -63,7 +63,7 @@ Task template:
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. TODO-0311
+1. (none currently)
 
 Wave B (ingest + projection + lint):
 1. (none currently)
@@ -92,10 +92,10 @@ Cross-cutting docs backlog:
 | Section 7.6 comments pipeline/rendering | - |
 | Section 7.7 comment quality harness | - |
 | Section 8 site/UI/static build | - |
-| Section 9 observability/safety/runtime controls | TODO-0311 |
-| Section 10 run envelopes/lifecycle status | TODO-0311 |
-| Section 11 testing strategy | TODO-0311, TODO-0312 |
-| Section 12 reconstruction plan | TODO-0311 |
+| Section 9 observability/safety/runtime controls | - |
+| Section 10 run envelopes/lifecycle status | - |
+| Section 11 testing strategy | TODO-0312 |
+| Section 12 reconstruction plan | - |
 | Section 13 definition of done | TODO-0312 |
 
 ### Low-Level Coverage Snapshot
@@ -106,23 +106,23 @@ Cross-cutting docs backlog:
 | Section 4 (core data types/run envelope types) | - |
 | Section 5 (path + registry contracts) | - |
 | Section 6 (semantic execution engine + retry/repair) | - |
-| Section 7 (transaction/rollback) | TODO-0311 |
+| Section 7 (transaction/rollback) | - |
 | Section 8 (pipeline execution contracts) | - |
 | Section 9 (deterministic build/projection) | - |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
 | Section 12 (wrapper/script interfaces) | - |
 | Section 13 (observability/runtime controls/safety) | - |
-| Section 14 (anti-drift and PR guardrails) | TODO-0311 |
-| Section 15 (test-plan binding) | TODO-0311, TODO-0312 |
+| Section 14 (anti-drift and PR guardrails) | - |
+| Section 15 (test-plan binding) | TODO-0312 |
 | Section 16 (change discipline) | TODO-0312 |
 
 ### Testing Plan Coverage Snapshot
 
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
-| Section 2 (test module layout) | TODO-0311 |
-| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0311 |
+| Section 2 (test module layout) | - |
+| Tier 0-3 (fast contract/failure/pipeline suites) | - |
 | Tier 4-6 (determinism/golden/live canary) | TODO-0312 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0312 |
 | Section 6 (exit criteria gating) | TODO-0312 |
@@ -140,14 +140,3 @@ Cross-cutting docs backlog:
     - `docs/testing_plan.md` Section 6 checkboxes are updated only with linked evidence.
     - `docs/todo_finished.md` records completion evidence for this gate.
   - notes: source `docs/testing_plan.md` Section 6
-
-- [ ] TODO-0311: Add deterministic helpers for run/lint and rollback assertions
-  - owner: ai
-  - created_at: 2026-04-13
-  - phase: Phase 4
-  - scope: Add reusable helpers in `tests/conftest.py` for `run.md`, `lint.json`, and rollback-cleanup assertions, then adopt them in failure tests.
-  - acceptance:
-    - `tests/conftest.py` includes helper APIs for run-frontmatter assertions, lint artifact assertions, and rollback cleanup checks.
-    - At least one failure integration module uses the new helpers.
-    - Tier 0 helper checklist item is marked complete in `docs/testing_plan.md`.
-  - notes: source `docs/testing_plan.md` Tier 0

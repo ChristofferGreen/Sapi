@@ -145,6 +145,55 @@ def parse_run_frontmatter(run_md_path: Path) -> dict[str, object]:
     return parse_frontmatter(run_md_path.read_text())
 
 
+def assert_run_frontmatter_fields(
+    run_md_path: Path,
+    *,
+    expected_fields: dict[str, object],
+) -> dict[str, object]:
+    if not run_md_path.is_file():
+        raise AssertionError(f"Expected run frontmatter artifact at {run_md_path}")
+    frontmatter = parse_run_frontmatter(run_md_path)
+    for key, expected in expected_fields.items():
+        observed = frontmatter.get(key)
+        if observed != expected:
+            raise AssertionError(
+                f"Unexpected run frontmatter field {key!r}: expected {expected!r}, observed {observed!r}"
+            )
+    return frontmatter
+
+
+def assert_lint_artifact(
+    lint_json_path: Path,
+    *,
+    expected_workflow: str | None = None,
+    expected_error_count: int | None = None,
+    expected_warning_count: int | None = None,
+    expected_info_count: int | None = None,
+) -> dict[str, object]:
+    if not lint_json_path.is_file():
+        raise AssertionError(f"Expected lint artifact at {lint_json_path}")
+    payload = json.loads(lint_json_path.read_text())
+
+    if expected_workflow is not None and payload.get("workflow") != expected_workflow:
+        raise AssertionError(
+            f"Unexpected lint workflow: expected {expected_workflow!r}, observed {payload.get('workflow')!r}"
+        )
+    if expected_error_count is not None and payload.get("error_count") != expected_error_count:
+        raise AssertionError(
+            f"Unexpected lint error_count: expected {expected_error_count!r}, observed {payload.get('error_count')!r}"
+        )
+    if expected_warning_count is not None and payload.get("warning_count") != expected_warning_count:
+        raise AssertionError(
+            "Unexpected lint warning_count: "
+            f"expected {expected_warning_count!r}, observed {payload.get('warning_count')!r}"
+        )
+    if expected_info_count is not None and payload.get("info_count") != expected_info_count:
+        raise AssertionError(
+            f"Unexpected lint info_count: expected {expected_info_count!r}, observed {payload.get('info_count')!r}"
+        )
+    return payload
+
+
 def parse_frontmatter(markdown: str) -> dict[str, object]:
     lines = markdown.splitlines()
     if len(lines) < 3 or lines[0] != "---":
@@ -177,6 +226,15 @@ def latest_run_directory(space_root: Path) -> Path:
 
 
 def assert_no_run_containers(space_root: Path) -> None:
+    assert_rollback_cleanup(space_root)
+
+
+def assert_rollback_cleanup(
+    space_root: Path,
+    *,
+    empty_globs: Sequence[str] = (),
+    absent_paths: Sequence[Path] = (),
+) -> None:
     run_dirs = run_directories(space_root)
     if run_dirs:
         raise AssertionError(f"Expected no run directories, found: {[path.name for path in run_dirs]}")
@@ -184,3 +242,12 @@ def assert_no_run_containers(space_root: Path) -> None:
         raise AssertionError("Expected no committed run.md artifacts.")
     if list((space_root / "runs").glob("*/lint.json")):
         raise AssertionError("Expected no committed lint.json artifacts.")
+    for relative_glob in empty_globs:
+        matches = list(space_root.glob(relative_glob))
+        if matches:
+            raise AssertionError(
+                f"Expected rollback cleanup for '{relative_glob}', found artifacts: {[str(path) for path in matches]}"
+            )
+    for path in absent_paths:
+        if path.exists():
+            raise AssertionError(f"Expected rollback cleanup to remove artifact at {path}")
