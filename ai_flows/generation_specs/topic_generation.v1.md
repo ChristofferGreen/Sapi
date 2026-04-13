@@ -1,18 +1,21 @@
 flow_key: topic_generation
 version: v1
 schema_path: schemas/topic_generation.v1.schema.json
-output_json_path: <space_root>/topics/<topic_id>.json
+output_json_path: <space_root>/runs/<run_id>/semantic/topic_generation.json
 context_paths:
   - <space_root>/sources
   - <space_root>/claims
 ---
 ## Task
 Generate one strict JSON object for topic generation at `output_json_path`.
+Return a `topics` array containing 0..n concept-centric topic candidates.
 
 ## Context Interpretation Rules
 - Use only evidence available under `context_paths`.
 - If support is weak/ambiguous, reflect that in section content rather than inventing facts.
 - Do not invent canonical IDs outside schema contracts.
+- Prefer topics that synthesize shared concepts across multiple sources.
+- If there is no clear cross-source concept worth a page, return an empty array (`"topics": []`).
 
 ## Strict Output Rules
 - Return JSON object only.
@@ -25,11 +28,15 @@ Generate one strict JSON object for topic generation at `output_json_path`.
 ## Non-Normative Shape Sketch
 ```json
 {
-  "topic_id": "",
-  "title": "",
-  "structure_type": "wiki",
-  "sections": [],
-  "claim_ids": [],
-  "source_ids": []
+  "topics": [
+    {
+      "topic_id": "",
+      "title": "",
+      "structure_type": "wiki",
+      "sections": [],
+      "claim_ids": [],
+      "source_ids": []
+    }
+  ]
 }
 ```

@@ -11,10 +11,7 @@ from pathlib import Path
 
 import scripts.ingest_source as ingest_source_entrypoint
 from sapi.ingest.records_writer import ingest_source_artifacts_and_record
-from sapi.ingest.topic_generator import (
-    derive_default_topic_id_for_source,
-    run_topic_generation_and_persist_canonical,
-)
+from sapi.ingest.topic_generator import run_topic_generation_and_persist_canonical
 from sapi.llm.client import SemanticLlmRequest
 from sapi.llm.semantic_executor import SemanticFlowError
 
@@ -39,14 +36,16 @@ class TopicGenerationFlowTests(unittest.TestCase):
     def test_topic_flow_uses_canonical_spec_schema_and_writes_topics_path(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root, source_id = _bootstrap_source(Path(tmp))
-            topic_id = derive_default_topic_id_for_source(space_root=space_root, source_id=source_id)
             payload = {
-                "topic_id": topic_id,
-                "title": "Topic title",
-                "structure_type": "wiki",
-                "sections": [{"heading": "Summary", "body": "Body"}],
-                "claim_ids": ["claim-a--111111111111"],
-                "source_ids": [source_id],
+                "topics": [
+                    {
+                        "title": "Shared ontology constraints",
+                        "structure_type": "wiki",
+                        "sections": [{"heading": "Summary", "body": "Body"}],
+                        "claim_ids": ["claim-a--111111111111"],
+                        "source_ids": [source_id, "source-related--222222222222"],
+                    }
+                ]
             }
             topic_client = _StaticTopicClient(payload)
 
@@ -54,73 +53,97 @@ class TopicGenerationFlowTests(unittest.TestCase):
                 space_root=space_root,
                 source_id=source_id,
                 run_id="run-topic-001",
-                topic_id=topic_id,
                 llm_client=topic_client,
             )
 
-            expected_topic_path = space_root / "topics" / f"{topic_id}.json"
-            self.assertEqual(result.topic_path.resolve(), expected_topic_path.resolve())
-            self.assertTrue(expected_topic_path.is_file())
             self.assertIsNotNone(topic_client.last_request)
             assert topic_client.last_request is not None
             self.assertEqual(topic_client.last_request.flow_key, "topic_generation")
             self.assertTrue(topic_client.last_request.schema_path.endswith("schemas/topic_generation.v1.schema.json"))
+            expected_semantic_output_path = space_root / "runs" / "run-topic-001" / "semantic" / "topic_generation.json"
             self.assertEqual(
                 Path(topic_client.last_request.output_json_path).resolve(),
-                expected_topic_path.resolve(),
+                expected_semantic_output_path.resolve(),
             )
-            stored = json.loads(expected_topic_path.read_text())
-            self.assertEqual(stored["topic_id"], topic_id)
-            self.assertEqual(stored["source_ids"], [source_id])
+            self.assertEqual(result.semantic_output_path.resolve(), expected_semantic_output_path.resolve())
+            self.assertEqual(len(result.topics), 1)
+            topic_path = result.topics[0].topic_path
+            self.assertTrue(topic_path.is_file())
+            stored = json.loads(topic_path.read_text())
+            self.assertEqual(stored["source_ids"], [source_id, "source-related--222222222222"])
+
+    def test_topic_flow_supports_zero_topics(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root, source_id = _bootstrap_source(Path(tmp))
+            result = run_topic_generation_and_persist_canonical(
+                space_root=space_root,
+                source_id=source_id,
+                run_id="run-topic-empty",
+                llm_client=_StaticTopicClient({"topics": []}),
+            )
+            self.assertEqual(result.topics, [])
+            self.assertEqual(list((space_root / "topics").glob("topic-*.json")), [])
 
     def test_topic_flow_validation_fails_when_required_schema_keys_are_missing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root, source_id = _bootstrap_source(Path(tmp))
-            topic_id = derive_default_topic_id_for_source(space_root=space_root, source_id=source_id)
             invalid_payload = {
-                "topic_id": topic_id,
-                "title": "Topic title",
-                "structure_type": "wiki",
-                "sections": [],
-                "claim_ids": [],
+                "topic_id": "topic-invalid",
+                "title": "invalid root shape",
             }
             with self.assertRaises(SemanticFlowError):
                 run_topic_generation_and_persist_canonical(
                     space_root=space_root,
                     source_id=source_id,
                     run_id="run-topic-invalid",
-                    topic_id=topic_id,
                     llm_client=_StaticTopicClient(invalid_payload),
                     max_repair_loops=0,
                 )
-            self.assertFalse((space_root / "topics" / f"{topic_id}.json").exists())
+            self.assertFalse(any((space_root / "topics").glob("topic-*.json")))
 
-    def test_topic_flow_accepts_section_title_summary_aliases(self) -> None:
+    def test_topic_flow_accepts_section_title_summary_aliases_for_multiple_topics(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root, source_id = _bootstrap_source(Path(tmp))
-            topic_id = derive_default_topic_id_for_source(space_root=space_root, source_id=source_id)
             payload = {
-                "topic_id": topic_id,
-                "title": "Alias Topic",
-                "structure_type": "wiki",
-                "sections": [
+                "topics": [
                     {
-                        "title": "Overview",
-                        "summary": "Alias summary body.",
-                    }
-                ],
-                "claim_ids": ["claim-a--111111111111"],
-                "source_ids": [source_id],
+                        "title": "Alias Topic One",
+                        "structure_type": "wiki",
+                        "sections": [
+                            {
+                                "title": "Overview",
+                                "summary": "Alias summary body one.",
+                            }
+                        ],
+                        "claim_ids": ["claim-a--111111111111"],
+                        "source_ids": [source_id, "source-related--333333333333"],
+                    },
+                    {
+                        "topic_id": "topic-manual-two--444444444444",
+                        "title": "Alias Topic Two",
+                        "structure_type": "wiki",
+                        "sections": [
+                            {
+                                "title": "Details",
+                                "summary": "Alias summary body two.",
+                            }
+                        ],
+                        "claim_ids": ["claim-b--111111111111"],
+                        "source_ids": [source_id, "source-related--555555555555"],
+                    },
+                ]
             }
             result = run_topic_generation_and_persist_canonical(
                 space_root=space_root,
                 source_id=source_id,
                 run_id="run-topic-aliases",
-                topic_id=topic_id,
                 llm_client=_StaticTopicClient(payload),
             )
-            stored = json.loads(result.topic_path.read_text())
-            self.assertEqual(stored["sections"], [{"heading": "Overview", "body": "Alias summary body."}])
+            self.assertEqual(len(result.topics), 2)
+            stored_one = json.loads(result.topics[0].topic_path.read_text())
+            stored_two = json.loads(result.topics[1].topic_path.read_text())
+            self.assertEqual(stored_one["sections"], [{"heading": "Overview", "body": "Alias summary body one."}])
+            self.assertEqual(stored_two["sections"], [{"heading": "Details", "body": "Alias summary body two."}])
 
     def test_ingest_entrypoint_triggers_topic_generation_and_deterministic_build(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -143,16 +166,14 @@ class TopicGenerationFlowTests(unittest.TestCase):
                 ]
             )
             self.assertEqual(result.returncode, 0, msg=result.stderr)
-            self.assertIn("topic_id=", result.stdout)
+            self.assertIn("topic_ids=", result.stdout)
             self.assertIn("build_manifest_path=", result.stdout)
 
             space_root = site_path / "spaces" / "alpha"
             topics_dir = space_root / "topics"
             topic_files = sorted(topics_dir.glob("topic-*.json"))
-            self.assertEqual(len(topic_files), 1)
-            topic_payload = json.loads(topic_files[0].read_text())
+            self.assertEqual(len(topic_files), 0)
             source_record = json.loads(next((space_root / "sources" / "records").glob("*.json")).read_text())
-            self.assertEqual(topic_payload["source_ids"], [source_record["source_id"]])
 
             manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
             self.assertTrue(manifest_path.is_file())
@@ -164,7 +185,6 @@ class TopicGenerationFlowTests(unittest.TestCase):
             self.assertTrue(site_new_index_path.is_file())
             site_new_html = site_new_index_path.read_text()
             self.assertIn(source_record["title"], site_new_html)
-            self.assertIn(topic_payload["title"], site_new_html)
 
             runs_root = space_root / "runs"
             run_dirs = sorted(path for path in runs_root.glob("run-*") if path.is_dir())

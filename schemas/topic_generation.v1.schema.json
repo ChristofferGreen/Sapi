@@ -3,13 +3,23 @@
   "title": "topic_generation.v1",
   "type": "object",
   "additionalProperties": false,
-  "required": ["topic_id", "title", "structure_type", "sections", "claim_ids", "source_ids"],
+  "required": ["topics"],
   "properties": {
-    "topic_id": {"type": "string"},
-    "title": {"type": "string"},
-    "structure_type": {"type": "string"},
-    "sections": {"type": "array"},
-    "claim_ids": {"type": "array"},
-    "source_ids": {"type": "array"}
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "structure_type", "sections", "claim_ids", "source_ids"],
+        "properties": {
+          "topic_id": {"type": "string"},
+          "title": {"type": "string"},
+          "structure_type": {"type": "string"},
+          "sections": {"type": "array"},
+          "claim_ids": {"type": "array"},
+          "source_ids": {"type": "array"}
+        }
+      }
+    }
   }
 }

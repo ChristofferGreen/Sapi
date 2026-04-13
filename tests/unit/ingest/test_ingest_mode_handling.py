@@ -82,7 +82,7 @@ class IngestModeHandlingTests(unittest.TestCase):
             self.assertEqual(frontmatter["deferred_build_reason"], "operator_requested_build_deferred")
 
             topic_files = sorted((space_root / "topics").glob("topic-*.json"))
-            self.assertEqual(len(topic_files), 1)
+            self.assertEqual(len(topic_files), 0)
             self.assertFalse((site_path / "outputs" / "build_site" / "manifest.json").exists())
 
     def test_force_mode_failure_preserves_artifacts_and_writes_force_flags(self) -> None:

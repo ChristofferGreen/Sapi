@@ -40,7 +40,6 @@ from sapi.ingest.records_writer import (
 from sapi.ingest.source_content import SourceDateResolution, resolve_publication_date
 from sapi.ingest.topic_generator import (
     TopicGenerationPersistResult,
-    derive_default_topic_id_for_source,
     run_topic_generation_and_persist_canonical,
 )
 from sapi.llm.client import SemanticLlmRequest
@@ -194,10 +193,6 @@ def main() -> int:
                     extraction_result=extraction_result,
                 )
                 llm_attempt_count += 1
-                topic_id = derive_default_topic_id_for_source(
-                    space_root=space_root,
-                    source_id=result.source_id,
-                )
                 _record_semantic_invocation(
                     flow_key="topic_generation",
                     semantic_flows=semantic_flows,
@@ -207,13 +202,11 @@ def main() -> int:
                     space_root=space_root,
                     source_id=result.source_id,
                     run_id=run_id,
-                    topic_id=topic_id,
                     llm_client=_build_topic_generation_client(
                         runtime_flags=runtime_flags,
                         space_root=space_root,
                         source_id=result.source_id,
                         source_title=source_title if isinstance(source_title, str) else None,
-                        topic_id=topic_id,
                         claim_ids=[path.stem for path in extraction_result.claim_paths],
                     ),
                     trace_ctx=trace_ctx,
@@ -367,8 +360,8 @@ def main() -> int:
         )
     if topic_result is not None:
         summary += (
-            f", topic_id={topic_result.topic_id}, "
-            f"topic_path={topic_result.topic_path}"
+            f", topic_ids={topic_result.topic_ids}, "
+            f"topic_count={len(topic_result.topics)}"
         )
     if build_manifest_path is not None:
         summary += f", build_manifest_path={build_manifest_path}"
@@ -491,7 +484,7 @@ def _make_ingest_flow_fields(
         claims_changed = len(extraction_result.claim_paths)
         relations_changed = len(extraction_result.relation_paths)
     if topic_result is not None:
-        topic_pages_changed = 1
+        topic_pages_changed = len(topic_result.topics)
     return IngestRunFields(
         ingest_scope="space",
         source_ids=[source_id] if source_id is not None else [],
@@ -536,7 +529,9 @@ def _track_topic_generation_writes_for_rollback(
     transaction: ArtifactTransaction,
     topic_result: TopicGenerationPersistResult,
 ) -> None:
-    transaction.mark_create(topic_result.topic_path)
+    transaction.mark_create(topic_result.semantic_output_path)
+    for topic_path in topic_result.topic_paths:
+        transaction.mark_create(topic_path)
 
 
 def _build_ingest_extraction_client(
@@ -568,23 +563,21 @@ def _build_topic_generation_client(
     space_root: Path,
     source_id: str,
     source_title: str | None,
-    topic_id: str,
     claim_ids: list[str],
 ):
+    sources_context = _load_source_context(space_root=space_root)
     if runtime_flags.mock_llm:
         return _MockTopicGenerationClient(
             source_id=source_id,
             source_title=source_title,
-            topic_id=topic_id,
             claim_ids=claim_ids,
+            sources_context=sources_context,
         )
     claims_context = _load_claim_context(space_root=space_root)
-    sources_context = _load_source_context(space_root=space_root)
     return _LiveTopicGenerationClient(
         backend_config=_backend_config_from_runtime_flags(runtime_flags),
         source_id=source_id,
         source_title=source_title,
-        topic_id=topic_id,
         claim_ids=claim_ids,
         claims_context=claims_context,
         sources_context=sources_context,
@@ -680,31 +673,39 @@ class _MockTopicGenerationClient:
         *,
         source_id: str,
         source_title: str | None,
-        topic_id: str,
         claim_ids: list[str],
+        sources_context: list[dict[str, object]],
     ) -> None:
         self._source_id = source_id
         self._source_title = source_title or source_id
-        self._topic_id = topic_id
         self._claim_ids = claim_ids
+        self._sources_context = sources_context
 
     def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
-        payload = {
-            "topic_id": self._topic_id,
-            "title": f"Topic: {self._source_title}",
-            "structure_type": "wiki",
-            "sections": [
+        related_source_ids = [
+            str(row.get("source_id"))
+            for row in self._sources_context
+            if isinstance(row, dict) and str(row.get("source_id")) not in ("", self._source_id)
+        ]
+        topics: list[dict[str, object]] = []
+        if related_source_ids:
+            topics = [
                 {
-                    "heading": "Summary",
-                    "body": (
-                        f"Mock topic synthesis for `{self._source_title}` with "
-                        "cross-source synthesis deferred to live mode."
-                    ),
+                    "title": f"Shared concept: {self._source_title}",
+                    "structure_type": "wiki",
+                    "sections": [
+                        {
+                            "heading": "Summary",
+                            "body": (
+                                f"Mock cross-source synthesis for `{self._source_title}`."
+                            ),
+                        }
+                    ],
+                    "claim_ids": list(self._claim_ids),
+                    "source_ids": [self._source_id, related_source_ids[0]],
                 }
-            ],
-            "claim_ids": list(self._claim_ids),
-            "source_ids": [self._source_id],
-        }
+            ]
+        payload = {"topics": topics}
         return json.dumps(payload)
 
 
@@ -715,7 +716,6 @@ class _LiveTopicGenerationClient:
         backend_config: SemanticBackendConfig,
         source_id: str,
         source_title: str | None,
-        topic_id: str,
         claim_ids: list[str],
         claims_context: list[dict[str, object]],
         sources_context: list[dict[str, object]],
@@ -723,7 +723,6 @@ class _LiveTopicGenerationClient:
         self._backend_config = backend_config
         self._source_id = source_id
         self._source_title = source_title or source_id
-        self._topic_id = topic_id
         self._claim_ids = list(claim_ids)
         self._claims_context = claims_context
         self._sources_context = sources_context
@@ -734,10 +733,15 @@ class _LiveTopicGenerationClient:
             backend_config=self._backend_config,
             task_context={
                 "task_requirements": {
-                    "must_use_topic_id": self._topic_id,
-                    "must_include_source_id": self._source_id,
-                    "must_include_claim_ids": self._claim_ids,
-                    "target_style": "Synthesize abstractions across multiple related sources when possible.",
+                    "must_include_ingested_source_id_per_topic": self._source_id,
+                    "must_include_claim_ids_from_ingested_source": self._claim_ids,
+                    "source_cardinality_policy": (
+                        "Each topic must include at least two distinct source_ids; "
+                        "if no cross-source concept is justified, emit topics=[]"
+                    ),
+                    "target_style": (
+                        "Generate 0..n topics as synthesis-worthy shared concepts across sources."
+                    ),
                 },
                 "seed_source": {
                     "source_id": self._source_id,

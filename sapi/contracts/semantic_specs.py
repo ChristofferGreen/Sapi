@@ -81,7 +81,7 @@ FLOW_MAP: dict[str, SemanticSpecMapEntry] = {
         flow_key="topic_generation",
         spec_relpath="ai_flows/generation_specs/topic_generation.v1.md",
         schema_relpath="schemas/topic_generation.v1.schema.json",
-        output_json_path_template="<space_root>/topics/<topic_id>.json",
+        output_json_path_template="<space_root>/runs/<run_id>/semantic/topic_generation.json",
     ),
     "query_synthesis": SemanticSpecMapEntry(
         flow_key="query_synthesis",

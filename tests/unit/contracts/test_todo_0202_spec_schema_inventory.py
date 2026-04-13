@@ -24,12 +24,7 @@ SPEC_CONTRACT = {
         "spec": "ai_flows/generation_specs/topic_generation.v1.md",
         "schema": "schemas/topic_generation.v1.schema.json",
         "required_keys": [
-            "topic_id",
-            "title",
-            "structure_type",
-            "sections",
-            "claim_ids",
-            "source_ids",
+            "topics",
         ],
     },
     "query_synthesis": {

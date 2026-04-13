@@ -362,7 +362,7 @@ Control flow:
    - run semantic flow `ingest_extraction`
    - deterministically write canonical source/claim/relation artifacts
    - run semantic flow `topic_generation`
-   - deterministically write canonical topic artifacts
+   - deterministically write 0..n canonical topic artifacts from shared cross-source concepts
    - set `semantic_flows = [ingest_extraction, topic_generation]`
    - set `semantic_flow_invocation_counts = {ingest_extraction: 1, topic_generation: 1}`
 5. run link reconciliation

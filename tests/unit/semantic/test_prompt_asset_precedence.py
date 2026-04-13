@@ -23,7 +23,7 @@ class PromptAssetPrecedenceTests(unittest.TestCase):
         self.assertEqual(result.conflict_details, {})
         self.assertEqual(
             result.resolved_spec.output_json_path_template,
-            "<space_root>/topics/<topic_id>.json",
+            "<space_root>/runs/<run_id>/semantic/topic_generation.json",
         )
 
     def test_semantic_output_contract_is_sourced_from_generation_specs_not_skill_text(self) -> None:
@@ -90,7 +90,7 @@ class PromptAssetPrecedenceTests(unittest.TestCase):
                 repo_root=REPO_ROOT,
                 path_tokens={
                     "space_root": REPO_ROOT / ".tmp/tests/space",
-                    "topic_id": "topic-a",
+                    "run_id": "run-001",
                 },
                 deterministic_schema_override="schemas/attempted-override.schema.json",
             )

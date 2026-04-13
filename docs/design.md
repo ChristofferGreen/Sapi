@@ -105,7 +105,7 @@ Semantic-output vs canonical-write contract (normative):
 - canonical domain artifacts MAY be written at different paths by deterministic post-processing after semantic JSON validation.
 - canonical-write mapping by flow:
   - `ingest_extraction`: semantic output at `runs/<run_id>/semantic/ingest_extraction.json`; canonical writes under `sources/`, `claims/`, and `relations/`.
-  - `topic_generation`: semantic output path and canonical topic write are the same file (`topics/<topic_id>.json`).
+  - `topic_generation`: semantic output at `runs/<run_id>/semantic/topic_generation.json`; canonical writes produce `0..n` topic pages under `topics/<topic_id>.json`.
   - `query_synthesis`: semantic output path and canonical query write are the same file (`outputs/query/<query_id>/query.json`).
   - `comment_section_generation`: semantic output is per target page invocation at `runs/<run_id>/semantic/comment_section_generation/<page_ref_key>.json`; canonical comment rows are merged into canonical page JSON/projections during deterministic merge/normalization.
   - `persona_profile_generation`: semantic output path and canonical profile write are the same file (`profiles/persona-<persona_id>.json`).
@@ -249,7 +249,7 @@ Flow map (authoritative defaults):
 | flow_key | canonical generation spec path | canonical schema path | semantic `output_json_path` template | version policy |
 | --- | --- | --- | --- | --- |
 | `ingest_extraction` | `ai_flows/generation_specs/ingest_extraction.v1.md` | `schemas/ingest_extraction.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/ingest_extraction.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
-| `topic_generation` | `ai_flows/generation_specs/topic_generation.v1.md` | `schemas/topic_generation.v1.schema.json` | `<space_root>/topics/<topic_id>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
+| `topic_generation` | `ai_flows/generation_specs/topic_generation.v1.md` | `schemas/topic_generation.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/topic_generation.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `query_synthesis` | `ai_flows/generation_specs/query_synthesis.v1.md` | `schemas/query_synthesis.v1.schema.json` | `<space_root>/outputs/query/<query_id>/query.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `comment_section_generation` | `ai_flows/generation_specs/comment_section_generation.v1.md` | `schemas/comment_section_generation.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/comment_section_generation/<page_ref_key>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `persona_profile_generation` | `ai_flows/generation_specs/persona_profile_generation.v1.md` | `schemas/persona_profile_generation.v1.schema.json` | `<space_root>/profiles/persona-<persona_id>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
@@ -305,7 +305,7 @@ Schema authoring contract (all flows):
 
 Per-flow v1 schema minimum top-level keys:
 - `ingest_extraction`: `source_date_inference`, `source`, `claims`, `relations`, `summary`, `warnings`
-- `topic_generation`: `topic_id`, `title`, `structure_type`, `sections`, `claim_ids`, `source_ids`
+- `topic_generation`: `topics` (0..n entries where each entry contains `topic_id`, `title`, `structure_type`, `sections`, `claim_ids`, `source_ids`; `topic_id` may be omitted and deterministically derived in canonical write stage)
 - `query_synthesis`: `query_id`, `answer`, `claims_used`, `sources_used`, `retrieval_counts`, `contradictions_considered`, `falsification_signals`, `mode`, `scope`, `execution`, `warnings`
 - `comment_section_generation`: `page_ref`, `requested_count`, `comments`
 - `persona_profile_generation`: `persona_id`, `space_name`, `profile_sections`, `profile_image_path`, `accountability_summary`
@@ -815,7 +815,7 @@ Core steps:
 2. fetch/read bytes, normalize to PDF when needed, and persist source artifact under `<space_root>/sources/artifacts/<source_id>/...` with source record metadata
 3. extract text and run `ingest_extraction` generation spec with source path + hints + strict JSON schema
 4. validate and persist canonical claim/relation outputs from ingest extraction
-5. run `topic_generation` generation spec using source + claim context; validate and persist canonical topic JSON
+5. run `topic_generation` generation spec using source + claim context; validate and deterministically persist `0..n` canonical topic JSON pages when cross-source concepts are supported
 6. run deterministic link reconciliation so source/claim/topic artifacts are mutually connected and all required references resolve
 7. run deterministic projection/reindex/site build from canonical JSON (or mark run `build_deferred` in reconstruction bootstrap mode)
 8. run lint gate, write run record, and always release lock

@@ -119,6 +119,27 @@ class RunEnvelopeSnapshotGoldenTests(unittest.TestCase):
             )
             self.assertEqual(ingest_frontmatter["flow_key"], "ingest_pipeline")
 
+            second_source_path = write_source_fixture(
+                tmp_root,
+                filename="run-envelope-comments-source-2.txt",
+                content="run envelope comments fixture source two\n",
+            )
+            second_ingest_frontmatter = _run_and_capture_new_frontmatter(
+                space_root=space_root,
+                cmd=[
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(second_source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Run Envelope Comments Fixture Two",
+                    "--mock-llm",
+                ],
+            )
+            self.assertEqual(second_ingest_frontmatter["flow_key"], "ingest_pipeline")
+
             comments_frontmatter = _run_and_capture_new_frontmatter(
                 space_root=space_root,
                 cmd=[

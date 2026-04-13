@@ -45,7 +45,7 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
             self.assertEqual(len(source_records), 1)
             self.assertGreaterEqual(len(claim_records), 1)
             self.assertTrue((space_root / "relations").is_dir())
-            self.assertEqual(len(topic_records), 1)
+            self.assertEqual(len(topic_records), 0)
 
             run_dir = latest_run_directory(space_root)
             run_md_path = run_dir / "run.md"
