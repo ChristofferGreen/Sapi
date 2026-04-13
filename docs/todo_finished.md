@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-13
 
+- [x] TODO-0312: Close Section 6 testing exit criteria with explicit evidence
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Cross-cutting
+  - depends_on: TODO-0311
+  - scope: Convert remaining Section 6 exit criteria into explicit verification evidence and only then mark criteria complete.
+  - acceptance:
+    - Exit criteria checks produce concrete evidence references (commands/artifacts) for each unchecked Section 6 bullet.
+    - `docs/testing_plan.md` Section 6 checkboxes are updated only with linked evidence.
+    - `docs/todo_finished.md` records completion evidence for this gate.
+  - notes: source `docs/testing_plan.md` Section 6
+  - evidence: Regenerated committed exit-gate evidence with
+    `python3 scripts/verify_testing_exit_criteria.py docs/verification/testing_exit_site --space-name alpha --out docs/verification/testing_exit_criteria.latest --evidence-path docs/verification/testing_exit_criteria.latest.json`
+    and updated Section 6 checkboxes in `docs/testing_plan.md` to include explicit linked
+    command/artifact references to
+    `docs/verification/testing_exit_criteria.latest.json` and
+    `docs/verification/testing_exit_criteria.latest/manifest.json`.
+
 - [x] TODO-0311: Add deterministic helpers for run/lint and rollback assertions
   - owner: ai
   - created_at: 2026-04-13

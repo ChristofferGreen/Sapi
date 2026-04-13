@@ -47,7 +47,7 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0312`
+1. (none currently)
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -58,7 +58,7 @@ Task template:
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
 - P2 Social/eval/hardening: (none currently)
-- P3 Continuous docs governance: TODO-0312
+- P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
 
@@ -69,10 +69,10 @@ Wave B (ingest + projection + lint):
 1. (none currently)
 
 Wave C (query + social + hardening + release):
-1. TODO-0312
+1. (none currently)
 
 Cross-cutting docs backlog:
-1. TODO-0312
+1. (none currently)
 
 ### Design Coverage Snapshot
 
@@ -94,9 +94,9 @@ Cross-cutting docs backlog:
 | Section 8 site/UI/static build | - |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | - |
-| Section 11 testing strategy | TODO-0312 |
+| Section 11 testing strategy | - |
 | Section 12 reconstruction plan | - |
-| Section 13 definition of done | TODO-0312 |
+| Section 13 definition of done | - |
 
 ### Low-Level Coverage Snapshot
 
@@ -114,8 +114,8 @@ Cross-cutting docs backlog:
 | Section 12 (wrapper/script interfaces) | - |
 | Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | - |
-| Section 15 (test-plan binding) | TODO-0312 |
-| Section 16 (change discipline) | TODO-0312 |
+| Section 15 (test-plan binding) | - |
+| Section 16 (change discipline) | - |
 
 ### Testing Plan Coverage Snapshot
 
@@ -123,20 +123,10 @@ Cross-cutting docs backlog:
 | --- | --- |
 | Section 2 (test module layout) | - |
 | Tier 0-3 (fast contract/failure/pipeline suites) | - |
-| Tier 4-6 (determinism/golden/live canary) | TODO-0312 |
-| Section 4-5 (CI gating matrix + command wiring) | TODO-0312 |
-| Section 6 (exit criteria gating) | TODO-0312 |
+| Tier 4-6 (determinism/golden/live canary) | - |
+| Section 4-5 (CI gating matrix + command wiring) | - |
+| Section 6 (exit criteria gating) | - |
 
 ### Task Blocks
 
-- [ ] TODO-0312: Close Section 6 testing exit criteria with explicit evidence
-  - owner: ai
-  - created_at: 2026-04-13
-  - phase: Cross-cutting
-  - depends_on: TODO-0311
-  - scope: Convert remaining Section 6 exit criteria into explicit verification evidence and only then mark criteria complete.
-  - acceptance:
-    - Exit criteria checks produce concrete evidence references (commands/artifacts) for each unchecked Section 6 bullet.
-    - `docs/testing_plan.md` Section 6 checkboxes are updated only with linked evidence.
-    - `docs/todo_finished.md` records completion evidence for this gate.
-  - notes: source `docs/testing_plan.md` Section 6
+(none currently)

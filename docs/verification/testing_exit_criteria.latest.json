@@ -5,10 +5,10 @@
     "pr_required_tiers_green": true,
     "rollback_leakage_regressions_absent": true
   },
-  "completed_at": "2026-04-12T23:08:36Z",
+  "completed_at": "2026-04-13T04:40:49Z",
   "errors": [],
-  "manifest_path": "/private/var/folders/dw/20lzppxd4wb92wccyqh_g6zm0000gn/T/tmp.Goj5ylQvJh/site/outputs/verification/testing_exit_criteria/testing-exit-20260412T230836Z/manifest.json",
+  "manifest_path": "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_criteria.latest/manifest.json",
   "scope": "testing_plan_exit_criteria",
   "status": "success",
-  "verification_id": "testing-exit-20260412T230836Z"
+  "verification_id": "testing-exit-20260413T044049Z"
 }

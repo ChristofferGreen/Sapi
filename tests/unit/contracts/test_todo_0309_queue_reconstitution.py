@@ -13,25 +13,25 @@ class Todo0309QueueReconstitutionTests(unittest.TestCase):
     def test_open_task_blocks_are_reconstituted_for_remaining_work(self) -> None:
         todo_text = TODO_DOC_PATH.read_text()
         open_ids = _open_task_ids(todo_text)
-        self.assertEqual(open_ids, ["TODO-0312"])
+        self.assertEqual(open_ids, [])
 
     def test_ready_queue_and_snapshots_are_consistent_with_open_ids(self) -> None:
         todo_text = TODO_DOC_PATH.read_text()
-        self.assertIn("### Ready Now (No Unmet TODO Dependencies)\n\n1. `TODO-0312`", todo_text)
+        self.assertIn("### Ready Now (No Unmet TODO Dependencies)\n\n1. (none currently)", todo_text)
         self.assertIn("### Immediate Next 10 (After Ready Now)\n\n1. (none currently)", todo_text)
         self.assertIn("Wave A (bootstrap + contracts):\n1. (none currently)", todo_text)
-        self.assertIn("Wave C (query + social + hardening + release):\n1. TODO-0312", todo_text)
+        self.assertIn("Wave C (query + social + hardening + release):\n1. (none currently)", todo_text)
         self.assertNotIn("TODO-0309:", todo_text)
         self.assertNotIn("TODO-0310:", todo_text)
         self.assertNotIn("TODO-0311:", todo_text)
+        self.assertNotIn("TODO-0312:", todo_text)
 
     def test_open_task_ids_use_stable_format_and_dependency_ordering(self) -> None:
         todo_text = TODO_DOC_PATH.read_text()
         for todo_id in _open_task_ids(todo_text):
             self.assertRegex(todo_id, r"^TODO-\d{4}$")
 
-        block_0312 = _open_task_block(todo_text, "TODO-0312")
-        self.assertIn("depends_on: TODO-0311", block_0312)
+        self.assertNotIn("- [ ] TODO-", todo_text)
 
 
 def _open_task_ids(todo_text: str) -> list[str]:
