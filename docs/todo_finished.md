@@ -2148,3 +2148,27 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `query_id`/`run_id` and hash placeholders. Existing markdown payload snapshot coverage
     remains in the same module. Updated `docs/testing_plan.md` to mark the Tier 5 query
     artifact snapshot item complete.
+
+- [x] TODO-0306: Close Tier 5 run-envelope snapshot checklist coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-13
+  - phase: Phase 6
+  - depends_on: TODO-0210, TODO-0220, TODO-0223, TODO-0224
+  - scope: Finalize Tier 5 run-envelope golden evidence by covering all pipeline frontmatter
+    envelopes instead of query-only snapshots.
+  - acceptance:
+    - `tests/golden/test_run_envelope_snapshot.py` validates normalized ingest, query,
+      comments, and profiles run frontmatter snapshots.
+    - Golden fixtures exist for each covered pipeline envelope.
+    - `docs/testing_plan.md` marks the Tier 5 run-envelope snapshot checklist item complete.
+  - notes: source `docs/testing_plan.md` Tier 5; `docs/design.md` Section 10
+  - evidence: Extended `tests/golden/test_run_envelope_snapshot.py` with new snapshot tests for
+    `ingest_pipeline`, `comment_section_pipeline`, and `persona_profile_pipeline`, while
+    preserving query coverage. Added
+    `tests/golden/run_envelope_snapshot/ingest_run_frontmatter.normalized.json`,
+    `tests/golden/run_envelope_snapshot/comments_run_frontmatter.normalized.json`, and
+    `tests/golden/run_envelope_snapshot/profiles_run_frontmatter.normalized.json`, and
+    normalized dynamic fields (`run_id`, timestamps, source IDs, target page refs, python
+    version) in assertions. Updated `docs/testing_plan.md` to mark the run-envelope item
+    complete.

@@ -8,28 +8,75 @@ from pathlib import Path
 from tests.conftest import (
     REPO_ROOT,
     bootstrap_site_and_space,
-    latest_run_directory,
     parse_run_frontmatter,
+    run_directories,
     run_command,
+    write_source_fixture,
 )
 
 
-GOLDEN_RUN_ENVELOPE_SNAPSHOT = (
+GOLDEN_QUERY_RUN_ENVELOPE_SNAPSHOT = (
     Path(__file__).resolve().parent
     / "run_envelope_snapshot"
     / "query_run_frontmatter.normalized.json"
 )
+GOLDEN_INGEST_RUN_ENVELOPE_SNAPSHOT = (
+    Path(__file__).resolve().parent
+    / "run_envelope_snapshot"
+    / "ingest_run_frontmatter.normalized.json"
+)
+GOLDEN_COMMENTS_RUN_ENVELOPE_SNAPSHOT = (
+    Path(__file__).resolve().parent
+    / "run_envelope_snapshot"
+    / "comments_run_frontmatter.normalized.json"
+)
+GOLDEN_PROFILES_RUN_ENVELOPE_SNAPSHOT = (
+    Path(__file__).resolve().parent
+    / "run_envelope_snapshot"
+    / "profiles_run_frontmatter.normalized.json"
+)
 
 
 class RunEnvelopeSnapshotGoldenTests(unittest.TestCase):
+    def test_ingest_run_frontmatter_matches_golden_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            source_path = write_source_fixture(
+                tmp_root,
+                filename="run-envelope-ingest-source.txt",
+                content="run envelope ingest fixture\n",
+            )
+
+            frontmatter = _run_and_capture_new_frontmatter(
+                space_root=space_root,
+                cmd=[
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Run Envelope Ingest Fixture",
+                    "--mock-llm",
+                ],
+            )
+            normalized_frontmatter = _normalize_frontmatter(frontmatter)
+
+            expected = json.loads(GOLDEN_INGEST_RUN_ENVELOPE_SNAPSHOT.read_text())
+            self.assertEqual(normalized_frontmatter, expected)
+
     def test_query_run_frontmatter_matches_golden_snapshot(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
             site_path = bootstrap_site_and_space(tmp_root, "alpha")
             space_root = site_path / "spaces" / "alpha"
 
-            query_result = run_command(
-                [
+            frontmatter = _run_and_capture_new_frontmatter(
+                space_root=space_root,
+                cmd=[
                     "python3",
                     str(REPO_ROOT / "scripts" / "query.py"),
                     "alpha",
@@ -37,28 +84,116 @@ class RunEnvelopeSnapshotGoldenTests(unittest.TestCase):
                     "--registry-path",
                     str(site_path / "spaces.toml"),
                     "--mock-llm",
-                ]
+                ],
             )
-            self.assertEqual(query_result.returncode, 0, msg=query_result.stderr)
-
-            run_dir = latest_run_directory(space_root)
-            frontmatter = parse_run_frontmatter(run_dir / "run.md")
             normalized_frontmatter = _normalize_frontmatter(frontmatter)
 
-            expected = json.loads(GOLDEN_RUN_ENVELOPE_SNAPSHOT.read_text())
+            expected = json.loads(GOLDEN_QUERY_RUN_ENVELOPE_SNAPSHOT.read_text())
+            self.assertEqual(normalized_frontmatter, expected)
+
+    def test_comments_run_frontmatter_matches_golden_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            source_path = write_source_fixture(
+                tmp_root,
+                filename="run-envelope-comments-source.txt",
+                content="run envelope comments fixture\n",
+            )
+
+            ingest_frontmatter = _run_and_capture_new_frontmatter(
+                space_root=space_root,
+                cmd=[
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Run Envelope Comments Fixture",
+                    "--mock-llm",
+                ],
+            )
+            self.assertEqual(ingest_frontmatter["flow_key"], "ingest_pipeline")
+
+            comments_frontmatter = _run_and_capture_new_frontmatter(
+                space_root=space_root,
+                cmd=[
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "create_comments.py"),
+                    "alpha",
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--count",
+                    "5",
+                    "--mock-llm",
+                ],
+            )
+            normalized_frontmatter = _normalize_frontmatter(comments_frontmatter)
+
+            expected = json.loads(GOLDEN_COMMENTS_RUN_ENVELOPE_SNAPSHOT.read_text())
+            self.assertEqual(normalized_frontmatter, expected)
+
+    def test_profiles_run_frontmatter_matches_golden_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+
+            profiles_frontmatter = _run_and_capture_new_frontmatter(
+                space_root=space_root,
+                cmd=[
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "generate_profiles.py"),
+                    "alpha",
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--persona-id",
+                    "commenter-1",
+                    "--mock-llm",
+                ],
+            )
+            normalized_frontmatter = _normalize_frontmatter(profiles_frontmatter)
+
+            expected = json.loads(GOLDEN_PROFILES_RUN_ENVELOPE_SNAPSHOT.read_text())
             self.assertEqual(normalized_frontmatter, expected)
 
 
 def _normalize_frontmatter(frontmatter: dict[str, object]) -> dict[str, object]:
     normalized = json.loads(json.dumps(frontmatter))
     normalized["run_id"] = "<run_id>"
-    normalized["query_id"] = "<query_id>"
+    if "query_id" in normalized:
+        normalized["query_id"] = "<query_id>"
     normalized["started_at"] = "<started_at>"
     normalized["completed_at"] = "<completed_at>"
+    source_ids = normalized.get("source_ids")
+    if isinstance(source_ids, list):
+        normalized["source_ids"] = ["<source_id>" for _ in source_ids]
+    target_page_refs = normalized.get("target_page_refs")
+    if isinstance(target_page_refs, list):
+        normalized["target_page_refs"] = ["<target_page_ref>" for _ in target_page_refs]
     toolchain_versions = normalized.get("toolchain_versions")
     if isinstance(toolchain_versions, dict) and "python" in toolchain_versions:
         toolchain_versions["python"] = "<python_version>"
     return normalized
+
+
+def _run_and_capture_new_frontmatter(*, space_root: Path, cmd: list[str]) -> dict[str, object]:
+    before_runs = run_directories(space_root)
+    result = run_command(cmd)
+    if result.returncode != 0:
+        raise AssertionError(result.stderr)
+    after_runs = run_directories(space_root)
+    created_runs = [path for path in after_runs if path not in before_runs]
+    if len(created_runs) != 1:
+        raise AssertionError(
+            "Expected exactly one new run directory. "
+            f"before={[path.name for path in before_runs]} "
+            f"after={[path.name for path in after_runs]}"
+        )
+    return parse_run_frontmatter(created_runs[0] / "run.md")
 
 
 if __name__ == "__main__":

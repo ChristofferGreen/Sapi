@@ -127,7 +127,7 @@ tests/
   - Module: `tests/golden/test_site_snapshot.py`
 - [x] Query artifact snapshot coverage for key output modes.
   - Module: `tests/golden/test_query_snapshot.py`
-- [ ] Run-envelope snapshot coverage for all pipelines.
+- [x] Run-envelope snapshot coverage for all pipelines.
   - Module: `tests/golden/test_run_envelope_snapshot.py`
 
 ### Tier 6: Live LLM Canary (non-blocking)

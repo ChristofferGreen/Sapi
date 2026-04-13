@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "checks": {
+      "anti_repetition": 5,
+      "claim_citation": 0,
+      "strongest_opposing_point_ack": 0
+    },
+    "failures": {
+      "anti_repetition": 0,
+      "claim_citation": 0,
+      "strongest_opposing_point_ack": 0,
+      "total": 0
+    },
+    "pages_with_failures": [],
+    "rows": 5,
+    "rubric_id": "comment_section_adjudication_v1"
+  },
+  "comment_user_filters": [],
+  "comments_added": 5,
+  "completed_at": "<completed_at>",
+  "evidence_mode": "canonical-only",
+  "evidence_snapshot_path": null,
+  "execution_mode": "mock_llm_test",
+  "flow_key": "comment_section_pipeline",
+  "generation_isolation": {
+    "context_leak_count": 0,
+    "detected_terms": [],
+    "prompt_leak_count": 0,
+    "schema_version": "comment_section_generation_context_v1",
+    "total_leak_count": 0
+  },
+  "lint_error_count": 0,
+  "lint_info_count": 0,
+  "lint_warning_count": 0,
+  "llm_attempt_count": 1,
+  "model_fingerprint": "mock_bootstrap",
+  "provider_fingerprint": "mock",
+  "reasoning_effort": "high",
+  "requested_count": 5,
+  "run_id": "<run_id>",
+  "semantic_flow_invocation_counts": {
+    "comment_section_generation": 1
+  },
+  "semantic_flows": [
+    "comment_section_generation"
+  ],
+  "started_at": "<started_at>",
+  "status": "success",
+  "target_page_refs": [
+    "<target_page_ref>"
+  ],
+  "toolchain_versions": {
+    "python": "<python_version>"
+  }
+}
