@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from functools import lru_cache
 import hashlib
 from html import escape
@@ -1562,7 +1563,13 @@ def _claim_option_title(*, claim_id: str, claim_option_title_by_id: dict[str, st
 
 
 def _short_claim_option_label(text: str, *, fallback_text: str | None = None) -> str:
-    return shorten_claim_label(value=text, fallback_text=fallback_text)
+    raw_value = " ".join(text.split()).strip(" .,:;")
+    if raw_value:
+        word_count = len(raw_value.split())
+        if 3 <= word_count <= 7:
+            return raw_value
+        return shorten_claim_label(value="", fallback_text=raw_value)
+    return shorten_claim_label(value="", fallback_text=fallback_text)
 
 
 def _humanize_claim_id(*, claim_id: str) -> str:
@@ -2178,6 +2185,11 @@ def _write_space_claim_pages(
         for source in projection.sources
         if isinstance(source, dict) and source.get("source_id")
     }
+    source_added_at_by_id = {
+        str(source.get("source_id")): str(source.get("ingested_at") or source.get("date") or "").strip()
+        for source in projection.sources
+        if isinstance(source, dict) and source.get("source_id")
+    }
 
     claim_index_rows: list[str] = []
     for claim_id in claim_ids:
@@ -2186,7 +2198,12 @@ def _write_space_claim_pages(
             claim_id=claim_id,
             claim_record=claim_record,
         )
-        _, usage_stats = _claim_usage_rows(
+        claim_added_at = _claim_added_at(
+            claim_record=claim_record,
+            source_added_at=source_added_at_by_id.get(str(claim_record.get("source_id") or "").strip(), ""),
+        )
+        claim_added_label = _format_claim_added_at_for_ui(claim_added_at)
+        usage_rows, usage_stats = _claim_usage_rows(
             claim_id=claim_id,
             projection=projection,
             source_title_by_id=source_title_by_id,
@@ -2203,6 +2220,17 @@ def _write_space_claim_pages(
             source_usage_count=usage_stats["source_usage_count"],
         )
         score = int(strength["score"])
+        score_band = str(strength.get("band") or "medium")
+        if score_band not in {"high", "medium", "low"}:
+            score_band = "medium"
+        score_class = f"claim-score-value claim-score-{score_band}"
+        usage_markup = (
+            "<ul class=\"claim-card-usage-list\">"
+            + "".join(usage_rows)
+            + "</ul>"
+            if usage_rows
+            else "<p class=\"claim-card-usage-empty\">Used by: none yet</p>"
+        )
         claim_index_rows.append(
             "<li data-claim-id=\""
             + escape(claim_id)
@@ -2210,15 +2238,24 @@ def _write_space_claim_pages(
             + escape(claim_title.lower())
             + "\" data-claim-score=\""
             + escape(str(score))
+            + "\" data-claim-added-at=\""
+            + escape(claim_added_at)
             + "\"><a href=\""
             + escape(claim_id)
             + ".html\">"
             + escape(claim_title)
             + "</a><p class=\"meta\">"
-            + escape(claim_id)
-            + " | score: "
+            + "score: "
+            + "<span class=\""
+            + escape(score_class)
+            + "\">"
             + escape(str(score))
-            + "</p></li>"
+            + "</span>"
+            + " | added: "
+            + escape(claim_added_label)
+            + "</p>"
+            + usage_markup
+            + "</li>"
         )
     rows = (
         "<div class=\"claims-sort-controls\">"
@@ -2227,6 +2264,8 @@ def _write_space_claim_pages(
         + "<option value=\"alphabetical\">Alphabetical</option>"
         + "<option value=\"score\">Score</option>"
         + "<option value=\"reverse_score\">Reverse score</option>"
+        + "<option value=\"newest\">Newest</option>"
+        + "<option value=\"oldest\">Oldest</option>"
         + "</select>"
         + "</div>\n"
         + "<ul class=\"feed-list\" id=\"claims-index-list\">\n"
@@ -2241,17 +2280,33 @@ def _write_space_claim_pages(
         + "    var score=parseInt(value||'0',10);\n"
         + "    return Number.isFinite(score)?score:0;\n"
         + "  }\n"
+        + "  function parseAddedAt(value){\n"
+        + "    var raw=(value||'').trim();\n"
+        + "    if(!raw){return Number.NEGATIVE_INFINITY;}\n"
+        + "    var parsed=Date.parse(raw);\n"
+        + "    return Number.isFinite(parsed)?parsed:Number.NEGATIVE_INFINITY;\n"
+        + "  }\n"
         + "  function compareRows(a,b,mode){\n"
         + "    var titleA=(a.getAttribute('data-claim-title')||'').toLowerCase();\n"
         + "    var titleB=(b.getAttribute('data-claim-title')||'').toLowerCase();\n"
         + "    var scoreA=parseScore(a.getAttribute('data-claim-score'));\n"
         + "    var scoreB=parseScore(b.getAttribute('data-claim-score'));\n"
+        + "    var addedA=parseAddedAt(a.getAttribute('data-claim-added-at'));\n"
+        + "    var addedB=parseAddedAt(b.getAttribute('data-claim-added-at'));\n"
         + "    if(mode==='score'){\n"
         + "      if(scoreA!==scoreB){return scoreB-scoreA;}\n"
         + "      return titleA.localeCompare(titleB);\n"
         + "    }\n"
         + "    if(mode==='reverse_score'){\n"
         + "      if(scoreA!==scoreB){return scoreA-scoreB;}\n"
+        + "      return titleA.localeCompare(titleB);\n"
+        + "    }\n"
+        + "    if(mode==='newest'){\n"
+        + "      if(addedA!==addedB){return addedB-addedA;}\n"
+        + "      return titleA.localeCompare(titleB);\n"
+        + "    }\n"
+        + "    if(mode==='oldest'){\n"
+        + "      if(addedA!==addedB){return addedA-addedB;}\n"
         + "      return titleA.localeCompare(titleB);\n"
         + "    }\n"
         + "    return titleA.localeCompare(titleB);\n"
@@ -2342,7 +2397,6 @@ def _write_space_claim_pages(
                 title=claim_title,
                 body=(
                     f"<h1>{escape(claim_title)}</h1>\n"
-                    + f"<p class=\"meta\">Claim ID: <code>{escape(claim_id)}</code></p>\n"
                     + "<section class=\"source-related-grid\">\n"
                     + "<article class=\"source-related-card\">\n"
                     + "<h2>Claim Statement</h2>\n"
@@ -2752,6 +2806,27 @@ def _claim_text(*, claim_id: str, claim_record: dict[str, Any]) -> str:
     return text if text else claim_id
 
 
+def _claim_added_at(*, claim_record: dict[str, Any], source_added_at: str) -> str:
+    for key in ("added_at", "created_at", "updated_at"):
+        value = str(claim_record.get(key) or "").strip()
+        if value:
+            return value
+    return source_added_at.strip()
+
+
+def _format_claim_added_at_for_ui(value: str) -> str:
+    raw = value.strip()
+    if not raw:
+        return "unknown"
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}$", raw):
+        parsed = datetime.strptime(raw, "%Y-%m-%d")
+        return parsed.strftime("%b %d, %Y")
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$", raw):
+        parsed = datetime.strptime(raw, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        return parsed.strftime("%b %d, %Y, %H:%M UTC")
+    return raw
+
+
 def _claim_display_title(
     *,
     claim_id: str,
@@ -2761,11 +2836,15 @@ def _claim_display_title(
     text = _claim_text(claim_id=claim_id, claim_record=claim_record)
     if text == claim_id:
         return claim_id
-    if max_length is None or len(text) <= max_length:
-        return text
+    raw_short_title = str(claim_record.get("short_title") or "")
+    title = _short_claim_option_label(raw_short_title, fallback_text=text)
+    if not title:
+        title = text
+    if max_length is None or len(title) <= max_length:
+        return title
     if max_length <= 3:
-        return text[:max_length]
-    truncated = text[: max_length - 3].rstrip()
+        return title[:max_length]
+    truncated = title[: max_length - 3].rstrip()
     if " " in truncated:
         truncated = truncated.rsplit(" ", 1)[0]
     return truncated + "..."

@@ -281,10 +281,43 @@
     padding: 0.62rem 0.72rem;
   }
 
+  .claim-score-value {
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .claim-score-high {
+    color: #1b7d43;
+  }
+
+  .claim-score-low {
+    color: #a63333;
+  }
+
+  .claim-card-usage-list {
+    list-style: none;
+    margin: 0.42rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.28rem;
+  }
+
+  .claim-card-usage-list > li {
+    margin: 0;
+    padding: 0;
+  }
+
+  .claim-card-usage-empty {
+    margin: 0.42rem 0 0;
+    color: #4c6785;
+    font-size: 0.9rem;
+  }
+
   .user-card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(148px, 148px));
     gap: 0.72rem;
+    justify-content: start;
   }
 
   .user-card {
@@ -298,6 +331,7 @@
     padding: 0.52rem;
     text-decoration: none;
     color: #0f3558;
+    width: 148px;
   }
 
   .user-card:hover {
@@ -929,8 +963,8 @@
   }
 
   .comment-avatar {
-    width: 27px;
-    height: 27px;
+    width: 33px;
+    height: 33px;
     object-fit: cover;
     border-radius: 999px;
     border: 1px solid rgba(115, 198, 255, 0.65);

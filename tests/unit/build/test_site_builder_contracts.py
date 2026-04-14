@@ -580,8 +580,14 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("<option value=\"alphabetical\">Alphabetical</option>", claims_index_text)
             self.assertIn("<option value=\"score\">Score</option>", claims_index_text)
             self.assertIn("<option value=\"reverse_score\">Reverse score</option>", claims_index_text)
+            self.assertIn("<option value=\"newest\">Newest</option>", claims_index_text)
+            self.assertIn("<option value=\"oldest\">Oldest</option>", claims_index_text)
             self.assertIn("id=\"claims-index-list\"", claims_index_text)
             self.assertIn("data-claim-score=\"", claims_index_text)
+            self.assertIn("data-claim-added-at=\"", claims_index_text)
+            self.assertIn("parseAddedAt", claims_index_text)
+            self.assertIn("mode==='newest'", claims_index_text)
+            self.assertIn("mode==='oldest'", claims_index_text)
             self.assertIn("rows.sort(function(a,b){return compareRows(a,b,mode);});", claims_index_text)
             self.assertIn(f"href=\"{evidence_links[0]}.html\"", evidence_index_text)
 
@@ -1290,6 +1296,180 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertNotIn("Claim reference ", source_page)
             self.assertNotIn(">Claim 1</a>", source_page)
 
+    def test_claim_index_and_detail_use_short_claim_titles(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            source_id = "source-claim-title-index"
+            claim_id = "claim-title-index--aaaaaaaaaaaa"
+            self._write_source_record(
+                alpha_space_root,
+                source_id=source_id,
+                title="Source Claim Title Index",
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id=claim_id,
+                source_id=source_id,
+                text="The paper claims that preparation independence constrains epistemic overlap regions.",
+            )
+            topic_id = "topic-claim-title-index--aaaaaaaaaaaa"
+            self._write_topic_record(
+                alpha_space_root,
+                topic_id=topic_id,
+                title="Topic Claim Title Index",
+                source_ids=[source_id],
+                sections=[
+                    {
+                        "heading": "Summary",
+                        "body": f"A linked sentence. [[claims:{claim_id}]]",
+                    }
+                ],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            claims_index = (alpha_space_root / "site" / "claims" / "index.html").read_text()
+            self.assertIn(
+                f"<a href=\"{claim_id}.html\">Preparation independence constrains epistemic overlap regions</a>",
+                claims_index,
+            )
+            self.assertNotIn("The paper claims that preparation independence", claims_index)
+            self.assertIn("<p class=\"meta\">score: ", claims_index)
+            self.assertIn("class=\"claim-score-value claim-score-", claims_index)
+            self.assertNotIn(f"{claim_id} | score:", claims_index)
+            self.assertIn("class=\"claim-card-usage-list\"", claims_index)
+            self.assertIn(f"href=\"../topics/{topic_id}.html\"", claims_index)
+            self.assertIn(f"href=\"../sources/{source_id}.html\"", claims_index)
+            self.assertIn("<span class=\"meta\">topic</span>", claims_index)
+            self.assertIn("<span class=\"meta\">source</span>", claims_index)
+
+            claim_page = (alpha_space_root / "site" / "claims" / f"{claim_id}.html").read_text()
+            self.assertIn("<h1>Preparation independence constrains epistemic overlap regions</h1>", claim_page)
+            self.assertIn(
+                "<p>The paper claims that preparation independence constrains epistemic overlap regions.</p>",
+                claim_page,
+            )
+
+    def test_claim_titles_preserve_curated_short_title_verbatim(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            source_id = "source-claim-title-verbatim"
+            claim_id = "claim-title-verbatim--aaaaaaaaaaaa"
+            short_title = "Decoherence makes observables stable"
+            self._write_source_record(
+                alpha_space_root,
+                source_id=source_id,
+                title="Source Claim Title Verbatim",
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id=claim_id,
+                source_id=source_id,
+                text=(
+                    "Decoherence stabilizes those agent-specified observables, yielding facts that are stable "
+                    "for us without positing an absolute observer-independent basis."
+                ),
+                short_title=short_title,
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            claims_index = (alpha_space_root / "site" / "claims" / "index.html").read_text()
+            self.assertIn(f"<a href=\"{claim_id}.html\">{short_title}</a>", claims_index)
+            self.assertNotIn("Decoherence makes observables is stable", claims_index)
+
+            claim_page = (alpha_space_root / "site" / "claims" / f"{claim_id}.html").read_text()
+            self.assertIn(f"<h1>{short_title}</h1>", claim_page)
+            self.assertNotIn("<h1>Decoherence makes observables is stable</h1>", claim_page)
+
+    def test_claim_index_newness_prefers_claim_added_at_then_source_ingested_at(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            older_source_id = "source-older"
+            newer_source_id = "source-newer"
+            self._write_source_record(
+                alpha_space_root,
+                source_id=older_source_id,
+                title="Older Source",
+                ingested_at="2026-01-01T00:00:00Z",
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id=newer_source_id,
+                title="Newer Source",
+                ingested_at="2026-03-01T00:00:00Z",
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id="claim-added-fallback-old--aaaaaaaaaaaa",
+                source_id=older_source_id,
+                text="Old fallback claim statement.",
+                short_title="Old fallback claim",
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id="claim-added-explicit-new--aaaaaaaaaaaa",
+                source_id=older_source_id,
+                text="Explicit newer claim statement.",
+                short_title="Explicit newer claim",
+                added_at="2026-04-10T12:00:00Z",
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id="claim-added-fallback-newer-source--aaaaaaaaaaaa",
+                source_id=newer_source_id,
+                text="Source fallback newer claim statement.",
+                short_title="Source fallback newer claim",
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            claims_index = (alpha_space_root / "site" / "claims" / "index.html").read_text()
+            self.assertIn('data-claim-id="claim-added-fallback-old--aaaaaaaaaaaa"', claims_index)
+            self.assertIn('data-claim-id="claim-added-explicit-new--aaaaaaaaaaaa"', claims_index)
+            self.assertIn('data-claim-id="claim-added-fallback-newer-source--aaaaaaaaaaaa"', claims_index)
+            self.assertIn(
+                'data-claim-id="claim-added-fallback-old--aaaaaaaaaaaa" data-claim-title="old fallback claim" '
+                'data-claim-score="',
+                claims_index,
+            )
+            self.assertIn('data-claim-added-at="2026-01-01T00:00:00Z"', claims_index)
+            self.assertIn('data-claim-added-at="2026-04-10T12:00:00Z"', claims_index)
+            self.assertIn('data-claim-added-at="2026-03-01T00:00:00Z"', claims_index)
+            self.assertIn("added: Jan 01, 2026, 00:00 UTC", claims_index)
+            self.assertIn("added: Mar 01, 2026, 00:00 UTC", claims_index)
+            self.assertIn("added: Apr 10, 2026, 12:00 UTC", claims_index)
+
     def test_source_preview_prefers_ingested_front_page_image_when_available(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
@@ -1640,6 +1820,7 @@ class SiteBuilderContractTests(unittest.TestCase):
         text: str,
         evidence_excerpts: list[str] | None = None,
         short_title: str | None = None,
+        added_at: str | None = None,
     ) -> None:
         payload = {
             "schema_version": "claim_record_v1",
@@ -1650,6 +1831,8 @@ class SiteBuilderContractTests(unittest.TestCase):
         }
         if short_title is not None:
             payload["short_title"] = short_title
+        if added_at is not None:
+            payload["added_at"] = added_at
         path = space_root / "claims" / f"{claim_id}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")

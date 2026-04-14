@@ -207,6 +207,9 @@ def _normalize_claim_payload(
         raw_value=raw_claim_dict.get("short_title"),
         claim_text=claim_text,
     )
+    claim_added_at = _normalize_claim_added_at(
+        raw_value=raw_claim_dict.get("added_at") or raw_claim_dict.get("created_at")
+    ) or _utc_now_rfc3339()
 
     claim_payload = {
         "schema_version": "claim_record_v1",
@@ -214,6 +217,7 @@ def _normalize_claim_payload(
         "source_id": source_id,
         "text": claim_text,
         "short_title": short_title,
+        "added_at": claim_added_at,
         "evidence_excerpts": evidence_excerpts,
     }
 
@@ -240,6 +244,17 @@ def _resolve_claim_text(raw_claim_dict: dict[str, Any]) -> str:
 
 def _normalize_claim_short_title(*, raw_value: Any, claim_text: str) -> str:
     return resolve_claim_short_title(raw_short_title=raw_value, claim_text=claim_text)
+
+
+def _normalize_claim_added_at(*, raw_value: Any) -> str | None:
+    if raw_value is None:
+        return None
+    if not isinstance(raw_value, str):
+        raise ValueError("claims[].added_at must be an ISO date or RFC3339 UTC timestamp.")
+    value = _require_non_empty(raw_value, "claims[].added_at")
+    if ISO_DATE_RE.fullmatch(value) or RFC3339_UTC_RE.fullmatch(value):
+        return value
+    raise ValueError("claims[].added_at must be an ISO date or RFC3339 UTC timestamp.")
 
 
 def _resolve_claim_id(

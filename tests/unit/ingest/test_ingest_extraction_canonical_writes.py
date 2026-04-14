@@ -452,6 +452,45 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
             self.assertGreaterEqual(len(words), 3)
             self.assertLessEqual(len(words), 7)
             self.assertNotIn("The paper", claim_payload["short_title"])
+            self.assertIn("added_at", claim_payload)
+            self.assertTrue(claim_payload["added_at"].endswith("Z"))
+            self.assertIn("T", claim_payload["added_at"])
+
+    def test_ingest_extraction_persists_explicit_claim_added_at_timestamp(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root, source_id = self._bootstrap_source(Path(tmp))
+            semantic_output = {
+                "source_date_inference": {
+                    "date": None,
+                    "origin": "unknown",
+                    "confidence": "unknown",
+                    "rationale": None,
+                },
+                "source": {
+                    "source_id": source_id,
+                    "title": "Claim Timestamp Source",
+                    "display_title": "Claim Timestamp Source Findings",
+                },
+                "claims": [
+                    {
+                        "text": "Preparation independence constrains epistemic overlaps.",
+                        "added_at": "2026-04-01T09:30:00Z",
+                    }
+                ],
+                "relations": [],
+                "summary": "Claim timestamp persistence.",
+                "source_dossier": self._default_source_dossier(),
+                "warnings": [],
+            }
+
+            result = run_ingest_extraction_and_persist_canonical(
+                space_root=space_root,
+                source_id=source_id,
+                run_id="run-claim-added-at",
+                llm_client=_StaticSemanticClient(semantic_output),
+            )
+            claim_payload = json.loads(result.claim_paths[0].read_text())
+            self.assertEqual(claim_payload["added_at"], "2026-04-01T09:30:00Z")
 
     def test_ingest_extraction_normalizes_meta_claim_phrasing_to_truth_apt_statements(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
