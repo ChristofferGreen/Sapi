@@ -57,6 +57,8 @@ Notable ingest behavior:
 
 - default terminal-failure behavior is rollback of invocation-scoped writes
 - explicit `--force` in ingest may preserve partial artifacts on failure for forensics
+- ingest extraction may persist a reader-facing `source_dossier` (short + long summaries and sectioned
+  commentary) that the source detail page renders for users who want substance before opening the PDF
 
 ## Target Wrapper Interface
 
@@ -91,7 +93,7 @@ Runtime/control flag defaults and forwarding:
   - `--llm-backend codex`
   - `--llm-model gpt-5.4`
   - `--llm-reasoning-effort high`
-  - `--llm-timeout-secs 120`
+  - `--llm-timeout-secs 300`
   - `--warning-budget 200`
 - invalid tracing combination guard:
   - `--llm-trace-dir` requires one of `--llm-trace`, `--trace-llm-io`, or `--verbose`.

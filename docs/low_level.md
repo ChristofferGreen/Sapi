@@ -361,6 +361,8 @@ Control flow:
 4. else:
    - run semantic flow `ingest_extraction`
    - deterministically write canonical source/claim/relation artifacts
+   - evidence excerpt normalization during claim writes MUST keep only concrete support artifacts
+     (measurements/statistics, proofs/derivations, equations, table/figure findings) and drop claim-restatement prose
    - run semantic flow `topic_generation`
    - deterministically write 0..n canonical topic artifacts from shared cross-source concepts
    - set `semantic_flows = [ingest_extraction, topic_generation]`
@@ -436,14 +438,17 @@ Control flow:
    - set `semantic_flows = [comment_section_generation]` when at least one target page is processed
    - set `semantic_flow_invocation_counts = {comment_section_generation: <target_page_count>}`
    - write one semantic artifact per invocation at `runs/<run_id>/semantic/comment_section_generation/<page_ref_key>.json`
-4. if chunking fallback is required due to model/token limits, merge chunks to equivalent final schema/count/thread result
-5. merge and normalize comments deterministically
-6. preserve existing `comment_uid`, assign only for new rows
-7. rebuild affected pages/space feed indices per contract
-8. in `web-augmented` evidence mode, persist snapshot at `raw/snapshots/comment_sections/comment-section-<seed>.json` using schema `comment_section_evidence_snapshot_v1`
+   - enforce one semantic attempt per target page (`max_repair_loops=0`)
+   - require per-comment `score_assessment` (neutral `score` + `rationale`) from the semantic output
+   - provide target thread-chain and original-source context to semantic generation for scoring
+4. merge and normalize comments deterministically
+   - consume semantic `score_assessment` values; do not compute hash/ID-derived scores in deterministic merge
+5. preserve existing `comment_uid`, assign only for new rows
+6. rebuild affected pages/space feed indices per contract
+7. in `web-augmented` evidence mode, persist snapshot at `raw/snapshots/comment_sections/comment-section-<seed>.json` using schema `comment_section_evidence_snapshot_v1`
    - compatibility readers may accept historical path/schema aliases from prior `persona_comment_*` naming
-9. run lint and warning-threshold evaluation
-10. write `run.md` and `lint.json` on success
+8. run lint and warning-threshold evaluation
+9. write `run.md` and `lint.json` on success
 
 Comment constraints:
 - comment pipeline does not refresh site-root `New` index unless it also mutates canonical source/topic artifacts
@@ -663,6 +668,17 @@ Minimum test groups for this low-level design:
 - profiles:
   - `generate_profiles.sh` path produces profile + history outputs
   - persona-catalog loader enforces biography quality contract (generation-facing first-person `biography`, profile-facing `biography_profile`), required `short_cv` timeline rows, non-empty topic arrays, `.jpg` profile image path contract, and photorealistic `profile_image_prompt` contract.
+- source dossiers:
+  - ingest extraction requires `source_dossier` object (`summary_short`, `summary_long`, `sections[]`)
+  - high-quality dossier targets: `summary_long >= 900 chars` and `5..8` substantive sections
+  - canonical source record persists `source_dossier` from ingest extraction output
+  - source detail renderer uses `source_dossier` as the primary long-form commentary payload
+  - source-page dossier sections may include `grounding_claim_ids` links into canonical claim pages
+- claim pages:
+  - claim pages resolve canonical claim JSON under `<space_root>/claims/` and topic/source usage references.
+  - page title uses readable claim text when available; `claim_id` remains visible in metadata/audit context.
+  - page body includes claim statement, usage links, overview prose, evidence excerpts, and comments section placeholder/rendered thread.
+  - claim support score shown in UI is currently deterministic heuristic-only; no canonical math formula exists in the contract.
 - site refresh behavior:
   - ingest/topic refresh site-root `New`
   - query/comment/profile do not refresh site-root `New` unless source/topic mutation occurs

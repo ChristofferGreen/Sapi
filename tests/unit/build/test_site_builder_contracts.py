@@ -71,10 +71,16 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(site_css_path.read_bytes(), space_css_path.read_bytes())
 
             first_index_text = space_index_path.read_text()
+            topic_page_text = topic_page_path.read_text()
+            source_page_text = source_page_path.read_text()
             self.assertIn("Topic A", first_index_text)
             self.assertIn("Source A", first_index_text)
             self.assertIn('<meta name="viewport" content="width=device-width, initial-scale=1">', first_index_text)
             self.assertIn('<link rel="stylesheet" href="assets/site.css">', first_index_text)
+            self.assertIn("class=\"comment-thread\"", topic_page_text)
+            self.assertIn("No comments yet for this page.", topic_page_text)
+            self.assertIn("class=\"comment-thread\"", source_page_text)
+            self.assertIn("No comments yet for this page.", source_page_text)
             site_new_text = site_new_path.read_text()
             self.assertIn('<meta name="viewport" content="width=device-width, initial-scale=1">', site_new_text)
             self.assertIn('<link rel="stylesheet" href="../assets/site.css">', site_new_text)
@@ -225,7 +231,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                 sections=[
                     {
                         "heading": "Summary",
-                        "body": f"A factual sentence [[claims:{claim_id}]] with annotation.",
+                        "body": f"A factual sentence with annotation. [[claims:{claim_id}]]",
                     }
                 ],
             )
@@ -246,16 +252,38 @@ class SiteBuilderContractTests(unittest.TestCase):
             body_match = re.search(r"<p class=\"topic-section-body\">(.*?)</p>", topic_page_text)
             self.assertIsNotNone(body_match)
             assert body_match is not None
-            self.assertNotIn(claim_id, body_match.group(1))
-            self.assertIn("class=\"claim-details-link\"", topic_page_text)
-            self.assertIn("href=\"#claim-details-s1-a1\"", topic_page_text)
-            self.assertIn("id=\"claim-details-s1-a1\"", topic_page_text)
+            self.assertNotIn(f">{claim_id}<", body_match.group(1))
+            self.assertIn("class=\"sentence-claim-link\"", topic_page_text)
+            self.assertIn(
+                f"<a class=\"sentence-claim-link\" href=\"../claims/{claim_id}.html\">",
+                topic_page_text,
+            )
+            claims_index_text = (space_root / "site" / "claims" / "index.html").read_text()
+            self.assertIn(f"href=\"{claim_id}.html\"", claims_index_text)
+            claim_page_text = (space_root / "site" / "claims" / f"{claim_id}.html").read_text()
+            self.assertIn(f"<h1>{claim_id}</h1>", claim_page_text)
 
-    def test_claim_reference_rendering_includes_js_off_fallback_links(self) -> None:
+    def test_claim_reference_rendering_multi_claim_sentence_opens_selector_card(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
             site_path, space_root = self._bootstrap_site_space(tmp_root, "alpha")
-            claim_id = "claim-fallback--bbbbbbbbbbbb"
+            claim_id_1 = "claim-fallback--bbbbbbbbbbbb"
+            claim_id_2 = "claim-fallback--cccccccccccc"
+            self._write_claim_record(
+                space_root,
+                claim_id=claim_id_1,
+                source_id="source-a",
+                text=(
+                    "The paper claims that preparation independence constrains epistemic overlaps between distinct "
+                    "quantum states in multi-system measurement settings."
+                ),
+            )
+            self._write_claim_record(
+                space_root,
+                claim_id=claim_id_2,
+                source_id="source-a",
+                text="Joint measurements reveal incompatibility with psi-epistemic models.",
+            )
             self._write_topic_record(
                 space_root,
                 topic_id="topic-fallback--bbbbbbbbbbbb",
@@ -264,7 +292,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                 sections=[
                     {
                         "heading": "Summary",
-                        "body": f"Sentence [[claims:{claim_id}]].",
+                        "body": f"Sentence with multiple references. [[claims:{claim_id_1},{claim_id_2}]]",
                     }
                 ],
             )
@@ -281,11 +309,293 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stderr)
 
             topic_page_text = (space_root / "site" / "topics" / "topic-fallback--bbbbbbbbbbbb.html").read_text()
-            self.assertIn("<noscript><ul class=\"claim-details-fallback\">", topic_page_text)
+            self.assertIn("class=\"sentence-claim-picker\"", topic_page_text)
+            self.assertIn("aria-expanded=\"false\"", topic_page_text)
+            self.assertIn("class=\"sentence-claim-card\"", topic_page_text)
+            self.assertIn("class=\"sentence-claim-option\"", topic_page_text)
+            self.assertIn("closeAll(picker);", topic_page_text)
+            self.assertIn("data-open", topic_page_text)
+            self.assertIn("positionCard(picker);", topic_page_text)
+            self.assertIn("picker.setAttribute('data-align','right');", topic_page_text)
+            self.assertIn("card.style.maxWidth=targetWidth+'px';", topic_page_text)
+            self.assertIn("window.addEventListener('resize'", topic_page_text)
             self.assertIn(
-                f"<a href=\"../claims/{claim_id}.html\">Claim reference 1</a>",
+                (
+                    f"<a class=\"sentence-claim-option\" href=\"../claims/{claim_id_1}.html\">"
+                    "Preparation independence constrains epistemic overlaps between</a>"
+                ),
                 topic_page_text,
             )
+            self.assertIn(
+                (
+                    f"<a class=\"sentence-claim-option\" href=\"../claims/{claim_id_2}.html\">"
+                    "Joint measurements reveal incompatibility with psi-epistemic</a>"
+                ),
+                topic_page_text,
+            )
+            self.assertNotIn("The paper claims that", topic_page_text)
+            self.assertNotIn(">The paper ", topic_page_text)
+            self.assertNotIn(">This paper ", topic_page_text)
+            self.assertNotIn("Claim reference 1", topic_page_text)
+            self.assertNotIn("Claim reference 2", topic_page_text)
+            option_labels = re.findall(r'class=\"sentence-claim-option\" href=\"[^\"]+\">([^<]+)</a>', topic_page_text)
+            self.assertGreaterEqual(len(option_labels), 2)
+            self.assertTrue(all(3 <= len(label.split()) <= 7 for label in option_labels))
+
+    def test_comment_threads_render_nested_collapsible_rows_with_compact_avatar_and_vote_stack(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            persona_rows = load_seeded_persona_catalog(repo_root=REPO_ROOT)
+            self.assertGreater(len(persona_rows), 0)
+            persona_ids = [str(row["persona_id"]) for row in persona_rows]
+            persona_display_names = {
+                str(row["persona_id"]): str(row.get("display_name") or row["persona_id"])
+                for row in persona_rows
+            }
+            root_persona = persona_ids[0]
+            child_persona = persona_ids[1] if len(persona_ids) > 1 else persona_ids[0]
+            leaf_persona = persona_ids[2] if len(persona_ids) > 2 else persona_ids[0]
+
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-comments-tree--aaaaaaaaaaaa",
+                title="Nested Comment Topic",
+                source_ids=[],
+                comment_section={
+                    "page_ref": "topic:topic-comments-tree--aaaaaaaaaaaa",
+                    "comments": [
+                        {
+                            "comment_uid": "comment-root",
+                            "comment_no": "1",
+                            "persona_id": root_persona,
+                            "body": "Root level comment",
+                            "permalink": "#comment-root",
+                            "social_vote": {"upvotes": 34, "downvotes": 5, "score": 29},
+                        },
+                        {
+                            "comment_uid": "comment-child",
+                            "comment_no": "2",
+                            "parent_comment_uid": "comment-root",
+                            "persona_id": child_persona,
+                            "body": "Nested reply",
+                            "permalink": "#comment-child",
+                            "social_vote": {"upvotes": 12, "downvotes": 1, "score": 11},
+                        },
+                        {
+                            "comment_uid": "comment-grandchild",
+                            "comment_no": "3",
+                            "parent_comment_uid": "comment-child",
+                            "persona_id": leaf_persona,
+                            "body": "Nested reply level two",
+                            "permalink": "#comment-grandchild",
+                            "social_vote": {"upvotes": 2, "downvotes": 5, "score": -3},
+                        },
+                    ],
+                    "moderator_outcomes": {
+                        "moderator_check": "claim_citation=pass; anti_repetition=pass",
+                        "guardrail_checks": {
+                            "claim_citation": {"passed": 1, "failed": 0},
+                            "anti_repetition": {"passed": 3, "failed": 0},
+                            "strongest_opposing_point_ack": {"passed": 1, "failed": 0},
+                        },
+                        "outcome_sections": {
+                            "Consensus": ["Balanced support/challenge signal."],
+                            "Open Disagreements": ["No unresolved contradictions."],
+                            "Missing Evidence Priorities": ["None."],
+                        },
+                    },
+                },
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            topic_page_text = (
+                space_root / "site" / "topics" / "topic-comments-tree--aaaaaaaaaaaa.html"
+            ).read_text()
+            self.assertIn("class=\"comment-thread-list\"", topic_page_text)
+            self.assertIn("class=\"comment-children\"", topic_page_text)
+            self.assertRegex(
+                topic_page_text,
+                (
+                    r"(?s)id=\"comment-root\".*?class=\"comment-children\">.*?id=\"comment-child\""
+                    r".*?class=\"comment-children\">.*?id=\"comment-grandchild\""
+                ),
+            )
+            self.assertIn("class=\"comment-summary\"", topic_page_text)
+            self.assertIn("class=\"comment-toggle-indicator\"", topic_page_text)
+            self.assertIn("class=\"comment-signal-label\">Insightful</span>", topic_page_text)
+            self.assertIn("class=\"comment-signal-label\">Average</span>", topic_page_text)
+            self.assertIn("class=\"comment-signal-label\">Bad</span>", topic_page_text)
+            self.assertIn("class=\"comment-vote-stack comment-signal-insightful\"", topic_page_text)
+            self.assertIn("class=\"comment-vote-stack comment-signal-average\"", topic_page_text)
+            self.assertIn("class=\"comment-vote-stack comment-signal-bad\"", topic_page_text)
+            self.assertIn("class=\"comment-signal-points\">29 points</span>", topic_page_text)
+            self.assertIn("class=\"comment-signal-points\">11 points</span>", topic_page_text)
+            self.assertIn("class=\"comment-signal-points\">-3 points</span>", topic_page_text)
+            self.assertRegex(
+                topic_page_text,
+                (
+                    r"class=\"comment-author\" href=\"[^\"]*users/persona-"
+                    + re.escape(root_persona)
+                    + r"\.html\">"
+                    r"<img class=\"comment-avatar\" [^>]*>"
+                    r"<span class=\"comment-persona\">"
+                    + re.escape(persona_display_names[root_persona])
+                    + r"</span></a>"
+                ),
+            )
+            self.assertNotIn(f">{root_persona}</span>", topic_page_text)
+            self.assertNotIn("class=\"comment-no\"", topic_page_text)
+            self.assertNotIn("class=\"comment-permalink\"", topic_page_text)
+            self.assertNotIn(">permalink</a>", topic_page_text)
+            self.assertNotIn("Moderator Check", topic_page_text)
+            self.assertNotIn("claim_citation: passed=", topic_page_text)
+            self.assertNotIn("<h3>Consensus</h3>", topic_page_text)
+            self.assertIn("assets/persona_avatars", topic_page_text)
+            self.assertIn("<details class=\"comment-row\" id=\"comment-root\"", topic_page_text)
+            self.assertIn("<details class=\"comment-row\" id=\"comment-child\"", topic_page_text)
+            self.assertIn("<details class=\"comment-row\" id=\"comment-grandchild\"", topic_page_text)
+            self.assertRegex(
+                topic_page_text,
+                r"<details class=\"comment-row\" id=\"comment-root\"[^>]* open>",
+            )
+            self.assertRegex(
+                topic_page_text,
+                r"<details class=\"comment-row\" id=\"comment-child\"[^>]* open>",
+            )
+            self.assertRegex(
+                topic_page_text,
+                r"<details class=\"comment-row\" id=\"comment-grandchild\"[^>]*>",
+            )
+            self.assertNotRegex(
+                topic_page_text,
+                r"<details class=\"comment-row\" id=\"comment-grandchild\"[^>]* open>",
+            )
+
+    def test_claim_pages_render_human_title_overview_usage_evidence_and_stats(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            source_id = "source-a"
+            claim_id = "claim-rich-overview--aaaaaaaaaaaa"
+            claim_text = (
+                "Treating quantum states as purely epistemic conflicts with independently "
+                "prepared systems in the PBR setup."
+            )
+            self._write_source_record(
+                space_root,
+                source_id=source_id,
+                title="Source A",
+                source_dossier={
+                    "summary_short": "Short dossier summary.",
+                    "summary_long": "Long dossier summary.",
+                    "sections": [
+                        {
+                            "heading": "Interpretation",
+                            "body": (
+                                "Within the paper, this claim marks the key break-point where an "
+                                "epistemic-only interpretation fails once preparation independence "
+                                "is imposed in the formal construction."
+                            ),
+                            "grounding_claim_ids": [claim_id],
+                        }
+                    ],
+                },
+            )
+            self._write_claim_record(
+                space_root,
+                claim_id=claim_id,
+                source_id=source_id,
+                text=claim_text,
+                evidence_excerpts=[
+                    "The contradiction appears when independently prepared systems are measured jointly.",
+                    "Equation (7) shows overlap assumptions produce predictions incompatible with quantum theory.",
+                ],
+            )
+            self._write_topic_record(
+                space_root,
+                topic_id="topic-claim-rich--aaaaaaaaaaaa",
+                title="Claim-Rich Topic",
+                source_ids=[source_id],
+                sections=[
+                    {
+                        "heading": "Summary",
+                        "body": f"Sentence with grounded claim. [[claims:{claim_id}]]",
+                    }
+                ],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            claim_page_text = (space_root / "site" / "claims" / f"{claim_id}.html").read_text()
+            self.assertIn(f"<h1>{claim_text}</h1>", claim_page_text)
+            self.assertIn("<h2>Claim Statement</h2>", claim_page_text)
+            self.assertIn("Overview and Interpretation", claim_page_text)
+            self.assertIn(
+                "epistemic-only interpretation fails once preparation independence",
+                claim_page_text,
+            )
+            self.assertIn("Pages Using This Claim", claim_page_text)
+            self.assertIn("href=\"../topics/topic-claim-rich--aaaaaaaaaaaa.html\"", claim_page_text)
+            self.assertIn("href=\"../sources/source-a.html\"", claim_page_text)
+            self.assertIn("Evidence Items", claim_page_text)
+            self.assertIn("href=\"../evidence/", claim_page_text)
+            self.assertIn("jointly", claim_page_text)
+            self.assertIn("Strength and Support Stats", claim_page_text)
+            self.assertIn(
+                "score = 100 * (0.80 * evidence_factor + 0.20 * source_factor)",
+                claim_page_text,
+            )
+            self.assertIn("Topic usages (informational only)", claim_page_text)
+            self.assertIn("do not contribute to score", claim_page_text)
+            self.assertIn("class=\"comment-thread\"", claim_page_text)
+            evidence_links = re.findall(r'href=\"\.\./evidence/(evidence-[^\"]+)\.html\"', claim_page_text)
+            self.assertGreaterEqual(len(evidence_links), 2)
+
+            evidence_index_text = (space_root / "site" / "evidence" / "index.html").read_text()
+            self.assertIn("<h1>Evidence</h1>", evidence_index_text)
+            self.assertIn("independently prepared systems", evidence_index_text)
+
+            claims_index_text = (space_root / "site" / "claims" / "index.html").read_text()
+            self.assertIn("id=\"claims-sort-direction\"", claims_index_text)
+            self.assertIn("<option value=\"alphabetical\">Alphabetical</option>", claims_index_text)
+            self.assertIn("<option value=\"score\">Score</option>", claims_index_text)
+            self.assertIn("<option value=\"reverse_score\">Reverse score</option>", claims_index_text)
+            self.assertIn("id=\"claims-index-list\"", claims_index_text)
+            self.assertIn("data-claim-score=\"", claims_index_text)
+            self.assertIn("rows.sort(function(a,b){return compareRows(a,b,mode);});", claims_index_text)
+            self.assertIn(f"href=\"{evidence_links[0]}.html\"", evidence_index_text)
+
+            topic_page_text = (space_root / "site" / "topics" / "topic-claim-rich--aaaaaaaaaaaa.html").read_text()
+            self.assertIn("Evidence Used by This Topic", topic_page_text)
+            self.assertIn("../evidence/", topic_page_text)
+
+            source_page_text = (space_root / "site" / "sources" / "source-a.html").read_text()
+            self.assertIn("Evidence from This Source", source_page_text)
+            self.assertIn("../evidence/", source_page_text)
+
+            claims_index_text = (space_root / "site" / "claims" / "index.html").read_text()
+            self.assertIn("Treating quantum states as purely epistemic", claims_index_text)
+            self.assertNotIn(f">{claim_id}</a>", claims_index_text)
 
     def test_site_presentation_mode_public_hides_internal_metadata_and_debug_exposes_it(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -335,7 +645,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(debug_result.returncode, 0, msg=debug_result.stderr)
             debug_page_text = (space_root / "site" / "topics" / "topic-debug--cccccccccccc.html").read_text()
             self.assertIn(f"data-claim-id=\"{claim_id}\"", debug_page_text)
-            self.assertIn(f">{claim_id}<", debug_page_text)
+            self.assertIn(f"href=\"../claims/{claim_id}.html\"", debug_page_text)
             debug_manifest = json.loads((site_path / "outputs" / "build_site" / "manifest.json").read_text())
             self.assertEqual(debug_manifest["site_presentation_mode"], "debug")
 
@@ -602,13 +912,18 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("class=\"feed-list\"", space_home)
             self.assertIn("<summary>Spaces</summary>", space_home)
             self.assertIn(">Space Home</a>", space_home)
-            self.assertIn("/spaces/alpha/site/index.html", space_home)
-            self.assertIn("/spaces/beta/site/index.html", space_home)
+            self.assertIn("href=\"index.html\">alpha</a>", space_home)
+            self.assertIn("href=\"../../beta/site/index.html\">beta</a>", space_home)
+            self.assertIn("<summary>Sources</summary>", space_home)
+            self.assertIn("href=\"sources/source-000.html\">", space_home)
             self.assertIn("<summary>Topics</summary>", space_home)
-            self.assertIn("/spaces/alpha/site/new/index.html", space_home)
-            self.assertIn("/spaces/alpha/site/sources/index.html", space_home)
-            self.assertIn("/spaces/alpha/site/topics/index.html", space_home)
-            self.assertIn("/spaces/alpha/site/users/index.html", space_home)
+            self.assertIn("href=\"new/index.html\">New</a>", space_home)
+            self.assertIn("href=\"sources/index.html\">Sources</a>", space_home)
+            self.assertIn("href=\"topics/index.html\">Topics</a>", space_home)
+            self.assertIn("href=\"users/index.html\">Users</a>", space_home)
+            self.assertIn("href=\"evidence/index.html\">Evidence</a>", space_home)
+            self.assertIn("href=\"claims/index.html\">Claims</a>", space_home)
+            self.assertTrue((alpha_space_root / "site" / "claims" / "index.html").is_file())
 
             sources_page_1 = (alpha_space_root / "site" / "sources" / "index.html").read_text()
             sources_page_2 = (alpha_space_root / "site" / "sources" / "page" / "2" / "index.html").read_text()
@@ -616,8 +931,14 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("Page size: 50", sources_page_1)
             self.assertIn("?tab_page=2", sources_page_1)
             self.assertNotIn("?feed_page=2", sources_page_1)
-            self.assertEqual(sources_page_1.count("/site/sources/source-"), 50)
-            self.assertEqual(sources_page_2.count("/site/sources/source-"), 1)
+            page_1_feed = re.search(r"<ul class=\"feed-list\">(.*?)</ul>", sources_page_1, re.S)
+            page_2_feed = re.search(r"<ul class=\"feed-list\">(.*?)</ul>", sources_page_2, re.S)
+            self.assertIsNotNone(page_1_feed)
+            self.assertIsNotNone(page_2_feed)
+            assert page_1_feed is not None
+            assert page_2_feed is not None
+            self.assertEqual(len(re.findall(r'href=\"source-\d{3}\.html\"', page_1_feed.group(1))), 50)
+            self.assertEqual(len(re.findall(r'href=\"\.\./\.\./source-\d{3}\.html\"', page_2_feed.group(1))), 1)
 
     def test_site_feed_ordering_tiebreak_and_feed_pagination_url_semantics(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -677,10 +998,6 @@ class SiteBuilderContractTests(unittest.TestCase):
                 title="Search Topic A",
                 source_ids=["source-search-a"],
             )
-            run_id = "run-20260412T120000Z--search0001"
-            run_dir = space_root / "runs" / run_id
-            run_dir.mkdir(parents=True, exist_ok=True)
-            (run_dir / "run.md").write_text("# run\n")
 
             result = self._run(
                 [
@@ -693,16 +1010,14 @@ class SiteBuilderContractTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0, msg=result.stderr)
 
-            expected_action = "action=\"/spaces/alpha/site/search/index.html\""
-            pages = [
-                space_root / "site" / "index.html",
-                space_root / "site" / "sources" / "source-search-a.html",
-                space_root / "site" / "topics" / "topic-search-a.html",
-                space_root / "site" / "users" / "index.html",
-                space_root / "site" / "runs" / "index.html",
-                space_root / "site" / "search" / "index.html",
-            ]
-            for page_path in pages:
+            pages_with_expected_action = {
+                space_root / "site" / "index.html": "action=\"search/index.html\"",
+                space_root / "site" / "sources" / "source-search-a.html": "action=\"../search/index.html\"",
+                space_root / "site" / "topics" / "topic-search-a.html": "action=\"../search/index.html\"",
+                space_root / "site" / "users" / "index.html": "action=\"../search/index.html\"",
+                space_root / "site" / "search" / "index.html": "action=\"index.html\"",
+            }
+            for page_path, expected_action in pages_with_expected_action.items():
                 page_text = page_path.read_text()
                 self.assertIn(expected_action, page_text)
                 self.assertEqual(page_text.count("class=\"top-search\""), 1)
@@ -710,12 +1025,18 @@ class SiteBuilderContractTests(unittest.TestCase):
             search_page = (space_root / "site" / "search" / "index.html").read_text()
             self.assertIn("source-search-a", search_page)
             self.assertIn("topic-search-a", search_page)
-            self.assertIn(run_id, search_page)
-            self.assertIn("/spaces/alpha/site/sources/source-search-a.html", search_page)
-            self.assertIn("/spaces/alpha/site/topics/topic-search-a.html", search_page)
-            self.assertIn(f"/spaces/alpha/runs/{run_id}/run.md", search_page)
+            self.assertIn("../sources/source-search-a.html", search_page)
+            self.assertIn("../topics/topic-search-a.html", search_page)
+            persona_rows = load_seeded_persona_catalog(repo_root=REPO_ROOT)
+            self.assertGreater(len(persona_rows), 0)
+            first_persona = persona_rows[0]
+            first_persona_id = str(first_persona["persona_id"])
+            first_display_name = str(first_persona.get("display_name") or "")
+            self.assertIn(first_persona_id, search_page)
+            self.assertIn(first_display_name, search_page)
+            self.assertIn(f"../users/persona-{first_persona_id}.html", search_page)
             self.assertIn("URLSearchParams(window.location.search)", search_page)
-            self.assertIn("3 indexed item(s)", search_page)
+            self.assertIn(f"{2 + len(persona_rows)} indexed item(s)", search_page)
 
     def test_ui_information_architecture_integration_snapshot_is_deterministic(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -729,10 +1050,6 @@ class SiteBuilderContractTests(unittest.TestCase):
                 title="UI Topic A",
                 source_ids=["source-ui-a"],
             )
-            run_id = "run-20260412T130000Z--ui00000001"
-            run_dir = space_root / "runs" / run_id
-            run_dir.mkdir(parents=True, exist_ok=True)
-            (run_dir / "run.md").write_text("# run\n")
 
             command = [
                 "python3",
@@ -751,7 +1068,6 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(first_snapshot, second_snapshot)
 
             self.assertIn("spaces/alpha/site/search/index.html", second_snapshot)
-            self.assertIn("spaces/alpha/site/runs/index.html", second_snapshot)
             self.assertIn("site/new/index.html", second_snapshot)
 
     def test_source_preview_assets_are_written_to_canonical_site_asset_path(self) -> None:
@@ -810,17 +1126,22 @@ class SiteBuilderContractTests(unittest.TestCase):
             source_page = (alpha_space_root / "site" / "sources" / "source-preview-b.html").read_text()
             self.assertIn("class=\"source-summary\"", source_page)
             self.assertIn("Source summary appears near top.", source_page)
+            self.assertIn("class=\"source-hero\"", source_page)
+            self.assertIn("class=\"source-hero-preview\"", source_page)
             self.assertIn("class=\"source-preview-link\"", source_page)
-            self.assertIn("/site/assets/source_previews/source-preview-b.svg", source_page)
-            self.assertIn("/spaces/alpha/sources/artifacts/source-preview-b/source.pdf", source_page)
+            self.assertIn("../../../../site/assets/source_previews/source-preview-b.svg", source_page)
+            self.assertIn("../../sources/artifacts/source-preview-b/source.pdf", source_page)
+            self.assertIn("Overview and Commentary", source_page)
+            self.assertIn("What the Source Argues", source_page)
+            self.assertNotIn("source_id:", source_page)
 
             site_new_page = (site_path / "site" / "new" / "index.html").read_text()
             self.assertIn("class=\"source-preview-feed\"", site_new_page)
-            self.assertIn("/site/assets/source_previews/source-preview-b.svg", site_new_page)
+            self.assertIn("../assets/source_previews/source-preview-b.svg", site_new_page)
 
             space_new_page = (alpha_space_root / "site" / "new" / "index.html").read_text()
             self.assertIn("class=\"source-preview-feed\"", space_new_page)
-            self.assertIn("/site/assets/source_previews/source-preview-b.svg", space_new_page)
+            self.assertIn("../../../../site/assets/source_previews/source-preview-b.svg", space_new_page)
 
     def test_source_preview_generation_and_markup_are_deterministic_snapshots(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -858,6 +1179,158 @@ class SiteBuilderContractTests(unittest.TestCase):
                 "space_new_page": (alpha_space_root / "site" / "new" / "index.html").read_text(),
             }
             self.assertEqual(first_snapshot, second_snapshot)
+
+    def test_source_detail_renders_explicit_source_dossier_when_present(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-dossier",
+                title="Dossier Source",
+                summary="Fallback summary",
+                source_file_rel="sources/artifacts/source-dossier/source.pdf",
+                source_dossier={
+                    "summary_short": "Explicit short dossier summary for readers.",
+                    "summary_long": (
+                        "This explicit dossier is authored for source-page reading.\n\n"
+                        "It should appear ahead of fallback-generated prose."
+                    ),
+                    "sections": [
+                        {
+                            "heading": "What the Source Argues",
+                            "body": "The source advances an explicit thesis.",
+                            "grounding_claim_ids": [],
+                        },
+                        {
+                            "heading": "How the Argument Is Built",
+                            "body": "The reasoning sequence is mapped to extracted evidence.",
+                            "grounding_claim_ids": [],
+                        },
+                        {
+                            "heading": "What to Scrutinize",
+                            "body": "Readers should check assumptions and transfer limits.",
+                            "grounding_claim_ids": [],
+                        },
+                    ],
+                },
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            source_page = (alpha_space_root / "site" / "sources" / "source-dossier.html").read_text()
+            self.assertIn("Overview and Commentary", source_page)
+            self.assertIn("Explicit short dossier summary for readers.", source_page)
+            self.assertIn("This explicit dossier is authored for source-page reading.", source_page)
+            self.assertIn("What to Scrutinize", source_page)
+
+    def test_source_claim_list_uses_human_claim_titles_not_reference_counters(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            source_id = "source-claim-labels"
+            claim_id = "claim-claim-labels--aaaaaaaaaaaa"
+            self._write_source_record(
+                alpha_space_root,
+                source_id=source_id,
+                title="Source Claim Labels",
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id=claim_id,
+                source_id=source_id,
+                text="The paper claims that preparation independence constrains epistemic overlap regions.",
+                short_title="Preparation independence constrains overlap",
+            )
+            self._write_topic_record(
+                alpha_space_root,
+                topic_id="topic-claim-labels--aaaaaaaaaaaa",
+                title="Topic Claim Labels",
+                source_ids=[source_id],
+                sections=[
+                    {
+                        "heading": "Summary",
+                        "body": f"Mapped claim sentence. [[claims:{claim_id}]]",
+                    }
+                ],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            source_page = (alpha_space_root / "site" / "sources" / f"{source_id}.html").read_text()
+            self.assertIn("Claims Referencing This Source", source_page)
+            self.assertIn(
+                f"<a href=\"../claims/{claim_id}.html\">Preparation independence constrains overlap</a>",
+                source_page,
+            )
+            self.assertIn(
+                f"<a class=\"sentence-claim-link\" href=\"../claims/{claim_id}.html\">",
+                source_page,
+            )
+            self.assertNotIn("class=\"source-dossier-claims\"", source_page)
+            self.assertNotIn("Claim reference 1", source_page)
+            self.assertNotIn("Claim reference ", source_page)
+            self.assertNotIn(">Claim 1</a>", source_page)
+
+    def test_source_preview_prefers_ingested_front_page_image_when_available(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            front_page_rel = "sources/artifacts/source-preview-photo/front_page.png"
+            front_page_path = alpha_space_root / front_page_rel
+            front_page_bytes = b"front-page-image-bytes"
+            front_page_path.parent.mkdir(parents=True, exist_ok=True)
+            front_page_path.write_bytes(front_page_bytes)
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-preview-photo",
+                title="Preview Source Photo",
+                summary="Preview should use ingested first-page screenshot.",
+                source_file_rel="sources/artifacts/source-preview-photo/source.pdf",
+                front_page_image_rel=front_page_rel,
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            copied_preview_path = site_path / "site" / "assets" / "source_previews" / "source-preview-photo.png"
+            self.assertTrue(copied_preview_path.is_file())
+            self.assertEqual(copied_preview_path.read_bytes(), front_page_bytes)
+
+            source_page = (alpha_space_root / "site" / "sources" / "source-preview-photo.html").read_text()
+            self.assertIn("../../../../site/assets/source_previews/source-preview-photo.png", source_page)
+            self.assertNotIn("../../../../site/assets/source_previews/source-preview-photo.svg", source_page)
+
+            site_new_page = (site_path / "site" / "new" / "index.html").read_text()
+            self.assertIn("../assets/source_previews/source-preview-photo.png", site_new_page)
+
+            space_new_page = (alpha_space_root / "site" / "new" / "index.html").read_text()
+            self.assertIn("../../../../site/assets/source_previews/source-preview-photo.png", space_new_page)
 
     def test_users_tab_scope_and_space_profile_link_resolution(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -933,19 +1406,149 @@ class SiteBuilderContractTests(unittest.TestCase):
                 self.assertIn(beta_profile_href, site_users_page)
 
                 alpha_users_page = (alpha_space_root / "site" / "users" / "index.html").read_text()
-                self.assertIn(alpha_profile_href, alpha_users_page)
-                self.assertNotIn(beta_profile_href, alpha_users_page)
+                self.assertIn(f"href=\"persona-{persona_id}.html\"", alpha_users_page)
+                self.assertNotIn(f"/beta/site/users/persona-{persona_id}.html", alpha_users_page)
+                self.assertIn("class=\"user-card-grid\"", alpha_users_page)
+                self.assertIn("class=\"user-card\"", alpha_users_page)
+                self.assertIn("class=\"user-card-photo\"", alpha_users_page)
+                self.assertIn("class=\"user-card-name\"", alpha_users_page)
+                self.assertIn(f"assets/persona_profiles/{persona_id}.jpg", alpha_users_page)
 
                 alpha_profile_page = alpha_space_root / "site" / "users" / f"persona-{persona_id}.html"
                 self.assertTrue(alpha_profile_page.is_file())
                 alpha_profile_html = alpha_profile_page.read_text()
-                self.assertIn(f"persona_id: {persona_id}", alpha_profile_html)
+                self.assertNotIn("full_name:", alpha_profile_html)
+                self.assertNotIn("persona_id:", alpha_profile_html)
+                self.assertNotIn("Space-scoped profile page for this persona.", alpha_profile_html)
+                self.assertIn("class=\"profile-biography\"", alpha_profile_html)
+                self.assertIn("class=\"profile-biography-copy\"", alpha_profile_html)
+                self.assertIn("class=\"profile-photo\"", alpha_profile_html)
+                self.assertIn("class=\"profile-cv\"", alpha_profile_html)
+                self.assertIn("class=\"profile-cv-list\"", alpha_profile_html)
+                self.assertIn("class=\"profile-cv-item\"", alpha_profile_html)
+                self.assertIn("class=\"profile-cv-role\">Operations Advisor</p>", alpha_profile_html)
+                self.assertIn("class=\"profile-cv-org\">Example Systems</p>", alpha_profile_html)
+                self.assertIn("class=\"profile-cv-period\">2022-present</span>", alpha_profile_html)
+                self.assertLess(
+                    alpha_profile_html.index("class=\"profile-biography-copy\""),
+                    alpha_profile_html.index("class=\"profile-photo-frame\""),
+                )
+                self.assertIn(f"assets/persona_profiles/{persona_id}.jpg", alpha_profile_html)
                 self.assertIn("Biography", alpha_profile_html)
                 self.assertIn("Short CV", alpha_profile_html)
                 self.assertIn("I am a practical evidence reviewer", alpha_profile_html)
-                self.assertIn("Operations Advisor, Example Systems", alpha_profile_html)
+                self.assertIn("Operations Advisor</p><p class=\"profile-cv-org\">Example Systems", alpha_profile_html)
+                alpha_profile_photo_path = (
+                    alpha_space_root / "site" / "assets" / "persona_profiles" / f"{persona_id}.jpg"
+                )
+                self.assertTrue(alpha_profile_photo_path.is_file())
+                alpha_avatar_path = (
+                    alpha_space_root / "site" / "assets" / "persona_avatars" / f"{persona_id}.jpg"
+                )
+                self.assertTrue(alpha_avatar_path.is_file())
             finally:
                 catalog_path.write_text(original_catalog)
+
+    def test_user_profile_pages_use_full_res_photo_and_comments_keep_thumbnail_avatar(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            catalog_path = REPO_ROOT / "personas" / "social_users.json"
+            profile_images_root = REPO_ROOT / "personas" / "profile_images"
+            original_catalog = catalog_path.read_text()
+            full_res_path = profile_images_root / "test-photo-user.jpg"
+            thumb_path = profile_images_root / "test-photo-user-thumb.jpg"
+            full_res_original = full_res_path.read_bytes() if full_res_path.exists() else None
+            thumb_original = thumb_path.read_bytes() if thumb_path.exists() else None
+            try:
+                full_res_bytes = b"high-res-photo-bytes"
+                thumb_bytes = b"thumb-photo-bytes"
+                full_res_path.write_bytes(full_res_bytes)
+                thumb_path.write_bytes(thumb_bytes)
+
+                seeded_catalog = {
+                    "schema_version": "social_users_v1",
+                    "count": 1,
+                    "users": [
+                        {
+                            "persona_id": "persona-test-photo-user",
+                            "display_name": "Test Photo User",
+                            "full_name": "Test Photo User",
+                            "account_status": "active",
+                            "stance_profile": "neutral",
+                            "biography": (
+                                "I assess technical claims by inspecting assumptions, tracing evidence to primary "
+                                "records, and documenting tradeoffs that affect reliability. I prioritize "
+                                "decision quality, operational realism, and explicit uncertainty handling in every "
+                                "review I produce. I map failure modes, verify mitigation ownership, and test "
+                                "whether teams can detect and recover from common incidents without improvisation. "
+                                "I challenge conclusions that skip caveats, exaggerate confidence, or hide "
+                                "material limitations behind polished language. I communicate directly, cite "
+                                "sources, and revise quickly when stronger evidence changes expected outcomes. I "
+                                "also record alternatives and residual risk so collaborators can audit the logic, "
+                                "compare options, and improve follow-through over time."
+                            ),
+                            "biography_profile": (
+                                "I am a practical reviewer focused on reliability, clear tradeoffs, and evidence "
+                                "that can withstand scrutiny. I value direct communication, measurable plans, and "
+                                "documented residual risk so teams can make better decisions under pressure."
+                            ),
+                            "interests": ["risk management"],
+                            "hot_topics": ["operational readiness"],
+                            "anger_topics": ["misleading claims"],
+                            "profile_image_path": "personas/profile_images/test-photo-user.jpg",
+                            "profile_image_prompt": (
+                                "Photorealistic portrait photo of this person in a home office, natural window "
+                                "light, realistic skin detail, documentary style, single person subject."
+                            ),
+                            "short_cv": [
+                                "Operations Advisor, Example Systems (2022-present)",
+                                "SRE Manager, Example Infra (2018-2022)",
+                                "MSc, Reliability Engineering, Example University (2016-2018)",
+                            ],
+                        }
+                    ],
+                }
+                catalog_path.write_text(json.dumps(seeded_catalog, indent=2, sort_keys=True) + "\n")
+
+                result = self._run(
+                    [
+                        "python3",
+                        str(REPO_ROOT / "scripts" / "build_site.py"),
+                        "--registry-path",
+                        str(site_path / "spaces.toml"),
+                        "alpha",
+                    ]
+                )
+                self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+                persona_id = "persona-test-photo-user"
+                profile_page = (
+                    alpha_space_root / "site" / "users" / f"persona-{persona_id}.html"
+                ).read_text()
+                self.assertIn(f"assets/persona_profiles/{persona_id}.jpg", profile_page)
+                self.assertNotIn(f"assets/persona_avatars/{persona_id}.jpg", profile_page)
+
+                profile_asset = (
+                    alpha_space_root / "site" / "assets" / "persona_profiles" / f"{persona_id}.jpg"
+                )
+                avatar_asset = (
+                    alpha_space_root / "site" / "assets" / "persona_avatars" / f"{persona_id}.jpg"
+                )
+                self.assertTrue(profile_asset.is_file())
+                self.assertTrue(avatar_asset.is_file())
+                self.assertEqual(profile_asset.read_bytes(), full_res_bytes)
+                self.assertEqual(avatar_asset.read_bytes(), thumb_bytes)
+            finally:
+                catalog_path.write_text(original_catalog)
+                if full_res_original is None:
+                    full_res_path.unlink(missing_ok=True)
+                else:
+                    full_res_path.write_bytes(full_res_original)
+                if thumb_original is None:
+                    thumb_path.unlink(missing_ok=True)
+                else:
+                    thumb_path.write_bytes(thumb_original)
 
     def test_toolchain_reproducibility_validation_enforces_package_manager_lockfile_node_pin(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1004,6 +1607,8 @@ class SiteBuilderContractTests(unittest.TestCase):
         ingested_at: str = "2026-04-12T00:00:00Z",
         summary: str | None = None,
         source_file_rel: str | None = None,
+        front_page_image_rel: str | None = None,
+        source_dossier: dict[str, object] | None = None,
     ) -> None:
         payload = {
             "schema_version": "source_record_v1",
@@ -1014,13 +1619,38 @@ class SiteBuilderContractTests(unittest.TestCase):
         }
         if summary is not None:
             payload["summary"] = summary
+        if source_dossier is not None:
+            payload["source_dossier"] = source_dossier
         if source_file_rel is not None:
             payload["artifacts"] = {
                 "source_file": source_file_rel,
                 "overview_markdown": f"sources/artifacts/{source_id}/overview.md",
-                "front_page_image": None,
+                "front_page_image": front_page_image_rel,
             }
         path = space_root / "sources" / "records" / f"{source_id}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+
+    def _write_claim_record(
+        self,
+        space_root: Path,
+        *,
+        claim_id: str,
+        source_id: str,
+        text: str,
+        evidence_excerpts: list[str] | None = None,
+        short_title: str | None = None,
+    ) -> None:
+        payload = {
+            "schema_version": "claim_record_v1",
+            "claim_id": claim_id,
+            "source_id": source_id,
+            "text": text,
+            "evidence_excerpts": evidence_excerpts if evidence_excerpts is not None else [],
+        }
+        if short_title is not None:
+            payload["short_title"] = short_title
+        path = space_root / "claims" / f"{claim_id}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
@@ -1035,6 +1665,7 @@ class SiteBuilderContractTests(unittest.TestCase):
         structure_type: str = "wiki",
         source_structure_outline: list[str] | None = None,
         pinned_parent_ref: dict[str, str] | None = None,
+        comment_section: dict[str, object] | None = None,
     ) -> None:
         payload = {
             "topic_id": topic_id,
@@ -1048,6 +1679,8 @@ class SiteBuilderContractTests(unittest.TestCase):
             payload["source_structure_outline"] = source_structure_outline
         if pinned_parent_ref is not None:
             payload["pinned_parent_ref"] = pinned_parent_ref
+        if comment_section is not None:
+            payload["comment_section"] = comment_section
         path = space_root / "topics" / f"{topic_id}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")

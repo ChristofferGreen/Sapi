@@ -351,6 +351,8 @@ class TurnMarkerValidationUnitTests(unittest.TestCase):
             self.assertEqual(row["permalink"], f"#{comment_uid}")
             self.assertEqual(row["thread_state_key"], comment_uid)
             self.assertEqual(row["thread_expansion_key"], comment_uid)
+            self.assertEqual(row["score_assessment"]["score"], row["social_vote"]["score"])
+            self.assertTrue(row["score_assessment"]["rationale"])
             self.assertEqual(row["social_vote"], second_by_uid[comment_uid]["social_vote"])
 
         updated_page = apply_merged_comments_to_page(

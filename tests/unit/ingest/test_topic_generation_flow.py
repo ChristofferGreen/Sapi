@@ -184,7 +184,8 @@ class TopicGenerationFlowTests(unittest.TestCase):
             site_new_index_path = site_path / "site" / "new" / "index.html"
             self.assertTrue(site_new_index_path.is_file())
             site_new_html = site_new_index_path.read_text()
-            self.assertIn(source_record["title"], site_new_html)
+            display_title = source_record.get("display_title") or source_record["title"]
+            self.assertIn(display_title, site_new_html)
 
             runs_root = space_root / "runs"
             run_dirs = sorted(path for path in runs_root.glob("run-*") if path.is_dir())

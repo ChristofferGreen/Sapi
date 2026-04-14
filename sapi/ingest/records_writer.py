@@ -8,6 +8,8 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
+import subprocess
 from typing import Any
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
@@ -15,6 +17,8 @@ from urllib.request import Request, urlopen
 from sapi.contracts.ids import ISO_DATE_RE, RFC3339_UTC_RE
 from sapi.contracts.ids import make_claim_id, make_source_id, slugify
 from sapi.contracts.semantic_specs import resolve_semantic_invocation_spec
+from sapi.core.claim_naming import normalize_claim_statement_text, resolve_claim_short_title
+from sapi.core.display_titles import resolve_display_title
 from sapi.ingest.relation_store import write_relation
 from sapi.ingest.source_content import resolve_source_title
 from sapi.llm.client import LlmClient
@@ -37,6 +41,30 @@ _CLAIM_ID_RE = re.compile(r"^claim-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$")
 _HTML_TITLE_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.IGNORECASE | re.DOTALL)
 _MARKDOWN_H1_RE = re.compile(r"^\s*#\s+(.+?)\s*$")
 _SPACE_RE = re.compile(r"\s+")
+_FRONT_PAGE_MAX_WIDTH_PX = 840
+_EVIDENCE_SIGNAL_RE = re.compile(
+    r"("
+    r"\b(theorem|lemma|corollary|proposition|proof|derivation|axiom|inference|contradiction|"
+    r"hypothesis|model|equation|inequality|formal argument)\b"
+    r"|"
+    r"\b(p-value|confidence interval|odds ratio|coefficient|standard deviation|variance|sample size)\b"
+    r"|"
+    r"\bn\s*=\s*\d+\b"
+    r"|"
+    r"\b(table|figure)\s+\d+\b"
+    r"|"
+    r"[=<>±]\s*\d"
+    r"|"
+    r"\b\d+(?:\.\d+)?\s*(%|ms|s|kg|km|hz|ev|nm)\b"
+    r")",
+    re.IGNORECASE,
+)
+_EVIDENCE_LEADIN_RE = re.compile(
+    r"^(?:(?:the|this)\s+(?:paper|article|study)|authors?)\s+"
+    r"(?:claims?|argues?|suggests?|shows?|states?|proposes?|finds?|presents?|reports?|describes?|outlines?|concludes?)\s+"
+    r"(?:that\s+)?",
+    re.IGNORECASE,
+)
 
 
 @dataclass(frozen=True)
@@ -166,15 +194,26 @@ def _normalize_claim_payload(
         source_id=source_id,
         index=index,
     )
-    evidence_excerpts = _normalize_evidence_excerpts(raw_claim_dict.get("evidence_excerpts"))
+    evidence_excerpts = _normalize_evidence_excerpts(
+        raw_claim_dict.get("evidence_excerpts"),
+        claim_text=claim_text,
+    )
     if not evidence_excerpts:
-        evidence_excerpts = _normalize_evidence_excerpts(raw_claim_dict.get("evidence"))
+        evidence_excerpts = _normalize_evidence_excerpts(
+            raw_claim_dict.get("evidence"),
+            claim_text=claim_text,
+        )
+    short_title = _normalize_claim_short_title(
+        raw_value=raw_claim_dict.get("short_title"),
+        claim_text=claim_text,
+    )
 
     claim_payload = {
         "schema_version": "claim_record_v1",
         "claim_id": claim_id,
         "source_id": source_id,
         "text": claim_text,
+        "short_title": short_title,
         "evidence_excerpts": evidence_excerpts,
     }
 
@@ -192,11 +231,15 @@ def _resolve_claim_text(raw_claim_dict: dict[str, Any]) -> str:
     for key in ("text", "statement", "claim", "content", "summary", "description"):
         value = raw_claim_dict.get(key)
         if isinstance(value, str) and value.strip():
-            return value.strip()
+            return normalize_claim_statement_text(value.strip())
     for value in raw_claim_dict.values():
         if isinstance(value, str) and value.strip():
-            return value.strip()
+            return normalize_claim_statement_text(value.strip())
     raise ValueError("claims[] objects must include non-empty `text`, `statement`, or `claim`.")
+
+
+def _normalize_claim_short_title(*, raw_value: Any, claim_text: str) -> str:
+    return resolve_claim_short_title(raw_short_title=raw_value, claim_text=claim_text)
 
 
 def _resolve_claim_id(
@@ -228,34 +271,50 @@ def _resolve_claim_id(
     return make_claim_id(slug=slug, canonical_payload=canonical_payload)
 
 
-def _normalize_evidence_excerpts(raw_value: Any) -> list[str]:
+def _normalize_evidence_excerpts(raw_value: Any, *, claim_text: str = "") -> list[str]:
     if raw_value is None:
         return []
     if not isinstance(raw_value, list):
         raise TypeError("evidence_excerpts/evidence must be arrays when provided.")
     normalized: list[str] = []
+    seen: set[str] = set()
+    canonical_claim_text = _SPACE_RE.sub(" ", claim_text).strip().casefold()
     for raw_item in raw_value:
+        candidate = ""
         if isinstance(raw_item, str):
-            text = raw_item.strip()
-            if text:
-                normalized.append(text)
-            continue
-        if isinstance(raw_item, dict):
+            candidate = raw_item.strip()
+        elif isinstance(raw_item, dict):
             for key in ("excerpt", "quote", "text", "content"):
                 excerpt = raw_item.get(key)
                 if isinstance(excerpt, str) and excerpt.strip():
-                    normalized.append(excerpt.strip())
+                    candidate = excerpt.strip()
                     break
             else:
                 raise TypeError(
                     "evidence items must be strings or objects with non-empty "
                     "`excerpt`/`quote`/`text`/`content`."
                 )
+        else:
+            raise TypeError(
+                "evidence items must be strings or objects with non-empty "
+                "`excerpt`/`quote`/`text`/`content`."
+            )
+        candidate = _SPACE_RE.sub(" ", candidate).strip()
+        if not candidate:
             continue
-        raise TypeError(
-            "evidence items must be strings or objects with non-empty "
-            "`excerpt`/`quote`/`text`/`content`."
-        )
+        if len(candidate) < 20:
+            continue
+        candidate_key = candidate.casefold()
+        if candidate_key in seen:
+            continue
+        if candidate_key == canonical_claim_text:
+            continue
+        if _EVIDENCE_LEADIN_RE.match(candidate):
+            continue
+        if not _EVIDENCE_SIGNAL_RE.search(candidate):
+            continue
+        seen.add(candidate_key)
+        normalized.append(candidate)
     return normalized
 
 
@@ -360,10 +419,25 @@ def _update_source_record_with_ingest_extraction_fields(
     source_semantic = semantic_output.get("source")
     if not isinstance(source_semantic, dict):
         raise ValueError("ingest_extraction semantic output requires `source` as a JSON object.")
+    source_display_title = resolve_display_title(
+        candidates=[
+            source_semantic.get("display_title"),
+            source_semantic.get("article_title"),
+            source_record.get("display_title"),
+            source_record.get("title"),
+        ],
+        fallback=source_record.get("source_id"),
+    )
+    source_semantic["display_title"] = source_display_title
+    source_record["display_title"] = source_display_title
     source_record["source_semantic"] = source_semantic
     source_record["source_date_inference"] = semantic_output.get("source_date_inference")
     source_record["summary"] = semantic_output.get("summary")
     source_record["warnings"] = semantic_output.get("warnings")
+    source_dossier = semantic_output.get("source_dossier")
+    if not isinstance(source_dossier, dict):
+        raise ValueError("ingest_extraction semantic output requires `source_dossier` as a JSON object.")
+    source_record["source_dossier"] = source_dossier
     source_record_path.write_text(json.dumps(source_record, indent=2, sort_keys=True) + "\n")
     return source_record_path
 
@@ -375,6 +449,7 @@ class SourceIngestResult:
     artifact_root: Path
     source_artifact_path: Path
     overview_markdown_path: Path
+    front_page_image_path: Path | None
 
 
 def ingest_source_artifacts_and_record(
@@ -423,6 +498,7 @@ def ingest_source_artifacts_and_record(
     )
     source_artifact_path = artifact_root / source_artifact_filename
     source_artifact_path.write_bytes(source_input.body)
+    front_page_image_path = _render_pdf_front_page_image(source_artifact_path=source_artifact_path)
 
     overview_markdown_path = artifact_root / "overview.md"
     overview_markdown_path.write_text(_render_overview_markdown(title=title, source_input=source_input))
@@ -433,6 +509,11 @@ def ingest_source_artifacts_and_record(
         source_input=source_input,
         source_artifact_rel=(artifact_root_rel / source_artifact_filename),
         overview_markdown_rel=(artifact_root_rel / "overview.md"),
+        front_page_image_rel=(
+            artifact_root_rel / front_page_image_path.name
+            if front_page_image_path is not None
+            else None
+        ),
         source_family_id=source_family_id,
         canonical_identifier=canonical_identifier,
         source_date=source_date,
@@ -452,6 +533,7 @@ def ingest_source_artifacts_and_record(
         artifact_root=artifact_root,
         source_artifact_path=source_artifact_path,
         overview_markdown_path=overview_markdown_path,
+        front_page_image_path=front_page_image_path,
     )
 
 
@@ -538,6 +620,7 @@ def _build_source_record_payload(
     source_input: _LoadedSourceInput,
     source_artifact_rel: Path,
     overview_markdown_rel: Path,
+    front_page_image_rel: Path | None,
     source_family_id: str | None,
     canonical_identifier: str | None,
     source_date: str | None,
@@ -555,10 +638,12 @@ def _build_source_record_payload(
         citation_count_confidence=citation_count_confidence,
     )
 
+    display_title = resolve_display_title(candidates=[title], fallback=source_id)
     record: dict[str, Any] = {
         "schema_version": "source_record_v1",
         "source_id": source_id,
         "title": title,
+        "display_title": display_title,
         "date": source_date,
         "ingested_at": _utc_now_rfc3339(),
         "source_locator": source_input.locator,
@@ -569,7 +654,7 @@ def _build_source_record_payload(
         "artifacts": {
             "source_file": str(source_artifact_rel),
             "overview_markdown": str(overview_markdown_rel),
-            "front_page_image": None,
+            "front_page_image": str(front_page_image_rel) if front_page_image_rel is not None else None,
         },
         **metadata_extensions,
     }
@@ -602,6 +687,48 @@ def _source_artifact_filename(*, media_type: str, locator: str) -> str:
     if suffix and _is_safe_suffix(suffix):
         return f"source{suffix}"
     return "source.bin"
+
+
+def _render_pdf_front_page_image(*, source_artifact_path: Path) -> Path | None:
+    if source_artifact_path.suffix.lower() != ".pdf":
+        return None
+    pdftoppm = shutil.which("pdftoppm")
+    if pdftoppm is None:
+        return None
+    output_base = source_artifact_path.parent / "front_page"
+    output_png = source_artifact_path.parent / "front_page.png"
+    if output_png.exists():
+        output_png.unlink()
+    try:
+        completed = subprocess.run(
+            [
+                pdftoppm,
+                "-f",
+                "1",
+                "-singlefile",
+                "-scale-to-x",
+                str(_FRONT_PAGE_MAX_WIDTH_PX),
+                "-scale-to-y",
+                "-1",
+                "-png",
+                str(source_artifact_path),
+                str(output_base),
+            ],
+            capture_output=True,
+            text=True,
+            timeout=30,
+            check=False,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    if completed.returncode != 0:
+        return None
+    if not output_png.is_file():
+        return None
+    if output_png.stat().st_size <= 0:
+        output_png.unlink(missing_ok=True)
+        return None
+    return output_png
 
 
 def _is_safe_suffix(suffix: str) -> bool:

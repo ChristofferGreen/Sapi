@@ -52,6 +52,7 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                 frontmatter["semantic_flow_invocation_counts"],
                 {"comment_section_generation": 2},
             )
+            self.assertEqual(frontmatter["llm_attempt_count"], 2)
             self.assertEqual(frontmatter["generation_isolation"]["schema_version"], "comment_section_generation_context_v1")
             self.assertEqual(frontmatter["generation_isolation"]["total_leak_count"], 0)
             self.assertEqual(frontmatter["adjudication"]["rubric_id"], "comment_section_adjudication_v1")
@@ -66,6 +67,12 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             self.assertEqual(semantic_payloads["topic--topic-beta"]["page_ref"], "topic:topic-beta")
             self.assertEqual(semantic_payloads["topic--topic-alpha"]["requested_count"], 5)
             self.assertEqual(semantic_payloads["topic--topic-beta"]["requested_count"], 5)
+            for payload in semantic_payloads.values():
+                comments = payload["comments"]
+                self.assertEqual(len(comments), 5)
+                for row in comments:
+                    self.assertIsInstance(row["score_assessment"]["score"], int)
+                    self.assertIsInstance(row["score_assessment"]["rationale"], str)
 
             for topic_id in ("topic-alpha", "topic-beta"):
                 topic_payload = json.loads((space_root / "topics" / f"{topic_id}.json").read_text())
@@ -204,7 +211,7 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             for uid in new_uids:
                 self.assertTrue(uid.startswith("comment-"))
 
-    def test_moderator_outcomes_social_vote_and_permalink_keys_are_deterministic(self) -> None:
+    def test_moderator_outcomes_social_vote_and_permalink_keys_follow_ai_score_assessment(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
             site_path = bootstrap_site_and_space(tmp_root, "alpha")
@@ -248,6 +255,10 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                 self.assertIsInstance(social_vote["upvotes"], int)
                 self.assertIsInstance(social_vote["downvotes"], int)
                 self.assertIsInstance(social_vote["score"], int)
+                score_assessment = row["score_assessment"]
+                self.assertIsInstance(score_assessment["score"], int)
+                self.assertIsInstance(score_assessment["rationale"], str)
+                self.assertEqual(social_vote["score"], score_assessment["score"])
                 first_vote_map[comment_uid] = dict(social_vote)
 
             second = run_command(command)
@@ -273,18 +284,12 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             sample_persona_id = second_rows[0]["persona_id"]
             sample_vote = second_rows[0]["social_vote"]
             self.assertIn("Comment Thread", topic_html)
-            self.assertIn("Moderator Check", topic_html)
-            self.assertIn("Open Disagreements", topic_html)
-            self.assertIn("Missing Evidence Priorities", topic_html)
             self.assertIn(f"id=\"{sample_uid}\"", topic_html)
-            self.assertIn(f"href=\"#{sample_uid}\"", topic_html)
             self.assertIn(f"data-thread-state-key=\"{sample_uid}\"", topic_html)
             self.assertIn(f"data-thread-expansion-key=\"{sample_uid}\"", topic_html)
-            self.assertIn(f"data-upvotes=\"{sample_vote['upvotes']}\"", topic_html)
-            self.assertIn(f"data-downvotes=\"{sample_vote['downvotes']}\"", topic_html)
             self.assertIn(f"data-score=\"{sample_vote['score']}\"", topic_html)
             self.assertIn(
-                f"src=\"/spaces/alpha/site/assets/persona_avatars/{sample_persona_id}.jpg\"",
+                f"src=\"../assets/persona_avatars/{sample_persona_id}.jpg\"",
                 topic_html,
             )
             avatar_asset = (

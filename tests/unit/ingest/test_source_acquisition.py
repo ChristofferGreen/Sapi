@@ -3,12 +3,15 @@ from __future__ import annotations
 from contextlib import contextmanager
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
+from types import SimpleNamespace
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 from typing import Iterator
 
+from sapi.ingest import records_writer
 from sapi.ingest.records_writer import ingest_source_artifacts_and_record
 
 
@@ -138,6 +141,83 @@ class SourceAcquisitionContractTests(unittest.TestCase):
             self.assertEqual(record["source_media_type"], "application/pdf")
             self.assertEqual(result.source_artifact_path.name, "source.pdf")
             self.assertTrue(result.source_artifact_path.is_file())
+
+    def test_pdf_ingest_persists_front_page_image_when_renderer_succeeds(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            input_file = Path(tmp) / "paper.pdf"
+            input_file.write_bytes(b"%PDF-1.4\n%fake\n")
+
+            def _fake_front_page_renderer(*, source_artifact_path: Path) -> Path:
+                output_path = source_artifact_path.parent / "front_page.png"
+                output_path.write_bytes(b"png-bytes")
+                return output_path
+
+            with patch(
+                "sapi.ingest.records_writer._render_pdf_front_page_image",
+                side_effect=_fake_front_page_renderer,
+            ):
+                result = ingest_source_artifacts_and_record(
+                    space_root=space_root,
+                    source_path_or_url=str(input_file),
+                    source_title_override="PDF Source",
+                )
+
+            self.assertIsNotNone(result.front_page_image_path)
+            assert result.front_page_image_path is not None
+            self.assertTrue(result.front_page_image_path.is_file())
+            self.assertEqual(result.front_page_image_path.read_bytes(), b"png-bytes")
+
+            record = json.loads(result.record_path.read_text())
+            self.assertEqual(
+                record["artifacts"]["front_page_image"],
+                f"sources/artifacts/{result.source_id}/front_page.png",
+            )
+
+    def test_pdf_ingest_keeps_front_page_image_null_when_renderer_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            input_file = Path(tmp) / "paper.pdf"
+            input_file.write_bytes(b"%PDF-1.4\n%fake\n")
+
+            with patch(
+                "sapi.ingest.records_writer._render_pdf_front_page_image",
+                return_value=None,
+            ):
+                result = ingest_source_artifacts_and_record(
+                    space_root=space_root,
+                    source_path_or_url=str(input_file),
+                    source_title_override="PDF Source",
+                )
+
+            self.assertIsNone(result.front_page_image_path)
+            record = json.loads(result.record_path.read_text())
+            self.assertIsNone(record["artifacts"]["front_page_image"])
+
+    def test_pdf_front_page_renderer_uses_scaled_default_width(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            source_pdf = Path(tmp) / "source.pdf"
+            source_pdf.write_bytes(b"%PDF-1.4\n%fake\n")
+            expected_output = source_pdf.parent / "front_page.png"
+            captured_args: list[str] = []
+
+            def _fake_run(args: list[str], **_kwargs: object) -> SimpleNamespace:
+                nonlocal captured_args
+                captured_args = list(args)
+                expected_output.write_bytes(b"png-bytes")
+                return SimpleNamespace(returncode=0)
+
+            with patch("sapi.ingest.records_writer.shutil.which", return_value="/usr/bin/pdftoppm"), patch(
+                "sapi.ingest.records_writer.subprocess.run",
+                side_effect=_fake_run,
+            ):
+                rendered = records_writer._render_pdf_front_page_image(source_artifact_path=source_pdf)
+
+            self.assertEqual(rendered, expected_output)
+            self.assertIn("-scale-to-x", captured_args)
+            self.assertIn(str(records_writer._FRONT_PAGE_MAX_WIDTH_PX), captured_args)
+            self.assertIn("-scale-to-y", captured_args)
+            self.assertIn("-1", captured_args)
 
     def test_source_record_metadata_extensions_use_unknown_defaults_when_unavailable(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -464,6 +464,8 @@ Behavior:
 ```
 
 - source binaries and previews are space-owned and MUST be stored under `<space_root>/sources/artifacts/`.
+- ingest SHOULD render `front_page.png` at web-preview scale (default max width `840px`, height auto)
+  so source-page previews stay readable without oversized assets.
 - site-level source artifact roots such as `<site_path>/sources/...` are historical-only and MUST NOT be used for new writes.
 - persisted record/site paths SHOULD be relative for relocatability
 - avoid persisting machine-absolute paths in user-facing artifacts
@@ -856,9 +858,19 @@ Hard prompt input rule:
 Ingest output contract (minimum):
 - `source_date_inference` (`date`, `origin`, `confidence`, optional rationale)
 - source semantic metadata
-- `claims` with evidence excerpts
+- `claims` with optional evidence excerpts
+  - `claims[].text` SHOULD be truth-apt propositions about source content (state-of-world or formal-result claims), not publication-process narration
+  - prefer proposition rewrites over reportive framing (rewrite `the paper argues that X` to `X`)
+  - evidence excerpts are for concrete support artifacts (measurement values/statistics, theorem/proof/derivation steps, equations, table/figure findings)
+  - evidence excerpts MUST NOT simply restate claim text or generic narrative lead-ins (`the paper claims...`)
+  - when no concrete support artifact is available, `evidence_excerpts` SHOULD be empty
 - `relations`
 - `summary`, `warnings`
+- required `source_dossier` for source-page long-form reading support:
+  - `summary_short` (reader-facing abstract for cards + hero)
+  - `summary_long` (substantive overview/commentary, target minimum depth roughly 900+ chars)
+  - `sections[]` with `heading`, `body`, `grounding_claim_ids`
+    - target section count: `5..8` on high-quality outputs
 - optional `source_structure_outline` (ordered high-level section headings/signals from the source, when detected)
 
 Recovered `ingest_source.py` option surface (high-signal):
@@ -882,12 +894,25 @@ Date policy:
 - strict mode (optional): `--require-source-date` fails ingest when publication date cannot be resolved
 - track both `date` (publication) and `ingested_at` (ordering)
 
-Source title resolution priority:
+Canonical `source.title` resolution priority:
 1. `--source-title`
 2. source metadata title signals
 3. first plausible in-source title line
 4. URL/file-stem fallback
 5. `Untitled Source`
+
+`source.display_title` contract (AI/UI title):
+- ingest extraction semantic output MUST include `source.display_title` (schema-required field).
+- `source.display_title` SHOULD be a high-quality post-style title (target `4..12` words, typically
+  `12..120` chars) summarizing the core claim/theme.
+- `source.display_title` MUST avoid raw filenames, source IDs, URL fragments, and hash-like metadata.
+- writers/readers MUST resolve display titles with strict-first fallback:
+  1. strict quality pass over candidates (`source.display_title`, `source.article_title`, persisted values)
+  2. relaxed compatibility pass for short legacy titles
+  3. humanized `source_id` fallback
+  4. `Untitled Source`
+- UI surfaces (source tabs, source pages, feeds, search labels) MUST render `source.display_title`
+  when available and MUST NOT expose storage slugs as the primary source label.
 
 Locking policy:
 - lock file: `<space_root>/.locks/ingest.lock`
@@ -1137,18 +1162,19 @@ Comment subsystem naming contract (normative):
 - new writes and newly added documentation examples MUST use canonical `comment_section_*` names.
 
 Batched comment-section generation contract (normative):
-- comment generation MUST produce a full page comment section JSON artifact in one LLM invocation per target page by default.
+- comment generation MUST produce a full page comment section JSON artifact in exactly one LLM invocation per target page.
 - each semantic invocation MUST persist one run-scoped semantic artifact at `runs/<run_id>/semantic/comment_section_generation/<page_ref_key>.json`.
 - requested `--count` MUST be between `5` and `50` (inclusive); values outside this range MUST fail fast with usage/configuration error.
 - if multiple target pages are selected, the system SHOULD run one batched generation per page (instead of one comment at a time).
 - batched output MUST support nested thread structure in one response using explicit parent references.
-- if model/token constraints prevent one-call generation, implementation MAY chunk generation, but final merged output MUST satisfy the same schema and count/parent constraints.
+- comments flow execution budget is one semantic attempt per target page (`max_repair_loops=0`); invalid JSON/schema output fails fast.
 
 Batched output shape requirements:
 - top-level output includes at least `page_ref`, `requested_count`, and `comments[]`.
-- each generated comment includes `persona_id`, body content, turn metadata (when present), and `parent_ref`.
+- each generated comment includes `persona_id`, body content, turn metadata (when present), `parent_ref`, and `score_assessment`.
 - `parent_ref` MAY be `null`, an existing `comment_uid`, or a generated in-batch draft reference.
 - writer MUST resolve in-batch draft references to canonical `comment_uid` values during merge/normalization.
+- `score_assessment.score` MUST be integer `[-30, 30]`; `score_assessment.rationale` MUST be non-empty neutral justification text.
 
 Recovered comment CLI surface (high-signal):
 - required `--count` (range `5..50`)
@@ -1259,15 +1285,8 @@ Merge/normalization contract for existing comment sections:
 - rebuild summary/footer blocks from normalized rows
 
 Moderator and outcome summary contract:
-- includes `- Moderator Check: ...`
-- guardrail check keys:
-  - `claim_citation` (applies to argumentative turns; social turns are excluded unless misclassified factual content appears)
-  - `anti_repetition`
-  - `strongest_opposing_point_ack` (`steelman_before_rebuttal`)
-- outcome sections:
-  - `Consensus`
-  - `Open Disagreements`
-  - `Missing Evidence Priorities`
+- comment-generation artifacts MAY include moderator/outcome metadata for auditing.
+- static comment-page rendering MUST NOT display moderator/outcome summary blocks in page body.
 
 Projection comment stats (high-signal keys):
 - `requested`, `added`
@@ -1288,7 +1307,7 @@ Comment UI affordances (historical UX contract):
 - threaded tree rendering
 - avatar and full-name attribution (avatar SHOULD use the smaller `profile_image_thumb_path` companion image)
 - score-based collapse behavior with expand/collapse toggles
-- stable comment permalinks and thread expansion state keyed by `comment_uid` (not `pc-###`)
+- thread expansion state keyed by `comment_uid` (not `pc-###`)
 
 ### 7.7 Comment quality evaluation harness
 
@@ -1340,7 +1359,7 @@ Navigation:
 - space switcher/list SHOULD be persistent and scannable, similar to a subreddit list
 
 Tabs and pagination:
-- tabs include `New`, `Sources`, `Topics`, `Users` (and runs where applicable)
+- tabs include `New`, `Sources`, `Topics`, `Users`
 - `Claims` SHOULD remain accessible but de-emphasized (secondary panel/filter/detail view, not primary top-level emphasis)
 - page size fixed at `50`
 - site root lists spaces/sub-spaces
@@ -1353,7 +1372,13 @@ Tabs and pagination:
 
 Source page specifics:
 - source summary/context should be near top
-- first-page image appears and links to source PDF
+- first-page image appears in a right-side top preview column and links to source PDF
+- source detail page SHOULD include a long-form "Overview and Commentary" dossier so users can understand
+  argument/evidence/limits without opening the PDF
+- dossier rendering contract:
+  - show short abstract near top (`summary_short`)
+  - show substantial prose body (`summary_long`)
+  - show clearly separated sectioned commentary cards (`5..8` sections) with grounded claim links
 - related concept section includes only valid clickable targets
 - claims should appear lower on the page or inside collapsible/detail sections rather than as the dominant top block
 
@@ -1394,7 +1419,7 @@ Topic page structure contract:
 Search/feed presentation:
 - single search control
 - avoid unnecessary helper controls when removed by design choice
-- searchable across configured indexed pages/runs
+- searchable across configured indexed pages
 - deterministic ordering and tie-breaks
 - pagination URL semantics distinguish feed vs tab pagination
 - public mode avoids internal IDs/paths/hashes leakage
@@ -1413,13 +1438,57 @@ Cross-space topic linking contract:
 Claim reference rendering contract:
 - factual markdown keeps `[[claims:...]]` annotations
 - HTML view should avoid always-visible raw claim IDs in sentence text
-- sentence click/tap opens details with canonical claim IDs for auditability
-- JS-off fallback should provide minimal static claim-details links
+- sentence-level claim bindings SHOULD behave as:
+  - one linked claim: sentence links directly to claim page
+  - multiple linked claims: sentence opens a selector card with claim page links
+- selector options SHOULD use LLM-authored short claim titles from ingest extraction (`claims[].short_title`)
+  - short titles SHOULD be semantic proposition labels authored by the LLM, not raw truncations
+  - target: `3..7` words
+  - compact style preference: `X is Y` / `X implies Y` / `X constrains Y`
+  - avoid lead-ins (`the paper claims`, `the article argues`, `authors show`)
+  - renderer MAY apply deterministic fallback shortening when canonical short title is missing
+- sentence text without attached claim bindings MUST render as normal non-clickable prose
+- opening a claim selector SHOULD close any previously open selector on the same page
 
-Historical social-vote rendering contract:
-- per-comment `(upvotes, downvotes, score)` is derived deterministically from stable page/comment/user/position/snippet inputs
-- challenge/rebuttal turns bias toward higher downvote counts
-- support/synthesis turns bias toward higher upvote counts
+Claim page content contract:
+- claim pages SHOULD display a human-readable title (derived from claim text) and keep raw `claim_id` as secondary metadata.
+- claim pages SHOULD include:
+  - claim statement text
+  - usage index (topic/source pages that reference the claim)
+  - overview/interpretation prose
+  - evidence item list with links to evidence detail pages
+  - comments section (rendered discussion or explicit empty-state placeholder)
+  - support stats panel
+- support stats panel:
+  - no canonical claim-strength formula is currently specified by this contract.
+  - renderers MAY show deterministic UI heuristics for navigation/explainability, but MUST label them as non-canonical.
+  - topic-page inclusion/reuse MUST NOT increase claim-strength score directly; topic usage may be displayed as context-only metadata.
+  - heuristic stats MUST NOT be treated as canonical truth/confidence values in writeback flows.
+
+Evidence page contract:
+- deterministic build MUST derive evidence pages from canonical claim evidence excerpts.
+- evidence items represent concrete support artifacts, not standalone claim paraphrases:
+  - measurement/statistical observations
+  - formal argument/proof/derivation fragments
+  - equation/table/figure-level findings
+- deterministic builders SHOULD skip low-information excerpts that only restate claim prose.
+- each evidence page SHOULD include:
+  - short human-readable evidence title
+  - full evidence excerpt text
+  - linked claim page
+  - linked source page when `source_id` is available
+  - linked topic pages that reference the parent claim
+- source/topic/claim pages SHOULD link to evidence pages whenever linked claim evidence exists.
+
+Comment quality-signal rendering contract:
+- per-comment `score` MUST come from neutral semantic `score_assessment` output generated by `comment_section_generation`.
+- scoring context MUST include the target page thread chain plus original source context for the page.
+- deterministic merge/render stages MUST consume semantic `score_assessment` and MUST NOT recompute score from hash/ID heuristics.
+- public UI MUST render non-interactive quality badges (no voting controls):
+  - `Insightful` when score `> 15`
+  - `Average` when score is `0..14`
+  - `Bad` when score `< 0`
+- renderer SHOULD show numeric points alongside the badge for transparency.
 
 Static build requirements:
 - `scripts/build_site.py` renders HTML directly from canonical JSON artifacts plus deterministic templates
@@ -1454,8 +1523,12 @@ Frontend toolchain reproducibility contract:
 - run metadata `toolchain_versions` SHOULD include at least `node`, package-manager name/version, and Tailwind CLI version
 
 Historical source preview assets:
-- `site/assets/source_previews/<source_id>.svg`
-- shown on source detail and optionally compact feed rows
+- canonical preview path is `site/assets/source_previews/<source_id>.<ext>`
+- when `sources/records/<source_id>.json` includes `artifacts.front_page_image` pointing to a valid
+  space-local image (`.png`, `.jpg`, `.jpeg`, `.webp`), site build MUST copy and use that image for
+  source detail and source preview rows in both space/site `New` feeds
+- when no valid `artifacts.front_page_image` exists, site build MUST emit deterministic SVG fallback
+  at `site/assets/source_previews/<source_id>.svg`
 
 ## 9. Observability, Runtime Controls, and Safety
 

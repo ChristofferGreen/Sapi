@@ -12,12 +12,21 @@
       "items": {
         "type": "object",
         "additionalProperties": true,
-        "required": ["persona_id", "body"],
+        "required": ["persona_id", "body", "score_assessment"],
         "properties": {
           "comment_ref": {"type": "string"},
           "persona_id": {"type": "string"},
           "body": {"type": "string"},
-          "parent_ref": {"type": ["string", "null"]}
+          "parent_ref": {"type": ["string", "null"]},
+          "score_assessment": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["score", "rationale"],
+            "properties": {
+              "score": {"type": "integer", "minimum": -30, "maximum": 30},
+              "rationale": {"type": "string", "minLength": 1}
+            }
+          }
         }
       }
     }

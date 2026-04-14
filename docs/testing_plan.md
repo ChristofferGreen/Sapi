@@ -77,6 +77,10 @@ tests/
   - Module: `tests/unit/semantic/test_spec_resolution.py`
 - [x] Retry budget math and attempt counting (`max_repair_loops`, `max_attempts`, `llm_attempt_count`).
   - Module: `tests/unit/semantic/test_retry_budget.py`
+- [x] Ingest evidence-excerpt normalization keeps only concrete support artifacts (measurement/proof/formal evidence) and drops claim-restatement prose.
+  - Module: `tests/unit/ingest/test_ingest_extraction_canonical_writes.py`
+- [x] Claim text/label normalization rewrites reportive source phrasing into truth-apt proposition statements and 3-7 word claim-link labels.
+  - Modules: `tests/unit/core/test_claim_naming.py`, `tests/unit/ingest/test_ingest_extraction_canonical_writes.py`, `tests/unit/build/test_site_builder_contracts.py`
 - [x] Warning-threshold (`--warning-budget`) and status mapping behavior.
   - Module: `tests/unit/lint/test_warning_budget_gate.py`
 - [x] Query preflight mode checks (`strict + include-disputed` invalid).
@@ -124,6 +128,9 @@ tests/
 Presentation contract coverage requirements (Section 8 / Section 9):
 - Tier 1 contract test MUST assert docs require canonical viewport meta, stylesheet link contract, semantic class hooks, and metadata-vs-build boundary wording.
   - Module: `tests/unit/contracts/test_web_presentation_contracts.py`
+- Tier 1/4 source-page coverage MUST assert source detail pages render long-form dossier content
+  (`Overview and Commentary`, section cards, and grounded claim links) while keeping preview + action links intact.
+  - Module: `tests/unit/build/test_site_builder_contracts.py`
 - Tier 4 integration coverage MUST assert built HTML pages include canonical viewport meta and stylesheet link, and deterministic CSS assets are emitted.
   - Module: `tests/integration/build/test_build_determinism.py` (extend for stylesheet assertions)
 - Tier 4 failure coverage MUST assert site build fails when stylesheet emission or stylesheet-link contract is broken.

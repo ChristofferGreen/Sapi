@@ -1,3 +1,44 @@
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Python tooling caches and local envs
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+.venv/
+venv/
+env/
+
+# Node / frontend dependencies and logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS/editor clutter
+.DS_Store
+Thumbs.db
+
+# Local secrets/config
+.env
+.env.*
+
+# Generated verification artifacts (do not commit)
+docs/verification/testing_exit_site/import_sources/
+docs/verification/testing_exit_site/outputs/llm_traces/
+docs/verification/testing_exit_site/**/index.preview*.png
+docs/verification/testing_exit_site/**/index.rendered.png
+docs/verification/testing_exit_site/**/claims/
+docs/verification/testing_exit_site/**/relations/
+docs/verification/testing_exit_site/**/sources/
+docs/verification/testing_exit_site/**/topics/
+docs/verification/testing_exit_site/**/runs/run-*/
+docs/verification/testing_exit_site/**/site/assets/
+docs/verification/testing_exit_site/**/site/users/page/
+docs/verification/testing_exit_site/**/site/sources/source-*.html
+docs/verification/testing_exit_site/**/site/topics/topic-*.html
+docs/verification/testing_exit_site/**/site/users/persona-*.html

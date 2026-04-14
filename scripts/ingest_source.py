@@ -29,6 +29,7 @@ from sapi.core.runtime_flags import (
 )
 from sapi.core.runtime_policy import evaluate_semantic_runtime_policy
 from sapi.core.transactions import ArtifactTransaction
+from sapi.core.display_titles import resolve_display_title
 from sapi.ingest.citations import run_reference_extraction_and_link_backfill
 from sapi.ingest.ingest_pipeline import plan_ingest_semantic_execution
 from sapi.ingest.records_writer import (
@@ -167,7 +168,13 @@ def main() -> int:
                 raise RuntimeError("Simulated terminal ingest failure.")
             if not source_only:
                 source_record = json.loads(result.record_path.read_text())
-                source_title = source_record.get("title")
+                source_title = resolve_display_title(
+                    candidates=[
+                        source_record.get("display_title") if isinstance(source_record, dict) else None,
+                        source_record.get("title") if isinstance(source_record, dict) else None,
+                    ],
+                    fallback=result.source_id,
+                )
                 _record_semantic_invocation(
                     flow_key="ingest_extraction",
                     semantic_flows=semantic_flows,
@@ -180,7 +187,7 @@ def main() -> int:
                     llm_client=_build_ingest_extraction_client(
                         runtime_flags=runtime_flags,
                         source_id=result.source_id,
-                        source_title=source_title if isinstance(source_title, str) else None,
+                        source_title=source_title,
                         source_date_resolution=source_date_resolution,
                         source_record=source_record if isinstance(source_record, dict) else {},
                     ),
@@ -206,7 +213,7 @@ def main() -> int:
                         runtime_flags=runtime_flags,
                         space_root=space_root,
                         source_id=result.source_id,
-                        source_title=source_title if isinstance(source_title, str) else None,
+                        source_title=source_title,
                         claim_ids=[path.stem for path in extraction_result.claim_paths],
                     ),
                     trace_ctx=trace_ctx,
@@ -506,6 +513,8 @@ def _track_source_ingest_writes_for_rollback(
 ) -> None:
     transaction.mark_create(result.source_artifact_path)
     transaction.mark_create(result.overview_markdown_path)
+    if result.front_page_image_path is not None:
+        transaction.mark_create(result.front_page_image_path)
     transaction.mark_create(result.record_path)
 
 
@@ -608,11 +617,16 @@ class _MockIngestExtractionClient:
         self._source_date_resolution = source_date_resolution
 
     def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
+        display_title = resolve_display_title(
+            candidates=[self._source_title],
+            fallback=self._source_id,
+        )
         payload = {
             "source_date_inference": dict(self._source_date_resolution.source_date_inference),
             "source": {
                 "source_id": self._source_id,
                 "title": self._source_title,
+                "display_title": display_title,
             },
             "claims": [
                 {
@@ -622,6 +636,77 @@ class _MockIngestExtractionClient:
             ],
             "relations": [],
             "summary": "Mock ingest extraction completed.",
+            "source_dossier": {
+                "summary_short": (
+                    f"{display_title} proposes a central argument that is captured by the extracted claims."
+                ),
+                "summary_long": (
+                    f"{display_title} is represented in mock mode with a conservative overview that keeps the "
+                    "source argument, evidence path, and practical interpretation explicit for readers who "
+                    "need a quick understanding before opening the PDF. The long-form narrative is intentionally "
+                    "verbose so the source page can exercise full dossier rendering behavior in deterministic "
+                    "test environments, including section hierarchy, metadata adjacency, and grounded-claim "
+                    "link slots.\n\n"
+                    "In this scaffold, the argument is framed in plain language, then expanded into method and "
+                    "evidence interpretation, followed by assumptions, limitations, and transfer guidance. "
+                    "That shape mirrors the production expectation that users can absorb a substantial overview "
+                    "without immediately opening the primary document, while still preserving an audit trail "
+                    "into canonical claim artifacts.\n\n"
+                    "This dossier is deterministic scaffold content intended to satisfy contract shape and "
+                    "rendering behavior in tests and local workflows. It prioritizes readability, explicit "
+                    "boundary conditions, and stable output length over novelty so contract tests can assert "
+                    "the presence of long-form commentary blocks with predictable section anchors."
+                ),
+                "sections": [
+                    {
+                        "heading": "What the Source Argues",
+                        "body": (
+                            f"The source frames a core thesis around {display_title} and the extracted claims "
+                            "capture the most direct statement of that thesis. This section provides a concise "
+                            "argument map so readers can understand the principal claim before reviewing any "
+                            "detailed evidence links or relation records."
+                        ),
+                        "grounding_claim_ids": [],
+                    },
+                    {
+                        "heading": "How the Argument Is Built",
+                        "body": (
+                            "The reasoning sequence is represented through claim extraction and relation "
+                            "normalization, allowing downstream pages to link commentary back to canonical evidence. "
+                            "In production, this section should make explicit where inference steps are strongest "
+                            "and where assumptions are doing most of the explanatory work."
+                        ),
+                        "grounding_claim_ids": [],
+                    },
+                    {
+                        "heading": "Evidence and Interpretation",
+                        "body": (
+                            "Evidence handling in this scaffold is intentionally conservative: claims are linked "
+                            "as explicit references and no new factual assertions are introduced beyond extracted "
+                            "content. The goal is to demonstrate commentary structure, not to synthesize new facts."
+                        ),
+                        "grounding_claim_ids": [],
+                    },
+                    {
+                        "heading": "Assumptions and Limitations",
+                        "body": (
+                            "Readers should validate scope conditions, assumptions, and evidentiary limits before "
+                            "transferring these conclusions into broader cross-source synthesis. This section calls "
+                            "out where argument portability may fail when context changes."
+                        ),
+                        "grounding_claim_ids": [],
+                    },
+                    {
+                        "heading": "How to Use This Source in the Space",
+                        "body": (
+                            "Use this source as a traceable evidence anchor in topic pages and claim references. "
+                            "Start with the summary for orientation, then inspect grounded claim links to verify "
+                            "that any downstream synthesis remains faithful to source scope."
+                        ),
+                        "grounding_claim_ids": [],
+                    },
+                ],
+            },
             "warnings": list(self._source_date_resolution.warnings),
         }
         return json.dumps(payload)
@@ -653,6 +738,14 @@ class _LiveIngestExtractionClient:
                     "must_include_source_title": self._source_title,
                     "minimum_claim_count": 3,
                     "maximum_claim_count": 12,
+                    "source_dossier_policy": (
+                        "Include source_dossier with summary_short, summary_long, and sectioned commentary "
+                        "grounded in extracted claims whenever evidence quality allows."
+                    ),
+                    "source_dossier_depth_target": (
+                        "Write summary_long at substantial depth (>=900 chars) and produce 5..8 sections "
+                        "with concrete analysis rather than generic restatement."
+                    ),
                     "relation_policy": (
                         "Emit relations only when src/dst claims are grounded and can reference "
                         "generated claim indices or IDs."
@@ -788,10 +881,20 @@ def _load_source_context(*, space_root: Path, limit: int = 80) -> list[dict[str,
             continue
         if not isinstance(payload, dict):
             continue
+        source_semantic = payload.get("source_semantic")
+        display_title = resolve_display_title(
+            candidates=[
+                payload.get("display_title"),
+                source_semantic.get("display_title") if isinstance(source_semantic, dict) else None,
+                source_semantic.get("article_title") if isinstance(source_semantic, dict) else None,
+                payload.get("title"),
+            ],
+            fallback=payload.get("source_id"),
+        )
         source_rows.append(
             {
                 "source_id": payload.get("source_id"),
-                "title": payload.get("title"),
+                "title": display_title,
                 "date": payload.get("date"),
                 "summary": payload.get("summary"),
                 "article_kind": payload.get("article_kind"),

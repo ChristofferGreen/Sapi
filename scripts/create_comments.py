@@ -58,6 +58,7 @@ from sapi.profiles.persona_catalog import load_seeded_persona_catalog
 _ARGUMENTATIVE_POSITIONS = {"support", "challenge", "rebuttal", "synthesis"}
 _GENERATION_ISOLATION_SCHEMA_VERSION = "comment_section_generation_context_v1"
 _ADJUDICATION_RUBRIC_ID = "comment_section_adjudication_v1"
+_COMMENT_SECTION_MAX_REPAIR_LOOPS = 0
 _GENERATION_ISOLATION_LEAK_TERMS: tuple[str, ...] = (
     "adjudication rubric",
     "scoring rubric",
@@ -175,10 +176,16 @@ def main() -> int:
                 requested_count=requested_count,
                 persona_ids=selected_persona_ids,
                 page_payload=page_payload,
+                original_source_context=_build_original_source_context(
+                    space_root=space_root,
+                    page_ref=target.page_ref,
+                    page_payload=page_payload,
+                ),
             )
             semantic_payload, attempt_count = run_semantic_flow(
                 spec=spec,
                 llm_client=comment_llm_client,
+                max_repair_loops=_COMMENT_SECTION_MAX_REPAIR_LOOPS,
             )
             llm_attempt_count += attempt_count
             generation_isolation_summary = _merge_generation_isolation_summary(
@@ -413,8 +420,75 @@ def _extract_semantic_comments(
     for row in comments:
         if not isinstance(row, dict):
             raise ValueError("comment_section_generation comments rows must be JSON objects.")
+        score_assessment = row.get("score_assessment")
+        if not isinstance(score_assessment, dict):
+            raise ValueError(
+                "comment_section_generation comments rows must include score_assessment object."
+            )
+        score = score_assessment.get("score")
+        rationale = score_assessment.get("rationale")
+        if not isinstance(score, int):
+            raise ValueError(
+                "comment_section_generation score_assessment.score must be integer."
+            )
+        if score < -30 or score > 30:
+            raise ValueError(
+                "comment_section_generation score_assessment.score must be in [-30, 30]."
+            )
+        if not isinstance(rationale, str) or not rationale.strip():
+            raise ValueError(
+                "comment_section_generation score_assessment.rationale must be non-empty string."
+            )
         normalized.append(row)
     return normalized
+
+
+def _build_original_source_context(
+    *,
+    space_root: Path,
+    page_ref: str,
+    page_payload: dict[str, object],
+) -> dict[str, object]:
+    page_type, _, page_id = page_ref.partition(":")
+    source_ids: list[str] = []
+
+    if page_type == "source" and page_id:
+        source_ids = [page_id]
+    elif page_type == "topic":
+        raw_source_ids = page_payload.get("source_ids")
+        if isinstance(raw_source_ids, list):
+            source_ids = [
+                str(item).strip()
+                for item in raw_source_ids
+                if isinstance(item, str) and str(item).strip()
+            ]
+    elif page_type == "claim":
+        claim_record_path = space_root / "claims" / f"{page_id}.json"
+        if claim_record_path.is_file():
+            claim_payload = json.loads(claim_record_path.read_text())
+            source_id = claim_payload.get("source_id")
+            if isinstance(source_id, str) and source_id.strip():
+                source_ids = [source_id.strip()]
+
+    deduped_source_ids: list[str] = []
+    seen_source_ids: set[str] = set()
+    source_records: list[dict[str, object]] = []
+    for source_id in source_ids:
+        if source_id in seen_source_ids:
+            continue
+        seen_source_ids.add(source_id)
+        deduped_source_ids.append(source_id)
+        source_path = space_root / "sources" / "records" / f"{source_id}.json"
+        if not source_path.is_file():
+            continue
+        source_payload = json.loads(source_path.read_text())
+        if isinstance(source_payload, dict):
+            source_records.append(source_payload)
+
+    return {
+        "source_ids": deduped_source_ids,
+        "source_records": source_records,
+    }
 
 
 def _write_json_with_transaction(
@@ -716,6 +790,7 @@ def _build_comment_section_client(
     requested_count: int,
     persona_ids: list[str],
     page_payload: dict[str, object],
+    original_source_context: dict[str, object],
 ):
     if runtime_flags.mock_llm:
         return _MockCommentSectionClient(
@@ -734,6 +809,7 @@ def _build_comment_section_client(
         requested_count=requested_count,
         persona_ids=persona_ids,
         page_payload=page_payload,
+        original_source_context=original_source_context,
     )
 
 
@@ -774,6 +850,13 @@ class _MockCommentSectionClient:
                         f"Generated comment {index + 1} by {persona_id}."
                     ),
                     "parent_ref": parent_ref,
+                    "score_assessment": {
+                        "score": 8 - index,
+                        "rationale": (
+                            "Neutral mock assessor score based on argumentative clarity, "
+                            "thread fit, and source grounding."
+                        ),
+                    },
                 }
             )
         payload = {
@@ -793,12 +876,14 @@ class _LiveCommentSectionClient:
         requested_count: int,
         persona_ids: list[str],
         page_payload: dict[str, object],
+        original_source_context: dict[str, object],
     ) -> None:
         self._backend_config = backend_config
         self._page_ref = page_ref
         self._requested_count = requested_count
         self._persona_ids = persona_ids
         self._page_payload = page_payload
+        self._original_source_context = original_source_context
         self._generation_isolation_summary = _empty_generation_isolation_summary()
 
     @property
@@ -823,8 +908,19 @@ class _LiveCommentSectionClient:
                     "threading_rule": (
                         "Use parent_ref null for root comments and draft-N references for replies."
                     ),
+                    "score_assessment_rule": (
+                        "For every generated comment, add score_assessment with score in [-30, 30] "
+                        "and concise rationale. Score neutrally from comment quality using thread "
+                        "context and original source context."
+                    ),
                 },
                 "page_payload": self._page_payload,
+                "comment_chain_context": (
+                    self._page_payload.get("comment_section")
+                    if isinstance(self._page_payload.get("comment_section"), dict)
+                    else {"comments": []}
+                ),
+                "original_source_context": self._original_source_context,
             },
         )
 

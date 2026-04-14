@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-import hashlib
 import json
 import math
 import re
@@ -76,7 +75,10 @@ def merge_comment_section(
             _claim_badges_key(normalized.get("claim_badges")),
         )
         if key in existing_by_key:
-            comment_uid = existing_by_key[key]["comment_uid"]
+            existing_row = existing_by_key[key]
+            comment_uid = existing_row["comment_uid"]
+            if normalized.get("score_assessment") is not None:
+                existing_row["score_assessment"] = normalized["score_assessment"]
         else:
             comment_uid = _new_comment_uid(page_ref=page_ref, persona_id=normalized["persona_id"])
             while comment_uid in known_comment_uids:
@@ -91,6 +93,11 @@ def merge_comment_section(
                     **(
                         {"claim_badges": normalized["claim_badges"]}
                         if normalized.get("claim_badges")
+                        else {}
+                    ),
+                    **(
+                        {"score_assessment": normalized["score_assessment"]}
+                        if normalized.get("score_assessment") is not None
                         else {}
                     ),
                 }
@@ -133,16 +140,9 @@ def apply_merged_comments_to_page(
 def _attach_render_contract_fields(*, page_ref: str, comments: list[dict[str, Any]]) -> None:
     for comment in comments:
         comment_uid = _require_non_empty_string(comment.get("comment_uid"), "comment_uid")
-        persona_id = _require_non_empty_string(comment.get("persona_id"), "persona_id")
-        body = _require_non_empty_string(comment.get("body"), "body")
-        turn_position = _turn_position(comment.get("turn"))
-        social_vote = _deterministic_social_vote(
-            page_ref=page_ref,
-            comment_uid=comment_uid,
-            persona_id=persona_id,
-            turn_position=turn_position,
-            body=body,
-        )
+        _require_non_empty_string(comment.get("persona_id"), "persona_id")
+        _require_non_empty_string(comment.get("body"), "body")
+        social_vote = _resolve_social_vote(comment)
         comment["social_vote"] = social_vote
         comment["permalink"] = f"#{comment_uid}"
         comment["thread_state_key"] = comment_uid
@@ -156,27 +156,28 @@ def _turn_position(raw_turn: Any) -> str:
     return position if position is not None else _TURN_POSITION_SOCIAL
 
 
-def _deterministic_social_vote(
-    *,
-    page_ref: str,
-    comment_uid: str,
-    persona_id: str,
-    turn_position: str,
-    body: str,
-) -> dict[str, int]:
-    seed = f"{page_ref}|{comment_uid}|{persona_id}|{turn_position}|{body[:120]}"
-    digest = hashlib.sha256(seed.encode("utf-8")).hexdigest()
-    upvotes = int(digest[:8], 16) % 31 + 5
-    downvotes = int(digest[8:16], 16) % 21
-    if turn_position in {"support", "synthesis"}:
-        upvotes += 4
-    elif turn_position in {"challenge", "rebuttal"}:
-        downvotes += 4
-    score = upvotes - downvotes
+def _resolve_social_vote(comment: dict[str, Any]) -> dict[str, int]:
+    score_assessment = _normalize_score_assessment(comment.get("score_assessment"))
+    if score_assessment is not None:
+        score = int(score_assessment["score"])
+        if score >= 0:
+            upvotes = score + 12
+            downvotes = 12
+        else:
+            upvotes = 12
+            downvotes = 12 - score
+        return {
+            "upvotes": int(upvotes),
+            "downvotes": int(downvotes),
+            "score": int(score),
+        }
+    existing_vote = _normalize_social_vote(comment.get("social_vote"))
+    if existing_vote is not None:
+        return existing_vote
     return {
-        "upvotes": upvotes,
-        "downvotes": downvotes,
-        "score": score,
+        "upvotes": 12,
+        "downvotes": 12,
+        "score": 0,
     }
 
 
@@ -305,6 +306,7 @@ def _normalize_existing_comment(
         raw_comment.get("claim_badges"),
         field_name_prefix="existing comments[].",
     )
+    score_assessment = _normalize_score_assessment(raw_comment.get("score_assessment"))
 
     parent_comment_uid = _normalize_parent_reference(
         raw_comment.get("parent_comment_uid"),
@@ -329,6 +331,10 @@ def _normalize_existing_comment(
         normalized["claim_badges"] = claim_badges
     elif "claim_badges" in normalized:
         normalized.pop("claim_badges", None)
+    if score_assessment is not None:
+        normalized["score_assessment"] = score_assessment
+    elif "score_assessment" in normalized:
+        normalized.pop("score_assessment", None)
     return normalized
 
 
@@ -347,11 +353,24 @@ def _normalize_semantic_comment(raw_comment: dict[str, Any]) -> dict[str, Any]:
         raw_comment.get("claim_badges"),
         field_name_prefix="comments[].",
     )
+    score_assessment = _normalize_score_assessment(
+        raw_comment.get("score_assessment"),
+        field_name_prefix="comments[].",
+        required=False,
+    )
     normalized: dict[str, Any] = {
         "persona_id": persona_id,
         "body": body,
         "parent_ref": parent_ref,
         "comment_ref": comment_ref,
+        "score_assessment": (
+            score_assessment
+            if score_assessment is not None
+            else {
+                "score": 0,
+                "rationale": "Neutral fallback: score_assessment missing from semantic row.",
+            }
+        ),
     }
     if turn is not None:
         normalized["turn"] = turn
@@ -593,6 +612,53 @@ def _normalize_confidence(
     if not math.isfinite(confidence) or confidence < 0.0 or confidence > 1.0:
         raise ValueError(f"{field_name} must be finite and in [0.0, 1.0].")
     return confidence
+
+
+def _normalize_score_assessment(
+    raw_value: Any,
+    *,
+    field_name_prefix: str = "",
+    required: bool = False,
+) -> dict[str, Any] | None:
+    field_name = f"{field_name_prefix}score_assessment" if field_name_prefix else "score_assessment"
+    if raw_value is None:
+        if required:
+            raise ValueError(f"{field_name} is required.")
+        return None
+    if not isinstance(raw_value, dict):
+        raise ValueError(f"{field_name} must be an object.")
+    raw_score = raw_value.get("score")
+    if not isinstance(raw_score, int) or isinstance(raw_score, bool):
+        raise ValueError(f"{field_name}.score must be an integer.")
+    if raw_score < -30 or raw_score > 30:
+        raise ValueError(f"{field_name}.score must be in [-30, 30].")
+    rationale = _require_non_empty_string(raw_value.get("rationale"), f"{field_name}.rationale")
+    return {
+        "score": raw_score,
+        "rationale": rationale,
+    }
+
+
+def _normalize_social_vote(raw_vote: Any) -> dict[str, int] | None:
+    if not isinstance(raw_vote, dict):
+        return None
+    upvotes = raw_vote.get("upvotes")
+    downvotes = raw_vote.get("downvotes")
+    score = raw_vote.get("score")
+    if (
+        not isinstance(upvotes, int)
+        or isinstance(upvotes, bool)
+        or not isinstance(downvotes, int)
+        or isinstance(downvotes, bool)
+        or not isinstance(score, int)
+        or isinstance(score, bool)
+    ):
+        return None
+    return {
+        "upvotes": int(upvotes),
+        "downvotes": int(downvotes),
+        "score": int(score),
+    }
 
 
 def _reject_unclassified_factual_claims_in_social_body(
