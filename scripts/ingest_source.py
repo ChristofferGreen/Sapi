@@ -529,6 +529,8 @@ def _track_ingest_extraction_writes_for_rollback(
     transaction.mark_create(extraction_result.semantic_output_path)
     for claim_path in extraction_result.claim_paths:
         transaction.mark_create(claim_path)
+    for evidence_path in extraction_result.evidence_paths:
+        transaction.mark_create(evidence_path)
     for relation_path in extraction_result.relation_paths:
         transaction.mark_create(relation_path)
 
@@ -631,7 +633,28 @@ class _MockIngestExtractionClient:
             "claims": [
                 {
                     "text": f"Key proposition from `{self._source_title}` requires synthesis.",
-                    "evidence_excerpts": [],
+                    "evidence_excerpts": [
+                        "Mock theorem setup: under deterministic fixture assumptions, the extracted proposition "
+                        "is treated as the central formal claim for this source."
+                    ],
+                }
+            ],
+            "evidence_items": [
+                {
+                    "evidence_id": "evidence-mock-core-proposition--0123456789ab",
+                    "title": "Fixture theorem setup",
+                    "excerpt": (
+                        "Mock theorem setup: under deterministic fixture assumptions, the extracted proposition "
+                        "is treated as the central formal claim for this source."
+                    ),
+                    "overview": (
+                        "This mock evidence item anchors the claim in a formal fixture statement so deterministic "
+                        "test runs exercise canonical evidence pages and claim-evidence linking."
+                    ),
+                    "evidence_type": "formal_argument",
+                    "claim_refs": ["0"],
+                    "source_id": self._source_id,
+                    "page_refs": ["p.1"],
                 }
             ],
             "relations": [],
@@ -749,6 +772,11 @@ class _LiveIngestExtractionClient:
                     "relation_policy": (
                         "Emit relations only when src/dst claims are grounded and can reference "
                         "generated claim indices or IDs."
+                    ),
+                    "evidence_items_policy": (
+                        "Emit canonical evidence_items that are concrete artifacts (measurement/proof/equation/"
+                        "table/figure/formal argument), each with evidence_id/title/excerpt/overview/"
+                        "evidence_type/claim_refs/source_id."
                     ),
                 },
                 "source_date_inference": dict(self._source_date_resolution.source_date_inference),

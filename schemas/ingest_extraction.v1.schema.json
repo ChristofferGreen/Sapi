@@ -7,17 +7,25 @@
     "source_date_inference",
     "source",
     "claims",
+    "evidence_items",
     "relations",
     "summary",
     "warnings",
     "source_dossier"
   ],
   "properties": {
-    "source_date_inference": {"type": ["object", "null"]},
+    "source_date_inference": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
     "source": {
       "type": "object",
       "additionalProperties": true,
-      "required": ["display_title"],
+      "required": [
+        "display_title"
+      ],
       "properties": {
         "display_title": {
           "type": "string",
@@ -30,25 +38,43 @@
       "type": "array",
       "items": {
         "oneOf": [
-          {"type": "string", "minLength": 1},
+          {
+            "type": "string",
+            "minLength": 1
+          },
           {
             "type": "object",
             "additionalProperties": true,
             "properties": {
               "evidence_excerpts": {
                 "type": "array",
-                "description": "Optional supporting evidence excerpts. Use only formal arguments/proofs, measurements/statistics, equations, or similarly concrete evidence artifacts; do not restate the claim text.",
+                "description": "Compatibility mirror for claim-level evidence text. Canonical evidence pages are driven by top-level evidence_items.",
                 "items": {
                   "oneOf": [
-                    {"type": "string", "minLength": 1},
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
                     {
                       "type": "object",
                       "additionalProperties": true,
                       "properties": {
-                        "excerpt": {"type": "string", "minLength": 1},
-                        "quote": {"type": "string", "minLength": 1},
-                        "text": {"type": "string", "minLength": 1},
-                        "content": {"type": "string", "minLength": 1}
+                        "excerpt": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "quote": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "text": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "content": {
+                          "type": "string",
+                          "minLength": 1
+                        }
                       }
                     }
                   ]
@@ -56,18 +82,33 @@
               },
               "evidence": {
                 "type": "array",
-                "description": "Compatibility alias of `evidence_excerpts` with the same evidence-quality expectations.",
+                "description": "Compatibility alias of evidence_excerpts.",
                 "items": {
                   "oneOf": [
-                    {"type": "string", "minLength": 1},
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
                     {
                       "type": "object",
                       "additionalProperties": true,
                       "properties": {
-                        "excerpt": {"type": "string", "minLength": 1},
-                        "quote": {"type": "string", "minLength": 1},
-                        "text": {"type": "string", "minLength": 1},
-                        "content": {"type": "string", "minLength": 1}
+                        "excerpt": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "quote": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "text": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "content": {
+                          "type": "string",
+                          "minLength": 1
+                        }
                       }
                     }
                   ]
@@ -88,28 +129,125 @@
               "statement": {
                 "type": "string",
                 "minLength": 1,
-                "description": "Alias of `text` with the same truth-apt proposition expectations."
+                "description": "Alias of text with the same truth-apt proposition expectations."
               },
               "claim": {
                 "type": "string",
                 "minLength": 1,
-                "description": "Alias of `text` with the same truth-apt proposition expectations."
+                "description": "Alias of text with the same truth-apt proposition expectations."
               }
             }
           }
         ]
       }
     },
-    "relations": {"type": "array"},
-    "summary": {"type": "string"},
-    "warnings": {"type": "array"},
+    "evidence_items": {
+      "type": "array",
+      "description": "Canonical evidence objects for site evidence pages. These are authored by the semantic LLM and persisted as-is (validation only; no deterministic title/id derivation).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidence_id",
+          "title",
+          "excerpt",
+          "overview",
+          "evidence_type",
+          "claim_refs",
+          "source_id"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "pattern": "^evidence-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$",
+            "description": "Stable canonical evidence identifier; must already be slug+hash format."
+          },
+          "title": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 96,
+            "description": "Human-readable evidence label for cards and links."
+          },
+          "excerpt": {
+            "type": "string",
+            "minLength": 40,
+            "maxLength": 2400,
+            "description": "Concrete evidence artifact text (measurement/proof/equation/table/figure/formal argument), not a generic claim paraphrase."
+          },
+          "overview": {
+            "type": "string",
+            "minLength": 80,
+            "maxLength": 2600,
+            "description": "Reader-facing explanation of why the evidence matters and what it establishes."
+          },
+          "evidence_type": {
+            "type": "string",
+            "enum": [
+              "measurement",
+              "statistical_result",
+              "theorem",
+              "proof_step",
+              "formal_argument",
+              "equation",
+              "table_result",
+              "figure_result",
+              "observational_result",
+              "model_constraint"
+            ]
+          },
+          "claim_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Claim references (index, claim_key, or claim_id) resolved to canonical claim IDs during deterministic validation."
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "page_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "description": "Optional page references (for example `p.4`, `pp.4-5`, `Eq.7`)."
+          }
+        }
+      }
+    },
+    "relations": {
+      "type": "array"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "warnings": {
+      "type": "array"
+    },
     "source_dossier": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["summary_short", "summary_long", "sections"],
+      "required": [
+        "summary_short",
+        "summary_long",
+        "sections"
+      ],
       "properties": {
-        "summary_short": {"type": "string", "minLength": 40, "maxLength": 420},
-        "summary_long": {"type": "string", "minLength": 900, "maxLength": 12000},
+        "summary_short": {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 420
+        },
+        "summary_long": {
+          "type": "string",
+          "minLength": 900,
+          "maxLength": 12000
+        },
         "sections": {
           "type": "array",
           "minItems": 5,
@@ -117,13 +255,28 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["heading", "body", "grounding_claim_ids"],
+            "required": [
+              "heading",
+              "body",
+              "grounding_claim_ids"
+            ],
             "properties": {
-              "heading": {"type": "string", "minLength": 3, "maxLength": 120},
-              "body": {"type": "string", "minLength": 140, "maxLength": 2600},
+              "heading": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 120
+              },
+              "body": {
+                "type": "string",
+                "minLength": 140,
+                "maxLength": 2600
+              },
               "grounding_claim_ids": {
                 "type": "array",
-                "items": {"type": "string", "minLength": 1}
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
               }
             }
           }

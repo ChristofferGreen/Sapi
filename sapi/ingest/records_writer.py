@@ -42,29 +42,6 @@ _HTML_TITLE_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.IGNORECASE | re.DOT
 _MARKDOWN_H1_RE = re.compile(r"^\s*#\s+(.+?)\s*$")
 _SPACE_RE = re.compile(r"\s+")
 _FRONT_PAGE_MAX_WIDTH_PX = 840
-_EVIDENCE_SIGNAL_RE = re.compile(
-    r"("
-    r"\b(theorem|lemma|corollary|proposition|proof|derivation|axiom|inference|contradiction|"
-    r"hypothesis|model|equation|inequality|formal argument)\b"
-    r"|"
-    r"\b(p-value|confidence interval|odds ratio|coefficient|standard deviation|variance|sample size)\b"
-    r"|"
-    r"\bn\s*=\s*\d+\b"
-    r"|"
-    r"\b(table|figure)\s+\d+\b"
-    r"|"
-    r"[=<>±]\s*\d"
-    r"|"
-    r"\b\d+(?:\.\d+)?\s*(%|ms|s|kg|km|hz|ev|nm)\b"
-    r")",
-    re.IGNORECASE,
-)
-_EVIDENCE_LEADIN_RE = re.compile(
-    r"^(?:(?:the|this)\s+(?:paper|article|study)|authors?)\s+"
-    r"(?:claims?|argues?|suggests?|shows?|states?|proposes?|finds?|presents?|reports?|describes?|outlines?|concludes?)\s+"
-    r"(?:that\s+)?",
-    re.IGNORECASE,
-)
 
 
 @dataclass(frozen=True)
@@ -72,6 +49,7 @@ class IngestExtractionPersistResult:
     run_id: str
     semantic_output_path: Path
     claim_paths: list[Path]
+    evidence_paths: list[Path]
     relation_paths: list[Path]
     source_record_path: Path
 
@@ -105,6 +83,9 @@ def run_ingest_extraction_and_persist_canonical(
     claims = semantic_output.get("claims")
     if not isinstance(claims, list):
         raise ValueError("ingest_extraction semantic output requires `claims` as an array.")
+    evidence_items = semantic_output.get("evidence_items")
+    if not isinstance(evidence_items, list):
+        raise ValueError("ingest_extraction semantic output requires `evidence_items` as an array.")
     relations = semantic_output.get("relations")
     if not isinstance(relations, list):
         raise ValueError("ingest_extraction semantic output requires `relations` as an array.")
@@ -113,6 +94,12 @@ def run_ingest_extraction_and_persist_canonical(
         space_root=space_root,
         source_id=source_id,
         claims=claims,
+    )
+    evidence_paths = _write_evidence_records(
+        space_root=space_root,
+        source_id=source_id,
+        evidence_items=evidence_items,
+        claim_ref_map=claim_ref_map,
     )
     relation_paths = _write_relation_records(
         space_root=space_root,
@@ -129,6 +116,7 @@ def run_ingest_extraction_and_persist_canonical(
         run_id=run_id,
         semantic_output_path=resolved.output_json_path,
         claim_paths=claim_paths,
+        evidence_paths=evidence_paths,
         relation_paths=relation_paths,
         source_record_path=source_record_path,
     )
@@ -196,12 +184,10 @@ def _normalize_claim_payload(
     )
     evidence_excerpts = _normalize_evidence_excerpts(
         raw_claim_dict.get("evidence_excerpts"),
-        claim_text=claim_text,
     )
     if not evidence_excerpts:
         evidence_excerpts = _normalize_evidence_excerpts(
             raw_claim_dict.get("evidence"),
-            claim_text=claim_text,
         )
     short_title = _normalize_claim_short_title(
         raw_value=raw_claim_dict.get("short_title"),
@@ -286,14 +272,12 @@ def _resolve_claim_id(
     return make_claim_id(slug=slug, canonical_payload=canonical_payload)
 
 
-def _normalize_evidence_excerpts(raw_value: Any, *, claim_text: str = "") -> list[str]:
+def _normalize_evidence_excerpts(raw_value: Any) -> list[str]:
     if raw_value is None:
         return []
     if not isinstance(raw_value, list):
         raise TypeError("evidence_excerpts/evidence must be arrays when provided.")
     normalized: list[str] = []
-    seen: set[str] = set()
-    canonical_claim_text = _SPACE_RE.sub(" ", claim_text).strip().casefold()
     for raw_item in raw_value:
         candidate = ""
         if isinstance(raw_item, str):
@@ -315,21 +299,90 @@ def _normalize_evidence_excerpts(raw_value: Any, *, claim_text: str = "") -> lis
                 "`excerpt`/`quote`/`text`/`content`."
             )
         candidate = _SPACE_RE.sub(" ", candidate).strip()
-        if not candidate:
-            continue
-        if len(candidate) < 20:
-            continue
-        candidate_key = candidate.casefold()
-        if candidate_key in seen:
-            continue
-        if candidate_key == canonical_claim_text:
-            continue
-        if _EVIDENCE_LEADIN_RE.match(candidate):
-            continue
-        if not _EVIDENCE_SIGNAL_RE.search(candidate):
-            continue
-        seen.add(candidate_key)
-        normalized.append(candidate)
+        if candidate:
+            normalized.append(candidate)
+    return normalized
+
+
+def _write_evidence_records(
+    *,
+    space_root: Path,
+    source_id: str,
+    evidence_items: list[Any],
+    claim_ref_map: dict[str, str],
+) -> list[Path]:
+    evidence_paths: list[Path] = []
+    seen_evidence_ids: set[str] = set()
+
+    for index, raw_item in enumerate(evidence_items):
+        if not isinstance(raw_item, dict):
+            raise TypeError("evidence_items[] items must be JSON objects.")
+        evidence_id = _require_non_empty(raw_item.get("evidence_id"), f"evidence_items[{index}].evidence_id")
+        if evidence_id in seen_evidence_ids:
+            raise ValueError(f"Duplicate evidence_id in evidence_items[]: {evidence_id}")
+        seen_evidence_ids.add(evidence_id)
+
+        title = _require_non_empty(raw_item.get("title"), f"evidence_items[{index}].title")
+        excerpt = _require_non_empty(raw_item.get("excerpt"), f"evidence_items[{index}].excerpt")
+        overview = _require_non_empty(raw_item.get("overview"), f"evidence_items[{index}].overview")
+        evidence_type = _require_non_empty(raw_item.get("evidence_type"), f"evidence_items[{index}].evidence_type")
+        item_source_id = _require_non_empty(raw_item.get("source_id"), f"evidence_items[{index}].source_id")
+        if item_source_id != source_id:
+            raise ValueError(
+                f"evidence_items[{index}].source_id must match ingested source_id `{source_id}`."
+            )
+        page_refs = _normalize_page_refs(raw_item.get("page_refs"), field_name=f"evidence_items[{index}].page_refs")
+        claim_refs = raw_item.get("claim_refs")
+        if not isinstance(claim_refs, list) or not claim_refs:
+            raise ValueError(f"evidence_items[{index}].claim_refs must be a non-empty array.")
+
+        canonical_claim_ids: list[str] = []
+        seen_claim_ids: set[str] = set()
+        for claim_ref_index, raw_claim_ref in enumerate(claim_refs):
+            claim_ref = _require_non_empty(
+                raw_claim_ref,
+                f"evidence_items[{index}].claim_refs[{claim_ref_index}]",
+            )
+            resolved_claim_id = claim_ref_map.get(claim_ref)
+            if not resolved_claim_id:
+                raise ValueError(
+                    f"evidence_items[{index}] references unknown claim `{claim_ref}`."
+                )
+            if resolved_claim_id in seen_claim_ids:
+                continue
+            seen_claim_ids.add(resolved_claim_id)
+            canonical_claim_ids.append(resolved_claim_id)
+        if not canonical_claim_ids:
+            raise ValueError(f"evidence_items[{index}] must resolve at least one claim reference.")
+
+        payload = {
+            "schema_version": "evidence_record_v1",
+            "evidence_id": evidence_id,
+            "title": title,
+            "excerpt": excerpt,
+            "overview": overview,
+            "evidence_type": evidence_type,
+            "source_id": item_source_id,
+            "claim_ids": canonical_claim_ids,
+            "page_refs": page_refs,
+        }
+        evidence_path = space_root / "evidence" / f"{evidence_id}.json"
+        evidence_path.parent.mkdir(parents=True, exist_ok=True)
+        evidence_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+        evidence_paths.append(evidence_path)
+
+    return evidence_paths
+
+
+def _normalize_page_refs(raw_value: Any, *, field_name: str) -> list[str]:
+    if raw_value is None:
+        return []
+    if not isinstance(raw_value, list):
+        raise TypeError(f"{field_name} must be an array when provided.")
+    normalized: list[str] = []
+    for index, raw_item in enumerate(raw_value):
+        value = _require_non_empty(raw_item, f"{field_name}[{index}]")
+        normalized.append(value)
     return normalized
 
 
@@ -846,8 +899,8 @@ def _render_overview_markdown(*, title: str, source_input: _LoadedSourceInput) -
     )
 
 
-def _require_non_empty(value: str | None, field_name: str) -> str:
-    if value is None or not value.strip():
+def _require_non_empty(value: Any, field_name: str) -> str:
+    if not isinstance(value, str) or not value.strip():
         raise ValueError(f"{field_name} must be a non-empty string.")
     return value.strip()
 

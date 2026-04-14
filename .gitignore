@@ -28,6 +28,7 @@ Thumbs.db
 .env.*
 
 # Generated verification artifacts (do not commit)
+docs/verification/testing_exit_site/
 docs/verification/testing_exit_site/import_sources/
 docs/verification/testing_exit_site/outputs/llm_traces/
 docs/verification/testing_exit_site/**/index.preview*.png

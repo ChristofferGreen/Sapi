@@ -858,12 +858,15 @@ Hard prompt input rule:
 Ingest output contract (minimum):
 - `source_date_inference` (`date`, `origin`, `confidence`, optional rationale)
 - source semantic metadata
-- `claims` with optional evidence excerpts
+- `claims` with optional claim-local evidence mirrors
   - `claims[].text` SHOULD be truth-apt propositions about source content (state-of-world or formal-result claims), not publication-process narration
   - prefer proposition rewrites over reportive framing (rewrite `the paper argues that X` to `X`)
-  - evidence excerpts are for concrete support artifacts (measurement values/statistics, theorem/proof/derivation steps, equations, table/figure findings)
-  - evidence excerpts MUST NOT simply restate claim text or generic narrative lead-ins (`the paper claims...`)
-  - when no concrete support artifact is available, `evidence_excerpts` SHOULD be empty
+  - claim-level `evidence_excerpts` are optional mirrors only; canonical evidence pages are driven by top-level `evidence_items`
+- required top-level `evidence_items` (`0..n`) as canonical evidence records
+  - each evidence item MUST include `evidence_id`, `title`, `excerpt`, `overview`, `evidence_type`, `claim_refs[]`, and `source_id`
+  - `evidence_items` MUST represent concrete support artifacts (measurement values/statistics, theorem/proof/derivation steps, equations, table/figure findings, formal argument fragments)
+  - `evidence_items` MUST NOT be generic claim paraphrases or publication-process narration (`the paper claims...`, `the article argues...`)
+  - deterministic ingest code MUST validate references and required fields but MUST NOT derive evidence IDs/titles/excerpts from claim text
 - `relations`
 - `summary`, `warnings`
 - required `source_dossier` for source-page long-form reading support:
@@ -1466,16 +1469,16 @@ Claim page content contract:
   - heuristic stats MUST NOT be treated as canonical truth/confidence values in writeback flows.
 
 Evidence page contract:
-- deterministic build MUST derive evidence pages from canonical claim evidence excerpts.
+- deterministic build MUST render evidence pages from canonical evidence records at `<space_root>/evidence/evidence-*.json`.
 - evidence items represent concrete support artifacts, not standalone claim paraphrases:
   - measurement/statistical observations
   - formal argument/proof/derivation fragments
   - equation/table/figure-level findings
-- deterministic builders SHOULD skip low-information excerpts that only restate claim prose.
+- deterministic builders MUST NOT synthesize evidence IDs/titles from excerpts; evidence metadata is authored by semantic extraction.
 - each evidence page SHOULD include:
   - short human-readable evidence title
   - full evidence excerpt text
-  - linked claim page
+  - linked claim page(s)
   - linked source page when `source_id` is available
   - linked topic pages that reference the parent claim
 - source/topic/claim pages SHOULD link to evidence pages whenever linked claim evidence exists.

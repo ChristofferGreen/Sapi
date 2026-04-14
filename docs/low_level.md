@@ -361,8 +361,9 @@ Control flow:
 4. else:
    - run semantic flow `ingest_extraction`
    - deterministically write canonical source/claim/relation artifacts
-   - evidence excerpt normalization during claim writes MUST keep only concrete support artifacts
-     (measurements/statistics, proofs/derivations, equations, table/figure findings) and drop claim-restatement prose
+   - persist canonical evidence records from semantic `evidence_items[]` under `<space_root>/evidence/`
+   - deterministic ingest validation MUST resolve `evidence_items[].claim_refs` to canonical claim IDs and fail fast on invalid refs
+   - deterministic ingest code MUST NOT derive evidence IDs/titles/excerpts from claim text
    - run semantic flow `topic_generation`
    - deterministically write 0..n canonical topic artifacts from shared cross-source concepts
    - set `semantic_flows = [ingest_extraction, topic_generation]`
@@ -677,7 +678,7 @@ Minimum test groups for this low-level design:
 - claim pages:
   - claim pages resolve canonical claim JSON under `<space_root>/claims/` and topic/source usage references.
   - page title uses readable claim text when available; `claim_id` remains visible in metadata/audit context.
-  - page body includes claim statement, usage links, overview prose, evidence excerpts, and comments section placeholder/rendered thread.
+  - page body includes claim statement, usage links, overview prose, linked evidence items, and comments section placeholder/rendered thread.
   - claim support score shown in UI is currently deterministic heuristic-only; no canonical math formula exists in the contract.
 - site refresh behavior:
   - ingest/topic refresh site-root `New`

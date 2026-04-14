@@ -309,6 +309,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stderr)
 
             topic_page_text = (space_root / "site" / "topics" / "topic-fallback--bbbbbbbbbbbb.html").read_text()
+            self.assertIn("class=\"content-card topic-content-card\"", topic_page_text)
             self.assertIn("class=\"sentence-claim-picker\"", topic_page_text)
             self.assertIn("aria-expanded=\"false\"", topic_page_text)
             self.assertIn("class=\"sentence-claim-card\"", topic_page_text)
@@ -517,10 +518,33 @@ class SiteBuilderContractTests(unittest.TestCase):
                 claim_id=claim_id,
                 source_id=source_id,
                 text=claim_text,
-                evidence_excerpts=[
-                    "The contradiction appears when independently prepared systems are measured jointly.",
-                    "Equation (7) shows overlap assumptions produce predictions incompatible with quantum theory.",
-                ],
+            )
+            self._write_evidence_record(
+                space_root,
+                evidence_id="evidence-prepared-systems-joint--111111111111",
+                title="Joint measurement contradiction",
+                excerpt="The contradiction appears when independently prepared systems are measured jointly.",
+                overview=(
+                    "This evidence captures the specific measurement condition that yields contradiction under "
+                    "psi-epistemic overlap assumptions."
+                ),
+                evidence_type="measurement",
+                source_id=source_id,
+                claim_ids=[claim_id],
+                page_refs=["p.4"],
+            )
+            self._write_evidence_record(
+                space_root,
+                evidence_id="evidence-overlap-equation-seven--222222222222",
+                title="Overlap equation contradiction",
+                excerpt="Equation (7) shows overlap assumptions produce predictions incompatible with quantum theory.",
+                overview=(
+                    "This equation-level result formalizes why overlap assumptions clash with observed predictions."
+                ),
+                evidence_type="equation",
+                source_id=source_id,
+                claim_ids=[claim_id],
+                page_refs=["Eq.7"],
             )
             self._write_topic_record(
                 space_root,
@@ -547,8 +571,9 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stderr)
 
             claim_page_text = (space_root / "site" / "claims" / f"{claim_id}.html").read_text()
-            self.assertIn(f"<h1>{claim_text}</h1>", claim_page_text)
+            self.assertIn("<h1>Treating quantum states is purely epistemic conflicts</h1>", claim_page_text)
             self.assertIn("<h2>Claim Statement</h2>", claim_page_text)
+            self.assertIn(claim_text, claim_page_text)
             self.assertIn("Overview and Interpretation", claim_page_text)
             self.assertIn(
                 "epistemic-only interpretation fails once preparation independence",
@@ -565,6 +590,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                 "score = 100 * (0.80 * evidence_factor + 0.20 * source_factor)",
                 claim_page_text,
             )
+            self.assertIn("where evidence_factor=min(evidence_items/3,1)", claim_page_text)
             self.assertIn("Topic usages (informational only)", claim_page_text)
             self.assertIn("do not contribute to score", claim_page_text)
             self.assertIn("class=\"comment-thread\"", claim_page_text)
@@ -578,7 +604,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             claims_index_text = (space_root / "site" / "claims" / "index.html").read_text()
             self.assertIn("id=\"claims-sort-direction\"", claims_index_text)
             self.assertIn("<option value=\"alphabetical\">Alphabetical</option>", claims_index_text)
-            self.assertIn("<option value=\"score\">Score</option>", claims_index_text)
+            self.assertIn("<option value=\"score\" selected>Score</option>", claims_index_text)
             self.assertIn("<option value=\"reverse_score\">Reverse score</option>", claims_index_text)
             self.assertIn("<option value=\"newest\">Newest</option>", claims_index_text)
             self.assertIn("<option value=\"oldest\">Oldest</option>", claims_index_text)
@@ -588,6 +614,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("parseAddedAt", claims_index_text)
             self.assertIn("mode==='newest'", claims_index_text)
             self.assertIn("mode==='oldest'", claims_index_text)
+            self.assertIn("var mode=select.value||'score';", claims_index_text)
             self.assertIn("rows.sort(function(a,b){return compareRows(a,b,mode);});", claims_index_text)
             self.assertIn(f"href=\"{evidence_links[0]}.html\"", evidence_index_text)
 
@@ -600,7 +627,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("../evidence/", source_page_text)
 
             claims_index_text = (space_root / "site" / "claims" / "index.html").read_text()
-            self.assertIn("Treating quantum states as purely epistemic", claims_index_text)
+            self.assertIn("Treating quantum states is purely epistemic conflicts", claims_index_text)
             self.assertNotIn(f">{claim_id}</a>", claims_index_text)
 
     def test_site_presentation_mode_public_hides_internal_metadata_and_debug_exposes_it(self) -> None:
@@ -1111,11 +1138,16 @@ class SiteBuilderContractTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
             site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            long_summary = (
+                "Source summary appears near top and this feed card overview must remain fully visible "
+                "without truncation so readers can evaluate the source context directly from the New page."
+            )
             self._write_source_record(
                 alpha_space_root,
                 source_id="source-preview-b",
                 title="Preview Source B",
-                summary="Source summary appears near top.",
+                summary=long_summary,
+                authors=["Ada Lovelace", "Alan Turing"],
                 source_file_rel="sources/artifacts/source-preview-b/source.pdf",
             )
 
@@ -1131,7 +1163,7 @@ class SiteBuilderContractTests(unittest.TestCase):
 
             source_page = (alpha_space_root / "site" / "sources" / "source-preview-b.html").read_text()
             self.assertIn("class=\"source-summary\"", source_page)
-            self.assertIn("Source summary appears near top.", source_page)
+            self.assertIn(long_summary, source_page)
             self.assertIn("class=\"source-hero\"", source_page)
             self.assertIn("class=\"source-hero-preview\"", source_page)
             self.assertIn("class=\"source-preview-link\"", source_page)
@@ -1142,10 +1174,28 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertNotIn("source_id:", source_page)
 
             site_new_page = (site_path / "site" / "new" / "index.html").read_text()
+            self.assertIn("class=\"feed-card\"", site_new_page)
+            self.assertIn("class=\"feed-card-layout\"", site_new_page)
+            self.assertIn("class=\"feed-card-head\"", site_new_page)
+            self.assertIn("Apr 12, 2026", site_new_page)
+            self.assertIn("Authors:", site_new_page)
+            self.assertIn("../../spaces/alpha/site/authors/author-ada-lovelace.html", site_new_page)
+            self.assertIn("../../spaces/alpha/site/authors/author-alan-turing.html", site_new_page)
+            self.assertIn(long_summary, site_new_page)
+            self.assertNotIn("without truncation so readers can evaluate the source context dire...", site_new_page)
             self.assertIn("class=\"source-preview-feed\"", site_new_page)
             self.assertIn("../assets/source_previews/source-preview-b.svg", site_new_page)
 
             space_new_page = (alpha_space_root / "site" / "new" / "index.html").read_text()
+            self.assertIn("class=\"feed-card\"", space_new_page)
+            self.assertIn("class=\"feed-card-layout\"", space_new_page)
+            self.assertIn("class=\"feed-card-head\"", space_new_page)
+            self.assertIn("Apr 12, 2026", space_new_page)
+            self.assertIn("Authors:", space_new_page)
+            self.assertIn("../authors/author-ada-lovelace.html", space_new_page)
+            self.assertIn("../authors/author-alan-turing.html", space_new_page)
+            self.assertIn(long_summary, space_new_page)
+            self.assertNotIn("without truncation so readers can evaluate the source context dire...", space_new_page)
             self.assertIn("class=\"source-preview-feed\"", space_new_page)
             self.assertIn("../../../../site/assets/source_previews/source-preview-b.svg", space_new_page)
 
@@ -1185,6 +1235,177 @@ class SiteBuilderContractTests(unittest.TestCase):
                 "space_new_page": (alpha_space_root / "site" / "new" / "index.html").read_text(),
             }
             self.assertEqual(first_snapshot, second_snapshot)
+
+    def test_new_feed_topic_overview_uses_full_text_without_claim_markers(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            source_id = "source-topic-overview"
+            source_id_2 = "source-topic-overview-2"
+            topic_id = "topic-topic-overview"
+            topic_body = (
+                "This topic overview should remain fully visible on the card and should not be clipped "
+                "with ellipsis when rendered in the New feed. [[claims:claim-a,claim-b]]"
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id=source_id,
+                title="Topic Overview Source",
+                summary="Source text",
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id=source_id_2,
+                title="Topic Overview Source 2",
+                summary="Source text 2",
+            )
+            self._write_topic_record(
+                alpha_space_root,
+                topic_id=topic_id,
+                title="Topic Overview Title",
+                source_ids=[source_id, source_id_2],
+                sections=[{"heading": "Summary", "body": topic_body}],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            expected_text = (
+                "This topic overview should remain fully visible on the card and should not be clipped "
+                "with ellipsis when rendered in the New feed."
+            )
+            new_page = (alpha_space_root / "site" / "new" / "index.html").read_text()
+            self.assertIn(expected_text, new_page)
+            self.assertNotIn("[[claims:", new_page)
+            self.assertNotIn("with ellipsis when rendered in the New feed....", new_page)
+
+    def test_new_feed_topics_require_two_sources_and_never_render_preview_images(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(alpha_space_root, source_id="source-a", title="Source A", summary="A")
+            self._write_source_record(alpha_space_root, source_id="source-b", title="Source B", summary="B")
+            self._write_topic_record(
+                alpha_space_root,
+                topic_id="topic-single-source",
+                title="Topic Single Source",
+                source_ids=["source-a"],
+            )
+            self._write_topic_record(
+                alpha_space_root,
+                topic_id="topic-two-sources",
+                title="Topic Two Sources",
+                source_ids=["source-a", "source-b"],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            new_page = (alpha_space_root / "site" / "new" / "index.html").read_text()
+            feed_list_match = re.search(r"<ul class=\"feed-list\">(.*?)</ul>", new_page, re.S)
+            self.assertIsNotNone(feed_list_match)
+            feed_rows = feed_list_match.group(1)
+            self.assertIn("Topic Two Sources", feed_rows)
+            self.assertNotIn("Topic Single Source", feed_rows)
+            self.assertNotIn(
+                "class=\"source-preview-feed-link\" href=\"../topics/topic-two-sources.html\"",
+                feed_rows,
+            )
+
+    def test_author_links_point_to_unique_author_pages(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-author-a",
+                title="Source Author A",
+                summary="Alpha summary.",
+                authors=["Ada Lovelace"],
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-author-b",
+                title="Source Author B",
+                summary="Beta summary.",
+                authors=[" ada   lovelace "],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            new_page = (alpha_space_root / "site" / "new" / "index.html").read_text()
+            self.assertIn("../authors/author-ada-lovelace.html", new_page)
+
+            authors_dir = alpha_space_root / "site" / "authors"
+            author_pages = sorted(path.name for path in authors_dir.glob("author-ada-lovelace*.html"))
+            self.assertEqual(author_pages, ["author-ada-lovelace.html"])
+
+            author_page = (authors_dir / "author-ada-lovelace.html").read_text()
+            self.assertIn("Source Author A", author_page)
+            self.assertIn("Source Author B", author_page)
+
+    def test_author_identity_uses_name_plus_institution_when_available(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-inst-a",
+                title="Source Inst A",
+                summary="Institutional author A.",
+                authors=[{"name": "Alex Kim", "institution": "Institute A"}],
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-inst-b",
+                title="Source Inst B",
+                summary="Institutional author B.",
+                authors=[{"name": "Alex Kim", "institution": "Institute B"}],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            new_page = (alpha_space_root / "site" / "new" / "index.html").read_text()
+            self.assertIn("../authors/author-alex-kim-institute-a.html", new_page)
+            self.assertIn("../authors/author-alex-kim-institute-b.html", new_page)
+
+            authors_dir = alpha_space_root / "site" / "authors"
+            self.assertTrue((authors_dir / "author-alex-kim-institute-a.html").is_file())
+            self.assertTrue((authors_dir / "author-alex-kim-institute-b.html").is_file())
 
     def test_source_detail_renders_explicit_source_dossier_when_present(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1326,6 +1547,18 @@ class SiteBuilderContractTests(unittest.TestCase):
                     }
                 ],
             )
+            self._write_topic_record(
+                alpha_space_root,
+                topic_id="topic-claim-title-index-second--aaaaaaaaaaaa",
+                title="Topic Claim Title Index Second",
+                source_ids=[source_id],
+                sections=[
+                    {
+                        "heading": "Summary",
+                        "body": f"Another linked sentence. [[claims:{claim_id}]]",
+                    }
+                ],
+            )
 
             result = self._run(
                 [
@@ -1347,11 +1580,14 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("<p class=\"meta\">score: ", claims_index)
             self.assertIn("class=\"claim-score-value claim-score-", claims_index)
             self.assertNotIn(f"{claim_id} | score:", claims_index)
-            self.assertIn("class=\"claim-card-usage-list\"", claims_index)
+            self.assertIn("class=\"claim-card-usage-list claim-card-usage-list-primary\"", claims_index)
+            self.assertIn("class=\"claim-card-usage-list claim-card-usage-list-overflow\"", claims_index)
             self.assertIn(f"href=\"../topics/{topic_id}.html\"", claims_index)
             self.assertIn(f"href=\"../sources/{source_id}.html\"", claims_index)
-            self.assertIn("<span class=\"meta\">topic</span>", claims_index)
-            self.assertIn("<span class=\"meta\">source</span>", claims_index)
+            self.assertIn("class=\"claim-usage-chip claim-usage-chip-topic\"", claims_index)
+            self.assertIn("class=\"claim-usage-chip claim-usage-chip-source\"", claims_index)
+            self.assertNotIn("class=\"claim-card-usage-label\"", claims_index)
+            self.assertRegex(claims_index, r'<a class=\"tab current\" href=\"[^\"]*\">Claims</a>')
 
             claim_page = (alpha_space_root / "site" / "claims" / f"{claim_id}.html").read_text()
             self.assertIn("<h1>Preparation independence constrains epistemic overlap regions</h1>", claim_page)
@@ -1359,6 +1595,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                 "<p>The paper claims that preparation independence constrains epistemic overlap regions.</p>",
                 claim_page,
             )
+            self.assertRegex(claim_page, r'<a class=\"tab current\" href=\"[^\"]*\">Claims</a>')
 
     def test_claim_titles_preserve_curated_short_title_verbatim(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1466,9 +1703,10 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn('data-claim-added-at="2026-01-01T00:00:00Z"', claims_index)
             self.assertIn('data-claim-added-at="2026-04-10T12:00:00Z"', claims_index)
             self.assertIn('data-claim-added-at="2026-03-01T00:00:00Z"', claims_index)
-            self.assertIn("added: Jan 01, 2026, 00:00 UTC", claims_index)
-            self.assertIn("added: Mar 01, 2026, 00:00 UTC", claims_index)
-            self.assertIn("added: Apr 10, 2026, 12:00 UTC", claims_index)
+            self.assertIn("added: Jan 01, 2026", claims_index)
+            self.assertIn("added: Mar 01, 2026", claims_index)
+            self.assertIn("added: Apr 10, 2026", claims_index)
+            self.assertNotIn("UTC", claims_index)
 
     def test_source_preview_prefers_ingested_front_page_image_when_available(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1786,9 +2024,11 @@ class SiteBuilderContractTests(unittest.TestCase):
         title: str,
         ingested_at: str = "2026-04-12T00:00:00Z",
         summary: str | None = None,
+        authors: list[object] | None = None,
         source_file_rel: str | None = None,
         front_page_image_rel: str | None = None,
         source_dossier: dict[str, object] | None = None,
+        source_semantic: dict[str, object] | None = None,
     ) -> None:
         payload = {
             "schema_version": "source_record_v1",
@@ -1799,8 +2039,12 @@ class SiteBuilderContractTests(unittest.TestCase):
         }
         if summary is not None:
             payload["summary"] = summary
+        if authors is not None:
+            payload["authors"] = authors
         if source_dossier is not None:
             payload["source_dossier"] = source_dossier
+        if source_semantic is not None:
+            payload["source_semantic"] = source_semantic
         if source_file_rel is not None:
             payload["artifacts"] = {
                 "source_file": source_file_rel,
@@ -1834,6 +2078,34 @@ class SiteBuilderContractTests(unittest.TestCase):
         if added_at is not None:
             payload["added_at"] = added_at
         path = space_root / "claims" / f"{claim_id}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+
+    def _write_evidence_record(
+        self,
+        space_root: Path,
+        *,
+        evidence_id: str,
+        title: str,
+        excerpt: str,
+        overview: str,
+        evidence_type: str,
+        source_id: str,
+        claim_ids: list[str],
+        page_refs: list[str] | None = None,
+    ) -> None:
+        payload = {
+            "schema_version": "evidence_record_v1",
+            "evidence_id": evidence_id,
+            "title": title,
+            "excerpt": excerpt,
+            "overview": overview,
+            "evidence_type": evidence_type,
+            "source_id": source_id,
+            "claim_ids": claim_ids,
+            "page_refs": page_refs if page_refs is not None else [],
+        }
+        path = space_root / "evidence" / f"{evidence_id}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
 

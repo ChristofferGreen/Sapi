@@ -59,6 +59,8 @@ Notable ingest behavior:
 - explicit `--force` in ingest may preserve partial artifacts on failure for forensics
 - ingest extraction may persist a reader-facing `source_dossier` (short + long summaries and sectioned
   commentary) that the source detail page renders for users who want substance before opening the PDF
+- ingest extraction also emits canonical `evidence_items[]` (LLM-authored IDs/titles/excerpts/link refs),
+  which are persisted under `<space_root>/evidence/` and drive evidence pages without deterministic synthesis
 
 ## Target Wrapper Interface
 

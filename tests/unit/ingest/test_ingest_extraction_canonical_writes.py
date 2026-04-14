@@ -19,7 +19,10 @@ class _StaticSemanticClient:
         self._payload = payload
 
     def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
-        return json.dumps(self._payload)
+        payload = dict(self._payload)
+        if "evidence_items" not in payload:
+            payload["evidence_items"] = []
+        return json.dumps(payload)
 
 
 class IngestExtractionCanonicalWriteTests(unittest.TestCase):
@@ -340,6 +343,21 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
                         ],
                     }
                 ],
+                "evidence_items": [
+                    {
+                        "evidence_id": "evidence-psi-overlap-measurement--1a2b3c4d5e6f",
+                        "title": "Psi overlap measurement",
+                        "excerpt": "Measured overlap was 0.07 +/- 0.01 with n=64 prepared systems.",
+                        "overview": (
+                            "This measurement constrains overlap assumptions in psi-epistemic models "
+                            "and is linked to the extracted claim as canonical evidence."
+                        ),
+                        "evidence_type": "measurement",
+                        "claim_refs": ["0"],
+                        "source_id": source_id,
+                        "page_refs": ["p.4"],
+                    }
+                ],
                 "relations": [],
                 "summary": "Evidence aliases normalized.",
                 "source_dossier": self._default_source_dossier(),
@@ -362,8 +380,13 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
                     "Formal derivation shows contradiction when overlap > 0 in Eq. (5).",
                 ],
             )
+            self.assertEqual(len(result.evidence_paths), 1)
+            evidence_payload = json.loads(result.evidence_paths[0].read_text())
+            self.assertEqual(evidence_payload["evidence_id"], "evidence-psi-overlap-measurement--1a2b3c4d5e6f")
+            self.assertEqual(evidence_payload["claim_ids"], [claim_payload["claim_id"]])
+            self.assertEqual(evidence_payload["source_id"], source_id)
 
-    def test_ingest_extraction_filters_non_evidence_like_excerpts(self) -> None:
+    def test_ingest_extraction_preserves_claim_level_evidence_excerpts_without_filtering(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root, source_id = self._bootstrap_source(Path(tmp))
             semantic_output = {
@@ -405,10 +428,56 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
             self.assertEqual(
                 claim_payload["evidence_excerpts"],
                 [
+                    "The paper claims the ontology is local-realistic.",
+                    "This article argues that realism is preferable.",
                     "Measured Bell parameter was 2.71 with n=120 trials.",
                     "Lemma 3 proves incompatibility under Eq. (9).",
                 ],
             )
+
+    def test_ingest_extraction_rejects_evidence_items_with_unknown_claim_refs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root, source_id = self._bootstrap_source(Path(tmp))
+            semantic_output = {
+                "source_date_inference": {
+                    "date": None,
+                    "origin": "unknown",
+                    "confidence": "unknown",
+                    "rationale": None,
+                },
+                "source": {
+                    "source_id": source_id,
+                    "title": "Evidence Ref Validation Source",
+                    "display_title": "Evidence Ref Validation Source Findings",
+                },
+                "claims": [{"text": "One claim extracted."}],
+                "evidence_items": [
+                    {
+                        "evidence_id": "evidence-bad-claim-ref--1234567890ab",
+                        "title": "Bad claim ref",
+                        "excerpt": "Equation (7) shows contradiction under overlap assumptions in the setup.",
+                        "overview": (
+                            "This should fail because claim_refs does not map to an extracted claim ID "
+                            "after canonical claim resolution during ingest record persistence."
+                        ),
+                        "evidence_type": "equation",
+                        "claim_refs": ["missing-claim-ref"],
+                        "source_id": source_id,
+                    }
+                ],
+                "relations": [],
+                "summary": "Evidence ref validation.",
+                "source_dossier": self._default_source_dossier(),
+                "warnings": [],
+            }
+
+            with self.assertRaisesRegex(ValueError, "unknown claim"):
+                run_ingest_extraction_and_persist_canonical(
+                    space_root=space_root,
+                    source_id=source_id,
+                    run_id="run-evidence-bad-ref",
+                    llm_client=_StaticSemanticClient(semantic_output),
+                )
 
     def test_ingest_extraction_persists_short_claim_titles_with_word_budget(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

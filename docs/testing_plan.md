@@ -77,7 +77,7 @@ tests/
   - Module: `tests/unit/semantic/test_spec_resolution.py`
 - [x] Retry budget math and attempt counting (`max_repair_loops`, `max_attempts`, `llm_attempt_count`).
   - Module: `tests/unit/semantic/test_retry_budget.py`
-- [x] Ingest evidence-excerpt normalization keeps only concrete support artifacts (measurement/proof/formal evidence) and drops claim-restatement prose.
+- [x] Ingest canonical evidence-item persistence validates LLM-authored `evidence_items[]` links/fields and rejects unresolved claim refs without deterministic evidence rewriting.
   - Module: `tests/unit/ingest/test_ingest_extraction_canonical_writes.py`
 - [x] Claim text/label normalization rewrites reportive source phrasing into truth-apt proposition statements and 3-7 word claim-link labels.
   - Modules: `tests/unit/core/test_claim_naming.py`, `tests/unit/ingest/test_ingest_extraction_canonical_writes.py`, `tests/unit/build/test_site_builder_contracts.py`

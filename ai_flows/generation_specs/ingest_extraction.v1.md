@@ -35,6 +35,21 @@ Generate one strict JSON object for ingest extraction at `output_json_path`.
   - section writing should cover: argument, evidence/reasoning path, assumptions/limits, and practical interpretation
   - every section SHOULD cite relevant `claim_id` values in `grounding_claim_ids` when claim evidence exists
   - avoid generic filler; write source-specific commentary grounded in extracted claims
+- `evidence_items` is required and MUST be the canonical evidence output for this flow:
+  - output `0..n` evidence items; emit an empty array if no concrete evidence artifacts exist
+  - each item MUST include:
+    - `evidence_id` in canonical slug+hash format (`evidence-<slug>--<hex>`)
+    - `title` (clear reader-facing label, target `3..8` words)
+    - `excerpt` (concrete evidence artifact text from source content)
+    - `overview` (why the evidence matters, what it establishes, and scope limits)
+    - `evidence_type` enum value
+    - `claim_refs` with one or more references to extracted claims (index, claim_key, or claim_id)
+    - `source_id` matching the ingested source
+  - evidence quality bar:
+    - acceptable evidence: measurements/statistics, theorem or proof steps, equations/derivations, table/figure findings, formal argument fragments
+    - reject low-information paraphrases and publication-process narration (`the paper claims...`, `the article argues...`)
+    - each evidence item should be independently meaningful and auditable
+  - do not emit synthetic evidence IDs/titles by truncation rules; author high-quality IDs/titles directly
 - each claim object SHOULD include `short_title` for UI claim-link labels:
   - MUST be authored by the LLM from claim semantics (not a mechanical truncation of claim text)
   - MUST be `3..7` words
@@ -44,7 +59,7 @@ Generate one strict JSON object for ingest extraction at `output_json_path`.
 - claim `text` MUST be a truth-apt proposition attributed to the source content itself
   - avoid meta narration about the publication process (`the paper presents`, `the article gives`)
   - when the source uses reporting lead-ins, rewrite to the underlying proposition
-- claim `evidence_excerpts` (or alias `evidence`) SHOULD include only concrete evidence artifacts:
+- claim `evidence_excerpts` (or alias `evidence`) MAY be included as claim-local mirrors of `evidence_items` excerpts:
   - acceptable: measurement values/statistics, theorem/proof steps, equations, formal derivations, table/figure findings
   - avoid repeating the claim text itself or generic narrative summaries (`the paper claims...`)
   - if no concrete evidence artifact is available, prefer an empty list over low-quality filler
@@ -63,6 +78,17 @@ Generate one strict JSON object for ingest extraction at `output_json_path`.
     {
       "text": "",
       "short_title": ""
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "",
+      "title": "",
+      "excerpt": "",
+      "overview": "",
+      "evidence_type": "formal_argument",
+      "claim_refs": ["0"],
+      "source_id": ""
     }
   ],
   "relations": [],
