@@ -8,8 +8,9 @@ from pathlib import Path
 from typing import Any
 
 from sapi.contracts.ids import make_topic_id, slugify
+from sapi.contracts.schemas import load_json_schema
 from sapi.contracts.semantic_specs import resolve_semantic_invocation_spec
-from sapi.llm.client import LlmClient
+from sapi.llm.client import LlmClient, SemanticRepairContext
 from sapi.llm.semantic_executor import (
     DEFAULT_MAX_REPAIR_LOOPS,
     SemanticSpec,
@@ -85,10 +86,34 @@ def run_topic_generation_and_persist_canonical(
         trace_ctx=trace_ctx,
     )
 
-    normalized_topics = _normalize_topic_batch(
-        raw_topics=semantic_output.get("topics"),
-        source_id=source_id,
-    )
+    try:
+        normalized_topics = _normalize_topic_batch(
+            raw_topics=semantic_output.get("topics"),
+            source_id=source_id,
+        )
+    except ValueError as exc:
+        semantic_output, _ = run_semantic_flow(
+            spec=_to_runtime_spec(resolved),
+            llm_client=llm_client,
+            max_repair_loops=max_repair_loops,
+            initial_repair_context=_build_topic_normalization_repair_context(
+                semantic_output=semantic_output,
+                source_id=source_id,
+                schema_path=resolved.schema_path,
+                normalization_error=exc,
+            ),
+            trace_ctx=trace_ctx,
+        )
+        try:
+            normalized_topics = _normalize_topic_batch(
+                raw_topics=semantic_output.get("topics"),
+                source_id=source_id,
+            )
+        except ValueError as repaired_exc:
+            raise ValueError(
+                "topic_generation returned invalid topic JSON after repair "
+                f"(section/body contract violation): {repaired_exc}"
+            ) from repaired_exc
     topic_writes: list[TopicCanonicalWrite] = []
     for topic_payload in normalized_topics:
         topic_id = str(topic_payload["topic_id"])
@@ -110,6 +135,139 @@ def run_topic_generation_and_persist_canonical(
         semantic_output_path=resolved.output_json_path,
         topics=topic_writes,
     )
+
+
+def _build_topic_normalization_repair_context(
+    *,
+    semantic_output: dict[str, Any],
+    source_id: str,
+    schema_path: Path,
+    normalization_error: ValueError,
+) -> SemanticRepairContext:
+    validation_errors = _derive_topic_contract_validation_errors(
+        raw_topics=semantic_output.get("topics"),
+        source_id=source_id,
+    )
+    if not validation_errors:
+        validation_errors.append(
+            {
+                "path": "/topics",
+                "message": (
+                    "Section/body contract violation: topic output must include at least one "
+                    "section with a non-empty `body` (or alias `content`/`summary`)."
+                ),
+                "validator": "section_body_contract",
+                "validator_value": "requires_non_empty_section_body",
+            }
+        )
+    validation_errors.append(
+        {
+            "path": "/topics",
+            "message": f"Normalization error: {normalization_error}",
+            "validator": "post_schema_contract",
+            "validator_value": "topic_generation_normalizer",
+        }
+    )
+    return SemanticRepairContext(
+        previous_invalid_json=json.dumps(semantic_output, indent=2, sort_keys=True),
+        validation_errors=validation_errors,
+        schema=load_json_schema(schema_path),
+        require_complete_replacement_json=True,
+    )
+
+
+def _derive_topic_contract_validation_errors(*, raw_topics: Any, source_id: str) -> list[dict[str, Any]]:
+    errors: list[dict[str, Any]] = []
+    if not isinstance(raw_topics, list):
+        return errors
+    for topic_index, raw_topic in enumerate(raw_topics):
+        if not isinstance(raw_topic, dict):
+            continue
+        sections = raw_topic.get("sections")
+        if not isinstance(sections, list):
+            errors.append(
+                {
+                    "path": f"/topics/{topic_index}/sections",
+                    "message": "topics[*].sections must be an array.",
+                    "validator": "type",
+                    "validator_value": "array",
+                }
+            )
+            continue
+        non_empty_section_count = 0
+        for section_index, section in enumerate(sections):
+            if not isinstance(section, dict):
+                errors.append(
+                    {
+                        "path": f"/topics/{topic_index}/sections/{section_index}",
+                        "message": "Each section must be an object.",
+                        "validator": "type",
+                        "validator_value": "object",
+                    }
+                )
+                continue
+            body_candidate = section.get("body")
+            content_candidate = section.get("content")
+            summary_candidate = section.get("summary")
+            has_text = any(
+                isinstance(candidate, str) and candidate.strip()
+                for candidate in (body_candidate, content_candidate, summary_candidate)
+            )
+            if has_text:
+                non_empty_section_count += 1
+                continue
+            errors.append(
+                {
+                    "path": f"/topics/{topic_index}/sections/{section_index}",
+                    "message": (
+                        "Section/body contract violation: each section must include non-empty "
+                        "`body` (or alias `content`/`summary`)."
+                    ),
+                    "validator": "section_body_contract",
+                    "validator_value": "non_empty_body",
+                }
+            )
+        if non_empty_section_count == 0:
+            errors.append(
+                {
+                    "path": f"/topics/{topic_index}/sections",
+                    "message": (
+                        "Section/body contract violation: each topic requires at least one "
+                        "section with non-empty body text."
+                    ),
+                    "validator": "section_body_contract",
+                    "validator_value": "at_least_one_non_empty_body",
+                }
+            )
+        source_ids = raw_topic.get("source_ids")
+        if isinstance(source_ids, list):
+            normalized_source_ids = [
+                value.strip()
+                for value in source_ids
+                if isinstance(value, str) and value.strip()
+            ]
+            if source_id not in normalized_source_ids:
+                errors.append(
+                    {
+                        "path": f"/topics/{topic_index}/source_ids",
+                        "message": "topics[*].source_ids must include the ingested source_id.",
+                        "validator": "contains",
+                        "validator_value": source_id,
+                    }
+                )
+            if len(set(normalized_source_ids)) < 2:
+                errors.append(
+                    {
+                        "path": f"/topics/{topic_index}/source_ids",
+                        "message": (
+                            "topics[*].source_ids must include at least two distinct source IDs, "
+                            "or emit topics=[] when no cross-source concept exists."
+                        ),
+                        "validator": "minItems",
+                        "validator_value": 2,
+                    }
+                )
+    return errors
 
 
 def _to_runtime_spec(resolved: Any) -> SemanticSpec:

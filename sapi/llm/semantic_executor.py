@@ -104,6 +104,7 @@ def run_semantic_flow(
     spec: SemanticSpec,
     llm_client: LlmClient,
     max_repair_loops: int = DEFAULT_MAX_REPAIR_LOOPS,
+    initial_repair_context: SemanticRepairContext | None = None,
     trace_ctx: TraceContext | None = None,
 ) -> tuple[dict[str, Any], int]:
     """Run one semantic flow with strict schema validation and repair retries."""
@@ -113,7 +114,7 @@ def run_semantic_flow(
     context_by_path = _gather_context_by_path(spec.context_paths)
     ensure_context_pointer_payload(context_by_path)
 
-    repair_context: SemanticRepairContext | None = None
+    repair_context: SemanticRepairContext | None = initial_repair_context
     for attempt in range(1, max_attempts + 1):
         request = SemanticLlmRequest(
             flow_key=spec.flow_key,

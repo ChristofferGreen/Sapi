@@ -32,6 +32,19 @@ class _StaticTopicClient:
         return json.dumps(self._payload)
 
 
+class _SequencedTopicClient:
+    def __init__(self, payloads: list[dict[str, object]]) -> None:
+        self._payloads = list(payloads)
+        self.requests: list[SemanticLlmRequest] = []
+
+    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
+        self.requests.append(request)
+        if not self._payloads:
+            raise AssertionError("No more queued payloads for topic client.")
+        payload = self._payloads.pop(0)
+        return json.dumps(payload)
+
+
 class TopicGenerationFlowTests(unittest.TestCase):
     def test_topic_flow_uses_canonical_spec_schema_and_writes_topics_path(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -144,6 +157,57 @@ class TopicGenerationFlowTests(unittest.TestCase):
             stored_two = json.loads(result.topics[1].topic_path.read_text())
             self.assertEqual(stored_one["sections"], [{"heading": "Overview", "body": "Alias summary body one."}])
             self.assertEqual(stored_two["sections"], [{"heading": "Details", "body": "Alias summary body two."}])
+
+    def test_topic_flow_requests_repair_when_section_body_contract_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root, source_id = _bootstrap_source(Path(tmp))
+            invalid_then_valid_payloads = [
+                {
+                    "topics": [
+                        {
+                            "title": "Cross-source topic",
+                            "structure_type": "wiki",
+                            "sections": [{"heading": "Summary", "body": "   "}],
+                            "claim_ids": ["claim-a--111111111111"],
+                            "source_ids": [source_id, "source-related--777777777777"],
+                        }
+                    ]
+                },
+                {
+                    "topics": [
+                        {
+                            "title": "Cross-source topic",
+                            "structure_type": "wiki",
+                            "sections": [{"heading": "Summary", "body": "Fixed section body."}],
+                            "claim_ids": ["claim-a--111111111111"],
+                            "source_ids": [source_id, "source-related--777777777777"],
+                        }
+                    ]
+                },
+            ]
+            topic_client = _SequencedTopicClient(invalid_then_valid_payloads)
+
+            result = run_topic_generation_and_persist_canonical(
+                space_root=space_root,
+                source_id=source_id,
+                run_id="run-topic-repair",
+                llm_client=topic_client,
+                max_repair_loops=0,
+            )
+
+            self.assertEqual(len(result.topics), 1)
+            self.assertEqual(len(topic_client.requests), 2)
+            self.assertIsNone(topic_client.requests[0].repair_context)
+            self.assertIsNotNone(topic_client.requests[1].repair_context)
+            repair_context = topic_client.requests[1].repair_context
+            assert repair_context is not None
+            self.assertIn('"body": "   "', repair_context.previous_invalid_json)
+            self.assertTrue(
+                any(
+                    "section/body contract violation" in str(error.get("message", "")).lower()
+                    for error in repair_context.validation_errors
+                )
+            )
 
     def test_ingest_entrypoint_triggers_topic_generation_and_deterministic_build(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
