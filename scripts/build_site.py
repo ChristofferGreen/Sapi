@@ -16,6 +16,7 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from sapi.build.projection import ProjectionContractError
+from sapi.build.projection_index import write_projection_index
 from sapi.build.site_builder import build_space_site, refresh_site_new_index
 from sapi.core.registry import (
     load_registry,
@@ -101,6 +102,11 @@ def main() -> int:
                     },
                 }
             )
+            projection_index_path = write_projection_index(
+                space_root=space_root,
+                generated_files=build.generated_files,
+            )
+            builds[-1]["projection_index_path"] = str(projection_index_path)
         site_new_index_path = refresh_site_new_index(
             site_path,
             incremental=args.incremental,

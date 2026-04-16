@@ -8,8 +8,6 @@ from datetime import UTC, datetime
 import json
 import os
 from pathlib import Path
-import secrets
-import shutil
 import sys
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -19,6 +17,13 @@ if str(_REPO_ROOT) not in sys.path:
 from sapi.contracts.ids import format_timestamp_rfc3339_utc, make_run_id
 from sapi.contracts.run_envelopes import PersonaProfileRunFields, RunEnvelopeBase
 from sapi.core.pipeline_policy import finalize_pipeline_run
+from sapi.core.pipeline_runtime import (
+    add_llm_attempts,
+    build_run_envelope_base,
+    record_semantic_invocation,
+    track_path_for_write,
+    write_json_with_transaction,
+)
 from sapi.core.registry import resolve_registry_path, resolve_space_root
 from sapi.core.runtime_flags import (
     RuntimeFlagSnapshot,
@@ -102,7 +107,7 @@ def main() -> int:
     try:
         for selected in selected_personas:
             persona_id = selected.persona_id
-            _record_semantic_invocation(
+            record_semantic_invocation(
                 flow_key="persona_profile_generation",
                 semantic_flows=semantic_flows,
                 semantic_flow_invocation_counts=semantic_flow_invocation_counts,
@@ -116,7 +121,7 @@ def main() -> int:
                 },
             )
             previous_profile_payload = _read_json_dict_if_exists(semantic_spec.output_json_path)
-            _track_path_for_write(semantic_spec.output_json_path, transaction=transaction)
+            track_path_for_write(semantic_spec.output_json_path, transaction=transaction)
             profile_llm_client = _build_profile_client(
                 runtime_flags=runtime_flags,
                 persona_row=selected.row,
@@ -126,7 +131,10 @@ def main() -> int:
                 spec=semantic_spec,
                 llm_client=profile_llm_client,
             )
-            llm_attempt_count += attempt_count
+            llm_attempt_count = add_llm_attempts(
+                llm_attempt_count=llm_attempt_count,
+                attempt_count=attempt_count,
+            )
             validate_profile_semantic_payload(
                 payload=semantic_payload,
                 expected_persona_id=persona_id,
@@ -154,14 +162,14 @@ def main() -> int:
             )
             if history_update.status == "generated":
                 history_generated_count += 1
-                _write_json_with_transaction(
+                write_json_with_transaction(
                     history_path,
                     history_update.payload,
                     transaction=transaction,
                 )
             elif history_update.status == "updated":
                 history_updated_count += 1
-                _write_json_with_transaction(
+                write_json_with_transaction(
                     history_path,
                     history_update.payload,
                     transaction=transaction,
@@ -275,32 +283,6 @@ def main() -> int:
     return finalized.exit_code
 
 
-def _track_path_for_write(path: Path, *, transaction: ArtifactTransaction) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if path.exists():
-        backup_path = path.with_name(f".{path.name}.bak.{secrets.token_hex(8)}")
-        shutil.copy2(path, backup_path)
-        transaction.mark_replace(path, backup_path)
-    else:
-        transaction.mark_create(path)
-
-
-def _write_json_with_transaction(
-    path: Path,
-    payload: dict[str, object],
-    *,
-    transaction: ArtifactTransaction,
-) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if path.exists():
-        backup_path = path.with_name(f".{path.name}.bak.{secrets.token_hex(8)}")
-        shutil.copy2(path, backup_path)
-        transaction.mark_replace(path, backup_path)
-    else:
-        transaction.mark_create(path)
-    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
-
-
 def _read_json_dict_if_exists(path: Path) -> dict[str, object] | None:
     if not path.is_file():
         return None
@@ -308,17 +290,6 @@ def _read_json_dict_if_exists(path: Path) -> dict[str, object] | None:
     if not isinstance(parsed, dict):
         return None
     return parsed
-
-
-def _record_semantic_invocation(
-    *,
-    flow_key: str,
-    semantic_flows: list[str],
-    semantic_flow_invocation_counts: dict[str, int],
-) -> None:
-    if flow_key not in semantic_flows:
-        semantic_flows.append(flow_key)
-    semantic_flow_invocation_counts[flow_key] = semantic_flow_invocation_counts.get(flow_key, 0) + 1
 
 
 def _make_run_base(
@@ -336,22 +307,19 @@ def _make_run_base(
     llm_attempt_count: int,
     toolchain_versions: dict[str, str],
 ) -> RunEnvelopeBase:
-    return RunEnvelopeBase(
+    return build_run_envelope_base(
         run_id=run_id,
         flow_key="persona_profile_pipeline",
         semantic_flows=semantic_flows,
         semantic_flow_invocation_counts=semantic_flow_invocation_counts,
-        status=status,  # type: ignore[arg-type]
+        status=status,
         started_at=started_at,
         completed_at=completed_at,
-        model_fingerprint="mock_semantic_fixture" if execution_mode == "mock_llm_test" else llm_model,
-        provider_fingerprint="mock" if execution_mode == "mock_llm_test" else llm_backend,
-        reasoning_effort=reasoning_effort,
         execution_mode=execution_mode,
+        llm_backend=llm_backend,
+        llm_model=llm_model,
+        reasoning_effort=reasoning_effort,
         llm_attempt_count=llm_attempt_count,
-        lint_error_count=0,
-        lint_warning_count=0,
-        lint_info_count=0,
         toolchain_versions=toolchain_versions,
     )
 

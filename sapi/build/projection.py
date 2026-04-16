@@ -9,6 +9,7 @@ import re
 from typing import Any
 
 from sapi.build.topic_lifecycle import resolve_topic_lifecycle
+from sapi.core.fs_store import FsStoreError, list_json_paths, read_json_object
 from sapi.lint.lint_engine import LintIssue
 
 
@@ -37,10 +38,12 @@ def load_space_projection(space_root: Path) -> SpaceProjection:
 
 def _load_source_records(space_root: Path) -> list[dict[str, Any]]:
     records_dir = space_root / "sources" / "records"
-    if not records_dir.exists():
-        return []
+    try:
+        source_paths = list_json_paths(records_dir, pattern="source-*.json")
+    except FsStoreError as exc:
+        raise ProjectionContractError(str(exc)) from exc
     records: list[dict[str, Any]] = []
-    for source_path in sorted(records_dir.glob("source-*.json")):
+    for source_path in source_paths:
         payload = _read_json_object(source_path)
         source_id = payload.get("source_id")
         title = payload.get("title")
@@ -54,10 +57,12 @@ def _load_source_records(space_root: Path) -> list[dict[str, Any]]:
 
 def _load_topic_records(space_root: Path) -> list[dict[str, Any]]:
     topics_dir = space_root / "topics"
-    if not topics_dir.exists():
-        return []
+    try:
+        topic_paths = list_json_paths(topics_dir, pattern="topic-*.json")
+    except FsStoreError as exc:
+        raise ProjectionContractError(str(exc)) from exc
     topics: list[dict[str, Any]] = []
-    for topic_path in sorted(topics_dir.glob("topic-*.json")):
+    for topic_path in topic_paths:
         payload = _read_json_object(topic_path)
         topic_id = payload.get("topic_id")
         title = payload.get("title")
@@ -243,9 +248,6 @@ def _validate_topic_links(*, sources: list[dict[str, Any]], topics: list[dict[st
 
 def _read_json_object(path: Path) -> dict[str, Any]:
     try:
-        payload = json.loads(path.read_text())
-    except json.JSONDecodeError as exc:
-        raise ProjectionContractError(f"{path}: invalid JSON ({exc}).") from exc
-    if not isinstance(payload, dict):
-        raise ProjectionContractError(f"{path}: payload must be a JSON object.")
-    return payload
+        return read_json_object(path)
+    except FsStoreError as exc:
+        raise ProjectionContractError(str(exc)) from exc

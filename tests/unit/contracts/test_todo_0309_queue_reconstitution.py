@@ -13,29 +13,42 @@ class Todo0309QueueReconstitutionTests(unittest.TestCase):
     def test_open_task_blocks_are_reconstituted_for_remaining_work(self) -> None:
         todo_text = TODO_DOC_PATH.read_text()
         open_ids = _open_task_ids(todo_text)
-        self.assertEqual(open_ids, [])
+        self.assertGreater(len(open_ids), 0)
+        numeric_ids = [int(todo_id.split("-")[1]) for todo_id in open_ids]
+        self.assertEqual(numeric_ids, sorted(numeric_ids, reverse=True))
 
     def test_ready_queue_and_snapshots_are_consistent_with_open_ids(self) -> None:
         todo_text = TODO_DOC_PATH.read_text()
-        self.assertIn("### Ready Now (No Unmet TODO Dependencies)\n\n1. (none currently)", todo_text)
-        self.assertIn("### Immediate Next 10 (After Ready Now)\n\n1. (none currently)", todo_text)
-        self.assertIn("Wave A (bootstrap + contracts):\n1. (none currently)", todo_text)
-        self.assertIn("Wave C (query + social + hardening + release):\n1. (none currently)", todo_text)
-        self.assertNotIn("TODO-0309:", todo_text)
-        self.assertNotIn("TODO-0310:", todo_text)
-        self.assertNotIn("TODO-0311:", todo_text)
-        self.assertNotIn("TODO-0312:", todo_text)
+        open_ids = set(_open_task_ids(todo_text))
+        listed_ids = _listed_todo_ids(todo_text)
+        self.assertGreater(len(listed_ids), 0)
+        for todo_id in listed_ids:
+            self.assertIn(todo_id, open_ids)
 
     def test_open_task_ids_use_stable_format_and_dependency_ordering(self) -> None:
         todo_text = TODO_DOC_PATH.read_text()
         for todo_id in _open_task_ids(todo_text):
             self.assertRegex(todo_id, r"^TODO-\d{4}$")
 
-        self.assertNotIn("- [ ] TODO-", todo_text)
-
 
 def _open_task_ids(todo_text: str) -> list[str]:
     return re.findall(r"^- \[ \] (TODO-\d{4}):", todo_text, flags=re.MULTILINE)
+
+
+def _listed_todo_ids(todo_text: str) -> set[str]:
+    queue_patterns = (
+        r"### Ready Now \(No Unmet TODO Dependencies\)(.*?)(?:\n###|\Z)",
+        r"### Immediate Next 10 \(After Ready Now\)(.*?)(?:\n###|\Z)",
+        r"### Priority Lanes \(Current\)(.*?)(?:\n###|\Z)",
+        r"### Execution Queue \(Recommended\)(.*?)(?:\n###|\Z)",
+    )
+    listed: set[str] = set()
+    for pattern in queue_patterns:
+        match = re.search(pattern, todo_text, flags=re.DOTALL)
+        if match is None:
+            continue
+        listed.update(re.findall(r"TODO-\d{4}", match.group(1)))
+    return listed
 
 
 def _open_task_block(todo_text: str, todo_id: str) -> str:

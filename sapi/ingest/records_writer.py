@@ -46,6 +46,7 @@ _FRONT_PAGE_MAX_WIDTH_PX = 840
 @dataclass(frozen=True)
 class IngestExtractionPersistResult:
     run_id: str
+    attempt_count: int
     semantic_output_path: Path
     claim_paths: list[Path]
     evidence_paths: list[Path]
@@ -72,7 +73,7 @@ def run_ingest_extraction_and_persist_canonical(
             "run_id": run_id,
         },
     )
-    semantic_output, _ = run_semantic_flow(
+    semantic_output, attempt_count = run_semantic_flow(
         spec=_to_runtime_spec(resolved),
         llm_client=llm_client,
         max_repair_loops=max_repair_loops,
@@ -113,6 +114,7 @@ def run_ingest_extraction_and_persist_canonical(
 
     return IngestExtractionPersistResult(
         run_id=run_id,
+        attempt_count=attempt_count,
         semantic_output_path=resolved.output_json_path,
         claim_paths=claim_paths,
         evidence_paths=evidence_paths,

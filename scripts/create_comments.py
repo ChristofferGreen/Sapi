@@ -9,8 +9,6 @@ import json
 import os
 from pathlib import Path
 import re
-import secrets
-import shutil
 import sys
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +36,12 @@ from sapi.comments.quality import build_comment_quality_manifest
 from sapi.contracts.ids import format_timestamp_rfc3339_utc, make_run_id
 from sapi.contracts.run_envelopes import CommentRunFields, RunEnvelopeBase
 from sapi.core.pipeline_policy import finalize_pipeline_run
+from sapi.core.pipeline_runtime import (
+    add_llm_attempts,
+    build_run_envelope_base,
+    record_semantic_invocation,
+    write_json_with_transaction,
+)
 from sapi.core.registry import resolve_registry_path, resolve_site_path_from_registry, resolve_space_root
 from sapi.core.runtime_flags import (
     RuntimeFlagSnapshot,
@@ -59,7 +63,6 @@ from sapi.profiles.persona_catalog import load_seeded_persona_catalog
 _ARGUMENTATIVE_POSITIONS = {"support", "challenge", "rebuttal", "synthesis"}
 _GENERATION_ISOLATION_SCHEMA_VERSION = "comment_section_generation_context_v1"
 _ADJUDICATION_RUBRIC_ID = "comment_section_adjudication_v1"
-_COMMENT_SECTION_MAX_REPAIR_LOOPS = 0
 _GENERATION_ISOLATION_LEAK_TERMS: tuple[str, ...] = (
     "adjudication rubric",
     "scoring rubric",
@@ -156,7 +159,7 @@ def main() -> int:
                     canonical_page_controls=page_controls.canonical_page_controls_to_write,
                 )
 
-            _record_semantic_invocation(
+            record_semantic_invocation(
                 flow_key="comment_section_generation",
                 semantic_flows=semantic_flows,
                 semantic_flow_invocation_counts=semantic_flow_invocation_counts,
@@ -186,9 +189,11 @@ def main() -> int:
             semantic_payload, attempt_count = run_semantic_flow(
                 spec=spec,
                 llm_client=comment_llm_client,
-                max_repair_loops=_COMMENT_SECTION_MAX_REPAIR_LOOPS,
             )
-            llm_attempt_count += attempt_count
+            llm_attempt_count = add_llm_attempts(
+                llm_attempt_count=llm_attempt_count,
+                attempt_count=attempt_count,
+            )
             generation_isolation_summary = _merge_generation_isolation_summary(
                 generation_isolation_summary,
                 comment_llm_client.generation_isolation_summary,
@@ -222,7 +227,7 @@ def main() -> int:
                 page_ref=target.page_ref,
                 merged_comments=merge_result.merged_comments,
             )
-            _write_json_with_transaction(
+            write_json_with_transaction(
                 target.page_path,
                 updated_page_payload,
                 transaction=transaction,
@@ -237,7 +242,7 @@ def main() -> int:
                 / "comment_sections"
                 / f"comment-section-{snapshot_seed}.json"
             )
-            _write_json_with_transaction(
+            write_json_with_transaction(
                 evidence_snapshot_path,
                 _build_web_augmented_evidence_snapshot(
                     seed=snapshot_seed,
@@ -252,7 +257,7 @@ def main() -> int:
             comments_by_page=comments_by_page_for_quality,
             snapshot_path=evidence_snapshot_path,
         )
-        _write_json_with_transaction(
+        write_json_with_transaction(
             comment_quality_manifest_path,
             comment_quality_manifest_payload,
             transaction=transaction,
@@ -492,22 +497,6 @@ def _build_original_source_context(
     }
 
 
-def _write_json_with_transaction(
-    path: Path,
-    payload: dict[str, object],
-    *,
-    transaction: ArtifactTransaction,
-) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if path.exists():
-        backup_path = path.with_name(f".{path.name}.bak.{secrets.token_hex(8)}")
-        shutil.copy2(path, backup_path)
-        transaction.mark_replace(path, backup_path)
-    else:
-        transaction.mark_create(path)
-    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
-
-
 def _resolve_snapshot_seed(raw_seed: str | None, *, run_id: str) -> str:
     if raw_seed is None or not raw_seed.strip():
         return run_id
@@ -538,17 +527,6 @@ def _build_web_augmented_evidence_snapshot(
     }
 
 
-def _record_semantic_invocation(
-    *,
-    flow_key: str,
-    semantic_flows: list[str],
-    semantic_flow_invocation_counts: dict[str, int],
-) -> None:
-    if flow_key not in semantic_flows:
-        semantic_flows.append(flow_key)
-    semantic_flow_invocation_counts[flow_key] = semantic_flow_invocation_counts.get(flow_key, 0) + 1
-
-
 def _make_run_base(
     *,
     run_id: str,
@@ -564,22 +542,19 @@ def _make_run_base(
     llm_attempt_count: int,
     toolchain_versions: dict[str, str],
 ) -> RunEnvelopeBase:
-    return RunEnvelopeBase(
+    return build_run_envelope_base(
         run_id=run_id,
         flow_key="comment_section_pipeline",
         semantic_flows=semantic_flows,
         semantic_flow_invocation_counts=semantic_flow_invocation_counts,
-        status=status,  # type: ignore[arg-type]
+        status=status,
         started_at=started_at,
         completed_at=completed_at,
-        model_fingerprint="mock_semantic_fixture" if execution_mode == "mock_llm_test" else llm_model,
-        provider_fingerprint="mock" if execution_mode == "mock_llm_test" else llm_backend,
-        reasoning_effort=reasoning_effort,
         execution_mode=execution_mode,
+        llm_backend=llm_backend,
+        llm_model=llm_model,
+        reasoning_effort=reasoning_effort,
         llm_attempt_count=llm_attempt_count,
-        lint_error_count=0,
-        lint_warning_count=0,
-        lint_info_count=0,
         toolchain_versions=toolchain_versions,
     )
 

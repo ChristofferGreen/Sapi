@@ -18,6 +18,17 @@ from typing import Any
 from urllib.parse import urlsplit
 
 from sapi.build.projection import SpaceProjection, load_space_projection
+from sapi.build.topic_claim_rendering import (
+    claim_option_title,
+    extract_claim_annotations,
+    load_claim_option_titles,
+    render_sentence_claim_body,
+    render_sentence_claim_picker_script,
+    sentence_claim_bindings,
+    short_claim_option_label,
+    split_sentences,
+    truncate_text_for_ui,
+)
 from sapi.core.display_titles import resolve_display_title
 from sapi.core.site_scope import load_site_scope, load_subspaces_metadata
 from sapi.lint.lint_engine import LintSummary, default_lint_summary
@@ -393,7 +404,7 @@ def _write_source_pages(
     site_path = output_root.parents[2]
     evidence_by_source_id = _evidence_records_by_source_id(evidence_records)
     claim_records = _load_claim_records(space_root=output_root.parent)
-    claim_option_title_by_id = _load_claim_option_titles(space_root=output_root.parent)
+    claim_option_title_by_id = load_claim_option_titles(space_root=output_root.parent)
     for source in sorted(projection.sources, key=lambda item: item["source_id"]):
         source_path = sources_dir / f"{source['source_id']}.html"
         stylesheet_href = _relative_href(
@@ -451,7 +462,7 @@ def _write_source_pages(
                 + escape(claim_id)
                 + ".html\">"
                 + escape(
-                    _claim_option_title(
+                    claim_option_title(
                         claim_id=claim_id,
                         claim_option_title_by_id=claim_option_title_by_id,
                     )
@@ -532,7 +543,7 @@ def _write_source_pages(
                 space_name=context.space_name,
                 show_empty_state=True,
             )
-            + _render_sentence_claim_picker_script()
+            + render_sentence_claim_picker_script()
         )
         _write_text_file(
             source_path,
@@ -592,7 +603,7 @@ def _collect_claim_ids_from_topics(*, topics: list[dict[str, Any]]) -> list[str]
         for section in sections:
             if not isinstance(section, dict):
                 continue
-            _, annotation_groups = _extract_claim_annotations(str(section.get("body") or ""))
+            _, annotation_groups = extract_claim_annotations(str(section.get("body") or ""))
             for group in annotation_groups:
                 for claim_id in group:
                     claim_ids.add(claim_id)
@@ -724,8 +735,8 @@ def _render_source_dossier_section(
                 else []
             )
             claim_ids = _resolve_section_claim_ids(raw_claim_ids=raw_claim_ids, claim_ref_map=claim_ref_map)
-            sentence_bindings = [(sentence, claim_ids) for sentence in _split_sentences(body)]
-            rendered_body = _render_sentence_claim_body(
+            sentence_bindings = [(sentence, claim_ids) for sentence in split_sentences(body)]
+            rendered_body = render_sentence_claim_body(
                 sentence_bindings=sentence_bindings,
                 section_index=idx,
                 site_presentation_mode="public",
@@ -915,7 +926,7 @@ def _write_topic_pages(
 ) -> list[Path]:
     topics_dir = output_root / "topics"
     topics_dir.mkdir(parents=True, exist_ok=True)
-    claim_option_title_by_id = _load_claim_option_titles(space_root=output_root.parent)
+    claim_option_title_by_id = load_claim_option_titles(space_root=output_root.parent)
     evidence_by_topic_id = _evidence_records_by_topic_id(evidence_records)
     written: list[Path] = []
     for topic in sorted(projection.topics, key=lambda item: item["topic_id"]):
@@ -1034,7 +1045,7 @@ def _render_topic_page(
             space_name=context.space_name,
             show_empty_state=True,
         )
-        + _render_sentence_claim_picker_script()
+        + render_sentence_claim_picker_script()
     )
     return _render_space_layout(
         title=str(topic["title"]),
@@ -1101,7 +1112,7 @@ def _render_topic_evidence_section(*, topic_evidence_records: list[_EvidenceReco
             + ".html\">"
             + escape(record.title)
             + "</a><p class=\"summary\">"
-            + escape(_truncate_text_for_ui(record.excerpt, max_length=180))
+            + escape(truncate_text_for_ui(record.excerpt, max_length=180))
             + "</p></li>"
         )
         for record in topic_evidence_records
@@ -1449,286 +1460,14 @@ def _render_topic_section(
 ) -> str:
     heading = escape(str(section["heading"]))
     body = str(section["body"])
-    sentence_bindings = _sentence_claim_bindings(body)
-    rendered_body = _render_sentence_claim_body(
+    sentence_bindings = sentence_claim_bindings(body)
+    rendered_body = render_sentence_claim_body(
         sentence_bindings=sentence_bindings,
         section_index=section_index,
         site_presentation_mode=site_presentation_mode,
         claim_option_title_by_id=claim_option_title_by_id,
     )
     return f"<h2 class=\"topic-section-heading\">{heading}</h2><p class=\"topic-section-body\">{rendered_body}</p>"
-
-
-def _extract_claim_annotations(body: str) -> tuple[str, list[list[str]]]:
-    annotation_pattern = re.compile(r"\[\[claims:([^\]]+)\]\]")
-    annotation_groups = [_parse_claim_ids(match.group(1)) for match in annotation_pattern.finditer(body)]
-    clean_body = re.sub(r"\s{2,}", " ", annotation_pattern.sub("", body)).strip()
-    return clean_body, [group for group in annotation_groups if group]
-
-
-def _sentence_claim_bindings(body: str) -> list[tuple[str, list[str]]]:
-    annotation_pattern = re.compile(r"\[\[claims:([^\]]+)\]\]")
-    matches = list(annotation_pattern.finditer(body))
-    if not matches:
-        return [(sentence, []) for sentence in _split_sentences(body)]
-
-    bindings: list[tuple[str, list[str]]] = []
-
-    cursor = 0
-    for match in matches:
-        chunk = body[cursor : match.start()]
-        claim_ids = _parse_claim_ids(match.group(1))
-        chunk_sentences = _split_sentences(chunk)
-        if chunk_sentences:
-            for sentence in chunk_sentences[:-1]:
-                bindings.append((sentence, []))
-            bindings.append((chunk_sentences[-1], claim_ids))
-        cursor = match.end()
-
-    tail_sentences = _split_sentences(body[cursor:])
-    bindings.extend((sentence, []) for sentence in tail_sentences)
-
-    if bindings:
-        return bindings
-
-    plain_text = re.sub(r"\s{2,}", " ", annotation_pattern.sub("", body)).strip()
-    return [(plain_text, [])] if plain_text else []
-
-
-def _parse_claim_ids(raw_claim_ids: str) -> list[str]:
-    return [token.strip() for token in raw_claim_ids.split(",") if token.strip()]
-
-
-def _split_sentences(text: str) -> list[str]:
-    normalized = re.sub(r"\s+", " ", text).strip()
-    if not normalized:
-        return []
-    sentence_pattern = re.compile(r"[^.!?]+(?:[.!?]+[\"')\]]*)?(?:\s+|$)")
-    sentences = [match.group(0).strip() for match in sentence_pattern.finditer(normalized) if match.group(0).strip()]
-    return sentences if sentences else [normalized]
-
-
-def _render_sentence_claim_body(
-    *,
-    sentence_bindings: list[tuple[str, list[str]]],
-    section_index: int,
-    site_presentation_mode: str,
-    claim_option_title_by_id: dict[str, str],
-) -> str:
-    rendered_sentences: list[str] = []
-    for sentence_index, (sentence, claim_ids) in enumerate(sentence_bindings, start=1):
-        rendered = _render_sentence_claim_binding(
-            sentence=sentence,
-            claim_ids=claim_ids,
-            section_index=section_index,
-            sentence_index=sentence_index,
-            site_presentation_mode=site_presentation_mode,
-            claim_option_title_by_id=claim_option_title_by_id,
-        )
-        if rendered:
-            rendered_sentences.append(rendered)
-    return " ".join(rendered_sentences)
-
-
-def _render_sentence_claim_binding(
-    *,
-    sentence: str,
-    claim_ids: list[str],
-    section_index: int,
-    sentence_index: int,
-    site_presentation_mode: str,
-    claim_option_title_by_id: dict[str, str],
-) -> str:
-    if not sentence:
-        return ""
-    sentence_html = escape(sentence)
-    if not claim_ids:
-        return sentence_html
-    if len(claim_ids) == 1:
-        claim_id = claim_ids[0]
-        href = f"../claims/{claim_id}.html"
-        debug_attrs = (
-            f" data-claim-id=\"{escape(claim_id)}\" data-claim-href=\"{escape(href)}\""
-            if site_presentation_mode == "debug"
-            else ""
-        )
-        return (
-            f"<a class=\"sentence-claim-link\" href=\"{escape(href)}\"{debug_attrs}>"
-            + sentence_html
-            + "</a>"
-        )
-
-    details_id = f"sentence-claim-picker-s{section_index}-t{sentence_index}"
-    option_rows: list[str] = []
-    for claim_id in claim_ids:
-        href = f"../claims/{claim_id}.html"
-        label = (
-            escape(claim_id)
-            if site_presentation_mode == "debug"
-            else escape(_claim_option_title(claim_id=claim_id, claim_option_title_by_id=claim_option_title_by_id))
-        )
-        debug_attrs = (
-            f" data-claim-id=\"{escape(claim_id)}\" data-claim-href=\"{escape(href)}\""
-            if site_presentation_mode == "debug"
-            else ""
-        )
-        option_rows.append(
-            f"<a class=\"sentence-claim-option\" href=\"{escape(href)}\"{debug_attrs}>{label}</a>"
-        )
-    return (
-        f"<span id=\"{details_id}\" class=\"sentence-claim-picker\">"
-        f"<a href=\"#\" class=\"sentence-claim-summary\" role=\"button\" aria-expanded=\"false\" "
-        f"aria-controls=\"{details_id}-card\">{sentence_html}</a>"
-        f"<span id=\"{details_id}-card\" class=\"sentence-claim-card\">"
-        "<span class=\"sentence-claim-card-title\">Select evidence claim</span>"
-        "<span class=\"sentence-claim-options\">"
-        + "".join(option_rows)
-        + "</span></span></span>"
-    )
-
-
-def _render_sentence_claim_picker_script() -> str:
-    return (
-        "<script>\n"
-        "(function(){\n"
-        "  var pickers=Array.prototype.slice.call(document.querySelectorAll('.sentence-claim-picker'));\n"
-        "  if(!pickers.length){return;}\n"
-        "  function cardFor(picker){\n"
-        "    if(!picker){return null;}\n"
-        "    return picker.querySelector('.sentence-claim-card');\n"
-        "  }\n"
-        "  function clearPosition(picker){\n"
-        "    if(!picker){return;}\n"
-        "    picker.removeAttribute('data-align');\n"
-        "    var card=cardFor(picker);\n"
-        "    if(card){card.style.transform='';}\n"
-        "  }\n"
-        "  function positionCard(picker){\n"
-        "    if(!picker||!picker.hasAttribute('data-open')){return;}\n"
-        "    var card=cardFor(picker);\n"
-        "    if(!card){return;}\n"
-        "    clearPosition(picker);\n"
-        "    var viewportWidth=window.innerWidth||document.documentElement.clientWidth||0;\n"
-        "    var gutter=12;\n"
-        "    var availableWidth=Math.max(260,viewportWidth-(gutter*2));\n"
-        "    var targetWidth=Math.min(860,availableWidth);\n"
-        "    card.style.maxWidth=targetWidth+'px';\n"
-        "    var rect=card.getBoundingClientRect();\n"
-        "    if(rect.right>viewportWidth-gutter){\n"
-        "      picker.setAttribute('data-align','right');\n"
-        "      rect=card.getBoundingClientRect();\n"
-        "    }\n"
-        "    var shiftX=0;\n"
-        "    if(rect.right>viewportWidth-gutter){shiftX=viewportWidth-gutter-rect.right;}\n"
-        "    if(rect.left<gutter){shiftX=shiftX+(gutter-rect.left);}\n"
-        "    if(shiftX!==0){card.style.transform='translateX('+shiftX+'px)';}\n"
-        "  }\n"
-        "  function setOpen(picker,open){\n"
-        "    if(!picker){return;}\n"
-        "    if(open){\n"
-        "      picker.setAttribute('data-open','true');\n"
-        "      positionCard(picker);\n"
-        "    }\n"
-        "    else{\n"
-        "      picker.removeAttribute('data-open');\n"
-        "      clearPosition(picker);\n"
-        "    }\n"
-        "    var trigger=picker.querySelector('.sentence-claim-summary');\n"
-        "    if(trigger){trigger.setAttribute('aria-expanded',open?'true':'false');}\n"
-        "  }\n"
-        "  function closeAll(exceptPicker){\n"
-        "    pickers.forEach(function(picker){\n"
-        "      if(exceptPicker&&picker===exceptPicker){return;}\n"
-        "      setOpen(picker,false);\n"
-        "    });\n"
-        "  }\n"
-        "  function eventWithinPicker(event){\n"
-        "    var target=event&&event.target;\n"
-        "    if(!target){return false;}\n"
-        "    if(target.closest){return !!target.closest('.sentence-claim-picker');}\n"
-        "    if(target.parentElement&&target.parentElement.closest){\n"
-        "      return !!target.parentElement.closest('.sentence-claim-picker');\n"
-        "    }\n"
-        "    return false;\n"
-        "  }\n"
-        "  pickers.forEach(function(picker){\n"
-        "    var trigger=picker.querySelector('.sentence-claim-summary');\n"
-        "    if(!trigger){return;}\n"
-        "    trigger.addEventListener('click',function(event){\n"
-        "      event.preventDefault();\n"
-        "      event.stopPropagation();\n"
-        "      var alreadyOpen=picker.hasAttribute('data-open');\n"
-        "      closeAll(picker);\n"
-        "      setOpen(picker,!alreadyOpen);\n"
-        "    });\n"
-        "    trigger.addEventListener('keydown',function(event){\n"
-        "      if(event.key!=='Enter'&&event.key!==' '){return;}\n"
-        "      event.preventDefault();\n"
-        "      event.stopPropagation();\n"
-        "      var alreadyOpen=picker.hasAttribute('data-open');\n"
-        "      closeAll(picker);\n"
-        "      setOpen(picker,!alreadyOpen);\n"
-        "    });\n"
-        "  });\n"
-        "  window.addEventListener('resize',function(){\n"
-        "    pickers.forEach(function(picker){\n"
-        "      if(picker.hasAttribute('data-open')){positionCard(picker);}\n"
-        "    });\n"
-        "  });\n"
-        "  document.addEventListener('click',function(event){\n"
-        "    if(eventWithinPicker(event)){return;}\n"
-        "    closeAll(null);\n"
-        "  });\n"
-        "  document.addEventListener('keydown',function(event){\n"
-        "    if(event.key==='Escape'){closeAll(null);}\n"
-        "  });\n"
-        "})();\n"
-        "</script>\n"
-    )
-
-
-def _load_claim_option_titles(*, space_root: Path) -> dict[str, str]:
-    claim_records = _load_claim_records(space_root=space_root)
-    titles: dict[str, str] = {}
-    for claim_id, claim_record in claim_records.items():
-        raw_short_title = str(claim_record.get("short_title") or "")
-        title = _short_claim_option_label(
-            raw_short_title,
-            fallback_text=_claim_text(claim_id=claim_id, claim_record=claim_record),
-        )
-        if title and title != claim_id:
-            titles[claim_id] = title
-    return titles
-
-
-def _claim_option_title(*, claim_id: str, claim_option_title_by_id: dict[str, str]) -> str:
-    title = claim_option_title_by_id.get(claim_id)
-    if title:
-        return title
-    return claim_id
-
-
-def _short_claim_option_label(text: str, *, fallback_text: str | None = None) -> str:
-    raw_value = " ".join(text.split()).strip(" .,:;")
-    if raw_value:
-        return raw_value
-    if fallback_text:
-        fallback_value = " ".join(fallback_text.split()).strip(" .,:;")
-        if fallback_value:
-            return fallback_value
-    return ""
-
-
-def _truncate_text_for_ui(text: str, *, max_length: int) -> str:
-    value = text.strip()
-    if len(value) <= max_length:
-        return value
-    if max_length <= 3:
-        return value[:max_length]
-    truncated = value[: max_length - 3].rstrip()
-    if " " in truncated:
-        truncated = truncated.rsplit(" ", 1)[0]
-    return truncated + "..."
 
 
 def _sha256(path: Path) -> str:
@@ -3357,7 +3096,7 @@ def _write_space_evidence_pages(
         for source in projection.sources
         if isinstance(source, dict) and source.get("source_id")
     }
-    claim_option_title_by_id = _load_claim_option_titles(space_root=output_root.parent)
+    claim_option_title_by_id = load_claim_option_titles(space_root=output_root.parent)
     topic_title_by_id = {
         str(topic.get("topic_id")): str(topic.get("title") or topic.get("topic_id"))
         for topic in projection.topics
@@ -3387,7 +3126,7 @@ def _write_space_evidence_pages(
                     else ""
                 )
                 + "<p class=\"summary\">"
-                + escape(_truncate_text_for_ui(record.excerpt, max_length=220))
+                + escape(truncate_text_for_ui(record.excerpt, max_length=220))
                 + "</p></li>"
             )
             for record in evidence_records
@@ -3445,7 +3184,7 @@ def _write_space_evidence_pages(
                 + escape(claim_id)
                 + ".html\">"
                 + escape(
-                    _claim_option_title(
+                    claim_option_title(
                         claim_id=claim_id,
                         claim_option_title_by_id=claim_option_title_by_id,
                     )
@@ -3528,7 +3267,7 @@ def _collect_claim_ids(*, projection: SpaceProjection) -> list[str]:
         for section in sections:
             if not isinstance(section, dict):
                 continue
-            _, annotation_groups = _extract_claim_annotations(str(section.get("body", "")))
+            _, annotation_groups = extract_claim_annotations(str(section.get("body", "")))
             for claim_group in annotation_groups:
                 claim_ids.update(claim_group)
     return sorted(claim_ids)
@@ -3546,7 +3285,7 @@ def _claim_topic_usage_map(*, projection: SpaceProjection) -> dict[str, set[str]
         for section in sections:
             if not isinstance(section, dict):
                 continue
-            _, annotation_groups = _extract_claim_annotations(str(section.get("body", "")))
+            _, annotation_groups = extract_claim_annotations(str(section.get("body", "")))
             for claim_group in annotation_groups:
                 for claim_id in claim_group:
                     normalized = str(claim_id).strip()
@@ -3664,7 +3403,7 @@ def _evidence_claim_links_html(
         + escape(claim_id)
         + ".html\">"
         + escape(
-            _claim_option_title(
+            claim_option_title(
                 claim_id=claim_id,
                 claim_option_title_by_id=claim_option_title_by_id,
             )
@@ -3775,7 +3514,7 @@ def _claim_display_title(
     if text == claim_id:
         return claim_id
     raw_short_title = str(claim_record.get("short_title") or "")
-    title = _short_claim_option_label(raw_short_title, fallback_text=text)
+    title = short_claim_option_label(raw_short_title, fallback_text=text)
     if not title:
         title = text
     if max_length is None or len(title) <= max_length:
@@ -3815,7 +3554,7 @@ def _claim_evidence_rows(
                 + ".html\">"
                 + escape(record.title)
                 + "</a><p class=\"summary\">"
-                + escape(_truncate_text_for_ui(record.excerpt, max_length=220))
+                + escape(truncate_text_for_ui(record.excerpt, max_length=220))
                 + "</p></li>"
             )
         if rows:
@@ -3859,7 +3598,7 @@ def _claim_usage_rows(
         for section in sections:
             if not isinstance(section, dict):
                 continue
-            _, annotation_groups = _extract_claim_annotations(str(section.get("body") or ""))
+            _, annotation_groups = extract_claim_annotations(str(section.get("body") or ""))
             if any(claim_id in group for group in annotation_groups):
                 used = True
                 break

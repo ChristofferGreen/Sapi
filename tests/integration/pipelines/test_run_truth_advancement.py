@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from sapi.profiles.persona_catalog import load_seeded_persona_catalog
 from tests.conftest import REPO_ROOT, bootstrap_site_and_space, run_command, write_source_fixture
 
 
@@ -18,6 +19,7 @@ class RunTruthAdvancementIntegrationTests(unittest.TestCase):
             tmp_root = Path(tmp)
             site_path = bootstrap_site_and_space(tmp_root, "alpha")
             space_root = site_path / "spaces" / "alpha"
+            persona_id = _seeded_persona_ids(count=1)[0]
 
             source_a = write_source_fixture(tmp_root, filename="source-a.txt", content="run-truth source a\n")
             ingest_success = run_command(
@@ -76,7 +78,7 @@ class RunTruthAdvancementIntegrationTests(unittest.TestCase):
                     "--registry-path",
                     str(site_path / "spaces.toml"),
                     "--persona-id",
-                    "commenter-1",
+                    persona_id,
                     "--mock-llm",
                 ]
             )
@@ -146,6 +148,7 @@ class RunTruthAdvancementIntegrationTests(unittest.TestCase):
             tmp_root = Path(tmp)
             site_path = bootstrap_site_and_space(tmp_root, "alpha")
             space_root = site_path / "spaces" / "alpha"
+            persona_id = _seeded_persona_ids(count=1)[0]
 
             source_a = write_source_fixture(tmp_root, filename="source-a.txt", content="baseline source\n")
             ingest_success = run_command(
@@ -201,7 +204,7 @@ class RunTruthAdvancementIntegrationTests(unittest.TestCase):
                     "--registry-path",
                     str(site_path / "spaces.toml"),
                     "--persona-id",
-                    "commenter-1",
+                    persona_id,
                     "--mock-llm",
                 ]
             )
@@ -265,7 +268,7 @@ class RunTruthAdvancementIntegrationTests(unittest.TestCase):
                     "--registry-path",
                     str(site_path / "spaces.toml"),
                     "--persona-id",
-                    "commenter-1",
+                    persona_id,
                     "--simulate-terminal-failure",
                     "--mock-llm",
                 ]
@@ -307,6 +310,10 @@ class RunTruthAdvancementIntegrationTests(unittest.TestCase):
             )
             + "\n"
         )
+
+def _seeded_persona_ids(*, count: int) -> list[str]:
+    rows = load_seeded_persona_catalog(repo_root=REPO_ROOT, require_image_files=False)
+    return [str(row["persona_id"]) for row in rows[:count]]
 
 
 if __name__ == "__main__":

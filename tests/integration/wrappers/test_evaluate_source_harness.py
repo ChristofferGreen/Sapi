@@ -6,6 +6,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from sapi.profiles.persona_catalog import load_seeded_persona_catalog
+
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
@@ -91,6 +93,7 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             tmp_root = Path(tmp)
             site_path, source_path = self._bootstrap_site_space_and_source(tmp_root, "alpha")
             space_root = site_path / "spaces" / "alpha"
+            persona_id = _seeded_persona_ids(count=1)[0]
             (space_root / "topics" / "topic-example.json").write_text(
                 json.dumps(
                     {
@@ -117,7 +120,7 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
                     "--comments",
                     "6",
                     "--comment-user",
-                    "persona-1",
+                    persona_id,
                     "--comment-page",
                     "topic:topic-example",
                     "--mock-llm",
@@ -148,14 +151,14 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
                 manifest.get("comments", {}).get("effective_page_targets"),
                 ["topic:topic-example"],
             )
-            self.assertEqual(manifest.get("comments", {}).get("effective_user_targets"), ["persona-1"])
+            self.assertEqual(manifest.get("comments", {}).get("effective_user_targets"), [persona_id])
             self.assertEqual(
                 manifest.get("comments", {}).get("effective_page_requested_counts"),
                 [{"target": "topic:topic-example", "requested_count": 6}],
             )
             self.assertEqual(
                 manifest.get("comments", {}).get("effective_user_requested_counts"),
-                [{"target": "persona-1", "requested_count": 6}],
+                [{"target": persona_id, "requested_count": 6}],
             )
             self.assertIn("run_ids", manifest)
             self.assertIsInstance(manifest.get("run_ids"), dict)
@@ -167,7 +170,7 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             readme_text = (out_dir / "README.md").read_text()
             self.assertIn("create_comments:", readme_text)
             self.assertIn("--count 6", readme_text)
-            self.assertIn("--comment-user persona-1", readme_text)
+            self.assertIn(f"--comment-user {persona_id}", readme_text)
             self.assertIn("--comment-page topic:topic-example", readme_text)
 
             comments_review = (out_dir / "comments_review.md").read_text()
@@ -176,7 +179,7 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             self.assertIn("## Per-User Requested Counts", comments_review)
             self.assertIn("## Representative Thread Excerpt", comments_review)
             self.assertIn("| `topic:topic-example` | 6 |", comments_review)
-            self.assertIn("| `persona-1` | 6 |", comments_review)
+            self.assertIn(f"| `{persona_id}` | 6 |", comments_review)
 
     def test_invalid_comments_arg_fails_fast_without_partial_pack(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -250,6 +253,33 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             self.assertIn("--enable-source-index", readme_text)
             self.assertIn("validate_lint:", readme_text)
 
+    def test_stdout_variation_does_not_break_run_resolution_or_pack_generation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            site_path, source_path = self._bootstrap_site_space_and_source(Path(tmp), "alpha")
+            result = self._run(
+                [
+                    "bash",
+                    str(REPO_ROOT / "evaluate_source.sh"),
+                    str(site_path),
+                    "alpha",
+                    str(source_path),
+                    "--simulate-stdout-variation",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            space_root = site_path / "spaces" / "alpha"
+            evaluations_root = space_root / "outputs" / "evaluations"
+            evaluation_dirs = sorted(path for path in evaluations_root.iterdir() if path.is_dir())
+            self.assertEqual(len(evaluation_dirs), 1)
+            manifest = json.loads((evaluation_dirs[0] / "manifest.json").read_text())
+            run_ids = manifest.get("run_ids", {})
+            self.assertIsInstance(run_ids.get("ingest"), str)
+            self.assertIsInstance(run_ids.get("query"), str)
+            self.assertTrue((space_root / "runs" / str(run_ids["ingest"]) / "run.md").is_file())
+            self.assertTrue((space_root / "runs" / str(run_ids["query"]) / "run.md").is_file())
+
     def _bootstrap_site_space_and_source(self, tmp_root: Path, space_name: str) -> tuple[Path, Path]:
         site_path = tmp_root / "site-a"
         self._run(["bash", str(REPO_ROOT / "create_site.sh"), str(site_path), "My Site"], check=True)
@@ -270,6 +300,10 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
                 f"Command failed: {' '.join(cmd)}\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}"
             )
         return result
+
+def _seeded_persona_ids(*, count: int) -> list[str]:
+    rows = load_seeded_persona_catalog(repo_root=REPO_ROOT, require_image_files=False)
+    return [str(row["persona_id"]) for row in rows[:count]]
 
 
 if __name__ == "__main__":

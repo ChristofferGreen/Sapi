@@ -111,6 +111,15 @@ scripts/
   lint.py
 ```
 
+Topology ownership note (resolved stubs):
+- `sapi/core/fs_store.py` is the shared JSON filesystem helper used by projection/build readers for
+  canonical object loading and deterministic path listing.
+- `sapi/build/projection_index.py` owns deterministic projection-index emission at
+  `<space_root>/outputs/projection_index/index.json` and is wired from `scripts/build_site.py`.
+- `sapi/build/site_builder.py` remains orchestration-heavy but delegates topic sentence-level
+  claim annotation parsing/rendering and claim-option title synthesis to
+  `sapi/build/topic_claim_rendering.py`.
+
 ## 4. Core Data Types
 
 Use typed models (dataclass or Pydantic). Keep fields aligned with schemas and run frontmatter.

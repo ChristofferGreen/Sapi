@@ -78,7 +78,7 @@ class RuntimeFlagSurfaceContractTests(unittest.TestCase):
                 self.assertEqual(args.llm_backend, "codex")
                 self.assertEqual(args.llm_model, "gpt-5.4")
                 self.assertEqual(args.llm_reasoning_effort, "high")
-                self.assertEqual(args.llm_timeout_secs, 1000)
+                self.assertEqual(args.llm_timeout_secs, 300)
                 self.assertEqual(args.warning_budget, 200)
                 self.assertEqual(args.run_search_visibility, "auto")
                 self.assertEqual(args.site_presentation_mode, "public")

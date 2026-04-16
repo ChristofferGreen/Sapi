@@ -155,6 +155,47 @@ class GuardrailChecksTests(unittest.TestCase):
                 any(issue.check_id == "canonical_mutation_ownership" for issue in issues)
             )
 
+    def test_guardrail_flags_declared_semantic_flow_without_shared_executor(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write(
+                root,
+                "scripts/query.py",
+                """
+                def main() -> int:
+                    semantic_flow = "query_synthesis"
+                    return 0
+                """,
+            )
+            issues = run_guardrail_checks(root)
+            self.assertTrue(
+                any(issue.check_id == "semantic_flow_execution_contract" for issue in issues)
+            )
+            self.assertTrue(
+                any("query_synthesis" in issue.message for issue in issues)
+            )
+
+    def test_guardrail_allows_declared_semantic_flow_with_shared_executor(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write(
+                root,
+                "scripts/query.py",
+                """
+                from sapi.llm.semantic_executor import build_semantic_spec_from_contract, run_semantic_flow
+
+                def main() -> int:
+                    flow_key = "query_synthesis"
+                    spec = build_semantic_spec_from_contract(flow_key, repo_root=None, path_tokens={})
+                    run_semantic_flow(spec=spec, llm_client=None)
+                    return 0
+                """,
+            )
+            issues = run_guardrail_checks(root)
+            self.assertFalse(
+                any(issue.check_id == "semantic_flow_execution_contract" for issue in issues)
+            )
+
     def test_validate_entrypoint_reports_guardrail_failures_with_clear_message(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_root = Path(tmp)

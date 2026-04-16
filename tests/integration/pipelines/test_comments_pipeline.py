@@ -168,7 +168,10 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                                 {
                                     "comment_uid": existing_uid,
                                     "persona_id": persona_id,
-                                    "body": f"Generated comment 1 by {persona_id}.",
+                                    "body": _first_mock_comment_body(
+                                        persona_id=persona_id,
+                                        page_label="Alpha",
+                                    ),
                                     "parent_comment_uid": None,
                                     "comment_no": "pc-001",
                                 }
@@ -786,3 +789,16 @@ if __name__ == "__main__":
 def _seeded_persona_ids(*, count: int) -> list[str]:
     rows = load_seeded_persona_catalog(repo_root=REPO_ROOT, require_image_files=False)
     return [str(row["persona_id"]) for row in rows[:count]]
+
+
+def _first_mock_comment_body(*, persona_id: str, page_label: str) -> str:
+    trimmed = persona_id.strip()
+    if trimmed.startswith("persona-"):
+        trimmed = trimmed[len("persona-") :]
+    words = [part for part in trimmed.split("-") if part]
+    persona_name = " ".join(word.capitalize() for word in words) if words else persona_id
+    focus_line = "the central argument is clear but benefits from explicit evidence links"
+    return (
+        f"{persona_name}: On {page_label}, the clearest claim is that {focus_line}. "
+        "The page reads stronger when each conclusion stays tied to a specific evidence line."
+    )

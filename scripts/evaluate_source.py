@@ -8,7 +8,6 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 import json
 from pathlib import Path
-import re
 import shutil
 import subprocess
 import sys
@@ -30,9 +29,6 @@ from sapi.core.runtime_flags import (
     validate_runtime_flag_arguments,
 )
 
-_RUN_ID_RE = re.compile(r"run_id=(run-[^,\s)]+)")
-_FIELD_RE_CACHE: dict[str, re.Pattern[str]] = {}
-
 
 @dataclass(frozen=True)
 class StepResult:
@@ -52,6 +48,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--comment-user", action="append", default=[])
     parser.add_argument("--comment-page", action="append", default=[])
     parser.add_argument("--require-source-date", action="store_true")
+    parser.add_argument("--simulate-stdout-variation", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--verbose", action="store_true")
     add_runtime_flag_arguments(parser)
     return parser
@@ -68,7 +65,7 @@ def main() -> int:
         space_root = resolve_space_root(registry_path, args.space_name)
         started_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
 
-        existing_run_ids = _list_run_ids(space_root)
+        ingest_runs_before = _list_run_ids(space_root)
         ingest_result = _run_checked(
             [
                 sys.executable,
@@ -82,13 +79,16 @@ def main() -> int:
             ],
             step_name="ingest_source",
         )
-
-        ingest_run_id = _extract_run_id(ingest_result.stdout)
-        if ingest_run_id is None:
-            new_run_ids = sorted(_list_run_ids(space_root) - existing_run_ids)
-            if len(new_run_ids) != 1:
-                raise RuntimeError("Unable to resolve ingest run_id from output or run directory diff.")
-            ingest_run_id = new_run_ids[0]
+        if args.simulate_stdout_variation:
+            ingest_result = _rewrite_step_stdout_for_variation(
+                ingest_result,
+                step_name="ingest_source",
+            )
+        ingest_run_id = _resolve_single_new_run_id(
+            space_root=space_root,
+            before_runs=ingest_runs_before,
+            step_name="ingest_source",
+        )
 
         lint_result = _run_checked(
             [
@@ -112,6 +112,7 @@ def main() -> int:
         strict_question = (
             f"Provide a strict summary for source `{args.source_path_or_url}` using only canonical evidence."
         )
+        query_runs_before = _list_run_ids(space_root)
         query_result = _run_checked(
             [
                 sys.executable,
@@ -124,11 +125,19 @@ def main() -> int:
             ],
             step_name="query_strict",
         )
-        query_run_id = _extract_run_id(query_result.stdout)
-        if query_run_id is None:
-            raise RuntimeError("Unable to resolve query run_id from query output.")
+        if args.simulate_stdout_variation:
+            query_result = _rewrite_step_stdout_for_variation(
+                query_result,
+                step_name="query_strict",
+            )
+        query_run_id = _resolve_single_new_run_id(
+            space_root=space_root,
+            before_runs=query_runs_before,
+            step_name="query_strict",
+        )
 
         comments_result: StepResult | None = None
+        comments_run_id: str | None = None
         comments_effective: dict[str, object] | None = None
         if args.comments is not None and args.comments > 0:
             comments_effective = _compute_effective_comments(
@@ -136,6 +145,7 @@ def main() -> int:
                 comment_users=args.comment_user,
                 comment_pages=args.comment_page,
             )
+            comments_runs_before = _list_run_ids(space_root)
             comments_result = _run_checked(
                 [
                     sys.executable,
@@ -151,6 +161,16 @@ def main() -> int:
                 ],
                 step_name="create_comments",
             )
+            if args.simulate_stdout_variation:
+                comments_result = _rewrite_step_stdout_for_variation(
+                    comments_result,
+                    step_name="create_comments",
+                )
+            comments_run_id = _resolve_single_new_run_id(
+                space_root=space_root,
+                before_runs=comments_runs_before,
+                step_name="create_comments",
+            )
 
         evaluation_id = _make_evaluation_id(ingest_run_id)
         output_dir = (
@@ -163,8 +183,9 @@ def main() -> int:
 
         run_dir = space_root / "runs" / ingest_run_id
         run_record_path = run_dir / "run.md"
+        ingest_run_frontmatter = _read_run_frontmatter(run_record_path)
         lint_json_path = run_dir / "lint.json"
-        build_manifest_path = _resolve_build_manifest_path(site_path, ingest_result.stdout)
+        build_manifest_path = _resolve_build_manifest_path(site_path)
         build_manifest = _read_json_if_exists(build_manifest_path)
 
         readme_path = output_dir / "README.md"
@@ -201,7 +222,7 @@ def main() -> int:
             _render_ingest_run(
                 ingest_run_id=ingest_run_id,
                 run_record_path=run_record_path,
-                ingest_stdout=ingest_result.stdout,
+                ingest_run_frontmatter=ingest_run_frontmatter,
             )
         )
         lint_summary_path.write_text(
@@ -260,6 +281,7 @@ def main() -> int:
             space_name=args.space_name,
             ingest_run_id=ingest_run_id,
             query_run_id=query_run_id,
+            comments_run_id=comments_run_id,
             lint_envelope=lint_envelope,
             artifact_paths=artifact_paths,
             supporting_paths=copied_supporting_paths,
@@ -345,6 +367,18 @@ def _run_checked(command: list[str], *, step_name: str) -> StepResult:
     return step_result
 
 
+def _rewrite_step_stdout_for_variation(step_result: StepResult, *, step_name: str) -> StepResult:
+    return StepResult(
+        command=step_result.command,
+        returncode=step_result.returncode,
+        stdout=(
+            f"{step_name} completed successfully.\n"
+            "stdout-format-variation: tokens intentionally non-canonical.\n"
+        ),
+        stderr=step_result.stderr,
+    )
+
+
 def _list_run_ids(space_root: Path) -> set[str]:
     runs_root = space_root / "runs"
     if not runs_root.is_dir():
@@ -352,22 +386,18 @@ def _list_run_ids(space_root: Path) -> set[str]:
     return {path.name for path in runs_root.iterdir() if path.is_dir() and path.name.startswith("run-")}
 
 
-def _extract_run_id(stdout: str) -> str | None:
-    match = _RUN_ID_RE.search(stdout)
-    if match is None:
-        return None
-    return match.group(1)
-
-
-def _extract_field(stdout: str, key: str) -> str | None:
-    pattern = _FIELD_RE_CACHE.get(key)
-    if pattern is None:
-        pattern = re.compile(rf"{re.escape(key)}=([^,\n)]+)")
-        _FIELD_RE_CACHE[key] = pattern
-    match = pattern.search(stdout)
-    if match is None:
-        return None
-    return match.group(1).strip()
+def _resolve_single_new_run_id(
+    *,
+    space_root: Path,
+    before_runs: set[str],
+    step_name: str,
+) -> str:
+    created_runs = sorted(_list_run_ids(space_root) - before_runs)
+    if len(created_runs) != 1:
+        raise RuntimeError(
+            f"{step_name} must create exactly one run directory; observed created_runs={created_runs!r}."
+        )
+    return created_runs[0]
 
 
 def _parse_lint_envelope(stdout: str) -> dict[str, object]:
@@ -381,10 +411,7 @@ def _parse_lint_envelope(stdout: str) -> dict[str, object]:
     return envelope
 
 
-def _resolve_build_manifest_path(site_path: Path, ingest_stdout: str) -> Path:
-    manifest_field = _extract_field(ingest_stdout, "build_manifest_path")
-    if manifest_field is not None:
-        return Path(manifest_field)
+def _resolve_build_manifest_path(site_path: Path) -> Path:
     return site_path / "outputs" / "build_site" / "manifest.json"
 
 
@@ -395,6 +422,26 @@ def _read_json_if_exists(path: Path) -> dict[str, object] | None:
     if not isinstance(payload, dict):
         return None
     return payload
+
+
+def _read_run_frontmatter(run_record_path: Path) -> dict[str, object]:
+    if not run_record_path.is_file():
+        raise FileNotFoundError(f"Run record missing: {run_record_path}")
+    lines = run_record_path.read_text().splitlines()
+    if len(lines) < 3 or lines[0] != "---":
+        raise ValueError(f"Run record frontmatter missing start delimiter: {run_record_path}")
+    parsed: dict[str, object] = {}
+    index = 1
+    while index < len(lines):
+        line = lines[index]
+        if line == "---":
+            return parsed
+        if ":" not in line:
+            raise ValueError(f"Malformed run frontmatter line: {line}")
+        key, raw = line.split(":", 1)
+        parsed[key.strip()] = json.loads(raw.strip())
+        index += 1
+    raise ValueError(f"Run record frontmatter missing end delimiter: {run_record_path}")
 
 
 def _make_evaluation_id(ingest_run_id: str) -> str:
@@ -493,10 +540,23 @@ def _render_summary(
     return "\n".join(lines) + "\n"
 
 
-def _render_ingest_run(*, ingest_run_id: str, run_record_path: Path, ingest_stdout: str) -> str:
-    ingest_status = _extract_field(ingest_stdout, "status") or "unknown"
-    source_id = _extract_field(ingest_stdout, "source_id") or "unknown"
-    topic_id = _extract_field(ingest_stdout, "topic_id") or "unknown"
+def _render_ingest_run(
+    *,
+    ingest_run_id: str,
+    run_record_path: Path,
+    ingest_run_frontmatter: dict[str, object],
+) -> str:
+    ingest_status = str(ingest_run_frontmatter.get("status") or "unknown")
+    source_ids = ingest_run_frontmatter.get("source_ids")
+    source_id = "unknown"
+    if isinstance(source_ids, list) and source_ids:
+        first = source_ids[0]
+        if isinstance(first, str) and first.strip():
+            source_id = first.strip()
+    topic_pages_changed = ingest_run_frontmatter.get("topic_pages_changed")
+    topic_id = "unknown"
+    if isinstance(topic_pages_changed, int):
+        topic_id = f"{topic_pages_changed} topic pages changed"
     run_record_excerpt = ""
     if run_record_path.is_file():
         run_record_excerpt = "\n".join(run_record_path.read_text().splitlines()[:25]).strip()
@@ -709,6 +769,7 @@ def _build_manifest(
     space_name: str,
     ingest_run_id: str,
     query_run_id: str,
+    comments_run_id: str | None,
     lint_envelope: dict[str, object],
     artifact_paths: list[Path],
     supporting_paths: list[Path],
@@ -742,7 +803,7 @@ def _build_manifest(
         "run_ids": {
             "ingest": ingest_run_id,
             "query": query_run_id,
-            "comments": None,
+            "comments": comments_run_id,
         },
         "workflow_statuses": statuses,
         "lint": lint_envelope,

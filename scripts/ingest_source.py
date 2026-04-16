@@ -20,6 +20,11 @@ from sapi.contracts.run_envelopes import IngestRunFields, RunEnvelopeBase, RunSt
 from sapi.core.registry import resolve_registry_path, resolve_site_path_from_registry, resolve_space_root
 from sapi.core.locks import IngestLockHeldError, ingest_lock
 from sapi.core.pipeline_policy import finalize_pipeline_run
+from sapi.core.pipeline_runtime import (
+    add_llm_attempts,
+    build_run_envelope_base,
+    record_semantic_invocation,
+)
 from sapi.core.runtime_flags import (
     RuntimeFlagSnapshot,
     add_runtime_flag_arguments,
@@ -169,7 +174,7 @@ def main() -> int:
                 ],
                 fallback=result.source_id,
             )
-            _record_semantic_invocation(
+            record_semantic_invocation(
                 flow_key="ingest_extraction",
                 semantic_flows=semantic_flows,
                 semantic_flow_invocation_counts=semantic_flow_invocation_counts,
@@ -193,8 +198,11 @@ def main() -> int:
                 run_id=run_id,
                 extraction_result=extraction_result,
             )
-            llm_attempt_count += 1
-            _record_semantic_invocation(
+            llm_attempt_count = add_llm_attempts(
+                llm_attempt_count=llm_attempt_count,
+                attempt_count=extraction_result.attempt_count,
+            )
+            record_semantic_invocation(
                 flow_key="topic_generation",
                 semantic_flows=semantic_flows,
                 semantic_flow_invocation_counts=semantic_flow_invocation_counts,
@@ -216,7 +224,10 @@ def main() -> int:
                 transaction=transaction,
                 topic_result=topic_result,
             )
-            llm_attempt_count += 1
+            llm_attempt_count = add_llm_attempts(
+                llm_attempt_count=llm_attempt_count,
+                attempt_count=topic_result.attempt_count,
+            )
             if args.build_deferred:
                 build_deferred = True
                 deferred_build_reason = "operator_requested_build_deferred"
@@ -413,18 +424,6 @@ def _run_coalesced_ingest_topic_postprocess(
     )
 
 
-def _record_semantic_invocation(
-    *,
-    flow_key: str,
-    semantic_flows: list[str],
-    semantic_flow_invocation_counts: dict[str, int],
-) -> None:
-    if flow_key not in semantic_flow_invocation_counts:
-        semantic_flows.append(flow_key)
-        semantic_flow_invocation_counts[flow_key] = 0
-    semantic_flow_invocation_counts[flow_key] += 1
-
-
 def _make_run_base(
     *,
     run_id: str,
@@ -440,7 +439,7 @@ def _make_run_base(
     llm_attempt_count: int,
     toolchain_versions: dict[str, str],
 ) -> RunEnvelopeBase:
-    return RunEnvelopeBase(
+    return build_run_envelope_base(
         run_id=run_id,
         flow_key="ingest_pipeline",
         semantic_flows=semantic_flows,
@@ -448,14 +447,11 @@ def _make_run_base(
         status=status,
         started_at=started_at,
         completed_at=completed_at,
-        model_fingerprint="mock_semantic_fixture" if execution_mode == "mock_llm_test" else llm_model,
-        provider_fingerprint="mock" if execution_mode == "mock_llm_test" else llm_backend,
-        reasoning_effort=reasoning_effort,
         execution_mode=execution_mode,
+        llm_backend=llm_backend,
+        llm_model=llm_model,
+        reasoning_effort=reasoning_effort,
         llm_attempt_count=llm_attempt_count,
-        lint_error_count=0,
-        lint_warning_count=0,
-        lint_info_count=0,
         toolchain_versions=toolchain_versions,
     )
 

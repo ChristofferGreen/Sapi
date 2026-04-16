@@ -18,8 +18,16 @@ class WrapperMockModePolicyTests(unittest.TestCase):
             for wrapper_name, command in self._semantic_wrapper_commands(site_path, source_path):
                 with self.subTest(wrapper=wrapper_name):
                     result = self._run(command)
-                    self.assertEqual(result.returncode, 0, msg=result.stderr)
-                    self.assertIn("execution_mode=live_llm", result.stdout)
+                    if result.returncode == 0:
+                        self.assertIn("execution_mode=live_llm", result.stdout)
+                        continue
+                    combined = f"{result.stdout}\n{result.stderr}"
+                    self.assertNotIn("execution_mode=mock_llm_test", combined)
+                    auth_hints = ("authentication", "401", "api key", "unauthorized", "invalid_grant")
+                    self.assertTrue(
+                        any(hint in combined.lower() for hint in auth_hints),
+                        msg=combined,
+                    )
 
     def test_wrapper_explicit_mock_mode_is_forwarded_and_auditable(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -31,6 +31,7 @@ class TopicCanonicalWrite:
 class TopicGenerationPersistResult:
     run_id: str
     source_id: str
+    attempt_count: int
     semantic_output_path: Path
     topics: list[TopicCanonicalWrite]
 
@@ -79,7 +80,7 @@ def run_topic_generation_and_persist_canonical(
             "run_id": run_id,
         },
     )
-    semantic_output, _ = run_semantic_flow(
+    semantic_output, total_attempt_count = run_semantic_flow(
         spec=_to_runtime_spec(resolved),
         llm_client=llm_client,
         max_repair_loops=max_repair_loops,
@@ -92,7 +93,7 @@ def run_topic_generation_and_persist_canonical(
             source_id=source_id,
         )
     except ValueError as exc:
-        semantic_output, _ = run_semantic_flow(
+        semantic_output, repair_attempt_count = run_semantic_flow(
             spec=_to_runtime_spec(resolved),
             llm_client=llm_client,
             max_repair_loops=max_repair_loops,
@@ -104,6 +105,7 @@ def run_topic_generation_and_persist_canonical(
             ),
             trace_ctx=trace_ctx,
         )
+        total_attempt_count += repair_attempt_count
         try:
             normalized_topics = _normalize_topic_batch(
                 raw_topics=semantic_output.get("topics"),
@@ -132,6 +134,7 @@ def run_topic_generation_and_persist_canonical(
     return TopicGenerationPersistResult(
         run_id=run_id,
         source_id=source_id,
+        attempt_count=total_attempt_count,
         semantic_output_path=resolved.output_json_path,
         topics=topic_writes,
     )

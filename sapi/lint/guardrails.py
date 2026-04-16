@@ -32,6 +32,7 @@ _WRITE_INTENT_TOKENS: tuple[str, ...] = (
     ".mkdir(",
     ".rename(",
 )
+_WRITE_LOOKAHEAD_LINES = 6
 
 _PIPELINE_AFFECTING_PATH_PREFIXES: tuple[str, ...] = (
     "sapi/ingest/",
@@ -76,6 +77,45 @@ _CANONICAL_MUTATION_ALLOWED_PREFIXES: tuple[str, ...] = (
     "scripts/set_topic_lifecycle.py",
     "scripts/verify_",
 )
+_SEMANTIC_EXECUTION_CONTRACTS: dict[str, tuple[tuple[str, tuple[str, ...]], ...]] = {
+    "scripts/query.py": (
+        (
+            "query_synthesis",
+            (
+                "build_semantic_spec_from_contract(",
+                "run_semantic_flow(",
+            ),
+        ),
+    ),
+    "scripts/create_comments.py": (
+        (
+            "comment_section_generation",
+            (
+                "build_semantic_spec_from_contract(",
+                "run_semantic_flow(",
+            ),
+        ),
+    ),
+    "scripts/generate_profiles.py": (
+        (
+            "persona_profile_generation",
+            (
+                "build_semantic_spec_from_contract(",
+                "run_semantic_flow(",
+            ),
+        ),
+    ),
+    "scripts/ingest_source.py": (
+        ("ingest_extraction", ("run_ingest_extraction_and_persist_canonical(",)),
+        ("topic_generation", ("run_topic_generation_and_persist_canonical(",)),
+    ),
+    "sapi/ingest/records_writer.py": (
+        ("ingest_extraction", ("resolve_semantic_invocation_spec(", "run_semantic_flow(")),
+    ),
+    "sapi/ingest/topic_generator.py": (
+        ("topic_generation", ("resolve_semantic_invocation_spec(", "run_semantic_flow(")),
+    ),
+}
 
 
 def run_guardrail_checks(repo_root: Path) -> list[GuardrailIssue]:
@@ -87,6 +127,7 @@ def run_guardrail_checks(repo_root: Path) -> list[GuardrailIssue]:
     issues.extend(_check_semantic_contract_duplication(repo_root))
     issues.extend(_check_canonical_mutation_ownership(repo_root))
     issues.extend(_check_query_canonical_mutation_patterns(repo_root))
+    issues.extend(_check_semantic_flow_execution_contract(repo_root))
     return sorted(
         issues,
         key=lambda issue: (issue.check_id, str(issue.path), issue.line, issue.message),
@@ -262,18 +303,21 @@ def _check_query_canonical_mutation_patterns(repo_root: Path) -> list[GuardrailI
         text = path.read_text()
         if not any(token in text for token in _WRITE_INTENT_TOKENS):
             continue
-        for line_no, line in enumerate(text.splitlines(), start=1):
-            if _CANONICAL_KNOWLEDGE_SEGMENT_PATTERN.search(line):
-                issues.append(
-                    GuardrailIssue(
-                        check_id="query_canonical_mutation",
-                        path=path,
-                        line=line_no,
-                        message=(
-                            "Query flow must not target canonical sources/claims/relations/topics/profiles paths."
-                        ),
-                    )
+        lines = text.splitlines()
+        for line_no in _find_mutating_canonical_path_lines(
+            lines,
+            require_space_root=False,
+        ):
+            issues.append(
+                GuardrailIssue(
+                    check_id="query_canonical_mutation",
+                    path=path,
+                    line=line_no,
+                    message=(
+                        "Query flow must not target canonical sources/claims/relations/topics/profiles paths."
+                    ),
                 )
+            )
     return issues
 
 
@@ -286,16 +330,44 @@ def _check_canonical_mutation_ownership(repo_root: Path) -> list[GuardrailIssue]
         relpath = path.resolve().relative_to(repo_root.resolve()).as_posix()
         if any(relpath.startswith(prefix) for prefix in _CANONICAL_MUTATION_ALLOWED_PREFIXES):
             continue
-        for line_no, line in enumerate(text.splitlines(), start=1):
-            if _CANONICAL_KNOWLEDGE_SEGMENT_PATTERN.search(line) and _CANONICAL_SPACE_ROOT_HINT in line:
+        lines = text.splitlines()
+        for line_no in _find_mutating_canonical_path_lines(lines, require_space_root=True):
+            issues.append(
+                GuardrailIssue(
+                    check_id="canonical_mutation_ownership",
+                    path=path,
+                    line=line_no,
+                    message=(
+                        "Canonical sources/claims/relations/topics/profiles mutations are ingest-owned "
+                        "and must not be written from non-ingest components."
+                    ),
+                )
+            )
+    return issues
+
+
+def _check_semantic_flow_execution_contract(repo_root: Path) -> list[GuardrailIssue]:
+    issues: list[GuardrailIssue] = []
+    for relpath, flow_contracts in _SEMANTIC_EXECUTION_CONTRACTS.items():
+        path = (repo_root / relpath).resolve()
+        if not path.is_file():
+            continue
+        text = path.read_text()
+        lines = text.splitlines()
+        for flow_key, required_tokens in flow_contracts:
+            if f'"{flow_key}"' not in text and f"'{flow_key}'" not in text:
+                continue
+            for token in required_tokens:
+                if token in text:
+                    continue
                 issues.append(
                     GuardrailIssue(
-                        check_id="canonical_mutation_ownership",
+                        check_id="semantic_flow_execution_contract",
                         path=path,
-                        line=line_no,
+                        line=_first_line_number_containing(lines, flow_key),
                         message=(
-                            "Canonical sources/claims/relations/topics/profiles mutations are ingest-owned "
-                            "and must not be written from non-ingest components."
+                            f"Declared semantic flow `{flow_key}` must execute through shared semantic "
+                            f"executor contract; missing token `{token}`."
                         ),
                     )
                 )
@@ -316,3 +388,63 @@ def _find_line_containing(lines: list[str], needle: str) -> int | None:
 
 def _is_checked_line(line: str) -> bool:
     return re.match(r"^\s*-\s*\[x\]\s+", line) is not None
+
+
+def _first_line_number_containing(lines: list[str], token: str) -> int:
+    for index, line in enumerate(lines, start=1):
+        if token in line:
+            return index
+    return 1
+
+
+def _find_mutating_canonical_path_lines(
+    lines: list[str],
+    *,
+    require_space_root: bool,
+) -> list[int]:
+    issue_lines: list[int] = []
+    for index, line in enumerate(lines):
+        if not _CANONICAL_KNOWLEDGE_SEGMENT_PATTERN.search(line):
+            continue
+        if require_space_root and _CANONICAL_SPACE_ROOT_HINT not in line:
+            continue
+        if _line_has_direct_write_intent(line):
+            issue_lines.append(index + 1)
+            continue
+        target_var = _extract_assigned_variable(line)
+        if target_var is None:
+            continue
+        window_end = min(len(lines), index + 1 + _WRITE_LOOKAHEAD_LINES)
+        for look_index in range(index + 1, window_end):
+            if _line_writes_path_variable(lines[look_index], variable_name=target_var):
+                issue_lines.append(index + 1)
+                break
+    return issue_lines
+
+
+def _line_has_direct_write_intent(line: str) -> bool:
+    return any(token in line for token in _WRITE_INTENT_TOKENS)
+
+
+def _extract_assigned_variable(line: str) -> str | None:
+    match = re.match(r"^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*", line)
+    if match is None:
+        return None
+    return match.group(1)
+
+
+def _line_writes_path_variable(line: str, *, variable_name: str) -> bool:
+    method_write_tokens = (
+        ".write_text(",
+        ".write_bytes(",
+        ".open(",
+        ".mkdir(",
+        ".rename(",
+    )
+    if any(f"{variable_name}{token}" in line for token in method_write_tokens):
+        return True
+    if re.search(rf"\bopen\(\s*{re.escape(variable_name)}\b", line):
+        return True
+    if re.search(rf"\bos\.replace\(\s*{re.escape(variable_name)}\b", line):
+        return True
+    return False
