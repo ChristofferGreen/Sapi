@@ -4,6 +4,7 @@
 
 - Transient Codex reconnection warnings/errors are expected in this environment and are usually self-resolving.
 - Do not treat reconnect messages alone as a hard failure; wait for final command status before retrying.
+- Do not create new git branches, worktrees, or other workspace forks unless the user explicitly asks for it.
 
 ## Generation Policy
 
