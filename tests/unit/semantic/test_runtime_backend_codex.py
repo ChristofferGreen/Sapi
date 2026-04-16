@@ -100,7 +100,7 @@ class RuntimeBackendCodexTests(unittest.TestCase):
             self.assertIn("workspace-write", command)
             self.assertIn("-c", command)
             self.assertIn('model_reasoning_effort="high"', command)
-            self.assertIn('openai_base_url="https://api.openai.com/v1"', command)
+            self.assertFalse(any("openai_base_url" in arg for arg in command))
             self.assertIn("--add-dir", command)
             self.assertIn(str(output_path.parent.resolve()), command)
             self.assertTrue(kwargs["text"])

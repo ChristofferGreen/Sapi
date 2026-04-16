@@ -16,7 +16,6 @@ from sapi.llm.client import SemanticLlmRequest
 
 
 DEFAULT_CODEX_MODEL = "gpt-5.4"
-DEFAULT_CODEX_OPENAI_BASE_URL = "https://api.openai.com/v1"
 _MAX_ERROR_TAIL_CHARS = 4000
 _STREAM_JOIN_TIMEOUT_SECS = 5.0
 
@@ -96,10 +95,6 @@ def _generate_with_codex(
     output_json_path.parent.mkdir(parents=True, exist_ok=True)
     model = backend_config.model.strip() or DEFAULT_CODEX_MODEL
     reasoning_effort = backend_config.reasoning_effort.strip() or "high"
-    openai_base_url = (
-        os.environ.get("SAPI_CODEX_OPENAI_BASE_URL", DEFAULT_CODEX_OPENAI_BASE_URL).strip()
-        or DEFAULT_CODEX_OPENAI_BASE_URL
-    )
     command = [
         "codex",
         "exec",
@@ -110,8 +105,6 @@ def _generate_with_codex(
         model,
         "-c",
         f"model_reasoning_effort={json.dumps(reasoning_effort)}",
-        "-c",
-        f"openai_base_url={json.dumps(openai_base_url)}",
         "--cd",
         str(_repo_root()),
         "-",

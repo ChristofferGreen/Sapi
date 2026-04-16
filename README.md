@@ -95,7 +95,7 @@ Runtime/control flag defaults and forwarding:
   - `--llm-backend codex`
   - `--llm-model gpt-5.4`
   - `--llm-reasoning-effort high`
-  - `--llm-timeout-secs 300`
+  - `--llm-timeout-secs 900`
   - `--warning-budget 200`
 - invalid tracing combination guard:
   - `--llm-trace-dir` requires one of `--llm-trace`, `--trace-llm-io`, or `--verbose`.
