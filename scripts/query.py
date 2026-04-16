@@ -38,7 +38,6 @@ from sapi.llm.runtime_backend import (
     SemanticBackendConfig,
     generate_semantic_json_live,
 )
-from sapi.llm.semantic_executor import build_semantic_spec_from_contract, run_semantic_flow
 from sapi.query.query_pipeline import build_query_result_record
 from sapi.query.renderers import build_query_artifacts
 from sapi.query.retrieval import retrieve_query_context
@@ -119,6 +118,13 @@ def main() -> int:
             max_sources=options.max_sources,
             include_disputed=options.include_disputed,
         )
+        # Delay semantic-executor imports until after basic registry/path validation so
+        # argument/contract errors remain observable even when optional runtime deps are absent.
+        from sapi.llm.semantic_executor import (
+            build_semantic_spec_from_contract,
+            run_semantic_flow,
+        )
+
         warnings = _build_warnings(
             include_warnings=options.include_warnings,
             claims_used=claims_used,
