@@ -142,6 +142,48 @@ class SourceAcquisitionContractTests(unittest.TestCase):
             self.assertEqual(result.source_artifact_path.name, "source.pdf")
             self.assertTrue(result.source_artifact_path.is_file())
 
+    def test_url_ingest_rejects_non_pdf_payload_when_content_type_is_pdf(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            with _served_source_bytes(
+                body=b"<!doctype html><html><body>not a pdf</body></html>",
+                content_type="application/pdf",
+                route_path="/source.pdf",
+            ) as source_url:
+                with self.assertRaisesRegex(ValueError, r"Expected PDF payload"):
+                    ingest_source_artifacts_and_record(
+                        space_root=space_root,
+                        source_path_or_url=source_url,
+                        source_title_override="Remote Source",
+                    )
+
+    def test_file_ingest_rejects_non_pdf_payload_when_file_suffix_is_pdf(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            input_file = Path(tmp) / "paper.pdf"
+            input_file.write_text("<html>not a pdf</html>\n")
+
+            with self.assertRaisesRegex(ValueError, r"Expected PDF payload"):
+                ingest_source_artifacts_and_record(
+                    space_root=space_root,
+                    source_path_or_url=str(input_file),
+                    source_title_override="Broken PDF",
+                )
+
+    def test_file_ingest_rejects_non_pdf_payload_when_pdf_media_type_override_is_set(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            input_file = Path(tmp) / "paper.txt"
+            input_file.write_text("plain text only\n")
+
+            with self.assertRaisesRegex(ValueError, r"Expected PDF payload"):
+                ingest_source_artifacts_and_record(
+                    space_root=space_root,
+                    source_path_or_url=str(input_file),
+                    source_title_override="Broken PDF",
+                    source_media_type_override="application/pdf",
+                )
+
     def test_pdf_ingest_persists_front_page_image_when_renderer_succeeds(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "spaces" / "alpha"

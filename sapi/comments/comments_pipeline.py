@@ -65,10 +65,10 @@ def collect_comment_targets(
 ) -> list[CommentTarget]:
     if explicit_page_refs:
         return _collect_explicit_targets(space_root=space_root, explicit_page_refs=explicit_page_refs)
-    targets = _collect_default_topic_targets(space_root=space_root)
+    targets = _collect_default_targets(space_root=space_root)
     if not targets:
         raise ValueError(
-            "No eligible parseable topic pages found for default targeting; pass --comment-page explicitly."
+            "No eligible parseable topic/source pages found for default targeting; pass --comment-page explicitly."
         )
     return targets
 
@@ -119,6 +119,40 @@ def _collect_default_topic_targets(*, space_root: Path) -> list[CommentTarget]:
                 page_payload=payload,
             )
         )
+    return targets
+
+
+def _collect_default_source_targets(*, space_root: Path) -> list[CommentTarget]:
+    targets: list[CommentTarget] = []
+    sources_dir = space_root / "sources" / "records"
+    if not sources_dir.is_dir():
+        return targets
+    for source_path in sorted(sources_dir.glob("*.json")):
+        try:
+            payload = _read_page_payload(source_path)
+        except ValueError:
+            continue
+        source_id = payload.get("source_id")
+        if not isinstance(source_id, str) or not source_id.strip():
+            continue
+        page_ref = f"source:{source_id.strip()}"
+        targets.append(
+            CommentTarget(
+                page_ref=page_ref,
+                page_type="source",
+                page_id=source_id.strip(),
+                page_path=source_path,
+                page_payload=payload,
+            )
+        )
+    return targets
+
+
+def _collect_default_targets(*, space_root: Path) -> list[CommentTarget]:
+    targets = _collect_default_topic_targets(space_root=space_root) + _collect_default_source_targets(
+        space_root=space_root
+    )
+    targets.sort(key=lambda target: target.page_ref)
     return targets
 
 

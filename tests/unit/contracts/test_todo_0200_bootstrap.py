@@ -53,7 +53,7 @@ class Todo0200BootstrapTests(unittest.TestCase):
         expected_usage = {
             "create_site.sh": "Usage: create_site.sh <site_path> <site_name>",
             "create_space.sh": "Usage: create_space.sh <site_path> <space_name>",
-            "ingest.sh": "Usage: ingest.sh <site_path> <space_name> <source_path_or_url> [--source-only] [--force] [--verbose]",
+            "ingest.sh": "Usage: ingest.sh <site_path> <space_name> <source_path_or_url> [--force] [--verbose]",
             "create_comments.sh": "Usage: create_comments.sh <site_path> <space_name> --count <n> [--verbose] [--comment-user ...] [--comment-page ...] [--comment-seed ...] [--comment-evidence-mode ...]",
             "generate_profiles.sh": "Usage: generate_profiles.sh <site_path> <space_name> [--persona-id <persona_id> ...] [--verbose]",
             "regenerate_web.sh": "Usage: regenerate_web.sh <site_path> [space_name] [--verbose]",

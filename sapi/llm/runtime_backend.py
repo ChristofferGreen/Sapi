@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import json
+import os
 from pathlib import Path
+import signal
 import subprocess
 import sys
 import threading
@@ -14,7 +16,9 @@ from sapi.llm.client import SemanticLlmRequest
 
 
 DEFAULT_CODEX_MODEL = "gpt-5.4"
+DEFAULT_CODEX_OPENAI_BASE_URL = "https://api.openai.com/v1"
 _MAX_ERROR_TAIL_CHARS = 4000
+_STREAM_JOIN_TIMEOUT_SECS = 5.0
 
 
 @dataclass(frozen=True)
@@ -68,6 +72,8 @@ def _build_prompt(*, request: SemanticLlmRequest, task_context: dict[str, Any] |
     instruction_lines = [
         "You are generating one strict JSON object for a semantic pipeline.",
         "Use filesystem evidence from context_paths/context_by_path and task_context.",
+        "Do not use or follow external skills, skill files, or preset workflows.",
+        "Do not run broad exploratory workflows; read only the provided context files needed to answer.",
         "Write exactly one JSON object to output_json_path on disk (UTF-8).",
         "Create parent directories if needed and overwrite output_json_path if it exists.",
         "Do not modify any other files.",
@@ -90,6 +96,10 @@ def _generate_with_codex(
     output_json_path.parent.mkdir(parents=True, exist_ok=True)
     model = backend_config.model.strip() or DEFAULT_CODEX_MODEL
     reasoning_effort = backend_config.reasoning_effort.strip() or "high"
+    openai_base_url = (
+        os.environ.get("SAPI_CODEX_OPENAI_BASE_URL", DEFAULT_CODEX_OPENAI_BASE_URL).strip()
+        or DEFAULT_CODEX_OPENAI_BASE_URL
+    )
     command = [
         "codex",
         "exec",
@@ -100,6 +110,8 @@ def _generate_with_codex(
         model,
         "-c",
         f"model_reasoning_effort={json.dumps(reasoning_effort)}",
+        "-c",
+        f"openai_base_url={json.dumps(openai_base_url)}",
         "--cd",
         str(_repo_root()),
         "-",
@@ -115,6 +127,9 @@ def _generate_with_codex(
             stderr=subprocess.PIPE,
             text=True,
             bufsize=1,
+            # Isolate Codex in its own process group so reconnect/orphan descendants
+            # can be terminated if they keep pipes open after the parent exits.
+            start_new_session=True,
         )
     except FileNotFoundError as exc:
         raise RuntimeError(
@@ -146,17 +161,25 @@ def _generate_with_codex(
     try:
         return_code = process.wait(timeout=backend_config.timeout_secs)
     except subprocess.TimeoutExpired as exc:
-        process.kill()
+        _terminate_process_group(process.pid)
         process.wait()
-        stdout_thread.join()
-        stderr_thread.join()
+        _close_stream(process.stdout)
+        _close_stream(process.stderr)
+        _join_stream_threads(
+            stdout_thread=stdout_thread,
+            stderr_thread=stderr_thread,
+            process_pid=process.pid,
+        )
         raise RuntimeError(
             "Codex semantic generation timed out after "
             f"{backend_config.timeout_secs} seconds for `{output_json_path}`."
         ) from exc
 
-    stdout_thread.join()
-    stderr_thread.join()
+    _join_stream_threads(
+        stdout_thread=stdout_thread,
+        stderr_thread=stderr_thread,
+        process_pid=process.pid,
+    )
 
     if return_code != 0:
         raise RuntimeError(
@@ -186,6 +209,46 @@ def _stream_process_output(
         sink.append(line)
         print(line, file=target, end="", flush=True)
     stream.close()
+
+
+def _join_stream_threads(
+    *,
+    stdout_thread: threading.Thread,
+    stderr_thread: threading.Thread,
+    process_pid: int,
+) -> None:
+    stdout_thread.join(timeout=_STREAM_JOIN_TIMEOUT_SECS)
+    stderr_thread.join(timeout=_STREAM_JOIN_TIMEOUT_SECS)
+    if not stdout_thread.is_alive() and not stderr_thread.is_alive():
+        return
+
+    # If either stream thread is still blocked, terminate any lingering process
+    # group descendants and close local stream handles to force unblocking.
+    _terminate_process_group(process_pid)
+    stdout_thread.join(timeout=_STREAM_JOIN_TIMEOUT_SECS)
+    stderr_thread.join(timeout=_STREAM_JOIN_TIMEOUT_SECS)
+    if stdout_thread.is_alive() or stderr_thread.is_alive():
+        raise RuntimeError(
+            "Codex semantic generation left output streams open; aborted to avoid a stuck ingest run."
+        )
+
+
+def _terminate_process_group(process_pid: int) -> None:
+    try:
+        os.killpg(process_pid, signal.SIGKILL)
+    except ProcessLookupError:
+        return
+    except OSError:
+        return
+
+
+def _close_stream(stream: TextIO | None) -> None:
+    if stream is None:
+        return
+    try:
+        stream.close()
+    except OSError:
+        return
 
 
 def _require_json_object(*, raw_output: str, output_json_path: Path) -> None:

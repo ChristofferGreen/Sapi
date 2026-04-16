@@ -52,10 +52,10 @@ class BootstrapRegistryExceptionIntegrationTests(unittest.TestCase):
             )
 
             wrapper_commands = [
-                ["bash", str(REPO_ROOT / "ingest.sh"), str(site_path), "alpha", str(source_path), "--source-only"],
-                ["bash", str(REPO_ROOT / "query.sh"), str(site_path), "alpha", "what is this"],
-                ["bash", str(REPO_ROOT / "create_comments.sh"), str(site_path), "alpha", "--count", "5"],
-                ["bash", str(REPO_ROOT / "generate_profiles.sh"), str(site_path), "alpha"],
+                ["bash", str(REPO_ROOT / "ingest.sh"), str(site_path), "alpha", str(source_path), "--mock-llm"],
+                ["bash", str(REPO_ROOT / "query.sh"), str(site_path), "alpha", "what is this", "--mock-llm"],
+                ["bash", str(REPO_ROOT / "create_comments.sh"), str(site_path), "alpha", "--count", "5", "--mock-llm"],
+                ["bash", str(REPO_ROOT / "generate_profiles.sh"), str(site_path), "alpha", "--mock-llm"],
                 ["bash", str(REPO_ROOT / "validate.sh"), str(site_path), "alpha"],
                 ["bash", str(REPO_ROOT / "regenerate_web.sh"), str(site_path), "alpha"],
             ]

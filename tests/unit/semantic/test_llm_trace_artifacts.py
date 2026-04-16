@@ -56,12 +56,18 @@ class LlmTraceArtifactTests(unittest.TestCase):
             self.assertIn("-1", trace_dir.name)
 
             self.assertTrue((trace_dir / "semantic.prompt.txt").is_file())
+            self.assertTrue((trace_dir / "semantic.call.txt").is_file())
             self.assertTrue((trace_dir / "semantic.context.json").is_file())
             self.assertTrue((trace_dir / "semantic.response.txt").is_file())
             self.assertTrue((trace_dir / "semantic.response.json").is_file())
             self.assertTrue((trace_dir / "semantic.codex.stdout.jsonl").is_file())
             self.assertTrue((trace_dir / "semantic.codex.stderr.txt").is_file())
             self.assertTrue((trace_dir / "semantic.meta.json").is_file())
+
+            call_transcript = (trace_dir / "semantic.call.txt").read_text()
+            self.assertIn("=== llm prompt ===", call_transcript)
+            self.assertIn("=== llm output ===", call_transcript)
+            self.assertIn('"value": "ok"', call_transcript)
 
             meta = json.loads((trace_dir / "semantic.meta.json").read_text())
             self.assertEqual(meta["flow_key"], "topic_generation")

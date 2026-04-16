@@ -15,6 +15,11 @@ _ARXIV_RE = re.compile(r"(?:arxiv:\s*)?(\d{4}\.\d{4,5}(?:v\d+)?)", re.IGNORECASE
 _URL_RE = re.compile(r"(https?://[^\s\]>\"')]+)", re.IGNORECASE)
 _YEAR_RE = re.compile(r"\b(19\d{2}|20\d{2})\b")
 _SPACE_RE = re.compile(r"\s+")
+_REFERENCE_XML_NOISE_RE = re.compile(r"(?:<rdf|rdf:|xmlns|xpacket)", re.IGNORECASE)
+_BLOCKED_REFERENCE_URL_HOSTS: set[str] = {
+    "ns.adobe.com",
+    "www.w3.org",
+}
 
 _REFERENCE_KEYS: tuple[str, ...] = (
     "title",
@@ -134,6 +139,12 @@ def extract_normalized_references_from_text(text: str) -> list[dict[str, Any]]:
 
         year = _extract_year(line)
         title = _extract_title(line=line, doi=doi, arxiv=arxiv, url=url, year=year)
+        if _is_metadata_reference_noise(
+            line=line,
+            title=title,
+            url=url,
+        ):
+            continue
         rows.append(
             {
                 "title": title,
@@ -343,11 +354,32 @@ def _extract_title(
         text = re.sub(re.escape(url), " ", text, flags=re.IGNORECASE)
     if year is not None:
         text = text.replace(str(year), " ")
-    text = re.sub(r"[\[\](),;]", " ", text)
+    text = re.sub(r"[\[\](),;<>=\"']", " ", text)
     text = _SPACE_RE.sub(" ", text).strip(" .:-")
     if not text:
         return None
     return text[:200]
+
+
+def _is_metadata_reference_noise(
+    *,
+    line: str,
+    title: str | None,
+    url: str | None,
+) -> bool:
+    lowered_line = line.lower()
+    if _REFERENCE_XML_NOISE_RE.search(lowered_line):
+        return True
+
+    if isinstance(title, str) and _REFERENCE_XML_NOISE_RE.search(title.lower()):
+        return True
+
+    normalized_url = _normalize_url(url)
+    if normalized_url is None:
+        return False
+    parsed = urlparse(normalized_url)
+    host = parsed.netloc.lower()
+    return host in _BLOCKED_REFERENCE_URL_HOSTS
 
 
 def _shape_reference_row(row: dict[str, Any]) -> dict[str, Any]:

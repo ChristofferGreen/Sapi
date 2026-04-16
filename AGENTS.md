@@ -1,5 +1,20 @@
 # AGENTS
 
+## Runtime Notes
+
+- Transient Codex reconnection warnings/errors are expected in this environment and are usually self-resolving.
+- Do not treat reconnect messages alone as a hard failure; wait for final command status before retrying.
+
+## Generation Policy
+
+- Never generate user-facing content via deterministic code paths, templates, or mock/scaffold generators.
+- Ingest requests for journal articles must ingest real journal-article PDFs (verified as actual PDFs), not
+  placeholder/binary stand-ins.
+- Always generate user-facing semantic content via live Codex/OpenAI LLM flows that return
+  schema-conformant JSON.
+- If an ingest or LLM generation step fails, fix the failure cause and retry the same live flow; do not bypass
+  failures by switching to deterministic/mock generation for user-facing output.
+
 ## Commit Message Rules
 
 Use this format for every commit:

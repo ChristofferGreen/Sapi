@@ -79,6 +79,15 @@ _VERBISH_TOKENS: set[str] = {
     "constrains",
     "contradict",
     "contradicts",
+    "cover",
+    "covers",
+    "clarify",
+    "clarified",
+    "clarifies",
+    "compose",
+    "composes",
+    "enable",
+    "enables",
     "defend",
     "defends",
     "derive",
@@ -93,12 +102,30 @@ _VERBISH_TOKENS: set[str] = {
     "finds",
     "give",
     "gives",
+    "ground",
+    "grounds",
     "identify",
     "identifies",
     "imply",
     "implies",
     "indicate",
     "indicates",
+    "lead",
+    "leads",
+    "lower",
+    "lowers",
+    "model",
+    "models",
+    "need",
+    "needs",
+    "stabilize",
+    "stabilizes",
+    "speed",
+    "speeds",
+    "trade",
+    "trades",
+    "validate",
+    "validates",
     "predict",
     "predicts",
     "present",
@@ -109,16 +136,60 @@ _VERBISH_TOKENS: set[str] = {
     "provides",
     "report",
     "reports",
+    "replace",
+    "replaces",
     "require",
     "requires",
     "reveal",
     "reveals",
     "show",
     "shows",
+    "stay",
+    "stays",
+    "survive",
+    "survives",
+    "save",
+    "saves",
+    "shape",
+    "shapes",
+    "match",
+    "matches",
+    "beat",
+    "beats",
+    "encode",
+    "encodes",
+    "force",
+    "forces",
+    "exclude",
+    "excludes",
+    "guard",
+    "guards",
+    "favor",
+    "favors",
+    "improve",
+    "improves",
+    "reduce",
+    "reduces",
+    "lower",
+    "lowers",
+    "keep",
+    "keeps",
+    "help",
+    "helps",
+    "remain",
+    "remains",
+    "reflect",
+    "reflects",
+    "preserve",
+    "preserves",
     "speculate",
     "speculates",
+    "skip",
+    "skips",
     "support",
     "supports",
+    "track",
+    "tracks",
     "use",
     "uses",
     "yield",
@@ -151,6 +222,7 @@ _SUBJECT_TRIM_TOKENS = {
     "this",
 }
 _CONNECTIVE_TOKENS = {
+    "across",
     "and",
     "as",
     "at",
@@ -179,6 +251,28 @@ _CLAIM_HEADWORDS = {
     "proposition",
     "result",
     "theorem",
+}
+_QUANTITY_TOKENS = {
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
 }
 
 
@@ -222,6 +316,8 @@ def resolve_claim_short_title(*, raw_short_title: object, claim_text: str) -> st
         else ""
     )
     fallback_statement = normalize_claim_statement_text(claim_text)
+    if title_candidate and _is_malformed_title_candidate(title_candidate):
+        title_candidate = ""
     title = _derive_short_title(title_candidate or fallback_statement)
     if not title and title_candidate and fallback_statement:
         title = _derive_short_title(fallback_statement)
@@ -233,6 +329,21 @@ def shorten_claim_label(*, value: str, fallback_text: str | None = None) -> str:
         raw_short_title=value,
         claim_text=fallback_text or value,
     )
+
+
+def _is_malformed_title_candidate(value: str) -> bool:
+    tokens = _WORD_RE.findall(value)
+    if len(tokens) < 3:
+        return True
+    for index in range(1, len(tokens) - 1):
+        if tokens[index].lower() in {"is", "are"} and tokens[index - 1].lower() in _VERBISH_TOKENS:
+            return True
+    lowered = [token.lower() for token in tokens]
+    if len(lowered) >= 6:
+        midpoint = len(lowered) // 2
+        if lowered[:midpoint] == lowered[midpoint : midpoint * 2]:
+            return True
+    return False
 
 
 def _strip_reporting_prefixes(value: str) -> str:
@@ -314,16 +425,40 @@ def _derive_short_title(statement: str) -> str:
     tokens = _WORD_RE.findall(value)
     if not tokens:
         return ""
+    quantified_title = _derive_quantified_of_title(tokens)
+    if quantified_title:
+        return quantified_title
     tokens = _drop_meta_prefix(tokens)
     if not tokens:
         return ""
     relation_index = _find_relation_index(tokens)
+    verbish_index = _find_verbish_index(tokens)
     if relation_index <= 0:
-        relation_index = _find_verbish_index(tokens)
+        relation_index = verbish_index
+    elif (
+        tokens[relation_index].lower() in {"is", "are"}
+        and relation_index > 0
+        and tokens[relation_index - 1].lower() in _VERBISH_TOKENS
+    ):
+        relation_index -= 1
+    elif (
+        tokens[relation_index].lower() in {"is", "are", "was", "were"}
+        and verbish_index > 0
+        and verbish_index < relation_index
+    ):
+        relation_index = verbish_index
     if relation_index > 0:
         subject_tokens = _subject_tokens(tokens[:relation_index])
         relation_token = _normalize_relation_token(tokens[relation_index], subject_tokens=subject_tokens)
         predicate_tokens = _predicate_tokens(tokens[relation_index + 1 :])
+        subject_lower = {token.lower() for token in subject_tokens}
+        predicate_tokens = [
+            token
+            for token in predicate_tokens
+            if token.lower() not in subject_lower
+            and token.lower() != relation_token
+            and token.lower() not in {"is", "are", "was", "were", "be", "has", "have", "had"}
+        ]
     else:
         subject_tokens = _subject_tokens(tokens)
         relation_token = "is"
@@ -340,7 +475,9 @@ def _derive_short_title(statement: str) -> str:
     if not subject_tokens:
         subject_tokens = _subject_tokens(tokens[:2]) or tokens[:1]
     if relation_token not in {"exist", "exists"} and not predicate_tokens:
-        predicate_tokens = _predicate_tokens(tokens)
+        subject_lower = {token.lower() for token in subject_tokens}
+        fallback_predicate = [token for token in tokens if token.lower() not in subject_lower]
+        predicate_tokens = _predicate_tokens(fallback_predicate)
     if relation_token not in {"exist", "exists"} and not predicate_tokens:
         predicate_tokens = ["true"]
     words = (
@@ -368,6 +505,22 @@ def _derive_lower_bound_title(statement: str) -> str:
     if not subject:
         return ""
     title = " ".join(subject[:2] + ["has", "lower", "bound"])
+    return _sentence_case(title)
+
+
+def _derive_quantified_of_title(tokens: list[str]) -> str:
+    if len(tokens) < 4:
+        return ""
+    quantity = tokens[0].lower()
+    if quantity not in _QUANTITY_TOKENS:
+        return ""
+    if tokens[2].lower() != "of":
+        return ""
+    subject = _subject_tokens(tokens[3:])
+    if not subject:
+        return ""
+    noun = tokens[1].lower()
+    title = " ".join(subject[:2] + ["has", tokens[0].lower(), noun])
     return _sentence_case(title)
 
 
@@ -421,7 +574,9 @@ def _subject_tokens(tokens: list[str]) -> list[str]:
 
 def _predicate_tokens(tokens: list[str]) -> list[str]:
     cleaned = [token for token in tokens if token]
-    while cleaned and cleaned[0].lower() in _CONNECTIVE_TOKENS:
+    while cleaned and cleaned[0].lower() in (
+        _CONNECTIVE_TOKENS | {"is", "are", "was", "were", "be", "has", "have", "had"}
+    ):
         cleaned.pop(0)
     filtered: list[str] = []
     for token in cleaned:

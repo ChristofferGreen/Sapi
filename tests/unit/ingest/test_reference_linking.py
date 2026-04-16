@@ -55,6 +55,17 @@ class ReferenceLinkingTests(unittest.TestCase):
             self.assertEqual(source_b_record["linked_source_ids"], [source_a_id])
             self.assertTrue((space_root / "sources" / "records" / f"{source_a_id}.json").is_file())
 
+    def test_reference_extraction_ignores_pdf_metadata_namespace_noise(self) -> None:
+        text = (
+            "<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>\n"
+            "<rdf:Description xmlns:pdf='http://ns.adobe.com/pdf/1.3/'>\n"
+            "Legitimate citation DOI:10.4242/real.2026 and context text\n"
+        )
+        rows = extract_normalized_references_from_text(text)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["doi"], "10.4242/real.2026")
+        self.assertIsNone(rows[0]["url"])
+
     def test_new_ingest_backfills_links_in_older_records(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
@@ -121,7 +132,6 @@ def _ingest_and_get_record(
         str(site_path / "spaces.toml"),
         "--source-title",
         source_title,
-        "--source-only",
         "--mock-llm",
     ]
     if canonical_identifier is not None:

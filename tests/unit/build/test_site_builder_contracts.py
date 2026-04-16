@@ -323,25 +323,23 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn(
                 (
                     f"<a class=\"sentence-claim-option\" href=\"../claims/{claim_id_1}.html\">"
-                    "Preparation independence constrains epistemic overlaps between</a>"
+                    "The paper claims that preparation independence constrains epistemic overlaps between "
+                    "distinct quantum states in multi-system measurement settings</a>"
                 ),
                 topic_page_text,
             )
             self.assertIn(
                 (
                     f"<a class=\"sentence-claim-option\" href=\"../claims/{claim_id_2}.html\">"
-                    "Joint measurements reveal incompatibility with psi-epistemic</a>"
+                    "Joint measurements reveal incompatibility with psi-epistemic models</a>"
                 ),
                 topic_page_text,
             )
-            self.assertNotIn("The paper claims that", topic_page_text)
-            self.assertNotIn(">The paper ", topic_page_text)
-            self.assertNotIn(">This paper ", topic_page_text)
             self.assertNotIn("Claim reference 1", topic_page_text)
             self.assertNotIn("Claim reference 2", topic_page_text)
             option_labels = re.findall(r'class=\"sentence-claim-option\" href=\"[^\"]+\">([^<]+)</a>', topic_page_text)
             self.assertGreaterEqual(len(option_labels), 2)
-            self.assertTrue(all(3 <= len(label.split()) <= 7 for label in option_labels))
+            self.assertTrue(all(len(label.split()) >= 3 for label in option_labels))
 
     def test_comment_threads_render_nested_collapsible_rows_with_compact_avatar_and_vote_stack(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -497,6 +495,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                 space_root,
                 source_id=source_id,
                 title="Source A",
+                citation_count=240,
                 source_dossier={
                     "summary_short": "Short dossier summary.",
                     "summary_long": "Long dossier summary.",
@@ -571,7 +570,15 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stderr)
 
             claim_page_text = (space_root / "site" / "claims" / f"{claim_id}.html").read_text()
-            self.assertIn("<h1>Treating quantum states is purely epistemic conflicts</h1>", claim_page_text)
+            self.assertIn(
+                (
+                    "<h1>"
+                    "Treating quantum states as purely epistemic conflicts with independently prepared systems "
+                    "in the PBR setup"
+                    "</h1>"
+                ),
+                claim_page_text,
+            )
             self.assertIn("<h2>Claim Statement</h2>", claim_page_text)
             self.assertIn(claim_text, claim_page_text)
             self.assertIn("Overview and Interpretation", claim_page_text)
@@ -587,19 +594,24 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("jointly", claim_page_text)
             self.assertIn("Strength and Support Stats", claim_page_text)
             self.assertIn(
-                "score = 100 * (0.80 * evidence_factor + 0.20 * source_factor)",
+                "score = 100 * (0.65 * evidence_factor + 0.20 * source_factor + 0.15 * citation_factor)",
                 claim_page_text,
             )
             self.assertIn("where evidence_factor=min(evidence_items/3,1)", claim_page_text)
+            self.assertIn("citation_factor=min(log10(max_citation_count+1)/3,1)", claim_page_text)
+            self.assertIn("<dt>Max source citations</dt><dd>240</dd>", claim_page_text)
+            self.assertIn("<dt>Citation factor</dt>", claim_page_text)
             self.assertIn("Topic usages (informational only)", claim_page_text)
             self.assertIn("do not contribute to score", claim_page_text)
-            self.assertIn("class=\"comment-thread\"", claim_page_text)
+            self.assertNotIn("class=\"comment-thread\"", claim_page_text)
             evidence_links = re.findall(r'href=\"\.\./evidence/(evidence-[^\"]+)\.html\"', claim_page_text)
             self.assertGreaterEqual(len(evidence_links), 2)
 
             evidence_index_text = (space_root / "site" / "evidence" / "index.html").read_text()
             self.assertIn("<h1>Evidence</h1>", evidence_index_text)
             self.assertIn("independently prepared systems", evidence_index_text)
+            evidence_page_text = (space_root / "site" / "evidence" / f"{evidence_links[0]}.html").read_text()
+            self.assertNotIn("Evidence ID:", evidence_page_text)
 
             claims_index_text = (space_root / "site" / "claims" / "index.html").read_text()
             self.assertIn("id=\"claims-sort-direction\"", claims_index_text)
@@ -619,15 +631,32 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn(f"href=\"{evidence_links[0]}.html\"", evidence_index_text)
 
             topic_page_text = (space_root / "site" / "topics" / "topic-claim-rich--aaaaaaaaaaaa.html").read_text()
+            self.assertIn("Claims Used by This Topic", topic_page_text)
+            self.assertIn(f"href=\"../claims/{claim_id}.html\"", topic_page_text)
             self.assertIn("Evidence Used by This Topic", topic_page_text)
             self.assertIn("../evidence/", topic_page_text)
 
             source_page_text = (space_root / "site" / "sources" / "source-a.html").read_text()
             self.assertIn("Evidence from This Source", source_page_text)
             self.assertIn("../evidence/", source_page_text)
+            self.assertIn(
+                (
+                    "Treating quantum states as purely epistemic conflicts with independently prepared systems "
+                    "in the PBR setup"
+                ),
+                source_page_text,
+            )
+            self.assertNotIn(f">{claim_id}</a>", source_page_text)
+            self.assertIn("class=\"source-evidence-claim-chip\"", source_page_text)
 
             claims_index_text = (space_root / "site" / "claims" / "index.html").read_text()
-            self.assertIn("Treating quantum states is purely epistemic conflicts", claims_index_text)
+            self.assertIn(
+                (
+                    "Treating quantum states as purely epistemic conflicts with independently prepared systems "
+                    "in the PBR setup"
+                ),
+                claims_index_text,
+            )
             self.assertNotIn(f">{claim_id}</a>", claims_index_text)
 
     def test_site_presentation_mode_public_hides_internal_metadata_and_debug_exposes_it(self) -> None:
@@ -911,7 +940,24 @@ class SiteBuilderContractTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
             site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
-            self._bootstrap_site_space(tmp_root, "beta")
+            _site_path_2, _beta_space_root = self._bootstrap_site_space(tmp_root, "beta")
+            (alpha_space_root / "subspaces.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": "space_subspaces_v1",
+                        "subspaces": [
+                            {
+                                "space_name": "beta",
+                                "space_root": "../beta",
+                                "title": "beta",
+                            }
+                        ],
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n"
+            )
 
             for index in range(51):
                 self._write_source_record(
@@ -945,8 +991,25 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("class=\"feed-list\"", space_home)
             self.assertIn("<summary>Spaces</summary>", space_home)
             self.assertIn(">Space Home</a>", space_home)
-            self.assertIn("href=\"index.html\">alpha</a>", space_home)
-            self.assertIn("href=\"../../beta/site/index.html\">beta</a>", space_home)
+            self.assertIn("href=\"index.html\">Alpha</a>", space_home)
+            self.assertIn("href=\"../../beta/site/index.html\">Beta</a>", space_home)
+            spaces_section_match = re.search(
+                r'(?s)<details class=\"sidebar-spaces\" open><summary>Spaces</summary><ul>\n(.*?)\n</ul></details>',
+                space_home,
+            )
+            self.assertIsNotNone(spaces_section_match)
+            assert spaces_section_match is not None
+            spaces_section = spaces_section_match.group(1)
+            self.assertIn("href=\"index.html\">Alpha</a>", spaces_section)
+            self.assertNotIn("Beta</a>", spaces_section)
+            subspaces_section_match = re.search(
+                r'(?s)<details class=\"sidebar-subspaces\" open><summary>Subspaces</summary><ul>\n(.*?)\n</ul></details>',
+                space_home,
+            )
+            self.assertIsNotNone(subspaces_section_match)
+            assert subspaces_section_match is not None
+            subspaces_section = subspaces_section_match.group(1)
+            self.assertIn("href=\"../../beta/site/index.html\">Beta</a>", subspaces_section)
             self.assertIn("<summary>Sources</summary>", space_home)
             self.assertIn("href=\"sources/source-000.html\">", space_home)
             self.assertIn("<summary>Topics</summary>", space_home)
@@ -970,8 +1033,11 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIsNotNone(page_2_feed)
             assert page_1_feed is not None
             assert page_2_feed is not None
-            self.assertEqual(len(re.findall(r'href=\"source-\d{3}\.html\"', page_1_feed.group(1))), 50)
-            self.assertEqual(len(re.findall(r'href=\"\.\./\.\./source-\d{3}\.html\"', page_2_feed.group(1))), 1)
+            self.assertEqual(len(re.findall(r'<li class=\"feed-card\">', page_1_feed.group(1))), 50)
+            self.assertEqual(len(re.findall(r'<li class=\"feed-card\">', page_2_feed.group(1))), 1)
+            self.assertIn("class=\"feed-card-title\"", page_1_feed.group(1))
+            self.assertIn("class=\"feed-card-overview\"", page_1_feed.group(1))
+            self.assertIn("class=\"feed-card-type\">Source</span>", page_1_feed.group(1))
 
     def test_site_feed_ordering_tiebreak_and_feed_pagination_url_semantics(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1019,6 +1085,14 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("?feed_page=2", site_new_page_1)
             self.assertNotIn("?tab_page=2", site_new_page_1)
             self.assertIn("?feed_page=1", site_new_page_2)
+
+            site_root_index = (site_path / "site" / "index.html").read_text()
+            self.assertIn("<h2>Latest Across Spaces</h2>", site_root_index)
+            self.assertIn("class=\"feed-card\"", site_root_index)
+            self.assertIn("href=\"new/index.html\">Open full New feed</a>", site_root_index)
+            self.assertIn(alpha_latest_href, site_root_index)
+            self.assertIn(beta_latest_href, site_root_index)
+            self.assertLess(site_root_index.index(alpha_latest_href), site_root_index.index(beta_latest_href))
 
     def test_cross_page_search_control_and_index_consistency_across_page_types(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1134,6 +1208,39 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(second.returncode, 0, msg=second.stderr)
             self.assertEqual(first_svg, preview_path.read_text())
 
+    def test_slug_like_source_titles_do_not_fabricate_author_pages(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-slug-title-authors",
+                title="alive2-pldi21",
+                display_title="Alive2: Bounded Translation Validation for LLVM",
+                summary=(
+                    "This source frames LLVM optimization checking as bounded refinement validation over an SMT "
+                    "model and discusses deployability constraints."
+                ),
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            self.assertFalse((alpha_space_root / "site" / "authors" / "index.html").exists())
+            self.assertFalse((alpha_space_root / "site" / "authors" / "author-alive2.html").exists())
+            self.assertFalse((alpha_space_root / "site" / "authors" / "author-pldi21.html").exists())
+
+            sources_index = (alpha_space_root / "site" / "sources" / "index.html").read_text()
+            self.assertIn("Authors: unknown", sources_index)
+
     def test_source_detail_and_feed_rows_render_preview_assets_and_source_pdf_link(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
@@ -1169,8 +1276,8 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("class=\"source-preview-link\"", source_page)
             self.assertIn("../../../../site/assets/source_previews/source-preview-b.svg", source_page)
             self.assertIn("../../sources/artifacts/source-preview-b/source.pdf", source_page)
-            self.assertIn("Overview and Commentary", source_page)
-            self.assertIn("What the Source Argues", source_page)
+            self.assertNotIn("Overview and Commentary", source_page)
+            self.assertNotIn("What the Source Argues", source_page)
             self.assertNotIn("source_id:", source_page)
 
             site_new_page = (site_path / "site" / "new" / "index.html").read_text()
@@ -1198,6 +1305,37 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertNotIn("without truncation so readers can evaluate the source context dire...", space_new_page)
             self.assertIn("class=\"source-preview-feed\"", space_new_page)
             self.assertIn("../../../../site/assets/source_previews/source-preview-b.svg", space_new_page)
+
+    def test_new_feed_source_card_displays_publication_date_over_ingested_at(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-publication-date",
+                title="Publication Date Source",
+                ingested_at="2026-04-12T00:00:00Z",
+                source_date="2018-07-01",
+                summary="Date label in New feed should show publication date.",
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            site_new_page = (site_path / "site" / "new" / "index.html").read_text()
+            self.assertIn("Jul 01, 2018", site_new_page)
+            self.assertNotIn("Apr 12, 2026", site_new_page)
+
+            space_new_page = (alpha_space_root / "site" / "new" / "index.html").read_text()
+            self.assertIn("Jul 01, 2018", space_new_page)
+            self.assertNotIn("Apr 12, 2026", space_new_page)
 
     def test_source_preview_generation_and_markup_are_deterministic_snapshots(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1327,6 +1465,77 @@ class SiteBuilderContractTests(unittest.TestCase):
                 "class=\"source-preview-feed-link\" href=\"../topics/topic-two-sources.html\"",
                 feed_rows,
             )
+
+    def test_new_feed_does_not_derive_title_from_reference_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-paper-lowres--aaaaaaaaaaaa",
+                title="paper-lowres",
+                display_title="Paper Lowres",
+                references=[
+                    {
+                        "title": (
+                            "<rdf:Description rdf:about=\"\" xmlns:pdf=' /'>"
+                            "<pdf:Producer>GPL Ghostscript 10.00.0</pdf:Producer>"
+                        )
+                    },
+                    {
+                        "title": (
+                            "<rdf:Description rdf:about=\"\" xmlns:dc=' /' dc:format='application/pdf'>"
+                            "<dc:title><rdf:Alt><rdf:li xml:lang='x-default'>"
+                            "Path Tracing of Signed Distance Function Grids"
+                            "</rdf:li></rdf:Alt></dc:title>"
+                        )
+                    }
+                ],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            new_page = (alpha_space_root / "site" / "new" / "index.html").read_text()
+            self.assertIn(">Paper Lowres<", new_page)
+            self.assertNotIn("Path Tracing of Signed Distance Function Grids", new_page)
+            self.assertNotIn("GPL Ghostscript", new_page)
+            self.assertNotIn(">paper-lowres<", new_page)
+
+    def test_source_feed_uses_no_overview_placeholder_when_summary_is_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-no-summary--aaaaaaaaaaaa",
+                title="paper-lowres",
+                display_title="Paper Lowres",
+                references=[{"title": "Example reference title"}],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            sources_page = (alpha_space_root / "site" / "sources" / "index.html").read_text()
+            self.assertIn(">No overview available.<", sources_page)
+            self.assertNotIn("A richer dossier summary can be regenerated from the source text.", sources_page)
 
     def test_author_links_point_to_unique_author_pages(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1508,7 +1717,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                 f"<a href=\"../claims/{claim_id}.html\">Preparation independence constrains overlap</a>",
                 source_page,
             )
-            self.assertIn(
+            self.assertNotIn(
                 f"<a class=\"sentence-claim-link\" href=\"../claims/{claim_id}.html\">",
                 source_page,
             )
@@ -1516,6 +1725,124 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertNotIn("Claim reference 1", source_page)
             self.assertNotIn("Claim reference ", source_page)
             self.assertNotIn(">Claim 1</a>", source_page)
+
+    def test_source_claim_list_includes_direct_source_claims_without_topics(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            source_id = "source-direct-claims"
+            claim_id = "claim-direct-claims--aaaaaaaaaaaa"
+            self._write_source_record(
+                alpha_space_root,
+                source_id=source_id,
+                title="Source Direct Claims",
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id=claim_id,
+                source_id=source_id,
+                text="Register-pressure spikes are concentrated in post-SSA lowering blocks.",
+                short_title="Pressure spikes cluster post-SSA",
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            source_page = (alpha_space_root / "site" / "sources" / f"{source_id}.html").read_text()
+            self.assertIn("Claims Referencing This Source", source_page)
+            self.assertIn(
+                f"<a href=\"../claims/{claim_id}.html\">Pressure spikes cluster post-SSA</a>",
+                source_page,
+            )
+
+    def test_source_dossier_numeric_claim_refs_resolve_to_canonical_claim_pages(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            source_id = "source-dossier-numeric-claims"
+            claim_id_0 = "claim-prep-independence--aaaaaaaaaaaa"
+            claim_id_1 = "claim-noise-bound--bbbbbbbbbbbb"
+            claim_id_2 = "claim-collapse-consequence--cccccccccccc"
+            self._write_source_record(
+                alpha_space_root,
+                source_id=source_id,
+                title="Source Dossier Numeric Claims",
+                source_dossier={
+                    "summary_short": "Short summary",
+                    "summary_long": "Long summary paragraph.",
+                    "sections": [
+                        {
+                            "heading": "Preparation assumptions",
+                            "body": "Preparation independence blocks epistemic overlap contradictions.",
+                            "grounding_claim_ids": ["0"],
+                        },
+                        {
+                            "heading": "Noise-robust implication",
+                            "body": "A noise-tolerant bound still forces near-disjoint ontic distributions.",
+                            "grounding_claim_ids": ["1"],
+                        },
+                        {
+                            "heading": "Interpretive result",
+                            "body": "Real-wavefunction readings imply collapse or branching ontology.",
+                            "grounding_claim_ids": ["2"],
+                        },
+                    ],
+                },
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id=claim_id_0,
+                source_id=source_id,
+                text=(
+                    "Preparation independence blocks psi-epistemic overlap by making shared ontic states "
+                    "incompatible with predicted outcomes."
+                ),
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id=claim_id_1,
+                source_id=source_id,
+                text=(
+                    "Noise-tolerant overlap bounds still imply near-disjoint ontic distributions for distinct "
+                    "quantum states."
+                ),
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id=claim_id_2,
+                source_id=source_id,
+                text=(
+                    "If the wavefunction is physically real, collapse or branching ontology follows under the "
+                    "paper's assumptions."
+                ),
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            source_page = (alpha_space_root / "site" / "sources" / f"{source_id}.html").read_text()
+            self.assertNotIn("href=\"../claims/0.html\"", source_page)
+            self.assertNotIn("href=\"../claims/1.html\"", source_page)
+            self.assertNotIn("href=\"../claims/2.html\"", source_page)
+            self.assertIn(f"href=\"../claims/{claim_id_0}.html\"", source_page)
+            self.assertIn(f"href=\"../claims/{claim_id_1}.html\"", source_page)
+            self.assertIn(f"href=\"../claims/{claim_id_2}.html\"", source_page)
 
     def test_claim_index_and_detail_use_short_claim_titles(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1573,10 +1900,13 @@ class SiteBuilderContractTests(unittest.TestCase):
 
             claims_index = (alpha_space_root / "site" / "claims" / "index.html").read_text()
             self.assertIn(
-                f"<a href=\"{claim_id}.html\">Preparation independence constrains epistemic overlap regions</a>",
+                (
+                    f"<a href=\"{claim_id}.html\">"
+                    "The paper claims that preparation independence constrains epistemic overlap regions"
+                    "</a>"
+                ),
                 claims_index,
             )
-            self.assertNotIn("The paper claims that preparation independence", claims_index)
             self.assertIn("<p class=\"meta\">score: ", claims_index)
             self.assertIn("class=\"claim-score-value claim-score-", claims_index)
             self.assertNotIn(f"{claim_id} | score:", claims_index)
@@ -1590,7 +1920,14 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertRegex(claims_index, r'<a class=\"tab current\" href=\"[^\"]*\">Claims</a>')
 
             claim_page = (alpha_space_root / "site" / "claims" / f"{claim_id}.html").read_text()
-            self.assertIn("<h1>Preparation independence constrains epistemic overlap regions</h1>", claim_page)
+            self.assertIn(
+                (
+                    "<h1>"
+                    "The paper claims that preparation independence constrains epistemic overlap regions"
+                    "</h1>"
+                ),
+                claim_page,
+            )
             self.assertIn(
                 "<p>The paper claims that preparation independence constrains epistemic overlap regions.</p>",
                 claim_page,
@@ -1638,6 +1975,69 @@ class SiteBuilderContractTests(unittest.TestCase):
             claim_page = (alpha_space_root / "site" / "claims" / f"{claim_id}.html").read_text()
             self.assertIn(f"<h1>{short_title}</h1>", claim_page)
             self.assertNotIn("<h1>Decoherence makes observables is stable</h1>", claim_page)
+
+    def test_claim_index_score_ranking_includes_citation_count_signal(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            high_source_id = "source-high-citation"
+            low_source_id = "source-low-citation"
+            high_claim_id = "claim-high-citation-rank--aaaaaaaaaaaa"
+            low_claim_id = "claim-low-citation-rank--aaaaaaaaaaaa"
+            self._write_source_record(
+                alpha_space_root,
+                source_id=high_source_id,
+                title="High Citation Source",
+                citation_count=2000,
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id=low_source_id,
+                title="Low Citation Source",
+                citation_count=10,
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id=high_claim_id,
+                source_id=high_source_id,
+                text="High citation claim statement.",
+                short_title="High citation claim",
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id=low_claim_id,
+                source_id=low_source_id,
+                text="Low citation claim statement.",
+                short_title="Low citation claim",
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            claims_index = (alpha_space_root / "site" / "claims" / "index.html").read_text()
+            self.assertIn(f"<a href=\"{high_claim_id}.html\">High citation claim</a>", claims_index)
+            self.assertIn(f"<a href=\"{low_claim_id}.html\">Low citation claim</a>", claims_index)
+            high_match = re.search(
+                rf'data-claim-id="{re.escape(high_claim_id)}".*?data-claim-score="(\d+)"',
+                claims_index,
+            )
+            low_match = re.search(
+                rf'data-claim-id="{re.escape(low_claim_id)}".*?data-claim-score="(\d+)"',
+                claims_index,
+            )
+            self.assertIsNotNone(high_match)
+            self.assertIsNotNone(low_match)
+            assert high_match is not None
+            assert low_match is not None
+            self.assertGreater(int(high_match.group(1)), int(low_match.group(1)))
 
     def test_claim_index_newness_prefers_claim_added_at_then_source_ingested_at(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1746,9 +2146,11 @@ class SiteBuilderContractTests(unittest.TestCase):
 
             site_new_page = (site_path / "site" / "new" / "index.html").read_text()
             self.assertIn("../assets/source_previews/source-preview-photo.png", site_new_page)
+            self.assertIn("aria-label=\"Open source: Preview Source Photo\"", site_new_page)
 
             space_new_page = (alpha_space_root / "site" / "new" / "index.html").read_text()
             self.assertIn("../../../../site/assets/source_previews/source-preview-photo.png", space_new_page)
+            self.assertIn("aria-label=\"Open source: Preview Source Photo\"", space_new_page)
 
     def test_users_tab_scope_and_space_profile_link_resolution(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1856,6 +2258,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                 self.assertIn("Short CV", alpha_profile_html)
                 self.assertIn("I am a practical evidence reviewer", alpha_profile_html)
                 self.assertIn("Operations Advisor</p><p class=\"profile-cv-org\">Example Systems", alpha_profile_html)
+                self.assertIn("<title>Alpha - Maya Santoro</title>", alpha_profile_html)
                 alpha_profile_photo_path = (
                     alpha_space_root / "site" / "assets" / "persona_profiles" / f"{persona_id}.jpg"
                 )
@@ -1968,6 +2371,187 @@ class SiteBuilderContractTests(unittest.TestCase):
                 else:
                     thumb_path.write_bytes(thumb_original)
 
+    def test_user_profile_page_lists_comments_written_by_persona(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            catalog_path = REPO_ROOT / "personas" / "social_users.json"
+            profile_images_root = REPO_ROOT / "personas" / "profile_images"
+            original_catalog = catalog_path.read_text()
+            profile_image_path = profile_images_root / "comment-author.jpg"
+            profile_image_original = profile_image_path.read_bytes() if profile_image_path.exists() else None
+            try:
+                persona_id = "persona-comment-author"
+                profile_image_path.write_bytes(b"comment-author-photo")
+                seeded_catalog = {
+                    "schema_version": "social_users_v1",
+                    "count": 1,
+                    "users": [
+                        {
+                            "persona_id": persona_id,
+                            "display_name": "Comment Author",
+                            "full_name": "Comment Author",
+                            "account_status": "active",
+                            "stance_profile": "neutral",
+                            "biography": (
+                                "I evaluate complex arguments by tracking assumptions, pressure-testing evidence, "
+                                "and explaining tradeoffs that matter for concrete decisions. I map failure modes, "
+                                "identify hidden dependencies, and document what must be true for a conclusion to "
+                                "hold in practice. I compare competing interpretations against primary sources, then "
+                                "write plain-language summaries that preserve uncertainty and scope limits. I care "
+                                "about whether claims survive scrutiny when definitions shift, edge cases appear, or "
+                                "new evidence conflicts with earlier framing. I also track what teams actually do "
+                                "after discussion, because reasoning quality should improve actions rather than stay "
+                                "as abstract debate. I revise quickly when stronger data arrives and I annotate why "
+                                "a change in view happened."
+                            ),
+                            "biography_profile": (
+                                "I write analytical comments that challenge weak inferences, reward clear "
+                                "evidence handling, and connect abstract claims back to what can actually be "
+                                "verified in sources. I focus on clarity, testability, and practical decision value."
+                            ),
+                            "interests": ["evidence quality"],
+                            "hot_topics": ["argument structure"],
+                            "anger_topics": ["unsupported assertions"],
+                            "profile_image_path": "personas/profile_images/comment-author.jpg",
+                            "profile_image_prompt": (
+                                "Photorealistic portrait photo of a single person in natural indoor light, "
+                                "documentary style head-and-shoulders framing."
+                            ),
+                            "short_cv": ["Researcher, Example Org (2020-present)"],
+                        }
+                    ],
+                }
+                catalog_path.write_text(json.dumps(seeded_catalog, indent=2, sort_keys=True) + "\n")
+                self._write_topic_record(
+                    alpha_space_root,
+                    topic_id="topic-profile-comments--aaaaaaaaaaaa",
+                    title="Profile Comment Topic",
+                    source_ids=[],
+                    comment_section={
+                        "page_ref": "topic:topic-profile-comments--aaaaaaaaaaaa",
+                        "comments": [
+                            {
+                                "comment_uid": "comment-profile-1",
+                                "comment_no": "1",
+                                "persona_id": persona_id,
+                                "body": "This is a profile-visible comment.",
+                                "permalink": "#comment-profile-1",
+                                "social_vote": {"upvotes": 20, "downvotes": 5, "score": 15},
+                                "thread_state_key": "comment-profile-1",
+                                "thread_expansion_key": "comment-profile-1",
+                            }
+                        ],
+                    },
+                )
+
+                result = self._run(
+                    [
+                        "python3",
+                        str(REPO_ROOT / "scripts" / "build_site.py"),
+                        "--registry-path",
+                        str(site_path / "spaces.toml"),
+                        "alpha",
+                    ]
+                )
+                self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+                profile_page = (
+                    alpha_space_root / "site" / "users" / f"persona-{persona_id}.html"
+                ).read_text()
+                self.assertIn("Comments by This User", profile_page)
+                self.assertIn("../topics/topic-profile-comments--aaaaaaaaaaaa.html#comment-profile-1", profile_page)
+                self.assertIn("This is a profile-visible comment.", profile_page)
+                self.assertIn("Score: 15", profile_page)
+            finally:
+                catalog_path.write_text(original_catalog)
+                if profile_image_original is None:
+                    profile_image_path.unlink(missing_ok=True)
+                else:
+                    profile_image_path.write_bytes(profile_image_original)
+
+    def test_user_profile_page_hides_empty_comment_activity_section(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            catalog_path = REPO_ROOT / "personas" / "social_users.json"
+            profile_images_root = REPO_ROOT / "personas" / "profile_images"
+            original_catalog = catalog_path.read_text()
+            profile_image_path = profile_images_root / "commentless-author.jpg"
+            profile_image_original = profile_image_path.read_bytes() if profile_image_path.exists() else None
+            try:
+                persona_id = "persona-commentless-author"
+                profile_image_path.write_bytes(b"commentless-author-photo")
+                seeded_catalog = {
+                    "schema_version": "social_users_v1",
+                    "count": 1,
+                    "users": [
+                        {
+                            "persona_id": persona_id,
+                            "display_name": "Commentless Author",
+                            "full_name": "Commentless Author",
+                            "account_status": "active",
+                            "stance_profile": "neutral",
+                            "biography": (
+                                "I evaluate complex arguments by tracking assumptions, pressure-testing evidence, "
+                                "and explaining tradeoffs that matter for concrete decisions. I map failure modes, "
+                                "identify hidden dependencies, and document what must be true for a conclusion to "
+                                "hold in practice. I compare competing interpretations against primary sources, then "
+                                "write plain-language summaries that preserve uncertainty and scope limits. I care "
+                                "about whether claims survive scrutiny when definitions shift, edge cases appear, or "
+                                "new evidence conflicts with earlier framing. I also track what teams actually do "
+                                "after discussion, because reasoning quality should improve actions rather than stay "
+                                "as abstract debate. I revise quickly when stronger data arrives and I annotate why "
+                                "a change in view happened."
+                            ),
+                            "biography_profile": (
+                                "I write analytical comments that challenge weak inferences, reward clear "
+                                "evidence handling, and connect abstract claims back to what can actually be "
+                                "verified in sources. I focus on clarity, testability, and practical decision value."
+                            ),
+                            "interests": ["evidence quality"],
+                            "hot_topics": ["argument structure"],
+                            "anger_topics": ["unsupported assertions"],
+                            "profile_image_path": "personas/profile_images/commentless-author.jpg",
+                            "profile_image_prompt": (
+                                "Photorealistic portrait photo of a single person in natural indoor light, "
+                                "documentary style head-and-shoulders framing."
+                            ),
+                            "short_cv": ["Reviewer, Example Org (2021-present)"],
+                        }
+                    ],
+                }
+                catalog_path.write_text(json.dumps(seeded_catalog, indent=2, sort_keys=True) + "\n")
+                self._write_topic_record(
+                    alpha_space_root,
+                    topic_id="topic-commentless-profile--aaaaaaaaaaaa",
+                    title="Commentless Profile Topic",
+                    source_ids=[],
+                )
+
+                result = self._run(
+                    [
+                        "python3",
+                        str(REPO_ROOT / "scripts" / "build_site.py"),
+                        "--registry-path",
+                        str(site_path / "spaces.toml"),
+                        "alpha",
+                    ]
+                )
+                self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+                profile_page = (
+                    alpha_space_root / "site" / "users" / f"persona-{persona_id}.html"
+                ).read_text()
+                self.assertNotIn("Comments by This User", profile_page)
+                self.assertNotIn("(no comments yet)", profile_page)
+            finally:
+                catalog_path.write_text(original_catalog)
+                if profile_image_original is None:
+                    profile_image_path.unlink(missing_ok=True)
+                else:
+                    profile_image_path.write_bytes(profile_image_original)
+
     def test_toolchain_reproducibility_validation_enforces_package_manager_lockfile_node_pin(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp)
@@ -2023,8 +2607,12 @@ class SiteBuilderContractTests(unittest.TestCase):
         source_id: str,
         title: str,
         ingested_at: str = "2026-04-12T00:00:00Z",
+        source_date: str | None = None,
+        citation_count: int | float | None = None,
         summary: str | None = None,
+        display_title: str | None = None,
         authors: list[object] | None = None,
+        references: list[dict[str, object]] | None = None,
         source_file_rel: str | None = None,
         front_page_image_rel: str | None = None,
         source_dossier: dict[str, object] | None = None,
@@ -2034,13 +2622,19 @@ class SiteBuilderContractTests(unittest.TestCase):
             "schema_version": "source_record_v1",
             "source_id": source_id,
             "title": title,
-            "date": ingested_at.split("T", 1)[0],
+            "date": source_date if source_date is not None else ingested_at.split("T", 1)[0],
             "ingested_at": ingested_at,
         }
         if summary is not None:
             payload["summary"] = summary
+        if citation_count is not None:
+            payload["citation_count"] = citation_count
+        if display_title is not None:
+            payload["display_title"] = display_title
         if authors is not None:
             payload["authors"] = authors
+        if references is not None:
+            payload["references"] = references
         if source_dossier is not None:
             payload["source_dossier"] = source_dossier
         if source_semantic is not None:

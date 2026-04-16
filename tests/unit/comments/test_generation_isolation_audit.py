@@ -1,9 +1,15 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
 
 from sapi.llm.client import SemanticLlmRequest
-from scripts.create_comments import _MockCommentSectionClient, _audit_generation_isolation_request
+from sapi.llm.runtime_backend import SemanticBackendConfig
+from scripts.create_comments import (
+    _LiveCommentSectionClient,
+    _MockCommentSectionClient,
+    _audit_generation_isolation_request,
+)
 
 
 class GenerationIsolationAuditTests(unittest.TestCase):
@@ -32,6 +38,8 @@ class GenerationIsolationAuditTests(unittest.TestCase):
             page_ref="topic:topic-alpha",
             requested_count=5,
             persona_ids=["commenter-1", "commenter-2"],
+            page_payload={"topic_id": "topic-alpha", "title": "Topic Alpha"},
+            original_source_context={"source_ids": [], "source_records": []},
         )
         with self.assertRaisesRegex(ValueError, "adjudication rubric"):
             client.generate_semantic_json(
@@ -40,6 +48,50 @@ class GenerationIsolationAuditTests(unittest.TestCase):
                     context_by_path={"/tmp/topics": "dir:///tmp/topics"},
                 )
             )
+
+    def test_live_client_passes_style_constraints_to_semantic_backend(self) -> None:
+        client = _LiveCommentSectionClient(
+            backend_config=SemanticBackendConfig(
+                backend="codex",
+                model="gpt-5.4",
+                reasoning_effort="high",
+                timeout_secs=1000,
+            ),
+            page_ref="topic:topic-alpha",
+            requested_count=5,
+            persona_ids=["persona-maya-santoro", "persona-eli-okafor"],
+            page_payload={"topic_id": "topic-alpha", "title": "Topic Alpha"},
+            original_source_context={"source_ids": [], "source_records": []},
+        )
+        request = _request(
+            spec_text="Generate comments as strict JSON.",
+            context_by_path={"/tmp/topics": "dir:///tmp/topics"},
+        )
+        with patch("scripts.create_comments.generate_semantic_json_live") as mocked_generate:
+            mocked_generate.return_value = (
+                '{"page_ref":"topic:topic-alpha","requested_count":5,"comments":[]}'
+            )
+            client.generate_semantic_json(request)
+
+        self.assertTrue(mocked_generate.called)
+        task_context = mocked_generate.call_args.kwargs["task_context"]
+        requirements = task_context["task_requirements"]
+        self.assertEqual(requirements["must_use_page_ref"], "topic:topic-alpha")
+        self.assertEqual(requirements["requested_count"], 5)
+        self.assertIn("style_constraints", requirements)
+        style_constraints = requirements["style_constraints"]
+        self.assertIn(
+            "Write natural discussion comments, not moderation-template prose.",
+            style_constraints,
+        )
+        self.assertIn(
+            "Do not use formulaic phrases like 'most defensible sentence is' or 'more persuasive if'.",
+            style_constraints,
+        )
+        self.assertIn(
+            "Never reference internal IDs or slug labels (for example source-paper-lowres). Use human-readable page titles.",
+            style_constraints,
+        )
 
 
 def _request(*, spec_text: str, context_by_path: dict[str, str]) -> SemanticLlmRequest:

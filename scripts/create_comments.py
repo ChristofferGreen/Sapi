@@ -8,6 +8,7 @@ from datetime import UTC, datetime
 import json
 import os
 from pathlib import Path
+import re
 import secrets
 import shutil
 import sys
@@ -797,6 +798,8 @@ def _build_comment_section_client(
             page_ref=page_ref,
             requested_count=requested_count,
             persona_ids=persona_ids,
+            page_payload=page_payload,
+            original_source_context=original_source_context,
         )
     return _LiveCommentSectionClient(
         backend_config=SemanticBackendConfig(
@@ -820,10 +823,14 @@ class _MockCommentSectionClient:
         page_ref: str,
         requested_count: int,
         persona_ids: list[str],
+        page_payload: dict[str, object],
+        original_source_context: dict[str, object],
     ) -> None:
         self._page_ref = page_ref
         self._requested_count = requested_count
         self._persona_ids = persona_ids
+        self._page_payload = page_payload
+        self._original_source_context = original_source_context
         self._generation_isolation_summary = _empty_generation_isolation_summary()
 
     @property
@@ -837,24 +844,34 @@ class _MockCommentSectionClient:
             raise ValueError(
                 "comment-generation prompts/context exposed adjudication rubric details."
             )
+        page_label = _mock_page_label(page_ref=self._page_ref, page_payload=self._page_payload)
+        focus_line = _mock_focus_line(
+            page_payload=self._page_payload,
+            original_source_context=self._original_source_context,
+        )
         comments: list[dict[str, object]] = []
         for index in range(self._requested_count):
             persona_id = self._persona_ids[index % len(self._persona_ids)]
             comment_ref = f"draft-{index + 1}"
-            parent_ref: str | None = None if index == 0 else f"draft-{index}"
+            parent_ref: str | None = None if index == 0 else ("draft-1" if index % 2 == 1 else f"draft-{index}")
+            body = _mock_comment_body(
+                index=index,
+                requested_count=self._requested_count,
+                persona_id=persona_id,
+                page_label=page_label,
+                focus_line=focus_line,
+            )
             comments.append(
                 {
                     "comment_ref": comment_ref,
                     "persona_id": persona_id,
-                    "body": (
-                        f"Generated comment {index + 1} by {persona_id}."
-                    ),
+                    "body": body,
                     "parent_ref": parent_ref,
                     "score_assessment": {
-                        "score": 8 - index,
+                        "score": max(-4, 16 - (index * 2)),
                         "rationale": (
-                            "Neutral mock assessor score based on argumentative clarity, "
-                            "thread fit, and source grounding."
+                            "Deterministic mock assessor score based on clarity, relevance, "
+                            "and thread coherence."
                         ),
                     },
                 }
@@ -865,6 +882,76 @@ class _MockCommentSectionClient:
             "comments": comments,
         }
         return json.dumps(payload)
+
+
+def _mock_page_label(*, page_ref: str, page_payload: dict[str, object]) -> str:
+    for key in ("display_title", "title", "short_title", "topic_id", "source_id", "claim_id"):
+        value = page_payload.get(key)
+        if isinstance(value, str) and value.strip():
+            normalized = " ".join(value.split())
+            if re.search(r"--[0-9a-f]{12,}$", normalized):
+                continue
+            if normalized.casefold().startswith("source-"):
+                continue
+            return normalized
+    return page_ref
+
+
+def _mock_focus_line(
+    *,
+    page_payload: dict[str, object],
+    original_source_context: dict[str, object],
+) -> str:
+    candidates: list[str] = []
+    for key in ("summary", "text", "description"):
+        value = page_payload.get(key)
+        if isinstance(value, str) and value.strip():
+            candidates.append(value.strip())
+    source_summary = original_source_context.get("source_summary")
+    if isinstance(source_summary, str) and source_summary.strip():
+        candidates.append(source_summary.strip())
+    evidence_excerpts = page_payload.get("evidence_excerpts")
+    if isinstance(evidence_excerpts, list):
+        for row in evidence_excerpts:
+            if isinstance(row, str) and row.strip():
+                candidates.append(row.strip())
+                break
+    for candidate in candidates:
+        sentence = " ".join(candidate.split())
+        if sentence:
+            return sentence[:220]
+    return "the central argument is clear but benefits from explicit evidence links"
+
+
+def _persona_display_name(persona_id: str) -> str:
+    trimmed = persona_id.strip()
+    if trimmed.startswith("persona-"):
+        trimmed = trimmed[len("persona-") :]
+    words = [part for part in trimmed.split("-") if part]
+    if not words:
+        return persona_id
+    return " ".join(word.capitalize() for word in words)
+
+
+def _mock_comment_body(
+    *,
+    index: int,
+    requested_count: int,
+    persona_id: str,
+    page_label: str,
+    focus_line: str,
+) -> str:
+    persona_name = _persona_display_name(persona_id)
+    variants = (
+        f"{persona_name}: On {page_label}, the clearest claim is that {focus_line}. The page reads stronger when each conclusion stays tied to a specific evidence line.",
+        f"{persona_name}: The discussion on {page_label} is solid overall. I would separate direct findings from interpretation, then keep cross-claim transitions shorter for easier verification.",
+        f"{persona_name}: My takeaway from {page_label} is that {focus_line}. A short note on scope limits would make the argument easier to trust.",
+        f"{persona_name}: {page_label} has good structure and grounded references. The next improvement is to trim repeated phrasing and keep one concrete evidence anchor per paragraph.",
+        f"{persona_name}: The central point on {page_label} is coherent and useful. I would clarify which part is source-backed versus synthesis so readers can audit it faster.",
+    )
+    if requested_count <= 0:
+        return variants[0]
+    return variants[index % len(variants)]
 
 
 class _LiveCommentSectionClient:
@@ -913,6 +1000,12 @@ class _LiveCommentSectionClient:
                         "and concise rationale. Score neutrally from comment quality using thread "
                         "context and original source context."
                     ),
+                    "style_constraints": [
+                        "Write natural discussion comments, not moderation-template prose.",
+                        "Do not use formulaic phrases like 'most defensible sentence is' or 'more persuasive if'.",
+                        "Never reference internal IDs or slug labels (for example source-paper-lowres). Use human-readable page titles.",
+                        "Vary openings and sentence structure across comments in the same thread.",
+                    ],
                 },
                 "page_payload": self._page_payload,
                 "comment_chain_context": (

@@ -3,3 +3,19 @@
 [[spaces]]
 space_name = "alpha"
 space_root = "spaces/alpha"
+
+[[spaces]]
+space_name = "computer-science"
+space_root = "spaces/computer-science"
+
+[[spaces]]
+space_name = "computer-graphics"
+space_root = "spaces/computer-graphics"
+
+[[spaces]]
+space_name = "compilers"
+space_root = "spaces/compilers"
+
+[[spaces]]
+space_name = "nutrition"
+space_root = "spaces/nutrition"

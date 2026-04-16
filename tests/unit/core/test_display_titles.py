@@ -26,13 +26,13 @@ class DisplayTitleTests(unittest.TestCase):
 
         self.assertEqual(resolved, "Source A")
 
-    def test_resolve_humanizes_source_id_when_candidates_are_invalid(self) -> None:
+    def test_resolve_returns_untitled_when_candidates_and_fallback_are_invalid(self) -> None:
         resolved = resolve_display_title(
             candidates=["https://example.com/source.pdf"],
             fallback="source-pusey-barrett-rudolph-2012--e197f59c8424",
         )
 
-        self.assertEqual(resolved, "Pusey Barrett Rudolph 2012")
+        self.assertEqual(resolved, "Untitled Source")
 
     def test_strict_normalization_rejects_slugish_year_text(self) -> None:
         self.assertIsNone(normalize_display_title_strict("springer_ejps_2020"))

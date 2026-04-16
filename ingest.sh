@@ -2,7 +2,7 @@
 set -euo pipefail
 
 usage() {
-  echo "Usage: ingest.sh <site_path> <space_name> <source_path_or_url> [--source-only] [--force] [--verbose]" >&2
+  echo "Usage: ingest.sh <site_path> <space_name> <source_path_or_url> [--force] [--verbose]" >&2
 }
 
 if [[ $# -lt 3 ]]; then
@@ -19,29 +19,13 @@ shift 3
 registry_path="$site_path/spaces.toml"
 
 normalized_args=()
-seen_source_only=0
-seen_query_only=0
 
 for arg in "$@"; do
   case "$arg" in
-    --source-only)
-      if [[ $seen_query_only -eq 1 ]]; then
-        echo "Error: cannot combine --source-only with alias --query-only" >&2
-        usage
-        exit 2
-      fi
-      seen_source_only=1
-      normalized_args+=("--source-only")
-      ;;
-    --query-only)
-      if [[ $seen_source_only -eq 1 ]]; then
-        echo "Error: cannot combine --source-only with alias --query-only" >&2
-        usage
-        exit 2
-      fi
-      seen_query_only=1
-      echo "Warning: --query-only is deprecated; use --source-only." >&2
-      normalized_args+=("--source-only")
+    --source-only|--query-only)
+      echo "Error: $arg has been removed; ingest now always runs semantic extraction and topic generation." >&2
+      usage
+      exit 2
       ;;
     *)
       normalized_args+=("$arg")

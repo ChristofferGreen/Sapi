@@ -8,15 +8,16 @@ from functools import lru_cache
 import hashlib
 from html import escape
 import json
+import math
 import os
 from pathlib import Path
 import re
+import shutil
 import unicodedata
 from typing import Any
 from urllib.parse import urlsplit
 
 from sapi.build.projection import SpaceProjection, load_space_projection
-from sapi.core.claim_naming import shorten_claim_label
 from sapi.core.display_titles import resolve_display_title
 from sapi.core.site_scope import load_site_scope, load_subspaces_metadata
 from sapi.lint.lint_engine import LintSummary, default_lint_summary
@@ -55,6 +56,7 @@ class _FeedEntry:
     item_id: str
     title: str
     summary: str
+    display_timestamp: str = ""
     authors: tuple["_AuthorRef", ...] = ()
     source_preview_href: str | None = None
 
@@ -150,6 +152,7 @@ def build_space_site(
     projection = load_space_projection(space_root)
     space_name = space_root.name
     output_root = space_root / "site"
+    _reset_render_root_for_deterministic_build(render_root=output_root, incremental=incremental)
     output_root.mkdir(parents=True, exist_ok=True)
     stylesheet_path = output_root / "assets" / "site.css"
     _write_binary_file(stylesheet_path, compiled_stylesheet, incremental=incremental)
@@ -208,6 +211,7 @@ def build_space_site(
     generated_files.extend(
         _write_space_user_profile_pages(
             output_root=output_root,
+            projection=projection,
             context=context,
             persona_rows=persona_rows,
             incremental=incremental,
@@ -320,6 +324,7 @@ def refresh_site_new_index(
 
     site_name = _resolve_site_name(site_path)
     site_root = site_path / "site"
+    _reset_render_root_for_deterministic_build(render_root=site_root, incremental=incremental)
     site_root.mkdir(parents=True, exist_ok=True)
     site_stylesheet_path = site_root / "assets" / "site.css"
     _write_binary_file(site_stylesheet_path, compiled_stylesheet, incremental=incremental)
@@ -330,6 +335,7 @@ def refresh_site_new_index(
             site_name=site_name,
             space_names=space_names,
             subspaces_by_space=subspaces_by_space,
+            latest_entries=entries[:10],
             stylesheet_href=_relative_href(from_file=site_index_path, to_file=site_stylesheet_path),
         ),
         incremental=incremental,
@@ -386,6 +392,7 @@ def _write_source_pages(
     written: list[Path] = []
     site_path = output_root.parents[2]
     evidence_by_source_id = _evidence_records_by_source_id(evidence_records)
+    claim_records = _load_claim_records(space_root=output_root.parent)
     claim_option_title_by_id = _load_claim_option_titles(space_root=output_root.parent)
     for source in sorted(projection.sources, key=lambda item: item["source_id"]):
         source_path = sources_dir / f"{source['source_id']}.html"
@@ -405,13 +412,19 @@ def _write_source_pages(
             topics=projection.topics,
         )
         related_claim_ids = _collect_claim_ids_from_topics(topics=related_topics)
-        source_metadata = _render_source_metadata_section(source=source)
-        source_dossier = _resolve_source_dossier(
-            source=source,
-            related_topics=related_topics,
+        source_id = str(source["source_id"])
+        source_claim_ids = _source_claim_ids(
+            source_id=source_id,
             related_claim_ids=related_claim_ids,
+            claim_records=claim_records,
         )
-        summary_short = str(source_dossier.get("summary_short") or "").strip()
+        source_metadata = _render_source_metadata_section(source=source)
+        source_dossier = _resolve_source_dossier(source=source)
+        summary_short = str(source_summary).strip()
+        if source_dossier is not None:
+            candidate = str(source_dossier.get("summary_short") or "").strip()
+            if candidate:
+                summary_short = candidate
         source_preview_row = (
             "<figure class=\"source-preview-figure\">"
             + "<a class=\"source-preview-link\" href=\""
@@ -444,11 +457,10 @@ def _write_source_pages(
                     )
                 )
                 + "</a></li>"
-                for claim_id in related_claim_ids
+                for claim_id in source_claim_ids
             )
             or "<li>(none linked yet)</li>"
         )
-        source_id = str(source["source_id"])
         source_evidence_rows = (
             "\n".join(
                 (
@@ -456,9 +468,12 @@ def _write_source_pages(
                     + escape(record.evidence_id)
                     + ".html\">"
                     + escape(record.title)
-                    + "</a><p class=\"meta\">claims: "
-                    + _evidence_claim_links_html(record.claim_ids)
-                    + "</p></li>"
+                    + "</a><p class=\"meta\">claims</p>"
+                    + _evidence_claim_links_html(
+                        record.claim_ids,
+                        claim_option_title_by_id=claim_option_title_by_id,
+                    )
+                    + "</li>"
                 )
                 for record in evidence_by_source_id.get(source_id, [])
             )
@@ -480,9 +495,15 @@ def _write_source_pages(
             + source_preview_row
             + "</aside>\n"
             + "</section>\n"
-            + _render_source_dossier_section(
-                dossier=source_dossier,
-                claim_option_title_by_id=claim_option_title_by_id,
+            + (
+                _render_source_dossier_section(
+                    dossier=source_dossier,
+                    claim_option_title_by_id=claim_option_title_by_id,
+                    source_claim_ids=source_claim_ids,
+                    claim_records=claim_records,
+                )
+                if source_dossier is not None
+                else ""
             )
             + "<section class=\"source-related-grid\">\n"
             + "<article class=\"source-related-card\">\n"
@@ -538,6 +559,28 @@ def _source_related_topics(*, source_id: str, topics: list[dict[str, Any]]) -> l
         if source_id in source_ids:
             related.append(topic)
     return sorted(related, key=lambda topic: str(topic.get("title") or topic.get("topic_id") or ""))
+
+
+def _source_claim_ids(
+    *,
+    source_id: str,
+    related_claim_ids: list[str],
+    claim_records: dict[str, dict[str, Any]],
+) -> list[str]:
+    source_claim_ids = [
+        claim_id
+        for claim_id, claim_record in sorted(claim_records.items())
+        if str(claim_record.get("source_id") or "").strip() == source_id
+    ]
+    ordered: list[str] = []
+    seen: set[str] = set()
+    for claim_id in source_claim_ids + related_claim_ids:
+        normalized = str(claim_id).strip()
+        if not normalized or normalized in seen:
+            continue
+        ordered.append(normalized)
+        seen.add(normalized)
+    return ordered
 
 
 def _collect_claim_ids_from_topics(*, topics: list[dict[str, Any]]) -> list[str]:
@@ -609,19 +652,13 @@ def _source_metadata_rows(*, source: dict[str, Any]) -> list[tuple[str, str]]:
 def _resolve_source_dossier(
     *,
     source: dict[str, Any],
-    related_topics: list[dict[str, Any]],
-    related_claim_ids: list[str],
-) -> dict[str, Any]:
+) -> dict[str, Any] | None:
     source_dossier = source.get("source_dossier")
     if isinstance(source_dossier, dict):
         normalized = _normalize_source_dossier(source_dossier=source_dossier)
         if normalized is not None:
             return normalized
-    return _build_fallback_source_dossier(
-        source=source,
-        related_topics=related_topics,
-        related_claim_ids=related_claim_ids,
-    )
+    return None
 
 
 def _normalize_source_dossier(*, source_dossier: dict[str, Any]) -> dict[str, Any] | None:
@@ -659,126 +696,34 @@ def _normalize_source_dossier(*, source_dossier: dict[str, Any]) -> dict[str, An
     }
 
 
-def _build_fallback_source_dossier(
-    *,
-    source: dict[str, Any],
-    related_topics: list[dict[str, Any]],
-    related_claim_ids: list[str],
-) -> dict[str, Any]:
-    title = _source_display_title(source)
-    source_summary = str(source.get("summary") or source.get("context") or "").strip()
-    topic_titles = [
-        str(topic.get("title") or topic.get("topic_id") or "").strip()
-        for topic in related_topics
-        if str(topic.get("title") or topic.get("topic_id") or "").strip()
-    ]
-    topic_count = len(topic_titles)
-    claim_count = len(related_claim_ids)
-    topic_phrase = ", ".join(topic_titles[:3]) if topic_titles else "no linked topic synthesis yet"
-
-    summary_short = source_summary
-    if not summary_short:
-        summary_short = f"{title} is indexed in this space with no authored abstract yet."
-
-    summary_long_parts = [
-        source_summary
-        if source_summary
-        else (
-            f"This source, {title}, is available in the corpus and is ready for deeper review as "
-            "additional extraction evidence accumulates."
-        ),
-        (
-            f"The current space links this source to {topic_count} topic pages and {claim_count} claim "
-            "references, giving readers a practical map of how its arguments are used across the corpus."
-        ),
-        (
-            f"For a reader who wants a fast orientation, start with the related topics ({topic_phrase}), "
-            "then inspect the linked claims to see exactly where the source is being cited."
-        ),
-        (
-            "The safest reading strategy is to separate what the source explicitly supports from what later "
-            "topic synthesis may infer. This dossier therefore emphasizes boundary conditions and transfer "
-            "risk, so users can distinguish direct source-backed commitments from broader interpretive steps."
-        ),
-        (
-            "When related claims appear densely linked, treat that as a navigation aid rather than proof of "
-            "consensus. High claim density indicates active reuse in the space, not automatic correctness, and "
-            "readers should still inspect individual claim pages for wording fidelity and context preservation."
-        ),
-    ]
-    summary_long = "\n\n".join(part for part in summary_long_parts if part.strip())
-
-    sections = [
-        {
-            "heading": "What the Source Argues",
-            "body": summary_short,
-            "grounding_claim_ids": related_claim_ids[:4],
-        },
-        {
-            "heading": "How the Argument Is Built",
-            "body": (
-                f"The extracted discourse currently references {claim_count} claims tied to this source. "
-                "These references capture the core argumentative steps used in topic synthesis, and they "
-                "indicate which inferential moves are repeatedly cited across related topic pages."
-            ),
-            "grounding_claim_ids": related_claim_ids[:6],
-        },
-        {
-            "heading": "Evidence and Interpretive Weight",
-            "body": (
-                "Claim links provide a direct audit path, but they should be read with attention to evidentiary "
-                "weight. Some claims are definitional, others are inferential; this distinction matters when "
-                "evaluating how strongly the source supports downstream metaphysical conclusions."
-            ),
-            "grounding_claim_ids": related_claim_ids[:5],
-        },
-        {
-            "heading": "Assumptions and Fragilities",
-            "body": (
-                "Check whether linked claims preserve scope conditions, definitions, and modal qualifiers before "
-                "carrying conclusions into broader metaphysical claims. Fragility usually appears where terms are "
-                "reused outside the operational setting defined in the source."
-            ),
-            "grounding_claim_ids": related_claim_ids[:3],
-        },
-        {
-            "heading": "How to Use This Source in the Space",
-            "body": (
-                "Use this dossier as a map: start from the short abstract, read section commentary for context, "
-                "and then open claim links for exact wording. This sequence lets users extract practical insight "
-                "without losing traceability to canonical evidence records."
-            ),
-            "grounding_claim_ids": related_claim_ids[:4],
-        },
-    ]
-    return {
-        "summary_short": summary_short,
-        "summary_long": summary_long,
-        "sections": sections,
-    }
-
-
 def _render_source_dossier_section(
     *,
     dossier: dict[str, Any],
     claim_option_title_by_id: dict[str, str],
+    source_claim_ids: list[str],
+    claim_records: dict[str, dict[str, Any]],
 ) -> str:
     summary_long = str(dossier.get("summary_long") or "").strip()
     sections = dossier.get("sections")
     section_rows: list[str] = []
-    if isinstance(sections, list):
-        for idx, section in enumerate(sections, start=1):
-            if not isinstance(section, dict):
-                continue
+    normalized_sections = [section for section in sections if isinstance(section, dict)] if isinstance(sections, list) else []
+    claim_ref_map = _resolve_source_dossier_claim_ref_map(
+        sections=normalized_sections,
+        source_claim_ids=source_claim_ids,
+        claim_records=claim_records,
+    )
+    if normalized_sections:
+        for idx, section in enumerate(normalized_sections, start=1):
             heading = str(section.get("heading") or "").strip()
             body = str(section.get("body") or "").strip()
             if not heading or not body:
                 continue
-            claim_ids = (
+            raw_claim_ids = (
                 [str(claim_id).strip() for claim_id in section.get("grounding_claim_ids", []) if str(claim_id).strip()]
                 if isinstance(section.get("grounding_claim_ids"), list)
                 else []
             )
+            claim_ids = _resolve_section_claim_ids(raw_claim_ids=raw_claim_ids, claim_ref_map=claim_ref_map)
             sentence_bindings = [(sentence, claim_ids) for sentence in _split_sentences(body)]
             rendered_body = _render_sentence_claim_body(
                 sentence_bindings=sentence_bindings,
@@ -811,6 +756,152 @@ def _render_source_dossier_section(
         + ("<div class=\"source-dossier-sections\">" + "".join(section_rows) + "</div>" if section_rows else "")
         + "</section>\n"
     )
+
+
+def _resolve_section_claim_ids(
+    *,
+    raw_claim_ids: list[str],
+    claim_ref_map: dict[str, str],
+) -> list[str]:
+    resolved: list[str] = []
+    seen: set[str] = set()
+    for raw_claim_id in raw_claim_ids:
+        claim_id = claim_ref_map.get(raw_claim_id, raw_claim_id).strip()
+        if not claim_id or _is_numeric_claim_ref(claim_id) or claim_id in seen:
+            continue
+        resolved.append(claim_id)
+        seen.add(claim_id)
+    return resolved
+
+
+def _resolve_source_dossier_claim_ref_map(
+    *,
+    sections: list[dict[str, Any]],
+    source_claim_ids: list[str],
+    claim_records: dict[str, dict[str, Any]],
+) -> dict[str, str]:
+    claim_ref_map: dict[str, str] = {}
+    for claim_id in source_claim_ids:
+        claim_ref_map[claim_id] = claim_id
+
+    numeric_refs: dict[str, str] = {}
+    for section in sections:
+        heading = str(section.get("heading") or "").strip()
+        body = str(section.get("body") or "").strip()
+        if not heading and not body:
+            continue
+        section_context = f"{heading}\n{body}".strip()
+        grounding_claim_ids = section.get("grounding_claim_ids")
+        if not isinstance(grounding_claim_ids, list):
+            continue
+        for value in grounding_claim_ids:
+            ref = str(value).strip()
+            if not _is_numeric_claim_ref(ref):
+                claim_ref_map[ref] = ref
+                continue
+            if ref in numeric_refs:
+                numeric_refs[ref] = (numeric_refs[ref] + "\n" + section_context).strip()
+            else:
+                numeric_refs[ref] = section_context
+
+    if not numeric_refs or not source_claim_ids:
+        return claim_ref_map
+
+    candidate_claim_ids = [claim_id for claim_id in source_claim_ids if claim_id]
+    if not candidate_claim_ids:
+        return claim_ref_map
+    candidate_text_by_id = {
+        claim_id: _claim_text(claim_id=claim_id, claim_record=claim_records.get(claim_id, {}))
+        for claim_id in candidate_claim_ids
+    }
+
+    ranked_pairs: list[tuple[float, str, str]] = []
+    for ref, context in numeric_refs.items():
+        for claim_id in candidate_claim_ids:
+            score = _dossier_claim_match_score(context=context, claim_text=candidate_text_by_id[claim_id])
+            if score <= 0:
+                continue
+            ranked_pairs.append((score, ref, claim_id))
+    ranked_pairs.sort(key=lambda row: (-row[0], row[1], row[2]))
+
+    assigned_refs: set[str] = set()
+    assigned_claim_ids: set[str] = set()
+    for _, ref, claim_id in ranked_pairs:
+        if ref in assigned_refs or claim_id in assigned_claim_ids:
+            continue
+        claim_ref_map[ref] = claim_id
+        assigned_refs.add(ref)
+        assigned_claim_ids.add(claim_id)
+
+    fallback_claim_ids = [claim_id for claim_id in candidate_claim_ids if claim_id not in assigned_claim_ids]
+    for ref in sorted((value for value in numeric_refs if value not in assigned_refs), key=lambda value: int(value)):
+        index = int(ref)
+        if 0 <= index < len(candidate_claim_ids):
+            fallback_claim_id = candidate_claim_ids[index]
+            claim_ref_map[ref] = fallback_claim_id
+            assigned_claim_ids.add(fallback_claim_id)
+            continue
+        if fallback_claim_ids:
+            fallback_claim_id = fallback_claim_ids.pop(0)
+            claim_ref_map[ref] = fallback_claim_id
+            assigned_claim_ids.add(fallback_claim_id)
+
+    return claim_ref_map
+
+
+def _dossier_claim_match_score(*, context: str, claim_text: str) -> float:
+    context_tokens = _match_tokens(context)
+    claim_tokens = _match_tokens(claim_text)
+    if not context_tokens or not claim_tokens:
+        return 0.0
+    overlap = len(context_tokens & claim_tokens)
+    if overlap == 0:
+        return 0.0
+    return (overlap / len(context_tokens)) + (overlap / len(claim_tokens))
+
+
+def _match_tokens(text: str) -> set[str]:
+    tokens = {
+        token
+        for token in re.findall(r"[a-z0-9]{3,}", text.lower())
+        if token not in _DOSSIER_MATCH_STOPWORDS
+    }
+    return tokens
+
+
+def _is_numeric_claim_ref(value: str) -> bool:
+    return bool(re.fullmatch(r"\d+", value.strip()))
+
+
+_DOSSIER_MATCH_STOPWORDS = {
+    "about",
+    "also",
+    "and",
+    "are",
+    "because",
+    "been",
+    "between",
+    "both",
+    "can",
+    "does",
+    "from",
+    "into",
+    "its",
+    "not",
+    "one",
+    "that",
+    "the",
+    "their",
+    "then",
+    "there",
+    "these",
+    "they",
+    "this",
+    "those",
+    "what",
+    "which",
+    "with",
+}
 
 
 def _write_topic_pages(
@@ -857,6 +948,7 @@ def _render_space_index(
     evidence_records: list[_EvidenceRecord],
     stylesheet_href: str,
 ) -> str:
+    display_space_name = _space_display_name(space_name)
     source_rows = "\n".join(
         f"<li><a href=\"./sources/{escape(source['source_id'])}.html\">{escape(_source_display_title(source))}</a></li>"
         for source in sorted(projection.sources, key=lambda item: item["source_id"])
@@ -876,7 +968,7 @@ def _render_space_index(
         for record in evidence_records
     ) or "<li>(none yet)</li>"
     body = (
-        f"<h1>{escape(space_name)}</h1>\n"
+        f"<h1>{escape(display_space_name)}</h1>\n"
         "<h2>Sources</h2>\n<ul class=\"feed-list\">\n"
         + source_rows
         + "\n</ul>\n"
@@ -888,7 +980,7 @@ def _render_space_index(
         + "\n</ul>\n"
     )
     return _render_space_layout(
-        title=f"{space_name} - Space Home",
+        title=f"{display_space_name} - Space Home",
         body=body,
         context=context,
         current_tab=None,
@@ -931,6 +1023,10 @@ def _render_topic_page(
         + parent_link_row
         + section_rows
         + "</article>"
+        + _render_topic_claims_section(
+            topic=topic,
+            claim_option_title_by_id=claim_option_title_by_id,
+        )
         + _render_topic_evidence_section(topic_evidence_records=topic_evidence_records)
         + _render_page_comment_section(
             page_payload=topic,
@@ -948,6 +1044,45 @@ def _render_topic_page(
         current_page=f"topic:{topic['topic_id']}",
         stylesheet_href=stylesheet_href,
         content_class="content-card topic-content-card",
+    )
+
+
+def _render_topic_claims_section(
+    *,
+    topic: dict[str, object],
+    claim_option_title_by_id: dict[str, str],
+) -> str:
+    raw_claim_ids = topic.get("claim_ids")
+    claim_ids = (
+        [str(claim_id).strip() for claim_id in raw_claim_ids if str(claim_id).strip()]
+        if isinstance(raw_claim_ids, list)
+        else []
+    )
+    if not claim_ids:
+        return (
+            "<section class=\"source-related-card\">"
+            "<h2>Claims Used by This Topic</h2>"
+            "<p>(No claim links are currently attached to this topic.)</p>"
+            "</section>"
+        )
+    rows = "\n".join(
+        (
+            "<li><a href=\"../claims/"
+            + escape(claim_id)
+            + ".html\">"
+            + escape(claim_option_title_by_id.get(claim_id, claim_id))
+            + "</a></li>"
+        )
+        for claim_id in claim_ids
+    )
+    return (
+        "<section class=\"source-related-card\">"
+        "<h2>Claims Used by This Topic</h2>"
+        "<ul class=\"source-related-list\">"
+        + rows
+        + "</ul>"
+        "<p><a href=\"../claims/index.html\">Browse all claims</a></p>"
+        "</section>"
     )
 
 
@@ -1570,30 +1705,18 @@ def _claim_option_title(*, claim_id: str, claim_option_title_by_id: dict[str, st
     title = claim_option_title_by_id.get(claim_id)
     if title:
         return title
-    fallback = _humanize_claim_id(claim_id=claim_id)
-    return _short_claim_option_label(fallback)
+    return claim_id
 
 
 def _short_claim_option_label(text: str, *, fallback_text: str | None = None) -> str:
     raw_value = " ".join(text.split()).strip(" .,:;")
     if raw_value:
-        word_count = len(raw_value.split())
-        if 3 <= word_count <= 7:
-            return raw_value
-        return shorten_claim_label(value="", fallback_text=raw_value)
-    return shorten_claim_label(value="", fallback_text=fallback_text)
-
-
-def _humanize_claim_id(*, claim_id: str) -> str:
-    value = claim_id.strip()
-    if value.startswith("claim-") and "--" in value:
-        value = value[6:].split("--", 1)[0]
-    value = re.sub(r"[-_]+", " ", value)
-    value = re.sub(r"\s+", " ", value).strip()
-    if not value:
-        return claim_id
-    tokens = [token.capitalize() for token in value.split(" ") if token]
-    return " ".join(tokens) if tokens else claim_id
+        return raw_value
+    if fallback_text:
+        fallback_value = " ".join(fallback_text.split()).strip(" .,:;")
+        if fallback_value:
+            return fallback_value
+    return ""
 
 
 def _truncate_text_for_ui(text: str, *, max_length: int) -> str:
@@ -1624,6 +1747,15 @@ def _write_binary_file(path: Path, content: bytes, *, incremental: bool) -> None
         return
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(content)
+
+
+def _reset_render_root_for_deterministic_build(*, render_root: Path, incremental: bool) -> None:
+    if incremental or not render_root.exists():
+        return
+    if render_root.is_file():
+        render_root.unlink()
+        return
+    shutil.rmtree(render_root)
 
 
 def _render_pinned_parent_link(topic: dict[str, object]) -> str:
@@ -1695,7 +1827,23 @@ def _discover_site_spaces(site_path: Path) -> list[str]:
     spaces_root = site_path / "spaces"
     if not spaces_root.exists():
         return []
-    return sorted(path.name for path in spaces_root.iterdir() if path.is_dir())
+    all_space_names = sorted(path.name for path in spaces_root.iterdir() if path.is_dir())
+    if not all_space_names:
+        return []
+
+    declared_subspace_names: set[str] = set()
+    known_space_names = set(all_space_names)
+    for space_name in all_space_names:
+        space_root = spaces_root / space_name
+        try:
+            metadata = load_subspaces_metadata(space_root=space_root)
+        except (FileNotFoundError, TypeError, ValueError):
+            continue
+        for entry in metadata.subspaces:
+            if entry.space_name in known_space_names:
+                declared_subspace_names.add(entry.space_name)
+
+    return [space_name for space_name in all_space_names if space_name not in declared_subspace_names]
 
 
 def _load_subspaces(space_root: Path) -> list[tuple[str, str | None]]:
@@ -1776,6 +1924,13 @@ def _space_feed_entries(*, space_name: str, projection: SpaceProjection, site_pa
             site_path=site_path,
         )
         source_timestamp = str(source.get("ingested_at") or source.get("date") or "")
+        source_date_inference = source.get("source_date_inference")
+        inferred_source_date = (
+            str(source_date_inference.get("date") or "").strip()
+            if isinstance(source_date_inference, dict)
+            else ""
+        )
+        source_display_timestamp = str(source.get("date") or "").strip() or inferred_source_date
         source_preview_by_id[source_id] = source_preview_href
         source_timestamp_by_id[source_id] = source_timestamp
         source_author_identities = _source_author_identities(source)
@@ -1783,6 +1938,7 @@ def _space_feed_entries(*, space_name: str, projection: SpaceProjection, site_pa
         entries.append(
             _FeedEntry(
                 timestamp=source_timestamp,
+                display_timestamp=source_display_timestamp,
                 space_name=space_name,
                 item_type="source",
                 item_id=source_id,
@@ -1821,6 +1977,7 @@ def _space_feed_entries(*, space_name: str, projection: SpaceProjection, site_pa
         entries.append(
             _FeedEntry(
                 timestamp=topic_timestamp,
+                display_timestamp=topic_timestamp,
                 space_name=space_name,
                 item_type="topic",
                 item_id=str(topic["topic_id"]),
@@ -1876,7 +2033,14 @@ def _source_card_overview(source: dict[str, Any]) -> str:
         summary_short = _sanitize_card_overview(str(source_dossier.get("summary_short") or ""))
         if summary_short:
             return summary_short
-    return _sanitize_card_overview(str(source.get("summary") or source.get("context") or ""))
+        summary_long = str(source_dossier.get("summary_long") or "").strip()
+        if summary_long:
+            first_paragraph = summary_long.split("\n\n", 1)[0]
+            normalized = _sanitize_card_overview(first_paragraph)
+            if normalized:
+                return normalized
+    summary_fallback = _sanitize_card_overview(str(source.get("summary") or source.get("context") or ""))
+    return summary_fallback
 
 
 def _sanitize_card_overview(text: str) -> str:
@@ -2056,9 +2220,6 @@ def _source_author_identities(source: dict[str, Any]) -> list[_AuthorIdentity]:
     derived_from_summary = _derive_authors_from_summary(str(source.get("summary") or source.get("context") or ""))
     if derived_from_summary:
         return [_AuthorIdentity(display_name=name, institution=default_institution) for name in derived_from_summary]
-    derived = _derive_authors_from_source_title(str(source.get("title") or ""))
-    if derived:
-        return [_AuthorIdentity(display_name=name, institution=default_institution) for name in derived]
     return []
 
 
@@ -2148,6 +2309,20 @@ def _feed_item_label(item_type: str) -> str:
     return item_type.capitalize() if item_type else "Item"
 
 
+def _space_display_name(space_name: str) -> str:
+    tokens = [token for token in re.split(r"[-_\s]+", space_name.strip()) if token]
+    if not tokens:
+        return space_name.strip()
+    return " ".join(token[:1].upper() + token[1:] for token in tokens)
+
+
+def _space_or_subspace_display_name(*, space_name: str, title: str | None) -> str:
+    candidate = str(title or "").strip()
+    if candidate:
+        return _space_display_name(candidate)
+    return _space_display_name(space_name)
+
+
 def _format_feed_timestamp_for_ui(value: str) -> str:
     raw = value.strip()
     if not raw:
@@ -2169,6 +2344,11 @@ def _render_feed_row(entry: _FeedEntry) -> str:
     title_href = _feed_item_href(entry)
     preview_thumb = _render_feed_preview_thumb(entry)
     authors_html = _render_feed_authors(entry=entry)
+    timestamp_for_display = (
+        entry.display_timestamp
+        if entry.item_type == "source"
+        else (entry.display_timestamp or entry.timestamp)
+    )
     header = (
         "<p class=\"feed-card-head\">"
         + "<a class=\"feed-card-title\" href=\""
@@ -2177,7 +2357,7 @@ def _render_feed_row(entry: _FeedEntry) -> str:
         + escape(entry.title)
         + "</a>"
         + "<span class=\"feed-card-date\">"
-        + escape(_format_feed_timestamp_for_ui(entry.timestamp))
+        + escape(_format_feed_timestamp_for_ui(timestamp_for_display))
         + "</span>"
         + "<span class=\"feed-card-type\">"
         + escape(_feed_item_label(entry.item_type))
@@ -2239,20 +2419,15 @@ def _write_space_tab_pages(
     incremental: bool,
 ) -> list[Path]:
     written: list[Path] = []
+    display_space_name = _space_display_name(context.space_name)
     site_path = output_root.parents[2]
     feed_entries = _space_feed_entries(space_name=context.space_name, projection=projection, site_path=site_path)
     _sort_feed_entries(feed_entries)
+    source_feed_entries = [entry for entry in feed_entries if entry.item_type == "source"]
 
     tab_rows: dict[str, list[str]] = {
         "new": [_render_feed_row(entry) for entry in feed_entries],
-        "sources": [
-            (
-                f"<li><a href=\"/spaces/{escape(context.space_name)}/site/sources/{escape(str(source['source_id']))}.html\">"
-                + escape(_source_display_title(source))
-                + "</a></li>"
-            )
-            for source in sorted(projection.sources, key=lambda item: str(item["source_id"]))
-        ],
+        "sources": [_render_feed_row(entry) for entry in source_feed_entries],
         "topics": [
             (
                 f"<li><a href=\"/spaces/{escape(context.space_name)}/site/topics/{escape(str(topic['topic_id']))}.html\">"
@@ -2319,7 +2494,7 @@ def _write_space_tab_pages(
             _write_text_file(
                 page_path,
                 _render_space_layout(
-                    title=f"{context.space_name} - {tab_title}",
+                    title=f"{display_space_name} - {tab_title}",
                     body=body,
                     context=context,
                     current_tab=tab_key,
@@ -2466,7 +2641,7 @@ def _write_space_author_pages(
         _write_text_file(
             path,
             _render_space_layout(
-                title=f"{context.space_name} - {profile.display_name}",
+                title=f"{_space_display_name(context.space_name)} - {profile.display_name}",
                 body=body,
                 context=context,
                 current_tab=None,
@@ -2484,12 +2659,17 @@ def _write_space_author_pages(
 def _write_space_user_profile_pages(
     *,
     output_root: Path,
+    projection: SpaceProjection,
     context: _SpaceLayoutContext,
     persona_rows: list[dict[str, Any]],
     incremental: bool,
 ) -> list[Path]:
     users_root = output_root / "users"
     users_root.mkdir(parents=True, exist_ok=True)
+    persona_comment_activity = _collect_persona_comment_activity(
+        output_root=output_root,
+        projection=projection,
+    )
     written: list[Path] = []
     for row in persona_rows:
         persona_id = str(row["persona_id"])
@@ -2511,6 +2691,34 @@ def _write_space_user_profile_pages(
             short_cv_items = [_render_profile_cv_item(str(item)) for item in short_cv if str(item).strip()]
         else:
             short_cv_items = []
+        activity_items = persona_comment_activity.get(persona_id, [])
+        activity_rows = []
+        for activity in activity_items:
+            activity_rows.append(
+                "<li>"
+                + "<a href=\""
+                + escape(activity["href"])
+                + "\">"
+                + escape(activity["page_title"])
+                + "</a>"
+                + "<p class=\"meta\">"
+                + f"Score: {activity['score']}"
+                + "</p>"
+                + "<p class=\"summary\">"
+                + escape(activity["body"])
+                + "</p>"
+                + "</li>"
+            )
+        comments_section = ""
+        if activity_rows:
+            comments_section = (
+                "<section class=\"source-related-card\">\n"
+                + "<h2>Comments by This User</h2>\n"
+                + "<ul class=\"source-related-list\">\n"
+                + "\n".join(activity_rows)
+                + "\n</ul>\n"
+                + "</section>\n"
+            )
         path = users_root / f"persona-{persona_id}.html"
         body = (
             f"<h1>{escape(display_name)}</h1>\n"
@@ -2527,11 +2735,12 @@ def _write_space_user_profile_pages(
             + ("\n".join(short_cv_items) if short_cv_items else "<li class=\"profile-cv-empty\">(none listed)</li>")
             + "\n</ol>\n"
             + "</section>\n"
+            + comments_section
         )
         _write_text_file(
             path,
             _render_space_layout(
-                title=f"{context.space_name} - persona-{persona_id}",
+                title=f"{_space_display_name(context.space_name)} - {display_name if display_name else persona_id}",
                 body=body,
                 context=context,
                 current_tab="users",
@@ -2544,6 +2753,83 @@ def _write_space_user_profile_pages(
         )
         written.append(path)
     return written
+
+
+def _collect_persona_comment_activity(
+    *,
+    output_root: Path,
+    projection: SpaceProjection,
+) -> dict[str, list[dict[str, Any]]]:
+    activity_by_persona: dict[str, list[dict[str, Any]]] = {}
+    claim_records = _load_claim_records(space_root=output_root.parent)
+    for topic in sorted(projection.topics, key=lambda item: str(item.get("topic_id") or "")):
+        topic_id = str(topic.get("topic_id") or "").strip()
+        if not topic_id:
+            continue
+        _extend_persona_comment_activity(
+            activity_by_persona=activity_by_persona,
+            page_payload=topic,
+            page_ref_default=f"topic:{topic_id}",
+            page_title=str(topic.get("title") or topic_id),
+            page_href=f"../topics/{topic_id}.html",
+        )
+    for source in sorted(projection.sources, key=lambda item: str(item.get("source_id") or "")):
+        source_id = str(source.get("source_id") or "").strip()
+        if not source_id:
+            continue
+        _extend_persona_comment_activity(
+            activity_by_persona=activity_by_persona,
+            page_payload=source,
+            page_ref_default=f"source:{source_id}",
+            page_title=_source_display_title(source),
+            page_href=f"../sources/{source_id}.html",
+        )
+    for claim_id in sorted(claim_records):
+        claim_record = claim_records[claim_id]
+        _extend_persona_comment_activity(
+            activity_by_persona=activity_by_persona,
+            page_payload=claim_record,
+            page_ref_default=f"claim:{claim_id}",
+            page_title=_claim_display_title(claim_id=claim_id, claim_record=claim_record),
+            page_href=f"../claims/{claim_id}.html",
+        )
+    return activity_by_persona
+
+
+def _extend_persona_comment_activity(
+    *,
+    activity_by_persona: dict[str, list[dict[str, Any]]],
+    page_payload: dict[str, Any],
+    page_ref_default: str,
+    page_title: str,
+    page_href: str,
+) -> None:
+    comment_section = page_payload.get("comment_section")
+    if not isinstance(comment_section, dict):
+        return
+    comments = comment_section.get("comments")
+    if not isinstance(comments, list):
+        return
+    page_ref = str(comment_section.get("page_ref") or page_ref_default)
+    for comment in comments:
+        if not isinstance(comment, dict):
+            continue
+        persona_id = str(comment.get("persona_id") or "").strip()
+        if not persona_id:
+            continue
+        comment_uid = str(comment.get("comment_uid") or "").strip()
+        permalink = str(comment.get("permalink") or "").strip()
+        anchor = permalink if permalink.startswith("#") else (f"#{comment_uid}" if comment_uid else "")
+        body = " ".join(str(comment.get("body") or "").split()).strip()
+        score = _resolve_comment_social_vote(page_ref=page_ref, comment=comment)["score"]
+        activity_by_persona.setdefault(persona_id, []).append(
+            {
+                "href": page_href + anchor,
+                "page_title": page_title,
+                "body": body,
+                "score": score,
+            }
+        )
 
 
 def _render_profile_cv_item(entry: str) -> str:
@@ -2709,7 +2995,7 @@ def _write_space_search_page(
     _write_text_file(
         search_path,
         _render_space_layout(
-            title=f"{context.space_name} - Search",
+            title=f"{_space_display_name(context.space_name)} - Search",
             body=body,
             context=context,
             current_tab=None,
@@ -2748,6 +3034,11 @@ def _write_space_claim_pages(
         for source in projection.sources
         if isinstance(source, dict) and source.get("source_id")
     }
+    source_citation_count_by_id = {
+        str(source.get("source_id")): _parse_nonnegative_float(source.get("citation_count"))
+        for source in projection.sources
+        if isinstance(source, dict) and source.get("source_id")
+    }
 
     claim_index_rows: list[str] = []
     for claim_id in claim_ids:
@@ -2777,6 +3068,10 @@ def _write_space_claim_pages(
             evidence_count=len(evidence_rows),
             topic_usage_count=usage_stats["topic_usage_count"],
             source_usage_count=usage_stats["source_usage_count"],
+            citation_count_max=_max_citation_count_for_claim(
+                source_ids=usage_stats.get("source_ids", ()),
+                source_citation_count_by_id=source_citation_count_by_id,
+            ),
         )
         score = int(strength["score"])
         score_band = str(strength.get("band") or "medium")
@@ -2904,7 +3199,7 @@ def _write_space_claim_pages(
     _write_text_file(
         index_path,
         _render_space_layout(
-            title=f"{context.space_name} - Claims",
+            title=f"{_space_display_name(context.space_name)} - Claims",
             body=f"<h1>Claims</h1>\n{rows}",
             context=context,
             current_tab="claims",
@@ -2937,6 +3232,10 @@ def _write_space_claim_pages(
             evidence_count=len(evidence_rows),
             topic_usage_count=usage_stats["topic_usage_count"],
             source_usage_count=usage_stats["source_usage_count"],
+            citation_count_max=_max_citation_count_for_claim(
+                source_ids=usage_stats.get("source_ids", ()),
+                source_citation_count_by_id=source_citation_count_by_id,
+            ),
         )
         source_record = _find_source_record(
             projection=projection,
@@ -2959,13 +3258,6 @@ def _write_space_claim_pages(
             default_page_ref=f"claim:{claim_id}",
             space_name=context.space_name,
         )
-        if not comments_section:
-            comments_section = (
-                "<section class=\"comment-thread\">"
-                "<h2>Comments</h2>"
-                "<p class=\"comment-empty\">No comments yet for this claim.</p>"
-                "</section>"
-            )
         claim_path = claims_root / f"{claim_id}.html"
         _write_text_file(
             claim_path,
@@ -3009,6 +3301,17 @@ def _write_space_claim_pages(
                     + f"<dt>Topic usages (informational only)</dt><dd>{strength['topic_usage_count']}</dd>\n"
                     + f"<dt>Source usages</dt><dd>{strength['source_usage_count']}</dd>\n"
                     + f"<dt>Source factor</dt><dd>{strength['source_factor']:.2f}</dd>\n"
+                    + "<dt>Max source citations</dt><dd>"
+                    + escape(_format_citation_count_for_ui(strength.get("citation_count_max")))
+                    + "</dd>\n"
+                    + f"<dt>Citation factor</dt><dd>{strength['citation_factor']:.2f}</dd>\n"
+                    + "<dt>Citation signal basis</dt><dd>"
+                    + (
+                        "neutral fallback (citation_count missing)"
+                        if bool(strength.get("citation_factor_defaulted"))
+                        else "log-scaled from source citation_count"
+                    )
+                    + "</dd>\n"
                     + "</dl>\n"
                     + "</article>\n"
                     + "</section>\n"
@@ -3054,6 +3357,7 @@ def _write_space_evidence_pages(
         for source in projection.sources
         if isinstance(source, dict) and source.get("source_id")
     }
+    claim_option_title_by_id = _load_claim_option_titles(space_root=output_root.parent)
     topic_title_by_id = {
         str(topic.get("topic_id")): str(topic.get("title") or topic.get("topic_id"))
         for topic in projection.topics
@@ -3068,18 +3372,20 @@ def _write_space_evidence_pages(
                 + ".html\">"
                 + escape(record.title)
                 + "</a>"
-                + "<p class=\"meta\">claims: "
-                + _evidence_claim_links_html(record.claim_ids)
+                + "<p class=\"meta\">claims</p>"
+                + _evidence_claim_links_html(
+                    record.claim_ids,
+                    claim_option_title_by_id=claim_option_title_by_id,
+                )
                 + (
-                    " | source: <a href=\"../sources/"
+                    "<p class=\"meta\">source: <a href=\"../sources/"
                     + escape(record.source_id)
                     + ".html\">"
                     + escape(source_title_by_id.get(record.source_id, record.source_id))
-                    + "</a>"
+                    + "</a></p>"
                     if record.source_id
                     else ""
                 )
-                + "</p>"
                 + "<p class=\"summary\">"
                 + escape(_truncate_text_for_ui(record.excerpt, max_length=220))
                 + "</p></li>"
@@ -3093,7 +3399,7 @@ def _write_space_evidence_pages(
     _write_text_file(
         index_path,
         _render_space_layout(
-            title=f"{context.space_name} - Evidence",
+            title=f"{_space_display_name(context.space_name)} - Evidence",
             body=(
                 "<h1>Evidence</h1>\n"
                 "<p>Canonical evidence items authored by semantic extraction and validated for linking integrity.</p>\n"
@@ -3135,7 +3441,16 @@ def _write_space_evidence_pages(
         )
         claim_rows = (
             "\n".join(
-                "<li><a href=\"../claims/" + escape(claim_id) + ".html\">" + escape(claim_id) + "</a></li>"
+                "<li><a href=\"../claims/"
+                + escape(claim_id)
+                + ".html\">"
+                + escape(
+                    _claim_option_title(
+                        claim_id=claim_id,
+                        claim_option_title_by_id=claim_option_title_by_id,
+                    )
+                )
+                + "</a></li>"
                 for claim_id in record.claim_ids
             )
             if record.claim_ids
@@ -3155,7 +3470,6 @@ def _write_space_evidence_pages(
                 title=record.title,
                 body=(
                     f"<h1>{escape(record.title)}</h1>\n"
-                    + f"<p class=\"meta\">Evidence ID: <code>{escape(record.evidence_id)}</code></p>\n"
                     + "<section class=\"source-related-grid\">\n"
                     + "<article class=\"source-related-card\">\n"
                     + "<h2>Evidence Excerpt</h2>\n"
@@ -3189,7 +3503,7 @@ def _write_space_evidence_pages(
                         page_payload={},
                         default_page_ref=f"evidence:{record.evidence_id}",
                         space_name=context.space_name,
-                        show_empty_state=True,
+                        show_empty_state=False,
                     )
                     + "<p><a href=\"index.html\">Back to evidence index</a></p>\n"
                 ),
@@ -3338,14 +3652,27 @@ def _evidence_records_by_topic_id(
     return grouped
 
 
-def _evidence_claim_links_html(claim_ids: tuple[str, ...]) -> str:
+def _evidence_claim_links_html(
+    claim_ids: tuple[str, ...],
+    *,
+    claim_option_title_by_id: dict[str, str],
+) -> str:
     if not claim_ids:
         return "(none)"
     links = [
-        "<a href=\"../claims/" + escape(claim_id) + ".html\">" + escape(claim_id) + "</a>"
+        "<a class=\"source-evidence-claim-chip\" href=\"../claims/"
+        + escape(claim_id)
+        + ".html\">"
+        + escape(
+            _claim_option_title(
+                claim_id=claim_id,
+                claim_option_title_by_id=claim_option_title_by_id,
+            )
+        )
+        + "</a>"
         for claim_id in claim_ids
     ]
-    return ", ".join(links)
+    return "<span class=\"source-evidence-claim-chips\">" + "".join(links) + "</span>"
 
 
 def _load_claim_records(*, space_root: Path) -> dict[str, dict[str, Any]]:
@@ -3391,6 +3718,51 @@ def _format_claim_added_at_for_ui(value: str) -> str:
         parsed = datetime.strptime(raw, "%Y-%m-%dT%H:%M:%SZ")
         return parsed.strftime("%b %d, %Y")
     return raw
+
+
+def _parse_nonnegative_float(raw_value: object) -> float | None:
+    if raw_value is None:
+        return None
+    if isinstance(raw_value, bool):
+        return None
+    if isinstance(raw_value, (int, float)):
+        value = float(raw_value)
+    else:
+        text = str(raw_value).strip()
+        if not text:
+            return None
+        try:
+            value = float(text)
+        except ValueError:
+            return None
+    if not math.isfinite(value) or value < 0.0:
+        return None
+    return value
+
+
+def _max_citation_count_for_claim(
+    *,
+    source_ids: tuple[str, ...] | list[str],
+    source_citation_count_by_id: dict[str, float | None],
+) -> float | None:
+    values = [
+        citation_count
+        for source_id in source_ids
+        for citation_count in (source_citation_count_by_id.get(source_id),)
+        if citation_count is not None
+    ]
+    if not values:
+        return None
+    return max(values)
+
+
+def _format_citation_count_for_ui(value: object) -> str:
+    parsed = _parse_nonnegative_float(value)
+    if parsed is None:
+        return "unknown"
+    if float(parsed).is_integer():
+        return str(int(parsed))
+    return f"{parsed:.1f}"
 
 
 def _claim_display_title(
@@ -3469,11 +3841,12 @@ def _claim_usage_rows(
     source_title_by_id: dict[str, str],
     claim_source_id: str,
     include_kind_label: bool = True,
-) -> tuple[list[str], dict[str, int]]:
+) -> tuple[list[str], dict[str, Any]]:
     rows: list[str] = []
     seen: set[tuple[str, str]] = set()
     topic_usage_count = 0
     source_usage_count = 0
+    source_ids_used: set[str] = set()
 
     for topic in projection.topics:
         topic_id = str(topic.get("topic_id") or "").strip()
@@ -3541,6 +3914,7 @@ def _claim_usage_rows(
             continue
         seen.add(key)
         source_usage_count += 1
+        source_ids_used.add(source_id)
         if include_kind_label:
             rows.append(
                 "<li><span class=\"meta\">source</span> "
@@ -3565,6 +3939,7 @@ def _claim_usage_rows(
         "topic_usage_count": topic_usage_count,
         "source_usage_count": source_usage_count,
         "total_usage_count": topic_usage_count + source_usage_count,
+        "source_ids": tuple(sorted(source_ids_used)),
     }
 
 
@@ -3573,10 +3948,16 @@ def _claim_strength_stats(
     evidence_count: int,
     topic_usage_count: int,
     source_usage_count: int,
+    citation_count_max: float | None,
 ) -> dict[str, Any]:
     evidence_factor = min(max(evidence_count, 0) / 3.0, 1.0)
     source_factor = min(max(source_usage_count, 0) / 2.0, 1.0)
-    score = round(100.0 * (0.8 * evidence_factor + 0.2 * source_factor))
+    citation_factor_defaulted = citation_count_max is None
+    if citation_factor_defaulted:
+        citation_factor = 0.5
+    else:
+        citation_factor = min(max(math.log10(citation_count_max + 1.0) / 3.0, 0.0), 1.0)
+    score = round(100.0 * (0.65 * evidence_factor + 0.20 * source_factor + 0.15 * citation_factor))
     if score >= 75:
         band = "high"
     elif score >= 45:
@@ -3587,16 +3968,21 @@ def _claim_strength_stats(
         "score": score,
         "band": band,
         "formula": (
-            "score = 100 * (0.80 * evidence_factor + 0.20 * source_factor), "
+            "score = 100 * (0.65 * evidence_factor + 0.20 * source_factor + 0.15 * citation_factor), "
             "where evidence_factor=min(evidence_items/3,1), "
             "topic_usages are informational only and do not contribute to score, "
-            "source_factor=min(source_usages/2,1)"
+            "source_factor=min(source_usages/2,1), "
+            "citation_factor=min(log10(max_citation_count+1)/3,1) when citation data exists; "
+            "otherwise citation_factor=0.5"
         ),
         "evidence_count": max(evidence_count, 0),
         "evidence_factor": evidence_factor,
         "topic_usage_count": max(topic_usage_count, 0),
         "source_usage_count": max(source_usage_count, 0),
         "source_factor": source_factor,
+        "citation_count_max": citation_count_max,
+        "citation_factor": citation_factor,
+        "citation_factor_defaulted": citation_factor_defaulted,
     }
 
 
@@ -3781,7 +4167,7 @@ def _render_space_sidebar(*, context: _SpaceLayoutContext, current_page: str | N
         (
             "<li><a"
             + (" class=\"current\"" if space_name == context.space_name else "")
-            + f" href=\"/spaces/{escape(space_name)}/site/index.html\">{escape(space_name)}</a></li>"
+            + f" href=\"/spaces/{escape(space_name)}/site/index.html\">{escape(_space_display_name(space_name))}</a></li>"
         )
         for space_name in context.all_space_names
     )
@@ -3789,7 +4175,7 @@ def _render_space_sidebar(*, context: _SpaceLayoutContext, current_page: str | N
         subspace_rows = "\n".join(
             (
                 f"<li><a href=\"/spaces/{escape(subspace_name)}/site/index.html\">"
-                + escape(title if title else subspace_name)
+                + escape(_space_or_subspace_display_name(space_name=subspace_name, title=title))
                 + "</a></li>"
             )
             for subspace_name, title in context.subspaces
@@ -3823,7 +4209,7 @@ def _render_space_sidebar(*, context: _SpaceLayoutContext, current_page: str | N
         "<aside class=\"site-sidebar\">\n"
         + "<div class=\"site-sidebar-head\">"
         + f"<p class=\"site-name\">{escape(context.site_name)}</p>\n"
-        + f"<p class=\"space-name\">{escape(context.space_name)}</p>\n"
+        + f"<p class=\"space-name\">{escape(_space_display_name(context.space_name))}</p>\n"
         + "</div>"
         + "<nav class=\"site-sidebar-nav\">\n"
         + "<ul><li><a"
@@ -3978,7 +4364,7 @@ def _write_site_users_pages(
         space_links = " ".join(
             (
                 f"<a href=\"/spaces/{escape(space_name)}/site/users/persona-{escape(persona_id)}.html\">"
-                + escape(space_name)
+                + escape(_space_display_name(space_name))
                 + "</a>"
             )
             for space_name in sorted(space_names)
@@ -4024,6 +4410,7 @@ def _render_site_root_index(
     site_name: str,
     space_names: list[str],
     subspaces_by_space: dict[str, list[tuple[str, str | None]]],
+    latest_entries: list[_FeedEntry],
     stylesheet_href: str,
 ) -> str:
     rows = []
@@ -4033,9 +4420,9 @@ def _render_site_root_index(
             subspace_rows = "<ul>" + "".join(
                 (
                     "<li>"
-                    + escape(title if title else subspace_name)
+                    + escape(_space_or_subspace_display_name(space_name=subspace_name, title=title))
                     + " ("
-                    + escape(subspace_name)
+                    + escape(_space_display_name(subspace_name))
                     + ")</li>"
                 )
                 for subspace_name, title in subspaces
@@ -4046,11 +4433,20 @@ def _render_site_root_index(
             "<li><a href=\"/spaces/"
             + escape(space_name)
             + "/site/index.html\">"
-            + escape(space_name)
+            + escape(_space_display_name(space_name))
             + "</a>"
             + subspace_rows
             + "</li>"
         )
+    latest_rows = "\n".join(_render_feed_row(entry) for entry in latest_entries)
+    latest_section = (
+        "<h2>Latest Across Spaces</h2>\n<ul class=\"feed-list\">\n"
+        + latest_rows
+        + "\n</ul>\n"
+        + "<p><a href=\"/site/new/index.html\">Open full New feed</a></p>\n"
+        if latest_entries
+        else "<h2>Latest Across Spaces</h2>\n<p>No feed items yet.</p>\n"
+    )
     return _render_site_layout(
         title=site_name,
         site_name=site_name,
@@ -4058,6 +4454,7 @@ def _render_site_root_index(
         stylesheet_href=stylesheet_href,
         body=(
             f"<h1>{escape(site_name)}</h1>\n"
+            + latest_section
             + "<h2>Spaces</h2>\n<ul class=\"feed-list\">\n"
             + "\n".join(rows)
             + "\n</ul>\n"
@@ -4143,6 +4540,8 @@ def _render_feed_preview_thumb(entry: _FeedEntry) -> str:
     return (
         "<a class=\"source-preview-feed-link\" href=\""
         + escape(item_page_href)
+        + "\" aria-label=\"Open source: "
+        + escape(entry.title)
         + "\">"
         + "<img class=\"source-preview-feed\" src=\""
         + escape(preview_href)
@@ -4204,13 +4603,11 @@ def _source_display_title(source: dict[str, Any]) -> str:
     source_semantic = source.get("source_semantic")
     semantic_display_title = source_semantic.get("display_title") if isinstance(source_semantic, dict) else None
     article_title = source_semantic.get("article_title") if isinstance(source_semantic, dict) else None
+    source_display_title = source.get("display_title")
+    source_title = source.get("title")
+    candidates: list[object] = [semantic_display_title, article_title, source_display_title, source_title]
     return resolve_display_title(
-        candidates=[
-            source.get("display_title"),
-            semantic_display_title,
-            article_title,
-            source.get("title"),
-        ],
+        candidates=candidates,
         fallback=source.get("source_id"),
     )
 

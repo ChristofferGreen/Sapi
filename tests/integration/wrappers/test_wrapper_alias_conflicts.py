@@ -10,25 +10,26 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 class WrapperAliasConflictsIntegrationTests(unittest.TestCase):
-    def test_ingest_canonical_and_alias_conflict_fails_fast(self) -> None:
+    def test_ingest_removed_source_only_flags_fail_fast(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
             source_path = Path(tmp) / "source.txt"
             source_path.write_text("sample source\n")
-            result = self._run(
-                [
-                    "bash",
-                    str(REPO_ROOT / "ingest.sh"),
-                    str(site_path),
-                    "alpha",
-                    str(source_path),
-                    "--source-only",
-                    "--query-only",
-                ]
-            )
-            self.assertNotEqual(result.returncode, 0)
-            self.assertIn("cannot combine --source-only", result.stderr)
-            self.assertIn("Usage:", result.stderr)
+            for removed_flag in ("--source-only", "--query-only"):
+                with self.subTest(flag=removed_flag):
+                    result = self._run(
+                        [
+                            "bash",
+                            str(REPO_ROOT / "ingest.sh"),
+                            str(site_path),
+                            "alpha",
+                            str(source_path),
+                            removed_flag,
+                        ]
+                    )
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn("has been removed", result.stderr)
+                    self.assertIn("Usage:", result.stderr)
 
     def test_comments_user_alias_conflict_fails_fast(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -42,9 +43,9 @@ class WrapperAliasConflictsIntegrationTests(unittest.TestCase):
                     "--count",
                     "5",
                     "--comment-user",
-                    "alice",
+                    "persona-maya-santoro",
                     "--user",
-                    "bob",
+                    "persona-eli-okafor",
                 ]
             )
             self.assertNotEqual(result.returncode, 0)

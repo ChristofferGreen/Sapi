@@ -10,24 +10,25 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 class WrapperAliasNormalizationIntegrationTests(unittest.TestCase):
-    def test_ingest_query_only_alias_normalizes_to_source_only_with_warning(self) -> None:
+    def test_ingest_removed_source_only_flags_fail_fast(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
             source_path = Path(tmp) / "source.txt"
             source_path.write_text("sample source\n")
-            result = self._run(
-                [
-                    "bash",
-                    str(REPO_ROOT / "ingest.sh"),
-                    str(site_path),
-                    "alpha",
-                    str(source_path),
-                    "--query-only",
-                ]
-            )
-            self.assertEqual(result.returncode, 0, msg=result.stderr)
-            self.assertIn("deprecated", result.stderr)
-            self.assertIn("scripts/ingest_source.py source ingested", result.stdout)
+            for removed_flag in ("--source-only", "--query-only"):
+                with self.subTest(flag=removed_flag):
+                    result = self._run(
+                        [
+                            "bash",
+                            str(REPO_ROOT / "ingest.sh"),
+                            str(site_path),
+                            "alpha",
+                            str(source_path),
+                            removed_flag,
+                        ]
+                    )
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn("has been removed", result.stderr)
 
     def test_comments_aliases_and_legacy_positional_count_normalize(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -42,9 +43,10 @@ class WrapperAliasNormalizationIntegrationTests(unittest.TestCase):
                     "alpha",
                     "5",
                     "--user",
-                    "alice",
+                    "persona-maya-santoro",
                     "--page",
                     "topic:topic-a",
+                    "--mock-llm",
                 ]
             )
             self.assertEqual(result.returncode, 0, msg=result.stderr)

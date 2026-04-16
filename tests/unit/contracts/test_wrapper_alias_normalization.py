@@ -10,24 +10,25 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 class WrapperAliasNormalizationTests(unittest.TestCase):
-    def test_ingest_query_only_alias_normalizes_to_source_only_with_warning(self) -> None:
+    def test_ingest_removed_source_only_flags_fail_fast(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
             source_path = Path(tmp) / "source.txt"
             source_path.write_text("sample source\n")
-            result = self._run(
-                [
-                    "bash",
-                    str(REPO_ROOT / "ingest.sh"),
-                    str(site_path),
-                    "alpha",
-                    str(source_path),
-                    "--query-only",
-                ]
-            )
-            self.assertEqual(result.returncode, 0, msg=result.stderr)
-            self.assertIn("deprecated", result.stderr)
-            self.assertIn("scripts/ingest_source.py source ingested", result.stdout)
+            for removed_flag in ("--source-only", "--query-only"):
+                with self.subTest(flag=removed_flag):
+                    result = self._run(
+                        [
+                            "bash",
+                            str(REPO_ROOT / "ingest.sh"),
+                            str(site_path),
+                            "alpha",
+                            str(source_path),
+                            removed_flag,
+                        ]
+                    )
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn("has been removed", result.stderr)
 
     def test_comment_aliases_and_legacy_positional_count_normalize(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -42,9 +43,10 @@ class WrapperAliasNormalizationTests(unittest.TestCase):
                     "alpha",
                     "5",
                     "--user",
-                    "alice",
+                    "persona-maya-santoro",
                     "--page",
                     "topic:topic-a",
+                    "--mock-llm",
                 ]
             )
             self.assertEqual(result.returncode, 0, msg=result.stderr)
@@ -52,26 +54,6 @@ class WrapperAliasNormalizationTests(unittest.TestCase):
             self.assertIn("--user is deprecated", result.stderr)
             self.assertIn("--page is deprecated", result.stderr)
             self.assertIn("scripts/create_comments.py comments created", result.stdout)
-
-    def test_ingest_canonical_and_alias_conflict_fails_fast(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
-            source_path = Path(tmp) / "source.txt"
-            source_path.write_text("sample source\n")
-            result = self._run(
-                [
-                    "bash",
-                    str(REPO_ROOT / "ingest.sh"),
-                    str(site_path),
-                    "alpha",
-                    str(source_path),
-                    "--source-only",
-                    "--query-only",
-                ]
-            )
-            self.assertNotEqual(result.returncode, 0)
-            self.assertIn("cannot combine --source-only", result.stderr)
-            self.assertIn("Usage:", result.stderr)
 
     def test_comment_canonical_and_alias_conflicts_fail_fast(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -87,9 +69,9 @@ class WrapperAliasNormalizationTests(unittest.TestCase):
                     "--count",
                     "5",
                     "--comment-user",
-                    "alice",
+                    "persona-maya-santoro",
                     "--user",
-                    "bob",
+                    "persona-eli-okafor",
                 ]
             )
             self.assertNotEqual(result_user.returncode, 0)

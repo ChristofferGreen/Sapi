@@ -11,41 +11,29 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 class IngestModeHandlingTests(unittest.TestCase):
-    def test_query_only_alias_normalizes_to_source_only_and_writes_empty_semantic_metadata(self) -> None:
+    def test_removed_source_only_flags_are_rejected_by_entrypoint(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
             site_path = _bootstrap_site_and_space(tmp_root, "alpha")
             source_path = tmp_root / "source.txt"
-            source_path.write_text("source-only alias mode\n")
+            source_path.write_text("removed flag mode\n")
 
-            result = _run(
-                [
-                    "python3",
-                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
-                    "alpha",
-                    str(source_path),
-                    "--registry-path",
-                    str(site_path / "spaces.toml"),
-                    "--query-only",
-                    "--mock-llm",
-                ]
-            )
-            self.assertEqual(result.returncode, 0, msg=result.stderr)
-            self.assertIn("deprecated", result.stderr)
-
-            space_root = site_path / "spaces" / "alpha"
-            run_paths = sorted((space_root / "runs").glob("*/run.md"))
-            self.assertEqual(len(run_paths), 1)
-            frontmatter = _parse_frontmatter(run_paths[0].read_text())
-            self.assertEqual(frontmatter["semantic_flows"], [])
-            self.assertEqual(frontmatter["semantic_flow_invocation_counts"], {})
-            self.assertFalse(frontmatter["force_mode"])
-            self.assertFalse(frontmatter["rollback_skipped"])
-            self.assertEqual(frontmatter["build_deferred"], False)
-            self.assertIsNone(frontmatter["deferred_build_reason"])
-
-            topic_files = sorted((space_root / "topics").glob("topic-*.json"))
-            self.assertEqual(topic_files, [])
+            for removed_flag in ("--source-only", "--query-only"):
+                with self.subTest(flag=removed_flag):
+                    result = _run(
+                        [
+                            "python3",
+                            str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                            "alpha",
+                            str(source_path),
+                            "--registry-path",
+                            str(site_path / "spaces.toml"),
+                            removed_flag,
+                            "--mock-llm",
+                        ]
+                    )
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn("unrecognized arguments", result.stderr)
 
     def test_deferred_build_runs_write_trackable_deferred_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

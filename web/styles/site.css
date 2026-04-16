@@ -230,12 +230,6 @@
     text-decoration: none;
   }
 
-  .claims-secondary {
-    border-style: dashed;
-    background: linear-gradient(180deg, #f7faff 0%, #eef4ff 100%);
-    opacity: 0.92;
-  }
-
   .content-card {
     position: relative;
     overflow: hidden;
@@ -244,6 +238,10 @@
     padding: 1.1rem 1.15rem;
     background: linear-gradient(172deg, var(--surface) 0%, #eff6ff 100%);
     box-shadow: var(--shadow);
+  }
+
+  .topic-content-card {
+    overflow: visible;
   }
 
   .content-card::before {
@@ -281,6 +279,63 @@
     padding: 0.62rem 0.72rem;
   }
 
+  .feed-card-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.72rem;
+  }
+
+  .feed-card-copy {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .feed-card-head {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.24rem 0.5rem;
+    align-items: baseline;
+    line-height: 1.35;
+  }
+
+  .feed-card-title {
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .feed-card-title:hover {
+    text-decoration: underline;
+  }
+
+  .feed-card-date,
+  .feed-card-type,
+  .feed-card-authors {
+    color: #26496f;
+    font-size: 0.86rem;
+    font-family:
+      "JetBrains Mono",
+      "IBM Plex Mono",
+      "SFMono-Regular",
+      "Menlo",
+      monospace;
+  }
+
+  .feed-card-author {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .feed-card-author:hover {
+    text-decoration: underline;
+  }
+
+  .feed-card-overview {
+    margin: 0.42rem 0 0;
+    color: #153a5f;
+    line-height: 1.5;
+  }
+
   .claim-score-value {
     font-weight: 700;
     letter-spacing: 0.01em;
@@ -294,23 +349,120 @@
     color: #a63333;
   }
 
+  .claim-index-card .claim-card-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.62rem;
+    align-items: start;
+  }
+
+  .claim-index-card .claim-card-copy {
+    flex: 1 1 420px;
+    min-width: 0;
+  }
+
+  .claim-index-card .claim-card-copy > a {
+    display: inline-block;
+    margin-bottom: 0.16rem;
+  }
+
+  .claim-card-usage {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.36rem;
+    margin-left: auto;
+    flex: 0 1 520px;
+    justify-content: flex-end;
+    width: auto;
+    min-width: 220px;
+    max-width: 100%;
+  }
+
   .claim-card-usage-list {
     list-style: none;
-    margin: 0.42rem 0 0;
+    margin: 0;
     padding: 0;
-    display: grid;
-    gap: 0.28rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.32rem;
+    min-width: 0;
+  }
+
+  .claim-card-usage-list-primary {
+    justify-content: flex-end;
+  }
+
+  .claim-card-usage-list-overflow {
+    margin-top: 0.34rem;
+    justify-content: flex-start;
+    width: 100%;
   }
 
   .claim-card-usage-list > li {
     margin: 0;
-    padding: 0;
+    padding: 0.14rem 0.46rem;
+    border: 1px solid #9eb9d6;
+    border-radius: 999px;
+    background: #e9f2fb;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28rem;
+    white-space: normal;
+    max-width: 100%;
+  }
+
+  .claim-card-usage-list > li.claim-usage-chip-topic {
+    background: #e3efff;
+    border-color: #94b7e6;
+  }
+
+  .claim-card-usage-list > li.claim-usage-chip-source {
+    background: #e5f4ea;
+    border-color: #93c7a6;
+  }
+
+  .claim-card-usage-list > li .meta {
+    margin: 0;
+    font-size: 0.65rem;
+    font-family:
+      "JetBrains Mono",
+      "IBM Plex Mono",
+      "SFMono-Regular",
+      "Menlo",
+      monospace;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #4b6f92;
+  }
+
+  .claim-card-usage-list > li a {
+    display: inline;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    color: #174a78;
+    text-decoration: none;
+    font-size: 0.84rem;
+    line-height: 1.2;
+  }
+
+  .claim-card-usage-list > li a:hover {
+    text-decoration: underline;
   }
 
   .claim-card-usage-empty {
-    margin: 0.42rem 0 0;
+    margin: 0;
     color: #4c6785;
-    font-size: 0.9rem;
+    font-size: 0.84rem;
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .claims-sort-controls {
+    margin-bottom: 0.62rem;
   }
 
   .user-card-grid {
@@ -584,13 +736,14 @@
   .source-preview-feed-link {
     display: inline-flex;
     align-items: flex-start;
-    margin-right: 0.45rem;
+    margin-right: 0;
     vertical-align: top;
+    flex: 0 0 auto;
   }
 
   .source-preview-feed {
     display: block;
-    width: 94px;
+    width: 96px;
     aspect-ratio: 3 / 4;
     object-fit: contain;
     border: 1px solid var(--line);
@@ -746,6 +899,31 @@
     color: #1a4d7a;
     font-size: 0.77rem;
     text-decoration: none;
+  }
+
+  .source-evidence-claim-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.32rem;
+    margin-top: 0.22rem;
+  }
+
+  .source-evidence-claim-chip {
+    border: 1px solid #9cc8ea;
+    border-radius: 999px;
+    padding: 0.12rem 0.48rem;
+    background: linear-gradient(180deg, #eef7ff 0%, #e1f0ff 100%);
+    color: #1a4d7a;
+    font-size: 0.77rem;
+    line-height: 1.24;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .source-evidence-claim-chip:hover {
+    text-decoration: underline;
+    border-color: #86b9e2;
+    background: linear-gradient(180deg, #e7f2ff 0%, #d9ebff 100%);
   }
 
   .source-related-card {
@@ -1138,6 +1316,11 @@
     overflow: visible;
   }
 
+  .feed-card-layout {
+    flex-direction: column;
+    gap: 0.52rem;
+  }
+
   .site-sidebar-head {
     position: static;
   }
@@ -1197,5 +1380,33 @@
   .source-meta-grid {
     grid-template-columns: 1fr;
     gap: 0.25rem;
+  }
+
+  .claim-index-card .claim-card-row {
+    gap: 0.44rem;
+  }
+
+  .claim-index-card .claim-card-copy {
+    flex-basis: 100%;
+  }
+
+  .claim-card-usage {
+    justify-content: flex-start;
+    margin-left: 0;
+    flex-basis: 100%;
+    min-width: 0;
+  }
+
+  .claim-card-usage-list {
+    justify-content: flex-start;
+  }
+
+  .claim-card-usage-list-primary {
+    justify-content: flex-start;
+  }
+
+  .claim-card-usage-empty {
+    margin-left: 0;
+    text-align: left;
   }
 }

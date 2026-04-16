@@ -65,6 +65,56 @@ class ClaimNamingTests(unittest.TestCase):
         )
         self.assertEqual(label, "Preparation independence constrains epistemic overlaps")
 
+    def test_resolve_claim_short_title_keeps_existing_verb_statement(self) -> None:
+        title = resolve_claim_short_title(
+            raw_short_title="",
+            claim_text="Splay operations stay logarithmic",
+        )
+        self.assertEqual(title, "Splay operations stay logarithmic")
+
+    def test_resolve_claim_short_title_rewrites_quantified_of_phrase(self) -> None:
+        title = resolve_claim_short_title(
+            raw_short_title="",
+            claim_text="The introduction identifies two layers of underdetermination between rival responses.",
+        )
+        self.assertEqual(title, "Underdetermination has two layers")
+
+    def test_resolve_claim_short_title_collapses_redundant_is_after_verb(self) -> None:
+        title = resolve_claim_short_title(
+            raw_short_title="Quarter probability saves is space",
+            claim_text="Quarter probability saves space",
+        )
+        self.assertEqual(title, "Quarter probability saves space")
+
+    def test_resolve_claim_short_title_prefers_verb_relation_before_late_copula(self) -> None:
+        title = resolve_claim_short_title(
+            raw_short_title="Embodiment grounds quantum is facts",
+            claim_text="Embodiment grounds quantum facts",
+        )
+        self.assertEqual(title, "Embodiment grounds quantum facts")
+
+    def test_resolve_claim_short_title_removes_subject_repetition_from_predicate(self) -> None:
+        title = resolve_claim_short_title(
+            raw_short_title="CompCert preserves safety is CompCert preserves source",
+            claim_text="CompCert preserves source-level safety",
+        )
+        self.assertNotIn(" is ", f" {title.lower()} ")
+        self.assertNotIn("CompCert preserves safety CompCert", title)
+
+    def test_resolve_claim_short_title_handles_late_copula_with_additional_verbs(self) -> None:
+        title = resolve_claim_short_title(
+            raw_short_title="Four outcomes exclude is overlap",
+            claim_text="Four outcomes exclude overlap",
+        )
+        self.assertEqual(title, "Four outcomes exclude overlap")
+
+    def test_resolve_claim_short_title_discards_malformed_raw_title(self) -> None:
+        title = resolve_claim_short_title(
+            raw_short_title="Skip lists replace is balanced trees",
+            claim_text="Skip lists replace balanced trees",
+        )
+        self.assertEqual(title, "Skip lists replace balanced trees")
+
 
 if __name__ == "__main__":
     unittest.main()

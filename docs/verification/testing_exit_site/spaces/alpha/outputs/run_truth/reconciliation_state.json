@@ -2,35 +2,27 @@
   "flow_states": {
     "comment_section_pipeline": {
       "advanced_run_ids": [
-        "run-20260414T100910Z--a54xo8mef2",
-        "run-20260414T101217Z--t9nxqeoaza"
+        "run-20260414T185818Z--icre09kvur",
+        "run-20260414T200242Z--lo4q6l1tly",
+        "run-20260414T200938Z--09m6qnsb9x",
+        "run-20260415T085427Z--64ipvpjbmz",
+        "run-20260415T094051Z--sbmygxmthi",
+        "run-20260415T101207Z--4jz32z3ye2"
       ],
-      "consecutive_advanced_runs": 2,
-      "last_advanced_completed_at": "2026-04-14T10:15:23Z",
-      "last_advanced_run_id": "run-20260414T101217Z--t9nxqeoaza",
+      "consecutive_advanced_runs": 6,
+      "last_advanced_completed_at": "2026-04-15T10:29:24Z",
+      "last_advanced_run_id": "run-20260415T101207Z--4jz32z3ye2",
       "last_advanced_status": "success"
     },
     "ingest_pipeline": {
       "advanced_run_ids": [
-        "run-20260413T143101Z--itkmgxklhu",
-        "run-20260413T143930Z--0cu2kroe7x",
-        "run-20260413T144715Z--odf9t1lgm1"
+        "run-20260414T180339Z--lhfd4oz9gw",
+        "run-20260414T181151Z--23jd4h4pw8",
+        "run-20260414T184537Z--jqv8nx34xj"
       ],
       "consecutive_advanced_runs": 3,
-      "last_advanced_completed_at": "2026-04-13T14:54:48Z",
-      "last_advanced_run_id": "run-20260413T144715Z--odf9t1lgm1",
-      "last_advanced_status": "success"
-    },
-    "persona_profile_pipeline": {
-      "advanced_run_ids": [
-        "run-20260413T055309Z--npjghqe3bw",
-        "run-20260413T062311Z--gz0y26lyt9",
-        "run-20260413T063515Z--4xwc5r1z3c",
-        "run-20260413T065944Z--3qx2js0lnw"
-      ],
-      "consecutive_advanced_runs": 4,
-      "last_advanced_completed_at": "2026-04-13T06:59:44Z",
-      "last_advanced_run_id": "run-20260413T065944Z--3qx2js0lnw",
+      "last_advanced_completed_at": "2026-04-14T18:45:38Z",
+      "last_advanced_run_id": "run-20260414T184537Z--jqv8nx34xj",
       "last_advanced_status": "success"
     }
   },

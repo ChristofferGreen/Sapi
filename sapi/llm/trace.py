@@ -62,6 +62,10 @@ class SiteLlmTraceContext:
 
         prompt_snapshot = _render_prompt_snapshot(request=request)
         _write_text(attempt_dir / "semantic.prompt.txt", prompt_snapshot)
+        _write_text(
+            attempt_dir / "semantic.call.txt",
+            _render_call_transcript(prompt_snapshot=prompt_snapshot, raw_output=None),
+        )
         _write_json(
             attempt_dir / "semantic.context.json",
             _context_snapshot_payload(request=request),
@@ -106,6 +110,11 @@ class SiteLlmTraceContext:
         attempt_dir = state.trace_dir
 
         _write_text(attempt_dir / "semantic.response.txt", _ensure_trailing_newline(raw_output))
+        prompt_snapshot = _render_prompt_snapshot(request=request)
+        _write_text(
+            attempt_dir / "semantic.call.txt",
+            _render_call_transcript(prompt_snapshot=prompt_snapshot, raw_output=raw_output),
+        )
         maybe_json = _try_parse_json(raw_output)
         if maybe_json is not None:
             _write_json(attempt_dir / "semantic.response.json", maybe_json)
@@ -236,6 +245,21 @@ def _context_snapshot_payload(*, request: SemanticLlmRequest) -> dict[str, Any]:
             else None
         ),
     }
+
+
+def _render_call_transcript(*, prompt_snapshot: str, raw_output: str | None) -> str:
+    output_section = raw_output if raw_output is not None else "<pending>"
+    return _ensure_trailing_newline(
+        "\n".join(
+            (
+                "=== llm prompt ===",
+                prompt_snapshot.rstrip("\n"),
+                "",
+                "=== llm output ===",
+                output_section.rstrip("\n"),
+            )
+        )
+    )
 
 
 def _try_parse_json(raw_output: str) -> dict[str, Any] | list[Any] | None:

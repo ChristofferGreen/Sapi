@@ -43,6 +43,43 @@ class IncrementalBuildEquivalenceIntegrationTests(unittest.TestCase):
 
             self.assertEqual(full_snapshot, incremental_snapshot)
 
+    def test_full_build_prunes_stale_rendered_files(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            source_path = write_source_fixture(tmp_root, content="stale file pruning fixture\n")
+
+            ingest_result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Stale Pruning Source",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(ingest_result.returncode, 0, msg=ingest_result.stderr)
+
+            stale_space_file = site_path / "spaces" / "alpha" / "site" / "sources" / "stale-source.html"
+            stale_space_file.parent.mkdir(parents=True, exist_ok=True)
+            stale_space_file.write_text("<html><body>stale source page</body></html>\n")
+
+            stale_root_file = site_path / "site" / "new" / "stale-feed-page.html"
+            stale_root_file.parent.mkdir(parents=True, exist_ok=True)
+            stale_root_file.write_text("<html><body>stale feed page</body></html>\n")
+
+            full_build = _run_build(site_path=site_path, incremental=False)
+            self.assertEqual(full_build.returncode, 0, msg=full_build.stderr)
+
+            self.assertFalse(stale_space_file.exists())
+            self.assertFalse(stale_root_file.exists())
+            self.assertTrue((site_path / "spaces" / "alpha" / "site" / "sources" / "index.html").is_file())
+            self.assertTrue((site_path / "site" / "new" / "index.html").is_file())
+
 
 def _run_build(*, site_path: Path, incremental: bool) -> object:
     cmd = [

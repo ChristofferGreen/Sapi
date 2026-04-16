@@ -50,10 +50,8 @@ Examples:
   - `flow_key = ingest_pipeline`
   - `semantic_flows = [ingest_extraction, topic_generation]`
   - `semantic_flow_invocation_counts = {ingest_extraction: 1, topic_generation: 1}`
-- ingest `--source-only` run:
-  - `flow_key = ingest_pipeline`
-  - `semantic_flows = []`
-  - `semantic_flow_invocation_counts = {}`
+- ingest bypass flags are removed:
+  - `--source-only` and `--query-only` must fail fast with usage error
 
 ## 3. Target Package Layout
 
@@ -348,31 +346,27 @@ def run_ingest_pipeline(args: IngestArgs) -> int: ...
 
 Required preflight:
 - resolve registry/site/space paths
-- normalize compatibility alias `--query-only` to `--source-only` and emit deprecation warning
 - parse `--force` as explicit rollback override (ingest-only)
 - acquire ingest lock
 
 Control flow:
 1. initialize `RunEnvelopeBase(flow_key="ingest_pipeline")`
 2. fetch and store source artifact/record
-3. if `--source-only`:
-   - skip semantic flows
-   - continue source/index behavior allowed by design contract
-4. else:
-   - run semantic flow `ingest_extraction`
-   - deterministically write canonical source/claim/relation artifacts
-   - persist canonical evidence records from semantic `evidence_items[]` under `<space_root>/evidence/`
-   - deterministic ingest validation MUST resolve `evidence_items[].claim_refs` to canonical claim IDs and fail fast on invalid refs
-   - deterministic ingest code MUST NOT derive evidence IDs/titles/excerpts from claim text
-   - run semantic flow `topic_generation`
-   - deterministically write 0..n canonical topic artifacts from shared cross-source concepts
-   - set `semantic_flows = [ingest_extraction, topic_generation]`
-   - set `semantic_flow_invocation_counts = {ingest_extraction: 1, topic_generation: 1}`
-5. run link reconciliation
-6. run deterministic projection/build and site-root `New` index refresh (or bootstrap deferred mode)
-7. run lint and warning-threshold evaluation
-8. write `run.md` and `lint.json` for committed run
-9. release lock
+   - if source is inferred/declared as PDF (`application/pdf` or `.pdf` locator), validate payload signature (`%PDF-`) before writing artifacts
+3. run semantic flow `ingest_extraction`
+4. deterministically write canonical source/claim/relation artifacts
+5. persist canonical evidence records from semantic `evidence_items[]` under `<space_root>/evidence/`
+6. deterministic ingest validation MUST resolve `evidence_items[].claim_refs` to canonical claim IDs and fail fast on invalid refs
+7. deterministic ingest code MUST NOT derive evidence IDs/titles/excerpts from claim text
+8. run semantic flow `topic_generation`
+9. deterministically write 0..n canonical topic artifacts from shared cross-source concepts
+10. set `semantic_flows = [ingest_extraction, topic_generation]`
+11. set `semantic_flow_invocation_counts = {ingest_extraction: 1, topic_generation: 1}`
+12. run link reconciliation
+13. run deterministic projection/build and site-root `New` index refresh (or bootstrap deferred mode)
+14. run lint and warning-threshold evaluation
+15. write `run.md` and `lint.json` for committed run
+16. release lock
 
 Bootstrap deferred-build behavior:
 - when projection/build modules are intentionally unavailable during reconstruction bootstrap, ingest MAY mark:
@@ -571,10 +565,12 @@ Wrapper behavior:
 - fail fast when canonical and alias forms for the same argument are supplied together
 
 Required alias normalization:
-- ingest: `--query-only` -> `--source-only` (deprecated)
 - ingest: `--force` is canonical and passed through (no alias)
 - comments: `--user` -> `--comment-user`, `--page` -> `--comment-page`
 - comments: legacy positional `<n>` -> `--count <n>`
+
+Removed ingest flags:
+- ingest: `--source-only` and `--query-only` MUST fail fast.
 
 Bootstrap exception:
 - bootstrap wrappers (`create_site.sh`, `create_space.sh`) may run without an operator-supplied `--registry-path`
@@ -645,7 +641,6 @@ Minimum test groups for this low-level design:
   - pipeline extension fields are present and typed per flow
   - ingest has pipeline `flow_key` and two semantic flows
   - `semantic_flows` is ordered-unique and `semantic_flow_invocation_counts` records call counts
-  - `--source-only` has empty `semantic_flows`
   - default terminal failures leave no committed `runs/<run_id>/` container
   - ingest `--force` failures persist run container and set `force_mode=true`, `rollback_skipped=true`
 - query manifests and preflight:

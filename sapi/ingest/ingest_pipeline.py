@@ -21,7 +21,6 @@ class IngestSemanticExecutionPlan:
 
 def plan_ingest_semantic_execution(
     *,
-    source_only: bool,
     enable_comment_enrichment: bool = False,
     requested_comment_count: int | None = None,
     comment_target_page_refs: list[str] | None = None,
@@ -32,15 +31,6 @@ def plan_ingest_semantic_execution(
         requested_comment_count=requested_comment_count,
         comment_target_page_refs=comment_target_page_refs,
     )
-
-    if source_only:
-        if enable_comment_enrichment:
-            raise ValueError("comment enrichment cannot be enabled in --source-only ingest mode.")
-        return IngestSemanticExecutionPlan(
-            semantic_flows=[],
-            semantic_flow_invocation_counts={},
-            comment_enrichment_enabled=False,
-        )
 
     semantic_flows = ["ingest_extraction", "topic_generation"]
     invocation_counts: dict[str, int] = {"ingest_extraction": 1, "topic_generation": 1}

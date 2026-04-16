@@ -34,6 +34,7 @@ class _FakeProcess:
         self.stderr = io.StringIO("")
         self._writer = writer
         self.returncode = 0
+        self.pid = 4242
 
     def wait(self, timeout: int | None = None) -> int:
         del timeout
@@ -99,6 +100,7 @@ class RuntimeBackendCodexTests(unittest.TestCase):
             self.assertIn("workspace-write", command)
             self.assertIn("-c", command)
             self.assertIn('model_reasoning_effort="high"', command)
+            self.assertIn('openai_base_url="https://api.openai.com/v1"', command)
             self.assertIn("--add-dir", command)
             self.assertIn(str(output_path.parent.resolve()), command)
             self.assertTrue(kwargs["text"])

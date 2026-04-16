@@ -136,7 +136,7 @@ Semantic generation completion is defined at validated semantic JSON persistence
 
 | Semantic flow | Deterministic post-processing requirement |
 | --- | --- |
-| ingest extraction | In normal operation, MUST run projection/reindex/site build for the affected space and MUST refresh site-root `New` feed/index views for the same `<site_path>` (full site rebuild or incremental equivalent). During reconstruction Phases 1-2 before projection/build modules exist, MAY run in `build_deferred` bootstrap mode that persists canonical ingest artifacts and marks run metadata for deferred build. `--source-only` MAY skip claim/relation/topic writes and corresponding link-reconciliation/build work. |
+| ingest extraction | In normal operation, MUST run projection/reindex/site build for the affected space and MUST refresh site-root `New` feed/index views for the same `<site_path>` (full site rebuild or incremental equivalent). During reconstruction Phases 1-2 before projection/build modules exist, MAY run in `build_deferred` bootstrap mode that persists canonical ingest artifacts and marks run metadata for deferred build. |
 | topic generation | MUST run deterministic projection and site build for the affected space and MUST refresh site-root `New` feed/index views for the same `<site_path>` (full site rebuild or incremental equivalent). |
 | query synthesis | MUST run only query-result renderers/artifact assembly from query JSON; MUST NOT trigger space/site HTML rebuild. |
 | comment section generation | MUST run batched semantic comment-section generation (single LLM call per targeted page, unless chunking fallback is required), then deterministic comment merge/normalization and page projection; SHOULD rebuild affected space feed/index views (full space rebuild MAY be used). |
@@ -513,6 +513,7 @@ Temporal format contract:
 
 Human-readable notation policy:
 - prose and UI contracts SHOULD prefer readable labels (`title`, `slug`, `space_name`) over raw IDs.
+- user-facing rendering of `space_name`/subspace names MUST apply title-style word casing (each word starts with an uppercase letter), while canonical URL/ID slugs remain lowercase kebab-case.
 - when IDs are needed in prose, use named placeholders (`<source_id>`, `<claim_id>`, `<topic_id>`) instead of raw prefix patterns.
 - user-facing pages SHOULD display titles first and show machine IDs only in secondary/audit metadata.
 
@@ -678,7 +679,7 @@ Required lint artifacts (committed runs):
 Primary shell entrypoints:
 - `create_site.sh <site_path> <site_name>`
 - `create_space.sh <site_path> <space_name>`
-- `ingest.sh <site_path> <space_name> <source_path_or_url> [--source-only] [--force] [--verbose]`
+- `ingest.sh <site_path> <space_name> <source_path_or_url> [--force] [--verbose]`
 - `create_comments.sh <site_path> <space_name> --count <n> [--verbose] [--comment-user ...] [--comment-page ...] [--comment-seed ...] [--comment-evidence-mode ...]`
 - `generate_profiles.sh <site_path> <space_name> [--persona-id <persona_id> ...] [--verbose]`
 - `regenerate_web.sh <site_path> [space_name] [--verbose]`
@@ -700,10 +701,8 @@ Primary shell entrypoints:
 - `validate.sh` forwards workflow/run-id flags to `scripts/lint.py`
 - bootstrap wrappers (`create_site.sh`, `create_space.sh`) are the only commands allowed to run without an operator-supplied `--registry-path`; they MUST initialize/use `<site_path>/spaces.toml` directly.
 - wrapper argument normalization for `ingest.sh`:
-  - canonical ingest partial mode flag is `--source-only`
   - canonical rollback-override flag is `--force` (no alias)
-  - compatibility alias `--query-only` MAY be accepted but MUST normalize to `--source-only` before Python invocation
-  - compatibility alias usage SHOULD emit a deprecation warning
+  - removed flags `--source-only` and `--query-only` MUST fail fast with usage error
 - wrapper argument normalization for `create_comments.sh`:
   - canonical wrapper flags are `--count`, `--comment-user`, and `--comment-page`
   - compatibility aliases `--user` and `--page` MAY be accepted but MUST normalize to canonical flags before Python invocation
@@ -815,6 +814,7 @@ Inputs:
 Core steps:
 1. preflight: resolve `<space_root>`, acquire ingest lock, initialize run envelope (`run_id`, timing/runtime metadata)
 2. fetch/read bytes, normalize to PDF when needed, and persist source artifact under `<space_root>/sources/artifacts/<source_id>/...` with source record metadata
+   - when media type, file suffix, or URL path indicates PDF (`application/pdf` / `.pdf`), ingest MUST verify payload bytes begin with `%PDF-`; otherwise fail ingest before artifact persistence
 3. extract text and run `ingest_extraction` generation spec with source path + hints + strict JSON schema
 4. validate and persist canonical claim/relation outputs from ingest extraction
 5. run `topic_generation` generation spec using source + claim context; validate and deterministically persist `0..n` canonical topic JSON pages when cross-source concepts are supported
@@ -828,7 +828,7 @@ Run envelope model for multi-semantic commands (normative):
 - `semantic_flows[]` records an ordered unique list of semantic generation flow keys executed at least once during that command invocation.
 - `semantic_flow_invocation_counts` records per-flow invocation counts for the same command invocation.
 - normal ingest writes `semantic_flows: [ingest_extraction, topic_generation]` and `semantic_flow_invocation_counts: {ingest_extraction: 1, topic_generation: 1}`.
-- `--source-only` MAY write `semantic_flows: []` with `semantic_flow_invocation_counts: {}` when semantic generation is skipped.
+- ingest does not support semantic-flow bypass flags.
 
 Terminal failure behavior (normative):
 - if `ingest_extraction` or `topic_generation` exhausts repair retries, command MUST fail.
@@ -883,9 +883,7 @@ Recovered `ingest_source.py` option surface (high-signal):
 - `--source-family-id`, `--canonical-identifier`
 - `--parent-run-id`
 - `--enable-source-index`
-- `--source-only`
 - `--force` (ingest rollback override; preserves partial artifacts on failure)
-- compatibility alias: `--query-only` (deprecated) -> `--source-only`
 - `--require-source-date`
 - `--llm-reasoning-effort {low,medium,high,xhigh}`
 
@@ -924,12 +922,9 @@ Locking policy:
 - stale lock with dead PID auto-recovers
 - live PID lock fails fast
 
-`--source-only` behavior:
-- writes source/family records
-- may update source index
-- skips claim extraction, relation writes, topic generation, and link-reconciliation/build work
-- participates in retrieval context but not claim verification counts
-- compatibility alias `--query-only` MUST behave identically and SHOULD emit a deprecation warning
+Removed ingest bypass flags:
+- `--source-only` and `--query-only` are removed and MUST fail fast with usage errors.
+- ingest always runs `ingest_extraction` and `topic_generation` when ingestion succeeds past preflight.
 
 Relation persistence/reconciliation contracts:
 - relation IDs are edge keys and intentionally use a relation-specific grammar (not the generic entity/run ID format in Section 5.4).

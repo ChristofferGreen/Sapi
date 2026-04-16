@@ -479,7 +479,7 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
                     llm_client=_StaticSemanticClient(semantic_output),
                 )
 
-    def test_ingest_extraction_persists_short_claim_titles_with_word_budget(self) -> None:
+    def test_ingest_extraction_preserves_ai_authored_short_claim_titles(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root, source_id = self._bootstrap_source(Path(tmp))
             semantic_output = {
@@ -517,10 +517,7 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
             )
             claim_payload = json.loads(result.claim_paths[0].read_text())
             self.assertIn("short_title", claim_payload)
-            words = claim_payload["short_title"].split()
-            self.assertGreaterEqual(len(words), 3)
-            self.assertLessEqual(len(words), 7)
-            self.assertNotIn("The paper", claim_payload["short_title"])
+            self.assertEqual(claim_payload["short_title"], "Preparation overlap is constrained")
             self.assertIn("added_at", claim_payload)
             self.assertTrue(claim_payload["added_at"].endswith("Z"))
             self.assertIn("T", claim_payload["added_at"])
@@ -561,7 +558,7 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
             claim_payload = json.loads(result.claim_paths[0].read_text())
             self.assertEqual(claim_payload["added_at"], "2026-04-01T09:30:00Z")
 
-    def test_ingest_extraction_normalizes_meta_claim_phrasing_to_truth_apt_statements(self) -> None:
+    def test_ingest_extraction_preserves_ai_authored_claim_text_verbatim(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root, source_id = self._bootstrap_source(Path(tmp))
             semantic_output = {
@@ -589,7 +586,7 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
                     },
                 ],
                 "relations": [],
-                "summary": "Claim normalization behavior.",
+                "summary": "Claim preservation behavior.",
                 "source_dossier": self._default_source_dossier(),
                 "warnings": [],
             }
@@ -603,11 +600,11 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
             first_claim = json.loads(result.claim_paths[0].read_text())
             second_claim = json.loads(result.claim_paths[1].read_text())
 
-            self.assertEqual(first_claim["text"], "Preparation independence is assumed")
-            self.assertEqual(first_claim["short_title"], "Preparation independence is assumed")
-            self.assertNotIn("paper", second_claim["text"].casefold())
-            self.assertIn("derives", second_claim["text"].casefold())
-            self.assertEqual(second_claim["short_title"], "Total variation has lower bound")
+            self.assertEqual(first_claim["text"], "A second core assumption is preparation independence.")
+            self.assertEqual(first_claim["short_title"], "A second core assumption is preparation independence")
+            self.assertIn("paper", second_claim["text"].casefold())
+            self.assertIn("deriving", second_claim["text"].casefold())
+            self.assertEqual(second_claim["short_title"], second_claim["text"].rstrip("."))
 
     def test_ingest_extraction_normalizes_display_title_with_article_title_fallback(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

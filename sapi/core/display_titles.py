@@ -10,26 +10,6 @@ _URL_RE = re.compile(r"(https?://|www\.)", re.IGNORECASE)
 _FILE_SUFFIX_RE = re.compile(r"\.(pdf|docx?|txt|md|markdown)\s*$", re.IGNORECASE)
 _SOURCE_ID_RE = re.compile(r"^source-[a-z0-9-]+--[0-9a-f]{12,}$")
 _WORD_RE = re.compile(r"[A-Za-z][A-Za-z0-9'’/-]*")
-_DISPLAY_TITLE_STOPWORDS = {
-    "a",
-    "an",
-    "and",
-    "as",
-    "at",
-    "by",
-    "for",
-    "from",
-    "in",
-    "into",
-    "of",
-    "on",
-    "or",
-    "the",
-    "to",
-    "with",
-}
-
-
 def resolve_display_title(*, candidates: Iterable[object], fallback: object) -> str:
     """Resolve a source display title from prioritized candidates.
 
@@ -48,7 +28,7 @@ def resolve_display_title(*, candidates: Iterable[object], fallback: object) -> 
         if normalized is not None:
             return normalized
 
-    fallback_normalized = normalize_display_title(_humanize_slug_text(fallback))
+    fallback_normalized = normalize_display_title(fallback)
     if fallback_normalized is not None:
         return fallback_normalized
 
@@ -115,32 +95,3 @@ def _looks_slugish(*, raw: object, normalized: str) -> bool:
         return True
     return False
 
-
-def _title_case(text: str) -> str:
-    parts = text.split(" ")
-    if not parts:
-        return text
-    normalized_parts: list[str] = []
-    for idx, token in enumerate(parts):
-        lowered = token.lower()
-        if token.isupper() and len(token) <= 4:
-            normalized_parts.append(token)
-            continue
-        if idx != 0 and lowered in _DISPLAY_TITLE_STOPWORDS:
-            normalized_parts.append(lowered)
-            continue
-        normalized_parts.append(token[:1].upper() + token[1:].lower())
-    return " ".join(normalized_parts)
-
-
-def _humanize_slug_text(raw: object) -> str:
-    if not isinstance(raw, str):
-        return ""
-    text = raw.strip()
-    if text.lower().startswith("source-") and "--" in text:
-        text = text[7:].split("--", 1)[0]
-    text = text.replace("_", " ").replace("-", " ")
-    text = _SPACE_RE.sub(" ", text).strip()
-    if not text:
-        return ""
-    return _title_case(text)

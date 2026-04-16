@@ -71,8 +71,6 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--enable-comment-enrichment", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--comment-count", type=int, help=argparse.SUPPRESS)
     parser.add_argument("--comment-page", action="append", default=[], help=argparse.SUPPRESS)
-    parser.add_argument("--source-only", action="store_true")
-    parser.add_argument("--query-only", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--build-deferred", action="store_true")
     parser.add_argument("--simulate-terminal-failure", action="store_true", help=argparse.SUPPRESS)
@@ -83,7 +81,6 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> int:
     args = build_parser().parse_args()
-    source_only = False
     ingest_semantic_plan = None
     source_date_resolution: SourceDateResolution | None = None
     started_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
@@ -109,9 +106,7 @@ def main() -> int:
     runtime_flags = None
 
     try:
-        source_only = _normalize_source_only_mode(args)
         ingest_semantic_plan = plan_ingest_semantic_execution(
-            source_only=source_only,
             enable_comment_enrichment=args.enable_comment_enrichment,
             requested_comment_count=args.comment_count,
             comment_target_page_refs=args.comment_page if args.comment_page else None,
@@ -166,72 +161,71 @@ def main() -> int:
             )
             if args.simulate_terminal_failure:
                 raise RuntimeError("Simulated terminal ingest failure.")
-            if not source_only:
-                source_record = json.loads(result.record_path.read_text())
-                source_title = resolve_display_title(
-                    candidates=[
-                        source_record.get("display_title") if isinstance(source_record, dict) else None,
-                        source_record.get("title") if isinstance(source_record, dict) else None,
-                    ],
-                    fallback=result.source_id,
-                )
-                _record_semantic_invocation(
-                    flow_key="ingest_extraction",
-                    semantic_flows=semantic_flows,
-                    semantic_flow_invocation_counts=semantic_flow_invocation_counts,
-                )
-                extraction_result = run_ingest_extraction_and_persist_canonical(
+            source_record = json.loads(result.record_path.read_text())
+            source_title = resolve_display_title(
+                candidates=[
+                    source_record.get("display_title") if isinstance(source_record, dict) else None,
+                    source_record.get("title") if isinstance(source_record, dict) else None,
+                ],
+                fallback=result.source_id,
+            )
+            _record_semantic_invocation(
+                flow_key="ingest_extraction",
+                semantic_flows=semantic_flows,
+                semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+            )
+            extraction_result = run_ingest_extraction_and_persist_canonical(
+                space_root=space_root,
+                source_id=result.source_id,
+                run_id=run_id,
+                llm_client=_build_ingest_extraction_client(
+                    runtime_flags=runtime_flags,
+                    source_id=result.source_id,
+                    source_title=source_title,
+                    source_date_resolution=source_date_resolution,
+                    source_record=source_record if isinstance(source_record, dict) else {},
+                ),
+                trace_ctx=trace_ctx,
+            )
+            _track_ingest_extraction_writes_for_rollback(
+                transaction=transaction,
+                space_root=space_root,
+                run_id=run_id,
+                extraction_result=extraction_result,
+            )
+            llm_attempt_count += 1
+            _record_semantic_invocation(
+                flow_key="topic_generation",
+                semantic_flows=semantic_flows,
+                semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+            )
+            topic_result = run_topic_generation_and_persist_canonical(
+                space_root=space_root,
+                source_id=result.source_id,
+                run_id=run_id,
+                llm_client=_build_topic_generation_client(
+                    runtime_flags=runtime_flags,
                     space_root=space_root,
                     source_id=result.source_id,
-                    run_id=run_id,
-                    llm_client=_build_ingest_extraction_client(
-                        runtime_flags=runtime_flags,
-                        source_id=result.source_id,
-                        source_title=source_title,
-                        source_date_resolution=source_date_resolution,
-                        source_record=source_record if isinstance(source_record, dict) else {},
-                    ),
-                    trace_ctx=trace_ctx,
+                    source_title=source_title,
+                    claim_ids=[path.stem for path in extraction_result.claim_paths],
+                ),
+                trace_ctx=trace_ctx,
+            )
+            _track_topic_generation_writes_for_rollback(
+                transaction=transaction,
+                topic_result=topic_result,
+            )
+            llm_attempt_count += 1
+            if args.build_deferred:
+                build_deferred = True
+                deferred_build_reason = "operator_requested_build_deferred"
+            else:
+                build_manifest_path = _run_coalesced_ingest_topic_postprocess(
+                    registry_path=registry_path,
+                    space_name=args.space_name,
+                    site_path=site_path,
                 )
-                _track_ingest_extraction_writes_for_rollback(
-                    transaction=transaction,
-                    space_root=space_root,
-                    run_id=run_id,
-                    extraction_result=extraction_result,
-                )
-                llm_attempt_count += 1
-                _record_semantic_invocation(
-                    flow_key="topic_generation",
-                    semantic_flows=semantic_flows,
-                    semantic_flow_invocation_counts=semantic_flow_invocation_counts,
-                )
-                topic_result = run_topic_generation_and_persist_canonical(
-                    space_root=space_root,
-                    source_id=result.source_id,
-                    run_id=run_id,
-                    llm_client=_build_topic_generation_client(
-                        runtime_flags=runtime_flags,
-                        space_root=space_root,
-                        source_id=result.source_id,
-                        source_title=source_title,
-                        claim_ids=[path.stem for path in extraction_result.claim_paths],
-                    ),
-                    trace_ctx=trace_ctx,
-                )
-                _track_topic_generation_writes_for_rollback(
-                    transaction=transaction,
-                    topic_result=topic_result,
-                )
-                llm_attempt_count += 1
-                if args.build_deferred:
-                    build_deferred = True
-                    deferred_build_reason = "operator_requested_build_deferred"
-                else:
-                    build_manifest_path = _run_coalesced_ingest_topic_postprocess(
-                        registry_path=registry_path,
-                        space_name=args.space_name,
-                        site_path=site_path,
-                    )
     except IngestLockHeldError as exc:
         print(str(exc), file=sys.stderr)
         return 1
@@ -417,14 +411,6 @@ def _run_coalesced_ingest_topic_postprocess(
         space_name=space_name,
         site_path=site_path,
     )
-
-
-def _normalize_source_only_mode(args: argparse.Namespace) -> bool:
-    if args.source_only and args.query_only:
-        raise ValueError("cannot combine --source-only with alias --query-only")
-    if args.query_only:
-        print("Warning: --query-only is deprecated; use --source-only.", file=sys.stderr)
-    return bool(args.source_only or args.query_only)
 
 
 def _record_semantic_invocation(

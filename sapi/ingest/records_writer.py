@@ -17,7 +17,6 @@ from urllib.request import Request, urlopen
 from sapi.contracts.ids import ISO_DATE_RE, RFC3339_UTC_RE
 from sapi.contracts.ids import make_claim_id, make_source_id, slugify
 from sapi.contracts.semantic_specs import resolve_semantic_invocation_spec
-from sapi.core.claim_naming import normalize_claim_statement_text, resolve_claim_short_title
 from sapi.core.display_titles import resolve_display_title
 from sapi.ingest.relation_store import write_relation
 from sapi.ingest.source_content import resolve_source_title
@@ -221,15 +220,19 @@ def _resolve_claim_text(raw_claim_dict: dict[str, Any]) -> str:
     for key in ("text", "statement", "claim", "content", "summary", "description"):
         value = raw_claim_dict.get(key)
         if isinstance(value, str) and value.strip():
-            return normalize_claim_statement_text(value.strip())
+            return " ".join(value.split()).strip()
     for value in raw_claim_dict.values():
         if isinstance(value, str) and value.strip():
-            return normalize_claim_statement_text(value.strip())
+            return " ".join(value.split()).strip()
     raise ValueError("claims[] objects must include non-empty `text`, `statement`, or `claim`.")
 
 
 def _normalize_claim_short_title(*, raw_value: Any, claim_text: str) -> str:
-    return resolve_claim_short_title(raw_short_title=raw_value, claim_text=claim_text)
+    if isinstance(raw_value, str):
+        normalized = " ".join(raw_value.split()).strip(" .,:;")
+        if normalized:
+            return normalized
+    return " ".join(claim_text.split()).strip(" .,:;")
 
 
 def _normalize_claim_added_at(*, raw_value: Any) -> str | None:
@@ -629,6 +632,11 @@ def _load_source_input(
     if parsed.scheme in {"http", "https"} and parsed.netloc:
         body, media_type = _read_url(raw_input)
         media_type = source_media_type_override or media_type or "application/octet-stream"
+        _validate_pdf_signature_if_expected(
+            body=body,
+            media_type=media_type,
+            locator=parsed.path or raw_input,
+        )
         source_type = source_type_override or "url"
         source_metadata_title, in_source_title_line = _extract_title_hints(
             body=body,
@@ -659,6 +667,11 @@ def _load_source_input(
 
     body = source_file.read_bytes()
     media_type = source_media_type_override or _guess_media_type_from_suffix(source_file.suffix)
+    _validate_pdf_signature_if_expected(
+        body=body,
+        media_type=media_type,
+        locator=source_file.name,
+    )
     source_type = source_type_override or "file"
     file_locator = source_file.name
     source_metadata_title, in_source_title_line = _extract_title_hints(
@@ -678,6 +691,19 @@ def _load_source_input(
         id_payload=id_payload,
         source_metadata_title=source_metadata_title,
         in_source_title_line=in_source_title_line,
+    )
+
+
+def _validate_pdf_signature_if_expected(*, body: bytes, media_type: str, locator: str) -> None:
+    normalized_media_type = media_type.strip().lower()
+    expects_pdf = normalized_media_type == "application/pdf" or Path(locator).suffix.lower() == ".pdf"
+    if not expects_pdf:
+        return
+    if body.lstrip().startswith(b"%PDF-"):
+        return
+    raise ValueError(
+        "Expected PDF payload because media type or locator indicates PDF, but content does not "
+        "start with the PDF signature `%PDF-`."
     )
 
 

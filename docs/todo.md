@@ -280,8 +280,8 @@ Cross-cutting docs backlog:
   - depends_on: TODO-0313
   - scope: Remove deprecated ingest alias `--query-only` from wrapper and Python entrypoint.
   - acceptance:
-    - `ingest.sh` and `scripts/ingest_source.py` accept only canonical `--source-only`.
-    - Tests assert `--query-only` fails as invalid input.
+    - `ingest.sh` and `scripts/ingest_source.py` reject both `--query-only` and `--source-only`.
+    - Tests assert removed ingest mode flags fail as invalid input.
 
 - [ ] TODO-0314: Remove compatibility-reader sunset policy and alias acceptance language from contracts
   - owner: ai
