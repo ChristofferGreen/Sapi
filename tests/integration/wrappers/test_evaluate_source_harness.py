@@ -78,8 +78,10 @@ class EvaluateSourceHarnessIntegrationTests(unittest.TestCase):
             for rel in markdown_artifacts:
                 self.assertTrue((evaluation_dir / rel).is_file(), rel)
 
-            self.assertIn("# Source Evaluation Artifact Pack", (evaluation_dir / "README.md").read_text())
-            self.assertIn("## Execution Summary", (evaluation_dir / "README.md").read_text())
+            readme_text = (evaluation_dir / "README.md").read_text()
+            self.assertIn("# Source Evaluation Artifact Pack", readme_text)
+            self.assertIn("## Execution Summary", readme_text)
+            self.assertNotIn("--llm-timeout-secs", readme_text)
             self.assertIn("# Evaluation Summary", (evaluation_dir / "summary.md").read_text())
             self.assertIn("## Checklist", (evaluation_dir / "summary.md").read_text())
             self.assertIn("# Ingest Run", (evaluation_dir / "ingest_run.md").read_text())

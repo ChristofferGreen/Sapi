@@ -1549,6 +1549,8 @@ High-signal CLI runtime flags:
 - tests/local contract checks that need non-live execution MUST use `--mock-llm` while preserving schema/output contracts.
 - advanced comment controls (if implemented) SHOULD be explicit CLI flags.
 - live semantic defaults SHOULD be `--llm-backend codex`, `--llm-model gpt-5.4`, and `--llm-reasoning-effort high`.
+- live semantic timeout SHOULD default to disabled (`--llm-timeout-secs none`) so operator runs wait until the
+  live child finishes or fails explicitly.
 - backend/model defaults are deployment/runtime policy and SHOULD be changed via CLI/wrapper config rather than by editing non-negotiable semantic contracts.
 - flow behavior MUST be determined from command-line arguments only; environment variables MUST NOT change semantic/pipeline behavior.
 

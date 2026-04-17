@@ -17,7 +17,6 @@ from sapi.llm.client import SemanticLlmRequest
 
 DEFAULT_CODEX_MODEL = "gpt-5.4"
 _MAX_ERROR_TAIL_CHARS = 4000
-_STREAM_JOIN_TIMEOUT_SECS = 5.0
 
 
 @dataclass(frozen=True)
@@ -25,7 +24,7 @@ class SemanticBackendConfig:
     backend: str
     model: str
     reasoning_effort: str
-    timeout_secs: int
+    timeout_secs: int | None
 
 
 def generate_semantic_json_live(
@@ -75,6 +74,9 @@ def _build_prompt(*, request: SemanticLlmRequest, task_context: dict[str, Any] |
         "Do not run broad exploratory workflows; read only the provided context files needed to answer.",
         "Write exactly one JSON object to output_json_path on disk (UTF-8).",
         "Create parent directories if needed and overwrite output_json_path if it exists.",
+        "Do not use apply_patch or patch-style edits for output_json_path.",
+        "Write output_json_path directly in one step with a shell redirect or short script.",
+        "Do not probe whether output_json_path exists before writing; just overwrite it.",
         "Do not modify any other files.",
         "Do not wrap JSON in markdown or code fences.",
     ]
@@ -152,7 +154,10 @@ def _generate_with_codex(
     stderr_thread.start()
 
     try:
-        return_code = process.wait(timeout=backend_config.timeout_secs)
+        if backend_config.timeout_secs is None:
+            return_code = process.wait()
+        else:
+            return_code = process.wait(timeout=backend_config.timeout_secs)
     except subprocess.TimeoutExpired as exc:
         _terminate_process_group(process.pid)
         process.wait()
@@ -161,7 +166,6 @@ def _generate_with_codex(
         _join_stream_threads(
             stdout_thread=stdout_thread,
             stderr_thread=stderr_thread,
-            process_pid=process.pid,
         )
         raise RuntimeError(
             "Codex semantic generation timed out after "
@@ -171,7 +175,6 @@ def _generate_with_codex(
     _join_stream_threads(
         stdout_thread=stdout_thread,
         stderr_thread=stderr_thread,
-        process_pid=process.pid,
     )
 
     if return_code != 0:
@@ -208,22 +211,9 @@ def _join_stream_threads(
     *,
     stdout_thread: threading.Thread,
     stderr_thread: threading.Thread,
-    process_pid: int,
 ) -> None:
-    stdout_thread.join(timeout=_STREAM_JOIN_TIMEOUT_SECS)
-    stderr_thread.join(timeout=_STREAM_JOIN_TIMEOUT_SECS)
-    if not stdout_thread.is_alive() and not stderr_thread.is_alive():
-        return
-
-    # If either stream thread is still blocked, terminate any lingering process
-    # group descendants and close local stream handles to force unblocking.
-    _terminate_process_group(process_pid)
-    stdout_thread.join(timeout=_STREAM_JOIN_TIMEOUT_SECS)
-    stderr_thread.join(timeout=_STREAM_JOIN_TIMEOUT_SECS)
-    if stdout_thread.is_alive() or stderr_thread.is_alive():
-        raise RuntimeError(
-            "Codex semantic generation left output streams open; aborted to avoid a stuck ingest run."
-        )
+    stdout_thread.join()
+    stderr_thread.join()
 
 
 def _terminate_process_group(process_pid: int) -> None:

@@ -35,9 +35,10 @@ class _FakeProcess:
         self._writer = writer
         self.returncode = 0
         self.pid = 4242
+        self.wait_timeout: int | None | object = object()
 
     def wait(self, timeout: int | None = None) -> int:
-        del timeout
+        self.wait_timeout = timeout
         self._writer(self.stdin.getvalue())
         return self.returncode
 
@@ -56,7 +57,7 @@ class RuntimeBackendCodexTests(unittest.TestCase):
                         backend="gemini",
                         model="gpt-5.4",
                         reasoning_effort="high",
-                        timeout_secs=10,
+                        timeout_secs=None,
                     ),
                 )
 
@@ -65,8 +66,11 @@ class RuntimeBackendCodexTests(unittest.TestCase):
             output_path = Path(tmp) / "semantic.json"
             request = _request_for(output_path)
             popen_calls: list[tuple[list[str], dict[str, object]]] = []
+            processes: list[_FakeProcess] = []
+            prompts: list[str] = []
 
             def writer(prompt: str) -> None:
+                prompts.append(prompt)
                 payload = _payload_from_prompt(prompt)
                 resolved_output_path = Path(str(payload["output_json_path"]))
                 resolved_output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -74,7 +78,9 @@ class RuntimeBackendCodexTests(unittest.TestCase):
 
             def fake_popen(command: list[str], **kwargs):
                 popen_calls.append((command, kwargs))
-                return _FakeProcess(writer=writer)
+                process = _FakeProcess(writer=writer)
+                processes.append(process)
+                return process
 
             with patch("sapi.llm.runtime_backend.subprocess.Popen", side_effect=fake_popen):
                 raw = generate_semantic_json_live(
@@ -83,7 +89,7 @@ class RuntimeBackendCodexTests(unittest.TestCase):
                         backend="codex",
                         model="",
                         reasoning_effort="high",
-                        timeout_secs=10,
+                        timeout_secs=None,
                     ),
                 )
 
@@ -105,6 +111,12 @@ class RuntimeBackendCodexTests(unittest.TestCase):
             self.assertIn(str(output_path.parent.resolve()), command)
             self.assertTrue(kwargs["text"])
             self.assertEqual(kwargs["bufsize"], 1)
+            self.assertEqual(len(processes), 1)
+            self.assertIsNone(processes[0].wait_timeout)
+            self.assertEqual(len(prompts), 1)
+            self.assertIn("Do not use apply_patch or patch-style edits for output_json_path.", prompts[0])
+            self.assertIn("Write output_json_path directly in one step with a shell redirect or short script.", prompts[0])
+            self.assertIn("Do not probe whether output_json_path exists before writing; just overwrite it.", prompts[0])
             self.assertEqual(json.loads(output_path.read_text())["ok"], True)
 
     def test_live_semantic_generation_requires_json_object_from_written_output_file(self) -> None:
@@ -129,7 +141,7 @@ class RuntimeBackendCodexTests(unittest.TestCase):
                             backend="codex",
                             model="gpt-5.4",
                             reasoning_effort="high",
-                            timeout_secs=10,
+                            timeout_secs=None,
                         ),
                     )
 

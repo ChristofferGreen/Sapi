@@ -26,7 +26,7 @@ class RuntimeFlagDefaultsDocsParityTests(unittest.TestCase):
             runtime_flags.DEFAULT_LLM_REASONING_EFFORT,
         )
         self.assertEqual(
-            int(_extract_flag_value(readme_text, "--llm-timeout-secs")),
+            _extract_optional_timeout_value(readme_text, "--llm-timeout-secs"),
             runtime_flags.DEFAULT_LLM_TIMEOUT_SECS,
         )
         self.assertEqual(
@@ -41,6 +41,13 @@ def _extract_flag_value(readme_text: str, flag_name: str) -> str:
     if match is None:
         raise AssertionError(f"README defaults section missing {flag_name} entry.")
     return match.group(1).strip()
+
+
+def _extract_optional_timeout_value(readme_text: str, flag_name: str) -> int | None:
+    raw_value = _extract_flag_value(readme_text, flag_name).lower()
+    if raw_value == "none":
+        return None
+    return int(raw_value)
 
 
 if __name__ == "__main__":

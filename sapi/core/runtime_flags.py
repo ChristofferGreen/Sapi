@@ -10,7 +10,7 @@ from typing import Any
 DEFAULT_LLM_BACKEND = "codex"
 DEFAULT_LLM_MODEL = "gpt-5.4"
 DEFAULT_LLM_REASONING_EFFORT = "high"
-DEFAULT_LLM_TIMEOUT_SECS = 900
+DEFAULT_LLM_TIMEOUT_SECS: int | None = None
 DEFAULT_WARNING_BUDGET = 200
 
 LLM_REASONING_EFFORT_CHOICES: tuple[str, ...] = ("low", "medium", "high", "xhigh")
@@ -23,7 +23,7 @@ class RuntimeFlagSnapshot:
     llm_backend: str
     llm_model: str
     llm_reasoning_effort: str
-    llm_timeout_secs: int
+    llm_timeout_secs: int | None
     llm_trace: bool
     llm_trace_dir: str | None
     trace_llm_io: bool
@@ -42,7 +42,11 @@ def add_runtime_flag_arguments(parser: argparse.ArgumentParser) -> None:
         choices=LLM_REASONING_EFFORT_CHOICES,
         default=DEFAULT_LLM_REASONING_EFFORT,
     )
-    parser.add_argument("--llm-timeout-secs", type=int, default=DEFAULT_LLM_TIMEOUT_SECS)
+    parser.add_argument(
+        "--llm-timeout-secs",
+        type=_parse_optional_positive_int,
+        default=DEFAULT_LLM_TIMEOUT_SECS,
+    )
     parser.add_argument("--llm-trace", action="store_true")
     parser.add_argument("--llm-trace-dir")
     parser.add_argument("--trace-llm-io", action="store_true")
@@ -62,8 +66,8 @@ def add_runtime_flag_arguments(parser: argparse.ArgumentParser) -> None:
 
 
 def validate_runtime_flag_arguments(args: argparse.Namespace) -> None:
-    if args.llm_timeout_secs <= 0:
-        raise ValueError("--llm-timeout-secs must be a positive integer.")
+    if args.llm_timeout_secs is not None and args.llm_timeout_secs <= 0:
+        raise ValueError("--llm-timeout-secs must be a positive integer or `none`.")
     if args.warning_budget <= 0:
         raise ValueError("--warning-budget must be a positive integer.")
     if args.llm_trace_dir and not (args.llm_trace or args.trace_llm_io or args.verbose):
@@ -80,7 +84,9 @@ def snapshot_runtime_flags(args: argparse.Namespace) -> RuntimeFlagSnapshot:
             args.llm_reasoning_effort,
             "--llm-reasoning-effort",
         ),
-        llm_timeout_secs=int(args.llm_timeout_secs),
+        llm_timeout_secs=(
+            None if args.llm_timeout_secs is None else int(args.llm_timeout_secs)
+        ),
         llm_trace=bool(args.llm_trace),
         llm_trace_dir=args.llm_trace_dir,
         trace_llm_io=bool(args.trace_llm_io),
@@ -119,3 +125,13 @@ def _require_non_empty_string(raw: Any, flag_name: str) -> str:
     if not isinstance(raw, str) or not raw.strip():
         raise ValueError(f"{flag_name} must be a non-empty string.")
     return raw.strip()
+
+
+def _parse_optional_positive_int(raw: str) -> int | None:
+    normalized = raw.strip().lower()
+    if normalized in {"none", "off", "disabled"}:
+        return None
+    parsed = int(normalized)
+    if parsed <= 0:
+        raise argparse.ArgumentTypeError("must be a positive integer or `none`")
+    return parsed

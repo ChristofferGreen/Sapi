@@ -78,7 +78,7 @@ class RuntimeFlagSurfaceContractTests(unittest.TestCase):
                 self.assertEqual(args.llm_backend, "codex")
                 self.assertEqual(args.llm_model, "gpt-5.4")
                 self.assertEqual(args.llm_reasoning_effort, "high")
-                self.assertEqual(args.llm_timeout_secs, 900)
+                self.assertIsNone(args.llm_timeout_secs)
                 self.assertEqual(args.warning_budget, 200)
                 self.assertEqual(args.run_search_visibility, "auto")
                 self.assertEqual(args.site_presentation_mode, "public")
@@ -87,6 +87,34 @@ class RuntimeFlagSurfaceContractTests(unittest.TestCase):
                 self.assertFalse(args.mock_llm)
                 self.assertFalse(args.enable_source_index)
                 self.assertIsNone(args.llm_trace_dir)
+
+    def test_runtime_flags_accept_no_timeout_sentinel(self) -> None:
+        parser_cases = [
+            (
+                ingest_source_entrypoint.build_parser(),
+                ["alpha", "source.txt", "--registry-path", "/tmp/registry.toml"],
+            ),
+            (
+                query_entrypoint.build_parser(),
+                ["alpha", "what is this", "--registry-path", "/tmp/registry.toml"],
+            ),
+            (
+                create_comments_entrypoint.build_parser(),
+                ["alpha", "--registry-path", "/tmp/registry.toml", "--count", "5"],
+            ),
+            (
+                generate_profiles_entrypoint.build_parser(),
+                ["alpha", "--registry-path", "/tmp/registry.toml"],
+            ),
+            (
+                evaluate_source_entrypoint.build_parser(),
+                ["alpha", "source.txt", "--registry-path", "/tmp/registry.toml"],
+            ),
+        ]
+        for parser, argv in parser_cases:
+            with self.subTest(parser=parser.prog):
+                args = parser.parse_args([*argv, "--llm-timeout-secs", "none"])
+                self.assertIsNone(args.llm_timeout_secs)
 
     def test_invalid_trace_dir_combination_fails_fast_with_clear_error(self) -> None:
         commands = [

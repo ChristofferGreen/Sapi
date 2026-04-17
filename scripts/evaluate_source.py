@@ -322,8 +322,6 @@ def _runtime_flag_args_for_forwarding(
         str(runtime_flags.llm_model),
         "--llm-reasoning-effort",
         str(runtime_flags.llm_reasoning_effort),
-        "--llm-timeout-secs",
-        str(runtime_flags.llm_timeout_secs),
         "--warning-budget",
         str(runtime_flags.warning_budget),
         "--run-search-visibility",
@@ -331,6 +329,8 @@ def _runtime_flag_args_for_forwarding(
         "--site-presentation-mode",
         str(runtime_flags.site_presentation_mode),
     ]
+    if runtime_flags.llm_timeout_secs is not None:
+        args.extend(["--llm-timeout-secs", str(runtime_flags.llm_timeout_secs)])
     if runtime_flags.llm_trace:
         args.append("--llm-trace")
     if runtime_flags.llm_trace_dir is not None:
