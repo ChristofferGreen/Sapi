@@ -9,8 +9,8 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[3]
 TODO_DOC_PATH = REPO_ROOT / "docs" / "todo.md"
 TODO_FINISHED_DOC_PATH = REPO_ROOT / "docs" / "todo_finished.md"
-EXIT_GATE_EVIDENCE_PATH = REPO_ROOT / "docs" / "verification" / "testing_exit_criteria.latest.json"
-DOD_EVIDENCE_PATH = REPO_ROOT / "docs" / "verification" / "dod_verification.latest.json"
+EXIT_GATE_EVIDENCE_PATH = REPO_ROOT / "verification" / "testing_exit_criteria.latest.json"
+DOD_EVIDENCE_PATH = REPO_ROOT / "verification" / "dod_verification.latest.json"
 
 
 class DodExitGateClosureTests(unittest.TestCase):
@@ -22,7 +22,7 @@ class DodExitGateClosureTests(unittest.TestCase):
             EXIT_GATE_EVIDENCE_PATH.is_file(),
             msg=(
                 "Closing TODO-0231 requires committed exit-gate evidence at "
-                "docs/verification/testing_exit_criteria.latest.json."
+                "verification/testing_exit_criteria.latest.json."
             ),
         )
         evidence = json.loads(EXIT_GATE_EVIDENCE_PATH.read_text())
@@ -47,7 +47,7 @@ class DodExitGateClosureTests(unittest.TestCase):
             DOD_EVIDENCE_PATH.is_file(),
             msg=(
                 "Closing TODO-0231 requires committed DoD verification evidence at "
-                "docs/verification/dod_verification.latest.json."
+                "verification/dod_verification.latest.json."
             ),
         )
         dod_evidence = json.loads(DOD_EVIDENCE_PATH.read_text())

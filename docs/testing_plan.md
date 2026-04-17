@@ -180,12 +180,12 @@ pytest -q tests/live -m "live_llm"
 ## 6. Exit Criteria
 
 - [x] All PR-required tiers are green on CI.
-  - Evidence: [`python3 scripts/verify_testing_exit_criteria.py docs/verification/testing_exit_site --space-name alpha --out docs/verification/testing_exit_criteria.latest --evidence-path docs/verification/testing_exit_criteria.latest.json`](../scripts/verify_testing_exit_criteria.py) produced [`pr_required_tiers_green=true`](./verification/testing_exit_criteria.latest.json) with `pr_required_tiers` step output in [`manifest.json`](./verification/testing_exit_criteria.latest/manifest.json).
+  - Evidence: [`python3 scripts/verify_testing_exit_criteria.py verification/testing_exit_site --space-name alpha --out verification/testing_exit_criteria.latest --evidence-path verification/testing_exit_criteria.latest.json`](../scripts/verify_testing_exit_criteria.py) produced [`pr_required_tiers_green=true`](../verification/testing_exit_criteria.latest.json) with `pr_required_tiers` step output in [`manifest.json`](../verification/testing_exit_criteria.latest/manifest.json).
 - [x] No rollback/leakage regressions in failure tests.
-  - Evidence: [`rollback_leakage_regressions_absent=true`](./verification/testing_exit_criteria.latest.json) and `failure_rollback_suite` command/result in [`manifest.json`](./verification/testing_exit_criteria.latest/manifest.json).
+  - Evidence: [`rollback_leakage_regressions_absent=true`](../verification/testing_exit_criteria.latest.json) and `failure_rollback_suite` command/result in [`manifest.json`](../verification/testing_exit_criteria.latest/manifest.json).
 - [x] Ingest `--force` behavior validated without regressing default rollback behavior.
-  - Evidence: [`npm run test:pr`](../package.json) step passes in [`manifest.json`](./verification/testing_exit_criteria.latest/manifest.json), which includes `tests/integration/pipelines/test_ingest_force_mode.py` and `tests/integration/failure/test_run_container_not_persisted.py` under PR-required suites.
+  - Evidence: [`npm run test:pr`](../package.json) step passes in [`manifest.json`](../verification/testing_exit_criteria.latest/manifest.json), which includes `tests/integration/pipelines/test_ingest_force_mode.py` and `tests/integration/failure/test_run_container_not_persisted.py` under PR-required suites.
 - [x] No deferred-build backlog before final DoD verification.
-  - Evidence: [`deferred_build_backlog_clear=true`](./verification/testing_exit_criteria.latest.json) and empty `deferred_build_backlog_run_ids` in [`manifest.json`](./verification/testing_exit_criteria.latest/manifest.json).
+  - Evidence: [`deferred_build_backlog_clear=true`](../verification/testing_exit_criteria.latest.json) and empty `deferred_build_backlog_run_ids` in [`manifest.json`](../verification/testing_exit_criteria.latest/manifest.json).
 - [x] Deterministic equivalence checks pass for build outputs.
-  - Evidence: [`determinism_checks_green=true`](./verification/testing_exit_criteria.latest.json) and `determinism_tiers` (`npm run test:tier4-5`) pass in [`manifest.json`](./verification/testing_exit_criteria.latest/manifest.json).
+  - Evidence: [`determinism_checks_green=true`](../verification/testing_exit_criteria.latest.json) and `determinism_tiers` (`npm run test:tier4-5`) pass in [`manifest.json`](../verification/testing_exit_criteria.latest/manifest.json).

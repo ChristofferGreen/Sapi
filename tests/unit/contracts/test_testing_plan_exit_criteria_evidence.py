@@ -29,15 +29,15 @@ class TestingPlanExitCriteriaEvidenceTests(unittest.TestCase):
             self.assertRegex(evidence_line, r"\[[^\]]+\]\([^)]+\)")
             self.assertIn("`", evidence_line, msg="Evidence line must include a concrete command reference.")
 
-        self.assertIn("./verification/testing_exit_criteria.latest.json", section)
-        self.assertIn("./verification/testing_exit_criteria.latest/manifest.json", section)
+        self.assertIn("../verification/testing_exit_criteria.latest.json", section)
+        self.assertIn("../verification/testing_exit_criteria.latest/manifest.json", section)
 
     def test_todo_0312_completion_evidence_references_exit_gate_artifacts(self) -> None:
         block = _task_block(TODO_FINISHED_PATH.read_text(), "TODO-0312")
         self.assertIn("docs/testing_plan.md", block)
         self.assertIn("verify_testing_exit_criteria.py", block)
-        self.assertIn("docs/verification/testing_exit_criteria.latest.json", block)
-        self.assertIn("docs/verification/testing_exit_criteria.latest/manifest.json", block)
+        self.assertIn("verification/testing_exit_criteria.latest.json", block)
+        self.assertIn("verification/testing_exit_criteria.latest/manifest.json", block)
 
 
 def _section_text(text: str, heading: str) -> str:

@@ -1,0 +1,276 @@
+{
+  "note": "Curated PDFs for standard example-site ingest-flow recreation.",
+  "selection_criteria": "Journal-article PDFs with relatively high citation counts and topic/popular relevance per subspace.",
+  "entries": [
+    {
+      "subspace": "mind",
+      "filename": "01-an-information-integration-theory-of-consciousness--w2114900706.pdf",
+      "title": "An information integration theory of consciousness",
+      "venue": "BMC Neuroscience",
+      "doi": "https://doi.org/10.1186/1471-2202-5-42",
+      "cited_by": 1647,
+      "path": "verification/reingest_seed_pdfs/mind/01-an-information-integration-theory-of-consciousness--w2114900706.pdf",
+      "bytes": 2680174
+    },
+    {
+      "subspace": "mind",
+      "filename": "02-mindfulness-training-modifies-subsystems-of-attention--w2132002500.pdf",
+      "title": "Mindfulness training modifies subsystems of attention",
+      "venue": "Cognitive, Affective, & Behavioral Neuroscience",
+      "doi": "https://doi.org/10.3758/CABN.7.2.109",
+      "cited_by": 1579,
+      "path": "verification/reingest_seed_pdfs/mind/02-mindfulness-training-modifies-subsystems-of-attention--w2132002500.pdf",
+      "bytes": 134336
+    },
+    {
+      "subspace": "mind",
+      "filename": "03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur--w2005105933.pdf",
+      "title": "The role of alpha-band brain oscillations as a sensory suppression mechanism during selective attention",
+      "venue": "Frontiers in Psychology",
+      "doi": "https://doi.org/10.3389/fpsyg.2011.00154",
+      "cited_by": 1578,
+      "path": "verification/reingest_seed_pdfs/mind/03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur--w2005105933.pdf",
+      "bytes": 1626206
+    },
+    {
+      "subspace": "mind",
+      "filename": "04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind--w2761197918.pdf",
+      "title": "Mind the hype: A critical evaluation and prescriptive agenda for research on mindfulness and meditation",
+      "venue": "Perspectives on Psychological Science",
+      "doi": "https://doi.org/10.1177/1745691617709589",
+      "cited_by": 935,
+      "path": "verification/reingest_seed_pdfs/mind/04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind--w2761197918.pdf",
+      "bytes": 653737
+    },
+    {
+      "subspace": "mind",
+      "filename": "05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde--w2005022581.pdf",
+      "title": "Self-awareness, self-regulation, and self-transcendence (S-ART)",
+      "venue": "Frontiers in Human Neuroscience",
+      "doi": "https://doi.org/10.3389/fnhum.2012.00296",
+      "cited_by": 1294,
+      "path": "verification/reingest_seed_pdfs/mind/05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde--w2005022581.pdf",
+      "bytes": 2306239
+    },
+    {
+      "subspace": "metaphysics",
+      "filename": "01-grounding-necessary-or-contingent.pdf",
+      "title": "Grounding: Necessary or Contingent?",
+      "venue": "Pacific Philosophical Quarterly",
+      "doi": "https://doi.org/10.1111/papq.12009",
+      "cited_by": 281,
+      "url": "https://philpapers.org/archive/TROGNO.pdf",
+      "path": "verification/reingest_seed_pdfs/metaphysics/01-grounding-necessary-or-contingent.pdf",
+      "bytes": 108588
+    },
+    {
+      "subspace": "metaphysics",
+      "filename": "02-grounding-is-not-a-strict-order.pdf",
+      "title": "Grounding is not a Strict Order",
+      "venue": "Journal of the American Philosophical Association",
+      "doi": "https://doi.org/10.1017/apa.2015.21",
+      "cited_by": 257,
+      "url": "https://philpapers.org/archive/RODGIN.pdf",
+      "path": "verification/reingest_seed_pdfs/metaphysics/02-grounding-is-not-a-strict-order.pdf",
+      "bytes": 191581
+    },
+    {
+      "subspace": "metaphysics",
+      "filename": "03-grounding-essence-and-identity.pdf",
+      "title": "Grounding, Essence, and Identity",
+      "venue": "Philosophy and Phenomenological Research",
+      "doi": "https://doi.org/10.1111/phpr.12369",
+      "cited_by": 183,
+      "url": "https://philpapers.org/archive/CORGEA.pdf",
+      "path": "verification/reingest_seed_pdfs/metaphysics/03-grounding-essence-and-identity.pdf",
+      "bytes": 422077
+    },
+    {
+      "subspace": "metaphysics",
+      "filename": "04-psychedelics-alter-metaphysical-beliefs.pdf",
+      "title": "Psychedelics alter metaphysical beliefs",
+      "venue": "Scientific Reports",
+      "doi": "https://doi.org/10.1038/s41598-021-01209-2",
+      "cited_by": 199,
+      "url": "https://www.nature.com/articles/s41598-021-01209-2.pdf",
+      "path": "verification/reingest_seed_pdfs/metaphysics/04-psychedelics-alter-metaphysical-beliefs.pdf",
+      "bytes": 2844681
+    },
+    {
+      "subspace": "metaphysics",
+      "filename": "05-memory-and-the-sense-of-personal-identity.pdf",
+      "title": "Memory and the Sense of Personal Identity",
+      "venue": "Mind",
+      "doi": "https://doi.org/10.1093/mind/fzs080",
+      "cited_by": 186,
+      "url": "https://philpapers.org/archive/KLEMAT-5.pdf",
+      "path": "verification/reingest_seed_pdfs/metaphysics/05-memory-and-the-sense-of-personal-identity.pdf",
+      "bytes": 175846
+    },
+    {
+      "subspace": "quantum-physics",
+      "filename": "01-quantum-computing-in-the-nisq-era-and-beyond.pdf",
+      "title": "Quantum Computing in the NISQ era and beyond",
+      "venue": "Quantum",
+      "doi": "https://doi.org/10.22331/q-2018-08-06-79",
+      "cited_by": 7898,
+      "url": "https://quantum-journal.org/papers/q-2018-08-06-79/pdf/",
+      "path": "verification/reingest_seed_pdfs/quantum-physics/01-quantum-computing-in-the-nisq-era-and-beyond.pdf",
+      "bytes": 474551
+    },
+    {
+      "subspace": "quantum-physics",
+      "filename": "02-quantum-supremacy-using-a-programmable-superconducting-processor.pdf",
+      "title": "Quantum supremacy using a programmable superconducting processor",
+      "venue": "Nature",
+      "doi": "https://doi.org/10.1038/s41586-019-1666-5",
+      "cited_by": 6827,
+      "url": "https://www.nature.com/articles/s41586-019-1666-5.pdf",
+      "path": "verification/reingest_seed_pdfs/quantum-physics/02-quantum-supremacy-using-a-programmable-superconducting-processor.pdf",
+      "bytes": 1644579
+    },
+    {
+      "subspace": "quantum-physics",
+      "filename": "03-the-quantum-internet.pdf",
+      "title": "The quantum internet",
+      "venue": "Nature",
+      "doi": "https://doi.org/10.1038/nature07127",
+      "cited_by": 5741,
+      "url": "https://arxiv.org/pdf/0806.4195",
+      "path": "verification/reingest_seed_pdfs/quantum-physics/03-the-quantum-internet.pdf",
+      "bytes": 2610183
+    },
+    {
+      "subspace": "quantum-physics",
+      "filename": "04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor.pdf",
+      "title": "A variational eigenvalue solver on a photonic quantum processor",
+      "venue": "Nature Communications",
+      "doi": "https://doi.org/10.1038/ncomms5213",
+      "cited_by": 4429,
+      "url": "https://www.nature.com/articles/ncomms5213.pdf",
+      "path": "verification/reingest_seed_pdfs/quantum-physics/04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor.pdf",
+      "bytes": 669006
+    },
+    {
+      "subspace": "quantum-physics",
+      "filename": "05-quantum-machine-learning.pdf",
+      "title": "Quantum machine learning",
+      "venue": "Nature",
+      "doi": "https://doi.org/10.1038/nature23474",
+      "cited_by": 4253,
+      "url": "https://arxiv.org/pdf/1611.09347",
+      "path": "verification/reingest_seed_pdfs/quantum-physics/05-quantum-machine-learning.pdf",
+      "bytes": 547062
+    },
+    {
+      "subspace": "graphics",
+      "filename": "01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces.pdf",
+      "title": "Sphere tracing: a geometric method for the antialiased ray tracing of implicit surfaces",
+      "venue": "The Visual Computer",
+      "doi": "https://doi.org/10.1007/s003710050084",
+      "cited_by": 398,
+      "url": "https://univ-paris8.hal.science/hal-04421881/document",
+      "path": "verification/reingest_seed_pdfs/graphics/01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces.pdf",
+      "bytes": 461551
+    },
+    {
+      "subspace": "graphics",
+      "filename": "02-image-based-crowd-rendering.pdf",
+      "title": "Image-based crowd rendering",
+      "venue": "IEEE Computer Graphics and Applications",
+      "doi": "https://doi.org/10.1109/38.988745",
+      "cited_by": 93,
+      "url": "https://discovery.ucl.ac.uk/13405/1/13405.pdf",
+      "path": "verification/reingest_seed_pdfs/graphics/02-image-based-crowd-rendering.pdf",
+      "bytes": 4669969
+    },
+    {
+      "subspace": "graphics",
+      "filename": "03-skeleton-based-edge-bundling-for-graph-visualization.pdf",
+      "title": "Skeleton-Based Edge Bundling for Graph Visualization",
+      "venue": "IEEE Transactions on Visualization and Computer Graphics",
+      "doi": "https://doi.org/10.1109/TVCG.2011.233",
+      "cited_by": 159,
+      "url": "https://enac.hal.science/hal-01021607/document",
+      "path": "verification/reingest_seed_pdfs/graphics/03-skeleton-based-edge-bundling-for-graph-visualization.pdf",
+      "bytes": 3216341
+    },
+    {
+      "subspace": "graphics",
+      "filename": "04-foveated-rendering-a-state-of-the-art-survey.pdf",
+      "title": "Foveated rendering: A state-of-the-art survey",
+      "venue": "Computational Visual Media",
+      "doi": "https://doi.org/10.1007/s41095-022-0306-4",
+      "cited_by": 65,
+      "url": "https://link.springer.com/content/pdf/10.1007/s41095-022-0306-4.pdf",
+      "path": "verification/reingest_seed_pdfs/graphics/04-foveated-rendering-a-state-of-the-art-survey.pdf",
+      "bytes": 7472560
+    },
+    {
+      "subspace": "graphics",
+      "filename": "05-interactive-level-of-detail-rendering-of-large-graphs.pdf",
+      "title": "Interactive Level-of-Detail Rendering of Large Graphs",
+      "venue": "IEEE Transactions on Visualization and Computer Graphics",
+      "doi": "https://doi.org/10.1109/TVCG.2012.238",
+      "cited_by": 103,
+      "url": "https://kops.uni-konstanz.de/server/api/core/bitstreams/2b7e7716-c181-4d2c-be62-dd04f5db188d/content",
+      "path": "verification/reingest_seed_pdfs/graphics/05-interactive-level-of-detail-rendering-of-large-graphs.pdf",
+      "bytes": 605255
+    },
+    {
+      "subspace": "compilers",
+      "filename": "01-using-profile-information-to-assist-classic-code-optimizations.pdf",
+      "title": "Using profile information to assist classic code optimizations",
+      "venue": "Software: Practice and Experience",
+      "doi": "https://doi.org/10.1002/SPE.4380211204",
+      "cited_by": 237,
+      "url": "https://www.ideals.illinois.edu/items/100015/bitstreams/319523/data.pdf",
+      "path": "verification/reingest_seed_pdfs/compilers/01-using-profile-information-to-assist-classic-code-optimizations.pdf",
+      "bytes": 19351435
+    },
+    {
+      "subspace": "compilers",
+      "filename": "02-machine-learning-in-compiler-optimization.pdf",
+      "title": "Machine Learning in Compiler Optimization",
+      "venue": "Proceedings of the IEEE",
+      "doi": "https://doi.org/10.1109/JPROC.2018.2817118",
+      "cited_by": 190,
+      "url": "https://eprints.lancs.ac.uk/id/eprint/89859/1/main.pdf",
+      "path": "verification/reingest_seed_pdfs/compilers/02-machine-learning-in-compiler-optimization.pdf",
+      "bytes": 3320885
+    },
+    {
+      "subspace": "compilers",
+      "filename": "03-compiler-design-for-distributed-quantum-computing.pdf",
+      "title": "Compiler Design for Distributed Quantum Computing",
+      "venue": "IEEE Transactions on Quantum Engineering",
+      "doi": "https://doi.org/10.1109/TQE.2021.3053921",
+      "cited_by": 104,
+      "url": "https://ieeexplore.ieee.org/ielx7/8924785/9347847/09334411.pdf",
+      "path": "verification/reingest_seed_pdfs/compilers/03-compiler-design-for-distributed-quantum-computing.pdf",
+      "bytes": 2541446
+    },
+    {
+      "subspace": "compilers",
+      "filename": "04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times.pdf",
+      "title": "A compiler framework for the reduction of worst-case execution times",
+      "venue": "Real-Time Systems",
+      "doi": "https://doi.org/10.1007/s11241-010-9101-x",
+      "cited_by": 82,
+      "url": "https://link.springer.com/content/pdf/10.1007/s11241-010-9101-x.pdf",
+      "path": "verification/reingest_seed_pdfs/compilers/04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times.pdf",
+      "bytes": 1825552
+    },
+    {
+      "subspace": "compilers",
+      "filename": "05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits.pdf",
+      "title": "Compiler-aided systematic construction of large-scale DNA strand displacement circuits using unpurified components",
+      "venue": "Nature Communications",
+      "doi": "https://doi.org/10.1038/ncomms14373",
+      "cited_by": 80,
+      "url": "https://www.nature.com/articles/ncomms14373.pdf",
+      "path": "verification/reingest_seed_pdfs/compilers/05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits.pdf",
+      "bytes": 2681287
+    }
+  ]
+}

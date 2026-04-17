@@ -1,0 +1,59 @@
+{
+  "checks": {
+    "deferred_build_backlog_clear": true,
+    "determinism_checks_green": true,
+    "pr_required_tiers_green": true,
+    "rollback_leakage_regressions_absent": true
+  },
+  "completed_at": "2026-04-13T04:40:49Z",
+  "deferred_build_backlog_run_ids": {
+    "alpha": []
+  },
+  "errors": [],
+  "registry_path": "/Users/chrgre01/src/Sapi/verification/testing_exit_site/spaces.toml",
+  "scope": "testing_plan_exit_criteria",
+  "site_path": "/Users/chrgre01/src/Sapi/verification/testing_exit_site",
+  "space_names": [
+    "alpha"
+  ],
+  "started_at": "2026-04-13T04:40:20Z",
+  "status": "success",
+  "steps": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:pr"
+      ],
+      "name": "pr_required_tiers",
+      "returncode": 0,
+      "stderr_excerpt": "",
+      "stdout_excerpt": "> sapi@0.0.0 test:pr\n> pytest -q tests/unit tests/integration/failure tests/integration/pipelines -m \"not live_llm\"\n\n......................................................... [ 19%]\n............................................. [ 34%]\n.................................................. [ 52%]\n............................................................. [ 72%]\n..................................................... [ 91%]\n..........................                                             [100%]\n292 passed, 96 subtests passed in 23.12s"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:tier4-5"
+      ],
+      "name": "determinism_tiers",
+      "returncode": 0,
+      "stderr_excerpt": "",
+      "stdout_excerpt": "> sapi@0.0.0 test:tier4-5\n> pytest -q tests/integration/build tests/golden -m \"not live_llm\"\n\n.............                                                         [100%]\n13 passed, 3 subtests passed in 3.79s"
+    },
+    {
+      "command": [
+        "pytest",
+        "-q",
+        "tests/integration/failure",
+        "-m",
+        "not live_llm"
+      ],
+      "name": "failure_rollback_suite",
+      "returncode": 0,
+      "stderr_excerpt": "",
+      "stdout_excerpt": "........                                                                 [100%]\n8 passed in 1.52s"
+    }
+  ],
+  "verification_id": "testing-exit-20260413T044049Z"
+}

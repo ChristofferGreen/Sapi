@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "deferred_build_backlog_clear": true,
+    "determinism_checks_green": true,
+    "pr_required_tiers_green": true,
+    "rollback_leakage_regressions_absent": true
+  },
+  "completed_at": "2026-04-13T04:40:49Z",
+  "errors": [],
+  "manifest_path": "/Users/chrgre01/src/Sapi/verification/testing_exit_criteria.latest/manifest.json",
+  "scope": "testing_plan_exit_criteria",
+  "status": "success",
+  "verification_id": "testing-exit-20260413T044049Z"
+}

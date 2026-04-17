@@ -1,0 +1,15 @@
+{
+  "schema_version": "space_subspaces_v1",
+  "subspaces": [
+    {
+      "space_name": "computer-graphics",
+      "space_root": "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/computer-graphics",
+      "title": "Computer Graphics"
+    },
+    {
+      "space_name": "compilers",
+      "space_root": "/Users/chrgre01/src/Sapi/docs/verification/testing_exit_site/spaces/compilers",
+      "title": "Compilers"
+    }
+  ]
+}

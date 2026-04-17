@@ -1,0 +1,26 @@
+# step_id	space_slug	pdf_relpath
+001	mind	pdfs/mind/01-an-information-integration-theory-of-consciousness--w2114900706.pdf
+002	mind	pdfs/mind/02-mindfulness-training-modifies-subsystems-of-attention--w2132002500.pdf
+003	mind	pdfs/mind/03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur--w2005105933.pdf
+004	mind	pdfs/mind/04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind--w2761197918.pdf
+005	mind	pdfs/mind/05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde--w2005022581.pdf
+006	metaphysics	pdfs/metaphysics/01-grounding-necessary-or-contingent.pdf
+007	metaphysics	pdfs/metaphysics/02-grounding-is-not-a-strict-order.pdf
+008	metaphysics	pdfs/metaphysics/03-grounding-essence-and-identity.pdf
+009	metaphysics	pdfs/metaphysics/04-psychedelics-alter-metaphysical-beliefs.pdf
+010	metaphysics	pdfs/metaphysics/05-memory-and-the-sense-of-personal-identity.pdf
+011	quantum-physics	pdfs/quantum-physics/01-quantum-computing-in-the-nisq-era-and-beyond.pdf
+012	quantum-physics	pdfs/quantum-physics/02-quantum-supremacy-using-a-programmable-superconducting-processor.pdf
+013	quantum-physics	pdfs/quantum-physics/03-the-quantum-internet.pdf
+014	quantum-physics	pdfs/quantum-physics/04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor.pdf
+015	quantum-physics	pdfs/quantum-physics/05-quantum-machine-learning.pdf
+016	graphics	pdfs/graphics/01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces.pdf
+017	graphics	pdfs/graphics/02-image-based-crowd-rendering.pdf
+018	graphics	pdfs/graphics/03-skeleton-based-edge-bundling-for-graph-visualization.pdf
+019	graphics	pdfs/graphics/04-foveated-rendering-a-state-of-the-art-survey.pdf
+020	graphics	pdfs/graphics/05-interactive-level-of-detail-rendering-of-large-graphs.pdf
+021	compilers	pdfs/compilers/01-using-profile-information-to-assist-classic-code-optimizations.pdf
+022	compilers	pdfs/compilers/02-machine-learning-in-compiler-optimization.pdf
+023	compilers	pdfs/compilers/03-compiler-design-for-distributed-quantum-computing.pdf
+024	compilers	pdfs/compilers/04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times.pdf
+025	compilers	pdfs/compilers/05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits.pdf

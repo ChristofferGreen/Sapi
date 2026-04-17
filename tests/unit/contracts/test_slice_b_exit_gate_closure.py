@@ -9,7 +9,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[3]
 TODO_DOC_PATH = REPO_ROOT / "docs" / "todo.md"
 TODO_FINISHED_DOC_PATH = REPO_ROOT / "docs" / "todo_finished.md"
-EXIT_GATE_EVIDENCE_PATH = REPO_ROOT / "docs" / "verification" / "slice_b_exit_criteria.latest.json"
+EXIT_GATE_EVIDENCE_PATH = REPO_ROOT / "verification" / "slice_b_exit_criteria.latest.json"
 
 
 class SliceBExitGateClosureTests(unittest.TestCase):
@@ -28,7 +28,7 @@ class SliceBExitGateClosureTests(unittest.TestCase):
             EXIT_GATE_EVIDENCE_PATH.is_file(),
             msg=(
                 "Closing TODO-0261 requires committed exit-gate evidence at "
-                "docs/verification/slice_b_exit_criteria.latest.json."
+                "verification/slice_b_exit_criteria.latest.json."
             ),
         )
         evidence = json.loads(EXIT_GATE_EVIDENCE_PATH.read_text())

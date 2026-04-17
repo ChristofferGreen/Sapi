@@ -5,6 +5,11 @@
 - Transient Codex reconnection warnings/errors are expected in this environment and are usually self-resolving.
 - Do not treat reconnect messages alone as a hard failure; wait for final command status before retrying.
 - Do not create new git branches, worktrees, or other workspace forks unless the user explicitly asks for it.
+- For actual operator use, prefer the repo-root bash helper scripts (`create_site.sh`, `create_space.sh`,
+  `ingest.sh`, `create_comments.sh`, `generate_profiles.sh`, `query.sh`, `regenerate_web.sh`,
+  `validate.sh`, `evaluate_source.sh`) over calling Python entrypoints in `scripts/` directly.
+- Call Python entrypoints in `scripts/` directly only when no bash helper exists yet or when working on tests,
+  internals, or wrapper implementation itself.
 
 ## Generation Policy
 

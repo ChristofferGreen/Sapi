@@ -99,11 +99,11 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     - `docs/todo_finished.md` records completion evidence for this gate.
   - notes: source `docs/testing_plan.md` Section 6
   - evidence: Regenerated committed exit-gate evidence with
-    `python3 scripts/verify_testing_exit_criteria.py docs/verification/testing_exit_site --space-name alpha --out docs/verification/testing_exit_criteria.latest --evidence-path docs/verification/testing_exit_criteria.latest.json`
+    `python3 scripts/verify_testing_exit_criteria.py verification/testing_exit_site --space-name alpha --out verification/testing_exit_criteria.latest --evidence-path verification/testing_exit_criteria.latest.json`
     and updated Section 6 checkboxes in `docs/testing_plan.md` to include explicit linked
     command/artifact references to
-    `docs/verification/testing_exit_criteria.latest.json` and
-    `docs/verification/testing_exit_criteria.latest/manifest.json`.
+    `verification/testing_exit_criteria.latest.json` and
+    `verification/testing_exit_criteria.latest/manifest.json`.
 
 - [x] TODO-0311: Add deterministic helpers for run/lint and rollback assertions
   - owner: ai
@@ -1705,7 +1705,7 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     backlog audits. The script now writes both a machine-readable manifest under
     `<site_path>/outputs/verification/testing_exit_criteria/<verification_id>/manifest.json`
     and canonical gate evidence at
-    `docs/verification/testing_exit_criteria.latest.json`. Added focused coverage in
+    `verification/testing_exit_criteria.latest.json`. Added focused coverage in
     `tests/unit/contracts/test_verify_testing_exit_criteria.py` for pass/fail gate behavior and
     `tests/unit/contracts/test_dod_exit_gate_closure.py` to enforce that closing `TODO-0231`
     requires a committed passing exit-gate evidence artifact.
@@ -1728,7 +1728,7 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     pipeline + run-envelope + golden coverage, and (3) operator wrapper usability via wrapper
     contract suites. The verifier writes a manifest under
     `<site_path>/outputs/verification/slice_b/<verification_id>/manifest.json` and committed
-    latest evidence at `docs/verification/slice_b_exit_criteria.latest.json`. Added unit
+    latest evidence at `verification/slice_b_exit_criteria.latest.json`. Added unit
     coverage in `tests/unit/contracts/test_verify_slice_b.py` and closure gating in
     `tests/unit/contracts/test_slice_b_exit_gate_closure.py` so `TODO-0261` cannot be treated
     as complete when any Slice B gate is open.
@@ -1750,9 +1750,9 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `generate_profiles.sh`, `regenerate_web.sh`, `validate.sh`, `evaluate_source.sh`) and
     emit a machine-readable DoD manifest with explicit per-bullet Section 13 checks and evidence
     links at `<site_path>/outputs/verification/dod/<verification_id>/manifest.json`. Added
-    committed latest DoD evidence at `docs/verification/dod_verification.latest.json` plus
-    updated upstream gate evidence at `docs/verification/testing_exit_criteria.latest.json` and
-    `docs/verification/slice_b_exit_criteria.latest.json`, including refreshed execution of
+    committed latest DoD evidence at `verification/dod_verification.latest.json` plus
+    updated upstream gate evidence at `verification/testing_exit_criteria.latest.json` and
+    `verification/slice_b_exit_criteria.latest.json`, including refreshed execution of
     `scripts/verify_testing_exit_criteria.py` before final DoD closure. Added closure contract coverage in
     `tests/unit/contracts/test_dod_exit_gate_closure.py` and end-to-end verifier coverage in
     `tests/integration/wrappers/test_verify_dod.py`.
