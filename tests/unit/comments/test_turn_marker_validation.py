@@ -387,6 +387,62 @@ class TurnMarkerValidationUnitTests(unittest.TestCase):
         self.assertIn("Open Disagreements", moderator_outcomes["outcome_sections"])
         self.assertIn("Missing Evidence Priorities", moderator_outcomes["outcome_sections"])
 
+    def test_legacy_ordinal_parent_refs_fail_fast(self) -> None:
+        with self.assertRaisesRegex(ValueError, "pc-###"):
+            merge_comment_section(
+                page_ref="topic:topic-alpha",
+                page_payload={
+                    "topic_id": "topic-alpha",
+                    "title": "Alpha",
+                    "comment_section": {
+                        "page_ref": "topic:topic-alpha",
+                        "comments": [
+                            {
+                                "comment_uid": "comment-root--abcde12345",
+                                "persona_id": "commenter-1",
+                                "body": "Root comment.",
+                                "comment_no": "pc-001",
+                            },
+                            {
+                                "comment_uid": "comment-child--abcde67890",
+                                "persona_id": "commenter-2",
+                                "body": "Child comment.",
+                                "parent_ref": "pc-001",
+                                "comment_no": "pc-002",
+                            },
+                        ],
+                    },
+                },
+                semantic_comments=[],
+            )
+
+        with self.assertRaisesRegex(ValueError, "pc-###"):
+            merge_comment_section(
+                page_ref="topic:topic-alpha",
+                page_payload={
+                    "topic_id": "topic-alpha",
+                    "title": "Alpha",
+                    "comment_section": {
+                        "page_ref": "topic:topic-alpha",
+                        "comments": [
+                            {
+                                "comment_uid": "comment-root--abcde12345",
+                                "persona_id": "commenter-1",
+                                "body": "Root comment.",
+                                "comment_no": "pc-001",
+                            }
+                        ],
+                    },
+                },
+                semantic_comments=[
+                    {
+                        "persona_id": "commenter-2",
+                        "body": "Reply should fail.",
+                        "parent_ref": "pc-001",
+                    }
+                ],
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

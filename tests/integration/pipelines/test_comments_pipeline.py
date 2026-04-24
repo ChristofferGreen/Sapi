@@ -752,6 +752,68 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             self.assertIn("steelman_before_rebuttal", result.stderr)
             assert_no_run_containers(space_root)
 
+    def test_legacy_ordinal_parent_ref_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            topic_id = "topic-alpha"
+            persona_id = _seeded_persona_ids(count=1)[0]
+            reply_persona_id = _seeded_persona_ids(count=2)[1]
+            (space_root / "topics" / f"{topic_id}.json").write_text(
+                json.dumps(
+                    {
+                        "topic_id": topic_id,
+                        "title": "Alpha",
+                        "comment_section": {
+                            "page_ref": f"topic:{topic_id}",
+                            "comments": [
+                                {
+                                    "comment_uid": "comment-root--abcde12345",
+                                    "persona_id": persona_id,
+                                    "body": _first_mock_comment_body(
+                                        persona_id=persona_id,
+                                        page_label="Alpha",
+                                    ),
+                                    "comment_no": "pc-001",
+                                },
+                                {
+                                    "comment_uid": "comment-child--abcde67890",
+                                    "persona_id": reply_persona_id,
+                                    "body": "Legacy ordinal parent ref should fail.",
+                                    "parent_ref": "pc-001",
+                                    "comment_no": "pc-002",
+                                },
+                            ],
+                        },
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n"
+            )
+
+            result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "create_comments.py"),
+                    "alpha",
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--count",
+                    "5",
+                    "--mock-llm",
+                ]
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("pc-###", result.stderr)
+            assert_no_run_containers(space_root)
+
+            topic_payload = json.loads((space_root / "topics" / f"{topic_id}.json").read_text())
+            rows = topic_payload["comment_section"]["comments"]
+            self.assertEqual(rows[0]["comment_uid"], "comment-root--abcde12345")
+            self.assertEqual(rows[1]["parent_ref"], "pc-001")
+
     def test_legacy_frontmatter_controls_fail_fast_without_writing_page_json(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)

@@ -4,6 +4,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0323: Remove legacy parent reference alias `pc-###`
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Phase 5
+  - depends_on: TODO-0313
+  - scope: Remove ordinal parent-reference compatibility in comment normalization.
+  - acceptance:
+    - `sapi/comments/merge_normalize.py` no longer resolves `pc-###` as parent refs.
+    - Comment merge tests assert legacy ordinal parent refs fail validation.
+  - notes: source `docs/design.md` Section 7.6; `docs/low_level.md` Section 8.3
+  - evidence: Removed the `pc-###` parent-reference resolution path from
+    `sapi/comments/merge_normalize.py`, so comment normalization now accepts only canonical
+    `parent_comment_uid` values and in-batch `draft-N` refs. Updated the comment unit and
+    integration tests to assert fail-fast rejection of ordinal parent refs, and synchronized the
+    design/low-level contract text plus doc-contract assertions with the canonical-only rule.
+
 - [x] TODO-0322: Remove rebuttal-field alias `steelman_before_rebuttal`
   - owner: ai
   - created_at: 2026-04-13

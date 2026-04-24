@@ -44,6 +44,10 @@ class CanonicalOnlyDocContractTests(unittest.TestCase):
             "rebuttal turns MUST include `strongest_opposing_point_ack`; removed alias `steelman_before_rebuttal` is non-canonical and MUST fail fast",
             section,
         )
+        self.assertIn(
+            "non-canonical parent references such as ordinal `pc-###` MUST fail fast instead of being normalized",
+            section,
+        )
         self.assertIn("legacy HTML comment markers are non-canonical and MUST fail fast", section)
         self.assertIn("markdown frontmatter-only controls are non-canonical and MUST fail fast", section)
         self.assertNotIn("compatibility input aliases:", section)
@@ -73,6 +77,10 @@ class CanonicalOnlyDocContractTests(unittest.TestCase):
         )
         self.assertIn(
             "accept only canonical rebuttal field `strongest_opposing_point_ack`; reject removed alias `steelman_before_rebuttal`",
+            comments_section,
+        )
+        self.assertIn(
+            "reject legacy ordinal parent refs `pc-###`; accept only canonical `parent_comment_uid` values and in-batch `draft-N` refs",
             comments_section,
         )
         self.assertIn("fail fast on removed non-canonical aliases instead of normalizing them", wrapper_section)

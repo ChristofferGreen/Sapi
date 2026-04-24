@@ -35,17 +35,11 @@ def merge_comment_section(
     semantic_comments: list[dict[str, Any]],
 ) -> MergeNormalizeResult:
     existing_comments = _load_existing_comments(page_payload)
-    existing_by_comment_no = {
-        _normalize_string(comment.get("comment_no")): _normalize_string(comment.get("comment_uid"))
-        for comment in existing_comments
-        if _normalize_string(comment.get("comment_no")) is not None
-        and _normalize_string(comment.get("comment_uid")) is not None
-    }
     existing_by_key: dict[tuple[str, str, str | None, str | None, str | None], dict[str, Any]] = {}
     known_comment_uids: set[str] = set()
     merged_comments: list[dict[str, Any]] = []
     for comment in existing_comments:
-        normalized = _normalize_existing_comment(comment, existing_by_comment_no=existing_by_comment_no)
+        normalized = _normalize_existing_comment(comment)
         key = (
             normalized["persona_id"],
             normalized["body"],
@@ -64,7 +58,6 @@ def merge_comment_section(
         normalized = _normalize_semantic_comment(raw_comment)
         parent_comment_uid = _resolve_parent_reference(
             normalized.get("parent_ref"),
-            existing_by_comment_no=existing_by_comment_no,
             draft_ref_map=draft_ref_map,
         )
         key = (
@@ -292,8 +285,6 @@ def _load_existing_comments(page_payload: dict[str, Any]) -> list[dict[str, Any]
 
 def _normalize_existing_comment(
     raw_comment: dict[str, Any],
-    *,
-    existing_by_comment_no: dict[str | None, str | None],
 ) -> dict[str, Any]:
     comment_uid = _require_non_empty_string(raw_comment.get("comment_uid"), "comment_uid")
     persona_id = _require_non_empty_string(raw_comment.get("persona_id"), "persona_id")
@@ -308,15 +299,9 @@ def _normalize_existing_comment(
     )
     score_assessment = _normalize_score_assessment(raw_comment.get("score_assessment"))
 
-    parent_comment_uid = _normalize_parent_reference(
-        raw_comment.get("parent_comment_uid"),
-        existing_by_comment_no=existing_by_comment_no,
-    )
+    parent_comment_uid = _normalize_parent_reference(raw_comment.get("parent_comment_uid"))
     if parent_comment_uid is None:
-        parent_comment_uid = _normalize_parent_reference(
-            raw_comment.get("parent_ref"),
-            existing_by_comment_no=existing_by_comment_no,
-        )
+        parent_comment_uid = _normalize_parent_reference(raw_comment.get("parent_ref"))
 
     normalized = dict(raw_comment)
     normalized["comment_uid"] = comment_uid
@@ -769,7 +754,6 @@ def _claim_badges_key(raw_claim_badges: Any) -> str | None:
 def _resolve_parent_reference(
     raw_parent_ref: str | None,
     *,
-    existing_by_comment_no: dict[str | None, str | None],
     draft_ref_map: dict[str, str],
 ) -> str | None:
     if raw_parent_ref is None:
@@ -777,22 +761,22 @@ def _resolve_parent_reference(
     if raw_parent_ref.startswith("comment-"):
         return raw_parent_ref
     if raw_parent_ref.startswith("pc-"):
-        return existing_by_comment_no.get(raw_parent_ref)
+        raise ValueError(
+            "Legacy ordinal parent references like pc-### are removed; use parent_comment_uid or draft-N refs."
+        )
     return draft_ref_map.get(raw_parent_ref)
 
 
-def _normalize_parent_reference(
-    raw_parent_ref: Any,
-    *,
-    existing_by_comment_no: dict[str | None, str | None],
-) -> str | None:
+def _normalize_parent_reference(raw_parent_ref: Any) -> str | None:
     normalized = _normalize_string(raw_parent_ref)
     if normalized is None:
         return None
     if normalized.startswith("comment-"):
         return normalized
     if normalized.startswith("pc-"):
-        return existing_by_comment_no.get(normalized)
+        raise ValueError(
+            "Legacy ordinal parent references like pc-### are removed; use parent_comment_uid only."
+        )
     return None
 
 

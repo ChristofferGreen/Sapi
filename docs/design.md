@@ -1313,7 +1313,7 @@ Merge/normalization contract for existing comment sections:
 - preserve existing `comment_uid` values for surviving comments
 - assign new `comment_uid` only to newly created comments
 - recompute display ordinals to sequential `pc-###` per page render
-- remap legacy ordinal parent references to canonical `parent_comment_uid`
+- reject legacy ordinal parent references such as `pc-###`; replies must use `parent_comment_uid` or in-batch `draft-N` refs
 - never rewrite previously persisted `comment_uid` values
 - rebuild summary/footer blocks from normalized rows
 
