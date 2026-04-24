@@ -4,6 +4,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0325: Remove site-scope legacy fallback reader (`<space_root>/site.json`)
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Phase 5
+  - depends_on: TODO-0313
+  - scope: Remove `allow_legacy_space_scope_read` behavior from site-scope loading and enforce canonical `<site_path>/site.json` only.
+  - acceptance:
+    - `sapi/core/site_scope.py` no longer contains legacy fallback branch/flag.
+    - Site-scope tests assert missing canonical file fails without legacy fallback mode.
+  - notes: source `docs/design.md` Section 5.7
+  - evidence: Removed the `load_site_scope()` compatibility parameters and the legacy
+    `<space_root>/site.json` read branch from `sapi/core/site_scope.py`, so canonical readers now
+    load only `<site_path>/site.json`. Updated the dedicated site-scope contract test to assert
+    that a legacy-only `space_root/site.json` no longer loads and instead raises the expected
+    missing-canonical-file error, then synchronized `docs/todo.md` to reflect the closed
+    site-scope compatibility item.
+
 - [x] TODO-0324: Remove registry entry compatibility key `name`
   - owner: ai
   - created_at: 2026-04-13

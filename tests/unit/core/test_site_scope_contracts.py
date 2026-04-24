@@ -100,7 +100,7 @@ class SiteScopeContractTests(unittest.TestCase):
                     space_root=space_root,
                 )
 
-    def test_compatibility_read_path_is_opt_in_only(self) -> None:
+    def test_missing_canonical_site_scope_fails_without_legacy_fallback(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = Path(tmp) / "site-a"
             space_root = site_path / "spaces" / "alpha"
@@ -118,15 +118,8 @@ class SiteScopeContractTests(unittest.TestCase):
                 + "\n"
             )
 
-            with self.assertRaises(FileNotFoundError):
-                load_site_scope(site_path=site_path, space_root=space_root)
-
-            loaded = load_site_scope(
-                site_path=site_path,
-                space_root=space_root,
-                allow_legacy_space_scope_read=True,
-            )
-            self.assertEqual(loaded.site_name, "Legacy Site")
+            with self.assertRaisesRegex(FileNotFoundError, "Missing canonical site scope file"):
+                load_site_scope(site_path=site_path)
 
 
 if __name__ == "__main__":

@@ -68,24 +68,14 @@ def write_site_scope(
 def load_site_scope(
     *,
     site_path: Path,
-    space_root: Path | None = None,
-    allow_legacy_space_scope_read: bool = False,
 ) -> SiteScope:
-    """Load site scope metadata with explicit compatibility-only legacy fallback."""
+    """Load canonical site scope metadata from `<site_path>/site.json`."""
     canonical_path = site_path / "site.json"
     if canonical_path.is_file():
         return validate_site_scope_document(
             json.loads(canonical_path.read_text()),
             site_path=site_path,
         )
-
-    if allow_legacy_space_scope_read and space_root is not None:
-        legacy_path = space_root / "site.json"
-        if legacy_path.is_file():
-            return validate_site_scope_document(
-                json.loads(legacy_path.read_text()),
-                site_path=site_path,
-            )
 
     raise FileNotFoundError(f"Missing canonical site scope file: {canonical_path}")
 
