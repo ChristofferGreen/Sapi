@@ -2801,3 +2801,29 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     consume the shared fixture utilities and added dedicated fixture-mode coverage in
     `tests/unit/semantic/test_mock_llm_fixture_modes.py`. Updated `docs/testing_plan.md` to
     mark the Tier 0 mock-fixture item complete.
+
+- [x] TODO-0340: Render overview article on space/subspace front pages
+  - owner: ai
+  - created_at: 2026-04-16
+  - finished_at: 2026-04-24
+  - phase: Phase 6
+  - depends_on: TODO-0339
+  - scope: Surface generated overview content directly on each space/subspace landing page and
+    expose a dedicated full overview route.
+  - acceptance:
+    - `sapi/build/site_builder.py` (or delegated render modules) renders a prominent overview
+      section on each space/subspace index page when overview artifacts exist.
+    - Full article route is generated at canonical location
+      `spaces/<space_name>/site/overview/index.html`.
+    - Space/subspace navigation links to overview route with stable semantics and accessibility
+      labels.
+    - If overview artifact is missing, rendering degrades gracefully without broken links.
+  - notes: source `docs/todo.md`; `docs/design.md` Section 8; `docs/testing_plan.md` Tier 4-6
+  - evidence: Completed the builder-side overview render path in `sapi/build/site_builder.py`
+    by adding the missing home-card and full-article helpers, generating
+    `site/overview/index.html` for every space, and wiring a stable `Overview` nav tab with an
+    explicit accessibility label plus empty-state fallback when no overview artifact exists.
+    Expanded `tests/unit/build/test_site_builder_contracts.py` for empty-state, space, and
+    subspace overview rendering, and extended
+    `tests/integration/build/test_build_determinism.py` so the overview route participates in
+    deterministic build snapshots.

@@ -47,9 +47,8 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0340`
-2. `TODO-0341`
-3. `TODO-0327`
+1. `TODO-0341`
+2. `TODO-0327`
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -58,7 +57,7 @@ Task template:
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: TODO-0340, TODO-0341
+- P1 Core product behavior: TODO-0341
 - P2 Social/eval/hardening: TODO-0327, TODO-0342
 - P3 Continuous docs governance: TODO-0327
 
@@ -74,9 +73,8 @@ Wave C (query + social + hardening + release):
 1. (none currently)
 
 Wave D (space/subspace AI overview article):
-1. TODO-0340
-2. TODO-0341
-3. TODO-0342
+1. TODO-0341
+2. TODO-0342
 
 Cross-cutting docs backlog:
 1. TODO-0327
@@ -98,7 +96,7 @@ Cross-cutting docs backlog:
 | Section 7.5 profile pages/history | - |
 | Section 7.6 comments pipeline/rendering | - |
 | Section 7.7 comment quality harness | - |
-| Section 8 site/UI/static build | TODO-0340, TODO-0341 |
+| Section 8 site/UI/static build | TODO-0341 |
 | Section 9 observability/safety/runtime controls | TODO-0341 |
 | Section 10 run envelopes/lifecycle status | TODO-0341 |
 | Section 11 testing strategy | TODO-0342 |
@@ -115,7 +113,7 @@ Cross-cutting docs backlog:
 | Section 6 (semantic execution engine + retry/repair) | - |
 | Section 7 (transaction/rollback) | - |
 | Section 8 (pipeline execution contracts) | TODO-0341 |
-| Section 9 (deterministic build/projection) | TODO-0340, TODO-0341 |
+| Section 9 (deterministic build/projection) | TODO-0341 |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
 | Section 12 (wrapper/script interfaces) | TODO-0342 |
@@ -130,7 +128,7 @@ Cross-cutting docs backlog:
 | --- | --- |
 | Section 2 (test module layout) | TODO-0327, TODO-0342 |
 | Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0341, TODO-0342 |
-| Tier 4-6 (determinism/golden/live canary) | TODO-0340, TODO-0342 |
+| Tier 4-6 (determinism/golden/live canary) | TODO-0342 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0327, TODO-0342 |
 | Section 6 (exit criteria gating) | TODO-0342 |
 
@@ -140,7 +138,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-16
   - phase: Phase 6
-  - depends_on: TODO-0339, TODO-0340, TODO-0341
+  - depends_on: TODO-0339, TODO-0341
   - scope: Add comprehensive coverage and wrapper-level ergonomics for space-overview generation and rendering across local and live modes.
   - acceptance:
     - Unit/integration tests validate overview artifact schema compliance, reference integrity (claims/sources), and deterministic rebuild behavior.
@@ -159,19 +157,6 @@ Cross-cutting docs backlog:
     - Re-running overview generation with unchanged signature skips LLM synthesis and records a deterministic “no content change” path.
     - A force mode bypasses signature skip behavior and re-synthesizes overview artifacts.
     - Run metadata records refresh decision details (signature, skip/refresh reason, flow invocation counts).
-
-- [ ] TODO-0340: Render overview article on space/subspace front pages
-  - owner: ai
-  - created_at: 2026-04-16
-  - phase: Phase 6
-  - depends_on: TODO-0339
-  - scope: Surface generated overview content directly on each space/subspace landing page and expose a dedicated full overview route.
-  - acceptance:
-    - `sapi/build/site_builder.py` (or delegated render modules) renders a prominent overview section on each space/subspace index page when overview artifacts exist.
-    - Full article route is generated at canonical location `spaces/<space_name>/site/overview/index.html`.
-    - Space/subspace navigation links to overview route with stable semantics and accessibility labels.
-    - If overview artifact is missing, rendering degrades gracefully without broken links.
-
 
 - [ ] TODO-0327: Purge compatibility/deprecation tests and add strict no-legacy coverage
   - owner: ai

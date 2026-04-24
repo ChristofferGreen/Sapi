@@ -1002,6 +1002,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn('href="../../beta/site/index.html">Beta</a>', space_home)
             self.assertNotIn('class="tabs"', space_home)
             self.assertIn('href="index.html">Home</a>', space_home)
+            self.assertIn('href="overview/index.html" aria-label="Overview for alpha">Overview</a>', space_home)
             self.assertIn('href="sources/index.html">Sources</a>', space_home)
             self.assertIn('href="topics/index.html">Topics</a>', space_home)
             self.assertIn('href="users/index.html">Users</a>', space_home)
@@ -1009,6 +1010,12 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn('href="claims/index.html">Claims</a>', space_home)
             self.assertNotIn('href="../../../site/sources/index.html">Sources</a>', space_home)
             self.assertTrue((alpha_space_root / "site" / "claims" / "index.html").is_file())
+            overview_page = (alpha_space_root / "site" / "overview" / "index.html").read_text()
+            self.assertIn("No overview has been generated for this space yet.", overview_page)
+            self.assertIn(
+                'class="site-tab current" href="index.html" aria-label="Overview for alpha">Overview</a>',
+                overview_page,
+            )
 
             sources_page_1 = (alpha_space_root / "site" / "sources" / "index.html").read_text()
             sources_page_2 = (alpha_space_root / "site" / "sources" / "page" / "2" / "index.html").read_text()
@@ -2229,6 +2236,121 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("Logic discussion thread", claim_page)
             self.assertIn(f"../sources/{source_id}.html", claim_page)
 
+    def test_space_and_subspace_homepages_render_overview_artifacts(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            _site_path_2, beta_space_root = self._bootstrap_site_space(tmp_root, "beta")
+            (alpha_space_root / "subspaces.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": "space_subspaces_v1",
+                        "subspaces": [
+                            {
+                                "space_name": "beta",
+                                "space_root": "../beta",
+                                "title": "Beta Research Cell",
+                            }
+                        ],
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n"
+            )
+
+            source_id = "source-overview--aaaaaaaaaaaa"
+            claim_id = "claim-overview--bbbbbbbbbbbb"
+            self._write_source_record(alpha_space_root, source_id=source_id, title="Alpha Source")
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id=claim_id,
+                source_id=source_id,
+                text="Alpha claim text.",
+                short_title="Alpha claim",
+            )
+            self._write_overview_artifact(
+                alpha_space_root,
+                overview_id="space--alpha",
+                space_name="alpha",
+                scope_kind="space",
+                title="State of the Evidence in alpha",
+                summary="Alpha overview summary for the landing page.",
+                source_ids=[source_id],
+                claim_ids=[claim_id],
+                citation_anchors=[
+                    {
+                        "anchor_id": "anchor-alpha-summary",
+                        "label": "Alpha anchor",
+                        "source_id": source_id,
+                        "claim_ids": [claim_id],
+                        "locator": "p. 2",
+                    }
+                ],
+                warnings=["Inspect the original PDF for tables."],
+            )
+
+            beta_source_id = "source-beta--cccccccccccc"
+            beta_claim_id = "claim-beta--dddddddddddd"
+            self._write_source_record(beta_space_root, source_id=beta_source_id, title="Beta Source")
+            self._write_claim_record(
+                beta_space_root,
+                claim_id=beta_claim_id,
+                source_id=beta_source_id,
+                text="Beta claim text.",
+                short_title="Beta claim",
+            )
+            self._write_overview_artifact(
+                beta_space_root,
+                overview_id="subspace--beta",
+                space_name="beta",
+                scope_kind="subspace",
+                title="State of the Evidence in beta",
+                summary="Beta overview summary for the landing page.",
+                source_ids=[beta_source_id],
+                claim_ids=[beta_claim_id],
+                citation_anchors=[
+                    {
+                        "anchor_id": "anchor-beta-summary",
+                        "label": "Beta anchor",
+                        "source_id": beta_source_id,
+                        "claim_ids": [beta_claim_id],
+                        "locator": "sec. 4",
+                    }
+                ],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            alpha_home = (alpha_space_root / "site" / "index.html").read_text()
+            alpha_overview = (alpha_space_root / "site" / "overview" / "index.html").read_text()
+            beta_home = (beta_space_root / "site" / "index.html").read_text()
+            beta_overview = (beta_space_root / "site" / "overview" / "index.html").read_text()
+
+            self.assertIn("Alpha overview summary for the landing page.", alpha_home)
+            self.assertIn(
+                'href="overview/index.html" aria-label="Open full overview for Alpha">Open full overview</a>',
+                alpha_home,
+            )
+            self.assertIn("State of the Evidence in alpha", alpha_overview)
+            self.assertIn("Inspect the original PDF for tables.", alpha_overview)
+            self.assertIn("../sources/source-overview--aaaaaaaaaaaa.html", alpha_overview)
+            self.assertIn("../claims/claim-overview--bbbbbbbbbbbb.html", alpha_overview)
+            self.assertIn("Alpha anchor (p. 2)", alpha_overview)
+
+            self.assertIn("Beta overview summary for the landing page.", beta_home)
+            self.assertIn("State of the Evidence in beta", beta_overview)
+            self.assertIn("Scope: subspace", beta_overview)
+            self.assertIn("../sources/source-beta--cccccccccccc.html", beta_overview)
+
     def test_source_dossier_numeric_claim_refs_resolve_to_canonical_claim_pages(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
@@ -3220,6 +3342,91 @@ class SiteBuilderContractTests(unittest.TestCase):
         if comment_section is not None:
             payload["comment_section"] = comment_section
         path = space_root / "topics" / f"{topic_id}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+
+    def _write_overview_artifact(
+        self,
+        space_root: Path,
+        *,
+        overview_id: str,
+        space_name: str,
+        scope_kind: str,
+        title: str,
+        summary: str,
+        source_ids: list[str],
+        claim_ids: list[str],
+        citation_anchors: list[dict[str, object]],
+        warnings: list[str] | None = None,
+    ) -> None:
+        payload = {
+            "schema_version": "space_overview_v1",
+            "metadata": {
+                "overview_id": overview_id,
+                "scope_kind": scope_kind,
+                "space_name": space_name,
+                "scope_name": space_name,
+                "title": title,
+                "summary": summary,
+            },
+            "sections": [
+                {
+                    "section_id": "topic_framing",
+                    "heading": "Topic framing",
+                    "body": "Overview framing paragraph one.\n\nOverview framing paragraph two.",
+                    "source_ids": source_ids,
+                    "claim_ids": claim_ids,
+                    "citation_anchor_ids": [str(anchor["anchor_id"]) for anchor in citation_anchors],
+                },
+                {
+                    "section_id": "key_themes",
+                    "heading": "Key themes",
+                    "body": "Overview key themes paragraph.",
+                    "source_ids": source_ids,
+                    "claim_ids": claim_ids,
+                    "citation_anchor_ids": [str(anchor["anchor_id"]) for anchor in citation_anchors],
+                },
+                {
+                    "section_id": "agreement_and_disagreement",
+                    "heading": "Agreement and disagreement",
+                    "body": "Agreement and disagreement summary.",
+                    "source_ids": source_ids,
+                    "claim_ids": claim_ids,
+                    "citation_anchor_ids": [str(anchor["anchor_id"]) for anchor in citation_anchors],
+                },
+                {
+                    "section_id": "methods_and_evidence",
+                    "heading": "Methods and evidence",
+                    "body": "Methods and evidence summary.",
+                    "source_ids": source_ids,
+                    "claim_ids": claim_ids,
+                    "citation_anchor_ids": [str(anchor["anchor_id"]) for anchor in citation_anchors],
+                },
+                {
+                    "section_id": "open_questions",
+                    "heading": "Open questions",
+                    "body": "Open questions summary.",
+                    "source_ids": source_ids,
+                    "claim_ids": claim_ids,
+                    "citation_anchor_ids": [str(anchor["anchor_id"]) for anchor in citation_anchors],
+                },
+            ],
+            "references": {
+                "source_ids": source_ids,
+                "claim_ids": claim_ids,
+                "citation_anchors": citation_anchors,
+            },
+            "freshness": {
+                "generated_at": "2026-04-24T09:00:00Z",
+                "input_signature": "overview-signature",
+                "source_record_count": len(source_ids),
+                "claim_count": len(claim_ids),
+                "relation_count": 0,
+                "topic_count": 0,
+            },
+            "warnings": warnings if warnings is not None else [],
+        }
+        path = space_root / "outputs" / "space_overview" / overview_id / "overview.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
 

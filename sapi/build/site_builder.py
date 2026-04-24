@@ -32,6 +32,7 @@ from sapi.build.topic_claim_rendering import (
 from sapi.core.display_titles import resolve_display_title
 from sapi.core.site_scope import load_site_scope, load_subspaces_metadata
 from sapi.lint.lint_engine import LintSummary, default_lint_summary
+from sapi.overview.overview_pipeline import resolve_overview_scope
 from sapi.profiles.persona_catalog import derive_profile_image_thumb_path, load_seeded_persona_catalog
 
 _WIKI_SECTION_ORDER: tuple[str, ...] = (
@@ -135,7 +136,22 @@ class _SpaceLayoutContext:
     subspaces: list[tuple[str, str | None]]
     sources: list[dict[str, Any]]
     topics: list[dict[str, Any]]
+    overview: "_SpaceOverviewArtifact | None"
     tabs: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class _SpaceOverviewArtifact:
+    overview_id: str
+    title: str
+    summary: str
+    scope_kind: str
+    scope_name: str
+    sections: tuple[dict[str, Any], ...]
+    source_ids: tuple[str, ...]
+    claim_ids: tuple[str, ...]
+    citation_anchors: tuple[dict[str, Any], ...]
+    warnings: tuple[str, ...]
 
 
 @dataclass
@@ -258,6 +274,13 @@ def build_space_site(
             context=context,
             persona_rows=persona_rows,
             evidence_records=evidence_records,
+            incremental=incremental,
+        )
+    )
+    generated_files.extend(
+        _write_space_overview_page(
+            output_root=output_root,
+            context=context,
             incremental=incremental,
         )
     )
@@ -1370,6 +1393,13 @@ def _render_space_index(
 ) -> str:
     display_space_name = _space_display_name(space_name)
     sections: list[str] = [f"<h1>{escape(display_space_name)}</h1>\n"]
+    if context.overview is not None:
+        sections.append(
+            _render_space_home_overview_section(
+                overview=context.overview,
+                display_space_name=display_space_name,
+            )
+        )
     if context.subspaces:
         subspace_rows = "\n".join(
             (
@@ -1428,6 +1458,40 @@ def _render_space_index(
         current_tab=None,
         current_page="space_home",
         stylesheet_href=stylesheet_href,
+    )
+
+
+def _render_space_home_overview_section(
+    *,
+    overview: _SpaceOverviewArtifact,
+    display_space_name: str,
+) -> str:
+    stats = [
+        f"{len(overview.source_ids)} source{'s' if len(overview.source_ids) != 1 else ''}",
+        f"{len(overview.claim_ids)} claim{'s' if len(overview.claim_ids) != 1 else ''}",
+        (
+            f"{len(overview.citation_anchors)} citation anchor"
+            f"{'s' if len(overview.citation_anchors) != 1 else ''}"
+        ),
+    ]
+    if overview.warnings:
+        stats.append(f"{len(overview.warnings)} warning{'s' if len(overview.warnings) != 1 else ''}")
+    return (
+        "<section class=\"source-related-card space-overview-card\">"
+        "<h2>Overview</h2>\n"
+        + "<p class=\"space-overview-title\">"
+        + escape(overview.title)
+        + "</p>\n"
+        + "<p class=\"space-overview-summary\">"
+        + escape(overview.summary)
+        + "</p>\n"
+        + "<p class=\"space-overview-meta\">"
+        + escape(" | ".join(stats))
+        + "</p>\n"
+        + "<p><a class=\"space-overview-link\" href=\"overview/index.html\" aria-label=\"Open full overview for "
+        + escape(display_space_name)
+        + "\">Open full overview</a></p>\n"
+        + "</section>\n"
     )
 
 
@@ -2001,6 +2065,7 @@ def _build_layout_context(
         subspaces=_load_subspaces(space_root),
         sources=sorted(projection.sources, key=lambda item: str(item.get("source_id", ""))),
         topics=sorted(projection.topics, key=lambda item: str(item.get("topic_id", ""))),
+        overview=_load_space_overview_artifact(space_root=space_root, site_path=site_path),
         tabs=tuple(_resolve_space_tabs(space_root)),
     )
 
@@ -2074,6 +2139,66 @@ def _resolve_space_tabs(space_root: Path) -> list[str]:
     return ["new", "sources", "topics", "users"]
 
 
+def _load_space_overview_artifact(
+    *,
+    space_root: Path,
+    site_path: Path,
+) -> _SpaceOverviewArtifact | None:
+    scope = resolve_overview_scope(site_path=site_path, space_name=space_root.name)
+    overview_path = space_root / "outputs" / "space_overview" / scope.overview_id / "overview.json"
+    if not overview_path.is_file():
+        return None
+
+    payload = json.loads(overview_path.read_text())
+    if not isinstance(payload, dict):
+        raise ValueError(f"Overview artifact must be a JSON object: {overview_path}")
+
+    metadata = payload.get("metadata")
+    references = payload.get("references")
+    sections = payload.get("sections")
+    warnings = payload.get("warnings")
+    if not isinstance(metadata, dict):
+        raise ValueError(f"Overview artifact metadata must be an object: {overview_path}")
+    if not isinstance(references, dict):
+        raise ValueError(f"Overview artifact references must be an object: {overview_path}")
+    if not isinstance(sections, list):
+        raise ValueError(f"Overview artifact sections must be a list: {overview_path}")
+    if not isinstance(warnings, list):
+        raise ValueError(f"Overview artifact warnings must be a list: {overview_path}")
+    citation_anchors = references.get("citation_anchors")
+    if not isinstance(citation_anchors, list):
+        raise ValueError(f"Overview artifact citation_anchors must be a list: {overview_path}")
+
+    title = str(metadata.get("title") or "").strip()
+    summary = str(metadata.get("summary") or "").strip()
+    if not title or not summary:
+        raise ValueError(f"Overview artifact must include non-empty title and summary: {overview_path}")
+
+    return _SpaceOverviewArtifact(
+        overview_id=str(metadata.get("overview_id") or scope.overview_id),
+        title=title,
+        summary=summary,
+        scope_kind=str(metadata.get("scope_kind") or scope.scope_kind),
+        scope_name=str(metadata.get("scope_name") or scope.scope_name),
+        sections=tuple(section for section in sections if isinstance(section, dict)),
+        source_ids=tuple(_normalized_string_rows(references.get("source_ids"))),
+        claim_ids=tuple(_normalized_string_rows(references.get("claim_ids"))),
+        citation_anchors=tuple(row for row in citation_anchors if isinstance(row, dict)),
+        warnings=tuple(_normalized_string_rows(warnings)),
+    )
+
+
+def _normalized_string_rows(value: object) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    rows: list[str] = []
+    for item in value:
+        normalized = str(item).strip()
+        if normalized:
+            rows.append(normalized)
+    return rows
+
+
 def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
@@ -2094,6 +2219,226 @@ def _persona_profile_photo_site_href(*, space_name: str, persona_id: str) -> str
     if not persona_id or persona_id not in _persona_ids():
         return ""
     return f"/spaces/{space_name}/site/assets/persona_profiles/{persona_id}.jpg"
+
+
+def _write_space_overview_page(
+    *,
+    output_root: Path,
+    context: _SpaceLayoutContext,
+    incremental: bool,
+) -> list[Path]:
+    overview_root = output_root / "overview"
+    overview_root.mkdir(parents=True, exist_ok=True)
+    page_path = overview_root / "index.html"
+    display_space_name = _space_display_name(context.space_name)
+    if context.overview is None:
+        body = (
+            "<h1>Overview</h1>\n"
+            + "<p>No overview has been generated for this space yet.</p>\n"
+            + "<p><a href=\"../index.html\">Back to home</a></p>\n"
+        )
+    else:
+        body = _render_space_overview_page_body(
+            overview=context.overview,
+            display_space_name=display_space_name,
+        )
+    _write_text_file(
+        page_path,
+        _render_space_layout(
+            title=f"{display_space_name} - Overview",
+            body=body,
+            context=context,
+            current_tab="overview",
+            current_page="overview",
+            stylesheet_href=_relative_href(
+                from_file=page_path,
+                to_file=output_root / "assets" / "site.css",
+            ),
+        ),
+        incremental=incremental,
+    )
+    return [page_path]
+
+
+def _render_space_overview_page_body(
+    *,
+    overview: _SpaceOverviewArtifact,
+    display_space_name: str,
+) -> str:
+    body_parts = [
+        "<article class=\"topic-article overview-article\">",
+        "<header class=\"overview-header\">",
+        "<h1>Overview</h1>\n",
+        "<p class=\"space-overview-title\">",
+        escape(overview.title),
+        "</p>\n",
+        "<p class=\"space-overview-summary\">",
+        escape(overview.summary),
+        "</p>\n",
+        "<p class=\"space-overview-meta\">",
+        escape(
+            " | ".join(
+                [
+                    f"Scope: {overview.scope_kind}",
+                    f"Sources: {len(overview.source_ids)}",
+                    f"Claims: {len(overview.claim_ids)}",
+                    f"Citation anchors: {len(overview.citation_anchors)}",
+                ]
+            )
+        ),
+        "</p>\n",
+        "</header>",
+    ]
+    if overview.warnings:
+        body_parts.extend(
+            [
+                "<section class=\"source-related-card\">",
+                "<h2>Warnings</h2>",
+                "<ul class=\"source-related-list\">",
+                "".join(f"<li>{escape(warning)}</li>" for warning in overview.warnings),
+                "</ul>",
+                "</section>",
+            ]
+        )
+
+    for section in overview.sections:
+        heading = str(section.get("heading") or "").strip()
+        body = str(section.get("body") or "").strip()
+        section_id = str(section.get("section_id") or "").strip()
+        if not heading or not body or not section_id:
+            continue
+        body_parts.extend(
+            [
+                "<section class=\"source-related-card overview-section\" data-section-id=\"",
+                escape(section_id),
+                "\">",
+                "<h2>",
+                escape(heading),
+                "</h2>\n",
+                _render_overview_body_paragraphs(body),
+                _render_overview_section_reference_summary(section=section),
+                "</section>",
+            ]
+        )
+
+    body_parts.append(
+        _render_overview_reference_card(overview=overview, display_space_name=display_space_name)
+    )
+    body_parts.append("</article>")
+    return "".join(body_parts)
+
+
+def _render_overview_body_paragraphs(body: str) -> str:
+    paragraphs = [chunk.strip() for chunk in re.split(r"\n\s*\n", body) if chunk.strip()]
+    if not paragraphs and body.strip():
+        paragraphs = [body.strip()]
+    return "".join(f"<p>{escape(paragraph)}</p>\n" for paragraph in paragraphs if paragraph)
+
+
+def _render_overview_section_reference_summary(*, section: dict[str, Any]) -> str:
+    source_ids = _normalized_string_rows(section.get("source_ids"))
+    claim_ids = _normalized_string_rows(section.get("claim_ids"))
+    citation_anchor_ids = _normalized_string_rows(section.get("citation_anchor_ids"))
+    rows: list[str] = []
+    if source_ids:
+        rows.append(
+            "<li>Sources: "
+            + ", ".join(
+                f"<a href=\"../sources/{escape(source_id)}.html\">{escape(source_id)}</a>"
+                for source_id in source_ids
+            )
+            + "</li>"
+        )
+    if claim_ids:
+        rows.append(
+            "<li>Claims: "
+            + ", ".join(
+                f"<a href=\"../claims/{escape(claim_id)}.html\">{escape(claim_id)}</a>"
+                for claim_id in claim_ids
+            )
+            + "</li>"
+        )
+    if citation_anchor_ids:
+        rows.append(
+            "<li>Citation anchors: "
+            + ", ".join(escape(anchor_id) for anchor_id in citation_anchor_ids)
+            + "</li>"
+        )
+    if not rows:
+        return ""
+    return "<ul class=\"source-related-list overview-section-references\">" + "".join(rows) + "</ul>\n"
+
+
+def _render_overview_reference_card(
+    *,
+    overview: _SpaceOverviewArtifact,
+    display_space_name: str,
+) -> str:
+    source_rows = (
+        "".join(
+            "<li><a href=\"../sources/"
+            + escape(source_id)
+            + ".html\">"
+            + escape(source_id)
+            + "</a></li>"
+            for source_id in overview.source_ids
+        )
+        if overview.source_ids
+        else "<li>(No source references recorded.)</li>"
+    )
+    claim_rows = (
+        "".join(
+            "<li><a href=\"../claims/"
+            + escape(claim_id)
+            + ".html\">"
+            + escape(claim_id)
+            + "</a></li>"
+            for claim_id in overview.claim_ids
+        )
+        if overview.claim_ids
+        else "<li>(No claim references recorded.)</li>"
+    )
+    citation_rows = (
+        "".join(
+            "<li>"
+            + escape(str(anchor.get("label") or ""))
+            + (
+                " ("
+                + escape(str(anchor.get("locator") or ""))
+                + ")"
+                if str(anchor.get("locator") or "").strip()
+                else ""
+            )
+            + " via <a href=\"../sources/"
+            + escape(str(anchor.get("source_id") or ""))
+            + ".html\">"
+            + escape(str(anchor.get("source_id") or ""))
+            + "</a></li>"
+            for anchor in overview.citation_anchors
+        )
+        if overview.citation_anchors
+        else "<li>(No citation anchors recorded.)</li>"
+    )
+    return (
+        "<section class=\"source-related-card\">"
+        "<h2>References</h2>"
+        "<p>Canonical references for the current overview of "
+        + escape(display_space_name)
+        + ".</p>"
+        "<h3>Sources</h3>"
+        "<ul class=\"source-related-list\">"
+        + source_rows
+        + "</ul>"
+        "<h3>Claims</h3>"
+        "<ul class=\"source-related-list\">"
+        + claim_rows
+        + "</ul>"
+        "<h3>Citation anchors</h3>"
+        "<ul class=\"source-related-list\">"
+        + citation_rows
+        + "</ul>"
+        "</section>"
+    )
 
 
 def _persona_profile_page_href(*, space_name: str, persona_id: str) -> str:
@@ -4819,24 +5164,34 @@ def _render_global_site_tab_rows(
         current_page=current_page,
     )
     local_rows = [
-        ("home", "Home", f"/spaces/{current_space_name}/site/index.html"),
-        ("new", "New", f"/spaces/{current_space_name}/site/new/index.html"),
-        ("sources", "Sources", f"/spaces/{current_space_name}/site/sources/index.html"),
-        ("topics", "Topics", f"/spaces/{current_space_name}/site/topics/index.html"),
-        ("users", "Users", f"/spaces/{current_space_name}/site/users/index.html"),
-        ("evidence", "Evidence", f"/spaces/{current_space_name}/site/evidence/index.html"),
-        ("claims", "Claims", f"/spaces/{current_space_name}/site/claims/index.html"),
+        ("home", "Home", f"/spaces/{current_space_name}/site/index.html", None),
+        (
+            "overview",
+            "Overview",
+            f"/spaces/{current_space_name}/site/overview/index.html",
+            f"Overview for {current_space_name}",
+        ),
+        ("new", "New", f"/spaces/{current_space_name}/site/new/index.html", None),
+        ("sources", "Sources", f"/spaces/{current_space_name}/site/sources/index.html", None),
+        ("topics", "Topics", f"/spaces/{current_space_name}/site/topics/index.html", None),
+        ("users", "Users", f"/spaces/{current_space_name}/site/users/index.html", None),
+        ("evidence", "Evidence", f"/spaces/{current_space_name}/site/evidence/index.html", None),
+        ("claims", "Claims", f"/spaces/{current_space_name}/site/claims/index.html", None),
     ]
-    return [
-        "<a class=\"site-tab"
-        + (" current" if resolved_current_tab == tab_key else "")
-        + "\" href=\""
-        + escape(href)
-        + "\">"
-        + escape(label)
-        + "</a>"
-        for tab_key, label, href in local_rows
-    ]
+    rows: list[str] = []
+    for tab_key, label, href, aria_label in local_rows:
+        link = (
+            "<a class=\"site-tab"
+            + (" current" if resolved_current_tab == tab_key else "")
+            + "\" href=\""
+            + escape(href)
+            + "\""
+        )
+        if aria_label:
+            link += " aria-label=\"" + escape(aria_label) + "\""
+        link += ">" + escape(label) + "</a>"
+        rows.append(link)
+    return rows
 
 
 def _resolve_local_space_current_tab(*, current_tab: str | None, current_page: str | None) -> str | None:
@@ -4844,6 +5199,8 @@ def _resolve_local_space_current_tab(*, current_tab: str | None, current_page: s
         return current_tab
     if current_page == "space_home":
         return "home"
+    if current_page == "overview":
+        return "overview"
     if not current_page:
         return None
     if current_page.startswith("source:"):

@@ -19,7 +19,6 @@
         "causal inference",
         "public accountability"
       ],
-      "id": "persona-maya-santoro",
       "interests": [
         "research methods",
         "policy evaluation",
@@ -58,7 +57,6 @@
         "capacity planning",
         "risk ownership"
       ],
-      "id": "persona-eli-okafor",
       "interests": [
         "operations",
         "infrastructure",
@@ -97,7 +95,6 @@
         "distributional effects",
         "trust building"
       ],
-      "id": "persona-lina-kovac",
       "interests": [
         "equity",
         "public communication",
@@ -136,7 +133,6 @@
         "uncertainty communication",
         "model robustness"
       ],
-      "id": "persona-rory-chen",
       "interests": [
         "statistics",
         "forecasting",
@@ -175,7 +171,6 @@
         "path dependency",
         "institutional memory"
       ],
-      "id": "persona-samira-haddad",
       "interests": [
         "institutional history",
         "comparative policy",
@@ -214,7 +209,6 @@
         "operational readiness",
         "resilience drills"
       ],
-      "id": "persona-ari-vale",
       "interests": [
         "service reliability",
         "capacity planning",
@@ -253,7 +247,6 @@
         "impact attribution",
         "counterfactual design"
       ],
-      "id": "persona-noah-olander",
       "interests": [
         "causal inference",
         "governance quality",
@@ -292,7 +285,6 @@
         "procedural fairness",
         "equity impact framing"
       ],
-      "id": "persona-leila-rydell",
       "interests": [
         "community trust",
         "service usability",
@@ -331,7 +323,6 @@
         "uncertainty communication",
         "counterfactual simulation"
       ],
-      "id": "persona-tomas-sloane",
       "interests": [
         "decision quality",
         "calibration",
@@ -370,7 +361,6 @@
         "precedent mapping",
         "historical counterexamples"
       ],
-      "id": "persona-nadia-serrin",
       "interests": [
         "historical analogs",
         "institutional memory",
@@ -409,7 +399,6 @@
         "quality gates",
         "dependency risk tracking"
       ],
-      "id": "persona-iris-silva",
       "interests": [
         "service performance",
         "roadmap triage",
@@ -448,7 +437,6 @@
         "privilege minimization",
         "audit readiness"
       ],
-      "id": "persona-jonas-nilsen",
       "interests": [
         "threat modeling",
         "abuse prevention",
@@ -487,7 +475,6 @@
         "evidence-based scaffolding",
         "formative assessment quality"
       ],
-      "id": "persona-mika-nordin",
       "interests": [
         "assessment validity",
         "curriculum systems",
@@ -526,7 +513,6 @@
         "error prevention controls",
         "queue stability"
       ],
-      "id": "persona-sofia-delmar",
       "interests": [
         "capacity management",
         "continuity of care",
@@ -565,7 +551,6 @@
         "hazard exposure mapping",
         "equity in resilience funding"
       ],
-      "id": "persona-dario-quill",
       "interests": [
         "risk communication",
         "policy implementation",
@@ -604,7 +589,6 @@
         "control attestation",
         "model governance"
       ],
-      "id": "persona-kira-sato",
       "interests": [
         "compliance architecture",
         "financial risk controls",
@@ -643,7 +627,6 @@
         "context framing",
         "evidence traceability"
       ],
-      "id": "persona-omar-quintero",
       "interests": [
         "misinformation response",
         "media literacy",
@@ -682,7 +665,6 @@
         "operational readiness",
         "resilience drills"
       ],
-      "id": "persona-ines-ibarra",
       "interests": [
         "service reliability",
         "capacity planning",
@@ -721,7 +703,6 @@
         "impact attribution",
         "counterfactual design"
       ],
-      "id": "persona-pavel-bishop",
       "interests": [
         "causal inference",
         "governance quality",
@@ -760,7 +741,6 @@
         "procedural fairness",
         "equity impact framing"
       ],
-      "id": "persona-yara-avery",
       "interests": [
         "community trust",
         "service usability",
@@ -799,7 +779,6 @@
         "uncertainty communication",
         "counterfactual simulation"
       ],
-      "id": "persona-elin-vega",
       "interests": [
         "decision quality",
         "calibration",
@@ -838,7 +817,6 @@
         "precedent mapping",
         "historical counterexamples"
       ],
-      "id": "persona-mateo-rossi",
       "interests": [
         "historical analogs",
         "institutional memory",
@@ -877,7 +855,6 @@
         "quality gates",
         "dependency risk tracking"
       ],
-      "id": "persona-rina-keller",
       "interests": [
         "service performance",
         "roadmap triage",
@@ -916,7 +893,6 @@
         "privilege minimization",
         "audit readiness"
       ],
-      "id": "persona-zane-mansouri",
       "interests": [
         "threat modeling",
         "abuse prevention",
@@ -955,7 +931,6 @@
         "evidence-based scaffolding",
         "formative assessment quality"
       ],
-      "id": "persona-ayla-dahl",
       "interests": [
         "assessment validity",
         "curriculum systems",
@@ -994,7 +969,6 @@
         "error prevention controls",
         "queue stability"
       ],
-      "id": "persona-niko-kato",
       "interests": [
         "capacity management",
         "continuity of care",
@@ -1033,7 +1007,6 @@
         "hazard exposure mapping",
         "equity in resilience funding"
       ],
-      "id": "persona-farah-pineda",
       "interests": [
         "risk communication",
         "policy implementation",
@@ -1072,7 +1045,6 @@
         "control attestation",
         "model governance"
       ],
-      "id": "persona-ruben-ionescu",
       "interests": [
         "compliance architecture",
         "financial risk controls",
@@ -1111,7 +1083,6 @@
         "context framing",
         "evidence traceability"
       ],
-      "id": "persona-talia-park",
       "interests": [
         "misinformation response",
         "media literacy",
@@ -1150,7 +1121,6 @@
         "operational readiness",
         "resilience drills"
       ],
-      "id": "persona-mira-bennett",
       "interests": [
         "service reliability",
         "capacity planning",
@@ -1189,7 +1159,6 @@
         "impact attribution",
         "counterfactual design"
       ],
-      "id": "persona-soren-bloom",
       "interests": [
         "causal inference",
         "governance quality",
@@ -1228,7 +1197,6 @@
         "procedural fairness",
         "equity impact framing"
       ],
-      "id": "persona-hana-bauer",
       "interests": [
         "community trust",
         "service usability",
@@ -1267,7 +1235,6 @@
         "uncertainty communication",
         "counterfactual simulation"
       ],
-      "id": "persona-luc-kovac",
       "interests": [
         "decision quality",
         "calibration",
@@ -1306,7 +1273,6 @@
         "precedent mapping",
         "historical counterexamples"
       ],
-      "id": "persona-nora-rahim",
       "interests": [
         "historical analogs",
         "institutional memory",
@@ -1345,7 +1311,6 @@
         "quality gates",
         "dependency risk tracking"
       ],
-      "id": "persona-idris-carver",
       "interests": [
         "service performance",
         "roadmap triage",
@@ -1384,7 +1349,6 @@
         "privilege minimization",
         "audit readiness"
       ],
-      "id": "persona-anya-lopez",
       "interests": [
         "threat modeling",
         "abuse prevention",
@@ -1423,7 +1387,6 @@
         "evidence-based scaffolding",
         "formative assessment quality"
       ],
-      "id": "persona-felix-norwood",
       "interests": [
         "assessment validity",
         "curriculum systems",
@@ -1462,7 +1425,6 @@
         "error prevention controls",
         "queue stability"
       ],
-      "id": "persona-mina-arden",
       "interests": [
         "capacity management",
         "continuity of care",
@@ -1501,7 +1463,6 @@
         "hazard exposure mapping",
         "equity in resilience funding"
       ],
-      "id": "persona-karim-tamir",
       "interests": [
         "risk communication",
         "policy implementation",
@@ -1540,7 +1501,6 @@
         "control attestation",
         "model governance"
       ],
-      "id": "persona-petra-petrescu",
       "interests": [
         "compliance architecture",
         "financial risk controls",
@@ -1579,7 +1539,6 @@
         "context framing",
         "evidence traceability"
       ],
-      "id": "persona-luka-hale",
       "interests": [
         "misinformation response",
         "media literacy",
@@ -1618,7 +1577,6 @@
         "operational readiness",
         "resilience drills"
       ],
-      "id": "persona-esme-navin",
       "interests": [
         "service reliability",
         "capacity planning",
@@ -1657,7 +1615,6 @@
         "impact attribution",
         "counterfactual design"
       ],
-      "id": "persona-theo-ferrell",
       "interests": [
         "causal inference",
         "governance quality",
@@ -1696,7 +1653,6 @@
         "procedural fairness",
         "equity impact framing"
       ],
-      "id": "persona-naima-malik",
       "interests": [
         "community trust",
         "service usability",
@@ -1735,7 +1691,6 @@
         "uncertainty communication",
         "counterfactual simulation"
       ],
-      "id": "persona-jules-nadim",
       "interests": [
         "decision quality",
         "calibration",
@@ -1774,7 +1729,6 @@
         "precedent mapping",
         "historical counterexamples"
       ],
-      "id": "persona-ari-duarte",
       "interests": [
         "historical analogs",
         "institutional memory",
@@ -1813,7 +1767,6 @@
         "quality gates",
         "dependency risk tracking"
       ],
-      "id": "persona-noah-calder",
       "interests": [
         "service performance",
         "roadmap triage",
@@ -1852,7 +1805,6 @@
         "privilege minimization",
         "audit readiness"
       ],
-      "id": "persona-leila-sorin",
       "interests": [
         "threat modeling",
         "abuse prevention",
@@ -1891,7 +1843,6 @@
         "evidence-based scaffolding",
         "formative assessment quality"
       ],
-      "id": "persona-tomas-meyer",
       "interests": [
         "assessment validity",
         "curriculum systems",
@@ -1930,7 +1881,6 @@
         "error prevention controls",
         "queue stability"
       ],
-      "id": "persona-nadia-mori",
       "interests": [
         "capacity management",
         "continuity of care",
@@ -1969,7 +1919,6 @@
         "hazard exposure mapping",
         "equity in resilience funding"
       ],
-      "id": "persona-iris-greer",
       "interests": [
         "risk communication",
         "policy implementation",
@@ -2008,7 +1957,6 @@
         "control attestation",
         "model governance"
       ],
-      "id": "persona-jonas-yilmaz",
       "interests": [
         "compliance architecture",
         "financial risk controls",
@@ -2047,7 +1995,6 @@
         "context framing",
         "evidence traceability"
       ],
-      "id": "persona-mika-lennox",
       "interests": [
         "misinformation response",
         "media literacy",
@@ -2086,7 +2033,6 @@
         "operational readiness",
         "resilience drills"
       ],
-      "id": "persona-sofia-azari",
       "interests": [
         "service reliability",
         "capacity planning",
@@ -2125,7 +2071,6 @@
         "impact attribution",
         "counterfactual design"
       ],
-      "id": "persona-dario-hart",
       "interests": [
         "causal inference",
         "governance quality",
@@ -2164,7 +2109,6 @@
         "procedural fairness",
         "equity impact framing"
       ],
-      "id": "persona-kira-vale",
       "interests": [
         "community trust",
         "service usability",
@@ -2203,7 +2147,6 @@
         "uncertainty communication",
         "counterfactual simulation"
       ],
-      "id": "persona-omar-olander",
       "interests": [
         "decision quality",
         "calibration",
@@ -2242,7 +2185,6 @@
         "precedent mapping",
         "historical counterexamples"
       ],
-      "id": "persona-ines-rydell",
       "interests": [
         "historical analogs",
         "institutional memory",
@@ -2281,7 +2223,6 @@
         "quality gates",
         "dependency risk tracking"
       ],
-      "id": "persona-pavel-sloane",
       "interests": [
         "service performance",
         "roadmap triage",
@@ -2320,7 +2261,6 @@
         "privilege minimization",
         "audit readiness"
       ],
-      "id": "persona-yara-serrin",
       "interests": [
         "threat modeling",
         "abuse prevention",
@@ -2359,7 +2299,6 @@
         "evidence-based scaffolding",
         "formative assessment quality"
       ],
-      "id": "persona-elin-silva",
       "interests": [
         "assessment validity",
         "curriculum systems",
@@ -2398,7 +2337,6 @@
         "error prevention controls",
         "queue stability"
       ],
-      "id": "persona-mateo-nilsen",
       "interests": [
         "capacity management",
         "continuity of care",
@@ -2437,7 +2375,6 @@
         "hazard exposure mapping",
         "equity in resilience funding"
       ],
-      "id": "persona-rina-nordin",
       "interests": [
         "risk communication",
         "policy implementation",
@@ -2476,7 +2413,6 @@
         "control attestation",
         "model governance"
       ],
-      "id": "persona-zane-delmar",
       "interests": [
         "compliance architecture",
         "financial risk controls",
@@ -2515,7 +2451,6 @@
         "context framing",
         "evidence traceability"
       ],
-      "id": "persona-ayla-quill",
       "interests": [
         "misinformation response",
         "media literacy",
@@ -2554,7 +2489,6 @@
         "operational readiness",
         "resilience drills"
       ],
-      "id": "persona-niko-sato",
       "interests": [
         "service reliability",
         "capacity planning",
@@ -2593,7 +2527,6 @@
         "impact attribution",
         "counterfactual design"
       ],
-      "id": "persona-farah-quintero",
       "interests": [
         "causal inference",
         "governance quality",
@@ -2632,7 +2565,6 @@
         "procedural fairness",
         "equity impact framing"
       ],
-      "id": "persona-ruben-ibarra",
       "interests": [
         "community trust",
         "service usability",
@@ -2671,7 +2603,6 @@
         "uncertainty communication",
         "counterfactual simulation"
       ],
-      "id": "persona-talia-bishop",
       "interests": [
         "decision quality",
         "calibration",
@@ -2710,7 +2641,6 @@
         "precedent mapping",
         "historical counterexamples"
       ],
-      "id": "persona-mira-avery",
       "interests": [
         "historical analogs",
         "institutional memory",
@@ -2749,7 +2679,6 @@
         "quality gates",
         "dependency risk tracking"
       ],
-      "id": "persona-soren-vega",
       "interests": [
         "service performance",
         "roadmap triage",
@@ -2788,7 +2717,6 @@
         "privilege minimization",
         "audit readiness"
       ],
-      "id": "persona-hana-rossi",
       "interests": [
         "threat modeling",
         "abuse prevention",
@@ -2827,7 +2755,6 @@
         "evidence-based scaffolding",
         "formative assessment quality"
       ],
-      "id": "persona-luc-keller",
       "interests": [
         "assessment validity",
         "curriculum systems",
@@ -2866,7 +2793,6 @@
         "error prevention controls",
         "queue stability"
       ],
-      "id": "persona-nora-mansouri",
       "interests": [
         "capacity management",
         "continuity of care",
@@ -2905,7 +2831,6 @@
         "hazard exposure mapping",
         "equity in resilience funding"
       ],
-      "id": "persona-idris-dahl",
       "interests": [
         "risk communication",
         "policy implementation",
@@ -2944,7 +2869,6 @@
         "control attestation",
         "model governance"
       ],
-      "id": "persona-anya-kato",
       "interests": [
         "compliance architecture",
         "financial risk controls",
@@ -2983,7 +2907,6 @@
         "context framing",
         "evidence traceability"
       ],
-      "id": "persona-felix-pineda",
       "interests": [
         "misinformation response",
         "media literacy",
@@ -3022,7 +2945,6 @@
         "operational readiness",
         "resilience drills"
       ],
-      "id": "persona-mina-ionescu",
       "interests": [
         "service reliability",
         "capacity planning",
@@ -3061,7 +2983,6 @@
         "impact attribution",
         "counterfactual design"
       ],
-      "id": "persona-karim-park",
       "interests": [
         "causal inference",
         "governance quality",
@@ -3100,7 +3021,6 @@
         "procedural fairness",
         "equity impact framing"
       ],
-      "id": "persona-petra-bennett",
       "interests": [
         "community trust",
         "service usability",
@@ -3139,7 +3059,6 @@
         "uncertainty communication",
         "counterfactual simulation"
       ],
-      "id": "persona-luka-bloom",
       "interests": [
         "decision quality",
         "calibration",
@@ -3178,7 +3097,6 @@
         "precedent mapping",
         "historical counterexamples"
       ],
-      "id": "persona-esme-bauer",
       "interests": [
         "historical analogs",
         "institutional memory",
@@ -3217,7 +3135,6 @@
         "quality gates",
         "dependency risk tracking"
       ],
-      "id": "persona-theo-kovac",
       "interests": [
         "service performance",
         "roadmap triage",
@@ -3256,7 +3173,6 @@
         "privilege minimization",
         "audit readiness"
       ],
-      "id": "persona-naima-rahim",
       "interests": [
         "threat modeling",
         "abuse prevention",
@@ -3295,7 +3211,6 @@
         "evidence-based scaffolding",
         "formative assessment quality"
       ],
-      "id": "persona-jules-carver",
       "interests": [
         "assessment validity",
         "curriculum systems",
@@ -3334,7 +3249,6 @@
         "error prevention controls",
         "queue stability"
       ],
-      "id": "persona-ari-lopez",
       "interests": [
         "capacity management",
         "continuity of care",
@@ -3373,7 +3287,6 @@
         "hazard exposure mapping",
         "equity in resilience funding"
       ],
-      "id": "persona-noah-norwood",
       "interests": [
         "risk communication",
         "policy implementation",
@@ -3412,7 +3325,6 @@
         "control attestation",
         "model governance"
       ],
-      "id": "persona-leila-arden",
       "interests": [
         "compliance architecture",
         "financial risk controls",
@@ -3451,7 +3363,6 @@
         "context framing",
         "evidence traceability"
       ],
-      "id": "persona-tomas-tamir",
       "interests": [
         "misinformation response",
         "media literacy",
@@ -3490,7 +3401,6 @@
         "operational readiness",
         "resilience drills"
       ],
-      "id": "persona-nadia-petrescu",
       "interests": [
         "service reliability",
         "capacity planning",
@@ -3529,7 +3439,6 @@
         "impact attribution",
         "counterfactual design"
       ],
-      "id": "persona-iris-hale",
       "interests": [
         "causal inference",
         "governance quality",
@@ -3568,7 +3477,6 @@
         "procedural fairness",
         "equity impact framing"
       ],
-      "id": "persona-jonas-navin",
       "interests": [
         "community trust",
         "service usability",
@@ -3607,7 +3515,6 @@
         "uncertainty communication",
         "counterfactual simulation"
       ],
-      "id": "persona-mika-ferrell",
       "interests": [
         "decision quality",
         "calibration",
@@ -3646,7 +3553,6 @@
         "precedent mapping",
         "historical counterexamples"
       ],
-      "id": "persona-sofia-malik",
       "interests": [
         "historical analogs",
         "institutional memory",
@@ -3685,7 +3591,6 @@
         "quality gates",
         "dependency risk tracking"
       ],
-      "id": "persona-dario-nadim",
       "interests": [
         "service performance",
         "roadmap triage",
@@ -3724,7 +3629,6 @@
         "privilege minimization",
         "audit readiness"
       ],
-      "id": "persona-kira-duarte",
       "interests": [
         "threat modeling",
         "abuse prevention",
@@ -3763,7 +3667,6 @@
         "evidence-based scaffolding",
         "formative assessment quality"
       ],
-      "id": "persona-omar-calder",
       "interests": [
         "assessment validity",
         "curriculum systems",
@@ -3802,7 +3705,6 @@
         "error prevention controls",
         "queue stability"
       ],
-      "id": "persona-ines-sorin",
       "interests": [
         "capacity management",
         "continuity of care",
@@ -3841,7 +3743,6 @@
         "hazard exposure mapping",
         "equity in resilience funding"
       ],
-      "id": "persona-pavel-meyer",
       "interests": [
         "risk communication",
         "policy implementation",
@@ -3880,7 +3781,6 @@
         "control attestation",
         "model governance"
       ],
-      "id": "persona-yara-mori",
       "interests": [
         "compliance architecture",
         "financial risk controls",
