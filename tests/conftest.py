@@ -215,7 +215,10 @@ def run_directories(space_root: Path) -> list[Path]:
     runs_root = space_root / "runs"
     if not runs_root.is_dir():
         return []
-    return sorted(path for path in runs_root.glob("run-*") if path.is_dir())
+    return sorted(
+        (path for path in runs_root.glob("run-*") if path.is_dir()),
+        key=_run_directory_sort_key,
+    )
 
 
 def latest_run_directory(space_root: Path) -> Path:
@@ -223,6 +226,12 @@ def latest_run_directory(space_root: Path) -> Path:
     if not run_dirs:
         raise AssertionError("Expected at least one run directory.")
     return run_dirs[-1]
+
+
+def _run_directory_sort_key(path: Path) -> tuple[float, str]:
+    run_record = path / "run.md"
+    stat_target = run_record if run_record.is_file() else path
+    return (stat_target.stat().st_mtime_ns, path.name)
 
 
 def assert_no_run_containers(space_root: Path) -> None:

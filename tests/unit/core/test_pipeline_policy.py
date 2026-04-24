@@ -14,12 +14,14 @@ from sapi.contracts.run_envelopes import (
     RunEnvelopeBase,
 )
 from sapi.core.pipeline_policy import (
+    apply_lint_gate_to_run_base,
     exit_code_for_status,
     finalize_pipeline_run,
     finalize_run_status,
     initialize_run_status,
 )
 from sapi.core.transactions import ArtifactTransaction
+from sapi.lint.lint_engine import LintSummary
 
 
 class PipelinePolicyTests(unittest.TestCase):
@@ -75,6 +77,49 @@ class PipelinePolicyTests(unittest.TestCase):
         self.assertNotEqual(exit_code_for_status("aborted"), 0)
         with self.assertRaises(ValueError):
             exit_code_for_status("pending")
+
+    def test_apply_lint_gate_promotes_lint_gated_success_to_success_with_warnings(self) -> None:
+        base = _base(flow_key="ingest_pipeline", run_id="run-20260412T120000Z--ingestlint")
+        base.status = "success"
+
+        lint_summary = apply_lint_gate_to_run_base(
+            base=base,
+            warning_budget=1,
+            summary=LintSummary(error_count=0, warning_count=2, info_count=3),
+        )
+
+        self.assertEqual(base.status, "success_with_warnings")
+        self.assertEqual(base.lint_error_count, 0)
+        self.assertEqual(base.lint_warning_count, 2)
+        self.assertEqual(base.lint_info_count, 3)
+        self.assertEqual(lint_summary, "error_count=0 warning_count=2 info_count=3")
+
+    def test_apply_lint_gate_preserves_existing_semantic_warning_status(self) -> None:
+        base = _base(flow_key="overview_pipeline", run_id="run-20260412T120000Z--overviewlint")
+        base.status = "success_with_warnings"
+
+        apply_lint_gate_to_run_base(
+            base=base,
+            warning_budget=200,
+            summary=LintSummary(error_count=0, warning_count=0, info_count=0),
+        )
+
+        self.assertEqual(base.status, "success_with_warnings")
+
+    def test_apply_lint_gate_keeps_query_non_blocking_while_recording_lint_totals(self) -> None:
+        base = _base(flow_key="query_pipeline", run_id="run-20260412T120000Z--querylint0")
+        base.status = "success"
+
+        apply_lint_gate_to_run_base(
+            base=base,
+            warning_budget=1,
+            summary=LintSummary(error_count=3, warning_count=7, info_count=1),
+        )
+
+        self.assertEqual(base.status, "success")
+        self.assertEqual(base.lint_error_count, 3)
+        self.assertEqual(base.lint_warning_count, 7)
+        self.assertEqual(base.lint_info_count, 1)
 
     def test_default_failure_prunes_run_container_while_ingest_force_preserves(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

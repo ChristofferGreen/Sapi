@@ -16,7 +16,7 @@ if str(_REPO_ROOT) not in sys.path:
 
 from sapi.contracts.ids import format_timestamp_rfc3339_utc, make_run_id
 from sapi.contracts.run_envelopes import PersonaProfileRunFields, RunEnvelopeBase
-from sapi.core.pipeline_policy import finalize_pipeline_run
+from sapi.core.pipeline_policy import apply_lint_gate_to_run_base, finalize_pipeline_run
 from sapi.core.pipeline_runtime import (
     add_llm_attempts,
     build_run_envelope_base,
@@ -202,6 +202,10 @@ def main() -> int:
             history_reused=history_reused_count,
             pages_changed=pages_changed,
         )
+        lint_summary = apply_lint_gate_to_run_base(
+            base=base,
+            warning_budget=runtime_flags.warning_budget,
+        )
         finalized = finalize_pipeline_run(
             space_root=space_root,
             base=base,
@@ -209,6 +213,7 @@ def main() -> int:
             transaction=transaction,
             force_mode=False,
             summary="Persona profile generation failed; invocation-scoped outputs rolled back.",
+            lint_summary=lint_summary,
             errors=str(exc),
         )
         print(
@@ -258,6 +263,10 @@ def main() -> int:
         history_reused=history_reused_count,
         pages_changed=pages_changed,
     )
+    lint_summary = apply_lint_gate_to_run_base(
+        base=base,
+        warning_budget=runtime_flags.warning_budget,
+    )
     finalized = finalize_pipeline_run(
         space_root=space_root,
         base=base,
@@ -270,7 +279,7 @@ def main() -> int:
             f"history_generated={history_generated_count}, history_updated={history_updated_count}, "
             f"history_reused={history_reused_count}"
         ),
-        lint_summary="lint_error_count=0 lint_warning_count=0 lint_info_count=0",
+        lint_summary=lint_summary,
         errors="",
     )
     print(

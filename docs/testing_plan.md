@@ -87,6 +87,8 @@ tests/
   - Modules: `tests/unit/core/test_claim_naming.py`, `tests/unit/ingest/test_ingest_extraction_canonical_writes.py`, `tests/unit/build/test_site_builder_contracts.py`
 - [x] Warning-threshold (`--warning-budget`) and status mapping behavior.
   - Module: `tests/unit/lint/test_warning_budget_gate.py`
+- [x] Shared pipeline finalization stamps run-envelope lint totals/status from the lint gate instead of hardcoded zero-count metadata.
+  - Module: `tests/unit/core/test_pipeline_policy.py`
 - [x] Query preflight mode checks (`strict + include-disputed` invalid).
   - Module: `tests/unit/query/test_query_mode_preflight.py`
 - [x] Run-envelope semantic flow cardinality (`semantic_flows` ordered-unique + `semantic_flow_invocation_counts` consistency).

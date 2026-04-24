@@ -681,6 +681,7 @@ Warning-threshold behavior (historical flag name: warning budget):
 - if `error_count == 0` and `warning_count > effective_warning_threshold`, status becomes `success_with_warnings`
 - if `error_count == 0` and warnings are within threshold, status is `success`
 - warning-threshold overflow is non-blocking by default and affects status classification only.
+- semantic pipeline entrypoints MUST derive committed run-envelope lint totals and terminal status from the shared lint-gate evaluation path; they MUST NOT stamp literal zero-count lint metadata as a shortcut.
 
 Required lint artifacts (committed runs):
 - machine-readable: `<space_root>/runs/<run_id>/lint.json`

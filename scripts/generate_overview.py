@@ -16,7 +16,7 @@ if str(_REPO_ROOT) not in sys.path:
 
 from sapi.contracts.ids import format_timestamp_rfc3339_utc, make_run_id
 from sapi.contracts.run_envelopes import OverviewRunFields, RunEnvelopeBase
-from sapi.core.pipeline_policy import finalize_pipeline_run
+from sapi.core.pipeline_policy import apply_lint_gate_to_run_base, finalize_pipeline_run
 from sapi.core.pipeline_runtime import (
     add_llm_attempts,
     build_run_envelope_base,
@@ -242,6 +242,10 @@ def main() -> int:
             refresh_state=refresh_state,
             force_mode=bool(args.force),
         )
+        lint_summary = apply_lint_gate_to_run_base(
+            base=base,
+            warning_budget=runtime_flags.warning_budget,
+        )
         finalized = finalize_pipeline_run(
             space_root=space_root,
             base=base,
@@ -254,6 +258,7 @@ def main() -> int:
                 f"refresh_reason={refresh_state.refresh_reason}, "
                 f"input_signature={refresh_state.input_signature}"
             ),
+            lint_summary=lint_summary,
             errors=str(exc),
         )
         print(
@@ -290,6 +295,10 @@ def main() -> int:
         refresh_state=refresh_state,
         force_mode=bool(args.force),
     )
+    lint_summary = apply_lint_gate_to_run_base(
+        base=base,
+        warning_budget=runtime_flags.warning_budget,
+    )
     finalized = finalize_pipeline_run(
         space_root=space_root,
         base=base,
@@ -305,7 +314,7 @@ def main() -> int:
             f"source_records_used={len(overview_inputs.source_records)}, claims_used={len(overview_inputs.claims)}, "
             f"relations_used={len(overview_inputs.relations)}, topics_used={len(overview_inputs.topics)}"
         ),
-        lint_summary="lint_error_count=0 lint_warning_count=0 lint_info_count=0",
+        lint_summary=lint_summary,
         errors="",
     )
     print(

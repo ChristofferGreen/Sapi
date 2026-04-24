@@ -22,7 +22,7 @@ from sapi.contracts.ids import (
     slugify,
 )
 from sapi.contracts.run_envelopes import QueryRunFields, RunEnvelopeBase
-from sapi.core.pipeline_policy import finalize_pipeline_run
+from sapi.core.pipeline_policy import apply_lint_gate_to_run_base, finalize_pipeline_run
 from sapi.core.pipeline_runtime import build_run_envelope_base
 from sapi.core.registry import resolve_registry_path, resolve_space_root
 from sapi.core.runtime_flags import (
@@ -268,6 +268,10 @@ def main() -> int:
             contradictions_considered=contradictions_considered,
             manifest_path=None,
         )
+        lint_summary = apply_lint_gate_to_run_base(
+            base=base,
+            warning_budget=runtime_flags.warning_budget,
+        )
         finalized = finalize_pipeline_run(
             space_root=space_root,
             base=base,
@@ -275,6 +279,7 @@ def main() -> int:
             transaction=transaction,
             force_mode=False,
             summary="Query failed; invocation-scoped outputs rolled back.",
+            lint_summary=lint_summary,
             errors=str(exc),
         )
         print(
@@ -308,6 +313,10 @@ def main() -> int:
         contradictions_considered=contradictions_considered,
         manifest_path=run_manifest_path,
     )
+    lint_summary = apply_lint_gate_to_run_base(
+        base=base,
+        warning_budget=runtime_flags.warning_budget,
+    )
     finalized = finalize_pipeline_run(
         space_root=space_root,
         base=base,
@@ -319,7 +328,7 @@ def main() -> int:
             f"query_record_path={query_record_path}, "
             f"claims_used={len(claims_used)}, sources_used={len(sources_used)}"
         ),
-        lint_summary="lint_error_count=0 lint_warning_count=0 lint_info_count=0",
+        lint_summary=lint_summary,
         errors="",
     )
     print(

@@ -624,6 +624,9 @@ Workflow gate policy alignment (normative):
 - `build_site` fails on conversion/link errors (independent of warning threshold)
 - `query` is non-lint-blocking and MUST NOT fail solely from lint warnings/errors
 - all pipelines still emit lint totals in run metadata for committed runs
+- semantic pipeline entrypoints MUST populate `RunEnvelopeBase.lint_*` counts from a `LintSummary`
+  and merge warning-budget status through the shared lint-gate helper before `finalize_pipeline_run`;
+  callers MUST NOT hardcode zero-count lint summaries as a shortcut
 
 ## 12. Wrapper and Script Interfaces
 

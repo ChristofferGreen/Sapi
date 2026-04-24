@@ -2904,3 +2904,31 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `docs/low_level.md` section anchors, then reran the focused canonical-only suite covering
     semantic spec resolution, runtime flag surfaces, persona loading, comment validation, relation
     normalization, comment pipeline fail-fast behavior, and wrapper alias rejection.
+
+- [x] TODO-0351: Route semantic pipeline finalization through the shared lint gate
+  - owner: ai
+  - created_at: 2026-04-25
+  - finished_at: 2026-04-25
+  - phase: Cross-cutting
+  - scope: Ensure semantic pipeline entrypoints derive committed lint totals and warning-budget
+    status from the shared lint-gate path instead of stamping literal zero-count metadata.
+  - acceptance:
+    - Shared pipeline policy exposes one helper that stamps `RunEnvelopeBase.lint_*` fields from a
+      `LintSummary` and merges warning-budget status into terminal run state.
+    - `scripts/ingest_source.py`, `scripts/create_comments.py`, `scripts/generate_profiles.py`,
+      `scripts/query.py`, and `scripts/generate_overview.py` use that shared helper on both
+      success and retained-failure paths.
+    - Docs and tests explicitly cover the shared-finalization contract.
+  - evidence: Added `apply_lint_gate_to_run_base()` in `sapi/core/pipeline_policy.py`, which
+    evaluates the workflow-specific lint gate, stamps committed `lint_error_count`,
+    `lint_warning_count`, and `lint_info_count`, and merges warning-budget status into the run
+    envelope before `finalize_pipeline_run()`. Updated the five semantic pipeline entrypoints to
+    use that helper instead of hardcoded `lint_error_count=0 lint_warning_count=0
+    lint_info_count=0` strings, expanded `tests/unit/core/test_pipeline_policy.py` with
+    warning-budget, preserved-warning-status, and query-nonblocking cases, added
+    `tests/unit/contracts/test_pipeline_lint_contracts.py` for design/low-level/testing-plan sync,
+    and updated `docs/design.md`, `docs/low_level.md`, and `docs/testing_plan.md` to require the
+    shared lint-gate finalization path. Focused validation also exposed a flaky `latest_run_directory()`
+    helper when two runs landed in the same second, so `tests/conftest.py` now sorts run
+    directories by committed `run.md` mtime and `tests/unit/contracts/test_run_directory_helper.py`
+    locks that behavior.

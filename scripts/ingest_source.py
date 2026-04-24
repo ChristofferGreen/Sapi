@@ -19,7 +19,7 @@ from sapi.contracts.ids import format_timestamp_rfc3339_utc, make_run_id
 from sapi.contracts.run_envelopes import IngestRunFields, RunEnvelopeBase, RunStatus
 from sapi.core.registry import resolve_registry_path, resolve_site_path_from_registry, resolve_space_root
 from sapi.core.locks import IngestLockHeldError, ingest_lock
-from sapi.core.pipeline_policy import finalize_pipeline_run
+from sapi.core.pipeline_policy import apply_lint_gate_to_run_base, finalize_pipeline_run
 from sapi.core.pipeline_runtime import (
     add_llm_attempts,
     build_run_envelope_base,
@@ -266,6 +266,10 @@ def main() -> int:
                 force_mode=bool(args.force),
                 rollback_skipped=bool(args.force),
             )
+            lint_summary = apply_lint_gate_to_run_base(
+                base=base,
+                warning_budget=runtime_flags.warning_budget,
+            )
             finalized = finalize_pipeline_run(
                 space_root=space_root,
                 base=base,
@@ -277,6 +281,7 @@ def main() -> int:
                     if args.force
                     else "Ingest failed; invocation-scoped outputs rolled back."
                 ),
+                lint_summary=lint_summary,
                 errors=str(exc),
             )
             if args.force:
@@ -330,6 +335,10 @@ def main() -> int:
             f"(expected={ingest_semantic_plan.semantic_flow_invocation_counts}, "
             f"actual={semantic_flow_invocation_counts})."
         )
+    lint_summary = apply_lint_gate_to_run_base(
+        base=base,
+        warning_budget=runtime_flags.warning_budget,
+    )
     finalized = finalize_pipeline_run(
         space_root=space_root,
         base=base,
@@ -342,7 +351,7 @@ def main() -> int:
             f"relations_changed={flow_fields.relations_changed}, "
             f"topic_pages_changed={flow_fields.topic_pages_changed}"
         ),
-        lint_summary="lint_error_count=0 lint_warning_count=0 lint_info_count=0",
+        lint_summary=lint_summary,
         errors="",
     )
 

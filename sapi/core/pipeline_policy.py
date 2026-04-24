@@ -18,7 +18,13 @@ from sapi.core.transactions import (
     apply_terminal_failure_policy,
 )
 from sapi.core.run_truth import advance_reconciliation_state
-from sapi.lint.lint_engine import LintSummary, write_lint_artifact
+from sapi.lint.lint_engine import (
+    LintSummary,
+    default_lint_summary,
+    evaluate_lint_gate,
+    render_lint_summary_markdown,
+    write_lint_artifact,
+)
 
 
 SUCCESS_STATUSES: frozenset[RunStatus] = frozenset({"success", "success_with_warnings"})
@@ -36,6 +42,35 @@ class PipelineFinalizeResult:
 def initialize_run_status() -> RunStatus:
     """Return the shared initial run status."""
     return "pending"
+
+
+def apply_lint_gate_to_run_base(
+    *,
+    base: RunEnvelopeBase,
+    warning_budget: int,
+    summary: LintSummary | None = None,
+) -> str:
+    """Stamp lint totals on the run envelope and merge gate status into the terminal state."""
+    if base.status == "pending":
+        raise ValueError("apply_lint_gate_to_run_base requires a terminal run status.")
+
+    lint_summary = default_lint_summary() if summary is None else summary
+    workflow = _workflow_key_for_pipeline(base.flow_key)
+    gate = evaluate_lint_gate(workflow, lint_summary, warning_threshold=warning_budget)
+
+    base.lint_error_count = lint_summary.error_count
+    base.lint_warning_count = lint_summary.warning_count
+    base.lint_info_count = lint_summary.info_count
+
+    if base.status == "success":
+        base.status = gate.status
+    elif base.status == "success_with_warnings":
+        if gate.status == "failed":
+            base.status = "failed"
+    elif base.status not in FAILURE_STATUSES:
+        raise ValueError(f"Unsupported terminal run status for lint finalization: {base.status}")
+
+    return render_lint_summary_markdown(lint_summary)
 
 
 def finalize_run_status(
