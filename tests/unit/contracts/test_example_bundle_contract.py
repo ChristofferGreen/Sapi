@@ -31,6 +31,21 @@ class ExampleBundleContractTests(unittest.TestCase):
         self.assertNotIn("scripts/ingest_source.py", script_text)
         self.assertNotIn("scripts/create_comments.py", script_text)
 
+    def test_example_runner_pins_timeout_and_retry_policy(self) -> None:
+        script_text = (EXAMPLE_ROOT / "run_example_site.sh").read_text()
+        self.assertIn("STEP_TIMEOUT_SECS=1200", script_text)
+        self.assertIn("STEP_MAX_ATTEMPTS=10", script_text)
+        self.assertIn("STEP_ATTEMPT=", script_text)
+        self.assertIn("timeout_retry=1", script_text)
+        self.assertIn("cmd_status -eq 124", script_text)
+
+    def test_example_runner_comment_resume_is_page_scoped(self) -> None:
+        script_text = (EXAMPLE_ROOT / "run_example_site.sh").read_text()
+        self.assertIn("collect_comment_page_rows()", script_text)
+        self.assertIn('--comment-page "$page_ref"', script_text)
+        self.assertIn('run_step "comments-${space_slug}-${page_ref_key}"', script_text)
+        self.assertNotIn('run_step "comments-${space_slug}"', script_text)
+
     def test_example_plan_references_real_pdf_assets(self) -> None:
         ingest_rows = _load_tsv(EXAMPLE_ROOT / "ingest_plan.tsv")
         subspace_rows = _load_tsv(EXAMPLE_ROOT / "subspaces.tsv")
