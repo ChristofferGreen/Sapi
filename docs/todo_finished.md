@@ -2882,3 +2882,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     `tests/live/test_live_llm_canary.py` to execute live overview generation and validate
     canonical `overview.json` / `article.md` artifacts, and updated `docs/testing_plan.md` with
     explicit wrapper and live-canary overview coverage checkpoints.
+
+- [x] TODO-0327: Purge compatibility/deprecation tests and add strict no-legacy coverage
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-25
+  - phase: Cross-cutting
+  - depends_on: TODO-0313, TODO-0314, TODO-0315, TODO-0316, TODO-0317, TODO-0318, TODO-0319, TODO-0320, TODO-0321, TODO-0322, TODO-0323
+  - scope: Remove compatibility/deprecation-only test expectations and replace them with strict canonical-only behavior checks.
+  - acceptance:
+    - Tests no longer assert deprecation warnings or legacy alias acceptance for removed pathways.
+    - New/updated tests assert legacy inputs fail fast with clear errors.
+    - `docs/testing_plan.md` is updated where test contract expectations changed.
+  - evidence: Updated `docs/testing_plan.md` so the Tier 1 checklist now describes removed-flow-key
+    fail-fast handling and explicit no-legacy coverage across flow-map, wrapper/parser, persona,
+    comment, and relation boundaries. Added
+    `tests/unit/contracts/test_no_legacy_test_coverage.py` to lock those coverage expectations and
+    to assert the compatibility-purge suite does not reintroduce deprecation-warning or
+    legacy-alias-acceptance assertions. Refreshed
+    `tests/unit/contracts/test_canonical_only_doc_contracts.py` to follow the current
+    `docs/low_level.md` section anchors, then reran the focused canonical-only suite covering
+    semantic spec resolution, runtime flag surfaces, persona loading, comment validation, relation
+    normalization, comment pipeline fail-fast behavior, and wrapper alias rejection.

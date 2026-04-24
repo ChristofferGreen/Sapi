@@ -77,7 +77,7 @@ tests/
   - Module: `tests/unit/contracts/test_registry_paths.py`
 - [x] ID/format/path contract checks used by writes (including suffix-length and timestamp-format constraints).
   - Module: `tests/unit/contracts/test_id_contracts.py`
-- [x] Semantic spec flow-map resolution, version pinning, and input alias normalization.
+- [x] Semantic spec flow-map resolution, version pinning, and removed-flow-key fail-fast handling.
   - Module: `tests/unit/semantic/test_spec_resolution.py`
 - [x] Retry budget math and attempt counting (`max_repair_loops`, `max_attempts`, `llm_attempt_count`).
   - Module: `tests/unit/semantic/test_retry_budget.py`
@@ -91,6 +91,11 @@ tests/
   - Module: `tests/unit/query/test_query_mode_preflight.py`
 - [x] Run-envelope semantic flow cardinality (`semantic_flows` ordered-unique + `semantic_flow_invocation_counts` consistency).
   - Module: `tests/unit/contracts/test_run_envelope_semantic_flows.py`
+- [x] Removed compatibility inputs fail fast across flow-map, wrapper/parser, persona, comment, and relation boundaries.
+  - Modules: `tests/unit/semantic/test_spec_resolution.py`, `tests/unit/contracts/test_runtime_flag_surface.py`,
+    `tests/unit/profiles/test_persona_catalog_loader.py`, `tests/unit/comments/test_turn_marker_validation.py`,
+    `tests/unit/ingest/test_relation_store_matrix.py`, `tests/integration/pipelines/test_comments_pipeline.py`,
+    `tests/integration/wrappers/test_wrapper_alias_normalization.py`
 - [x] Source-markdown and curated-related-link contract docs stay synchronized across `design.md`,
   `low_level.md`, and `testing_plan.md`.
   - Module: `tests/unit/contracts/test_source_analysis_and_related_link_contracts.py`

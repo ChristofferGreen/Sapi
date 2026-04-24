@@ -70,8 +70,8 @@ class CanonicalOnlyDocContractTests(unittest.TestCase):
     def test_low_level_docs_no_longer_describe_alias_normalization(self) -> None:
         low_level_text = LOW_LEVEL_DOC_PATH.read_text()
         spec_section = _section_text(low_level_text, "### 6.1 Spec resolution and version pinning")
-        comments_section = _section_text(low_level_text, "### 8.3 Comment Section Pipeline (`scripts/create_comments.py`)")
-        wrapper_section = _section_text(low_level_text, "## 12. Wrapper Interface Notes")
+        comments_section = _section_text(low_level_text, "### 8.3 Comment Pipeline (`scripts/create_comments.py`)")
+        wrapper_section = _section_text(low_level_text, "## 12. Wrapper and Script Interfaces")
 
         self.assertIn(
             "unknown flow keys, including `persona_comment_generation`, MUST fail fast before resolution",

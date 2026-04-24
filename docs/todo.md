@@ -47,7 +47,7 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0327`
+1. (none currently)
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -57,8 +57,8 @@ Task template:
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: TODO-0327
-- P3 Continuous docs governance: TODO-0327
+- P2 Social/eval/hardening: (none currently)
+- P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
 
@@ -75,7 +75,7 @@ Wave D (space/subspace AI overview article):
 1. (none currently)
 
 Cross-cutting docs backlog:
-1. TODO-0327
+1. (none currently)
 
 ### Design Coverage Snapshot
 
@@ -117,28 +117,17 @@ Cross-cutting docs backlog:
 | Section 12 (wrapper/script interfaces) | - |
 | Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | - |
-| Section 15 (test-plan binding) | TODO-0327 |
+| Section 15 (test-plan binding) | - |
 | Section 16 (change discipline) | - |
 
 ### Testing Plan Coverage Snapshot
 
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
-| Section 2 (test module layout) | TODO-0327 |
+| Section 2 (test module layout) | - |
 | Tier 0-3 (fast contract/failure/pipeline suites) | - |
 | Tier 4-6 (determinism/golden/live canary) | - |
-| Section 4-5 (CI gating matrix + command wiring) | TODO-0327 |
+| Section 4-5 (CI gating matrix + command wiring) | - |
 | Section 6 (exit criteria gating) | - |
 
 ### Task Blocks
-
-- [ ] TODO-0327: Purge compatibility/deprecation tests and add strict no-legacy coverage
-  - owner: ai
-  - created_at: 2026-04-13
-  - phase: Cross-cutting
-  - depends_on: TODO-0313, TODO-0314, TODO-0315, TODO-0316, TODO-0317, TODO-0318, TODO-0319, TODO-0320, TODO-0321, TODO-0322, TODO-0323
-  - scope: Remove compatibility/deprecation-only test expectations and replace them with strict canonical-only behavior checks.
-  - acceptance:
-    - Tests no longer assert deprecation warnings or legacy alias acceptance for removed pathways.
-    - New/updated tests assert legacy inputs fail fast with clear errors.
-    - `docs/testing_plan.md` is updated where test contract expectations changed.
