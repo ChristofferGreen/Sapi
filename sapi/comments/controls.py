@@ -9,20 +9,15 @@ from typing import Any
 
 
 _CANONICAL_SCHEMA_VERSION = "comment_section_discussion_controls_v1"
-_SCHEMA_ALIASES = {_CANONICAL_SCHEMA_VERSION, "persona_discussion_controls_v1"}
-_CONTROL_KEY_ALIASES = {
-    "enabled": "enabled",
-    "persona_discussion_enabled": "enabled",
-    "roster": "roster",
-    "persona_discussion_roster": "roster",
-    "max_turns": "max_turns",
-    "persona_discussion_max_turns": "max_turns",
-    "reply_chance": "reply_chance",
-    "persona_discussion_reply_chance": "reply_chance",
-    "max_depth": "max_depth",
-    "persona_discussion_max_depth": "max_depth",
-}
 _CANONICAL_CONTROL_KEYS = {"enabled", "roster", "max_turns", "reply_chance", "max_depth"}
+_REMOVED_CONTROL_KEY_ALIASES = {
+    "persona_discussion_enabled",
+    "persona_discussion_roster",
+    "persona_discussion_max_turns",
+    "persona_discussion_reply_chance",
+    "persona_discussion_max_depth",
+}
+_FRONTMATTER_DISCUSSION_CONTROL_KEYS = _CANONICAL_CONTROL_KEYS | _REMOVED_CONTROL_KEY_ALIASES
 
 
 @dataclass(frozen=True)
@@ -35,8 +30,6 @@ class SiteDiscussionControls:
 class PageDiscussionControlsResolution:
     effective_controls: dict[str, Any]
     canonical_page_controls: dict[str, Any] | None
-    legacy_frontmatter_controls: dict[str, Any] | None
-    canonical_page_controls_to_write: dict[str, Any] | None
 
 
 def load_site_discussion_controls(*, site_path: Path) -> SiteDiscussionControls:
@@ -50,7 +43,7 @@ def load_site_discussion_controls(*, site_path: Path) -> SiteDiscussionControls:
     if not isinstance(payload, dict):
         return SiteDiscussionControls(defaults={}, pages={})
     schema_version = payload.get("schema_version")
-    if not isinstance(schema_version, str) or schema_version not in _SCHEMA_ALIASES:
+    if schema_version != _CANONICAL_SCHEMA_VERSION:
         return SiteDiscussionControls(defaults={}, pages={})
 
     defaults = _normalize_controls(payload.get("defaults"))
@@ -75,10 +68,10 @@ def resolve_page_discussion_controls(
     page_ref: str,
     page_payload: dict[str, Any],
 ) -> PageDiscussionControlsResolution:
+    _assert_no_frontmatter_discussion_controls(page_ref=page_ref, page_payload=page_payload)
     defaults = dict(site_controls.defaults)
     page_overrides = dict(site_controls.pages.get(page_ref, {}))
     canonical_page_controls = _extract_canonical_page_controls(page_payload)
-    legacy_frontmatter_controls = _extract_legacy_frontmatter_controls(page_payload)
 
     effective_controls = dict(defaults)
     effective_controls.update(page_overrides)
@@ -87,35 +80,28 @@ def resolve_page_discussion_controls(
         return PageDiscussionControlsResolution(
             effective_controls=effective_controls,
             canonical_page_controls=canonical_page_controls,
-            legacy_frontmatter_controls=legacy_frontmatter_controls,
-            canonical_page_controls_to_write=None,
-        )
-
-    if legacy_frontmatter_controls:
-        effective_controls.update(legacy_frontmatter_controls)
-        return PageDiscussionControlsResolution(
-            effective_controls=effective_controls,
-            canonical_page_controls=None,
-            legacy_frontmatter_controls=legacy_frontmatter_controls,
-            canonical_page_controls_to_write=legacy_frontmatter_controls,
         )
 
     return PageDiscussionControlsResolution(
         effective_controls=effective_controls,
         canonical_page_controls=None,
-        legacy_frontmatter_controls=legacy_frontmatter_controls,
-        canonical_page_controls_to_write=None,
     )
 
 
-def apply_canonical_page_discussion_controls(
-    *,
-    page_payload: dict[str, Any],
-    canonical_page_controls: dict[str, Any],
-) -> dict[str, Any]:
-    updated = dict(page_payload)
-    updated["discussion_controls"] = dict(canonical_page_controls)
-    return updated
+def _assert_no_frontmatter_discussion_controls(*, page_ref: str, page_payload: dict[str, Any]) -> None:
+    raw_frontmatter = page_payload.get("frontmatter")
+    if not isinstance(raw_frontmatter, dict):
+        return
+    present_keys = sorted(
+        raw_key.strip()
+        for raw_key in raw_frontmatter.keys()
+        if isinstance(raw_key, str) and raw_key.strip() in _FRONTMATTER_DISCUSSION_CONTROL_KEYS
+    )
+    if present_keys:
+        raise ValueError(
+            "Page payload contains non-canonical frontmatter discussion controls for "
+            f"{page_ref}: {', '.join(present_keys)}. Use top-level discussion_controls instead."
+        )
 
 
 def _extract_canonical_page_controls(page_payload: dict[str, Any]) -> dict[str, Any] | None:
@@ -126,14 +112,6 @@ def _extract_canonical_page_controls(page_payload: dict[str, Any]) -> dict[str, 
     return normalized if normalized else {}
 
 
-def _extract_legacy_frontmatter_controls(page_payload: dict[str, Any]) -> dict[str, Any] | None:
-    raw_frontmatter = page_payload.get("frontmatter")
-    if not isinstance(raw_frontmatter, dict):
-        return None
-    normalized = _normalize_controls(raw_frontmatter)
-    return normalized if normalized else None
-
-
 def _normalize_controls(raw_controls: Any) -> dict[str, Any]:
     if not isinstance(raw_controls, dict):
         return {}
@@ -141,8 +119,8 @@ def _normalize_controls(raw_controls: Any) -> dict[str, Any]:
     for raw_key, raw_value in raw_controls.items():
         if not isinstance(raw_key, str):
             continue
-        canonical_key = _CONTROL_KEY_ALIASES.get(raw_key)
-        if canonical_key is None or canonical_key not in _CANONICAL_CONTROL_KEYS:
+        canonical_key = raw_key.strip()
+        if canonical_key not in _CANONICAL_CONTROL_KEYS:
             continue
         normalized_value = _normalize_control_value(canonical_key=canonical_key, raw_value=raw_value)
         if normalized_value is None:

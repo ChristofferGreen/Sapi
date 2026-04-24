@@ -24,7 +24,6 @@ from sapi.comments.comments_pipeline import (
 )
 from sapi.comments.controls import (
     SiteDiscussionControls,
-    apply_canonical_page_discussion_controls,
     load_site_discussion_controls,
     resolve_page_discussion_controls,
 )
@@ -141,17 +140,12 @@ def main() -> int:
 
     try:
         for target in targets:
-            page_controls = resolve_page_discussion_controls(
+            resolve_page_discussion_controls(
                 site_controls=site_controls,
                 page_ref=target.page_ref,
                 page_payload=target.page_payload,
             )
             page_payload = target.page_payload
-            if page_controls.canonical_page_controls_to_write is not None:
-                page_payload = apply_canonical_page_discussion_controls(
-                    page_payload=page_payload,
-                    canonical_page_controls=page_controls.canonical_page_controls_to_write,
-                )
 
             record_semantic_invocation(
                 flow_key="comment_section_generation",

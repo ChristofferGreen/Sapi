@@ -32,6 +32,14 @@ class CanonicalOnlyDocContractTests(unittest.TestCase):
             "removed non-canonical inputs `--user`, `--page`, positional count `<n>`, and `--comment-web-evidence` MUST fail fast",
             section,
         )
+        self.assertIn(
+            "non-canonical schema IDs such as `persona_discussion_controls_v1` are removed and MUST NOT be imported",
+            section,
+        )
+        self.assertIn(
+            "non-canonical `persona_discussion_*` keys are removed and MUST NOT be imported",
+            section,
+        )
         self.assertIn("legacy HTML comment markers are non-canonical and MUST fail fast", section)
         self.assertIn("markdown frontmatter-only controls are non-canonical and MUST fail fast", section)
         self.assertNotIn("compatibility input aliases:", section)
@@ -49,6 +57,10 @@ class CanonicalOnlyDocContractTests(unittest.TestCase):
         )
         self.assertIn(
             "reject removed non-canonical comment flags (`--user`, `--page`, positional count `<n>`, `--comment-web-evidence`) with usage error",
+            comments_section,
+        )
+        self.assertIn(
+            "accept only canonical discussion-controls schema/key names; ignore removed schema id `persona_discussion_controls_v1` and removed `persona_discussion_*` keys",
             comments_section,
         )
         self.assertIn("fail fast on removed non-canonical aliases instead of normalizing them", wrapper_section)

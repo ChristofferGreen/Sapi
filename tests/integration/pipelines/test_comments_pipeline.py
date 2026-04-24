@@ -694,7 +694,7 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             self.assertIn("strongest_opposing_point_ack", result.stderr)
             assert_no_run_containers(space_root)
 
-    def test_legacy_frontmatter_controls_are_written_to_canonical_page_json_metadata(self) -> None:
+    def test_legacy_frontmatter_controls_fail_fast_without_writing_page_json(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
             site_path = bootstrap_site_and_space(tmp_root, "alpha")
@@ -730,15 +730,13 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                     "--mock-llm",
                 ]
             )
-            self.assertEqual(result.returncode, 0, msg=result.stderr)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("non-canonical frontmatter discussion controls", result.stderr)
+            assert_no_run_containers(space_root)
 
             topic_payload = json.loads((space_root / "topics" / f"{topic_id}.json").read_text())
-            self.assertEqual(
-                topic_payload["discussion_controls"],
-                {"enabled": False, "roster": ["alice", "bob"], "max_turns": 4},
-            )
+            self.assertNotIn("discussion_controls", topic_payload)
             self.assertEqual(topic_payload["frontmatter"], frontmatter_controls)
-            self.assertNotIn("persona_discussion_enabled", topic_payload)
 
     def _write_topic(self, space_root: Path, *, topic_id: str, title: str) -> None:
         (space_root / "topics" / f"{topic_id}.json").write_text(

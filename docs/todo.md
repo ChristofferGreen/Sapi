@@ -47,14 +47,13 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0320`
-2. `TODO-0321`
-3. `TODO-0322`
-4. `TODO-0323`
-5. `TODO-0324`
-6. `TODO-0325`
-7. `TODO-0326`
-8. `TODO-0338`
+1. `TODO-0321`
+2. `TODO-0322`
+3. `TODO-0323`
+4. `TODO-0324`
+5. `TODO-0325`
+6. `TODO-0326`
+7. `TODO-0338`
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -68,7 +67,7 @@ Task template:
 
 - P0 Foundation/contracts: TODO-0324, TODO-0325, TODO-0338
 - P1 Core product behavior: TODO-0339, TODO-0340, TODO-0341
-- P2 Social/eval/hardening: TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0326, TODO-0327, TODO-0342
+- P2 Social/eval/hardening: TODO-0321, TODO-0322, TODO-0323, TODO-0326, TODO-0327, TODO-0342
 - P3 Continuous docs governance: TODO-0327
 
 ### Execution Queue (Recommended)
@@ -82,10 +81,9 @@ Wave B (ingest + projection + lint):
 1. (none currently)
 
 Wave C (query + social + hardening + release):
-1. TODO-0320
-2. TODO-0321
-3. TODO-0322
-4. TODO-0323
+1. TODO-0321
+2. TODO-0322
+3. TODO-0323
 
 Wave D (space/subspace AI overview article):
 1. TODO-0338
@@ -112,7 +110,7 @@ Cross-cutting docs backlog:
 | Section 7.3 query pipeline | TODO-0339 |
 | Section 7.4 persona catalog | - |
 | Section 7.5 profile pages/history | - |
-| Section 7.6 comments pipeline/rendering | TODO-0320, TODO-0321, TODO-0322, TODO-0323 |
+| Section 7.6 comments pipeline/rendering | TODO-0321, TODO-0322, TODO-0323 |
 | Section 7.7 comment quality harness | - |
 | Section 8 site/UI/static build | TODO-0340, TODO-0341 |
 | Section 9 observability/safety/runtime controls | TODO-0341 |
@@ -130,7 +128,7 @@ Cross-cutting docs backlog:
 | Section 5 (path + registry contracts) | TODO-0324, TODO-0325 |
 | Section 6 (semantic execution engine + retry/repair) | TODO-0339 |
 | Section 7 (transaction/rollback) | TODO-0339 |
-| Section 8 (pipeline execution contracts) | TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0339, TODO-0341 |
+| Section 8 (pipeline execution contracts) | TODO-0321, TODO-0322, TODO-0323, TODO-0339, TODO-0341 |
 | Section 9 (deterministic build/projection) | TODO-0340, TODO-0341 |
 | Section 10 (relation persistence) | TODO-0326 |
 | Section 11 (lint/warning threshold) | - |
@@ -145,7 +143,7 @@ Cross-cutting docs backlog:
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (test module layout) | TODO-0327, TODO-0342 |
-| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0324, TODO-0325, TODO-0326, TODO-0339, TODO-0341, TODO-0342 |
+| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0321, TODO-0322, TODO-0323, TODO-0324, TODO-0325, TODO-0326, TODO-0339, TODO-0341, TODO-0342 |
 | Tier 4-6 (determinism/golden/live canary) | TODO-0340, TODO-0342 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0327, TODO-0342 |
 | Section 6 (exit criteria gating) | TODO-0342 |
@@ -282,14 +280,3 @@ Cross-cutting docs backlog:
   - acceptance:
     - `sapi/comments/merge_normalize.py` parses only canonical inline marker.
     - Tests assert legacy marker usage fails fast.
-
-- [ ] TODO-0320: Remove discussion-controls legacy aliases and frontmatter fallback
-  - owner: ai
-  - created_at: 2026-04-13
-  - phase: Phase 5
-  - depends_on: TODO-0313
-  - scope: Remove `persona_discussion_*` key/schema aliases and remove canonical-page fallback to legacy frontmatter controls.
-  - acceptance:
-    - `sapi/comments/controls.py` accepts only canonical schema/key names.
-    - Legacy frontmatter-only controls are no longer imported into effective/canonical controls.
-    - Tests and docs reflect canonical-only controls behavior.

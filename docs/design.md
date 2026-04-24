@@ -1257,12 +1257,14 @@ Page discussion controls:
 - file: `<site_path>/config/discussion_controls.json`
 - schema: `comment_section_discussion_controls_v1`
 - top keys: `defaults`, `pages`
+- non-canonical schema IDs such as `persona_discussion_controls_v1` are removed and MUST NOT be imported
 - control keys:
   - `enabled`
   - `roster`
   - `max_turns`
   - `reply_chance`
   - `max_depth`
+- non-canonical `persona_discussion_*` keys are removed and MUST NOT be imported
 - page-local overrides MUST be read from canonical page JSON metadata (`discussion_controls`) and new writes MUST target canonical page JSON, not markdown
 - markdown frontmatter-only controls are non-canonical and MUST fail fast instead of being imported into effective controls
 - precedence: defaults -> per-page controls -> canonical page JSON metadata

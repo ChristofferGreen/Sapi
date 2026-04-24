@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0320: Remove discussion-controls legacy aliases and frontmatter fallback
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Phase 5
+  - depends_on: TODO-0313
+  - scope: Remove `persona_discussion_*` key/schema aliases and remove canonical-page fallback to legacy frontmatter controls.
+  - acceptance:
+    - `sapi/comments/controls.py` accepts only canonical schema/key names.
+    - Legacy frontmatter-only controls are no longer imported into effective/canonical controls.
+    - Tests and docs reflect canonical-only controls behavior.
+  - notes: source `docs/design.md` Section 7.6; `docs/low_level.md` Section 8.3
+  - evidence: Removed the discussion-controls schema/key alias maps and frontmatter fallback from
+    `sapi/comments/controls.py`, so only canonical `comment_section_discussion_controls_v1` payloads
+    and canonical control keys participate in effective controls. Updated `scripts/create_comments.py`
+    to stop writing canonical page metadata derived from legacy frontmatter, replaced the
+    discussion-controls unit and integration tests with canonical-only coverage, and tightened the
+    design/low-level contract text plus doc-contract assertions.
+
 - [x] TODO-0319: Remove persona/topic identity legacy aliases (`id`, `narrative_id`)
   - owner: ai
   - created_at: 2026-04-13
