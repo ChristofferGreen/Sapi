@@ -48,8 +48,7 @@ def load_registry(registry_path: Path) -> dict[str, Any]:
         if not isinstance(entry, dict):
             raise ValueError(f"Registry spaces[{idx}] must be a table.")
 
-        # Accept historical key `name` as compatibility input.
-        space_name = entry.get("space_name", entry.get("name"))
+        space_name = entry.get("space_name")
         space_root = entry.get("space_root")
 
         if not isinstance(space_name, str) or not space_name.strip():

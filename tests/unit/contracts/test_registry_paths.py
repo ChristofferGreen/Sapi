@@ -171,6 +171,20 @@ space_root = "spaces/b"
             with self.assertRaises(ValueError):
                 load_registry(registry_path)
 
+    def test_name_only_registry_entry_fails_fast(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            registry_path = Path(tmp) / "spaces.toml"
+            registry_path.write_text(
+                """
+[[spaces]]
+name = "alpha"
+space_root = "spaces/alpha"
+""".strip()
+            )
+
+            with self.assertRaisesRegex(ValueError, "missing non-empty space_name"):
+                load_registry(registry_path)
+
 
 if __name__ == "__main__":
     unittest.main()

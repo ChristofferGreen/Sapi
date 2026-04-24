@@ -47,10 +47,9 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0324`
-2. `TODO-0325`
-3. `TODO-0326`
-4. `TODO-0338`
+1. `TODO-0325`
+2. `TODO-0326`
+3. `TODO-0338`
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -62,7 +61,7 @@ Task template:
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: TODO-0324, TODO-0325, TODO-0338
+- P0 Foundation/contracts: TODO-0325, TODO-0338
 - P1 Core product behavior: TODO-0339, TODO-0340, TODO-0341
 - P2 Social/eval/hardening: TODO-0326, TODO-0327, TODO-0342
 - P3 Continuous docs governance: TODO-0327
@@ -70,9 +69,8 @@ Task template:
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. TODO-0324
-2. TODO-0325
-3. TODO-0326
+1. TODO-0325
+2. TODO-0326
 
 Wave B (ingest + projection + lint):
 1. (none currently)
@@ -120,7 +118,7 @@ Cross-cutting docs backlog:
 | --- | --- |
 | Section 2 (runtime model and flow namespaces) | TODO-0338 |
 | Section 4 (core data types/run envelope types) | - |
-| Section 5 (path + registry contracts) | TODO-0324, TODO-0325 |
+| Section 5 (path + registry contracts) | TODO-0325 |
 | Section 6 (semantic execution engine + retry/repair) | TODO-0339 |
 | Section 7 (transaction/rollback) | TODO-0339 |
 | Section 8 (pipeline execution contracts) | TODO-0339, TODO-0341 |
@@ -138,7 +136,7 @@ Cross-cutting docs backlog:
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (test module layout) | TODO-0327, TODO-0342 |
-| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0324, TODO-0325, TODO-0326, TODO-0339, TODO-0341, TODO-0342 |
+| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0325, TODO-0326, TODO-0339, TODO-0341, TODO-0342 |
 | Tier 4-6 (determinism/golden/live canary) | TODO-0340, TODO-0342 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0327, TODO-0342 |
 | Section 6 (exit criteria gating) | TODO-0342 |
@@ -209,7 +207,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-13
   - phase: Cross-cutting
-  - depends_on: TODO-0313, TODO-0314, TODO-0315, TODO-0316, TODO-0317, TODO-0318, TODO-0319, TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0324, TODO-0325, TODO-0326
+  - depends_on: TODO-0313, TODO-0314, TODO-0315, TODO-0316, TODO-0317, TODO-0318, TODO-0319, TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0325, TODO-0326
   - scope: Remove compatibility/deprecation-only test expectations and replace them with strict canonical-only behavior checks.
   - acceptance:
     - Tests no longer assert deprecation warnings or legacy alias acceptance for removed pathways.
@@ -235,13 +233,3 @@ Cross-cutting docs backlog:
   - acceptance:
     - `sapi/core/site_scope.py` no longer contains legacy fallback branch/flag.
     - Site-scope tests assert missing canonical file fails without legacy fallback mode.
-
-- [ ] TODO-0324: Remove registry entry compatibility key `name`
-  - owner: ai
-  - created_at: 2026-04-13
-  - phase: Phase 5
-  - depends_on: TODO-0313
-  - scope: Stop accepting historical registry key `name`; require `space_name` only.
-  - acceptance:
-    - `sapi/core/registry.py` rejects registry entries without `space_name`.
-    - Registry tests cover rejection of `name`-only entries.

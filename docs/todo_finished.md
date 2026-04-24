@@ -4,6 +4,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0324: Remove registry entry compatibility key `name`
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Phase 5
+  - depends_on: TODO-0313
+  - scope: Stop accepting historical registry key `name`; require `space_name` only.
+  - acceptance:
+    - `sapi/core/registry.py` rejects registry entries without `space_name`.
+    - Registry tests cover rejection of `name`-only entries.
+  - notes: source `docs/design.md` Section 5; `docs/low_level.md` Section 5
+  - evidence: Removed the registry loader fallback that treated `name` as a compatibility alias
+    for `space_name` in `sapi/core/registry.py`, so registry entries now fail fast unless they
+    provide the canonical `space_name` key. Added a registry contract test that writes a
+    `name`-only `[[spaces]]` entry and asserts `load_registry()` raises the expected
+    missing-`space_name` validation error, then synchronized `docs/todo.md` to reflect the closed
+    path/registry contract item.
+
 - [x] TODO-0323: Remove legacy parent reference alias `pc-###`
   - owner: ai
   - created_at: 2026-04-13
