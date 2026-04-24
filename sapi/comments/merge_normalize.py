@@ -682,22 +682,16 @@ def _normalize_rebuttal_steelman_ack(
     primary_field = f"{field_name_prefix}turn.strongest_opposing_point_ack"
     alias_field = f"{field_name_prefix}turn.steelman_before_rebuttal"
     strongest_opposing_point_ack = _normalize_string(raw_turn.get("strongest_opposing_point_ack"))
-    steelman_alias = _normalize_string(raw_turn.get("steelman_before_rebuttal"))
+    if "steelman_before_rebuttal" in raw_turn:
+        raise ValueError(
+            f"{alias_field} is a removed non-canonical alias; use {primary_field}."
+        )
 
-    if strongest_opposing_point_ack is None and steelman_alias is None:
+    if strongest_opposing_point_ack is None:
         raise ValueError(
             f"{primary_field} is required for rebuttal turns."
         )
-    if strongest_opposing_point_ack is not None and steelman_alias is not None:
-        if strongest_opposing_point_ack != steelman_alias:
-            raise ValueError(
-                f"{primary_field} must match {alias_field} when both are provided."
-            )
-        return strongest_opposing_point_ack
-    if strongest_opposing_point_ack is not None:
-        return strongest_opposing_point_ack
-    assert steelman_alias is not None
-    return steelman_alias
+    return strongest_opposing_point_ack
 
 
 def _validate_rebuttal_body_steelman_prefix(

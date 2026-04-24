@@ -1296,6 +1296,7 @@ Strict turn schema validation (argumentative turns only):
 - optional `counter_claim_ids`, each value MUST be a valid `claim_id`
 - non-empty `evidence_refs`, every ref is `claim:<claim_id>` or `source:<source_id>`
 - `confidence` numeric, finite, and in `[0.0, 1.0]`
+- rebuttal turns MUST include `strongest_opposing_point_ack`; removed alias `steelman_before_rebuttal` is non-canonical and MUST fail fast
 
 Lightweight social-turn contract:
 - social turns MUST NOT introduce new factual claims or adjudicated claim-vs-claim arguments.

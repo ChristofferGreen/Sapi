@@ -696,6 +696,62 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             self.assertIn("strongest_opposing_point_ack", result.stderr)
             assert_no_run_containers(space_root)
 
+    def test_rebuttal_alias_field_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            topic_id = "topic-alpha"
+            rebuttal_ack = "You are right that early samples were noisy."
+            (space_root / "topics" / f"{topic_id}.json").write_text(
+                json.dumps(
+                    {
+                        "topic_id": topic_id,
+                        "title": "Alpha",
+                        "comment_section": {
+                            "page_ref": f"topic:{topic_id}",
+                            "comments": [
+                                {
+                                    "comment_uid": "comment-legacy-rebuttal--abcde12345",
+                                    "persona_id": "commenter-1",
+                                    "body": (
+                                        rebuttal_ack
+                                        + " I still disagree because later quarters show the same trend."
+                                    ),
+                                    "turn": {
+                                        "position": "rebuttal",
+                                        "claim_ids": [self._VALID_CLAIM_ID],
+                                        "evidence_refs": [f"claim:{self._VALID_CLAIM_ID}"],
+                                        "confidence": 0.78,
+                                        "steelman_before_rebuttal": rebuttal_ack,
+                                    },
+                                    "comment_no": "pc-001",
+                                }
+                            ],
+                        },
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n"
+            )
+
+            result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "create_comments.py"),
+                    "alpha",
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--count",
+                    "5",
+                    "--mock-llm",
+                ]
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("steelman_before_rebuttal", result.stderr)
+            assert_no_run_containers(space_root)
+
     def test_legacy_frontmatter_controls_fail_fast_without_writing_page_json(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)

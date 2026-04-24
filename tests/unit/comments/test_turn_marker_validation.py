@@ -184,6 +184,30 @@ class TurnMarkerValidationUnitTests(unittest.TestCase):
                 ],
             )
 
+        with self.assertRaisesRegex(ValueError, "steelman_before_rebuttal"):
+            merge_comment_section(
+                page_ref="topic:topic-alpha",
+                page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+                semantic_comments=[
+                    {
+                        "persona_id": "commenter-1",
+                        "body": (
+                            "You correctly note that publication lag can distort counts. "
+                            "I still disagree because the source shows the trend persisted after normalization."
+                        ),
+                        "turn": {
+                            "position": "rebuttal",
+                            "claim_ids": [_VALID_CLAIM_ID],
+                            "evidence_refs": [f"claim:{_VALID_CLAIM_ID}"],
+                            "confidence": 0.71,
+                            "steelman_before_rebuttal": (
+                                "You correctly note that publication lag can distort counts."
+                            ),
+                        },
+                    }
+                ],
+            )
+
         with self.assertRaisesRegex(ValueError, "start of rebuttal body"):
             merge_comment_section(
                 page_ref="topic:topic-alpha",

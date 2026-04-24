@@ -441,6 +441,7 @@ Required preflight:
 - reject removed non-canonical comment flags (`--user`, `--page`, positional count `<n>`, `--comment-web-evidence`) with usage error
 - accept only canonical discussion-controls schema/key names; ignore removed schema id `persona_discussion_controls_v1` and removed `persona_discussion_*` keys
 - reject legacy HTML comment turn markers `<!-- turn:{...} -->`; only canonical `<<turn:{...}>>` markers are accepted
+- accept only canonical rebuttal field `strongest_opposing_point_ack`; reject removed alias `steelman_before_rebuttal`
 - validate `--count` in `[5, 50]`
 
 Control flow:

@@ -4,6 +4,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0322: Remove rebuttal-field alias `steelman_before_rebuttal`
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Phase 5
+  - depends_on: TODO-0313
+  - scope: Enforce only canonical rebuttal field `strongest_opposing_point_ack`.
+  - acceptance:
+    - Comment normalization rejects `steelman_before_rebuttal`.
+    - Tests and contracts use only canonical rebuttal field naming.
+  - notes: source `docs/design.md` Section 7.6; `docs/low_level.md` Section 8.3
+  - evidence: Removed the `steelman_before_rebuttal` compatibility path from
+    `sapi/comments/merge_normalize.py`, so rebuttal normalization now accepts only canonical
+    `strongest_opposing_point_ack` and raises a validation error when the removed alias is present.
+    Updated the rebuttal unit and integration tests to assert fail-fast rejection, and tightened the
+    design/low-level contract text plus doc-contract assertions to use only canonical naming.
+
 - [x] TODO-0321: Remove legacy HTML turn-marker compatibility
   - owner: ai
   - created_at: 2026-04-13

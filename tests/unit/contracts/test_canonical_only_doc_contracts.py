@@ -40,6 +40,10 @@ class CanonicalOnlyDocContractTests(unittest.TestCase):
             "non-canonical `persona_discussion_*` keys are removed and MUST NOT be imported",
             section,
         )
+        self.assertIn(
+            "rebuttal turns MUST include `strongest_opposing_point_ack`; removed alias `steelman_before_rebuttal` is non-canonical and MUST fail fast",
+            section,
+        )
         self.assertIn("legacy HTML comment markers are non-canonical and MUST fail fast", section)
         self.assertIn("markdown frontmatter-only controls are non-canonical and MUST fail fast", section)
         self.assertNotIn("compatibility input aliases:", section)
@@ -65,6 +69,10 @@ class CanonicalOnlyDocContractTests(unittest.TestCase):
         )
         self.assertIn(
             "reject legacy HTML comment turn markers `<!-- turn:{...} -->`; only canonical `<<turn:{...}>>` markers are accepted",
+            comments_section,
+        )
+        self.assertIn(
+            "accept only canonical rebuttal field `strongest_opposing_point_ack`; reject removed alias `steelman_before_rebuttal`",
             comments_section,
         )
         self.assertIn("fail fast on removed non-canonical aliases instead of normalizing them", wrapper_section)
