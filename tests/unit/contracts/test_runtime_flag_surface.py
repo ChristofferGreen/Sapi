@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import contextlib
+import io
 import subprocess
 import sys
 import unittest
@@ -36,6 +38,30 @@ class RuntimeFlagSurfaceContractTests(unittest.TestCase):
         option_strings = set(parser._option_string_actions.keys())
         self.assertNotIn("--source-only", option_strings)
         self.assertNotIn("--query-only", option_strings)
+
+    def test_comments_entrypoint_does_not_expose_removed_alias_flags(self) -> None:
+        parser = create_comments_entrypoint.build_parser()
+        option_strings = set(parser._option_string_actions.keys())
+        self.assertNotIn("--user", option_strings)
+        self.assertNotIn("--page", option_strings)
+        self.assertNotIn("--comment-web-evidence", option_strings)
+
+    def test_comments_entrypoint_rejects_removed_alias_flags_as_unknown_arguments(self) -> None:
+        parser = create_comments_entrypoint.build_parser()
+        removed_alias_cases = [
+            (["--user", "persona-maya-santoro"], "--user persona-maya-santoro"),
+            (["--page", "topic:topic-a"], "--page topic:topic-a"),
+            (["--comment-web-evidence"], "--comment-web-evidence"),
+        ]
+        base_argv = ["alpha", "--registry-path", "/tmp/registry.toml", "--count", "5"]
+        for removed_alias_argv, expected_fragment in removed_alias_cases:
+            stderr = io.StringIO()
+            with self.subTest(flag=removed_alias_argv[0]), contextlib.redirect_stderr(stderr):
+                with self.assertRaises(SystemExit) as exc:
+                    parser.parse_args([*base_argv, *removed_alias_argv])
+            self.assertEqual(exc.exception.code, 2)
+            self.assertIn("unrecognized arguments:", stderr.getvalue())
+            self.assertIn(expected_fragment, stderr.getvalue())
 
     def test_semantic_entrypoints_expose_shared_runtime_flag_surface(self) -> None:
         parser_builders = [

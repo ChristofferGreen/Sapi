@@ -4,6 +4,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0318: Remove direct-script compatibility aliases for comments entrypoint
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Phase 4
+  - depends_on: TODO-0313
+  - scope: Remove hidden CLI alias inputs in `scripts/create_comments.py` (`--user`, `--page`, `--comment-web-evidence`).
+  - acceptance:
+    - Parser no longer accepts deprecated alias flags.
+    - Evidence mode is controlled only by canonical `--comment-evidence-mode`.
+    - Script-level tests assert alias flags fail as unknown arguments.
+  - notes: source `docs/design.md` Section 7.6; `docs/low_level.md` Sections 8.3 and 12
+  - evidence: Removed the hidden `--user`, `--page`, and `--comment-web-evidence` arguments from
+    `scripts/create_comments.py`, so the direct comments entrypoint now accepts only canonical
+    `--comment-user`, `--comment-page`, and `--comment-evidence-mode` inputs. Updated
+    `tests/unit/contracts/test_runtime_flag_surface.py` to assert the removed flags are absent from
+    the parser surface and fail as unrecognized arguments when passed to `argparse`.
+
 - [x] TODO-0317: Remove semantic flow-key compatibility alias `persona_comment_generation`
   - owner: ai
   - created_at: 2026-04-13

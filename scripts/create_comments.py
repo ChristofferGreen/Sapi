@@ -77,12 +77,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--registry-path", required=True)
     parser.add_argument("--count", required=True, type=int)
     parser.add_argument("--comment-user", action="append", default=[])
-    parser.add_argument("--user", action="append", default=[], help=argparse.SUPPRESS)
     parser.add_argument("--comment-page", action="append", default=[])
-    parser.add_argument("--page", action="append", default=[], help=argparse.SUPPRESS)
     parser.add_argument("--comment-seed")
     parser.add_argument("--comment-evidence-mode")
-    parser.add_argument("--comment-web-evidence", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--simulate-terminal-failure", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--verbose", action="store_true")
     add_runtime_flag_arguments(parser)
@@ -127,10 +124,7 @@ def main() -> int:
         space_root = resolve_space_root(registry_path, args.space_name)
 
         requested_count = validate_comment_count(args.count)
-        evidence_mode = normalize_evidence_mode(
-            args.comment_evidence_mode,
-            comment_web_evidence=bool(args.comment_web_evidence),
-        )
+        evidence_mode = normalize_evidence_mode(args.comment_evidence_mode)
         comment_user_filters = _normalize_comment_user_filters(args)
         selected_persona_ids = _resolve_selected_persona_ids(comment_user_filters=comment_user_filters)
         targets = collect_comment_targets(
@@ -367,11 +361,7 @@ def main() -> int:
 
 
 def _normalize_comment_user_filters(args: argparse.Namespace) -> list[str]:
-    comment_users = [str(value).strip() for value in args.comment_user if str(value).strip()]
-    user_aliases = [str(value).strip() for value in args.user if str(value).strip()]
-    if comment_users and user_aliases:
-        raise ValueError("Cannot combine --comment-user and alias --user in direct script invocation.")
-    raw = comment_users if comment_users else user_aliases
+    raw = [str(value).strip() for value in args.comment_user if str(value).strip()]
     deduped: list[str] = []
     seen: set[str] = set()
     for persona_id in raw:
@@ -383,11 +373,7 @@ def _normalize_comment_user_filters(args: argparse.Namespace) -> list[str]:
 
 
 def _normalize_comment_page_refs(args: argparse.Namespace) -> list[str]:
-    comment_pages = [str(value).strip() for value in args.comment_page if str(value).strip()]
-    page_aliases = [str(value).strip() for value in args.page if str(value).strip()]
-    if comment_pages and page_aliases:
-        raise ValueError("Cannot combine --comment-page and alias --page in direct script invocation.")
-    return comment_pages if comment_pages else page_aliases
+    return [str(value).strip() for value in args.comment_page if str(value).strip()]
 
 
 def _resolve_selected_persona_ids(*, comment_user_filters: list[str]) -> list[str]:
