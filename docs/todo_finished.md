@@ -4,6 +4,22 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0313: Compatibility purge tracker for canonical-only boundary
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Cross-cutting
+  - scope: Track complete removal of legacy/backward-compatibility behaviors across wrappers, semantic flow keys, domain models, comment controls/markers, registry/site scope, and relation status handling.
+  - acceptance:
+    - All compatibility pathways enumerated in TODO-0314..TODO-0327 are represented in discrete tasks.
+    - Queue/coverage snapshots in this file are synchronized to those tasks.
+  - notes: source `docs/todo.md` queue and coverage snapshot sections
+  - evidence: Audited the open compatibility-purge chain and confirmed every enumerated pathway is
+    covered by the discrete leaf tasks `TODO-0314..TODO-0327`. Removed `TODO-0313` from the open
+    Ready Now, priority, execution-queue, and coverage snapshot sections, promoted the leaf tasks
+    into the ready queue, and added `tests/unit/contracts/test_compatibility_purge_tracker_closure.py`
+    so the tracker stays closed once its bookkeeping role is complete.
+
 - [x] TODO-0350: Add related-link quality gates and coverage
   - owner: ai
   - created_at: 2026-04-24

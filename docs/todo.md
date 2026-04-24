@@ -47,33 +47,40 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0313`
-2. `TODO-0338`
+1. `TODO-0314`
+2. `TODO-0315`
+3. `TODO-0316`
+4. `TODO-0317`
+5. `TODO-0318`
+6. `TODO-0319`
+7. `TODO-0320`
+8. `TODO-0321`
+9. `TODO-0322`
+10. `TODO-0323`
+11. `TODO-0324`
+12. `TODO-0325`
+13. `TODO-0326`
+14. `TODO-0338`
 
 ### Immediate Next 10 (After Ready Now)
 
-1. TODO-0314
-2. TODO-0315
-3. TODO-0316
-4. TODO-0317
-5. TODO-0318
-6. TODO-0319
-7. TODO-0339
-8. TODO-0340
-9. TODO-0341
-10. TODO-0342
+1. TODO-0327
+2. TODO-0339
+3. TODO-0340
+4. TODO-0341
+5. TODO-0342
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: TODO-0313, TODO-0317, TODO-0318, TODO-0319, TODO-0324, TODO-0325, TODO-0338
+- P0 Foundation/contracts: TODO-0317, TODO-0318, TODO-0319, TODO-0324, TODO-0325, TODO-0338
 - P1 Core product behavior: TODO-0314, TODO-0315, TODO-0316, TODO-0339, TODO-0340, TODO-0341
 - P2 Social/eval/hardening: TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0326, TODO-0327, TODO-0342
-- P3 Continuous docs governance: TODO-0313, TODO-0327
+- P3 Continuous docs governance: TODO-0327
 
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. TODO-0313
+1. TODO-0314
 2. TODO-0317
 3. TODO-0318
 4. TODO-0319
@@ -82,9 +89,8 @@ Wave A (bootstrap + contracts):
 7. TODO-0326
 
 Wave B (ingest + projection + lint):
-1. TODO-0314
-2. TODO-0315
-3. TODO-0316
+1. TODO-0315
+2. TODO-0316
 
 Wave C (query + social + hardening + release):
 1. TODO-0320
@@ -107,9 +113,9 @@ Cross-cutting docs backlog:
 | Design area | Primary TODO IDs |
 | --- | --- |
 | Section 1 (scope/authority/reading) | - |
-| Section 2 (runtime policy + semantic loop + mock mode) | TODO-0313 |
+| Section 2 (runtime policy + semantic loop + mock mode) | TODO-0314 |
 | Section 3 (core concepts + identity invariants) | TODO-0318, TODO-0319 |
-| Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | TODO-0313, TODO-0317 |
+| Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | TODO-0314, TODO-0317 |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | - |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | TODO-0314, TODO-0315, TODO-0316 |
 | Section 7.1 ingest pipeline | TODO-0314, TODO-0339 |
@@ -152,7 +158,7 @@ Cross-cutting docs backlog:
 | Section 2 (test module layout) | TODO-0327, TODO-0342 |
 | Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0314, TODO-0315, TODO-0316, TODO-0317, TODO-0318, TODO-0319, TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0324, TODO-0325, TODO-0326, TODO-0339, TODO-0341, TODO-0342 |
 | Tier 4-6 (determinism/golden/live canary) | TODO-0340, TODO-0342 |
-| Section 4-5 (CI gating matrix + command wiring) | TODO-0313, TODO-0327, TODO-0342 |
+| Section 4-5 (CI gating matrix + command wiring) | TODO-0327, TODO-0342 |
 | Section 6 (exit criteria gating) | TODO-0342 |
 
 ### Task Blocks
@@ -360,12 +366,3 @@ Cross-cutting docs backlog:
   - acceptance:
     - Design/low-level docs remove compatibility alias acceptance policy and deprecation wording for removed paths.
     - Contract tests are updated to canonical-only assertions.
-
-- [ ] TODO-0313: Compatibility purge tracker for canonical-only boundary
-  - owner: ai
-  - created_at: 2026-04-13
-  - phase: Cross-cutting
-  - scope: Track complete removal of legacy/backward-compatibility behaviors across wrappers, semantic flow keys, domain models, comment controls/markers, registry/site scope, and relation status handling.
-  - acceptance:
-    - All compatibility pathways enumerated in TODO-0314..TODO-0327 are represented in discrete tasks.
-    - Queue/coverage snapshots in this file are synchronized to those tasks.
