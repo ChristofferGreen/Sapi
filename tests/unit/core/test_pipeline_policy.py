@@ -8,6 +8,7 @@ from pathlib import Path
 from sapi.contracts.run_envelopes import (
     CommentRunFields,
     IngestRunFields,
+    OverviewRunFields,
     PersonaProfileRunFields,
     QueryRunFields,
     RunEnvelopeBase,
@@ -164,6 +165,7 @@ class PipelinePolicyTests(unittest.TestCase):
             cases = [
                 ("comment_section_pipeline", _comment_fields(), "run-20260412T120004Z--comments000"),
                 ("persona_profile_pipeline", _profile_fields(), "run-20260412T120005Z--profiles000"),
+                ("overview_pipeline", _overview_fields(), "run-20260412T120006Z--overview000"),
             ]
             for flow_key, flow_fields, run_id in cases:
                 with self.subTest(flow_key=flow_key):
@@ -217,6 +219,27 @@ class PipelinePolicyTests(unittest.TestCase):
             self.assertEqual(lint_payload["error_count"], 0)
             self.assertEqual(lint_payload["warning_count"], 0)
             self.assertEqual(lint_payload["info_count"], 0)
+
+    def test_success_overview_run_writes_generate_overview_lint_workflow(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space"
+            base = _base(flow_key="overview_pipeline", run_id="run-20260412T120007Z--overview001")
+            base.status = "success"
+            tx = ArtifactTransaction()
+
+            result = finalize_pipeline_run(
+                space_root=space_root,
+                base=base,
+                flow_fields=_overview_fields(),
+                transaction=tx,
+                force_mode=False,
+            )
+
+            self.assertEqual(result.exit_code, 0)
+            lint_path = space_root / "runs" / base.run_id / "lint.json"
+            self.assertTrue(lint_path.is_file())
+            lint_payload = json.loads(lint_path.read_text())
+            self.assertEqual(lint_payload["workflow"], "generate_overview")
 
 
 def _base(*, flow_key: str, run_id: str) -> RunEnvelopeBase:
@@ -296,6 +319,19 @@ def _profile_fields() -> PersonaProfileRunFields:
         history_updated=0,
         history_reused=0,
         pages_changed=0,
+    )
+
+
+def _overview_fields() -> OverviewRunFields:
+    return OverviewRunFields(
+        overview_id="space--alpha",
+        scope_kind="space",
+        scope_name="alpha",
+        source_records_used=1,
+        claims_used=2,
+        relations_used=1,
+        topics_used=1,
+        article_path="/tmp/space/outputs/space_overview/space--alpha/article.md",
     )
 
 

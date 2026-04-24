@@ -5,7 +5,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from sapi.contracts.run_envelopes import CommentRunFields, QueryRunFields, RunEnvelopeBase, write_run_record
+from sapi.contracts.run_envelopes import (
+    CommentRunFields,
+    OverviewRunFields,
+    QueryRunFields,
+    RunEnvelopeBase,
+    write_run_record,
+)
 
 
 class RunEnvelopeMetadataInvariantTests(unittest.TestCase):
@@ -17,6 +23,7 @@ class RunEnvelopeMetadataInvariantTests(unittest.TestCase):
                 "query_pipeline",
                 "comment_section_pipeline",
                 "persona_profile_pipeline",
+                "overview_pipeline",
             ]
             required_base_keys = {
                 "run_id",
@@ -47,6 +54,13 @@ class RunEnvelopeMetadataInvariantTests(unittest.TestCase):
                     "generation_isolation",
                 },
                 "persona_profile_pipeline": {"persona_ids", "history_generated", "history_updated", "pages_changed"},
+                "overview_pipeline": {
+                    "overview_id",
+                    "scope_kind",
+                    "scope_name",
+                    "source_records_used",
+                    "article_path",
+                },
             }
 
             for flow in flows:
@@ -231,6 +245,17 @@ def _extension_for(flow_key: str) -> object:
             history_updated=1,
             history_reused=0,
             pages_changed=1,
+        )
+    if flow_key == "overview_pipeline":
+        return OverviewRunFields(
+            overview_id="space--alpha",
+            scope_kind="space",
+            scope_name="alpha",
+            source_records_used=1,
+            claims_used=1,
+            relations_used=1,
+            topics_used=1,
+            article_path="/tmp/space/outputs/space_overview/space--alpha/article.md",
         )
     raise AssertionError(f"Unexpected flow_key: {flow_key}")
 

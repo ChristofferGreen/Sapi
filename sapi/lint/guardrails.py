@@ -39,11 +39,13 @@ _PIPELINE_AFFECTING_PATH_PREFIXES: tuple[str, ...] = (
     "sapi/query/",
     "sapi/comments/",
     "sapi/profiles/",
+    "sapi/overview/",
     "sapi/build/",
     "scripts/ingest_source.py",
     "scripts/query.py",
     "scripts/create_comments.py",
     "scripts/generate_profiles.py",
+    "scripts/generate_overview.py",
     "scripts/build_site.py",
     "scripts/evaluate_source.py",
     "ingest.sh",
@@ -105,6 +107,15 @@ _SEMANTIC_EXECUTION_CONTRACTS: dict[str, tuple[tuple[str, tuple[str, ...]], ...]
             ),
         ),
     ),
+    "scripts/generate_overview.py": (
+        (
+            "space_overview_generation",
+            (
+                "build_semantic_spec_from_contract(",
+                "run_semantic_flow(",
+            ),
+        ),
+    ),
     "scripts/ingest_source.py": (
         ("ingest_extraction", ("run_ingest_extraction_and_persist_canonical(",)),
         ("topic_generation", ("run_topic_generation_and_persist_canonical(",)),
@@ -114,6 +125,9 @@ _SEMANTIC_EXECUTION_CONTRACTS: dict[str, tuple[tuple[str, tuple[str, ...]], ...]
     ),
     "sapi/ingest/topic_generator.py": (
         ("topic_generation", ("resolve_semantic_invocation_spec(", "run_semantic_flow(")),
+    ),
+    "sapi/overview/overview_pipeline.py": (
+        ("space_overview_generation", ("validate_overview_semantic_payload(",)),
     ),
 }
 

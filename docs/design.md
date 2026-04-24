@@ -656,6 +656,7 @@ Gate behavior by workflow key (normative):
 | `ingest_source` | `ingest.sh` | `scripts/ingest_source.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
 | `create_comments` | `create_comments.sh` | `scripts/create_comments.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
 | `generate_profiles` | `generate_profiles.sh` | `scripts/generate_profiles.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
+| `generate_overview` | direct script (no wrapper yet) | `scripts/generate_overview.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
 | `build_site` | `regenerate_web.sh` | `scripts/build_site.py` | fail on conversion/link errors (independent of warning threshold) |
 | `query` | `query.sh` | `scripts/query.py` | never blocked solely by lint warnings/errors; include lint summary in response metadata |
 | `rebuild_topic_collection` | compatibility-only maintenance path | compatibility entrypoint (if present) | fail when `error_count > 0`; warnings map to status via threshold policy |
@@ -663,7 +664,7 @@ Gate behavior by workflow key (normative):
 - `validate.sh` is a lint-engine dispatcher (`scripts/lint.py`) and does not define a separate workflow key; it evaluates one of the workflow keys above.
 
 Lint gate scope note (normative):
-- lint-gated workflows (`ingest_source`, `create_comments`, `generate_profiles`, plus compatibility-only `rebuild_topic_collection` when present) apply warning-threshold status mapping when `error_count == 0`.
+- lint-gated workflows (`ingest_source`, `create_comments`, `generate_profiles`, `generate_overview`, plus compatibility-only `rebuild_topic_collection` when present) apply warning-threshold status mapping when `error_count == 0`.
 - non-lint-gated workflows (for example `query`) still emit lint totals in run metadata but MUST NOT fail solely due to lint warnings/errors.
 
 Final-page contradiction resolution (normative):
@@ -843,7 +844,7 @@ Core steps:
 
 Run envelope model for multi-semantic commands (normative):
 - run metadata is command-scoped (`run_id` identifies one wrapper/entrypoint invocation).
-- `flow_key` identifies the command/pipeline (`ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`).
+- `flow_key` identifies the command/pipeline (`ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`, `overview_pipeline`).
 - `semantic_flows[]` records an ordered unique list of semantic generation flow keys executed at least once during that command invocation.
 - `semantic_flow_invocation_counts` records per-flow invocation counts for the same command invocation.
 - normal ingest writes `semantic_flows: [ingest_extraction, topic_generation]` and `semantic_flow_invocation_counts: {ingest_extraction: 1, topic_generation: 1}`.
@@ -1029,6 +1030,9 @@ Overview scope contract (normative):
   `<space_root>/outputs/space_overview/<overview_id>/overview.json`.
 - deterministic markdown/article projection path is
   `<space_root>/outputs/space_overview/<overview_id>/article.md`.
+- if a scope has no ingested source records yet, overview generation MUST still complete without
+  crashing, emit the five required sections with empty reference arrays, and add explicit warnings
+  stating that ingest context is missing.
 
 Overview JSON contract (normative):
 - top-level keys MUST be `schema_version`, `metadata`, `sections`, `references`, `freshness`, and
@@ -1712,7 +1716,7 @@ Canonical run-record metadata (normative base envelope for committed runs):
   - `toolchain_versions` (string->string map)
   - lint totals (`lint_error_count`, `lint_warning_count`, `lint_info_count`)
 - run-record `flow_key` namespace is command/pipeline oriented and distinct from generation-spec semantic `flow_key` values.
-- `flow_key` allowed values: `ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`
+- `flow_key` allowed values: `ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`, `overview_pipeline`
 - `semantic_flows` values MUST be an ordered unique subset of canonical semantic flow keys from: `ingest_extraction`, `topic_generation`, `query_synthesis`, `comment_section_generation`, `persona_profile_generation`, `space_overview_generation`
 - `semantic_flow_invocation_counts` keys MUST be canonical semantic flow keys and values MUST be positive integers; every key in `semantic_flows` MUST appear in this map.
 - flow-specific frontmatter extensions:
@@ -1720,6 +1724,7 @@ Canonical run-record metadata (normative base envelope for committed runs):
   - query pipeline: `query_id`, `mode`, `scope`, `claims_used`, `sources_used`, `contradictions_considered`, nullable `manifest_path`
   - comment-section pipeline: `target_page_refs`, `comment_user_filters`, `requested_count`, `comments_added`, `evidence_mode`, nullable `evidence_snapshot_path`
   - persona-profile pipeline: `persona_ids`, `history_generated`, `history_updated`, `history_reused`, `pages_changed`
+  - overview pipeline: `overview_id`, `scope_kind`, `scope_name`, `source_records_used`, `claims_used`, `relations_used`, `topics_used`, nullable `article_path`
 - flows that do not execute lint/build stages MUST still write lint totals with a consistent null-or-zero policy chosen by implementation and enforced in tests
 - required body sections: `## Summary`, `## Changes`, `## Lint Summary`, `## Errors`
 

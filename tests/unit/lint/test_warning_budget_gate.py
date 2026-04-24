@@ -76,6 +76,7 @@ class WarningBudgetGateTests(unittest.TestCase):
             "ingest_source",
             "create_comments",
             "generate_profiles",
+            "generate_overview",
             "rebuild_topic_collection",
         ):
             with self.subTest(workflow=workflow, case="at-threshold"):

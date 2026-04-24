@@ -4,6 +4,29 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0339: Implement canonical `space_overview_generation` semantic flow and artifacts
+  - owner: ai
+  - created_at: 2026-04-16
+  - finished_at: 2026-04-24
+  - phase: Phase 6
+  - depends_on: TODO-0338
+  - scope: Add a pipeline that synthesizes a long-form topic overview from ingested sources/claims/relations for each space (and selected subspaces), using shared semantic execution policy.
+  - acceptance:
+    - Pipeline writes canonical artifacts under `spaces/<space_name>/outputs/space_overview/<overview_id>/` including structured JSON and markdown article outputs.
+    - JSON artifact includes required sections: topic framing, key themes, agreement/disagreement map, methods/evidence landscape, open questions, and citation anchors.
+    - Output sections include auditable references to canonical `source_id` and `claim_id` values.
+    - Run envelopes include canonical flow key (`space_overview_generation`) and accurate attempt/invocation accounting.
+    - Pipeline handles “no ingested sources” as a clear non-crashing outcome with explicit warning/status metadata.
+  - notes: source `docs/design.md` Sections 7.2.1 and 10; `docs/low_level.md` Sections 3, 4, and 8.5
+  - evidence: Added `sapi/overview/overview_pipeline.py` plus the direct entrypoint
+    `scripts/generate_overview.py`, including deterministic `context.json` staging, canonical
+    `overview.json` validation, deterministic `article.md` rendering, run/lint metadata via the new
+    `overview_pipeline` flow key, and explicit `success_with_warnings` handling for no-source
+    scopes. Updated the overview schema/spec to allow the no-source warning path without synthetic
+    citations, expanded docs/testing topology for the new overview package/entrypoint, and added
+    unit/integration coverage for scope resolution, overview artifact writes, warning-mode runs,
+    rollback, and run-envelope/lint workflow invariants.
+
 - [x] TODO-0338: Define canonical contracts for space/subspace overview synthesis
   - owner: ai
   - created_at: 2026-04-16

@@ -26,6 +26,8 @@ tests/
       test_warning_budget_gate.py
     query/
       test_query_mode_preflight.py
+    overview/
+      test_overview_pipeline.py
   integration/
     failure/
       test_semantic_repair_exhaustion_rollback.py
@@ -38,6 +40,7 @@ tests/
       test_query_pipeline_outputs.py
       test_comments_pipeline.py
       test_profiles_pipeline.py
+      test_overview_pipeline.py
     build/
       test_build_determinism.py
       test_site_new_refresh_policy.py
@@ -114,6 +117,9 @@ tests/
   - Module: `tests/integration/pipelines/test_comments_pipeline.py`
 - [x] Profiles flow writes profile JSON + history + run/lint metadata.
   - Module: `tests/integration/pipelines/test_profiles_pipeline.py`
+- [x] Overview flow writes `context.json`, `overview.json`, `article.md`, and run/lint metadata,
+  including the no-source warning path.
+  - Modules: `tests/unit/overview/test_overview_pipeline.py`, `tests/integration/pipelines/test_overview_pipeline.py`
 - [x] `evaluate_source.sh` default run emits required markdown artifact pack + manifest linkage.
   - Module: `tests/integration/wrappers/test_evaluate_source_harness.py`
 - [x] `evaluate_source.sh --comments <n>` emits `comments_review.md`; invalid comments args fail fast with clear errors.

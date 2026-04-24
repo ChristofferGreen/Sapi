@@ -152,6 +152,14 @@ def make_comment_uid(*, slug: str, suffix: str | None = None, suffix_length: int
     return f"comment-{slug}--{execution_suffix}"
 
 
+def make_overview_id(*, scope_kind: str, scope_name: str) -> str:
+    """Build canonical overview IDs: `space--<slug>` or `subspace--<slug>`."""
+    if scope_kind not in {"space", "subspace"}:
+        raise ValueError(f"Unsupported overview scope_kind: {scope_kind}")
+    scope_slug = slugify(scope_name)
+    return f"{scope_kind}--{scope_slug}"
+
+
 def format_comment_no(value: int) -> str:
     """Render comment ordinal as display-only `pc-###` token."""
     if value <= 0:

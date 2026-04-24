@@ -196,6 +196,27 @@ class GuardrailChecksTests(unittest.TestCase):
                 any(issue.check_id == "semantic_flow_execution_contract" for issue in issues)
             )
 
+    def test_guardrail_allows_overview_entrypoint_shared_executor_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write(
+                root,
+                "scripts/generate_overview.py",
+                """
+                from sapi.llm.semantic_executor import build_semantic_spec_from_contract, run_semantic_flow
+
+                def main() -> int:
+                    flow_key = "space_overview_generation"
+                    spec = build_semantic_spec_from_contract(flow_key, repo_root=None, path_tokens={})
+                    run_semantic_flow(spec=spec, llm_client=None)
+                    return 0
+                """,
+            )
+            issues = run_guardrail_checks(root)
+            self.assertFalse(
+                any(issue.check_id == "semantic_flow_execution_contract" for issue in issues)
+            )
+
     def test_validate_entrypoint_reports_guardrail_failures_with_clear_message(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_root = Path(tmp)

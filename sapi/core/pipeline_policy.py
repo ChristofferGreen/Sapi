@@ -180,6 +180,7 @@ def _workflow_key_for_pipeline(pipeline_flow_key: str) -> str:
         "query_pipeline": "query",
         "comment_section_pipeline": "create_comments",
         "persona_profile_pipeline": "generate_profiles",
+        "overview_pipeline": "generate_overview",
     }
     try:
         return flow_map[pipeline_flow_key]

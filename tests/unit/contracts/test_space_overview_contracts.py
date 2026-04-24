@@ -78,8 +78,8 @@ class SpaceOverviewContractTests(unittest.TestCase):
             "overview generation MUST NOT mutate canonical knowledge artifacts under `sources/`, `claims/`, `relations/`, `topics/`, or `profiles/`",
             design_text,
         )
-        self.assertIn("### 8.5 Overview Synthesis Contract (planned `scripts/generate_overview.py`)", low_level_text)
-        self.assertIn("future overview orchestration belongs in `sapi/overview/overview_pipeline.py`", low_level_text)
+        self.assertIn("### 8.5 Overview Synthesis Contract (`scripts/generate_overview.py`)", low_level_text)
+        self.assertIn("overview orchestration belongs in `sapi/overview/overview_pipeline.py`", low_level_text)
         self.assertIn(
             "overview rendering MUST NOT issue web requests or additional LLM calls",
             low_level_text,

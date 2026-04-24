@@ -47,19 +47,18 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0339`
-2. `TODO-0327`
+1. `TODO-0340`
+2. `TODO-0341`
+3. `TODO-0327`
 
 ### Immediate Next 10 (After Ready Now)
 
-1. TODO-0340
-2. TODO-0341
-3. TODO-0342
+1. TODO-0342
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: TODO-0339, TODO-0340, TODO-0341
+- P1 Core product behavior: TODO-0340, TODO-0341
 - P2 Social/eval/hardening: TODO-0327, TODO-0342
 - P3 Continuous docs governance: TODO-0327
 
@@ -75,10 +74,9 @@ Wave C (query + social + hardening + release):
 1. (none currently)
 
 Wave D (space/subspace AI overview article):
-1. TODO-0339
-2. TODO-0340
-3. TODO-0341
-4. TODO-0342
+1. TODO-0340
+2. TODO-0341
+3. TODO-0342
 
 Cross-cutting docs backlog:
 1. TODO-0327
@@ -93,16 +91,16 @@ Cross-cutting docs backlog:
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | - |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | - |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | - |
-| Section 7.1 ingest pipeline | TODO-0339 |
+| Section 7.1 ingest pipeline | - |
 | Section 7.2 references/linking | - |
-| Section 7.3 query pipeline | TODO-0339 |
+| Section 7.3 query pipeline | - |
 | Section 7.4 persona catalog | - |
 | Section 7.5 profile pages/history | - |
 | Section 7.6 comments pipeline/rendering | - |
 | Section 7.7 comment quality harness | - |
 | Section 8 site/UI/static build | TODO-0340, TODO-0341 |
 | Section 9 observability/safety/runtime controls | TODO-0341 |
-| Section 10 run envelopes/lifecycle status | TODO-0339, TODO-0341 |
+| Section 10 run envelopes/lifecycle status | TODO-0341 |
 | Section 11 testing strategy | TODO-0342 |
 | Section 12 reconstruction plan | - |
 | Section 13 definition of done | - |
@@ -114,9 +112,9 @@ Cross-cutting docs backlog:
 | Section 2 (runtime model and flow namespaces) | - |
 | Section 4 (core data types/run envelope types) | - |
 | Section 5 (path + registry contracts) | - |
-| Section 6 (semantic execution engine + retry/repair) | TODO-0339 |
-| Section 7 (transaction/rollback) | TODO-0339 |
-| Section 8 (pipeline execution contracts) | TODO-0339, TODO-0341 |
+| Section 6 (semantic execution engine + retry/repair) | - |
+| Section 7 (transaction/rollback) | - |
+| Section 8 (pipeline execution contracts) | TODO-0341 |
 | Section 9 (deterministic build/projection) | TODO-0340, TODO-0341 |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
@@ -131,7 +129,7 @@ Cross-cutting docs backlog:
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (test module layout) | TODO-0327, TODO-0342 |
-| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0339, TODO-0341, TODO-0342 |
+| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0341, TODO-0342 |
 | Tier 4-6 (determinism/golden/live canary) | TODO-0340, TODO-0342 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0327, TODO-0342 |
 | Section 6 (exit criteria gating) | TODO-0342 |
@@ -174,18 +172,6 @@ Cross-cutting docs backlog:
     - Space/subspace navigation links to overview route with stable semantics and accessibility labels.
     - If overview artifact is missing, rendering degrades gracefully without broken links.
 
-- [ ] TODO-0339: Implement canonical `space_overview_generation` semantic flow and artifacts
-  - owner: ai
-  - created_at: 2026-04-16
-  - phase: Phase 6
-  - depends_on: TODO-0338
-  - scope: Add a pipeline that synthesizes a long-form topic overview from ingested sources/claims/relations for each space (and selected subspaces), using shared semantic execution policy.
-  - acceptance:
-    - Pipeline writes canonical artifacts under `spaces/<space_name>/outputs/space_overview/<overview_id>/` including structured JSON and markdown article outputs.
-    - JSON artifact includes required sections: topic framing, key themes, agreement/disagreement map, methods/evidence landscape, open questions, and citation anchors.
-    - Output sections include auditable references to canonical `source_id` and `claim_id` values.
-    - Run envelopes include canonical flow key (`space_overview_generation`) and accurate attempt/invocation accounting.
-    - Pipeline handles “no ingested sources” as a clear non-crashing outcome with explicit warning/status metadata.
 
 - [ ] TODO-0327: Purge compatibility/deprecation tests and add strict no-legacy coverage
   - owner: ai

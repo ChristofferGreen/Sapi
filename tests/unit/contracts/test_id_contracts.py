@@ -20,6 +20,7 @@ from sapi.contracts.ids import (
     make_concept_id,
     make_deterministic_content_id,
     make_family_id,
+    make_overview_id,
     make_query_id,
     make_run_id,
     make_source_id,
@@ -79,6 +80,12 @@ class IdContractTests(unittest.TestCase):
         self.assertIsNotNone(comment_match, comment_uid)
         self.assertRegex(comment_match.group(2), EXECUTION_SUFFIX_RE)
         self.assertEqual(format_comment_no(7), "pc-007")
+
+    def test_overview_ids_follow_scope_prefix_contract(self) -> None:
+        self.assertEqual(make_overview_id(scope_kind="space", scope_name="Alpha Space"), "space--alpha-space")
+        self.assertEqual(make_overview_id(scope_kind="subspace", scope_name="Cell Biology"), "subspace--cell-biology")
+        with self.assertRaises(ValueError):
+            make_overview_id(scope_kind="topic", scope_name="alpha")
 
     def test_id_suffix_constraints_are_enforced(self) -> None:
         with self.assertRaises(ValueError):

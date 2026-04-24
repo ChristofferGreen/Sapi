@@ -38,6 +38,7 @@ Sapi has two distinct flow namespaces.
 - `query_pipeline`
 - `comment_section_pipeline`
 - `persona_profile_pipeline`
+- `overview_pipeline`
 
 Key rules:
 - one command invocation writes one `run_id` record
@@ -95,6 +96,8 @@ sapi/
   profiles/
     profiles_pipeline.py
     history.py
+  overview/
+    overview_pipeline.py
   build/
     projection.py
     site_builder.py
@@ -108,6 +111,7 @@ scripts/
   query.py
   create_comments.py
   generate_profiles.py
+  generate_overview.py
   build_site.py
   lint.py
 ```
@@ -144,6 +148,7 @@ PipelineFlowKey = Literal[
     "query_pipeline",
     "comment_section_pipeline",
     "persona_profile_pipeline",
+    "overview_pipeline",
 ]
 
 RunStatus = Literal["pending", "success", "success_with_warnings", "failed", "aborted"]
@@ -214,6 +219,17 @@ class PersonaProfileRunFields:
     history_updated: int
     history_reused: int
     pages_changed: int
+
+@dataclass
+class OverviewRunFields:
+    overview_id: str
+    scope_kind: str
+    scope_name: str
+    source_records_used: int
+    claims_used: int
+    relations_used: int
+    topics_used: int
+    article_path: str | None
 ```
 
 Run envelope policy:
@@ -492,11 +508,12 @@ Control flow:
 Profile constraints:
 - persona-profile pipeline does not refresh site-root `New` index unless it mutates canonical source/topic artifacts
 
-### 8.5 Overview Synthesis Contract (planned `scripts/generate_overview.py`)
+### 8.5 Overview Synthesis Contract (`scripts/generate_overview.py`)
 
 Ownership boundary:
-- future overview orchestration belongs in `sapi/overview/overview_pipeline.py`
-- deterministic markdown/article rendering remains in build/projection code, not in the semantic flow
+- overview orchestration belongs in `sapi/overview/overview_pipeline.py`
+- deterministic markdown/article rendering is owned by the overview pipeline helper and remains
+  outside the semantic flow itself
 
 Required inputs:
 - canonical scope-selection manifest at `<space_root>/outputs/space_overview/<overview_id>/context.json`
@@ -518,6 +535,9 @@ Deterministic post-processing boundary:
   projection of the semantic JSON content
 - overview generation is additive only; it MUST NOT mutate canonical knowledge artifacts outside
   `outputs/space_overview/` and run/lint metadata
+- if no source records are available, overview generation still writes `context.json`,
+  `overview.json`, and `article.md`, marks the run `success_with_warnings`, and uses empty
+  section/reference arrays instead of synthetic source or claim identifiers
 - overview rendering MUST NOT issue web requests or additional LLM calls
 
 ## 9. Deterministic Build and Projection

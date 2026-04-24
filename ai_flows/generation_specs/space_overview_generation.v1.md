@@ -18,6 +18,10 @@ Generate one strict JSON object for space or subspace overview synthesis at `out
 - Use only canonical `source_id`, `claim_id`, and `topic_id` values grounded in `context_paths`.
 - Do not invent sources, claims, subspaces, or citation anchors that are not supported by the provided context.
 - When evidence is incomplete or conflicting, capture the uncertainty in section prose and `warnings`.
+- If `freshness.source_record_count` is `0`, still emit the five required sections, keep
+  `references.source_ids`, `references.claim_ids`, `references.citation_anchors`, and section
+  `citation_anchor_ids` empty, and add a warning explaining that ingest has not produced source
+  context for this scope yet.
 
 ## Strict Output Rules
 - Return JSON object only.

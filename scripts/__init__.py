@@ -5,6 +5,7 @@ Wrapper-target entrypoints:
 - query.sh -> scripts/query.py
 - create_comments.sh -> scripts/create_comments.py
 - generate_profiles.sh -> scripts/generate_profiles.py
+- direct overview entrypoint -> scripts/generate_overview.py
 - regenerate_web.sh -> scripts/build_site.py
 - validate.sh -> scripts/lint.py
 - evaluate_source.sh -> scripts/evaluate_source.py

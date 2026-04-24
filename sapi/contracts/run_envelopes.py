@@ -24,6 +24,7 @@ PipelineFlowKey = Literal[
     "query_pipeline",
     "comment_section_pipeline",
     "persona_profile_pipeline",
+    "overview_pipeline",
 ]
 
 RunStatus = Literal["pending", "success", "success_with_warnings", "failed", "aborted"]
@@ -130,7 +131,21 @@ class PersonaProfileRunFields:
     pages_changed: int
 
 
-FlowSpecificFields = IngestRunFields | QueryRunFields | CommentRunFields | PersonaProfileRunFields
+@dataclass
+class OverviewRunFields:
+    overview_id: str
+    scope_kind: str
+    scope_name: str
+    source_records_used: int
+    claims_used: int
+    relations_used: int
+    topics_used: int
+    article_path: str | None
+
+
+FlowSpecificFields = (
+    IngestRunFields | QueryRunFields | CommentRunFields | PersonaProfileRunFields | OverviewRunFields
+)
 
 
 def write_run_record(
@@ -205,6 +220,7 @@ def _validate_flow_fields_type(flow_key: PipelineFlowKey, flow_fields: FlowSpeci
         "query_pipeline": QueryRunFields,
         "comment_section_pipeline": CommentRunFields,
         "persona_profile_pipeline": PersonaProfileRunFields,
+        "overview_pipeline": OverviewRunFields,
     }
     expected = expected_types[flow_key]
     if not isinstance(flow_fields, expected):

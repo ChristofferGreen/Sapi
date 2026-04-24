@@ -8,6 +8,7 @@ from pathlib import Path
 from sapi.contracts.run_envelopes import (
     CommentRunFields,
     IngestRunFields,
+    OverviewRunFields,
     PersonaProfileRunFields,
     QueryRunFields,
     RunEnvelopeBase,
@@ -169,6 +170,11 @@ class RunEnvelopeWriterTests(unittest.TestCase):
                     _profile_fields(),
                     {"persona_ids", "history_generated", "history_updated", "pages_changed"},
                 ),
+                (
+                    "overview_pipeline",
+                    _overview_fields(),
+                    {"overview_id", "scope_kind", "scope_name", "source_records_used", "article_path"},
+                ),
             ]
 
             for flow_key, extension, required_keys in cases:
@@ -265,6 +271,19 @@ def _profile_fields() -> PersonaProfileRunFields:
         history_updated=1,
         history_reused=0,
         pages_changed=1,
+    )
+
+
+def _overview_fields() -> OverviewRunFields:
+    return OverviewRunFields(
+        overview_id="space--alpha",
+        scope_kind="space",
+        scope_name="alpha",
+        source_records_used=1,
+        claims_used=2,
+        relations_used=1,
+        topics_used=1,
+        article_path="/tmp/space/outputs/space_overview/space--alpha/article.md",
     )
 
 
