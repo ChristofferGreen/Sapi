@@ -86,7 +86,7 @@ class RelationStoreMatrixTests(unittest.TestCase):
             self.assertEqual(directed["dst_claim_id"], "claim-a")
             self.assertEqual(directed["relation_id"], "supports:claim-z->claim-a")
 
-    def test_normalization_and_duplicate_merge_are_deterministic_for_same_relation_id(self) -> None:
+    def test_duplicate_merge_is_deterministic_for_same_relation_id(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "space-a"
 
@@ -95,7 +95,7 @@ class RelationStoreMatrixTests(unittest.TestCase):
                     "relation_type": "contradictory",
                     "src_claim_id": "claim-z",
                     "dst_claim_id": "claim-a",
-                    "status": "closed",
+                    "status": "resolved",
                     "below_040_streak": 1,
                     "last_evaluated_run_id": "run-001",
                 },
@@ -125,6 +125,21 @@ class RelationStoreMatrixTests(unittest.TestCase):
                 payload["relation_file_id"],
                 relation_file_id_from_relation_id("contradictory:claim-a|claim-z"),
             )
+
+    def test_closed_relation_status_fails_fast(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space-a"
+
+            with self.assertRaisesRegex(ValueError, "Unsupported relation status: closed"):
+                write_relation(
+                    {
+                        "relation_type": "contradictory",
+                        "src_claim_id": "claim-a",
+                        "dst_claim_id": "claim-b",
+                        "status": "closed",
+                    },
+                    space_root,
+                )
 
     def test_falsifies_status_values_are_preserved(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -15,7 +15,6 @@ _ALLOWED_RELATION_TYPES: set[str] = _UNDIRECTED_RELATION_TYPES | _DIRECTED_RELAT
 _ALLOWED_STATUSES: set[str] = {
     "open",
     "resolved",
-    "closed",  # semantic-output alias normalized to resolved
     "falsify",
     "not_falsify",
     "ambiguous",
@@ -224,8 +223,6 @@ def _normalize_status(raw: Any) -> str:
     status = raw.strip()
     if status not in _ALLOWED_STATUSES:
         raise ValueError(f"Unsupported relation status: {status}")
-    if status == "closed":
-        return "resolved"
     return status
 
 

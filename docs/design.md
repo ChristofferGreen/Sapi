@@ -944,7 +944,7 @@ Relation persistence/reconciliation contracts:
 - undirected relation IDs sort claim IDs lexicographically (`contradictory`, `similar`)
 - directed relation IDs preserve semantic direction (`supports`, `derived_from`, `falsifies`)
 - `falsifies` checks use `falsify`, `not_falsify`, `ambiguous`
-- semantic output `status: closed` is normalized on write to canonical `status: resolved`
+- semantic output MUST use canonical relation statuses only; removed alias `status: closed` is non-canonical and MUST fail fast
 - relation records track `below_040_streak`, `last_evaluated_run_id`, and contradiction confidence banding
 
 Relation filesystem key mapping (normative):

@@ -4,6 +4,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0326: Remove relation status compatibility alias `closed`
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Phase 5
+  - depends_on: TODO-0313
+  - scope: Remove acceptance/normalization of relation status `closed`; accept only canonical status values.
+  - acceptance:
+    - `sapi/ingest/relation_store.py` rejects `closed` status inputs.
+    - Tests and docs no longer describe `closed` as accepted alias.
+  - notes: source `docs/design.md` Section 7.1
+  - evidence: Removed `closed` from the allowed relation status set in
+    `sapi/ingest/relation_store.py`, so relation normalization now rejects the removed alias
+    instead of rewriting it to `resolved`. Updated the relation-store matrix and ingest canonical
+    write tests to assert fail-fast `ValueError` behavior for `status: closed`, and tightened the
+    ingest design/doc-contract assertions so the canonical-only relation status rule is explicit.
+
 - [x] TODO-0325: Remove site-scope legacy fallback reader (`<space_root>/site.json`)
   - owner: ai
   - created_at: 2026-04-13

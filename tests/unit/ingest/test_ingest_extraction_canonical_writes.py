@@ -118,7 +118,7 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
             )
             self.assertEqual(relation_path.name, f"{relation_payload['relation_file_id']}.json")
 
-    def test_relation_writes_align_with_canonical_relation_normalization_contracts(self) -> None:
+    def test_relation_writes_reject_removed_closed_status_alias(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root, source_id = self._bootstrap_source(Path(tmp))
 
@@ -154,25 +154,16 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
                 "warnings": [],
             }
 
-            result = run_ingest_extraction_and_persist_canonical(
-                space_root=space_root,
-                source_id=source_id,
-                run_id="run-relation-normalization",
-                llm_client=_StaticSemanticClient(semantic_output),
-            )
+            with self.assertRaisesRegex(ValueError, "Unsupported relation status: closed"):
+                run_ingest_extraction_and_persist_canonical(
+                    space_root=space_root,
+                    source_id=source_id,
+                    run_id="run-relation-normalization",
+                    llm_client=_StaticSemanticClient(semantic_output),
+                )
 
-            relation_payload = json.loads(result.relation_paths[0].read_text())
-            self.assertEqual(relation_payload["src_claim_id"], claim_alpha)
-            self.assertEqual(relation_payload["dst_claim_id"], claim_beta)
-            self.assertEqual(
-                relation_payload["relation_id"],
-                f"contradictory:{claim_alpha}|{claim_beta}",
-            )
-            self.assertEqual(relation_payload["status"], "resolved")
-            self.assertEqual(
-                relation_payload["relation_file_id"],
-                relation_file_id_from_relation_id(relation_payload["relation_id"]),
-            )
+            relations_dir = space_root / "relations"
+            self.assertFalse(relations_dir.exists())
 
     def test_ingest_extraction_persists_summary_warnings_and_source_date_inference(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

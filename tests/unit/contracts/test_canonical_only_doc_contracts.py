@@ -53,6 +53,20 @@ class CanonicalOnlyDocContractTests(unittest.TestCase):
         self.assertNotIn("compatibility input aliases:", section)
         self.assertNotIn("compatibility schema alias accepted on read/import", section)
 
+    def test_ingest_relation_contracts_require_canonical_status_values(self) -> None:
+        section = _section_text(
+            DESIGN_DOC_PATH.read_text(),
+            "### 7.1 Ingest pipeline",
+        )
+        self.assertIn(
+            "semantic output MUST use canonical relation statuses only; removed alias `status: closed` is non-canonical and MUST fail fast",
+            section,
+        )
+        self.assertNotIn(
+            "semantic output `status: closed` is normalized on write to canonical `status: resolved`",
+            section,
+        )
+
     def test_low_level_docs_no_longer_describe_alias_normalization(self) -> None:
         low_level_text = LOW_LEVEL_DOC_PATH.read_text()
         spec_section = _section_text(low_level_text, "### 6.1 Spec resolution and version pinning")
