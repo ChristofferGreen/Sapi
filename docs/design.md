@@ -656,7 +656,7 @@ Gate behavior by workflow key (normative):
 | `ingest_source` | `ingest.sh` | `scripts/ingest_source.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
 | `create_comments` | `create_comments.sh` | `scripts/create_comments.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
 | `generate_profiles` | `generate_profiles.sh` | `scripts/generate_profiles.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
-| `generate_overview` | direct script (no wrapper yet) | `scripts/generate_overview.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
+| `generate_overview` | `generate_overview.sh` | `scripts/generate_overview.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
 | `build_site` | `regenerate_web.sh` | `scripts/build_site.py` | fail on conversion/link errors (independent of warning threshold) |
 | `query` | `query.sh` | `scripts/query.py` | never blocked solely by lint warnings/errors; include lint summary in response metadata |
 | `rebuild_topic_collection` | compatibility-only maintenance path | compatibility entrypoint (if present) | fail when `error_count > 0`; warnings map to status via threshold policy |

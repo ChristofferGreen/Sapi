@@ -29,6 +29,7 @@ class BootstrapRegistryExceptionIntegrationTests(unittest.TestCase):
             ["scripts/query.py", "alpha", "question"],
             ["scripts/create_comments.py", "alpha", "--count", "5"],
             ["scripts/generate_profiles.py", "alpha"],
+            ["scripts/generate_overview.py", "alpha"],
             ["scripts/build_site.py"],
             ["scripts/lint.py", "alpha"],
         ]
@@ -56,6 +57,7 @@ class BootstrapRegistryExceptionIntegrationTests(unittest.TestCase):
                 ["bash", str(REPO_ROOT / "query.sh"), str(site_path), "alpha", "what is this", "--mock-llm"],
                 ["bash", str(REPO_ROOT / "create_comments.sh"), str(site_path), "alpha", "--count", "5", "--mock-llm"],
                 ["bash", str(REPO_ROOT / "generate_profiles.sh"), str(site_path), "alpha", "--mock-llm"],
+                ["bash", str(REPO_ROOT / "generate_overview.sh"), str(site_path), "alpha", "--mock-llm"],
                 ["bash", str(REPO_ROOT / "validate.sh"), str(site_path), "alpha"],
                 ["bash", str(REPO_ROOT / "regenerate_web.sh"), str(site_path), "alpha"],
             ]

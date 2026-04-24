@@ -83,6 +83,35 @@ class LiveLlmCanaryTests(unittest.TestCase):
             self.assertEqual(query_payload.get("query_id"), query_id)
             self.assertIn("answer", query_payload)
 
+            before_runs = run_directories(space_root)
+            overview_result = run_command(
+                [
+                    "bash",
+                    str(REPO_ROOT / "generate_overview.sh"),
+                    str(site_path),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(overview_result.returncode, 0, msg=overview_result.stderr)
+            overview_frontmatter = _capture_single_new_run_frontmatter(
+                space_root=space_root,
+                before_runs=before_runs,
+            )
+            self.assertEqual("live_llm", overview_frontmatter["execution_mode"])
+            self.assertEqual("overview_pipeline", overview_frontmatter["flow_key"])
+            self.assertEqual(
+                overview_frontmatter["semantic_flows"],
+                ["space_overview_generation"],
+            )
+            overview_id = str(overview_frontmatter.get("overview_id") or "")
+            self.assertTrue(overview_id)
+            overview_artifact_path = space_root / "outputs" / "space_overview" / overview_id / "overview.json"
+            overview_payload = _load_json_object(overview_artifact_path)
+            self.assertEqual(overview_payload.get("schema_version"), "space_overview_v1")
+            self.assertEqual(overview_payload.get("metadata", {}).get("overview_id"), overview_id)
+            article_path = space_root / "outputs" / "space_overview" / overview_id / "article.md"
+            self.assertTrue(article_path.is_file())
+
             (space_root / "topics" / "topic-live-canary.json").write_text(
                 '{"topic_id":"topic-live-canary","title":"Live Canary Topic","sections":[{"heading":"Summary","body":"Live canary topic body."}],"source_ids":[]}\n'
             )

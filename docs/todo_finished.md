@@ -2855,3 +2855,30 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     force-regeneration coverage, added helper-level unit coverage in
     `tests/unit/overview/test_overview_pipeline.py`, and updated run-envelope/doc contract tests
     to lock the new metadata and documented refresh policy.
+
+- [x] TODO-0342: Add overview synthesis tests, wrappers, and live-canary coverage
+  - owner: ai
+  - created_at: 2026-04-16
+  - finished_at: 2026-04-25
+  - phase: Phase 6
+  - depends_on: TODO-0339
+  - scope: Add comprehensive coverage and wrapper-level ergonomics for space-overview generation
+    and rendering across local and live modes.
+  - acceptance:
+    - Unit/integration tests validate overview artifact schema compliance, reference integrity
+      (claims/sources), and deterministic rebuild behavior.
+    - Wrapper contract tests cover canonical invocation path for overview generation (including
+      target space/subspace selection and failure semantics).
+    - Live canary coverage includes overview generation for at least one seeded space and asserts
+      canonical artifacts are present and parseable.
+    - `docs/testing_plan.md` is updated with explicit overview-flow coverage expectations.
+  - notes: source `docs/todo.md`; `docs/testing_plan.md` Sections 2-6; wrapper/operator ergonomics
+    per `AGENTS.md`
+  - evidence: Added repo-root wrapper `generate_overview.sh`, updated repo metadata/docs to treat
+    it as the canonical operator entrypoint, and expanded
+    `tests/integration/wrappers/test_bootstrap_registry_exception.py` plus new
+    `tests/integration/wrappers/test_generate_overview_wrapper.py` to cover registry routing,
+    subspace targeting, and propagated terminal-failure semantics. Extended
+    `tests/live/test_live_llm_canary.py` to execute live overview generation and validate
+    canonical `overview.json` / `article.md` artifacts, and updated `docs/testing_plan.md` with
+    explicit wrapper and live-canary overview coverage checkpoints.

@@ -49,6 +49,7 @@ tests/
       test_wrapper_alias_normalization.py
       test_wrapper_alias_conflicts.py
       test_bootstrap_registry_exception.py
+      test_generate_overview_wrapper.py
       test_evaluate_source_harness.py
   golden/
     test_site_snapshot.py
@@ -120,6 +121,10 @@ tests/
 - [x] Overview flow writes `context.json`, `overview.json`, `article.md`, and run/lint metadata,
   including the no-source warning path.
   - Modules: `tests/unit/overview/test_overview_pipeline.py`, `tests/integration/pipelines/test_overview_pipeline.py`
+- [x] Overview wrapper routes canonical registry/site arguments, supports subspace targets, and
+  propagates terminal failures without hiding rollback semantics.
+  - Modules: `tests/integration/wrappers/test_generate_overview_wrapper.py`,
+    `tests/integration/wrappers/test_bootstrap_registry_exception.py`
 - [x] `evaluate_source.sh` default run emits required markdown artifact pack + manifest linkage.
   - Module: `tests/integration/wrappers/test_evaluate_source_harness.py`
 - [x] `evaluate_source.sh --comments <n>` emits `comments_review.md`; invalid comments args fail fast with clear errors.
@@ -170,6 +175,9 @@ Presentation contract coverage requirements (Section 8 / Section 9):
 - [x] Minimal real-backend smoke test for end-to-end integration drift detection.
   - Module: `tests/live/test_live_llm_canary.py`
   - Mark: `@pytest.mark.live_llm` and exclude from default PR runs.
+- [x] Live canary covers overview generation and verifies canonical overview artifacts are present
+  and parseable.
+  - Module: `tests/live/test_live_llm_canary.py`
 
 ## 4. CI Gating Matrix
 
