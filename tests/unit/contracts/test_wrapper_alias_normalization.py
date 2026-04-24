@@ -30,36 +30,37 @@ class WrapperAliasNormalizationTests(unittest.TestCase):
                     self.assertNotEqual(result.returncode, 0)
                     self.assertIn("has been removed", result.stderr)
 
-    def test_comment_aliases_and_legacy_positional_count_normalize(self) -> None:
+    def test_comment_removed_aliases_and_legacy_positional_count_fail_fast(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
-            topic_path = site_path / "spaces" / "alpha" / "topics" / "topic-a.json"
-            topic_path.write_text('{"topic_id":"topic-a","title":"Topic A"}\n')
-            result = self._run(
-                [
-                    "bash",
-                    str(REPO_ROOT / "create_comments.sh"),
-                    str(site_path),
-                    "alpha",
-                    "5",
-                    "--user",
-                    "persona-maya-santoro",
-                    "--page",
-                    "topic:topic-a",
-                    "--mock-llm",
-                ]
-            )
-            self.assertEqual(result.returncode, 0, msg=result.stderr)
-            self.assertIn("positional count argument is deprecated", result.stderr)
-            self.assertIn("--user is deprecated", result.stderr)
-            self.assertIn("--page is deprecated", result.stderr)
-            self.assertIn("scripts/create_comments.py comments created", result.stdout)
+            cases = [
+                (["5"], "unexpected positional argument: 5"),
+                (["--user", "persona-maya-santoro"], "--user has been removed"),
+                (["--page", "topic:topic-a"], "--page has been removed"),
+                (["--comment-web-evidence"], "--comment-web-evidence has been removed"),
+            ]
+            for extra_args, expected_message in cases:
+                with self.subTest(extra_args=extra_args):
+                    result = self._run(
+                        [
+                            "bash",
+                            str(REPO_ROOT / "create_comments.sh"),
+                            str(site_path),
+                            "alpha",
+                            *extra_args,
+                            "--count",
+                            "5",
+                            "--mock-llm",
+                        ]
+                    )
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn(expected_message, result.stderr)
+                    self.assertIn("Usage:", result.stderr)
 
-    def test_comment_canonical_and_alias_conflicts_fail_fast(self) -> None:
+    def test_comment_removed_aliases_fail_fast_even_when_mixed_with_canonical_flags(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
 
-            # conflict: canonical + alias for comment user
             result_user = self._run(
                 [
                     "bash",
@@ -75,10 +76,9 @@ class WrapperAliasNormalizationTests(unittest.TestCase):
                 ]
             )
             self.assertNotEqual(result_user.returncode, 0)
-            self.assertIn("cannot combine", result_user.stderr)
+            self.assertIn("--user has been removed", result_user.stderr)
             self.assertIn("Usage:", result_user.stderr)
 
-            # conflict: canonical + alias for comment page
             result_page = self._run(
                 [
                     "bash",
@@ -94,10 +94,9 @@ class WrapperAliasNormalizationTests(unittest.TestCase):
                 ]
             )
             self.assertNotEqual(result_page.returncode, 0)
-            self.assertIn("cannot combine", result_page.stderr)
+            self.assertIn("--page has been removed", result_page.stderr)
             self.assertIn("Usage:", result_page.stderr)
 
-            # conflict: canonical + alias for count
             result_count = self._run(
                 [
                     "bash",
@@ -110,7 +109,7 @@ class WrapperAliasNormalizationTests(unittest.TestCase):
                 ]
             )
             self.assertNotEqual(result_count.returncode, 0)
-            self.assertIn("cannot combine positional count alias with --count", result_count.stderr)
+            self.assertIn("unexpected positional argument: 5", result_count.stderr)
             self.assertIn("Usage:", result_count.stderr)
 
     def _bootstrap_site_and_space(self, tmp_root: Path, space_name: str) -> Path:

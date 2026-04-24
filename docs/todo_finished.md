@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0316: Remove wrapper-level compatibility aliases in `create_comments.sh`
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Phase 4
+  - depends_on: TODO-0313
+  - scope: Remove wrapper normalization for legacy positional count and aliases `--user`/`--page`; accept only canonical flags.
+  - acceptance:
+    - `create_comments.sh` accepts only `--count`, `--comment-user`, and `--comment-page`.
+    - Wrapper tests assert legacy positional count and alias flags fail fast.
+  - notes: source `docs/design.md` Section 7.6; `docs/low_level.md` Sections 8.3 and 12
+  - evidence: Updated `create_comments.sh` to stop normalizing positional count, `--user`,
+    and `--page`, and to fail fast on those removed wrapper inputs plus
+    `--comment-web-evidence`. Updated wrapper-facing assertions in
+    `tests/integration/wrappers/test_wrapper_alias_normalization.py`,
+    `tests/integration/wrappers/test_wrapper_alias_conflicts.py`, and
+    `tests/unit/contracts/test_wrapper_alias_normalization.py` so they now require usage
+    failures instead of deprecation warnings and successful forwarding.
+
 - [x] TODO-0315: Remove ingest wrapper/entrypoint alias `--query-only`
   - owner: ai
   - created_at: 2026-04-13

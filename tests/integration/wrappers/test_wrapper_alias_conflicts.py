@@ -31,7 +31,7 @@ class WrapperAliasConflictsIntegrationTests(unittest.TestCase):
                     self.assertIn("has been removed", result.stderr)
                     self.assertIn("Usage:", result.stderr)
 
-    def test_comments_user_alias_conflict_fails_fast(self) -> None:
+    def test_comments_removed_user_alias_fails_fast_even_with_canonical_flag(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
             result = self._run(
@@ -49,10 +49,10 @@ class WrapperAliasConflictsIntegrationTests(unittest.TestCase):
                 ]
             )
             self.assertNotEqual(result.returncode, 0)
-            self.assertIn("cannot combine", result.stderr)
+            self.assertIn("--user has been removed", result.stderr)
             self.assertIn("Usage:", result.stderr)
 
-    def test_comments_page_alias_conflict_fails_fast(self) -> None:
+    def test_comments_removed_page_alias_fails_fast_even_with_canonical_flag(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
             result = self._run(
@@ -70,10 +70,10 @@ class WrapperAliasConflictsIntegrationTests(unittest.TestCase):
                 ]
             )
             self.assertNotEqual(result.returncode, 0)
-            self.assertIn("cannot combine", result.stderr)
+            self.assertIn("--page has been removed", result.stderr)
             self.assertIn("Usage:", result.stderr)
 
-    def test_comments_count_alias_conflict_fails_fast(self) -> None:
+    def test_comments_removed_legacy_positional_count_fails_fast_even_with_count_flag(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")
             result = self._run(
@@ -88,7 +88,7 @@ class WrapperAliasConflictsIntegrationTests(unittest.TestCase):
                 ]
             )
             self.assertNotEqual(result.returncode, 0)
-            self.assertIn("cannot combine positional count alias with --count", result.stderr)
+            self.assertIn("unexpected positional argument: 5", result.stderr)
             self.assertIn("Usage:", result.stderr)
 
     def _bootstrap_site_and_space(self, tmp_root: Path, space_name: str) -> Path:
