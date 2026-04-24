@@ -63,6 +63,10 @@ class CanonicalOnlyDocContractTests(unittest.TestCase):
             "accept only canonical discussion-controls schema/key names; ignore removed schema id `persona_discussion_controls_v1` and removed `persona_discussion_*` keys",
             comments_section,
         )
+        self.assertIn(
+            "reject legacy HTML comment turn markers `<!-- turn:{...} -->`; only canonical `<<turn:{...}>>` markers are accepted",
+            comments_section,
+        )
         self.assertIn("fail fast on removed non-canonical aliases instead of normalizing them", wrapper_section)
         self.assertNotIn("normalize compatibility aliases", low_level_text)
         self.assertNotIn("Required alias normalization:", low_level_text)

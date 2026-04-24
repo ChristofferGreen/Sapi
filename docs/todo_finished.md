@@ -4,6 +4,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0321: Remove legacy HTML turn-marker compatibility
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Phase 5
+  - depends_on: TODO-0313
+  - scope: Remove support for `<!-- turn:{...} -->` marker format and allow only canonical `<<turn:{...}>>`.
+  - acceptance:
+    - `sapi/comments/merge_normalize.py` parses only canonical inline marker.
+    - Tests assert legacy marker usage fails fast.
+  - notes: source `docs/design.md` Section 7.6; `docs/low_level.md` Section 8.3
+  - evidence: Removed the legacy HTML marker branch from `sapi/comments/merge_normalize.py`, so
+    comment normalization now accepts only canonical inline `<<turn:{...}>>` markers and raises a
+    validation error for `<!-- turn:{...} -->`. Updated the turn-marker unit and integration tests to
+    require fail-fast behavior, and added an explicit low-level doc contract assertion for the
+    canonical-only marker policy.
+
 - [x] TODO-0320: Remove discussion-controls legacy aliases and frontmatter fallback
   - owner: ai
   - created_at: 2026-04-13

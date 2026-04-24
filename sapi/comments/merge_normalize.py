@@ -408,11 +408,13 @@ def _normalize_body_and_turn(
 def _extract_inline_turn_marker(body: str) -> tuple[str, dict[str, Any] | None]:
     canonical = _extract_marker(body, prefix="<<turn:", suffix=">>")
     legacy = _extract_marker(body, prefix="<!-- turn:", suffix="-->")
-    if canonical is not None and legacy is not None:
-        raise ValueError("Comment body must not contain both canonical and legacy turn markers.")
-    marker = canonical if canonical is not None else legacy
-    if marker is None:
+    if legacy is not None:
+        raise ValueError(
+            "Legacy HTML turn markers are removed; use canonical inline <<turn:{...}>> markers."
+        )
+    if canonical is None:
         return body, None
+    marker = canonical
     marker_start, marker_end, marker_payload = marker
     try:
         parsed_payload = json.loads(marker_payload)

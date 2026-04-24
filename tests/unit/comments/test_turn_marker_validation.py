@@ -36,42 +36,35 @@ class TurnMarkerValidationUnitTests(unittest.TestCase):
         self.assertEqual(row["turn"]["evidence_refs"], [f"claim:{_VALID_CLAIM_ID}"])
         self.assertEqual(row["turn"]["confidence"], 0.81)
 
-    def test_legacy_turn_marker_is_normalized(self) -> None:
-        existing_uid = "comment-existing--abcde12345"
-        result = merge_comment_section(
-            page_ref="topic:topic-alpha",
-            page_payload={
-                "topic_id": "topic-alpha",
-                "title": "Alpha",
-                "comment_section": {
-                    "page_ref": "topic:topic-alpha",
-                    "comments": [
-                        {
-                            "comment_uid": existing_uid,
-                            "persona_id": "commenter-1",
-                            "body": (
-                                "<!-- turn:{"
-                                '"position":"challenge","claim_ids":["'
-                                + _VALID_CLAIM_ID
-                                + '"],"evidence_refs":["source:'
-                                + _VALID_SOURCE_ID
-                                + '"],"confidence":0.22} -->'
-                                "Legacy marker challenge text."
-                            ),
-                            "comment_no": "pc-001",
-                        }
-                    ],
+    def test_legacy_turn_marker_fails_fast(self) -> None:
+        with self.assertRaisesRegex(ValueError, "Legacy HTML turn markers are removed"):
+            merge_comment_section(
+                page_ref="topic:topic-alpha",
+                page_payload={
+                    "topic_id": "topic-alpha",
+                    "title": "Alpha",
+                    "comment_section": {
+                        "page_ref": "topic:topic-alpha",
+                        "comments": [
+                            {
+                                "comment_uid": "comment-existing--abcde12345",
+                                "persona_id": "commenter-1",
+                                "body": (
+                                    "<!-- turn:{"
+                                    '"position":"challenge","claim_ids":["'
+                                    + _VALID_CLAIM_ID
+                                    + '"],"evidence_refs":["source:'
+                                    + _VALID_SOURCE_ID
+                                    + '"],"confidence":0.22} -->'
+                                    "Legacy marker challenge text."
+                                ),
+                                "comment_no": "pc-001",
+                            }
+                        ],
+                    },
                 },
-            },
-            semantic_comments=[],
-        )
-        self.assertEqual(result.comments_added, 0)
-        self.assertEqual(len(result.merged_comments), 1)
-        row = result.merged_comments[0]
-        self.assertEqual(row["comment_uid"], existing_uid)
-        self.assertEqual(row["body"], "Legacy marker challenge text.")
-        self.assertEqual(row["turn"]["position"], "challenge")
-        self.assertEqual(row["turn"]["evidence_refs"], [f"source:{_VALID_SOURCE_ID}"])
+                semantic_comments=[],
+            )
 
     def test_argumentative_turn_requires_claims_evidence_and_confidence(self) -> None:
         with self.assertRaisesRegex(ValueError, "claim_ids"):

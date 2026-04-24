@@ -392,7 +392,7 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             self.assertEqual(first_manifest["pass"], second_manifest["pass"])
             self.assertEqual(first_manifest["fail_reasons"], second_manifest["fail_reasons"])
 
-    def test_turn_marker_normalization_supports_canonical_and_legacy_markers(self) -> None:
+    def test_legacy_turn_marker_fails_pipeline_preflight(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
             site_path = bootstrap_site_and_space(tmp_root, "alpha")
@@ -454,7 +454,9 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                     "--mock-llm",
                 ]
             )
-            self.assertEqual(result.returncode, 0, msg=result.stderr)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("Legacy HTML turn markers are removed", result.stderr)
+            assert_no_run_containers(space_root)
 
             topic_payload = json.loads((space_root / "topics" / f"{topic_id}.json").read_text())
             rows = {
@@ -463,10 +465,10 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             }
             canonical_row = rows["comment-canonical--abcde12345"]
             legacy_row = rows["comment-legacy--abcde67890"]
-            self.assertEqual(canonical_row["body"], "Canonical marker body.")
-            self.assertEqual(canonical_row["turn"]["position"], "support")
-            self.assertEqual(legacy_row["body"], "Legacy marker body.")
-            self.assertEqual(legacy_row["turn"]["position"], "challenge")
+            self.assertTrue(canonical_row["body"].startswith("<<turn:"))
+            self.assertNotIn("turn", canonical_row)
+            self.assertTrue(legacy_row["body"].startswith("<!-- turn:"))
+            self.assertNotIn("turn", legacy_row)
 
     def test_argumentative_turn_validation_rejects_invalid_turn_schema(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
