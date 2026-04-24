@@ -266,7 +266,7 @@ def run_semantic_flow(
 - semantic specs are resolved through the explicit flow map defined in `design.md` Section 4.1.3
 - no implicit spec filename discovery is allowed
 - `<flow_key>.v1.md` MUST pair with `<flow_key>.v1.schema.json`
-- compatibility alias `persona_comment_generation` is accepted only at input boundaries and normalizes to `comment_section_generation` before resolution
+- semantic inputs MUST use canonical flow keys; unknown flow keys, including `persona_comment_generation`, MUST fail fast before resolution
 
 ### 6.2 Retry/repair policy
 
@@ -438,7 +438,7 @@ def run_comment_section_pipeline(args: CommentsArgs) -> int: ...
 
 Required preflight:
 - resolve paths and controls
-- normalize compatibility aliases `--user` -> `--comment-user`, `--page` -> `--comment-page`
+- reject removed non-canonical comment flags (`--user`, `--page`, positional count `<n>`, `--comment-web-evidence`) with usage error
 - validate `--count` in `[5, 50]`
 
 Control flow:
@@ -458,7 +458,6 @@ Control flow:
 5. preserve existing `comment_uid`, assign only for new rows
 6. rebuild affected pages/space feed indices per contract
 7. in `web-augmented` evidence mode, persist snapshot at `raw/snapshots/comment_sections/comment-section-<seed>.json` using schema `comment_section_evidence_snapshot_v1`
-   - compatibility readers may accept historical path/schema aliases from prior `persona_comment_*` naming
 8. run lint and warning-threshold evaluation
 9. write `run.md` and `lint.json` on success
 
@@ -577,14 +576,12 @@ Workflow-key alignment:
 - `validate.sh` dispatches lint checks for workflow key selected via `--workflow`
 
 Wrapper behavior:
-- normalize compatibility aliases before Python entrypoint invocation
 - always inject `--registry-path <site_path>/spaces.toml` for registry-backed non-bootstrap scripts
-- fail fast when canonical and alias forms for the same argument are supplied together
+- fail fast on removed non-canonical aliases instead of normalizing them
 
-Required alias normalization:
+Required fail-fast behavior:
 - ingest: `--force` is canonical and passed through (no alias)
-- comments: `--user` -> `--comment-user`, `--page` -> `--comment-page`
-- comments: legacy positional `<n>` -> `--count <n>`
+- comments: reject `--user`, `--page`, positional `<n>`, and `--comment-web-evidence`
 
 Removed ingest flags:
 - ingest: `--source-only` and `--query-only` MUST fail fast.

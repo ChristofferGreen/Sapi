@@ -59,16 +59,15 @@ Use this table to track active architecture decisions without losing contract li
 | --- | --- | --- | --- | --- | --- |
 | Comment subsystem canonical namespace | `comment_section_*` vs `persona_comment_*` | resolved | ai | 2026-04-12 | [Section 7.6](/Users/chrgre01/src/Sapi/docs/design.md#76-comment-section-generation-and-rendering) |
 | Run-envelope semantic flow cardinality shape | ordered flow list only vs ordered list + invocation count map | resolved | ai | 2026-04-12 | [Section 10](/Users/chrgre01/src/Sapi/docs/design.md#10-run-status-and-output-envelopes) |
-| Compatibility reader sunset policy for legacy aliases | keep indefinitely vs phased deprecation removal | resolved | human | 2026-05-15 | [Section 4.1.3](/Users/chrgre01/src/Sapi/docs/design.md#413-generation-spec-discovery-and-versioning-normative) |
 | Additional query modes in `evaluate_source.sh` default evaluation pack | strict-only default vs strict + exploratory + comparative default | resolved | ai | 2026-05-20 | [Section 6.3](/Users/chrgre01/src/Sapi/docs/design.md#63-user-facing-source-evaluation-harness-normative) |
 
 ## 2. Non-Negotiable Runtime Policy
 
 - production/operator semantic generation MUST be LLM-driven.
 - deterministic semantic bypass is prohibited for production/operator ingest/query/topic-page/comment/persona-profile semantics.
-- explicit test-only mock execution MAY be used via CLI flag `--mock-llm`; this is a compatibility/testing mode, not a production execution mode.
-- runtime feature flags (including historical compatibility toggles) MUST NOT switch semantic flows to deterministic/non-LLM execution in production/operator mode.
-- if a semantic flow is disabled via compatibility/config toggles in production/operator mode, the command MUST fail fast with configuration error instead of falling back to deterministic semantics.
+- explicit test-only mock execution MAY be used via CLI flag `--mock-llm`; this is test-only mode, not a production execution mode.
+- runtime feature flags and config toggles MUST NOT switch semantic flows to deterministic/non-LLM execution in production/operator mode.
+- if a semantic flow is disabled via runtime/config toggles in production/operator mode, the command MUST fail fast with configuration error instead of falling back to deterministic semantics.
 - ingest-only rollback override MAY be exposed via explicit CLI flag `--force` (Section 7.1); this override affects rollback behavior only and MUST NOT switch semantic generation away from LLM execution.
 - Invalid LLM output MUST enter a schema-repair retry loop: feed the invalid JSON, schema, and validation errors back to the LLM for correction; fail loudly after the retry cap.
 - Recovered default repair-loop cap: `max_repair_loops = 3` before hard failure.
@@ -175,8 +174,7 @@ When a semantic command is invoked with `--mock-llm`:
 Identity model:
 - `persona_id` is the only stable identity key for attribution and links.
 - canonical stored identity field is `persona_id`.
-- legacy field `id` is a compatibility alias only; when present it MUST equal `persona_id`.
-- new/rewritten artifacts SHOULD write `persona_id`; compatibility exports MAY also include `id`.
+- non-canonical legacy identity fields such as `id` MUST NOT replace `persona_id` in canonical reads or writes.
 - `display_name` and `full_name` are presentation fields and may collide.
 
 ## 4. Repository Architecture to Recreate
@@ -260,18 +258,17 @@ Canonical-write note (normative):
 
 Discovery and pinning rules:
 - semantic flows MUST resolve generation specs from the table above by `flow_key`; no implicit filename discovery beyond this map.
-- compatibility alias `persona_comment_generation` MAY be accepted on read/CLI/config input and MUST normalize to canonical `comment_section_generation`; alias usage SHOULD emit a deprecation warning.
+- semantic inputs MUST use canonical flow keys from this table; unknown flow keys, including `persona_comment_generation`, MUST fail fast with usage/configuration error.
 - spec/schema version pairing is immutable per major version (`<flow_key>.v1.md` MUST reference `<flow_key>.v1.schema.json`).
 - backward-compatible prompt wording/context improvements MAY update an existing major version file.
 - incompatible schema shape/output-path contract changes MUST create new major-version files and update this flow map explicitly.
 - path templates MAY contain runtime tokens (for example `<space_root>`, `<run_id>`, `<query_id>`, `<topic_id>`, `<persona_id>`, `<page_ref_key>`); tokens MUST be resolved to absolute paths before LLM invocation and validation.
 - for comment-section semantic outputs, `<page_ref_key>` MUST be a deterministic filesystem-safe key derived from the canonical `page_ref` (for example `<page_type>--<page_id>`).
 
-Compatibility-reader sunset policy for legacy aliases (normative):
-- this policy applies to compatibility aliases accepted at read/import/CLI/config boundaries only.
-- canonical writes, canonical schema keys, generation-spec flow keys, and run-envelope metadata MUST use canonical names only.
-- reconstruction window (through Section 13 first-milestone DoD verification): compatibility readers MAY accept documented legacy aliases, but implementations SHOULD emit explicit deprecation warnings with canonical replacements.
-- post-reconstruction enforcement (after Section 13 first-milestone DoD verification): compatibility readers for legacy aliases MUST fail fast by default with configuration/usage errors, unless a given alias is explicitly retained by a new decision-register entry.
+Canonical-only naming policy (normative):
+- canonical writes, canonical schema keys, generation-spec flow keys, CLI flags, and run-envelope metadata MUST use canonical names only.
+- legacy aliases listed for removal in `docs/todo.md` are non-canonical inputs and MUST fail fast with usage/configuration errors.
+- documentation examples and operator guidance MUST use only canonical names.
 
 ### 4.1.4 Generation spec and schema file contents (normative)
 
@@ -312,7 +309,7 @@ Per-flow v1 schema minimum top-level keys:
 
 Notes on key naming:
 - these are minimum v1 keys; flows MAY add fields only with matching schema updates.
-- compatibility aliases MAY be accepted at read boundaries, but canonical writes MUST use canonical key names.
+- flows MUST use canonical key names only.
 
 ### 4.2 Historical recovered `sapi/` module inventory (HISTORICAL)
 
@@ -504,9 +501,9 @@ Canonical ID classes (human-readable + collision-resistant):
   - relation edge IDs use the relation-specific grammar in Section 7.1 (Relation persistence/reconciliation contracts and matrix)
   - relation edge IDs are canonical semantic keys and are not required to be filesystem-safe path segments
 
-Page-ID compatibility alias:
+Page-ID contract:
 - canonical page ID field is `topic_id`.
-- legacy compatibility alias `narrative_id` MAY be accepted on read/import; when present it MUST equal `topic_id`.
+- `narrative_id` is non-canonical and MUST fail fast in canonical readers and validators.
 
 Slug and suffix rules:
 - `<slug>` MUST be lowercase kebab-case (`[a-z0-9]+(?:-[a-z0-9]+)*`) derived from title/content intent.
@@ -608,7 +605,7 @@ Recovered site-scope contract:
   - `site_root`
   - optional `site_base_url`
 - `site_root` resolution supports relative paths (resolved from `<site_path>`)
-- compatibility-only legacy reader behavior MAY accept `<space_root>/site.json`, but new writes MUST target `<site_path>/site.json`
+- legacy `<space_root>/site.json` is non-canonical; canonical readers and writers MUST use `<site_path>/site.json` only
 
 Recovered subspace metadata contract:
 - file: `<space_root>/subspaces.json`
@@ -718,10 +715,7 @@ Primary shell entrypoints:
   - removed flags `--source-only` and `--query-only` MUST fail fast with usage error
 - wrapper argument normalization for `create_comments.sh`:
   - canonical wrapper flags are `--count`, `--comment-user`, and `--comment-page`
-  - compatibility aliases `--user` and `--page` MAY be accepted but MUST normalize to canonical flags before Python invocation
-  - legacy positional count argument `<n>` MAY be accepted only as compatibility input and MUST normalize to `--count <n>`
-  - if canonical and alias forms for the same argument are provided together, wrapper MUST fail fast with a usage error
-  - compatibility alias usage SHOULD emit a deprecation warning
+  - removed non-canonical inputs `--user`, `--page`, and positional count argument `<n>` MUST fail fast with a usage error
 
 Recovered mapping examples:
 - `ingest.sh <site_path> <space_name> ...` -> `scripts/ingest_source.py <space_name> ... --registry-path <site_path>/spaces.toml`
@@ -1120,16 +1114,13 @@ Recovered user-row fields (high signal):
 - required `profile_image_path` (repo-relative `.jpg` path under `personas/profile_images/`)
 - required `profile_image_prompt` used for persona-image generation
 - derived companion thumbnail path `profile_image_thumb_path` (same basename with `-thumb.jpg` suffix, under `personas/profile_images/`)
-- optional compatibility alias `id` where `id == persona_id`
 
 Normalization rules:
 - derive `name_slug` from `full_name` by lowercasing and joining alphanumeric tokens with `-`
 - `persona_id` matches slug pattern `[a-z0-9][a-z0-9_-]*` and must be unique
 - `persona_id` MUST equal `persona-<name_slug>` derived from `full_name`
-- if compatibility alias `id` is present, `id` MUST equal `persona_id`
 - `profile_image_path` MUST equal `personas/profile_images/<name_slug>.jpg` derived from `full_name`
-- if legacy row has `id` but no `persona_id`, loader MUST map `persona_id = id`
-- if both `id` and `persona_id` exist and differ, validation MUST fail
+- rows missing `persona_id` or using legacy `id` in place of `persona_id` MUST fail validation
 - `biography` MUST be written in first person voice from the persona's perspective.
 - `biography` SHOULD be high-signal and usually target `90..180` words (`220` hard upper bound) so persona behavior is specific without becoming verbose.
 - `biography` SHOULD cover the persona's core worldview, evidence/decision style, priorities, and friction points.
@@ -1200,12 +1191,11 @@ Targeting and preflight:
 - failure when no target pages are eligible
 - comments are enabled for topic/source/claim pages
 - semantic comment-section generation MUST be driven by a checked-in generation spec that declares `schema_path`, `output_json_path`, and `context_paths[]`
-- canonical comment-generation flow key is `comment_section_generation` (deprecated compatibility alias: `persona_comment_generation`)
+- canonical comment-generation flow key is `comment_section_generation`
 
 Comment subsystem naming contract (normative):
 - canonical namespace prefix is `comment_section_*` for schema versions, rubric IDs, and context-version markers.
-- legacy `persona_comment_*` names MAY be accepted at read/import boundaries as compatibility aliases.
-- new writes and newly added documentation examples MUST use canonical `comment_section_*` names.
+- `persona_comment_*` names are non-canonical and MUST fail fast in canonical readers, validators, and examples.
 
 Batched comment-section generation contract (normative):
 - comment generation MUST produce a full page comment section JSON artifact in exactly one LLM invocation per target page.
@@ -1224,12 +1214,12 @@ Batched output shape requirements:
 
 Recovered comment CLI surface (high-signal):
 - required `--count` (range `5..50`)
-- `--comment-user` (expects `persona_id`; legacy `id` accepted as alias)
+- `--comment-user` (expects `persona_id`)
 - `--comment-page`
 - `--comment-seed`
 - `--comment-evidence-mode {canonical-only,web-augmented}`
 - `--llm-reasoning-effort {low,medium,high,xhigh}`
-- compatibility input aliases: `--user` -> `--comment-user`, `--page` -> `--comment-page`
+- removed non-canonical inputs `--user`, `--page`, positional count `<n>`, and `--comment-web-evidence` MUST fail fast
 
 Default target-page behavior when page filter omitted:
 - default mode targets parseable topic pages only (safety/performance default)
@@ -1255,32 +1245,26 @@ Recovered projection/build outputs tied to comment flow:
 
 Evidence mode contract:
 - primary flag: `--comment-evidence-mode {canonical-only,web-augmented}`
-- compatibility alias: `--comment-web-evidence` => `web-augmented`
 - `canonical-only`: generation MUST use only declared repository/site context; no web search; no evidence snapshot written.
 - `web-augmented`: generation MAY perform web searches to gather additional background context and MUST write evidence snapshot + provenance annotations for any external material used.
 
 Evidence snapshot contract:
 - path: `raw/snapshots/comment_sections/comment-section-<seed>.json`
 - schema: `comment_section_evidence_snapshot_v1`
-- compatibility aliases accepted on read/import:
-  - path alias: `raw/snapshots/persona_comments/persona-comments-<seed>.json`
-  - schema alias: `persona_comment_evidence_snapshot_v1`
 - when `web-augmented` mode is used, snapshot MUST include at least `(query, source_url, accessed_at, comment_refs[])` for each external evidence item.
 
 Page discussion controls:
 - file: `<site_path>/config/discussion_controls.json`
 - schema: `comment_section_discussion_controls_v1`
-- compatibility schema alias accepted on read/import: `persona_discussion_controls_v1`
 - top keys: `defaults`, `pages`
 - control keys:
-  - `enabled` / `persona_discussion_enabled`
-  - `roster` / `persona_discussion_roster`
-  - `max_turns` / `persona_discussion_max_turns`
-  - `reply_chance` / `persona_discussion_reply_chance`
-  - `max_depth` / `persona_discussion_max_depth`
+  - `enabled`
+  - `roster`
+  - `max_turns`
+  - `reply_chance`
+  - `max_depth`
 - page-local overrides MUST be read from canonical page JSON metadata (`discussion_controls`) and new writes MUST target canonical page JSON, not markdown
-- compatibility-only reader behavior MAY ingest page frontmatter controls when canonical JSON metadata is absent
-- if both frontmatter and canonical JSON metadata exist, canonical JSON metadata wins
+- markdown frontmatter-only controls are non-canonical and MUST fail fast instead of being imported into effective controls
 - precedence: defaults -> per-page controls -> canonical page JSON metadata
 - missing file or unknown/mismatched schema => safe empty controls fallback
 
@@ -1288,17 +1272,17 @@ Comment line/thread contract:
 - every comment row has immutable `comment_uid` used for anchors/permalinks
 - display ordinal `pc-###` is sequential within the rendered page and is not a stable identifier
 - canonical comment payload links personas by `persona_id`
-- rendered persona attribution links MUST resolve to the space-scoped canonical persona-profile page for that `persona_id`; markdown projections MAY use relative links (for example `./persona-<persona_id>.md`) as a non-canonical compatibility projection format
+- rendered persona attribution links MUST resolve to the space-scoped canonical persona-profile page for that `persona_id`; markdown projections MAY use relative links (for example `./persona-<persona_id>.md`) as an optional non-canonical projection format
 - replies include explicit `parent_comment_uid` reference
-- compatibility: legacy parent references by ordinal `pc-###` are accepted on read and normalized to `parent_comment_uid`
+- non-canonical parent references such as ordinal `pc-###` MUST fail fast instead of being normalized
 - rebuttals include steelman acknowledgment before rebuttal text
 - optional `claim_badges` suffix includes claim status/confidence
 - comment body text SHOULD remain natural/social in style and avoid leaking internal metadata
 - claim badge status vocabulary: `verified`, `unverified`, `disputed` (fallback default `unverified`)
 
-Turn marker compatibility:
+Turn marker contract:
 - canonical inline marker: `<<turn:{...}>>`
-- legacy supported marker: `<!-- turn:{...} -->`
+- legacy HTML comment markers are non-canonical and MUST fail fast
 
 Turn classification and validation (normative):
 - argumentative turns (positions `support`, `challenge`, `rebuttal`, `synthesis`) are used for factual claims, evidence disputes, and adjudicated argumentation.
@@ -1319,7 +1303,7 @@ Lightweight social-turn contract:
 
 Anti-gaming/generation-isolation constraint:
 - comment-generation prompts/context MUST NOT expose scoring/adjudication rubric details used for evaluation
-- generation context is audited under `comment_section_generation_context_v1` (compatibility alias: `persona_comment_generation_context_v1`)
+- generation context is audited under `comment_section_generation_context_v1`
 
 Merge/normalization contract for existing comment sections:
 - merge existing and new lines
@@ -1340,14 +1324,13 @@ Projection comment stats (high-signal keys):
 - `page_controls` (`configured_pages`, `active_pages`, `disabled_pages`, `limited_pages`)
 - `turn_schema` (`validated_comments`, `positions`, historical `timeline`)
 - `thread_outcomes`
-- `adjudication` (`rubric_id=comment_section_adjudication_v1`, rows/checks/pages_with_failures; compatibility alias `persona_comment_adjudication_v1`)
-- `generation_isolation` (`schema_version=comment_section_generation_context_v1`, leak counts; compatibility alias `persona_comment_generation_context_v1`)
+- `adjudication` (`rubric_id=comment_section_adjudication_v1`, rows/checks/pages_with_failures)
+- `generation_isolation` (`schema_version=comment_section_generation_context_v1`, leak counts)
 - `evidence_mode`
 - `evidence_snapshot`
 
 Historical memory schema marker:
 - canonical: `comment_section_memory_v1`
-- compatibility alias: `persona_comment_memory_v1`
 
 Comment UI affordances (historical UX contract):
 - threaded tree rendering
@@ -1359,7 +1342,7 @@ Comment UI affordances (historical UX contract):
 
 Benchmark artifact:
 - `sapi/benchmarks/comment_quality_benchmark_v1.json`
-- schema: `comment_section_quality_benchmark_v1` (compatibility alias: `persona_comment_quality_benchmark_v1`)
+- schema: `comment_section_quality_benchmark_v1`
 - benchmark id: `comment-quality-v1`
 - required dimensions:
   - `persona_consistency`
@@ -1378,9 +1361,9 @@ Recovered default thresholds:
   - `human_likeness = 0.55`
 
 Evaluation manifest contract:
-- schema: `comment_section_quality_eval_manifest_v1` (compatibility alias: `persona_comment_quality_eval_manifest_v1`)
+- schema: `comment_section_quality_eval_manifest_v1`
 - evaluation id: `CQ-<sha256-prefix>`
-- reads snapshot schema `comment_section_evidence_snapshot_v1` (compatibility alias: `persona_comment_evidence_snapshot_v1`)
+- reads snapshot schema `comment_section_evidence_snapshot_v1`
 - output path: `outputs/comment_quality/<evaluation_id>/manifest.json`
 - keys:
   - `schema_version`, `evaluation_id`, `as_of`
@@ -1593,7 +1576,7 @@ High-signal CLI runtime flags:
 - toggles/testing: `--mock-llm`, `--enable-source-index`, `--run-search-visibility`, `--site-presentation-mode`, `--warning-budget`, `--require-source-date`
 - `--warning-budget` overrides the default lint warning threshold (`200`) for workflows that apply warning-threshold status mapping (Section 5.8); value MUST parse as a positive integer.
 - `--mock-llm` is test-only and MUST NOT be enabled by default in production/operator wrapper workflows.
-- deprecated compatibility gates MUST be exposed as explicit CLI flags (if kept) and MUST NOT trigger deterministic fallback semantics in production/operator mode.
+- legacy test/debug gates MUST be exposed as explicit CLI flags (if kept) and MUST NOT trigger deterministic fallback semantics in production/operator mode.
 - tests/local contract checks that need non-live execution MUST use `--mock-llm` while preserving schema/output contracts.
 - advanced comment controls (if implemented) SHOULD be explicit CLI flags.
 - live semantic defaults SHOULD be `--llm-backend codex`, `--llm-model gpt-5.4`, and `--llm-reasoning-effort high`.

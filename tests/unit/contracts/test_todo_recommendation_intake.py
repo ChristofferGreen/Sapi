@@ -80,27 +80,21 @@ class TodoRecommendationIntakeTests(unittest.TestCase):
         )
 
         design_text = DESIGN_DOC_PATH.read_text()
-        self.assertIn(
-            "| Compatibility reader sunset policy for legacy aliases | keep indefinitely vs phased deprecation removal | resolved | human | 2026-05-15 | [Section 4.1.3]",
-            design_text,
-        )
+        self.assertNotIn("Compatibility reader sunset policy for legacy aliases", design_text)
         section_413 = _section_text(
             text=design_text,
             heading="### 4.1.3 Generation spec discovery and versioning (normative)",
         )
-        self.assertIn("Compatibility-reader sunset policy for legacy aliases (normative):", section_413)
+        self.assertIn("Canonical-only naming policy (normative):", section_413)
         self.assertIn(
-            "this policy applies to compatibility aliases accepted at read/import/CLI/config boundaries only.",
+            "legacy aliases listed for removal in `docs/todo.md` are non-canonical inputs and MUST fail fast with usage/configuration errors.",
             section_413,
         )
         self.assertIn(
-            "canonical writes, canonical schema keys, generation-spec flow keys, and run-envelope metadata MUST use canonical names only.",
+            "canonical writes, canonical schema keys, generation-spec flow keys, CLI flags, and run-envelope metadata MUST use canonical names only.",
             section_413,
         )
-        self.assertIn(
-            "post-reconstruction enforcement (after Section 13 first-milestone DoD verification): compatibility readers for legacy aliases MUST fail fast by default with configuration/usage errors",
-            section_413,
-        )
+        self.assertNotIn("Compatibility-reader sunset policy for legacy aliases (normative):", section_413)
 
     def test_todo_0283_completion_records_resolved_decision_and_section_63_contract(self) -> None:
         finished_block = _task_block(

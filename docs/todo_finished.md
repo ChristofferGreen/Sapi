@@ -4,6 +4,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0314: Remove compatibility-reader sunset policy and alias acceptance language from contracts
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Cross-cutting
+  - depends_on: TODO-0313
+  - scope: Update `docs/design.md` and `docs/low_level.md` so contracts are canonical-only and no longer permit compatibility alias acceptance.
+  - acceptance:
+    - Design/low-level docs remove compatibility alias acceptance policy and deprecation wording for removed paths.
+    - Contract tests are updated to canonical-only assertions.
+  - notes: source `docs/design.md` Sections 4.1.3 and 7.6; `docs/low_level.md` Sections 6.1, 8.3, and 12
+  - evidence: Rewrote the design and low-level contracts to remove compatibility sunset/deprecation
+    wording and alias-acceptance clauses for canonical flow keys, comment CLI flags, discussion
+    control schemas, turn markers, site-scope readers, and legacy identity/page-id fields. Added
+    `tests/unit/contracts/test_canonical_only_doc_contracts.py` and updated
+    `tests/unit/contracts/test_todo_recommendation_intake.py` so doc-contract assertions now require
+    canonical-only wording instead of the retired sunset-policy text.
+
 - [x] TODO-0313: Compatibility purge tracker for canonical-only boundary
   - owner: ai
   - created_at: 2026-04-13

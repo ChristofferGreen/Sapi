@@ -47,20 +47,19 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0314`
-2. `TODO-0315`
-3. `TODO-0316`
-4. `TODO-0317`
-5. `TODO-0318`
-6. `TODO-0319`
-7. `TODO-0320`
-8. `TODO-0321`
-9. `TODO-0322`
-10. `TODO-0323`
-11. `TODO-0324`
-12. `TODO-0325`
-13. `TODO-0326`
-14. `TODO-0338`
+1. `TODO-0315`
+2. `TODO-0316`
+3. `TODO-0317`
+4. `TODO-0318`
+5. `TODO-0319`
+6. `TODO-0320`
+7. `TODO-0321`
+8. `TODO-0322`
+9. `TODO-0323`
+10. `TODO-0324`
+11. `TODO-0325`
+12. `TODO-0326`
+13. `TODO-0338`
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -73,20 +72,19 @@ Task template:
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: TODO-0317, TODO-0318, TODO-0319, TODO-0324, TODO-0325, TODO-0338
-- P1 Core product behavior: TODO-0314, TODO-0315, TODO-0316, TODO-0339, TODO-0340, TODO-0341
+- P1 Core product behavior: TODO-0315, TODO-0316, TODO-0339, TODO-0340, TODO-0341
 - P2 Social/eval/hardening: TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0326, TODO-0327, TODO-0342
 - P3 Continuous docs governance: TODO-0327
 
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. TODO-0314
-2. TODO-0317
-3. TODO-0318
-4. TODO-0319
-5. TODO-0324
-6. TODO-0325
-7. TODO-0326
+1. TODO-0317
+2. TODO-0318
+3. TODO-0319
+4. TODO-0324
+5. TODO-0325
+6. TODO-0326
 
 Wave B (ingest + projection + lint):
 1. TODO-0315
@@ -113,12 +111,12 @@ Cross-cutting docs backlog:
 | Design area | Primary TODO IDs |
 | --- | --- |
 | Section 1 (scope/authority/reading) | - |
-| Section 2 (runtime policy + semantic loop + mock mode) | TODO-0314 |
+| Section 2 (runtime policy + semantic loop + mock mode) | - |
 | Section 3 (core concepts + identity invariants) | TODO-0318, TODO-0319 |
-| Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | TODO-0314, TODO-0317 |
+| Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | TODO-0317 |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | - |
-| Section 6 (wrapper UX + wrapper-to-entrypoint contract) | TODO-0314, TODO-0315, TODO-0316 |
-| Section 7.1 ingest pipeline | TODO-0314, TODO-0339 |
+| Section 6 (wrapper UX + wrapper-to-entrypoint contract) | TODO-0315, TODO-0316 |
+| Section 7.1 ingest pipeline | TODO-0315, TODO-0339 |
 | Section 7.2 references/linking | - |
 | Section 7.3 query pipeline | TODO-0339 |
 | Section 7.4 persona catalog | TODO-0319 |
@@ -141,11 +139,11 @@ Cross-cutting docs backlog:
 | Section 5 (path + registry contracts) | TODO-0324, TODO-0325 |
 | Section 6 (semantic execution engine + retry/repair) | TODO-0317, TODO-0339 |
 | Section 7 (transaction/rollback) | TODO-0339 |
-| Section 8 (pipeline execution contracts) | TODO-0314, TODO-0315, TODO-0316, TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0339, TODO-0341 |
+| Section 8 (pipeline execution contracts) | TODO-0315, TODO-0316, TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0339, TODO-0341 |
 | Section 9 (deterministic build/projection) | TODO-0340, TODO-0341 |
 | Section 10 (relation persistence) | TODO-0326 |
 | Section 11 (lint/warning threshold) | - |
-| Section 12 (wrapper/script interfaces) | TODO-0314, TODO-0315, TODO-0316, TODO-0342 |
+| Section 12 (wrapper/script interfaces) | TODO-0315, TODO-0316, TODO-0342 |
 | Section 13 (observability/runtime controls/safety) | TODO-0341 |
 | Section 14 (anti-drift and PR guardrails) | - |
 | Section 15 (test-plan binding) | TODO-0327, TODO-0342 |
@@ -156,7 +154,7 @@ Cross-cutting docs backlog:
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (test module layout) | TODO-0327, TODO-0342 |
-| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0314, TODO-0315, TODO-0316, TODO-0317, TODO-0318, TODO-0319, TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0324, TODO-0325, TODO-0326, TODO-0339, TODO-0341, TODO-0342 |
+| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0315, TODO-0316, TODO-0317, TODO-0318, TODO-0319, TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0324, TODO-0325, TODO-0326, TODO-0339, TODO-0341, TODO-0342 |
 | Tier 4-6 (determinism/golden/live canary) | TODO-0340, TODO-0342 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0327, TODO-0342 |
 | Section 6 (exit criteria gating) | TODO-0342 |
@@ -356,13 +354,3 @@ Cross-cutting docs backlog:
   - acceptance:
     - `ingest.sh` and `scripts/ingest_source.py` reject both `--query-only` and `--source-only`.
     - Tests assert removed ingest mode flags fail as invalid input.
-
-- [ ] TODO-0314: Remove compatibility-reader sunset policy and alias acceptance language from contracts
-  - owner: ai
-  - created_at: 2026-04-13
-  - phase: Cross-cutting
-  - depends_on: TODO-0313
-  - scope: Update `docs/design.md` and `docs/low_level.md` so contracts are canonical-only and no longer permit compatibility alias acceptance.
-  - acceptance:
-    - Design/low-level docs remove compatibility alias acceptance policy and deprecation wording for removed paths.
-    - Contract tests are updated to canonical-only assertions.
