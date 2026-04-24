@@ -90,6 +90,8 @@ class SourceAcquisitionContractTests(unittest.TestCase):
             expected_artifact_root = space_root / "sources" / "artifacts" / result.source_id
             self.assertEqual(result.artifact_root, expected_artifact_root)
             self.assertTrue(result.source_artifact_path.is_file())
+            self.assertTrue(result.source_markdown_path.is_file())
+            self.assertTrue(result.source_extraction_path.is_file())
             self.assertTrue(result.overview_markdown_path.is_file())
             self.assertTrue(str(result.source_artifact_path).startswith(str(expected_artifact_root)))
 
@@ -116,14 +118,33 @@ class SourceAcquisitionContractTests(unittest.TestCase):
                 f"sources/artifacts/{result.source_id}/{result.source_artifact_path.name}",
             )
             self.assertEqual(
+                record["artifacts"]["source_markdown"],
+                f"sources/artifacts/{result.source_id}/source.md",
+            )
+            self.assertEqual(
+                record["artifacts"]["source_extraction"],
+                f"sources/artifacts/{result.source_id}/source_extraction.json",
+            )
+            self.assertEqual(
                 record["artifacts"]["overview_markdown"],
                 f"sources/artifacts/{result.source_id}/overview.md",
+            )
+            self.assertEqual(record["analysis_policy"]["preferred_artifact"], "source_markdown")
+            self.assertEqual(record["analysis_policy"]["fallback_artifacts"], ["source_file"])
+            self.assertIn(record["analysis_policy"]["quality_status"], {"usable", "degraded", "unusable"})
+            self.assertIn("status", record["source_extraction"])
+            source_extraction_payload = json.loads(result.source_extraction_path.read_text())
+            self.assertEqual(source_extraction_payload["schema_version"], "source_extraction_v1")
+            self.assertEqual(
+                source_extraction_payload["artifacts"]["source_markdown"],
+                f"sources/artifacts/{result.source_id}/source.md",
             )
             self.assertIsNone(record["artifacts"]["front_page_image"])
             self.assertEqual(record["source_family_id"], "family-paper")
             self.assertEqual(record["canonical_identifier"], "doi:10.1000/example")
             self.assertFalse(Path(record["artifact_root"]).is_absolute())
             self.assertFalse(Path(record["artifacts"]["source_file"]).is_absolute())
+            self.assertFalse(Path(record["artifacts"]["source_markdown"]).is_absolute())
 
     def test_url_ingest_is_supported_and_persists_artifacts_and_record(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -141,6 +162,37 @@ class SourceAcquisitionContractTests(unittest.TestCase):
             self.assertEqual(record["source_media_type"], "application/pdf")
             self.assertEqual(result.source_artifact_path.name, "source.pdf")
             self.assertTrue(result.source_artifact_path.is_file())
+
+    def test_text_like_ingest_writes_markdown_analysis_artifact_and_provenance(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            input_file = Path(tmp) / "paper.md"
+            input_file.write_text(
+                "# Recoverable Title\n\n"
+                + (
+                    "A readable markdown body for analysis that preserves argument structure, evidence, "
+                    "and enough prose for semantic extraction to reason over the source safely. "
+                )
+                * 8
+                + "\n"
+            )
+
+            result = ingest_source_artifacts_and_record(
+                space_root=space_root,
+                source_path_or_url=str(input_file),
+                source_title_override="Recoverable Title",
+            )
+
+            source_markdown = result.source_markdown_path.read_text()
+            source_extraction = json.loads(result.source_extraction_path.read_text())
+            record = json.loads(result.record_path.read_text())
+
+            self.assertIn("# Recoverable Title", source_markdown)
+            self.assertEqual(source_extraction["converter_name"], "direct_text")
+            self.assertEqual(source_extraction["status"], "success")
+            self.assertEqual(source_extraction["quality_status"], "usable")
+            self.assertEqual(record["source_extraction"]["converter_name"], "direct_text")
+            self.assertEqual(record["analysis_policy"]["quality_status"], "usable")
 
     def test_url_ingest_rejects_non_pdf_payload_when_content_type_is_pdf(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -502,6 +502,10 @@ def _update_source_record_with_ingest_extraction_fields(
         fallback=source_record.get("source_id"),
     )
     source_semantic["display_title"] = source_display_title
+    extracted_authors = _normalize_source_authors(source_semantic.get("authors"))
+    if extracted_authors:
+        source_semantic["authors"] = extracted_authors
+        source_record["authors"] = extracted_authors
     source_record["display_title"] = source_display_title
     source_record["source_semantic"] = source_semantic
     source_record["source_date_inference"] = semantic_output.get("source_date_inference")
@@ -515,14 +519,57 @@ def _update_source_record_with_ingest_extraction_fields(
     return source_record_path
 
 
+def _normalize_source_authors(raw_value: Any) -> list[str]:
+    if raw_value is None:
+        return []
+    if isinstance(raw_value, str):
+        normalized = " ".join(raw_value.split()).strip()
+        return [normalized] if normalized else []
+    if not isinstance(raw_value, list):
+        return []
+    authors: list[str] = []
+    seen: set[str] = set()
+    for item in raw_value:
+        candidate = ""
+        if isinstance(item, str):
+            candidate = " ".join(item.split()).strip()
+        elif isinstance(item, dict):
+            for key in ("name", "full_name", "display_name", "author"):
+                value = item.get(key)
+                if isinstance(value, str) and value.strip():
+                    candidate = " ".join(value.split()).strip()
+                    break
+        if not candidate:
+            continue
+        folded = candidate.casefold()
+        if folded in seen:
+            continue
+        seen.add(folded)
+        authors.append(candidate)
+    return authors
+
+
 @dataclass(frozen=True)
 class SourceIngestResult:
     source_id: str
     record_path: Path
     artifact_root: Path
     source_artifact_path: Path
+    source_markdown_path: Path
+    source_extraction_path: Path
     overview_markdown_path: Path
     front_page_image_path: Path | None
+
+
+@dataclass(frozen=True)
+class _SourceMarkdownExtraction:
+    markdown_text: str
+    converter_name: str
+    converter_version: str | None
+    status: str
+    quality_status: str
+    warnings: tuple[str, ...]
+    options: dict[str, Any]
 
 
 def ingest_source_artifacts_and_record(
@@ -572,6 +619,21 @@ def ingest_source_artifacts_and_record(
     source_artifact_path = artifact_root / source_artifact_filename
     source_artifact_path.write_bytes(source_input.body)
     front_page_image_path = _render_pdf_front_page_image(source_artifact_path=source_artifact_path)
+    source_markdown_path = artifact_root / "source.md"
+    source_extraction_path = artifact_root / "source_extraction.json"
+    markdown_extraction = _extract_source_markdown(
+        title=title,
+        source_input=source_input,
+        source_artifact_path=source_artifact_path,
+    )
+    source_markdown_path.write_text(markdown_extraction.markdown_text)
+    source_extraction_payload = _build_source_extraction_payload(
+        source_input=source_input,
+        source_artifact_rel=(artifact_root_rel / source_artifact_filename),
+        source_markdown_rel=(artifact_root_rel / "source.md"),
+        extraction=markdown_extraction,
+    )
+    source_extraction_path.write_text(json.dumps(source_extraction_payload, indent=2, sort_keys=True) + "\n")
 
     overview_markdown_path = artifact_root / "overview.md"
     overview_markdown_path.write_text(_render_overview_markdown(title=title, source_input=source_input))
@@ -581,12 +643,15 @@ def ingest_source_artifacts_and_record(
         title=title,
         source_input=source_input,
         source_artifact_rel=(artifact_root_rel / source_artifact_filename),
+        source_markdown_rel=(artifact_root_rel / "source.md"),
+        source_extraction_rel=(artifact_root_rel / "source_extraction.json"),
         overview_markdown_rel=(artifact_root_rel / "overview.md"),
         front_page_image_rel=(
             artifact_root_rel / front_page_image_path.name
             if front_page_image_path is not None
             else None
         ),
+        source_extraction=source_extraction_payload,
         source_family_id=source_family_id,
         canonical_identifier=canonical_identifier,
         source_date=source_date,
@@ -605,6 +670,8 @@ def ingest_source_artifacts_and_record(
         record_path=record_path,
         artifact_root=artifact_root,
         source_artifact_path=source_artifact_path,
+        source_markdown_path=source_markdown_path,
+        source_extraction_path=source_extraction_path,
         overview_markdown_path=overview_markdown_path,
         front_page_image_path=front_page_image_path,
     )
@@ -715,8 +782,11 @@ def _build_source_record_payload(
     title: str,
     source_input: _LoadedSourceInput,
     source_artifact_rel: Path,
+    source_markdown_rel: Path,
+    source_extraction_rel: Path,
     overview_markdown_rel: Path,
     front_page_image_rel: Path | None,
+    source_extraction: dict[str, Any],
     source_family_id: str | None,
     canonical_identifier: str | None,
     source_date: str | None,
@@ -749,8 +819,30 @@ def _build_source_record_payload(
         "artifact_root": str(source_artifact_rel.parent),
         "artifacts": {
             "source_file": str(source_artifact_rel),
+            "source_markdown": str(source_markdown_rel),
+            "source_extraction": str(source_extraction_rel),
             "overview_markdown": str(overview_markdown_rel),
             "front_page_image": str(front_page_image_rel) if front_page_image_rel is not None else None,
+        },
+        "analysis_policy": {
+            "preferred_artifact": "source_markdown",
+            "fallback_artifacts": ["source_file"],
+            "quality_status": source_extraction.get("quality_status"),
+            "warnings": list(source_extraction.get("warnings") or []),
+        },
+        "source_extraction": {
+            "converter_name": source_extraction.get("converter_name"),
+            "converter_version": source_extraction.get("converter_version"),
+            "status": source_extraction.get("status"),
+            "quality_status": source_extraction.get("quality_status"),
+            "warnings": list(source_extraction.get("warnings") or []),
+        },
+        "external_related_links": [],
+        "related_link_enrichment": {
+            "status": "not_run",
+            "warnings": [],
+            "sources": [],
+            "skip_reason": "reference_enrichment_not_run",
         },
         **metadata_extensions,
     }
@@ -925,6 +1017,242 @@ def _render_overview_markdown(*, title: str, source_input: _LoadedSourceInput) -
         f"- media_type: {source_input.media_type}\n"
         f"- content_sha256: {fingerprint}\n"
     )
+
+
+def _extract_source_markdown(
+    *,
+    title: str,
+    source_input: _LoadedSourceInput,
+    source_artifact_path: Path,
+) -> _SourceMarkdownExtraction:
+    direct_text = _direct_text_markdown(source_input=source_input)
+    if direct_text is not None:
+        return _finalize_source_markdown_extraction(
+            title=title,
+            markdown_text=direct_text,
+            converter_name="direct_text",
+            converter_version=None,
+            status="success",
+            warnings=[],
+            options={"media_type": source_input.media_type},
+        )
+
+    warnings: list[str] = []
+    if source_artifact_path.suffix.lower() == ".pdf":
+        markitdown_markdown, markitdown_version, markitdown_warnings = _extract_pdf_markdown_via_markitdown(
+            source_artifact_path=source_artifact_path,
+        )
+        warnings.extend(markitdown_warnings)
+        if markitdown_markdown is not None:
+            return _finalize_source_markdown_extraction(
+                title=title,
+                markdown_text=markitdown_markdown,
+                converter_name="markitdown",
+                converter_version=markitdown_version,
+                status="success",
+                warnings=warnings,
+                options={"input_format": "pdf"},
+            )
+
+        pdf_text, pdf_warnings = _extract_pdf_markdown_via_pdftotext(source_artifact_path=source_artifact_path)
+        warnings.extend(pdf_warnings)
+        if pdf_text is not None:
+            return _finalize_source_markdown_extraction(
+                title=title,
+                markdown_text=pdf_text,
+                converter_name="pdftotext",
+                converter_version=None,
+                status="success",
+                warnings=warnings,
+                options={"input_format": "pdf", "layout": "preserve"},
+            )
+
+    warnings.append("No markdown extractor produced usable source text; fallback placeholder was written.")
+    return _finalize_source_markdown_extraction(
+        title=title,
+        markdown_text=_fallback_source_markdown(title=title, source_input=source_input, warnings=warnings),
+        converter_name="fallback_placeholder",
+        converter_version=None,
+        status="failed",
+        warnings=warnings,
+        options={"media_type": source_input.media_type},
+    )
+
+
+def _direct_text_markdown(source_input: _LoadedSourceInput) -> str | None:
+    normalized_media_type = source_input.media_type.strip().lower()
+    suffix = Path(source_input.locator_for_filename).suffix.lower()
+    is_text_like = (
+        normalized_media_type.startswith("text/")
+        or normalized_media_type in {"application/json", "application/xml"}
+        or suffix in {".md", ".markdown", ".txt", ".html", ".htm", ".json", ".xml"}
+    )
+    if not is_text_like:
+        return None
+    decoded = source_input.body.decode("utf-8", errors="ignore")
+    return decoded if decoded.strip() else None
+
+
+def _extract_pdf_markdown_via_markitdown(
+    *,
+    source_artifact_path: Path,
+) -> tuple[str | None, str | None, list[str]]:
+    try:
+        import markitdown as markitdown_module
+        from markitdown import MarkItDown
+    except ImportError:
+        return None, None, []
+    try:
+        converter = MarkItDown()
+        result = converter.convert(str(source_artifact_path))
+    except Exception as exc:  # pragma: no cover - optional dependency/runtime failure
+        return None, getattr(markitdown_module, "__version__", None), [f"MarkItDown conversion failed: {exc}"]
+    markdown_text = getattr(result, "text_content", None)
+    if not isinstance(markdown_text, str) or not markdown_text.strip():
+        return None, getattr(markitdown_module, "__version__", None), [
+            "MarkItDown returned empty markdown output.",
+        ]
+    return markdown_text, getattr(markitdown_module, "__version__", None), []
+
+
+def _extract_pdf_markdown_via_pdftotext(*, source_artifact_path: Path) -> tuple[str | None, list[str]]:
+    pdftotext = shutil.which("pdftotext")
+    if pdftotext is None:
+        return None, []
+    try:
+        completed = subprocess.run(
+            [
+                pdftotext,
+                "-layout",
+                str(source_artifact_path),
+                "-",
+            ],
+            capture_output=True,
+            text=True,
+            timeout=60,
+            check=False,
+        )
+    except (OSError, subprocess.SubprocessError) as exc:
+        return None, [f"pdftotext conversion failed: {exc}"]
+    if completed.returncode != 0:
+        message = completed.stderr.strip() or completed.stdout.strip() or "pdftotext exited with a non-zero status."
+        return None, [message]
+    if not completed.stdout.strip():
+        return None, ["pdftotext returned empty text output."]
+    return completed.stdout, []
+
+
+def _finalize_source_markdown_extraction(
+    *,
+    title: str,
+    markdown_text: str,
+    converter_name: str,
+    converter_version: str | None,
+    status: str,
+    warnings: list[str],
+    options: dict[str, Any],
+) -> _SourceMarkdownExtraction:
+    normalized_markdown = _normalize_source_markdown(title=title, markdown_text=markdown_text)
+    quality_status, quality_warnings = _classify_markdown_quality(markdown_text=normalized_markdown)
+    merged_warnings = _dedupe_warnings([*warnings, *quality_warnings])
+    resolved_status = status
+    if status == "success" and quality_status != "usable":
+        resolved_status = "partial"
+    return _SourceMarkdownExtraction(
+        markdown_text=normalized_markdown,
+        converter_name=converter_name,
+        converter_version=converter_version,
+        status=resolved_status,
+        quality_status=quality_status,
+        warnings=tuple(merged_warnings),
+        options=options,
+    )
+
+
+def _normalize_source_markdown(*, title: str, markdown_text: str) -> str:
+    normalized = markdown_text.replace("\r\n", "\n").replace("\r", "\n").replace("\x00", "")
+    normalized = "\n".join(line.rstrip() for line in normalized.splitlines()).strip()
+    if not normalized:
+        normalized = f"# {title}\n"
+    if not normalized.startswith("# "):
+        normalized = f"# {title}\n\n{normalized}"
+    return normalized.rstrip() + "\n"
+
+
+def _classify_markdown_quality(*, markdown_text: str) -> tuple[str, list[str]]:
+    body = markdown_text.strip()
+    if not body:
+        return "unusable", ["Markdown extraction produced an empty file."]
+    if "Source markdown extraction did not produce usable analysis text." in body:
+        return "unusable", ["Markdown extraction fell back to placeholder text only."]
+    content_length = len(re.sub(r"\s+", " ", body))
+    if content_length < 120:
+        return "unusable", ["Markdown extraction did not recover enough analysis text."]
+    if content_length < 600:
+        return "degraded", ["Markdown extraction recovered limited text; inspect the original artifact for tables or figures."]
+    return "usable", []
+
+
+def _fallback_source_markdown(
+    *,
+    title: str,
+    source_input: _LoadedSourceInput,
+    warnings: list[str],
+) -> str:
+    bullet_rows = "\n".join(f"- {warning}" for warning in _dedupe_warnings(warnings)) or "- none"
+    return (
+        f"# {title}\n\n"
+        "Source markdown extraction did not produce usable analysis text.\n\n"
+        "## Extraction Notes\n"
+        f"- source_kind: {source_input.source_kind}\n"
+        f"- source_locator: {source_input.locator}\n"
+        f"- media_type: {source_input.media_type}\n"
+        "- preferred analysis path: inspect this record's extraction metadata, then fall back to the original artifact "
+        "for tables, figures, or layout-sensitive content.\n\n"
+        "## Warnings\n"
+        f"{bullet_rows}\n"
+    )
+
+
+def _build_source_extraction_payload(
+    *,
+    source_input: _LoadedSourceInput,
+    source_artifact_rel: Path,
+    source_markdown_rel: Path,
+    extraction: _SourceMarkdownExtraction,
+) -> dict[str, Any]:
+    markdown_bytes = extraction.markdown_text.encode("utf-8")
+    return {
+        "schema_version": "source_extraction_v1",
+        "converter_name": extraction.converter_name,
+        "converter_version": extraction.converter_version,
+        "status": extraction.status,
+        "quality_status": extraction.quality_status,
+        "warnings": list(extraction.warnings),
+        "options": extraction.options,
+        "input_sha256": hashlib.sha256(source_input.body).hexdigest(),
+        "output_sha256": hashlib.sha256(markdown_bytes).hexdigest(),
+        "markdown_char_count": len(extraction.markdown_text),
+        "artifacts": {
+            "source_file": str(source_artifact_rel),
+            "source_markdown": str(source_markdown_rel),
+        },
+    }
+
+
+def _dedupe_warnings(warnings: list[str]) -> list[str]:
+    normalized: list[str] = []
+    seen: set[str] = set()
+    for warning in warnings:
+        candidate = " ".join(str(warning).split()).strip()
+        if not candidate:
+            continue
+        folded = candidate.casefold()
+        if folded in seen:
+            continue
+        seen.add(folded)
+        normalized.append(candidate)
+    return normalized
 
 
 def _require_non_empty(value: Any, field_name: str) -> str:

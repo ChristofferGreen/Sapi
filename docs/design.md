@@ -459,11 +459,24 @@ Behavior:
 ```text
 <space_root>/sources/artifacts/<source_id>/
   source.pdf
+  source.md
+  source_extraction.json
   front_page.png
   overview.md
 ```
 
 - source binaries and previews are space-owned and MUST be stored under `<space_root>/sources/artifacts/`.
+- ingest MUST also persist canonical analysis artifacts beside the original binary:
+  - `source.md`: extracted markdown used as the default LLM/source-analysis substrate
+  - `source_extraction.json`: extraction provenance (`converter_name`, `converter_version`, `status`,
+    `quality_status`, hashes, warnings, and artifact-relative pointers)
+- source records MUST point to the original binary, `source.md`, and `source_extraction.json`.
+- source records MUST persist an explicit `analysis_policy` stating that markdown is the preferred
+  analysis artifact and the original binary is the fidelity fallback.
+- markdown quality states MUST be explicit (`usable`, `degraded`, `unusable`) so downstream analysis
+  never silently treats low-quality extraction as if it were authoritative.
+- fidelity-sensitive workflows (tables, figures, equations, layout recovery) MAY read the original
+  binary, but only as an explicit fallback or specialized inspection path.
 - ingest SHOULD render `front_page.png` at web-preview scale (default max width `840px`, height auto)
   so source-page previews stay readable without oversized assets.
 - site-level source artifact roots such as `<site_path>/sources/...` are historical-only and MUST NOT be used for new writes.
@@ -815,10 +828,16 @@ Core steps:
 1. preflight: resolve `<space_root>`, acquire ingest lock, initialize run envelope (`run_id`, timing/runtime metadata)
 2. fetch/read bytes, normalize to PDF when needed, and persist source artifact under `<space_root>/sources/artifacts/<source_id>/...` with source record metadata
    - when media type, file suffix, or URL path indicates PDF (`application/pdf` / `.pdf`), ingest MUST verify payload bytes begin with `%PDF-`; otherwise fail ingest before artifact persistence
+   - ingest MUST also write `source.md`, `source_extraction.json`, and source-record `analysis_policy`
+     before semantic extraction begins
 3. extract text and run `ingest_extraction` generation spec with source path + hints + strict JSON schema
+   - semantic source reading MUST prefer `source.md` and inspect `source_extraction.json` for quality/provenance
+     before falling back to the original binary
 4. validate and persist canonical claim/relation outputs from ingest extraction
 5. run `topic_generation` generation spec using source + claim context; validate and deterministically persist `0..n` canonical topic JSON pages when cross-source concepts are supported
 6. run deterministic link reconciliation so source/claim/topic artifacts are mutually connected and all required references resolve
+   - same pass SHOULD also persist curated `external_related_links[]` plus `related_link_enrichment`
+     metadata on source records
 7. run deterministic projection/reindex/site build from canonical JSON (or mark run `build_deferred` in reconstruction bootstrap mode)
 8. run lint gate, write run record, and always release lock
 
@@ -959,14 +978,43 @@ Normalization rules:
 ### 7.2 Reference extraction and linking
 
 For reference-heavy sources:
-1. extract references at ingest
+1. extract references at ingest from the markdown analysis artifact when available; only fall back to raw binary decoding when extraction quality is explicitly degraded/unusable
 2. normalize to structured rows (`title/authors/year/doi/arxiv/url`)
 3. match to ingested local sources in same space
 4. persist `linked_source_ids`
 5. backfill links in older records on new ingest
+6. derive curated `external_related_links[]` from canonical identifiers, source locator, and allowlisted external reference URLs
+
+External related-link contract (normative):
+- `external_related_links[]` are distinct from canonical source citations/references; they are reader-facing
+  online destinations surfaced on source/topic/claim pages.
+- each related-link row MUST persist:
+  - `title`
+  - `url`
+  - `domain`
+  - `link_type`
+  - `quality_status`
+  - provenance object (`origin`, `source_field`)
+  - rationale/summary text when available
+  - confidence/quality cues
+- allowed default link classes are:
+  - `canonical_paper` (for DOI landing pages)
+  - `primary_source` (original source URL)
+  - `research_index` (for example arXiv or Papers With Code)
+  - `encyclopedia` (for example Wikipedia)
+  - `repository`
+  - `discussion_forum`
+- enrichment MUST be deterministic and auditable; page rendering MUST NOT perform implicit web search.
+- enrichment MUST de-duplicate by normalized URL and prefer higher-trust rows over lower-trust duplicates.
+- unsupported or low-signal domains SHOULD be rejected rather than rendered.
+- source records MUST persist `related_link_enrichment` metadata with `status`, `sources`, warnings,
+  and skip reason when no curated links qualify.
 
 UI requirement:
 - source page shows references and linked local source pages when matched
+- source, topic, and claim pages SHOULD show `External Related Links` sections when curated links exist.
+- topic and claim pages MUST inherit/aggregate curated external links deterministically from linked sources,
+  with provenance cues indicating which source(s) supplied each link.
 
 ### 7.3 Query pipeline
 

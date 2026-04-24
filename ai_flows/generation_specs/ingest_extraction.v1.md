@@ -3,7 +3,8 @@ version: v1
 schema_path: schemas/ingest_extraction.v1.schema.json
 output_json_path: <space_root>/runs/<run_id>/semantic/ingest_extraction.json
 context_paths:
-  - <space_root>/sources
+  - <space_root>/sources/records
+  - <space_root>/sources/artifacts
   - <space_root>/claims
   - <space_root>/relations
 ---
@@ -12,6 +13,9 @@ Generate one strict JSON object for ingest extraction at `output_json_path`.
 
 ## Context Interpretation Rules
 - Treat `context_paths` as the only evidence scope for this generation.
+- For source reading, prefer `sources/artifacts/<source_id>/source.md` as the default analysis input.
+- Inspect `sources/artifacts/<source_id>/source_extraction.json` before trusting the markdown fully.
+- Use the original binary artifact only for fidelity-sensitive checks such as tables, figures, equations, or layout recovery when the extraction metadata says markdown quality is degraded or unusable.
 - If context is missing or ambiguous, keep values conservative and place details in `warnings`.
 - Do not invent canonical IDs beyond schema-allowed fields.
 
@@ -26,6 +30,10 @@ Generate one strict JSON object for ingest extraction at `output_json_path`.
   - avoid raw filenames, slugs, IDs, URLs, hashes, and boilerplate metadata fragments
   - keep wording readable and specific (not clickbait, not generic placeholders)
   - no trailing punctuation
+- `source.authors` SHOULD be included whenever the paper names identifiable authors.
+  - output an ordered JSON array of human author names as they appear on the paper
+  - do not emit placeholders like `unknown`, `the authors`, `editorial synthesis`, or organization names unless the paper truly credits only an organization
+  - if author names cannot be recovered with confidence, prefer omitting `source.authors` over guessing
 - `source_dossier` is required and MUST be included:
   - `summary_short`: reader-facing abstract (2-4 sentences)
   - `summary_long`: substantive overview/commentary so readers can understand the source without opening the PDF
@@ -72,7 +80,8 @@ Generate one strict JSON object for ingest extraction at `output_json_path`.
 {
   "source_date_inference": null,
   "source": {
-    "display_title": ""
+    "display_title": "",
+    "authors": ["Author One", "Author Two"]
   },
   "claims": [
     {

@@ -6,7 +6,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from sapi.ingest.citations import extract_normalized_references_from_text
+from sapi.ingest.citations import (
+    extract_normalized_references_from_text,
+    run_reference_extraction_and_link_backfill,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -103,6 +106,79 @@ class ReferenceLinkingTests(unittest.TestCase):
             )
             self.assertEqual(older_backfilled_reference["linked_source_ids"], [future_id])
             self.assertEqual(older_reloaded["linked_source_ids"], [future_id])
+
+    def test_reference_extraction_prefers_source_markdown_when_available(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = _bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+
+            source_a = tmp_root / "primary.txt"
+            source_a.write_text("Primary source body.\n")
+            source_a_record = _ingest_and_get_record(
+                site_path=site_path,
+                source_path=source_a,
+                source_title="Primary Source",
+                canonical_identifier="doi:10.3131/primary.2026",
+            )
+            source_a_id = source_a_record["source_id"]
+
+            source_b = tmp_root / "secondary.txt"
+            source_b.write_text("Secondary source body without useful references.\n")
+            source_b_record = _ingest_and_get_record(
+                site_path=site_path,
+                source_path=source_b,
+                source_title="Secondary Source",
+            )
+            source_b_id = str(source_b_record["source_id"])
+            source_b_record_path = space_root / "sources" / "records" / f"{source_b_id}.json"
+            source_b_artifact_root = space_root / "sources" / "artifacts" / source_b_id
+            (source_b_artifact_root / "source.txt").write_bytes(b"\x00\xff\x00")
+            (source_b_artifact_root / "source.md").write_text(
+                "# Secondary Source\n\nBackground reference doi:10.3131/primary.2026.\n"
+            )
+            source_b_record["analysis_policy"]["quality_status"] = "usable"
+            source_b_record["references"] = []
+            source_b_record["linked_source_ids"] = []
+            source_b_record_path.write_text(json.dumps(source_b_record, indent=2, sort_keys=True) + "\n")
+
+            result = run_reference_extraction_and_link_backfill(
+                space_root=space_root,
+                source_id=source_b_id,
+            )
+            reloaded = json.loads(source_b_record_path.read_text())
+            reference = _find_reference(reloaded["references"], doi="10.3131/primary.2026")
+            self.assertEqual(reference["linked_source_ids"], [source_a_id])
+            self.assertEqual(result.linked_source_ids, [source_a_id])
+
+    def test_reference_enrichment_persists_curated_external_related_links(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = _bootstrap_site_and_space(tmp_root, "alpha")
+
+            source = tmp_root / "links.txt"
+            source.write_text(
+                "Background reading https://en.wikipedia.org/wiki/Formal_system and "
+                "discussion https://www.reddit.com/r/logic/comments/example/.\n"
+            )
+            record = _ingest_and_get_record(
+                site_path=site_path,
+                source_path=source,
+                source_title="Links Source",
+                canonical_identifier="doi:10.5151/links.2026",
+            )
+
+            links = record["external_related_links"]
+            self.assertIsInstance(links, list)
+            self.assertGreaterEqual(len(links), 2)
+            self.assertEqual(record["related_link_enrichment"]["status"], "enriched")
+            self.assertIn("canonical_identifier", record["related_link_enrichment"]["sources"])
+            self.assertTrue(
+                any(isinstance(link, dict) and link.get("domain") == "en.wikipedia.org" for link in links)
+            )
+            self.assertTrue(
+                any(isinstance(link, dict) and link.get("link_type") == "discussion_forum" for link in links)
+            )
 
 
 def _bootstrap_site_and_space(tmp_root: Path, space_name: str) -> Path:

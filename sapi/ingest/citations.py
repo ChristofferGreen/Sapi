@@ -20,6 +20,19 @@ _BLOCKED_REFERENCE_URL_HOSTS: set[str] = {
     "ns.adobe.com",
     "www.w3.org",
 }
+_RELATED_LINK_TYPE_BY_HOST_SUFFIX: tuple[tuple[str, str, str], ...] = (
+    ("wikipedia.org", "encyclopedia", "trusted"),
+    ("doi.org", "canonical_paper", "trusted"),
+    ("arxiv.org", "research_index", "trusted"),
+    ("paperswithcode.com", "research_index", "contextual"),
+    ("github.com", "repository", "contextual"),
+    ("gitlab.com", "repository", "contextual"),
+    ("reddit.com", "discussion_forum", "contextual"),
+    ("stackexchange.com", "discussion_forum", "contextual"),
+    ("stackoverflow.com", "discussion_forum", "contextual"),
+    ("news.ycombinator.com", "discussion_forum", "contextual"),
+    ("lobste.rs", "discussion_forum", "contextual"),
+)
 
 _REFERENCE_KEYS: tuple[str, ...] = (
     "title",
@@ -38,6 +51,7 @@ class ReferenceLinkingResult:
     reference_count: int
     linked_source_ids: list[str]
     backfilled_source_ids: list[str]
+    related_link_count: int
 
 
 @dataclass(frozen=True)
@@ -88,8 +102,11 @@ def run_reference_extraction_and_link_backfill(
         source_index=source_index,
         current_source_id=source_id,
     )
+    related_links, related_link_enrichment = _build_external_related_links(current_record)
     current_record["references"] = references_with_links
     current_record["linked_source_ids"] = _collect_linked_source_ids(references_with_links)
+    current_record["external_related_links"] = related_links
+    current_record["related_link_enrichment"] = related_link_enrichment
     current_path = source_record_paths[source_id]
     current_path.write_text(json.dumps(current_record, indent=2, sort_keys=True) + "\n")
 
@@ -109,9 +126,17 @@ def run_reference_extraction_and_link_backfill(
         )
         old_linked = older_record.get("linked_source_ids")
         new_linked = _collect_linked_source_ids(relinked)
-        if relinked != normalized_existing or new_linked != old_linked:
+        related_links, related_link_enrichment = _build_external_related_links(older_record)
+        if (
+            relinked != normalized_existing
+            or new_linked != old_linked
+            or related_links != older_record.get("external_related_links")
+            or related_link_enrichment != older_record.get("related_link_enrichment")
+        ):
             older_record["references"] = relinked
             older_record["linked_source_ids"] = new_linked
+            older_record["external_related_links"] = related_links
+            older_record["related_link_enrichment"] = related_link_enrichment
             older_path = source_record_paths[older_source_id]
             older_path.write_text(json.dumps(older_record, indent=2, sort_keys=True) + "\n")
             backfilled_source_ids.append(older_source_id)
@@ -121,6 +146,7 @@ def run_reference_extraction_and_link_backfill(
         reference_count=len(references_with_links),
         linked_source_ids=_collect_linked_source_ids(references_with_links),
         backfilled_source_ids=backfilled_source_ids,
+        related_link_count=len(related_links),
     )
 
 
@@ -160,20 +186,260 @@ def extract_normalized_references_from_text(text: str) -> list[dict[str, Any]]:
 
 
 def _extract_references_from_record(*, current_record: dict[str, Any], space_root: Path) -> list[dict[str, Any]]:
-    artifacts = current_record.get("artifacts")
-    if not isinstance(artifacts, dict):
-        return []
-    source_file_rel = artifacts.get("source_file")
-    if not isinstance(source_file_rel, str) or not source_file_rel.strip():
-        return []
-    source_file_path = (space_root / source_file_rel).resolve()
-    if not source_file_path.is_file():
-        return []
-    raw_bytes = source_file_path.read_bytes()
-    decoded_text = raw_bytes.decode("utf-8", errors="ignore")
+    decoded_text = _read_source_text_for_analysis(current_record=current_record, space_root=space_root)
     if not decoded_text.strip():
         return []
     return extract_normalized_references_from_text(decoded_text)
+
+
+def _read_source_text_for_analysis(*, current_record: dict[str, Any], space_root: Path) -> str:
+    artifacts = current_record.get("artifacts")
+    if not isinstance(artifacts, dict):
+        return ""
+    analysis_policy = current_record.get("analysis_policy")
+    quality_status = ""
+    if isinstance(analysis_policy, dict):
+        quality_status = _normalize_optional_string(analysis_policy.get("quality_status")) or ""
+    source_markdown_rel = artifacts.get("source_markdown")
+    if isinstance(source_markdown_rel, str) and source_markdown_rel.strip() and quality_status != "unusable":
+        source_markdown_path = (space_root / source_markdown_rel).resolve()
+        if source_markdown_path.is_file():
+            markdown_text = source_markdown_path.read_text()
+            if markdown_text.strip():
+                return markdown_text
+    source_file_rel = artifacts.get("source_file")
+    if isinstance(source_file_rel, str) and source_file_rel.strip():
+        source_file_path = (space_root / source_file_rel).resolve()
+        if source_file_path.is_file():
+            raw_bytes = source_file_path.read_bytes()
+            decoded_text = raw_bytes.decode("utf-8", errors="ignore")
+            if decoded_text.strip():
+                return decoded_text
+    overview_markdown_rel = artifacts.get("overview_markdown")
+    if isinstance(overview_markdown_rel, str) and overview_markdown_rel.strip():
+        overview_markdown_path = (space_root / overview_markdown_rel).resolve()
+        if overview_markdown_path.is_file():
+            overview_text = overview_markdown_path.read_text()
+            if overview_text.strip():
+                return overview_text
+    return ""
+
+
+def _build_external_related_links(record: dict[str, Any]) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    raw_candidates: list[dict[str, Any]] = []
+    warnings: list[str] = []
+    sources_used: set[str] = set()
+
+    canonical_identifier = _normalize_optional_string(record.get("canonical_identifier"))
+    doi = _doi_from_identifier(canonical_identifier)
+    if doi is not None:
+        sources_used.add("canonical_identifier")
+        raw_candidates.append(
+            _make_related_link_candidate(
+                title="DOI landing page",
+                url=f"https://doi.org/{doi}",
+                rationale="Canonical identifier for the ingested source.",
+                provenance_origin="canonical_identifier",
+                source_field="canonical_identifier",
+                confidence="high",
+            )
+        )
+    arxiv = _arxiv_from_identifier(canonical_identifier)
+    if arxiv is not None:
+        sources_used.add("canonical_identifier")
+        raw_candidates.append(
+            _make_related_link_candidate(
+                title="arXiv abstract",
+                url=f"https://arxiv.org/abs/{arxiv}",
+                rationale="Canonical arXiv identifier for the ingested source.",
+                provenance_origin="canonical_identifier",
+                source_field="canonical_identifier",
+                confidence="high",
+            )
+        )
+
+    source_locator = _normalize_url(record.get("source_locator"))
+    if source_locator is not None:
+        sources_used.add("source_locator")
+        raw_candidates.append(
+            _make_related_link_candidate(
+                title="Original source link",
+                url=source_locator,
+                rationale="Original network location captured during ingest.",
+                provenance_origin="source_locator",
+                source_field="source_locator",
+                confidence="high",
+                allow_unknown_domain=True,
+            )
+        )
+
+    references = record.get("references")
+    if isinstance(references, list):
+        for index, reference in enumerate(references):
+            if not isinstance(reference, dict):
+                continue
+            reference_url = _normalize_url(reference.get("url"))
+            if reference_url is not None:
+                sources_used.add("references")
+                raw_candidates.append(
+                    _make_related_link_candidate(
+                        title=_normalize_optional_string(reference.get("title")) or "Referenced external link",
+                        url=reference_url,
+                        rationale="Captured from normalized source references.",
+                        provenance_origin="reference_url",
+                        source_field=f"references[{index}].url",
+                        confidence="medium",
+                    )
+                )
+            reference_doi = _normalize_doi(reference.get("doi"))
+            if reference_doi is not None:
+                sources_used.add("references")
+                raw_candidates.append(
+                    _make_related_link_candidate(
+                        title=_normalize_optional_string(reference.get("title")) or "Referenced DOI",
+                        url=f"https://doi.org/{reference_doi}",
+                        rationale="Derived from a DOI found in the source references.",
+                        provenance_origin="reference_doi",
+                        source_field=f"references[{index}].doi",
+                        confidence="medium",
+                    )
+                )
+            reference_arxiv = _normalize_arxiv(reference.get("arxiv"))
+            if reference_arxiv is not None:
+                sources_used.add("references")
+                raw_candidates.append(
+                    _make_related_link_candidate(
+                        title=_normalize_optional_string(reference.get("title")) or "Referenced arXiv entry",
+                        url=f"https://arxiv.org/abs/{reference_arxiv}",
+                        rationale="Derived from an arXiv identifier found in the source references.",
+                        provenance_origin="reference_arxiv",
+                        source_field=f"references[{index}].arxiv",
+                        confidence="medium",
+                    )
+                )
+
+    curated_links = _dedupe_and_sort_related_links(raw_candidates=raw_candidates, warnings=warnings)
+    if curated_links:
+        return curated_links, {
+            "status": "enriched",
+            "warnings": warnings,
+            "sources": sorted(sources_used),
+            "skip_reason": None,
+        }
+    return [], {
+        "status": "skipped",
+        "warnings": warnings,
+        "sources": sorted(sources_used),
+        "skip_reason": "no_curated_links_found",
+    }
+
+
+def _make_related_link_candidate(
+    *,
+    title: str,
+    url: str,
+    rationale: str,
+    provenance_origin: str,
+    source_field: str,
+    confidence: str,
+    allow_unknown_domain: bool = False,
+) -> dict[str, Any]:
+    parsed = urlparse(url)
+    domain = parsed.netloc.lower()
+    link_type, quality_status = _classify_related_link_host(domain, allow_unknown_domain=allow_unknown_domain)
+    return {
+        "title": title,
+        "url": url,
+        "domain": domain,
+        "link_type": link_type,
+        "rationale": rationale,
+        "provenance": {
+            "origin": provenance_origin,
+            "source_field": source_field,
+        },
+        "confidence": confidence,
+        "quality_status": quality_status,
+    }
+    
+
+def _classify_related_link_host(domain: str, *, allow_unknown_domain: bool) -> tuple[str | None, str | None]:
+    normalized_domain = domain.strip().lower()
+    for suffix, link_type, quality_status in _RELATED_LINK_TYPE_BY_HOST_SUFFIX:
+        if normalized_domain == suffix or normalized_domain.endswith(f".{suffix}"):
+            return link_type, quality_status
+    if allow_unknown_domain and normalized_domain:
+        return "primary_source", "contextual"
+    return None, None
+
+
+def _dedupe_and_sort_related_links(*, raw_candidates: list[dict[str, Any]], warnings: list[str]) -> list[dict[str, Any]]:
+    by_url: dict[str, dict[str, Any]] = {}
+    skipped_candidates = 0
+    for candidate in raw_candidates:
+        url = _normalize_url(candidate.get("url"))
+        title = _normalize_optional_string(candidate.get("title"))
+        domain = _normalize_optional_string(candidate.get("domain"))
+        link_type = _normalize_optional_string(candidate.get("link_type"))
+        quality_status = _normalize_optional_string(candidate.get("quality_status"))
+        if url is None or title is None or domain is None or link_type is None or quality_status is None:
+            skipped_candidates += 1
+            continue
+        shaped = {
+            "title": title,
+            "url": url,
+            "domain": domain,
+            "link_type": link_type,
+            "rationale": _normalize_optional_string(candidate.get("rationale")),
+            "provenance": candidate.get("provenance") if isinstance(candidate.get("provenance"), dict) else {},
+            "confidence": _normalize_optional_string(candidate.get("confidence")) or "medium",
+            "quality_status": quality_status,
+        }
+        if url in by_url:
+            current = by_url[url]
+            current_quality_rank = _related_link_quality_rank(str(current.get("quality_status") or ""))
+            new_quality_rank = _related_link_quality_rank(quality_status)
+            if new_quality_rank < current_quality_rank:
+                by_url[url] = shaped
+                continue
+            if (
+                new_quality_rank == current_quality_rank
+                and str(shaped.get("title") or "") < str(current.get("title") or "")
+            ):
+                by_url[url] = shaped
+            continue
+        by_url[url] = shaped
+    if skipped_candidates:
+        warnings.append(f"Skipped {skipped_candidates} unsupported external-link candidate(s).")
+    return sorted(by_url.values(), key=_related_link_sort_key)
+
+
+def _related_link_sort_key(row: dict[str, Any]) -> tuple[int, int, str, str]:
+    return (
+        _related_link_quality_rank(str(row.get("quality_status") or "")),
+        _related_link_type_rank(str(row.get("link_type") or "")),
+        str(row.get("title") or "").lower(),
+        str(row.get("url") or ""),
+    )
+
+
+def _related_link_quality_rank(value: str) -> int:
+    if value == "trusted":
+        return 0
+    if value == "contextual":
+        return 1
+    return 2
+
+
+def _related_link_type_rank(value: str) -> int:
+    ranks = {
+        "canonical_paper": 0,
+        "primary_source": 1,
+        "research_index": 2,
+        "encyclopedia": 3,
+        "repository": 4,
+        "discussion_forum": 5,
+    }
+    return ranks.get(value, 99)
 
 
 def _normalize_existing_references(raw_references: list[Any]) -> list[dict[str, Any]]:

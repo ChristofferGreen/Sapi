@@ -362,7 +362,12 @@ Control flow:
 1. initialize `RunEnvelopeBase(flow_key="ingest_pipeline")`
 2. fetch and store source artifact/record
    - if source is inferred/declared as PDF (`application/pdf` or `.pdf` locator), validate payload signature (`%PDF-`) before writing artifacts
+   - write canonical sibling artifacts `source.md` and `source_extraction.json`
+   - persist source-record `analysis_policy` with `preferred_artifact=source_markdown`,
+     explicit fallback list, quality status, and warnings
 3. run semantic flow `ingest_extraction`
+   - default source-reading input is `<space_root>/sources/artifacts/<source_id>/source.md`
+   - inspect `source_extraction.json` before falling back to the original binary for fidelity-sensitive content
 4. deterministically write canonical source/claim/relation artifacts
 5. persist canonical evidence records from semantic `evidence_items[]` under `<space_root>/evidence/`
 6. deterministic ingest validation MUST resolve `evidence_items[].claim_refs` to canonical claim IDs and fail fast on invalid refs
@@ -372,6 +377,9 @@ Control flow:
 10. set `semantic_flows = [ingest_extraction, topic_generation]`
 11. set `semantic_flow_invocation_counts = {ingest_extraction: 1, topic_generation: 1}`
 12. run link reconciliation
+    - reference extraction prefers `source.md` when `analysis_policy.quality_status != unusable`
+    - same step MAY persist curated `external_related_links[]` plus `related_link_enrichment`
+      summary metadata on source records
 13. run deterministic projection/build and site-root `New` index refresh (or bootstrap deferred mode)
 14. run lint and warning-threshold evaluation
 15. write `run.md` and `lint.json` for committed run
@@ -680,6 +688,19 @@ Minimum test groups for this low-level design:
   - canonical source record persists `source_dossier` from ingest extraction output
   - source detail renderer uses `source_dossier` as the primary long-form commentary payload
   - source-page dossier sections may include `grounding_claim_ids` links into canonical claim pages
+- source analysis artifacts:
+  - canonical source artifact set includes original binary, `source.md`, `source_extraction.json`,
+    preview image (optional), and `overview.md`
+  - `source_extraction.json` records converter identity/version, input/output hashes, warnings,
+    and markdown quality status
+  - downstream deterministic analysis helpers MUST prefer `source.md` unless `analysis_policy`
+    explicitly marks it `unusable`
+- external related links:
+  - source records may persist curated `external_related_links[]` and `related_link_enrichment`
+  - deterministic build aggregates these links onto source/topic/claim pages without issuing web requests
+  - supported default `link_type` values are `canonical_paper`, `primary_source`, `research_index`,
+    `encyclopedia`, `repository`, and `discussion_forum`
+  - deterministic aggregation de-duplicates by normalized URL and preserves source provenance cues
 - claim pages:
   - claim pages resolve canonical claim JSON under `<space_root>/claims/` and topic/source usage references.
   - page title uses readable claim text when available; `claim_id` remains visible in metadata/audit context.

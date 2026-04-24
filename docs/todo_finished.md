@@ -2,6 +2,144 @@
 
 This file is append-only history for completed tasks moved out of `docs/todo.md`.
 
+## 2026-04-24
+
+- [x] TODO-0350: Add related-link quality gates and coverage
+  - owner: ai
+  - created_at: 2026-04-24
+  - finished_at: 2026-04-24
+  - phase: Phase 2
+  - depends_on: TODO-0348, TODO-0349
+  - scope: Add validation, allowlist/ranking rules, provenance checks, and test coverage for externally-related links so source/topic/claim pages surface useful links without degrading trust.
+  - acceptance:
+    - Unit/integration tests cover applicable-link selection, de-duplication, unsupported domains or low-signal candidates, and rollback or warning behavior when related-link enrichment fails.
+    - `docs/testing_plan.md` is updated with explicit related-link enrichment and rendering coverage expectations.
+    - Coverage asserts page rendering degrades gracefully when no external links qualify.
+    - Operator-facing artifacts and metadata surface provenance and link-quality warnings when present.
+  - notes: source `docs/design.md` Section 7.2; `docs/testing_plan.md` Tier 1-4
+  - evidence: Added deterministic related-link enrichment/validation in `sapi/ingest/citations.py`,
+    early source-record validation in `sapi/build/projection.py`, source/topic/claim rendering coverage
+    in `tests/unit/build/test_site_builder_contracts.py`, and ingest/reference-linking coverage in
+    `tests/unit/ingest/test_reference_linking.py`.
+
+- [x] TODO-0349: Render external related-link sections on source/topic/claim pages
+  - owner: ai
+  - created_at: 2026-04-24
+  - finished_at: 2026-04-24
+  - phase: Phase 2
+  - depends_on: TODO-0347, TODO-0348
+  - scope: Surface curated external related links on source, topic, and claim pages, including stable section labeling, provenance cues, and deterministic aggregation of inherited links where appropriate.
+  - acceptance:
+    - `sapi/build/site_builder.py` renders a dedicated external related-links section on source, topic, and claim pages when qualifying links exist.
+    - Topic and claim pages deterministically aggregate or inherit applicable links from canonical source/topic context without inventing unsupported associations.
+    - Rendering includes link title, domain/source type, optional rationale/snippet, and provenance cues without breaking existing local-reference sections.
+    - If no qualifying external links exist, pages render without empty placeholders or broken layout.
+  - notes: source `docs/design.md` Sections 7.1-7.2; `docs/low_level.md` Section 8.1
+  - evidence: Added source analysis/external-link rendering helpers and deterministic aggregation in
+    `sapi/build/site_builder.py`, plus page-contract coverage in
+    `tests/unit/build/test_site_builder_contracts.py`.
+
+- [x] TODO-0348: Implement related-link enrichment and persistence for canonical artifacts
+  - owner: ai
+  - created_at: 2026-04-24
+  - finished_at: 2026-04-24
+  - phase: Phase 2
+  - depends_on: TODO-0347
+  - scope: Add an explicit enrichment path that discovers and persists applicable external links for sources, then makes them available for deterministic projection onto source/topic/claim pages.
+  - acceptance:
+    - Canonical artifacts persist curated related-link metadata with title, URL, domain/source type, rationale, provenance, and confidence/quality fields.
+    - Enrichment behavior is explicit and auditable rather than an uncontrolled implicit web fallback during page rendering.
+    - Source-linked external references can be propagated deterministically to related topic/claim pages under documented rules.
+    - Run or source metadata records link-enrichment provenance, warnings, and skip reasons.
+  - notes: source `docs/design.md` Section 7.2
+  - evidence: `sapi/ingest/citations.py` now writes `external_related_links` and
+    `related_link_enrichment` into canonical source records from canonical identifiers, source locator,
+    and allowlisted reference URLs; `scripts/ingest_source.py` surfaces related-link counts in ingest
+    summaries.
+
+- [x] TODO-0347: Define canonical external related-link contracts for sources, topics, and claims
+  - owner: ai
+  - created_at: 2026-04-24
+  - finished_at: 2026-04-24
+  - phase: Cross-cutting
+  - scope: Specify the contract for surfacing curated external related links such as Wikipedia pages, discussion forums, documentation pages, and other relevant online resources on source/topic/claim pages.
+  - acceptance:
+    - `docs/design.md` and `docs/low_level.md` define canonical storage, provenance, and rendering rules for external related links on sources, topics, and claims.
+    - Contracts distinguish external related links from canonical source citations/references and require explicit provenance plus quality-status metadata.
+    - Allowed link classes, ranking/de-duplication rules, and low-trust or irrelevant-link rejection behavior are specified.
+    - Contract tests are added or updated to fail on docs/schema/path drift for the new related-link fields and rendering expectations.
+  - notes: source `docs/design.md` Section 7.2; `docs/low_level.md` Sections 8.1 and 15
+  - evidence: Updated `docs/design.md`, `docs/low_level.md`, and `docs/testing_plan.md`; added
+    `tests/unit/contracts/test_source_analysis_and_related_link_contracts.py`.
+
+- [x] TODO-0346: Add source-markdown extraction quality gates and coverage
+  - owner: ai
+  - created_at: 2026-04-24
+  - finished_at: 2026-04-24
+  - phase: Phase 2
+  - depends_on: TODO-0344, TODO-0345
+  - scope: Add validation, failure semantics, and test coverage for markdown extraction quality, provenance persistence, and markdown-first analysis behavior.
+  - acceptance:
+    - Unit/integration tests cover successful extraction, unusable markdown output, fallback routing, and rollback or `--force` retention semantics when extraction or downstream analysis fails.
+    - `docs/testing_plan.md` is updated with explicit markdown-extraction and markdown-first analysis coverage expectations.
+    - Operator-facing review artifacts surface extraction provenance and markdown-quality warnings when present.
+    - Coverage asserts semantic flows do not silently fall back to raw binary analysis when markdown is required by contract.
+  - notes: source `docs/design.md` Sections 5.3 and 7.1; `docs/testing_plan.md` Tier 1-3
+  - evidence: Added markdown quality classification and provenance persistence in
+    `sapi/ingest/records_writer.py`, markdown-first deterministic reads in `sapi/ingest/citations.py`,
+    ingest acquisition coverage in `tests/unit/ingest/test_source_acquisition.py`, and contract/spec
+    coverage in `tests/unit/semantic/test_input_envelope_contract.py`.
+
+- [x] TODO-0345: Route semantic analysis to source markdown with explicit fidelity fallback
+  - owner: ai
+  - created_at: 2026-04-24
+  - finished_at: 2026-04-24
+  - phase: Phase 2
+  - depends_on: TODO-0343, TODO-0344
+  - scope: Update semantic-flow context resolution so analysis-oriented LLM calls prefer extracted source markdown while preserving controlled access to the original binary for fidelity-sensitive cases such as tables, graphs, and figures.
+  - acceptance:
+    - Ingest and downstream analysis-oriented semantic flows use extracted `source.md` as the default source-reading input instead of raw binary artifacts.
+    - The original binary remains preserved and available to deterministic rendering and explicitly-declared fidelity-sensitive enrichment paths.
+    - Fallback policy for missing or low-quality markdown is explicit, auditable, and recorded in source/run metadata.
+    - Contract tests verify markdown-preferred context selection and no-drift behavior in generation-spec path resolution.
+  - notes: source `ai_flows/generation_specs/ingest_extraction.v1.md`; `docs/design.md` Section 7.1
+  - evidence: Updated the ingest extraction generation spec to point at `sources/records` and
+    `sources/artifacts` with explicit markdown-first instructions; deterministic reference extraction
+    now reads `source.md` first and records fallback policy in source records.
+
+- [x] TODO-0344: Persist extracted source markdown and provenance during ingest
+  - owner: ai
+  - created_at: 2026-04-24
+  - finished_at: 2026-04-24
+  - phase: Phase 2
+  - depends_on: TODO-0343
+  - scope: Extend ingest artifact persistence to generate and store analysis-oriented markdown plus extraction provenance alongside the original binary, initially via a pluggable converter adapter with MarkItDown as the first backend candidate.
+  - acceptance:
+    - Ingest writes canonical `source.md` and `source_extraction.json` files under `<space_root>/sources/artifacts/<source_id>/` beside the original binary.
+    - Extraction provenance records converter name/version, options, status, warnings, and input/output hashes without persisting machine-absolute paths in user-facing artifacts.
+    - Source records point to the original artifact, extracted markdown, and extraction metadata.
+    - Ingest reports clear failure or warning behavior when extraction cannot produce contract-compliant markdown.
+  - notes: source `docs/design.md` Section 5.3
+  - evidence: `sapi/ingest/records_writer.py` now persists `source.md` and
+    `source_extraction.json`, records extraction status/quality metadata on the source record, and
+    tracks both new files for rollback in `scripts/ingest_source.py`.
+
+- [x] TODO-0343: Define canonical source-markdown analysis artifact contracts
+  - owner: ai
+  - created_at: 2026-04-24
+  - finished_at: 2026-04-24
+  - phase: Cross-cutting
+  - scope: Specify the canonical storage, provenance, and usage rules for preserving original source binaries together with extracted markdown that becomes the primary analysis substrate for semantic flows.
+  - acceptance:
+    - `docs/design.md` and `docs/low_level.md` define canonical source-artifact layout including the original binary, extracted `source.md`, and extraction provenance metadata.
+    - Contracts state that markdown is the default LLM analysis input while original binaries remain preserved for fidelity-sensitive workflows involving tables, graphs, figures, or extraction fallback.
+    - The extraction metadata contract includes converter identity/version, input hash, output hash, warnings, and quality-status fields.
+    - Contract tests are added or updated to fail on docs/schema/path drift for the new artifact set.
+  - notes: source `docs/design.md` Section 5.3; `docs/low_level.md` Section 8.1
+  - evidence: Updated source-artifact/storage and ingest-pipeline contracts in `docs/design.md`
+    and `docs/low_level.md`, then added synchronized contract assertions in
+    `tests/unit/contracts/test_source_analysis_and_related_link_contracts.py`.
+
 ## 2026-04-13
 
 - [x] TODO-0333: Add deterministic style-output and presentation contract tests

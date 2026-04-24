@@ -87,6 +87,9 @@ tests/
   - Module: `tests/unit/query/test_query_mode_preflight.py`
 - [x] Run-envelope semantic flow cardinality (`semantic_flows` ordered-unique + `semantic_flow_invocation_counts` consistency).
   - Module: `tests/unit/contracts/test_run_envelope_semantic_flows.py`
+- [x] Source-markdown and curated-related-link contract docs stay synchronized across `design.md`,
+  `low_level.md`, and `testing_plan.md`.
+  - Module: `tests/unit/contracts/test_source_analysis_and_related_link_contracts.py`
 
 ### Tier 2: Failure-Semantics Integration Tests
 
@@ -115,6 +118,9 @@ tests/
   - Module: `tests/integration/wrappers/test_evaluate_source_harness.py`
 - [x] `evaluate_source.sh --comments <n>` emits `comments_review.md`; invalid comments args fail fast with clear errors.
   - Module: `tests/integration/wrappers/test_evaluate_source_harness.py`
+- [x] Ingest source acquisition and reference enrichment persist `source.md`, `source_extraction.json`,
+  explicit markdown-quality policy, and curated external related links with provenance.
+  - Modules: `tests/unit/ingest/test_source_acquisition.py`, `tests/unit/ingest/test_reference_linking.py`
 
 ### Tier 4: Build/Projection Determinism Tests
 
@@ -128,8 +134,16 @@ tests/
 Presentation contract coverage requirements (Section 8 / Section 9):
 - Tier 1 contract test MUST assert docs require canonical viewport meta, stylesheet link contract, semantic class hooks, and metadata-vs-build boundary wording.
   - Module: `tests/unit/contracts/test_web_presentation_contracts.py`
+- Tier 1/3 contract coverage MUST assert source records carry canonical analysis-artifact pointers
+  (`source.md`, `source_extraction.json`), markdown-quality metadata, and curated external-related-link
+  provenance.
+  - Modules: `tests/unit/contracts/test_source_analysis_and_related_link_contracts.py`,
+    `tests/unit/ingest/test_source_acquisition.py`, `tests/unit/ingest/test_reference_linking.py`
 - Tier 1/4 source-page coverage MUST assert source detail pages render long-form dossier content
   (`Overview and Commentary`, section cards, and grounded claim links) while keeping preview + action links intact.
+  - Module: `tests/unit/build/test_site_builder_contracts.py`
+- Tier 1/4 page coverage MUST assert source/topic/claim pages render `External Related Links` only when
+  curated links exist, and that topic/claim pages show inherited source provenance cues.
   - Module: `tests/unit/build/test_site_builder_contracts.py`
 - Tier 4 integration coverage MUST assert built HTML pages include canonical viewport meta and stylesheet link, and deterministic CSS assets are emitted.
   - Module: `tests/integration/build/test_build_determinism.py` (extend for stylesheet assertions)

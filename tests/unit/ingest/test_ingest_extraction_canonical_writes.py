@@ -317,6 +317,43 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
             )
             self.assertEqual(len(source_record["source_dossier"]["sections"]), 5)
 
+    def test_ingest_extraction_persists_llm_authored_source_authors(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root, source_id = self._bootstrap_source(Path(tmp))
+            semantic_output = {
+                "source_date_inference": {
+                    "date": "2026-04-14",
+                    "origin": "inferred",
+                    "confidence": "medium",
+                    "rationale": None,
+                },
+                "source": {
+                    "source_id": source_id,
+                    "title": "Author Source",
+                    "display_title": "Author Source Overview",
+                    "authors": ["Ada Lovelace", "Alan Turing", "Ada Lovelace"],
+                },
+                "claims": [{"text": "One claim extracted."}],
+                "relations": [],
+                "summary": "Short summary text for feeds.",
+                "source_dossier": self._default_source_dossier(),
+                "warnings": [],
+            }
+
+            result = run_ingest_extraction_and_persist_canonical(
+                space_root=space_root,
+                source_id=source_id,
+                run_id="run-source-authors",
+                llm_client=_StaticSemanticClient(semantic_output),
+            )
+
+            source_record = json.loads(result.source_record_path.read_text())
+            self.assertEqual(source_record["authors"], ["Ada Lovelace", "Alan Turing"])
+            self.assertEqual(
+                source_record["source_semantic"]["authors"],
+                ["Ada Lovelace", "Alan Turing"],
+            )
+
     def test_ingest_extraction_accepts_evidence_object_alias_fields(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root, source_id = self._bootstrap_source(Path(tmp))

@@ -141,7 +141,8 @@ class SemanticInputEnvelopeContractTests(unittest.TestCase):
                 schema_path=(REPO_ROOT / "schemas/ingest_extraction.v1.schema.json").resolve(),
                 output_json_path=(space_root / "runs/run-001/semantic/not-canonical.json").resolve(),
                 context_paths=[
-                    (space_root / "sources").resolve(),
+                    (space_root / "sources" / "records").resolve(),
+                    (space_root / "sources" / "artifacts").resolve(),
                     (space_root / "claims").resolve(),
                     (space_root / "relations").resolve(),
                 ],

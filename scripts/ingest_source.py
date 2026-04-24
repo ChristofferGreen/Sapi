@@ -362,6 +362,7 @@ def main() -> int:
     if reference_result is not None:
         summary += (
             f", references_extracted={reference_result.reference_count}, "
+            f"related_links={reference_result.related_link_count}, "
             f"linked_source_ids={reference_result.linked_source_ids}, "
             f"backfilled_source_ids={reference_result.backfilled_source_ids}"
         )
@@ -494,6 +495,8 @@ def _track_source_ingest_writes_for_rollback(
     result: SourceIngestResult,
 ) -> None:
     transaction.mark_create(result.source_artifact_path)
+    transaction.mark_create(result.source_markdown_path)
+    transaction.mark_create(result.source_extraction_path)
     transaction.mark_create(result.overview_markdown_path)
     if result.front_page_image_path is not None:
         transaction.mark_create(result.front_page_image_path)

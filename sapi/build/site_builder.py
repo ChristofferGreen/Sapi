@@ -131,6 +131,7 @@ class _SpaceLayoutContext:
     site_name: str
     space_name: str
     all_space_names: list[str]
+    site_subspaces_by_space: dict[str, list[tuple[str, str | None]]]
     subspaces: list[tuple[str, str | None]]
     sources: list[dict[str, Any]]
     topics: list[dict[str, Any]]
@@ -269,6 +270,7 @@ def build_space_site(
             projection=projection,
             context=context,
             evidence_records=evidence_records,
+            site_path=site_path,
             stylesheet_href=_relative_href(from_file=index_path, to_file=stylesheet_path),
         ),
         incremental=incremental,
@@ -332,6 +334,10 @@ def refresh_site_new_index(
         subspaces_by_space[space_name] = _load_subspaces(space_root)
 
     _sort_feed_entries(entries)
+    root_space_names = _top_level_site_space_names(
+        space_names=space_names,
+        subspaces_by_space=subspaces_by_space,
+    )
 
     site_name = _resolve_site_name(site_path)
     site_root = site_path / "site"
@@ -344,7 +350,7 @@ def refresh_site_new_index(
         site_index_path,
         _render_site_root_index(
             site_name=site_name,
-            space_names=space_names,
+            space_names=root_space_names,
             subspaces_by_space=subspaces_by_space,
             latest_entries=entries[:10],
             stylesheet_href=_relative_href(from_file=site_index_path, to_file=site_stylesheet_path),
@@ -358,6 +364,16 @@ def refresh_site_new_index(
         site_name=site_name,
         persona_rows=persona_rows,
         space_names=space_names,
+        root_space_names=root_space_names,
+        subspaces_by_space=subspaces_by_space,
+        incremental=incremental,
+    )
+    _write_site_feed_tab_pages(
+        site_root=site_root,
+        site_name=site_name,
+        entries=entries,
+        root_space_names=root_space_names,
+        subspaces_by_space=subspaces_by_space,
         incremental=incremental,
     )
     _write_source_preview_assets(
@@ -375,6 +391,8 @@ def refresh_site_new_index(
             page_path,
             _render_site_new_page(
                 site_name=site_name,
+                space_names=root_space_names,
+                subspaces_by_space=subspaces_by_space,
                 page_entries=page_entries,
                 page_number=page_number,
                 page_count=len(pages),
@@ -429,7 +447,7 @@ def _write_source_pages(
             related_claim_ids=related_claim_ids,
             claim_records=claim_records,
         )
-        source_metadata = _render_source_metadata_section(source=source)
+        source_metadata = _render_source_metadata_section(source=source, author_href_prefix="../authors/")
         source_dossier = _resolve_source_dossier(source=source)
         summary_short = str(source_summary).strip()
         if source_dossier is not None:
@@ -458,37 +476,30 @@ def _write_source_pages(
         )
         related_claim_rows = (
             "\n".join(
-                "<li><a href=\"../claims/"
-                + escape(claim_id)
-                + ".html\">"
-                + escape(
-                    claim_option_title(
-                        claim_id=claim_id,
-                        claim_option_title_by_id=claim_option_title_by_id,
-                    )
+                _render_source_claim_row(
+                    claim_id=claim_id,
+                    source_record=source,
+                    claim_record=claim_records.get(claim_id, {}),
+                    claim_option_title_by_id=claim_option_title_by_id,
                 )
-                + "</a></li>"
                 for claim_id in source_claim_ids
             )
             or "<li>(none linked yet)</li>"
         )
         source_evidence_rows = (
             "\n".join(
-                (
-                    "<li><a href=\"../evidence/"
-                    + escape(record.evidence_id)
-                    + ".html\">"
-                    + escape(record.title)
-                    + "</a><p class=\"meta\">claims</p>"
-                    + _evidence_claim_links_html(
-                        record.claim_ids,
-                        claim_option_title_by_id=claim_option_title_by_id,
-                    )
-                    + "</li>"
+                _render_source_evidence_row(
+                    record=record,
+                    claim_option_title_by_id=claim_option_title_by_id,
                 )
                 for record in evidence_by_source_id.get(source_id, [])
             )
             or "<li>(none linked yet)</li>"
+        )
+        source_analysis_section = _render_source_analysis_section(source=source)
+        external_related_links_card = _render_external_related_links_card(
+            heading="External Related Links",
+            links=_collect_external_related_links(source.get("external_related_links")),
         )
         summary_row = (
             f"<p class=\"source-summary\">{escape(summary_short)}</p>\n"
@@ -516,6 +527,7 @@ def _write_source_pages(
                 if source_dossier is not None
                 else ""
             )
+            + source_analysis_section
             + "<section class=\"source-related-grid\">\n"
             + "<article class=\"source-related-card\">\n"
             + "<h2>Related Topics</h2>\n"
@@ -536,6 +548,7 @@ def _write_source_pages(
             + "\n</ul>\n"
             + "<p><a href=\"../evidence/index.html\">Browse all evidence</a></p>\n"
             + "</article>\n"
+            + external_related_links_card
             + "</section>\n"
             + _render_page_comment_section(
                 page_payload=source,
@@ -597,26 +610,43 @@ def _source_claim_ids(
 def _collect_claim_ids_from_topics(*, topics: list[dict[str, Any]]) -> list[str]:
     claim_ids: set[str] = set()
     for topic in topics:
-        sections = topic.get("sections")
-        if not isinstance(sections, list):
-            continue
-        for section in sections:
-            if not isinstance(section, dict):
-                continue
-            _, annotation_groups = extract_claim_annotations(str(section.get("body") or ""))
-            for group in annotation_groups:
-                for claim_id in group:
-                    claim_ids.add(claim_id)
+        claim_ids.update(_collect_claim_ids_from_topic(topic=topic))
     return sorted(claim_ids)
 
 
-def _render_source_metadata_section(*, source: dict[str, Any]) -> str:
-    metadata_rows = _source_metadata_rows(source=source)
+def _collect_claim_ids_from_topic(*, topic: dict[str, object]) -> list[str]:
+    claim_ids: set[str] = set()
+    sections = topic.get("sections")
+    if not isinstance(sections, list):
+        return []
+    for section in sections:
+        if not isinstance(section, dict):
+            continue
+        _, annotation_groups = extract_claim_annotations(str(section.get("body") or ""))
+        for group in annotation_groups:
+            for claim_id in group:
+                normalized = str(claim_id).strip()
+                if normalized:
+                    claim_ids.add(normalized)
+    return sorted(claim_ids)
+
+
+def _render_source_metadata_section(
+    *,
+    source: dict[str, Any],
+    author_href_prefix: str,
+) -> str:
+    metadata_rows = _source_metadata_rows(
+        source=source,
+        author_href_prefix=author_href_prefix,
+    )
     if not metadata_rows:
         return ""
     rows = []
-    for label, value in metadata_rows:
-        rows.append(f"<dt>{escape(label)}</dt><dd>{escape(value)}</dd>")
+    for label, value, is_html in metadata_rows:
+        rows.append(
+            f"<dt>{escape(label)}</dt><dd>{value if is_html else escape(value)}</dd>"
+        )
     return (
         "<section class=\"source-meta-card\">"
         "<h2>Source Details</h2>"
@@ -627,21 +657,51 @@ def _render_source_metadata_section(*, source: dict[str, Any]) -> str:
     )
 
 
-def _source_metadata_rows(*, source: dict[str, Any]) -> list[tuple[str, str]]:
+def _source_metadata_rows(
+    *,
+    source: dict[str, Any],
+    author_href_prefix: str,
+) -> list[tuple[str, str, bool]]:
     source_semantic = source.get("source_semantic")
     semantic = source_semantic if isinstance(source_semantic, dict) else {}
-    rows: list[tuple[str, str]] = []
+    rows: list[tuple[str, str, bool]] = []
 
-    def _append(label: str, value: object) -> None:
+    def _append(label: str, value: object, *, is_html: bool = False) -> None:
         if isinstance(value, str):
             normalized = value.strip()
             if normalized:
-                rows.append((label, normalized))
+                rows.append((label, normalized, is_html))
             return
         if isinstance(value, (int, float)):
-            rows.append((label, str(value)))
+            rows.append((label, str(value), is_html))
 
-    _append("Authors", semantic.get("author"))
+    author_refs = _author_refs(_source_author_identities(source))
+    if author_refs:
+        name_counts: dict[str, int] = {}
+        for author in author_refs:
+            name_counts[author.display_name] = name_counts.get(author.display_name, 0) + 1
+        author_links = ", ".join(
+            (
+                "<a class=\"feed-card-author\" href=\""
+                + escape(author_href_prefix + author.author_id + ".html")
+                + "\">"
+                + escape(
+                    (
+                        f"{author.display_name} ({author.institution})"
+                        if name_counts.get(author.display_name, 0) > 1 and author.institution
+                        else author.display_name
+                    )
+                )
+                + "</a>"
+            )
+            for author in author_refs
+        )
+        _append("Authors", author_links, is_html=True)
+
+    institutions = sorted({author.institution for author in author_refs if author.institution})
+    if institutions:
+        _append("Institution" if len(institutions) == 1 else "Institutions", ", ".join(institutions))
+
     _append("Publication date", source.get("date"))
     _append("DOI", semantic.get("doi"))
     _append("Article kind", source.get("article_kind"))
@@ -656,8 +716,354 @@ def _source_metadata_rows(*, source: dict[str, Any]) -> list[tuple[str, str]]:
             citation_detail += f" (as of {citation_as_of.strip()})"
         if isinstance(citation_provider, str) and citation_provider.strip():
             citation_detail += f" via {citation_provider.strip()}"
-        rows.append(("Citations", citation_detail))
+        rows.append(("Citations", citation_detail, False))
     return rows
+
+
+def _source_claim_summary(
+    *,
+    claim_id: str,
+    source_record: dict[str, Any],
+    claim_record: dict[str, Any],
+) -> str:
+    explicit = str(claim_record.get("overview") or "").strip()
+    if explicit:
+        return truncate_text_for_ui(explicit, max_length=260)
+    dossier_summary = _claim_dossier_grounding_summary(claim_id=claim_id, source_record=source_record).strip()
+    if dossier_summary:
+        return truncate_text_for_ui(dossier_summary, max_length=260)
+    return truncate_text_for_ui(_claim_text(claim_id=claim_id, claim_record=claim_record), max_length=260)
+
+
+def _render_source_claim_row(
+    *,
+    claim_id: str,
+    source_record: dict[str, Any],
+    claim_record: dict[str, Any],
+    claim_option_title_by_id: dict[str, str],
+) -> str:
+    return (
+        "<li><a href=\"../claims/"
+        + escape(claim_id)
+        + ".html\">"
+        + escape(
+            claim_option_title(
+                claim_id=claim_id,
+                claim_option_title_by_id=claim_option_title_by_id,
+            )
+        )
+        + "</a><p class=\"summary\">"
+        + escape(
+            _source_claim_summary(
+                claim_id=claim_id,
+                source_record=source_record,
+                claim_record=claim_record,
+            )
+        )
+        + "</p></li>"
+    )
+
+
+def _render_source_evidence_row(
+    *,
+    record: _EvidenceRecord,
+    claim_option_title_by_id: dict[str, str],
+) -> str:
+    detail = str(record.overview or "").strip() or str(record.excerpt or "").strip()
+    return (
+        "<li><a href=\"../evidence/"
+        + escape(record.evidence_id)
+        + ".html\">"
+        + escape(record.title)
+        + "</a><p class=\"summary\">"
+        + escape(truncate_text_for_ui(detail, max_length=260))
+        + "</p><p class=\"meta\">claims</p>"
+        + _evidence_claim_links_html(
+            record.claim_ids,
+            claim_option_title_by_id=claim_option_title_by_id,
+        )
+        + "</li>"
+    )
+
+
+def _render_source_analysis_section(*, source: dict[str, Any]) -> str:
+    analysis_policy = source.get("analysis_policy")
+    source_extraction = source.get("source_extraction")
+    artifacts = source.get("artifacts")
+    if not isinstance(analysis_policy, dict) and not isinstance(source_extraction, dict):
+        return ""
+    source_markdown_href = _source_artifact_href(source=source, artifact_key="source_markdown")
+    source_file_href = _source_artifact_href(source=source, artifact_key="source_file")
+    source_extraction_href = _source_artifact_href(source=source, artifact_key="source_extraction")
+    quality_status = ""
+    warnings: list[str] = []
+    if isinstance(analysis_policy, dict):
+        quality_status = str(analysis_policy.get("quality_status") or "").strip()
+        raw_warnings = analysis_policy.get("warnings")
+        if isinstance(raw_warnings, list):
+            warnings.extend(str(item).strip() for item in raw_warnings if str(item).strip())
+    converter_name = ""
+    converter_version = ""
+    extraction_status = ""
+    if isinstance(source_extraction, dict):
+        converter_name = str(source_extraction.get("converter_name") or "").strip()
+        converter_version = str(source_extraction.get("converter_version") or "").strip()
+        extraction_status = str(source_extraction.get("status") or "").strip()
+        raw_warnings = source_extraction.get("warnings")
+        if isinstance(raw_warnings, list):
+            warnings.extend(str(item).strip() for item in raw_warnings if str(item).strip())
+    warning_rows = "".join(f"<li>{escape(warning)}</li>" for warning in sorted(set(warnings)))
+    detail_rows: list[str] = []
+    if source_markdown_href:
+        detail_rows.append(
+            "<dt>Analysis text</dt><dd><a href=\""
+            + escape(source_markdown_href)
+            + "\">source.md</a></dd>"
+        )
+    if quality_status:
+        detail_rows.append(f"<dt>Markdown quality</dt><dd>{escape(quality_status)}</dd>")
+    if extraction_status:
+        detail_rows.append(f"<dt>Extraction status</dt><dd>{escape(extraction_status)}</dd>")
+    if converter_name:
+        converter_label = converter_name
+        if converter_version:
+            converter_label += f" ({converter_version})"
+        detail_rows.append(f"<dt>Converter</dt><dd>{escape(converter_label)}</dd>")
+    if source_extraction_href:
+        detail_rows.append(
+            "<dt>Provenance</dt><dd><a href=\""
+            + escape(source_extraction_href)
+            + "\">source_extraction.json</a></dd>"
+        )
+    if source_file_href:
+        detail_rows.append(
+            "<dt>Fidelity fallback</dt><dd><a href=\""
+            + escape(source_file_href)
+            + "\">original artifact</a></dd>"
+        )
+    if not detail_rows and not warning_rows and not isinstance(artifacts, dict):
+        return ""
+    return (
+        "<section class=\"source-related-card\">"
+        "<h2>Analysis Inputs</h2>"
+        "<p class=\"summary\">Use the extracted markdown by default for analysis. Fall back to the original artifact for tables, figures, and layout-sensitive content.</p>"
+        "<dl class=\"source-meta-grid\">"
+        + "".join(detail_rows)
+        + "</dl>"
+        + ("<ul class=\"source-related-list\">" + warning_rows + "</ul>" if warning_rows else "")
+        + "</section>\n"
+    )
+
+
+def _source_artifact_href(*, source: dict[str, Any], artifact_key: str) -> str | None:
+    artifacts = source.get("artifacts")
+    if not isinstance(artifacts, dict):
+        return None
+    artifact_rel = artifacts.get(artifact_key)
+    if not isinstance(artifact_rel, str) or not artifact_rel.strip():
+        return None
+    if Path(artifact_rel).is_absolute():
+        return artifact_rel
+    return "../../" + "/".join(part for part in Path(artifact_rel).parts if part and part != ".")
+
+
+def _collect_external_related_links(raw_links: Any) -> list[dict[str, Any]]:
+    if not isinstance(raw_links, list):
+        return []
+    normalized: list[dict[str, Any]] = []
+    for row in raw_links:
+        if not isinstance(row, dict):
+            continue
+        title = str(row.get("title") or "").strip()
+        url = str(row.get("url") or "").strip()
+        domain = str(row.get("domain") or "").strip()
+        link_type = str(row.get("link_type") or "").strip()
+        quality_status = str(row.get("quality_status") or "").strip()
+        if not title or not url or not domain or not link_type or not quality_status:
+            continue
+        normalized.append(
+            {
+                "title": title,
+                "url": url,
+                "domain": domain,
+                "link_type": link_type,
+                "quality_status": quality_status,
+                "rationale": str(row.get("rationale") or "").strip(),
+                "confidence": str(row.get("confidence") or "").strip(),
+                "provenance": row.get("provenance") if isinstance(row.get("provenance"), dict) else {},
+                "source_refs": [],
+            }
+        )
+    return normalized
+
+
+def _render_external_related_links_card(
+    *,
+    heading: str,
+    links: list[dict[str, Any]],
+    source_href_prefix: str | None = None,
+) -> str:
+    if not links:
+        return ""
+    rows = "\n".join(
+        _render_external_related_link_row(link=link, source_href_prefix=source_href_prefix)
+        for link in links
+    )
+    return (
+        "<article class=\"source-related-card\">"
+        + f"<h2>{escape(heading)}</h2>"
+        + "<ul class=\"source-related-list\">"
+        + rows
+        + "</ul>"
+        + "</article>\n"
+    )
+
+
+def _render_external_related_link_row(
+    *,
+    link: dict[str, Any],
+    source_href_prefix: str | None,
+) -> str:
+    rationale = str(link.get("rationale") or "").strip()
+    provenance = link.get("provenance") if isinstance(link.get("provenance"), dict) else {}
+    provenance_origin = str(provenance.get("origin") or "").strip().replace("_", " ")
+    meta_parts = [
+        str(link.get("link_type") or "").replace("_", " "),
+        str(link.get("domain") or ""),
+        str(link.get("quality_status") or "").replace("_", " "),
+    ]
+    confidence = str(link.get("confidence") or "").strip()
+    if confidence:
+        meta_parts.append(f"{confidence} confidence")
+    if provenance_origin:
+        meta_parts.append(f"from {provenance_origin}")
+    source_refs = link.get("source_refs")
+    source_rows = ""
+    if isinstance(source_refs, list) and source_refs and source_href_prefix:
+        source_rows = ", ".join(
+            (
+                "<a href=\""
+                + escape(source_href_prefix + str(row.get("source_id") or "").strip() + ".html")
+                + "\">"
+                + escape(str(row.get("title") or row.get("source_id") or "").strip())
+                + "</a>"
+            )
+            for row in source_refs
+            if isinstance(row, dict) and str(row.get("source_id") or "").strip()
+        )
+        if source_rows:
+            meta_parts.append("via " + source_rows)
+    escaped_meta_parts = [
+        escape(part)
+        for part in meta_parts
+        if part and not part.startswith("via <a ")
+    ]
+    if source_rows:
+        escaped_meta_parts.append("via " + source_rows)
+    return (
+        "<li><a href=\""
+        + escape(str(link.get("url") or ""))
+        + "\">"
+        + escape(str(link.get("title") or ""))
+        + "</a>"
+        + (f"<p class=\"summary\">{escape(rationale)}</p>" if rationale else "")
+        + "<p class=\"meta\">"
+        + " | ".join(part for part in escaped_meta_parts if part)
+        + "</p></li>"
+    )
+
+
+def _topic_external_related_links(
+    *,
+    topic: dict[str, Any],
+    context: _SpaceLayoutContext,
+) -> list[dict[str, Any]]:
+    source_ids = topic.get("source_ids")
+    if not isinstance(source_ids, list):
+        return []
+    return _aggregate_external_related_links(
+        source_ids=[str(source_id).strip() for source_id in source_ids if str(source_id).strip()],
+        sources=context.sources,
+    )
+
+
+def _claim_external_related_links(
+    *,
+    claim_source_id: str,
+    source_ids: tuple[str, ...] | list[str],
+    projection: SpaceProjection,
+) -> list[dict[str, Any]]:
+    candidate_ids = [source_id for source_id in source_ids if source_id]
+    if claim_source_id and claim_source_id not in candidate_ids:
+        candidate_ids.insert(0, claim_source_id)
+    return _aggregate_external_related_links(
+        source_ids=candidate_ids,
+        sources=projection.sources,
+    )
+
+
+def _aggregate_external_related_links(
+    *,
+    source_ids: list[str],
+    sources: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    if not source_ids:
+        return []
+    source_map = {
+        str(source.get("source_id") or "").strip(): source
+        for source in sources
+        if isinstance(source, dict) and str(source.get("source_id") or "").strip()
+    }
+    merged_by_url: dict[str, dict[str, Any]] = {}
+    for source_id in source_ids:
+        source = source_map.get(source_id)
+        if source is None:
+            continue
+        source_title = _source_display_title(source)
+        for link in _collect_external_related_links(source.get("external_related_links")):
+            url = str(link.get("url") or "").strip()
+            if not url:
+                continue
+            inherited_ref = {
+                "source_id": source_id,
+                "title": source_title,
+            }
+            if url not in merged_by_url:
+                merged = dict(link)
+                merged["source_refs"] = [inherited_ref]
+                merged_by_url[url] = merged
+                continue
+            current = merged_by_url[url]
+            current_refs = current.get("source_refs")
+            if not isinstance(current_refs, list):
+                current_refs = []
+                current["source_refs"] = current_refs
+            if inherited_ref not in current_refs:
+                current_refs.append(inherited_ref)
+    return sorted(
+        merged_by_url.values(),
+        key=_external_related_link_sort_key,
+    )
+
+
+def _external_related_link_sort_key(link: dict[str, Any]) -> tuple[int, int, str, str]:
+    quality_status = str(link.get("quality_status") or "")
+    link_type = str(link.get("link_type") or "")
+    quality_rank = {"trusted": 0, "contextual": 1}.get(quality_status, 99)
+    type_rank = {
+        "canonical_paper": 0,
+        "primary_source": 1,
+        "research_index": 2,
+        "encyclopedia": 3,
+        "repository": 4,
+        "discussion_forum": 5,
+    }.get(link_type, 99)
+    return (
+        quality_rank,
+        type_rank,
+        str(link.get("title") or "").lower(),
+        str(link.get("url") or ""),
+    )
 
 
 def _resolve_source_dossier(
@@ -927,6 +1333,7 @@ def _write_topic_pages(
     topics_dir = output_root / "topics"
     topics_dir.mkdir(parents=True, exist_ok=True)
     claim_option_title_by_id = load_claim_option_titles(space_root=output_root.parent)
+    claim_records = _load_claim_records(space_root=output_root.parent)
     evidence_by_topic_id = _evidence_records_by_topic_id(evidence_records)
     written: list[Path] = []
     for topic in sorted(projection.topics, key=lambda item: item["topic_id"]):
@@ -939,6 +1346,7 @@ def _write_topic_pages(
                 site_presentation_mode=site_presentation_mode,
                 context=context,
                 claim_option_title_by_id=claim_option_title_by_id,
+                claim_records=claim_records,
                 topic_evidence_records=evidence_by_topic_id.get(topic_id, []),
                 stylesheet_href=_relative_href(
                     from_file=topic_path,
@@ -957,17 +1365,47 @@ def _render_space_index(
     projection: SpaceProjection,
     context: _SpaceLayoutContext,
     evidence_records: list[_EvidenceRecord],
+    site_path: Path,
     stylesheet_href: str,
 ) -> str:
     display_space_name = _space_display_name(space_name)
+    sections: list[str] = [f"<h1>{escape(display_space_name)}</h1>\n"]
+    if context.subspaces:
+        subspace_rows = "\n".join(
+            (
+                "<li><a href=\"../../"
+                + escape(subspace_name)
+                + "/site/index.html\">"
+                + escape(_space_or_subspace_display_name(space_name=subspace_name, title=title))
+                + "</a></li>"
+            )
+            for subspace_name, title in context.subspaces
+        )
+        sections.append("<h2>Subspaces</h2>\n<ul class=\"feed-list\">\n" + subspace_rows + "\n</ul>\n")
+    feed_entries = _space_feed_entries(
+        space_name=space_name,
+        projection=projection,
+        site_path=site_path,
+        require_cross_source_topics=False,
+    )
     source_rows = "\n".join(
-        f"<li><a href=\"./sources/{escape(source['source_id'])}.html\">{escape(_source_display_title(source))}</a></li>"
-        for source in sorted(projection.sources, key=lambda item: item["source_id"])
-    ) or "<li>(none yet)</li>"
+        _render_feed_row(entry)
+        for entry in sorted(
+            (entry for entry in feed_entries if entry.item_type == "source"),
+            key=lambda entry: entry.item_id,
+        )
+    )
+    if source_rows:
+        sections.append("<h2>Sources</h2>\n<ul class=\"feed-list\">\n" + source_rows + "\n</ul>\n")
     topic_rows = "\n".join(
-        f"<li><a href=\"./topics/{escape(topic['topic_id'])}.html\">{escape(topic['title'])}</a></li>"
-        for topic in sorted(projection.topics, key=lambda item: item["topic_id"])
-    ) or "<li>(none yet)</li>"
+        _render_feed_row(entry)
+        for entry in sorted(
+            (entry for entry in feed_entries if entry.item_type == "topic"),
+            key=lambda entry: entry.item_id,
+        )
+    )
+    if topic_rows:
+        sections.append("<h2>Topics</h2>\n<ul class=\"feed-list\">\n" + topic_rows + "\n</ul>\n")
     evidence_rows = "\n".join(
         (
             "<li><a href=\"./evidence/"
@@ -977,19 +1415,12 @@ def _render_space_index(
             + "</a></li>"
         )
         for record in evidence_records
-    ) or "<li>(none yet)</li>"
-    body = (
-        f"<h1>{escape(display_space_name)}</h1>\n"
-        "<h2>Sources</h2>\n<ul class=\"feed-list\">\n"
-        + source_rows
-        + "\n</ul>\n"
-        + "<h2>Topics</h2>\n<ul class=\"feed-list\">\n"
-        + topic_rows
-        + "\n</ul>\n"
-        + "<h2>Evidence</h2>\n<ul class=\"feed-list\">\n"
-        + evidence_rows
-        + "\n</ul>\n"
     )
+    if evidence_rows:
+        sections.append("<h2>Evidence</h2>\n<ul class=\"feed-list\">\n" + evidence_rows + "\n</ul>\n")
+    if len(sections) == 1:
+        sections.append("<p>No sources, topics, evidence, or subspaces yet.</p>\n")
+    body = "".join(sections)
     return _render_space_layout(
         title=f"{display_space_name} - Space Home",
         body=body,
@@ -1006,6 +1437,7 @@ def _render_topic_page(
     site_presentation_mode: str,
     context: _SpaceLayoutContext,
     claim_option_title_by_id: dict[str, str],
+    claim_records: dict[str, dict[str, Any]],
     topic_evidence_records: list[_EvidenceRecord],
     stylesheet_href: str,
 ) -> str:
@@ -1037,8 +1469,14 @@ def _render_topic_page(
         + _render_topic_claims_section(
             topic=topic,
             claim_option_title_by_id=claim_option_title_by_id,
+            claim_records=claim_records,
         )
         + _render_topic_evidence_section(topic_evidence_records=topic_evidence_records)
+        + _render_external_related_links_card(
+            heading="External Related Links",
+            links=_topic_external_related_links(topic=topic, context=context),
+            source_href_prefix="../sources/",
+        )
         + _render_page_comment_section(
             page_payload=topic,
             default_page_ref=f"topic:{topic['topic_id']}",
@@ -1062,13 +1500,12 @@ def _render_topic_claims_section(
     *,
     topic: dict[str, object],
     claim_option_title_by_id: dict[str, str],
+    claim_records: dict[str, dict[str, Any]],
 ) -> str:
     raw_claim_ids = topic.get("claim_ids")
-    claim_ids = (
-        [str(claim_id).strip() for claim_id in raw_claim_ids if str(claim_id).strip()]
-        if isinstance(raw_claim_ids, list)
-        else []
-    )
+    claim_ids = _collect_claim_ids_from_topic(topic=topic)
+    if not claim_ids and isinstance(raw_claim_ids, list):
+        claim_ids = [str(claim_id).strip() for claim_id in raw_claim_ids if str(claim_id).strip()]
     if not claim_ids:
         return (
             "<section class=\"source-related-card\">"
@@ -1082,7 +1519,9 @@ def _render_topic_claims_section(
             + escape(claim_id)
             + ".html\">"
             + escape(claim_option_title_by_id.get(claim_id, claim_id))
-            + "</a></li>"
+            + "</a><p class=\"summary\">"
+            + escape(_topic_claim_summary(claim_id=claim_id, claim_record=claim_records.get(claim_id, {})))
+            + "</p></li>"
         )
         for claim_id in claim_ids
     )
@@ -1095,6 +1534,13 @@ def _render_topic_claims_section(
         "<p><a href=\"../claims/index.html\">Browse all claims</a></p>"
         "</section>"
     )
+
+
+def _topic_claim_summary(*, claim_id: str, claim_record: dict[str, Any]) -> str:
+    explicit = str(claim_record.get("overview") or "").strip()
+    if explicit:
+        return truncate_text_for_ui(explicit, max_length=220)
+    return truncate_text_for_ui(_claim_text(claim_id=claim_id, claim_record=claim_record), max_length=220)
 
 
 def _render_topic_evidence_section(*, topic_evidence_records: list[_EvidenceRecord]) -> str:
@@ -1543,10 +1989,15 @@ def _build_layout_context(
     projection: SpaceProjection,
     site_path: Path,
 ) -> _SpaceLayoutContext:
+    all_space_names = _discover_site_spaces(site_path)
     return _SpaceLayoutContext(
         site_name=_resolve_site_name(site_path),
         space_name=space_root.name,
-        all_space_names=_discover_site_spaces(site_path),
+        all_space_names=all_space_names,
+        site_subspaces_by_space=_load_site_subspaces_by_space(
+            site_path=site_path,
+            space_names=all_space_names,
+        ),
         subspaces=_load_subspaces(space_root),
         sources=sorted(projection.sources, key=lambda item: str(item.get("source_id", ""))),
         topics=sorted(projection.topics, key=lambda item: str(item.get("topic_id", ""))),
@@ -1585,12 +2036,37 @@ def _discover_site_spaces(site_path: Path) -> list[str]:
     return [space_name for space_name in all_space_names if space_name not in declared_subspace_names]
 
 
+def _top_level_site_space_names(
+    *,
+    space_names: list[str],
+    subspaces_by_space: dict[str, list[tuple[str, str | None]]],
+) -> list[str]:
+    declared_subspace_names = {
+        subspace_name
+        for subspaces in subspaces_by_space.values()
+        for subspace_name, _title in subspaces
+    }
+    return [space_name for space_name in sorted(space_names) if space_name not in declared_subspace_names]
+
+
 def _load_subspaces(space_root: Path) -> list[tuple[str, str | None]]:
     try:
         metadata = load_subspaces_metadata(space_root=space_root)
     except FileNotFoundError:
         return []
     return sorted((entry.space_name, entry.title) for entry in metadata.subspaces)
+
+
+def _load_site_subspaces_by_space(
+    *,
+    site_path: Path,
+    space_names: list[str],
+) -> dict[str, list[tuple[str, str | None]]]:
+    spaces_root = site_path / "spaces"
+    mapping: dict[str, list[tuple[str, str | None]]] = {}
+    for space_name in sorted(space_names):
+        mapping[space_name] = _load_subspaces(spaces_root / space_name)
+    return mapping
 
 
 def _resolve_space_tabs(space_root: Path) -> list[str]:
@@ -1650,7 +2126,13 @@ def _persona_label(*, persona_id: str) -> str:
     return _persona_label_by_id().get(persona_id, persona_id)
 
 
-def _space_feed_entries(*, space_name: str, projection: SpaceProjection, site_path: Path) -> list[_FeedEntry]:
+def _space_feed_entries(
+    *,
+    space_name: str,
+    projection: SpaceProjection,
+    site_path: Path,
+    require_cross_source_topics: bool = True,
+) -> list[_FeedEntry]:
     entries: list[_FeedEntry] = []
     source_preview_by_id: dict[str, str] = {}
     source_author_identities_by_id: dict[str, list[_AuthorIdentity]] = {}
@@ -1688,24 +2170,14 @@ def _space_feed_entries(*, space_name: str, projection: SpaceProjection, site_pa
             )
         )
     for topic in projection.topics:
-        summary = ""
-        if isinstance(topic.get("card_overview"), str):
-            summary = topic["card_overview"]
-        elif isinstance(topic.get("summary"), str):
-            summary = topic["summary"]
-        else:
-            sections = topic.get("sections")
-            if isinstance(sections, list) and sections:
-                first = sections[0]
-                if isinstance(first, dict) and isinstance(first.get("body"), str):
-                    summary = first["body"]
+        summary = _topic_card_overview(topic)
         source_ids = [
             str(value).strip()
             for value in topic.get("source_ids", [])
             if isinstance(value, str) and str(value).strip()
         ]
-        # Topics represent cross-source abstractions; skip malformed single-source topics in New feeds.
-        if len(source_ids) < 2:
+        # New feeds only surface cross-source topics, but space home pages should show every local topic.
+        if require_cross_source_topics and len(source_ids) < 2:
             continue
         topic_timestamp = str(topic.get("updated_at") or topic.get("created_at") or "").strip()
         if not topic_timestamp:
@@ -1761,6 +2233,21 @@ def _compact_summary(text: str, *, limit: int = 120) -> str:
 
 def _normalize_overview_text(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
+
+
+def _topic_card_overview(topic: dict[str, Any]) -> str:
+    summary = ""
+    if isinstance(topic.get("card_overview"), str):
+        summary = topic["card_overview"]
+    elif isinstance(topic.get("summary"), str):
+        summary = topic["summary"]
+    else:
+        sections = topic.get("sections")
+        if isinstance(sections, list) and sections:
+            first = sections[0]
+            if isinstance(first, dict) and isinstance(first.get("body"), str):
+                summary = first["body"]
+    return _sanitize_card_overview(summary)
 
 
 def _source_card_overview(source: dict[str, Any]) -> str:
@@ -1879,7 +2366,7 @@ def _dedupe_author_identities(identities: list[_AuthorIdentity]) -> list[_Author
     for identity in identities:
         display_name = _normalize_author_name(identity.display_name)
         institution = _normalize_institution_name(identity.institution)
-        if not display_name:
+        if not _is_plausible_author_name(display_name):
             continue
         key = (display_name.lower(), institution.lower())
         if key in seen:
@@ -1887,6 +2374,32 @@ def _dedupe_author_identities(identities: list[_AuthorIdentity]) -> list[_Author
         seen.add(key)
         deduped.append(_AuthorIdentity(display_name=display_name, institution=institution))
     return deduped
+
+
+def _is_plausible_author_name(name: str) -> bool:
+    normalized = _normalize_author_name(name)
+    if not normalized:
+        return False
+    folded = normalized.casefold()
+    if folded in {
+        "the",
+        "this",
+        "that",
+        "these",
+        "those",
+        "paper",
+        "article",
+        "study",
+        "authors",
+        "researchers",
+        "team",
+        "editorial synthesis",
+        "unknown",
+    }:
+        return False
+    if normalized.startswith("/"):
+        return False
+    return True
 
 
 def _derive_authors_from_source_title(title: str) -> list[str]:
@@ -2163,18 +2676,21 @@ def _write_space_tab_pages(
     feed_entries = _space_feed_entries(space_name=context.space_name, projection=projection, site_path=site_path)
     _sort_feed_entries(feed_entries)
     source_feed_entries = [entry for entry in feed_entries if entry.item_type == "source"]
+    topic_feed_entries = [
+        entry
+        for entry in _space_feed_entries(
+            space_name=context.space_name,
+            projection=projection,
+            site_path=site_path,
+            require_cross_source_topics=False,
+        )
+        if entry.item_type == "topic"
+    ]
 
     tab_rows: dict[str, list[str]] = {
         "new": [_render_feed_row(entry) for entry in feed_entries],
         "sources": [_render_feed_row(entry) for entry in source_feed_entries],
-        "topics": [
-            (
-                f"<li><a href=\"/spaces/{escape(context.space_name)}/site/topics/{escape(str(topic['topic_id']))}.html\">"
-                + escape(str(topic["title"]))
-                + "</a></li>"
-            )
-            for topic in sorted(projection.topics, key=lambda item: str(item["topic_id"]))
-        ],
+        "topics": [_render_feed_row(entry) for entry in sorted(topic_feed_entries, key=lambda entry: entry.item_id)],
         "users": [
             (
                 "<a class=\"user-card\" href=\"/spaces/"
@@ -2997,6 +3513,11 @@ def _write_space_claim_pages(
             default_page_ref=f"claim:{claim_id}",
             space_name=context.space_name,
         )
+        claim_external_links = _claim_external_related_links(
+            claim_source_id=str(claim_record.get("source_id") or "").strip(),
+            source_ids=usage_stats.get("source_ids", ()),
+            projection=projection,
+        )
         claim_path = claims_root / f"{claim_id}.html"
         _write_text_file(
             claim_path,
@@ -3065,6 +3586,11 @@ def _write_space_claim_pages(
                     )
                     + "<p><a href=\"../evidence/index.html\">Browse all evidence</a></p>\n"
                     + "</section>\n"
+                    + _render_external_related_links_card(
+                        heading="External Related Links",
+                        links=claim_external_links,
+                        source_href_prefix="../sources/",
+                    )
                     + comments_section
                     + "\n"
                     "<p><a href=\"index.html\">Back to claims index</a></p>\n"
@@ -3616,7 +4142,9 @@ def _claim_usage_rows(
                 + escape(topic_id)
                 + ".html\">"
                 + escape(str(topic.get("title") or topic_id))
-                + "</a></li>"
+                + "</a><p class=\"summary\">"
+                + escape(_topic_card_overview(topic))
+                + "</p></li>"
             )
         else:
             rows.append(
@@ -3661,7 +4189,9 @@ def _claim_usage_rows(
                 + escape(source_id)
                 + ".html\">"
                 + escape(source_title_by_id.get(source_id, source_id))
-                + "</a></li>"
+                + "</a><p class=\"summary\">"
+                + escape(_source_card_overview(source))
+                + "</p></li>"
             )
         else:
             rows.append(
@@ -3882,10 +4412,16 @@ def _render_space_layout(
         + "<link rel=\"stylesheet\" href=\""
         + escape(stylesheet_href)
         + "\">"
-        + "</head><body class=\"site-shell\">\n"
-        + "<div class=\"site-shell-grid\">\n"
-        + _render_space_sidebar(context=context, current_page=current_page)
-        + "<main class=\"site-main\">\n"
+        + "</head><body class=\"site-shell site-with-global-menubar\">\n"
+        + _render_global_site_menubar(
+            site_name=context.site_name,
+            current_tab=current_tab,
+            space_names=context.all_space_names,
+            subspaces_by_space=context.site_subspaces_by_space,
+            current_space_name=context.space_name,
+            current_page=current_page,
+        )
+        + "<main class=\"site-main site-space-main\">\n"
         + "<header class=\"site-topbar\">"
         + "<form class=\"top-search\" action=\"/spaces/"
         + escape(context.space_name)
@@ -3893,116 +4429,11 @@ def _render_space_layout(
         + "<label class=\"top-search-label\" for=\"space-search-q\">Search</label> "
         + "<input class=\"top-search-input\" id=\"space-search-q\" type=\"search\" name=\"q\" placeholder=\"Search this space\"/></form>"
         + "</header>\n"
-        + _render_space_tabs(context=context, current_tab=current_tab)
         + content_container
         + "\n</main>\n"
-        + "</div>\n"
+        + _render_global_site_menu_script()
         + "</body></html>\n"
     )
-
-
-def _render_space_sidebar(*, context: _SpaceLayoutContext, current_page: str | None) -> str:
-    space_rows = "\n".join(
-        (
-            "<li><a"
-            + (" class=\"current\"" if space_name == context.space_name else "")
-            + f" href=\"/spaces/{escape(space_name)}/site/index.html\">{escape(_space_display_name(space_name))}</a></li>"
-        )
-        for space_name in context.all_space_names
-    )
-    if context.subspaces:
-        subspace_rows = "\n".join(
-            (
-                f"<li><a href=\"/spaces/{escape(subspace_name)}/site/index.html\">"
-                + escape(_space_or_subspace_display_name(space_name=subspace_name, title=title))
-                + "</a></li>"
-            )
-            for subspace_name, title in context.subspaces
-        )
-    else:
-        subspace_rows = "<li><span>None</span></li>"
-    if context.sources:
-        source_rows = "\n".join(
-            (
-                "<li><a"
-                + (" class=\"current\"" if current_page == f"source:{source['source_id']}" else "")
-                + f" href=\"/spaces/{escape(context.space_name)}/site/sources/{escape(str(source['source_id']))}.html\">"
-                + escape(_source_display_title(source))
-                + "</a></li>"
-            )
-            for source in context.sources
-        )
-    else:
-        source_rows = "<li><span>None</span></li>"
-    topic_rows = "\n".join(
-        (
-            "<li><a"
-            + (" class=\"current\"" if current_page == f"topic:{topic['topic_id']}" else "")
-            + f" href=\"/spaces/{escape(context.space_name)}/site/topics/{escape(str(topic['topic_id']))}.html\">"
-            + escape(str(topic["title"]))
-            + "</a></li>"
-        )
-        for topic in context.topics
-    )
-    return (
-        "<aside class=\"site-sidebar\">\n"
-        + "<div class=\"site-sidebar-head\">"
-        + f"<p class=\"site-name\">{escape(context.site_name)}</p>\n"
-        + f"<p class=\"space-name\">{escape(_space_display_name(context.space_name))}</p>\n"
-        + "</div>"
-        + "<nav class=\"site-sidebar-nav\">\n"
-        + "<ul><li><a"
-        + (" class=\"current\"" if current_page == "space_home" else "")
-        + f" href=\"/spaces/{escape(context.space_name)}/site/index.html\">Space Home</a></li></ul>\n"
-        + "<details class=\"sidebar-spaces\" open><summary>Spaces</summary><ul>\n"
-        + space_rows
-        + "\n</ul></details>\n"
-        + "<details class=\"sidebar-subspaces\" open><summary>Subspaces</summary><ul>\n"
-        + subspace_rows
-        + "\n</ul></details>\n"
-        + "<details class=\"sidebar-sources\" open><summary>Sources</summary><ul>\n"
-        + source_rows
-        + "\n</ul></details>\n"
-        + "<details class=\"sidebar-topics\" open><summary>Topics</summary><ul>\n"
-        + topic_rows
-        + "\n</ul></details>\n"
-        + "</nav>\n"
-        + "</aside>\n"
-    )
-
-
-def _render_space_tabs(*, context: _SpaceLayoutContext, current_tab: str | None) -> str:
-    tab_labels = {
-        "new": "New",
-        "sources": "Sources",
-        "topics": "Topics",
-        "users": "Users",
-    }
-    rows = []
-    for tab_key in context.tabs:
-        label = tab_labels.get(tab_key, tab_key.capitalize())
-        rows.append(
-            "<a class=\"tab"
-            + (" current" if current_tab == tab_key else "")
-            + f"\" href=\"/spaces/{escape(context.space_name)}/site/{escape(tab_key)}/index.html\">"
-            + escape(label)
-            + "</a>"
-        )
-    rows.append(
-        "<a class=\"tab"
-        + (" current" if current_tab == "evidence" else "")
-        + "\" href=\"/spaces/"
-        + escape(context.space_name)
-        + "/site/evidence/index.html\">Evidence</a>"
-    )
-    rows.append(
-        "<a class=\"tab"
-        + (" current" if current_tab == "claims" else "")
-        + "\" href=\"/spaces/"
-        + escape(context.space_name)
-        + "/site/claims/index.html\">Claims</a>"
-    )
-    return "<nav class=\"tabs\" aria-label=\"Primary tabs\">" + " ".join(rows) + "</nav>\n"
 
 
 def _paginate(items: list[Any], page_size: int) -> list[list[Any]]:
@@ -4092,6 +4523,8 @@ def _write_site_users_pages(
     site_name: str,
     persona_rows: list[dict[str, Any]],
     space_names: list[str],
+    root_space_names: list[str],
+    subspaces_by_space: dict[str, list[tuple[str, str | None]]],
     incremental: bool,
 ) -> None:
     users_root = site_root / "users"
@@ -4100,20 +4533,19 @@ def _write_site_users_pages(
     rows = []
     for row in persona_rows:
         persona_id = str(row["persona_id"])
-        space_links = " ".join(
-            (
-                f"<a href=\"/spaces/{escape(space_name)}/site/users/persona-{escape(persona_id)}.html\">"
-                + escape(_space_display_name(space_name))
-                + "</a>"
-            )
-            for space_name in sorted(space_names)
-        )
         rows.append(
-            "<li>"
+            "<article class=\"user-card site-user-card\">"
+            + "<img class=\"user-card-photo\" src=\"/spaces/"
+            + escape(space_names[0] if space_names else "")
+            + "/site/assets/persona_profiles/"
+            + escape(persona_id)
+            + ".jpg\" alt=\"Profile photo for "
             + escape(str(row["display_name"]))
-            + f" ({escape(persona_id)})"
-            + (f"<div class=\"space-scoped-links\">{space_links}</div>" if space_links else "")
-            + "</li>"
+            + "\" loading=\"lazy\" />"
+            + "<span class=\"user-card-name\">"
+            + escape(str(row["display_name"]))
+            + "</span>"
+            + "</article>"
         )
 
     pages = _paginate(rows, TAB_PAGE_SIZE)
@@ -4121,9 +4553,9 @@ def _write_site_users_pages(
         page_path = _paginated_page_path(users_root, page_number=page_number)
         body = (
             f"<h1>{escape(site_name)} Users</h1>\n"
-            + "<ul class=\"feed-list\">\n"
+            + "<div class=\"user-card-grid\">\n"
             + "\n".join(page_rows)
-            + "\n</ul>\n"
+            + "\n</div>\n"
             + _render_pagination(
                 page_number=page_number,
                 page_count=len(pages),
@@ -4139,9 +4571,62 @@ def _write_site_users_pages(
                 body=body,
                 current_tab="users",
                 stylesheet_href=_relative_href(from_file=page_path, to_file=site_stylesheet_path),
+                space_names=root_space_names,
+                subspaces_by_space=subspaces_by_space,
             ),
             incremental=incremental,
         )
+
+
+def _write_site_feed_tab_pages(
+    *,
+    site_root: Path,
+    site_name: str,
+    entries: list[_FeedEntry],
+    root_space_names: list[str],
+    subspaces_by_space: dict[str, list[tuple[str, str | None]]],
+    incremental: bool,
+) -> None:
+    site_stylesheet_path = site_root / "assets" / "site.css"
+    for tab_name, item_type, heading in (
+        ("sources", "source", "Sources"),
+        ("topics", "topic", "Topics"),
+    ):
+        tab_root = site_root / tab_name
+        tab_root.mkdir(parents=True, exist_ok=True)
+        tab_entries = [entry for entry in entries if entry.item_type == item_type]
+        pages = _paginate(tab_entries, TAB_PAGE_SIZE)
+        for page_number, page_entries in enumerate(pages, start=1):
+            page_path = _paginated_page_path(tab_root, page_number=page_number)
+            body = (
+                f"<h1>{escape(heading)}</h1>\n<p>{escape(site_name)}</p>\n"
+                + (
+                    "<ul class=\"feed-list\">\n"
+                    + "\n".join(_render_feed_row(entry) for entry in page_entries)
+                    + "\n</ul>\n"
+                    if page_entries
+                    else f"<p>No {escape(heading.lower())} yet.</p>\n"
+                )
+                + _render_pagination(
+                    page_number=page_number,
+                    page_count=len(pages),
+                    mode="tab",
+                    base_href=f"/site/{tab_name}",
+                )
+            )
+            _write_text_file(
+                page_path,
+                _render_site_layout(
+                    title=f"{site_name} {heading}",
+                    site_name=site_name,
+                    body=body,
+                    current_tab=tab_name,
+                    stylesheet_href=_relative_href(from_file=page_path, to_file=site_stylesheet_path),
+                    space_names=root_space_names,
+                    subspaces_by_space=subspaces_by_space,
+                ),
+                incremental=incremental,
+            )
 
 
 def _render_site_root_index(
@@ -4158,11 +4643,13 @@ def _render_site_root_index(
         if subspaces:
             subspace_rows = "<ul>" + "".join(
                 (
-                    "<li>"
+                    "<li><a href=\"/spaces/"
+                    + escape(subspace_name)
+                    + "/site/index.html\">"
                     + escape(_space_or_subspace_display_name(space_name=subspace_name, title=title))
                     + " ("
                     + escape(_space_display_name(subspace_name))
-                    + ")</li>"
+                    + ")</a></li>"
                 )
                 for subspace_name, title in subspaces
             ) + "</ul>"
@@ -4189,11 +4676,12 @@ def _render_site_root_index(
     return _render_site_layout(
         title=site_name,
         site_name=site_name,
-        current_tab=None,
+        current_tab="spaces",
         stylesheet_href=stylesheet_href,
+        space_names=space_names,
+        subspaces_by_space=subspaces_by_space,
         body=(
-            f"<h1>{escape(site_name)}</h1>\n"
-            + latest_section
+            latest_section
             + "<h2>Spaces</h2>\n<ul class=\"feed-list\">\n"
             + "\n".join(rows)
             + "\n</ul>\n"
@@ -4204,6 +4692,8 @@ def _render_site_root_index(
 def _render_site_new_page(
     *,
     site_name: str,
+    space_names: list[str],
+    subspaces_by_space: dict[str, list[tuple[str, str | None]]],
     page_entries: list[_FeedEntry],
     page_number: int,
     page_count: int,
@@ -4215,6 +4705,8 @@ def _render_site_new_page(
         site_name=site_name,
         current_tab="new",
         stylesheet_href=stylesheet_href,
+        space_names=space_names,
+        subspaces_by_space=subspaces_by_space,
         body=(
             f"<h1>New</h1>\n<p>{escape(site_name)}</p>\n<ul class=\"feed-list\">\n"
             + rows
@@ -4236,15 +4728,9 @@ def _render_site_layout(
     body: str,
     current_tab: str | None,
     stylesheet_href: str,
+    space_names: list[str] | None = None,
+    subspaces_by_space: dict[str, list[tuple[str, str | None]]] | None = None,
 ) -> str:
-    nav_rows = [
-        "<a class=\"site-tab"
-        + (" current" if current_tab == "new" else "")
-        + "\" href=\"/site/new/index.html\">New</a>",
-        "<a class=\"site-tab"
-        + (" current" if current_tab == "users" else "")
-        + "\" href=\"/site/users/index.html\">Users</a>",
-    ]
     return (
         "<!doctype html>\n"
         "<html lang=\"en\"><head><meta charset=\"utf-8\">"
@@ -4256,17 +4742,243 @@ def _render_site_layout(
         + escape(stylesheet_href)
         + "\">"
         + "</head><body class=\"site-shell site-root-shell\">\n"
+        + _render_global_site_menubar(
+            site_name=site_name,
+            current_tab=current_tab,
+            space_names=space_names or [],
+            subspaces_by_space=subspaces_by_space or {},
+        )
         + "<main class=\"site-main site-root-main\">"
-        + "<section class=\"content-card\">"
-        + f"<p class=\"site-name\">{escape(site_name)}</p>"
-        + "<nav class=\"site-tabs\">"
-        + " ".join(nav_rows)
-        + "</nav>"
+        + "<section class=\"content-card site-root-content-card\">"
         + body
         + "</section>"
         + "</main>"
+        + _render_global_site_menu_script()
         + "</body></html>\n"
     )
+
+
+def _render_global_site_menubar(
+    *,
+    site_name: str,
+    current_tab: str | None,
+    space_names: list[str],
+    subspaces_by_space: dict[str, list[tuple[str, str | None]]],
+    current_space_name: str | None = None,
+    current_page: str | None = None,
+) -> str:
+    nav_rows = _render_global_site_tab_rows(
+        current_tab=current_tab,
+        current_page=current_page,
+        current_space_name=current_space_name,
+    )
+    return (
+        "<header class=\"site-root-menubar\">"
+        + "<div class=\"site-root-menubar-inner\">"
+        + _render_site_home_link(site_name)
+        + _render_site_space_nav(
+            space_names=space_names,
+            subspaces_by_space=subspaces_by_space,
+            current_space_name=current_space_name,
+        )
+        + "<nav class=\"site-tabs\">"
+        + " ".join(nav_rows)
+        + "</nav>"
+        + "</div>"
+        + "</header>"
+    )
+
+
+def _render_global_site_tab_rows(
+    *,
+    current_tab: str | None,
+    current_page: str | None,
+    current_space_name: str | None,
+) -> list[str]:
+    if not current_space_name:
+        return [
+            "<a class=\"site-tab"
+            + (" current" if current_tab == "new" else "")
+            + "\" href=\"/site/new/index.html\">New</a>",
+            "<a class=\"site-tab"
+            + (" current" if current_tab == "spaces" else "")
+            + "\" href=\"/site/index.html\">Spaces</a>",
+            "<a class=\"site-tab"
+            + (" current" if current_tab == "sources" else "")
+            + "\" href=\"/site/sources/index.html\">Sources</a>",
+            "<a class=\"site-tab"
+            + (" current" if current_tab == "topics" else "")
+            + "\" href=\"/site/topics/index.html\">Topics</a>",
+            "<a class=\"site-tab"
+            + (" current" if current_tab == "users" else "")
+            + "\" href=\"/site/users/index.html\">Users</a>",
+        ]
+
+    resolved_current_tab = _resolve_local_space_current_tab(
+        current_tab=current_tab,
+        current_page=current_page,
+    )
+    local_rows = [
+        ("home", "Home", f"/spaces/{current_space_name}/site/index.html"),
+        ("new", "New", f"/spaces/{current_space_name}/site/new/index.html"),
+        ("sources", "Sources", f"/spaces/{current_space_name}/site/sources/index.html"),
+        ("topics", "Topics", f"/spaces/{current_space_name}/site/topics/index.html"),
+        ("users", "Users", f"/spaces/{current_space_name}/site/users/index.html"),
+        ("evidence", "Evidence", f"/spaces/{current_space_name}/site/evidence/index.html"),
+        ("claims", "Claims", f"/spaces/{current_space_name}/site/claims/index.html"),
+    ]
+    return [
+        "<a class=\"site-tab"
+        + (" current" if resolved_current_tab == tab_key else "")
+        + "\" href=\""
+        + escape(href)
+        + "\">"
+        + escape(label)
+        + "</a>"
+        for tab_key, label, href in local_rows
+    ]
+
+
+def _resolve_local_space_current_tab(*, current_tab: str | None, current_page: str | None) -> str | None:
+    if current_tab:
+        return current_tab
+    if current_page == "space_home":
+        return "home"
+    if not current_page:
+        return None
+    if current_page.startswith("source:"):
+        return "sources"
+    if current_page.startswith("topic:"):
+        return "topics"
+    if current_page.startswith("claim:"):
+        return "claims"
+    if current_page.startswith("evidence:"):
+        return "evidence"
+    return None
+
+
+def _render_global_site_menu_script() -> str:
+    return (
+        "<script>\n"
+        + "(function(){\n"
+        + "  var nav=document.querySelector('.site-root-menubar .site-space-nav');\n"
+        + "  if(!nav){return;}\n"
+        + "  function items(){\n"
+        + "    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));\n"
+        + "  }\n"
+        + "  function closeAll(exceptItem){\n"
+        + "    items().forEach(function(item){\n"
+        + "      if(item!==exceptItem){item.removeAttribute('open');}\n"
+        + "    });\n"
+        + "  }\n"
+        + "  nav.addEventListener('toggle', function(event){\n"
+        + "    var item=event.target;\n"
+        + "    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}\n"
+        + "    if(item.hasAttribute('open')){closeAll(item);}\n"
+        + "  }, true);\n"
+        + "  document.addEventListener('pointerdown', function(event){\n"
+        + "    if(nav.contains(event.target)){return;}\n"
+        + "    closeAll(null);\n"
+        + "  });\n"
+        + "  document.addEventListener('keydown', function(event){\n"
+        + "    if(event.key==='Escape'){closeAll(null);}\n"
+        + "  });\n"
+        + "})();\n"
+        + "</script>"
+    )
+
+
+def _render_site_home_link(site_name: str) -> str:
+    return (
+        "<a class=\"site-name site-home-link\" href=\"/site/index.html\">"
+        + escape(site_name)
+        + "</a>"
+    )
+
+
+def _render_site_space_nav(
+    *,
+    space_names: list[str],
+    subspaces_by_space: dict[str, list[tuple[str, str | None]]],
+    current_space_name: str | None = None,
+) -> str:
+    if not space_names:
+        return ""
+    current_top_level_space, current_subspace_name, current_subspace_title = _resolve_current_space_branch(
+        space_names=space_names,
+        subspaces_by_space=subspaces_by_space,
+        current_space_name=current_space_name,
+    )
+    items: list[str] = []
+    for space_name in sorted(space_names):
+        display_name = _space_display_name(space_name)
+        summary_label = display_name
+        branch_is_current = space_name == current_top_level_space
+        if branch_is_current and current_subspace_name and current_subspace_title is not None:
+            summary_label = (
+                display_name
+                + " / "
+                + _space_or_subspace_display_name(
+                    space_name=current_subspace_name,
+                    title=current_subspace_title,
+                )
+            )
+        space_href = (
+            "<a class=\"site-space-nav-link site-space-nav-parent"
+            + (" current" if current_space_name == space_name else "")
+            + "\" href=\"/spaces/"
+            + escape(space_name)
+            + "/site/index.html\">"
+            + escape(display_name)
+            + "</a>"
+        )
+        subspaces = subspaces_by_space.get(space_name, [])
+        if subspaces:
+            subspace_links = "".join(
+                (
+                    "<a class=\"site-space-nav-link"
+                    + (" current" if current_space_name == subspace_name else "")
+                    + "\" href=\"/spaces/"
+                    + escape(subspace_name)
+                    + "/site/index.html\">"
+                    + escape(_space_or_subspace_display_name(space_name=subspace_name, title=title))
+                    + "</a>"
+                )
+                for subspace_name, title in subspaces
+            )
+            items.append(
+                "<details class=\"site-space-nav-item\">"
+                + "<summary class=\"site-space-nav-summary"
+                + (" current" if branch_is_current else "")
+                + "\">"
+                + escape(summary_label)
+                + "</summary>"
+                + "<div class=\"site-space-nav-menu\">"
+                + space_href
+                + subspace_links
+                + "</div>"
+                + "</details>"
+            )
+        else:
+            items.append(space_href)
+    return "<nav class=\"site-space-nav\" aria-label=\"Spaces\">" + "".join(items) + "</nav>"
+
+
+def _resolve_current_space_branch(
+    *,
+    space_names: list[str],
+    subspaces_by_space: dict[str, list[tuple[str, str | None]]],
+    current_space_name: str | None,
+) -> tuple[str | None, str | None, str | None]:
+    if not current_space_name:
+        return None, None, None
+    for space_name in sorted(space_names):
+        if current_space_name == space_name:
+            return space_name, None, None
+        for subspace_name, title in subspaces_by_space.get(space_name, []):
+            if current_space_name == subspace_name:
+                return space_name, subspace_name, title
+    return None, None, None
 
 
 def _render_feed_preview_thumb(entry: _FeedEntry) -> str:

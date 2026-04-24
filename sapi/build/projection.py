@@ -51,8 +51,49 @@ def _load_source_records(space_root: Path) -> list[dict[str, Any]]:
             raise ProjectionContractError(f"{source_path}: source_id must be a non-empty string.")
         if not isinstance(title, str) or not title.strip():
             raise ProjectionContractError(f"{source_path}: title must be a non-empty string.")
+        _validate_source_artifact_contract(source_path=source_path, payload=payload)
+        _validate_source_related_link_contract(source_path=source_path, payload=payload)
         records.append(payload)
     return records
+
+
+def _validate_source_artifact_contract(*, source_path: Path, payload: dict[str, Any]) -> None:
+    artifacts = payload.get("artifacts")
+    if artifacts is None:
+        return
+    if not isinstance(artifacts, dict):
+        raise ProjectionContractError(f"{source_path}: artifacts must be an object when present.")
+    for key in ("source_file", "source_markdown", "source_extraction", "overview_markdown"):
+        value = artifacts.get(key)
+        if value is not None and (not isinstance(value, str) or not value.strip()):
+            raise ProjectionContractError(f"{source_path}: artifacts.{key} must be a non-empty string when present.")
+    analysis_policy = payload.get("analysis_policy")
+    if analysis_policy is not None:
+        if not isinstance(analysis_policy, dict):
+            raise ProjectionContractError(f"{source_path}: analysis_policy must be an object when present.")
+        quality_status = analysis_policy.get("quality_status")
+        if quality_status is not None and (not isinstance(quality_status, str) or not quality_status.strip()):
+            raise ProjectionContractError(f"{source_path}: analysis_policy.quality_status must be a non-empty string.")
+        warnings = analysis_policy.get("warnings")
+        if warnings is not None and not isinstance(warnings, list):
+            raise ProjectionContractError(f"{source_path}: analysis_policy.warnings must be an array when present.")
+
+
+def _validate_source_related_link_contract(*, source_path: Path, payload: dict[str, Any]) -> None:
+    links = payload.get("external_related_links")
+    if links is None:
+        return
+    if not isinstance(links, list):
+        raise ProjectionContractError(f"{source_path}: external_related_links must be an array when present.")
+    for index, link in enumerate(links):
+        if not isinstance(link, dict):
+            raise ProjectionContractError(f"{source_path}: external_related_links[{index}] must be an object.")
+        for key in ("title", "url", "domain", "link_type", "quality_status"):
+            value = link.get(key)
+            if not isinstance(value, str) or not value.strip():
+                raise ProjectionContractError(
+                    f"{source_path}: external_related_links[{index}].{key} must be a non-empty string."
+                )
 
 
 def _load_topic_records(space_root: Path) -> list[dict[str, Any]]:
