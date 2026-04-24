@@ -4,6 +4,24 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0317: Remove semantic flow-key compatibility alias `persona_comment_generation`
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Phase 4
+  - depends_on: TODO-0313
+  - scope: Remove flow alias normalization/deprecation path and require canonical `comment_section_generation`.
+  - acceptance:
+    - `sapi/contracts/semantic_specs.py` no longer contains `FLOW_ALIAS_MAP` compatibility alias for comment flow.
+    - Resolution tests assert alias keys fail as unknown flow keys.
+  - notes: source `docs/design.md` Section 4.1.3; `docs/low_level.md` Sections 6.1 and 15
+  - evidence: Removed the alias-map/deprecation path from
+    `sapi/contracts/semantic_specs.py` so semantic spec resolution now accepts only canonical flow
+    keys. Updated `tests/unit/semantic/test_spec_resolution.py` to require `ValueError` for
+    `persona_comment_generation` in both direct spec resolution and invocation-spec resolution, and
+    rewrote the low-level test-plan note to describe unknown-flow rejection instead of alias
+    normalization.
+
 - [x] TODO-0316: Remove wrapper-level compatibility aliases in `create_comments.sh`
   - owner: ai
   - created_at: 2026-04-13

@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from pathlib import Path
 import re
 from typing import Any, Mapping
-import warnings
 
 
 @dataclass(frozen=True)
@@ -65,11 +64,6 @@ class ResolvedSemanticInvocationSpec:
     output_json_path: Path
     context_paths: list[Path]
 
-
-FLOW_ALIAS_MAP: dict[str, str] = {
-    "persona_comment_generation": "comment_section_generation",
-}
-
 FLOW_MAP: dict[str, SemanticSpecMapEntry] = {
     "ingest_extraction": SemanticSpecMapEntry(
         flow_key="ingest_extraction",
@@ -106,42 +100,26 @@ FLOW_MAP: dict[str, SemanticSpecMapEntry] = {
 }
 
 
-def normalize_semantic_flow_key(flow_key: str) -> str:
-    """Normalize compatibility aliases to canonical flow keys."""
-    canonical_flow_key = FLOW_ALIAS_MAP.get(flow_key, flow_key)
-    if canonical_flow_key != flow_key:
-        warnings.warn(
-            (
-                f"Semantic flow key alias `{flow_key}` is deprecated; "
-                f"use `{canonical_flow_key}`."
-            ),
-            DeprecationWarning,
-            stacklevel=2,
-        )
-    return canonical_flow_key
-
-
 def resolve_semantic_spec(flow_key: str, *, repo_root: Path) -> ResolvedSemanticSpec:
     """Resolve semantic spec only via the authoritative flow map."""
-    canonical_flow_key = normalize_semantic_flow_key(flow_key)
-    if canonical_flow_key not in FLOW_MAP:
+    if flow_key not in FLOW_MAP:
         raise ValueError(f"Unknown semantic flow key: {flow_key}")
 
-    entry = FLOW_MAP[canonical_flow_key]
+    entry = FLOW_MAP[flow_key]
     validate_map_entry_major_version(entry)
 
     spec_path = (repo_root / entry.spec_relpath).resolve()
     schema_path = (repo_root / entry.schema_relpath).resolve()
     if not spec_path.is_file():
-        raise FileNotFoundError(f"Spec file not found for flow {canonical_flow_key}: {spec_path}")
+        raise FileNotFoundError(f"Spec file not found for flow {flow_key}: {spec_path}")
     if not schema_path.is_file():
-        raise FileNotFoundError(f"Schema file not found for flow {canonical_flow_key}: {schema_path}")
+        raise FileNotFoundError(f"Schema file not found for flow {flow_key}: {schema_path}")
 
     header = parse_spec_header(spec_path)
     _validate_spec_header_against_entry(header, entry)
 
     return ResolvedSemanticSpec(
-        flow_key=canonical_flow_key,
+        flow_key=flow_key,
         version=header.version,
         spec_path=spec_path,
         schema_path=schema_path,

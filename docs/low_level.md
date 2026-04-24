@@ -650,7 +650,7 @@ Minimum test groups for this low-level design:
   - repair-loop success
   - repair-loop exhaustion + rollback
   - attempt budget accounting (`max_repair_loops`, `max_attempts`, `llm_attempt_count`)
-  - spec-resolution flow map + alias normalization (`persona_comment_generation` input alias)
+  - spec-resolution flow map + unknown-flow rejection for removed aliases such as `persona_comment_generation`
 - run envelopes:
   - base fields include fingerprints/reasoning/execution mode/lint totals
   - pipeline extension fields are present and typed per flow
