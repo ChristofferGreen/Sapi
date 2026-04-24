@@ -47,18 +47,18 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0341`
+1. `TODO-0342`
 2. `TODO-0327`
 
 ### Immediate Next 10 (After Ready Now)
 
-1. TODO-0342
+1. (none currently)
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: TODO-0341
-- P2 Social/eval/hardening: TODO-0327, TODO-0342
+- P1 Core product behavior: (none currently)
+- P2 Social/eval/hardening: TODO-0342, TODO-0327
 - P3 Continuous docs governance: TODO-0327
 
 ### Execution Queue (Recommended)
@@ -73,8 +73,7 @@ Wave C (query + social + hardening + release):
 1. (none currently)
 
 Wave D (space/subspace AI overview article):
-1. TODO-0341
-2. TODO-0342
+1. TODO-0342
 
 Cross-cutting docs backlog:
 1. TODO-0327
@@ -96,9 +95,9 @@ Cross-cutting docs backlog:
 | Section 7.5 profile pages/history | - |
 | Section 7.6 comments pipeline/rendering | - |
 | Section 7.7 comment quality harness | - |
-| Section 8 site/UI/static build | TODO-0341 |
-| Section 9 observability/safety/runtime controls | TODO-0341 |
-| Section 10 run envelopes/lifecycle status | TODO-0341 |
+| Section 8 site/UI/static build | - |
+| Section 9 observability/safety/runtime controls | - |
+| Section 10 run envelopes/lifecycle status | - |
 | Section 11 testing strategy | TODO-0342 |
 | Section 12 reconstruction plan | - |
 | Section 13 definition of done | - |
@@ -112,12 +111,12 @@ Cross-cutting docs backlog:
 | Section 5 (path + registry contracts) | - |
 | Section 6 (semantic execution engine + retry/repair) | - |
 | Section 7 (transaction/rollback) | - |
-| Section 8 (pipeline execution contracts) | TODO-0341 |
-| Section 9 (deterministic build/projection) | TODO-0341 |
+| Section 8 (pipeline execution contracts) | - |
+| Section 9 (deterministic build/projection) | - |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
 | Section 12 (wrapper/script interfaces) | TODO-0342 |
-| Section 13 (observability/runtime controls/safety) | TODO-0341 |
+| Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | - |
 | Section 15 (test-plan binding) | TODO-0327, TODO-0342 |
 | Section 16 (change discipline) | - |
@@ -127,7 +126,7 @@ Cross-cutting docs backlog:
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (test module layout) | TODO-0327, TODO-0342 |
-| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0341, TODO-0342 |
+| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0342 |
 | Tier 4-6 (determinism/golden/live canary) | TODO-0342 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0327, TODO-0342 |
 | Section 6 (exit criteria gating) | TODO-0342 |
@@ -138,25 +137,13 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-16
   - phase: Phase 6
-  - depends_on: TODO-0339, TODO-0341
+  - depends_on: TODO-0339
   - scope: Add comprehensive coverage and wrapper-level ergonomics for space-overview generation and rendering across local and live modes.
   - acceptance:
     - Unit/integration tests validate overview artifact schema compliance, reference integrity (claims/sources), and deterministic rebuild behavior.
     - Wrapper contract tests cover canonical invocation path for overview generation (including target space/subspace selection and failure semantics).
     - Live canary coverage includes overview generation for at least one seeded space and asserts canonical artifacts are present and parseable.
     - `docs/testing_plan.md` is updated with explicit overview-flow coverage expectations.
-
-- [ ] TODO-0341: Add change-detection and refresh policy for overview regeneration
-  - owner: ai
-  - created_at: 2026-04-16
-  - phase: Phase 6
-  - depends_on: TODO-0339
-  - scope: Ensure overview generation is refreshed only when relevant canonical inputs change, while preserving explicit force-regeneration behavior for debugging/recovery.
-  - acceptance:
-    - Overview pipeline computes and persists an input signature derived from canonical records used for synthesis (`sources/records`, `claims`, `relations`, and source dossiers).
-    - Re-running overview generation with unchanged signature skips LLM synthesis and records a deterministic “no content change” path.
-    - A force mode bypasses signature skip behavior and re-synthesizes overview artifacts.
-    - Run metadata records refresh decision details (signature, skip/refresh reason, flow invocation counts).
 
 - [ ] TODO-0327: Purge compatibility/deprecation tests and add strict no-legacy coverage
   - owner: ai

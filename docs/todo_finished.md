@@ -2827,3 +2827,31 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     subspace overview rendering, and extended
     `tests/integration/build/test_build_determinism.py` so the overview route participates in
     deterministic build snapshots.
+
+- [x] TODO-0341: Add change-detection and refresh policy for overview regeneration
+  - owner: ai
+  - created_at: 2026-04-16
+  - finished_at: 2026-04-25
+  - phase: Phase 6
+  - depends_on: TODO-0339
+  - scope: Ensure overview generation is refreshed only when relevant canonical inputs change,
+    while preserving explicit force-regeneration behavior for debugging/recovery.
+  - acceptance:
+    - Overview pipeline computes and persists an input signature derived from canonical records
+      used for synthesis (`sources/records`, `claims`, `relations`, and source dossiers).
+    - Re-running overview generation with unchanged signature skips LLM synthesis and records a
+      deterministic “no content change” path.
+    - A force mode bypasses signature skip behavior and re-synthesizes overview artifacts.
+    - Run metadata records refresh decision details (signature, skip/refresh reason, flow
+      invocation counts).
+  - notes: source `docs/todo.md`; `docs/design.md` Section 7.2.1 and run-envelope section;
+    `docs/low_level.md` Section 8.5
+  - evidence: Added `OverviewRefreshDecision` and canonical artifact/signature comparison logic in
+    `sapi/overview/overview_pipeline.py`, then updated `scripts/generate_overview.py` to skip
+    semantic regeneration when the persisted signature matches current inputs, honor a local
+    `--force` override, and record `input_signature`, `refresh_decision`, `refresh_reason`, and
+    `force_mode` in overview run metadata. Expanded
+    `tests/integration/pipelines/test_overview_pipeline.py` with unchanged-signature skip and
+    force-regeneration coverage, added helper-level unit coverage in
+    `tests/unit/overview/test_overview_pipeline.py`, and updated run-envelope/doc contract tests
+    to lock the new metadata and documented refresh policy.

@@ -1030,6 +1030,11 @@ Overview scope contract (normative):
   `<space_root>/outputs/space_overview/<overview_id>/overview.json`.
 - deterministic markdown/article projection path is
   `<space_root>/outputs/space_overview/<overview_id>/article.md`.
+- reruns MUST compare the freshly computed canonical `input_signature` to the persisted signature in
+  the existing overview artifacts; unchanged signatures MUST skip semantic regeneration and still
+  emit a committed run/lint record describing the no-content-change decision.
+- `scripts/generate_overview.py --force` MUST bypass unchanged-signature skip behavior and trigger a
+  fresh semantic regeneration attempt without changing terminal-failure rollback policy.
 - if a scope has no ingested source records yet, overview generation MUST still complete without
   crashing, emit the five required sections with empty reference arrays, and add explicit warnings
   stating that ingest context is missing.
@@ -1724,7 +1729,7 @@ Canonical run-record metadata (normative base envelope for committed runs):
   - query pipeline: `query_id`, `mode`, `scope`, `claims_used`, `sources_used`, `contradictions_considered`, nullable `manifest_path`
   - comment-section pipeline: `target_page_refs`, `comment_user_filters`, `requested_count`, `comments_added`, `evidence_mode`, nullable `evidence_snapshot_path`
   - persona-profile pipeline: `persona_ids`, `history_generated`, `history_updated`, `history_reused`, `pages_changed`
-  - overview pipeline: `overview_id`, `scope_kind`, `scope_name`, `source_records_used`, `claims_used`, `relations_used`, `topics_used`, nullable `article_path`
+  - overview pipeline: `overview_id`, `scope_kind`, `scope_name`, `input_signature`, `refresh_decision`, `refresh_reason`, `force_mode`, `source_records_used`, `claims_used`, `relations_used`, `topics_used`, nullable `article_path`
 - flows that do not execute lint/build stages MUST still write lint totals with a consistent null-or-zero policy chosen by implementation and enforced in tests
 - required body sections: `## Summary`, `## Changes`, `## Lint Summary`, `## Errors`
 

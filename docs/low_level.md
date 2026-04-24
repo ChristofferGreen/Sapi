@@ -521,6 +521,18 @@ Required inputs:
   `<space_root>/relations`, and `<space_root>/topics`
 - optional `<space_root>/subspaces.json` to resolve subspace titles/roots when `scope_kind=subspace`
 
+Refresh/skip contract:
+- overview orchestration MUST compute a canonical `input_signature` from the current source/claim/relation/topic
+  inputs before any semantic call.
+- if `context.json`, `overview.json`, and `article.md` already exist and the persisted overview
+  `freshness.input_signature` matches the current signature, the pipeline MUST skip semantic
+  regeneration, leave existing overview artifacts untouched, and still write a committed run/lint
+  record with `refresh_decision=skip` and `refresh_reason=no_content_change`.
+- if overview artifacts are missing/invalid or the signature changed, the pipeline MUST regenerate
+  overview artifacts and record the corresponding refresh reason.
+- `scripts/generate_overview.py --force` MUST bypass the unchanged-signature skip path, record
+  `force_mode=true`, and still use normal rollback semantics on terminal failure.
+
 Semantic contract:
 - run semantic flow `space_overview_generation`
 - semantic output path is `<space_root>/outputs/space_overview/<overview_id>/overview.json`

@@ -173,7 +173,17 @@ class RunEnvelopeWriterTests(unittest.TestCase):
                 (
                     "overview_pipeline",
                     _overview_fields(),
-                    {"overview_id", "scope_kind", "scope_name", "source_records_used", "article_path"},
+                    {
+                        "overview_id",
+                        "scope_kind",
+                        "scope_name",
+                        "input_signature",
+                        "refresh_decision",
+                        "refresh_reason",
+                        "force_mode",
+                        "source_records_used",
+                        "article_path",
+                    },
                 ),
             ]
 
@@ -279,6 +289,10 @@ def _overview_fields() -> OverviewRunFields:
         overview_id="space--alpha",
         scope_kind="space",
         scope_name="alpha",
+        input_signature="sha256:overview-signature",
+        refresh_decision="refresh",
+        refresh_reason="input_signature_changed",
+        force_mode=False,
         source_records_used=1,
         claims_used=2,
         relations_used=1,

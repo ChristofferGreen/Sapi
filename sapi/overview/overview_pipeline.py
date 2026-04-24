@@ -45,6 +45,14 @@ class OverviewInputs:
     input_signature: str
 
 
+@dataclass(frozen=True)
+class OverviewRefreshDecision:
+    refresh_required: bool
+    refresh_decision: str
+    refresh_reason: str
+    input_signature: str
+
+
 def resolve_overview_scope(*, site_path: Path, space_name: str) -> OverviewScope:
     spaces_root = site_path / "spaces"
     for candidate_root in sorted(path for path in spaces_root.iterdir() if path.is_dir()):
@@ -133,6 +141,59 @@ def build_overview_context_payload(
         "relations": inputs.relations,
         "topics": inputs.topics,
     }
+
+
+def determine_overview_refresh(
+    *,
+    space_root: Path,
+    scope: OverviewScope,
+    inputs: OverviewInputs,
+    force_mode: bool,
+) -> OverviewRefreshDecision:
+    overview_root = space_root / "outputs" / "space_overview" / scope.overview_id
+    context_path = overview_root / "context.json"
+    overview_path = overview_root / "overview.json"
+    article_path = overview_root / "article.md"
+
+    if force_mode:
+        return OverviewRefreshDecision(
+            refresh_required=True,
+            refresh_decision="refresh",
+            refresh_reason="force_mode",
+            input_signature=inputs.input_signature,
+        )
+
+    if not context_path.is_file() or not overview_path.is_file() or not article_path.is_file():
+        return OverviewRefreshDecision(
+            refresh_required=True,
+            refresh_decision="refresh",
+            refresh_reason="artifacts_missing_or_invalid",
+            input_signature=inputs.input_signature,
+        )
+
+    existing_input_signature = _load_existing_overview_input_signature(overview_path)
+    if existing_input_signature is None:
+        return OverviewRefreshDecision(
+            refresh_required=True,
+            refresh_decision="refresh",
+            refresh_reason="artifacts_missing_or_invalid",
+            input_signature=inputs.input_signature,
+        )
+
+    if existing_input_signature != inputs.input_signature:
+        return OverviewRefreshDecision(
+            refresh_required=True,
+            refresh_decision="refresh",
+            refresh_reason="input_signature_changed",
+            input_signature=inputs.input_signature,
+        )
+
+    return OverviewRefreshDecision(
+        refresh_required=False,
+        refresh_decision="skip",
+        refresh_reason="no_content_change",
+        input_signature=inputs.input_signature,
+    )
 
 
 def validate_overview_semantic_payload(
@@ -317,6 +378,23 @@ def _context_warnings(*, inputs: OverviewInputs) -> tuple[str, ...]:
     if not inputs.topics:
         warnings.append("No canonical topic pages are available for this scope yet.")
     return tuple(warnings)
+
+
+def _load_existing_overview_input_signature(overview_path: Path) -> str | None:
+    try:
+        payload = json.loads(overview_path.read_text())
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return None
+    if not isinstance(payload, dict):
+        return None
+    freshness = payload.get("freshness")
+    if not isinstance(freshness, dict):
+        return None
+    input_signature = freshness.get("input_signature")
+    if not isinstance(input_signature, str):
+        return None
+    normalized = input_signature.strip()
+    return normalized or None
 
 
 def _compute_input_signature(

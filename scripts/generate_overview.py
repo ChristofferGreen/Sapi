@@ -43,6 +43,7 @@ from sapi.llm.runtime_backend import SemanticBackendConfig, generate_semantic_js
 from sapi.llm.semantic_executor import build_semantic_spec_from_contract, run_semantic_flow
 from sapi.overview.overview_pipeline import (
     build_overview_context_payload,
+    determine_overview_refresh,
     load_overview_inputs,
     render_overview_article_markdown,
     resolve_overview_scope,
@@ -55,6 +56,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("space_name")
     parser.add_argument("--registry-path", required=True)
     parser.add_argument("--verbose", action="store_true")
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Bypass unchanged-signature skip behavior and regenerate overview artifacts.",
+    )
     parser.add_argument("--simulate-terminal-failure", action="store_true", help=argparse.SUPPRESS)
     add_runtime_flag_arguments(parser)
     return parser
@@ -75,6 +81,7 @@ def main() -> int:
 
     overview_scope = None
     overview_inputs = None
+    refresh_state = None
     context_path: Path | None = None
     article_path: Path | None = None
 
@@ -90,6 +97,12 @@ def main() -> int:
         space_root = resolve_space_root(registry_path, args.space_name)
         overview_scope = resolve_overview_scope(site_path=site_path, space_name=args.space_name)
         overview_inputs = load_overview_inputs(space_root=space_root, scope=overview_scope)
+        refresh_state = determine_overview_refresh(
+            space_root=space_root,
+            scope=overview_scope,
+            inputs=overview_inputs,
+            force_mode=bool(args.force),
+        )
     except (FileNotFoundError, KeyError, ValueError) as exc:
         print(str(exc), file=sys.stderr)
         return 2
@@ -97,14 +110,69 @@ def main() -> int:
     overview_output_root = space_root / "outputs" / "space_overview" / overview_scope.overview_id
     context_path = overview_output_root / "context.json"
     article_path = overview_output_root / "article.md"
+    context_payload = build_overview_context_payload(
+        scope=overview_scope,
+        inputs=overview_inputs,
+        generated_at=started_at,
+    )
+    warnings = context_payload["warnings"]
+
+    if not refresh_state.refresh_required:
+        completed_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
+        status = "success_with_warnings" if warnings else "success"
+        base = _make_run_base(
+            run_id=run_id,
+            status=status,
+            started_at=started_at,
+            completed_at=completed_at,
+            execution_mode=runtime_policy.execution_mode,
+            llm_backend=runtime_flags.llm_backend,
+            llm_model=runtime_flags.llm_model,
+            reasoning_effort=runtime_flags.llm_reasoning_effort,
+            semantic_flows=semantic_flows,
+            semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+            llm_attempt_count=llm_attempt_count,
+            toolchain_versions=toolchain_versions,
+        )
+        flow_fields = _make_flow_fields(
+            scope=overview_scope,
+            inputs=overview_inputs,
+            article_path=article_path,
+            refresh_state=refresh_state,
+            force_mode=bool(args.force),
+        )
+        finalized = finalize_pipeline_run(
+            space_root=space_root,
+            base=base,
+            flow_fields=flow_fields,
+            transaction=transaction,
+            force_mode=False,
+            summary="Overview inputs unchanged; skipped semantic regeneration.",
+            changes=(
+                f"refresh_decision={refresh_state.refresh_decision}, "
+                f"refresh_reason={refresh_state.refresh_reason}, "
+                f"input_signature={refresh_state.input_signature}, "
+                f"source_records_used={len(overview_inputs.source_records)}, "
+                f"claims_used={len(overview_inputs.claims)}, "
+                f"relations_used={len(overview_inputs.relations)}, "
+                f"topics_used={len(overview_inputs.topics)}"
+            ),
+            lint_summary="lint_error_count=0 lint_warning_count=0 lint_info_count=0",
+            errors="",
+        )
+        print(
+            "scripts/generate_overview.py overview complete "
+            f"(execution_mode={runtime_policy.execution_mode}, run_id={run_id}, "
+            f"overview_id={overview_scope.overview_id}, scope_kind={overview_scope.scope_kind}, "
+            f"refresh_decision={refresh_state.refresh_decision}, "
+            f"refresh_reason={refresh_state.refresh_reason}, "
+            f"run_record_path={finalized.run_record_path}, "
+            f"runtime_flags={runtime_flags_summary_dict(runtime_flags)})"
+        )
+        return finalized.exit_code
 
     try:
         _ensure_overview_output_root(overview_output_root, transaction=transaction)
-        context_payload = build_overview_context_payload(
-            scope=overview_scope,
-            inputs=overview_inputs,
-            generated_at=started_at,
-        )
         write_json_with_transaction(context_path, context_payload, transaction=transaction)
 
         record_semantic_invocation(
@@ -171,6 +239,8 @@ def main() -> int:
             scope=overview_scope,
             inputs=overview_inputs,
             article_path=article_path,
+            refresh_state=refresh_state,
+            force_mode=bool(args.force),
         )
         finalized = finalize_pipeline_run(
             space_root=space_root,
@@ -179,18 +249,24 @@ def main() -> int:
             transaction=transaction,
             force_mode=False,
             summary="Overview generation failed; invocation-scoped outputs rolled back.",
+            changes=(
+                f"refresh_decision={refresh_state.refresh_decision}, "
+                f"refresh_reason={refresh_state.refresh_reason}, "
+                f"input_signature={refresh_state.input_signature}"
+            ),
             errors=str(exc),
         )
         print(
             "scripts/generate_overview.py overview failed "
             f"(execution_mode={runtime_policy.execution_mode}, run_id={run_id}, "
             f"overview_id={overview_scope.overview_id}, status={finalized.status}, "
+            f"refresh_decision={refresh_state.refresh_decision}, "
+            f"refresh_reason={refresh_state.refresh_reason}, "
             f"runtime_flags={runtime_flags_summary_dict(runtime_flags)}, error={exc})",
             file=sys.stderr,
         )
         return finalized.exit_code
 
-    warnings = context_payload["warnings"]
     completed_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
     status = "success_with_warnings" if warnings else "success"
     base = _make_run_base(
@@ -211,6 +287,8 @@ def main() -> int:
         scope=overview_scope,
         inputs=overview_inputs,
         article_path=article_path,
+        refresh_state=refresh_state,
+        force_mode=bool(args.force),
     )
     finalized = finalize_pipeline_run(
         space_root=space_root,
@@ -220,6 +298,9 @@ def main() -> int:
         force_mode=False,
         summary="Overview generation completed successfully.",
         changes=(
+            f"refresh_decision={refresh_state.refresh_decision}, "
+            f"refresh_reason={refresh_state.refresh_reason}, "
+            f"input_signature={refresh_state.input_signature}, "
             f"overview_id={overview_scope.overview_id}, scope_kind={overview_scope.scope_kind}, "
             f"source_records_used={len(overview_inputs.source_records)}, claims_used={len(overview_inputs.claims)}, "
             f"relations_used={len(overview_inputs.relations)}, topics_used={len(overview_inputs.topics)}"
@@ -231,6 +312,8 @@ def main() -> int:
         "scripts/generate_overview.py overview complete "
         f"(execution_mode={runtime_policy.execution_mode}, run_id={run_id}, "
         f"overview_id={overview_scope.overview_id}, scope_kind={overview_scope.scope_kind}, "
+        f"refresh_decision={refresh_state.refresh_decision}, "
+        f"refresh_reason={refresh_state.refresh_reason}, "
         f"run_record_path={finalized.run_record_path}, "
         f"runtime_flags={runtime_flags_summary_dict(runtime_flags)})"
     )
@@ -274,11 +357,17 @@ def _make_flow_fields(
     scope,
     inputs,
     article_path: Path | None,
+    refresh_state,
+    force_mode: bool,
 ) -> OverviewRunFields:
     return OverviewRunFields(
         overview_id=scope.overview_id,
         scope_kind=scope.scope_kind,
         scope_name=scope.scope_name,
+        input_signature=refresh_state.input_signature,
+        refresh_decision=refresh_state.refresh_decision,
+        refresh_reason=refresh_state.refresh_reason,
+        force_mode=force_mode,
         source_records_used=len(inputs.source_records),
         claims_used=len(inputs.claims),
         relations_used=len(inputs.relations),

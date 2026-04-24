@@ -136,6 +136,10 @@ class OverviewRunFields:
     overview_id: str
     scope_kind: str
     scope_name: str
+    input_signature: str
+    refresh_decision: str
+    refresh_reason: str
+    force_mode: bool
     source_records_used: int
     claims_used: int
     relations_used: int
