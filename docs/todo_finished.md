@@ -2932,3 +2932,30 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     helper when two runs landed in the same second, so `tests/conftest.py` now sorts run
     directories by committed `run.md` mtime and `tests/unit/contracts/test_run_directory_helper.py`
     locks that behavior.
+
+- [x] TODO-0352: Run deterministic social post-processing before comment/profile success exit
+  - owner: ai
+  - created_at: 2026-04-25
+  - finished_at: 2026-04-25
+  - phase: Cross-cutting
+  - scope: Ensure comment and persona-profile pipelines execute the required deterministic space
+    build/post-processing before reporting success, so affected HTML/views are current without a
+    manual follow-up `build_site.py`.
+  - acceptance:
+    - `scripts/create_comments.py` triggers deterministic space build after canonical comment merge
+      and before successful exit.
+    - `scripts/generate_profiles.py` triggers deterministic space build after canonical
+      profile/history updates and before successful exit.
+    - Integration tests assert the commands themselves leave built HTML/assets/manifests behind
+      without an extra explicit build step.
+  - evidence: Added shared helper `sapi/core/postprocess.py::run_space_build_postprocess()` and
+    routed ingest's existing deterministic build call through it. Updated `scripts/create_comments.py`
+    and `scripts/generate_profiles.py` to invoke that helper before success finalization and to
+    surface `build_manifest_path` in command output. Tightened
+    `tests/integration/pipelines/test_comments_pipeline.py` and
+    `tests/integration/pipelines/test_profiles_pipeline.py` so they assert built HTML/assets and
+    `outputs/build_site/manifest.json` directly from the comment/profile commands, and added
+    `tests/unit/core/test_postprocess_helpers.py` for shared helper success/failure behavior.
+    Focused validation required normalizing a few seeded topic fixtures so they satisfy the
+    deterministic build input contract (`sections` array present) now that the pipelines no longer
+    skip the build step.

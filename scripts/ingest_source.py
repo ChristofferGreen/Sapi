@@ -9,7 +9,6 @@ import os
 from pathlib import Path
 import sys
 import json
-import subprocess
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
@@ -20,6 +19,7 @@ from sapi.contracts.run_envelopes import IngestRunFields, RunEnvelopeBase, RunSt
 from sapi.core.registry import resolve_registry_path, resolve_site_path_from_registry, resolve_space_root
 from sapi.core.locks import IngestLockHeldError, ingest_lock
 from sapi.core.pipeline_policy import apply_lint_gate_to_run_base, finalize_pipeline_run
+from sapi.core.postprocess import run_space_build_postprocess
 from sapi.core.pipeline_runtime import (
     add_llm_attempts,
     build_run_envelope_base,
@@ -399,25 +399,12 @@ def _trigger_deterministic_topic_postprocess(
     space_name: str,
     site_path: Path,
 ) -> Path:
-    command = [
-        "python3",
-        str(_REPO_ROOT / "scripts" / "build_site.py"),
-        "--workflow-key",
-        "build_site",
-        "--registry-path",
-        str(registry_path),
-        space_name,
-    ]
-    result = subprocess.run(command, capture_output=True, text=True)
-    if result.returncode != 0:
-        raise RuntimeError(
-            "Topic deterministic post-processing failed: "
-            f"stdout={result.stdout.strip()} stderr={result.stderr.strip()}"
-        )
-    manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
-    if not manifest_path.is_file():
-        raise RuntimeError("Topic deterministic post-processing did not emit build manifest.")
-    return manifest_path
+    return run_space_build_postprocess(
+        repo_root=_REPO_ROOT,
+        registry_path=registry_path,
+        site_path=site_path,
+        space_name=space_name,
+    )
 
 
 def _run_coalesced_ingest_topic_postprocess(

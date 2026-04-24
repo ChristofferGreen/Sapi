@@ -35,6 +35,7 @@ from sapi.comments.quality import build_comment_quality_manifest
 from sapi.contracts.ids import format_timestamp_rfc3339_utc, make_run_id
 from sapi.contracts.run_envelopes import CommentRunFields, RunEnvelopeBase
 from sapi.core.pipeline_policy import apply_lint_gate_to_run_base, finalize_pipeline_run
+from sapi.core.postprocess import run_space_build_postprocess
 from sapi.core.pipeline_runtime import (
     add_llm_attempts,
     build_run_envelope_base,
@@ -110,6 +111,7 @@ def main() -> int:
     generation_isolation_summary = _empty_generation_isolation_summary()
     comments_by_page_for_quality: dict[str, list[dict[str, object]]] = {}
     comment_quality_manifest_path: Path | None = None
+    build_manifest_path: Path | None = None
 
     try:
         validate_runtime_flag_arguments(args)
@@ -253,6 +255,13 @@ def main() -> int:
 
         if args.simulate_terminal_failure:
             raise RuntimeError("Simulated terminal comments failure.")
+
+        build_manifest_path = run_space_build_postprocess(
+            repo_root=_REPO_ROOT,
+            registry_path=registry_path,
+            site_path=site_path,
+            space_name=args.space_name,
+        )
     except Exception as exc:
         completed_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
         base = _make_run_base(
@@ -357,6 +366,7 @@ def main() -> int:
         f"adjudication={adjudication_summary}, generation_isolation={generation_isolation_summary}, "
         f"evidence_mode={evidence_mode}, evidence_snapshot_path={flow_fields.evidence_snapshot_path}, "
         f"comment_quality_manifest_path={comment_quality_manifest_path}, "
+        f"build_manifest_path={build_manifest_path}, "
         f"run_record_path={finalized.run_record_path}, "
         f"runtime_flags={runtime_flags_summary_dict(runtime_flags)})"
     )

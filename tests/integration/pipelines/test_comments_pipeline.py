@@ -162,6 +162,8 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                     {
                         "topic_id": topic_id,
                         "title": "Alpha",
+                        "sections": [],
+                        "source_ids": [],
                         "comment_section": {
                             "page_ref": f"topic:{topic_id}",
                             "comments": [
@@ -271,16 +273,8 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
             second_vote_map = {row["comment_uid"]: row["social_vote"] for row in second_rows}
             self.assertEqual(first_vote_map, second_vote_map)
 
-            build_result = run_command(
-                [
-                    "python3",
-                    str(REPO_ROOT / "scripts" / "build_site.py"),
-                    "--registry-path",
-                    str(site_path / "spaces.toml"),
-                    "alpha",
-                ]
-            )
-            self.assertEqual(build_result.returncode, 0, msg=build_result.stderr)
+            self.assertIn("build_manifest_path=", second.stdout)
+            self.assertTrue((site_path / "outputs" / "build_site" / "manifest.json").is_file())
 
             topic_html = (space_root / "site" / "topics" / f"{topic_id}.html").read_text()
             sample_uid = second_rows[0]["comment_uid"]
@@ -403,6 +397,8 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                     {
                         "topic_id": topic_id,
                         "title": "Alpha",
+                        "sections": [],
+                        "source_ids": [],
                         "comment_section": {
                             "page_ref": f"topic:{topic_id}",
                             "comments": [
@@ -481,6 +477,8 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                     {
                         "topic_id": topic_id,
                         "title": "Alpha",
+                        "sections": [],
+                        "source_ids": [],
                         "comment_section": {
                             "page_ref": f"topic:{topic_id}",
                             "comments": [
@@ -531,6 +529,8 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                     {
                         "topic_id": topic_id,
                         "title": "Alpha",
+                        "sections": [],
+                        "source_ids": [],
                         "comment_section": {
                             "page_ref": f"topic:{topic_id}",
                             "comments": [
@@ -582,6 +582,8 @@ class CommentsPipelineIntegrationTests(unittest.TestCase):
                     {
                         "topic_id": topic_id,
                         "title": "Alpha",
+                        "sections": [],
+                        "source_ids": [],
                         "comment_section": {
                             "page_ref": f"topic:{topic_id}",
                             "comments": [

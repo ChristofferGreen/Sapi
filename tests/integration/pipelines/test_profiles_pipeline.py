@@ -38,6 +38,8 @@ class ProfilesPipelineIntegrationTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stderr)
             self.assertIn("projection_stats={'persona_profiles':", result.stdout)
             self.assertIn("'accountability':", result.stdout)
+            self.assertIn("build_manifest_path=", result.stdout)
+            self.assertTrue((site_path / "outputs" / "build_site" / "manifest.json").is_file())
 
             run_dir = latest_run_directory(space_root)
             frontmatter = parse_run_frontmatter(run_dir / "run.md")
@@ -83,6 +85,16 @@ class ProfilesPipelineIntegrationTests(unittest.TestCase):
                 self.assertEqual(history_payload["space_name"], "alpha")
                 self.assertEqual(history_payload["persona_id"], persona_id)
                 self.assertEqual(len(history_payload["entries"]), 1)
+
+                profile_html_path = space_root / "site" / "users" / f"persona-{persona_id}.html"
+                self.assertTrue(profile_html_path.is_file())
+                profile_html = profile_html_path.read_text()
+                self.assertIn(f"assets/persona_profiles/{persona_id}.jpg", profile_html)
+
+                avatar_asset = (
+                    space_root / "site" / "assets" / "persona_avatars" / f"{persona_id}.jpg"
+                )
+                self.assertTrue(avatar_asset.is_file())
 
     def test_same_day_rerun_reuses_history_when_metrics_unchanged(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -156,6 +168,8 @@ class ProfilesPipelineIntegrationTests(unittest.TestCase):
                     {
                         "topic_id": "topic-alpha",
                         "title": "Alpha",
+                        "sections": [],
+                        "source_ids": [],
                         "comment_section": {
                             "page_ref": "topic:topic-alpha",
                             "comments": [

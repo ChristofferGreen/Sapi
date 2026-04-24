@@ -17,6 +17,7 @@ if str(_REPO_ROOT) not in sys.path:
 from sapi.contracts.ids import format_timestamp_rfc3339_utc, make_run_id
 from sapi.contracts.run_envelopes import PersonaProfileRunFields, RunEnvelopeBase
 from sapi.core.pipeline_policy import apply_lint_gate_to_run_base, finalize_pipeline_run
+from sapi.core.postprocess import run_space_build_postprocess
 from sapi.core.pipeline_runtime import (
     add_llm_attempts,
     build_run_envelope_base,
@@ -24,7 +25,7 @@ from sapi.core.pipeline_runtime import (
     track_path_for_write,
     write_json_with_transaction,
 )
-from sapi.core.registry import resolve_registry_path, resolve_space_root
+from sapi.core.registry import resolve_registry_path, resolve_site_path_from_registry, resolve_space_root
 from sapi.core.runtime_flags import (
     RuntimeFlagSnapshot,
     add_runtime_flag_arguments,
@@ -84,6 +85,7 @@ def main() -> int:
     history_generated_count = 0
     history_updated_count = 0
     history_reused_count = 0
+    build_manifest_path: Path | None = None
 
     try:
         validate_runtime_flag_arguments(args)
@@ -93,6 +95,7 @@ def main() -> int:
             env=os.environ,
         )
         registry_path = resolve_registry_path(args.registry_path)
+        site_path = resolve_site_path_from_registry(registry_path)
         space_root = resolve_space_root(registry_path, args.space_name)
         persona_catalog = load_seeded_persona_catalog(repo_root=_REPO_ROOT)
         selected_personas = select_personas_for_profile_generation(
@@ -179,6 +182,13 @@ def main() -> int:
 
         if args.simulate_terminal_failure:
             raise RuntimeError("Simulated terminal profile failure.")
+
+        build_manifest_path = run_space_build_postprocess(
+            repo_root=_REPO_ROOT,
+            registry_path=registry_path,
+            site_path=site_path,
+            space_name=args.space_name,
+        )
     except Exception as exc:
         completed_at = format_timestamp_rfc3339_utc(datetime.now(UTC))
         base = _make_run_base(
@@ -286,6 +296,7 @@ def main() -> int:
         "scripts/generate_profiles.py profiles complete "
         f"(execution_mode={runtime_policy.execution_mode}, run_id={run_id}, "
         f"persona_ids={persona_ids}, projection_stats={projection_stats}, "
+        f"build_manifest_path={build_manifest_path}, "
         f"run_record_path={finalized.run_record_path}, "
         f"runtime_flags={runtime_flags_summary_dict(runtime_flags)})"
     )
