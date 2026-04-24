@@ -31,6 +31,12 @@ _EXPECTED_RUNTIME_FLAGS: set[str] = {
 
 
 class RuntimeFlagSurfaceContractTests(unittest.TestCase):
+    def test_ingest_entrypoint_does_not_expose_removed_mode_flags(self) -> None:
+        parser = ingest_source_entrypoint.build_parser()
+        option_strings = set(parser._option_string_actions.keys())
+        self.assertNotIn("--source-only", option_strings)
+        self.assertNotIn("--query-only", option_strings)
+
     def test_semantic_entrypoints_expose_shared_runtime_flag_surface(self) -> None:
         parser_builders = [
             ingest_source_entrypoint.build_parser,

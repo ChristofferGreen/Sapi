@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0315: Remove ingest wrapper/entrypoint alias `--query-only`
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Phase 4
+  - depends_on: TODO-0313
+  - scope: Remove deprecated ingest alias `--query-only` from wrapper and Python entrypoint.
+  - acceptance:
+    - `ingest.sh` and `scripts/ingest_source.py` reject both `--query-only` and `--source-only`.
+    - Tests assert removed ingest mode flags fail as invalid input.
+  - notes: source `docs/design.md` Sections 6.1 and 7.1; `docs/low_level.md` Sections 2 and 12
+  - evidence: Confirmed `ingest.sh` already hard-fails on both removed flags and
+    `scripts/ingest_source.py` already rejects them through its canonical parser surface. Existing
+    wrapper and entrypoint tests in `tests/integration/wrappers/test_wrapper_alias_normalization.py`,
+    `tests/integration/wrappers/test_wrapper_alias_conflicts.py`, and
+    `tests/unit/ingest/test_ingest_mode_handling.py` already cover failure behavior; this run added
+    `tests/unit/contracts/test_runtime_flag_surface.py` coverage to assert the ingest parser does not
+    expose `--source-only` or `--query-only` as valid flags.
+
 - [x] TODO-0314: Remove compatibility-reader sunset policy and alias acceptance language from contracts
   - owner: ai
   - created_at: 2026-04-13
