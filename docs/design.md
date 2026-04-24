@@ -108,6 +108,7 @@ Semantic-output vs canonical-write contract (normative):
   - `query_synthesis`: semantic output path and canonical query write are the same file (`outputs/query/<query_id>/query.json`).
   - `comment_section_generation`: semantic output is per target page invocation at `runs/<run_id>/semantic/comment_section_generation/<page_ref_key>.json`; canonical comment rows are merged into canonical page JSON/projections during deterministic merge/normalization.
   - `persona_profile_generation`: semantic output path and canonical profile write are the same file (`profiles/persona-<persona_id>.json`).
+  - `space_overview_generation`: semantic output path and canonical overview JSON write are the same file (`outputs/space_overview/<overview_id>/overview.json`); deterministic orchestration MAY stage `context.json` before invocation and deterministic post-processing MAY add `article.md` in the same overview artifact directory.
 
 Retry/repair loop details (normative):
 - all semantic flows MUST use the same retry/repair behavior defined here; flow-specific overrides are not allowed.
@@ -168,6 +169,7 @@ When a semantic command is invoked with `--mock-llm`:
 - `Relation`: typed edge between claims; some relation types are directed (`supports`, `derived_from`, `falsifies`) and others are undirected (`contradictory`, `similar`).
 - `Topic Page`: canonical JSON topic document (`topic_id`) rendered to static HTML; optional markdown projection may also be emitted.
   - topic pages support two presentation structures: `wiki` (default) and `source_mirror` (for source-anchored topics, especially journal articles).
+- `Overview Article`: AI-authored overview JSON plus deterministic markdown/article projections under `outputs/space_overview/<overview_id>/` for one space or one selected subspace.
 - `Persona/User`: repository-seeded actor used for social layer.
 - `Comment`: threaded social post with turn schema + moderation summary.
 
@@ -251,6 +253,7 @@ Flow map (authoritative defaults):
 | `query_synthesis` | `ai_flows/generation_specs/query_synthesis.v1.md` | `schemas/query_synthesis.v1.schema.json` | `<space_root>/outputs/query/<query_id>/query.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `comment_section_generation` | `ai_flows/generation_specs/comment_section_generation.v1.md` | `schemas/comment_section_generation.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/comment_section_generation/<page_ref_key>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `persona_profile_generation` | `ai_flows/generation_specs/persona_profile_generation.v1.md` | `schemas/persona_profile_generation.v1.schema.json` | `<space_root>/profiles/persona-<persona_id>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
+| `space_overview_generation` | `ai_flows/generation_specs/space_overview_generation.v1.md` | `schemas/space_overview_generation.v1.schema.json` | `<space_root>/outputs/space_overview/<overview_id>/overview.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 
 Canonical-write note (normative):
 - flow-map `output_json_path` values are semantic-output paths for the LLM invocation.
@@ -262,7 +265,7 @@ Discovery and pinning rules:
 - spec/schema version pairing is immutable per major version (`<flow_key>.v1.md` MUST reference `<flow_key>.v1.schema.json`).
 - backward-compatible prompt wording/context improvements MAY update an existing major version file.
 - incompatible schema shape/output-path contract changes MUST create new major-version files and update this flow map explicitly.
-- path templates MAY contain runtime tokens (for example `<space_root>`, `<run_id>`, `<query_id>`, `<topic_id>`, `<persona_id>`, `<page_ref_key>`); tokens MUST be resolved to absolute paths before LLM invocation and validation.
+- path templates MAY contain runtime tokens (for example `<space_root>`, `<run_id>`, `<query_id>`, `<topic_id>`, `<persona_id>`, `<page_ref_key>`, `<overview_id>`); tokens MUST be resolved to absolute paths before LLM invocation and validation.
 - for comment-section semantic outputs, `<page_ref_key>` MUST be a deterministic filesystem-safe key derived from the canonical `page_ref` (for example `<page_type>--<page_id>`).
 
 Canonical-only naming policy (normative):
@@ -278,11 +281,13 @@ Required v1 file inventory (repository-relative):
 - `ai_flows/generation_specs/query_synthesis.v1.md`
 - `ai_flows/generation_specs/comment_section_generation.v1.md`
 - `ai_flows/generation_specs/persona_profile_generation.v1.md`
+- `ai_flows/generation_specs/space_overview_generation.v1.md`
 - `schemas/ingest_extraction.v1.schema.json`
 - `schemas/topic_generation.v1.schema.json`
 - `schemas/query_synthesis.v1.schema.json`
 - `schemas/comment_section_generation.v1.schema.json`
 - `schemas/persona_profile_generation.v1.schema.json`
+- `schemas/space_overview_generation.v1.schema.json`
 
 Generation spec markdown content contract (all flows):
 - each spec file MUST include a machine-readable contract header declaring `flow_key`, `version`, `schema_path`, `output_json_path`, and `context_paths[]`.
@@ -306,6 +311,7 @@ Per-flow v1 schema minimum top-level keys:
 - `query_synthesis`: `query_id`, `answer`, `claims_used`, `sources_used`, `retrieval_counts`, `contradictions_considered`, `falsification_signals`, `mode`, `scope`, `execution`, `warnings`
 - `comment_section_generation`: `page_ref`, `requested_count`, `comments`
 - `persona_profile_generation`: `persona_id`, `space_name`, `profile_sections`, `profile_image_path`, `accountability_summary`
+- `space_overview_generation`: `schema_version`, `metadata`, `sections`, `references`, `freshness`, `warnings`
 
 Notes on key naming:
 - these are minimum v1 keys; flows MAY add fields only with matching schema updates.
@@ -447,7 +453,7 @@ Behavior:
 - canonical content artifacts are JSON (`sources/claims/relations/topics`).
 - `profiles/` stores canonical persona-profile JSON artifacts (space-scoped).
 - `runs/<run_id>/semantic/` stores per-run semantic-generation JSON envelopes when a flow uses run-scoped semantic output artifacts.
-- `outputs/` stores deterministic, flow-specific derived artifacts (query manifests, persona profile history, comment-quality evaluation manifests).
+- `outputs/` stores deterministic, flow-specific derived artifacts (query manifests, overview contexts/articles, persona profile history, comment-quality evaluation manifests).
 - `raw/snapshots/comment_sections/` stores optional comment evidence snapshots in `web-augmented` mode.
 - markdown under `projections/markdown/` is optional derived output and is not the canonical build input.
 
@@ -1009,6 +1015,68 @@ UI requirement:
 - source, topic, and claim pages SHOULD show `External Related Links` sections when curated links exist.
 - topic and claim pages MUST inherit/aggregate curated external links deterministically from linked sources,
   with provenance cues indicating which source(s) supplied each link.
+
+### 7.2.1 Space/subspace overview synthesis
+
+Overview scope contract (normative):
+- overview synthesis summarizes one canonical scope at a time: either the full space or one selected
+  subspace declared in `<space_root>/subspaces.json`.
+- semantic flow key is `space_overview_generation`.
+- the deterministic scope-selection artifact is
+  `<space_root>/outputs/space_overview/<overview_id>/context.json`; semantic generation MUST treat
+  this file as the authoritative scope/input manifest rather than inferring scope from prose.
+- canonical overview JSON artifact path is
+  `<space_root>/outputs/space_overview/<overview_id>/overview.json`.
+- deterministic markdown/article projection path is
+  `<space_root>/outputs/space_overview/<overview_id>/article.md`.
+
+Overview JSON contract (normative):
+- top-level keys MUST be `schema_version`, `metadata`, `sections`, `references`, `freshness`, and
+  `warnings`.
+- `schema_version` MUST be `space_overview_v1`.
+- `metadata` MUST include:
+  - `overview_id`
+  - `scope_kind` (`space` or `subspace`)
+  - `space_name`
+  - `scope_name`
+  - `title`
+  - `summary`
+- `sections[]` MUST contain exactly these canonical section IDs:
+  - `topic_framing`
+  - `key_themes`
+  - `agreement_and_disagreement`
+  - `methods_and_evidence`
+  - `open_questions`
+- each section row MUST include `heading`, `body`, auditable `source_ids[]`, auditable
+  `claim_ids[]`, and `citation_anchor_ids[]`.
+- `references` MUST include:
+  - aggregate `source_ids[]`
+  - aggregate `claim_ids[]`
+  - `citation_anchors[]`
+- each citation anchor row MUST include:
+  - `anchor_id`
+  - `label`
+  - `source_id`
+  - `claim_ids[]`
+  - optional `locator`
+- `freshness` MUST include:
+  - `generated_at`
+  - `input_signature`
+  - `source_record_count`
+  - `claim_count`
+  - `relation_count`
+  - `topic_count`
+
+Auditability and deterministic-boundary rules:
+- overview synthesis MUST cite only canonical `source_id` and `claim_id` values present in the
+  provided context.
+- deterministic post-processing MAY reorder, format, or project overview JSON into markdown/HTML,
+  but MUST NOT invent new prose, identifiers, or citations beyond what appears in the validated
+  semantic JSON artifact.
+- overview rendering/build steps MUST NOT perform implicit web fetches or LLM calls.
+- overview generation MUST NOT mutate canonical knowledge artifacts under `sources/`, `claims/`,
+  `relations/`, `topics/`, or `profiles/`; it is additive under `outputs/space_overview/` plus
+  run/lint metadata only.
 
 ### 7.3 Query pipeline
 
@@ -1645,7 +1713,7 @@ Canonical run-record metadata (normative base envelope for committed runs):
   - lint totals (`lint_error_count`, `lint_warning_count`, `lint_info_count`)
 - run-record `flow_key` namespace is command/pipeline oriented and distinct from generation-spec semantic `flow_key` values.
 - `flow_key` allowed values: `ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`
-- `semantic_flows` values MUST be an ordered unique subset of canonical semantic flow keys from: `ingest_extraction`, `topic_generation`, `query_synthesis`, `comment_section_generation`, `persona_profile_generation`
+- `semantic_flows` values MUST be an ordered unique subset of canonical semantic flow keys from: `ingest_extraction`, `topic_generation`, `query_synthesis`, `comment_section_generation`, `persona_profile_generation`, `space_overview_generation`
 - `semantic_flow_invocation_counts` keys MUST be canonical semantic flow keys and values MUST be positive integers; every key in `semantic_flows` MUST appear in this map.
 - flow-specific frontmatter extensions:
   - ingest pipeline: `ingest_scope`, `source_ids`, nullable `parent_run_id`, changed sets (`claims_changed`, `relations_changed`, `topic_pages_changed`), optional deferred-build flags (`build_deferred`, `deferred_build_reason`), optional force-mode flags (`force_mode`, `rollback_skipped`)

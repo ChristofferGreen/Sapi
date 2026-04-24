@@ -4,6 +4,26 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0338: Define canonical contracts for space/subspace overview synthesis
+  - owner: ai
+  - created_at: 2026-04-16
+  - finished_at: 2026-04-24
+  - phase: Cross-cutting
+  - scope: Specify artifact schema, flow ownership, and deterministic rendering boundaries for AI-generated overview articles that summarize all ingested papers in a space/subspace.
+  - acceptance:
+    - `docs/design.md` and `docs/low_level.md` define normative behavior for overview synthesis inputs, outputs, and citation/auditability requirements.
+    - A canonical schema is added for overview artifact JSON payloads (sections, references, metadata, freshness fields).
+    - Semantic flow contract entry is added for `space_overview_generation` with canonical output path tokens.
+    - Contract tests verify schema/docs/flow-spec alignment and fail on drift.
+  - notes: source `docs/design.md` Sections 4.1.3, 4.1.4, and 7.2.1; `docs/low_level.md` Sections 2, 4, and 8.5
+  - evidence: Added the canonical `space_overview_generation` flow-map entry plus checked-in
+    generation spec and `space_overview_generation.v1` schema, including deterministic output and
+    context path tokens under `outputs/space_overview/<overview_id>/`. Updated `design.md` and
+    `low_level.md` to define overview inputs, required sections, citation anchors, freshness
+    metadata, and deterministic rendering boundaries, and added contract tests covering the flow
+    map, invocation envelope, schema section requirements, run-envelope semantic key set, and
+    inventory/doc alignment.
+
 - [x] TODO-0326: Remove relation status compatibility alias `closed`
   - owner: ai
   - created_at: 2026-04-13

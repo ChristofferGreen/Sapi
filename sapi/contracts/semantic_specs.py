@@ -97,6 +97,12 @@ FLOW_MAP: dict[str, SemanticSpecMapEntry] = {
         schema_relpath="schemas/persona_profile_generation.v1.schema.json",
         output_json_path_template="<space_root>/profiles/persona-<persona_id>.json",
     ),
+    "space_overview_generation": SemanticSpecMapEntry(
+        flow_key="space_overview_generation",
+        spec_relpath="ai_flows/generation_specs/space_overview_generation.v1.md",
+        schema_relpath="schemas/space_overview_generation.v1.schema.json",
+        output_json_path_template="<space_root>/outputs/space_overview/<overview_id>/overview.json",
+    ),
 }
 
 

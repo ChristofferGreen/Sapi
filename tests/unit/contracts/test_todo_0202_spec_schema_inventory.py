@@ -60,6 +60,18 @@ SPEC_CONTRACT = {
             "accountability_summary",
         ],
     },
+    "space_overview_generation": {
+        "spec": "ai_flows/generation_specs/space_overview_generation.v1.md",
+        "schema": "schemas/space_overview_generation.v1.schema.json",
+        "required_keys": [
+            "schema_version",
+            "metadata",
+            "sections",
+            "references",
+            "freshness",
+            "warnings",
+        ],
+    },
 }
 
 

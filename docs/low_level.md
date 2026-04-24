@@ -31,6 +31,7 @@ Sapi has two distinct flow namespaces.
 - `query_synthesis`
 - `comment_section_generation`
 - `persona_profile_generation`
+- `space_overview_generation`
 
 2. Pipeline flow keys (run-record scope):
 - `ingest_pipeline`
@@ -135,6 +136,7 @@ SemanticFlowKey = Literal[
     "query_synthesis",
     "comment_section_generation",
     "persona_profile_generation",
+    "space_overview_generation",
 ]
 
 PipelineFlowKey = Literal[
@@ -490,12 +492,42 @@ Control flow:
 Profile constraints:
 - persona-profile pipeline does not refresh site-root `New` index unless it mutates canonical source/topic artifacts
 
+### 8.5 Overview Synthesis Contract (planned `scripts/generate_overview.py`)
+
+Ownership boundary:
+- future overview orchestration belongs in `sapi/overview/overview_pipeline.py`
+- deterministic markdown/article rendering remains in build/projection code, not in the semantic flow
+
+Required inputs:
+- canonical scope-selection manifest at `<space_root>/outputs/space_overview/<overview_id>/context.json`
+- canonical source/claim/relation/topic inputs from `<space_root>/sources/records`, `<space_root>/claims`,
+  `<space_root>/relations`, and `<space_root>/topics`
+- optional `<space_root>/subspaces.json` to resolve subspace titles/roots when `scope_kind=subspace`
+
+Semantic contract:
+- run semantic flow `space_overview_generation`
+- semantic output path is `<space_root>/outputs/space_overview/<overview_id>/overview.json`
+- semantic output MUST satisfy `schemas/space_overview_generation.v1.schema.json`
+- semantic output MUST contain exactly the five canonical section IDs plus auditable source/claim
+  references and citation anchors
+
+Deterministic post-processing boundary:
+- deterministic stage MAY write `<space_root>/outputs/space_overview/<overview_id>/article.md` from
+  the validated overview JSON
+- deterministic stage MUST NOT invent new identifiers, anchors, or prose beyond formatting and
+  projection of the semantic JSON content
+- overview generation is additive only; it MUST NOT mutate canonical knowledge artifacts outside
+  `outputs/space_overview/` and run/lint metadata
+- overview rendering MUST NOT issue web requests or additional LLM calls
+
 ## 9. Deterministic Build and Projection
 
 Builder contracts:
 - read canonical JSON only
 - no LLM calls
 - hard-fail on unresolved links/templates/conversion errors
+- overview article markdown, when present, MUST be rendered deterministically from
+  `outputs/space_overview/<overview_id>/overview.json`
 
 Presentation asset and ownership contracts (normative implementation boundary):
 - deterministic build MUST emit canonical stylesheet assets at `<render_root>/assets/site.css`

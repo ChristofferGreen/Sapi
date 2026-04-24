@@ -47,19 +47,18 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0338`
+1. `TODO-0339`
+2. `TODO-0327`
 
 ### Immediate Next 10 (After Ready Now)
 
-1. TODO-0327
-2. TODO-0339
-3. TODO-0340
-4. TODO-0341
-5. TODO-0342
+1. TODO-0340
+2. TODO-0341
+3. TODO-0342
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: TODO-0338
+- P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: TODO-0339, TODO-0340, TODO-0341
 - P2 Social/eval/hardening: TODO-0327, TODO-0342
 - P3 Continuous docs governance: TODO-0327
@@ -76,11 +75,10 @@ Wave C (query + social + hardening + release):
 1. (none currently)
 
 Wave D (space/subspace AI overview article):
-1. TODO-0338
-2. TODO-0339
-3. TODO-0340
-4. TODO-0341
-5. TODO-0342
+1. TODO-0339
+2. TODO-0340
+3. TODO-0341
+4. TODO-0342
 
 Cross-cutting docs backlog:
 1. TODO-0327
@@ -113,7 +111,7 @@ Cross-cutting docs backlog:
 
 | Low-level area | Primary TODO IDs |
 | --- | --- |
-| Section 2 (runtime model and flow namespaces) | TODO-0338 |
+| Section 2 (runtime model and flow namespaces) | - |
 | Section 4 (core data types/run envelope types) | - |
 | Section 5 (path + registry contracts) | - |
 | Section 6 (semantic execution engine + retry/repair) | TODO-0339 |
@@ -188,17 +186,6 @@ Cross-cutting docs backlog:
     - Output sections include auditable references to canonical `source_id` and `claim_id` values.
     - Run envelopes include canonical flow key (`space_overview_generation`) and accurate attempt/invocation accounting.
     - Pipeline handles “no ingested sources” as a clear non-crashing outcome with explicit warning/status metadata.
-
-- [ ] TODO-0338: Define canonical contracts for space/subspace overview synthesis
-  - owner: ai
-  - created_at: 2026-04-16
-  - phase: Cross-cutting
-  - scope: Specify artifact schema, flow ownership, and deterministic rendering boundaries for AI-generated overview articles that summarize all ingested papers in a space/subspace.
-  - acceptance:
-    - `docs/design.md` and `docs/low_level.md` define normative behavior for overview synthesis inputs, outputs, and citation/auditability requirements.
-    - A canonical schema is added for overview artifact JSON payloads (sections, references, metadata, freshness fields).
-    - Semantic flow contract entry is added for `space_overview_generation` with canonical output path tokens.
-    - Contract tests verify schema/docs/flow-spec alignment and fail on drift.
 
 - [ ] TODO-0327: Purge compatibility/deprecation tests and add strict no-legacy coverage
   - owner: ai

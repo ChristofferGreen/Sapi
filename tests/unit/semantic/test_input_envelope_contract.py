@@ -40,6 +40,7 @@ class SemanticInputEnvelopeContractTests(unittest.TestCase):
             "topic_id": "topic-001",
             "persona_id": "persona-001",
             "page_ref_key": "topic--topic-001",
+            "overview_id": "space--alpha",
         }
 
         for flow_key in FLOW_MAP:
@@ -80,6 +81,37 @@ class SemanticInputEnvelopeContractTests(unittest.TestCase):
                 (space_root / "topics").resolve(),
                 (space_root / "claims").resolve(),
                 (space_root / "sources").resolve(),
+            ],
+        )
+
+    def test_overview_invocation_uses_canonical_contract_fields(self) -> None:
+        space_root = (REPO_ROOT / ".tmp/tests/space").resolve()
+        spec = build_semantic_spec_from_contract(
+            "space_overview_generation",
+            repo_root=REPO_ROOT,
+            path_tokens={
+                "space_root": space_root,
+                "overview_id": "space--alpha",
+            },
+        )
+
+        self.assertEqual(
+            spec.schema_path,
+            (REPO_ROOT / "schemas/space_overview_generation.v1.schema.json").resolve(),
+        )
+        self.assertEqual(
+            spec.output_json_path,
+            (space_root / "outputs/space_overview/space--alpha/overview.json").resolve(),
+        )
+        self.assertEqual(
+            spec.context_paths,
+            [
+                (space_root / "outputs/space_overview/space--alpha/context.json").resolve(),
+                (space_root / "sources/records").resolve(),
+                (space_root / "claims").resolve(),
+                (space_root / "relations").resolve(),
+                (space_root / "topics").resolve(),
+                (space_root / "subspaces.json").resolve(),
             ],
         )
 
