@@ -116,13 +116,10 @@ class TopicPage:
     space_name: str
     claim_ids: tuple[str, ...]
     source_ids: tuple[str, ...]
-    narrative_id: str | None = None
 
     def __post_init__(self) -> None:
         _require_topic_id(self.topic_id, "topic_id")
         _require_space_name(self.space_name)
-        if self.narrative_id is not None and self.narrative_id != self.topic_id:
-            raise ValueError("legacy alias `narrative_id` must equal canonical `topic_id`.")
         for claim_id in self.claim_ids:
             _require_claim_id(claim_id, "claim_ids[]")
         for source_id in self.source_ids:
@@ -134,7 +131,6 @@ class Persona:
     persona_id: str
     display_name: str
     full_name: str | None = None
-    id: str | None = None
 
     def __post_init__(self) -> None:
         if not _PERSONA_ID_RE.fullmatch(self.persona_id):
@@ -142,8 +138,6 @@ class Persona:
         _require_non_empty(self.display_name, "display_name")
         if self.full_name is not None:
             _require_non_empty(self.full_name, "full_name")
-        if self.id is not None and self.id != self.persona_id:
-            raise ValueError("legacy alias `id` must equal canonical `persona_id`.")
 
 
 @dataclass(frozen=True)

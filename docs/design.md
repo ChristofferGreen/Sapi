@@ -1120,7 +1120,7 @@ Normalization rules:
 - `persona_id` matches slug pattern `[a-z0-9][a-z0-9_-]*` and must be unique
 - `persona_id` MUST equal `persona-<name_slug>` derived from `full_name`
 - `profile_image_path` MUST equal `personas/profile_images/<name_slug>.jpg` derived from `full_name`
-- rows missing `persona_id` or using legacy `id` in place of `persona_id` MUST fail validation
+- rows missing `persona_id` or carrying legacy `id` fields MUST fail validation
 - `biography` MUST be written in first person voice from the persona's perspective.
 - `biography` SHOULD be high-signal and usually target `90..180` words (`220` hard upper bound) so persona behavior is specific without becoming verbose.
 - `biography` SHOULD cover the persona's core worldview, evidence/decision style, priorities, and friction points.

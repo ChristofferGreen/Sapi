@@ -19,7 +19,6 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
                 [
                     self._persona_row(
                         persona_id="persona-alice",
-                        id="persona-alice",
                         profile_image_path="personas/profile_images/alice.jpg",
                     )
                 ],
@@ -47,7 +46,7 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
             with self.assertRaises(FileNotFoundError):
                 load_seeded_persona_catalog(repo_root=repo_root)
 
-    def test_loader_normalizes_legacy_id_alias_and_rejects_mismatched_alias(self) -> None:
+    def test_loader_rejects_legacy_id_field_and_requires_explicit_persona_id(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp) / "repo"
             self._write_image(repo_root, "alias.jpg")
@@ -61,13 +60,28 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
                     )
                 ],
             )
-
-            rows = load_seeded_persona_catalog(repo_root=repo_root)
-            self.assertEqual(rows[0]["persona_id"], "persona-alias")
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
 
             self._write_catalog(
                 repo_root / "personas" / "social_users.json",
-                [self._persona_row(persona_id="persona-a", id="persona-b")],
+                [self._persona_row(persona_id="persona-a", id="persona-a")],
+            )
+            with self.assertRaises(ValueError):
+                load_seeded_persona_catalog(repo_root=repo_root)
+
+            self._write_catalog(
+                repo_root / "personas" / "social_users.json",
+                [
+                    {
+                        key: value
+                        for key, value in self._persona_row(
+                            persona_id="persona-alias",
+                            profile_image_path="personas/profile_images/alias.jpg",
+                        ).items()
+                        if key != "persona_id"
+                    }
+                ],
             )
             with self.assertRaises(ValueError):
                 load_seeded_persona_catalog(repo_root=repo_root)
@@ -81,12 +95,10 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
                 [
                     self._persona_row(
                         persona_id="persona-dup",
-                        id="persona-dup",
                         profile_image_path="personas/profile_images/dup.jpg",
                     ),
                     self._persona_row(
                         persona_id="persona-dup",
-                        id="persona-dup",
                         profile_image_path="personas/profile_images/dup.jpg",
                     ),
                 ],
@@ -106,7 +118,6 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
                     self._persona_row(
                         full_name="Alice Example",
                         persona_id="persona-alice-example",
-                        id="persona-alice-example",
                         profile_image_path="personas/profile_images/alice-example.jpg",
                     )
                 ],
@@ -120,7 +131,6 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
                     self._persona_row(
                         full_name="Alice Example",
                         persona_id="persona-alice-mismatch",
-                        id="persona-alice-mismatch",
                         profile_image_path="personas/profile_images/alice-example.jpg",
                     )
                 ],
@@ -134,7 +144,6 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
                     self._persona_row(
                         full_name="Alice Example",
                         persona_id="persona-alice-example",
-                        id="persona-alice-example",
                         profile_image_path="personas/profile_images/alice-mismatch.jpg",
                     )
                 ],
@@ -144,7 +153,7 @@ class PersonaCatalogLoaderTests(unittest.TestCase):
 
             self._write_catalog(
                 repo_root / "personas" / "social_users.json",
-                [self._persona_row(persona_id="Persona Upper", id="Persona Upper")],
+                [self._persona_row(persona_id="Persona Upper")],
             )
             with self.assertRaises(ValueError):
                 load_seeded_persona_catalog(repo_root=repo_root)

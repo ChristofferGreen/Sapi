@@ -47,15 +47,14 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0319`
-2. `TODO-0320`
-3. `TODO-0321`
-4. `TODO-0322`
-5. `TODO-0323`
-6. `TODO-0324`
-7. `TODO-0325`
-8. `TODO-0326`
-9. `TODO-0338`
+1. `TODO-0320`
+2. `TODO-0321`
+3. `TODO-0322`
+4. `TODO-0323`
+5. `TODO-0324`
+6. `TODO-0325`
+7. `TODO-0326`
+8. `TODO-0338`
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -67,7 +66,7 @@ Task template:
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: TODO-0319, TODO-0324, TODO-0325, TODO-0338
+- P0 Foundation/contracts: TODO-0324, TODO-0325, TODO-0338
 - P1 Core product behavior: TODO-0339, TODO-0340, TODO-0341
 - P2 Social/eval/hardening: TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0326, TODO-0327, TODO-0342
 - P3 Continuous docs governance: TODO-0327
@@ -75,10 +74,9 @@ Task template:
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. TODO-0319
-2. TODO-0324
-3. TODO-0325
-4. TODO-0326
+1. TODO-0324
+2. TODO-0325
+3. TODO-0326
 
 Wave B (ingest + projection + lint):
 1. (none currently)
@@ -105,14 +103,14 @@ Cross-cutting docs backlog:
 | --- | --- |
 | Section 1 (scope/authority/reading) | - |
 | Section 2 (runtime policy + semantic loop + mock mode) | - |
-| Section 3 (core concepts + identity invariants) | TODO-0319 |
+| Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | - |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | - |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | - |
 | Section 7.1 ingest pipeline | TODO-0339 |
 | Section 7.2 references/linking | - |
 | Section 7.3 query pipeline | TODO-0339 |
-| Section 7.4 persona catalog | TODO-0319 |
+| Section 7.4 persona catalog | - |
 | Section 7.5 profile pages/history | - |
 | Section 7.6 comments pipeline/rendering | TODO-0320, TODO-0321, TODO-0322, TODO-0323 |
 | Section 7.7 comment quality harness | - |
@@ -128,7 +126,7 @@ Cross-cutting docs backlog:
 | Low-level area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (runtime model and flow namespaces) | TODO-0338 |
-| Section 4 (core data types/run envelope types) | TODO-0319 |
+| Section 4 (core data types/run envelope types) | - |
 | Section 5 (path + registry contracts) | TODO-0324, TODO-0325 |
 | Section 6 (semantic execution engine + retry/repair) | TODO-0339 |
 | Section 7 (transaction/rollback) | TODO-0339 |
@@ -147,7 +145,7 @@ Cross-cutting docs backlog:
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (test module layout) | TODO-0327, TODO-0342 |
-| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0319, TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0324, TODO-0325, TODO-0326, TODO-0339, TODO-0341, TODO-0342 |
+| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0320, TODO-0321, TODO-0322, TODO-0323, TODO-0324, TODO-0325, TODO-0326, TODO-0339, TODO-0341, TODO-0342 |
 | Tier 4-6 (determinism/golden/live canary) | TODO-0340, TODO-0342 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0327, TODO-0342 |
 | Section 6 (exit criteria gating) | TODO-0342 |
@@ -295,14 +293,3 @@ Cross-cutting docs backlog:
     - `sapi/comments/controls.py` accepts only canonical schema/key names.
     - Legacy frontmatter-only controls are no longer imported into effective/canonical controls.
     - Tests and docs reflect canonical-only controls behavior.
-
-- [ ] TODO-0319: Remove persona/topic identity legacy aliases (`id`, `narrative_id`)
-  - owner: ai
-  - created_at: 2026-04-13
-  - phase: Phase 5
-  - depends_on: TODO-0313
-  - scope: Remove compatibility aliases `Persona.id` and `TopicPage.narrative_id`, and remove loader mapping from persona row `id` to `persona_id`.
-  - acceptance:
-    - `sapi/contracts/domain_models.py` enforces canonical identity keys only.
-    - `sapi/profiles/persona_catalog.py` requires explicit `persona_id`; `id` alias mapping is removed.
-    - Tests and docs no longer rely on `id`/`narrative_id` aliases.

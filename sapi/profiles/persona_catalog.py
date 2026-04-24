@@ -116,14 +116,11 @@ def _normalize_row(
         raise TypeError(f"Persona row at index {row_index} must be an object.")
 
     row = dict(raw_row)
-    legacy_id = row.get("id")
-    persona_id = row.get("persona_id")
-    if persona_id is None and legacy_id is not None:
-        persona_id = legacy_id
-    if legacy_id is not None and persona_id is not None and legacy_id != persona_id:
+    if "id" in row:
         raise ValueError(
-            f"Persona row at index {row_index} has mismatched 'id' and 'persona_id' aliases."
+            f"users[{row_index}].id is a removed non-canonical alias; use users[{row_index}].persona_id only."
         )
+    persona_id = row.get("persona_id")
     persona_id = _require_non_empty_string(
         persona_id,
         field_name=f"users[{row_index}].persona_id",
@@ -133,10 +130,6 @@ def _normalize_row(
             f"users[{row_index}].persona_id '{persona_id}' does not match slug contract."
         )
     row["persona_id"] = persona_id
-    if "id" in row and row["id"] != persona_id:
-        raise ValueError(
-            f"users[{row_index}].id must be omitted or equal users[{row_index}].persona_id."
-        )
 
     for field_name in _REQUIRED_USER_FIELDS:
         row[field_name] = _require_non_empty_string(

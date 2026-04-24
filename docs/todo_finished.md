@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-24
 
+- [x] TODO-0319: Remove persona/topic identity legacy aliases (`id`, `narrative_id`)
+  - owner: ai
+  - created_at: 2026-04-13
+  - finished_at: 2026-04-24
+  - phase: Phase 5
+  - depends_on: TODO-0313
+  - scope: Remove compatibility aliases `Persona.id` and `TopicPage.narrative_id`, and remove loader mapping from persona row `id` to `persona_id`.
+  - acceptance:
+    - `sapi/contracts/domain_models.py` enforces canonical identity keys only.
+    - `sapi/profiles/persona_catalog.py` requires explicit `persona_id`; `id` alias mapping is removed.
+    - Tests and docs no longer rely on `id`/`narrative_id` aliases.
+  - notes: source `docs/design.md` Sections 3, 5.4, and 7.4
+  - evidence: Removed the `Persona.id` and `TopicPage.narrative_id` compatibility fields from
+    `sapi/contracts/domain_models.py`, so canonical models reject those alias keywords at
+    construction time. Updated `sapi/profiles/persona_catalog.py` to require explicit
+    `persona_id` and fail fast when repository persona rows still carry a legacy `id` field, then
+    rewrote the domain-model, persona-catalog, and persona-doc contract tests to cover canonical-only
+    identity handling.
+
 - [x] TODO-0318: Remove direct-script compatibility aliases for comments entrypoint
   - owner: ai
   - created_at: 2026-04-13

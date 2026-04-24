@@ -27,6 +27,7 @@ class PersonaBiographyVoiceContractTests(unittest.TestCase):
         self.assertIn("derive `name_slug` from `full_name`", section)
         self.assertIn("`persona_id` MUST equal `persona-<name_slug>`", section)
         self.assertIn("`profile_image_path` MUST equal `personas/profile_images/<name_slug>.jpg`", section)
+        self.assertIn("rows missing `persona_id` or carrying legacy `id` fields MUST fail validation", section)
         self.assertIn("`profile_image_path` MUST resolve to an existing `.jpg` image file at runtime", section)
         self.assertIn("`profile_image_thumb_path` SHOULD exist alongside `profile_image_path`", section)
         self.assertIn("`profile_image_prompt` MUST request a photorealistic single-person image", section)

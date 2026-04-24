@@ -45,13 +45,11 @@ class DomainModelContractTests(unittest.TestCase):
             space_name=space.space_name,
             claim_ids=(claim_a.claim_id, claim_b.claim_id),
             source_ids=(source.source_id,),
-            narrative_id="topic-main--dddddddddddd",
         )
         persona = Persona(
             persona_id="persona_1",
             display_name="Persona One",
             full_name="Persona One",
-            id="persona_1",
         )
         comment = Comment(
             comment_uid="comment-root--abcde12345",
@@ -75,15 +73,15 @@ class DomainModelContractTests(unittest.TestCase):
             comments=[comment],
         )
 
-    def test_identity_alias_constraints_fail_fast(self) -> None:
-        with self.assertRaises(ValueError):
+    def test_removed_identity_alias_keywords_are_rejected(self) -> None:
+        with self.assertRaises(TypeError):
             Persona(
                 persona_id="persona_1",
                 display_name="Persona One",
                 id="persona_mismatch",
             )
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             TopicPage(
                 topic_id="topic-main--dddddddddddd",
                 narrative_id="topic-other--eeeeeeeeeeee",
