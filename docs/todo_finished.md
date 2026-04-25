@@ -2959,3 +2959,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     Focused validation required normalizing a few seeded topic fixtures so they satisfy the
     deterministic build input contract (`sections` array present) now that the pipelines no longer
     skip the build step.
+
+- [x] TODO-0353: Refresh example site runner for current pipeline surface
+  - owner: ai
+  - created_at: 2026-04-25
+  - finished_at: 2026-04-25
+  - phase: Cross-cutting
+  - scope: Keep the bundled example-site runner aligned with the current primary wrapper surface so
+    a resumed example run exercises more than ingest-plus-comments.
+  - acceptance:
+    - `tests/example/run_example_site.sh` runs the canonical repo-root wrappers for ingest,
+      overview generation, comment generation, and profile generation.
+    - Example-runner resume state tracks the added overview/profile phases.
+    - Bundle docs and contract tests describe the updated flow.
+  - evidence: Updated `tests/example/run_example_site.sh` so the resumable example flow now runs
+    `generate_overview.sh` after ingest and `generate_profiles.sh` after comments, with
+    `OVERVIEW_INDEX` and `PROFILE_INDEX` persisted in the runner status file. Updated
+    `tests/example/README.md` to describe the broader run surface and resume behavior, and
+    expanded `tests/unit/contracts/test_example_bundle_contract.py` to lock wrapper usage plus the
+    added overview/profile resume state. Focused validation passed via the example-bundle contract
+    suite.

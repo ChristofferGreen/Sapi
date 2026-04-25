@@ -30,7 +30,9 @@ mkdir -p "$STATE_DIR" "$LOG_DIR"
 
 BOOTSTRAP_DONE=0
 INGEST_INDEX=0
+OVERVIEW_INDEX=0
 COMMENT_INDEX=0
+PROFILE_INDEX=0
 DONE=0
 CURRENT_STEP=none
 LAST_FAILED_STEP=none
@@ -42,7 +44,9 @@ write_status() {
   cat > "$tmp" <<EOF
 BOOTSTRAP_DONE=$BOOTSTRAP_DONE
 INGEST_INDEX=$INGEST_INDEX
+OVERVIEW_INDEX=$OVERVIEW_INDEX
 COMMENT_INDEX=$COMMENT_INDEX
+PROFILE_INDEX=$PROFILE_INDEX
 DONE=$DONE
 CURRENT_STEP=$CURRENT_STEP
 LAST_FAILED_STEP=$LAST_FAILED_STEP
@@ -311,14 +315,25 @@ while [[ $INGEST_INDEX -lt ${#INGEST_ROWS[@]} ]]; do
   write_status
 done
 
-mapfile -t COMMENT_SPACES < <(
+mapfile -t WORK_SPACES < <(
   while IFS=$'\t' read -r _parent_slug _parent_title child_slug _child_title; do
     printf '%s\n' "$child_slug"
   done < <(printf '%s\n' "${SUBSPACE_ROWS[@]}") | awk '!seen[$0]++'
 )
 
+while [[ $OVERVIEW_INDEX -lt ${#WORK_SPACES[@]} ]]; do
+  space_slug="${WORK_SPACES[$OVERVIEW_INDEX]}"
+  run_step "overview-${space_slug}" \
+    bash "$REPO_ROOT/generate_overview.sh" \
+      "$SITE_PATH" \
+      "$space_slug" \
+      --verbose
+  OVERVIEW_INDEX=$((OVERVIEW_INDEX + 1))
+  write_status
+done
+
 COMMENT_PAGE_ROWS=()
-for space_slug in "${COMMENT_SPACES[@]}"; do
+for space_slug in "${WORK_SPACES[@]}"; do
   while IFS= read -r row; do
     [[ -n "$row" ]] || continue
     COMMENT_PAGE_ROWS+=("$row")
@@ -336,6 +351,17 @@ while [[ $COMMENT_INDEX -lt ${#COMMENT_PAGE_ROWS[@]} ]]; do
       --count "$COMMENT_COUNT" \
       --verbose
   COMMENT_INDEX=$((COMMENT_INDEX + 1))
+  write_status
+done
+
+while [[ $PROFILE_INDEX -lt ${#WORK_SPACES[@]} ]]; do
+  space_slug="${WORK_SPACES[$PROFILE_INDEX]}"
+  run_step "profiles-${space_slug}" \
+    bash "$REPO_ROOT/generate_profiles.sh" \
+      "$SITE_PATH" \
+      "$space_slug" \
+      --verbose
+  PROFILE_INDEX=$((PROFILE_INDEX + 1))
   write_status
 done
 

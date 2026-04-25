@@ -27,9 +27,13 @@ class ExampleBundleContractTests(unittest.TestCase):
         self.assertIn('bash "$REPO_ROOT/create_space.sh"', script_text)
         self.assertIn('bash "$REPO_ROOT/create_subspaces.sh"', script_text)
         self.assertIn('bash "$REPO_ROOT/ingest.sh"', script_text)
+        self.assertIn('bash "$REPO_ROOT/generate_overview.sh"', script_text)
         self.assertIn('bash "$REPO_ROOT/create_comments.sh"', script_text)
+        self.assertIn('bash "$REPO_ROOT/generate_profiles.sh"', script_text)
         self.assertNotIn("scripts/ingest_source.py", script_text)
         self.assertNotIn("scripts/create_comments.py", script_text)
+        self.assertNotIn("scripts/generate_overview.py", script_text)
+        self.assertNotIn("scripts/generate_profiles.py", script_text)
 
     def test_example_runner_pins_timeout_and_retry_policy(self) -> None:
         script_text = (EXAMPLE_ROOT / "run_example_site.sh").read_text()
@@ -45,6 +49,15 @@ class ExampleBundleContractTests(unittest.TestCase):
         self.assertIn('--comment-page "$page_ref"', script_text)
         self.assertIn('run_step "comments-${space_slug}-${page_ref_key}"', script_text)
         self.assertNotIn('run_step "comments-${space_slug}"', script_text)
+
+    def test_example_runner_tracks_overview_and_profile_resume_state(self) -> None:
+        script_text = (EXAMPLE_ROOT / "run_example_site.sh").read_text()
+        self.assertIn("OVERVIEW_INDEX=0", script_text)
+        self.assertIn("PROFILE_INDEX=0", script_text)
+        self.assertIn("OVERVIEW_INDEX=$OVERVIEW_INDEX", script_text)
+        self.assertIn("PROFILE_INDEX=$PROFILE_INDEX", script_text)
+        self.assertIn('run_step "overview-${space_slug}"', script_text)
+        self.assertIn('run_step "profiles-${space_slug}"', script_text)
 
     def test_example_plan_references_real_pdf_assets(self) -> None:
         ingest_rows = _load_tsv(EXAMPLE_ROOT / "ingest_plan.tsv")
