@@ -4,6 +4,7 @@ import re
 import unittest
 from pathlib import Path
 
+from sapi.core import runtime_config
 from sapi.core import runtime_flags
 
 
@@ -17,10 +18,11 @@ class RuntimeFlagDefaultsDocsParityTests(unittest.TestCase):
             _extract_flag_value(readme_text, "--llm-backend"),
             runtime_flags.DEFAULT_LLM_BACKEND,
         )
-        self.assertEqual(
-            _extract_flag_value(readme_text, "--llm-model"),
-            runtime_flags.DEFAULT_LLM_MODEL,
+        self.assertIn(
+            "- `--llm-model` from `config/llm.json` (`default_live_model`)",
+            readme_text,
         )
+        self.assertEqual(runtime_flags.DEFAULT_LLM_MODEL, runtime_config.DEFAULT_LIVE_LLM_MODEL)
         self.assertEqual(
             _extract_flag_value(readme_text, "--llm-reasoning-effort"),
             runtime_flags.DEFAULT_LLM_REASONING_EFFORT,

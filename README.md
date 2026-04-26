@@ -93,7 +93,7 @@ Runtime/control flag defaults and forwarding:
   `--run-search-visibility`, `--site-presentation-mode`, `--enable-source-index`.
 - defaults:
   - `--llm-backend codex`
-  - `--llm-model gpt-5.5`
+  - `--llm-model` from `config/llm.json` (`default_live_model`)
   - `--llm-reasoning-effort high`
   - `--llm-timeout-secs none`
   - `--warning-budget 200`

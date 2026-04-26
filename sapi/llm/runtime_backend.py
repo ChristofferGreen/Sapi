@@ -12,10 +12,11 @@ import sys
 import threading
 from typing import Any, TextIO
 
+from sapi.core.runtime_config import DEFAULT_LIVE_LLM_MODEL
 from sapi.llm.client import SemanticLlmRequest
 
 
-DEFAULT_CODEX_MODEL = "gpt-5.5"
+DEFAULT_CODEX_MODEL = DEFAULT_LIVE_LLM_MODEL
 _MAX_ERROR_TAIL_CHARS = 4000
 
 

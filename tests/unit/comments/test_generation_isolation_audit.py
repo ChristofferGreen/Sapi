@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 from unittest.mock import patch
 
+from sapi.core.runtime_config import DEFAULT_LIVE_LLM_MODEL
 from sapi.llm.client import SemanticLlmRequest
 from sapi.llm.runtime_backend import SemanticBackendConfig
 from scripts.create_comments import (
@@ -53,7 +54,7 @@ class GenerationIsolationAuditTests(unittest.TestCase):
         client = _LiveCommentSectionClient(
             backend_config=SemanticBackendConfig(
                 backend="codex",
-                model="gpt-5.5",
+                model=DEFAULT_LIVE_LLM_MODEL,
                 reasoning_effort="high",
                 timeout_secs=1000,
             ),

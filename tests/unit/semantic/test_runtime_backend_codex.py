@@ -7,6 +7,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
+from sapi.core.runtime_config import DEFAULT_LIVE_LLM_MODEL
 from sapi.llm.client import SemanticLlmRequest
 from sapi.llm.runtime_backend import SemanticBackendConfig, generate_semantic_json_live
 
@@ -55,7 +56,7 @@ class RuntimeBackendCodexTests(unittest.TestCase):
                     request=request,
                     backend_config=SemanticBackendConfig(
                         backend="gemini",
-                        model="gpt-5.5",
+                        model=DEFAULT_LIVE_LLM_MODEL,
                         reasoning_effort="high",
                         timeout_secs=None,
                     ),
@@ -100,7 +101,7 @@ class RuntimeBackendCodexTests(unittest.TestCase):
             command, kwargs = popen_calls[0]
             self.assertIn("codex", command[0])
             self.assertIn("--model", command)
-            self.assertIn("gpt-5.5", command)
+            self.assertIn(DEFAULT_LIVE_LLM_MODEL, command)
             self.assertIn("--json", command)
             self.assertIn("--sandbox", command)
             self.assertIn("workspace-write", command)
@@ -139,7 +140,7 @@ class RuntimeBackendCodexTests(unittest.TestCase):
                         request=request,
                         backend_config=SemanticBackendConfig(
                             backend="codex",
-                            model="gpt-5.5",
+                            model=DEFAULT_LIVE_LLM_MODEL,
                             reasoning_effort="high",
                             timeout_secs=None,
                         ),

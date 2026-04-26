@@ -6,9 +6,11 @@ import argparse
 from dataclasses import dataclass
 from typing import Any
 
+from sapi.core.runtime_config import DEFAULT_LIVE_LLM_MODEL
+
 
 DEFAULT_LLM_BACKEND = "codex"
-DEFAULT_LLM_MODEL = "gpt-5.5"
+DEFAULT_LLM_MODEL = DEFAULT_LIVE_LLM_MODEL
 DEFAULT_LLM_REASONING_EFFORT = "high"
 DEFAULT_LLM_TIMEOUT_SECS: int | None = None
 DEFAULT_WARNING_BUDGET = 200
