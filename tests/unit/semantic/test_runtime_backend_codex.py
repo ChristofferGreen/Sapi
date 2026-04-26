@@ -55,7 +55,7 @@ class RuntimeBackendCodexTests(unittest.TestCase):
                     request=request,
                     backend_config=SemanticBackendConfig(
                         backend="gemini",
-                        model="gpt-5.4",
+                        model="gpt-5.5",
                         reasoning_effort="high",
                         timeout_secs=None,
                     ),
@@ -100,7 +100,7 @@ class RuntimeBackendCodexTests(unittest.TestCase):
             command, kwargs = popen_calls[0]
             self.assertIn("codex", command[0])
             self.assertIn("--model", command)
-            self.assertIn("gpt-5.4", command)
+            self.assertIn("gpt-5.5", command)
             self.assertIn("--json", command)
             self.assertIn("--sandbox", command)
             self.assertIn("workspace-write", command)
@@ -139,7 +139,7 @@ class RuntimeBackendCodexTests(unittest.TestCase):
                         request=request,
                         backend_config=SemanticBackendConfig(
                             backend="codex",
-                            model="gpt-5.4",
+                            model="gpt-5.5",
                             reasoning_effort="high",
                             timeout_secs=None,
                         ),

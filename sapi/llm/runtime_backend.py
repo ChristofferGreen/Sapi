@@ -15,7 +15,7 @@ from typing import Any, TextIO
 from sapi.llm.client import SemanticLlmRequest
 
 
-DEFAULT_CODEX_MODEL = "gpt-5.4"
+DEFAULT_CODEX_MODEL = "gpt-5.5"
 _MAX_ERROR_TAIL_CHARS = 4000
 
 

@@ -53,7 +53,7 @@ class GenerationIsolationAuditTests(unittest.TestCase):
         client = _LiveCommentSectionClient(
             backend_config=SemanticBackendConfig(
                 backend="codex",
-                model="gpt-5.4",
+                model="gpt-5.5",
                 reasoning_effort="high",
                 timeout_secs=1000,
             ),
