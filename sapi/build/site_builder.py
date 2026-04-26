@@ -216,6 +216,7 @@ def build_space_site(
             context=context,
             evidence_records=evidence_records,
             incremental=incremental,
+            site_presentation_mode=site_presentation_mode,
         )
     )
     generated_files.extend(
@@ -1534,6 +1535,7 @@ def _render_topic_page(
             topic=topic,
             claim_option_title_by_id=claim_option_title_by_id,
             claim_records=claim_records,
+            site_presentation_mode=site_presentation_mode,
         )
         + _render_topic_evidence_section(topic_evidence_records=topic_evidence_records)
         + _render_external_related_links_card(
@@ -1565,6 +1567,7 @@ def _render_topic_claims_section(
     topic: dict[str, object],
     claim_option_title_by_id: dict[str, str],
     claim_records: dict[str, dict[str, Any]],
+    site_presentation_mode: str,
 ) -> str:
     raw_claim_ids = topic.get("claim_ids")
     claim_ids = _collect_claim_ids_from_topic(topic=topic)
@@ -1577,18 +1580,28 @@ def _render_topic_claims_section(
             "<p>(No claim links are currently attached to this topic.)</p>"
             "</section>"
         )
-    rows = "\n".join(
-        (
+    row_values: list[str] = []
+    for claim_id in claim_ids:
+        label = claim_option_title_by_id.get(claim_id)
+        if site_presentation_mode != "debug" and not label and claim_id not in claim_records:
+            continue
+        row_values.append(
             "<li><a href=\"../claims/"
             + escape(claim_id)
             + ".html\">"
-            + escape(claim_option_title_by_id.get(claim_id, claim_id))
+            + escape(label if label else claim_id)
             + "</a><p class=\"summary\">"
             + escape(_topic_claim_summary(claim_id=claim_id, claim_record=claim_records.get(claim_id, {})))
             + "</p></li>"
         )
-        for claim_id in claim_ids
-    )
+    rows = "\n".join(row_values)
+    if not rows:
+        return (
+            "<section class=\"source-related-card\">"
+            "<h2>Claims Used by This Topic</h2>"
+            "<p>(No public claim summaries are currently attached to this topic.)</p>"
+            "</section>"
+        )
     return (
         "<section class=\"source-related-card\">"
         "<h2>Claims Used by This Topic</h2>"
@@ -3616,6 +3629,7 @@ def _write_space_claim_pages(
     context: _SpaceLayoutContext,
     evidence_records: list[_EvidenceRecord],
     incremental: bool,
+    site_presentation_mode: str,
 ) -> list[Path]:
     space_root = output_root.parent
     claim_records = _load_claim_records(space_root=space_root)
@@ -3713,13 +3727,18 @@ def _write_space_claim_pages(
             + ".html\">"
             + escape(claim_title)
             + "</a><p class=\"meta\">"
-            + "score: "
-            + "<span class=\""
-            + escape(score_class)
-            + "\">"
-            + escape(str(score))
-            + "</span>"
-            + " | added: "
+            + (
+                "score: "
+                + "<span class=\""
+                + escape(score_class)
+                + "\">"
+                + escape(str(score))
+                + "</span>"
+                + " | "
+                if site_presentation_mode == "debug"
+                else ""
+            )
+            + "added: "
             + escape(claim_added_label)
             + "</p>"
             + "</div>"
@@ -3848,6 +3867,7 @@ def _write_space_claim_pages(
             source_record=source_record,
             usage_stats=usage_stats,
             strength=strength,
+            include_score_summary=site_presentation_mode == "debug",
         )
         source_row = _claim_primary_source_row(
             claim_source_id=str(claim_record.get("source_id") or "").strip(),
@@ -3862,6 +3882,37 @@ def _write_space_claim_pages(
             claim_source_id=str(claim_record.get("source_id") or "").strip(),
             source_ids=usage_stats.get("source_ids", ()),
             projection=projection,
+        )
+        strength_stats_section = (
+            "<article class=\"source-related-card\">\n"
+            + "<h2>Debug Score Metadata</h2>\n"
+            + "<p class=\"meta\">Score metadata is computed from stored evidence/source/citation fields "
+            + "and is exposed only in debug presentation mode.</p>\n"
+            + "<dl class=\"source-meta-grid\">\n"
+            + f"<dt>Score</dt><dd>{strength['score']} / 100 ({escape(strength['band'])})</dd>\n"
+            + "<dt>Formula</dt><dd>"
+            + escape(strength["formula"])
+            + "</dd>\n"
+            + f"<dt>Evidence excerpts</dt><dd>{strength['evidence_count']}</dd>\n"
+            + f"<dt>Evidence factor</dt><dd>{strength['evidence_factor']:.2f}</dd>\n"
+            + f"<dt>Topic usages (informational only)</dt><dd>{strength['topic_usage_count']}</dd>\n"
+            + f"<dt>Source usages</dt><dd>{strength['source_usage_count']}</dd>\n"
+            + f"<dt>Source factor</dt><dd>{strength['source_factor']:.2f}</dd>\n"
+            + "<dt>Max source citations</dt><dd>"
+            + escape(_format_citation_count_for_ui(strength.get("citation_count_max")))
+            + "</dd>\n"
+            + f"<dt>Citation factor</dt><dd>{strength['citation_factor']:.2f}</dd>\n"
+            + "<dt>Citation signal basis</dt><dd>"
+            + (
+                "citation_count unavailable"
+                if bool(strength.get("citation_factor_defaulted"))
+                else "log-scaled from source citation_count"
+            )
+            + "</dd>\n"
+            + "</dl>\n"
+            + "</article>\n"
+            if site_presentation_mode == "debug"
+            else ""
         )
         claim_path = claims_root / f"{claim_id}.html"
         _write_text_file(
@@ -3892,33 +3943,7 @@ def _write_space_claim_pages(
                         else "<p>(No topic/source pages currently reference this claim.)</p>\n"
                     )
                     + "</article>\n"
-                    + "<article class=\"source-related-card\">\n"
-                    + "<h2>Strength and Support Stats</h2>\n"
-                    + "<p class=\"meta\">No canonical claim-strength formula is specified in the docs yet. "
-                    + "This page currently uses a deterministic UI heuristic only.</p>\n"
-                    + "<dl class=\"source-meta-grid\">\n"
-                    + f"<dt>Heuristic score</dt><dd>{strength['score']} / 100 ({escape(strength['band'])})</dd>\n"
-                    + "<dt>Formula</dt><dd>"
-                    + escape(strength["formula"])
-                    + "</dd>\n"
-                    + f"<dt>Evidence excerpts</dt><dd>{strength['evidence_count']}</dd>\n"
-                    + f"<dt>Evidence factor</dt><dd>{strength['evidence_factor']:.2f}</dd>\n"
-                    + f"<dt>Topic usages (informational only)</dt><dd>{strength['topic_usage_count']}</dd>\n"
-                    + f"<dt>Source usages</dt><dd>{strength['source_usage_count']}</dd>\n"
-                    + f"<dt>Source factor</dt><dd>{strength['source_factor']:.2f}</dd>\n"
-                    + "<dt>Max source citations</dt><dd>"
-                    + escape(_format_citation_count_for_ui(strength.get("citation_count_max")))
-                    + "</dd>\n"
-                    + f"<dt>Citation factor</dt><dd>{strength['citation_factor']:.2f}</dd>\n"
-                    + "<dt>Citation signal basis</dt><dd>"
-                    + (
-                        "neutral fallback (citation_count missing)"
-                        if bool(strength.get("citation_factor_defaulted"))
-                        else "log-scaled from source citation_count"
-                    )
-                    + "</dd>\n"
-                    + "</dl>\n"
-                    + "</article>\n"
+                    + strength_stats_section
                     + "</section>\n"
                     + "<section class=\"source-related-card\">\n"
                     + "<h2>Evidence Items</h2>\n"
@@ -4608,6 +4633,7 @@ def _claim_overview_text(
     source_record: dict[str, Any],
     usage_stats: dict[str, int],
     strength: dict[str, Any],
+    include_score_summary: bool,
 ) -> list[str]:
     claim_overview = str(claim_record.get("overview") or "").strip()
     if claim_overview:
@@ -4624,10 +4650,13 @@ def _claim_overview_text(
 
     usage_paragraph = (
         f"In this space, the claim is currently referenced by {usage_stats['topic_usage_count']} topic page(s) "
-        f"and {usage_stats['source_usage_count']} source page(s). "
-        f"The current support signal is a deterministic UI heuristic score of {strength['score']} / 100 "
-        f"({strength['band']}). Topic usage is shown for navigation context but is not part of the score."
+        f"and {usage_stats['source_usage_count']} source page(s)."
     )
+    if include_score_summary:
+        usage_paragraph += (
+            f" Debug score metadata is {strength['score']} / 100 ({strength['band']}). "
+            "Topic usage is shown for navigation context but is not part of the score."
+        )
     return [lead, usage_paragraph]
 
 

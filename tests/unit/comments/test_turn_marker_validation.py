@@ -2,14 +2,52 @@ from __future__ import annotations
 
 import unittest
 
-from sapi.comments.merge_normalize import apply_merged_comments_to_page, merge_comment_section
+from sapi.comments.merge_normalize import (
+    apply_merged_comments_to_page,
+    merge_comment_section as _raw_merge_comment_section,
+)
 
 
 _VALID_CLAIM_ID = "claim-evidence-point--abcdefabcdef"
 _VALID_SOURCE_ID = "source-primary-study--1234abcd5678"
 
 
+def merge_comment_section(
+    *,
+    page_ref: str,
+    page_payload: dict[str, object],
+    semantic_comments: list[dict[str, object]],
+):
+    return _raw_merge_comment_section(
+        page_ref=page_ref,
+        page_payload=page_payload,
+        semantic_comments=[
+            {
+                "score_assessment": {
+                    "score": 0,
+                    "rationale": "Test-authored semantic score assessment.",
+                },
+                **row,
+            }
+            for row in semantic_comments
+        ],
+    )
+
+
 class TurnMarkerValidationUnitTests(unittest.TestCase):
+    def test_semantic_comment_score_assessment_is_required(self) -> None:
+        with self.assertRaisesRegex(ValueError, "comments\\[\\]\\.score_assessment is required"):
+            _raw_merge_comment_section(
+                page_ref="topic:topic-alpha",
+                page_payload={"topic_id": "topic-alpha", "title": "Alpha"},
+                semantic_comments=[
+                    {
+                        "persona_id": "commenter-1",
+                        "body": "Semantic row without score assessment should fail.",
+                    }
+                ],
+            )
+
     def test_canonical_turn_marker_is_supported_for_argumentative_turns(self) -> None:
         result = merge_comment_section(
             page_ref="topic:topic-alpha",

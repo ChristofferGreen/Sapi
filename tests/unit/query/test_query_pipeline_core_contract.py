@@ -1,10 +1,14 @@
 from __future__ import annotations
 
 import json
+import io
 import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
+
+import scripts.query as query_entrypoint
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -179,6 +183,98 @@ class QueryPipelineCoreContractTests(unittest.TestCase):
             self.assertEqual(list((space_root / "outputs" / "query").glob("query-*")), [])
             self.assertEqual(list((space_root / "runs").glob("*/run.md")), [])
             self.assertEqual(list((space_root / "runs").glob("*/lint.json")), [])
+
+    def test_markdown_answer_uses_validated_semantic_answer(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            site_path = _bootstrap_site_and_space(Path(tmp), "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            semantic_answer = "Validated semantic answer from query_synthesis."
+
+            def fake_run_semantic_flow(*, spec, llm_client):
+                query_id = spec.output_json_path.parent.name
+                payload = {
+                    "query_id": query_id,
+                    "answer": semantic_answer,
+                    "claims_used": [],
+                    "sources_used": [],
+                    "retrieval_counts": {
+                        "claims_retrieved": 0,
+                        "sources_retrieved": 0,
+                    },
+                    "contradictions_considered": 0,
+                    "falsification_signals": [],
+                    "mode": "strict",
+                    "scope": "default",
+                    "execution": {"backend": "test"},
+                    "warnings": [],
+                }
+                spec.output_json_path.parent.mkdir(parents=True, exist_ok=True)
+                spec.output_json_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+                return payload, 1
+
+            argv = [
+                "query.py",
+                "alpha",
+                "What changed?",
+                "--registry-path",
+                str(site_path / "spaces.toml"),
+                "--mock-llm",
+            ]
+            with patch("sapi.llm.semantic_executor.run_semantic_flow", side_effect=fake_run_semantic_flow):
+                with patch("sys.argv", argv):
+                    exit_code = query_entrypoint.main()
+
+            self.assertEqual(exit_code, 0)
+            query_dirs = sorted((space_root / "outputs" / "query").glob("query-*"))
+            self.assertEqual(len(query_dirs), 1)
+            payload = json.loads((query_dirs[0] / "query.json").read_text())
+            answer_markdown = (query_dirs[0] / "answer.md").read_text()
+            self.assertEqual(payload["answer"], semantic_answer)
+            self.assertIn(semantic_answer, answer_markdown)
+            self.assertNotIn("No canonical retrieval context is currently available", answer_markdown)
+
+    def test_query_rejects_missing_semantic_metadata_instead_of_fallback(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            site_path = _bootstrap_site_and_space(Path(tmp), "alpha")
+            space_root = site_path / "spaces" / "alpha"
+
+            def fake_run_semantic_flow(*, spec, llm_client):
+                query_id = spec.output_json_path.parent.name
+                payload = {
+                    "query_id": query_id,
+                    "answer": "Semantic answer without required metadata.",
+                    "sources_used": [],
+                    "retrieval_counts": {
+                        "claims_retrieved": 0,
+                        "sources_retrieved": 0,
+                    },
+                    "contradictions_considered": 0,
+                    "falsification_signals": [],
+                    "mode": "strict",
+                    "scope": "default",
+                    "execution": {"backend": "test"},
+                    "warnings": [],
+                }
+                spec.output_json_path.parent.mkdir(parents=True, exist_ok=True)
+                spec.output_json_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+                return payload, 1
+
+            argv = [
+                "query.py",
+                "alpha",
+                "What changed?",
+                "--registry-path",
+                str(site_path / "spaces.toml"),
+                "--mock-llm",
+            ]
+            stderr = io.StringIO()
+            with patch("sapi.llm.semantic_executor.run_semantic_flow", side_effect=fake_run_semantic_flow):
+                with patch("sys.argv", argv), patch("sys.stderr", stderr):
+                    exit_code = query_entrypoint.main()
+
+            self.assertNotEqual(exit_code, 0)
+            self.assertIn("query_synthesis.claims_used must be an array", stderr.getvalue())
+            self.assertEqual(list((space_root / "outputs" / "query").glob("query-*")), [])
 
 
 def _bootstrap_site_and_space(tmp_root: Path, space_name: str) -> Path:

@@ -13,7 +13,6 @@ class Todo0309QueueReconstitutionTests(unittest.TestCase):
     def test_open_task_blocks_are_reconstituted_for_remaining_work(self) -> None:
         todo_text = TODO_DOC_PATH.read_text()
         open_ids = _open_task_ids(todo_text)
-        self.assertGreater(len(open_ids), 0)
         numeric_ids = [int(todo_id.split("-")[1]) for todo_id in open_ids]
         self.assertEqual(numeric_ids, sorted(numeric_ids, reverse=True))
 
@@ -21,7 +20,6 @@ class Todo0309QueueReconstitutionTests(unittest.TestCase):
         todo_text = TODO_DOC_PATH.read_text()
         open_ids = set(_open_task_ids(todo_text))
         listed_ids = _listed_todo_ids(todo_text)
-        self.assertGreater(len(listed_ids), 0)
         for todo_id in listed_ids:
             self.assertIn(todo_id, open_ids)
 

@@ -591,20 +591,43 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("Evidence Items", claim_page_text)
             self.assertIn("href=\"../evidence/", claim_page_text)
             self.assertIn("jointly", claim_page_text)
-            self.assertIn("Strength and Support Stats", claim_page_text)
-            self.assertIn(
+            self.assertNotIn("Strength and Support Stats", claim_page_text)
+            self.assertNotIn("Debug Score Metadata", claim_page_text)
+            self.assertNotIn("deterministic UI heuristic", claim_page_text)
+            self.assertNotIn("neutral fallback", claim_page_text)
+            self.assertNotIn(
                 "score = 100 * (0.65 * evidence_factor + 0.20 * source_factor + 0.15 * citation_factor)",
                 claim_page_text,
             )
-            self.assertIn("where evidence_factor=min(evidence_items/3,1)", claim_page_text)
-            self.assertIn("citation_factor=min(log10(max_citation_count+1)/3,1)", claim_page_text)
-            self.assertIn("<dt>Max source citations</dt><dd>240</dd>", claim_page_text)
-            self.assertIn("<dt>Citation factor</dt>", claim_page_text)
-            self.assertIn("Topic usages (informational only)", claim_page_text)
-            self.assertIn("do not contribute to score", claim_page_text)
+            self.assertNotIn("Topic usages (informational only)", claim_page_text)
             self.assertNotIn("class=\"comment-thread\"", claim_page_text)
             evidence_links = re.findall(r'href=\"\.\./evidence/(evidence-[^\"]+)\.html\"', claim_page_text)
             self.assertGreaterEqual(len(evidence_links), 2)
+
+            debug_result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--site-presentation-mode",
+                    "debug",
+                ]
+            )
+            self.assertEqual(debug_result.returncode, 0, msg=debug_result.stderr)
+            debug_claim_page_text = (space_root / "site" / "claims" / f"{claim_id}.html").read_text()
+            self.assertIn("Debug Score Metadata", debug_claim_page_text)
+            self.assertIn(
+                "score = 100 * (0.65 * evidence_factor + 0.20 * source_factor + 0.15 * citation_factor)",
+                debug_claim_page_text,
+            )
+            self.assertIn("where evidence_factor=min(evidence_items/3,1)", debug_claim_page_text)
+            self.assertIn("citation_factor=min(log10(max_citation_count+1)/3,1)", debug_claim_page_text)
+            self.assertIn("<dt>Max source citations</dt><dd>240</dd>", debug_claim_page_text)
+            self.assertIn("<dt>Citation factor</dt>", debug_claim_page_text)
+            self.assertIn("Topic usages (informational only)", debug_claim_page_text)
+            self.assertNotIn("deterministic UI heuristic", debug_claim_page_text)
+            self.assertNotIn("neutral fallback", debug_claim_page_text)
 
             evidence_index_text = (space_root / "site" / "evidence" / "index.html").read_text()
             self.assertIn("<h1>Evidence</h1>", evidence_index_text)
@@ -2495,8 +2518,9 @@ class SiteBuilderContractTests(unittest.TestCase):
                 ),
                 claims_index,
             )
-            self.assertIn("<p class=\"meta\">score: ", claims_index)
-            self.assertIn("class=\"claim-score-value claim-score-", claims_index)
+            self.assertIn("<p class=\"meta\">added: ", claims_index)
+            self.assertNotIn("<p class=\"meta\">score: ", claims_index)
+            self.assertNotIn("class=\"claim-score-value claim-score-", claims_index)
             self.assertNotIn(f"{claim_id} | score:", claims_index)
             self.assertIn("class=\"claim-card-usage-list claim-card-usage-list-primary\"", claims_index)
             self.assertIn("class=\"claim-card-usage-list claim-card-usage-list-overflow\"", claims_index)
@@ -2505,7 +2529,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("class=\"claim-usage-chip claim-usage-chip-topic\"", claims_index)
             self.assertIn("class=\"claim-usage-chip claim-usage-chip-source\"", claims_index)
             self.assertNotIn("class=\"claim-card-usage-label\"", claims_index)
-            self.assertRegex(claims_index, r'<a class=\"tab current\" href=\"[^\"]*\">Claims</a>')
+            self.assertRegex(claims_index, r'<a class=\"site-tab current\" href=\"[^\"]*\">Claims</a>')
 
             claim_page = (alpha_space_root / "site" / "claims" / f"{claim_id}.html").read_text()
             self.assertIn(
@@ -2520,7 +2544,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                 "<p>The paper claims that preparation independence constrains epistemic overlap regions.</p>",
                 claim_page,
             )
-            self.assertRegex(claim_page, r'<a class=\"tab current\" href=\"[^\"]*\">Claims</a>')
+            self.assertRegex(claim_page, r'<a class=\"site-tab current\" href=\"[^\"]*\">Claims</a>')
 
     def test_claim_titles_preserve_curated_short_title_verbatim(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -3253,7 +3277,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                 "source_file": source_file_rel,
                 "source_markdown": source_markdown_rel or f"sources/artifacts/{source_id}/source.md",
                 "source_extraction": source_extraction_rel or f"sources/artifacts/{source_id}/source_extraction.json",
-                "overview_markdown": f"sources/artifacts/{source_id}/overview.md",
+                "source_provenance": f"sources/artifacts/{source_id}/source_provenance.md",
                 "front_page_image": front_page_image_rel,
             }
         path = space_root / "sources" / "records" / f"{source_id}.json"

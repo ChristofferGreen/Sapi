@@ -18,17 +18,27 @@ _ARGUMENTATIVE_POSITIONS = {"support", "challenge", "rebuttal", "synthesis"}
 class PersonaHistoryMetrics:
     comments_total: int
     unsupported_claim_rate: float
-    retraction_rate: float
-    forecast_accuracy: float
+    retraction_rate: float | None
+    forecast_accuracy: float | None
 
     def to_entry(self, *, as_of: str) -> dict[str, object]:
-        return {
+        entry: dict[str, object] = {
             "as_of": as_of,
             "comments_total": self.comments_total,
             "unsupported_claim_rate": round(self.unsupported_claim_rate, 4),
-            "retraction_rate": round(self.retraction_rate, 4),
-            "forecast_accuracy": round(self.forecast_accuracy, 4),
         }
+        unavailable_metrics: list[str] = []
+        if self.retraction_rate is None:
+            unavailable_metrics.append("retraction_rate")
+        else:
+            entry["retraction_rate"] = round(self.retraction_rate, 4)
+        if self.forecast_accuracy is None:
+            unavailable_metrics.append("forecast_accuracy")
+        else:
+            entry["forecast_accuracy"] = round(self.forecast_accuracy, 4)
+        if unavailable_metrics:
+            entry["unavailable_metrics"] = unavailable_metrics
+        return entry
 
 
 @dataclass(frozen=True)
@@ -62,14 +72,11 @@ def compute_persona_history_metrics(
     unsupported_claim_rate = 0.0
     if comments_total > 0:
         unsupported_claim_rate = unsupported_count / comments_total
-    # Deterministic default placeholders until richer accountability signals are added.
-    retraction_rate = 0.0
-    forecast_accuracy = 0.0 if comments_total == 0 else min(1.0, 0.5 + comments_total * 0.03)
     return PersonaHistoryMetrics(
         comments_total=comments_total,
         unsupported_claim_rate=unsupported_claim_rate,
-        retraction_rate=retraction_rate,
-        forecast_accuracy=forecast_accuracy,
+        retraction_rate=None,
+        forecast_accuracy=None,
     )
 
 
@@ -196,9 +203,17 @@ def _normalize_existing_history_payload(
 
 
 def _entry_non_date(entry: dict[str, object]) -> dict[str, object]:
-    return {
+    normalized: dict[str, object] = {
         "comments_total": int(entry.get("comments_total", 0)),
         "unsupported_claim_rate": round(float(entry.get("unsupported_claim_rate", 0.0)), 4),
-        "retraction_rate": round(float(entry.get("retraction_rate", 0.0)), 4),
-        "forecast_accuracy": round(float(entry.get("forecast_accuracy", 0.0)), 4),
     }
+    for key in ("retraction_rate", "forecast_accuracy"):
+        raw_value = entry.get(key)
+        normalized[key] = None if raw_value is None else round(float(raw_value), 4)
+    unavailable = entry.get("unavailable_metrics")
+    normalized["unavailable_metrics"] = (
+        sorted(str(item) for item in unavailable if isinstance(item, str))
+        if isinstance(unavailable, list)
+        else []
+    )
+    return normalized

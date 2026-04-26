@@ -341,21 +341,14 @@ def _normalize_semantic_comment(raw_comment: dict[str, Any]) -> dict[str, Any]:
     score_assessment = _normalize_score_assessment(
         raw_comment.get("score_assessment"),
         field_name_prefix="comments[].",
-        required=False,
+        required=True,
     )
     normalized: dict[str, Any] = {
         "persona_id": persona_id,
         "body": body,
         "parent_ref": parent_ref,
         "comment_ref": comment_ref,
-        "score_assessment": (
-            score_assessment
-            if score_assessment is not None
-            else {
-                "score": 0,
-                "rationale": "Neutral fallback: score_assessment missing from semantic row.",
-            }
-        ),
+        "score_assessment": score_assessment,
     }
     if turn is not None:
         normalized["turn"] = turn

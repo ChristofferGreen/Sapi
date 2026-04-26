@@ -63,7 +63,7 @@ def _validate_source_artifact_contract(*, source_path: Path, payload: dict[str, 
         return
     if not isinstance(artifacts, dict):
         raise ProjectionContractError(f"{source_path}: artifacts must be an object when present.")
-    for key in ("source_file", "source_markdown", "source_extraction", "overview_markdown"):
+    for key in ("source_file", "source_markdown", "source_extraction", "source_provenance"):
         value = artifacts.get(key)
         if value is not None and (not isinstance(value, str) or not value.strip()):
             raise ProjectionContractError(f"{source_path}: artifacts.{key} must be a non-empty string when present.")

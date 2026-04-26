@@ -1,11 +1,54 @@
 from __future__ import annotations
 
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
-from sapi.profiles.history import PersonaHistoryMetrics, apply_persona_history_update
+from sapi.profiles.history import (
+    PersonaHistoryMetrics,
+    apply_persona_history_update,
+    compute_persona_history_metrics,
+)
 
 
 class PersonaHistoryUpdateSemanticsUnitTests(unittest.TestCase):
+    def test_computed_history_marks_unavailable_metrics_without_fabricated_values(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            topic_path = space_root / "topics" / "topic-alpha.json"
+            topic_path.parent.mkdir(parents=True, exist_ok=True)
+            topic_path.write_text(
+                json.dumps(
+                    {
+                        "comment_section": {
+                            "comments": [
+                                {
+                                    "persona_id": "persona-1",
+                                    "body": "Unsupported argumentative comment.",
+                                    "turn": {"position": "support"},
+                                }
+                            ]
+                        }
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n"
+            )
+
+            metrics = compute_persona_history_metrics(space_root=space_root, persona_id="persona-1")
+            entry = metrics.to_entry(as_of="2026-04-13")
+
+            self.assertEqual(entry["comments_total"], 1)
+            self.assertEqual(entry["unsupported_claim_rate"], 1.0)
+            self.assertNotIn("retraction_rate", entry)
+            self.assertNotIn("forecast_accuracy", entry)
+            self.assertEqual(
+                entry["unavailable_metrics"],
+                ["retraction_rate", "forecast_accuracy"],
+            )
+
     def test_first_write_creates_entry(self) -> None:
         update = apply_persona_history_update(
             current_payload=None,

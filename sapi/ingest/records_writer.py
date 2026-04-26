@@ -401,27 +401,24 @@ def _write_relation_records(
     for raw_relation in relations:
         if not isinstance(raw_relation, dict):
             raise TypeError("relations[] items must be JSON objects.")
-        try:
-            relation_payload = dict(raw_relation)
-            relation_payload["relation_type"] = _normalize_relation_type_alias(relation_payload.get("relation_type"))
-            relation_payload["src_claim_id"] = _resolve_relation_claim_endpoint(
-                relation=relation_payload,
-                endpoint_key="src_claim_id",
-                endpoint_ref_key="src_claim_ref",
-                claim_ref_map=claim_ref_map,
-                alternate_keys=("source_claim_id", "source_claim_ref", "source_claim"),
-            )
-            relation_payload["dst_claim_id"] = _resolve_relation_claim_endpoint(
-                relation=relation_payload,
-                endpoint_key="dst_claim_id",
-                endpoint_ref_key="dst_claim_ref",
-                claim_ref_map=claim_ref_map,
-                alternate_keys=("target_claim_id", "target_claim_ref", "target_claim"),
-            )
-            relation_path = write_relation(relation_payload, space_root)
-            relation_paths.append(relation_path)
-        except (TypeError, ValueError):
-            continue
+        relation_payload = dict(raw_relation)
+        relation_payload["relation_type"] = _normalize_relation_type_alias(relation_payload.get("relation_type"))
+        relation_payload["src_claim_id"] = _resolve_relation_claim_endpoint(
+            relation=relation_payload,
+            endpoint_key="src_claim_id",
+            endpoint_ref_key="src_claim_ref",
+            claim_ref_map=claim_ref_map,
+            alternate_keys=("source_claim_id", "source_claim_ref", "source_claim"),
+        )
+        relation_payload["dst_claim_id"] = _resolve_relation_claim_endpoint(
+            relation=relation_payload,
+            endpoint_key="dst_claim_id",
+            endpoint_ref_key="dst_claim_ref",
+            claim_ref_map=claim_ref_map,
+            alternate_keys=("target_claim_id", "target_claim_ref", "target_claim"),
+        )
+        relation_path = write_relation(relation_payload, space_root)
+        relation_paths.append(relation_path)
     return relation_paths
 
 
@@ -557,7 +554,7 @@ class SourceIngestResult:
     source_artifact_path: Path
     source_markdown_path: Path
     source_extraction_path: Path
-    overview_markdown_path: Path
+    source_provenance_path: Path
     front_page_image_path: Path | None
 
 
@@ -635,8 +632,8 @@ def ingest_source_artifacts_and_record(
     )
     source_extraction_path.write_text(json.dumps(source_extraction_payload, indent=2, sort_keys=True) + "\n")
 
-    overview_markdown_path = artifact_root / "overview.md"
-    overview_markdown_path.write_text(_render_overview_markdown(title=title, source_input=source_input))
+    source_provenance_path = artifact_root / "source_provenance.md"
+    source_provenance_path.write_text(_render_source_provenance_markdown(title=title, source_input=source_input))
 
     record_payload = _build_source_record_payload(
         source_id=source_id,
@@ -645,7 +642,7 @@ def ingest_source_artifacts_and_record(
         source_artifact_rel=(artifact_root_rel / source_artifact_filename),
         source_markdown_rel=(artifact_root_rel / "source.md"),
         source_extraction_rel=(artifact_root_rel / "source_extraction.json"),
-        overview_markdown_rel=(artifact_root_rel / "overview.md"),
+        source_provenance_rel=(artifact_root_rel / "source_provenance.md"),
         front_page_image_rel=(
             artifact_root_rel / front_page_image_path.name
             if front_page_image_path is not None
@@ -672,7 +669,7 @@ def ingest_source_artifacts_and_record(
         source_artifact_path=source_artifact_path,
         source_markdown_path=source_markdown_path,
         source_extraction_path=source_extraction_path,
-        overview_markdown_path=overview_markdown_path,
+        source_provenance_path=source_provenance_path,
         front_page_image_path=front_page_image_path,
     )
 
@@ -784,7 +781,7 @@ def _build_source_record_payload(
     source_artifact_rel: Path,
     source_markdown_rel: Path,
     source_extraction_rel: Path,
-    overview_markdown_rel: Path,
+    source_provenance_rel: Path,
     front_page_image_rel: Path | None,
     source_extraction: dict[str, Any],
     source_family_id: str | None,
@@ -821,7 +818,7 @@ def _build_source_record_payload(
             "source_file": str(source_artifact_rel),
             "source_markdown": str(source_markdown_rel),
             "source_extraction": str(source_extraction_rel),
-            "overview_markdown": str(overview_markdown_rel),
+            "source_provenance": str(source_provenance_rel),
             "front_page_image": str(front_page_image_rel) if front_page_image_rel is not None else None,
         },
         "analysis_policy": {
@@ -1007,10 +1004,10 @@ def _normalize_candidate_title(raw_title: str) -> str | None:
     return normalized[:200]
 
 
-def _render_overview_markdown(*, title: str, source_input: _LoadedSourceInput) -> str:
+def _render_source_provenance_markdown(*, title: str, source_input: _LoadedSourceInput) -> str:
     fingerprint = hashlib.sha256(source_input.body).hexdigest()
     return (
-        f"# {title}\n\n"
+        f"# Source Provenance: {title}\n\n"
         f"- source_id candidate derived from content fingerprint\n"
         f"- source_kind: {source_input.source_kind}\n"
         f"- source_locator: {source_input.locator}\n"
@@ -1067,11 +1064,11 @@ def _extract_source_markdown(
                 options={"input_format": "pdf", "layout": "preserve"},
             )
 
-    warnings.append("No markdown extractor produced usable source text; fallback placeholder was written.")
+    warnings.append("No markdown extractor produced usable source text.")
     return _finalize_source_markdown_extraction(
         title=title,
-        markdown_text=_fallback_source_markdown(title=title, source_input=source_input, warnings=warnings),
-        converter_name="fallback_placeholder",
+        markdown_text=f"# {title}\n",
+        converter_name="extraction_failed",
         converter_version=None,
         status="failed",
         warnings=warnings,
@@ -1183,35 +1180,12 @@ def _classify_markdown_quality(*, markdown_text: str) -> tuple[str, list[str]]:
     body = markdown_text.strip()
     if not body:
         return "unusable", ["Markdown extraction produced an empty file."]
-    if "Source markdown extraction did not produce usable analysis text." in body:
-        return "unusable", ["Markdown extraction fell back to placeholder text only."]
     content_length = len(re.sub(r"\s+", " ", body))
     if content_length < 120:
         return "unusable", ["Markdown extraction did not recover enough analysis text."]
     if content_length < 600:
         return "degraded", ["Markdown extraction recovered limited text; inspect the original artifact for tables or figures."]
     return "usable", []
-
-
-def _fallback_source_markdown(
-    *,
-    title: str,
-    source_input: _LoadedSourceInput,
-    warnings: list[str],
-) -> str:
-    bullet_rows = "\n".join(f"- {warning}" for warning in _dedupe_warnings(warnings)) or "- none"
-    return (
-        f"# {title}\n\n"
-        "Source markdown extraction did not produce usable analysis text.\n\n"
-        "## Extraction Notes\n"
-        f"- source_kind: {source_input.source_kind}\n"
-        f"- source_locator: {source_input.locator}\n"
-        f"- media_type: {source_input.media_type}\n"
-        "- preferred analysis path: inspect this record's extraction metadata, then fall back to the original artifact "
-        "for tables, figures, or layout-sensitive content.\n\n"
-        "## Warnings\n"
-        f"{bullet_rows}\n"
-    )
 
 
 def _build_source_extraction_payload(

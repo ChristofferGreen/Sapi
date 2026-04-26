@@ -493,7 +493,7 @@ def _track_source_ingest_writes_for_rollback(
     transaction.mark_create(result.source_artifact_path)
     transaction.mark_create(result.source_markdown_path)
     transaction.mark_create(result.source_extraction_path)
-    transaction.mark_create(result.overview_markdown_path)
+    transaction.mark_create(result.source_provenance_path)
     if result.front_page_image_path is not None:
         transaction.mark_create(result.front_page_image_path)
     transaction.mark_create(result.record_path)
@@ -656,8 +656,8 @@ class _MockIngestExtractionClient:
                     "That shape mirrors the production expectation that users can absorb a substantial overview "
                     "without immediately opening the primary document, while still preserving an audit trail "
                     "into canonical claim artifacts.\n\n"
-                    "This dossier is deterministic scaffold content intended to satisfy contract shape and "
-                    "rendering behavior in tests and local workflows. It prioritizes readability, explicit "
+                    "This mock-mode dossier content is emitted only under explicit --mock-llm execution and "
+                    "is intended to satisfy contract shape in tests. It prioritizes readability, explicit "
                     "boundary conditions, and stable output length over novelty so contract tests can assert "
                     "the presence of long-form commentary blocks with predictable section anchors."
                 ),
@@ -685,7 +685,7 @@ class _MockIngestExtractionClient:
                     {
                         "heading": "Evidence and Interpretation",
                         "body": (
-                            "Evidence handling in this scaffold is intentionally conservative: claims are linked "
+                            "Evidence handling in this mock-mode dossier is intentionally conservative: claims are linked "
                             "as explicit references and no new factual assertions are introduced beyond extracted "
                             "content. The goal is to demonstrate commentary structure, not to synthesize new facts."
                         ),

@@ -92,7 +92,7 @@ class SourceAcquisitionContractTests(unittest.TestCase):
             self.assertTrue(result.source_artifact_path.is_file())
             self.assertTrue(result.source_markdown_path.is_file())
             self.assertTrue(result.source_extraction_path.is_file())
-            self.assertTrue(result.overview_markdown_path.is_file())
+            self.assertTrue(result.source_provenance_path.is_file())
             self.assertTrue(str(result.source_artifact_path).startswith(str(expected_artifact_root)))
 
     def test_source_record_persists_canonical_metadata_and_relative_artifact_pointers(self) -> None:
@@ -126,9 +126,10 @@ class SourceAcquisitionContractTests(unittest.TestCase):
                 f"sources/artifacts/{result.source_id}/source_extraction.json",
             )
             self.assertEqual(
-                record["artifacts"]["overview_markdown"],
-                f"sources/artifacts/{result.source_id}/overview.md",
+                record["artifacts"]["source_provenance"],
+                f"sources/artifacts/{result.source_id}/source_provenance.md",
             )
+            self.assertNotIn("overview_markdown", record["artifacts"])
             self.assertEqual(record["analysis_policy"]["preferred_artifact"], "source_markdown")
             self.assertEqual(record["analysis_policy"]["fallback_artifacts"], ["source_file"])
             self.assertIn(record["analysis_policy"]["quality_status"], {"usable", "degraded", "unusable"})
@@ -162,6 +163,14 @@ class SourceAcquisitionContractTests(unittest.TestCase):
             self.assertEqual(record["source_media_type"], "application/pdf")
             self.assertEqual(result.source_artifact_path.name, "source.pdf")
             self.assertTrue(result.source_artifact_path.is_file())
+            self.assertNotIn("fallback placeholder", result.source_markdown_path.read_text().lower())
+            self.assertNotIn(
+                "did not produce usable " + "analysis text",
+                result.source_markdown_path.read_text().lower(),
+            )
+            source_extraction = json.loads(result.source_extraction_path.read_text())
+            self.assertEqual(source_extraction["converter_name"], "extraction_failed")
+            self.assertEqual(source_extraction["status"], "failed")
 
     def test_text_like_ingest_writes_markdown_analysis_artifact_and_provenance(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

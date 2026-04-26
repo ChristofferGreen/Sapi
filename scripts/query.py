@@ -130,11 +130,15 @@ def main() -> int:
             claims_used=claims_used,
             sources_used=sources_used,
         )
-        answer = _build_answer(
-            question=args.question,
-            mode=options.mode,
-            claims_used=claims_used,
-            sources_used=sources_used,
+        mock_answer = (
+            _build_mock_answer(
+                question=args.question,
+                mode=options.mode,
+                claims_used=claims_used,
+                sources_used=sources_used,
+            )
+            if runtime_flags.mock_llm
+            else None
         )
         query_output_root = space_root / "outputs" / "query" / query_id
         _ensure_query_output_root(query_output_root, transaction=transaction)
@@ -163,7 +167,7 @@ def main() -> int:
                 "sources_retrieved": len(sources_used),
             },
             contradictions_considered=contradictions_considered,
-            answer_fallback=answer,
+            mock_answer=mock_answer,
             warnings=warnings,
         )
         semantic_payload, llm_attempt_count = run_semantic_flow(
@@ -189,14 +193,6 @@ def main() -> int:
             include_warnings=options.include_warnings,
             max_claims=options.max_claims,
             max_sources=options.max_sources,
-            claims_used_fallback=claims_used,
-            sources_used_fallback=sources_used,
-            retrieval_counts_fallback={
-                "claims_retrieved": len(claims_used),
-                "sources_retrieved": len(sources_used),
-            },
-            contradictions_considered_fallback=contradictions_considered,
-            warnings_fallback=warnings,
             reasoning_effort=runtime_flags.llm_reasoning_effort,
             execution_mode=runtime_policy.execution_mode,
             llm_backend=runtime_flags.llm_backend,
@@ -209,7 +205,7 @@ def main() -> int:
                 query_output_root / "answer.md",
                 _render_markdown_answer(
                     question=args.question,
-                    answer=answer,
+                    answer=str(query_payload["answer"]),
                     mode=options.mode,
                     claims_used=claims_used,
                     sources_used=sources_used,
@@ -374,11 +370,6 @@ def _build_query_payload_from_semantic(
     include_warnings: bool,
     max_claims: int,
     max_sources: int,
-    claims_used_fallback: list[str],
-    sources_used_fallback: list[str],
-    retrieval_counts_fallback: dict[str, int],
-    contradictions_considered_fallback: int,
-    warnings_fallback: list[dict[str, str]],
     reasoning_effort: str,
     execution_mode: str,
     llm_backend: str,
@@ -416,30 +407,23 @@ def _build_query_payload_from_semantic(
     claims_used = _normalize_string_list(
         semantic_payload.get("claims_used"),
         field_name="query_synthesis.claims_used",
-        fallback=claims_used_fallback,
     )
     sources_used = _normalize_string_list(
         semantic_payload.get("sources_used"),
         field_name="query_synthesis.sources_used",
-        fallback=sources_used_fallback,
     )
     retrieval_counts = _normalize_retrieval_counts(
         semantic_payload.get("retrieval_counts"),
-        fallback=retrieval_counts_fallback,
     )
     contradictions_considered = _normalize_non_negative_int(
         semantic_payload.get("contradictions_considered"),
         field_name="query_synthesis.contradictions_considered",
-        fallback=contradictions_considered_fallback,
     )
     falsification_signals = _normalize_object_list(
         semantic_payload.get("falsification_signals"),
         field_name="query_synthesis.falsification_signals",
     )
-    warnings = _normalize_warning_rows(
-        semantic_payload.get("warnings"),
-        fallback=warnings_fallback,
-    )
+    warnings = _normalize_warning_rows(semantic_payload.get("warnings"))
     answer = _require_non_empty_string(
         semantic_payload.get("answer"),
         field_name="query_synthesis.answer",
@@ -542,30 +526,30 @@ def _build_warnings(
 
 def _normalize_warning_rows(
     raw: object,
-    *,
-    fallback: list[dict[str, str]],
 ) -> list[dict[str, str] | str]:
     if not isinstance(raw, list):
-        return list(fallback)
+        raise TypeError("query_synthesis.warnings must be an array.")
     normalized: list[dict[str, str] | str] = []
-    for row in raw:
+    for index, row in enumerate(raw):
         if isinstance(row, str):
             stripped = row.strip()
-            if stripped:
-                normalized.append(stripped)
+            if not stripped:
+                raise ValueError(f"query_synthesis.warnings[{index}] must be non-empty.")
+            normalized.append(stripped)
             continue
         if not isinstance(row, dict):
-            continue
+            raise TypeError(f"query_synthesis.warnings[{index}] must be an object or string.")
         code = row.get("code")
         message = row.get("message")
-        if isinstance(code, str) and code.strip() and isinstance(message, str) and message.strip():
-            normalized.append({"code": code.strip(), "message": message.strip()})
-    if normalized:
-        return normalized
-    return list(fallback)
+        if not isinstance(code, str) or not code.strip():
+            raise ValueError(f"query_synthesis.warnings[{index}].code must be non-empty.")
+        if not isinstance(message, str) or not message.strip():
+            raise ValueError(f"query_synthesis.warnings[{index}].message must be non-empty.")
+        normalized.append({"code": code.strip(), "message": message.strip()})
+    return normalized
 
 
-def _build_answer(
+def _build_mock_answer(
     *,
     question: str,
     mode: str,
@@ -578,7 +562,7 @@ def _build_answer(
             "Run ingest first, then re-run query."
         )
     return (
-        f"Query mode `{mode}` synthesized a deterministic reconstruction answer for: {question!r}. "
+        f"Mock query synthesis for `{mode}` mode answered: {question!r}. "
         f"claims_used={len(claims_used)}, sources_used={len(sources_used)}."
     )
 
@@ -587,30 +571,25 @@ def _normalize_string_list(
     raw: object,
     *,
     field_name: str,
-    fallback: list[str],
 ) -> list[str]:
     if not isinstance(raw, list):
-        return list(fallback)
+        raise TypeError(f"{field_name} must be an array.")
     values: list[str] = []
-    for item in raw:
+    for index, item in enumerate(raw):
         if not isinstance(item, str):
-            continue
+            raise TypeError(f"{field_name}[{index}] must be a string.")
         stripped = item.strip()
-        if stripped:
-            values.append(stripped)
-    if values:
-        return values
-    return list(fallback)
+        if not stripped:
+            raise ValueError(f"{field_name}[{index}] must be non-empty.")
+        values.append(stripped)
+    return values
 
 
 def _normalize_non_negative_int(
     raw: object,
     *,
     field_name: str,
-    fallback: int,
 ) -> int:
-    if raw is None:
-        return fallback
     if not isinstance(raw, int):
         raise TypeError(f"{field_name} must be an integer.")
     if raw < 0:
@@ -634,17 +613,15 @@ def _normalize_object_list(raw: object, *, field_name: str) -> list[dict[str, An
 
 def _normalize_retrieval_counts(
     raw: object,
-    *,
-    fallback: dict[str, int],
 ) -> dict[str, int]:
     if not isinstance(raw, dict):
-        return dict(fallback)
+        raise TypeError("query_synthesis.retrieval_counts must be an object.")
     claims_retrieved = raw.get("claims_retrieved")
     sources_retrieved = raw.get("sources_retrieved")
     if not isinstance(claims_retrieved, int) or claims_retrieved < 0:
-        return dict(fallback)
+        raise ValueError("query_synthesis.retrieval_counts.claims_retrieved must be >= 0.")
     if not isinstance(sources_retrieved, int) or sources_retrieved < 0:
-        return dict(fallback)
+        raise ValueError("query_synthesis.retrieval_counts.sources_retrieved must be >= 0.")
     return {
         "claims_retrieved": claims_retrieved,
         "sources_retrieved": sources_retrieved,
@@ -687,10 +664,12 @@ def _build_query_client(
     sources_used: list[str],
     retrieval_counts: dict[str, int],
     contradictions_considered: int,
-    answer_fallback: str,
+    mock_answer: str | None,
     warnings: list[dict[str, str]],
 ):
     if runtime_flags.mock_llm:
+        if mock_answer is None:
+            raise ValueError("mock_answer is required in --mock-llm query mode.")
         return _MockQuerySynthesisClient(
             question=question,
             query_id=query_id,
@@ -700,7 +679,7 @@ def _build_query_client(
             sources_used=sources_used,
             retrieval_counts=retrieval_counts,
             contradictions_considered=contradictions_considered,
-            answer_fallback=answer_fallback,
+            mock_answer=mock_answer,
             warnings=warnings,
         )
     return _LiveQuerySynthesisClient(
@@ -718,7 +697,6 @@ def _build_query_client(
         sources_used=sources_used,
         retrieval_counts=retrieval_counts,
         contradictions_considered=contradictions_considered,
-        answer_fallback=answer_fallback,
         warnings=warnings,
     )
 
@@ -735,7 +713,7 @@ class _MockQuerySynthesisClient:
         sources_used: list[str],
         retrieval_counts: dict[str, int],
         contradictions_considered: int,
-        answer_fallback: str,
+        mock_answer: str,
         warnings: list[dict[str, str]],
     ) -> None:
         self._question = question
@@ -746,13 +724,13 @@ class _MockQuerySynthesisClient:
         self._sources_used = list(sources_used)
         self._retrieval_counts = dict(retrieval_counts)
         self._contradictions_considered = contradictions_considered
-        self._answer_fallback = answer_fallback
+        self._mock_answer = mock_answer
         self._warnings = list(warnings)
 
     def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
         payload = {
             "query_id": self._query_id,
-            "answer": self._answer_fallback,
+            "answer": self._mock_answer,
             "claims_used": self._claims_used,
             "sources_used": self._sources_used,
             "retrieval_counts": self._retrieval_counts,
@@ -782,7 +760,6 @@ class _LiveQuerySynthesisClient:
         sources_used: list[str],
         retrieval_counts: dict[str, int],
         contradictions_considered: int,
-        answer_fallback: str,
         warnings: list[dict[str, str]],
     ) -> None:
         self._backend_config = backend_config
@@ -794,7 +771,6 @@ class _LiveQuerySynthesisClient:
         self._sources_used = list(sources_used)
         self._retrieval_counts = dict(retrieval_counts)
         self._contradictions_considered = contradictions_considered
-        self._answer_fallback = answer_fallback
         self._warnings = list(warnings)
 
     def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
@@ -817,7 +793,6 @@ class _LiveQuerySynthesisClient:
                     "contradictions_considered": self._contradictions_considered,
                     "warnings": self._warnings,
                 },
-                "fallback_answer_hint": self._answer_fallback,
             },
         )
 

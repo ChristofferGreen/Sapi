@@ -2979,3 +2979,104 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
     expanded `tests/unit/contracts/test_example_bundle_contract.py` to lock wrapper usage plus the
     added overview/profile resume state. Focused validation passed via the example-bundle contract
     suite.
+
+- [x] TODO-0354: Restore PR test-suite collection and stale queue contracts
+  - owner: ai
+  - created_at: 2026-04-26
+  - finished_at: 2026-04-26
+  - phase: Cross-cutting
+  - depends_on: none
+  - scope: Make `npm run test:pr` collect and execute cleanly again after the duplicate overview
+    test module name and stale open-TODO contract drift.
+  - acceptance:
+    - Resolve the `test_overview_pipeline.py` import-file mismatch without weakening test coverage.
+    - Update or retire stale TODO queue-reconstitution assertions so they match the current
+      open-task policy.
+    - `npm run test:pr` runs to completion locally or has any remaining failures documented as
+      unrelated with exact evidence.
+  - evidence: Added package markers for `tests/unit/overview`, `tests/integration`, and
+    `tests/integration/pipelines` so pytest imports same-named overview modules through stable
+    package paths. Relaxed the TODO-0309 queue-reconstitution contract to permit an intentionally
+    empty open backlog when queue sections do not list TODO IDs, and marked the default-wrapper
+    live-mode contract as `live_llm` so `npm run test:pr` remains non-live. Validation passed with
+    `npm run test:pr`.
+
+- [x] TODO-0355: Make query semantic metadata normalization fail strict
+  - owner: ai
+  - created_at: 2026-04-26
+  - finished_at: 2026-04-26
+  - phase: Cross-cutting
+  - depends_on: none
+  - scope: Tighten `scripts/query.py` so live `query_synthesis` output cannot omit or malform
+    metadata fields and receive deterministic normalization fallbacks.
+  - acceptance:
+    - `claims_used`, `sources_used`, `retrieval_counts`, `contradictions_considered`, and
+      `warnings` validation fails or repair-retries instead of silently using deterministic
+      fallbacks.
+    - `--mock-llm` remains explicitly deterministic and auditable.
+    - Regression tests cover missing/malformed semantic metadata and prove no real query output is
+      completed from fallback values.
+  - evidence: Removed deterministic metadata fallback arguments from query payload construction,
+    changed query metadata normalizers to require schema-shaped arrays/objects and nonnegative
+    integer counts, and added a regression test proving missing semantic metadata aborts without
+    leaving a query output directory. Focused query contract, artifact-mode, integration, and golden
+    snapshot tests passed.
+
+- [x] TODO-0356: Remove deterministic heuristic prose from rendered claim pages
+  - owner: ai
+  - created_at: 2026-04-26
+  - finished_at: 2026-04-26
+  - phase: Cross-cutting
+  - depends_on: none
+  - scope: Update claim-page rendering in `sapi/build/site_builder.py` so deterministic UI
+    heuristics are not presented as reader-facing explanatory prose.
+  - acceptance:
+    - Claim pages no longer render phrases such as deterministic UI heuristic, neutral fallback, or
+      equivalent semantic-looking fallback explanations.
+    - If heuristic stats remain, they are rendered as machine/debug metadata only or behind a
+      non-public/debug presentation mode.
+    - Build snapshot or contract tests assert public pages avoid deterministic heuristic prose.
+  - evidence: Public claim pages no longer render support-strength prose, score formulas, neutral
+    fallback wording, or raw missing-claim IDs in topic sections; debug mode keeps score metadata
+    explicitly labeled as debug-only. Updated build contract tests cover public absence and debug
+    visibility where appropriate. The full site-builder contract suite passed.
+
+- [x] TODO-0357: Remove placeholder profile-history metrics from user-facing outputs
+  - owner: ai
+  - created_at: 2026-04-26
+  - finished_at: 2026-04-26
+  - phase: Cross-cutting
+  - depends_on: none
+  - scope: Replace placeholder `retraction_rate` and `forecast_accuracy` defaults in
+    `sapi/profiles/history.py` with absent/unknown semantics unless backed by real signals.
+  - acceptance:
+    - Profile history records do not publish fabricated zero/default accountability metrics as if
+      measured.
+    - Profile pages omit or clearly mark unavailable accountability fields until real data exists.
+    - Unit/integration tests cover no-comments and comments-present profile history behavior.
+  - evidence: Profile history metrics now store `retraction_rate` and `forecast_accuracy` only when
+    real values are available, otherwise recording `unavailable_metrics` instead of fabricated
+    zeroes. Added a unit regression for computed histories with unavailable metrics and reran the
+    profile history plus profile pipeline integration suite successfully.
+
+- [x] TODO-0358: Reclassify deterministic source overview artifact as provenance
+  - owner: ai
+  - created_at: 2026-04-26
+  - finished_at: 2026-04-26
+  - phase: Cross-cutting
+  - depends_on: none
+  - scope: Audit `sapi/ingest/records_writer.py` source acquisition artifacts and prevent
+    `overview.md` from being mistaken for reader-facing semantic overview content.
+  - acceptance:
+    - `overview.md` is renamed, relabeled, unlinked, or otherwise clearly treated as
+      provenance/metadata rather than semantic analysis.
+    - Source records and build pages no longer expose deterministic source-acquisition metadata as
+      an overview-style reader artifact.
+    - Existing source artifact/path contracts and reference extraction behavior remain covered by
+      focused tests.
+  - evidence: Renamed the deterministic source acquisition artifact to `source_provenance.md`,
+    changed source records and projection contracts to use `source_provenance`, and removed the old
+    provenance artifact as a reference-extraction fallback. Added coverage for the new artifact key,
+    preserved original-file fallback behavior, fixed first-pass related-link enrichment to use newly
+    normalized references, and added multi-URL reference extraction coverage. Focused ingest,
+    reference-linking, and ingest integration tests passed.

@@ -29,6 +29,20 @@ class ReferenceLinkingTests(unittest.TestCase):
                 {"title", "authors", "year", "doi", "arxiv", "url", "linked_source_ids"},
             )
 
+    def test_reference_extraction_captures_multiple_urls_on_one_line(self) -> None:
+        text = (
+            "Background reading https://en.wikipedia.org/wiki/Formal_system "
+            "and discussion https://www.reddit.com/r/logic/comments/example/.\n"
+        )
+        rows = extract_normalized_references_from_text(text)
+        self.assertEqual(
+            sorted(row["url"] for row in rows),
+            [
+                "https://en.wikipedia.org/wiki/Formal_system",
+                "https://www.reddit.com/r/logic/comments/example",
+            ],
+        )
+
     def test_local_reference_matching_persists_linked_source_ids(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)

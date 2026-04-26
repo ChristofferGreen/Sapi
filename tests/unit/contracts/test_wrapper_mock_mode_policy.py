@@ -6,11 +6,14 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import pytest
+
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 class WrapperMockModePolicyTests(unittest.TestCase):
+    @pytest.mark.live_llm
     def test_wrapper_default_does_not_silently_enable_mock_mode(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             site_path = self._bootstrap_site_and_space(Path(tmp), "alpha")

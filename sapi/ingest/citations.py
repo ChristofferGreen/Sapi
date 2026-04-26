@@ -102,9 +102,9 @@ def run_reference_extraction_and_link_backfill(
         source_index=source_index,
         current_source_id=source_id,
     )
-    related_links, related_link_enrichment = _build_external_related_links(current_record)
     current_record["references"] = references_with_links
     current_record["linked_source_ids"] = _collect_linked_source_ids(references_with_links)
+    related_links, related_link_enrichment = _build_external_related_links(current_record)
     current_record["external_related_links"] = related_links
     current_record["related_link_enrichment"] = related_link_enrichment
     current_path = source_record_paths[source_id]
@@ -126,7 +126,10 @@ def run_reference_extraction_and_link_backfill(
         )
         old_linked = older_record.get("linked_source_ids")
         new_linked = _collect_linked_source_ids(relinked)
-        related_links, related_link_enrichment = _build_external_related_links(older_record)
+        relinked_record = dict(older_record)
+        relinked_record["references"] = relinked
+        relinked_record["linked_source_ids"] = new_linked
+        related_links, related_link_enrichment = _build_external_related_links(relinked_record)
         if (
             relinked != normalized_existing
             or new_linked != old_linked
@@ -159,29 +162,31 @@ def extract_normalized_references_from_text(text: str) -> list[dict[str, Any]]:
             continue
         doi = _extract_doi(line)
         arxiv = _extract_arxiv(line)
-        url = _extract_url(line)
-        if doi is None and arxiv is None and url is None:
+        urls = _extract_urls(line)
+        if doi is None and arxiv is None and not urls:
             continue
 
         year = _extract_year(line)
-        title = _extract_title(line=line, doi=doi, arxiv=arxiv, url=url, year=year)
-        if _is_metadata_reference_noise(
-            line=line,
-            title=title,
-            url=url,
-        ):
-            continue
-        rows.append(
-            {
-                "title": title,
-                "authors": [],
-                "year": year,
-                "doi": doi,
-                "arxiv": arxiv,
-                "url": url,
-                "linked_source_ids": [],
-            }
-        )
+        row_urls = urls or [None]
+        for url in row_urls:
+            title = _extract_title(line=line, doi=doi, arxiv=arxiv, url=url, year=year)
+            if _is_metadata_reference_noise(
+                line=line,
+                title=title,
+                url=url,
+            ):
+                continue
+            rows.append(
+                {
+                    "title": title,
+                    "authors": [],
+                    "year": year,
+                    "doi": doi,
+                    "arxiv": arxiv,
+                    "url": url,
+                    "linked_source_ids": [],
+                }
+            )
     return _dedupe_and_sort_references(rows)
 
 
@@ -215,13 +220,6 @@ def _read_source_text_for_analysis(*, current_record: dict[str, Any], space_root
             decoded_text = raw_bytes.decode("utf-8", errors="ignore")
             if decoded_text.strip():
                 return decoded_text
-    overview_markdown_rel = artifacts.get("overview_markdown")
-    if isinstance(overview_markdown_rel, str) and overview_markdown_rel.strip():
-        overview_markdown_path = (space_root / overview_markdown_rel).resolve()
-        if overview_markdown_path.is_file():
-            overview_text = overview_markdown_path.read_text()
-            if overview_text.strip():
-                return overview_text
     return ""
 
 
@@ -588,10 +586,19 @@ def _extract_arxiv(line: str) -> str | None:
 
 
 def _extract_url(line: str) -> str | None:
-    match = _URL_RE.search(line)
-    if match is None:
+    urls = _extract_urls(line)
+    if not urls:
         return None
-    return _normalize_url(match.group(1))
+    return urls[0]
+
+
+def _extract_urls(line: str) -> list[str]:
+    urls: list[str] = []
+    for match in _URL_RE.finditer(line):
+        url = _normalize_url(match.group(1))
+        if url is not None:
+            urls.append(url)
+    return urls
 
 
 def _extract_year(line: str) -> int | None:

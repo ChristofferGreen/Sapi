@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+from html import escape as escape_html
 import json
 import subprocess
 import tempfile
@@ -54,11 +55,34 @@ class QueryArtifactModesContractTests(unittest.TestCase):
 
                     artifact_hashes = manifest["artifact_hashes"]
                     self.assertIsInstance(artifact_hashes, dict)
+                    query_payload = json.loads((output_dir / "query.json").read_text())
+                    answer = str(query_payload["answer"])
+                    semantic_text_fragments = {
+                        answer,
+                        escape_html(answer),
+                        escape_html(answer, quote=False),
+                    }
+                    saw_semantic_answer = False
                     for relative_path, declared_hash in artifact_hashes.items():
                         artifact_path = output_dir / relative_path
                         self.assertTrue(artifact_path.is_file())
                         actual_hash = hashlib.sha256(artifact_path.read_bytes()).hexdigest()
                         self.assertEqual(declared_hash, actual_hash)
+                        artifact_text = artifact_path.read_text()
+                        self.assertNotIn("PLACEHOLDER", artifact_text)
+                        self.assertNotIn("placeholder", artifact_text.lower())
+                        self.assertNotIn("scaffold", artifact_text.lower())
+                        if relative_path.endswith(".pdf"):
+                            self.assertTrue(artifact_text.startswith("%PDF-"))
+                            answer_words = answer.split()[:5]
+                            if answer_words and all(
+                                word.encode("utf-16-be").hex().upper() in artifact_text
+                                for word in answer_words
+                            ):
+                                saw_semantic_answer = True
+                        elif any(fragment in artifact_text for fragment in semantic_text_fragments):
+                            saw_semantic_answer = True
+                    self.assertTrue(saw_semantic_answer)
 
                     artifacts = manifest["artifacts"]
                     self.assertIsInstance(artifacts, list)
@@ -135,4 +159,3 @@ def _run(cmd: list[str], *, check: bool = False) -> subprocess.CompletedProcess[
 
 if __name__ == "__main__":
     unittest.main()
-
