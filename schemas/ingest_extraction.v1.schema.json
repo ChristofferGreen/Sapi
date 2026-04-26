@@ -229,7 +229,153 @@
       }
     },
     "relations": {
-      "type": "array"
+      "type": "array",
+      "description": "Semantic claim relations. Endpoint fields must be claim refs or canonical claim IDs; do not emit generic src/dst/type keys.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "relation_type"
+        ],
+        "allOf": [
+          {
+            "anyOf": [
+              {
+                "required": [
+                  "src_claim_ref"
+                ]
+              },
+              {
+                "required": [
+                  "src_claim_id"
+                ]
+              },
+              {
+                "required": [
+                  "source_claim_ref"
+                ]
+              },
+              {
+                "required": [
+                  "source_claim_id"
+                ]
+              },
+              {
+                "required": [
+                  "source_claim"
+                ]
+              }
+            ]
+          },
+          {
+            "anyOf": [
+              {
+                "required": [
+                  "dst_claim_ref"
+                ]
+              },
+              {
+                "required": [
+                  "dst_claim_id"
+                ]
+              },
+              {
+                "required": [
+                  "target_claim_ref"
+                ]
+              },
+              {
+                "required": [
+                  "target_claim_id"
+                ]
+              },
+              {
+                "required": [
+                  "target_claim"
+                ]
+              }
+            ]
+          }
+        ],
+        "properties": {
+          "relation_type": {
+            "type": "string",
+            "enum": [
+              "supports",
+              "derived_from",
+              "falsifies",
+              "contradictory",
+              "similar"
+            ]
+          },
+          "src_claim_ref": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Source endpoint as an extracted claim index, claim_key, or claim_id."
+          },
+          "dst_claim_ref": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Target endpoint as an extracted claim index, claim_key, or claim_id."
+          },
+          "src_claim_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dst_claim_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_claim_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_claim_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_claim_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_claim_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "contradiction_confidence_band": {
+            "type": "string",
+            "minLength": 1
+          },
+          "below_040_streak": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "last_evaluated_run_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          }
+        }
+      }
     },
     "summary": {
       "type": "string"

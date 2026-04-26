@@ -51,6 +51,46 @@ class IngestExtractionCanonicalWriteTests(unittest.TestCase):
             self.assertFalse((space_root / "claims").exists())
             self.assertFalse((space_root / "relations").exists())
 
+    def test_relation_outputs_with_generic_src_dst_fail_schema_before_writes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root, source_id = self._bootstrap_source(Path(tmp))
+            run_id = "run-invalid-relation-shape"
+
+            invalid_semantic_output = {
+                "source_date_inference": None,
+                "source": {
+                    "display_title": "Invalid Relation Shape Source",
+                },
+                "claims": [
+                    {"text": "Alpha supports beta."},
+                    {"text": "Beta follows from alpha."},
+                ],
+                "relations": [
+                    {
+                        "type": "supports",
+                        "src": "0",
+                        "dst": "1",
+                    }
+                ],
+                "summary": "This extraction uses a generic relation shape that must be rejected.",
+                "source_dossier": self._default_source_dossier(),
+                "warnings": [],
+            }
+
+            with self.assertRaises(SemanticFlowError):
+                run_ingest_extraction_and_persist_canonical(
+                    space_root=space_root,
+                    source_id=source_id,
+                    run_id=run_id,
+                    llm_client=_StaticSemanticClient(invalid_semantic_output),
+                    max_repair_loops=0,
+                )
+
+            semantic_path = space_root / "runs" / run_id / "semantic" / "ingest_extraction.json"
+            self.assertFalse(semantic_path.exists())
+            self.assertFalse((space_root / "claims").exists())
+            self.assertFalse((space_root / "relations").exists())
+
     def test_canonical_claim_and_relation_writes_follow_id_and_path_contracts(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root, source_id = self._bootstrap_source(Path(tmp))

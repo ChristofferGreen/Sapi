@@ -71,6 +71,12 @@ Generate one strict JSON object for ingest extraction at `output_json_path`.
   - acceptable: measurement values/statistics, theorem/proof steps, equations, formal derivations, table/figure findings
   - avoid repeating the claim text itself or generic narrative summaries (`the paper claims...`)
   - if no concrete evidence artifact is available, prefer an empty list over low-quality filler
+- `relations` MAY be empty, but when relation objects are emitted they MUST use the canonical relation shape:
+  - `relation_type`: one of `supports`, `derived_from`, `falsifies`, `contradictory`, `similar`
+  - `src_claim_ref` and `dst_claim_ref`: references to extracted claims by index, `claim_key`, or `claim_id`
+  - use `src_claim_id`/`dst_claim_id` only when you already know canonical claim IDs from context
+  - do not emit generic `type`, `src`, or `dst` keys; those are invalid for this schema
+  - optional `rationale` may explain the relation in one concise sentence
 
 ## Schema-Repair Instructions
 - If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
@@ -100,7 +106,14 @@ Generate one strict JSON object for ingest extraction at `output_json_path`.
       "source_id": ""
     }
   ],
-  "relations": [],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "0",
+      "dst_claim_ref": "1",
+      "rationale": ""
+    }
+  ],
   "summary": "",
   "warnings": [],
   "source_dossier": {
