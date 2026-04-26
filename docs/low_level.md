@@ -666,7 +666,7 @@ Tracing/runtime controls:
 - support runtime flags: `--verbose`, `--llm-trace`, `--llm-trace-dir`, `--trace-llm-io`, `--llm-timeout-secs`
 - support LLM/runtime flags: `--llm-backend`, `--llm-model`, `--llm-reasoning-effort`, `--mock-llm`
 - live semantic execution is Codex-only (`--llm-backend codex`); non-codex backend values are invalid in live mode
-- default live model is read from `config/llm.json` (`default_live_model`); default reasoning is `high`
+- default live model is read from `config/llm.json` (`default_live_model`); default reasoning is read from `config/llm.json` (`default_live_reasoning_effort`)
 - default live timeout is disabled (`--llm-timeout-secs none`)
 - when tracing is enabled, persist prompt/context/response/meta trace artifacts under site outputs
 

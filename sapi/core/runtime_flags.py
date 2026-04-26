@@ -6,16 +6,19 @@ import argparse
 from dataclasses import dataclass
 from typing import Any
 
-from sapi.core.runtime_config import DEFAULT_LIVE_LLM_MODEL
+from sapi.core.runtime_config import (
+    DEFAULT_LIVE_LLM_MODEL,
+    DEFAULT_LIVE_LLM_REASONING_EFFORT,
+    LLM_REASONING_EFFORT_CHOICES,
+)
 
 
 DEFAULT_LLM_BACKEND = "codex"
 DEFAULT_LLM_MODEL = DEFAULT_LIVE_LLM_MODEL
-DEFAULT_LLM_REASONING_EFFORT = "high"
+DEFAULT_LLM_REASONING_EFFORT = DEFAULT_LIVE_LLM_REASONING_EFFORT
 DEFAULT_LLM_TIMEOUT_SECS: int | None = None
 DEFAULT_WARNING_BUDGET = 200
 
-LLM_REASONING_EFFORT_CHOICES: tuple[str, ...] = ("low", "medium", "high", "xhigh")
 RUN_SEARCH_VISIBILITY_CHOICES: tuple[str, ...] = ("auto", "on", "off")
 SITE_PRESENTATION_MODE_CHOICES: tuple[str, ...] = ("public", "debug")
 

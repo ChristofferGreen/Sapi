@@ -23,9 +23,14 @@ class RuntimeFlagDefaultsDocsParityTests(unittest.TestCase):
             readme_text,
         )
         self.assertEqual(runtime_flags.DEFAULT_LLM_MODEL, runtime_config.DEFAULT_LIVE_LLM_MODEL)
+        self.assertIn(
+            "- `--llm-reasoning-effort` from `config/llm.json` "
+            "(`default_live_reasoning_effort`)",
+            readme_text,
+        )
         self.assertEqual(
-            _extract_flag_value(readme_text, "--llm-reasoning-effort"),
             runtime_flags.DEFAULT_LLM_REASONING_EFFORT,
+            runtime_config.DEFAULT_LIVE_LLM_REASONING_EFFORT,
         )
         self.assertEqual(
             _extract_optional_timeout_value(readme_text, "--llm-timeout-secs"),

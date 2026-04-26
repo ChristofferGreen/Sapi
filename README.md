@@ -94,7 +94,7 @@ Runtime/control flag defaults and forwarding:
 - defaults:
   - `--llm-backend codex`
   - `--llm-model` from `config/llm.json` (`default_live_model`)
-  - `--llm-reasoning-effort high`
+  - `--llm-reasoning-effort` from `config/llm.json` (`default_live_reasoning_effort`)
   - `--llm-timeout-secs none`
   - `--warning-budget 200`
 - invalid tracing combination guard:

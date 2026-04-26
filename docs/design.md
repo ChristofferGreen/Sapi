@@ -1660,7 +1660,7 @@ High-signal CLI runtime flags:
 - legacy test/debug gates MUST be exposed as explicit CLI flags (if kept) and MUST NOT trigger deterministic fallback semantics in production/operator mode.
 - tests/local contract checks that need non-live execution MUST use `--mock-llm` while preserving schema/output contracts.
 - advanced comment controls (if implemented) SHOULD be explicit CLI flags.
-- live semantic defaults SHOULD be `--llm-backend codex`, `--llm-model` from `config/llm.json` (`default_live_model`), and `--llm-reasoning-effort high`.
+- live semantic defaults SHOULD be `--llm-backend codex`, `--llm-model` from `config/llm.json` (`default_live_model`), and `--llm-reasoning-effort` from `config/llm.json` (`default_live_reasoning_effort`).
 - live semantic timeout SHOULD default to disabled (`--llm-timeout-secs none`) so operator runs wait until the
   live child finishes or fails explicitly.
 - backend/model defaults are deployment/runtime policy and SHOULD be changed via CLI/wrapper config rather than by editing non-negotiable semantic contracts.

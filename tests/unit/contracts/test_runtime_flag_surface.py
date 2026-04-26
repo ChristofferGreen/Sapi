@@ -12,7 +12,10 @@ import scripts.evaluate_source as evaluate_source_entrypoint
 import scripts.generate_profiles as generate_profiles_entrypoint
 import scripts.ingest_source as ingest_source_entrypoint
 import scripts.query as query_entrypoint
-from sapi.core.runtime_config import DEFAULT_LIVE_LLM_MODEL
+from sapi.core.runtime_config import (
+    DEFAULT_LIVE_LLM_MODEL,
+    DEFAULT_LIVE_LLM_REASONING_EFFORT,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -110,7 +113,10 @@ class RuntimeFlagSurfaceContractTests(unittest.TestCase):
                 args = parser.parse_args(argv)
                 self.assertEqual(args.llm_backend, "codex")
                 self.assertEqual(args.llm_model, DEFAULT_LIVE_LLM_MODEL)
-                self.assertEqual(args.llm_reasoning_effort, "high")
+                self.assertEqual(
+                    args.llm_reasoning_effort,
+                    DEFAULT_LIVE_LLM_REASONING_EFFORT,
+                )
                 self.assertIsNone(args.llm_timeout_secs)
                 self.assertEqual(args.warning_budget, 200)
                 self.assertEqual(args.run_search_visibility, "auto")
