@@ -32,7 +32,6 @@ BOOTSTRAP_DONE=0
 INGEST_INDEX=0
 OVERVIEW_INDEX=0
 COMMENT_INDEX=0
-PROFILE_INDEX=0
 DONE=0
 CURRENT_STEP=none
 LAST_FAILED_STEP=none
@@ -46,7 +45,6 @@ BOOTSTRAP_DONE=$BOOTSTRAP_DONE
 INGEST_INDEX=$INGEST_INDEX
 OVERVIEW_INDEX=$OVERVIEW_INDEX
 COMMENT_INDEX=$COMMENT_INDEX
-PROFILE_INDEX=$PROFILE_INDEX
 DONE=$DONE
 CURRENT_STEP=$CURRENT_STEP
 LAST_FAILED_STEP=$LAST_FAILED_STEP
@@ -351,17 +349,6 @@ while [[ $COMMENT_INDEX -lt ${#COMMENT_PAGE_ROWS[@]} ]]; do
       --count "$COMMENT_COUNT" \
       --verbose
   COMMENT_INDEX=$((COMMENT_INDEX + 1))
-  write_status
-done
-
-while [[ $PROFILE_INDEX -lt ${#WORK_SPACES[@]} ]]; do
-  space_slug="${WORK_SPACES[$PROFILE_INDEX]}"
-  run_step "profiles-${space_slug}" \
-    bash "$REPO_ROOT/generate_profiles.sh" \
-      "$SITE_PATH" \
-      "$space_slug" \
-      --verbose
-  PROFILE_INDEX=$((PROFILE_INDEX + 1))
   write_status
 done
 

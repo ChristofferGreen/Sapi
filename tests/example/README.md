@@ -4,7 +4,7 @@ This directory contains a resumable example-site runner and the PDF set it inges
 
 Files:
 
-- `run_example_site.sh`: creates an example site at a caller-provided path, ingests the bundled PDFs in order, generates overviews for the seeded subspaces, generates comments after ingest completes, and finishes by generating persona profiles.
+- `run_example_site.sh`: creates an example site at a caller-provided path, ingests the bundled PDFs in order, generates overviews for the seeded subspaces, and generates comments after ingest completes. User/profile pages use the checked-in 100-persona catalog and images.
 - `subspaces.tsv`: parent-space and subspace structure for the example site.
 - `ingest_plan.tsv`: ordered ingest plan. Each row maps one target subspace to one bundled PDF.
 - `pdfs/`: the PDFs to ingest. These are stored as symlinks to the verified seed PDFs under `verification/reingest_seed_pdfs`.
@@ -19,7 +19,7 @@ Runtime state:
 
 Resume behavior:
 
-- The status file stores the next ingest index, next overview index, next comment index, and next profile index.
+- The status file stores the next ingest index, next overview index, and next comment index.
 - The status file also records the in-flight step and attempt count for timeout retries.
-- If a run fails, fix the issue and rerun the same command. Ingest resumes from the next PDF, overviews resume from the next subspace, comments resume from the next page target, and profiles resume from the next subspace.
+- If a run fails, fix the issue and rerun the same command. Ingest resumes from the next PDF, overviews resume from the next subspace, and comments resume from the next page target.
 - To restart from scratch, remove the target site directory or delete `<site_path>/example_runner/status.env`.
