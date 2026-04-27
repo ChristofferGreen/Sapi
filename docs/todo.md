@@ -171,7 +171,9 @@ Cross-cutting docs backlog:
   - scope: Add an optional semantic flow that decides whether a newly ingested document is certainly a revision of an existing source when the user did not explicitly specify a revision target.
   - acceptance:
     - A canonical `source_revision_detection` semantic flow, schema, generation spec, and run-envelope key are registered.
-    - Ingest selects bounded candidate existing sources, invokes the detection flow only when candidates exist, and links as a revision only when the model returns a schema-valid certain revision decision for one candidate.
+    - Ingest selects bounded candidate existing sources for prompt size only; deterministic candidate scoring never merges sources or creates a semantic revision judgment.
+    - The detection prompt defaults to the new and candidate `source.md` artifacts plus `source_extraction.json` metadata, and only asks the model to inspect the original PDF/binary when markdown quality is degraded or insufficient.
+    - Ingest invokes the detection flow only when candidates exist and links as a revision only when the model returns a schema-valid certain revision decision for one candidate.
     - Uncertain, negative, invalid, or non-candidate decisions leave the new document as an independent source.
     - Mock mode and deterministic code paths do not fabricate user-facing revision decisions.
     - Semantic invocation accounting includes the optional detection flow only when it actually runs.
@@ -186,6 +188,7 @@ Cross-cutting docs backlog:
   - acceptance:
     - Source records can store canonical revision-family metadata, including family id, revision order, latest status, supersedes, and superseded-by relationships.
     - Ingest supports an explicit `--revises-source-id` operator input through the direct entrypoint and repo-root helper path, and this path skips LLM revision detection.
+    - `--revises-source-id` and existing `--source-family-id` behavior have a documented precedence or fail-fast conflict rule, with tests for the chosen rule.
     - Revision family manifests are written under a canonical path and updated transactionally with affected source records.
     - Missing, malformed, self-referential, or cross-space revision targets fail fast before semantic ingest output is committed.
     - Existing source records without revision metadata remain valid and continue to ingest/build unchanged.
@@ -199,6 +202,7 @@ Cross-cutting docs backlog:
   - acceptance:
     - `docs/design.md` defines source revisions, revision families, explicit operator revision input, LLM-assisted certain-only detection, and the new-source fallback rule.
     - `docs/low_level.md` defines storage paths, source record keys, manifest shape, transaction expectations, semantic flow ownership, and wrapper/entrypoint contracts.
-    - Contract tests or schema-inventory tests are updated so new revision schemas/specs cannot drift from docs.
+    - The contract separates deterministic candidate shortlisting from semantic revision judgment and requires markdown-first source reading for any model-based revision decision.
+    - The contract identifies which follow-up TODO owns each runtime, schema/spec, rendering, and validation change so implementation tasks do not overlap.
     - The contract states that only a certain model decision or explicit CLI input may merge a new ingest into an existing source family.
   - notes: source versioning should preserve backward compatibility for existing single-version sources.
