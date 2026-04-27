@@ -47,7 +47,7 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. TODO-0340 - Define canonical source revision contracts
+1. `TODO-0340` - Define canonical source revision contracts
 
 ### Immediate Next 10 (After Ready Now)
 
