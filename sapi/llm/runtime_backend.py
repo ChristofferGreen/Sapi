@@ -6,6 +6,7 @@ from dataclasses import dataclass
 import json
 import os
 from pathlib import Path
+import re
 import signal
 import subprocess
 import sys
@@ -18,6 +19,10 @@ from sapi.llm.client import SemanticLlmRequest
 
 DEFAULT_CODEX_MODEL = DEFAULT_LIVE_LLM_MODEL
 _MAX_ERROR_TAIL_CHARS = 4000
+_DISALLOWED_CODE_COMMAND_RE = re.compile(
+    r"\b(?:python(?:3(?:\.\d+)?)?|node|ruby|perl|jq)\b\s+(?:-|<<|-[A-Za-z]|[^;&|]*\.(?:py|js|mjs|rb|pl)\b)",
+    re.IGNORECASE,
+)
 
 
 @dataclass(frozen=True)
@@ -73,12 +78,12 @@ def _build_prompt(*, request: SemanticLlmRequest, task_context: dict[str, Any] |
         "Use filesystem evidence from context_paths/context_by_path and task_context.",
         "Do not use or follow external skills, skill files, or preset workflows.",
         "Do not run broad exploratory workflows; read only the provided context files needed to answer.",
-        "Write exactly one JSON object to output_json_path on disk (UTF-8).",
-        "Create parent directories if needed and overwrite output_json_path if it exists.",
-        "Do not use apply_patch or patch-style edits for output_json_path.",
-        "Write output_json_path directly in one step with a shell redirect or short script.",
-        "Do not probe whether output_json_path exists before writing; just overwrite it.",
-        "Do not modify any other files.",
+        "Return exactly one JSON object as your final response.",
+        "Do not write output_json_path yourself; the caller validates and persists your final JSON.",
+        "Do not create, modify, overwrite, or delete any files.",
+        "Do not use shell, Python, Node, jq, or other code to construct, transform, dump, or validate the semantic JSON.",
+        "You may use simple read-only file inspection commands for context, such as rg, sed, head, tail, nl, wc, ls, or cat.",
+        "Do not inspect output_json_path and do not mention filesystem write status.",
         "Do not wrap JSON in markdown or code fences.",
     ]
     return (
@@ -95,7 +100,6 @@ def _generate_with_codex(
     output_json_path: Path,
     add_dirs: list[Path],
 ) -> str:
-    output_json_path.parent.mkdir(parents=True, exist_ok=True)
     model = backend_config.model.strip() or DEFAULT_CODEX_MODEL
     reasoning_effort = backend_config.reasoning_effort.strip() or "high"
     command = [
@@ -103,7 +107,7 @@ def _generate_with_codex(
         "exec",
         "--json",
         "--sandbox",
-        "workspace-write",
+        "read-only",
         "--model",
         model,
         "-c",
@@ -184,13 +188,12 @@ def _generate_with_codex(
             f"{return_code}: {_tail(''.join(stderr_chunks))}"
         )
 
-    if not output_json_path.is_file():
-        raise RuntimeError(
-            "Codex semantic generation completed but did not write output_json_path "
-            f"`{output_json_path}`."
-        )
-
-    raw_output = output_json_path.read_text()
+    stdout_text = "".join(stdout_chunks)
+    _reject_disallowed_semantic_commands(
+        stdout_text=stdout_text,
+        output_json_path=output_json_path,
+    )
+    raw_output = _extract_final_agent_message(stdout_text=stdout_text)
     _require_json_object(raw_output=raw_output, output_json_path=output_json_path)
     return raw_output
 
@@ -240,14 +243,65 @@ def _require_json_object(*, raw_output: str, output_json_path: Path) -> None:
         parsed = json.loads(raw_output)
     except json.JSONDecodeError as exc:
         raise RuntimeError(
-            "Codex wrote invalid JSON to output_json_path "
+            "Codex returned invalid semantic JSON for output_json_path "
             f"`{output_json_path}`: {exc.msg}."
         ) from exc
     if not isinstance(parsed, dict):
         raise RuntimeError(
-            "Codex semantic output must be a JSON object at output_json_path "
+            "Codex semantic output must be a JSON object for output_json_path "
             f"`{output_json_path}`."
         )
+
+
+def _extract_final_agent_message(*, stdout_text: str) -> str:
+    final_message: str | None = None
+    for line in stdout_text.splitlines():
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(event, dict):
+            continue
+        item = event.get("item")
+        if not isinstance(item, dict):
+            continue
+        if item.get("type") != "agent_message":
+            continue
+        text = item.get("text")
+        if isinstance(text, str) and text.strip():
+            final_message = text.strip()
+    if final_message is None:
+        raise RuntimeError(
+            "Codex semantic generation completed without a final agent JSON message: "
+            f"{_tail(stdout_text)}"
+        )
+    return final_message
+
+
+def _reject_disallowed_semantic_commands(*, stdout_text: str, output_json_path: Path) -> None:
+    output_path_text = str(output_json_path)
+    disallowed_fragments = ("json.dump", "json.dumps", "write_text", output_path_text)
+    for line in stdout_text.splitlines():
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(event, dict):
+            continue
+        item = event.get("item")
+        if not isinstance(item, dict) or item.get("type") != "command_execution":
+            continue
+        command = item.get("command")
+        if not isinstance(command, str):
+            continue
+        lowered = command.lower()
+        if _DISALLOWED_CODE_COMMAND_RE.search(command) or any(
+            fragment.lower() in lowered for fragment in disallowed_fragments
+        ):
+            raise RuntimeError(
+                "Codex semantic generation attempted a disallowed command while "
+                f"constructing JSON for `{output_json_path}`."
+            )
 
 
 def _tail(text: str, *, max_chars: int = _MAX_ERROR_TAIL_CHARS) -> str:

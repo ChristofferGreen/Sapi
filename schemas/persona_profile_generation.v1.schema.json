@@ -13,7 +13,19 @@
   "properties": {
     "persona_id": {"type": "string"},
     "space_name": {"type": "string"},
-    "profile_sections": {"type": "array"},
+    "profile_sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "content"],
+        "properties": {
+          "title": {"type": "string", "minLength": 1},
+          "content": {"type": "string", "minLength": 1}
+        }
+      }
+    },
     "profile_image_path": {"type": ["string", "null"]},
     "accountability_summary": {"type": "string"}
   }
