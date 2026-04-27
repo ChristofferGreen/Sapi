@@ -13,6 +13,7 @@ from tests.conftest import (
     assert_run_frontmatter_fields,
     bootstrap_site_and_space,
     latest_run_directory,
+    run_directories,
     run_command,
     write_source_fixture,
 )
@@ -267,27 +268,191 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
             )
             self.assertEqual(semantic_payload["matched_source_id"], first_source_id)
 
+    def test_live_revision_detection_uncertain_candidate_remains_independent(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            first_source_path = write_source_fixture(
+                tmp_root,
+                filename="near-miss-v1.txt",
+                content="near miss revision fixture v1\n",
+            )
+            first_result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(first_source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Near Miss Revision Fixture",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(first_result.returncode, 0, msg=first_result.stderr)
+            first_source_id = sorted((space_root / "sources" / "records").glob("source-*.json"))[0].stem
 
-def _fake_codex_revision_script(*, matched_source_id: str) -> str:
+            detection_payload = {
+                "decision": "uncertain",
+                "certainty": False,
+                "matched_source_id": None,
+                "candidate_source_ids": [first_source_id],
+                "rationale": "The sources share title tokens but no version marker or identifier proves a revision.",
+                "evidence": ["This fake near-miss keeps the new source independent."],
+            }
+            fake_bin = tmp_root / "bin"
+            fake_bin.mkdir()
+            fake_codex = fake_bin / "codex"
+            fake_codex.write_text(
+                _fake_codex_revision_script(
+                    matched_source_id=first_source_id,
+                    detection_payload=detection_payload,
+                )
+            )
+            fake_codex.chmod(0o755)
+
+            second_source_path = write_source_fixture(
+                tmp_root,
+                filename="near-miss-v2.txt",
+                content="near miss revision fixture v2\n",
+            )
+            env = dict(os.environ)
+            env["PATH"] = str(fake_bin) + os.pathsep + env.get("PATH", "")
+            second_result = subprocess.run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(second_source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Near Miss Revision Fixture Updated",
+                    "--llm-model",
+                    "gpt-5.5",
+                    "--llm-reasoning-effort",
+                    "high",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                env=env,
+            )
+            self.assertEqual(second_result.returncode, 0, msg=second_result.stderr)
+
+            source_records = sorted((space_root / "sources" / "records").glob("source-*.json"))
+            self.assertEqual(len(source_records), 2)
+            records_by_id = {path.stem: json.loads(path.read_text()) for path in source_records}
+            self.assertNotIn("source_revision", records_by_id[first_source_id])
+            second_source_id = next(source_id for source_id in records_by_id if source_id != first_source_id)
+            self.assertNotIn("source_revision", records_by_id[second_source_id])
+            self.assertFalse(list((space_root / "sources" / "versions").glob("*.json")))
+
+            frontmatter = assert_run_frontmatter_fields(
+                latest_run_directory(space_root) / "run.md",
+                expected_fields={
+                    "execution_mode": "live_llm",
+                    "semantic_flows": [
+                        "source_revision_detection",
+                        "ingest_extraction",
+                        "topic_generation",
+                    ],
+                },
+            )
+            self.assertEqual(frontmatter["semantic_flow_invocation_counts"]["source_revision_detection"], 1)
+            self.assertIn("source_revision_detection_decision=uncertain", second_result.stdout)
+            self.assertNotIn("source_family_id=", second_result.stdout)
+
+    def test_explicit_revision_failure_rolls_back_records_and_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            first_source_path = write_source_fixture(
+                tmp_root,
+                filename="rollback-v1.txt",
+                content="rollback revision fixture v1\n",
+            )
+            first_result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(first_source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Rollback Revision Fixture",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(first_result.returncode, 0, msg=first_result.stderr)
+            first_record_path = sorted((space_root / "sources" / "records").glob("source-*.json"))[0]
+            first_source_id = first_record_path.stem
+            original_first_record_text = first_record_path.read_text()
+            original_run_dirs = [path.name for path in run_directories(space_root)]
+
+            second_source_path = write_source_fixture(
+                tmp_root,
+                filename="rollback-v2.txt",
+                content="rollback revision fixture v2\n",
+            )
+            second_result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(second_source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Rollback Revision Fixture Updated",
+                    "--revises-source-id",
+                    first_source_id,
+                    "--simulate-terminal-failure",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(second_result.returncode, 1)
+            self.assertIn("Simulated terminal ingest failure", second_result.stderr)
+            self.assertEqual([path.name for path in run_directories(space_root)], original_run_dirs)
+            self.assertEqual(first_record_path.read_text(), original_first_record_text)
+            self.assertEqual(
+                [path.stem for path in sorted((space_root / "sources" / "records").glob("source-*.json"))],
+                [first_source_id],
+            )
+            self.assertFalse(list((space_root / "sources" / "versions").glob("*.json")))
+
+
+def _fake_codex_revision_script(
+    *,
+    matched_source_id: str,
+    detection_payload: dict[str, object] | None = None,
+) -> str:
+    payload = detection_payload or {
+        "decision": "revision",
+        "certainty": True,
+        "matched_source_id": matched_source_id,
+        "candidate_source_ids": [matched_source_id],
+        "rationale": "The fake live canary marks the candidate as a certain revision.",
+        "evidence": ["The candidate id was provided by deterministic shortlisting."],
+    }
+    detection_payload_json = json.dumps(payload, sort_keys=True)
     return f"""#!/usr/bin/env python3
 import json
 import re
 import sys
 
 prompt = sys.stdin.read()
+DETECTION_PAYLOAD = json.loads({json.dumps(detection_payload_json)})
 
 def emit(payload):
     print(json.dumps({{"item": {{"type": "agent_message", "text": json.dumps(payload)}}}}))
 
 if '"flow_key": "source_revision_detection"' in prompt:
-    emit({{
-        "decision": "revision",
-        "certainty": True,
-        "matched_source_id": {matched_source_id!r},
-        "candidate_source_ids": [{matched_source_id!r}],
-        "rationale": "The fake live canary marks the candidate as a certain revision.",
-        "evidence": ["The candidate id was provided by deterministic shortlisting."]
-    }})
+    emit(DETECTION_PAYLOAD)
 elif '"flow_key": "ingest_extraction"' in prompt:
     match = re.search(r'"must_include_source_id":\\s*"([^"]+)"', prompt)
     source_id = match.group(1) if match else "source-live-fixture--0123456789ab"
