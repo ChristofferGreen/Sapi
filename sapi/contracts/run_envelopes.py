@@ -13,6 +13,7 @@ from sapi.contracts.ids import RFC3339_UTC_RE
 SemanticFlowKey = Literal[
     "ingest_extraction",
     "topic_generation",
+    "source_revision_detection",
     "query_synthesis",
     "comment_section_generation",
     "persona_profile_generation",
@@ -32,6 +33,7 @@ RunStatus = Literal["pending", "success", "success_with_warnings", "failed", "ab
 _SEMANTIC_FLOW_KEYS: set[str] = {
     "ingest_extraction",
     "topic_generation",
+    "source_revision_detection",
     "query_synthesis",
     "comment_section_generation",
     "persona_profile_generation",

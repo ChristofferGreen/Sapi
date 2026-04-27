@@ -77,6 +77,12 @@ FLOW_MAP: dict[str, SemanticSpecMapEntry] = {
         schema_relpath="schemas/topic_generation.v1.schema.json",
         output_json_path_template="<space_root>/runs/<run_id>/semantic/topic_generation.json",
     ),
+    "source_revision_detection": SemanticSpecMapEntry(
+        flow_key="source_revision_detection",
+        spec_relpath="ai_flows/generation_specs/source_revision_detection.v1.md",
+        schema_relpath="schemas/source_revision_detection.v1.schema.json",
+        output_json_path_template="<space_root>/runs/<run_id>/semantic/source_revision_detection.json",
+    ),
     "query_synthesis": SemanticSpecMapEntry(
         flow_key="query_synthesis",
         spec_relpath="ai_flows/generation_specs/query_synthesis.v1.md",

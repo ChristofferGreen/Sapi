@@ -35,6 +35,31 @@ class IngestModeHandlingTests(unittest.TestCase):
                     self.assertNotEqual(result.returncode, 0)
                     self.assertIn("unrecognized arguments", result.stderr)
 
+    def test_revises_source_id_conflicts_with_source_family_id(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = _bootstrap_site_and_space(tmp_root, "alpha")
+            source_path = tmp_root / "source.txt"
+            source_path.write_text("revision conflict mode\n")
+
+            result = _run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--revises-source-id",
+                    "source-existing--aaaaaaaaaaaa",
+                    "--source-family-id",
+                    "source-family-existing",
+                    "--mock-llm",
+                ]
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("cannot be combined", result.stderr)
+
     def test_deferred_build_runs_write_trackable_deferred_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)

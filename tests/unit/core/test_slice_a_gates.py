@@ -47,6 +47,31 @@ class SliceAGatesTests(unittest.TestCase):
         )
         self.assertEqual(validate_ingest_run_frontmatter(frontmatter), [])
 
+    def test_validate_ingest_run_frontmatter_accepts_revision_detection_prefix(self) -> None:
+        frontmatter = _base_frontmatter(
+            flow_key="ingest_pipeline",
+            semantic_flows=["source_revision_detection", "ingest_extraction", "topic_generation"],
+            semantic_flow_invocation_counts={
+                "source_revision_detection": 1,
+                "ingest_extraction": 1,
+                "topic_generation": 1,
+            },
+        )
+        frontmatter.update(
+            {
+                "ingest_scope": "space",
+                "source_ids": ["source-a"],
+                "claims_changed": 1,
+                "relations_changed": 1,
+                "topic_pages_changed": 1,
+                "build_deferred": False,
+                "deferred_build_reason": None,
+                "force_mode": False,
+                "rollback_skipped": False,
+            }
+        )
+        self.assertEqual(validate_ingest_run_frontmatter(frontmatter), [])
+
     def test_validate_query_run_frontmatter_reports_missing_required_fields(self) -> None:
         frontmatter = _base_frontmatter(
             flow_key="query_pipeline",

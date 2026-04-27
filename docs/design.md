@@ -80,13 +80,13 @@ Use this table to track active architecture decisions without losing contract li
 - every LLM generation flow MUST be driven by a checked-in markdown generation spec.
 - generation specs MUST declare, at minimum: schema location, output JSON path, and filesystem context pointers used as evidence/input.
 - LLM outputs for generation flows MUST be strict JSON that validates against the referenced schema.
-- covered semantic LLM flows include ingest extraction, topic generation, query synthesis, comment section generation, and persona profile page generation; each MUST have a checked-in generation spec.
+- covered semantic LLM flows include ingest extraction, topic generation, source revision detection, query synthesis, comment section generation, persona profile page generation, and space overview generation; each MUST have a checked-in generation spec.
 - optional markdown rendering from generated JSON MUST be deterministic and MUST NOT invoke an LLM.
 - static site HTML rendering MUST use canonical JSON artifacts as input and MUST NOT invoke an LLM.
 
 ### 2.1 Unified semantic generation algorithm (normative)
 
-This algorithm applies identically to semantic JSON generation only across every semantic flow (ingest extraction, topic generation, query synthesis, comment section generation, and persona profile page generation).
+This algorithm applies identically to semantic JSON generation only across every semantic flow (ingest extraction, topic generation, source revision detection, query synthesis, comment section generation, persona profile page generation, and space overview generation).
 
 1. choose the flow-specific generation spec markdown file from the repository using the mapping contract in Section 4.1.3.
 2. resolve from spec: `schema_path`, `output_json_path`, and `context_paths[]` (for example `sources/`, `topics/`, `comments/`, prior run outputs).
@@ -105,6 +105,7 @@ Semantic-output vs canonical-write contract (normative):
 - canonical-write mapping by flow:
   - `ingest_extraction`: semantic output at `runs/<run_id>/semantic/ingest_extraction.json`; canonical writes under `sources/`, `claims/`, and `relations/`.
   - `topic_generation`: semantic output at `runs/<run_id>/semantic/topic_generation.json`; canonical writes produce `0..n` topic pages under `topics/<topic_id>.json`.
+  - `source_revision_detection`: semantic output at `runs/<run_id>/semantic/source_revision_detection.json`; canonical source-family writes occur only when the semantic output is a certain revision decision for a provided candidate.
   - `query_synthesis`: semantic output path and canonical query write are the same file (`outputs/query/<query_id>/query.json`).
   - `comment_section_generation`: semantic output is per target page invocation at `runs/<run_id>/semantic/comment_section_generation/<page_ref_key>.json`; canonical comment rows are merged into canonical page JSON/projections during deterministic merge/normalization.
   - `persona_profile_generation`: semantic output path and canonical profile write are the same file (`profiles/persona-<persona_id>.json`).
@@ -250,6 +251,7 @@ Flow map (authoritative defaults):
 | --- | --- | --- | --- | --- |
 | `ingest_extraction` | `ai_flows/generation_specs/ingest_extraction.v1.md` | `schemas/ingest_extraction.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/ingest_extraction.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `topic_generation` | `ai_flows/generation_specs/topic_generation.v1.md` | `schemas/topic_generation.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/topic_generation.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
+| `source_revision_detection` | `ai_flows/generation_specs/source_revision_detection.v1.md` | `schemas/source_revision_detection.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/source_revision_detection.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `query_synthesis` | `ai_flows/generation_specs/query_synthesis.v1.md` | `schemas/query_synthesis.v1.schema.json` | `<space_root>/outputs/query/<query_id>/query.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `comment_section_generation` | `ai_flows/generation_specs/comment_section_generation.v1.md` | `schemas/comment_section_generation.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/comment_section_generation/<page_ref_key>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `persona_profile_generation` | `ai_flows/generation_specs/persona_profile_generation.v1.md` | `schemas/persona_profile_generation.v1.schema.json` | `<space_root>/profiles/persona-<persona_id>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
@@ -278,12 +280,14 @@ Canonical-only naming policy (normative):
 Required v1 file inventory (repository-relative):
 - `ai_flows/generation_specs/ingest_extraction.v1.md`
 - `ai_flows/generation_specs/topic_generation.v1.md`
+- `ai_flows/generation_specs/source_revision_detection.v1.md`
 - `ai_flows/generation_specs/query_synthesis.v1.md`
 - `ai_flows/generation_specs/comment_section_generation.v1.md`
 - `ai_flows/generation_specs/persona_profile_generation.v1.md`
 - `ai_flows/generation_specs/space_overview_generation.v1.md`
 - `schemas/ingest_extraction.v1.schema.json`
 - `schemas/topic_generation.v1.schema.json`
+- `schemas/source_revision_detection.v1.schema.json`
 - `schemas/query_synthesis.v1.schema.json`
 - `schemas/comment_section_generation.v1.schema.json`
 - `schemas/persona_profile_generation.v1.schema.json`
@@ -308,6 +312,7 @@ Schema authoring contract (all flows):
 Per-flow v1 schema minimum top-level keys:
 - `ingest_extraction`: `source_date_inference`, `source`, `claims`, `relations`, `summary`, `warnings`
 - `topic_generation`: `topics` (0..n entries where each entry contains `topic_id`, `title`, `structure_type`, `sections`, `claim_ids`, `source_ids`; `topic_id` may be omitted and deterministically derived in canonical write stage)
+- `source_revision_detection`: `decision`, `certainty`, `matched_source_id`, `candidate_source_ids`, `rationale`, `evidence`
 - `query_synthesis`: `query_id`, `answer`, `claims_used`, `sources_used`, `retrieval_counts`, `contradictions_considered`, `falsification_signals`, `mode`, `scope`, `execution`, `warnings`
 - `comment_section_generation`: `page_ref`, `requested_count`, `comments`
 - `persona_profile_generation`: `persona_id`, `space_name`, `profile_sections`, `profile_image_path`, `accountability_summary`
@@ -832,16 +837,24 @@ Core steps:
    - when media type, file suffix, or URL path indicates PDF (`application/pdf` / `.pdf`), ingest MUST verify payload bytes begin with `%PDF-`; otherwise fail ingest before artifact persistence
    - ingest MUST also write `source.md`, `source_extraction.json`, and source-record `analysis_policy`
      before semantic extraction begins
-3. extract text and run `ingest_extraction` generation spec with source path + hints + strict JSON schema
+3. resolve source revision behavior before semantic extraction:
+   - explicit `--revises-source-id <source_id>` is authoritative, links the new source into the target source's revision family, and skips source revision detection
+   - `--revises-source-id` and `--source-family-id` MUST fail fast when combined
+   - if no explicit revision target is provided, ingest MAY run `source_revision_detection` only when deterministic shortlisting finds bounded same-space candidates
+   - deterministic candidate scoring exists only to bound prompt size and MUST NOT merge sources or create a semantic revision judgment
+   - model-based detection MUST default to `source.md` plus `source_extraction.json` metadata for the new and candidate sources, and inspect the original PDF/binary only when markdown quality is degraded or insufficient
+   - only a schema-valid `decision: "revision"` with `certainty: true` and a `matched_source_id` from the provided candidates may merge the new source into an existing revision family
+   - uncertain, negative, invalid, or non-candidate decisions MUST leave the new document as an independent source
+4. extract text and run `ingest_extraction` generation spec with source path + hints + strict JSON schema
    - semantic source reading MUST prefer `source.md` and inspect `source_extraction.json` for quality/provenance
      before falling back to the original binary
-4. validate and persist canonical claim/relation outputs from ingest extraction
-5. run `topic_generation` generation spec using source + claim context; validate and deterministically persist `0..n` canonical topic JSON pages when cross-source concepts are supported
-6. run deterministic link reconciliation so source/claim/topic artifacts are mutually connected and all required references resolve
+5. validate and persist canonical claim/relation outputs from ingest extraction
+6. run `topic_generation` generation spec using source + claim context; validate and deterministically persist `0..n` canonical topic JSON pages when cross-source concepts are supported
+7. run deterministic link reconciliation so source/claim/topic artifacts are mutually connected and all required references resolve
    - same pass SHOULD also persist curated `external_related_links[]` plus `related_link_enrichment`
      metadata on source records
-7. run deterministic projection/reindex/site build from canonical JSON (or mark run `build_deferred` in reconstruction bootstrap mode)
-8. run lint gate, write run record, and always release lock
+8. run deterministic projection/reindex/site build from canonical JSON (or mark run `build_deferred` in reconstruction bootstrap mode)
+9. run lint gate, write run record, and always release lock
 
 Run envelope model for multi-semantic commands (normative):
 - run metadata is command-scoped (`run_id` identifies one wrapper/entrypoint invocation).
@@ -849,6 +862,7 @@ Run envelope model for multi-semantic commands (normative):
 - `semantic_flows[]` records an ordered unique list of semantic generation flow keys executed at least once during that command invocation.
 - `semantic_flow_invocation_counts` records per-flow invocation counts for the same command invocation.
 - normal ingest writes `semantic_flows: [ingest_extraction, topic_generation]` and `semantic_flow_invocation_counts: {ingest_extraction: 1, topic_generation: 1}`.
+- ingest runs that execute automatic revision detection prepend `source_revision_detection` to `semantic_flows` with invocation count `1`; explicit `--revises-source-id` runs MUST NOT invoke `source_revision_detection`.
 - ingest does not support semantic-flow bypass flags.
 
 Terminal failure behavior (normative):
@@ -876,6 +890,16 @@ Hard prompt input rule:
 - ingest prompt MUST pass source paths/metadata hints
 - ingest prompt MUST NOT pass precomputed semantic claim dumps as a replacement for reading
 
+Source revision contract (normative):
+- source records MAY include `source_family_id` for grouping related revisions.
+- source records in a revision family SHOULD include `source_revision` with `source_family_id`,
+  `revision_index`, `is_latest`, `supersedes_source_id`, and `superseded_by_source_id`.
+- source revision family manifests live under `<space_root>/sources/versions/<source_family_id>.json`
+  and list known revisions plus `latest_source_id`.
+- revision metadata writes MUST be transactionally updated with affected source records.
+- source pages MUST list all known revisions in the same source family using stored source metadata only.
+- existing source records without revision metadata remain valid singleton sources.
+
 Ingest output contract (minimum):
 - `source_date_inference` (`date`, `origin`, `confidence`, optional rationale)
 - source semantic metadata
@@ -901,7 +925,7 @@ Recovered `ingest_source.py` option surface (high-signal):
 - `--registry-path`
 - `--source-title`, `--source-url`, `--source-file`
 - `--source-media-type`, `--source-type`, `--source-date`
-- `--source-family-id`, `--canonical-identifier`
+- `--source-family-id`, `--revises-source-id`, `--canonical-identifier`
 - `--parent-run-id`
 - `--enable-source-index`
 - `--force` (ingest rollback override; preserves partial artifacts on failure)
@@ -1723,7 +1747,7 @@ Canonical run-record metadata (normative base envelope for committed runs):
   - lint totals (`lint_error_count`, `lint_warning_count`, `lint_info_count`)
 - run-record `flow_key` namespace is command/pipeline oriented and distinct from generation-spec semantic `flow_key` values.
 - `flow_key` allowed values: `ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`, `overview_pipeline`
-- `semantic_flows` values MUST be an ordered unique subset of canonical semantic flow keys from: `ingest_extraction`, `topic_generation`, `query_synthesis`, `comment_section_generation`, `persona_profile_generation`, `space_overview_generation`
+- `semantic_flows` values MUST be an ordered unique subset of canonical semantic flow keys from: `ingest_extraction`, `topic_generation`, `source_revision_detection`, `query_synthesis`, `comment_section_generation`, `persona_profile_generation`, `space_overview_generation`
 - `semantic_flow_invocation_counts` keys MUST be canonical semantic flow keys and values MUST be positive integers; every key in `semantic_flows` MUST appear in this map.
 - flow-specific frontmatter extensions:
   - ingest pipeline: `ingest_scope`, `source_ids`, nullable `parent_run_id`, changed sets (`claims_changed`, `relations_changed`, `topic_pages_changed`), optional deferred-build flags (`build_deferred`, `deferred_build_reason`), optional force-mode flags (`force_mode`, `rollback_skipped`)

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 usage() {
-  echo "Usage: ingest.sh <site_path> <space_name> <source_path_or_url> [--force] [--verbose]" >&2
+  echo "Usage: ingest.sh <site_path> <space_name> <source_path_or_url> [--revises-source-id <source_id>] [--force] [--verbose]" >&2
 }
 
 if [[ $# -lt 3 ]]; then

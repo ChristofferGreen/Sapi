@@ -28,6 +28,7 @@ Sapi has two distinct flow namespaces.
 1. Semantic flow keys (generation-spec scope):
 - `ingest_extraction`
 - `topic_generation`
+- `source_revision_detection`
 - `query_synthesis`
 - `comment_section_generation`
 - `persona_profile_generation`
@@ -52,6 +53,13 @@ Examples:
   - `flow_key = ingest_pipeline`
   - `semantic_flows = [ingest_extraction, topic_generation]`
   - `semantic_flow_invocation_counts = {ingest_extraction: 1, topic_generation: 1}`
+- ingest run with automatic revision detection:
+  - `flow_key = ingest_pipeline`
+  - `semantic_flows = [source_revision_detection, ingest_extraction, topic_generation]`
+  - `semantic_flow_invocation_counts = {source_revision_detection: 1, ingest_extraction: 1, topic_generation: 1}`
+- ingest run with explicit `--revises-source-id`:
+  - skips `source_revision_detection`
+  - links revision-family metadata transactionally from operator input
 - ingest bypass flags are removed:
   - `--source-only` and `--query-only` must fail fast with usage error
 
@@ -137,6 +145,7 @@ from typing import Any, Literal
 SemanticFlowKey = Literal[
     "ingest_extraction",
     "topic_generation",
+    "source_revision_detection",
     "query_synthesis",
     "comment_section_generation",
     "persona_profile_generation",
@@ -383,18 +392,28 @@ Control flow:
    - write canonical sibling artifacts `source.md` and `source_extraction.json`
    - persist source-record `analysis_policy` with `preferred_artifact=source_markdown`,
      explicit fallback list, quality status, and warnings
-3. run semantic flow `ingest_extraction`
+3. resolve source revision/version handling
+   - `--revises-source-id` validates a same-space source target, writes `source_revision`
+     metadata and a manifest under `sources/versions/`, and skips model detection
+   - `--revises-source-id` and `--source-family-id` are mutually exclusive and fail fast when combined
+   - without an explicit target, deterministic code may shortlist same-space candidates only to bound prompt size
+   - if candidates exist in live mode, run semantic flow `source_revision_detection`
+   - revision detection prompt context defaults to `source.md` and `source_extraction.json`, with original
+     binary/PDF inspection reserved for degraded or insufficient markdown
+   - only `decision=revision`, `certainty=true`, and a candidate `matched_source_id` links records
+   - uncertain/negative/non-candidate decisions leave the new source independent
+4. run semantic flow `ingest_extraction`
    - default source-reading input is `<space_root>/sources/artifacts/<source_id>/source.md`
    - inspect `source_extraction.json` before falling back to the original binary for fidelity-sensitive content
-4. deterministically write canonical source/claim/relation artifacts
-5. persist canonical evidence records from semantic `evidence_items[]` under `<space_root>/evidence/`
-6. deterministic ingest validation MUST resolve `evidence_items[].claim_refs` to canonical claim IDs and fail fast on invalid refs
-7. deterministic ingest code MUST NOT derive evidence IDs/titles/excerpts from claim text
-8. run semantic flow `topic_generation`
-9. deterministically write 0..n canonical topic artifacts from shared cross-source concepts
-10. set `semantic_flows = [ingest_extraction, topic_generation]`
-11. set `semantic_flow_invocation_counts = {ingest_extraction: 1, topic_generation: 1}`
-12. run link reconciliation
+5. deterministically write canonical source/claim/relation artifacts
+6. persist canonical evidence records from semantic `evidence_items[]` under `<space_root>/evidence/`
+7. deterministic ingest validation MUST resolve `evidence_items[].claim_refs` to canonical claim IDs and fail fast on invalid refs
+8. deterministic ingest code MUST NOT derive evidence IDs/titles/excerpts from claim text
+9. run semantic flow `topic_generation`
+10. deterministically write 0..n canonical topic artifacts from shared cross-source concepts
+11. set `semantic_flows = [ingest_extraction, topic_generation]`, or `[source_revision_detection, ingest_extraction, topic_generation]` only when automatic revision detection actually runs
+12. set `semantic_flow_invocation_counts` to match exactly the flows invoked in this ingest run
+13. run link reconciliation
     - reference extraction prefers `source.md` when `analysis_policy.quality_status != unusable`
     - same step MAY persist curated `external_related_links[]` plus `related_link_enrichment`
       summary metadata on source records
@@ -725,7 +744,8 @@ Minimum test groups for this low-level design:
 - run envelopes:
   - base fields include fingerprints/reasoning/execution mode/lint totals
   - pipeline extension fields are present and typed per flow
-  - ingest has pipeline `flow_key` and two semantic flows
+  - ingest has pipeline `flow_key` and two semantic flows, plus optional `source_revision_detection`
+    only when automatic revision detection actually runs
   - `semantic_flows` is ordered-unique and `semantic_flow_invocation_counts` records call counts
   - default terminal failures leave no committed `runs/<run_id>/` container
   - ingest `--force` failures persist run container and set `force_mode=true`, `rollback_skipped=true`

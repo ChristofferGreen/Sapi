@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "source_revision_detection.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision",
+    "certainty",
+    "matched_source_id",
+    "candidate_source_ids",
+    "rationale",
+    "evidence"
+  ],
+  "properties": {
+    "decision": {
+      "type": "string",
+      "enum": ["revision", "new_source", "uncertain"]
+    },
+    "certainty": {
+      "type": "boolean"
+    },
+    "matched_source_id": {
+      "type": ["string", "null"],
+      "pattern": "^source-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$"
+    },
+    "candidate_source_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^source-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$"
+      },
+      "uniqueItems": true
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

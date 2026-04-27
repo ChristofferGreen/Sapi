@@ -101,6 +101,10 @@ tests/
 - [x] Source-markdown and curated-related-link contract docs stay synchronized across `design.md`,
   `low_level.md`, and `testing_plan.md`.
   - Module: `tests/unit/contracts/test_source_analysis_and_related_link_contracts.py`
+- [x] Source revision detection and version-family contracts enforce certain-only semantic linking,
+  markdown-first prompt context, run-envelope optional-flow accounting, and no deterministic semantic merge.
+  - Modules: `tests/unit/ingest/test_source_versions.py`, `tests/unit/ingest/test_comment_enrichment_boundaries.py`,
+    `tests/unit/core/test_slice_a_gates.py`, `tests/unit/contracts/test_todo_0202_spec_schema_inventory.py`
 
 ### Tier 2: Failure-Semantics Integration Tests
 
@@ -139,6 +143,9 @@ tests/
 - [x] Ingest source acquisition and reference enrichment persist `source.md`, `source_extraction.json`,
   explicit markdown-quality policy, and curated external related links with provenance.
   - Modules: `tests/unit/ingest/test_source_acquisition.py`, `tests/unit/ingest/test_reference_linking.py`
+- [x] Ingest source revisions support explicit operator linking without detection and certain-only live
+  revision detection with a replayable fake-Codex canary.
+  - Module: `tests/integration/pipelines/test_ingest_pipeline.py`
 
 ### Tier 4: Build/Projection Determinism Tests
 
@@ -159,6 +166,9 @@ Presentation contract coverage requirements (Section 8 / Section 9):
     `tests/unit/ingest/test_source_acquisition.py`, `tests/unit/ingest/test_reference_linking.py`
 - Tier 1/4 source-page coverage MUST assert source detail pages render long-form dossier content
   (`Overview and Commentary`, section cards, and grounded claim links) while keeping preview + action links intact.
+  - Module: `tests/unit/build/test_site_builder_contracts.py`
+- Tier 1/4 source-page coverage MUST assert source detail pages render revision histories for multi-source
+  families and suppress empty revision sections for singleton sources.
   - Module: `tests/unit/build/test_site_builder_contracts.py`
 - Tier 1/4 page coverage MUST assert source/topic/claim pages render `External Related Links` only when
   curated links exist, and that topic/claim pages show inherited source provenance cues.

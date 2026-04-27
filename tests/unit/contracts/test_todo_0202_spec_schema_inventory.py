@@ -27,6 +27,18 @@ SPEC_CONTRACT = {
             "topics",
         ],
     },
+    "source_revision_detection": {
+        "spec": "ai_flows/generation_specs/source_revision_detection.v1.md",
+        "schema": "schemas/source_revision_detection.v1.schema.json",
+        "required_keys": [
+            "decision",
+            "certainty",
+            "matched_source_id",
+            "candidate_source_ids",
+            "rationale",
+            "evidence",
+        ],
+    },
     "query_synthesis": {
         "spec": "ai_flows/generation_specs/query_synthesis.v1.md",
         "schema": "schemas/query_synthesis.v1.schema.json",

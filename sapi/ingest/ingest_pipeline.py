@@ -24,6 +24,7 @@ def plan_ingest_semantic_execution(
     enable_comment_enrichment: bool = False,
     requested_comment_count: int | None = None,
     comment_target_page_refs: list[str] | None = None,
+    include_source_revision_detection: bool = False,
 ) -> IngestSemanticExecutionPlan:
     """Build boundary-correct semantic flow metadata for ingest modes."""
     _validate_comment_enrichment_inputs(
@@ -32,8 +33,13 @@ def plan_ingest_semantic_execution(
         comment_target_page_refs=comment_target_page_refs,
     )
 
-    semantic_flows = ["ingest_extraction", "topic_generation"]
-    invocation_counts: dict[str, int] = {"ingest_extraction": 1, "topic_generation": 1}
+    semantic_flows: list[str] = []
+    invocation_counts: dict[str, int] = {}
+    if include_source_revision_detection:
+        semantic_flows.append("source_revision_detection")
+        invocation_counts["source_revision_detection"] = 1
+    semantic_flows.extend(["ingest_extraction", "topic_generation"])
+    invocation_counts.update({"ingest_extraction": 1, "topic_generation": 1})
 
     if enable_comment_enrichment:
         assert comment_target_page_refs is not None  # guarded in preflight validation

@@ -521,6 +521,10 @@ def _write_source_pages(
             or "<li>(none linked yet)</li>"
         )
         source_analysis_section = _render_source_analysis_section(source=source)
+        source_revisions_section = _render_source_revisions_section(
+            source=source,
+            sources=projection.sources,
+        )
         external_related_links_card = _render_external_related_links_card(
             heading="External Related Links",
             links=_collect_external_related_links(source.get("external_related_links")),
@@ -552,6 +556,7 @@ def _write_source_pages(
                 else ""
             )
             + source_analysis_section
+            + source_revisions_section
             + "<section class=\"source-related-grid\">\n"
             + "<article class=\"source-related-card\">\n"
             + "<h2>Related Topics</h2>\n"
@@ -679,6 +684,99 @@ def _render_source_metadata_section(
         + "</dl>"
         "</section>\n"
     )
+
+
+def _render_source_revisions_section(
+    *,
+    source: dict[str, Any],
+    sources: list[dict[str, Any]],
+) -> str:
+    family_id = _source_family_id(source)
+    if not family_id:
+        return ""
+    revisions = [
+        candidate
+        for candidate in sources
+        if _source_family_id(candidate) == family_id
+    ]
+    if len(revisions) <= 1:
+        return ""
+
+    current_source_id = str(source.get("source_id") or "")
+    rows: list[str] = []
+    for revision in sorted(revisions, key=_source_revision_sort_key):
+        source_id = str(revision.get("source_id") or "")
+        if not source_id:
+            continue
+        badges: list[str] = []
+        if source_id == current_source_id:
+            badges.append("Current")
+        if _source_revision_is_latest(revision):
+            badges.append("Latest")
+        badge_html = "".join(f"<span class=\"meta-badge\">{escape(label)}</span>" for label in badges)
+        metadata = _source_revision_metadata_label(revision)
+        rows.append(
+            "<li>"
+            f"<a href=\"../sources/{escape(source_id)}.html\">{escape(_source_display_title(revision))}</a>"
+            f"{badge_html}"
+            f"<p class=\"summary\">{escape(metadata)}</p>"
+            "</li>"
+        )
+    if not rows:
+        return ""
+    return (
+        "<section class=\"source-meta-card source-revisions-card\">"
+        "<h2>Revisions</h2>"
+        "<ul class=\"source-related-list\">"
+        + "".join(rows)
+        + "</ul>"
+        "</section>\n"
+    )
+
+
+def _source_family_id(source: dict[str, Any]) -> str | None:
+    raw = source.get("source_family_id")
+    if isinstance(raw, str) and raw.strip():
+        return raw.strip()
+    revision = source.get("source_revision")
+    if isinstance(revision, dict):
+        raw = revision.get("source_family_id")
+        if isinstance(raw, str) and raw.strip():
+            return raw.strip()
+    return None
+
+
+def _source_revision_sort_key(source: dict[str, Any]) -> tuple[int, str, str]:
+    revision = source.get("source_revision")
+    raw_index = revision.get("revision_index") if isinstance(revision, dict) else None
+    index = raw_index if isinstance(raw_index, int) and raw_index > 0 else 1_000_000
+    return (
+        index,
+        str(source.get("ingested_at") or source.get("date") or ""),
+        str(source.get("source_id") or ""),
+    )
+
+
+def _source_revision_is_latest(source: dict[str, Any]) -> bool:
+    revision = source.get("source_revision")
+    if isinstance(revision, dict) and isinstance(revision.get("is_latest"), bool):
+        return bool(revision["is_latest"])
+    return False
+
+
+def _source_revision_metadata_label(source: dict[str, Any]) -> str:
+    revision = source.get("source_revision")
+    revision_index = revision.get("revision_index") if isinstance(revision, dict) else None
+    parts: list[str] = []
+    if isinstance(revision_index, int) and revision_index > 0:
+        parts.append(f"Revision {revision_index}")
+    date = source.get("date")
+    ingested_at = source.get("ingested_at")
+    if isinstance(date, str) and date.strip():
+        parts.append(f"published {date.strip()}")
+    if isinstance(ingested_at, str) and ingested_at.strip():
+        parts.append(f"ingested {ingested_at.strip()}")
+    return " - ".join(parts) if parts else "Revision record"
 
 
 def _source_metadata_rows(

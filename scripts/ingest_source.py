@@ -44,6 +44,17 @@ from sapi.ingest.records_writer import (
     run_ingest_extraction_and_persist_canonical,
 )
 from sapi.ingest.source_content import SourceDateResolution, resolve_publication_date
+from sapi.ingest.source_versions import (
+    SourceRevisionDetectionResult,
+    SourceRevisionLinkResult,
+    apply_source_revision_link,
+    build_source_revision_detection_context,
+    is_certain_revision_decision,
+    refresh_source_revision_manifest_for_source,
+    run_source_revision_detection,
+    select_source_revision_candidates,
+    validate_explicit_revision_target,
+)
 from sapi.ingest.topic_generator import (
     TopicGenerationPersistResult,
     run_topic_generation_and_persist_canonical,
@@ -65,6 +76,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--source-media-type")
     parser.add_argument("--source-type")
     parser.add_argument("--source-family-id")
+    parser.add_argument("--revises-source-id")
     parser.add_argument("--canonical-identifier")
     parser.add_argument("--source-date")
     parser.add_argument("--require-source-date", action="store_true")
@@ -103,6 +115,9 @@ def main() -> int:
     build_deferred = False
     deferred_build_reason = None
     reference_result = None
+    revision_detection_result: SourceRevisionDetectionResult | None = None
+    revision_link_result: SourceRevisionLinkResult | None = None
+    revision_detection_candidate_count = 0
     semantic_flows: list[str] = []
     semantic_flow_invocation_counts: dict[str, int] = {}
     llm_attempt_count = 0
@@ -111,6 +126,11 @@ def main() -> int:
     runtime_flags = None
 
     try:
+        if args.revises_source_id and args.source_family_id:
+            raise ValueError(
+                "`--revises-source-id` cannot be combined with `--source-family-id`; "
+                "revision-family metadata is derived from the target source."
+            )
         ingest_semantic_plan = plan_ingest_semantic_execution(
             enable_comment_enrichment=args.enable_comment_enrichment,
             requested_comment_count=args.comment_count,
@@ -135,6 +155,11 @@ def main() -> int:
         registry_path = resolve_registry_path(args.registry_path)
         site_path = resolve_site_path_from_registry(registry_path)
         space_root = resolve_space_root(registry_path, args.space_name)
+        if args.revises_source_id:
+            validate_explicit_revision_target(
+                space_root=space_root,
+                revises_source_id=args.revises_source_id,
+            )
         if args.verbose:
             trace_ctx = SiteLlmTraceContext(
                 site_path=site_path,
@@ -160,6 +185,76 @@ def main() -> int:
                 transaction=transaction,
                 result=result,
             )
+            if args.revises_source_id:
+                revision_link_result = apply_source_revision_link(
+                    space_root=space_root,
+                    new_source_id=result.source_id,
+                    revises_source_id=args.revises_source_id,
+                    transaction=transaction,
+                    link_context={
+                        "method": "operator_cli",
+                        "certainty": True,
+                        "matched_source_id": args.revises_source_id,
+                    },
+                )
+            elif not runtime_flags.mock_llm and not args.source_family_id:
+                revision_candidates = select_source_revision_candidates(
+                    space_root=space_root,
+                    new_source_id=result.source_id,
+                )
+                revision_detection_candidate_count = len(revision_candidates)
+                if revision_candidates:
+                    record_semantic_invocation(
+                        flow_key="source_revision_detection",
+                        semantic_flows=semantic_flows,
+                        semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+                    )
+                    revision_detection_result = run_source_revision_detection(
+                        space_root=space_root,
+                        source_id=result.source_id,
+                        run_id=run_id,
+                        llm_client=_build_source_revision_detection_client(
+                            runtime_flags=runtime_flags,
+                            task_context=build_source_revision_detection_context(
+                                space_root=space_root,
+                                new_source_id=result.source_id,
+                                candidates=revision_candidates,
+                            ),
+                        ),
+                        trace_ctx=trace_ctx,
+                    )
+                    _track_source_revision_detection_writes_for_rollback(
+                        transaction=transaction,
+                        space_root=space_root,
+                        run_id=run_id,
+                        detection_result=revision_detection_result,
+                    )
+                    llm_attempt_count = add_llm_attempts(
+                        llm_attempt_count=llm_attempt_count,
+                        attempt_count=revision_detection_result.attempt_count,
+                    )
+                    candidate_source_ids = {candidate.source_id for candidate in revision_candidates}
+                    if is_certain_revision_decision(
+                        payload=revision_detection_result.payload,
+                        candidate_source_ids=candidate_source_ids,
+                    ):
+                        matched_source_id = str(revision_detection_result.payload["matched_source_id"])
+                        revision_link_result = apply_source_revision_link(
+                            space_root=space_root,
+                            new_source_id=result.source_id,
+                            revises_source_id=matched_source_id,
+                            transaction=transaction,
+                            link_context={
+                                "method": "source_revision_detection",
+                                "certainty": True,
+                                "matched_source_id": matched_source_id,
+                                "semantic_output_path": str(
+                                    revision_detection_result.semantic_output_path.relative_to(space_root)
+                                ),
+                                "rationale": revision_detection_result.payload.get("rationale"),
+                                "evidence": revision_detection_result.payload.get("evidence"),
+                            },
+                        )
             reference_result = run_reference_extraction_and_link_backfill(
                 space_root=space_root,
                 source_id=result.source_id,
@@ -198,6 +293,12 @@ def main() -> int:
                 run_id=run_id,
                 extraction_result=extraction_result,
             )
+            if revision_link_result is not None:
+                revision_link_result = refresh_source_revision_manifest_for_source(
+                    space_root=space_root,
+                    source_id=result.source_id,
+                    transaction=transaction,
+                )
             llm_attempt_count = add_llm_attempts(
                 llm_attempt_count=llm_attempt_count,
                 attempt_count=extraction_result.attempt_count,
@@ -329,6 +430,13 @@ def main() -> int:
         force_mode=False,
         rollback_skipped=False,
     )
+    if ingest_semantic_plan is not None:
+        ingest_semantic_plan = plan_ingest_semantic_execution(
+            enable_comment_enrichment=args.enable_comment_enrichment,
+            requested_comment_count=args.comment_count,
+            comment_target_page_refs=args.comment_page if args.comment_page else None,
+            include_source_revision_detection=revision_detection_result is not None,
+        )
     if ingest_semantic_plan is not None and semantic_flow_invocation_counts != ingest_semantic_plan.semantic_flow_invocation_counts:
         raise RuntimeError(
             "Ingest semantic flow invocation counts violated boundary contract "
@@ -385,6 +493,19 @@ def main() -> int:
             f", topic_ids={topic_result.topic_ids}, "
             f"topic_count={len(topic_result.topics)}"
         )
+    if revision_link_result is not None:
+        summary += (
+            f", source_family_id={revision_link_result.source_family_id}, "
+            f"revision_count={revision_link_result.revision_count}, "
+            f"revision_manifest_path={revision_link_result.manifest_path}"
+        )
+    elif revision_detection_result is not None:
+        summary += (
+            f", source_revision_detection_decision={revision_detection_result.payload.get('decision')}, "
+            f"source_revision_detection_certainty={revision_detection_result.payload.get('certainty')}"
+        )
+    elif revision_detection_candidate_count:
+        summary += f", source_revision_detection_candidates={revision_detection_candidate_count}"
     if build_manifest_path is not None:
         summary += f", build_manifest_path={build_manifest_path}"
     summary += ")"
@@ -516,6 +637,17 @@ def _track_ingest_extraction_writes_for_rollback(
         transaction.mark_create(relation_path)
 
 
+def _track_source_revision_detection_writes_for_rollback(
+    *,
+    transaction: ArtifactTransaction,
+    space_root: Path,
+    run_id: str,
+    detection_result: SourceRevisionDetectionResult,
+) -> None:
+    transaction.mark_mkdir(space_root / "runs" / run_id)
+    transaction.mark_create(detection_result.semantic_output_path)
+
+
 def _track_topic_generation_writes_for_rollback(
     *,
     transaction: ArtifactTransaction,
@@ -573,6 +705,19 @@ def _build_topic_generation_client(
         claim_ids=claim_ids,
         claims_context=claims_context,
         sources_context=sources_context,
+    )
+
+
+def _build_source_revision_detection_client(
+    *,
+    runtime_flags: RuntimeFlagSnapshot,
+    task_context: dict[str, object],
+):
+    if runtime_flags.mock_llm:
+        raise RuntimeError("source_revision_detection must not run in mock LLM mode.")
+    return _LiveSourceRevisionDetectionClient(
+        backend_config=_backend_config_from_runtime_flags(runtime_flags),
+        task_context=task_context,
     )
 
 
@@ -714,6 +859,24 @@ class _MockIngestExtractionClient:
             "warnings": list(self._source_date_resolution.warnings),
         }
         return json.dumps(payload)
+
+
+class _LiveSourceRevisionDetectionClient:
+    def __init__(
+        self,
+        *,
+        backend_config: SemanticBackendConfig,
+        task_context: dict[str, object],
+    ) -> None:
+        self._backend_config = backend_config
+        self._task_context = task_context
+
+    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
+        return generate_semantic_json_live(
+            request=request,
+            backend_config=self._backend_config,
+            task_context=self._task_context,
+        )
 
 
 class _LiveIngestExtractionClient:

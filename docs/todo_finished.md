@@ -2,6 +2,108 @@
 
 This file is append-only history for completed tasks moved out of `docs/todo.md`.
 
+## 2026-04-27
+
+- [x] TODO-0363: Add revision ingestion validation and quality coverage
+  - owner: ai
+  - created_at: 2026-04-27
+  - finished_at: 2026-04-27
+  - phase: Cross-cutting
+  - depends_on: TODO-0359, TODO-0360, TODO-0361, TODO-0362
+  - scope: Add focused tests and validation coverage that prove source revision ingest behavior is transactional, observable, and quality-gated.
+  - acceptance:
+    - Unit and integration tests cover explicit revision ingest, auto-detected revision ingest, uncertain detection becoming a new source, rollback of revised records/manifests, and source page revision rendering.
+    - Run-envelope or semantic invocation assertions distinguish explicit CLI revision linking from LLM revision detection and verify explicit linking does not invoke the detection flow.
+    - A live or replayable quality check exercises the revision-detection prompt against at least one positive revision pair and one near-miss pair.
+    - Documentation and tests make clear that uncertain LLM output must never merge sources into the same revision family.
+  - notes: source revision feature hardening; covers ingest, semantic runtime, rollback, and static site output.
+  - evidence: Added unit coverage for revision-family linking, candidate shortlisting, schema-backed
+    source revision detection, optional ingest semantic-flow planning, and Slice A run-envelope
+    validation. Added source-page rendering coverage for multi-revision and singleton families,
+    explicit mock-mode integration coverage proving `--revises-source-id` skips detection, and a
+    fake-Codex live-mode integration test proving a certain `source_revision_detection` decision
+    links a candidate and records the optional semantic flow.
+
+- [x] TODO-0362: Render source revision history on source pages
+  - owner: ai
+  - created_at: 2026-04-27
+  - finished_at: 2026-04-27
+  - phase: Phase 5
+  - depends_on: TODO-0360
+  - scope: Update the deterministic site builder so each source page lists other revisions in the same source family without synthesizing semantic content.
+  - acceptance:
+    - Source pages with a `source_family_id` render a revision history section listing every known revision, including current and latest state.
+    - Revision entries link to the corresponding source pages and display deterministic metadata from source records only.
+    - Source pages with no revision family or a single-member family do not show an empty revision section.
+    - Site-builder tests verify ordering, labels, links, and no-section behavior for singleton sources.
+  - notes: deterministic rendering is allowed here because it only displays stored source metadata and links.
+  - evidence: Added deterministic source-page revision rendering in `sapi/build/site_builder.py`,
+    including current/latest badges, revision ordering, sibling source links, and singleton-family
+    suppression. Extended source builder tests to verify rendered links, labels, ordering, and
+    no-section behavior for sources without multiple family members.
+
+- [x] TODO-0361: Add certain-only LLM source revision detection
+  - owner: ai
+  - created_at: 2026-04-27
+  - finished_at: 2026-04-27
+  - phase: Phase 5
+  - depends_on: TODO-0359, TODO-0360
+  - scope: Add an optional semantic flow that decides whether a newly ingested document is certainly a revision of an existing source when the user did not explicitly specify a revision target.
+  - acceptance:
+    - A canonical `source_revision_detection` semantic flow, schema, generation spec, and run-envelope key are registered.
+    - Ingest selects bounded candidate existing sources for prompt size only; deterministic candidate scoring never merges sources or creates a semantic revision judgment.
+    - The detection prompt defaults to the new and candidate `source.md` artifacts plus `source_extraction.json` metadata, and only asks the model to inspect the original PDF/binary when markdown quality is degraded or insufficient.
+    - Ingest invokes the detection flow only when candidates exist and links as a revision only when the model returns a schema-valid certain revision decision for one candidate.
+    - Uncertain, negative, invalid, or non-candidate decisions leave the new document as an independent source.
+    - Mock mode and deterministic code paths do not fabricate user-facing revision decisions.
+    - Semantic invocation accounting includes the optional detection flow only when it actually runs.
+  - notes: this flow must preserve the project guarantee that deterministic code never creates user-facing semantic judgments.
+  - evidence: Added `source_revision_detection` to semantic specs, schema inventory, run-envelope
+    allowed keys, guardrail contracts, and ingest semantic-flow planning. Ingest now runs the flow
+    only in live mode when deterministic candidate shortlisting finds candidates, passes
+    markdown-first source context, and links only schema-valid certain decisions targeting a
+    provided candidate; mock mode and explicit revision links skip detection.
+
+- [x] TODO-0360: Persist source revision families and explicit ingest links
+  - owner: ai
+  - created_at: 2026-04-27
+  - finished_at: 2026-04-27
+  - phase: Phase 5
+  - depends_on: TODO-0359
+  - scope: Implement canonical storage and CLI behavior for source revisions when the operator explicitly declares that a new ingest revises an existing source.
+  - acceptance:
+    - Source records can store canonical revision-family metadata, including family id, revision order, latest status, supersedes, and superseded-by relationships.
+    - Ingest supports an explicit `--revises-source-id` operator input through the direct entrypoint and repo-root helper path, and this path skips LLM revision detection.
+    - `--revises-source-id` and existing `--source-family-id` behavior have a documented precedence or fail-fast conflict rule, with tests for the chosen rule.
+    - Revision family manifests are written under a canonical path and updated transactionally with affected source records.
+    - Missing, malformed, self-referential, or cross-space revision targets fail fast before semantic ingest output is committed.
+    - Existing source records without revision metadata remain valid and continue to ingest/build unchanged.
+  - notes: explicit operator input is authoritative and does not require model judgment.
+  - evidence: Added `sapi/ingest/source_versions.py` with transaction-backed source-record and
+    `sources/versions/<source_family_id>.json` manifest writes. Added `--revises-source-id` to the
+    ingest entrypoint and wrapper usage, fail-fast conflict handling with `--source-family-id`,
+    same-space target validation, explicit operator link context, and integration coverage proving
+    explicit revision ingest skips `source_revision_detection`.
+
+- [x] TODO-0359: Define canonical source revision contracts
+  - owner: ai
+  - created_at: 2026-04-27
+  - finished_at: 2026-04-27
+  - phase: Cross-cutting
+  - scope: Specify the source revision/version data model before implementation, including source record fields, revision family manifests, ingest behavior, and source-page rendering requirements.
+  - acceptance:
+    - `docs/design.md` defines source revisions, revision families, explicit operator revision input, LLM-assisted certain-only detection, and the new-source fallback rule.
+    - `docs/low_level.md` defines storage paths, source record keys, manifest shape, transaction expectations, semantic flow ownership, and wrapper/entrypoint contracts.
+    - The contract separates deterministic candidate shortlisting from semantic revision judgment and requires markdown-first source reading for any model-based revision decision.
+    - The contract identifies which follow-up TODO owns each runtime, schema/spec, rendering, and validation change so implementation tasks do not overlap.
+    - The contract states that only a certain model decision or explicit CLI input may merge a new ingest into an existing source family.
+  - notes: source versioning should preserve backward compatibility for existing single-version sources.
+  - evidence: Updated `docs/design.md` and `docs/low_level.md` to define source revision families,
+    explicit operator revision links, certain-only automatic detection, markdown-first source
+    reading, deterministic shortlisting boundaries, source-record fields, manifest paths,
+    transaction behavior, optional run-envelope flow ordering, and deterministic source-page
+    revision rendering.
+
 ## 2026-04-24
 
 - [x] TODO-0339: Implement canonical `space_overview_generation` semantic flow and artifacts

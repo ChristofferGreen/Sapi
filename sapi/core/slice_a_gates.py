@@ -83,6 +83,7 @@ def validate_ingest_run_frontmatter(frontmatter: dict[str, object]) -> list[str]
     _validate_semantic_cardinality(
         frontmatter,
         expected_flows=("ingest_extraction", "topic_generation"),
+        alternate_expected_flows=(("source_revision_detection", "ingest_extraction", "topic_generation"),),
         errors=errors,
     )
     return errors
@@ -147,6 +148,7 @@ def _validate_semantic_cardinality(
     frontmatter: dict[str, object],
     *,
     expected_flows: tuple[str, ...],
+    alternate_expected_flows: tuple[tuple[str, ...], ...] = (),
     errors: list[str],
 ) -> None:
     semantic_flows = frontmatter.get("semantic_flows")
@@ -154,14 +156,17 @@ def _validate_semantic_cardinality(
     if not isinstance(semantic_flows, list):
         errors.append("semantic_flows must be a list.")
         return
-    if tuple(semantic_flows) != expected_flows:
+    actual_flows = tuple(str(flow) for flow in semantic_flows)
+    expected_options = (expected_flows, *alternate_expected_flows)
+    if actual_flows not in expected_options:
         errors.append(
-            f"semantic_flows must match {list(expected_flows)!r}, got {semantic_flows!r}"
+            f"semantic_flows must match one of {[list(option) for option in expected_options]!r}, "
+            f"got {semantic_flows!r}"
         )
     if not isinstance(invocation_counts, dict):
         errors.append("semantic_flow_invocation_counts must be an object.")
         return
-    for flow in expected_flows:
+    for flow in actual_flows:
         count = invocation_counts.get(flow)
         if not isinstance(count, int) or count < 1:
             errors.append(

@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import json
+import os
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -84,6 +87,261 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
             build_manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
             self.assertTrue(build_manifest_path.is_file())
             self.assertIn("build_manifest_path=", result.stdout)
+
+    def test_explicit_revision_ingest_links_family_without_detection_flow(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            first_source_path = write_source_fixture(
+                tmp_root,
+                filename="source-v1.txt",
+                content="revision fixture v1\n",
+            )
+            first_result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(first_source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Revision Fixture",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(first_result.returncode, 0, msg=first_result.stderr)
+            first_source_id = sorted((space_root / "sources" / "records").glob("source-*.json"))[0].stem
+
+            second_source_path = write_source_fixture(
+                tmp_root,
+                filename="source-v2.txt",
+                content="revision fixture v2\n",
+            )
+            second_result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(second_source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Revision Fixture Updated",
+                    "--revises-source-id",
+                    first_source_id,
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(second_result.returncode, 0, msg=second_result.stderr)
+
+            source_records = sorted((space_root / "sources" / "records").glob("source-*.json"))
+            self.assertEqual(len(source_records), 2)
+            records_by_id = {path.stem: json.loads(path.read_text()) for path in source_records}
+            second_source_id = next(source_id for source_id in records_by_id if source_id != first_source_id)
+            self.assertEqual(
+                records_by_id[first_source_id]["source_revision"]["superseded_by_source_id"],
+                second_source_id,
+            )
+            self.assertTrue(records_by_id[second_source_id]["source_revision"]["is_latest"])
+            family_id = records_by_id[second_source_id]["source_family_id"]
+            manifest_path = space_root / "sources" / "versions" / f"{family_id}.json"
+            self.assertTrue(manifest_path.is_file())
+            manifest = json.loads(manifest_path.read_text())
+            self.assertEqual(manifest["latest_source_id"], second_source_id)
+
+            run_md_path = latest_run_directory(space_root) / "run.md"
+            frontmatter = assert_run_frontmatter_fields(
+                run_md_path,
+                expected_fields={
+                    "flow_key": "ingest_pipeline",
+                    "status": "success",
+                    "execution_mode": "mock_llm_test",
+                    "semantic_flows": ["ingest_extraction", "topic_generation"],
+                    "source_ids": [second_source_id],
+                },
+            )
+            self.assertEqual(
+                frontmatter["semantic_flow_invocation_counts"],
+                {"ingest_extraction": 1, "topic_generation": 1},
+            )
+            self.assertNotIn("source_revision_detection", frontmatter["semantic_flows"])
+            self.assertIn("source_family_id=", second_result.stdout)
+
+    def test_live_revision_detection_links_only_certain_candidate_decision(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            first_source_path = write_source_fixture(
+                tmp_root,
+                filename="detected-v1.txt",
+                content="detected revision fixture v1\n",
+            )
+            first_result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(first_source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Detected Revision Fixture",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(first_result.returncode, 0, msg=first_result.stderr)
+            first_source_id = sorted((space_root / "sources" / "records").glob("source-*.json"))[0].stem
+
+            fake_bin = tmp_root / "bin"
+            fake_bin.mkdir()
+            fake_codex = fake_bin / "codex"
+            fake_codex.write_text(_fake_codex_revision_script(matched_source_id=first_source_id))
+            fake_codex.chmod(0o755)
+
+            second_source_path = write_source_fixture(
+                tmp_root,
+                filename="detected-v2.txt",
+                content="detected revision fixture v2\n",
+            )
+            env = dict(os.environ)
+            env["PATH"] = str(fake_bin) + os.pathsep + env.get("PATH", "")
+            second_result = subprocess.run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(second_source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Detected Revision Fixture Updated",
+                    "--llm-model",
+                    "gpt-5.5",
+                    "--llm-reasoning-effort",
+                    "high",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                env=env,
+            )
+            self.assertEqual(second_result.returncode, 0, msg=second_result.stderr)
+
+            source_records = sorted((space_root / "sources" / "records").glob("source-*.json"))
+            records_by_id = {path.stem: json.loads(path.read_text()) for path in source_records}
+            second_source_id = next(source_id for source_id in records_by_id if source_id != first_source_id)
+            self.assertEqual(
+                records_by_id[second_source_id]["source_revision"]["link_context"]["method"],
+                "source_revision_detection",
+            )
+            self.assertEqual(
+                records_by_id[second_source_id]["source_revision"]["supersedes_source_id"],
+                first_source_id,
+            )
+
+            run_md_path = latest_run_directory(space_root) / "run.md"
+            frontmatter = assert_run_frontmatter_fields(
+                run_md_path,
+                expected_fields={
+                    "execution_mode": "live_llm",
+                    "semantic_flows": [
+                        "source_revision_detection",
+                        "ingest_extraction",
+                        "topic_generation",
+                    ],
+                },
+            )
+            self.assertEqual(
+                frontmatter["semantic_flow_invocation_counts"],
+                {
+                    "source_revision_detection": 1,
+                    "ingest_extraction": 1,
+                    "topic_generation": 1,
+                },
+            )
+            semantic_payload = json.loads(
+                (latest_run_directory(space_root) / "semantic" / "source_revision_detection.json").read_text()
+            )
+            self.assertEqual(semantic_payload["matched_source_id"], first_source_id)
+
+
+def _fake_codex_revision_script(*, matched_source_id: str) -> str:
+    return f"""#!/usr/bin/env python3
+import json
+import re
+import sys
+
+prompt = sys.stdin.read()
+
+def emit(payload):
+    print(json.dumps({{"item": {{"type": "agent_message", "text": json.dumps(payload)}}}}))
+
+if '"flow_key": "source_revision_detection"' in prompt:
+    emit({{
+        "decision": "revision",
+        "certainty": True,
+        "matched_source_id": {matched_source_id!r},
+        "candidate_source_ids": [{matched_source_id!r}],
+        "rationale": "The fake live canary marks the candidate as a certain revision.",
+        "evidence": ["The candidate id was provided by deterministic shortlisting."]
+    }})
+elif '"flow_key": "ingest_extraction"' in prompt:
+    match = re.search(r'"must_include_source_id":\\s*"([^"]+)"', prompt)
+    source_id = match.group(1) if match else "source-live-fixture--0123456789ab"
+    title_match = re.search(r'"must_include_source_title":\\s*"([^"]+)"', prompt)
+    title = title_match.group(1) if title_match else source_id
+    long_summary = (
+        "This fake live revision summary gives the source page enough validated dossier material to exercise "
+        "the production ingest path without calling a real model. It explains that the updated document is "
+        "being treated as a revision only because the prior source revision detection flow returned a certain "
+        "candidate match. The text is intentionally long enough to satisfy the same source dossier schema used "
+        "by live runs, so the integration test covers schema validation, canonical writes, and deterministic "
+        "rendering after revision metadata has already been linked. "
+    ) * 3
+    section_body = (
+        "The fake live flow emits a section body that is long enough for the dossier schema and remains focused "
+        "on the revision-ingest contract: semantic detection decides the source family, while deterministic "
+        "post-processing only writes stored metadata and links."
+    )
+    emit({{
+        "source_date_inference": {{"date": None, "origin": "unknown", "confidence": "unknown", "rationale": None}},
+        "source": {{"source_id": source_id, "title": title, "display_title": title}},
+        "claims": [{{"text": "Detected revision fixtures preserve the same underlying source across versions."}}],
+        "evidence_items": [
+            {{
+                "evidence_id": "evidence-detected-revision--0123456789ab",
+                "title": "Detected revision fixture",
+                "excerpt": "Detected revision fixtures preserve the same underlying source across versions.",
+                "overview": "A fake live Codex response provides a concrete evidence artifact for integration coverage.",
+                "evidence_type": "formal_argument",
+                "claim_refs": ["0"],
+                "source_id": source_id,
+                "page_refs": []
+            }}
+        ],
+        "relations": [],
+        "summary": "Fake live ingest extraction completed.",
+        "source_dossier": {{
+            "summary_short": "Fake live revision summary for schema-valid integration coverage.",
+            "summary_long": long_summary,
+            "sections": [
+                {{"heading": "Revision", "body": section_body, "grounding_claim_ids": []}},
+                {{"heading": "Evidence", "body": section_body, "grounding_claim_ids": []}},
+                {{"heading": "Method", "body": section_body, "grounding_claim_ids": []}},
+                {{"heading": "Limits", "body": section_body, "grounding_claim_ids": []}},
+                {{"heading": "Use", "body": section_body, "grounding_claim_ids": []}}
+            ]
+        }},
+        "warnings": []
+    }})
+elif '"flow_key": "topic_generation"' in prompt:
+    emit({{"topics": []}})
+else:
+    emit({{"value": "unsupported fake codex prompt"}})
+"""
 
 
 if __name__ == "__main__":

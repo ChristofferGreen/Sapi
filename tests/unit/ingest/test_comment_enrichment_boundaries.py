@@ -15,6 +15,21 @@ class IngestCommentEnrichmentBoundaryTests(unittest.TestCase):
         )
         self.assertNotIn("comment_section_generation", plan.semantic_flows)
 
+    def test_revision_detection_plan_is_optional_prefix_when_it_runs(self) -> None:
+        plan = plan_ingest_semantic_execution(include_source_revision_detection=True)
+        self.assertEqual(
+            plan.semantic_flows,
+            ["source_revision_detection", "ingest_extraction", "topic_generation"],
+        )
+        self.assertEqual(
+            plan.semantic_flow_invocation_counts,
+            {
+                "source_revision_detection": 1,
+                "ingest_extraction": 1,
+                "topic_generation": 1,
+            },
+        )
+
     def test_optional_enrichment_requires_explicit_opt_in(self) -> None:
         with self.assertRaises(ValueError):
             plan_ingest_semantic_execution(

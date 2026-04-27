@@ -1989,6 +1989,72 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("This explicit dossier is authored for source-page reading.", source_page)
             self.assertIn("What to Scrutinize", source_page)
 
+    def test_source_detail_renders_revision_history_for_source_family(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            family_id = "source-family-revision-history"
+            original_id = "source-revision-original--aaaaaaaaaaaa"
+            update_id = "source-revision-update--bbbbbbbbbbbb"
+            self._write_source_record(
+                alpha_space_root,
+                source_id=original_id,
+                title="Revision Study Original",
+                ingested_at="2026-04-10T00:00:00Z",
+                source_family_id=family_id,
+                source_revision={
+                    "source_family_id": family_id,
+                    "revision_index": 1,
+                    "is_latest": False,
+                    "supersedes_source_id": None,
+                    "superseded_by_source_id": update_id,
+                },
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id=update_id,
+                title="Revision Study Updated",
+                ingested_at="2026-04-11T00:00:00Z",
+                source_family_id=family_id,
+                source_revision={
+                    "source_family_id": family_id,
+                    "revision_index": 2,
+                    "is_latest": True,
+                    "supersedes_source_id": original_id,
+                    "superseded_by_source_id": None,
+                },
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-singleton--cccccccccccc",
+                title="Singleton Source",
+                source_family_id="source-family-singleton",
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            update_page = (alpha_space_root / "site" / "sources" / f"{update_id}.html").read_text()
+            self.assertIn("Revisions", update_page)
+            self.assertIn(f"../sources/{original_id}.html", update_page)
+            self.assertIn(f"../sources/{update_id}.html", update_page)
+            self.assertIn("Current", update_page)
+            self.assertIn("Latest", update_page)
+            self.assertLess(update_page.index("Revision 1"), update_page.index("Revision 2"))
+
+            singleton_page = (
+                alpha_space_root / "site" / "sources" / "source-singleton--cccccccccccc.html"
+            ).read_text()
+            self.assertNotIn("source-revisions-card", singleton_page)
+
     def test_source_claim_list_uses_human_claim_titles_not_reference_counters(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
@@ -3242,6 +3308,8 @@ class SiteBuilderContractTests(unittest.TestCase):
         analysis_policy: dict[str, object] | None = None,
         external_related_links: list[dict[str, object]] | None = None,
         related_link_enrichment: dict[str, object] | None = None,
+        source_family_id: str | None = None,
+        source_revision: dict[str, object] | None = None,
     ) -> None:
         payload = {
             "schema_version": "source_record_v1",
@@ -3272,6 +3340,10 @@ class SiteBuilderContractTests(unittest.TestCase):
             payload["external_related_links"] = external_related_links
         if related_link_enrichment is not None:
             payload["related_link_enrichment"] = related_link_enrichment
+        if source_family_id is not None:
+            payload["source_family_id"] = source_family_id
+        if source_revision is not None:
+            payload["source_revision"] = source_revision
         if source_file_rel is not None:
             payload["artifacts"] = {
                 "source_file": source_file_rel,

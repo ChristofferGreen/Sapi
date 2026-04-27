@@ -118,7 +118,11 @@ _SEMANTIC_EXECUTION_CONTRACTS: dict[str, tuple[tuple[str, tuple[str, ...]], ...]
     ),
     "scripts/ingest_source.py": (
         ("ingest_extraction", ("run_ingest_extraction_and_persist_canonical(",)),
+        ("source_revision_detection", ("run_source_revision_detection(",)),
         ("topic_generation", ("run_topic_generation_and_persist_canonical(",)),
+    ),
+    "sapi/ingest/source_versions.py": (
+        ("source_revision_detection", ("build_semantic_spec_from_contract(", "run_semantic_flow(")),
     ),
     "sapi/ingest/records_writer.py": (
         ("ingest_extraction", ("resolve_semantic_invocation_spec(", "run_semantic_flow(")),
