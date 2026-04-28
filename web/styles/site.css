@@ -408,6 +408,7 @@
 
   .feed-card-date,
   .feed-card-type,
+  .feed-card-citations,
   .feed-card-authors {
     color: #26496f;
     font-size: 0.86rem;
@@ -426,6 +427,44 @@
 
   .feed-card-author:hover {
     text-decoration: underline;
+  }
+
+  .feed-card-author-overflow {
+    color: #426384;
+  }
+
+  .source-order-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+    margin: 0 0 0.72rem;
+  }
+
+  .source-order-label {
+    color: #26496f;
+    font-size: 0.84rem;
+    font-family:
+      "JetBrains Mono",
+      "IBM Plex Mono",
+      "SFMono-Regular",
+      "Menlo",
+      monospace;
+  }
+
+  .source-order-link {
+    border: 1px solid #9ec8ea;
+    border-radius: 999px;
+    padding: 0.18rem 0.56rem;
+    color: #174f86;
+    text-decoration: none;
+    background: #f6fbff;
+  }
+
+  .source-order-link:hover,
+  .source-order-link.current {
+    border-color: #6eaee8;
+    background: #dceeff;
   }
 
   .feed-card-overview {

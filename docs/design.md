@@ -1561,6 +1561,10 @@ Search/feed presentation:
 - debug mode can show internal metadata
 - front page `New` feed lists recent sources and topics across spaces, newest first
 - each feed row SHOULD show space name, item type (`source` or `topic`), timestamp, title, and compact summary
+- source feed rows SHOULD show numeric citation counts when the source record provides article citation
+  metadata, and SHOULD collapse long author lists after the first three authors with an explicit overflow marker.
+- source tab pages SHOULD provide deterministic order variants for date, citation count, and title, with
+  pagination applied after the selected ordering.
 - site-root `New` feed/index views MUST be refreshed after successful ingest/topic updates in any space of the same site (Section 2.2); incremental refresh is allowed when output is equivalent.
 
 Cross-space topic linking contract:

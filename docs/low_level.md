@@ -586,6 +586,9 @@ Presentation asset and ownership contracts (normative implementation boundary):
 - deterministic build MUST emit canonical stylesheet assets at `<render_root>/assets/site.css`
 - rendered pages MUST include one viewport meta tag and one stylesheet link to `assets/site.css`
 - template/render layer owns semantic HTML class hooks (`site-shell`, `site-sidebar`, `site-main`, `content-card`, `feed-list`, `topic-section`, `source-summary`)
+- source feed rendering owns deterministic source order variants for date, citation count, and title; render
+  pagination from the sorted source list, show available numeric citation counts on source cards, and cap
+  feed-card author display at three visible authors plus an overflow marker
 - CSS toolchain stage owns stylesheet compilation; missing or failed stylesheet generation is a build error
 - build validation MUST assert stylesheet file existence and HTML link references before reporting success
 - run/build metadata key `toolchain_versions.tailwind_cli` is informational only and MUST NOT be treated as compilation success evidence

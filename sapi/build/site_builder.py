@@ -46,6 +46,11 @@ _WIKI_SECTION_ORDER: tuple[str, ...] = (
     "references",
 )
 TAB_PAGE_SIZE = 50
+SOURCE_SORT_MODES: tuple[tuple[str, str, str], ...] = (
+    ("date", "Date", "sources"),
+    ("citation_count", "Citation count", "sources/by-citation-count"),
+    ("title", "Title", "sources/by-title"),
+)
 _ROOT_LOCAL_URL_ATTR_RE = re.compile(r'(?P<prefix>\b(?:href|src|action)=\")(?P<url>/[^\"]*)\"')
 
 
@@ -71,6 +76,7 @@ class _FeedEntry:
     display_timestamp: str = ""
     authors: tuple["_AuthorRef", ...] = ()
     source_preview_href: str | None = None
+    citation_count: float | None = None
 
 
 @dataclass(frozen=True)
@@ -2622,6 +2628,7 @@ def _space_feed_entries(
                 summary=_source_card_overview(source),
                 authors=_author_refs(source_author_identities),
                 source_preview_href=source_preview_href,
+                citation_count=_parse_nonnegative_float(source.get("citation_count")),
             )
         )
     for topic in projection.topics:
@@ -2664,6 +2671,26 @@ def _space_feed_entries(
 def _sort_feed_entries(entries: list[_FeedEntry]) -> None:
     entries.sort(key=lambda item: (item.space_name, item.item_type, item.item_id))
     entries.sort(key=lambda item: item.timestamp, reverse=True)
+
+
+def _sorted_source_feed_entries(entries: list[_FeedEntry], *, sort_key: str) -> list[_FeedEntry]:
+    sorted_entries = list(entries)
+    if sort_key == "citation_count":
+        sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
+        sorted_entries.sort(
+            key=lambda item: (
+                item.citation_count is not None,
+                item.citation_count if item.citation_count is not None else -1.0,
+            ),
+            reverse=True,
+        )
+        return sorted_entries
+    if sort_key == "title":
+        sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
+        return sorted_entries
+    sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
+    sorted_entries.sort(key=lambda item: item.display_timestamp or item.timestamp, reverse=True)
+    return sorted_entries
 
 
 def _dedupe_ordered_strings(values: list[str]) -> list[str]:
@@ -3051,6 +3078,7 @@ def _render_feed_row(entry: _FeedEntry) -> str:
     title_href = _feed_item_href(entry)
     preview_thumb = _render_feed_preview_thumb(entry)
     authors_html = _render_feed_authors(entry=entry)
+    citation_html = _render_feed_citation_count(entry=entry)
     timestamp_for_display = (
         entry.display_timestamp
         if entry.item_type == "source"
@@ -3069,6 +3097,7 @@ def _render_feed_row(entry: _FeedEntry) -> str:
         + "<span class=\"feed-card-type\">"
         + escape(_feed_item_label(entry.item_type))
         + "</span>"
+        + citation_html
         + authors_html
         + "</p>"
     )
@@ -3093,6 +3122,7 @@ def _render_feed_row(entry: _FeedEntry) -> str:
 def _render_feed_authors(*, entry: _FeedEntry) -> str:
     if not entry.authors:
         return "<span class=\"feed-card-authors\">Authors: unknown</span>"
+    visible_authors = entry.authors[:3]
     name_counts: dict[str, int] = {}
     for author in entry.authors:
         name_counts[author.display_name] = name_counts.get(author.display_name, 0) + 1
@@ -3112,9 +3142,46 @@ def _render_feed_authors(*, entry: _FeedEntry) -> str:
             + escape(_label(author))
             + "</a>"
         )
-        for author in entry.authors
+        for author in visible_authors
     )
+    if len(entry.authors) > len(visible_authors):
+        linked_names += ', <span class="feed-card-author-overflow">...</span>'
     return "<span class=\"feed-card-authors\">Authors: " + linked_names + "</span>"
+
+
+def _render_feed_citation_count(*, entry: _FeedEntry) -> str:
+    if entry.item_type != "source" or entry.citation_count is None:
+        return ""
+    return (
+        "<span class=\"feed-card-citations\">Citations: "
+        + escape(_format_citation_count_for_ui(entry.citation_count))
+        + "</span>"
+    )
+
+
+def _render_source_order_controls(*, space_name: str, current_sort_key: str) -> str:
+    links: list[str] = []
+    for sort_key, label, sort_path in SOURCE_SORT_MODES:
+        classes = "source-order-link"
+        if sort_key == current_sort_key:
+            classes += " current"
+        links.append(
+            "<a class=\""
+            + escape(classes)
+            + "\" href=\"/spaces/"
+            + escape(space_name)
+            + "/site/"
+            + escape(sort_path)
+            + "/index.html\">"
+            + escape(label)
+            + "</a>"
+        )
+    return (
+        "<nav class=\"source-order-controls\" aria-label=\"Source order\">"
+        + "<span class=\"source-order-label\">Order</span>"
+        + "".join(links)
+        + "</nav>\n"
+    )
 
 
 def _write_space_tab_pages(
@@ -3144,7 +3211,6 @@ def _write_space_tab_pages(
 
     tab_rows: dict[str, list[str]] = {
         "new": [_render_feed_row(entry) for entry in feed_entries],
-        "sources": [_render_feed_row(entry) for entry in source_feed_entries],
         "topics": [_render_feed_row(entry) for entry in sorted(topic_feed_entries, key=lambda entry: entry.item_id)],
         "users": [
             (
@@ -3170,6 +3236,54 @@ def _write_space_tab_pages(
     }
 
     for tab_key in context.tabs:
+        if tab_key == "sources":
+            for sort_key, sort_label, sort_path in SOURCE_SORT_MODES:
+                rows = [
+                    _render_feed_row(entry)
+                    for entry in _sorted_source_feed_entries(source_feed_entries, sort_key=sort_key)
+                ]
+                tab_root = output_root / sort_path
+                tab_root.mkdir(parents=True, exist_ok=True)
+                pages = _paginate(rows, TAB_PAGE_SIZE)
+                for page_number, page_rows in enumerate(pages, start=1):
+                    page_path = _paginated_page_path(tab_root, page_number=page_number)
+                    pagination = _render_pagination(
+                        page_number=page_number,
+                        page_count=len(pages),
+                        mode="tab",
+                        base_href=f"/spaces/{context.space_name}/site/{sort_path}",
+                    )
+                    content = (
+                        _render_source_order_controls(
+                            space_name=context.space_name,
+                            current_sort_key=sort_key,
+                        )
+                        + "<ul class=\"feed-list\">\n"
+                        + ("\n".join(page_rows) if page_rows else "<li>(none yet)</li>")
+                        + "\n</ul>\n"
+                    )
+                    body = (
+                        "<h1>Sources</h1>\n"
+                        + f"<p class=\"tab-page-size\" data-tab-page-size=\"{TAB_PAGE_SIZE}\">Page size: {TAB_PAGE_SIZE}</p>\n"
+                        + content
+                        + pagination
+                    )
+                    _write_text_file(
+                        page_path,
+                        _render_space_layout(
+                            title=f"{display_space_name} - Sources by {sort_label.lower()}",
+                            body=body,
+                            context=context,
+                            current_tab=tab_key,
+                            stylesheet_href=_relative_href(
+                                from_file=page_path,
+                                to_file=output_root / "assets" / "site.css",
+                            ),
+                        ),
+                        incremental=incremental,
+                    )
+                    written.append(page_path)
+            continue
         rows = tab_rows.get(tab_key, [])
         tab_title = tab_key.capitalize()
         tab_root = output_root / tab_key
@@ -4493,7 +4607,7 @@ def _format_citation_count_for_ui(value: object) -> str:
     if parsed is None:
         return "unknown"
     if float(parsed).is_integer():
-        return str(int(parsed))
+        return f"{int(parsed):,}"
     return f"{parsed:.1f}"
 
 

@@ -1413,6 +1413,63 @@ class SiteBuilderContractTests(unittest.TestCase):
             sources_index = (alpha_space_root / "site" / "sources" / "index.html").read_text()
             self.assertIn("Authors: unknown", sources_index)
 
+    def test_source_index_renders_article_citations_author_overflow_and_sort_orders(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-zeta",
+                title="Zeta Source",
+                source_date="2020-01-01",
+                citation_count=240,
+                authors=["Alice A.", "Bob B.", "Cara C.", "Dana D."],
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-alpha",
+                title="Alpha Source",
+                source_date="2023-01-01",
+                citation_count=12,
+                authors=["Erin E."],
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-middle",
+                title="Middle Source",
+                source_date="2022-01-01",
+                authors=["Milo M."],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            sources_index = (alpha_space_root / "site" / "sources" / "index.html").read_text()
+            by_citation = (alpha_space_root / "site" / "sources" / "by-citation-count" / "index.html").read_text()
+            by_title = (alpha_space_root / "site" / "sources" / "by-title" / "index.html").read_text()
+
+            self.assertIn("source-order-controls", sources_index)
+            self.assertIn('href="by-citation-count/index.html">Citation count</a>', sources_index)
+            self.assertIn('href="by-title/index.html">Title</a>', sources_index)
+            self.assertIn('<span class="feed-card-citations">Citations: 240</span>', sources_index)
+            self.assertIn('<span class="feed-card-author-overflow">...</span>', sources_index)
+            self.assertNotIn("Dana D.", sources_index)
+
+            self.assertLess(sources_index.index("Alpha Source"), sources_index.index("Middle Source"))
+            self.assertLess(sources_index.index("Middle Source"), sources_index.index("Zeta Source"))
+            self.assertLess(by_citation.index("Zeta Source"), by_citation.index("Alpha Source"))
+            self.assertLess(by_citation.index("Alpha Source"), by_citation.index("Middle Source"))
+            self.assertLess(by_title.index("Alpha Source"), by_title.index("Middle Source"))
+            self.assertLess(by_title.index("Middle Source"), by_title.index("Zeta Source"))
+
     def test_source_detail_and_feed_rows_render_preview_assets_and_source_pdf_link(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
