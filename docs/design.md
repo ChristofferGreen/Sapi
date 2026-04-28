@@ -1565,6 +1565,9 @@ Search/feed presentation:
   metadata, and SHOULD collapse long author lists after the first three authors with an explicit overflow marker.
 - source tab pages SHOULD provide deterministic order variants for date, citation count, and title, with
   pagination applied after the selected ordering.
+- topic feed rows SHOULD show deterministic evidence and claim counts, and topic tab pages SHOULD
+  provide deterministic order variants for date, evidence count, claim count, and title, with
+  pagination applied after the selected ordering.
 - site-root `New` feed/index views MUST be refreshed after successful ingest/topic updates in any space of the same site (Section 2.2); incremental refresh is allowed when output is equivalent.
 
 Cross-space topic linking contract:

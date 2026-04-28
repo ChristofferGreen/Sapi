@@ -1028,6 +1028,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn('href="overview/index.html" aria-label="Overview for alpha">Overview</a>', space_home)
             self.assertIn('href="sources/index.html">Sources</a>', space_home)
             self.assertIn('href="topics/index.html">Topics</a>', space_home)
+            self.assertLess(space_home.index('href="new/index.html">New</a>'), space_home.index('href="index.html">Home</a>'))
             self.assertIn('href="users/index.html">Users</a>', space_home)
             self.assertIn('href="evidence/index.html">Evidence</a>', space_home)
             self.assertIn('href="claims/index.html">Claims</a>', space_home)
@@ -1469,6 +1470,122 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertLess(by_citation.index("Alpha Source"), by_citation.index("Middle Source"))
             self.assertLess(by_title.index("Alpha Source"), by_title.index("Middle Source"))
             self.assertLess(by_title.index("Middle Source"), by_title.index("Zeta Source"))
+
+    def test_topic_index_renders_count_metrics_and_sort_orders(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-old",
+                title="Old Source",
+                source_date="2020-01-01",
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-middle",
+                title="Middle Source",
+                source_date="2022-01-01",
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-new",
+                title="New Source",
+                source_date="2023-01-01",
+            )
+            for claim_id, source_id in [
+                ("claim-a", "source-old"),
+                ("claim-b", "source-old"),
+                ("claim-c", "source-new"),
+            ]:
+                self._write_claim_record(
+                    alpha_space_root,
+                    claim_id=claim_id,
+                    source_id=source_id,
+                    text=f"{claim_id} text",
+                )
+            self._write_topic_record(
+                alpha_space_root,
+                topic_id="topic-zeta-evidence",
+                title="Zeta Evidence Topic",
+                source_ids=["source-old"],
+                claim_ids=["claim-a", "claim-b"],
+            )
+            self._write_topic_record(
+                alpha_space_root,
+                topic_id="topic-alpha-recent",
+                title="Alpha Recent Topic",
+                source_ids=["source-new"],
+                claim_ids=["claim-c"],
+            )
+            self._write_topic_record(
+                alpha_space_root,
+                topic_id="topic-middle",
+                title="Middle Topic",
+                source_ids=["source-middle"],
+                claim_ids=[],
+            )
+            self._write_evidence_record(
+                alpha_space_root,
+                evidence_id="evidence-a",
+                title="Evidence A",
+                excerpt="Evidence excerpt A",
+                overview="Evidence overview A",
+                evidence_type="quote",
+                source_id="source-old",
+                claim_ids=["claim-a"],
+            )
+            self._write_evidence_record(
+                alpha_space_root,
+                evidence_id="evidence-b",
+                title="Evidence B",
+                excerpt="Evidence excerpt B",
+                overview="Evidence overview B",
+                evidence_type="quote",
+                source_id="source-old",
+                claim_ids=["claim-b"],
+            )
+            self._write_evidence_record(
+                alpha_space_root,
+                evidence_id="evidence-c",
+                title="Evidence C",
+                excerpt="Evidence excerpt C",
+                overview="Evidence overview C",
+                evidence_type="quote",
+                source_id="source-new",
+                claim_ids=["claim-c"],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            topics_index = (alpha_space_root / "site" / "topics" / "index.html").read_text()
+            by_evidence = (alpha_space_root / "site" / "topics" / "by-evidence" / "index.html").read_text()
+            by_claims = (alpha_space_root / "site" / "topics" / "by-claims" / "index.html").read_text()
+            by_title = (alpha_space_root / "site" / "topics" / "by-title" / "index.html").read_text()
+
+            self.assertIn("Topic order", topics_index)
+            self.assertIn('href="by-evidence/index.html">Evidence</a>', topics_index)
+            self.assertIn('href="by-claims/index.html">Claims</a>', topics_index)
+            self.assertIn('<span class="feed-card-counts">Evidence: 2</span>', topics_index)
+            self.assertIn('<span class="feed-card-counts">Claims: 2</span>', topics_index)
+
+            self.assertLess(topics_index.index("Alpha Recent Topic"), topics_index.index("Middle Topic"))
+            self.assertLess(topics_index.index("Middle Topic"), topics_index.index("Zeta Evidence Topic"))
+            self.assertLess(by_evidence.index("Zeta Evidence Topic"), by_evidence.index("Alpha Recent Topic"))
+            self.assertLess(by_evidence.index("Alpha Recent Topic"), by_evidence.index("Middle Topic"))
+            self.assertLess(by_claims.index("Zeta Evidence Topic"), by_claims.index("Alpha Recent Topic"))
+            self.assertLess(by_claims.index("Alpha Recent Topic"), by_claims.index("Middle Topic"))
+            self.assertLess(by_title.index("Alpha Recent Topic"), by_title.index("Middle Topic"))
+            self.assertLess(by_title.index("Middle Topic"), by_title.index("Zeta Evidence Topic"))
 
     def test_source_detail_and_feed_rows_render_preview_assets_and_source_pdf_link(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -3476,6 +3593,7 @@ class SiteBuilderContractTests(unittest.TestCase):
         topic_id: str,
         title: str,
         source_ids: list[str],
+        claim_ids: list[str] | None = None,
         sections: list[dict[str, str]] | None = None,
         structure_type: str = "wiki",
         source_structure_outline: list[str] | None = None,
@@ -3487,7 +3605,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             "title": title,
             "structure_type": structure_type,
             "sections": sections if sections is not None else [{"heading": "Summary", "body": "Body"}],
-            "claim_ids": [],
+            "claim_ids": claim_ids if claim_ids is not None else [],
             "source_ids": source_ids,
         }
         if source_structure_outline is not None:

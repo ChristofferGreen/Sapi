@@ -51,6 +51,12 @@ SOURCE_SORT_MODES: tuple[tuple[str, str, str], ...] = (
     ("citation_count", "Citation count", "sources/by-citation-count"),
     ("title", "Title", "sources/by-title"),
 )
+TOPIC_SORT_MODES: tuple[tuple[str, str, str], ...] = (
+    ("date", "Date", "topics"),
+    ("evidence_count", "Evidence", "topics/by-evidence"),
+    ("claim_count", "Claims", "topics/by-claims"),
+    ("title", "Title", "topics/by-title"),
+)
 _ROOT_LOCAL_URL_ATTR_RE = re.compile(r'(?P<prefix>\b(?:href|src|action)=\")(?P<url>/[^\"]*)\"')
 
 
@@ -77,6 +83,9 @@ class _FeedEntry:
     authors: tuple["_AuthorRef", ...] = ()
     source_preview_href: str | None = None
     citation_count: float | None = None
+    evidence_count: int | None = None
+    claim_count: int | None = None
+    source_count: int | None = None
 
 
 @dataclass(frozen=True)
@@ -240,6 +249,7 @@ def build_space_site(
             projection=projection,
             context=context,
             persona_rows=persona_rows,
+            evidence_records=evidence_records,
             incremental=incremental,
         )
     )
@@ -650,9 +660,15 @@ def _collect_claim_ids_from_topics(*, topics: list[dict[str, Any]]) -> list[str]
 
 def _collect_claim_ids_from_topic(*, topic: dict[str, object]) -> list[str]:
     claim_ids: set[str] = set()
+    raw_claim_ids = topic.get("claim_ids")
+    if isinstance(raw_claim_ids, list):
+        for claim_id in raw_claim_ids:
+            normalized = str(claim_id).strip()
+            if normalized:
+                claim_ids.add(normalized)
     sections = topic.get("sections")
     if not isinstance(sections, list):
-        return []
+        return sorted(claim_ids)
     for section in sections:
         if not isinstance(section, dict):
             continue
@@ -2593,6 +2609,7 @@ def _space_feed_entries(
     projection: SpaceProjection,
     site_path: Path,
     require_cross_source_topics: bool = True,
+    topic_evidence_count_by_id: dict[str, int] | None = None,
 ) -> list[_FeedEntry]:
     entries: list[_FeedEntry] = []
     source_preview_by_id: dict[str, str] = {}
@@ -2641,6 +2658,8 @@ def _space_feed_entries(
         # New feeds only surface cross-source topics, but space home pages should show every local topic.
         if require_cross_source_topics and len(source_ids) < 2:
             continue
+        topic_id = str(topic["topic_id"])
+        claim_ids = _collect_claim_ids_from_topic(topic=topic)
         topic_timestamp = str(topic.get("updated_at") or topic.get("created_at") or "").strip()
         if not topic_timestamp:
             topic_timestamp = max(
@@ -2653,7 +2672,7 @@ def _space_feed_entries(
                 display_timestamp=topic_timestamp,
                 space_name=space_name,
                 item_type="topic",
-                item_id=str(topic["topic_id"]),
+                item_id=topic_id,
                 title=str(topic["title"]),
                 summary=_sanitize_card_overview(summary),
                 authors=_author_refs(
@@ -2663,6 +2682,9 @@ def _space_feed_entries(
                     )
                 ),
                 source_preview_href=None,
+                evidence_count=(topic_evidence_count_by_id or {}).get(topic_id, 0),
+                claim_count=len(claim_ids),
+                source_count=len(source_ids),
             )
         )
     return entries
@@ -2691,6 +2713,32 @@ def _sorted_source_feed_entries(entries: list[_FeedEntry], *, sort_key: str) -> 
     sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
     sorted_entries.sort(key=lambda item: item.display_timestamp or item.timestamp, reverse=True)
     return sorted_entries
+
+
+def _sorted_topic_feed_entries(entries: list[_FeedEntry], *, sort_key: str) -> list[_FeedEntry]:
+    sorted_entries = list(entries)
+    if sort_key == "evidence_count":
+        sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
+        sorted_entries.sort(key=lambda item: item.evidence_count or 0, reverse=True)
+        return sorted_entries
+    if sort_key == "claim_count":
+        sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
+        sorted_entries.sort(key=lambda item: item.claim_count or 0, reverse=True)
+        return sorted_entries
+    if sort_key == "title":
+        sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
+        return sorted_entries
+    sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
+    sorted_entries.sort(key=lambda item: item.display_timestamp or item.timestamp, reverse=True)
+    return sorted_entries
+
+
+def _topic_evidence_count_by_id(*, evidence_records: list[_EvidenceRecord]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for record in evidence_records:
+        for topic_id in record.topic_ids:
+            counts[topic_id] = counts.get(topic_id, 0) + 1
+    return counts
 
 
 def _dedupe_ordered_strings(values: list[str]) -> list[str]:
@@ -3079,6 +3127,7 @@ def _render_feed_row(entry: _FeedEntry) -> str:
     preview_thumb = _render_feed_preview_thumb(entry)
     authors_html = _render_feed_authors(entry=entry)
     citation_html = _render_feed_citation_count(entry=entry)
+    topic_count_html = _render_feed_topic_counts(entry=entry)
     timestamp_for_display = (
         entry.display_timestamp
         if entry.item_type == "source"
@@ -3098,6 +3147,7 @@ def _render_feed_row(entry: _FeedEntry) -> str:
         + escape(_feed_item_label(entry.item_type))
         + "</span>"
         + citation_html
+        + topic_count_html
         + authors_html
         + "</p>"
     )
@@ -3159,6 +3209,19 @@ def _render_feed_citation_count(*, entry: _FeedEntry) -> str:
     )
 
 
+def _render_feed_topic_counts(*, entry: _FeedEntry) -> str:
+    if entry.item_type != "topic":
+        return ""
+    return (
+        "<span class=\"feed-card-counts\">Evidence: "
+        + escape(str(entry.evidence_count or 0))
+        + "</span>"
+        + "<span class=\"feed-card-counts\">Claims: "
+        + escape(str(entry.claim_count or 0))
+        + "</span>"
+    )
+
+
 def _render_source_order_controls(*, space_name: str, current_sort_key: str) -> str:
     links: list[str] = []
     for sort_key, label, sort_path in SOURCE_SORT_MODES:
@@ -3184,18 +3247,50 @@ def _render_source_order_controls(*, space_name: str, current_sort_key: str) -> 
     )
 
 
+def _render_topic_order_controls(*, space_name: str, current_sort_key: str) -> str:
+    links: list[str] = []
+    for sort_key, label, sort_path in TOPIC_SORT_MODES:
+        classes = "source-order-link"
+        if sort_key == current_sort_key:
+            classes += " current"
+        links.append(
+            "<a class=\""
+            + escape(classes)
+            + "\" href=\"/spaces/"
+            + escape(space_name)
+            + "/site/"
+            + escape(sort_path)
+            + "/index.html\">"
+            + escape(label)
+            + "</a>"
+        )
+    return (
+        "<nav class=\"source-order-controls\" aria-label=\"Topic order\">"
+        + "<span class=\"source-order-label\">Order</span>"
+        + "".join(links)
+        + "</nav>\n"
+    )
+
+
 def _write_space_tab_pages(
     *,
     output_root: Path,
     projection: SpaceProjection,
     context: _SpaceLayoutContext,
     persona_rows: list[dict[str, Any]],
+    evidence_records: list[_EvidenceRecord],
     incremental: bool,
 ) -> list[Path]:
     written: list[Path] = []
     display_space_name = _space_display_name(context.space_name)
     site_path = output_root.parents[2]
-    feed_entries = _space_feed_entries(space_name=context.space_name, projection=projection, site_path=site_path)
+    topic_evidence_counts = _topic_evidence_count_by_id(evidence_records=evidence_records)
+    feed_entries = _space_feed_entries(
+        space_name=context.space_name,
+        projection=projection,
+        site_path=site_path,
+        topic_evidence_count_by_id=topic_evidence_counts,
+    )
     _sort_feed_entries(feed_entries)
     source_feed_entries = [entry for entry in feed_entries if entry.item_type == "source"]
     topic_feed_entries = [
@@ -3205,13 +3300,13 @@ def _write_space_tab_pages(
             projection=projection,
             site_path=site_path,
             require_cross_source_topics=False,
+            topic_evidence_count_by_id=topic_evidence_counts,
         )
         if entry.item_type == "topic"
     ]
 
     tab_rows: dict[str, list[str]] = {
         "new": [_render_feed_row(entry) for entry in feed_entries],
-        "topics": [_render_feed_row(entry) for entry in sorted(topic_feed_entries, key=lambda entry: entry.item_id)],
         "users": [
             (
                 "<a class=\"user-card\" href=\"/spaces/"
@@ -3272,6 +3367,54 @@ def _write_space_tab_pages(
                         page_path,
                         _render_space_layout(
                             title=f"{display_space_name} - Sources by {sort_label.lower()}",
+                            body=body,
+                            context=context,
+                            current_tab=tab_key,
+                            stylesheet_href=_relative_href(
+                                from_file=page_path,
+                                to_file=output_root / "assets" / "site.css",
+                            ),
+                        ),
+                        incremental=incremental,
+                    )
+                    written.append(page_path)
+            continue
+        if tab_key == "topics":
+            for sort_key, sort_label, sort_path in TOPIC_SORT_MODES:
+                rows = [
+                    _render_feed_row(entry)
+                    for entry in _sorted_topic_feed_entries(topic_feed_entries, sort_key=sort_key)
+                ]
+                tab_root = output_root / sort_path
+                tab_root.mkdir(parents=True, exist_ok=True)
+                pages = _paginate(rows, TAB_PAGE_SIZE)
+                for page_number, page_rows in enumerate(pages, start=1):
+                    page_path = _paginated_page_path(tab_root, page_number=page_number)
+                    pagination = _render_pagination(
+                        page_number=page_number,
+                        page_count=len(pages),
+                        mode="tab",
+                        base_href=f"/spaces/{context.space_name}/site/{sort_path}",
+                    )
+                    content = (
+                        _render_topic_order_controls(
+                            space_name=context.space_name,
+                            current_sort_key=sort_key,
+                        )
+                        + "<ul class=\"feed-list\">\n"
+                        + ("\n".join(page_rows) if page_rows else "<li>(none yet)</li>")
+                        + "\n</ul>\n"
+                    )
+                    body = (
+                        "<h1>Topics</h1>\n"
+                        + f"<p class=\"tab-page-size\" data-tab-page-size=\"{TAB_PAGE_SIZE}\">Page size: {TAB_PAGE_SIZE}</p>\n"
+                        + content
+                        + pagination
+                    )
+                    _write_text_file(
+                        page_path,
+                        _render_space_layout(
+                            title=f"{display_space_name} - Topics by {sort_label.lower()}",
                             body=body,
                             context=context,
                             current_tab=tab_key,
@@ -4368,15 +4511,7 @@ def _write_space_evidence_pages(
 def _collect_claim_ids(*, projection: SpaceProjection) -> list[str]:
     claim_ids: set[str] = set()
     for topic in projection.topics:
-        sections = topic.get("sections")
-        if not isinstance(sections, list):
-            continue
-        for section in sections:
-            if not isinstance(section, dict):
-                continue
-            _, annotation_groups = extract_claim_annotations(str(section.get("body", "")))
-            for claim_group in annotation_groups:
-                claim_ids.update(claim_group)
+        claim_ids.update(_collect_claim_ids_from_topic(topic=topic))
     return sorted(claim_ids)
 
 
@@ -4386,19 +4521,8 @@ def _claim_topic_usage_map(*, projection: SpaceProjection) -> dict[str, set[str]
         topic_id = str(topic.get("topic_id") or "").strip()
         if not topic_id:
             continue
-        sections = topic.get("sections")
-        if not isinstance(sections, list):
-            continue
-        for section in sections:
-            if not isinstance(section, dict):
-                continue
-            _, annotation_groups = extract_claim_annotations(str(section.get("body", "")))
-            for claim_group in annotation_groups:
-                for claim_id in claim_group:
-                    normalized = str(claim_id).strip()
-                    if not normalized:
-                        continue
-                    usage.setdefault(normalized, set()).add(topic_id)
+        for claim_id in _collect_claim_ids_from_topic(topic=topic):
+            usage.setdefault(claim_id, set()).add(topic_id)
     return usage
 
 
@@ -5404,6 +5528,7 @@ def _render_global_site_tab_rows(
         current_page=current_page,
     )
     local_rows = [
+        ("new", "New", f"/spaces/{current_space_name}/site/new/index.html", None),
         ("home", "Home", f"/spaces/{current_space_name}/site/index.html", None),
         (
             "overview",
@@ -5411,7 +5536,6 @@ def _render_global_site_tab_rows(
             f"/spaces/{current_space_name}/site/overview/index.html",
             f"Overview for {current_space_name}",
         ),
-        ("new", "New", f"/spaces/{current_space_name}/site/new/index.html", None),
         ("sources", "Sources", f"/spaces/{current_space_name}/site/sources/index.html", None),
         ("topics", "Topics", f"/spaces/{current_space_name}/site/topics/index.html", None),
         ("users", "Users", f"/spaces/{current_space_name}/site/users/index.html", None),
