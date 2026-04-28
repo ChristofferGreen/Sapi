@@ -1448,6 +1448,8 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("class=\"source-preview-link\"", source_page)
             self.assertIn("../../../../site/assets/source_previews/source-preview-b.svg", source_page)
             self.assertIn("../../sources/artifacts/source-preview-b/source.pdf", source_page)
+            self.assertNotIn("source-preview-caption", source_page)
+            self.assertNotIn("Front page preview", source_page)
             self.assertNotIn("Overview and Commentary", source_page)
             self.assertNotIn("What the Source Argues", source_page)
             self.assertNotIn("source_id:", source_page)

@@ -488,7 +488,6 @@ def _write_source_pages(
             + "\" alt=\"Preview for "
             + escape(_source_display_title(source))
             + "\" /></a>"
-            + "<figcaption class=\"source-preview-caption\">Front page preview</figcaption>"
             + "</figure>\n"
         )
         related_topics_rows = (
