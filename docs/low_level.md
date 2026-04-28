@@ -390,6 +390,8 @@ Control flow:
 2. fetch and store source artifact/record
    - if source is inferred/declared as PDF (`application/pdf` or `.pdf` locator), validate payload signature (`%PDF-`) before writing artifacts
    - write canonical sibling artifacts `source.md` and `source_extraction.json`
+   - PDF markdown extraction MUST use MarkItDown and record `extraction_failed` when MarkItDown is
+     unavailable or cannot produce usable markdown
    - persist source-record `analysis_policy` with `preferred_artifact=source_markdown`,
      explicit fallback list, quality status, and warnings
 3. resolve source revision/version handling

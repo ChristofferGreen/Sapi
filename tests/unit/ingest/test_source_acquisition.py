@@ -3,7 +3,7 @@ from __future__ import annotations
 from contextlib import contextmanager
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
-from types import SimpleNamespace
+from types import ModuleType, SimpleNamespace
 import tempfile
 import threading
 import unittest
@@ -150,7 +150,10 @@ class SourceAcquisitionContractTests(unittest.TestCase):
     def test_url_ingest_is_supported_and_persists_artifacts_and_record(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "spaces" / "alpha"
-            with _served_source_bytes(body=b"%PDF-test-content%", content_type="application/pdf") as source_url:
+            with _served_source_bytes(
+                body=b"%PDF-test-content%",
+                content_type="application/pdf",
+            ) as source_url, patch.dict("sys.modules", {"markitdown": None}):
                 result = ingest_source_artifacts_and_record(
                     space_root=space_root,
                     source_path_or_url=source_url,
@@ -171,6 +174,54 @@ class SourceAcquisitionContractTests(unittest.TestCase):
             source_extraction = json.loads(result.source_extraction_path.read_text())
             self.assertEqual(source_extraction["converter_name"], "extraction_failed")
             self.assertEqual(source_extraction["status"], "failed")
+            self.assertTrue(
+                any("MarkItDown is required" in warning for warning in source_extraction["warnings"]),
+                source_extraction["warnings"],
+            )
+
+    def test_pdf_ingest_uses_markitdown_for_markdown_extraction(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            input_file = Path(tmp) / "paper.pdf"
+            input_file.write_bytes(b"%PDF-1.4\n%fake\n")
+            fake_markitdown = ModuleType("markitdown")
+            converted_text = (
+                "# Converted Paper\n\n"
+                + (
+                    "MarkItDown converted this PDF into markdown analysis text with enough structure "
+                    "for downstream semantic extraction to inspect claims, arguments, and provenance. "
+                )
+                * 8
+            )
+            converted_paths: list[str] = []
+
+            class FakeMarkItDown:
+                def convert(self, path: str) -> SimpleNamespace:
+                    converted_paths.append(path)
+                    return SimpleNamespace(text_content=converted_text)
+
+            fake_markitdown.MarkItDown = FakeMarkItDown
+            fake_markitdown.__version__ = "test-version"
+
+            with patch.dict("sys.modules", {"markitdown": fake_markitdown}):
+                result = ingest_source_artifacts_and_record(
+                    space_root=space_root,
+                    source_path_or_url=str(input_file),
+                    source_title_override="Converted Paper",
+                )
+
+            source_markdown = result.source_markdown_path.read_text()
+            source_extraction = json.loads(result.source_extraction_path.read_text())
+            record = json.loads(result.record_path.read_text())
+
+            self.assertIn("MarkItDown converted this PDF", source_markdown)
+            self.assertEqual(len(converted_paths), 1)
+            self.assertTrue(converted_paths[0].endswith("source.pdf"))
+            self.assertEqual(source_extraction["converter_name"], "markitdown")
+            self.assertEqual(source_extraction["converter_version"], "test-version")
+            self.assertEqual(source_extraction["status"], "success")
+            self.assertEqual(source_extraction["quality_status"], "usable")
+            self.assertEqual(record["source_extraction"]["converter_name"], "markitdown")
 
     def test_text_like_ingest_writes_markdown_analysis_artifact_and_provenance(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

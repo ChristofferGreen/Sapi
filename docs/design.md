@@ -475,7 +475,8 @@ Behavior:
 
 - source binaries and previews are space-owned and MUST be stored under `<space_root>/sources/artifacts/`.
 - ingest MUST also persist canonical analysis artifacts beside the original binary:
-  - `source.md`: extracted markdown used as the default LLM/source-analysis substrate
+  - `source.md`: extracted markdown used as the default LLM/source-analysis substrate; PDF
+    inputs MUST be converted with MarkItDown rather than a silent text-extraction fallback
   - `source_extraction.json`: extraction provenance (`converter_name`, `converter_version`, `status`,
     `quality_status`, hashes, warnings, and artifact-relative pointers)
 - source records MUST point to the original binary, `source.md`, and `source_extraction.json`.

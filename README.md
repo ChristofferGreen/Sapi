@@ -19,6 +19,10 @@ Start with:
 - [docs/low_level.md](/Users/chrgre01/src/Sapi/docs/low_level.md)
 - [docs/testing_plan.md](/Users/chrgre01/src/Sapi/docs/testing_plan.md)
 
+Python runtime dependencies:
+
+- `python3 -m pip install -r requirements.txt`
+
 ## Product Model
 
 Primary entities:

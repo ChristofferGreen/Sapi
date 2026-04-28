@@ -1051,19 +1051,6 @@ def _extract_source_markdown(
                 options={"input_format": "pdf"},
             )
 
-        pdf_text, pdf_warnings = _extract_pdf_markdown_via_pdftotext(source_artifact_path=source_artifact_path)
-        warnings.extend(pdf_warnings)
-        if pdf_text is not None:
-            return _finalize_source_markdown_extraction(
-                title=title,
-                markdown_text=pdf_text,
-                converter_name="pdftotext",
-                converter_version=None,
-                status="success",
-                warnings=warnings,
-                options={"input_format": "pdf", "layout": "preserve"},
-            )
-
     warnings.append("No markdown extractor produced usable source text.")
     return _finalize_source_markdown_extraction(
         title=title,
@@ -1098,7 +1085,10 @@ def _extract_pdf_markdown_via_markitdown(
         import markitdown as markitdown_module
         from markitdown import MarkItDown
     except ImportError:
-        return None, None, []
+        return None, None, [
+            "MarkItDown is required for PDF markdown extraction. Install the project Python "
+            "dependencies with `python3 -m pip install -r requirements.txt`.",
+        ]
     try:
         converter = MarkItDown()
         result = converter.convert(str(source_artifact_path))
@@ -1110,33 +1100,6 @@ def _extract_pdf_markdown_via_markitdown(
             "MarkItDown returned empty markdown output.",
         ]
     return markdown_text, getattr(markitdown_module, "__version__", None), []
-
-
-def _extract_pdf_markdown_via_pdftotext(*, source_artifact_path: Path) -> tuple[str | None, list[str]]:
-    pdftotext = shutil.which("pdftotext")
-    if pdftotext is None:
-        return None, []
-    try:
-        completed = subprocess.run(
-            [
-                pdftotext,
-                "-layout",
-                str(source_artifact_path),
-                "-",
-            ],
-            capture_output=True,
-            text=True,
-            timeout=60,
-            check=False,
-        )
-    except (OSError, subprocess.SubprocessError) as exc:
-        return None, [f"pdftotext conversion failed: {exc}"]
-    if completed.returncode != 0:
-        message = completed.stderr.strip() or completed.stdout.strip() or "pdftotext exited with a non-zero status."
-        return None, [message]
-    if not completed.stdout.strip():
-        return None, ["pdftotext returned empty text output."]
-    return completed.stdout, []
 
 
 def _finalize_source_markdown_extraction(
