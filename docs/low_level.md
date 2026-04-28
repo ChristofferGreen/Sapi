@@ -794,6 +794,10 @@ Minimum test groups for this low-level design:
 - external related links:
   - source records may persist curated `external_related_links[]` and `related_link_enrichment`
   - deterministic build aggregates these links onto source/topic/claim pages without issuing web requests
+  - reference DOI/arXiv identifiers remain bibliography/source-linking metadata and are not promoted
+    into `external_related_links[]`
+  - topic and claim pages inherit only contextual link classes from sources: `encyclopedia`,
+    `repository`, and `discussion_forum`
   - supported default `link_type` values are `canonical_paper`, `primary_source`, `research_index`,
     `encyclopedia`, `repository`, and `discussion_forum`
   - deterministic aggregation de-duplicates by normalized URL and preserves source provenance cues

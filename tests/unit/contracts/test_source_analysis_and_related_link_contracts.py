@@ -22,7 +22,11 @@ class SourceAnalysisAndRelatedLinkContractTests(unittest.TestCase):
         self.assertIn("external_related_links[]", reference_section)
         self.assertIn("link_type", reference_section)
         self.assertIn("related_link_enrichment", reference_section)
-        self.assertIn("topic and claim pages MUST inherit/aggregate curated external links", reference_section)
+        self.assertIn(
+            "topic and claim pages MUST inherit/aggregate only contextual external link classes",
+            reference_section,
+        )
+        self.assertIn("reference DOI/arXiv identifiers MUST remain in `references[]`", reference_section)
 
     def test_low_level_doc_wires_ingest_pipeline_to_markdown_first_analysis(self) -> None:
         section = _section_text(LOW_LEVEL_DOC_PATH.read_text(), "### 8.1 Ingest Pipeline (`scripts/ingest_source.py`)")

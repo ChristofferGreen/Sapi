@@ -289,32 +289,8 @@ def _build_external_related_links(record: dict[str, Any]) -> tuple[list[dict[str
                         confidence="medium",
                     )
                 )
-            reference_doi = _normalize_doi(reference.get("doi"))
-            if reference_doi is not None:
-                sources_used.add("references")
-                raw_candidates.append(
-                    _make_related_link_candidate(
-                        title=_normalize_optional_string(reference.get("title")) or "Referenced DOI",
-                        url=f"https://doi.org/{reference_doi}",
-                        rationale="Derived from a DOI found in the source references.",
-                        provenance_origin="reference_doi",
-                        source_field=f"references[{index}].doi",
-                        confidence="medium",
-                    )
-                )
-            reference_arxiv = _normalize_arxiv(reference.get("arxiv"))
-            if reference_arxiv is not None:
-                sources_used.add("references")
-                raw_candidates.append(
-                    _make_related_link_candidate(
-                        title=_normalize_optional_string(reference.get("title")) or "Referenced arXiv entry",
-                        url=f"https://arxiv.org/abs/{reference_arxiv}",
-                        rationale="Derived from an arXiv identifier found in the source references.",
-                        provenance_origin="reference_arxiv",
-                        source_field=f"references[{index}].arxiv",
-                        confidence="medium",
-                    )
-                )
+            # DOI/arXiv values from references belong in references[] and local source-linking.
+            # Promoting them here turns bibliography rows into broad reader recommendations.
 
     curated_links = _dedupe_and_sort_related_links(raw_candidates=raw_candidates, warnings=warnings)
     if curated_links:

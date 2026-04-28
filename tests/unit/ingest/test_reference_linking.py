@@ -7,6 +7,7 @@ import unittest
 from pathlib import Path
 
 from sapi.ingest.citations import (
+    _build_external_related_links,
     extract_normalized_references_from_text,
     run_reference_extraction_and_link_backfill,
 )
@@ -193,6 +194,23 @@ class ReferenceLinkingTests(unittest.TestCase):
             self.assertTrue(
                 any(isinstance(link, dict) and link.get("link_type") == "discussion_forum" for link in links)
             )
+
+    def test_reference_enrichment_does_not_promote_reference_identifiers_as_related_links(self) -> None:
+        links, metadata = _build_external_related_links(
+            {
+                "references": [
+                    {
+                        "title": "Bibliography DOI",
+                        "doi": "10.4242/reference-only.2026",
+                        "arxiv": "2401.12345",
+                    }
+                ]
+            }
+        )
+
+        self.assertEqual(links, [])
+        self.assertEqual(metadata["status"], "skipped")
+        self.assertEqual(metadata["skip_reason"], "no_curated_links_found")
 
 
 def _bootstrap_site_and_space(tmp_root: Path, space_name: str) -> Path:

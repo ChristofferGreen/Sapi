@@ -1010,7 +1010,7 @@ For reference-heavy sources:
 3. match to ingested local sources in same space
 4. persist `linked_source_ids`
 5. backfill links in older records on new ingest
-6. derive curated `external_related_links[]` from canonical identifiers, source locator, and allowlisted external reference URLs
+6. derive curated `external_related_links[]` from canonical identifiers, source locator, and allowlisted contextual URLs
 
 External related-link contract (normative):
 - `external_related_links[]` are distinct from canonical source citations/references; they are reader-facing
@@ -1034,14 +1034,18 @@ External related-link contract (normative):
 - enrichment MUST be deterministic and auditable; page rendering MUST NOT perform implicit web search.
 - enrichment MUST de-duplicate by normalized URL and prefer higher-trust rows over lower-trust duplicates.
 - unsupported or low-signal domains SHOULD be rejected rather than rendered.
+- reference DOI/arXiv identifiers MUST remain in `references[]` and local source-linking metadata; they
+  MUST NOT be promoted into `external_related_links[]`.
 - source records MUST persist `related_link_enrichment` metadata with `status`, `sources`, warnings,
   and skip reason when no curated links qualify.
 
 UI requirement:
 - source page shows references and linked local source pages when matched
 - source, topic, and claim pages SHOULD show `External Related Links` sections when curated links exist.
-- topic and claim pages MUST inherit/aggregate curated external links deterministically from linked sources,
-  with provenance cues indicating which source(s) supplied each link.
+- topic and claim pages MUST inherit/aggregate only contextual external link classes
+  (`encyclopedia`, `repository`, `discussion_forum`) from linked sources, with provenance cues
+  indicating which source(s) supplied each link. They MUST NOT inherit source-level canonical paper,
+  original source, or research-index links as topic recommendations.
 
 ### 7.2.1 Space/subspace overview synthesis
 

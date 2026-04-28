@@ -2,6 +2,26 @@
 
 This file is append-only history for completed tasks moved out of `docs/todo.md`.
 
+## 2026-04-28
+
+- [x] TODO-0364: Suppress bibliography DOI links from topic recommendations
+  - owner: ai
+  - created_at: 2026-04-28
+  - finished_at: 2026-04-28
+  - phase: Cross-cutting
+  - scope: Correct external related-link behavior so topic and claim pages do not present inherited
+    source bibliography DOI/arXiv links as topic-level recommendations.
+  - acceptance:
+    - Reference DOI/arXiv identifiers remain in canonical references and local source-linking metadata
+      but are not promoted into `external_related_links[]`.
+    - Topic and claim pages inherit only contextual related-link classes such as encyclopedia,
+      repository, and discussion-forum links from linked sources.
+    - Contract docs and tests cover suppression of source-level canonical paper links on topic and
+      claim pages while preserving contextual inherited links with provenance.
+  - notes: triggered by browser review of the mind example topic page external links section.
+  - evidence: Updated ingest related-link enrichment, deterministic site aggregation, docs, and
+    focused builder/ingest/contract tests.
+
 ## 2026-04-27
 
 - [x] TODO-0363: Add revision ingestion validation and quality coverage

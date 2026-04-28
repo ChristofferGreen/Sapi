@@ -2420,6 +2420,16 @@ class SiteBuilderContractTests(unittest.TestCase):
                 },
                 external_related_links=[
                     {
+                        "title": "Referenced DOI landing page",
+                        "url": "https://doi.org/10.2222/not-topic-context",
+                        "domain": "doi.org",
+                        "link_type": "canonical_paper",
+                        "quality_status": "trusted",
+                        "confidence": "medium",
+                        "rationale": "Derived from a DOI found in the source references.",
+                        "provenance": {"origin": "reference_doi", "source_field": "references[2].doi"},
+                    },
+                    {
                         "title": "Wikipedia overview",
                         "url": "https://en.wikipedia.org/wiki/Formal_system",
                         "domain": "en.wikipedia.org",
@@ -2488,17 +2498,20 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("Markdown quality", source_page)
             self.assertIn("markitdown (0.1.0)", source_page)
             self.assertIn("External Related Links", source_page)
+            self.assertIn("Referenced DOI landing page", source_page)
             self.assertIn("Wikipedia overview", source_page)
             self.assertIn("Logic discussion thread", source_page)
             self.assertIn("from reference url", source_page)
 
             self.assertIn("External Related Links", topic_page)
             self.assertIn("Wikipedia overview", topic_page)
+            self.assertNotIn("Referenced DOI landing page", topic_page)
             self.assertIn(f"../sources/{source_id}.html", topic_page)
             self.assertIn("via <a href=\"../sources/", topic_page)
 
             self.assertIn("External Related Links", claim_page)
             self.assertIn("Logic discussion thread", claim_page)
+            self.assertNotIn("Referenced DOI landing page", claim_page)
             self.assertIn(f"../sources/{source_id}.html", claim_page)
 
     def test_space_and_subspace_homepages_render_overview_artifacts(self) -> None:

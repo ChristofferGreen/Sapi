@@ -171,7 +171,8 @@ Presentation contract coverage requirements (Section 8 / Section 9):
   families and suppress empty revision sections for singleton sources.
   - Module: `tests/unit/build/test_site_builder_contracts.py`
 - Tier 1/4 page coverage MUST assert source/topic/claim pages render `External Related Links` only when
-  curated links exist, and that topic/claim pages show inherited source provenance cues.
+  curated links exist, and that topic/claim pages show inherited source provenance cues only for
+  contextual link classes such as encyclopedia, repository, and discussion-forum links.
   - Module: `tests/unit/build/test_site_builder_contracts.py`
 - Tier 4 integration coverage MUST assert built HTML pages include canonical viewport meta and stylesheet link, and deterministic CSS assets are emitted.
   - Module: `tests/integration/build/test_build_determinism.py` (extend for stylesheet assertions)

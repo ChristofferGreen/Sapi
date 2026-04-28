@@ -57,6 +57,9 @@ TOPIC_SORT_MODES: tuple[tuple[str, str, str], ...] = (
     ("claim_count", "Claims", "topics/by-claims"),
     ("title", "Title", "topics/by-title"),
 )
+CONTEXTUAL_RELATED_LINK_TYPES: frozenset[str] = frozenset(
+    {"encyclopedia", "repository", "discussion_forum"}
+)
 _ROOT_LOCAL_URL_ATTR_RE = re.compile(r'(?P<prefix>\b(?:href|src|action)=\")(?P<url>/[^\"]*)\"')
 
 
@@ -1010,7 +1013,11 @@ def _source_artifact_href(*, source: dict[str, Any], artifact_key: str) -> str |
     return "../../" + "/".join(part for part in Path(artifact_rel).parts if part and part != ".")
 
 
-def _collect_external_related_links(raw_links: Any) -> list[dict[str, Any]]:
+def _collect_external_related_links(
+    raw_links: Any,
+    *,
+    allowed_link_types: frozenset[str] | None = None,
+) -> list[dict[str, Any]]:
     if not isinstance(raw_links, list):
         return []
     normalized: list[dict[str, Any]] = []
@@ -1023,6 +1030,8 @@ def _collect_external_related_links(raw_links: Any) -> list[dict[str, Any]]:
         link_type = str(row.get("link_type") or "").strip()
         quality_status = str(row.get("quality_status") or "").strip()
         if not title or not url or not domain or not link_type or not quality_status:
+            continue
+        if allowed_link_types is not None and link_type not in allowed_link_types:
             continue
         normalized.append(
             {
@@ -1121,34 +1130,48 @@ def _topic_external_related_links(
     topic: dict[str, Any],
     context: _SpaceLayoutContext,
 ) -> list[dict[str, Any]]:
+    topic_links = _collect_external_related_links(
+        topic.get("external_related_links"),
+        allowed_link_types=CONTEXTUAL_RELATED_LINK_TYPES,
+    )
     source_ids = topic.get("source_ids")
     if not isinstance(source_ids, list):
-        return []
-    return _aggregate_external_related_links(
+        return topic_links
+    inherited_links = _aggregate_external_related_links(
         source_ids=[str(source_id).strip() for source_id in source_ids if str(source_id).strip()],
         sources=context.sources,
+        allowed_link_types=CONTEXTUAL_RELATED_LINK_TYPES,
     )
+    return _merge_external_related_links(topic_links + inherited_links)
 
 
 def _claim_external_related_links(
     *,
+    claim_record: dict[str, Any],
     claim_source_id: str,
     source_ids: tuple[str, ...] | list[str],
     projection: SpaceProjection,
 ) -> list[dict[str, Any]]:
+    claim_links = _collect_external_related_links(
+        claim_record.get("external_related_links"),
+        allowed_link_types=CONTEXTUAL_RELATED_LINK_TYPES,
+    )
     candidate_ids = [source_id for source_id in source_ids if source_id]
     if claim_source_id and claim_source_id not in candidate_ids:
         candidate_ids.insert(0, claim_source_id)
-    return _aggregate_external_related_links(
+    inherited_links = _aggregate_external_related_links(
         source_ids=candidate_ids,
         sources=projection.sources,
+        allowed_link_types=CONTEXTUAL_RELATED_LINK_TYPES,
     )
+    return _merge_external_related_links(claim_links + inherited_links)
 
 
 def _aggregate_external_related_links(
     *,
     source_ids: list[str],
     sources: list[dict[str, Any]],
+    allowed_link_types: frozenset[str] | None = None,
 ) -> list[dict[str, Any]]:
     if not source_ids:
         return []
@@ -1163,7 +1186,10 @@ def _aggregate_external_related_links(
         if source is None:
             continue
         source_title = _source_display_title(source)
-        for link in _collect_external_related_links(source.get("external_related_links")):
+        for link in _collect_external_related_links(
+            source.get("external_related_links"),
+            allowed_link_types=allowed_link_types,
+        ):
             url = str(link.get("url") or "").strip()
             if not url:
                 continue
@@ -1187,6 +1213,27 @@ def _aggregate_external_related_links(
         merged_by_url.values(),
         key=_external_related_link_sort_key,
     )
+
+
+def _merge_external_related_links(links: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    merged_by_url: dict[str, dict[str, Any]] = {}
+    for link in links:
+        url = str(link.get("url") or "").strip()
+        if not url:
+            continue
+        if url not in merged_by_url:
+            merged_by_url[url] = dict(link)
+            continue
+        current_refs = merged_by_url[url].get("source_refs")
+        new_refs = link.get("source_refs")
+        if not isinstance(current_refs, list):
+            current_refs = []
+            merged_by_url[url]["source_refs"] = current_refs
+        if isinstance(new_refs, list):
+            for source_ref in new_refs:
+                if source_ref not in current_refs:
+                    current_refs.append(source_ref)
+    return sorted(merged_by_url.values(), key=_external_related_link_sort_key)
 
 
 def _external_related_link_sort_key(link: dict[str, Any]) -> tuple[int, int, str, str]:
@@ -4233,6 +4280,7 @@ def _write_space_claim_pages(
             space_name=context.space_name,
         )
         claim_external_links = _claim_external_related_links(
+            claim_record=claim_record,
             claim_source_id=str(claim_record.get("source_id") or "").strip(),
             source_ids=usage_stats.get("source_ids", ()),
             projection=projection,
