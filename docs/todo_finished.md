@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-28
 
+- [x] TODO-0365: Add directional order controls to list pages
+  - owner: ai
+  - created_at: 2026-04-28
+  - finished_at: 2026-04-28
+  - phase: Cross-cutting
+  - scope: Standardize list-page ordering controls so active orders show direction and every full
+    item-list page exposes static deterministic order variants.
+  - acceptance:
+    - Source and topic order controls show an active up/down arrow, and clicking the active order
+      links to the opposite direction.
+    - New, user, claim, and evidence list pages render the same order bar pattern rather than using
+      bespoke or implicit ordering controls.
+    - Static order pages preserve default URLs for default orderings and apply pagination after the
+      selected order and direction.
+    - Site-builder tests and docs cover the shared list-order contract.
+  - notes: triggered by browser review of the source index order bar.
+  - evidence: Added shared order-control rendering, static ascending/descending variants for list
+    pages, source/topic/new/user/claim/evidence test coverage, and documentation updates.
+
 - [x] TODO-0364: Suppress bibliography DOI links from topic recommendations
   - owner: ai
   - created_at: 2026-04-28

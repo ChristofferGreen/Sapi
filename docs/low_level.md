@@ -592,6 +592,9 @@ Presentation asset and ownership contracts (normative implementation boundary):
 - topic feed rendering owns deterministic topic order variants for date, evidence count, claim count, and
   title; render pagination from the sorted topic list and compute visible topic metrics from canonical
   `claim_ids`, inline claim annotations, and validated evidence records
+- list-index rendering owns shared order controls with active ascending/descending arrows; source, topic,
+  new, user, claim, and evidence lists must render static order variants and make the active control link
+  to the opposite direction
 - CSS toolchain stage owns stylesheet compilation; missing or failed stylesheet generation is a build error
 - build validation MUST assert stylesheet file existence and HTML link references before reporting success
 - run/build metadata key `toolchain_versions.tailwind_cli` is informational only and MUST NOT be treated as compilation success evidence

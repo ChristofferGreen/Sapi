@@ -170,6 +170,9 @@ Presentation contract coverage requirements (Section 8 / Section 9):
 - Tier 1/4 source-page coverage MUST assert source detail pages render revision histories for multi-source
   families and suppress empty revision sections for singleton sources.
   - Module: `tests/unit/build/test_site_builder_contracts.py`
+- Tier 1/4 list-page coverage MUST assert source, topic, new, user, claim, and evidence index pages
+  render static order controls with active direction arrows and opposite-direction links.
+  - Module: `tests/unit/build/test_site_builder_contracts.py`
 - Tier 1/4 page coverage MUST assert source/topic/claim pages render `External Related Links` only when
   curated links exist, and that topic/claim pages show inherited source provenance cues only for
   contextual link classes such as encyclopedia, repository, and discussion-forum links.

@@ -46,16 +46,34 @@ _WIKI_SECTION_ORDER: tuple[str, ...] = (
     "references",
 )
 TAB_PAGE_SIZE = 50
-SOURCE_SORT_MODES: tuple[tuple[str, str, str], ...] = (
-    ("date", "Date", "sources"),
-    ("citation_count", "Citation count", "sources/by-citation-count"),
-    ("title", "Title", "sources/by-title"),
+SOURCE_SORT_MODES: tuple[tuple[str, str, str, str, str], ...] = (
+    ("date", "Date", "sources", "sources/by-date-asc", "desc"),
+    ("citation_count", "Citation count", "sources/by-citation-count", "sources/by-citation-count-asc", "desc"),
+    ("title", "Title", "sources/by-title-desc", "sources/by-title", "asc"),
 )
-TOPIC_SORT_MODES: tuple[tuple[str, str, str], ...] = (
-    ("date", "Date", "topics"),
-    ("evidence_count", "Evidence", "topics/by-evidence"),
-    ("claim_count", "Claims", "topics/by-claims"),
-    ("title", "Title", "topics/by-title"),
+TOPIC_SORT_MODES: tuple[tuple[str, str, str, str, str], ...] = (
+    ("date", "Date", "topics", "topics/by-date-asc", "desc"),
+    ("evidence_count", "Evidence", "topics/by-evidence", "topics/by-evidence-asc", "desc"),
+    ("claim_count", "Claims", "topics/by-claims", "topics/by-claims-asc", "desc"),
+    ("title", "Title", "topics/by-title-desc", "topics/by-title", "asc"),
+)
+NEW_SORT_MODES: tuple[tuple[str, str, str, str, str], ...] = (
+    ("date", "Date", "new", "new/by-date-asc", "desc"),
+    ("title", "Title", "new/by-title-desc", "new/by-title", "asc"),
+    ("type", "Type", "new/by-type-desc", "new/by-type", "asc"),
+)
+USER_SORT_MODES: tuple[tuple[str, str, str, str, str], ...] = (
+    ("name", "Name", "users/by-name-desc", "users", "asc"),
+)
+CLAIM_SORT_MODES: tuple[tuple[str, str, str, str, str], ...] = (
+    ("score", "Score", "claims", "claims/by-score-asc", "desc"),
+    ("date", "Date", "claims/by-date", "claims/by-date-asc", "desc"),
+    ("title", "Title", "claims/by-title-desc", "claims/by-title", "asc"),
+)
+EVIDENCE_SORT_MODES: tuple[tuple[str, str, str, str, str], ...] = (
+    ("title", "Title", "evidence/by-title-desc", "evidence", "asc"),
+    ("source", "Source", "evidence/by-source-desc", "evidence/by-source", "asc"),
+    ("claims", "Claims", "evidence/by-claims", "evidence/by-claims-asc", "desc"),
 )
 CONTEXTUAL_RELATED_LINK_TYPES: frozenset[str] = frozenset(
     {"encyclopedia", "repository", "discussion_forum"}
@@ -425,24 +443,32 @@ def refresh_site_new_index(
         incremental=incremental,
     )
 
-    new_root = site_root / "new"
-    new_root.mkdir(parents=True, exist_ok=True)
-    pages = _paginate(entries, TAB_PAGE_SIZE)
-    for page_number, page_entries in enumerate(pages, start=1):
-        page_path = _paginated_page_path(new_root, page_number=page_number)
-        _write_text_file(
-            page_path,
-            _render_site_new_page(
-                site_name=site_name,
-                space_names=root_space_names,
-                subspaces_by_space=subspaces_by_space,
-                page_entries=page_entries,
-                page_number=page_number,
-                page_count=len(pages),
-                stylesheet_href=_relative_href(from_file=page_path, to_file=site_stylesheet_path),
-            ),
-            incremental=incremental,
-        )
+    for mode in NEW_SORT_MODES:
+        sort_key, _sort_label, _desc_path, _asc_path, _default_direction = mode
+        for direction in ("desc", "asc"):
+            sort_path = _sort_mode_path(mode=mode, direction=direction)
+            new_root = site_root / sort_path
+            new_root.mkdir(parents=True, exist_ok=True)
+            sorted_entries = _sorted_feed_entries(entries, sort_key=sort_key, direction=direction)
+            pages = _paginate(sorted_entries, TAB_PAGE_SIZE)
+            for page_number, page_entries in enumerate(pages, start=1):
+                page_path = _paginated_page_path(new_root, page_number=page_number)
+                _write_text_file(
+                    page_path,
+                    _render_site_new_page(
+                        site_name=site_name,
+                        space_names=root_space_names,
+                        subspaces_by_space=subspaces_by_space,
+                        page_entries=page_entries,
+                        page_number=page_number,
+                        page_count=len(pages),
+                        stylesheet_href=_relative_href(from_file=page_path, to_file=site_stylesheet_path),
+                        sort_key=sort_key,
+                        sort_direction=direction,
+                        sort_path=sort_path,
+                    ),
+                    incremental=incremental,
+                )
     _rewrite_root_relative_links_for_file_mode(
         root=site_root,
         site_path=site_path,
@@ -2742,41 +2768,203 @@ def _sort_feed_entries(entries: list[_FeedEntry]) -> None:
     entries.sort(key=lambda item: item.timestamp, reverse=True)
 
 
-def _sorted_source_feed_entries(entries: list[_FeedEntry], *, sort_key: str) -> list[_FeedEntry]:
+def _sort_mode_path(
+    *,
+    mode: tuple[str, str, str, str, str],
+    direction: str | None = None,
+) -> str:
+    sort_key, _label, desc_path, asc_path, default_direction = mode
+    del sort_key
+    resolved_direction = direction or default_direction
+    return asc_path if resolved_direction == "asc" else desc_path
+
+
+def _opposite_direction(direction: str) -> str:
+    return "asc" if direction == "desc" else "desc"
+
+
+def _sort_direction_arrow(direction: str) -> str:
+    return "↑" if direction == "asc" else "↓"
+
+
+def _render_order_controls(
+    *,
+    label: str,
+    space_name: str,
+    modes: tuple[tuple[str, str, str, str, str], ...],
+    current_sort_key: str,
+    current_direction: str,
+) -> str:
+    links: list[str] = []
+    for mode in modes:
+        sort_key, mode_label, _desc_path, _asc_path, default_direction = mode
+        is_current = sort_key == current_sort_key
+        direction = current_direction if is_current else default_direction
+        target_direction = _opposite_direction(current_direction) if is_current else default_direction
+        classes = "source-order-link"
+        if is_current:
+            classes += " current"
+        link_label = mode_label + (f" {_sort_direction_arrow(direction)}" if is_current else "")
+        links.append(
+            "<a class=\""
+            + escape(classes)
+            + "\" href=\"/spaces/"
+            + escape(space_name)
+            + "/site/"
+            + escape(_sort_mode_path(mode=mode, direction=target_direction))
+            + "/index.html\">"
+            + escape(link_label)
+            + "</a>"
+        )
+    return (
+        "<nav class=\"source-order-controls\" aria-label=\""
+        + escape(label)
+        + "\">"
+        + "<span class=\"source-order-label\">Order</span>"
+        + "".join(links)
+        + "</nav>\n"
+    )
+
+
+def _render_site_order_controls(
+    *,
+    label: str,
+    modes: tuple[tuple[str, str, str, str, str], ...],
+    current_sort_key: str,
+    current_direction: str,
+) -> str:
+    links: list[str] = []
+    for mode in modes:
+        sort_key, mode_label, _desc_path, _asc_path, default_direction = mode
+        is_current = sort_key == current_sort_key
+        direction = current_direction if is_current else default_direction
+        target_direction = _opposite_direction(current_direction) if is_current else default_direction
+        classes = "source-order-link"
+        if is_current:
+            classes += " current"
+        link_label = mode_label + (f" {_sort_direction_arrow(direction)}" if is_current else "")
+        links.append(
+            "<a class=\""
+            + escape(classes)
+            + "\" href=\"/site/"
+            + escape(_sort_mode_path(mode=mode, direction=target_direction))
+            + "/index.html\">"
+            + escape(link_label)
+            + "</a>"
+        )
+    return (
+        "<nav class=\"source-order-controls\" aria-label=\""
+        + escape(label)
+        + "\">"
+        + "<span class=\"source-order-label\">Order</span>"
+        + "".join(links)
+        + "</nav>\n"
+    )
+
+
+def _sorted_source_feed_entries(
+    entries: list[_FeedEntry],
+    *,
+    sort_key: str,
+    direction: str = "desc",
+) -> list[_FeedEntry]:
     sorted_entries = list(entries)
     if sort_key == "citation_count":
-        sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
         sorted_entries.sort(
             key=lambda item: (
-                item.citation_count is not None,
-                item.citation_count if item.citation_count is not None else -1.0,
-            ),
-            reverse=True,
+                item.citation_count is None,
+                (
+                    -(item.citation_count or 0.0)
+                    if direction == "desc"
+                    else (item.citation_count or 0.0)
+                ),
+                item.title.casefold(),
+                item.item_id,
+            )
         )
         return sorted_entries
     if sort_key == "title":
-        sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
+        sorted_entries.sort(
+            key=lambda item: (item.title.casefold(), item.item_id),
+            reverse=direction == "desc",
+        )
         return sorted_entries
     sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
-    sorted_entries.sort(key=lambda item: item.display_timestamp or item.timestamp, reverse=True)
+    if direction == "desc":
+        sorted_entries.sort(key=lambda item: item.display_timestamp or item.timestamp, reverse=True)
+    else:
+        sorted_entries.sort(
+            key=lambda item: (
+                not (item.display_timestamp or item.timestamp),
+                item.display_timestamp or item.timestamp,
+            )
+        )
     return sorted_entries
 
 
-def _sorted_topic_feed_entries(entries: list[_FeedEntry], *, sort_key: str) -> list[_FeedEntry]:
+def _sorted_topic_feed_entries(
+    entries: list[_FeedEntry],
+    *,
+    sort_key: str,
+    direction: str = "desc",
+) -> list[_FeedEntry]:
     sorted_entries = list(entries)
     if sort_key == "evidence_count":
         sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
-        sorted_entries.sort(key=lambda item: item.evidence_count or 0, reverse=True)
+        sorted_entries.sort(key=lambda item: item.evidence_count or 0, reverse=direction == "desc")
         return sorted_entries
     if sort_key == "claim_count":
         sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
-        sorted_entries.sort(key=lambda item: item.claim_count or 0, reverse=True)
+        sorted_entries.sort(key=lambda item: item.claim_count or 0, reverse=direction == "desc")
         return sorted_entries
     if sort_key == "title":
-        sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
+        sorted_entries.sort(
+            key=lambda item: (item.title.casefold(), item.item_id),
+            reverse=direction == "desc",
+        )
         return sorted_entries
     sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
-    sorted_entries.sort(key=lambda item: item.display_timestamp or item.timestamp, reverse=True)
+    if direction == "desc":
+        sorted_entries.sort(key=lambda item: item.display_timestamp or item.timestamp, reverse=True)
+    else:
+        sorted_entries.sort(
+            key=lambda item: (
+                not (item.display_timestamp or item.timestamp),
+                item.display_timestamp or item.timestamp,
+            )
+        )
+    return sorted_entries
+
+
+def _sorted_feed_entries(
+    entries: list[_FeedEntry],
+    *,
+    sort_key: str,
+    direction: str,
+) -> list[_FeedEntry]:
+    sorted_entries = list(entries)
+    if sort_key == "title":
+        sorted_entries.sort(
+            key=lambda item: (item.title.casefold(), item.item_id),
+            reverse=direction == "desc",
+        )
+        return sorted_entries
+    if sort_key == "type":
+        sorted_entries.sort(
+            key=lambda item: (item.item_type, item.title.casefold(), item.item_id),
+            reverse=direction == "desc",
+        )
+        return sorted_entries
+    sorted_entries.sort(key=lambda item: (item.title.casefold(), item.item_id))
+    if direction == "desc":
+        sorted_entries.sort(key=lambda item: item.display_timestamp or item.timestamp, reverse=True)
+    else:
+        sorted_entries.sort(
+            key=lambda item: (
+                not (item.display_timestamp or item.timestamp),
+                item.display_timestamp or item.timestamp,
+            )
+        )
     return sorted_entries
 
 
@@ -3269,53 +3457,33 @@ def _render_feed_topic_counts(*, entry: _FeedEntry) -> str:
     )
 
 
-def _render_source_order_controls(*, space_name: str, current_sort_key: str) -> str:
-    links: list[str] = []
-    for sort_key, label, sort_path in SOURCE_SORT_MODES:
-        classes = "source-order-link"
-        if sort_key == current_sort_key:
-            classes += " current"
-        links.append(
-            "<a class=\""
-            + escape(classes)
-            + "\" href=\"/spaces/"
-            + escape(space_name)
-            + "/site/"
-            + escape(sort_path)
-            + "/index.html\">"
-            + escape(label)
-            + "</a>"
-        )
-    return (
-        "<nav class=\"source-order-controls\" aria-label=\"Source order\">"
-        + "<span class=\"source-order-label\">Order</span>"
-        + "".join(links)
-        + "</nav>\n"
+def _render_source_order_controls(
+    *,
+    space_name: str,
+    current_sort_key: str,
+    current_direction: str,
+) -> str:
+    return _render_order_controls(
+        label="Source order",
+        space_name=space_name,
+        modes=SOURCE_SORT_MODES,
+        current_sort_key=current_sort_key,
+        current_direction=current_direction,
     )
 
 
-def _render_topic_order_controls(*, space_name: str, current_sort_key: str) -> str:
-    links: list[str] = []
-    for sort_key, label, sort_path in TOPIC_SORT_MODES:
-        classes = "source-order-link"
-        if sort_key == current_sort_key:
-            classes += " current"
-        links.append(
-            "<a class=\""
-            + escape(classes)
-            + "\" href=\"/spaces/"
-            + escape(space_name)
-            + "/site/"
-            + escape(sort_path)
-            + "/index.html\">"
-            + escape(label)
-            + "</a>"
-        )
-    return (
-        "<nav class=\"source-order-controls\" aria-label=\"Topic order\">"
-        + "<span class=\"source-order-label\">Order</span>"
-        + "".join(links)
-        + "</nav>\n"
+def _render_topic_order_controls(
+    *,
+    space_name: str,
+    current_sort_key: str,
+    current_direction: str,
+) -> str:
+    return _render_order_controls(
+        label="Topic order",
+        space_name=space_name,
+        modes=TOPIC_SORT_MODES,
+        current_sort_key=current_sort_key,
+        current_direction=current_direction,
     )
 
 
@@ -3352,9 +3520,9 @@ def _write_space_tab_pages(
         if entry.item_type == "topic"
     ]
 
-    tab_rows: dict[str, list[str]] = {
-        "new": [_render_feed_row(entry) for entry in feed_entries],
-        "users": [
+    user_rows_by_name = [
+        (
+            str(row["display_name"]).casefold(),
             (
                 "<a class=\"user-card\" href=\"/spaces/"
                 + escape(context.space_name)
@@ -3372,107 +3540,239 @@ def _write_space_tab_pages(
                 + escape(str(row["display_name"]))
                 + "</span>"
                 + "</a>"
-            )
-            for row in persona_rows
-        ],
-    }
+            ),
+        )
+        for row in persona_rows
+    ]
+
+    tab_rows: dict[str, list[str]] = {}
 
     for tab_key in context.tabs:
         if tab_key == "sources":
-            for sort_key, sort_label, sort_path in SOURCE_SORT_MODES:
-                rows = [
-                    _render_feed_row(entry)
-                    for entry in _sorted_source_feed_entries(source_feed_entries, sort_key=sort_key)
-                ]
-                tab_root = output_root / sort_path
-                tab_root.mkdir(parents=True, exist_ok=True)
-                pages = _paginate(rows, TAB_PAGE_SIZE)
-                for page_number, page_rows in enumerate(pages, start=1):
-                    page_path = _paginated_page_path(tab_root, page_number=page_number)
-                    pagination = _render_pagination(
-                        page_number=page_number,
-                        page_count=len(pages),
-                        mode="tab",
-                        base_href=f"/spaces/{context.space_name}/site/{sort_path}",
-                    )
-                    content = (
-                        _render_source_order_controls(
-                            space_name=context.space_name,
-                            current_sort_key=sort_key,
+            for mode in SOURCE_SORT_MODES:
+                sort_key, sort_label, _desc_path, _asc_path, _default_direction = mode
+                for direction in ("desc", "asc"):
+                    sort_path = _sort_mode_path(mode=mode, direction=direction)
+                    rows = [
+                        _render_feed_row(entry)
+                        for entry in _sorted_source_feed_entries(
+                            source_feed_entries,
+                            sort_key=sort_key,
+                            direction=direction,
                         )
-                        + "<ul class=\"feed-list\">\n"
-                        + ("\n".join(page_rows) if page_rows else "<li>(none yet)</li>")
-                        + "\n</ul>\n"
-                    )
-                    body = (
-                        "<h1>Sources</h1>\n"
-                        + f"<p class=\"tab-page-size\" data-tab-page-size=\"{TAB_PAGE_SIZE}\">Page size: {TAB_PAGE_SIZE}</p>\n"
-                        + content
-                        + pagination
-                    )
-                    _write_text_file(
-                        page_path,
-                        _render_space_layout(
-                            title=f"{display_space_name} - Sources by {sort_label.lower()}",
-                            body=body,
-                            context=context,
-                            current_tab=tab_key,
-                            stylesheet_href=_relative_href(
-                                from_file=page_path,
-                                to_file=output_root / "assets" / "site.css",
+                    ]
+                    tab_root = output_root / sort_path
+                    tab_root.mkdir(parents=True, exist_ok=True)
+                    pages = _paginate(rows, TAB_PAGE_SIZE)
+                    for page_number, page_rows in enumerate(pages, start=1):
+                        page_path = _paginated_page_path(tab_root, page_number=page_number)
+                        pagination = _render_pagination(
+                            page_number=page_number,
+                            page_count=len(pages),
+                            mode="tab",
+                            base_href=f"/spaces/{context.space_name}/site/{sort_path}",
+                        )
+                        content = (
+                            _render_source_order_controls(
+                                space_name=context.space_name,
+                                current_sort_key=sort_key,
+                                current_direction=direction,
+                            )
+                            + "<ul class=\"feed-list\">\n"
+                            + ("\n".join(page_rows) if page_rows else "<li>(none yet)</li>")
+                            + "\n</ul>\n"
+                        )
+                        body = (
+                            "<h1>Sources</h1>\n"
+                            + f"<p class=\"tab-page-size\" data-tab-page-size=\"{TAB_PAGE_SIZE}\">Page size: {TAB_PAGE_SIZE}</p>\n"
+                            + content
+                            + pagination
+                        )
+                        _write_text_file(
+                            page_path,
+                            _render_space_layout(
+                                title=f"{display_space_name} - Sources by {sort_label.lower()}",
+                                body=body,
+                                context=context,
+                                current_tab=tab_key,
+                                stylesheet_href=_relative_href(
+                                    from_file=page_path,
+                                    to_file=output_root / "assets" / "site.css",
+                                ),
                             ),
-                        ),
-                        incremental=incremental,
-                    )
-                    written.append(page_path)
+                            incremental=incremental,
+                        )
+                        written.append(page_path)
             continue
         if tab_key == "topics":
-            for sort_key, sort_label, sort_path in TOPIC_SORT_MODES:
-                rows = [
-                    _render_feed_row(entry)
-                    for entry in _sorted_topic_feed_entries(topic_feed_entries, sort_key=sort_key)
-                ]
-                tab_root = output_root / sort_path
-                tab_root.mkdir(parents=True, exist_ok=True)
-                pages = _paginate(rows, TAB_PAGE_SIZE)
-                for page_number, page_rows in enumerate(pages, start=1):
-                    page_path = _paginated_page_path(tab_root, page_number=page_number)
-                    pagination = _render_pagination(
-                        page_number=page_number,
-                        page_count=len(pages),
-                        mode="tab",
-                        base_href=f"/spaces/{context.space_name}/site/{sort_path}",
-                    )
-                    content = (
-                        _render_topic_order_controls(
-                            space_name=context.space_name,
-                            current_sort_key=sort_key,
+            for mode in TOPIC_SORT_MODES:
+                sort_key, sort_label, _desc_path, _asc_path, _default_direction = mode
+                for direction in ("desc", "asc"):
+                    sort_path = _sort_mode_path(mode=mode, direction=direction)
+                    rows = [
+                        _render_feed_row(entry)
+                        for entry in _sorted_topic_feed_entries(
+                            topic_feed_entries,
+                            sort_key=sort_key,
+                            direction=direction,
                         )
-                        + "<ul class=\"feed-list\">\n"
-                        + ("\n".join(page_rows) if page_rows else "<li>(none yet)</li>")
-                        + "\n</ul>\n"
-                    )
-                    body = (
-                        "<h1>Topics</h1>\n"
-                        + f"<p class=\"tab-page-size\" data-tab-page-size=\"{TAB_PAGE_SIZE}\">Page size: {TAB_PAGE_SIZE}</p>\n"
-                        + content
-                        + pagination
-                    )
-                    _write_text_file(
-                        page_path,
-                        _render_space_layout(
-                            title=f"{display_space_name} - Topics by {sort_label.lower()}",
-                            body=body,
-                            context=context,
-                            current_tab=tab_key,
-                            stylesheet_href=_relative_href(
-                                from_file=page_path,
-                                to_file=output_root / "assets" / "site.css",
+                    ]
+                    tab_root = output_root / sort_path
+                    tab_root.mkdir(parents=True, exist_ok=True)
+                    pages = _paginate(rows, TAB_PAGE_SIZE)
+                    for page_number, page_rows in enumerate(pages, start=1):
+                        page_path = _paginated_page_path(tab_root, page_number=page_number)
+                        pagination = _render_pagination(
+                            page_number=page_number,
+                            page_count=len(pages),
+                            mode="tab",
+                            base_href=f"/spaces/{context.space_name}/site/{sort_path}",
+                        )
+                        content = (
+                            _render_topic_order_controls(
+                                space_name=context.space_name,
+                                current_sort_key=sort_key,
+                                current_direction=direction,
+                            )
+                            + "<ul class=\"feed-list\">\n"
+                            + ("\n".join(page_rows) if page_rows else "<li>(none yet)</li>")
+                            + "\n</ul>\n"
+                        )
+                        body = (
+                            "<h1>Topics</h1>\n"
+                            + f"<p class=\"tab-page-size\" data-tab-page-size=\"{TAB_PAGE_SIZE}\">Page size: {TAB_PAGE_SIZE}</p>\n"
+                            + content
+                            + pagination
+                        )
+                        _write_text_file(
+                            page_path,
+                            _render_space_layout(
+                                title=f"{display_space_name} - Topics by {sort_label.lower()}",
+                                body=body,
+                                context=context,
+                                current_tab=tab_key,
+                                stylesheet_href=_relative_href(
+                                    from_file=page_path,
+                                    to_file=output_root / "assets" / "site.css",
+                                ),
                             ),
-                        ),
-                        incremental=incremental,
+                            incremental=incremental,
+                        )
+                        written.append(page_path)
+            continue
+        if tab_key == "new":
+            for mode in NEW_SORT_MODES:
+                sort_key, sort_label, _desc_path, _asc_path, _default_direction = mode
+                for direction in ("desc", "asc"):
+                    sort_path = _sort_mode_path(mode=mode, direction=direction)
+                    rows = [
+                        _render_feed_row(entry)
+                        for entry in _sorted_feed_entries(
+                            feed_entries,
+                            sort_key=sort_key,
+                            direction=direction,
+                        )
+                    ]
+                    tab_root = output_root / sort_path
+                    tab_root.mkdir(parents=True, exist_ok=True)
+                    pages = _paginate(rows, TAB_PAGE_SIZE)
+                    for page_number, page_rows in enumerate(pages, start=1):
+                        page_path = _paginated_page_path(tab_root, page_number=page_number)
+                        pagination = _render_pagination(
+                            page_number=page_number,
+                            page_count=len(pages),
+                            mode="tab",
+                            base_href=f"/spaces/{context.space_name}/site/{sort_path}",
+                        )
+                        content = (
+                            _render_order_controls(
+                                label="New order",
+                                space_name=context.space_name,
+                                modes=NEW_SORT_MODES,
+                                current_sort_key=sort_key,
+                                current_direction=direction,
+                            )
+                            + "<ul class=\"feed-list\">\n"
+                            + ("\n".join(page_rows) if page_rows else "<li>(none yet)</li>")
+                            + "\n</ul>\n"
+                        )
+                        body = (
+                            "<h1>New</h1>\n"
+                            + f"<p class=\"tab-page-size\" data-tab-page-size=\"{TAB_PAGE_SIZE}\">Page size: {TAB_PAGE_SIZE}</p>\n"
+                            + content
+                            + pagination
+                        )
+                        _write_text_file(
+                            page_path,
+                            _render_space_layout(
+                                title=f"{display_space_name} - New by {sort_label.lower()}",
+                                body=body,
+                                context=context,
+                                current_tab=tab_key,
+                                stylesheet_href=_relative_href(
+                                    from_file=page_path,
+                                    to_file=output_root / "assets" / "site.css",
+                                ),
+                            ),
+                            incremental=incremental,
+                        )
+                        written.append(page_path)
+            continue
+        if tab_key == "users":
+            for mode in USER_SORT_MODES:
+                sort_key, sort_label, _desc_path, _asc_path, _default_direction = mode
+                for direction in ("desc", "asc"):
+                    sort_path = _sort_mode_path(mode=mode, direction=direction)
+                    sorted_user_rows = sorted(
+                        user_rows_by_name,
+                        key=lambda row: row[0],
+                        reverse=direction == "desc",
                     )
-                    written.append(page_path)
+                    rows = [row_html for _name, row_html in sorted_user_rows]
+                    tab_root = output_root / sort_path
+                    tab_root.mkdir(parents=True, exist_ok=True)
+                    pages = _paginate(rows, TAB_PAGE_SIZE)
+                    for page_number, page_rows in enumerate(pages, start=1):
+                        page_path = _paginated_page_path(tab_root, page_number=page_number)
+                        pagination = _render_pagination(
+                            page_number=page_number,
+                            page_count=len(pages),
+                            mode="tab",
+                            base_href=f"/spaces/{context.space_name}/site/{sort_path}",
+                        )
+                        content = (
+                            _render_order_controls(
+                                label="User order",
+                                space_name=context.space_name,
+                                modes=USER_SORT_MODES,
+                                current_sort_key=sort_key,
+                                current_direction=direction,
+                            )
+                            + "<div class=\"user-card-grid\">\n"
+                            + ("\n".join(page_rows) if page_rows else "<p>(none yet)</p>")
+                            + "\n</div>\n"
+                        )
+                        body = (
+                            "<h1>Users</h1>\n"
+                            + f"<p class=\"tab-page-size\" data-tab-page-size=\"{TAB_PAGE_SIZE}\">Page size: {TAB_PAGE_SIZE}</p>\n"
+                            + content
+                            + pagination
+                        )
+                        _write_text_file(
+                            page_path,
+                            _render_space_layout(
+                                title=f"{display_space_name} - Users by {sort_label.lower()}",
+                                body=body,
+                                context=context,
+                                current_tab=tab_key,
+                                stylesheet_href=_relative_href(
+                                    from_file=page_path,
+                                    to_file=output_root / "assets" / "site.css",
+                                ),
+                            ),
+                            incremental=incremental,
+                        )
+                        written.append(page_path)
             continue
         rows = tab_rows.get(tab_key, [])
         tab_title = tab_key.capitalize()
@@ -4055,7 +4355,7 @@ def _write_space_claim_pages(
         if isinstance(source, dict) and source.get("source_id")
     }
 
-    claim_index_rows: list[str] = []
+    claim_index_items: list[dict[str, Any]] = []
     for claim_id in claim_ids:
         claim_record = claim_records.get(claim_id, {})
         claim_title = _claim_display_title(
@@ -4111,7 +4411,7 @@ def _write_space_claim_pages(
             if overflow_usage_rows
             else ""
         )
-        claim_index_rows.append(
+        claim_row_html = (
             "<li data-claim-id=\""
             + escape(claim_id)
             + "\" data-claim-title=\""
@@ -4148,87 +4448,78 @@ def _write_space_claim_pages(
             + overflow_usage_markup
             + "</li>"
         )
-    rows = (
-        "<div class=\"claims-sort-controls\">"
-        + "<label for=\"claims-sort-direction\">Sort</label> "
-        + "<select id=\"claims-sort-direction\" name=\"claims_sort_direction\">"
-        + "<option value=\"alphabetical\">Alphabetical</option>"
-        + "<option value=\"score\" selected>Score</option>"
-        + "<option value=\"reverse_score\">Reverse score</option>"
-        + "<option value=\"newest\">Newest</option>"
-        + "<option value=\"oldest\">Oldest</option>"
-        + "</select>"
-        + "</div>\n"
-        + "<ul class=\"feed-list\" id=\"claims-index-list\">\n"
-        + "\n".join(claim_index_rows)
-        + "\n</ul>\n"
-        + "<script>\n"
-        + "(function(){\n"
-        + "  var select=document.getElementById('claims-sort-direction');\n"
-        + "  var list=document.getElementById('claims-index-list');\n"
-        + "  if(!select||!list){return;}\n"
-        + "  function parseScore(value){\n"
-        + "    var score=parseInt(value||'0',10);\n"
-        + "    return Number.isFinite(score)?score:0;\n"
-        + "  }\n"
-        + "  function parseAddedAt(value){\n"
-        + "    var raw=(value||'').trim();\n"
-        + "    if(!raw){return Number.NEGATIVE_INFINITY;}\n"
-        + "    var parsed=Date.parse(raw);\n"
-        + "    return Number.isFinite(parsed)?parsed:Number.NEGATIVE_INFINITY;\n"
-        + "  }\n"
-        + "  function compareRows(a,b,mode){\n"
-        + "    var titleA=(a.getAttribute('data-claim-title')||'').toLowerCase();\n"
-        + "    var titleB=(b.getAttribute('data-claim-title')||'').toLowerCase();\n"
-        + "    var scoreA=parseScore(a.getAttribute('data-claim-score'));\n"
-        + "    var scoreB=parseScore(b.getAttribute('data-claim-score'));\n"
-        + "    var addedA=parseAddedAt(a.getAttribute('data-claim-added-at'));\n"
-        + "    var addedB=parseAddedAt(b.getAttribute('data-claim-added-at'));\n"
-        + "    if(mode==='score'){\n"
-        + "      if(scoreA!==scoreB){return scoreB-scoreA;}\n"
-        + "      return titleA.localeCompare(titleB);\n"
-        + "    }\n"
-        + "    if(mode==='reverse_score'){\n"
-        + "      if(scoreA!==scoreB){return scoreA-scoreB;}\n"
-        + "      return titleA.localeCompare(titleB);\n"
-        + "    }\n"
-        + "    if(mode==='newest'){\n"
-        + "      if(addedA!==addedB){return addedB-addedA;}\n"
-        + "      return titleA.localeCompare(titleB);\n"
-        + "    }\n"
-        + "    if(mode==='oldest'){\n"
-        + "      if(addedA!==addedB){return addedA-addedB;}\n"
-        + "      return titleA.localeCompare(titleB);\n"
-        + "    }\n"
-        + "    return titleA.localeCompare(titleB);\n"
-        + "  }\n"
-        + "  function sortRows(){\n"
-        + "    var mode=select.value||'score';\n"
-        + "    var rows=Array.prototype.slice.call(list.querySelectorAll('li[data-claim-id]'));\n"
-        + "    rows.sort(function(a,b){return compareRows(a,b,mode);});\n"
-        + "    rows.forEach(function(row){list.appendChild(row);});\n"
-        + "  }\n"
-        + "  select.addEventListener('change',sortRows);\n"
-        + "  sortRows();\n"
-        + "})();\n"
-        + "</script>\n"
-        if claim_ids
-        else "<p>No claim references indexed for this space yet.</p>\n"
-    )
-    index_path = claims_root / "index.html"
-    _write_text_file(
-        index_path,
-        _render_space_layout(
-            title=f"{_space_display_name(context.space_name)} - Claims",
-            body=f"<h1>Claims</h1>\n{rows}",
-            context=context,
-            current_tab="claims",
-            stylesheet_href=_relative_href(from_file=index_path, to_file=stylesheet_path),
-        ),
-        incremental=incremental,
-    )
+        claim_index_items.append(
+            {
+                "row_html": claim_row_html,
+                "title": claim_title.casefold(),
+                "score": score,
+                "added_at": claim_added_at,
+                "claim_id": claim_id,
+            }
+        )
 
-    generated_paths = [index_path]
+    generated_paths: list[Path] = []
+    if claim_ids:
+        for mode in CLAIM_SORT_MODES:
+            sort_key, sort_label, _desc_path, _asc_path, _default_direction = mode
+            for direction in ("desc", "asc"):
+                sort_path = _sort_mode_path(mode=mode, direction=direction)
+                sorted_claim_items = _sorted_claim_index_items(
+                    claim_index_items,
+                    sort_key=sort_key,
+                    direction=direction,
+                )
+                rows = [str(item["row_html"]) for item in sorted_claim_items]
+                tab_root = output_root / sort_path
+                tab_root.mkdir(parents=True, exist_ok=True)
+                pages = _paginate(rows, TAB_PAGE_SIZE)
+                for page_number, page_rows in enumerate(pages, start=1):
+                    page_path = _paginated_page_path(tab_root, page_number=page_number)
+                    body = (
+                        "<h1>Claims</h1>\n"
+                        + _render_order_controls(
+                            label="Claim order",
+                            space_name=context.space_name,
+                            modes=CLAIM_SORT_MODES,
+                            current_sort_key=sort_key,
+                            current_direction=direction,
+                        )
+                        + "<ul class=\"feed-list\" id=\"claims-index-list\">\n"
+                        + "\n".join(page_rows)
+                        + "\n</ul>\n"
+                        + _render_pagination(
+                            page_number=page_number,
+                            page_count=len(pages),
+                            mode="tab",
+                            base_href=f"/spaces/{context.space_name}/site/{sort_path}",
+                        )
+                    )
+                    _write_text_file(
+                        page_path,
+                        _render_space_layout(
+                            title=f"{_space_display_name(context.space_name)} - Claims by {sort_label.lower()}",
+                            body=body,
+                            context=context,
+                            current_tab="claims",
+                            stylesheet_href=_relative_href(from_file=page_path, to_file=stylesheet_path),
+                        ),
+                        incremental=incremental,
+                    )
+                    generated_paths.append(page_path)
+    else:
+        index_path = claims_root / "index.html"
+        _write_text_file(
+            index_path,
+            _render_space_layout(
+                title=f"{_space_display_name(context.space_name)} - Claims",
+                body="<h1>Claims</h1>\n<p>No claim references indexed for this space yet.</p>\n",
+                context=context,
+                current_tab="claims",
+                stylesheet_href=_relative_href(from_file=index_path, to_file=stylesheet_path),
+            ),
+            incremental=incremental,
+        )
+        generated_paths.append(index_path)
     for claim_id in claim_ids:
         claim_record = claim_records.get(claim_id, {})
         claim_text = _claim_text(claim_id=claim_id, claim_record=claim_record)
@@ -4378,6 +4669,74 @@ def _write_space_claim_pages(
     return generated_paths
 
 
+def _render_evidence_index_row(
+    *,
+    space_name: str,
+    record: _EvidenceRecord,
+    claim_option_title_by_id: dict[str, str],
+    source_title_by_id: dict[str, str],
+) -> str:
+    return (
+        "<li><a href=\""
+        + "/spaces/"
+        + escape(space_name)
+        + "/site/evidence/"
+        + escape(record.evidence_id)
+        + ".html\">"
+        + escape(record.title)
+        + "</a>"
+        + "<p class=\"meta\">claims</p>"
+        + _evidence_claim_links_html(
+            record.claim_ids,
+            claim_option_title_by_id=claim_option_title_by_id,
+        )
+        + (
+            "<p class=\"meta\">source: <a href=\"/spaces/"
+            + escape(space_name)
+            + "/site/sources/"
+            + escape(record.source_id)
+            + ".html\">"
+            + escape(source_title_by_id.get(record.source_id, record.source_id))
+            + "</a></p>"
+            if record.source_id
+            else ""
+        )
+        + "<p class=\"summary\">"
+        + escape(truncate_text_for_ui(record.excerpt, max_length=220))
+        + "</p></li>"
+    )
+
+
+def _sorted_evidence_records(
+    records: list[_EvidenceRecord],
+    *,
+    source_title_by_id: dict[str, str],
+    sort_key: str,
+    direction: str,
+) -> list[_EvidenceRecord]:
+    sorted_records = list(records)
+    sorted_records.sort(key=lambda item: (item.title.casefold(), item.evidence_id))
+    if sort_key == "source":
+        sorted_records.sort(
+            key=lambda item: (
+                source_title_by_id.get(item.source_id, item.source_id).casefold(),
+                item.title.casefold(),
+                item.evidence_id,
+            ),
+            reverse=direction == "desc",
+        )
+        return sorted_records
+    if sort_key == "claims":
+        sorted_records.sort(
+            key=lambda item: (len(item.claim_ids), item.title.casefold(), item.evidence_id),
+            reverse=direction == "desc",
+        )
+        return sorted_records
+    if direction == "desc":
+        sorted_records.reverse()
+    return sorted_records
+
+
 def _write_space_evidence_pages(
     *,
     output_root: Path,
@@ -4401,57 +4760,57 @@ def _write_space_evidence_pages(
         if isinstance(topic, dict) and topic.get("topic_id")
     }
 
-    index_rows = (
-        "\n".join(
-            (
-                "<li><a href=\""
-                + escape(record.evidence_id)
-                + ".html\">"
-                + escape(record.title)
-                + "</a>"
-                + "<p class=\"meta\">claims</p>"
-                + _evidence_claim_links_html(
-                    record.claim_ids,
-                    claim_option_title_by_id=claim_option_title_by_id,
-                )
-                + (
-                    "<p class=\"meta\">source: <a href=\"../sources/"
-                    + escape(record.source_id)
-                    + ".html\">"
-                    + escape(source_title_by_id.get(record.source_id, record.source_id))
-                    + "</a></p>"
-                    if record.source_id
-                    else ""
-                )
-                + "<p class=\"summary\">"
-                + escape(truncate_text_for_ui(record.excerpt, max_length=220))
-                + "</p></li>"
+    generated_paths: list[Path] = []
+    for mode in EVIDENCE_SORT_MODES:
+        sort_key, sort_label, _desc_path, _asc_path, _default_direction = mode
+        for direction in ("desc", "asc"):
+            sort_path = _sort_mode_path(mode=mode, direction=direction)
+            sorted_records = _sorted_evidence_records(
+                evidence_records,
+                source_title_by_id=source_title_by_id,
+                sort_key=sort_key,
+                direction=direction,
             )
-            for record in evidence_records
-        )
-        if evidence_records
-        else "<li>(none yet)</li>"
-    )
-    index_path = evidence_root / "index.html"
-    _write_text_file(
-        index_path,
-        _render_space_layout(
-            title=f"{_space_display_name(context.space_name)} - Evidence",
-            body=(
-                "<h1>Evidence</h1>\n"
-                "<p>Canonical evidence items authored by semantic extraction and validated for linking integrity.</p>\n"
-                "<ul class=\"feed-list\">\n"
-                + index_rows
-                + "\n</ul>\n"
-            ),
-            context=context,
-            current_tab="evidence",
-            stylesheet_href=_relative_href(from_file=index_path, to_file=stylesheet_path),
-        ),
-        incremental=incremental,
-    )
-
-    generated_paths: list[Path] = [index_path]
+            index_rows = (
+                "\n".join(
+                    _render_evidence_index_row(
+                        space_name=context.space_name,
+                        record=record,
+                        claim_option_title_by_id=claim_option_title_by_id,
+                        source_title_by_id=source_title_by_id,
+                    )
+                    for record in sorted_records
+                )
+                if sorted_records
+                else "<li>(none yet)</li>"
+            )
+            index_path = output_root / sort_path / "index.html"
+            index_path.parent.mkdir(parents=True, exist_ok=True)
+            _write_text_file(
+                index_path,
+                _render_space_layout(
+                    title=f"{_space_display_name(context.space_name)} - Evidence by {sort_label.lower()}",
+                    body=(
+                        "<h1>Evidence</h1>\n"
+                        "<p>Canonical evidence items authored by semantic extraction and validated for linking integrity.</p>\n"
+                        + _render_order_controls(
+                            label="Evidence order",
+                            space_name=context.space_name,
+                            modes=EVIDENCE_SORT_MODES,
+                            current_sort_key=sort_key,
+                            current_direction=direction,
+                        )
+                        + "<ul class=\"feed-list\">\n"
+                        + index_rows
+                        + "\n</ul>\n"
+                    ),
+                    context=context,
+                    current_tab="evidence",
+                    stylesheet_href=_relative_href(from_file=index_path, to_file=stylesheet_path),
+                ),
+                incremental=incremental,
+            )
+            generated_paths.append(index_path)
     for record in evidence_records:
         topic_rows = (
             "\n".join(
@@ -4723,6 +5082,28 @@ def _claim_added_at(*, claim_record: dict[str, Any], source_added_at: str) -> st
         if value:
             return value
     return source_added_at.strip()
+
+
+def _sorted_claim_index_items(
+    items: list[dict[str, Any]],
+    *,
+    sort_key: str,
+    direction: str,
+) -> list[dict[str, Any]]:
+    sorted_items = list(items)
+    sorted_items.sort(key=lambda item: (str(item.get("title") or ""), str(item.get("claim_id") or "")))
+    if sort_key == "score":
+        sorted_items.sort(key=lambda item: int(item.get("score") or 0), reverse=direction == "desc")
+        return sorted_items
+    if sort_key == "date":
+        if direction == "desc":
+            sorted_items.sort(key=lambda item: str(item.get("added_at") or ""), reverse=True)
+        else:
+            sorted_items.sort(key=lambda item: (not str(item.get("added_at") or ""), str(item.get("added_at") or "")))
+        return sorted_items
+    if sort_key == "title" and direction == "desc":
+        sorted_items.reverse()
+    return sorted_items
 
 
 def _format_claim_added_at_for_ui(value: str) -> str:
@@ -5284,55 +5665,76 @@ def _write_site_users_pages(
     subspaces_by_space: dict[str, list[tuple[str, str | None]]],
     incremental: bool,
 ) -> None:
-    users_root = site_root / "users"
-    users_root.mkdir(parents=True, exist_ok=True)
     site_stylesheet_path = site_root / "assets" / "site.css"
-    rows = []
+    rows_by_name: list[tuple[str, str]] = []
     for row in persona_rows:
         persona_id = str(row["persona_id"])
-        rows.append(
-            "<article class=\"user-card site-user-card\">"
-            + "<img class=\"user-card-photo\" src=\"/spaces/"
-            + escape(space_names[0] if space_names else "")
-            + "/site/assets/persona_profiles/"
-            + escape(persona_id)
-            + ".jpg\" alt=\"Profile photo for "
-            + escape(str(row["display_name"]))
-            + "\" loading=\"lazy\" />"
-            + "<span class=\"user-card-name\">"
-            + escape(str(row["display_name"]))
-            + "</span>"
-            + "</article>"
-        )
-
-    pages = _paginate(rows, TAB_PAGE_SIZE)
-    for page_number, page_rows in enumerate(pages, start=1):
-        page_path = _paginated_page_path(users_root, page_number=page_number)
-        body = (
-            f"<h1>{escape(site_name)} Users</h1>\n"
-            + "<div class=\"user-card-grid\">\n"
-            + "\n".join(page_rows)
-            + "\n</div>\n"
-            + _render_pagination(
-                page_number=page_number,
-                page_count=len(pages),
-                mode="tab",
-                base_href="/site/users",
+        rows_by_name.append(
+            (
+                str(row["display_name"]).casefold(),
+                "<article class=\"user-card site-user-card\">"
+                + "<img class=\"user-card-photo\" src=\"/spaces/"
+                + escape(space_names[0] if space_names else "")
+                + "/site/assets/persona_profiles/"
+                + escape(persona_id)
+                + ".jpg\" alt=\"Profile photo for "
+                + escape(str(row["display_name"]))
+                + "\" loading=\"lazy\" />"
+                + "<span class=\"user-card-name\">"
+                + escape(str(row["display_name"]))
+                + "</span>"
+                + "</article>",
             )
         )
-        _write_text_file(
-            page_path,
-            _render_site_layout(
-                title=f"{site_name} Users",
-                site_name=site_name,
-                body=body,
-                current_tab="users",
-                stylesheet_href=_relative_href(from_file=page_path, to_file=site_stylesheet_path),
-                space_names=root_space_names,
-                subspaces_by_space=subspaces_by_space,
-            ),
-            incremental=incremental,
-        )
+
+    for mode in USER_SORT_MODES:
+        sort_key, sort_label, _desc_path, _asc_path, _default_direction = mode
+        for direction in ("desc", "asc"):
+            sort_path = _sort_mode_path(mode=mode, direction=direction)
+            users_root = site_root / sort_path
+            users_root.mkdir(parents=True, exist_ok=True)
+            rows = [
+                row_html
+                for _name, row_html in sorted(
+                    rows_by_name,
+                    key=lambda row: row[0],
+                    reverse=direction == "desc",
+                )
+            ]
+            pages = _paginate(rows, TAB_PAGE_SIZE)
+            for page_number, page_rows in enumerate(pages, start=1):
+                page_path = _paginated_page_path(users_root, page_number=page_number)
+                body = (
+                    f"<h1>{escape(site_name)} Users</h1>\n"
+                    + _render_site_order_controls(
+                        label="User order",
+                        modes=USER_SORT_MODES,
+                        current_sort_key=sort_key,
+                        current_direction=direction,
+                    )
+                    + "<div class=\"user-card-grid\">\n"
+                    + "\n".join(page_rows)
+                    + "\n</div>\n"
+                    + _render_pagination(
+                        page_number=page_number,
+                        page_count=len(pages),
+                        mode="tab",
+                        base_href=f"/site/{sort_path}",
+                    )
+                )
+                _write_text_file(
+                    page_path,
+                    _render_site_layout(
+                        title=f"{site_name} Users by {sort_label.lower()}",
+                        site_name=site_name,
+                        body=body,
+                        current_tab="users",
+                        stylesheet_href=_relative_href(from_file=page_path, to_file=site_stylesheet_path),
+                        space_names=root_space_names,
+                        subspaces_by_space=subspaces_by_space,
+                    ),
+                    incremental=incremental,
+                )
 
 
 def _write_site_feed_tab_pages(
@@ -5349,41 +5751,67 @@ def _write_site_feed_tab_pages(
         ("sources", "source", "Sources"),
         ("topics", "topic", "Topics"),
     ):
-        tab_root = site_root / tab_name
-        tab_root.mkdir(parents=True, exist_ok=True)
         tab_entries = [entry for entry in entries if entry.item_type == item_type]
-        pages = _paginate(tab_entries, TAB_PAGE_SIZE)
-        for page_number, page_entries in enumerate(pages, start=1):
-            page_path = _paginated_page_path(tab_root, page_number=page_number)
-            body = (
-                f"<h1>{escape(heading)}</h1>\n<p>{escape(site_name)}</p>\n"
-                + (
-                    "<ul class=\"feed-list\">\n"
-                    + "\n".join(_render_feed_row(entry) for entry in page_entries)
-                    + "\n</ul>\n"
-                    if page_entries
-                    else f"<p>No {escape(heading.lower())} yet.</p>\n"
-                )
-                + _render_pagination(
-                    page_number=page_number,
-                    page_count=len(pages),
-                    mode="tab",
-                    base_href=f"/site/{tab_name}",
-                )
-            )
-            _write_text_file(
-                page_path,
-                _render_site_layout(
-                    title=f"{site_name} {heading}",
-                    site_name=site_name,
-                    body=body,
-                    current_tab=tab_name,
-                    stylesheet_href=_relative_href(from_file=page_path, to_file=site_stylesheet_path),
-                    space_names=root_space_names,
-                    subspaces_by_space=subspaces_by_space,
-                ),
-                incremental=incremental,
-            )
+        modes = SOURCE_SORT_MODES if item_type == "source" else TOPIC_SORT_MODES
+        for mode in modes:
+            sort_key, sort_label, _desc_path, _asc_path, _default_direction = mode
+            for direction in ("desc", "asc"):
+                sort_path = _sort_mode_path(mode=mode, direction=direction)
+                tab_root = site_root / sort_path
+                tab_root.mkdir(parents=True, exist_ok=True)
+                if item_type == "source":
+                    sorted_entries = _sorted_source_feed_entries(
+                        tab_entries,
+                        sort_key=sort_key,
+                        direction=direction,
+                    )
+                else:
+                    sorted_entries = _sorted_topic_feed_entries(
+                        tab_entries,
+                        sort_key=sort_key,
+                        direction=direction,
+                    )
+                pages = _paginate(sorted_entries, TAB_PAGE_SIZE)
+                for page_number, page_entries in enumerate(pages, start=1):
+                    page_path = _paginated_page_path(tab_root, page_number=page_number)
+                    body = (
+                        f"<h1>{escape(heading)}</h1>\n<p>{escape(site_name)}</p>\n"
+                        + _render_site_order_controls(
+                            label=f"{heading[:-1] if heading.endswith('s') else heading} order",
+                            modes=modes,
+                            current_sort_key=sort_key,
+                            current_direction=direction,
+                        )
+                        + (
+                            "<ul class=\"feed-list\">\n"
+                            + "\n".join(_render_feed_row(entry) for entry in page_entries)
+                            + "\n</ul>\n"
+                            if page_entries
+                            else f"<p>No {escape(heading.lower())} yet.</p>\n"
+                        )
+                        + _render_pagination(
+                            page_number=page_number,
+                            page_count=len(pages),
+                            mode="tab",
+                            base_href=f"/site/{sort_path}",
+                        )
+                    )
+                    _write_text_file(
+                        page_path,
+                        _render_site_layout(
+                            title=f"{site_name} {heading} by {sort_label.lower()}",
+                            site_name=site_name,
+                            body=body,
+                            current_tab=tab_name,
+                            stylesheet_href=_relative_href(
+                                from_file=page_path,
+                                to_file=site_stylesheet_path,
+                            ),
+                            space_names=root_space_names,
+                            subspaces_by_space=subspaces_by_space,
+                        ),
+                        incremental=incremental,
+                    )
 
 
 def _render_site_root_index(
@@ -5455,6 +5883,9 @@ def _render_site_new_page(
     page_number: int,
     page_count: int,
     stylesheet_href: str,
+    sort_key: str,
+    sort_direction: str,
+    sort_path: str,
 ) -> str:
     rows = "\n".join(_render_feed_row(entry) for entry in page_entries)
     return _render_site_layout(
@@ -5465,14 +5896,21 @@ def _render_site_new_page(
         space_names=space_names,
         subspaces_by_space=subspaces_by_space,
         body=(
-            f"<h1>New</h1>\n<p>{escape(site_name)}</p>\n<ul class=\"feed-list\">\n"
+            f"<h1>New</h1>\n<p>{escape(site_name)}</p>\n"
+            + _render_site_order_controls(
+                label="New order",
+                modes=NEW_SORT_MODES,
+                current_sort_key=sort_key,
+                current_direction=sort_direction,
+            )
+            + "<ul class=\"feed-list\">\n"
             + rows
             + "\n</ul>\n"
             + _render_pagination(
                 page_number=page_number,
                 page_count=page_count,
                 mode="feed",
-                base_href="/site/new",
+                base_href=f"/site/{sort_path}",
             )
         ),
     )

@@ -631,25 +631,26 @@ class SiteBuilderContractTests(unittest.TestCase):
 
             evidence_index_text = (space_root / "site" / "evidence" / "index.html").read_text()
             self.assertIn("<h1>Evidence</h1>", evidence_index_text)
+            self.assertIn("Evidence order", evidence_index_text)
+            self.assertIn('href="by-title-desc/index.html">Title ↑</a>', evidence_index_text)
+            self.assertIn('href="by-source/index.html">Source</a>', evidence_index_text)
+            self.assertIn('href="by-claims/index.html">Claims</a>', evidence_index_text)
             self.assertIn("independently prepared systems", evidence_index_text)
+            evidence_by_claims = (space_root / "site" / "evidence" / "by-claims" / "index.html").read_text()
+            self.assertIn('href="../by-claims-asc/index.html">Claims ↓</a>', evidence_by_claims)
             evidence_page_text = (space_root / "site" / "evidence" / f"{evidence_links[0]}.html").read_text()
             self.assertNotIn("Evidence ID:", evidence_page_text)
 
             claims_index_text = (space_root / "site" / "claims" / "index.html").read_text()
-            self.assertIn("id=\"claims-sort-direction\"", claims_index_text)
-            self.assertIn("<option value=\"alphabetical\">Alphabetical</option>", claims_index_text)
-            self.assertIn("<option value=\"score\" selected>Score</option>", claims_index_text)
-            self.assertIn("<option value=\"reverse_score\">Reverse score</option>", claims_index_text)
-            self.assertIn("<option value=\"newest\">Newest</option>", claims_index_text)
-            self.assertIn("<option value=\"oldest\">Oldest</option>", claims_index_text)
+            self.assertIn("Claim order", claims_index_text)
+            self.assertIn('href="by-score-asc/index.html">Score ↓</a>', claims_index_text)
+            self.assertIn('href="by-date/index.html">Date</a>', claims_index_text)
+            self.assertIn('href="by-title/index.html">Title</a>', claims_index_text)
             self.assertIn("id=\"claims-index-list\"", claims_index_text)
             self.assertIn("data-claim-score=\"", claims_index_text)
             self.assertIn("data-claim-added-at=\"", claims_index_text)
-            self.assertIn("parseAddedAt", claims_index_text)
-            self.assertIn("mode==='newest'", claims_index_text)
-            self.assertIn("mode==='oldest'", claims_index_text)
-            self.assertIn("var mode=select.value||'score';", claims_index_text)
-            self.assertIn("rows.sort(function(a,b){return compareRows(a,b,mode);});", claims_index_text)
+            claims_by_score_asc = (space_root / "site" / "claims" / "by-score-asc" / "index.html").read_text()
+            self.assertIn('href="../index.html">Score ↑</a>', claims_by_score_asc)
             self.assertIn(f"href=\"{evidence_links[0]}.html\"", evidence_index_text)
 
             topic_page_text = (space_root / "site" / "topics" / "topic-claim-rich--aaaaaaaaaaaa.html").read_text()
@@ -1057,6 +1058,13 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(len(re.findall(r'<li class=\"feed-card\">', page_2_feed.group(1))), 1)
             self.assertIn("class=\"feed-card-title\"", page_1_feed.group(1))
             self.assertIn("class=\"feed-card-overview\"", page_1_feed.group(1))
+            new_page = (alpha_space_root / "site" / "new" / "index.html").read_text()
+            self.assertIn("New order", new_page)
+            self.assertIn('href="by-date-asc/index.html">Date ↓</a>', new_page)
+            self.assertIn('href="by-title/index.html">Title</a>', new_page)
+            users_page = (alpha_space_root / "site" / "users" / "index.html").read_text()
+            self.assertIn("User order", users_page)
+            self.assertIn('href="by-name-desc/index.html">Name ↑</a>', users_page)
 
             beta_home = (site_path / "spaces" / "beta" / "site" / "index.html").read_text()
             self.assertIn('class="site-space-nav-summary current">Alpha / Beta</summary>', beta_home)
@@ -1454,22 +1462,35 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stderr)
 
             sources_index = (alpha_space_root / "site" / "sources" / "index.html").read_text()
+            by_date_asc = (alpha_space_root / "site" / "sources" / "by-date-asc" / "index.html").read_text()
             by_citation = (alpha_space_root / "site" / "sources" / "by-citation-count" / "index.html").read_text()
+            by_citation_asc = (
+                alpha_space_root / "site" / "sources" / "by-citation-count-asc" / "index.html"
+            ).read_text()
             by_title = (alpha_space_root / "site" / "sources" / "by-title" / "index.html").read_text()
+            by_title_desc = (alpha_space_root / "site" / "sources" / "by-title-desc" / "index.html").read_text()
 
             self.assertIn("source-order-controls", sources_index)
+            self.assertIn('href="by-date-asc/index.html">Date ↓</a>', sources_index)
             self.assertIn('href="by-citation-count/index.html">Citation count</a>', sources_index)
             self.assertIn('href="by-title/index.html">Title</a>', sources_index)
+            self.assertIn('href="../index.html">Date ↑</a>', by_date_asc)
             self.assertIn('<span class="feed-card-citations">Citations: 240</span>', sources_index)
             self.assertIn('<span class="feed-card-author-overflow">...</span>', sources_index)
             self.assertNotIn("Dana D.", sources_index)
 
             self.assertLess(sources_index.index("Alpha Source"), sources_index.index("Middle Source"))
             self.assertLess(sources_index.index("Middle Source"), sources_index.index("Zeta Source"))
+            self.assertLess(by_date_asc.index("Zeta Source"), by_date_asc.index("Middle Source"))
+            self.assertLess(by_date_asc.index("Middle Source"), by_date_asc.index("Alpha Source"))
             self.assertLess(by_citation.index("Zeta Source"), by_citation.index("Alpha Source"))
             self.assertLess(by_citation.index("Alpha Source"), by_citation.index("Middle Source"))
+            self.assertLess(by_citation_asc.index("Alpha Source"), by_citation_asc.index("Zeta Source"))
+            self.assertLess(by_citation_asc.index("Zeta Source"), by_citation_asc.index("Middle Source"))
             self.assertLess(by_title.index("Alpha Source"), by_title.index("Middle Source"))
             self.assertLess(by_title.index("Middle Source"), by_title.index("Zeta Source"))
+            self.assertLess(by_title_desc.index("Zeta Source"), by_title_desc.index("Middle Source"))
+            self.assertLess(by_title_desc.index("Middle Source"), by_title_desc.index("Alpha Source"))
 
     def test_topic_index_renders_count_metrics_and_sort_orders(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1480,18 +1501,21 @@ class SiteBuilderContractTests(unittest.TestCase):
                 source_id="source-old",
                 title="Old Source",
                 source_date="2020-01-01",
+                ingested_at="2020-01-01T00:00:00Z",
             )
             self._write_source_record(
                 alpha_space_root,
                 source_id="source-middle",
                 title="Middle Source",
                 source_date="2022-01-01",
+                ingested_at="2022-01-01T00:00:00Z",
             )
             self._write_source_record(
                 alpha_space_root,
                 source_id="source-new",
                 title="New Source",
                 source_date="2023-01-01",
+                ingested_at="2023-01-01T00:00:00Z",
             )
             for claim_id, source_id in [
                 ("claim-a", "source-old"),
@@ -1568,20 +1592,30 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stderr)
 
             topics_index = (alpha_space_root / "site" / "topics" / "index.html").read_text()
+            by_date_asc = (alpha_space_root / "site" / "topics" / "by-date-asc" / "index.html").read_text()
             by_evidence = (alpha_space_root / "site" / "topics" / "by-evidence" / "index.html").read_text()
+            by_evidence_asc = (
+                alpha_space_root / "site" / "topics" / "by-evidence-asc" / "index.html"
+            ).read_text()
             by_claims = (alpha_space_root / "site" / "topics" / "by-claims" / "index.html").read_text()
             by_title = (alpha_space_root / "site" / "topics" / "by-title" / "index.html").read_text()
 
             self.assertIn("Topic order", topics_index)
+            self.assertIn('href="by-date-asc/index.html">Date ↓</a>', topics_index)
             self.assertIn('href="by-evidence/index.html">Evidence</a>', topics_index)
             self.assertIn('href="by-claims/index.html">Claims</a>', topics_index)
+            self.assertIn('href="../index.html">Date ↑</a>', by_date_asc)
             self.assertIn('<span class="feed-card-counts">Evidence: 2</span>', topics_index)
             self.assertIn('<span class="feed-card-counts">Claims: 2</span>', topics_index)
 
             self.assertLess(topics_index.index("Alpha Recent Topic"), topics_index.index("Middle Topic"))
             self.assertLess(topics_index.index("Middle Topic"), topics_index.index("Zeta Evidence Topic"))
+            self.assertLess(by_date_asc.index("Zeta Evidence Topic"), by_date_asc.index("Middle Topic"))
+            self.assertLess(by_date_asc.index("Middle Topic"), by_date_asc.index("Alpha Recent Topic"))
             self.assertLess(by_evidence.index("Zeta Evidence Topic"), by_evidence.index("Alpha Recent Topic"))
             self.assertLess(by_evidence.index("Alpha Recent Topic"), by_evidence.index("Middle Topic"))
+            self.assertLess(by_evidence_asc.index("Middle Topic"), by_evidence_asc.index("Alpha Recent Topic"))
+            self.assertLess(by_evidence_asc.index("Alpha Recent Topic"), by_evidence_asc.index("Zeta Evidence Topic"))
             self.assertLess(by_claims.index("Zeta Evidence Topic"), by_claims.index("Alpha Recent Topic"))
             self.assertLess(by_claims.index("Alpha Recent Topic"), by_claims.index("Middle Topic"))
             self.assertLess(by_title.index("Alpha Recent Topic"), by_title.index("Middle Topic"))
