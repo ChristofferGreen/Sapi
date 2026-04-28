@@ -36,6 +36,10 @@ class MockPersonaProfileClientTests(unittest.TestCase):
         self.assertIn("Short CV", sections)
         self.assertIn("known for practical judgment", sections["Profile biography"])
         self.assertIn("- Lead Analyst, Example Org (2021-present)", sections["Short CV"])
+        self.assertEqual(payload["short_cv_entries"][0]["role"], "Lead Analyst")
+        self.assertEqual(payload["short_cv_entries"][0]["organization"], "Example Org")
+        self.assertEqual(payload["short_cv_entries"][0]["period"], "2021-present")
+        self.assertIn("risk analysis", payload["short_cv_entries"][0]["description"])
 
 
 if __name__ == "__main__":

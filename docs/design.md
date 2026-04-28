@@ -315,7 +315,8 @@ Per-flow v1 schema minimum top-level keys:
 - `source_revision_detection`: `decision`, `certainty`, `matched_source_id`, `candidate_source_ids`, `rationale`, `evidence`
 - `query_synthesis`: `query_id`, `answer`, `claims_used`, `sources_used`, `retrieval_counts`, `contradictions_considered`, `falsification_signals`, `mode`, `scope`, `execution`, `warnings`
 - `comment_section_generation`: `page_ref`, `requested_count`, `comments`
-- `persona_profile_generation`: `persona_id`, `space_name`, `profile_sections`, `profile_image_path`, `accountability_summary`
+- `persona_profile_generation`: `persona_id`, `space_name`, `profile_sections`, optional
+  `short_cv_entries`, `profile_image_path`, `accountability_summary`
 - `space_overview_generation`: `schema_version`, `metadata`, `sections`, `references`, `freshness`, `warnings`
 
 Notes on key naming:
@@ -1236,6 +1237,9 @@ Normalization rules:
 - `biography_profile` SHOULD be flavorful public-profile prose and usually target `25..120` words (`160` hard upper bound).
 - `short_cv` is required and MUST be a non-empty list of concise role/study timeline entries suitable for profile-page display.
 - `short_cv` entries MUST use fictional organizations and educational institutions (no real-world entities).
+- Semantic profile generation SHOULD expand seeded `short_cv` rows into optional
+  `short_cv_entries[]` with preserved role, organization/institution, period, and one or two
+  evidence-grounded sentences about the work or study focus for display on profile pages.
 - biography/topic fields normalized for minimum richness
 - `profile_image_path` MUST resolve to an existing `.jpg` image file at runtime
 - `profile_image_thumb_path` SHOULD exist alongside `profile_image_path` as a smaller square avatar image.
@@ -1261,6 +1265,15 @@ Profile page generation:
 - optional projection: `projections/markdown/persona-<persona_id>.md`
 - page type: `persona_profile`
 - includes identity/viewpoint/debate-style sections, profile biography/CV sections, and profile image link
+- profile pages SHOULD render CV entries as a compact timeline instead of standalone bubble/card
+  items; when semantic `short_cv_entries[]` exist, the page SHOULD show their model-authored
+  descriptions rather than only the seeded role timeline.
+
+Author page generation:
+- author pages SHOULD list institution or affiliation signals when available from canonical source
+  metadata or extracted source markdown front matter.
+- author pages SHOULD list years active in the current space from the earliest and latest linked
+  source publication years.
 
 Projection emits `persona_profiles` stats:
 - `generated`, `updated`, `reused`, `pages`, `topic_ids`

@@ -23,6 +23,9 @@ Generate one strict JSON object for persona profile generation at `output_json_p
 - Do not mechanically concatenate persona catalog fields into sentences.
 - Do not generate profile text with code, templates, fallback fixtures, or deterministic string assembly.
 - If comment context is missing, say so only in `accountability_summary`; do not fabricate comment history.
+- When seeded `short_cv` rows are available, also return `short_cv_entries[]`. Each entry should preserve
+  the seeded role, organization/institution, and period, and add one or two model-authored sentences
+  about the work or study focus for that position using only the persona catalog evidence.
 
 ## Schema-Repair Instructions
 - If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
@@ -36,6 +39,14 @@ Generate one strict JSON object for persona profile generation at `output_json_p
     {
       "title": "Identity",
       "content": ""
+    }
+  ],
+  "short_cv_entries": [
+    {
+      "role": "",
+      "organization": "",
+      "period": "",
+      "description": ""
     }
   ],
   "profile_image_path": null,

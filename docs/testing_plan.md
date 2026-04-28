@@ -173,6 +173,10 @@ Presentation contract coverage requirements (Section 8 / Section 9):
 - Tier 1/4 list-page coverage MUST assert source, topic, new, user, claim, and evidence index pages
   render static order controls with active direction arrows and opposite-direction links.
   - Module: `tests/unit/build/test_site_builder_contracts.py`
+- Tier 1/4 profile/author page coverage MUST assert persona CV entries render as timeline rows with
+  semantic descriptions when available, and author pages render institution plus active-year metadata
+  from linked source records/artifacts.
+  - Module: `tests/unit/build/test_site_builder_contracts.py`
 - Tier 1/4 page coverage MUST assert source/topic/claim pages render `External Related Links` only when
   curated links exist, and that topic/claim pages show inherited source provenance cues only for
   contextual link classes such as encyclopedia, repository, and discussion-forum links.

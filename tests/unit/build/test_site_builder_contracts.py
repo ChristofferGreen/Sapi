@@ -2146,6 +2146,62 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertTrue((authors_dir / "author-alex-kim-institute-a.html").is_file())
             self.assertTrue((authors_dir / "author-alex-kim-institute-b.html").is_file())
 
+    def test_author_page_lists_source_institutions_and_active_years(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            markdown_rel = "sources/artifacts/source-author-institution/source.md"
+            markdown_path = alpha_space_root / markdown_rel
+            markdown_path.parent.mkdir(parents=True, exist_ok=True)
+            markdown_path.write_text(
+                "\n".join(
+                    [
+                        "# Source Author Institution",
+                        "",
+                        "Dana Roe",
+                        "Applied Cognition Laboratory, Northbridge Institute, Example City, USA",
+                        "",
+                        "Edited by: Someone Else, Other University",
+                    ]
+                )
+                + "\n"
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-author-institution",
+                title="Source Author Institution",
+                source_date="2012-10-25",
+                summary="Author page should show source metadata.",
+                authors=["Dana Roe"],
+                source_file_rel="sources/artifacts/source-author-institution/source.pdf",
+                source_markdown_rel=markdown_rel,
+            )
+            self._write_source_record(
+                alpha_space_root,
+                source_id="source-author-later",
+                title="Source Author Later",
+                source_date="2018",
+                summary="Author page should show active range.",
+                authors=["Dana Roe"],
+            )
+
+            result = self._run(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            author_page = (alpha_space_root / "site" / "authors" / "author-dana-roe.html").read_text()
+            self.assertIn("Institutions: Applied Cognition Laboratory", author_page)
+            self.assertIn("Northbridge Institute", author_page)
+            self.assertNotIn("Other University", author_page)
+            self.assertIn("Years active in this space: 2012-2018", author_page)
+
     def test_source_detail_renders_explicit_source_dossier_when_present(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
@@ -3105,6 +3161,45 @@ class SiteBuilderContractTests(unittest.TestCase):
                     ],
                 }
                 catalog_path.write_text(json.dumps(seeded_catalog, indent=2, sort_keys=True) + "\n")
+                profile_path = alpha_space_root / "profiles" / "persona-persona-maya-santoro.json"
+                profile_path.parent.mkdir(parents=True, exist_ok=True)
+                profile_path.write_text(
+                    json.dumps(
+                        {
+                            "persona_id": "persona-maya-santoro",
+                            "space_name": "alpha",
+                            "profile_sections": [
+                                {
+                                    "title": "Profile biography",
+                                    "content": (
+                                        "I translate profile evidence into reader-facing context for "
+                                        "this space."
+                                    ),
+                                },
+                                {
+                                    "title": "Short CV",
+                                    "content": "- Operations Advisor, Example Systems (2022-present)",
+                                },
+                            ],
+                            "short_cv_entries": [
+                                {
+                                    "role": "Operations Advisor",
+                                    "organization": "Example Systems",
+                                    "period": "2022-present",
+                                    "description": (
+                                        "Led reliability reviews and translated incident evidence into "
+                                        "operational decisions for cross-functional teams."
+                                    ),
+                                }
+                            ],
+                            "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+                            "accountability_summary": "Profile fixture for site-builder rendering.",
+                        },
+                        indent=2,
+                        sort_keys=True,
+                    )
+                    + "\n"
+                )
 
                 result = self._run(
                     [
@@ -3154,9 +3249,13 @@ class SiteBuilderContractTests(unittest.TestCase):
                 self.assertIn("class=\"profile-cv\"", alpha_profile_html)
                 self.assertIn("class=\"profile-cv-list\"", alpha_profile_html)
                 self.assertIn("class=\"profile-cv-item\"", alpha_profile_html)
+                self.assertIn("class=\"profile-cv-heading\"", alpha_profile_html)
                 self.assertIn("class=\"profile-cv-role\">Operations Advisor</p>", alpha_profile_html)
                 self.assertIn("class=\"profile-cv-org\">Example Systems</p>", alpha_profile_html)
                 self.assertIn("class=\"profile-cv-period\">2022-present</span>", alpha_profile_html)
+                self.assertIn("class=\"profile-cv-description\"", alpha_profile_html)
+                self.assertIn("Led reliability reviews", alpha_profile_html)
+                self.assertNotIn("class=\"profile-cv-body\"", alpha_profile_html)
                 self.assertLess(
                     alpha_profile_html.index("class=\"profile-biography-copy\""),
                     alpha_profile_html.index("class=\"profile-photo-frame\""),
@@ -3164,8 +3263,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                 self.assertIn(f"assets/persona_profiles/{persona_id}.jpg", alpha_profile_html)
                 self.assertIn("Biography", alpha_profile_html)
                 self.assertIn("Short CV", alpha_profile_html)
-                self.assertIn("I am a practical evidence reviewer", alpha_profile_html)
-                self.assertIn("Operations Advisor</p><p class=\"profile-cv-org\">Example Systems", alpha_profile_html)
+                self.assertIn("I translate profile evidence", alpha_profile_html)
                 self.assertIn("<title>Alpha - Maya Santoro</title>", alpha_profile_html)
                 alpha_profile_photo_path = (
                     alpha_space_root / "site" / "assets" / "persona_profiles" / f"{persona_id}.jpg"

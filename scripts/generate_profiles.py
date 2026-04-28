@@ -8,6 +8,7 @@ from datetime import UTC, datetime
 import json
 import os
 from pathlib import Path
+import re
 import sys
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -394,8 +395,17 @@ class _MockPersonaProfileClient:
         short_cv = self._persona_row.get("short_cv")
         if isinstance(short_cv, list):
             short_cv_lines = [f"- {str(item)}" for item in short_cv if str(item).strip()]
+            short_cv_entries = [
+                _mock_short_cv_entry(
+                    str(item),
+                    persona_interests=interests if isinstance(interests, list) else [],
+                )
+                for item in short_cv
+                if str(item).strip()
+            ]
         else:
             short_cv_lines = []
+            short_cv_entries = []
         profile_sections = [
             {
                 "title": "Identity",
@@ -422,12 +432,47 @@ class _MockPersonaProfileClient:
             "persona_id": persona_id,
             "space_name": self._space_name,
             "profile_sections": profile_sections,
+            "short_cv_entries": short_cv_entries,
             "profile_image_path": profile_image_path,
             "accountability_summary": (
                 "Accountability metrics are maintained in space-local persona profile history."
             ),
         }
         return json.dumps(payload)
+
+
+def _mock_short_cv_entry(entry: str, *, persona_interests: list[object]) -> dict[str, str]:
+    role, organization, period = _parse_short_cv_entry(entry)
+    interest = ""
+    for candidate in persona_interests:
+        interest = str(candidate).strip()
+        if interest:
+            break
+    focus = interest if interest else "the persona's core field"
+    description = (
+        f"Worked on {focus} using the evidence standards and collaboration habits described "
+        "in the seeded persona catalog."
+    )
+    return {
+        "role": role,
+        "organization": organization,
+        "period": period,
+        "description": description,
+    }
+
+
+def _parse_short_cv_entry(entry: str) -> tuple[str, str, str]:
+    normalized = " ".join(str(entry).split()).strip()
+    period = ""
+    period_match = re.search(r"\(([^()]*)\)\s*$", normalized)
+    if period_match is not None:
+        period = period_match.group(1).strip()
+        normalized = normalized[: period_match.start()].rstrip(" ,")
+    role = normalized
+    organization = ""
+    if "," in normalized:
+        role, organization = normalized.split(",", 1)
+    return role.strip(), organization.strip(), period
 
 
 class _LivePersonaProfileClient:

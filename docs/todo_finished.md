@@ -4,6 +4,25 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-04-28
 
+- [x] TODO-0366: Enrich profile CV and author metadata pages
+  - owner: ai
+  - created_at: 2026-04-28
+  - finished_at: 2026-04-28
+  - phase: Cross-cutting
+  - scope: Improve profile and author pages so CV rows read as timeline entries with semantic
+    descriptions, and author pages show institution and active-year metadata.
+  - acceptance:
+    - Persona profile generation can return structured CV entries with role, organization, period,
+      and model-authored work/study descriptions.
+    - Profile pages render CV entries as compact timeline rows rather than individual bubble/card
+      items.
+    - Author pages list institution or affiliation signals when available from source metadata or
+      extracted source markdown and show years active from linked source publication years.
+    - Contract docs and focused builder/profile tests cover the new presentation rules.
+  - notes: triggered by browser review of persona CV and author pages.
+  - evidence: Added optional `short_cv_entries` profile schema/spec support, profile-page timeline
+    rendering, markdown-derived author institution display, active-year rendering, and tests.
+
 - [x] TODO-0365: Add directional order controls to list pages
   - owner: ai
   - created_at: 2026-04-28

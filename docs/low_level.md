@@ -527,6 +527,8 @@ Control flow:
 8. write `run.md` and `lint.json` on success
 
 Profile constraints:
+- semantic profile payloads may include `short_cv_entries[]` with role, organization, period, and
+  model-authored description; site rendering prefers those entries over catalog-only CV rows.
 - persona-profile pipeline does not refresh site-root `New` index unless it mutates canonical source/topic artifacts
 
 ### 8.5 Overview Synthesis Contract (`scripts/generate_overview.py`)

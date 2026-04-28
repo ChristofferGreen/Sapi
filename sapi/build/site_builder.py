@@ -130,6 +130,7 @@ class _AuthorProfile:
     aliases: set[str] = field(default_factory=set)
     source_ids: set[str] = field(default_factory=set)
     topic_ids: set[str] = field(default_factory=set)
+    source_years: set[int] = field(default_factory=set)
 
 
 @dataclass(frozen=True)
@@ -3202,6 +3203,119 @@ def _source_default_institution(source: dict[str, Any]) -> str:
     return ""
 
 
+def _source_institutions_for_author_page(*, source: dict[str, Any], space_root: Path) -> set[str]:
+    institutions: set[str] = set()
+    default_institution = _source_default_institution(source)
+    if default_institution:
+        institutions.add(default_institution)
+    institutions.update(_source_markdown_affiliation_institutions(source=source, space_root=space_root))
+    return {institution for institution in institutions if institution}
+
+
+def _source_markdown_affiliation_institutions(*, source: dict[str, Any], space_root: Path) -> set[str]:
+    markdown_path = _source_artifact_path(
+        source=source,
+        artifact_key="source_markdown",
+        space_root=space_root,
+    )
+    if markdown_path is None or not markdown_path.is_file():
+        return set()
+    lines = markdown_path.read_text(errors="replace").splitlines()
+    candidates: set[str] = set()
+    stop_markers = ("edited by:", "reviewed by:", "*correspondence:", "correspondence:", "abstract")
+    institution_terms = (
+        "university",
+        "institute",
+        "laboratory",
+        "hospital",
+        "school",
+        "college",
+        "department",
+        "centre",
+        "center",
+    )
+    for line in lines[:80]:
+        normalized = _normalize_institution_name(line)
+        if not normalized:
+            continue
+        folded = normalized.casefold()
+        if any(marker in folded for marker in stop_markers):
+            break
+        if not any(term in folded for term in institution_terms):
+            continue
+        if "doi:" in folded or folded.startswith("#"):
+            continue
+        candidates.add(normalized)
+    return candidates
+
+
+def _source_artifact_path(
+    *,
+    source: dict[str, Any],
+    artifact_key: str,
+    space_root: Path,
+) -> Path | None:
+    artifacts = source.get("artifacts")
+    if not isinstance(artifacts, dict):
+        return None
+    artifact_rel = artifacts.get(artifact_key)
+    if not isinstance(artifact_rel, str) or not artifact_rel.strip():
+        return None
+    path = Path(artifact_rel.strip())
+    if path.is_absolute():
+        return path
+    return space_root / path
+
+
+def _source_publication_year(source: dict[str, Any]) -> int | None:
+    for value in (
+        source.get("date"),
+        _source_semantic_publication_date(source),
+        _source_inferred_date(source),
+        source.get("ingested_at"),
+    ):
+        year = _year_from_date_value(value)
+        if year is not None:
+            return year
+    return None
+
+
+def _source_semantic_publication_date(source: dict[str, Any]) -> str:
+    source_semantic = source.get("source_semantic")
+    if not isinstance(source_semantic, dict):
+        return ""
+    return str(
+        source_semantic.get("publication_date")
+        or source_semantic.get("published_date")
+        or source_semantic.get("date")
+        or ""
+    ).strip()
+
+
+def _source_inferred_date(source: dict[str, Any]) -> str:
+    source_date_inference = source.get("source_date_inference")
+    if not isinstance(source_date_inference, dict):
+        return ""
+    return str(source_date_inference.get("date") or "").strip()
+
+
+def _year_from_date_value(value: object) -> int | None:
+    match = re.search(r"(?:^|[^\d])((?:19|20)\d{2})(?:[^\d]|$)", str(value or ""))
+    if match is None:
+        return None
+    return int(match.group(1))
+
+
+def _format_author_active_years(years: set[int]) -> str:
+    if not years:
+        return ""
+    first = min(years)
+    last = max(years)
+    if first == last:
+        return str(first)
+    return f"{first}-{last}"
+
+
 def _source_author_identities(source: dict[str, Any]) -> list[_AuthorIdentity]:
     default_institution = _source_default_institution(source)
     direct = _extract_author_identities(source.get("authors"), default_institution=default_institution)
@@ -3823,7 +3937,11 @@ def _write_space_tab_pages(
     return written
 
 
-def _collect_space_author_profiles(*, projection: SpaceProjection) -> dict[str, _AuthorProfile]:
+def _collect_space_author_profiles(
+    *,
+    projection: SpaceProjection,
+    space_root: Path,
+) -> dict[str, _AuthorProfile]:
     profiles: dict[str, _AuthorProfile] = {}
     source_author_identities_by_id: dict[str, list[_AuthorIdentity]] = {}
 
@@ -3833,6 +3951,11 @@ def _collect_space_author_profiles(*, projection: SpaceProjection) -> dict[str, 
             continue
         author_identities = _source_author_identities(source)
         source_author_identities_by_id[source_id] = author_identities
+        source_year = _source_publication_year(source)
+        source_institutions = _source_institutions_for_author_page(
+            source=source,
+            space_root=space_root,
+        )
         for ref in _author_refs(author_identities):
             profile = profiles.get(ref.author_id)
             if profile is None:
@@ -3841,6 +3964,9 @@ def _collect_space_author_profiles(*, projection: SpaceProjection) -> dict[str, 
             profile.aliases.add(ref.display_name)
             if ref.institution:
                 profile.institutions.add(ref.institution)
+            profile.institutions.update(source_institutions)
+            if source_year is not None:
+                profile.source_years.add(source_year)
             profile.source_ids.add(source_id)
 
     for topic in projection.topics:
@@ -3871,7 +3997,10 @@ def _write_space_author_pages(
     context: _SpaceLayoutContext,
     incremental: bool,
 ) -> list[Path]:
-    profiles = _collect_space_author_profiles(projection=projection)
+    profiles = _collect_space_author_profiles(
+        projection=projection,
+        space_root=output_root.parent,
+    )
     if not profiles:
         return []
 
@@ -3921,15 +4050,23 @@ def _write_space_author_pages(
         ]
         alias_rows = sorted(alias for alias in profile.aliases if alias and alias != profile.display_name)
         institution_rows = sorted(inst for inst in profile.institutions if inst)
+        active_years = _format_author_active_years(profile.source_years)
         path = authors_root / f"{profile.author_id}.html"
         body = (
             f"<h1>{escape(profile.display_name)}</h1>\n"
             + f"<p class=\"meta\">author id: {escape(profile.author_id)}</p>\n"
             + (
-                "<p class=\"meta\">Institution signals: "
+                "<p class=\"meta\">Institutions: "
                 + escape(", ".join(institution_rows))
                 + "</p>\n"
                 if institution_rows
+                else ""
+            )
+            + (
+                "<p class=\"meta\">Years active in this space: "
+                + escape(active_years)
+                + "</p>\n"
+                if active_years
                 else ""
             )
             + (
@@ -3988,8 +4125,14 @@ def _write_space_user_profile_pages(
     for row in persona_rows:
         persona_id = str(row["persona_id"])
         display_name = str(row["display_name"])
-        biography_profile = str(row.get("biography_profile") or "").strip()
-        short_cv = row.get("short_cv")
+        profile_payload = _load_persona_profile_payload(
+            space_root=output_root.parent,
+            persona_id=persona_id,
+        )
+        biography_profile = (
+            _profile_section_content(profile_payload, "Profile biography")
+            or str(row.get("biography_profile") or "").strip()
+        )
         profile_photo_href = _persona_profile_photo_site_href(
             space_name=context.space_name,
             persona_id=persona_id,
@@ -4001,10 +4144,10 @@ def _write_space_user_profile_pages(
                 + f"<img class=\"profile-photo\" src=\"{escape(profile_photo_href)}\" alt=\"Profile photo for {escape(display_name)}\" loading=\"lazy\" />"
                 + "</figure>\n"
             )
-        if isinstance(short_cv, list):
-            short_cv_items = [_render_profile_cv_item(str(item)) for item in short_cv if str(item).strip()]
-        else:
-            short_cv_items = []
+        short_cv_items = [
+            _render_profile_cv_item(entry)
+            for entry in _profile_cv_entries(profile_payload=profile_payload, persona_row=row)
+        ]
         activity_items = persona_comment_activity.get(persona_id, [])
         activity_rows = []
         for activity in activity_items:
@@ -4067,6 +4210,94 @@ def _write_space_user_profile_pages(
         )
         written.append(path)
     return written
+
+
+def _load_persona_profile_payload(*, space_root: Path, persona_id: str) -> dict[str, Any]:
+    profile_path = space_root / "profiles" / f"persona-{persona_id}.json"
+    if not profile_path.is_file():
+        return {}
+    payload = json.loads(profile_path.read_text())
+    if not isinstance(payload, dict):
+        raise ValueError(f"{profile_path} must contain a JSON object.")
+    return payload
+
+
+def _profile_section_content(profile_payload: dict[str, Any], title: str) -> str:
+    sections = profile_payload.get("profile_sections")
+    if not isinstance(sections, list):
+        return ""
+    expected_title = title.strip().casefold()
+    for section in sections:
+        if not isinstance(section, dict):
+            continue
+        section_title = str(section.get("title") or "").strip().casefold()
+        if section_title != expected_title:
+            continue
+        return str(section.get("content") or "").strip()
+    return ""
+
+
+def _profile_cv_entries(
+    *,
+    profile_payload: dict[str, Any],
+    persona_row: dict[str, Any],
+) -> list[dict[str, str]]:
+    structured_entries = _profile_cv_entries_from_payload(profile_payload)
+    if structured_entries:
+        return structured_entries
+
+    section_entries = _profile_cv_entries_from_section(
+        _profile_section_content(profile_payload, "Short CV")
+    )
+    if section_entries:
+        return section_entries
+
+    short_cv = persona_row.get("short_cv")
+    if isinstance(short_cv, list):
+        return [
+            _profile_cv_entry_from_text(str(item))
+            for item in short_cv
+            if str(item).strip()
+        ]
+    return []
+
+
+def _profile_cv_entries_from_payload(profile_payload: dict[str, Any]) -> list[dict[str, str]]:
+    entries = profile_payload.get("short_cv_entries")
+    if not isinstance(entries, list):
+        return []
+
+    normalized_entries: list[dict[str, str]] = []
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        role = str(entry.get("role") or "").strip()
+        organization = str(entry.get("organization") or "").strip()
+        period = str(entry.get("period") or "").strip()
+        description = str(entry.get("description") or "").strip()
+        if not role:
+            continue
+        normalized_entries.append(
+            {
+                "role": role,
+                "organization": organization,
+                "period": period,
+                "description": description,
+            }
+        )
+    return normalized_entries
+
+
+def _profile_cv_entries_from_section(content: str) -> list[dict[str, str]]:
+    entries: list[dict[str, str]] = []
+    for line in content.splitlines():
+        list_match = re.match(r"^\s*(?:[-*]|\d+[.)])\s*(.+)$", line)
+        normalized = list_match.group(1).strip() if list_match else line.strip()
+        if list_match is None and re.search(r"\([^)]*((?:19|20)\d{2}|present)[^)]*\)", normalized, re.IGNORECASE) is None:
+            continue
+        if normalized:
+            entries.append(_profile_cv_entry_from_text(normalized))
+    return entries
 
 
 def _collect_persona_comment_activity(
@@ -4146,23 +4377,47 @@ def _extend_persona_comment_activity(
         )
 
 
-def _render_profile_cv_item(entry: str) -> str:
-    role, organization, period = _parse_short_cv_entry(entry)
+def _render_profile_cv_item(entry: dict[str, str]) -> str:
+    role = entry.get("role", "")
+    organization = entry.get("organization", "")
+    period = entry.get("period", "")
+    description = entry.get("description", "")
     return (
         "<li class=\"profile-cv-item\">"
-        + "<div class=\"profile-cv-body\">"
+        + "<div class=\"profile-cv-heading\">"
         + f"<p class=\"profile-cv-role\">{escape(role)}</p>"
-        + (f"<p class=\"profile-cv-org\">{escape(organization)}</p>" if organization else "")
-        + "</div>"
         + (f"<span class=\"profile-cv-period\">{escape(period)}</span>" if period else "")
+        + "</div>"
+        + (f"<p class=\"profile-cv-org\">{escape(organization)}</p>" if organization else "")
+        + (
+            f"<p class=\"profile-cv-description\">{escape(description)}</p>"
+            if description
+            else ""
+        )
         + "</li>"
     )
 
 
-def _parse_short_cv_entry(entry: str) -> tuple[str, str, str]:
+def _profile_cv_entry_from_text(entry: str) -> dict[str, str]:
+    role, organization, period, description = _parse_short_cv_entry(entry)
+    return {
+        "role": role,
+        "organization": organization,
+        "period": period,
+        "description": description,
+    }
+
+
+def _parse_short_cv_entry(entry: str) -> tuple[str, str, str, str]:
     normalized = " ".join(str(entry).split()).strip()
     if not normalized:
-        return "", "", ""
+        return "", "", "", ""
+
+    description = ""
+    description_match = re.search(r"\)\s*:\s+", normalized)
+    if description_match is not None:
+        description = normalized[description_match.end() :].strip()
+        normalized = normalized[: description_match.start() + 1].strip()
 
     period = ""
     period_match = re.search(r"\(([^()]*)\)\s*$", normalized)
@@ -4179,7 +4434,7 @@ def _parse_short_cv_entry(entry: str) -> tuple[str, str, str]:
 
     if not role:
         role = normalized
-    return role, organization, period
+    return role, organization, period, description
 
 
 def _write_space_persona_avatar_assets(
