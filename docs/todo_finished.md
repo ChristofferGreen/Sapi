@@ -2,6 +2,24 @@
 
 This file is append-only history for completed tasks moved out of `docs/todo.md`.
 
+## 2026-05-01
+
+- [x] TODO-0367: Define prepared-question product and architecture contracts
+  - owner: ai
+  - created_at: 2026-04-30
+  - phase: Prepared questions
+  - finished_at: 2026-05-01
+  - depends_on: none
+  - scope: Add the prepared-question feature to the contract docs as a first-class space/subspace artifact type distinct from ad hoc query outputs and topic pages.
+  - acceptance:
+    - `docs/design.md` defines prepared questions, question pages, question index/front-page behavior, and how questions differ from queries/topics/overviews.
+    - `docs/low_level.md` assigns package/module ownership for question storage, relevance mapping, synthesis, rendering, and wrappers.
+    - The contracts state that user-facing question synthesis is LLM-generated JSON through checked-in specs, while page rendering and chart/table projection are deterministic.
+    - The contracts cover space and subspace scope, default question count guidance, question lifecycle states, freshness semantics, and operator-authored versus LLM-suggested question creation.
+    - The contracts state what happens when a space has no prepared questions yet, so ingest/build workflows do not fail accidentally before question setup.
+  - notes: Motivated by the proposed nutrition-style prepared question pages, e.g. protein intake for muscle growth.
+  - evidence: Added prepared-question concept/product rules to `docs/design.md`, module ownership contracts to `docs/low_level.md`, and contract tests for both documents.
+
 ## 2026-04-28
 
 - [x] TODO-0366: Enrich profile CV and author metadata pages

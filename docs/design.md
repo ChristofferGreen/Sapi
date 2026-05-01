@@ -171,8 +171,30 @@ When a semantic command is invoked with `--mock-llm`:
 - `Topic Page`: canonical JSON topic document (`topic_id`) rendered to static HTML; optional markdown projection may also be emitted.
   - topic pages support two presentation structures: `wiki` (default) and `source_mirror` (for source-anchored topics, especially journal articles).
 - `Overview Article`: AI-authored overview JSON plus deterministic markdown/article projections under `outputs/space_overview/<overview_id>/` for one space or one selected subspace.
+- `Prepared Question`: canonical operator-approved question record (`question_id`) owned by one space
+  or sub-space and rendered as a durable question page. Prepared questions are not ad hoc query
+  outputs and are not topic clusters: they are stable reader-facing entry points that collect
+  relevant sources, claims, evidence, optional measurements, and LLM-generated synthesis over time.
 - `Persona/User`: repository-seeded actor used for social layer.
 - `Comment`: threaded social post with turn schema + moderation summary.
+
+Prepared-question product rules:
+- every space/sub-space MAY have a prepared-question index; when active prepared questions exist, the
+  question index is the primary landing experience for that space/sub-space.
+- a typical initial question set SHOULD contain about 10 field-relevant questions, but the canonical
+  count is operator-controlled.
+- canonical question records are operator-authored or operator-approved. LLM-suggested questions MAY
+  exist as drafts, but they MUST NOT become active canonical records without explicit approval.
+- lifecycle states are `active`, `inactive`, and `draft`. Active questions appear on the default
+  question index; inactive questions remain linkable for audit/history but are omitted from the
+  default front-page list; draft questions are never rendered as public canonical pages.
+- if a space/sub-space has no active prepared questions, ingest and build workflows MUST continue
+  without semantic question mapping, and the questions index MUST render a clear empty state if built.
+- question synthesis is user-facing semantic content and MUST come from live schema-conformant LLM JSON
+  for production runs; deterministic code may only validate, persist, order, and render that semantic
+  output.
+- deterministic rendering MAY project question records into HTML pages, tables, and charts, but MUST
+  NOT invent answer prose, conclusions, disagreements, or uncertainty text.
 
 Identity model:
 - `persona_id` is the only stable identity key for attribution and links.
@@ -441,6 +463,7 @@ Behavior:
   claims/*.json
   relations/<relation_file_id>.json
   topics/*.json
+  questions/question-*.json
   profiles/persona-<persona_id>.json
   projections/markdown/*.md
   runs/<run_id>/run.md
@@ -456,7 +479,10 @@ Behavior:
   imports.lock.md
 ```
 
-- canonical content artifacts are JSON (`sources/claims/relations/topics`).
+- canonical content artifacts are JSON (`sources/claims/relations/topics/questions`).
+- `questions/` stores canonical prepared-question records, including question text, lifecycle state,
+  display order, linked source/claim/evidence IDs, optional measurement IDs, synthesis freshness
+  metadata, and semantic synthesis fields when generated.
 - `profiles/` stores canonical persona-profile JSON artifacts (space-scoped).
 - `runs/<run_id>/semantic/` stores per-run semantic-generation JSON envelopes when a flow uses run-scoped semantic output artifacts.
 - `outputs/` stores deterministic, flow-specific derived artifacts (query manifests, overview contexts/articles, persona profile history, comment-quality evaluation manifests).
@@ -501,6 +527,8 @@ Canonical ID classes (human-readable + collision-resistant):
   - claim id (`claim_id`): `claim-<slug>--<suffix>`
   - concept/cluster id (`concept_id`): `concept-<slug>--<suffix>`
   - topic id (`topic_id`): `topic-<slug>--<suffix>`
+  - prepared question id (`question_id`): `question-<slug>` for operator-authored seed questions or
+    `question-<slug>--<suffix>` when deterministic collision resistance is needed
   - source family id (`family_id`): `family-<slug>--<suffix>`
 - execution IDs (invocation-scoped):
   - ingest run id (`run_id`): `run-<utc_timestamp>--<suffix>`
@@ -544,6 +572,7 @@ Static output expectations:
 - source pages: `<space_root>/site/sources/records/<shard>/<source_id>.html`
 - claims under `<space_root>/site/claims/<claim_id>.html`
 - topics under `<space_root>/site/topics/<topic_id>.html`
+- questions under `<space_root>/site/questions/<question_id>.html`
 - query manifests under `<space_root>/outputs/query/<query_id>/manifest.json` only for non-`markdown` query output modes
 
 URL readability/stability policy:

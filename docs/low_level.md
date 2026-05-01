@@ -104,6 +104,8 @@ sapi/
   profiles/
     profiles_pipeline.py
     history.py
+  questions/
+    prepared_questions.py
   overview/
     overview_pipeline.py
   build/
@@ -121,6 +123,7 @@ scripts/
   generate_profiles.py
   generate_overview.py
   build_site.py
+  create_prepared_questions.py
   lint.py
 ```
 
@@ -132,6 +135,13 @@ Topology ownership note (resolved stubs):
 - `sapi/build/site_builder.py` remains orchestration-heavy but delegates topic sentence-level
   claim annotation parsing/rendering and claim-option title synthesis to
   `sapi/build/topic_claim_rendering.py`.
+- `sapi/questions/prepared_questions.py` owns prepared-question record parsing, validation, ordering,
+  and operator-authored seed writes. Ingest relevance mapping, cumulative synthesis, and measurement
+  extraction should extend this package rather than adding question persistence inside build or ingest
+  modules directly.
+- `scripts/create_prepared_questions.py` owns the non-semantic operator/bootstrap entrypoint for
+  prepared-question authoring from approved TSV seed data. It must go through registry resolution and
+  the shared question writer rather than writing ad hoc JSON.
 
 ## 4. Core Data Types
 
@@ -239,6 +249,21 @@ class OverviewRunFields:
     relations_used: int
     topics_used: int
     article_path: str | None
+
+@dataclass
+class PreparedQuestionRecord:
+    question_id: str
+    question: str
+    status: Literal["active", "inactive", "draft"]
+    scope_space_name: str
+    display_order: int
+    linked_source_ids: list[str]
+    claim_ids: list[str]
+    evidence_ids: list[str]
+    measurement_ids: list[str]
+    synthesis: dict[str, Any]
+    freshness: dict[str, Any]
+    warnings: list[str]
 ```
 
 Run envelope policy:
@@ -354,7 +379,26 @@ Implementation notes:
 
 ## 8. Pipeline Execution Contracts
 
-### 8.0 Common pipeline state machine and exit codes
+### 8.0 Prepared-question ownership
+
+Prepared-question implementation ownership:
+- `sapi/questions/prepared_questions.py` owns canonical record validation, lifecycle filtering,
+  display ordering, writer/upsert semantics, and seed import.
+- ingest-time source-to-question relevance mapping belongs in the ingest pipeline only as an
+  orchestrator; prompt preparation, output validation, and question-record mutation should delegate
+  to `sapi/questions/`.
+- cumulative question synthesis belongs in `sapi/questions/` and is invoked after relevance mapping or
+  explicit refresh. It must consume canonical linked source/claim/evidence context and persist only
+  schema-valid semantic output.
+- measurement extraction and compatibility grouping belong in `sapi/questions/`; site rendering may
+  draw tables/charts from validated measurement records but must not infer missing numeric values.
+- deterministic question index/detail rendering belongs in `sapi/build/site_builder.py` and should read
+  prepared-question records through the shared loader.
+- wrapper ownership is split: `create_questions.sh` and `scripts/create_prepared_questions.py` handle
+  operator-approved authoring/seed import; later refresh wrappers should call question package
+  pipeline helpers rather than writing records directly.
+
+### 8.1 Common pipeline state machine and exit codes
 
 Status transitions:
 - initialize run as `pending`

@@ -47,33 +47,31 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0367`: Define prepared-question product and architecture contracts
+1. `TODO-0368`: Add prepared-question schemas and generation specs
 
 ### Immediate Next 10 (After Ready Now)
 
-1. TODO-0368: Add prepared-question schemas and generation specs
-2. TODO-0369: Add operator workflow for prepared question authoring
-3. TODO-0370: Implement canonical question storage and loaders
-4. TODO-0371: Map ingested sources to prepared questions
-5. TODO-0372: Generate cumulative question synthesis
-6. TODO-0373: Render questions index as the space front page
-7. TODO-0374: Extract and render question measurement values
-8. TODO-0375: Wire question refresh metadata, wrappers, and run envelopes
-9. TODO-0377: Seed prepared questions during example-site creation
-10. TODO-0376: Add prepared-question test and verification coverage
+1. TODO-0369: Add operator workflow for prepared question authoring
+2. TODO-0370: Implement canonical question storage and loaders
+3. TODO-0371: Map ingested sources to prepared questions
+4. TODO-0372: Generate cumulative question synthesis
+5. TODO-0373: Render questions index as the space front page
+6. TODO-0374: Extract and render question measurement values
+7. TODO-0375: Wire question refresh metadata, wrappers, and run envelopes
+8. TODO-0377: Seed prepared questions during example-site creation
+9. TODO-0376: Add prepared-question test and verification coverage
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: TODO-0367, TODO-0368, TODO-0370
+- P0 Foundation/contracts: TODO-0368, TODO-0370
 - P1 Core product behavior: TODO-0369, TODO-0371, TODO-0372, TODO-0373, TODO-0375, TODO-0377
 - P2 Social/eval/hardening: TODO-0374, TODO-0376
-- P3 Continuous docs governance: TODO-0367
+- P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. TODO-0367: Define prepared-question product and architecture contracts
-2. TODO-0368: Add prepared-question schemas and generation specs
+1. TODO-0368: Add prepared-question schemas and generation specs
 
 Wave B (ingest + projection + lint):
 1. TODO-0370: Implement canonical question storage and loaders
@@ -99,7 +97,7 @@ Cross-cutting docs backlog:
 | --- | --- |
 | Section 1 (scope/authority/reading) | - |
 | Section 2 (runtime policy + semantic loop + mock mode) | TODO-0371, TODO-0372 |
-| Section 3 (core concepts + identity invariants) | TODO-0367 |
+| Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | TODO-0368 |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | TODO-0370, TODO-0374 |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | TODO-0369, TODO-0375, TODO-0377 |
@@ -114,7 +112,7 @@ Cross-cutting docs backlog:
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | TODO-0375 |
 | Section 11 testing strategy | TODO-0376 |
-| Section 12 reconstruction plan | TODO-0367, TODO-0377 |
+| Section 12 reconstruction plan | TODO-0377 |
 | Section 13 definition of done | TODO-0376 |
 
 ### Low-Level Coverage Snapshot
@@ -134,7 +132,7 @@ Cross-cutting docs backlog:
 | Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | - |
 | Section 15 (test-plan binding) | TODO-0376 |
-| Section 16 (change discipline) | TODO-0367 |
+| Section 16 (change discipline) | - |
 
 ### Testing Plan Coverage Snapshot
 
@@ -263,7 +261,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-30
   - phase: Prepared questions
-  - depends_on: TODO-0367
+  - depends_on: none
   - scope: Provide an operator path to create or update the initial prepared questions for a space/subspace, with optional later support for LLM-suggested drafts.
   - acceptance:
     - Add a documented wrapper/script interface for adding prepared questions to a space/subspace.
@@ -276,7 +274,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-30
   - phase: Prepared questions
-  - depends_on: TODO-0367
+  - depends_on: none
   - scope: Add schema/spec inventory for persistent questions, source-to-question relevance mapping, cumulative question synthesis, and optional measurement extraction.
   - acceptance:
     - Add checked-in schemas for canonical question records, question relevance mapping outputs, question synthesis outputs, and measurement records or measurement extraction outputs.
@@ -284,17 +282,3 @@ Cross-cutting docs backlog:
     - Extend the semantic flow map, flow-key docs, and schema inventory tests to include the new canonical flow keys.
     - Schemas require source/claim/evidence references to resolve by canonical IDs and prohibit deterministic prose generation for user-facing synthesis.
   - notes: Keep prepared-question IDs stable and URL-safe, e.g. `question-<slug>--<suffix>`.
-
-- [ ] TODO-0367: Define prepared-question product and architecture contracts
-  - owner: ai
-  - created_at: 2026-04-30
-  - phase: Prepared questions
-  - depends_on: none
-  - scope: Add the prepared-question feature to the contract docs as a first-class space/subspace artifact type distinct from ad hoc query outputs and topic pages.
-  - acceptance:
-    - `docs/design.md` defines prepared questions, question pages, question index/front-page behavior, and how questions differ from queries/topics/overviews.
-    - `docs/low_level.md` assigns package/module ownership for question storage, relevance mapping, synthesis, rendering, and wrappers.
-    - The contracts state that user-facing question synthesis is LLM-generated JSON through checked-in specs, while page rendering and chart/table projection are deterministic.
-    - The contracts cover space and subspace scope, default question count guidance, question lifecycle states, freshness semantics, and operator-authored versus LLM-suggested question creation.
-    - The contracts state what happens when a space has no prepared questions yet, so ingest/build workflows do not fail accidentally before question setup.
-  - notes: Motivated by the proposed nutrition-style prepared question pages, e.g. protein intake for muscle growth.
