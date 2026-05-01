@@ -4,6 +4,22 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-05-01
 
+- [x] TODO-0374: Extract and render question measurement values
+  - owner: ai
+  - created_at: 2026-04-30
+  - phase: Prepared questions
+  - finished_at: 2026-05-01
+  - depends_on: none
+  - scope: Add optional structured measurement extraction for question-relevant evidence and deterministic table/chart rendering for compatible measurement rows.
+  - acceptance:
+    - Measurement records capture source ID, claim ID or evidence ID, measure name, value/range, unit, population/context, outcome, comparator, and uncertainty metadata when available.
+    - Extraction fails or warns rather than coercing incompatible or missing measurement values into fake numeric data.
+    - Rendering emits a table for all valid measurement rows and emits a graph only when rows share compatible measure/unit/outcome/population semantics.
+    - Charted values retain source/evidence links, units, and caveats so visual summaries remain auditable.
+    - Tests cover graph-eligible rows, table-only rows, incompatible units, missing values, and no-measurement empty states.
+  - notes: Nutrition examples such as grams of protein per day or g/kg/day need unit/context normalization before charting.
+  - evidence: Added `sapi/questions/measurements.py` for semantic `question_measurement_extraction`, linked-ID validation, freshness checks, canonical `measurements/<measurement_id>.json` writes, and chart-group compatibility validation; wired ingest and `refresh_questions.sh` to run measurement extraction before synthesis and record run metadata; rendered measurement tables and compatible bar charts on question detail pages with source/claim/evidence links; tightened measurement lint checks; documented the flow; and added focused unit/integration/build coverage for extraction, invalid rows, no-measurement states, wrapper metadata, ingest metadata, and chart rendering.
+
 - [x] TODO-0377: Seed prepared questions during example-site creation
   - owner: ai
   - created_at: 2026-04-30

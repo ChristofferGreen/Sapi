@@ -70,6 +70,12 @@ from sapi.questions.relevance_mapping import (
     QuestionRelevanceMappingResult,
     run_question_relevance_mapping_and_update,
 )
+from sapi.questions.measurements import (
+    QuestionMeasurementContext,
+    QuestionMeasurementResult,
+    build_question_measurement_context,
+    run_question_measurement_extraction_and_update,
+)
 from sapi.questions.synthesis import (
     QuestionSynthesisContext,
     QuestionSynthesisResult,
@@ -122,6 +128,7 @@ def main() -> int:
     result = None
     extraction_result = None
     question_mapping_result: QuestionRelevanceMappingResult | None = None
+    question_measurement_results: list[QuestionMeasurementResult] = []
     question_synthesis_results: list[QuestionSynthesisResult] = []
     topic_result = None
     build_manifest_path = None
@@ -344,6 +351,45 @@ def main() -> int:
                     attempt_count=question_mapping_result.attempt_count,
                 )
             for matched_question_id in question_mapping_result.matched_question_ids:
+                matched_question = next(
+                    question
+                    for question in active_prepared_questions(space_root)
+                    if question.question_id == matched_question_id
+                )
+                measurement_context = build_question_measurement_context(
+                    space_root=space_root,
+                    question=matched_question,
+                )
+                try:
+                    question_measurement_result = run_question_measurement_extraction_and_update(
+                        space_root=space_root,
+                        question_id=matched_question_id,
+                        run_id=run_id,
+                        llm_client=_build_question_measurement_client(
+                            runtime_flags=runtime_flags,
+                            context=measurement_context,
+                        ),
+                        transaction=transaction,
+                        trace_ctx=trace_ctx,
+                    )
+                except Exception:
+                    record_semantic_invocation(
+                        flow_key="question_measurement_extraction",
+                        semantic_flows=semantic_flows,
+                        semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+                    )
+                    raise
+                question_measurement_results.append(question_measurement_result)
+                if question_measurement_result.attempt_count:
+                    record_semantic_invocation(
+                        flow_key="question_measurement_extraction",
+                        semantic_flows=semantic_flows,
+                        semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+                    )
+                    llm_attempt_count = add_llm_attempts(
+                        llm_attempt_count=llm_attempt_count,
+                        attempt_count=question_measurement_result.attempt_count,
+                    )
                 question_context = build_question_synthesis_context(
                     space_root=space_root,
                     question=next(
@@ -441,6 +487,7 @@ def main() -> int:
                 source_id=result.source_id if result is not None else None,
                 extraction_result=extraction_result,
                 question_mapping_result=question_mapping_result,
+                question_measurement_results=question_measurement_results,
                 question_synthesis_results=question_synthesis_results,
                 topic_result=topic_result,
                 build_deferred=build_deferred,
@@ -506,6 +553,7 @@ def main() -> int:
         source_id=result.source_id,
         extraction_result=extraction_result,
         question_mapping_result=question_mapping_result,
+        question_measurement_results=question_measurement_results,
         question_synthesis_results=question_synthesis_results,
         topic_result=topic_result,
         build_deferred=build_deferred,
@@ -521,6 +569,9 @@ def main() -> int:
             include_source_revision_detection=revision_detection_result is not None,
             include_question_relevance_mapping=(
                 question_mapping_result is not None and question_mapping_result.attempt_count > 0
+            ),
+            question_measurement_invocation_count=sum(
+                1 for result in question_measurement_results if result.attempt_count > 0
             ),
             question_synthesis_invocation_count=sum(
                 1 for result in question_synthesis_results if result.attempt_count > 0
@@ -548,6 +599,7 @@ def main() -> int:
             f"relations_changed={flow_fields.relations_changed}, "
             f"topic_pages_changed={flow_fields.topic_pages_changed}"
             f", question_matches_changed={flow_fields.question_matches_changed}"
+            f", question_measurements_changed={flow_fields.question_measurements_changed}"
             f", question_syntheses_changed={flow_fields.question_syntheses_changed}"
         ),
         lint_summary=lint_summary,
@@ -584,6 +636,12 @@ def main() -> int:
             f", question_mapping_status={question_mapping_result.status}, "
             f"question_matches_changed={len(question_mapping_result.updated_question_paths)}, "
             f"matched_question_ids={list(question_mapping_result.matched_question_ids)}"
+        )
+    if question_measurement_results:
+        summary += (
+            f", question_measurement_status={_summarize_question_measurement_status(question_measurement_results)}, "
+            f"question_measurements_changed={sum(1 for item in question_measurement_results if item.refreshed)}, "
+            f"measured_question_ids={[item.question_id for item in question_measurement_results]}"
         )
     if question_synthesis_results:
         summary += (
@@ -682,6 +740,7 @@ def _make_ingest_flow_fields(
     source_id: str | None,
     extraction_result: IngestExtractionPersistResult | None,
     question_mapping_result: QuestionRelevanceMappingResult | None,
+    question_measurement_results: list[QuestionMeasurementResult],
     question_synthesis_results: list[QuestionSynthesisResult],
     topic_result: TopicGenerationPersistResult | None,
     build_deferred: bool,
@@ -702,6 +761,11 @@ def _make_ingest_flow_fields(
     if question_mapping_result is not None:
         question_mapping_status = question_mapping_result.status
         question_matches_changed = len(question_mapping_result.updated_question_paths)
+    question_measurement_status = "not_run"
+    question_measurements_changed = 0
+    if question_measurement_results:
+        question_measurement_status = _summarize_question_measurement_status(question_measurement_results)
+        question_measurements_changed = sum(1 for result in question_measurement_results if result.refreshed)
     question_synthesis_status = "not_run"
     question_syntheses_changed = 0
     if question_synthesis_results:
@@ -720,9 +784,22 @@ def _make_ingest_flow_fields(
         rollback_skipped=rollback_skipped,
         question_mapping_status=question_mapping_status,
         question_matches_changed=question_matches_changed,
+        question_measurement_status=question_measurement_status,
+        question_measurements_changed=question_measurements_changed,
         question_synthesis_status=question_synthesis_status,
         question_syntheses_changed=question_syntheses_changed,
     )
+
+
+def _summarize_question_measurement_status(results: list[QuestionMeasurementResult]) -> str:
+    statuses = sorted({result.status for result in results})
+    if statuses == ["refreshed"]:
+        return "refreshed"
+    if statuses == ["unchanged"]:
+        return "unchanged"
+    if statuses == ["no_linked_context"]:
+        return "no_linked_context"
+    return "mixed:" + ",".join(statuses)
 
 
 def _summarize_question_synthesis_status(results: list[QuestionSynthesisResult]) -> str:
@@ -870,6 +947,19 @@ def _build_question_synthesis_client(
     if runtime_flags.mock_llm:
         return _MockQuestionSynthesisClient(context=context)
     return _LiveQuestionSynthesisClient(
+        backend_config=_backend_config_from_runtime_flags(runtime_flags),
+        context=context,
+    )
+
+
+def _build_question_measurement_client(
+    *,
+    runtime_flags: RuntimeFlagSnapshot,
+    context: QuestionMeasurementContext,
+):
+    if runtime_flags.mock_llm:
+        return _MockQuestionMeasurementClient(context=context)
+    return _LiveQuestionMeasurementClient(
         backend_config=_backend_config_from_runtime_flags(runtime_flags),
         context=context,
     )
@@ -1179,6 +1269,59 @@ class _MockQuestionRelevanceMappingClient:
         )
 
 
+class _MockQuestionMeasurementClient:
+    """Deterministic measurement client for explicit --mock-llm mode."""
+
+    def __init__(self, *, context: QuestionMeasurementContext) -> None:
+        self._context = context
+
+    def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
+        question_id = str(self._context.question["question_id"])
+        source_ids = [str(source.get("source_id")) for source in self._context.sources]
+        claim_ids = [str(claim.get("claim_id")) for claim in self._context.claims]
+        evidence_ids = [str(evidence.get("evidence_id")) for evidence in self._context.evidence]
+        measurements: list[dict[str, object]] = []
+        chart_groups: list[dict[str, object]] = []
+        if source_ids and (claim_ids or evidence_ids):
+            question_slug = question_id.removeprefix("question-").split("--", 1)[0]
+            measurement_id = f"measurement-{question_slug}--123456789abc"
+            measurements.append(
+                {
+                    "measurement_id": measurement_id,
+                    "source_id": source_ids[0],
+                    "claim_id": claim_ids[0] if claim_ids else None,
+                    "evidence_id": evidence_ids[0] if evidence_ids else None,
+                    "measure_name": "mock extracted value",
+                    "value": 1.6,
+                    "value_max": 2.2,
+                    "unit": "fixture-units",
+                    "population": "mock linked context",
+                    "outcome": "question-relevant outcome",
+                    "comparator": "fixture comparator",
+                    "uncertainty": "Mock mode does not estimate real uncertainty.",
+                }
+            )
+            chart_groups.append(
+                {
+                    "chart_group_id": "chart-mock-extracted-value",
+                    "measure_name": "mock extracted value",
+                    "unit": "fixture-units",
+                    "outcome": "question-relevant outcome",
+                    "population": "mock linked context",
+                    "measurement_ids": [measurement_id],
+                }
+            )
+        return json.dumps(
+            {
+                "schema_version": "question_measurement_extraction_v1",
+                "question_id": question_id,
+                "measurements": measurements,
+                "chart_groups": chart_groups,
+                "warnings": [] if measurements else ["No extractable mock measurements were available."],
+            }
+        )
+
+
 class _MockQuestionSynthesisClient:
     """Deterministic question-synthesis client for explicit --mock-llm mode."""
 
@@ -1356,6 +1499,43 @@ class _LiveQuestionSynthesisClient:
                 "linked_claims": list(self._context.claims),
                 "linked_evidence": list(self._context.evidence),
                 "previous_synthesis": self._context.previous_synthesis,
+                "freshness": self._context.freshness,
+                "input_signature": self._context.input_signature,
+            },
+        )
+
+
+class _LiveQuestionMeasurementClient:
+    def __init__(
+        self,
+        *,
+        backend_config: SemanticBackendConfig,
+        context: QuestionMeasurementContext,
+    ) -> None:
+        self._backend_config = backend_config
+        self._context = context
+
+    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
+        return generate_semantic_json_live(
+            request=request,
+            backend_config=self._backend_config,
+            task_context={
+                "task_requirements": {
+                    "must_include_question_id": self._context.question["question_id"],
+                    "allowed_source_ids": [row.get("source_id") for row in self._context.sources],
+                    "allowed_claim_ids": [row.get("claim_id") for row in self._context.claims],
+                    "allowed_evidence_ids": [row.get("evidence_id") for row in self._context.evidence],
+                    "grounding_policy": (
+                        "Extract numeric measurements only when they are explicitly present in linked "
+                        "source, claim, or evidence context. Return empty arrays when values are absent "
+                        "or incompatible; do not estimate, normalize, or coerce values."
+                    ),
+                },
+                "prepared_question": self._context.question,
+                "linked_sources": list(self._context.sources),
+                "linked_claims": list(self._context.claims),
+                "linked_evidence": list(self._context.evidence),
+                "previous_measurements": list(self._context.previous_measurements),
                 "freshness": self._context.freshness,
                 "input_signature": self._context.input_signature,
             },

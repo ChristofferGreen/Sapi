@@ -74,6 +74,52 @@ class PreparedQuestionLintingTests(unittest.TestCase):
             self.assertEqual(measurement_issue.severity, "error")
             self.assertIn(MEASUREMENT_ID, measurement_issue.message)
 
+    def test_valid_measurement_record_does_not_report_measurement_error(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            _write_source(space_root, SOURCE_ID)
+            measurement_path = space_root / "measurements" / f"{MEASUREMENT_ID}.json"
+            measurement_path.parent.mkdir(parents=True, exist_ok=True)
+            measurement_path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": "question_measurement_v1",
+                        "question_id": "question-protein-intake",
+                        "measurement_id": MEASUREMENT_ID,
+                        "source_id": SOURCE_ID,
+                        "claim_id": None,
+                        "evidence_id": "evidence-protein-study--123456789abc",
+                        "measure_name": "protein intake",
+                        "value": 1.6,
+                        "value_max": 2.2,
+                        "unit": "g/kg/day",
+                        "population": "resistance-trained adults",
+                        "outcome": "muscle hypertrophy",
+                        "comparator": "lower intake",
+                        "uncertainty": "range depends on context",
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n"
+            )
+            evidence_path = space_root / "evidence" / "evidence-protein-study--123456789abc.json"
+            evidence_path.parent.mkdir(parents=True, exist_ok=True)
+            evidence_path.write_text(json.dumps({"evidence_id": "evidence-protein-study--123456789abc"}) + "\n")
+            write_prepared_question_record(
+                space_root=space_root,
+                space_name="alpha",
+                payload=_question_payload(
+                    linked_source_ids=[SOURCE_ID],
+                    evidence_ids=["evidence-protein-study--123456789abc"],
+                    measurement_ids=[MEASUREMENT_ID],
+                ),
+            )
+
+            issues = collect_question_lint_issues(space_root, include_site_output=False)
+
+            self.assertNotIn("invalid_question_measurement", [issue.check_id for issue in issues])
+
     def test_built_question_front_page_state_is_reported(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "spaces" / "alpha"
@@ -102,6 +148,7 @@ MEASUREMENT_ID = "measurement-protein-grams--123456789abc"
 def _question_payload(
     *,
     linked_source_ids: list[str] | None = None,
+    evidence_ids: list[str] | None = None,
     measurement_ids: list[str] | None = None,
 ) -> dict[str, object]:
     return {
@@ -113,7 +160,7 @@ def _question_payload(
         "scope": {"space_name": "alpha"},
         "linked_source_ids": linked_source_ids if linked_source_ids is not None else [],
         "claim_ids": [],
-        "evidence_ids": [],
+        "evidence_ids": evidence_ids if evidence_ids is not None else [],
         "measurement_ids": measurement_ids if measurement_ids is not None else [],
         "synthesis": {},
         "freshness": {},

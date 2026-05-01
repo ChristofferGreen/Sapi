@@ -406,6 +406,9 @@ Prepared-question implementation ownership:
   transactional question-record mutation for `question_synthesis`.
 - measurement extraction and compatibility grouping belong in `sapi/questions/`; site rendering may
   draw tables/charts from validated measurement records but must not infer missing numeric values.
+  `sapi/questions/measurements.py` owns the semantic invocation wrapper, linked-ID validation,
+  canonical `<space_root>/measurements/<measurement_id>.json` writes, freshness metadata, and
+  chart-group compatibility checks for `question_measurement_extraction`.
 - deterministic question index/detail rendering belongs in `sapi/build/site_builder.py` and should read
   prepared-question records through the shared loader. Space `site/index.html` is question-led, active
   questions appear in the default index, inactive questions get deterministic detail pages for audit

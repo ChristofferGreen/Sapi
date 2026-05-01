@@ -1125,6 +1125,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             source_id = "source-protein--123456789abc"
             claim_id = "claim-protein-intake--123456789abc"
             evidence_id = "evidence-protein-intake--123456789abc"
+            measurement_id = "measurement-protein-intake--123456789abc"
             self._write_source_record(
                 alpha_space_root,
                 source_id=source_id,
@@ -1148,6 +1149,31 @@ class SiteBuilderContractTests(unittest.TestCase):
                 source_id=source_id,
                 claim_ids=[claim_id],
             )
+            measurement_path = alpha_space_root / "measurements" / f"{measurement_id}.json"
+            measurement_path.parent.mkdir(parents=True, exist_ok=True)
+            measurement_path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": "question_measurement_v1",
+                        "question_id": "question-protein-intake",
+                        "measurement_id": measurement_id,
+                        "source_id": source_id,
+                        "claim_id": claim_id,
+                        "evidence_id": evidence_id,
+                        "measure_name": "protein intake",
+                        "value": 1.6,
+                        "value_max": 2.2,
+                        "unit": "g/kg/day",
+                        "population": "resistance-trained adults",
+                        "outcome": "muscle hypertrophy",
+                        "comparator": "lower intake",
+                        "uncertainty": "range depends on context",
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n"
+            )
             self._write_question_record(
                 alpha_space_root,
                 question_id="question-protein-intake",
@@ -1156,6 +1182,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                 linked_source_ids=[source_id],
                 claim_ids=[claim_id],
                 evidence_ids=[evidence_id],
+                measurement_ids=[measurement_id],
                 synthesis={
                     "schema_version": "question_synthesis_v1",
                     "question_id": "question-protein-intake",
@@ -1191,6 +1218,28 @@ class SiteBuilderContractTests(unittest.TestCase):
                             "run_id": "run-20260501T120000Z--abcdefghij",
                         }
                     ],
+                    "question_measurement_extraction": {
+                        "status": "refreshed",
+                        "run_id": "run-20260501T120000Z--abcdefghij",
+                        "input_signature": "sha256:measurements",
+                        "semantic_output_path": (
+                            "runs/run-20260501T120000Z--abcdefghij/semantic/"
+                            "question_measurement_extraction/question-protein-intake.json"
+                        ),
+                        "refreshed_at": "2026-05-01T12:00:00Z",
+                        "measurement_ids": [measurement_id],
+                        "chart_groups": [
+                            {
+                                "chart_group_id": "chart-protein-intake",
+                                "measure_name": "protein intake",
+                                "unit": "g/kg/day",
+                                "population": "resistance-trained adults",
+                                "outcome": "muscle hypertrophy",
+                                "measurement_ids": [measurement_id],
+                            }
+                        ],
+                        "warnings": [],
+                    },
                 },
             )
             self._write_question_record(
@@ -1232,6 +1281,9 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("Protein evidence", active_detail_text)
             self.assertIn("Current evidence supports a cautious protein conclusion.", active_detail_text)
             self.assertIn("Training status may change the target.", active_detail_text)
+            self.assertIn('data-chart-group="chart-protein-intake"', active_detail_text)
+            self.assertIn("1.6-2.2 g/kg/day", active_detail_text)
+            self.assertIn("../evidence/evidence-protein-intake--123456789abc.html", active_detail_text)
             self.assertIn("Synthesis status: refreshed", active_detail_text)
             self.assertIn("Input signature: sha256:test", active_detail_text)
 

@@ -67,12 +67,15 @@ class RefreshQuestionsWrapperTests(unittest.TestCase):
             )
 
             self.assertEqual(stale_only_result.returncode, 0, msg=stale_only_result.stderr)
+            self.assertIn("question_measurements_unchanged=1", stale_only_result.stdout)
             self.assertIn("question_syntheses_unchanged=1", stale_only_result.stdout)
             space_root = site_path / "spaces" / "alpha"
             stale_only_run = latest_run_directory(space_root)
             stale_only_frontmatter = parse_run_frontmatter(stale_only_run / "run.md")
             self.assertEqual(stale_only_frontmatter["flow_key"], "question_pipeline")
             self.assertEqual(stale_only_frontmatter["semantic_flows"], [])
+            self.assertEqual(stale_only_frontmatter["question_measurements_changed"], 0)
+            self.assertEqual(stale_only_frontmatter["question_measurements_unchanged"], 1)
             self.assertEqual(stale_only_frontmatter["question_syntheses_changed"], 0)
             self.assertEqual(stale_only_frontmatter["question_syntheses_unchanged"], 1)
             assert_lint_artifact(
@@ -98,11 +101,22 @@ class RefreshQuestionsWrapperTests(unittest.TestCase):
             force_run = latest_run_directory(space_root)
             force_frontmatter = parse_run_frontmatter(force_run / "run.md")
             self.assertEqual(force_frontmatter["flow_key"], "question_pipeline")
-            self.assertEqual(force_frontmatter["semantic_flows"], ["question_synthesis"])
-            self.assertEqual(force_frontmatter["semantic_flow_invocation_counts"], {"question_synthesis": 1})
+            self.assertEqual(
+                force_frontmatter["semantic_flows"],
+                ["question_measurement_extraction", "question_synthesis"],
+            )
+            self.assertEqual(
+                force_frontmatter["semantic_flow_invocation_counts"],
+                {"question_measurement_extraction": 1, "question_synthesis": 1},
+            )
+            self.assertEqual(force_frontmatter["question_measurements_changed"], 1)
             self.assertEqual(force_frontmatter["question_syntheses_changed"], 1)
             question_payload = json.loads(
                 (space_root / "questions" / "question-protein-intake.json").read_text()
+            )
+            self.assertEqual(
+                question_payload["freshness"]["question_measurement_extraction"]["run_id"],
+                force_run.name,
             )
             self.assertEqual(
                 question_payload["freshness"]["question_synthesis"]["run_id"],

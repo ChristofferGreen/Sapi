@@ -108,6 +108,8 @@ class IngestRunFields:
     rollback_skipped: bool
     question_mapping_status: str = "not_run"
     question_matches_changed: int = 0
+    question_measurement_status: str = "not_run"
+    question_measurements_changed: int = 0
     question_synthesis_status: str = "not_run"
     question_syntheses_changed: int = 0
 
@@ -168,6 +170,8 @@ class QuestionRunFields:
     stale_only: bool
     force_mode: bool
     questions_checked: int
+    question_measurements_changed: int
+    question_measurements_unchanged: int
     question_syntheses_changed: int
     question_syntheses_unchanged: int
     build_deferred: bool

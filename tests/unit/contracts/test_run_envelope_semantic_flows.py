@@ -326,6 +326,8 @@ def _question_fields() -> QuestionRunFields:
         stale_only=True,
         force_mode=False,
         questions_checked=1,
+        question_measurements_changed=0,
+        question_measurements_unchanged=1,
         question_syntheses_changed=0,
         question_syntheses_unchanged=1,
         build_deferred=False,

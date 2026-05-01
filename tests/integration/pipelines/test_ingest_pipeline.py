@@ -134,8 +134,13 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
             self.assertEqual(len(question_payload["claim_ids"]), 1)
             self.assertEqual(len(question_payload["evidence_ids"]), 1)
             self.assertIn("short_answer", question_payload["synthesis"])
+            self.assertEqual(len(question_payload["measurement_ids"]), 1)
             self.assertEqual(
                 question_payload["freshness"]["question_synthesis"]["status"],
+                "refreshed",
+            )
+            self.assertEqual(
+                question_payload["freshness"]["question_measurement_extraction"]["status"],
                 "refreshed",
             )
             self.assertEqual(
@@ -152,11 +157,14 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
                     "semantic_flows": [
                         "ingest_extraction",
                         "question_relevance_mapping",
+                        "question_measurement_extraction",
                         "question_synthesis",
                         "topic_generation",
                     ],
                     "question_mapping_status": "mapped",
                     "question_matches_changed": 1,
+                    "question_measurement_status": "refreshed",
+                    "question_measurements_changed": 1,
                     "question_synthesis_status": "refreshed",
                     "question_syntheses_changed": 1,
                 },
@@ -166,12 +174,21 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
                 {
                     "ingest_extraction": 1,
                     "question_relevance_mapping": 1,
+                    "question_measurement_extraction": 1,
                     "question_synthesis": 1,
                     "topic_generation": 1,
                 },
             )
-            self.assertEqual(frontmatter["llm_attempt_count"], 4)
+            self.assertEqual(frontmatter["llm_attempt_count"], 5)
             self.assertTrue((run_dir / "semantic" / "question_relevance_mapping.json").is_file())
+            self.assertTrue(
+                (
+                    run_dir
+                    / "semantic"
+                    / "question_measurement_extraction"
+                    / "question-protein-intake.json"
+                ).is_file()
+            )
             self.assertTrue(
                 (run_dir / "semantic" / "question_synthesis" / "question-protein-intake.json").is_file()
             )

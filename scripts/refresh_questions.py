@@ -38,6 +38,11 @@ from sapi.llm.client import SemanticLlmRequest
 from sapi.llm.runtime_backend import SemanticBackendConfig, generate_semantic_json_live
 from sapi.llm.trace import SiteLlmTraceContext
 from sapi.questions.linting import collect_question_lint_issues
+from sapi.questions.measurements import (
+    QuestionMeasurementContext,
+    QuestionMeasurementResult,
+    refresh_question_measurements,
+)
 from sapi.questions.prepared_questions import active_prepared_questions, load_prepared_questions
 from sapi.questions.synthesis import (
     QuestionSynthesisContext,
@@ -115,11 +120,36 @@ def main() -> int:
         if args.verbose
         else None
     )
-    results: list[QuestionSynthesisResult] = []
+    measurement_results: list[QuestionMeasurementResult] = []
+    synthesis_results: list[QuestionSynthesisResult] = []
     build_manifest_path: Path | None = None
 
     try:
-        results = refresh_question_syntheses(
+        measurement_results = refresh_question_measurements(
+            space_root=space_root,
+            run_id=run_id,
+            llm_client_factory=lambda context: _build_question_measurement_client(
+                runtime_flags=runtime_flags,
+                context=context,
+            ),
+            transaction=transaction,
+            question_ids=selected_question_ids,
+            stale_only=True,
+            force=bool(args.force),
+            trace_ctx=trace_ctx,
+        )
+        for result in measurement_results:
+            if result.attempt_count:
+                record_semantic_invocation(
+                    flow_key="question_measurement_extraction",
+                    semantic_flows=semantic_flows,
+                    semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+                )
+                llm_attempt_count = add_llm_attempts(
+                    llm_attempt_count=llm_attempt_count,
+                    attempt_count=result.attempt_count,
+                )
+        synthesis_results = refresh_question_syntheses(
             space_root=space_root,
             run_id=run_id,
             llm_client_factory=lambda context: _build_question_synthesis_client(
@@ -132,7 +162,7 @@ def main() -> int:
             force=bool(args.force),
             trace_ctx=trace_ctx,
         )
-        for result in results:
+        for result in synthesis_results:
             if result.attempt_count:
                 record_semantic_invocation(
                     flow_key="question_synthesis",
@@ -178,7 +208,8 @@ def main() -> int:
             flow_fields=_make_flow_fields(
                 space_name=args.space_name,
                 selected_question_ids=selected_question_ids,
-                results=results,
+                measurement_results=measurement_results,
+                synthesis_results=synthesis_results,
                 force_mode=bool(args.force),
                 build_deferred=bool(args.build_deferred),
                 build_manifest_path=build_manifest_path,
@@ -186,7 +217,11 @@ def main() -> int:
             transaction=transaction,
             force_mode=False,
             summary="Prepared-question refresh failed; invocation-scoped outputs rolled back.",
-            changes=_render_changes(results=results, selected_question_ids=selected_question_ids),
+            changes=_render_changes(
+                measurement_results=measurement_results,
+                synthesis_results=synthesis_results,
+                selected_question_ids=selected_question_ids,
+            ),
             lint_summary=lint_summary,
             errors=str(exc),
         )
@@ -232,7 +267,8 @@ def main() -> int:
         flow_fields=_make_flow_fields(
             space_name=args.space_name,
             selected_question_ids=selected_question_ids,
-            results=results,
+            measurement_results=measurement_results,
+            synthesis_results=synthesis_results,
             force_mode=bool(args.force),
             build_deferred=bool(args.build_deferred),
             build_manifest_path=build_manifest_path,
@@ -240,7 +276,11 @@ def main() -> int:
         transaction=transaction,
         force_mode=False,
         summary="Prepared-question refresh completed successfully.",
-        changes=_render_changes(results=results, selected_question_ids=selected_question_ids),
+        changes=_render_changes(
+            measurement_results=measurement_results,
+            synthesis_results=synthesis_results,
+            selected_question_ids=selected_question_ids,
+        ),
         lint_summary=lint_summary,
         errors="",
     )
@@ -258,8 +298,10 @@ def main() -> int:
         "scripts/refresh_questions.py refresh complete "
         f"(execution_mode={runtime_policy.execution_mode}, run_id={run_id}, "
         f"status={finalized.status}, question_ids={selected_question_ids}, "
-        f"question_syntheses_changed={sum(1 for result in results if result.refreshed)}, "
-        f"question_syntheses_unchanged={sum(1 for result in results if result.status == 'unchanged')}, "
+        f"question_measurements_changed={sum(1 for result in measurement_results if result.refreshed)}, "
+        f"question_measurements_unchanged={sum(1 for result in measurement_results if result.status == 'unchanged')}, "
+        f"question_syntheses_changed={sum(1 for result in synthesis_results if result.refreshed)}, "
+        f"question_syntheses_unchanged={sum(1 for result in synthesis_results if result.status == 'unchanged')}, "
         f"semantic_flows={semantic_flows}, "
         f"semantic_flow_invocation_counts={semantic_flow_invocation_counts}, "
         f"build_deferred={bool(args.build_deferred)}, "
@@ -319,7 +361,8 @@ def _make_flow_fields(
     *,
     space_name: str,
     selected_question_ids: list[str],
-    results: list[QuestionSynthesisResult],
+    measurement_results: list[QuestionMeasurementResult],
+    synthesis_results: list[QuestionSynthesisResult],
     force_mode: bool,
     build_deferred: bool,
     build_manifest_path: Path | None,
@@ -330,9 +373,13 @@ def _make_flow_fields(
         refresh_mode="force" if force_mode else "stale_only",
         stale_only=not force_mode,
         force_mode=force_mode,
-        questions_checked=len(results),
-        question_syntheses_changed=sum(1 for result in results if result.refreshed),
-        question_syntheses_unchanged=sum(1 for result in results if result.status == "unchanged"),
+        questions_checked=len(selected_question_ids),
+        question_measurements_changed=sum(1 for result in measurement_results if result.refreshed),
+        question_measurements_unchanged=sum(
+            1 for result in measurement_results if result.status == "unchanged"
+        ),
+        question_syntheses_changed=sum(1 for result in synthesis_results if result.refreshed),
+        question_syntheses_unchanged=sum(1 for result in synthesis_results if result.status == "unchanged"),
         build_deferred=build_deferred,
         build_manifest_path=str(build_manifest_path.resolve()) if build_manifest_path is not None else None,
     )
@@ -340,19 +387,23 @@ def _make_flow_fields(
 
 def _render_changes(
     *,
-    results: list[QuestionSynthesisResult],
+    measurement_results: list[QuestionMeasurementResult],
+    synthesis_results: list[QuestionSynthesisResult],
     selected_question_ids: list[str],
 ) -> str:
     return (
         f"question_ids={selected_question_ids}, "
-        f"questions_checked={len(results)}, "
-        f"question_syntheses_changed={sum(1 for result in results if result.refreshed)}, "
-        f"question_syntheses_unchanged={sum(1 for result in results if result.status == 'unchanged')}, "
-        f"statuses={_summarize_statuses(results)}"
+        f"questions_checked={len(selected_question_ids)}, "
+        f"question_measurements_changed={sum(1 for result in measurement_results if result.refreshed)}, "
+        f"question_measurements_unchanged={sum(1 for result in measurement_results if result.status == 'unchanged')}, "
+        f"question_syntheses_changed={sum(1 for result in synthesis_results if result.refreshed)}, "
+        f"question_syntheses_unchanged={sum(1 for result in synthesis_results if result.status == 'unchanged')}, "
+        f"measurement_statuses={_summarize_statuses(measurement_results)}, "
+        f"synthesis_statuses={_summarize_statuses(synthesis_results)}"
     )
 
 
-def _summarize_statuses(results: list[QuestionSynthesisResult]) -> str:
+def _summarize_statuses(results: list[QuestionMeasurementResult] | list[QuestionSynthesisResult]) -> str:
     if not results:
         return "no_active_questions"
     statuses = sorted({result.status for result in results})
@@ -377,6 +428,115 @@ def _build_question_synthesis_client(
         ),
         context=context,
     )
+
+
+def _build_question_measurement_client(
+    *,
+    runtime_flags: RuntimeFlagSnapshot,
+    context: QuestionMeasurementContext,
+):
+    if runtime_flags.mock_llm:
+        return _MockQuestionMeasurementClient(context=context)
+    return _LiveQuestionMeasurementClient(
+        backend_config=SemanticBackendConfig(
+            backend=runtime_flags.llm_backend,
+            model=runtime_flags.llm_model,
+            reasoning_effort=runtime_flags.llm_reasoning_effort,
+            timeout_secs=runtime_flags.llm_timeout_secs,
+        ),
+        context=context,
+    )
+
+
+class _MockQuestionMeasurementClient:
+    """Deterministic measurement client for explicit --mock-llm test mode."""
+
+    def __init__(self, *, context: QuestionMeasurementContext) -> None:
+        self._context = context
+
+    def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
+        question_id = str(self._context.question["question_id"])
+        source_ids = [str(source.get("source_id")) for source in self._context.sources]
+        claim_ids = [str(claim.get("claim_id")) for claim in self._context.claims]
+        evidence_ids = [str(evidence.get("evidence_id")) for evidence in self._context.evidence]
+        measurements: list[dict[str, object]] = []
+        chart_groups: list[dict[str, object]] = []
+        if source_ids and (claim_ids or evidence_ids):
+            question_slug = question_id.removeprefix("question-").split("--", 1)[0]
+            measurement_id = f"measurement-{question_slug}--123456789abc"
+            measurements.append(
+                {
+                    "measurement_id": measurement_id,
+                    "source_id": source_ids[0],
+                    "claim_id": claim_ids[0] if claim_ids else None,
+                    "evidence_id": evidence_ids[0] if evidence_ids else None,
+                    "measure_name": "mock extracted value",
+                    "value": 1.6,
+                    "value_max": 2.2,
+                    "unit": "fixture-units",
+                    "population": "mock linked context",
+                    "outcome": "question-relevant outcome",
+                    "comparator": "fixture comparator",
+                    "uncertainty": "Mock mode does not estimate real uncertainty.",
+                }
+            )
+            chart_groups.append(
+                {
+                    "chart_group_id": "chart-mock-extracted-value",
+                    "measure_name": "mock extracted value",
+                    "unit": "fixture-units",
+                    "outcome": "question-relevant outcome",
+                    "population": "mock linked context",
+                    "measurement_ids": [measurement_id],
+                }
+            )
+        return json.dumps(
+            {
+                "schema_version": "question_measurement_extraction_v1",
+                "question_id": question_id,
+                "measurements": measurements,
+                "chart_groups": chart_groups,
+                "warnings": [] if measurements else ["No extractable mock measurements were available."],
+            }
+        )
+
+
+class _LiveQuestionMeasurementClient:
+    def __init__(
+        self,
+        *,
+        backend_config: SemanticBackendConfig,
+        context: QuestionMeasurementContext,
+    ) -> None:
+        self._backend_config = backend_config
+        self._context = context
+
+    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
+        return generate_semantic_json_live(
+            request=request,
+            backend_config=self._backend_config,
+            task_context={
+                "task_requirements": {
+                    "must_include_question_id": self._context.question["question_id"],
+                    "allowed_source_ids": [source.get("source_id") for source in self._context.sources],
+                    "allowed_claim_ids": [claim.get("claim_id") for claim in self._context.claims],
+                    "allowed_evidence_ids": [
+                        evidence.get("evidence_id") for evidence in self._context.evidence
+                    ],
+                    "grounding_policy": (
+                        "Extract numeric measurements only when they are explicitly present in linked "
+                        "source, claim, or evidence context. Return an empty measurements array when "
+                        "values are absent or incompatible; do not estimate or normalize values."
+                    ),
+                },
+                "question_context": self._context.question,
+                "sources": list(self._context.sources),
+                "claims": list(self._context.claims),
+                "evidence": list(self._context.evidence),
+                "previous_measurements": list(self._context.previous_measurements),
+                "freshness": self._context.freshness,
+            },
+        )
 
 
 class _MockQuestionSynthesisClient:

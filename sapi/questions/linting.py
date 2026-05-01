@@ -146,6 +146,17 @@ def _validate_measurement_payload(
                 ),
             )
         )
+    question_id = payload.get("question_id")
+    if question_id is not None and question_id != question.question_id:
+        issues.append(
+            _measurement_issue(
+                measurement_path=measurement_path,
+                message=(
+                    f"Measurement {measurement_id} belongs to question_id {question_id!r}, "
+                    f"not {question.question_id!r}."
+                ),
+            )
+        )
     value = payload.get("value")
     if not isinstance(value, int | float) or isinstance(value, bool):
         issues.append(
@@ -164,6 +175,22 @@ def _validate_measurement_payload(
                 message=f"Measurement {measurement_id} value_max must be numeric or null.",
             )
         )
+    if isinstance(value, int | float) and isinstance(value_max, int | float) and value_max < value:
+        issues.append(
+            _measurement_issue(
+                measurement_path=measurement_path,
+                message=f"Measurement {measurement_id} value_max must be greater than or equal to value.",
+            )
+        )
+    for field in ("measure_name", "outcome"):
+        text = payload.get(field)
+        if not isinstance(text, str) or not text.strip():
+            issues.append(
+                _measurement_issue(
+                    measurement_path=measurement_path,
+                    message=f"Measurement {measurement_id} must contain a non-empty {field}.",
+                )
+            )
     unit = payload.get("unit")
     if not isinstance(unit, str) or not unit.strip():
         issues.append(
@@ -173,7 +200,14 @@ def _validate_measurement_payload(
             )
         )
     source_id = payload.get("source_id")
-    if source_id is not None and source_id not in set(question.linked_source_ids):
+    if not isinstance(source_id, str) or not source_id.strip():
+        issues.append(
+            _measurement_issue(
+                measurement_path=measurement_path,
+                message=f"Measurement {measurement_id} must reference a linked source_id.",
+            )
+        )
+    elif source_id not in set(question.linked_source_ids):
         issues.append(
             _measurement_issue(
                 measurement_path=measurement_path,

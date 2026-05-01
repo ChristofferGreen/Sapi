@@ -1781,6 +1781,7 @@ def _write_question_pages(
     claim_by_id = _load_claim_records(space_root=output_root.parent)
     claim_option_title_by_id = load_claim_option_titles(space_root=output_root.parent)
     evidence_by_id = {record.evidence_id: record for record in evidence_records}
+    measurement_by_id = _load_question_measurement_records(space_root=output_root.parent)
     for question in renderable_questions:
         question_path = question_root / f"{question.question_id}.html"
         _write_text_file(
@@ -1791,6 +1792,7 @@ def _write_question_pages(
                 claim_by_id=claim_by_id,
                 claim_option_title_by_id=claim_option_title_by_id,
                 evidence_by_id=evidence_by_id,
+                measurement_by_id=measurement_by_id,
                 context=context,
                 stylesheet_href=_relative_href(
                     from_file=question_path,
@@ -1810,6 +1812,7 @@ def _render_question_page(
     claim_by_id: dict[str, dict[str, Any]],
     claim_option_title_by_id: dict[str, str],
     evidence_by_id: dict[str, _EvidenceRecord],
+    measurement_by_id: dict[str, dict[str, Any]],
     context: _SpaceLayoutContext,
     stylesheet_href: str,
 ) -> str:
@@ -1818,10 +1821,16 @@ def _render_question_page(
     linked_evidence = [
         evidence_by_id[evidence_id] for evidence_id in question.evidence_ids if evidence_id in evidence_by_id
     ]
+    linked_measurements = [
+        measurement_by_id[measurement_id]
+        for measurement_id in question.measurement_ids
+        if measurement_id in measurement_by_id
+    ]
     stats = (
         f"{len(linked_sources)} source{'s' if len(linked_sources) != 1 else ''}, "
         f"{len(linked_claims)} claim{'s' if len(linked_claims) != 1 else ''}, "
-        f"{len(linked_evidence)} evidence item{'s' if len(linked_evidence) != 1 else ''}"
+        f"{len(linked_evidence)} evidence item{'s' if len(linked_evidence) != 1 else ''}, "
+        f"{len(linked_measurements)} measurement{'s' if len(linked_measurements) != 1 else ''}"
     )
     sections = [
         "<p><a href=\"index.html\">Back to questions</a></p>\n",
@@ -1830,6 +1839,7 @@ def _render_question_page(
         + escape(f"{question.question_id} | status: {question.status} | {stats}")
         + "</p>\n",
         _render_question_synthesis_section(question),
+        _render_question_measurement_section(question, linked_measurements),
         _render_question_source_section(linked_sources),
         _render_question_claim_section(
             linked_claims,
@@ -1881,6 +1891,201 @@ def _render_question_synthesis_section(question: PreparedQuestion) -> str:
     return body
 
 
+def _render_question_measurement_section(
+    question: PreparedQuestion,
+    measurements: list[dict[str, Any]],
+) -> str:
+    if not measurements:
+        return "<h2>Measurements</h2>\n<p>No structured measurements have been extracted for this question yet.</p>\n"
+    sorted_measurements = sorted(measurements, key=lambda item: str(item.get("measurement_id", "")))
+    chart_groups = _compatible_question_measurement_chart_groups(
+        question=question,
+        measurements=sorted_measurements,
+    )
+    body = "<h2>Measurements</h2>\n"
+    if chart_groups:
+        body += "\n".join(
+            _render_question_measurement_chart(group=group, measurements=sorted_measurements)
+            for group in chart_groups
+        )
+    body += (
+        "<div class=\"question-measurement-table-wrap\">"
+        "<table class=\"question-measurement-table\">"
+        "<thead><tr>"
+        "<th>Measure</th><th>Value</th><th>Population</th><th>Outcome</th>"
+        "<th>Comparator</th><th>Uncertainty</th><th>Links</th>"
+        "</tr></thead><tbody>"
+    )
+    body += "".join(_render_question_measurement_row(measurement) for measurement in sorted_measurements)
+    body += "</tbody></table></div>\n"
+    if not chart_groups:
+        body += "<p class=\"meta\">No compatible measurement group is available for charting.</p>\n"
+    return body
+
+
+def _render_question_measurement_chart(
+    *,
+    group: dict[str, Any],
+    measurements: list[dict[str, Any]],
+) -> str:
+    measurement_by_id = {str(item.get("measurement_id")): item for item in measurements}
+    group_measurements = [
+        measurement_by_id[measurement_id]
+        for measurement_id in group.get("measurement_ids", [])
+        if measurement_id in measurement_by_id
+    ]
+    if not group_measurements:
+        return ""
+    max_value = max(
+        float(item["value_max"] if item.get("value_max") is not None else item["value"])
+        for item in group_measurements
+    )
+    if max_value <= 0:
+        return ""
+    title = (
+        str(group.get("measure_name", "")).strip()
+        + " / "
+        + str(group.get("outcome", "")).strip()
+        + " ("
+        + str(group.get("unit", "")).strip()
+        + ")"
+    )
+    rows = []
+    for measurement in group_measurements:
+        raw_value = float(measurement["value_max"] if measurement.get("value_max") is not None else measurement["value"])
+        width = max(2.0, min(100.0, (raw_value / max_value) * 100.0))
+        label = _measurement_link_label(measurement)
+        rows.append(
+            "<div class=\"question-measurement-chart-row\" data-measurement-id=\""
+            + escape(str(measurement.get("measurement_id", "")))
+            + "\">"
+            + "<div class=\"question-measurement-chart-label\">"
+            + label
+            + "</div>"
+            + "<div class=\"question-measurement-chart-track\"><span style=\"width: "
+            + escape(f"{width:.1f}%")
+            + "\"></span></div>"
+            + "<div class=\"question-measurement-chart-value\">"
+            + escape(_measurement_value_text(measurement))
+            + "</div>"
+            + "</div>"
+        )
+    return (
+        "<section class=\"question-measurement-chart\" data-chart-group=\""
+        + escape(str(group.get("chart_group_id", "")))
+        + "\"><h3>"
+        + escape(title)
+        + "</h3>"
+        + "\n".join(rows)
+        + "</section>\n"
+    )
+
+
+def _render_question_measurement_row(measurement: dict[str, Any]) -> str:
+    return (
+        "<tr>"
+        + "<td>"
+        + escape(str(measurement.get("measure_name", "")))
+        + "</td>"
+        + "<td>"
+        + escape(_measurement_value_text(measurement))
+        + "</td>"
+        + "<td>"
+        + escape(str(measurement.get("population", "")))
+        + "</td>"
+        + "<td>"
+        + escape(str(measurement.get("outcome", "")))
+        + "</td>"
+        + "<td>"
+        + escape(str(measurement.get("comparator", "")))
+        + "</td>"
+        + "<td>"
+        + escape(str(measurement.get("uncertainty", "")))
+        + "</td>"
+        + "<td>"
+        + _measurement_link_label(measurement)
+        + "</td>"
+        + "</tr>"
+    )
+
+
+def _compatible_question_measurement_chart_groups(
+    *,
+    question: PreparedQuestion,
+    measurements: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    metadata = question.freshness.get("question_measurement_extraction")
+    chart_groups = metadata.get("chart_groups") if isinstance(metadata, dict) else []
+    if not isinstance(chart_groups, list):
+        return []
+    measurement_by_id = {str(item.get("measurement_id")): item for item in measurements}
+    compatible_groups: list[dict[str, Any]] = []
+    for group in chart_groups:
+        if not isinstance(group, dict):
+            continue
+        group_measurement_ids = group.get("measurement_ids")
+        if not isinstance(group_measurement_ids, list) or not group_measurement_ids:
+            continue
+        compatible = True
+        for measurement_id in group_measurement_ids:
+            measurement = measurement_by_id.get(str(measurement_id))
+            if measurement is None:
+                compatible = False
+                break
+            for field in ("measure_name", "unit", "outcome", "population"):
+                if measurement.get(field) != group.get(field):
+                    compatible = False
+                    break
+            value = measurement.get("value")
+            if isinstance(value, bool) or not isinstance(value, int | float):
+                compatible = False
+            if not compatible:
+                break
+        if compatible:
+            compatible_groups.append(group)
+    return compatible_groups
+
+
+def _measurement_value_text(measurement: dict[str, Any]) -> str:
+    value = _format_measurement_number(measurement.get("value"))
+    value_max = measurement.get("value_max")
+    unit = str(measurement.get("unit", "")).strip()
+    if isinstance(value_max, int | float) and not isinstance(value_max, bool):
+        text = value + "-" + _format_measurement_number(value_max)
+    else:
+        text = value
+    return (text + " " + unit).strip()
+
+
+def _format_measurement_number(value: Any) -> str:
+    if isinstance(value, bool) or not isinstance(value, int | float):
+        return ""
+    as_float = float(value)
+    if as_float.is_integer():
+        return str(int(as_float))
+    return f"{as_float:.3f}".rstrip("0").rstrip(".")
+
+
+def _measurement_link_label(measurement: dict[str, Any]) -> str:
+    links: list[str] = []
+    source_id = measurement.get("source_id")
+    if isinstance(source_id, str) and source_id:
+        links.append(
+            "<a href=\"../sources/" + escape(source_id) + ".html\">" + escape(source_id) + "</a>"
+        )
+    claim_id = measurement.get("claim_id")
+    if isinstance(claim_id, str) and claim_id:
+        links.append(
+            "<a href=\"../claims/" + escape(claim_id) + ".html\">" + escape(claim_id) + "</a>"
+        )
+    evidence_id = measurement.get("evidence_id")
+    if isinstance(evidence_id, str) and evidence_id:
+        links.append(
+            "<a href=\"../evidence/" + escape(evidence_id) + ".html\">" + escape(evidence_id) + "</a>"
+        )
+    return " / ".join(links) if links else escape(str(measurement.get("measurement_id", "")))
+
+
 def _render_question_freshness_section(question: PreparedQuestion) -> str:
     rows: list[str] = []
     synthesis = question.freshness.get("question_synthesis")
@@ -1897,6 +2102,20 @@ def _render_question_freshness_section(question: PreparedQuestion) -> str:
             rows.append("Synthesis checked: " + refreshed_at.strip())
         if isinstance(input_signature, str) and input_signature.strip():
             rows.append("Input signature: " + input_signature.strip())
+    measurements = question.freshness.get("question_measurement_extraction")
+    if isinstance(measurements, dict):
+        status = measurements.get("status")
+        run_id = measurements.get("run_id")
+        refreshed_at = measurements.get("refreshed_at")
+        measurement_ids = measurements.get("measurement_ids")
+        if isinstance(status, str) and status.strip():
+            rows.append("Measurement status: " + status.strip())
+        if isinstance(run_id, str) and run_id.strip():
+            rows.append("Measurement run: " + run_id.strip())
+        if isinstance(refreshed_at, str) and refreshed_at.strip():
+            rows.append("Measurements checked: " + refreshed_at.strip())
+        if isinstance(measurement_ids, list):
+            rows.append(f"Measurements extracted: {len(measurement_ids)}")
     mappings = question.freshness.get("question_relevance_mappings")
     if isinstance(mappings, list):
         mapping_count = len([item for item in mappings if isinstance(item, dict)])
@@ -5623,6 +5842,25 @@ def _load_claim_records(*, space_root: Path) -> dict[str, dict[str, Any]]:
         if not claim_id:
             continue
         records[claim_id] = payload
+    return records
+
+
+def _load_question_measurement_records(*, space_root: Path) -> dict[str, dict[str, Any]]:
+    measurements_dir = space_root / "measurements"
+    if not measurements_dir.is_dir():
+        return {}
+    records: dict[str, dict[str, Any]] = {}
+    for measurement_path in sorted(measurements_dir.glob("measurement-*.json")):
+        try:
+            payload = json.loads(measurement_path.read_text())
+        except Exception:
+            continue
+        if not isinstance(payload, dict):
+            continue
+        measurement_id = str(payload.get("measurement_id") or "").strip()
+        if not measurement_id:
+            continue
+        records[measurement_id] = payload
     return records
 
 

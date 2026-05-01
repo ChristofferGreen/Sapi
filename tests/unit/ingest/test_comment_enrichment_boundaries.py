@@ -33,6 +33,7 @@ class IngestCommentEnrichmentBoundaryTests(unittest.TestCase):
     def test_question_mapping_plan_runs_after_extraction_before_topics(self) -> None:
         plan = plan_ingest_semantic_execution(
             include_question_relevance_mapping=True,
+            question_measurement_invocation_count=2,
             question_synthesis_invocation_count=2,
         )
         self.assertEqual(
@@ -40,6 +41,7 @@ class IngestCommentEnrichmentBoundaryTests(unittest.TestCase):
             [
                 "ingest_extraction",
                 "question_relevance_mapping",
+                "question_measurement_extraction",
                 "question_synthesis",
                 "topic_generation",
             ],
@@ -49,6 +51,7 @@ class IngestCommentEnrichmentBoundaryTests(unittest.TestCase):
             {
                 "ingest_extraction": 1,
                 "question_relevance_mapping": 1,
+                "question_measurement_extraction": 2,
                 "question_synthesis": 2,
                 "topic_generation": 1,
             },

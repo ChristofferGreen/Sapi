@@ -47,17 +47,17 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0374`: Extract and render question measurement values
+1. `TODO-0376`: Add prepared-question test and verification coverage
 
 ### Immediate Next 10 (After Ready Now)
 
-1. TODO-0376: Add prepared-question test and verification coverage
+1. (none currently)
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: TODO-0374, TODO-0376
+- P2 Social/eval/hardening: TODO-0376
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -69,8 +69,7 @@ Wave B (ingest + projection + lint):
 1. (none currently)
 
 Wave C (query + social + hardening + release):
-1. TODO-0374: Extract and render question measurement values
-2. TODO-0376: Add prepared-question test and verification coverage
+1. TODO-0376: Add prepared-question test and verification coverage
 
 Wave D (space/subspace AI overview article):
 1. (none currently)
@@ -86,16 +85,16 @@ Cross-cutting docs backlog:
 | Section 2 (runtime policy + semantic loop + mock mode) | - |
 | Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | - |
-| Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | TODO-0374 |
+| Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | - |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | - |
-| Section 7.1 ingest pipeline | TODO-0374 |
+| Section 7.1 ingest pipeline | - |
 | Section 7.2 references/linking | - |
 | Section 7.3 query pipeline | - |
 | Section 7.4 persona catalog | - |
 | Section 7.5 profile pages/history | - |
 | Section 7.6 comments pipeline/rendering | - |
 | Section 7.7 comment quality harness | - |
-| Section 8 site/UI/static build | TODO-0374 |
+| Section 8 site/UI/static build | - |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | - |
 | Section 11 testing strategy | TODO-0376 |
@@ -107,12 +106,12 @@ Cross-cutting docs backlog:
 | Low-level area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (runtime model and flow namespaces) | - |
-| Section 4 (core data types/run envelope types) | TODO-0374 |
+| Section 4 (core data types/run envelope types) | - |
 | Section 5 (path + registry contracts) | - |
-| Section 6 (semantic execution engine + retry/repair) | TODO-0374 |
+| Section 6 (semantic execution engine + retry/repair) | - |
 | Section 7 (transaction/rollback) | - |
 | Section 8 (pipeline execution contracts) | - |
-| Section 9 (deterministic build/projection) | TODO-0374 |
+| Section 9 (deterministic build/projection) | - |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
 | Section 12 (wrapper/script interfaces) | - |
@@ -127,7 +126,7 @@ Cross-cutting docs backlog:
 | --- | --- |
 | Section 2 (test module layout) | TODO-0376 |
 | Tier 0-3 (fast contract/failure/pipeline suites) | - |
-| Tier 4-6 (determinism/golden/live canary) | TODO-0374, TODO-0376 |
+| Tier 4-6 (determinism/golden/live canary) | TODO-0376 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0376 |
 | Section 6 (exit criteria gating) | TODO-0376 |
 
@@ -137,7 +136,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-30
   - phase: Prepared questions
-  - depends_on: TODO-0374
+  - depends_on: none
   - scope: Add focused unit, integration, deterministic build, golden, and optional live-canary coverage for the prepared-question feature.
   - acceptance:
     - Unit tests cover schema resolution, question ID/link validation, measurement compatibility, and synthesis freshness decisions.
@@ -147,17 +146,3 @@ Cross-cutting docs backlog:
     - Determinism/golden tests cover question index/detail pages and chart/table rendering where applicable.
     - Verification scripts or testing-plan docs are updated so prepared questions become part of future DoD/exit-gate evidence.
   - notes: Keep live LLM coverage non-blocking unless the broader live canary policy changes.
-
-- [ ] TODO-0374: Extract and render question measurement values
-  - owner: ai
-  - created_at: 2026-04-30
-  - phase: Prepared questions
-  - depends_on: none
-  - scope: Add optional structured measurement extraction for question-relevant evidence and deterministic table/chart rendering for compatible measurement rows.
-  - acceptance:
-    - Measurement records capture source ID, claim ID or evidence ID, measure name, value/range, unit, population/context, outcome, comparator, and uncertainty metadata when available.
-    - Extraction fails or warns rather than coercing incompatible or missing measurement values into fake numeric data.
-    - Rendering emits a table for all valid measurement rows and emits a graph only when rows share compatible measure/unit/outcome/population semantics.
-    - Charted values retain source/evidence links, units, and caveats so visual summaries remain auditable.
-    - Tests cover graph-eligible rows, table-only rows, incompatible units, missing values, and no-measurement empty states.
-  - notes: Nutrition examples such as grams of protein per day or g/kg/day need unit/context normalization before charting.

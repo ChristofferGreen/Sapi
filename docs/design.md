@@ -785,16 +785,16 @@ Prepared question authoring:
   approval before this canonical authoring path promotes them to active question records.
 
 Prepared question refresh:
-- `refresh_questions.sh` is the canonical operator path for refreshing cumulative question synthesis
-  outside ingest.
+- `refresh_questions.sh` is the canonical operator path for refreshing cumulative question measurement
+  extraction and synthesis outside ingest.
 - with no `--question-id`, the wrapper targets all active prepared questions in the selected
   space/sub-space; `--all` is an explicit spelling of that default.
 - repeated `--question-id` flags restrict refresh to selected prepared questions, including inactive
   audit pages when named explicitly.
-- stale-only behavior is the default: questions whose stored input signature matches current linked
+- stale-only behavior is the default: questions whose stored input signatures match current linked
   source/claim/evidence context skip semantic regeneration but still record auditable refresh/check
-  metadata.
-- `--force` regenerates selected question synthesis even when signatures match; this force mode is
+  metadata for measurement extraction and synthesis.
+- `--force` regenerates selected question measurement extraction and synthesis even when signatures match; this force mode is
   refresh behavior only and MUST NOT enable ingest-style failure-artifact retention.
 - unless `--build-deferred` is supplied, successful refresh runs deterministic space build
   post-processing so question pages and the question-led front page reflect refreshed artifacts.
@@ -950,15 +950,19 @@ Core steps:
      `question_mapping_status: no_matches` with zero question updates.
    - failed question relevance mapping follows the same semantic retry and rollback policy as
      ingest extraction and MUST NOT leave partial question-link writes in default mode.
-7. for each question affected by relevance mapping, run `question_synthesis` from the prepared
+7. for each question affected by relevance mapping, run `question_measurement_extraction` from
+   the prepared question plus linked source/claim/evidence context; persist schema-valid
+   measurement rows under `<space_root>/measurements/` and compatible chart groups in question
+   freshness metadata.
+8. for each question affected by relevance mapping, run `question_synthesis` from the prepared
    question plus its canonical linked source/claim/evidence context; persist the schema-valid
    synthesis JSON and freshness signature back to the question record transactionally.
-8. run `topic_generation` generation spec using source + claim context; validate and deterministically persist `0..n` canonical topic JSON pages when cross-source concepts are supported
-9. run deterministic link reconciliation so source/claim/topic/question artifacts are mutually connected and all required references resolve
+9. run `topic_generation` generation spec using source + claim context; validate and deterministically persist `0..n` canonical topic JSON pages when cross-source concepts are supported
+10. run deterministic link reconciliation so source/claim/topic/question artifacts are mutually connected and all required references resolve
    - same pass SHOULD also persist curated `external_related_links[]` plus `related_link_enrichment`
      metadata on source records
-10. run deterministic projection/reindex/site build from canonical JSON (or mark run `build_deferred` in reconstruction bootstrap mode)
-11. run lint gate, write run record, and always release lock
+11. run deterministic projection/reindex/site build from canonical JSON (or mark run `build_deferred` in reconstruction bootstrap mode)
+12. run lint gate, write run record, and always release lock
 
 Run envelope model for multi-semantic commands (normative):
 - run metadata is command-scoped (`run_id` identifies one wrapper/entrypoint invocation).
@@ -968,15 +972,15 @@ Run envelope model for multi-semantic commands (normative):
 - normal ingest without active prepared questions writes `semantic_flows: [ingest_extraction, topic_generation]` and `semantic_flow_invocation_counts: {ingest_extraction: 1, topic_generation: 1}`.
 - ingest with active prepared questions inserts `question_relevance_mapping` after `ingest_extraction`
   and before `topic_generation`, with invocation count `1` when mapping actually runs.
-- ingest runs that map one or more prepared questions insert `question_synthesis` after
-  `question_relevance_mapping` and before `topic_generation`; the invocation count equals the number
-  of affected questions that required synthesis regeneration.
+- ingest runs that map one or more prepared questions insert `question_measurement_extraction`
+  and `question_synthesis` after `question_relevance_mapping` and before `topic_generation`; each
+  invocation count equals the number of affected questions that required that semantic refresh.
 - ingest runs that execute automatic revision detection prepend `source_revision_detection` to `semantic_flows` with invocation count `1`; explicit `--revises-source-id` runs MUST NOT invoke `source_revision_detection`.
 - ingest does not support semantic-flow bypass flags.
 - direct prepared-question refresh uses `flow_key: question_pipeline`; it records
-  `question_synthesis` in `semantic_flows` only for questions that actually regenerated synthesis,
-  and its invocation count equals the number of regenerated questions. Stale-only no-op checks may
-  commit a run with empty `semantic_flows`.
+  `question_measurement_extraction` and `question_synthesis` in `semantic_flows` only for questions
+  that actually regenerated those artifacts, and invocation counts equal the number of regenerated
+  questions per flow. Stale-only no-op checks may commit a run with empty `semantic_flows`.
 
 Terminal failure behavior (normative):
 - if `ingest_extraction` or `topic_generation` exhausts repair retries, command MUST fail.

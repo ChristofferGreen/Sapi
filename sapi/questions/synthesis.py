@@ -227,7 +227,11 @@ def build_question_synthesis_context(
     }
     signature_payload = {
         "schema_version": "question_synthesis_input_v1",
-        "question": question_context,
+        "question": {
+            key: value
+            for key, value in question_context.items()
+            if key != "measurement_ids"
+        },
         "sources": sources,
         "claims": claims,
         "evidence": evidence,
