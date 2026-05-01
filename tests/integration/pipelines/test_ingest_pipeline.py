@@ -1,12 +1,16 @@
 from __future__ import annotations
 
+import io
 import json
 import os
 import subprocess
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
+from unittest.mock import patch
 
+import scripts.ingest_source as ingest_source
 from tests.conftest import (
     REPO_ROOT,
     assert_lint_artifact,
@@ -192,6 +196,174 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
             self.assertTrue(
                 (run_dir / "semantic" / "question_synthesis" / "question-protein-intake.json").is_file()
             )
+
+    def test_ingest_with_no_relevant_question_matches_skips_question_refreshes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            questions_tsv = tmp_root / "questions.tsv"
+            questions_tsv.write_text(
+                "alpha\tquestion-protein-intake\t1\tWhat protein intake supports muscle growth?\n"
+            )
+            create_result = run_command(
+                ["bash", str(REPO_ROOT / "create_questions.sh"), str(site_path), str(questions_tsv)]
+            )
+            self.assertEqual(create_result.returncode, 0, msg=create_result.stderr)
+            question_path = space_root / "questions" / "question-protein-intake.json"
+            source_path = write_source_fixture(tmp_root, content="unrelated prepared question fixture\n")
+
+            def _no_matches(self: object, _request: object) -> str:
+                return json.dumps(
+                    {
+                        "schema_version": "question_relevance_mapping_v1",
+                        "source_id": getattr(self, "_source_id"),
+                        "question_matches": [],
+                        "warnings": [],
+                    }
+                )
+
+            argv = [
+                "ingest_source.py",
+                "alpha",
+                str(source_path),
+                "--registry-path",
+                str(site_path / "spaces.toml"),
+                "--mock-llm",
+            ]
+            stdout = io.StringIO()
+            with patch.object(
+                ingest_source._MockQuestionRelevanceMappingClient,
+                "generate_semantic_json",
+                _no_matches,
+            ):
+                with patch("sys.argv", argv):
+                    with redirect_stdout(stdout):
+                        exit_code = ingest_source.main()
+
+            self.assertEqual(exit_code, 0, msg=stdout.getvalue())
+            question_payload = json.loads(question_path.read_text())
+            self.assertEqual(question_payload["linked_source_ids"], [])
+            self.assertEqual(question_payload["claim_ids"], [])
+            self.assertEqual(question_payload["evidence_ids"], [])
+            self.assertEqual(question_payload["measurement_ids"], [])
+            self.assertEqual(question_payload["synthesis"], {})
+            self.assertNotIn("question_measurement_extraction", question_payload["freshness"])
+            self.assertNotIn("question_synthesis", question_payload["freshness"])
+
+            run_dir = latest_run_directory(space_root)
+            frontmatter = assert_run_frontmatter_fields(
+                run_dir / "run.md",
+                expected_fields={
+                    "semantic_flows": [
+                        "ingest_extraction",
+                        "question_relevance_mapping",
+                        "topic_generation",
+                    ],
+                    "question_mapping_status": "no_matches",
+                    "question_matches_changed": 0,
+                    "question_measurement_status": "not_run",
+                    "question_measurements_changed": 0,
+                    "question_synthesis_status": "not_run",
+                    "question_syntheses_changed": 0,
+                },
+            )
+            self.assertEqual(
+                frontmatter["semantic_flow_invocation_counts"],
+                {
+                    "ingest_extraction": 1,
+                    "question_relevance_mapping": 1,
+                    "topic_generation": 1,
+                },
+            )
+            self.assertEqual(frontmatter["llm_attempt_count"], 3)
+            self.assertTrue((run_dir / "semantic" / "question_relevance_mapping.json").is_file())
+            self.assertFalse((run_dir / "semantic" / "question_measurement_extraction").exists())
+            self.assertFalse((run_dir / "semantic" / "question_synthesis").exists())
+
+    def test_ingest_question_mapping_is_isolated_to_target_subspace(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "nutrition")
+            create_child_result = run_command(
+                ["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), "nutrition-protein"]
+            )
+            self.assertEqual(create_child_result.returncode, 0, msg=create_child_result.stderr)
+            subspaces_tsv = tmp_root / "subspaces.tsv"
+            subspaces_tsv.write_text("nutrition\tNutrition\tnutrition-protein\tProtein\n")
+            subspace_result = run_command(
+                [
+                    "bash",
+                    str(REPO_ROOT / "create_subspaces.sh"),
+                    str(site_path),
+                    str(subspaces_tsv),
+                ]
+            )
+            self.assertEqual(subspace_result.returncode, 0, msg=subspace_result.stderr)
+            questions_tsv = tmp_root / "questions.tsv"
+            questions_tsv.write_text(
+                "nutrition\tquestion-diet-quality\t1\tWhat diet patterns improve health?\n"
+                "nutrition-protein\tquestion-protein-intake\t1\tWhat protein intake supports muscle growth?\n"
+            )
+            create_questions = run_command(
+                ["bash", str(REPO_ROOT / "create_questions.sh"), str(site_path), str(questions_tsv)]
+            )
+            self.assertEqual(create_questions.returncode, 0, msg=create_questions.stderr)
+
+            source_path = write_source_fixture(tmp_root, content="protein subspace mapping fixture\n")
+            ingest_result = run_command(
+                [
+                    "bash",
+                    str(REPO_ROOT / "ingest.sh"),
+                    str(site_path),
+                    "nutrition-protein",
+                    str(source_path),
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(ingest_result.returncode, 0, msg=ingest_result.stderr)
+
+            parent_question = json.loads(
+                (
+                    site_path
+                    / "spaces"
+                    / "nutrition"
+                    / "questions"
+                    / "question-diet-quality.json"
+                ).read_text()
+            )
+            child_space_root = site_path / "spaces" / "nutrition-protein"
+            child_question = json.loads(
+                (child_space_root / "questions" / "question-protein-intake.json").read_text()
+            )
+
+            self.assertEqual(parent_question["linked_source_ids"], [])
+            self.assertEqual(parent_question["claim_ids"], [])
+            self.assertEqual(parent_question["evidence_ids"], [])
+            self.assertEqual(parent_question["measurement_ids"], [])
+            self.assertEqual(parent_question["synthesis"], {})
+            self.assertEqual(len(child_question["linked_source_ids"]), 1)
+            self.assertEqual(len(child_question["claim_ids"]), 1)
+            self.assertEqual(len(child_question["evidence_ids"]), 1)
+            self.assertEqual(len(child_question["measurement_ids"]), 1)
+            self.assertIn("short_answer", child_question["synthesis"])
+            self.assertEqual(
+                child_question["freshness"]["question_measurement_extraction"]["status"],
+                "refreshed",
+            )
+            self.assertEqual(
+                child_question["freshness"]["question_synthesis"]["status"],
+                "refreshed",
+            )
+            frontmatter = assert_run_frontmatter_fields(
+                latest_run_directory(child_space_root) / "run.md",
+                expected_fields={
+                    "question_mapping_status": "mapped",
+                    "question_measurement_status": "refreshed",
+                    "question_synthesis_status": "refreshed",
+                },
+            )
+            self.assertEqual(frontmatter["source_ids"], child_question["linked_source_ids"])
 
     def test_explicit_revision_ingest_links_family_without_detection_flow(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

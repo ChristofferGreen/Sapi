@@ -215,6 +215,12 @@ class IngestRunFields:
     claims_changed: int
     relations_changed: int
     topic_pages_changed: int
+    question_mapping_status: str
+    question_matches_changed: int
+    question_measurement_status: str
+    question_measurements_changed: int
+    question_synthesis_status: str
+    question_syntheses_changed: int
     build_deferred: bool
     deferred_build_reason: str | None
     force_mode: bool
@@ -272,6 +278,21 @@ class PreparedQuestionRecord:
     synthesis: dict[str, Any]
     freshness: dict[str, Any]
     warnings: list[str]
+
+@dataclass
+class QuestionRunFields:
+    question_scope: str
+    question_ids: list[str]
+    refresh_mode: Literal["stale_only", "force"]
+    stale_only: bool
+    force_mode: bool
+    questions_checked: int
+    question_measurements_changed: int
+    question_measurements_unchanged: int
+    question_syntheses_changed: int
+    question_syntheses_unchanged: int
+    build_deferred: bool
+    build_manifest_path: str | None
 ```
 
 Run envelope policy:
@@ -279,7 +300,8 @@ Run envelope policy:
 - `semantic_flows` is an ordered unique list of semantic flows executed at least once in the invocation
 - `semantic_flow_invocation_counts` records how many semantic invocations were executed per semantic flow key
 - `question_pipeline` is the direct prepared-question refresh pipeline; it records
-  `question_synthesis` invocation counts only for questions that regenerate synthesis
+  `question_measurement_extraction` and `question_synthesis` invocation counts only for questions
+  that regenerate those semantic artifacts
 - timestamp fields (`started_at`, `completed_at`) use UTC RFC 3339 with trailing `Z`
 - `llm_attempt_count` is the total attempts consumed across semantic calls in the invocation
 - flows that do not execute lint/build still write lint totals with one implementation-wide null-or-zero policy

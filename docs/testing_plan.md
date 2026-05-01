@@ -105,6 +105,13 @@ tests/
   markdown-first prompt context, run-envelope optional-flow accounting, and no deterministic semantic merge.
   - Modules: `tests/unit/ingest/test_source_versions.py`, `tests/unit/ingest/test_comment_enrichment_boundaries.py`,
     `tests/unit/core/test_slice_a_gates.py`, `tests/unit/contracts/test_todo_0202_spec_schema_inventory.py`
+- [x] Prepared-question contracts cover schema/spec resolution, question ID and linked-artifact validation,
+  synthesis freshness decisions, measurement extraction compatibility, and example seed-count invariants.
+  - Modules: `tests/unit/contracts/test_todo_0202_spec_schema_inventory.py`,
+    `tests/unit/contracts/test_prepared_question_contract_docs.py`,
+    `tests/unit/questions/test_prepared_questions.py`, `tests/unit/questions/test_relevance_mapping.py`,
+    `tests/unit/questions/test_synthesis.py`, `tests/unit/questions/test_measurements.py`,
+    `tests/unit/questions/test_linting.py`, `tests/unit/questions/test_example_question_seeds.py`
 
 ### Tier 2: Failure-Semantics Integration Tests
 
@@ -114,6 +121,9 @@ tests/
   - Module: `tests/integration/failure/test_postprocess_failure_rollback.py`
 - [x] Default-mode failed runs leave no committed `runs/<run_id>/` container.
   - Module: `tests/integration/failure/test_run_container_not_persisted.py`
+- [x] Prepared-question semantic failures, including relevance mapping, measurement extraction, and
+  synthesis, roll back source/claim/evidence/question writes in default ingest mode.
+  - Module: `tests/integration/failure/test_semantic_repair_exhaustion_rollback.py`
 
 ### Tier 3: Pipeline Integration Tests (mock LLM, deterministic)
 
@@ -146,6 +156,14 @@ tests/
 - [x] Ingest source revisions support explicit operator linking without detection and certain-only live
   revision detection with a replayable fake-Codex canary.
   - Module: `tests/integration/pipelines/test_ingest_pipeline.py`
+- [x] Prepared-question workflows cover authoring, ingest-time relevance mapping, no-match behavior,
+  subspace isolation, affected-question measurement/synthesis refresh, and wrapper argument contracts
+  in mock-LLM mode.
+  - Modules: `tests/integration/wrappers/test_create_questions_wrapper.py`,
+    `tests/integration/wrappers/test_refresh_questions_wrapper.py`,
+    `tests/integration/wrappers/test_create_space_example_questions.py`,
+    `tests/integration/pipelines/test_ingest_pipeline.py`,
+    `tests/integration/pipelines/test_ingest_source_only.py`
 
 ### Tier 4: Build/Projection Determinism Tests
 
@@ -194,6 +212,9 @@ Presentation contract coverage requirements (Section 8 / Section 9):
   - Module: `tests/golden/test_query_snapshot.py`
 - [x] Run-envelope snapshot coverage for all pipelines.
   - Module: `tests/golden/test_run_envelope_snapshot.py`
+- [x] Prepared-question golden snapshots cover question index/detail rendering, including measurement
+  chart and table output.
+  - Module: `tests/golden/test_site_snapshot.py`
 
 ### Tier 6: Live LLM Canary (non-blocking)
 

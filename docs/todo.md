@@ -47,7 +47,7 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0376`: Add prepared-question test and verification coverage
+1. (none currently)
 
 ### Immediate Next 10 (After Ready Now)
 
@@ -57,7 +57,7 @@ Task template:
 
 - P0 Foundation/contracts: (none currently)
 - P1 Core product behavior: (none currently)
-- P2 Social/eval/hardening: TODO-0376
+- P2 Social/eval/hardening: (none currently)
 - P3 Continuous docs governance: (none currently)
 
 ### Execution Queue (Recommended)
@@ -69,7 +69,7 @@ Wave B (ingest + projection + lint):
 1. (none currently)
 
 Wave C (query + social + hardening + release):
-1. TODO-0376: Add prepared-question test and verification coverage
+1. (none currently)
 
 Wave D (space/subspace AI overview article):
 1. (none currently)
@@ -97,9 +97,9 @@ Cross-cutting docs backlog:
 | Section 8 site/UI/static build | - |
 | Section 9 observability/safety/runtime controls | - |
 | Section 10 run envelopes/lifecycle status | - |
-| Section 11 testing strategy | TODO-0376 |
+| Section 11 testing strategy | - |
 | Section 12 reconstruction plan | - |
-| Section 13 definition of done | TODO-0376 |
+| Section 13 definition of done | - |
 
 ### Low-Level Coverage Snapshot
 
@@ -117,32 +117,19 @@ Cross-cutting docs backlog:
 | Section 12 (wrapper/script interfaces) | - |
 | Section 13 (observability/runtime controls/safety) | - |
 | Section 14 (anti-drift and PR guardrails) | - |
-| Section 15 (test-plan binding) | TODO-0376 |
+| Section 15 (test-plan binding) | - |
 | Section 16 (change discipline) | - |
 
 ### Testing Plan Coverage Snapshot
 
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
-| Section 2 (test module layout) | TODO-0376 |
+| Section 2 (test module layout) | - |
 | Tier 0-3 (fast contract/failure/pipeline suites) | - |
-| Tier 4-6 (determinism/golden/live canary) | TODO-0376 |
-| Section 4-5 (CI gating matrix + command wiring) | TODO-0376 |
-| Section 6 (exit criteria gating) | TODO-0376 |
+| Tier 4-6 (determinism/golden/live canary) | - |
+| Section 4-5 (CI gating matrix + command wiring) | - |
+| Section 6 (exit criteria gating) | - |
 
 ### Task Blocks
 
-- [ ] TODO-0376: Add prepared-question test and verification coverage
-  - owner: ai
-  - created_at: 2026-04-30
-  - phase: Prepared questions
-  - depends_on: none
-  - scope: Add focused unit, integration, deterministic build, golden, and optional live-canary coverage for the prepared-question feature.
-  - acceptance:
-    - Unit tests cover schema resolution, question ID/link validation, measurement compatibility, and synthesis freshness decisions.
-    - Integration tests cover authoring questions, ingest-time relevance mapping, affected-question synthesis, rollback on failed semantic output, and wrapper argument contracts in mock-LLM mode.
-    - Integration tests cover spaces with no prepared questions, no relevant question matches, and subspace question isolation.
-    - Example-site verification covers creation-time prepared-question seeding for every example space/subspace and confirms roughly 10 questions per seeded scope.
-    - Determinism/golden tests cover question index/detail pages and chart/table rendering where applicable.
-    - Verification scripts or testing-plan docs are updated so prepared questions become part of future DoD/exit-gate evidence.
-  - notes: Keep live LLM coverage non-blocking unless the broader live canary policy changes.
+_No open tasks currently tracked._

@@ -4,6 +4,23 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-05-01
 
+- [x] TODO-0376: Add prepared-question test and verification coverage
+  - owner: ai
+  - created_at: 2026-04-30
+  - phase: Prepared questions
+  - finished_at: 2026-05-01
+  - depends_on: none
+  - scope: Add focused unit, integration, deterministic build, golden, and optional live-canary coverage for the prepared-question feature.
+  - acceptance:
+    - Unit tests cover schema resolution, question ID/link validation, measurement compatibility, and synthesis freshness decisions.
+    - Integration tests cover authoring questions, ingest-time relevance mapping, affected-question synthesis, rollback on failed semantic output, and wrapper argument contracts in mock-LLM mode.
+    - Integration tests cover spaces with no prepared questions, no relevant question matches, and subspace question isolation.
+    - Example-site verification covers creation-time prepared-question seeding for every example space/subspace and confirms roughly 10 questions per seeded scope.
+    - Determinism/golden tests cover question index/detail pages and chart/table rendering where applicable.
+    - Verification scripts or testing-plan docs are updated so prepared questions become part of future DoD/exit-gate evidence.
+  - notes: Keep live LLM coverage non-blocking unless the broader live canary policy changes.
+  - evidence: Added prepared-question integration coverage for no-match ingest behavior, subspace isolation, and measurement-extraction rollback; expanded example-space wrapper verification to cover every checked-in example space/subspace seed scope; added golden snapshots for prepared-question index/detail content with measurement chart/table rendering; updated testing-plan evidence and run-envelope docs for the measurement-plus-synthesis question flows; and verified the focused suites plus the full PR gate.
+
 - [x] TODO-0374: Extract and render question measurement values
   - owner: ai
   - created_at: 2026-04-30
