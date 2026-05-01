@@ -47,23 +47,22 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0368`: Add prepared-question schemas and generation specs
+1. `TODO-0369`: Add operator workflow for prepared question authoring
 
 ### Immediate Next 10 (After Ready Now)
 
-1. TODO-0369: Add operator workflow for prepared question authoring
-2. TODO-0370: Implement canonical question storage and loaders
-3. TODO-0371: Map ingested sources to prepared questions
-4. TODO-0372: Generate cumulative question synthesis
-5. TODO-0373: Render questions index as the space front page
-6. TODO-0374: Extract and render question measurement values
-7. TODO-0375: Wire question refresh metadata, wrappers, and run envelopes
-8. TODO-0377: Seed prepared questions during example-site creation
-9. TODO-0376: Add prepared-question test and verification coverage
+1. TODO-0370: Implement canonical question storage and loaders
+2. TODO-0371: Map ingested sources to prepared questions
+3. TODO-0372: Generate cumulative question synthesis
+4. TODO-0373: Render questions index as the space front page
+5. TODO-0374: Extract and render question measurement values
+6. TODO-0375: Wire question refresh metadata, wrappers, and run envelopes
+7. TODO-0377: Seed prepared questions during example-site creation
+8. TODO-0376: Add prepared-question test and verification coverage
 
 ### Priority Lanes (Current)
 
-- P0 Foundation/contracts: TODO-0368, TODO-0370
+- P0 Foundation/contracts: TODO-0370
 - P1 Core product behavior: TODO-0369, TODO-0371, TODO-0372, TODO-0373, TODO-0375, TODO-0377
 - P2 Social/eval/hardening: TODO-0374, TODO-0376
 - P3 Continuous docs governance: (none currently)
@@ -71,7 +70,7 @@ Task template:
 ### Execution Queue (Recommended)
 
 Wave A (bootstrap + contracts):
-1. TODO-0368: Add prepared-question schemas and generation specs
+1. (none currently)
 
 Wave B (ingest + projection + lint):
 1. TODO-0370: Implement canonical question storage and loaders
@@ -98,7 +97,7 @@ Cross-cutting docs backlog:
 | Section 1 (scope/authority/reading) | - |
 | Section 2 (runtime policy + semantic loop + mock mode) | TODO-0371, TODO-0372 |
 | Section 3 (core concepts + identity invariants) | - |
-| Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | TODO-0368 |
+| Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | - |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | TODO-0370, TODO-0374 |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | TODO-0369, TODO-0375, TODO-0377 |
 | Section 7.1 ingest pipeline | TODO-0371, TODO-0374 |
@@ -193,7 +192,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-30
   - phase: Prepared questions
-  - depends_on: TODO-0368, TODO-0371
+  - depends_on: TODO-0371
   - scope: Add optional structured measurement extraction for question-relevant evidence and deterministic table/chart rendering for compatible measurement rows.
   - acceptance:
     - Measurement records capture source ID, claim ID or evidence ID, measure name, value/range, unit, population/context, outcome, comparator, and uncertainty metadata when available.
@@ -248,7 +247,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-30
   - phase: Prepared questions
-  - depends_on: TODO-0368, TODO-0369
+  - depends_on: TODO-0369
   - scope: Add persistent question artifacts and importable loaders/writers that enforce canonical question IDs, links, freshness metadata, and question index state.
   - acceptance:
     - Canonical records live under the documented question storage paths and include question text, status, scope, display order, linked source IDs, claim IDs, evidence IDs, measurement IDs, synthesis metadata, and freshness fields.
@@ -269,16 +268,3 @@ Cross-cutting docs backlog:
     - Optional LLM-generated question suggestions, if implemented in this task, are saved as drafts or require explicit operator approval before becoming canonical.
     - Wrapper tests cover registry injection, invalid arguments, duplicate question handling, reorder/update behavior, deactivation, and subspace targeting.
   - notes: The first implementation should not require automatic question generation.
-
-- [ ] TODO-0368: Add prepared-question schemas and generation specs
-  - owner: ai
-  - created_at: 2026-04-30
-  - phase: Prepared questions
-  - depends_on: none
-  - scope: Add schema/spec inventory for persistent questions, source-to-question relevance mapping, cumulative question synthesis, and optional measurement extraction.
-  - acceptance:
-    - Add checked-in schemas for canonical question records, question relevance mapping outputs, question synthesis outputs, and measurement records or measurement extraction outputs.
-    - Add generation specs for `question_relevance_mapping`, `question_synthesis`, and measurement extraction if measurement extraction is semantic.
-    - Extend the semantic flow map, flow-key docs, and schema inventory tests to include the new canonical flow keys.
-    - Schemas require source/claim/evidence references to resolve by canonical IDs and prohibit deterministic prose generation for user-facing synthesis.
-  - notes: Keep prepared-question IDs stable and URL-safe, e.g. `question-<slug>--<suffix>`.

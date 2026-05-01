@@ -33,6 +33,9 @@ Sapi has two distinct flow namespaces.
 - `comment_section_generation`
 - `persona_profile_generation`
 - `space_overview_generation`
+- `question_relevance_mapping`
+- `question_synthesis`
+- `question_measurement_extraction`
 
 2. Pipeline flow keys (run-record scope):
 - `ingest_pipeline`
@@ -160,6 +163,9 @@ SemanticFlowKey = Literal[
     "comment_section_generation",
     "persona_profile_generation",
     "space_overview_generation",
+    "question_relevance_mapping",
+    "question_synthesis",
+    "question_measurement_extraction",
 ]
 
 PipelineFlowKey = Literal[

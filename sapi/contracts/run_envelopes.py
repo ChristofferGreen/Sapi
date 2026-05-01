@@ -18,6 +18,9 @@ SemanticFlowKey = Literal[
     "comment_section_generation",
     "persona_profile_generation",
     "space_overview_generation",
+    "question_relevance_mapping",
+    "question_synthesis",
+    "question_measurement_extraction",
 ]
 
 PipelineFlowKey = Literal[
@@ -38,6 +41,9 @@ _SEMANTIC_FLOW_KEYS: set[str] = {
     "comment_section_generation",
     "persona_profile_generation",
     "space_overview_generation",
+    "question_relevance_mapping",
+    "question_synthesis",
+    "question_measurement_extraction",
 }
 
 _REQUIRED_BASE_FRONTMATTER_KEYS: tuple[str, ...] = (

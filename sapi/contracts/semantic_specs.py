@@ -109,6 +109,26 @@ FLOW_MAP: dict[str, SemanticSpecMapEntry] = {
         schema_relpath="schemas/space_overview_generation.v1.schema.json",
         output_json_path_template="<space_root>/outputs/space_overview/<overview_id>/overview.json",
     ),
+    "question_relevance_mapping": SemanticSpecMapEntry(
+        flow_key="question_relevance_mapping",
+        spec_relpath="ai_flows/generation_specs/question_relevance_mapping.v1.md",
+        schema_relpath="schemas/question_relevance_mapping.v1.schema.json",
+        output_json_path_template="<space_root>/runs/<run_id>/semantic/question_relevance_mapping.json",
+    ),
+    "question_synthesis": SemanticSpecMapEntry(
+        flow_key="question_synthesis",
+        spec_relpath="ai_flows/generation_specs/question_synthesis.v1.md",
+        schema_relpath="schemas/question_synthesis.v1.schema.json",
+        output_json_path_template="<space_root>/runs/<run_id>/semantic/question_synthesis/<question_id>.json",
+    ),
+    "question_measurement_extraction": SemanticSpecMapEntry(
+        flow_key="question_measurement_extraction",
+        spec_relpath="ai_flows/generation_specs/question_measurement_extraction.v1.md",
+        schema_relpath="schemas/question_measurement_extraction.v1.schema.json",
+        output_json_path_template=(
+            "<space_root>/runs/<run_id>/semantic/question_measurement_extraction/<question_id>.json"
+        ),
+    ),
 }
 
 

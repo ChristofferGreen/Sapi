@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "question_synthesis.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "question_id",
+    "short_answer",
+    "conclusions",
+    "uncertainty",
+    "disagreements",
+    "citation_anchors",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "question_synthesis_v1"
+    },
+    "question_id": {
+      "$ref": "#/$defs/question_id"
+    },
+    "short_answer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "conclusions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text",
+          "support",
+          "source_ids",
+          "claim_ids",
+          "evidence_ids"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "support": {
+            "type": "string",
+            "enum": ["weak", "moderate", "strong", "mixed"]
+          },
+          "source_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/source_id"
+            }
+          },
+          "claim_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/claim_id"
+            }
+          },
+          "evidence_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/evidence_id"
+            }
+          }
+        }
+      }
+    },
+    "uncertainty": {
+      "type": "string"
+    },
+    "disagreements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text", "source_ids", "claim_ids", "evidence_ids"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/source_id"
+            }
+          },
+          "claim_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/claim_id"
+            }
+          },
+          "evidence_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/evidence_id"
+            }
+          }
+        }
+      }
+    },
+    "citation_anchors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["anchor_id", "label", "source_id", "claim_ids", "evidence_ids"],
+        "properties": {
+          "anchor_id": {
+            "type": "string",
+            "pattern": "^anchor-[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_id": {
+            "$ref": "#/$defs/source_id"
+          },
+          "claim_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/claim_id"
+            }
+          },
+          "evidence_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/evidence_id"
+            }
+          }
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "question_id": {
+      "type": "string",
+      "pattern": "^question-[a-z0-9]+(?:-[a-z0-9]+)*(?:--[0-9a-f]{12,})?$"
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^source-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$"
+    },
+    "claim_id": {
+      "type": "string",
+      "pattern": "^claim-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$"
+    },
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^evidence-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$"
+    }
+  }
+}
+

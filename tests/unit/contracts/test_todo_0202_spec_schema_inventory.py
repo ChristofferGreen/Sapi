@@ -84,6 +84,41 @@ SPEC_CONTRACT = {
             "warnings",
         ],
     },
+    "question_relevance_mapping": {
+        "spec": "ai_flows/generation_specs/question_relevance_mapping.v1.md",
+        "schema": "schemas/question_relevance_mapping.v1.schema.json",
+        "required_keys": [
+            "schema_version",
+            "source_id",
+            "question_matches",
+            "warnings",
+        ],
+    },
+    "question_synthesis": {
+        "spec": "ai_flows/generation_specs/question_synthesis.v1.md",
+        "schema": "schemas/question_synthesis.v1.schema.json",
+        "required_keys": [
+            "schema_version",
+            "question_id",
+            "short_answer",
+            "conclusions",
+            "uncertainty",
+            "disagreements",
+            "citation_anchors",
+            "warnings",
+        ],
+    },
+    "question_measurement_extraction": {
+        "spec": "ai_flows/generation_specs/question_measurement_extraction.v1.md",
+        "schema": "schemas/question_measurement_extraction.v1.schema.json",
+        "required_keys": [
+            "schema_version",
+            "question_id",
+            "measurements",
+            "chart_groups",
+            "warnings",
+        ],
+    },
 }
 
 

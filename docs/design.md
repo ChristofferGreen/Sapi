@@ -80,7 +80,7 @@ Use this table to track active architecture decisions without losing contract li
 - every LLM generation flow MUST be driven by a checked-in markdown generation spec.
 - generation specs MUST declare, at minimum: schema location, output JSON path, and filesystem context pointers used as evidence/input.
 - LLM outputs for generation flows MUST be strict JSON that validates against the referenced schema.
-- covered semantic LLM flows include ingest extraction, topic generation, source revision detection, query synthesis, comment section generation, persona profile page generation, and space overview generation; each MUST have a checked-in generation spec.
+- covered semantic LLM flows include ingest extraction, topic generation, source revision detection, query synthesis, comment section generation, persona profile page generation, space overview generation, question relevance mapping, question synthesis, and question measurement extraction; each MUST have a checked-in generation spec.
 - optional markdown rendering from generated JSON MUST be deterministic and MUST NOT invoke an LLM.
 - static site HTML rendering MUST use canonical JSON artifacts as input and MUST NOT invoke an LLM.
 
@@ -278,6 +278,9 @@ Flow map (authoritative defaults):
 | `comment_section_generation` | `ai_flows/generation_specs/comment_section_generation.v1.md` | `schemas/comment_section_generation.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/comment_section_generation/<page_ref_key>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `persona_profile_generation` | `ai_flows/generation_specs/persona_profile_generation.v1.md` | `schemas/persona_profile_generation.v1.schema.json` | `<space_root>/profiles/persona-<persona_id>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `space_overview_generation` | `ai_flows/generation_specs/space_overview_generation.v1.md` | `schemas/space_overview_generation.v1.schema.json` | `<space_root>/outputs/space_overview/<overview_id>/overview.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
+| `question_relevance_mapping` | `ai_flows/generation_specs/question_relevance_mapping.v1.md` | `schemas/question_relevance_mapping.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/question_relevance_mapping.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
+| `question_synthesis` | `ai_flows/generation_specs/question_synthesis.v1.md` | `schemas/question_synthesis.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/question_synthesis/<question_id>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
+| `question_measurement_extraction` | `ai_flows/generation_specs/question_measurement_extraction.v1.md` | `schemas/question_measurement_extraction.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/question_measurement_extraction/<question_id>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 
 Canonical-write note (normative):
 - flow-map `output_json_path` values are semantic-output paths for the LLM invocation.
@@ -289,7 +292,7 @@ Discovery and pinning rules:
 - spec/schema version pairing is immutable per major version (`<flow_key>.v1.md` MUST reference `<flow_key>.v1.schema.json`).
 - backward-compatible prompt wording/context improvements MAY update an existing major version file.
 - incompatible schema shape/output-path contract changes MUST create new major-version files and update this flow map explicitly.
-- path templates MAY contain runtime tokens (for example `<space_root>`, `<run_id>`, `<query_id>`, `<topic_id>`, `<persona_id>`, `<page_ref_key>`, `<overview_id>`); tokens MUST be resolved to absolute paths before LLM invocation and validation.
+- path templates MAY contain runtime tokens (for example `<space_root>`, `<run_id>`, `<query_id>`, `<topic_id>`, `<persona_id>`, `<page_ref_key>`, `<overview_id>`, `<question_id>`); tokens MUST be resolved to absolute paths before LLM invocation and validation.
 - for comment-section semantic outputs, `<page_ref_key>` MUST be a deterministic filesystem-safe key derived from the canonical `page_ref` (for example `<page_type>--<page_id>`).
 
 Canonical-only naming policy (normative):
@@ -307,6 +310,9 @@ Required v1 file inventory (repository-relative):
 - `ai_flows/generation_specs/comment_section_generation.v1.md`
 - `ai_flows/generation_specs/persona_profile_generation.v1.md`
 - `ai_flows/generation_specs/space_overview_generation.v1.md`
+- `ai_flows/generation_specs/question_relevance_mapping.v1.md`
+- `ai_flows/generation_specs/question_synthesis.v1.md`
+- `ai_flows/generation_specs/question_measurement_extraction.v1.md`
 - `schemas/ingest_extraction.v1.schema.json`
 - `schemas/topic_generation.v1.schema.json`
 - `schemas/source_revision_detection.v1.schema.json`
@@ -314,6 +320,10 @@ Required v1 file inventory (repository-relative):
 - `schemas/comment_section_generation.v1.schema.json`
 - `schemas/persona_profile_generation.v1.schema.json`
 - `schemas/space_overview_generation.v1.schema.json`
+- `schemas/prepared_question.v1.schema.json`
+- `schemas/question_relevance_mapping.v1.schema.json`
+- `schemas/question_synthesis.v1.schema.json`
+- `schemas/question_measurement_extraction.v1.schema.json`
 
 Generation spec markdown content contract (all flows):
 - each spec file MUST include a machine-readable contract header declaring `flow_key`, `version`, `schema_path`, `output_json_path`, and `context_paths[]`.
@@ -340,6 +350,9 @@ Per-flow v1 schema minimum top-level keys:
 - `persona_profile_generation`: `persona_id`, `space_name`, `profile_sections`, optional
   `short_cv_entries`, `profile_image_path`, `accountability_summary`
 - `space_overview_generation`: `schema_version`, `metadata`, `sections`, `references`, `freshness`, `warnings`
+- `question_relevance_mapping`: `schema_version`, `source_id`, `question_matches`, `warnings`
+- `question_synthesis`: `schema_version`, `question_id`, `short_answer`, `conclusions`, `uncertainty`, `disagreements`, `citation_anchors`, `warnings`
+- `question_measurement_extraction`: `schema_version`, `question_id`, `measurements`, `chart_groups`, `warnings`
 
 Notes on key naming:
 - these are minimum v1 keys; flows MAY add fields only with matching schema updates.
@@ -1806,7 +1819,7 @@ Canonical run-record metadata (normative base envelope for committed runs):
   - lint totals (`lint_error_count`, `lint_warning_count`, `lint_info_count`)
 - run-record `flow_key` namespace is command/pipeline oriented and distinct from generation-spec semantic `flow_key` values.
 - `flow_key` allowed values: `ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`, `overview_pipeline`
-- `semantic_flows` values MUST be an ordered unique subset of canonical semantic flow keys from: `ingest_extraction`, `topic_generation`, `source_revision_detection`, `query_synthesis`, `comment_section_generation`, `persona_profile_generation`, `space_overview_generation`
+- `semantic_flows` values MUST be an ordered unique subset of canonical semantic flow keys from: `ingest_extraction`, `topic_generation`, `source_revision_detection`, `query_synthesis`, `comment_section_generation`, `persona_profile_generation`, `space_overview_generation`, `question_relevance_mapping`, `question_synthesis`, `question_measurement_extraction`
 - `semantic_flow_invocation_counts` keys MUST be canonical semantic flow keys and values MUST be positive integers; every key in `semantic_flows` MUST appear in this map.
 - flow-specific frontmatter extensions:
   - ingest pipeline: `ingest_scope`, `source_ids`, nullable `parent_run_id`, changed sets (`claims_changed`, `relations_changed`, `topic_pages_changed`), optional deferred-build flags (`build_deferred`, `deferred_build_reason`), optional force-mode flags (`force_mode`, `rollback_skipped`)

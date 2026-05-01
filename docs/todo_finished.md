@@ -4,6 +4,21 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-05-01
 
+- [x] TODO-0368: Add prepared-question schemas and generation specs
+  - owner: ai
+  - created_at: 2026-04-30
+  - phase: Prepared questions
+  - finished_at: 2026-05-01
+  - depends_on: none
+  - scope: Add schema/spec inventory for persistent questions, source-to-question relevance mapping, cumulative question synthesis, and optional measurement extraction.
+  - acceptance:
+    - Add checked-in schemas for canonical question records, question relevance mapping outputs, question synthesis outputs, and measurement records or measurement extraction outputs.
+    - Add generation specs for `question_relevance_mapping`, `question_synthesis`, and measurement extraction if measurement extraction is semantic.
+    - Extend the semantic flow map, flow-key docs, and schema inventory tests to include the new canonical flow keys.
+    - Schemas require source/claim/evidence references to resolve by canonical IDs and prohibit deterministic prose generation for user-facing synthesis.
+  - notes: Keep prepared-question IDs stable and URL-safe, e.g. `question-<slug>--<suffix>`.
+  - evidence: Added prepared-question record schema, question relevance/synthesis/measurement schemas and generation specs, semantic flow-map/run-envelope keys, and inventory/contract coverage.
+
 - [x] TODO-0367: Define prepared-question product and architecture contracts
   - owner: ai
   - created_at: 2026-04-30

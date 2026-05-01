@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "prepared_question.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "question_id",
+    "question",
+    "status",
+    "display_order",
+    "scope",
+    "linked_source_ids",
+    "claim_ids",
+    "evidence_ids",
+    "measurement_ids",
+    "synthesis",
+    "freshness",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "prepared_question_v1"
+    },
+    "question_id": {
+      "type": "string",
+      "pattern": "^question-[a-z0-9]+(?:-[a-z0-9]+)*(?:--[0-9a-f]{12,})?$"
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "draft"]
+    },
+    "display_order": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space_name"],
+      "properties": {
+        "space_name": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      }
+    },
+    "linked_source_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/source_id"
+      }
+    },
+    "claim_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/claim_id"
+      }
+    },
+    "evidence_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/evidence_id"
+      }
+    },
+    "measurement_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/measurement_id"
+      }
+    },
+    "synthesis": {
+      "type": "object"
+    },
+    "freshness": {
+      "type": "object"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "source_id": {
+      "type": "string",
+      "pattern": "^source-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$"
+    },
+    "claim_id": {
+      "type": "string",
+      "pattern": "^claim-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$"
+    },
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^evidence-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$"
+    },
+    "measurement_id": {
+      "type": "string",
+      "pattern": "^measurement-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12,}$"
+    }
+  }
+}
+

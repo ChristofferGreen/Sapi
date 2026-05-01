@@ -1,10 +1,19 @@
 from __future__ import annotations
 
+import json
 import unittest
 from pathlib import Path
 
+from sapi.contracts.run_envelopes import _SEMANTIC_FLOW_KEYS
+from sapi.contracts.semantic_specs import FLOW_MAP, resolve_semantic_spec
+
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
+QUESTION_FLOW_KEYS = {
+    "question_relevance_mapping",
+    "question_synthesis",
+    "question_measurement_extraction",
+}
 
 
 class PreparedQuestionContractDocTests(unittest.TestCase):
@@ -31,6 +40,27 @@ class PreparedQuestionContractDocTests(unittest.TestCase):
         self.assertIn("cumulative question synthesis belongs in `sapi/questions/`", low_level_text)
         self.assertIn("deterministic question index/detail rendering belongs", low_level_text)
         self.assertIn("create_questions.sh", low_level_text)
+
+    def test_question_semantic_flows_have_canonical_specs_schemas_and_run_keys(self) -> None:
+        for flow_key in QUESTION_FLOW_KEYS:
+            with self.subTest(flow_key=flow_key):
+                self.assertIn(flow_key, FLOW_MAP)
+                self.assertIn(flow_key, _SEMANTIC_FLOW_KEYS)
+                resolved = resolve_semantic_spec(flow_key, repo_root=REPO_ROOT)
+                self.assertEqual(resolved.flow_key, flow_key)
+                self.assertTrue(resolved.spec_path.is_file())
+                self.assertTrue(resolved.schema_path.is_file())
+
+    def test_prepared_question_record_schema_is_checked_in(self) -> None:
+        schema = json.loads((REPO_ROOT / "schemas" / "prepared_question.v1.schema.json").read_text())
+
+        self.assertEqual(schema.get("type"), "object")
+        self.assertFalse(schema.get("additionalProperties", True))
+        self.assertIn("question_id", schema["required"])
+        self.assertIn("linked_source_ids", schema["required"])
+        self.assertIn("measurement_ids", schema["required"])
+        self.assertIn("synthesis", schema["required"])
+        self.assertIn("freshness", schema["required"])
 
 
 if __name__ == "__main__":
