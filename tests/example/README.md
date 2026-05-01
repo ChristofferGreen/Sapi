@@ -4,8 +4,9 @@ This directory contains a resumable example-site runner and the PDF set it inges
 
 Files:
 
-- `run_example_site.sh`: creates an example site at a caller-provided path, ingests the bundled PDFs in order, generates overviews for the seeded subspaces, and generates comments after ingest completes. User/profile pages use the checked-in 100-persona catalog and images.
+- `run_example_site.sh`: creates an example site at a caller-provided path, seeds prepared questions for every example space/subspace, ingests the bundled PDFs in order, generates overviews for the seeded subspaces, and generates comments after ingest completes. User/profile pages use the checked-in 100-persona catalog and images.
 - `subspaces.tsv`: parent-space and subspace structure for the example site.
+- `prepared_questions.tsv`: operator-authored prepared-question seed data. Each example space and subspace has 10 questions.
 - `ingest_plan.tsv`: ordered ingest plan. Each row maps one target subspace to one bundled PDF.
 - `pdfs/`: the PDFs to ingest. These are stored as symlinks to the verified seed PDFs under `verification/reingest_seed_pdfs`.
 

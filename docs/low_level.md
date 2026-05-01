@@ -664,6 +664,7 @@ Workflow gate policy alignment (normative):
 
 Wrapper to script mapping:
 - `ingest.sh` -> `scripts/ingest_source.py`
+- `create_questions.sh` -> `scripts/create_prepared_questions.py`
 - `query.sh` -> `scripts/query.py`
 - `create_comments.sh` -> `scripts/create_comments.py`
 - `generate_profiles.sh` -> `scripts/generate_profiles.py`
@@ -672,6 +673,7 @@ Wrapper to script mapping:
 
 Workflow-key alignment:
 - `ingest.sh` -> workflow key `ingest_source`
+- `create_questions.sh` -> no semantic workflow key; writes operator-authored canonical question records
 - `query.sh` -> workflow key `query`
 - `create_comments.sh` -> workflow key `create_comments`
 - `generate_profiles.sh` -> workflow key `generate_profiles`

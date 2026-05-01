@@ -72,6 +72,7 @@ Canonical operator wrappers (target interface during reconstruction):
 
 - `create_site.sh <site_path> <site_name>`
 - `create_space.sh <site_path> <space_name>`
+- `create_questions.sh <site_path> <questions_tsv> [space_name]`
 - `ingest.sh <site_path> <space_name> <source_path_or_url> [--revises-source-id <source_id>] [--force] [--verbose]`
 - `query.sh <site_path> <space_name> <question> [--verbose]`
 - `create_comments.sh <site_path> <space_name> --count <n> [--verbose] [...]`

@@ -704,6 +704,7 @@ Required lint artifacts (committed runs):
 Primary shell entrypoints:
 - `create_site.sh <site_path> <site_name>`
 - `create_space.sh <site_path> <space_name>`
+- `create_questions.sh <site_path> <questions_tsv> [space_name]`
 - `ingest.sh <site_path> <space_name> <source_path_or_url> [--force] [--verbose]`
 - `create_comments.sh <site_path> <space_name> --count <n> [--verbose] [--comment-user ...] [--comment-page ...] [--comment-seed ...] [--comment-evidence-mode ...]`
 - `generate_profiles.sh <site_path> <space_name> [--persona-id <persona_id> ...] [--verbose]`

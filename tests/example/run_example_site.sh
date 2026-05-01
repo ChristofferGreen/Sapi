@@ -22,6 +22,7 @@ LOG_DIR="$STATE_DIR/logs"
 STATUS_FILE="$STATE_DIR/status.env"
 SUBSPACES_TSV="$SCRIPT_DIR/subspaces.tsv"
 INGEST_PLAN_TSV="$SCRIPT_DIR/ingest_plan.tsv"
+QUESTIONS_TSV="$SCRIPT_DIR/prepared_questions.tsv"
 COMMENT_COUNT=5
 STEP_TIMEOUT_SECS=1200
 STEP_MAX_ATTEMPTS=10
@@ -233,6 +234,9 @@ bootstrap_site() {
 
   run_step "002-write-subspaces" \
     bash "$REPO_ROOT/create_subspaces.sh" "$SITE_PATH" "$SUBSPACES_TSV"
+
+  run_step "003-seed-prepared-questions" \
+    bash "$REPO_ROOT/create_questions.sh" "$SITE_PATH" "$QUESTIONS_TSV"
 
   BOOTSTRAP_DONE=1
   write_status

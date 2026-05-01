@@ -27,6 +27,7 @@ mkdir -p \
   "$space_root/claims" \
   "$space_root/relations" \
   "$space_root/topics" \
+  "$space_root/questions" \
   "$space_root/profiles" \
   "$space_root/projections/markdown" \
   "$space_root/runs" \

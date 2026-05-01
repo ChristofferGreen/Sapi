@@ -34,6 +34,7 @@ from sapi.core.site_scope import load_site_scope, load_subspaces_metadata
 from sapi.lint.lint_engine import LintSummary, default_lint_summary
 from sapi.overview.overview_pipeline import resolve_overview_scope
 from sapi.profiles.persona_catalog import derive_profile_image_thumb_path, load_seeded_persona_catalog
+from sapi.questions.prepared_questions import PreparedQuestion, load_prepared_questions
 
 _WIKI_SECTION_ORDER: tuple[str, ...] = (
     "lead summary",
@@ -173,6 +174,7 @@ class _SpaceLayoutContext:
     subspaces: list[tuple[str, str | None]]
     sources: list[dict[str, Any]]
     topics: list[dict[str, Any]]
+    questions: list[PreparedQuestion]
     overview: "_SpaceOverviewArtifact | None"
     tabs: tuple[str, ...]
 
@@ -258,6 +260,15 @@ def build_space_site(
     )
     generated_files.extend(
         _write_space_evidence_pages(
+            output_root=output_root,
+            projection=projection,
+            context=context,
+            evidence_records=evidence_records,
+            incremental=incremental,
+        )
+    )
+    generated_files.extend(
+        _write_question_pages(
             output_root=output_root,
             projection=projection,
             context=context,
@@ -1587,6 +1598,9 @@ def _render_space_index(
 ) -> str:
     display_space_name = _space_display_name(space_name)
     sections: list[str] = [f"<h1>{escape(display_space_name)}</h1>\n"]
+    active_questions = [question for question in context.questions if question.status == "active"]
+    if active_questions:
+        sections.append(_render_question_index_section(active_questions, href_prefix="questions/"))
     if context.overview is not None:
         sections.append(
             _render_space_home_overview_section(
@@ -1687,6 +1701,192 @@ def _render_space_home_overview_section(
         + "\">Open full overview</a></p>\n"
         + "</section>\n"
     )
+
+
+def _render_question_index_section(
+    questions: list[PreparedQuestion],
+    *,
+    href_prefix: str,
+) -> str:
+    rows = "\n".join(
+        (
+            "<li><a href=\""
+            + escape(href_prefix + question.question_id + ".html")
+            + "\">"
+            + escape(question.question)
+            + "</a></li>"
+        )
+        for question in sorted(questions, key=lambda item: (item.display_order, item.question_id))
+    )
+    if not rows:
+        rows = "<li>(none yet)</li>"
+    return "<h2>Questions</h2>\n<ul class=\"feed-list question-list\">\n" + rows + "\n</ul>\n"
+
+
+def _write_question_pages(
+    *,
+    output_root: Path,
+    projection: SpaceProjection,
+    context: _SpaceLayoutContext,
+    evidence_records: list[_EvidenceRecord],
+    incremental: bool,
+) -> list[Path]:
+    active_questions = [question for question in context.questions if question.status == "active"]
+    question_root = output_root / "questions"
+    question_root.mkdir(parents=True, exist_ok=True)
+    question_index_path = question_root / "index.html"
+    display_space_name = _space_display_name(context.space_name)
+    body = (
+        "<h1>Questions</h1>\n"
+        + _render_question_index_section(active_questions, href_prefix="")
+    )
+    _write_text_file(
+        question_index_path,
+        _render_space_layout(
+            title=f"{display_space_name} - Questions",
+            body=body,
+            context=context,
+            current_tab="questions",
+            stylesheet_href=_relative_href(
+                from_file=question_index_path,
+                to_file=output_root / "assets" / "site.css",
+            ),
+        ),
+        incremental=incremental,
+    )
+    written = [question_index_path]
+
+    source_by_id = {str(source["source_id"]): source for source in projection.sources}
+    claim_by_id = _load_claim_records(space_root=output_root.parent)
+    evidence_by_id = {record.evidence_id: record for record in evidence_records}
+    for question in active_questions:
+        question_path = question_root / f"{question.question_id}.html"
+        _write_text_file(
+            question_path,
+            _render_question_page(
+                question=question,
+                source_by_id=source_by_id,
+                claim_by_id=claim_by_id,
+                evidence_by_id=evidence_by_id,
+                context=context,
+                stylesheet_href=_relative_href(
+                    from_file=question_path,
+                    to_file=output_root / "assets" / "site.css",
+                ),
+            ),
+            incremental=incremental,
+        )
+        written.append(question_path)
+    return written
+
+
+def _render_question_page(
+    *,
+    question: PreparedQuestion,
+    source_by_id: dict[str, dict[str, Any]],
+    claim_by_id: dict[str, dict[str, Any]],
+    evidence_by_id: dict[str, _EvidenceRecord],
+    context: _SpaceLayoutContext,
+    stylesheet_href: str,
+) -> str:
+    linked_sources = [source_by_id[source_id] for source_id in question.linked_source_ids if source_id in source_by_id]
+    linked_claims = [claim_by_id[claim_id] for claim_id in question.claim_ids if claim_id in claim_by_id]
+    linked_evidence = [
+        evidence_by_id[evidence_id] for evidence_id in question.evidence_ids if evidence_id in evidence_by_id
+    ]
+    stats = (
+        f"{len(linked_sources)} source{'s' if len(linked_sources) != 1 else ''}, "
+        f"{len(linked_claims)} claim{'s' if len(linked_claims) != 1 else ''}, "
+        f"{len(linked_evidence)} evidence item{'s' if len(linked_evidence) != 1 else ''}"
+    )
+    sections = [
+        "<p><a href=\"index.html\">Back to questions</a></p>\n",
+        "<h1>" + escape(question.question) + "</h1>\n",
+        "<p class=\"meta\">"
+        + escape(f"{question.question_id} | status: {question.status} | {stats}")
+        + "</p>\n",
+        _render_question_synthesis_section(question),
+        _render_question_source_section(linked_sources),
+        _render_question_claim_section(linked_claims),
+        _render_question_evidence_section(linked_evidence),
+    ]
+    if question.warnings:
+        warning_rows = "\n".join("<li>" + escape(warning) + "</li>" for warning in question.warnings)
+        sections.append("<h2>Warnings</h2>\n<ul class=\"feed-list\">\n" + warning_rows + "\n</ul>\n")
+    return _render_space_layout(
+        title=f"{_space_display_name(context.space_name)} - {question.question}",
+        body="".join(sections),
+        context=context,
+        current_tab=None,
+        current_page=f"question:{question.question_id}",
+        stylesheet_href=stylesheet_href,
+    )
+
+
+def _render_question_synthesis_section(question: PreparedQuestion) -> str:
+    synthesis = question.synthesis
+    short_answer = synthesis.get("short_answer")
+    conclusions = synthesis.get("conclusions")
+    if not isinstance(short_answer, str) or not short_answer.strip():
+        return "<h2>Current synthesis</h2>\n<p>No synthesis has been generated for this question yet.</p>\n"
+    body = "<h2>Current synthesis</h2>\n<p>" + escape(short_answer.strip()) + "</p>\n"
+    if isinstance(conclusions, list) and conclusions:
+        rows = "\n".join(
+            "<li>" + escape(item.strip()) + "</li>"
+            for item in conclusions
+            if isinstance(item, str) and item.strip()
+        )
+        if rows:
+            body += "<h3>Conclusions</h3>\n<ul class=\"feed-list\">\n" + rows + "\n</ul>\n"
+    return body
+
+
+def _render_question_source_section(sources: list[dict[str, Any]]) -> str:
+    if not sources:
+        return "<h2>Sources</h2>\n<p>No sources have been linked to this question yet.</p>\n"
+    rows = "\n".join(
+        (
+            "<li><a href=\"../sources/"
+            + escape(str(source["source_id"]))
+            + ".html\">"
+            + escape(_source_display_title(source))
+            + "</a></li>"
+        )
+        for source in sorted(sources, key=lambda item: str(item["source_id"]))
+    )
+    return "<h2>Sources</h2>\n<ul class=\"feed-list\">\n" + rows + "\n</ul>\n"
+
+
+def _render_question_claim_section(claims: list[dict[str, Any]]) -> str:
+    if not claims:
+        return "<h2>Claims</h2>\n<p>No claims have been linked to this question yet.</p>\n"
+    rows = "\n".join(
+        (
+            "<li><a href=\"../claims/"
+            + escape(str(claim["claim_id"]))
+            + ".html\">"
+            + escape(claim_option_title(claim))
+            + "</a></li>"
+        )
+        for claim in sorted(claims, key=lambda item: str(item["claim_id"]))
+    )
+    return "<h2>Claims</h2>\n<ul class=\"feed-list\">\n" + rows + "\n</ul>\n"
+
+
+def _render_question_evidence_section(evidence_records: list[_EvidenceRecord]) -> str:
+    if not evidence_records:
+        return "<h2>Evidence</h2>\n<p>No evidence has been linked to this question yet.</p>\n"
+    rows = "\n".join(
+        (
+            "<li><a href=\"../evidence/"
+            + escape(record.evidence_id)
+            + ".html\">"
+            + escape(record.title)
+            + "</a></li>"
+        )
+        for record in sorted(evidence_records, key=lambda item: item.evidence_id)
+    )
+    return "<h2>Evidence</h2>\n<ul class=\"feed-list\">\n" + rows + "\n</ul>\n"
 
 
 def _render_topic_page(
@@ -2260,6 +2460,7 @@ def _build_layout_context(
     site_path: Path,
 ) -> _SpaceLayoutContext:
     all_space_names = _discover_site_spaces(site_path)
+    questions = load_prepared_questions(space_root)
     return _SpaceLayoutContext(
         site_name=_resolve_site_name(site_path),
         space_name=space_root.name,
@@ -2271,8 +2472,9 @@ def _build_layout_context(
         subspaces=_load_subspaces(space_root),
         sources=sorted(projection.sources, key=lambda item: str(item.get("source_id", ""))),
         topics=sorted(projection.topics, key=lambda item: str(item.get("topic_id", ""))),
+        questions=questions,
         overview=_load_space_overview_artifact(space_root=space_root, site_path=site_path),
-        tabs=tuple(_resolve_space_tabs(space_root)),
+        tabs=tuple(_resolve_space_tabs(space_root=space_root, questions=questions)),
     )
 
 
@@ -2340,9 +2542,9 @@ def _load_site_subspaces_by_space(
     return mapping
 
 
-def _resolve_space_tabs(space_root: Path) -> list[str]:
-    del space_root  # tab set is fixed for the web UI.
-    return ["new", "sources", "topics", "users"]
+def _resolve_space_tabs(*, space_root: Path, questions: list[PreparedQuestion]) -> list[str]:
+    del space_root, questions
+    return ["new", "questions", "sources", "topics", "users"]
 
 
 def _load_space_overview_artifact(
@@ -3662,6 +3864,8 @@ def _write_space_tab_pages(
     tab_rows: dict[str, list[str]] = {}
 
     for tab_key in context.tabs:
+        if tab_key == "questions":
+            continue
         if tab_key == "sources":
             for mode in SOURCE_SORT_MODES:
                 sort_key, sort_label, _desc_path, _asc_path, _default_direction = mode
@@ -4518,6 +4722,7 @@ def _write_space_search_page(
     entries = _space_search_entries(
         space_name=context.space_name,
         projection=projection,
+        questions=context.questions,
         persona_rows=persona_rows,
         evidence_records=evidence_records,
     )
@@ -5718,6 +5923,7 @@ def _space_search_entries(
     *,
     space_name: str,
     projection: SpaceProjection,
+    questions: list[PreparedQuestion],
     persona_rows: list[dict[str, Any]],
     evidence_records: list[_EvidenceRecord],
 ) -> list[_SearchIndexEntry]:
@@ -5744,6 +5950,18 @@ def _space_search_entries(
                 title=title,
                 href=f"/spaces/{space_name}/site/topics/{topic_id}.html",
                 search_text=f"topic {topic_id} {title}",
+            )
+        )
+    for question in sorted(questions, key=lambda item: item.question_id):
+        if question.status != "active":
+            continue
+        entries.append(
+            _SearchIndexEntry(
+                item_type="question",
+                item_id=question.question_id,
+                title=question.question,
+                href=f"/spaces/{space_name}/site/questions/{question.question_id}.html",
+                search_text=f"question {question.question_id} {question.question}",
             )
         )
     for row in sorted(persona_rows, key=lambda item: str(item["persona_id"])):
@@ -6271,6 +6489,7 @@ def _render_global_site_tab_rows(
     local_rows = [
         ("new", "New", f"/spaces/{current_space_name}/site/new/index.html", None),
         ("home", "Home", f"/spaces/{current_space_name}/site/index.html", None),
+        ("questions", "Questions", f"/spaces/{current_space_name}/site/questions/index.html", None),
         (
             "overview",
             "Overview",
@@ -6308,6 +6527,8 @@ def _resolve_local_space_current_tab(*, current_tab: str | None, current_page: s
         return "overview"
     if not current_page:
         return None
+    if current_page.startswith("question:"):
+        return "questions"
     if current_page.startswith("source:"):
         return "sources"
     if current_page.startswith("topic:"):

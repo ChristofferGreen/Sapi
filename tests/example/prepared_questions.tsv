@@ -1,0 +1,81 @@
+# space_slug	question_id	display_order	question
+philosophy	question-consciousness-explanation	1	What kinds of explanation are most promising for consciousness?
+philosophy	question-personal-identity	2	What makes a person the same person over time?
+philosophy	question-mental-causation	3	How can mental states have causal power in a physical world?
+philosophy	question-free-will-responsibility	4	Which theories of free will best support moral responsibility?
+philosophy	question-grounding-methods	5	How should grounding claims be evaluated?
+philosophy	question-metaphysical-necessity	6	What distinguishes metaphysical necessity from logical or physical necessity?
+philosophy	question-evidence-for-introspection	7	How reliable is introspection as evidence about the mind?
+philosophy	question-altered-beliefs	8	Can altered states of consciousness change justified metaphysical beliefs?
+philosophy	question-reductionism-limits	9	Where do reductionist explanations break down in philosophy of mind and metaphysics?
+philosophy	question-conceptual-analysis-role	10	What role should conceptual analysis play alongside empirical evidence?
+physics	question-quantum-classical-boundary	1	Where should the boundary between quantum and classical descriptions be drawn?
+physics	question-measurement-problem	2	What evidence constrains solutions to the quantum measurement problem?
+physics	question-nisq-usefulness	3	Which near-term quantum devices demonstrate useful computational advantage?
+physics	question-quantum-networking	4	What are the main physical limits on scalable quantum networking?
+physics	question-foundations-experiments	5	Which experiments most directly test quantum foundations?
+physics	question-error-correction-thresholds	6	What error rates are required for practical fault-tolerant quantum computing?
+physics	question-variational-algorithms	7	When do variational quantum algorithms outperform classical alternatives?
+physics	question-metaphysics-in-physics	8	How should metaphysical interpretations interact with physical theory?
+physics	question-probability-in-quantum-theory	9	What does probability represent in quantum theory?
+physics	question-emergent-spacetime	10	What evidence would support emergent spacetime models?
+computer-science	question-abstraction-costs	1	How should engineers evaluate the cost of abstraction?
+computer-science	question-optimization-tradeoffs	2	When do compiler or rendering optimizations create unacceptable complexity?
+computer-science	question-machine-learning-systems	3	Where does machine learning improve systems work, and where does it fail?
+computer-science	question-parallelism-limits	4	What bottlenecks limit scalable parallel computation?
+computer-science	question-verification-value	5	Which verification methods provide the strongest assurance for complex software?
+computer-science	question-human-perception-systems	6	How should human perception shape graphics and interface algorithms?
+computer-science	question-domain-specific-languages	7	When is a domain-specific language worth building?
+computer-science	question-distributed-system-design	8	What design patterns make distributed systems easier to reason about?
+computer-science	question-performance-measurement	9	Which measurements best predict real-world performance?
+computer-science	question-composability	10	What makes a computational representation composable across domains?
+mind	question-consciousness-measurement	1	How can consciousness be measured or operationalized?
+mind	question-integrated-information	2	What does integrated information theory explain well, and where does it struggle?
+mind	question-attention-consciousness	3	How does attention relate to conscious perception?
+mind	question-alpha-oscillations	4	What role do alpha-band oscillations play in sensory suppression?
+mind	question-mindfulness-attention	5	How does mindfulness training affect attention systems?
+mind	question-meditation-safety	6	What adverse effects or safety issues are reported in meditation research?
+mind	question-self-awareness-regulation	7	How are self-awareness and self-regulation connected?
+mind	question-clinical-mindfulness-evidence	8	How strong is the clinical evidence for mindfulness-based interventions?
+mind	question-neural-correlates	9	Which neural correlates of consciousness are best supported?
+mind	question-hype-in-mind-research	10	Where does mind and mindfulness research overstate its evidence?
+metaphysics	question-grounding-necessity	1	Is grounding necessary or contingent?
+metaphysics	question-grounding-order	2	Is grounding a strict order?
+metaphysics	question-essence-grounding	3	How are essence and grounding related?
+metaphysics	question-identity-over-time	4	What explains identity over time?
+metaphysics	question-memory-personal-identity	5	How important is memory for personal identity?
+metaphysics	question-psychedelics-belief-change	6	Do psychedelics produce durable changes in metaphysical beliefs?
+metaphysics	question-causal-powers	7	What makes a property causally powerful?
+metaphysics	question-composition	8	When do parts compose a whole?
+metaphysics	question-modal-evidence	9	What counts as evidence for modal claims?
+metaphysics	question-mind-body-ontology	10	Which ontology best handles mind-body dependence?
+quantum-physics	question-nisq-era	1	What can NISQ-era quantum computers realistically achieve?
+quantum-physics	question-quantum-supremacy	2	What did quantum supremacy experiments establish and leave open?
+quantum-physics	question-quantum-internet	3	What capabilities would make a quantum internet useful?
+quantum-physics	question-photonic-processors	4	How effective are photonic quantum processors for variational algorithms?
+quantum-physics	question-quantum-machine-learning	5	Which quantum machine learning claims have evidence beyond speculation?
+quantum-physics	question-decoherence-control	6	What techniques best reduce decoherence in quantum devices?
+quantum-physics	question-error-mitigation	7	How far can error mitigation go before full error correction is needed?
+quantum-physics	question-hardware-comparison	8	How should superconducting, ion-trap, and photonic hardware be compared?
+quantum-physics	question-entanglement-distribution	9	What limits long-distance entanglement distribution?
+quantum-physics	question-classical-simulation	10	Which quantum systems are hardest to simulate classically?
+graphics	question-sphere-tracing	1	When is sphere tracing preferable to mesh-based rendering?
+graphics	question-antialiasing-implicit-surfaces	2	How should implicit surfaces be antialiased?
+graphics	question-crowd-rendering	3	What makes image-based crowd rendering convincing and efficient?
+graphics	question-edge-bundling	4	When does edge bundling improve graph readability?
+graphics	question-foveated-rendering	5	How much computation can foveated rendering save without visible artifacts?
+graphics	question-level-of-detail	6	Which level-of-detail strategies work best for large graph visualization?
+graphics	question-perceptual-error	7	How should perceptual error be measured in graphics algorithms?
+graphics	question-real-time-constraints	8	What tradeoffs matter most in real-time rendering systems?
+graphics	question-visual-clutter	9	How can rendering systems reduce visual clutter without hiding structure?
+graphics	question-gpu-memory-bandwidth	10	When is graphics performance limited by memory bandwidth rather than compute?
+compilers	question-profile-guided-optimization	1	How reliable is profile-guided optimization across workloads?
+compilers	question-ml-compiler-optimization	2	Where does machine learning improve compiler optimization decisions?
+compilers	question-quantum-compilers	3	What makes distributed quantum compiler design difficult?
+compilers	question-wcet-reduction	4	How can compiler frameworks reduce worst-case execution time?
+compilers	question-dna-circuit-compilers	5	What compiler abstractions work for DNA strand-displacement circuits?
+compilers	question-optimization-correctness	6	How should compilers preserve correctness during aggressive optimization?
+compilers	question-ir-design	7	What properties make an intermediate representation effective?
+compilers	question-autotuning	8	When is autotuning better than static compiler heuristics?
+compilers	question-debuggability	9	How can optimized code remain debuggable?
+compilers	question-energy-performance	10	How should compilers trade off energy use against runtime performance?
