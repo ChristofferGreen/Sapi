@@ -47,21 +47,20 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0371`: Map ingested sources to prepared questions
+1. `TODO-0372`: Generate cumulative question synthesis
 
 ### Immediate Next 10 (After Ready Now)
 
-1. TODO-0372: Generate cumulative question synthesis
-2. TODO-0373: Render questions index as the space front page
-3. TODO-0374: Extract and render question measurement values
-4. TODO-0375: Wire question refresh metadata, wrappers, and run envelopes
-5. TODO-0377: Seed prepared questions during example-site creation
-6. TODO-0376: Add prepared-question test and verification coverage
+1. TODO-0373: Render questions index as the space front page
+2. TODO-0374: Extract and render question measurement values
+3. TODO-0375: Wire question refresh metadata, wrappers, and run envelopes
+4. TODO-0377: Seed prepared questions during example-site creation
+5. TODO-0376: Add prepared-question test and verification coverage
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: TODO-0371, TODO-0372, TODO-0373, TODO-0375, TODO-0377
+- P1 Core product behavior: TODO-0372, TODO-0373, TODO-0375, TODO-0377
 - P2 Social/eval/hardening: TODO-0374, TODO-0376
 - P3 Continuous docs governance: (none currently)
 
@@ -71,9 +70,8 @@ Wave A (bootstrap + contracts):
 1. (none currently)
 
 Wave B (ingest + projection + lint):
-1. TODO-0371: Map ingested sources to prepared questions
-2. TODO-0372: Generate cumulative question synthesis
-3. TODO-0373: Render questions index as the space front page
+1. TODO-0372: Generate cumulative question synthesis
+2. TODO-0373: Render questions index as the space front page
 
 Wave C (query + social + hardening + release):
 1. TODO-0374: Extract and render question measurement values
@@ -92,12 +90,12 @@ Cross-cutting docs backlog:
 | Design area | Primary TODO IDs |
 | --- | --- |
 | Section 1 (scope/authority/reading) | - |
-| Section 2 (runtime policy + semantic loop + mock mode) | TODO-0371, TODO-0372 |
+| Section 2 (runtime policy + semantic loop + mock mode) | TODO-0372 |
 | Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | - |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | TODO-0374 |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | TODO-0375, TODO-0377 |
-| Section 7.1 ingest pipeline | TODO-0371, TODO-0374 |
+| Section 7.1 ingest pipeline | TODO-0374 |
 | Section 7.2 references/linking | - |
 | Section 7.3 query pipeline | TODO-0372 |
 | Section 7.4 persona catalog | - |
@@ -115,12 +113,12 @@ Cross-cutting docs backlog:
 
 | Low-level area | Primary TODO IDs |
 | --- | --- |
-| Section 2 (runtime model and flow namespaces) | TODO-0371, TODO-0372, TODO-0375 |
+| Section 2 (runtime model and flow namespaces) | TODO-0372, TODO-0375 |
 | Section 4 (core data types/run envelope types) | TODO-0374 |
 | Section 5 (path + registry contracts) | - |
-| Section 6 (semantic execution engine + retry/repair) | TODO-0371, TODO-0372, TODO-0374 |
+| Section 6 (semantic execution engine + retry/repair) | TODO-0372, TODO-0374 |
 | Section 7 (transaction/rollback) | - |
-| Section 8 (pipeline execution contracts) | TODO-0371, TODO-0372, TODO-0375 |
+| Section 8 (pipeline execution contracts) | TODO-0372, TODO-0375 |
 | Section 9 (deterministic build/projection) | TODO-0373, TODO-0374, TODO-0377 |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
@@ -135,7 +133,7 @@ Cross-cutting docs backlog:
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (test module layout) | TODO-0376 |
-| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0371, TODO-0372, TODO-0375, TODO-0377 |
+| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0372, TODO-0375, TODO-0377 |
 | Tier 4-6 (determinism/golden/live canary) | TODO-0373, TODO-0374, TODO-0376, TODO-0377 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0375, TODO-0376 |
 | Section 6 (exit criteria gating) | TODO-0376 |
@@ -154,13 +152,13 @@ Cross-cutting docs backlog:
     - Example question sets are stored in a documented fixture or seed-data location with stable IDs, display order, scope, and update guidance.
     - Recreating the example site produces question front pages for every seeded space/subspace, with empty question detail pages before ingest and populated detail pages after relevant sources are ingested.
     - Tests or verification scripts assert that newly created example spaces/subspaces contain the expected prepared-question records and that the rendered example site exposes those questions as the landing experience.
-  - notes: Creation-time seed artifacts, wrapper wiring, example TSV, and deterministic question index/detail rendering are implemented. Source/evidence population after ingest still depends on TODO-0371 and TODO-0372.
+  - notes: Creation-time seed artifacts, wrapper wiring, example TSV, and deterministic question index/detail rendering are implemented. Question synthesis population after ingest still depends on TODO-0372.
 
 - [ ] TODO-0376: Add prepared-question test and verification coverage
   - owner: ai
   - created_at: 2026-04-30
   - phase: Prepared questions
-  - depends_on: TODO-0371, TODO-0372, TODO-0373, TODO-0374, TODO-0375, TODO-0377
+  - depends_on: TODO-0372, TODO-0373, TODO-0374, TODO-0375, TODO-0377
   - scope: Add focused unit, integration, deterministic build, golden, and optional live-canary coverage for the prepared-question feature.
   - acceptance:
     - Unit tests cover schema resolution, question ID/link validation, measurement compatibility, and synthesis freshness decisions.
@@ -175,7 +173,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-30
   - phase: Prepared questions
-  - depends_on: TODO-0371, TODO-0372, TODO-0373
+  - depends_on: TODO-0372, TODO-0373
   - scope: Integrate question pipelines with operator wrappers, runtime flags, run envelopes, lint artifacts, and deterministic post-processing decisions.
   - acceptance:
     - Add or update wrappers/scripts for creating, refreshing, validating, and rebuilding prepared question artifacts.
@@ -189,7 +187,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-30
   - phase: Prepared questions
-  - depends_on: TODO-0371
+  - depends_on: none
   - scope: Add optional structured measurement extraction for question-relevant evidence and deterministic table/chart rendering for compatible measurement rows.
   - acceptance:
     - Measurement records capture source ID, claim ID or evidence ID, measure name, value/range, unit, population/context, outcome, comparator, and uncertainty metadata when available.
@@ -216,7 +214,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-30
   - phase: Prepared questions
-  - depends_on: TODO-0371
+  - depends_on: none
   - scope: Add a question synthesis pipeline that regenerates answer/conclusion text from all sources, claims, and evidence linked to each affected prepared question.
   - acceptance:
     - `question_synthesis` receives only the prepared question plus canonical linked source/claim/evidence context and previous synthesis/freshness metadata where useful.
@@ -225,17 +223,3 @@ Cross-cutting docs backlog:
     - Deterministic post-processing writes synthesis fields back to the canonical question artifact without inventing prose outside the semantic output.
     - Unchanged input signatures skip semantic regeneration and still emit auditable run metadata if the pipeline is invoked directly.
   - notes: This is persistent synthesis, not an ad hoc query answer.
-
-- [ ] TODO-0371: Map ingested sources to prepared questions
-  - owner: ai
-  - created_at: 2026-04-30
-  - phase: Prepared questions
-  - depends_on: none
-  - scope: Extend ingest so each successful source ingest can ask a semantic flow which prepared questions the new source is relevant to, then update affected question records transactionally.
-  - acceptance:
-    - Ingest invokes `question_relevance_mapping` after canonical source/claim/evidence artifacts exist and before final question synthesis/post-processing.
-    - The relevance output maps the new source to zero or more existing prepared questions with source IDs, claim IDs, evidence IDs, relevance scores or rationales, and no invented question IDs.
-    - If a space/subspace has no active prepared questions, ingest records a no-question-mapping decision and continues without invoking a semantic relevance flow.
-    - Failed relevance mapping follows the shared semantic retry/rollback policy and does not leave partial question-link writes in default mode.
-    - Run metadata records the new semantic flow and invocation count when question mapping runs, and records zero question updates when no questions match.
-  - notes: Mapping must be additive and auditable; query pipeline must not mutate question records.

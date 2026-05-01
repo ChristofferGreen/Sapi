@@ -910,19 +910,30 @@ Core steps:
    - semantic source reading MUST prefer `source.md` and inspect `source_extraction.json` for quality/provenance
      before falling back to the original binary
 5. validate and persist canonical claim/relation outputs from ingest extraction
-6. run `topic_generation` generation spec using source + claim context; validate and deterministically persist `0..n` canonical topic JSON pages when cross-source concepts are supported
-7. run deterministic link reconciliation so source/claim/topic artifacts are mutually connected and all required references resolve
+6. if active prepared questions exist, run `question_relevance_mapping` after source/claim/evidence
+   artifacts are canonical and before topic/build post-processing; update only existing active question
+   records with the new source ID plus schema-grounded claim/evidence IDs.
+   - if no active prepared questions exist, do not invoke the semantic flow and record
+     `question_mapping_status: no_active_questions` with zero question updates.
+   - if the flow returns no matches, preserve question records and record
+     `question_mapping_status: no_matches` with zero question updates.
+   - failed question relevance mapping follows the same semantic retry and rollback policy as
+     ingest extraction and MUST NOT leave partial question-link writes in default mode.
+7. run `topic_generation` generation spec using source + claim context; validate and deterministically persist `0..n` canonical topic JSON pages when cross-source concepts are supported
+8. run deterministic link reconciliation so source/claim/topic/question artifacts are mutually connected and all required references resolve
    - same pass SHOULD also persist curated `external_related_links[]` plus `related_link_enrichment`
      metadata on source records
-8. run deterministic projection/reindex/site build from canonical JSON (or mark run `build_deferred` in reconstruction bootstrap mode)
-9. run lint gate, write run record, and always release lock
+9. run deterministic projection/reindex/site build from canonical JSON (or mark run `build_deferred` in reconstruction bootstrap mode)
+10. run lint gate, write run record, and always release lock
 
 Run envelope model for multi-semantic commands (normative):
 - run metadata is command-scoped (`run_id` identifies one wrapper/entrypoint invocation).
 - `flow_key` identifies the command/pipeline (`ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`, `overview_pipeline`).
 - `semantic_flows[]` records an ordered unique list of semantic generation flow keys executed at least once during that command invocation.
 - `semantic_flow_invocation_counts` records per-flow invocation counts for the same command invocation.
-- normal ingest writes `semantic_flows: [ingest_extraction, topic_generation]` and `semantic_flow_invocation_counts: {ingest_extraction: 1, topic_generation: 1}`.
+- normal ingest without active prepared questions writes `semantic_flows: [ingest_extraction, topic_generation]` and `semantic_flow_invocation_counts: {ingest_extraction: 1, topic_generation: 1}`.
+- ingest with active prepared questions inserts `question_relevance_mapping` after `ingest_extraction`
+  and before `topic_generation`, with invocation count `1` when mapping actually runs.
 - ingest runs that execute automatic revision detection prepend `source_revision_detection` to `semantic_flows` with invocation count `1`; explicit `--revises-source-id` runs MUST NOT invoke `source_revision_detection`.
 - ingest does not support semantic-flow bypass flags.
 
@@ -1838,7 +1849,7 @@ Canonical run-record metadata (normative base envelope for committed runs):
 - `semantic_flows` values MUST be an ordered unique subset of canonical semantic flow keys from: `ingest_extraction`, `topic_generation`, `source_revision_detection`, `query_synthesis`, `comment_section_generation`, `persona_profile_generation`, `space_overview_generation`, `question_relevance_mapping`, `question_synthesis`, `question_measurement_extraction`
 - `semantic_flow_invocation_counts` keys MUST be canonical semantic flow keys and values MUST be positive integers; every key in `semantic_flows` MUST appear in this map.
 - flow-specific frontmatter extensions:
-  - ingest pipeline: `ingest_scope`, `source_ids`, nullable `parent_run_id`, changed sets (`claims_changed`, `relations_changed`, `topic_pages_changed`), optional deferred-build flags (`build_deferred`, `deferred_build_reason`), optional force-mode flags (`force_mode`, `rollback_skipped`)
+  - ingest pipeline: `ingest_scope`, `source_ids`, nullable `parent_run_id`, changed sets (`claims_changed`, `relations_changed`, `topic_pages_changed`, `question_matches_changed`), question mapping status (`question_mapping_status`), optional deferred-build flags (`build_deferred`, `deferred_build_reason`), optional force-mode flags (`force_mode`, `rollback_skipped`)
   - query pipeline: `query_id`, `mode`, `scope`, `claims_used`, `sources_used`, `contradictions_considered`, nullable `manifest_path`
   - comment-section pipeline: `target_page_refs`, `comment_user_filters`, `requested_count`, `comments_added`, `evidence_mode`, nullable `evidence_snapshot_path`
   - persona-profile pipeline: `persona_ids`, `history_generated`, `history_updated`, `history_reused`, `pages_changed`

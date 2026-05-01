@@ -394,7 +394,9 @@ Prepared-question implementation ownership:
   display ordering, writer/upsert semantics, linked source/claim/evidence validation, and seed import.
 - ingest-time source-to-question relevance mapping belongs in the ingest pipeline only as an
   orchestrator; prompt preparation, output validation, and question-record mutation should delegate
-  to `sapi/questions/`.
+  to `sapi/questions/`. `sapi/questions/relevance_mapping.py` owns the semantic invocation wrapper,
+  active-question filtering, source/claim/evidence grounding checks, and transactional question-record
+  mutation for `question_relevance_mapping`.
 - cumulative question synthesis belongs in `sapi/questions/` and is invoked after relevance mapping or
   explicit refresh. It must consume canonical linked source/claim/evidence context and persist only
   schema-valid semantic output.
@@ -465,18 +467,23 @@ Control flow:
 6. persist canonical evidence records from semantic `evidence_items[]` under `<space_root>/evidence/`
 7. deterministic ingest validation MUST resolve `evidence_items[].claim_refs` to canonical claim IDs and fail fast on invalid refs
 8. deterministic ingest code MUST NOT derive evidence IDs/titles/excerpts from claim text
-9. run semantic flow `topic_generation`
-10. deterministically write 0..n canonical topic artifacts from shared cross-source concepts
-11. set `semantic_flows = [ingest_extraction, topic_generation]`, or `[source_revision_detection, ingest_extraction, topic_generation]` only when automatic revision detection actually runs
-12. set `semantic_flow_invocation_counts` to match exactly the flows invoked in this ingest run
-13. run link reconciliation
+9. when active prepared questions exist, run semantic flow `question_relevance_mapping`, validate that
+   every matched question is active and every claim/evidence ID belongs to the newly ingested source,
+   then transactionally append source/claim/evidence links to matched question records
+10. when no active prepared questions exist, skip `question_relevance_mapping` and set
+   `question_mapping_status = no_active_questions` with `question_matches_changed = 0`
+11. run semantic flow `topic_generation`
+12. deterministically write 0..n canonical topic artifacts from shared cross-source concepts
+13. set `semantic_flows = [ingest_extraction, topic_generation]`, `[ingest_extraction, question_relevance_mapping, topic_generation]`, or `[source_revision_detection, ingest_extraction, question_relevance_mapping, topic_generation]` only when those optional flows actually run
+14. set `semantic_flow_invocation_counts` to match exactly the flows invoked in this ingest run
+15. run link reconciliation
     - reference extraction prefers `source.md` when `analysis_policy.quality_status != unusable`
     - same step MAY persist curated `external_related_links[]` plus `related_link_enrichment`
       summary metadata on source records
-13. run deterministic projection/build and site-root `New` index refresh (or bootstrap deferred mode)
-14. run lint and warning-threshold evaluation
-15. write `run.md` and `lint.json` for committed run
-16. release lock
+16. run deterministic projection/build and site-root `New` index refresh (or bootstrap deferred mode)
+17. run lint and warning-threshold evaluation
+18. write `run.md` and `lint.json` for committed run
+19. release lock
 
 Bootstrap deferred-build behavior:
 - when projection/build modules are intentionally unavailable during reconstruction bootstrap, ingest MAY mark:

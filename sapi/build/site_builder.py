@@ -1758,6 +1758,7 @@ def _write_question_pages(
 
     source_by_id = {str(source["source_id"]): source for source in projection.sources}
     claim_by_id = _load_claim_records(space_root=output_root.parent)
+    claim_option_title_by_id = load_claim_option_titles(space_root=output_root.parent)
     evidence_by_id = {record.evidence_id: record for record in evidence_records}
     for question in active_questions:
         question_path = question_root / f"{question.question_id}.html"
@@ -1767,6 +1768,7 @@ def _write_question_pages(
                 question=question,
                 source_by_id=source_by_id,
                 claim_by_id=claim_by_id,
+                claim_option_title_by_id=claim_option_title_by_id,
                 evidence_by_id=evidence_by_id,
                 context=context,
                 stylesheet_href=_relative_href(
@@ -1785,6 +1787,7 @@ def _render_question_page(
     question: PreparedQuestion,
     source_by_id: dict[str, dict[str, Any]],
     claim_by_id: dict[str, dict[str, Any]],
+    claim_option_title_by_id: dict[str, str],
     evidence_by_id: dict[str, _EvidenceRecord],
     context: _SpaceLayoutContext,
     stylesheet_href: str,
@@ -1807,7 +1810,10 @@ def _render_question_page(
         + "</p>\n",
         _render_question_synthesis_section(question),
         _render_question_source_section(linked_sources),
-        _render_question_claim_section(linked_claims),
+        _render_question_claim_section(
+            linked_claims,
+            claim_option_title_by_id=claim_option_title_by_id,
+        ),
         _render_question_evidence_section(linked_evidence),
     ]
     if question.warnings:
@@ -1857,7 +1863,11 @@ def _render_question_source_section(sources: list[dict[str, Any]]) -> str:
     return "<h2>Sources</h2>\n<ul class=\"feed-list\">\n" + rows + "\n</ul>\n"
 
 
-def _render_question_claim_section(claims: list[dict[str, Any]]) -> str:
+def _render_question_claim_section(
+    claims: list[dict[str, Any]],
+    *,
+    claim_option_title_by_id: dict[str, str],
+) -> str:
     if not claims:
         return "<h2>Claims</h2>\n<p>No claims have been linked to this question yet.</p>\n"
     rows = "\n".join(
@@ -1865,7 +1875,12 @@ def _render_question_claim_section(claims: list[dict[str, Any]]) -> str:
             "<li><a href=\"../claims/"
             + escape(str(claim["claim_id"]))
             + ".html\">"
-            + escape(claim_option_title(claim))
+            + escape(
+                claim_option_title(
+                    claim_id=str(claim["claim_id"]),
+                    claim_option_title_by_id=claim_option_title_by_id,
+                )
+            )
             + "</a></li>"
         )
         for claim in sorted(claims, key=lambda item: str(item["claim_id"]))

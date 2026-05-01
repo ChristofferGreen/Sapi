@@ -30,6 +30,21 @@ class IngestCommentEnrichmentBoundaryTests(unittest.TestCase):
             },
         )
 
+    def test_question_mapping_plan_runs_after_extraction_before_topics(self) -> None:
+        plan = plan_ingest_semantic_execution(include_question_relevance_mapping=True)
+        self.assertEqual(
+            plan.semantic_flows,
+            ["ingest_extraction", "question_relevance_mapping", "topic_generation"],
+        )
+        self.assertEqual(
+            plan.semantic_flow_invocation_counts,
+            {
+                "ingest_extraction": 1,
+                "question_relevance_mapping": 1,
+                "topic_generation": 1,
+            },
+        )
+
     def test_optional_enrichment_requires_explicit_opt_in(self) -> None:
         with self.assertRaises(ValueError):
             plan_ingest_semantic_execution(

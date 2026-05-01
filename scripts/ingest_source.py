@@ -65,6 +65,11 @@ from sapi.llm.runtime_backend import (
     generate_semantic_json_live,
 )
 from sapi.llm.trace import SiteLlmTraceContext
+from sapi.questions.prepared_questions import active_prepared_questions
+from sapi.questions.relevance_mapping import (
+    QuestionRelevanceMappingResult,
+    run_question_relevance_mapping_and_update,
+)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -110,6 +115,7 @@ def main() -> int:
     space_root = None
     result = None
     extraction_result = None
+    question_mapping_result: QuestionRelevanceMappingResult | None = None
     topic_result = None
     build_manifest_path = None
     build_deferred = False
@@ -303,6 +309,33 @@ def main() -> int:
                 llm_attempt_count=llm_attempt_count,
                 attempt_count=extraction_result.attempt_count,
             )
+            active_questions = active_prepared_questions(space_root)
+            if active_questions:
+                record_semantic_invocation(
+                    flow_key="question_relevance_mapping",
+                    semantic_flows=semantic_flows,
+                    semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+                )
+            question_mapping_result = run_question_relevance_mapping_and_update(
+                space_root=space_root,
+                source_id=result.source_id,
+                run_id=run_id,
+                llm_client=_build_question_relevance_mapping_client(
+                    runtime_flags=runtime_flags,
+                    space_root=space_root,
+                    source_id=result.source_id,
+                    question_ids=[question.question_id for question in active_questions],
+                    claim_ids=[path.stem for path in extraction_result.claim_paths],
+                    evidence_ids=[path.stem for path in extraction_result.evidence_paths],
+                ),
+                transaction=transaction,
+                trace_ctx=trace_ctx,
+            )
+            if question_mapping_result.attempt_count:
+                llm_attempt_count = add_llm_attempts(
+                    llm_attempt_count=llm_attempt_count,
+                    attempt_count=question_mapping_result.attempt_count,
+                )
             record_semantic_invocation(
                 flow_key="topic_generation",
                 semantic_flows=semantic_flows,
@@ -361,6 +394,7 @@ def main() -> int:
             flow_fields = _make_ingest_flow_fields(
                 source_id=result.source_id if result is not None else None,
                 extraction_result=extraction_result,
+                question_mapping_result=question_mapping_result,
                 topic_result=topic_result,
                 build_deferred=build_deferred,
                 deferred_build_reason=deferred_build_reason,
@@ -424,6 +458,7 @@ def main() -> int:
     flow_fields = _make_ingest_flow_fields(
         source_id=result.source_id,
         extraction_result=extraction_result,
+        question_mapping_result=question_mapping_result,
         topic_result=topic_result,
         build_deferred=build_deferred,
         deferred_build_reason=deferred_build_reason,
@@ -436,6 +471,9 @@ def main() -> int:
             requested_comment_count=args.comment_count,
             comment_target_page_refs=args.comment_page if args.comment_page else None,
             include_source_revision_detection=revision_detection_result is not None,
+            include_question_relevance_mapping=(
+                question_mapping_result is not None and question_mapping_result.attempt_count > 0
+            ),
         )
     if ingest_semantic_plan is not None and semantic_flow_invocation_counts != ingest_semantic_plan.semantic_flow_invocation_counts:
         raise RuntimeError(
@@ -458,6 +496,7 @@ def main() -> int:
             f"claims_changed={flow_fields.claims_changed}, "
             f"relations_changed={flow_fields.relations_changed}, "
             f"topic_pages_changed={flow_fields.topic_pages_changed}"
+            f", question_matches_changed={flow_fields.question_matches_changed}"
         ),
         lint_summary=lint_summary,
         errors="",
@@ -487,6 +526,12 @@ def main() -> int:
         summary += (
             f"claims_written={len(extraction_result.claim_paths)}, "
             f"relations_written={len(extraction_result.relation_paths)}"
+        )
+    if question_mapping_result is not None:
+        summary += (
+            f", question_mapping_status={question_mapping_result.status}, "
+            f"question_matches_changed={len(question_mapping_result.updated_question_paths)}, "
+            f"matched_question_ids={list(question_mapping_result.matched_question_ids)}"
         )
     if topic_result is not None:
         summary += (
@@ -578,6 +623,7 @@ def _make_ingest_flow_fields(
     *,
     source_id: str | None,
     extraction_result: IngestExtractionPersistResult | None,
+    question_mapping_result: QuestionRelevanceMappingResult | None,
     topic_result: TopicGenerationPersistResult | None,
     build_deferred: bool,
     deferred_build_reason: str | None,
@@ -592,6 +638,11 @@ def _make_ingest_flow_fields(
         relations_changed = len(extraction_result.relation_paths)
     if topic_result is not None:
         topic_pages_changed = len(topic_result.topics)
+    question_mapping_status = "not_run"
+    question_matches_changed = 0
+    if question_mapping_result is not None:
+        question_mapping_status = question_mapping_result.status
+        question_matches_changed = len(question_mapping_result.updated_question_paths)
     return IngestRunFields(
         ingest_scope="space",
         source_ids=[source_id] if source_id is not None else [],
@@ -603,6 +654,8 @@ def _make_ingest_flow_fields(
         deferred_build_reason=deferred_build_reason,
         force_mode=force_mode,
         rollback_skipped=rollback_skipped,
+        question_mapping_status=question_mapping_status,
+        question_matches_changed=question_matches_changed,
     )
 
 
@@ -705,6 +758,32 @@ def _build_topic_generation_client(
         claim_ids=claim_ids,
         claims_context=claims_context,
         sources_context=sources_context,
+    )
+
+
+def _build_question_relevance_mapping_client(
+    *,
+    runtime_flags: RuntimeFlagSnapshot,
+    space_root: Path,
+    source_id: str,
+    question_ids: list[str],
+    claim_ids: list[str],
+    evidence_ids: list[str],
+):
+    if runtime_flags.mock_llm:
+        return _MockQuestionRelevanceMappingClient(
+            source_id=source_id,
+            question_ids=question_ids,
+            claim_ids=claim_ids,
+            evidence_ids=evidence_ids,
+        )
+    return _LiveQuestionRelevanceMappingClient(
+        backend_config=_backend_config_from_runtime_flags(runtime_flags),
+        source_id=source_id,
+        question_context=_load_prepared_question_context(space_root=space_root),
+        source_context=_load_source_context_for_id(space_root=space_root, source_id=source_id),
+        claim_context=_load_claim_context_for_ids(space_root=space_root, claim_ids=claim_ids),
+        evidence_context=_load_evidence_context_for_ids(space_root=space_root, evidence_ids=evidence_ids),
     )
 
 
@@ -974,6 +1053,44 @@ class _MockTopicGenerationClient:
         return json.dumps(payload)
 
 
+class _MockQuestionRelevanceMappingClient:
+    """Deterministic relevance-mapping client for explicit --mock-llm mode."""
+
+    def __init__(
+        self,
+        *,
+        source_id: str,
+        question_ids: list[str],
+        claim_ids: list[str],
+        evidence_ids: list[str],
+    ) -> None:
+        self._source_id = source_id
+        self._question_ids = list(question_ids)
+        self._claim_ids = list(claim_ids)
+        self._evidence_ids = list(evidence_ids)
+
+    def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
+        matches: list[dict[str, object]] = []
+        if self._question_ids:
+            matches.append(
+                {
+                    "question_id": self._question_ids[0],
+                    "relevance": "high",
+                    "rationale": "Mock relevance mapping links the new source to the first active question.",
+                    "claim_ids": self._claim_ids,
+                    "evidence_ids": self._evidence_ids,
+                }
+            )
+        return json.dumps(
+            {
+                "schema_version": "question_relevance_mapping_v1",
+                "source_id": self._source_id,
+                "question_matches": matches,
+                "warnings": [],
+            }
+        )
+
+
 class _LiveTopicGenerationClient:
     def __init__(
         self,
@@ -1018,6 +1135,59 @@ class _LiveTopicGenerationClient:
         )
 
 
+class _LiveQuestionRelevanceMappingClient:
+    def __init__(
+        self,
+        *,
+        backend_config: SemanticBackendConfig,
+        source_id: str,
+        question_context: list[dict[str, object]],
+        source_context: dict[str, object],
+        claim_context: list[dict[str, object]],
+        evidence_context: list[dict[str, object]],
+    ) -> None:
+        self._backend_config = backend_config
+        self._source_id = source_id
+        self._question_context = question_context
+        self._source_context = source_context
+        self._claim_context = claim_context
+        self._evidence_context = evidence_context
+
+    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
+        return generate_semantic_json_live(
+            request=request,
+            backend_config=self._backend_config,
+            task_context={
+                "task_requirements": {
+                    "must_include_source_id": self._source_id,
+                    "allowed_question_ids": [
+                        row["question_id"]
+                        for row in self._question_context
+                        if isinstance(row.get("question_id"), str)
+                    ],
+                    "allowed_claim_ids": [
+                        row["claim_id"]
+                        for row in self._claim_context
+                        if isinstance(row.get("claim_id"), str)
+                    ],
+                    "allowed_evidence_ids": [
+                        row["evidence_id"]
+                        for row in self._evidence_context
+                        if isinstance(row.get("evidence_id"), str)
+                    ],
+                    "mapping_policy": (
+                        "Map only active prepared questions that the newly ingested source directly helps "
+                        "answer. Emit question_matches=[] when relevance is weak or unsupported."
+                    ),
+                },
+                "new_source": self._source_context,
+                "active_prepared_questions": self._question_context,
+                "new_source_claims": self._claim_context,
+                "new_source_evidence": self._evidence_context,
+            },
+        )
+
+
 def _load_claim_context(*, space_root: Path, limit: int = 180) -> list[dict[str, object]]:
     claims_root = space_root / "claims"
     if not claims_root.is_dir():
@@ -1039,6 +1209,50 @@ def _load_claim_context(*, space_root: Path, limit: int = 180) -> list[dict[str,
             }
         )
     return claim_rows
+
+
+def _load_prepared_question_context(*, space_root: Path) -> list[dict[str, object]]:
+    return [
+        {
+            "question_id": question.question_id,
+            "question": question.question,
+            "status": question.status,
+            "display_order": question.display_order,
+        }
+        for question in active_prepared_questions(space_root)
+    ]
+
+
+def _load_source_context_for_id(*, space_root: Path, source_id: str) -> dict[str, object]:
+    path = space_root / "sources" / "records" / f"{source_id}.json"
+    if not path.is_file():
+        return {"source_id": source_id}
+    payload = json.loads(path.read_text())
+    return payload if isinstance(payload, dict) else {"source_id": source_id}
+
+
+def _load_claim_context_for_ids(*, space_root: Path, claim_ids: list[str]) -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for claim_id in claim_ids:
+        path = space_root / "claims" / f"{claim_id}.json"
+        if not path.is_file():
+            continue
+        payload = json.loads(path.read_text())
+        if isinstance(payload, dict):
+            rows.append(payload)
+    return rows
+
+
+def _load_evidence_context_for_ids(*, space_root: Path, evidence_ids: list[str]) -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for evidence_id in evidence_ids:
+        path = space_root / "evidence" / f"{evidence_id}.json"
+        if not path.is_file():
+            continue
+        payload = json.loads(path.read_text())
+        if isinstance(payload, dict):
+            rows.append(payload)
+    return rows
 
 
 def _load_source_context(*, space_root: Path, limit: int = 80) -> list[dict[str, object]]:

@@ -9,6 +9,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 import scripts.generate_profiles as generate_profiles
+import scripts.create_prepared_questions as create_prepared_questions
 import scripts.ingest_source as ingest_source
 from tests.conftest import (
     assert_no_run_containers,
@@ -50,6 +51,57 @@ class SemanticRepairExhaustionRollbackIntegrationTests(unittest.TestCase):
             self.assertEqual(list((space_root / "sources" / "records").glob("*.json")), [])
             self.assertEqual(list((space_root / "claims").glob("*.json")), [])
             self.assertEqual(list((space_root / "relations").glob("*.json")), [])
+            self.assertEqual(list((space_root / "topics").glob("*.json")), [])
+            assert_no_run_containers(space_root)
+
+    def test_question_mapping_repair_exhaustion_rolls_back_default_ingest_writes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            questions_tsv = tmp_root / "questions.tsv"
+            questions_tsv.write_text(
+                "alpha\tquestion-protein-intake\t1\tWhat protein intake supports muscle growth?\n"
+            )
+            with patch(
+                "sys.argv",
+                [
+                    "create_prepared_questions.py",
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--questions-tsv",
+                    str(questions_tsv),
+                ],
+            ):
+                self.assertEqual(create_prepared_questions.main(), 0)
+            question_path = space_root / "questions" / "question-protein-intake.json"
+            original_question_text = question_path.read_text()
+            source_path = write_source_fixture(tmp_root, content="question mapping repair exhaustion fixture\n")
+
+            stderr = io.StringIO()
+            argv = [
+                "ingest_source.py",
+                "alpha",
+                str(source_path),
+                "--registry-path",
+                str(site_path / "spaces.toml"),
+                "--mock-llm",
+            ]
+            with patch.object(
+                ingest_source._MockQuestionRelevanceMappingClient,
+                "generate_semantic_json",
+                return_value=json.dumps({"question_matches": []}),
+            ):
+                with patch("sys.argv", argv):
+                    with redirect_stderr(stderr):
+                        exit_code = ingest_source.main()
+
+            self.assertNotEqual(exit_code, 0)
+            self.assertIn("question_relevance_mapping", stderr.getvalue())
+            self.assertEqual(question_path.read_text(), original_question_text)
+            self.assertEqual(list((space_root / "sources" / "records").glob("*.json")), [])
+            self.assertEqual(list((space_root / "claims").glob("*.json")), [])
+            self.assertEqual(list((space_root / "evidence").glob("*.json")), [])
             self.assertEqual(list((space_root / "topics").glob("*.json")), [])
             assert_no_run_containers(space_root)
 

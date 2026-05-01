@@ -62,6 +62,8 @@ class IngestSemanticFlowIntegrationTests(unittest.TestCase):
             self.assertGreater(frontmatter["claims_changed"], 0)
             self.assertEqual(frontmatter["relations_changed"], 0)
             self.assertEqual(frontmatter["topic_pages_changed"], 0)
+            self.assertEqual(frontmatter["question_mapping_status"], "no_active_questions")
+            self.assertEqual(frontmatter["question_matches_changed"], 0)
 
             semantic_dir = run_dir / "semantic"
             self.assertTrue((semantic_dir / "ingest_extraction.json").is_file())

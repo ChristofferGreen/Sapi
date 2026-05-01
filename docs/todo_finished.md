@@ -4,6 +4,22 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-05-01
 
+- [x] TODO-0371: Map ingested sources to prepared questions
+  - owner: ai
+  - created_at: 2026-04-30
+  - phase: Prepared questions
+  - finished_at: 2026-05-01
+  - depends_on: none
+  - scope: Extend ingest so each successful source ingest can ask a semantic flow which prepared questions the new source is relevant to, then update affected question records transactionally.
+  - acceptance:
+    - Ingest invokes `question_relevance_mapping` after canonical source/claim/evidence artifacts exist and before final question synthesis/post-processing.
+    - The relevance output maps the new source to zero or more existing prepared questions with source IDs, claim IDs, evidence IDs, relevance scores or rationales, and no invented question IDs.
+    - If a space/subspace has no active prepared questions, ingest records a no-question-mapping decision and continues without invoking a semantic relevance flow.
+    - Failed relevance mapping follows the shared semantic retry/rollback policy and does not leave partial question-link writes in default mode.
+    - Run metadata records the new semantic flow and invocation count when question mapping runs, and records zero question updates when no questions match.
+  - notes: Mapping is additive and auditable; query pipeline does not mutate question records.
+  - evidence: Added `sapi/questions/relevance_mapping.py`, wired ingest to run `question_relevance_mapping` after extraction when active prepared questions exist, persisted transactional source/claim/evidence links on matched questions, recorded question mapping status/update counts in run metadata, fixed linked-claim question page rendering, and added unit/integration/rollback coverage.
+
 - [x] TODO-0370: Implement canonical question storage and loaders
   - owner: ai
   - created_at: 2026-04-30

@@ -66,6 +66,8 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
                     "claims_changed": len(claim_records),
                     "relations_changed": len(relation_records),
                     "topic_pages_changed": len(topic_records),
+                    "question_mapping_status": "no_active_questions",
+                    "question_matches_changed": 0,
                     "lint_error_count": 0,
                     "lint_warning_count": 0,
                     "lint_info_count": 0,
@@ -88,6 +90,79 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
             build_manifest_path = site_path / "outputs" / "build_site" / "manifest.json"
             self.assertTrue(build_manifest_path.is_file())
             self.assertIn("build_manifest_path=", result.stdout)
+
+    def test_ingest_maps_new_source_to_active_prepared_questions(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path = bootstrap_site_and_space(tmp_root, "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            questions_tsv = tmp_root / "questions.tsv"
+            questions_tsv.write_text(
+                "alpha\tquestion-protein-intake\t1\tWhat protein intake supports muscle growth?\n"
+                "alpha\tquestion-inactive\t2\tinactive\tWhich inactive question should stay hidden?\n"
+            )
+            create_questions = run_command(
+                [
+                    "bash",
+                    str(REPO_ROOT / "create_questions.sh"),
+                    str(site_path),
+                    str(questions_tsv),
+                ]
+            )
+            self.assertEqual(create_questions.returncode, 0, msg=create_questions.stderr)
+            source_path = write_source_fixture(tmp_root, content="prepared question mapping fixture\n")
+
+            result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "ingest_source.py"),
+                    "alpha",
+                    str(source_path),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "--source-title",
+                    "Prepared Question Mapping Fixture",
+                    "--mock-llm",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            source_record = sorted((space_root / "sources" / "records").glob("source-*.json"))[0]
+            question_path = space_root / "questions" / "question-protein-intake.json"
+            question_payload = json.loads(question_path.read_text())
+            self.assertEqual(question_payload["linked_source_ids"], [source_record.stem])
+            self.assertEqual(len(question_payload["claim_ids"]), 1)
+            self.assertEqual(len(question_payload["evidence_ids"]), 1)
+            self.assertEqual(
+                question_payload["freshness"]["question_relevance_mappings"][0]["source_id"],
+                source_record.stem,
+            )
+            inactive_payload = json.loads((space_root / "questions" / "question-inactive.json").read_text())
+            self.assertEqual(inactive_payload["linked_source_ids"], [])
+
+            run_dir = latest_run_directory(space_root)
+            frontmatter = assert_run_frontmatter_fields(
+                run_dir / "run.md",
+                expected_fields={
+                    "semantic_flows": [
+                        "ingest_extraction",
+                        "question_relevance_mapping",
+                        "topic_generation",
+                    ],
+                    "question_mapping_status": "mapped",
+                    "question_matches_changed": 1,
+                },
+            )
+            self.assertEqual(
+                frontmatter["semantic_flow_invocation_counts"],
+                {
+                    "ingest_extraction": 1,
+                    "question_relevance_mapping": 1,
+                    "topic_generation": 1,
+                },
+            )
+            self.assertEqual(frontmatter["llm_attempt_count"], 3)
+            self.assertTrue((run_dir / "semantic" / "question_relevance_mapping.json").is_file())
 
     def test_explicit_revision_ingest_links_family_without_detection_flow(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

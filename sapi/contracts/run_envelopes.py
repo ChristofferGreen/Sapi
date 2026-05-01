@@ -105,6 +105,8 @@ class IngestRunFields:
     deferred_build_reason: str | None
     force_mode: bool
     rollback_skipped: bool
+    question_mapping_status: str = "not_run"
+    question_matches_changed: int = 0
 
 
 @dataclass
