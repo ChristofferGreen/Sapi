@@ -1838,13 +1838,39 @@ def _render_question_synthesis_section(question: PreparedQuestion) -> str:
     body = "<h2>Current synthesis</h2>\n<p>" + escape(short_answer.strip()) + "</p>\n"
     if isinstance(conclusions, list) and conclusions:
         rows = "\n".join(
-            "<li>" + escape(item.strip()) + "</li>"
+            "<li>" + escape(_question_synthesis_list_item_text(item)) + "</li>"
             for item in conclusions
-            if isinstance(item, str) and item.strip()
+            if _question_synthesis_list_item_text(item)
         )
         if rows:
             body += "<h3>Conclusions</h3>\n<ul class=\"feed-list\">\n" + rows + "\n</ul>\n"
+    uncertainty = synthesis.get("uncertainty")
+    if isinstance(uncertainty, str) and uncertainty.strip():
+        body += "<h3>Uncertainty</h3>\n<p>" + escape(uncertainty.strip()) + "</p>\n"
+    disagreements = synthesis.get("disagreements")
+    if isinstance(disagreements, list) and disagreements:
+        rows = "\n".join(
+            "<li>" + escape(_question_synthesis_list_item_text(item)) + "</li>"
+            for item in disagreements
+            if _question_synthesis_list_item_text(item)
+        )
+        if rows:
+            body += "<h3>Disagreements</h3>\n<ul class=\"feed-list\">\n" + rows + "\n</ul>\n"
     return body
+
+
+def _question_synthesis_list_item_text(item: Any) -> str:
+    if isinstance(item, str):
+        return item.strip()
+    if not isinstance(item, dict):
+        return ""
+    text = item.get("text")
+    if not isinstance(text, str) or not text.strip():
+        return ""
+    support = item.get("support")
+    if isinstance(support, str) and support.strip():
+        return f"{text.strip()} ({support.strip()} support)"
+    return text.strip()
 
 
 def _render_question_source_section(sources: list[dict[str, Any]]) -> str:

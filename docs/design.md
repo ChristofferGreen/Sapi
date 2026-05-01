@@ -193,6 +193,9 @@ Prepared-question product rules:
 - question synthesis is user-facing semantic content and MUST come from live schema-conformant LLM JSON
   for production runs; deterministic code may only validate, persist, order, and render that semantic
   output.
+- persistent question synthesis is refreshed from the prepared question plus canonical linked
+  source/claim/evidence context. Input signatures are stored on the question record so unchanged
+  context can skip semantic regeneration while still recording refresh/check metadata.
 - deterministic rendering MAY project question records into HTML pages, tables, and charts, but MUST
   NOT invent answer prose, conclusions, disagreements, or uncertainty text.
 
@@ -919,12 +922,15 @@ Core steps:
      `question_mapping_status: no_matches` with zero question updates.
    - failed question relevance mapping follows the same semantic retry and rollback policy as
      ingest extraction and MUST NOT leave partial question-link writes in default mode.
-7. run `topic_generation` generation spec using source + claim context; validate and deterministically persist `0..n` canonical topic JSON pages when cross-source concepts are supported
-8. run deterministic link reconciliation so source/claim/topic/question artifacts are mutually connected and all required references resolve
+7. for each question affected by relevance mapping, run `question_synthesis` from the prepared
+   question plus its canonical linked source/claim/evidence context; persist the schema-valid
+   synthesis JSON and freshness signature back to the question record transactionally.
+8. run `topic_generation` generation spec using source + claim context; validate and deterministically persist `0..n` canonical topic JSON pages when cross-source concepts are supported
+9. run deterministic link reconciliation so source/claim/topic/question artifacts are mutually connected and all required references resolve
    - same pass SHOULD also persist curated `external_related_links[]` plus `related_link_enrichment`
      metadata on source records
-9. run deterministic projection/reindex/site build from canonical JSON (or mark run `build_deferred` in reconstruction bootstrap mode)
-10. run lint gate, write run record, and always release lock
+10. run deterministic projection/reindex/site build from canonical JSON (or mark run `build_deferred` in reconstruction bootstrap mode)
+11. run lint gate, write run record, and always release lock
 
 Run envelope model for multi-semantic commands (normative):
 - run metadata is command-scoped (`run_id` identifies one wrapper/entrypoint invocation).
@@ -934,6 +940,9 @@ Run envelope model for multi-semantic commands (normative):
 - normal ingest without active prepared questions writes `semantic_flows: [ingest_extraction, topic_generation]` and `semantic_flow_invocation_counts: {ingest_extraction: 1, topic_generation: 1}`.
 - ingest with active prepared questions inserts `question_relevance_mapping` after `ingest_extraction`
   and before `topic_generation`, with invocation count `1` when mapping actually runs.
+- ingest runs that map one or more prepared questions insert `question_synthesis` after
+  `question_relevance_mapping` and before `topic_generation`; the invocation count equals the number
+  of affected questions that required synthesis regeneration.
 - ingest runs that execute automatic revision detection prepend `source_revision_detection` to `semantic_flows` with invocation count `1`; explicit `--revises-source-id` runs MUST NOT invoke `source_revision_detection`.
 - ingest does not support semantic-flow bypass flags.
 

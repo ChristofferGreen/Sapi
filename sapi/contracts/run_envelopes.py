@@ -107,6 +107,8 @@ class IngestRunFields:
     rollback_skipped: bool
     question_mapping_status: str = "not_run"
     question_matches_changed: int = 0
+    question_synthesis_status: str = "not_run"
+    question_syntheses_changed: int = 0
 
 
 @dataclass

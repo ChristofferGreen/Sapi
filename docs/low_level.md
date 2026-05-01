@@ -399,7 +399,9 @@ Prepared-question implementation ownership:
   mutation for `question_relevance_mapping`.
 - cumulative question synthesis belongs in `sapi/questions/` and is invoked after relevance mapping or
   explicit refresh. It must consume canonical linked source/claim/evidence context and persist only
-  schema-valid semantic output.
+  schema-valid semantic output. `sapi/questions/synthesis.py` owns input-signature calculation,
+  schema-output grounding checks, freshness metadata, explicit stale/selected refresh helpers, and
+  transactional question-record mutation for `question_synthesis`.
 - measurement extraction and compatibility grouping belong in `sapi/questions/`; site rendering may
   draw tables/charts from validated measurement records but must not infer missing numeric values.
 - deterministic question index/detail rendering belongs in `sapi/build/site_builder.py` and should read
@@ -472,11 +474,14 @@ Control flow:
    then transactionally append source/claim/evidence links to matched question records
 10. when no active prepared questions exist, skip `question_relevance_mapping` and set
    `question_mapping_status = no_active_questions` with `question_matches_changed = 0`
-11. run semantic flow `topic_generation`
-12. deterministically write 0..n canonical topic artifacts from shared cross-source concepts
-13. set `semantic_flows = [ingest_extraction, topic_generation]`, `[ingest_extraction, question_relevance_mapping, topic_generation]`, or `[source_revision_detection, ingest_extraction, question_relevance_mapping, topic_generation]` only when those optional flows actually run
-14. set `semantic_flow_invocation_counts` to match exactly the flows invoked in this ingest run
-15. run link reconciliation
+11. for each mapped question whose canonical synthesis input signature changed, run semantic flow
+   `question_synthesis`, validate that output references only linked canonical source/claim/evidence
+   IDs, and persist synthesis plus freshness metadata back to the question record
+12. run semantic flow `topic_generation`
+13. deterministically write 0..n canonical topic artifacts from shared cross-source concepts
+14. set `semantic_flows = [ingest_extraction, topic_generation]`, `[ingest_extraction, question_relevance_mapping, question_synthesis, topic_generation]`, or `[source_revision_detection, ingest_extraction, question_relevance_mapping, question_synthesis, topic_generation]` only when those optional flows actually run
+15. set `semantic_flow_invocation_counts` to match exactly the flows invoked in this ingest run
+16. run link reconciliation
     - reference extraction prefers `source.md` when `analysis_policy.quality_status != unusable`
     - same step MAY persist curated `external_related_links[]` plus `related_link_enrichment`
       summary metadata on source records

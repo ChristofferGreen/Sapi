@@ -47,20 +47,19 @@ Task template:
 
 ### Ready Now (No Unmet TODO Dependencies)
 
-1. `TODO-0372`: Generate cumulative question synthesis
+1. `TODO-0373`: Render questions index as the space front page
+2. `TODO-0374`: Extract and render question measurement values
 
 ### Immediate Next 10 (After Ready Now)
 
-1. TODO-0373: Render questions index as the space front page
-2. TODO-0374: Extract and render question measurement values
-3. TODO-0375: Wire question refresh metadata, wrappers, and run envelopes
-4. TODO-0377: Seed prepared questions during example-site creation
-5. TODO-0376: Add prepared-question test and verification coverage
+1. TODO-0375: Wire question refresh metadata, wrappers, and run envelopes
+2. TODO-0377: Seed prepared questions during example-site creation
+3. TODO-0376: Add prepared-question test and verification coverage
 
 ### Priority Lanes (Current)
 
 - P0 Foundation/contracts: (none currently)
-- P1 Core product behavior: TODO-0372, TODO-0373, TODO-0375, TODO-0377
+- P1 Core product behavior: TODO-0373, TODO-0375, TODO-0377
 - P2 Social/eval/hardening: TODO-0374, TODO-0376
 - P3 Continuous docs governance: (none currently)
 
@@ -70,8 +69,7 @@ Wave A (bootstrap + contracts):
 1. (none currently)
 
 Wave B (ingest + projection + lint):
-1. TODO-0372: Generate cumulative question synthesis
-2. TODO-0373: Render questions index as the space front page
+1. TODO-0373: Render questions index as the space front page
 
 Wave C (query + social + hardening + release):
 1. TODO-0374: Extract and render question measurement values
@@ -90,14 +88,14 @@ Cross-cutting docs backlog:
 | Design area | Primary TODO IDs |
 | --- | --- |
 | Section 1 (scope/authority/reading) | - |
-| Section 2 (runtime policy + semantic loop + mock mode) | TODO-0372 |
+| Section 2 (runtime policy + semantic loop + mock mode) | - |
 | Section 3 (core concepts + identity invariants) | - |
 | Section 4 (repo architecture/spec ownership/versioning/capability boundaries) | - |
 | Section 5 (paths/storage/IDs/registry/metadata/lint contracts) | TODO-0374 |
 | Section 6 (wrapper UX + wrapper-to-entrypoint contract) | TODO-0375, TODO-0377 |
 | Section 7.1 ingest pipeline | TODO-0374 |
 | Section 7.2 references/linking | - |
-| Section 7.3 query pipeline | TODO-0372 |
+| Section 7.3 query pipeline | - |
 | Section 7.4 persona catalog | - |
 | Section 7.5 profile pages/history | - |
 | Section 7.6 comments pipeline/rendering | - |
@@ -113,12 +111,12 @@ Cross-cutting docs backlog:
 
 | Low-level area | Primary TODO IDs |
 | --- | --- |
-| Section 2 (runtime model and flow namespaces) | TODO-0372, TODO-0375 |
+| Section 2 (runtime model and flow namespaces) | TODO-0375 |
 | Section 4 (core data types/run envelope types) | TODO-0374 |
 | Section 5 (path + registry contracts) | - |
-| Section 6 (semantic execution engine + retry/repair) | TODO-0372, TODO-0374 |
+| Section 6 (semantic execution engine + retry/repair) | TODO-0374 |
 | Section 7 (transaction/rollback) | - |
-| Section 8 (pipeline execution contracts) | TODO-0372, TODO-0375 |
+| Section 8 (pipeline execution contracts) | TODO-0375 |
 | Section 9 (deterministic build/projection) | TODO-0373, TODO-0374, TODO-0377 |
 | Section 10 (relation persistence) | - |
 | Section 11 (lint/warning threshold) | - |
@@ -133,7 +131,7 @@ Cross-cutting docs backlog:
 | Testing plan area | Primary TODO IDs |
 | --- | --- |
 | Section 2 (test module layout) | TODO-0376 |
-| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0372, TODO-0375, TODO-0377 |
+| Tier 0-3 (fast contract/failure/pipeline suites) | TODO-0375, TODO-0377 |
 | Tier 4-6 (determinism/golden/live canary) | TODO-0373, TODO-0374, TODO-0376, TODO-0377 |
 | Section 4-5 (CI gating matrix + command wiring) | TODO-0375, TODO-0376 |
 | Section 6 (exit criteria gating) | TODO-0376 |
@@ -152,13 +150,13 @@ Cross-cutting docs backlog:
     - Example question sets are stored in a documented fixture or seed-data location with stable IDs, display order, scope, and update guidance.
     - Recreating the example site produces question front pages for every seeded space/subspace, with empty question detail pages before ingest and populated detail pages after relevant sources are ingested.
     - Tests or verification scripts assert that newly created example spaces/subspaces contain the expected prepared-question records and that the rendered example site exposes those questions as the landing experience.
-  - notes: Creation-time seed artifacts, wrapper wiring, example TSV, and deterministic question index/detail rendering are implemented. Question synthesis population after ingest still depends on TODO-0372.
+  - notes: Creation-time seed artifacts, wrapper wiring, example TSV, and deterministic question index/detail rendering are implemented. Ingest now populates question synthesis for mapped questions.
 
 - [ ] TODO-0376: Add prepared-question test and verification coverage
   - owner: ai
   - created_at: 2026-04-30
   - phase: Prepared questions
-  - depends_on: TODO-0372, TODO-0373, TODO-0374, TODO-0375, TODO-0377
+  - depends_on: TODO-0373, TODO-0374, TODO-0375, TODO-0377
   - scope: Add focused unit, integration, deterministic build, golden, and optional live-canary coverage for the prepared-question feature.
   - acceptance:
     - Unit tests cover schema resolution, question ID/link validation, measurement compatibility, and synthesis freshness decisions.
@@ -173,7 +171,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-30
   - phase: Prepared questions
-  - depends_on: TODO-0372, TODO-0373
+  - depends_on: TODO-0373
   - scope: Integrate question pipelines with operator wrappers, runtime flags, run envelopes, lint artifacts, and deterministic post-processing decisions.
   - acceptance:
     - Add or update wrappers/scripts for creating, refreshing, validating, and rebuilding prepared question artifacts.
@@ -201,7 +199,7 @@ Cross-cutting docs backlog:
   - owner: ai
   - created_at: 2026-04-30
   - phase: Prepared questions
-  - depends_on: TODO-0372
+  - depends_on: none
   - scope: Add deterministic site rendering for question index and question detail pages, and make the question index the primary space/subspace landing experience.
   - acceptance:
     - Space and subspace home pages render the prepared questions index as the front-page content or redirect/link canonically according to the documented contract.
@@ -209,17 +207,3 @@ Cross-cutting docs backlog:
     - Navigation and search include question pages without breaking existing New/Sources/Topics/Users/Claims/Evidence routes, and previously visible space-home feed content remains reachable through a documented tab or section.
     - Golden or deterministic build tests cover question index/detail rendering and full rebuild equivalence.
   - notes: The rendered page must stay deterministic from canonical question JSON and existing canonical artifacts.
-
-- [ ] TODO-0372: Generate cumulative question synthesis
-  - owner: ai
-  - created_at: 2026-04-30
-  - phase: Prepared questions
-  - depends_on: none
-  - scope: Add a question synthesis pipeline that regenerates answer/conclusion text from all sources, claims, and evidence linked to each affected prepared question.
-  - acceptance:
-    - `question_synthesis` receives only the prepared question plus canonical linked source/claim/evidence context and previous synthesis/freshness metadata where useful.
-    - Output includes short answer, conclusions, uncertainty, disagreements, citation/evidence anchors, and warnings.
-    - Synthesis regenerates automatically for questions affected by ingest-time relevance mapping and can also be run explicitly for all stale or selected questions.
-    - Deterministic post-processing writes synthesis fields back to the canonical question artifact without inventing prose outside the semantic output.
-    - Unchanged input signatures skip semantic regeneration and still emit auditable run metadata if the pipeline is invoked directly.
-  - notes: This is persistent synthesis, not an ad hoc query answer.

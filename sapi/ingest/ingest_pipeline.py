@@ -26,8 +26,11 @@ def plan_ingest_semantic_execution(
     comment_target_page_refs: list[str] | None = None,
     include_source_revision_detection: bool = False,
     include_question_relevance_mapping: bool = False,
+    question_synthesis_invocation_count: int = 0,
 ) -> IngestSemanticExecutionPlan:
     """Build boundary-correct semantic flow metadata for ingest modes."""
+    if question_synthesis_invocation_count < 0:
+        raise ValueError("question_synthesis_invocation_count must be >= 0.")
     _validate_comment_enrichment_inputs(
         enable_comment_enrichment=enable_comment_enrichment,
         requested_comment_count=requested_comment_count,
@@ -47,6 +50,12 @@ def plan_ingest_semantic_execution(
             "question_relevance_mapping",
         )
         invocation_counts["question_relevance_mapping"] = 1
+    if question_synthesis_invocation_count:
+        semantic_flows.insert(
+            semantic_flows.index("topic_generation"),
+            "question_synthesis",
+        )
+        invocation_counts["question_synthesis"] = question_synthesis_invocation_count
 
     if enable_comment_enrichment:
         assert comment_target_page_refs is not None  # guarded in preflight validation

@@ -4,6 +4,22 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-05-01
 
+- [x] TODO-0372: Generate cumulative question synthesis
+  - owner: ai
+  - created_at: 2026-04-30
+  - phase: Prepared questions
+  - finished_at: 2026-05-01
+  - depends_on: none
+  - scope: Add a question synthesis pipeline that regenerates answer/conclusion text from all sources, claims, and evidence linked to each affected prepared question.
+  - acceptance:
+    - `question_synthesis` receives only the prepared question plus canonical linked source/claim/evidence context and previous synthesis/freshness metadata where useful.
+    - Output includes short answer, conclusions, uncertainty, disagreements, citation/evidence anchors, and warnings.
+    - Synthesis regenerates automatically for questions affected by ingest-time relevance mapping and can also be run explicitly for all stale or selected questions.
+    - Deterministic post-processing writes synthesis fields back to the canonical question artifact without inventing prose outside the semantic output.
+    - Unchanged input signatures skip semantic regeneration and still emit auditable run metadata if the pipeline is invoked directly.
+  - notes: This is persistent synthesis, not an ad hoc query answer.
+  - evidence: Added `sapi/questions/synthesis.py` with canonical context/signature calculation, schema-output grounding checks, freshness/check metadata, and stale/selected refresh helpers; wired ingest to run `question_synthesis` for mapped prepared questions before topic generation; persisted synthesis JSON transactionally into question records; rendered structured synthesis conclusions/uncertainty/disagreements; and added unit, integration, and rollback coverage.
+
 - [x] TODO-0371: Map ingested sources to prepared questions
   - owner: ai
   - created_at: 2026-04-30

@@ -133,6 +133,11 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
             self.assertEqual(question_payload["linked_source_ids"], [source_record.stem])
             self.assertEqual(len(question_payload["claim_ids"]), 1)
             self.assertEqual(len(question_payload["evidence_ids"]), 1)
+            self.assertIn("short_answer", question_payload["synthesis"])
+            self.assertEqual(
+                question_payload["freshness"]["question_synthesis"]["status"],
+                "refreshed",
+            )
             self.assertEqual(
                 question_payload["freshness"]["question_relevance_mappings"][0]["source_id"],
                 source_record.stem,
@@ -147,10 +152,13 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
                     "semantic_flows": [
                         "ingest_extraction",
                         "question_relevance_mapping",
+                        "question_synthesis",
                         "topic_generation",
                     ],
                     "question_mapping_status": "mapped",
                     "question_matches_changed": 1,
+                    "question_synthesis_status": "refreshed",
+                    "question_syntheses_changed": 1,
                 },
             )
             self.assertEqual(
@@ -158,11 +166,15 @@ class IngestPipelineIntegrationTests(unittest.TestCase):
                 {
                     "ingest_extraction": 1,
                     "question_relevance_mapping": 1,
+                    "question_synthesis": 1,
                     "topic_generation": 1,
                 },
             )
-            self.assertEqual(frontmatter["llm_attempt_count"], 3)
+            self.assertEqual(frontmatter["llm_attempt_count"], 4)
             self.assertTrue((run_dir / "semantic" / "question_relevance_mapping.json").is_file())
+            self.assertTrue(
+                (run_dir / "semantic" / "question_synthesis" / "question-protein-intake.json").is_file()
+            )
 
     def test_explicit_revision_ingest_links_family_without_detection_flow(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

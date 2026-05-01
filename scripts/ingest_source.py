@@ -70,6 +70,12 @@ from sapi.questions.relevance_mapping import (
     QuestionRelevanceMappingResult,
     run_question_relevance_mapping_and_update,
 )
+from sapi.questions.synthesis import (
+    QuestionSynthesisContext,
+    QuestionSynthesisResult,
+    build_question_synthesis_context,
+    run_question_synthesis_and_update,
+)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -116,6 +122,7 @@ def main() -> int:
     result = None
     extraction_result = None
     question_mapping_result: QuestionRelevanceMappingResult | None = None
+    question_synthesis_results: list[QuestionSynthesisResult] = []
     topic_result = None
     build_manifest_path = None
     build_deferred = False
@@ -336,6 +343,45 @@ def main() -> int:
                     llm_attempt_count=llm_attempt_count,
                     attempt_count=question_mapping_result.attempt_count,
                 )
+            for matched_question_id in question_mapping_result.matched_question_ids:
+                question_context = build_question_synthesis_context(
+                    space_root=space_root,
+                    question=next(
+                        question
+                        for question in active_prepared_questions(space_root)
+                        if question.question_id == matched_question_id
+                    ),
+                )
+                try:
+                    question_synthesis_result = run_question_synthesis_and_update(
+                        space_root=space_root,
+                        question_id=matched_question_id,
+                        run_id=run_id,
+                        llm_client=_build_question_synthesis_client(
+                            runtime_flags=runtime_flags,
+                            context=question_context,
+                        ),
+                        transaction=transaction,
+                        trace_ctx=trace_ctx,
+                    )
+                except Exception:
+                    record_semantic_invocation(
+                        flow_key="question_synthesis",
+                        semantic_flows=semantic_flows,
+                        semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+                    )
+                    raise
+                question_synthesis_results.append(question_synthesis_result)
+                if question_synthesis_result.attempt_count:
+                    record_semantic_invocation(
+                        flow_key="question_synthesis",
+                        semantic_flows=semantic_flows,
+                        semantic_flow_invocation_counts=semantic_flow_invocation_counts,
+                    )
+                    llm_attempt_count = add_llm_attempts(
+                        llm_attempt_count=llm_attempt_count,
+                        attempt_count=question_synthesis_result.attempt_count,
+                    )
             record_semantic_invocation(
                 flow_key="topic_generation",
                 semantic_flows=semantic_flows,
@@ -395,6 +441,7 @@ def main() -> int:
                 source_id=result.source_id if result is not None else None,
                 extraction_result=extraction_result,
                 question_mapping_result=question_mapping_result,
+                question_synthesis_results=question_synthesis_results,
                 topic_result=topic_result,
                 build_deferred=build_deferred,
                 deferred_build_reason=deferred_build_reason,
@@ -459,6 +506,7 @@ def main() -> int:
         source_id=result.source_id,
         extraction_result=extraction_result,
         question_mapping_result=question_mapping_result,
+        question_synthesis_results=question_synthesis_results,
         topic_result=topic_result,
         build_deferred=build_deferred,
         deferred_build_reason=deferred_build_reason,
@@ -473,6 +521,9 @@ def main() -> int:
             include_source_revision_detection=revision_detection_result is not None,
             include_question_relevance_mapping=(
                 question_mapping_result is not None and question_mapping_result.attempt_count > 0
+            ),
+            question_synthesis_invocation_count=sum(
+                1 for result in question_synthesis_results if result.attempt_count > 0
             ),
         )
     if ingest_semantic_plan is not None and semantic_flow_invocation_counts != ingest_semantic_plan.semantic_flow_invocation_counts:
@@ -497,6 +548,7 @@ def main() -> int:
             f"relations_changed={flow_fields.relations_changed}, "
             f"topic_pages_changed={flow_fields.topic_pages_changed}"
             f", question_matches_changed={flow_fields.question_matches_changed}"
+            f", question_syntheses_changed={flow_fields.question_syntheses_changed}"
         ),
         lint_summary=lint_summary,
         errors="",
@@ -532,6 +584,12 @@ def main() -> int:
             f", question_mapping_status={question_mapping_result.status}, "
             f"question_matches_changed={len(question_mapping_result.updated_question_paths)}, "
             f"matched_question_ids={list(question_mapping_result.matched_question_ids)}"
+        )
+    if question_synthesis_results:
+        summary += (
+            f", question_synthesis_status={_summarize_question_synthesis_status(question_synthesis_results)}, "
+            f"question_syntheses_changed={sum(1 for item in question_synthesis_results if item.refreshed)}, "
+            f"synthesized_question_ids={[item.question_id for item in question_synthesis_results]}"
         )
     if topic_result is not None:
         summary += (
@@ -624,6 +682,7 @@ def _make_ingest_flow_fields(
     source_id: str | None,
     extraction_result: IngestExtractionPersistResult | None,
     question_mapping_result: QuestionRelevanceMappingResult | None,
+    question_synthesis_results: list[QuestionSynthesisResult],
     topic_result: TopicGenerationPersistResult | None,
     build_deferred: bool,
     deferred_build_reason: str | None,
@@ -643,6 +702,11 @@ def _make_ingest_flow_fields(
     if question_mapping_result is not None:
         question_mapping_status = question_mapping_result.status
         question_matches_changed = len(question_mapping_result.updated_question_paths)
+    question_synthesis_status = "not_run"
+    question_syntheses_changed = 0
+    if question_synthesis_results:
+        question_synthesis_status = _summarize_question_synthesis_status(question_synthesis_results)
+        question_syntheses_changed = sum(1 for result in question_synthesis_results if result.refreshed)
     return IngestRunFields(
         ingest_scope="space",
         source_ids=[source_id] if source_id is not None else [],
@@ -656,7 +720,18 @@ def _make_ingest_flow_fields(
         rollback_skipped=rollback_skipped,
         question_mapping_status=question_mapping_status,
         question_matches_changed=question_matches_changed,
+        question_synthesis_status=question_synthesis_status,
+        question_syntheses_changed=question_syntheses_changed,
     )
+
+
+def _summarize_question_synthesis_status(results: list[QuestionSynthesisResult]) -> str:
+    statuses = sorted({result.status for result in results})
+    if statuses == ["refreshed"]:
+        return "refreshed"
+    if statuses == ["unchanged"]:
+        return "unchanged"
+    return "mixed:" + ",".join(statuses)
 
 
 def _track_source_ingest_writes_for_rollback(
@@ -784,6 +859,19 @@ def _build_question_relevance_mapping_client(
         source_context=_load_source_context_for_id(space_root=space_root, source_id=source_id),
         claim_context=_load_claim_context_for_ids(space_root=space_root, claim_ids=claim_ids),
         evidence_context=_load_evidence_context_for_ids(space_root=space_root, evidence_ids=evidence_ids),
+    )
+
+
+def _build_question_synthesis_client(
+    *,
+    runtime_flags: RuntimeFlagSnapshot,
+    context: QuestionSynthesisContext,
+):
+    if runtime_flags.mock_llm:
+        return _MockQuestionSynthesisClient(context=context)
+    return _LiveQuestionSynthesisClient(
+        backend_config=_backend_config_from_runtime_flags(runtime_flags),
+        context=context,
     )
 
 
@@ -1091,6 +1179,55 @@ class _MockQuestionRelevanceMappingClient:
         )
 
 
+class _MockQuestionSynthesisClient:
+    """Deterministic question-synthesis client for explicit --mock-llm mode."""
+
+    def __init__(self, *, context: QuestionSynthesisContext) -> None:
+        self._context = context
+
+    def generate_semantic_json(self, _request: SemanticLlmRequest) -> str:
+        question_id = str(self._context.question["question_id"])
+        source_ids = [str(source.get("source_id")) for source in self._context.sources]
+        claim_ids = [str(claim.get("claim_id")) for claim in self._context.claims]
+        evidence_ids = [str(evidence.get("evidence_id")) for evidence in self._context.evidence]
+        citation_anchors: list[dict[str, object]] = []
+        if source_ids:
+            citation_anchors.append(
+                {
+                    "anchor_id": "anchor-mock-synthesis",
+                    "label": "[S1]",
+                    "source_id": source_ids[0],
+                    "claim_ids": claim_ids[:1],
+                    "evidence_ids": evidence_ids[:1],
+                }
+            )
+        conclusions: list[dict[str, object]] = []
+        if source_ids:
+            conclusions.append(
+                {
+                    "text": "Mock synthesis finds that the linked source provides directly relevant evidence.",
+                    "support": "moderate",
+                    "source_ids": source_ids,
+                    "claim_ids": claim_ids,
+                    "evidence_ids": evidence_ids,
+                }
+            )
+        payload = {
+            "schema_version": "question_synthesis_v1",
+            "question_id": question_id,
+            "short_answer": (
+                "The linked mock evidence supports a cautious answer, but production synthesis should "
+                "be regenerated with a live LLM before operator use."
+            ),
+            "conclusions": conclusions,
+            "uncertainty": "Mock mode cannot estimate real-world uncertainty beyond fixture coverage.",
+            "disagreements": [],
+            "citation_anchors": citation_anchors,
+            "warnings": [] if source_ids else ["No linked source context is available."],
+        }
+        return json.dumps(payload)
+
+
 class _LiveTopicGenerationClient:
     def __init__(
         self,
@@ -1184,6 +1321,43 @@ class _LiveQuestionRelevanceMappingClient:
                 "active_prepared_questions": self._question_context,
                 "new_source_claims": self._claim_context,
                 "new_source_evidence": self._evidence_context,
+            },
+        )
+
+
+class _LiveQuestionSynthesisClient:
+    def __init__(
+        self,
+        *,
+        backend_config: SemanticBackendConfig,
+        context: QuestionSynthesisContext,
+    ) -> None:
+        self._backend_config = backend_config
+        self._context = context
+
+    def generate_semantic_json(self, request: SemanticLlmRequest) -> str:
+        return generate_semantic_json_live(
+            request=request,
+            backend_config=self._backend_config,
+            task_context={
+                "task_requirements": {
+                    "must_include_question_id": self._context.question["question_id"],
+                    "allowed_source_ids": [row.get("source_id") for row in self._context.sources],
+                    "allowed_claim_ids": [row.get("claim_id") for row in self._context.claims],
+                    "allowed_evidence_ids": [row.get("evidence_id") for row in self._context.evidence],
+                    "synthesis_policy": (
+                        "Synthesize only from linked canonical source, claim, and evidence context. "
+                        "Do not introduce source, claim, evidence, measurement, or citation anchor IDs "
+                        "outside the provided context."
+                    ),
+                },
+                "prepared_question": self._context.question,
+                "linked_sources": list(self._context.sources),
+                "linked_claims": list(self._context.claims),
+                "linked_evidence": list(self._context.evidence),
+                "previous_synthesis": self._context.previous_synthesis,
+                "freshness": self._context.freshness,
+                "input_signature": self._context.input_signature,
             },
         )
 
