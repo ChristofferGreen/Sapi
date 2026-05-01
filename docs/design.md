@@ -776,6 +776,11 @@ Prepared question authoring:
   MUST fail if the TSV has no matching rows.
 - duplicate question IDs or display orders inside one TSV scope are invalid, because operators need a
   predictable reorder/update path.
+- `create_space.sh` MAY invoke the same canonical authoring wrapper during bootstrap when the created
+  space name has checked-in example seed rows; this keeps example space/sub-space creation question-led
+  without generating question text in deterministic code.
+- checked-in example seed rows are operator-authored content. Bootstrap code may select rows by
+  `space_name`, but MUST NOT synthesize or template new question text.
 - LLM-suggested questions, when later supported, MUST remain drafts or require explicit operator
   approval before this canonical authoring path promotes them to active question records.
 

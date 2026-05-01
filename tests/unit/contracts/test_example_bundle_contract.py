@@ -29,6 +29,7 @@ class ExampleBundleContractTests(unittest.TestCase):
         self.assertIn('bash "$REPO_ROOT/ingest.sh"', script_text)
         self.assertIn('bash "$REPO_ROOT/generate_overview.sh"', script_text)
         self.assertIn('bash "$REPO_ROOT/create_comments.sh"', script_text)
+        self.assertNotIn('bash "$REPO_ROOT/create_questions.sh"', script_text)
         self.assertNotIn("scripts/ingest_source.py", script_text)
         self.assertNotIn("scripts/create_comments.py", script_text)
         self.assertNotIn("scripts/generate_overview.py", script_text)

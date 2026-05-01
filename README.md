@@ -91,6 +91,9 @@ Prepared-question seed files are tab-separated rows in one of these forms:
 only rows for that registered space or subspace, which lets operators update one question set from a
 shared seed file.
 
+Example spaces and subspaces whose names appear in `tests/example/prepared_questions.tsv` are seeded
+automatically by `create_space.sh` through the same `create_questions.sh` authoring path.
+
 Prepared-question synthesis can be refreshed directly with `refresh_questions.sh`. With no
 `--question-id`, it checks all active questions, skips current signatures by default, records a
 `question_pipeline` run, and rebuilds the selected space unless `--build-deferred` is supplied.

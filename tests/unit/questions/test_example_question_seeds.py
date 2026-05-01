@@ -28,7 +28,15 @@ class ExampleQuestionSeedTests(unittest.TestCase):
         self.assertEqual(set(counts), expected_spaces)
         self.assertTrue(all(counts[space_name] == 10 for space_name in expected_spaces))
 
+    def test_example_runner_relies_on_create_space_for_question_seeding(self) -> None:
+        create_space_text = (REPO_ROOT / "create_space.sh").read_text()
+        runner_text = (REPO_ROOT / "tests" / "example" / "run_example_site.sh").read_text()
+
+        self.assertIn("tests/example/prepared_questions.tsv", create_space_text)
+        self.assertIn("create_questions.sh", create_space_text)
+        self.assertNotIn("003-seed-prepared-questions", runner_text)
+        self.assertNotIn("QUESTIONS_TSV", runner_text)
+
 
 if __name__ == "__main__":
     unittest.main()
-

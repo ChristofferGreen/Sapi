@@ -1,8 +1,34 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>My Site</title><link rel="stylesheet" href="assets/site.css"></head><body class="site-shell site-root-shell">
-<main class="site-main site-root-main"><section class="content-card"><p class="site-name">My Site</p><nav class="site-tabs"><a class="site-tab" href="new/index.html">New</a> <a class="site-tab" href="users/index.html">Users</a></nav><h1>My Site</h1>
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="index.html">My Site</a><nav class="site-space-nav" aria-label="Spaces"><a class="site-space-nav-link site-space-nav-parent" href="../spaces/alpha/site/index.html">Alpha</a></nav><nav class="site-tabs"><a class="site-tab" href="new/index.html">New</a> <a class="site-tab current" href="index.html">Spaces</a> <a class="site-tab" href="sources/index.html">Sources</a> <a class="site-tab" href="topics/index.html">Topics</a> <a class="site-tab" href="users/index.html">Users</a></nav></div></header><main class="site-main site-root-main"><section class="content-card site-root-content-card"><h2>Latest Across Spaces</h2>
+<p>No feed items yet.</p>
 <h2>Spaces</h2>
 <ul class="feed-list">
 <li><a href="../spaces/alpha/site/index.html">Alpha</a></li>
 </ul>
-</section></main></body></html>
+</section></main><script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>

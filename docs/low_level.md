@@ -735,6 +735,8 @@ Workflow gate policy alignment (normative):
 Wrapper to script mapping:
 - `ingest.sh` -> `scripts/ingest_source.py`
 - `create_questions.sh` -> `scripts/create_prepared_questions.py`
+- `create_space.sh` -> bootstraps registered spaces and invokes `create_questions.sh` for checked-in
+  example seed rows matching the created space name
 - `refresh_questions.sh` -> `scripts/refresh_questions.py`
 - `query.sh` -> `scripts/query.py`
 - `create_comments.sh` -> `scripts/create_comments.py`

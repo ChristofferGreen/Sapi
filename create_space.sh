@@ -14,6 +14,8 @@ site_path="$1"
 space_name="$2"
 registry_path="$site_path/spaces.toml"
 space_root="$site_path/spaces/$space_name"
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+example_questions_tsv="$script_dir/tests/example/prepared_questions.tsv"
 
 if [[ ! "$space_name" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
   echo "Error: <space_name> must be lowercase kebab-case." >&2
@@ -59,6 +61,14 @@ if ! grep -Eq "^[[:space:]]*(space_name|name)[[:space:]]*=[[:space:]]*\"$space_n
 space_name = "$space_name"
 space_root = "spaces/$space_name"
 TOML
+fi
+
+if [[ -f "$example_questions_tsv" ]] && awk -F '\t' -v space="$space_name" '
+  /^[[:space:]]*#/ || /^[[:space:]]*$/ { next }
+  $1 == space { found = 1 }
+  END { exit found ? 0 : 1 }
+' "$example_questions_tsv"; then
+  bash "$script_dir/create_questions.sh" "$site_path" "$example_questions_tsv" "$space_name"
 fi
 
 printf 'Initialized space scaffold at %s\n' "$space_root"

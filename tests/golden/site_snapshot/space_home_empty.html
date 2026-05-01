@@ -1,43 +1,41 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Alpha - Space Home</title><link rel="stylesheet" href="assets/site.css"></head><body class="site-shell">
-<div class="site-shell-grid">
-<aside class="site-sidebar">
-<div class="site-sidebar-head"><p class="site-name">My Site</p>
-<p class="space-name">Alpha</p>
-</div><nav class="site-sidebar-nav">
-<ul><li><a class="current" href="index.html">Space Home</a></li></ul>
-<details class="sidebar-spaces" open><summary>Spaces</summary><ul>
-<li><a class="current" href="index.html">Alpha</a></li>
-</ul></details>
-<details class="sidebar-subspaces" open><summary>Subspaces</summary><ul>
-<li><span>None</span></li>
-</ul></details>
-<details class="sidebar-sources" open><summary>Sources</summary><ul>
-<li><span>None</span></li>
-</ul></details>
-<details class="sidebar-topics" open><summary>Topics</summary><ul>
-
-</ul></details>
-</nav>
-</aside>
-<main class="site-main">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Alpha - Space Home</title><link rel="stylesheet" href="assets/site.css"></head><body class="site-shell site-with-global-menubar">
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="../../../site/index.html">My Site</a><nav class="site-space-nav" aria-label="Spaces"><a class="site-space-nav-link site-space-nav-parent current" href="index.html">Alpha</a></nav><nav class="site-tabs"><a class="site-tab" href="new/index.html">New</a> <a class="site-tab current" href="index.html">Home</a> <a class="site-tab" href="questions/index.html">Questions</a> <a class="site-tab" href="overview/index.html" aria-label="Overview for alpha">Overview</a> <a class="site-tab" href="sources/index.html">Sources</a> <a class="site-tab" href="topics/index.html">Topics</a> <a class="site-tab" href="users/index.html">Users</a> <a class="site-tab" href="evidence/index.html">Evidence</a> <a class="site-tab" href="claims/index.html">Claims</a></nav></div></header><main class="site-main site-space-main">
 <header class="site-topbar"><form class="top-search" action="search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
-<nav class="tabs" aria-label="Primary tabs"><a class="tab" href="new/index.html">New</a> <a class="tab" href="sources/index.html">Sources</a> <a class="tab" href="topics/index.html">Topics</a> <a class="tab" href="users/index.html">Users</a> <a class="tab" href="evidence/index.html">Evidence</a> <a class="tab" href="claims/index.html">Claims</a></nav>
 <section class="content-card"><h1>Alpha</h1>
-<h2>Sources</h2>
-<ul class="feed-list">
-<li>(none yet)</li>
+<section class="question-front-page" data-front-page="questions">
+<h2>Questions</h2>
+<ul class="feed-list question-list">
+<li>No active prepared questions yet.</li>
 </ul>
-<h2>Topics</h2>
-<ul class="feed-list">
-<li>(none yet)</li>
-</ul>
-<h2>Evidence</h2>
-<ul class="feed-list">
-<li>(none yet)</li>
-</ul>
+</section>
+<p>No sources, topics, evidence, or subspaces yet.</p>
 </section>
 
 </main>
-</div>
-</body></html>
+<script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>
