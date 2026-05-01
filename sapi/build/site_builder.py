@@ -1597,10 +1597,11 @@ def _render_space_index(
     stylesheet_href: str,
 ) -> str:
     display_space_name = _space_display_name(space_name)
-    sections: list[str] = [f"<h1>{escape(display_space_name)}</h1>\n"]
     active_questions = [question for question in context.questions if question.status == "active"]
-    if active_questions:
-        sections.append(_render_question_index_section(active_questions, href_prefix="questions/"))
+    sections: list[str] = [
+        f"<h1>{escape(display_space_name)}</h1>\n",
+        _render_question_front_page_section(active_questions),
+    ]
     if context.overview is not None:
         sections.append(
             _render_space_home_overview_section(
@@ -1656,7 +1657,7 @@ def _render_space_index(
     )
     if evidence_rows:
         sections.append("<h2>Evidence</h2>\n<ul class=\"feed-list\">\n" + evidence_rows + "\n</ul>\n")
-    if len(sections) == 1:
+    if len(sections) == 2 and not active_questions:
         sections.append("<p>No sources, topics, evidence, or subspaces yet.</p>\n")
     body = "".join(sections)
     return _render_space_layout(
@@ -1666,6 +1667,15 @@ def _render_space_index(
         current_tab=None,
         current_page="space_home",
         stylesheet_href=stylesheet_href,
+    )
+
+
+def _render_question_front_page_section(questions: list[PreparedQuestion]) -> str:
+    return (
+        "<section class=\"question-front-page\" data-front-page=\"questions\">\n"
+        "<h2>Questions</h2>\n"
+        + _render_question_index_list(questions, href_prefix="questions/")
+        + "</section>\n"
     )
 
 
@@ -1708,6 +1718,14 @@ def _render_question_index_section(
     *,
     href_prefix: str,
 ) -> str:
+    return "<h2>Questions</h2>\n" + _render_question_index_list(questions, href_prefix=href_prefix)
+
+
+def _render_question_index_list(
+    questions: list[PreparedQuestion],
+    *,
+    href_prefix: str,
+) -> str:
     rows = "\n".join(
         (
             "<li><a href=\""
@@ -1719,8 +1737,8 @@ def _render_question_index_section(
         for question in sorted(questions, key=lambda item: (item.display_order, item.question_id))
     )
     if not rows:
-        rows = "<li>(none yet)</li>"
-    return "<h2>Questions</h2>\n<ul class=\"feed-list question-list\">\n" + rows + "\n</ul>\n"
+        rows = "<li>No active prepared questions yet.</li>"
+    return "<ul class=\"feed-list question-list\">\n" + rows + "\n</ul>\n"
 
 
 def _write_question_pages(
@@ -1732,6 +1750,9 @@ def _write_question_pages(
     incremental: bool,
 ) -> list[Path]:
     active_questions = [question for question in context.questions if question.status == "active"]
+    renderable_questions = [
+        question for question in context.questions if question.status in {"active", "inactive"}
+    ]
     question_root = output_root / "questions"
     question_root.mkdir(parents=True, exist_ok=True)
     question_index_path = question_root / "index.html"
@@ -1760,7 +1781,7 @@ def _write_question_pages(
     claim_by_id = _load_claim_records(space_root=output_root.parent)
     claim_option_title_by_id = load_claim_option_titles(space_root=output_root.parent)
     evidence_by_id = {record.evidence_id: record for record in evidence_records}
-    for question in active_questions:
+    for question in renderable_questions:
         question_path = question_root / f"{question.question_id}.html"
         _write_text_file(
             question_path,
@@ -1815,6 +1836,7 @@ def _render_question_page(
             claim_option_title_by_id=claim_option_title_by_id,
         ),
         _render_question_evidence_section(linked_evidence),
+        _render_question_freshness_section(question),
     ]
     if question.warnings:
         warning_rows = "\n".join("<li>" + escape(warning) + "</li>" for warning in question.warnings)
@@ -1857,6 +1879,38 @@ def _render_question_synthesis_section(question: PreparedQuestion) -> str:
         if rows:
             body += "<h3>Disagreements</h3>\n<ul class=\"feed-list\">\n" + rows + "\n</ul>\n"
     return body
+
+
+def _render_question_freshness_section(question: PreparedQuestion) -> str:
+    rows: list[str] = []
+    synthesis = question.freshness.get("question_synthesis")
+    if isinstance(synthesis, dict):
+        status = synthesis.get("status")
+        run_id = synthesis.get("run_id")
+        refreshed_at = synthesis.get("refreshed_at")
+        input_signature = synthesis.get("input_signature")
+        if isinstance(status, str) and status.strip():
+            rows.append("Synthesis status: " + status.strip())
+        if isinstance(run_id, str) and run_id.strip():
+            rows.append("Synthesis run: " + run_id.strip())
+        if isinstance(refreshed_at, str) and refreshed_at.strip():
+            rows.append("Synthesis checked: " + refreshed_at.strip())
+        if isinstance(input_signature, str) and input_signature.strip():
+            rows.append("Input signature: " + input_signature.strip())
+    mappings = question.freshness.get("question_relevance_mappings")
+    if isinstance(mappings, list):
+        mapping_count = len([item for item in mappings if isinstance(item, dict)])
+        if mapping_count:
+            rows.append(
+                f"Relevance mappings: {mapping_count} source{'s' if mapping_count != 1 else ''}"
+            )
+    if not rows:
+        return "<h2>Freshness</h2>\n<p>No freshness metadata has been recorded for this question yet.</p>\n"
+    return (
+        "<h2>Freshness</h2>\n<ul class=\"feed-list question-freshness-list\">\n"
+        + "\n".join("<li>" + escape(row) + "</li>" for row in rows)
+        + "\n</ul>\n"
+    )
 
 
 def _question_synthesis_list_item_text(item: Any) -> str:

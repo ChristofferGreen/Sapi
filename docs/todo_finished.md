@@ -4,6 +4,21 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-05-01
 
+- [x] TODO-0373: Render questions index as the space front page
+  - owner: ai
+  - created_at: 2026-04-30
+  - phase: Prepared questions
+  - finished_at: 2026-05-01
+  - depends_on: none
+  - scope: Add deterministic site rendering for question index and question detail pages, and make the question index the primary space/subspace landing experience.
+  - acceptance:
+    - Space and subspace home pages render the prepared questions index as the front-page content or redirect/link canonically according to the documented contract.
+    - Each question page lists linked sources, claims, evidence items, synthesis text, uncertainty/disagreement sections, freshness metadata, and empty states when no source has been linked yet.
+    - Navigation and search include question pages without breaking existing New/Sources/Topics/Users/Claims/Evidence routes, and previously visible space-home feed content remains reachable through a documented tab or section.
+    - Golden or deterministic build tests cover question index/detail rendering and full rebuild equivalence.
+  - notes: The rendered page must stay deterministic from canonical question JSON and existing canonical artifacts.
+  - evidence: Made space home pages question-led with an explicit front-page question section, kept sources/topics/evidence/subspaces reachable below the question index, rendered freshness metadata on question detail pages, emitted inactive question detail pages while omitting inactive/draft questions from default indexes, preserved question search entries, and added deterministic build coverage for front-page/detail/search behavior and rebuild equivalence.
+
 - [x] TODO-0372: Generate cumulative question synthesis
   - owner: ai
   - created_at: 2026-04-30

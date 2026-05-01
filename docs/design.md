@@ -181,6 +181,9 @@ When a semantic command is invoked with `--mock-llm`:
 Prepared-question product rules:
 - every space/sub-space MAY have a prepared-question index; when active prepared questions exist, the
   question index is the primary landing experience for that space/sub-space.
+- the canonical space home page MUST be question-led: active prepared questions are the first
+  front-page content, while sources, topics, evidence, overview, and subspace browse sections remain
+  reachable from the same page or dedicated tabs.
 - a typical initial question set SHOULD contain about 10 field-relevant questions, but the canonical
   count is operator-controlled.
 - canonical question records are operator-authored or operator-approved. LLM-suggested questions MAY
@@ -1582,7 +1585,7 @@ Information architecture direction:
 
 Navigation:
 - sidebar uses site name and space name without noisy prefixes
-- `Space Home` links to the canonical space home page
+- `Space Home` links to the canonical question-led space home page
 - stable hierarchy and collapsible state across page types
 - current page highlighting
 - `Topics` section contains topic pages only

@@ -1118,6 +1118,132 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertNotIn("<h2>Evidence</h2>", philosophy_home)
             self.assertNotIn("(none yet)", philosophy_home)
 
+    def test_space_home_uses_questions_as_front_page_and_preserves_browse_sections(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_root = Path(tmp)
+            site_path, alpha_space_root = self._bootstrap_site_space(tmp_root, "alpha")
+            source_id = "source-protein--123456789abc"
+            claim_id = "claim-protein-intake--123456789abc"
+            evidence_id = "evidence-protein-intake--123456789abc"
+            self._write_source_record(
+                alpha_space_root,
+                source_id=source_id,
+                title="Protein Source",
+                summary="Protein source summary remains reachable from the space front page.",
+            )
+            self._write_claim_record(
+                alpha_space_root,
+                claim_id=claim_id,
+                source_id=source_id,
+                text="Protein intake supports muscle growth.",
+                short_title="Protein intake",
+            )
+            self._write_evidence_record(
+                alpha_space_root,
+                evidence_id=evidence_id,
+                title="Protein evidence",
+                excerpt="Evidence excerpt.",
+                overview="Evidence overview.",
+                evidence_type="measurement",
+                source_id=source_id,
+                claim_ids=[claim_id],
+            )
+            self._write_question_record(
+                alpha_space_root,
+                question_id="question-protein-intake",
+                display_order=1,
+                question="What protein intake supports muscle growth?",
+                linked_source_ids=[source_id],
+                claim_ids=[claim_id],
+                evidence_ids=[evidence_id],
+                synthesis={
+                    "schema_version": "question_synthesis_v1",
+                    "question_id": "question-protein-intake",
+                    "short_answer": "Current evidence supports a cautious protein conclusion.",
+                    "conclusions": [
+                        {
+                            "text": "Protein is relevant when training is present.",
+                            "support": "moderate",
+                            "source_ids": [source_id],
+                            "claim_ids": [claim_id],
+                            "evidence_ids": [evidence_id],
+                        }
+                    ],
+                    "uncertainty": "Training status may change the target.",
+                    "disagreements": [],
+                    "citation_anchors": [],
+                    "warnings": [],
+                },
+                freshness={
+                    "question_synthesis": {
+                        "status": "refreshed",
+                        "run_id": "run-20260501T120000Z--abcdefghij",
+                        "input_signature": "sha256:test",
+                        "semantic_output_path": (
+                            "runs/run-20260501T120000Z--abcdefghij/semantic/question_synthesis/"
+                            "question-protein-intake.json"
+                        ),
+                        "refreshed_at": "2026-05-01T12:00:00Z",
+                    },
+                    "question_relevance_mappings": [
+                        {
+                            "source_id": source_id,
+                            "run_id": "run-20260501T120000Z--abcdefghij",
+                        }
+                    ],
+                },
+            )
+            self._write_question_record(
+                alpha_space_root,
+                question_id="question-inactive",
+                display_order=2,
+                question="Which inactive question remains auditable?",
+                status="inactive",
+            )
+
+            command = [
+                "python3",
+                str(REPO_ROOT / "scripts" / "build_site.py"),
+                "--registry-path",
+                str(site_path / "spaces.toml"),
+                "alpha",
+            ]
+            first = self._run(command)
+            self.assertEqual(first.returncode, 0, msg=first.stderr)
+
+            home_path = alpha_space_root / "site" / "index.html"
+            question_index_path = alpha_space_root / "site" / "questions" / "index.html"
+            active_detail_path = alpha_space_root / "site" / "questions" / "question-protein-intake.html"
+            inactive_detail_path = alpha_space_root / "site" / "questions" / "question-inactive.html"
+            home_text = home_path.read_text()
+            question_index_text = question_index_path.read_text()
+            active_detail_text = active_detail_path.read_text()
+
+            self.assertIn('data-front-page="questions"', home_text)
+            self.assertLess(home_text.index("<h2>Questions</h2>"), home_text.index("<h2>Sources</h2>"))
+            self.assertIn('href="questions/question-protein-intake.html"', home_text)
+            self.assertNotIn('href="questions/question-inactive.html"', home_text)
+            self.assertIn("Protein source summary remains reachable from the space front page.", home_text)
+            self.assertIn("What protein intake supports muscle growth?", question_index_text)
+            self.assertNotIn("Which inactive question remains auditable?", question_index_text)
+            self.assertTrue(inactive_detail_path.is_file())
+            self.assertIn("Protein Source", active_detail_text)
+            self.assertIn("Protein intake", active_detail_text)
+            self.assertIn("Protein evidence", active_detail_text)
+            self.assertIn("Current evidence supports a cautious protein conclusion.", active_detail_text)
+            self.assertIn("Training status may change the target.", active_detail_text)
+            self.assertIn("Synthesis status: refreshed", active_detail_text)
+            self.assertIn("Input signature: sha256:test", active_detail_text)
+
+            search_text = (alpha_space_root / "site" / "search" / "index.html").read_text()
+            self.assertIn("question-protein-intake", search_text)
+
+            second = self._run(command)
+            self.assertEqual(second.returncode, 0, msg=second.stderr)
+            self.assertEqual(home_text, home_path.read_text())
+            self.assertEqual(question_index_text, question_index_path.read_text())
+            self.assertEqual(active_detail_text, active_detail_path.read_text())
+
     def test_space_home_sources_and_topics_use_feed_cards(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
@@ -3728,6 +3854,41 @@ class SiteBuilderContractTests(unittest.TestCase):
             "page_refs": page_refs if page_refs is not None else [],
         }
         path = space_root / "evidence" / f"{evidence_id}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+
+    def _write_question_record(
+        self,
+        space_root: Path,
+        *,
+        question_id: str,
+        display_order: int,
+        question: str,
+        status: str = "active",
+        linked_source_ids: list[str] | None = None,
+        claim_ids: list[str] | None = None,
+        evidence_ids: list[str] | None = None,
+        measurement_ids: list[str] | None = None,
+        synthesis: dict[str, object] | None = None,
+        freshness: dict[str, object] | None = None,
+        warnings: list[str] | None = None,
+    ) -> None:
+        payload = {
+            "schema_version": "prepared_question_v1",
+            "question_id": question_id,
+            "question": question,
+            "status": status,
+            "display_order": display_order,
+            "scope": {"space_name": space_root.name},
+            "linked_source_ids": linked_source_ids if linked_source_ids is not None else [],
+            "claim_ids": claim_ids if claim_ids is not None else [],
+            "evidence_ids": evidence_ids if evidence_ids is not None else [],
+            "measurement_ids": measurement_ids if measurement_ids is not None else [],
+            "synthesis": synthesis if synthesis is not None else {},
+            "freshness": freshness if freshness is not None else {},
+            "warnings": warnings if warnings is not None else [],
+        }
+        path = space_root / "questions" / f"{question_id}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
 

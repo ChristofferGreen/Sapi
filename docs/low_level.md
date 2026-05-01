@@ -405,7 +405,9 @@ Prepared-question implementation ownership:
 - measurement extraction and compatibility grouping belong in `sapi/questions/`; site rendering may
   draw tables/charts from validated measurement records but must not infer missing numeric values.
 - deterministic question index/detail rendering belongs in `sapi/build/site_builder.py` and should read
-  prepared-question records through the shared loader.
+  prepared-question records through the shared loader. Space `site/index.html` is question-led, active
+  questions appear in the default index, inactive questions get deterministic detail pages for audit
+  links, and draft questions are omitted from public rendering.
 - wrapper ownership is split: `create_questions.sh` and `scripts/create_prepared_questions.py` handle
   operator-approved authoring/seed import; they accept four-field active rows or five-field
   status-aware rows, enforce per-space duplicate IDs/orders, apply reorder/update/deactivation
