@@ -14,13 +14,16 @@ if str(_REPO_ROOT) not in sys.path:
 
 from sapi.core.registry import resolve_registry_path, resolve_space_root
 from sapi.lint.lint_engine import (
+    LintIssue,
     LintSummary,
     WORKFLOW_KEYS,
     default_lint_summary,
     evaluate_lint_gate,
     parse_warning_budget,
+    summarize_lint_issues,
 )
 from sapi.lint.guardrails import GuardrailIssue, evaluate_pipeline_pr_evidence, run_guardrail_checks
+from sapi.questions.linting import collect_question_lint_issues
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -76,11 +79,12 @@ def _lint_summary_from_run(space_root: Path, *, run_id: str | None) -> LintSumma
     if not isinstance(payload, dict):
         raise ValueError(f"Lint artifact must be a JSON object: {lint_path}")
 
+    issues = _read_lint_issues(payload)
     return LintSummary(
         error_count=_read_non_negative_int(payload, "error_count", lint_path=lint_path),
         warning_count=_read_non_negative_int(payload, "warning_count", lint_path=lint_path),
         info_count=_read_non_negative_int(payload, "info_count", lint_path=lint_path),
-        issues=(),
+        issues=tuple(issues),
     )
 
 
@@ -89,6 +93,52 @@ def _read_non_negative_int(payload: dict[str, object], key: str, *, lint_path: P
     if not isinstance(value, int) or value < 0:
         raise ValueError(f"{lint_path} contains invalid {key!r}; expected non-negative integer.")
     return value
+
+
+def _read_lint_issues(payload: dict[str, object]) -> list[LintIssue]:
+    raw_issues = payload.get("issues")
+    if not isinstance(raw_issues, list):
+        return []
+    issues: list[LintIssue] = []
+    for raw_issue in raw_issues:
+        if not isinstance(raw_issue, dict):
+            continue
+        check_id = raw_issue.get("check_id")
+        message = raw_issue.get("message")
+        if not isinstance(check_id, str) or not isinstance(message, str):
+            continue
+        severity = raw_issue.get("severity")
+        path = raw_issue.get("path")
+        line = raw_issue.get("line")
+        issues.append(
+            LintIssue(
+                check_id=check_id,
+                message=message,
+                severity=severity if isinstance(severity, str) else None,
+                path=path if isinstance(path, str) else None,
+                line=line if isinstance(line, int) else None,
+            )
+        )
+    return issues
+
+
+def _combine_lint_summaries(*summaries: LintSummary) -> LintSummary:
+    issues: list[LintIssue] = []
+    error_count = 0
+    warning_count = 0
+    info_count = 0
+    for summary in summaries:
+        error_count += summary.error_count
+        warning_count += summary.warning_count
+        info_count += summary.info_count
+        issues.extend(summary.issues)
+    issue_summary = summarize_lint_issues(issues)
+    return LintSummary(
+        error_count=max(error_count, issue_summary.error_count),
+        warning_count=max(warning_count, issue_summary.warning_count),
+        info_count=max(info_count, issue_summary.info_count),
+        issues=tuple(issues),
+    )
 
 
 def _render_lint_envelope(
@@ -110,6 +160,16 @@ def _render_lint_envelope(
             "error_count": summary.error_count,
             "warning_count": summary.warning_count,
             "info_count": summary.info_count,
+            "issues": [
+                {
+                    "check_id": issue.check_id,
+                    "severity": issue.severity,
+                    "message": issue.message,
+                    "path": issue.path,
+                    "line": issue.line,
+                }
+                for issue in summary.issues
+            ],
         },
     }
     return json.dumps(envelope, sort_keys=True)
@@ -147,7 +207,10 @@ def run_main(argv: list[str] | None = None) -> int:
         return 1
 
     try:
-        lint_summary = _lint_summary_from_run(space_root, run_id=selected_run_id)
+        lint_summary = _combine_lint_summaries(
+            _lint_summary_from_run(space_root, run_id=selected_run_id),
+            summarize_lint_issues(collect_question_lint_issues(space_root)),
+        )
         gate = evaluate_lint_gate(
             selected_workflow,
             lint_summary,

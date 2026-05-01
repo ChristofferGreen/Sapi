@@ -8,6 +8,7 @@ from pathlib import Path
 from sapi.contracts.run_envelopes import (
     CommentRunFields,
     OverviewRunFields,
+    QuestionRunFields,
     QueryRunFields,
     RunEnvelopeBase,
     write_run_record,
@@ -24,6 +25,7 @@ class RunEnvelopeMetadataInvariantTests(unittest.TestCase):
                 "comment_section_pipeline",
                 "persona_profile_pipeline",
                 "overview_pipeline",
+                "question_pipeline",
             ]
             required_base_keys = {
                 "run_id",
@@ -64,6 +66,14 @@ class RunEnvelopeMetadataInvariantTests(unittest.TestCase):
                     "force_mode",
                     "source_records_used",
                     "article_path",
+                },
+                "question_pipeline": {
+                    "question_scope",
+                    "question_ids",
+                    "refresh_mode",
+                    "questions_checked",
+                    "question_syntheses_changed",
+                    "build_manifest_path",
                 },
             }
 
@@ -264,6 +274,19 @@ def _extension_for(flow_key: str) -> object:
             relations_used=1,
             topics_used=1,
             article_path="/tmp/space/outputs/space_overview/space--alpha/article.md",
+        )
+    if flow_key == "question_pipeline":
+        return QuestionRunFields(
+            question_scope="alpha",
+            question_ids=["question-protein-intake"],
+            refresh_mode="stale_only",
+            stale_only=True,
+            force_mode=False,
+            questions_checked=1,
+            question_syntheses_changed=0,
+            question_syntheses_unchanged=1,
+            build_deferred=False,
+            build_manifest_path="/tmp/site/outputs/build_site/manifest.json",
         )
     raise AssertionError(f"Unexpected flow_key: {flow_key}")
 

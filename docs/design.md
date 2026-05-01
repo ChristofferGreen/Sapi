@@ -716,6 +716,7 @@ Gate behavior by workflow key (normative):
 | `create_comments` | `create_comments.sh` | `scripts/create_comments.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
 | `generate_profiles` | `generate_profiles.sh` | `scripts/generate_profiles.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
 | `generate_overview` | `generate_overview.sh` | `scripts/generate_overview.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
+| `refresh_questions` | `refresh_questions.sh` | `scripts/refresh_questions.py` | fail when `error_count > 0`; warnings map to status via threshold policy |
 | `build_site` | `regenerate_web.sh` | `scripts/build_site.py` | fail on conversion/link errors (independent of warning threshold) |
 | `query` | `query.sh` | `scripts/query.py` | never blocked solely by lint warnings/errors; include lint summary in response metadata |
 | `rebuild_topic_collection` | compatibility-only maintenance path | compatibility entrypoint (if present) | fail when `error_count > 0`; warnings map to status via threshold policy |
@@ -723,7 +724,7 @@ Gate behavior by workflow key (normative):
 - `validate.sh` is a lint-engine dispatcher (`scripts/lint.py`) and does not define a separate workflow key; it evaluates one of the workflow keys above.
 
 Lint gate scope note (normative):
-- lint-gated workflows (`ingest_source`, `create_comments`, `generate_profiles`, `generate_overview`, plus compatibility-only `rebuild_topic_collection` when present) apply warning-threshold status mapping when `error_count == 0`.
+- lint-gated workflows (`ingest_source`, `create_comments`, `generate_profiles`, `generate_overview`, `refresh_questions`, plus compatibility-only `rebuild_topic_collection` when present) apply warning-threshold status mapping when `error_count == 0`.
 - non-lint-gated workflows (for example `query`) still emit lint totals in run metadata but MUST NOT fail solely due to lint warnings/errors.
 
 Final-page contradiction resolution (normative):
@@ -757,6 +758,7 @@ Primary shell entrypoints:
 - `create_site.sh <site_path> <site_name>`
 - `create_space.sh <site_path> <space_name>`
 - `create_questions.sh <site_path> <questions_tsv> [space_name]`
+- `refresh_questions.sh <site_path> <space_name> [--question-id <id> ...] [--all] [--force] [--build-deferred] [--verbose]`
 - `ingest.sh <site_path> <space_name> <source_path_or_url> [--force] [--verbose]`
 - `create_comments.sh <site_path> <space_name> --count <n> [--verbose] [--comment-user ...] [--comment-page ...] [--comment-seed ...] [--comment-evidence-mode ...]`
 - `generate_profiles.sh <site_path> <space_name> [--persona-id <persona_id> ...] [--verbose]`
@@ -776,6 +778,23 @@ Prepared question authoring:
   predictable reorder/update path.
 - LLM-suggested questions, when later supported, MUST remain drafts or require explicit operator
   approval before this canonical authoring path promotes them to active question records.
+
+Prepared question refresh:
+- `refresh_questions.sh` is the canonical operator path for refreshing cumulative question synthesis
+  outside ingest.
+- with no `--question-id`, the wrapper targets all active prepared questions in the selected
+  space/sub-space; `--all` is an explicit spelling of that default.
+- repeated `--question-id` flags restrict refresh to selected prepared questions, including inactive
+  audit pages when named explicitly.
+- stale-only behavior is the default: questions whose stored input signature matches current linked
+  source/claim/evidence context skip semantic regeneration but still record auditable refresh/check
+  metadata.
+- `--force` regenerates selected question synthesis even when signatures match; this force mode is
+  refresh behavior only and MUST NOT enable ingest-style failure-artifact retention.
+- unless `--build-deferred` is supplied, successful refresh runs deterministic space build
+  post-processing so question pages and the question-led front page reflect refreshed artifacts.
+- validation for question refresh reports broken prepared-question links, stale synthesis signatures,
+  invalid measurement rows, and missing built question front-page/index state.
 
 ### 6.2 Wrapper-to-entrypoint contract
 
@@ -809,6 +828,7 @@ Canonical wrapper/script/workflow-key map (normative):
 | wrapper | entrypoint | workflow key |
 | --- | --- | --- |
 | `ingest.sh` | `scripts/ingest_source.py` | `ingest_source` |
+| `refresh_questions.sh` | `scripts/refresh_questions.py` | `refresh_questions` |
 | `query.sh` | `scripts/query.py` | `query` |
 | `create_comments.sh` | `scripts/create_comments.py` | `create_comments` |
 | `generate_profiles.sh` | `scripts/generate_profiles.py` | `generate_profiles` |
@@ -937,7 +957,7 @@ Core steps:
 
 Run envelope model for multi-semantic commands (normative):
 - run metadata is command-scoped (`run_id` identifies one wrapper/entrypoint invocation).
-- `flow_key` identifies the command/pipeline (`ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`, `overview_pipeline`).
+- `flow_key` identifies the command/pipeline (`ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`, `overview_pipeline`, `question_pipeline`).
 - `semantic_flows[]` records an ordered unique list of semantic generation flow keys executed at least once during that command invocation.
 - `semantic_flow_invocation_counts` records per-flow invocation counts for the same command invocation.
 - normal ingest without active prepared questions writes `semantic_flows: [ingest_extraction, topic_generation]` and `semantic_flow_invocation_counts: {ingest_extraction: 1, topic_generation: 1}`.
@@ -948,6 +968,10 @@ Run envelope model for multi-semantic commands (normative):
   of affected questions that required synthesis regeneration.
 - ingest runs that execute automatic revision detection prepend `source_revision_detection` to `semantic_flows` with invocation count `1`; explicit `--revises-source-id` runs MUST NOT invoke `source_revision_detection`.
 - ingest does not support semantic-flow bypass flags.
+- direct prepared-question refresh uses `flow_key: question_pipeline`; it records
+  `question_synthesis` in `semantic_flows` only for questions that actually regenerated synthesis,
+  and its invocation count equals the number of regenerated questions. Stale-only no-op checks may
+  commit a run with empty `semantic_flows`.
 
 Terminal failure behavior (normative):
 - if `ingest_extraction` or `topic_generation` exhausts repair retries, command MUST fail.
@@ -1857,7 +1881,7 @@ Canonical run-record metadata (normative base envelope for committed runs):
   - `toolchain_versions` (string->string map)
   - lint totals (`lint_error_count`, `lint_warning_count`, `lint_info_count`)
 - run-record `flow_key` namespace is command/pipeline oriented and distinct from generation-spec semantic `flow_key` values.
-- `flow_key` allowed values: `ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`, `overview_pipeline`
+- `flow_key` allowed values: `ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`, `overview_pipeline`, `question_pipeline`
 - `semantic_flows` values MUST be an ordered unique subset of canonical semantic flow keys from: `ingest_extraction`, `topic_generation`, `source_revision_detection`, `query_synthesis`, `comment_section_generation`, `persona_profile_generation`, `space_overview_generation`, `question_relevance_mapping`, `question_synthesis`, `question_measurement_extraction`
 - `semantic_flow_invocation_counts` keys MUST be canonical semantic flow keys and values MUST be positive integers; every key in `semantic_flows` MUST appear in this map.
 - flow-specific frontmatter extensions:
@@ -1866,6 +1890,7 @@ Canonical run-record metadata (normative base envelope for committed runs):
   - comment-section pipeline: `target_page_refs`, `comment_user_filters`, `requested_count`, `comments_added`, `evidence_mode`, nullable `evidence_snapshot_path`
   - persona-profile pipeline: `persona_ids`, `history_generated`, `history_updated`, `history_reused`, `pages_changed`
   - overview pipeline: `overview_id`, `scope_kind`, `scope_name`, `input_signature`, `refresh_decision`, `refresh_reason`, `force_mode`, `source_records_used`, `claims_used`, `relations_used`, `topics_used`, nullable `article_path`
+  - question pipeline: `question_scope`, `question_ids`, `refresh_mode`, `stale_only`, `force_mode`, `questions_checked`, `question_syntheses_changed`, `question_syntheses_unchanged`, `build_deferred`, nullable `build_manifest_path`
 - flows that do not execute lint/build stages MUST still write lint totals with a consistent null-or-zero policy chosen by implementation and enforced in tests
 - required body sections: `## Summary`, `## Changes`, `## Lint Summary`, `## Errors`
 

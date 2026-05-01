@@ -10,6 +10,7 @@ from sapi.contracts.run_envelopes import (
     IngestRunFields,
     OverviewRunFields,
     PersonaProfileRunFields,
+    QuestionRunFields,
     QueryRunFields,
     RunEnvelopeBase,
 )
@@ -211,6 +212,7 @@ class PipelinePolicyTests(unittest.TestCase):
                 ("comment_section_pipeline", _comment_fields(), "run-20260412T120004Z--comments000"),
                 ("persona_profile_pipeline", _profile_fields(), "run-20260412T120005Z--profiles000"),
                 ("overview_pipeline", _overview_fields(), "run-20260412T120006Z--overview000"),
+                ("question_pipeline", _question_fields(), "run-20260412T120006Z--question0001"),
             ]
             for flow_key, flow_fields, run_id in cases:
                 with self.subTest(flow_key=flow_key):
@@ -285,6 +287,27 @@ class PipelinePolicyTests(unittest.TestCase):
             self.assertTrue(lint_path.is_file())
             lint_payload = json.loads(lint_path.read_text())
             self.assertEqual(lint_payload["workflow"], "generate_overview")
+
+    def test_success_question_run_writes_refresh_questions_lint_workflow(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "space"
+            base = _base(flow_key="question_pipeline", run_id="run-20260412T120008Z--question001")
+            base.status = "success"
+            tx = ArtifactTransaction()
+
+            result = finalize_pipeline_run(
+                space_root=space_root,
+                base=base,
+                flow_fields=_question_fields(),
+                transaction=tx,
+                force_mode=False,
+            )
+
+            self.assertEqual(result.exit_code, 0)
+            lint_path = space_root / "runs" / base.run_id / "lint.json"
+            self.assertTrue(lint_path.is_file())
+            lint_payload = json.loads(lint_path.read_text())
+            self.assertEqual(lint_payload["workflow"], "refresh_questions")
 
 
 def _base(*, flow_key: str, run_id: str) -> RunEnvelopeBase:
@@ -381,6 +404,21 @@ def _overview_fields() -> OverviewRunFields:
         relations_used=1,
         topics_used=1,
         article_path="/tmp/space/outputs/space_overview/space--alpha/article.md",
+    )
+
+
+def _question_fields() -> QuestionRunFields:
+    return QuestionRunFields(
+        question_scope="alpha",
+        question_ids=["question-protein-intake"],
+        refresh_mode="stale_only",
+        stale_only=True,
+        force_mode=False,
+        questions_checked=1,
+        question_syntheses_changed=0,
+        question_syntheses_unchanged=1,
+        build_deferred=False,
+        build_manifest_path="/tmp/site/outputs/build_site/manifest.json",
     )
 
 

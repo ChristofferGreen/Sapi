@@ -16,6 +16,7 @@ WORKFLOW_KEYS: frozenset[str] = frozenset(
         "create_comments",
         "generate_profiles",
         "generate_overview",
+        "refresh_questions",
         "build_site",
         "query",
         "rebuild_topic_collection",
@@ -27,6 +28,7 @@ _LINT_GATED_BY_ERROR_AND_WARNING_THRESHOLD: frozenset[str] = frozenset(
         "create_comments",
         "generate_profiles",
         "generate_overview",
+        "refresh_questions",
         "rebuild_topic_collection",
     }
 )

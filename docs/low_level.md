@@ -278,6 +278,8 @@ Run envelope policy:
 - each pipeline writes `RunEnvelopeBase` plus its pipeline-specific extension fields
 - `semantic_flows` is an ordered unique list of semantic flows executed at least once in the invocation
 - `semantic_flow_invocation_counts` records how many semantic invocations were executed per semantic flow key
+- `question_pipeline` is the direct prepared-question refresh pipeline; it records
+  `question_synthesis` invocation counts only for questions that regenerate synthesis
 - timestamp fields (`started_at`, `completed_at`) use UTC RFC 3339 with trailing `Z`
 - `llm_attempt_count` is the total attempts consumed across semantic calls in the invocation
 - flows that do not execute lint/build still write lint totals with one implementation-wide null-or-zero policy
@@ -733,6 +735,7 @@ Workflow gate policy alignment (normative):
 Wrapper to script mapping:
 - `ingest.sh` -> `scripts/ingest_source.py`
 - `create_questions.sh` -> `scripts/create_prepared_questions.py`
+- `refresh_questions.sh` -> `scripts/refresh_questions.py`
 - `query.sh` -> `scripts/query.py`
 - `create_comments.sh` -> `scripts/create_comments.py`
 - `generate_profiles.sh` -> `scripts/generate_profiles.py`
@@ -743,6 +746,8 @@ Workflow-key alignment:
 - `ingest.sh` -> workflow key `ingest_source`
 - `create_questions.sh` -> no semantic workflow key; writes operator-authored canonical question
   records and never generates question text deterministically
+- `refresh_questions.sh` -> workflow key `refresh_questions`; writes `question_pipeline`
+  run records and supports selected/all/stale-only prepared-question refresh
 - `query.sh` -> workflow key `query`
 - `create_comments.sh` -> workflow key `create_comments`
 - `generate_profiles.sh` -> workflow key `generate_profiles`

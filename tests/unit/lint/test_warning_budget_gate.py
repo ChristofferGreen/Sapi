@@ -60,6 +60,10 @@ class WarningBudgetGateTests(unittest.TestCase):
         self.assertTrue(ingest_error_gate.blocked)
         self.assertEqual(ingest_error_gate.status, "failed")
 
+        refresh_questions_gate = evaluate_lint_gate("refresh_questions", lint_with_warning, warning_threshold=1)
+        self.assertFalse(refresh_questions_gate.blocked)
+        self.assertEqual(refresh_questions_gate.status, "success_with_warnings")
+
         build_gate = evaluate_lint_gate("build_site", lint_with_error, warning_threshold=1)
         self.assertTrue(build_gate.blocked)
         self.assertEqual(build_gate.status, "failed")
@@ -77,6 +81,7 @@ class WarningBudgetGateTests(unittest.TestCase):
             "create_comments",
             "generate_profiles",
             "generate_overview",
+            "refresh_questions",
             "rebuild_topic_collection",
         ):
             with self.subTest(workflow=workflow, case="at-threshold"):

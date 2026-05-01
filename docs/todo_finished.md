@@ -4,6 +4,22 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-05-01
 
+- [x] TODO-0375: Wire question refresh metadata, wrappers, and run envelopes
+  - owner: ai
+  - created_at: 2026-04-30
+  - phase: Prepared questions
+  - finished_at: 2026-05-01
+  - depends_on: none
+  - scope: Integrate question pipelines with operator wrappers, runtime flags, run envelopes, lint artifacts, and deterministic post-processing decisions.
+  - acceptance:
+    - Add or update wrappers/scripts for creating, refreshing, validating, and rebuilding prepared question artifacts.
+    - Run envelopes distinguish prepared-question pipeline flow keys from semantic flow keys and record invocation counts for relevance mapping, synthesis, and measurement extraction.
+    - Lint/validation reports broken question links, stale synthesis signatures, invalid measurement rows, and missing front-page question index state.
+    - Ingest coalesces question post-processing with existing deterministic build refreshes when output is equivalent.
+    - Direct refresh commands support selected-question, all-question, and stale-only modes with clear no-op output when nothing needs regeneration.
+  - notes: Preserve the no-implicit-registry and no-env-flow-control rules.
+  - evidence: Added `question_pipeline` run-envelope fields and `refresh_questions` lint workflow mapping; implemented `refresh_questions.sh` and `scripts/refresh_questions.py` with selected/all active/stale-only/force modes, live-LLM default, mock test mode, run metadata, lint artifact finalization, and deterministic build post-processing; added prepared-question lint checks for invalid records/links, stale synthesis signatures, invalid measurement rows, and stale/missing built question front-page state; wired `validate.sh` to report those diagnostics; and added unit/integration coverage for the wrapper, run metadata, lint gate behavior, and question diagnostics.
+
 - [x] TODO-0373: Render questions index as the space front page
   - owner: ai
   - created_at: 2026-04-30

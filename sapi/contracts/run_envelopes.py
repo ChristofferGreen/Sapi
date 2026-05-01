@@ -29,6 +29,7 @@ PipelineFlowKey = Literal[
     "comment_section_pipeline",
     "persona_profile_pipeline",
     "overview_pipeline",
+    "question_pipeline",
 ]
 
 RunStatus = Literal["pending", "success", "success_with_warnings", "failed", "aborted"]
@@ -159,8 +160,27 @@ class OverviewRunFields:
     article_path: str | None
 
 
+@dataclass
+class QuestionRunFields:
+    question_scope: str
+    question_ids: list[str]
+    refresh_mode: str
+    stale_only: bool
+    force_mode: bool
+    questions_checked: int
+    question_syntheses_changed: int
+    question_syntheses_unchanged: int
+    build_deferred: bool
+    build_manifest_path: str | None
+
+
 FlowSpecificFields = (
-    IngestRunFields | QueryRunFields | CommentRunFields | PersonaProfileRunFields | OverviewRunFields
+    IngestRunFields
+    | QueryRunFields
+    | CommentRunFields
+    | PersonaProfileRunFields
+    | OverviewRunFields
+    | QuestionRunFields
 )
 
 
@@ -237,6 +257,7 @@ def _validate_flow_fields_type(flow_key: PipelineFlowKey, flow_fields: FlowSpeci
         "comment_section_pipeline": CommentRunFields,
         "persona_profile_pipeline": PersonaProfileRunFields,
         "overview_pipeline": OverviewRunFields,
+        "question_pipeline": QuestionRunFields,
     }
     expected = expected_types[flow_key]
     if not isinstance(flow_fields, expected):

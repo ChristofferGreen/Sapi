@@ -9,6 +9,7 @@ import unittest
 from unittest.mock import patch
 
 from sapi.lint.lint_engine import LintSummary, write_lint_artifact
+from sapi.questions.prepared_questions import write_prepared_question_record
 from scripts import lint as lint_script
 
 
@@ -118,6 +119,38 @@ class ValidateWorkflowDispatchTests(unittest.TestCase):
             self.assertEqual(1, envelope["warning_threshold"])
             self.assertEqual(2, envelope["lint"]["warning_count"])
 
+    def test_validate_reports_prepared_question_lint_issues_without_run_id(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root, registry_path = self._bootstrap_registry(Path(tmp))
+            write_prepared_question_record(
+                space_root=space_root,
+                space_name="alpha",
+                payload=_question_payload(
+                    "question-protein-intake",
+                    measurement_ids=["measurement-protein-grams--123456789abc"],
+                ),
+            )
+
+            exit_code, stdout_text, stderr_text = self._invoke(
+                [
+                    "alpha",
+                    "--registry-path",
+                    str(registry_path),
+                    "--workflow",
+                    "refresh_questions",
+                ]
+            )
+
+            self.assertEqual(1, exit_code)
+            self.assertEqual("", stderr_text)
+            envelope = json.loads(stdout_text)
+            self.assertEqual("failed", envelope["status"])
+            self.assertEqual(1, envelope["lint"]["error_count"])
+            self.assertEqual(
+                "invalid_question_measurement",
+                envelope["lint"]["issues"][0]["check_id"],
+            )
+
     def test_invalid_warning_budget_fails_fast(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             _, registry_path = self._bootstrap_registry(Path(tmp))
@@ -159,6 +192,28 @@ class ValidateWorkflowDispatchTests(unittest.TestCase):
                 with patch("sys.stdout", stdout_capture), patch("sys.stderr", stderr_capture):
                     exit_code = lint_script.run_main(argv)
         return exit_code, stdout_capture.getvalue().strip(), stderr_capture.getvalue().strip()
+
+
+def _question_payload(
+    question_id: str,
+    *,
+    measurement_ids: list[str] | None = None,
+) -> dict[str, object]:
+    return {
+        "schema_version": "prepared_question_v1",
+        "question_id": question_id,
+        "question": "What protein intake supports muscle growth?",
+        "status": "active",
+        "display_order": 1,
+        "scope": {"space_name": "alpha"},
+        "linked_source_ids": [],
+        "claim_ids": [],
+        "evidence_ids": [],
+        "measurement_ids": measurement_ids if measurement_ids is not None else [],
+        "synthesis": {},
+        "freshness": {},
+        "warnings": [],
+    }
 
 
 if __name__ == "__main__":

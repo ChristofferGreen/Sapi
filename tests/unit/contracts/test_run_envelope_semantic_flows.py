@@ -10,6 +10,7 @@ from sapi.contracts.run_envelopes import (
     IngestRunFields,
     OverviewRunFields,
     PersonaProfileRunFields,
+    QuestionRunFields,
     QueryRunFields,
     RunEnvelopeBase,
     run_record_path,
@@ -185,6 +186,22 @@ class RunEnvelopeWriterTests(unittest.TestCase):
                         "article_path",
                     },
                 ),
+                (
+                    "question_pipeline",
+                    _question_fields(),
+                    {
+                        "question_scope",
+                        "question_ids",
+                        "refresh_mode",
+                        "stale_only",
+                        "force_mode",
+                        "questions_checked",
+                        "question_syntheses_changed",
+                        "question_syntheses_unchanged",
+                        "build_deferred",
+                        "build_manifest_path",
+                    },
+                ),
             ]
 
             for flow_key, extension, required_keys in cases:
@@ -298,6 +315,21 @@ def _overview_fields() -> OverviewRunFields:
         relations_used=1,
         topics_used=1,
         article_path="/tmp/space/outputs/space_overview/space--alpha/article.md",
+    )
+
+
+def _question_fields() -> QuestionRunFields:
+    return QuestionRunFields(
+        question_scope="alpha",
+        question_ids=["question-protein-intake"],
+        refresh_mode="stale_only",
+        stale_only=True,
+        force_mode=False,
+        questions_checked=1,
+        question_syntheses_changed=0,
+        question_syntheses_unchanged=1,
+        build_deferred=False,
+        build_manifest_path="/tmp/site/outputs/build_site/manifest.json",
     )
 
 

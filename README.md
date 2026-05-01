@@ -73,6 +73,7 @@ Canonical operator wrappers (target interface during reconstruction):
 - `create_site.sh <site_path> <site_name>`
 - `create_space.sh <site_path> <space_name>`
 - `create_questions.sh <site_path> <questions_tsv> [space_name]`
+- `refresh_questions.sh <site_path> <space_name> [--question-id <id> ...] [--all] [--force] [--build-deferred] [--verbose]`
 - `ingest.sh <site_path> <space_name> <source_path_or_url> [--revises-source-id <source_id>] [--force] [--verbose]`
 - `query.sh <site_path> <space_name> <question> [--verbose]`
 - `create_comments.sh <site_path> <space_name> --count <n> [--verbose] [...]`
@@ -89,6 +90,10 @@ Prepared-question seed files are tab-separated rows in one of these forms:
 `active`, `inactive`, or `draft` when supplied. The optional `[space_name]` wrapper argument imports
 only rows for that registered space or subspace, which lets operators update one question set from a
 shared seed file.
+
+Prepared-question synthesis can be refreshed directly with `refresh_questions.sh`. With no
+`--question-id`, it checks all active questions, skips current signatures by default, records a
+`question_pipeline` run, and rebuilds the selected space unless `--build-deferred` is supplied.
 
 Persona image generation utility:
 
