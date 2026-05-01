@@ -189,6 +189,7 @@ def main() -> int:
             registry_path=registry_path,
             site_path=site_path,
             space_name=args.space_name,
+            refresh_site_new_index=False,
         )
     except Exception as exc:
         completed_at = format_timestamp_rfc3339_utc(datetime.now(UTC))

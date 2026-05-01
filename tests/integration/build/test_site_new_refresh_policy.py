@@ -4,6 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from sapi.profiles.persona_catalog import load_seeded_persona_catalog
 from tests.conftest import REPO_ROOT, bootstrap_site_and_space, run_command, write_source_fixture
 
 
@@ -55,7 +56,7 @@ class SiteNewRefreshPolicyIntegrationTests(unittest.TestCase):
                     "--registry-path",
                     str(site_path / "spaces.toml"),
                     "--persona-id",
-                    "commenter-1",
+                    _seeded_persona_ids(count=1)[0],
                     "--mock-llm",
                 ]
             )
@@ -121,6 +122,11 @@ class SiteNewRefreshPolicyIntegrationTests(unittest.TestCase):
             )
             self.assertEqual(second_ingest_result.returncode, 0, msg=second_ingest_result.stderr)
             self.assertGreater(new_index_path.stat().st_mtime_ns, baseline_mtime)
+
+
+def _seeded_persona_ids(*, count: int) -> list[str]:
+    rows = load_seeded_persona_catalog(repo_root=REPO_ROOT, require_image_files=False)
+    return [str(row["persona_id"]) for row in rows[:count]]
 
 
 if __name__ == "__main__":

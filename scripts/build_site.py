@@ -38,6 +38,11 @@ def build_parser() -> argparse.ArgumentParser:
         default="public",
         choices=["public", "debug"],
     )
+    parser.add_argument(
+        "--skip-site-new-index",
+        action="store_true",
+        help="Build selected space output without rewriting site-root New feed/index pages.",
+    )
     parser.add_argument("space_name", nargs="?")
     parser.add_argument("--verbose", action="store_true")
     return parser
@@ -107,11 +112,13 @@ def main() -> int:
                 generated_files=build.generated_files,
             )
             builds[-1]["projection_index_path"] = str(projection_index_path)
-        site_new_index_path = refresh_site_new_index(
-            site_path,
-            incremental=args.incremental,
-            compiled_stylesheet=compiled_stylesheet,
-        )
+        site_new_index_path = None
+        if not args.skip_site_new_index:
+            site_new_index_path = refresh_site_new_index(
+                site_path,
+                incremental=args.incremental,
+                compiled_stylesheet=compiled_stylesheet,
+            )
     except (ProjectionContractError, ValueError, KeyError, FileNotFoundError) as exc:
         print(f"Build failed: {exc}", file=sys.stderr)
         return 1
@@ -135,7 +142,7 @@ def main() -> int:
             "info_count": lint_info_count,
             "issues": lint_issue_rows,
         },
-        "site_new_index_path": str(site_new_index_path),
+        "site_new_index_path": str(site_new_index_path) if site_new_index_path is not None else None,
         "toolchain_versions": {
             "node": toolchain["node"],
             "package_manager": toolchain["package_manager"],

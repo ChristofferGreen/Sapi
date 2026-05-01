@@ -12,6 +12,7 @@ def run_space_build_postprocess(
     registry_path: Path,
     site_path: Path,
     space_name: str,
+    refresh_site_new_index: bool = True,
 ) -> Path:
     command = [
         "python3",
@@ -22,6 +23,8 @@ def run_space_build_postprocess(
         str(registry_path),
         space_name,
     ]
+    if not refresh_site_new_index:
+        command.insert(-1, "--skip-site-new-index")
     result = subprocess.run(command, capture_output=True, text=True)
     if result.returncode != 0:
         raise RuntimeError(
