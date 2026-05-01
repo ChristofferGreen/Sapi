@@ -22,6 +22,7 @@ class PreparedQuestionSeed:
     question_id: str
     display_order: int
     question: str
+    status: str = "active"
 
 
 @dataclass(frozen=True)
@@ -53,15 +54,24 @@ def parse_prepared_question_seed_tsv(tsv_path: Path) -> list[PreparedQuestionSee
         if not line or line.startswith("#"):
             continue
         parts = raw_line.split("\t")
-        if len(parts) != 4:
+        if len(parts) == 4:
+            space_name, question_id, display_order_raw, question = (part.strip() for part in parts)
+            status = "active"
+        elif len(parts) == 5:
+            space_name, question_id, display_order_raw, status, question = (part.strip() for part in parts)
+        else:
             raise ValueError(
-                f"{tsv_path}:{line_number}: expected 4 tab-separated fields: "
-                "space_name, question_id, display_order, question."
+                f"{tsv_path}:{line_number}: expected 4 or 5 tab-separated fields: "
+                "space_name, question_id, display_order, [status], question."
             )
-        space_name, question_id, display_order_raw, question = (part.strip() for part in parts)
         if not space_name:
             raise ValueError(f"{tsv_path}:{line_number}: space_name must be non-empty.")
         _validate_question_id(question_id, path=tsv_path, field="question_id")
+        if status not in QUESTION_STATUS_VALUES:
+            raise ValueError(
+                f"{tsv_path}:{line_number}: status must be one of "
+                f"{', '.join(sorted(QUESTION_STATUS_VALUES))}."
+            )
         if not question:
             raise ValueError(f"{tsv_path}:{line_number}: question must be non-empty.")
         try:
@@ -86,6 +96,7 @@ def parse_prepared_question_seed_tsv(tsv_path: Path) -> list[PreparedQuestionSee
                 question_id=question_id,
                 display_order=display_order,
                 question=question,
+                status=status,
             )
         )
     return rows
@@ -129,7 +140,7 @@ def upsert_prepared_question_seeds(
             "schema_version": QUESTION_SCHEMA_VERSION,
             "question_id": seed.question_id,
             "question": seed.question,
-            "status": _existing_string(existing, "status", default="active"),
+            "status": seed.status,
             "display_order": seed.display_order,
             "scope": {"space_name": space_name},
             "linked_source_ids": _existing_string_list(existing, "linked_source_ids"),
@@ -223,4 +234,3 @@ def _existing_string_list(payload: dict[str, Any], field: str) -> list[str]:
         if isinstance(item, str) and item.strip():
             strings.append(item.strip())
     return strings
-

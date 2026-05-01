@@ -401,8 +401,10 @@ Prepared-question implementation ownership:
 - deterministic question index/detail rendering belongs in `sapi/build/site_builder.py` and should read
   prepared-question records through the shared loader.
 - wrapper ownership is split: `create_questions.sh` and `scripts/create_prepared_questions.py` handle
-  operator-approved authoring/seed import; later refresh wrappers should call question package
-  pipeline helpers rather than writing records directly.
+  operator-approved authoring/seed import; they accept four-field active rows or five-field
+  status-aware rows, enforce per-space duplicate IDs/orders, apply reorder/update/deactivation
+  changes through the shared writer, and reject empty filtered imports. Later refresh wrappers should
+  call question package pipeline helpers rather than writing records directly.
 
 ### 8.1 Common pipeline state machine and exit codes
 
@@ -723,7 +725,8 @@ Wrapper to script mapping:
 
 Workflow-key alignment:
 - `ingest.sh` -> workflow key `ingest_source`
-- `create_questions.sh` -> no semantic workflow key; writes operator-authored canonical question records
+- `create_questions.sh` -> no semantic workflow key; writes operator-authored canonical question
+  records and never generates question text deterministically
 - `query.sh` -> workflow key `query`
 - `create_comments.sh` -> workflow key `create_comments`
 - `generate_profiles.sh` -> workflow key `generate_profiles`

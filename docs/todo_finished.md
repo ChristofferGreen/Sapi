@@ -4,6 +4,21 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-05-01
 
+- [x] TODO-0369: Add operator workflow for prepared question authoring
+  - owner: ai
+  - created_at: 2026-04-30
+  - phase: Prepared questions
+  - finished_at: 2026-05-01
+  - depends_on: none
+  - scope: Provide an operator path to create or update the initial prepared questions for a space/subspace, with optional later support for LLM-suggested drafts.
+  - acceptance:
+    - Add a documented wrapper/script interface for adding prepared questions to a space/subspace.
+    - The default supported path accepts operator-authored question text and persists canonical question records, including batch creation of roughly 10 seed questions.
+    - Optional LLM-generated question suggestions, if implemented in this task, are saved as drafts or require explicit operator approval before becoming canonical.
+    - Wrapper tests cover registry injection, invalid arguments, duplicate question handling, reorder/update behavior, deactivation, and subspace targeting.
+  - notes: The first implementation should not require automatic question generation.
+  - evidence: Added status-aware prepared-question TSV import, filtered-space no-op rejection, lifecycle update/deactivation support, wrapper documentation, and wrapper/unit coverage for invalid args, duplicates, reorder/update, deactivation, and subspace targeting.
+
 - [x] TODO-0368: Add prepared-question schemas and generation specs
   - owner: ai
   - created_at: 2026-04-30

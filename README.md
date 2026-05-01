@@ -80,6 +80,16 @@ Canonical operator wrappers (target interface during reconstruction):
 - `regenerate_web.sh <site_path> [space_name] [--verbose]`
 - `validate.sh <site_path> <space_name> [--workflow ...] [--run-id ...]`
 
+Prepared-question seed files are tab-separated rows in one of these forms:
+
+- `space_name<TAB>question_id<TAB>display_order<TAB>question`
+- `space_name<TAB>question_id<TAB>display_order<TAB>status<TAB>question`
+
+`question_id` must use the `question-<slug>` form, `display_order` starts at 1, and `status` is
+`active`, `inactive`, or `draft` when supplied. The optional `[space_name]` wrapper argument imports
+only rows for that registered space or subspace, which lets operators update one question set from a
+shared seed file.
+
 Persona image generation utility:
 
 - `python3 scripts/generate_profile_images.py [--persona-id <persona_id> ...] [--model imagen-4.0-generate-001] [--verbose]`

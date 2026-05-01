@@ -755,6 +755,18 @@ Primary shell entrypoints:
 - `validate.sh <site_path> <space_name> [--workflow ...] [--run-id ...]`
 - `evaluate_source.sh <site_path> <space_name> <source_path_or_url> [--out <artifact_dir>] [--comments <n>] [--comment-user ...] [--comment-page ...] [--verbose]`
 
+Prepared question authoring:
+- `create_questions.sh` is the canonical operator path for approved seed questions.
+- the TSV input MUST contain either `space_name`, `question_id`, `display_order`, and `question`, or
+  those same fields plus an explicit `status` before `question`.
+- omitted status means `active`; explicit status MUST be `active`, `inactive`, or `draft`.
+- the optional wrapper `space_name` argument imports only rows for that registered space/subspace and
+  MUST fail if the TSV has no matching rows.
+- duplicate question IDs or display orders inside one TSV scope are invalid, because operators need a
+  predictable reorder/update path.
+- LLM-suggested questions, when later supported, MUST remain drafts or require explicit operator
+  approval before this canonical authoring path promotes them to active question records.
+
 ### 6.2 Wrapper-to-entrypoint contract
 
 - wrappers are the primary operator interface and accept `<site_path>` first

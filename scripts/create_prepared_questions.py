@@ -42,6 +42,8 @@ def main() -> int:
         seed_rows = parse_prepared_question_seed_tsv(questions_tsv)
         if args.space_name:
             seed_rows = [row for row in seed_rows if row.space_name == args.space_name]
+            if not seed_rows:
+                raise ValueError(f"No prepared question rows found for space: {args.space_name}")
         rows_by_space: dict[str, list[PreparedQuestionSeed]] = defaultdict(list)
         for row in seed_rows:
             rows_by_space[row.space_name].append(row)
@@ -68,4 +70,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
