@@ -139,9 +139,11 @@ Topology ownership note (resolved stubs):
   claim annotation parsing/rendering and claim-option title synthesis to
   `sapi/build/topic_claim_rendering.py`.
 - `sapi/questions/prepared_questions.py` owns prepared-question record parsing, validation, ordering,
-  and operator-authored seed writes. Ingest relevance mapping, cumulative synthesis, and measurement
-  extraction should extend this package rather than adding question persistence inside build or ingest
-  modules directly.
+  link resolution, lifecycle filtering, and operator-authored seed writes. It rejects non-schema
+  records, filename/question ID mismatches, duplicate display orders, wrong space/subspace scopes, and
+  broken source/claim/evidence references before callers receive prepared-question records. Ingest
+  relevance mapping, cumulative synthesis, and measurement extraction should extend this package
+  rather than adding question persistence inside build or ingest modules directly.
 - `scripts/create_prepared_questions.py` owns the non-semantic operator/bootstrap entrypoint for
   prepared-question authoring from approved TSV seed data. It must go through registry resolution and
   the shared question writer rather than writing ad hoc JSON.
@@ -389,7 +391,7 @@ Implementation notes:
 
 Prepared-question implementation ownership:
 - `sapi/questions/prepared_questions.py` owns canonical record validation, lifecycle filtering,
-  display ordering, writer/upsert semantics, and seed import.
+  display ordering, writer/upsert semantics, linked source/claim/evidence validation, and seed import.
 - ingest-time source-to-question relevance mapping belongs in the ingest pipeline only as an
   orchestrator; prompt preparation, output validation, and question-record mutation should delegate
   to `sapi/questions/`.

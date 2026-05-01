@@ -4,6 +4,21 @@ This file is append-only history for completed tasks moved out of `docs/todo.md`
 
 ## 2026-05-01
 
+- [x] TODO-0370: Implement canonical question storage and loaders
+  - owner: ai
+  - created_at: 2026-04-30
+  - phase: Prepared questions
+  - finished_at: 2026-05-01
+  - depends_on: none
+  - scope: Add persistent question artifacts and importable loaders/writers that enforce canonical question IDs, links, freshness metadata, and question index state.
+  - acceptance:
+    - Canonical records live under the documented question storage paths and include question text, status, scope, display order, linked source IDs, claim IDs, evidence IDs, measurement IDs, synthesis metadata, and freshness fields.
+    - Loaders validate schema version, ID format, duplicate IDs, broken source/claim/evidence links, and subspace scope rules.
+    - Writers preserve stable question IDs across title/text edits unless an explicit migration path is documented, and deactivated questions remain linkable but are removed from the default front-page list.
+    - Unit tests cover valid records, invalid records, duplicate records, display ordering, inactive records, missing links, and relocatable relative paths.
+  - notes: Keep question records canonical JSON; markdown/HTML are derived only.
+  - evidence: Added schema-backed prepared-question record validation, stable record writing, filename/scope/order checks, source/claim/evidence link validation, suffix-capable question IDs, active lifecycle filtering, docs, and focused storage tests.
+
 - [x] TODO-0369: Add operator workflow for prepared question authoring
   - owner: ai
   - created_at: 2026-04-30

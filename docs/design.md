@@ -496,6 +496,10 @@ Behavior:
 - `questions/` stores canonical prepared-question records, including question text, lifecycle state,
   display order, linked source/claim/evidence IDs, optional measurement IDs, synthesis freshness
   metadata, and semantic synthesis fields when generated.
+- prepared-question loaders MUST validate the checked-in record schema, filename/question ID
+  alignment, duplicate question IDs, duplicate display orders, scope ownership, and linked
+  source/claim/evidence record existence before returning records to ingest, synthesis, or rendering
+  code.
 - `profiles/` stores canonical persona-profile JSON artifacts (space-scoped).
 - `runs/<run_id>/semantic/` stores per-run semantic-generation JSON envelopes when a flow uses run-scoped semantic output artifacts.
 - `outputs/` stores deterministic, flow-specific derived artifacts (query manifests, overview contexts/articles, persona profile history, comment-quality evaluation manifests).
