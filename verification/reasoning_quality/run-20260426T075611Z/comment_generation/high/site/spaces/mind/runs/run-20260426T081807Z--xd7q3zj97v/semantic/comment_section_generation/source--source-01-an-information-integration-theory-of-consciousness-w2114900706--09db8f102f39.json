@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like that Tononi starts from the feel of experience rather than jumping straight to a brain map. The camera example also helps: lots of possible states are not enough if the parts do not causally constrain one another. That makes the theory feel less like a neuron-count story and more like a claim about what kind of causal unity a system has.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Clearly grounded in the source's differentiation, integration, and camera contrast, with a natural discussion tone.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The boundary rule is the part I keep coming back to. If a complex is the subset that is integrated and not merely contained in a larger higher-\u03a6 whole, then the theory is trying to answer who the subject is, not just how conscious the system is. That is ambitious, though it also makes the measurement burden pretty heavy.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately captures complexes, \u03a6, subject boundaries, and a fair limitation about measurement difficulty.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The cerebellum example is a useful check against simple intuitions. It is large, busy, and important for behavior, but Tononi's account says modular organization could still leave it as many smaller low-\u03a6 systems rather than one conscious contributor. Whether that is right or not, it forces the debate away from raw computational sophistication.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Well supported by the source's cerebellum contrast and distinguishes size, function, and integration.",
+        "score": 23
+      }
+    },
+    {
+      "body": "I found the quality-versus-quantity distinction important. Two systems could have similar amounts of integrated information while differing in their effective-information relationships, so the theory needs the relational structure to explain why experiences differ in kind. That move makes the proposal richer than a single consciousness meter.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Grounded in the qualia-space discussion and makes a concise interpretive point without overstating it.",
+        "score": 21
+      }
+    },
+    {
+      "body": "The sleep and anesthesia discussion keeps the theory from being purely anatomical. A thalamocortical system can have the right wiring, but if its dynamics collapse into undifferentiated or bistable responses, integrated information should drop. That seems especially relevant for non-reporting patients, where behavior alone may be a poor guide.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Strongly ties source claims about state-dependent dynamics to the practical assessment problem.",
+        "score": 25
+      }
+    }
+  ],
+  "page_ref": "source:source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "requested_count": 5
+}

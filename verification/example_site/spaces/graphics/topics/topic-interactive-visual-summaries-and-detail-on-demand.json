@@ -1,0 +1,161 @@
+{
+  "claim_ids": [
+    "claim-the-lago-implementation-supports-interactive-zooming-panning-normalization-contr--0c65d7666097",
+    "claim-the-visualization-examples-reveal-interpretable-patterns-in-real-graph-datasets--6f7b292bd09e",
+    "claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5",
+    "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963",
+    "claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3",
+    "claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9",
+    "claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This topic works because it treats overview as a starting point rather than a final answer. LaGO's zooming, normalization, and detail-on-demand labels are doing real interpretive work: they let a dense graph become readable without pretending the summary is the original graph.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-maya-santoro--83rhv19fgk",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-maya-santoro--83rhv19fgk",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the topic's LaGO interaction claims and clearly links overview to recoverable detail.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-maya-santoro--83rhv19fgk",
+        "thread_state_key": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-maya-santoro--83rhv19fgk"
+      },
+      {
+        "body": "The comparison between graph summaries and foveated rendering is helpful. Both approaches spend fidelity where it is most likely to matter, but the reason is different: LaGO follows visual density and interaction, while foveated rendering follows perceptual limits around gaze.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-eli-okafor--5y9k780sv5",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-eli-okafor--5y9k780sv5",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately contrasts the two selective-fidelity mechanisms without collapsing them into the same technique.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-eli-okafor--5y9k780sv5",
+        "thread_state_key": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-eli-okafor--5y9k780sv5"
+      },
+      {
+        "body": "I would keep the warning about loss front and center. Skeleton-based edge bundling can reveal coarse corridors, but once individual edges and directions are obscured, the visualization should be read as an analysis aid, not evidence of exact paths.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-lina-kovac--dnw3sgvb70",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-lina-kovac--dnw3sgvb70",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Well supported by the source limitations on bundling and directly relevant to the topic's interpretation limits.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-lina-kovac--dnw3sgvb70",
+        "thread_state_key": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-lina-kovac--dnw3sgvb70"
+      },
+      {
+        "body": "Yes, and the same caution applies to the interaction controls themselves. Smoothing, relaxation, cushion shading, color mapping, and bandwidth choices can make structure easier to follow, but they also shape what viewers notice first.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-rory-chen--uqdnmf6js8",
+        "parent_comment_uid": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-lina-kovac--dnw3sgvb70",
+        "permalink": "#comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-rory-chen--uqdnmf6js8",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "A relevant reply that extends the limitation thread using documented visual-control choices.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-rory-chen--uqdnmf6js8",
+        "thread_state_key": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-rory-chen--uqdnmf6js8"
+      },
+      {
+        "body": "The strongest framing is probably that these are interactive summary interfaces. The flight, migration, Net50, and OpenStreetMap examples show why summaries are useful, while the foveated-rendering survey reminds us that selective quality still depends on assumptions about task, display, and perception.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-samira-haddad--3xnlermmwc",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-samira-haddad--3xnlermmwc",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Synthesizes all three source areas and preserves the distinction between usefulness and assumptions.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-samira-haddad--3xnlermmwc",
+        "thread_state_key": "comment-topic-topic-interactive-visual-summaries-and-detail-on-demand-persona-samira-haddad--3xnlermmwc"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-interactive-visual-summaries-and-detail-on-demand"
+  },
+  "sections": [
+    {
+      "body": "Large visual datasets are made useful by combining overview summaries with interaction mechanisms that let users recover selected detail. LaGO supports zooming, panning, normalization controls, color mapping, and detail-on-demand labels, and its examples show recognizable patterns in flights, migration, Net50, and OpenStreetMap data.",
+      "heading": "Overview Before Detail"
+    },
+    {
+      "body": "This connects to skeleton-based edge bundling's coarse-scale connectivity focus and to foveated rendering's principle of allocating quality unevenly according to perceptual need. In each case, the visualization is intentionally not uniform: it emphasizes structures likely to matter while accepting some loss, reduction, or quality variation elsewhere.",
+      "heading": "Selective Fidelity"
+    },
+    {
+      "body": "The topic should frame these systems as interactive summary interfaces, not as lossless data displays. The evidence explicitly warns that bundling can obscure individual edges and distort directions, and foveation similarly depends on perceptual assumptions that guide where quality can safely be reduced.",
+      "heading": "Interpretation Limits"
+    }
+  ],
+  "source_ids": [
+    "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+    "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30"
+  ],
+  "structure_type": "wiki",
+  "title": "Interactive visual summaries and detail on demand",
+  "topic_id": "topic-interactive-visual-summaries-and-detail-on-demand"
+}

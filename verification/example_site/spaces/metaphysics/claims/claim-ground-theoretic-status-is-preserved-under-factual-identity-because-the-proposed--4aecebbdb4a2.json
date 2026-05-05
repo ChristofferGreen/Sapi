@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:22:07Z",
+  "claim_id": "claim-ground-theoretic-status-is-preserved-under-factual-identity-because-the-proposed--4aecebbdb4a2",
+  "evidence_excerpts": [
+    "given that generalized identity is symmetric and transitive, and that the rules R3 and R4 are truth-preserving, FACTUAL-GROUNDING entails that ground-theoretic status is preserved under factual identity. More precisely: (17) a. If p, p1, p2 \u2026 ground q and p \u00ba p* , then p*, p1, p2, \u2026 ground q. b. If p1, p2, \u2026 ground q and q \u00ba q*, then p1, p2, \u2026 ground q*."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Identity preserves grounding status",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "text": "Ground-theoretic status is preserved under factual identity because the proposed account combines generalized identity with symmetric and transitive identity principles."
+}

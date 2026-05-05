@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-truthmaking-is-non-irreflexive-because-a-proposition-of-the-form-e-exists-is-mad--d4aca38737b4",
+    "claim-alethic-fact-grounding-is-non-irreflexive-because-if-proposition-b-is-true-and-s--0f3a01a46967",
+    "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b"
+  ],
+  "evidence_id": "evidence-self-truthmaker-self-grounding--d4e5f6a7b8c9",
+  "evidence_type": "formal_argument",
+  "excerpt": "Truthmaker theory is committed to a proposition of the form <e exists> being made true by e; similarly, if proposition B is true and states that B is true, the fact that B is true is grounded in itself.",
+  "overview": "The reflexivity evidence is not an empirical observation but a pair of formal constructions. It establishes that truthmaking and alethic-fact grounding can relate something to itself, which directly violates the irreflexivity required for strict orderhood.",
+  "page_refs": [
+    "pp.11-16"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "title": "Self-Truthmaker Argument"
+}

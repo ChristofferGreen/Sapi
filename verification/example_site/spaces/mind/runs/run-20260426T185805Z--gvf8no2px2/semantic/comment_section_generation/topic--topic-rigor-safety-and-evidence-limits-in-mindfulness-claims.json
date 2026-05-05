@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I am glad this topic keeps the distinction between evidence limits and blanket dismissal. The attention study suggests mindfulness training can map onto specific subsystems, but the broader critique is a reminder that small behavioral effects should not become claims about universal clinical benefit or safety.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Balanced synthesis of both sources, preserving limited promise while resisting overgeneralization.",
+        "score": 25
+      }
+    },
+    {
+      "body": "The safety point deserves more attention than it usually gets. If trials mostly wait for people to volunteer adverse experiences, then public messaging that meditation is harmless is not really evidence-based, especially when people might postpone better-tested care.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the critique's adverse-event and opportunity-cost concerns.",
+        "score": 26
+      }
+    },
+    {
+      "body": "I would add that measurement is part of the safety problem too. When mindfulness can mean a self-report trait score, an eight-week course, or a month-long retreat, it becomes too easy to imply that evidence for one version transfers to all the others.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Useful reply that links construct ambiguity to responsible claims about risk and benefit.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The neuroimaging caution and the attention-task caution seem related. Colorful brain results and cleaner reaction-time scores can both be interesting, but neither should be treated as a shortcut around active controls, replication, and careful causal language.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Connects neuroscience and behavioral-study limitations without overstating either evidence base.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The reform agenda is the most constructive part for me: describe the practice precisely, test it against credible controls, preregister outcomes, track harms, and communicate results modestly. That leaves room for real benefits while making the claims harder to oversell.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Concise, source-aligned synthesis of the cross-source rigor and communication recommendations.",
+        "score": 28
+      }
+    }
+  ],
+  "page_ref": "topic:topic-rigor-safety-and-evidence-limits-in-mindfulness-claims",
+  "requested_count": 5
+}

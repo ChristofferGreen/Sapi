@@ -1,0 +1,18 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-04-26T16:58:45Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims"
+  ],
+  "flow_key": "topic_generation",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260426T164930Z--dj3neh2btz/semantic/topic_generation.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json",
+  "started_at": "2026-04-26T16:56:22Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260426T165622Z-topic_generation-56830-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": true,
+  "validation_errors": []
+}

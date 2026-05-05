@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T08:02:42Z",
+  "claim_id": "claim-visual-spatial-attention-increases-alpha-activity-over-occipital-cortex-ipsilate--d220c6a2c1c0",
+  "evidence_excerpts": [
+    "A sustained divergence in TSE amplitude is seen starting at approximately 500 ms, which depends on both the cued direction of attention and the side of recording. TSE amplitudes are larger over occipital cortex ipsilateral to the direction of attention.",
+    "Enhanced alpha-band activity was seen over the retinotopic area that was likely to contain distracter stimuli, consistent with a role for these oscillatory processes in inhibition of non-cued spatial locations."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Spatial alpha targets distractors",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Visual spatial attention increases alpha activity over occipital cortex ipsilateral to the attended direction, placing stronger alpha over retinotopic regions likely to receive distracters."
+}

@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34/source.pdf",
+    "source_markdown": "sources/artifacts/source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "bbd695966d8ed11b5e3f06e1b45253c797391e46492146b3e50cadf48ab6ba90",
+  "markdown_char_count": 19917,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "c22e177a124a6dfa725b2d3b001fe6a476e21920f74870a82d038f8d12286b88",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

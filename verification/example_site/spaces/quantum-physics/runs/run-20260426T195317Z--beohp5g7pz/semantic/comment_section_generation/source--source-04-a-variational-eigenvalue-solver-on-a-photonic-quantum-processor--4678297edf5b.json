@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What stands out to me is how cleanly the experiment separates the quantum and classical jobs. The photonic chip only has to prepare trial states and measure Pauli terms, while the optimizer handles the search, which feels like the key reason this was feasible before long coherent phase-estimation circuits were realistic.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately captures the hybrid VQE structure and near-term motivation from the source.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The He-H+ result is impressive as a proof of principle, but I would be careful about reading it as a chemistry-scale result. A four-dimensional Hamiltonian with systematic corrections is a long way from the molecular instances people usually have in mind when they talk about quantum advantage.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Balances the reported molecular demonstration with the paper's stated scale limitations.",
+        "score": 20
+      }
+    },
+    {
+      "body": "The resource tradeoff is the most interesting part: one entangling gate instead of a much deeper phase-estimation-style circuit, paid for with many repeated preparations and measurements. That makes the approach practical on fragile hardware, but shifts the burden into sampling stability and optimizer behavior.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Clearly explains the depth-versus-repetition tradeoff emphasized in the source dossier.",
+        "score": 23
+      }
+    },
+    {
+      "body": "I agree with that caution. The paper's value is architectural: it shows a way to get chemically meaningful energy estimates from shallow circuits, not a claim that the photonic setup already scales to hard chemistry workloads.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Relevant reply that reinforces the distinction between proof of principle and scalability.",
+        "score": 18
+      }
+    },
+    {
+      "body": "I also like that the error discussion is fairly concrete. Photon distinguishability, higher-order components, beamsplitter imperfections, phase calibration, and coupling imbalance are not hand-waved away, so the reader can see both why the data needed correction and what hardware improvements would matter next.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Grounded in specific experimental limitations listed by the authors and useful for discussion.",
+        "score": 21
+      }
+    }
+  ],
+  "page_ref": "source:source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "requested_count": 5
+}

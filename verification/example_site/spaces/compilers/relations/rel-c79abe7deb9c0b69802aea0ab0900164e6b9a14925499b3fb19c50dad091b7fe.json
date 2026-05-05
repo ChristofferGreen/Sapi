@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "The need to optimize the WCEP explains why WCC integrates static WCET analysis into compilation.",
+  "relation_file_id": "rel-c79abe7deb9c0b69802aea0ab0900164e6b9a14925499b3fb19c50dad091b7fe",
+  "relation_id": "supports:claim-static-wcet-reduction-depends-on-optimizing-the-worst-case-execution-path-becaus--b6a70fae6e3d->claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9",
+  "relation_type": "supports",
+  "src_claim_id": "claim-static-wcet-reduction-depends-on-optimizing-the-worst-case-execution-path-becaus--b6a70fae6e3d",
+  "src_claim_ref": "0",
+  "status": "open"
+}

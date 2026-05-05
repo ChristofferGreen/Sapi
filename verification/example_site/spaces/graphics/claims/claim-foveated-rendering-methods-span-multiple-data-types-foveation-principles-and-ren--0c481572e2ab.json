@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:05:42Z",
+  "claim_id": "claim-foveated-rendering-methods-span-multiple-data-types-foveation-principles-and-ren--0c481572e2ab",
+  "evidence_excerpts": [
+    "The taxonomy table lists input data types such as image/video, volume data, geometric meshes, point cloud, hologram data, and light field; it also lists foveation principles and rendering paradigms including multi-spatial resolution, LoD, rasterization, ray tracing, ray casting, neural rendering, phase retrieval, and data transmission."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Foveation spans multiple principles",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "text": "Foveated rendering methods span multiple data types, foveation principles, and rendering paradigms, including image/video, volume data, meshes, point clouds, holograms, light fields, multi-resolution variants, LoD, rasterization, ray tracing, ray casting, neural rendering, phase retrieval, and data transmission."
+}

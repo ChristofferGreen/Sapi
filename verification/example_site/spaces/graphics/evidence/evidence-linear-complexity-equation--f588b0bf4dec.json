@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-rendering-complexity-remains-linear-in-input-size-with-seed-point-rectangle--8a6cf3a6542e"
+  ],
+  "evidence_id": "evidence-linear-complexity-equation--f588b0bf4dec",
+  "evidence_type": "equation",
+  "excerpt": "The worst case complexity for p pixels, n nodes and m edges is defined as: O(n \u00b7 Rs + min(n, p) \u00b7 Rr + m \u00b7 Re). Thus we are able to maintain a linear dependency towards the size of the input data. Moreover, the architecture of GPUs compensates for growing data sizes through parallelization. In practice, nearly constant render times can be achieved for graphs with up to \u223c 10^6 edges on common hardware.",
+  "overview": "The complexity expression is the article's formal performance argument. It separates costs for node accumulation, seed-point rectangle creation, and edge rendering, with the rectangle term capped by viewport pixels. This evidence grounds the scalability claim, although the practical constant-time behavior depends on GPU parallelism, viewport conditions, kernel size, and dataset distribution.",
+  "page_refs": [
+    "Eq.3",
+    "p.2489"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "title": "Linear Complexity Bound"
+}

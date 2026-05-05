@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-mindfulness-can-be-modeled-as-systematic-mental-training-that-reduces-biased-sel--6f2cabe951a3",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The dysfunctional narrative self model identifies the bias cycle that S-ART training is meant to reduce.",
+  "relation_file_id": "rel-7f143340b706f2fd2e8eb2e53e360976eb9ce81b16962e6f85b562d0f588d75e",
+  "relation_id": "supports:claim-biased-narrative-self-processing-can-reify-dysfunctional-self-schemas-through-af--544c2f60e4c0->claim-mindfulness-can-be-modeled-as-systematic-mental-training-that-reduces-biased-sel--6f2cabe951a3",
+  "relation_type": "supports",
+  "src_claim_id": "claim-biased-narrative-self-processing-can-reify-dysfunctional-self-schemas-through-af--544c2f60e4c0",
+  "src_claim_ref": "2",
+  "status": "open"
+}

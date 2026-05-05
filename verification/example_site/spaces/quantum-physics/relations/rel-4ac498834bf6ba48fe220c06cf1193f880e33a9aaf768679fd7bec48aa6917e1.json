@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "The overhead and distance of fault tolerance support the claim that NISQ is a stepping stone rather than an immediate transformation.",
+  "relation_file_id": "rel-4ac498834bf6ba48fe220c06cf1193f880e33a9aaf768679fd7bec48aa6917e1",
+  "relation_id": "supports:claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343->claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+  "relation_type": "supports",
+  "src_claim_id": "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+  "src_claim_ref": "3",
+  "status": "open"
+}

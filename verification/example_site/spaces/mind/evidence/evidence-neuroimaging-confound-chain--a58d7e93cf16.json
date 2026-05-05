@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-neuroimaging-findings-about-mindfulness-are-preliminary-and-vulnerable-to-oversi--d3431c27c5c9",
+    "claim-future-mindfulness-science-should-emphasize-preregistration-open-science-replica--ad9bbbab2603"
+  ],
+  "evidence_id": "evidence-neuroimaging-confound-chain--a58d7e93cf16",
+  "evidence_type": "formal_argument",
+  "excerpt": "Representative fMRI and neuroimaging pictures do not convey the complex biological and computational steps that lead to inferences about brain structure and function; group averages, cross-sectional designs, head movement, cardiorespiratory effects, and the vein-drain problem can create artifacts or limit causal interpretation.",
+  "overview": "This formal methodological argument explains why striking brain images should not be translated directly into clinical or practical recommendations. The source accepts that meta-analyses suggest modest brain changes, but stresses that artifacts, comparators, causality, and practical significance remain unresolved.",
+  "page_refs": [
+    "pp.49-51"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Neuroimaging Confound Chain"
+}

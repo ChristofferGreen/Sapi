@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The truthmaking chain supplies the source's positive case against transitivity.",
+  "relation_file_id": "rel-14833df26d3af3df2179637f4f8a9004b4d2c8b59184695970bbb8175af48a4b",
+  "relation_id": "supports:claim-truthmaking-is-non-transitive-socrates-being-white-truthmakes-the-proposition-th--3fbb8a3c9b9d->claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+  "relation_type": "supports",
+  "src_claim_id": "claim-truthmaking-is-non-transitive-socrates-being-white-truthmakes-the-proposition-th--3fbb8a3c9b9d",
+  "src_claim_ref": "4",
+  "status": "open"
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The necessitation derivation illustrates how the identity account links grounding to essence.",
+  "relation_file_id": "rel-92fe7e399f01e3c73d2115874f8c711566c2487e967518b977ed8906e8cb6041",
+  "relation_id": "supports:claim-if-being-f-grounds-being-g-then-the-fact-that-being-f-necessitates-being-g-can-b--685ae4dcbfb4->claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+  "relation_type": "supports",
+  "src_claim_id": "claim-if-being-f-grounds-being-g-then-the-fact-that-being-f-necessitates-being-g-can-b--685ae4dcbfb4",
+  "src_claim_ref": "8",
+  "status": "open"
+}

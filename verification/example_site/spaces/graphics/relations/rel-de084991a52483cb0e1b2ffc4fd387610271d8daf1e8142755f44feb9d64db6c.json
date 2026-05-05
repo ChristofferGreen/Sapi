@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "Regularized path attraction helps make the resulting bundles smooth enough for postprocessed visual exploration.",
+  "relation_file_id": "rel-de084991a52483cb0e1b2ffc4fd387610271d8daf1e8142755f44feb9d64db6c",
+  "relation_id": "supports:claim-restricting-attraction-to-skeleton-paths-passing-through-endpoint-feature-points--86df6a0326fa->claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963",
+  "relation_type": "supports",
+  "src_claim_id": "claim-restricting-attraction-to-skeleton-paths-passing-through-endpoint-feature-points--86df6a0326fa",
+  "src_claim_ref": "3",
+  "status": "open"
+}

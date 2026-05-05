@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "Trogdon's move from full grounding to the absence of a cognitively significant connecting question is doing a lot of work here. I like that it treats necessity as a mark of complete explanation rather than as something every partial ground has to carry on its own.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately identifies the target thesis and distinguishes full from partial grounding.",
+        "score": 16
+      }
+    },
+    {
+      "body": "The causation comparison helps clarify the issue. If causation can determine without metaphysical entailment, then simply calling grounding a determination relation cannot explain why full grounds necessitate what they ground.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Grounded in the paper's rejection of the determination-relation shortcut.",
+        "score": 14
+      }
+    },
+    {
+      "body": "I am less sure about the epistemic route. Saying that a suitably informed rational subject would no longer have a substantive why-question seems plausible in logical cases, but it may be harder to apply cleanly in messy metaphysical examples.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Raises a relevant pressure point while preserving the source's idealized epistemic framing.",
+        "score": 11
+      }
+    },
+    {
+      "body": "The Fine-style essence step is the most interesting part to me. The argument is not just that D entails p, but that the natures involved explain why the entailment is intelligible rather than a brute modal fact.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Clearly captures the essence principle and its role in avoiding arbitrary modal entailment.",
+        "score": 18
+      }
+    },
+    {
+      "body": "The counterexample strategy also matters: many apparent failures look like incomplete grounds once enablers, totality facts, or marriage facts are added. That makes the thesis less brittle, though it also shifts pressure onto how we tell when a proposed full ground is genuinely complete.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Reflects the source's treatment of counterexamples and adds a measured completeness concern.",
+        "score": 15
+      }
+    }
+  ],
+  "page_ref": "source:source-01-grounding-necessary-or-contingent--6e8195a096f0",
+  "requested_count": 5
+}

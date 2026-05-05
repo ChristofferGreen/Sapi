@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e"
+  ],
+  "evidence_id": "evidence-pca-impostor-plane--3f1a9c0d2b4e",
+  "evidence_type": "formal_argument",
+  "excerpt": "To apply this idea, we had to project back in the 3D space the points visible in the impostor image to get 3D visible samples of the object. We applied a Principal Component Analysis (PCA) to the set of 3D points and identified the two principal eigenvectors as directions describing the projection plane. Starting from an impostor plane purely perpendicular to the camera, we \u201cperturbed\u201d its orientation using the resulting plane obtained from a PCA of the sample image. This minimized the popping while limiting the introduction of other artifacts.",
+  "overview": "This formal argument explains why the impostor plane is not chosen mechanically from the original camera direction. By fitting visible 3D sample points with PCA and then averaging that orientation with the conventional perpendicular plane, the method targets the dominant popping artifact without accepting the full distortion of the best-fitting plane alone.",
+  "page_refs": [
+    "p.39",
+    "Fig.2",
+    "Fig.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "title": "PCA-Perturbed Impostor Plane"
+}

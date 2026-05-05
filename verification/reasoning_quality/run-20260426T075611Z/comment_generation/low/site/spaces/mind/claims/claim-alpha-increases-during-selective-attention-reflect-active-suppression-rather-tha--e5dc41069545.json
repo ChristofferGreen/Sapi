@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T08:02:42Z",
+  "claim_id": "claim-alpha-increases-during-selective-attention-reflect-active-suppression-rather-tha--e5dc41069545",
+  "evidence_excerpts": [
+    "The key result was that, following the cue, alpha power ipsilateral to the cued direction increased above pre-cue baseline levels, and no decreases in alpha power contralateral to the cued direction were observed.",
+    "Because bilateral stimulation continued throughout each trial, we concluded that such increases in alpha power reflect active suppression of the to-be-ignored stimulus stream, rather than a mere return to baseline 'idling.'"
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Alpha is active suppression",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Alpha increases during selective attention reflect active suppression rather than merely a passive return to cortical idling baseline."
+}

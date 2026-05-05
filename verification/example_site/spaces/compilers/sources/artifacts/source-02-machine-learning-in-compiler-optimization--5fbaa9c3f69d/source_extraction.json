@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d/source.pdf",
+    "source_markdown": "sources/artifacts/source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "1ebda42ba7863a57cb769923ada3cf516acd3d07965cf8b4b3ba00baadfb1553",
+  "markdown_char_count": 190641,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "229cbd8dd58c1ae43c2e2350a285b1ad7f5d0bde413e15a8ddbafeec103eae1e",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

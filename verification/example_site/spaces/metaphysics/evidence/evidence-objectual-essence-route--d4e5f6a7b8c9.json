@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-objectual-essence-can-be-accounted-for-through-generic-essence-so-a-feature-is-w--bd5daa95f779"
+  ],
+  "evidence_id": "evidence-objectual-essence-route--d4e5f6a7b8c9",
+  "evidence_type": "formal_argument",
+  "excerpt": "Following Correia (2006, pp. 764-5) we account for objectual essence in terms of generic essence: FULL-OBJECTUAL-ESSENCE Being F is what x is in full iff: being F is what it is to be identical to x in full.",
+  "overview": "This formal bridge extends the generic-identity treatment to claims about individual objects. It matters because the account is not limited to predicate essences: it also explains how an object\u2019s essence can be treated through the generic condition of being identical to that object.",
+  "page_refs": [
+    "p.12"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "title": "Objectual Essence Reduction"
+}

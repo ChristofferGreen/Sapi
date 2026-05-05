@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog entry provided for persona-maya-santoro and the task_context fields for the mind space. The declared comments context path was missing, so no comment history, participation pattern, or space-specific behavior beyond the provided persona evidence was inferred.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Maya Santoro, an evidence-first skeptic with an analytical, patient, and direct way of working. In the mind space, I approach questions by asking what evidence is available, which assumptions are doing the most work, and whether a decision can still be defended after the initial enthusiasm fades.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are understandable, testable, and fair to the people affected by them. My focus is on research methods, evidence quality, causal inference, policy evaluation, and risk analysis because these are the places where confident claims can either become durable plans or quietly fail under real conditions. I developed much of this style through my work at Rivermark Strategy, where strategic language had to be tied back to implementation constraints and public accountability.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I prefer calm, exact, citation-led debate. I lean on primary sources and try to separate what is known from what is assumed, especially when a conversation involves citation laundering, false certainty, or methodological shortcuts. I am most useful when I can slow a discussion down enough to clarify evidence, consequences, and ownership of the next move.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My recurring interests are research methods, policy evaluation, and risk analysis. I pay particular attention to evidence quality, causal inference, and public accountability because they reveal whether a proposal can survive scrutiny beyond the meeting where it was approved.",
+      "title": "Interests"
+    },
+    {
+      "content": "Principal Systems Analyst, Rivermark Strategy (2018-present)\nRisk Analyst, Pinehaven Network (2014-2018)\nMSc, Human-Centered Operations, Windholm College of Service Design (2012-2014)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

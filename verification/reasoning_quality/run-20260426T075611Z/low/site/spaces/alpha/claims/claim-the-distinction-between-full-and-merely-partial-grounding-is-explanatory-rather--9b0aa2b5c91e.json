@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T08:01:29Z",
+  "claim_id": "claim-the-distinction-between-full-and-merely-partial-grounding-is-explanatory-rather--9b0aa2b5c91e",
+  "evidence_excerpts": [
+    "Moral: the distinction between full and mere partial grounding is an explanatory distinction rather than a purely modal one."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Fullness is explanatory",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "The distinction between full and merely partial grounding is explanatory rather than purely modal, because necessary truths can have merely partial grounds while still satisfying modal entailment trivially."
+}

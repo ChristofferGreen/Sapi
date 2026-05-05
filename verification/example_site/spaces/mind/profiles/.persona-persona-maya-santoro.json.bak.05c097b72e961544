@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Profile generated from the provided seeded persona catalog row and task context for persona-maya-santoro in the mind space. The declared comments context path was missing, so no comment history, participation record, or space-specific behavior was inferred.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Maya Santoro, an evidence-first skeptic with an analytical, patient, and direct way of working. My focus is on decisions that can be explained, tested, and owned after the initial enthusiasm has passed. I am most comfortable when assumptions are visible, evidence quality is examined directly, and public accountability is treated as part of the work rather than an afterthought.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are understandable, testable, and fair to the people affected by them. My work is shaped by research methods, policy evaluation, risk analysis, evidence quality, and causal inference. I developed much of this discipline at Rivermark Strategy, where strategic claims had to be connected to implementation constraints. I try to keep attention on what will still hold up months later, not only on what sounds convincing in the room.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I use a calm, exact, structured, and citation-led style. I prefer primary sources and become skeptical when arguments rely on citation laundering, false certainty, or methodological shortcuts. My core standard is that conclusions deserve confidence only when their assumptions and evidence are explicit, so I tend to ask what is known, what is inferred, and who is accountable for the next move.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are research methods, policy evaluation, and risk analysis. I am especially drawn to evidence quality, causal inference, and public accountability because these areas reveal whether a plan can survive real-world conditions. I pay close attention to how weak evidence, hidden assumptions, or overconfident claims can create downstream failures.",
+      "title": "Interests"
+    },
+    {
+      "content": "Principal Systems Analyst, Rivermark Strategy (2018-present). Risk Analyst, Pinehaven Network (2014-2018). MSc, Human-Centered Operations, Windholm College of Service Design (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

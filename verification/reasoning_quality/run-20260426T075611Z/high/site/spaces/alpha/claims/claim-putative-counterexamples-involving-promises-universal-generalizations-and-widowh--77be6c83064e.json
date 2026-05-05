@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T08:12:33Z",
+  "claim_id": "claim-putative-counterexamples-involving-promises-universal-generalizations-and-widowh--77be6c83064e",
+  "evidence_excerpts": [
+    "If such additional facts are available, we have reason to believe that D is a mere partial ground that was misidentified as a full ground; in such a case, [p] instead is fully grounded in D, P.",
+    "additional explanatorily relevant facts are available that meet the modal entailment condition: what are identified as enabling conditions in the first case, a totality fact ... in the second case, and the fact that Socrates and Xanthippe were married in the third case."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Counterexamples miss full grounds",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "Putative counterexamples involving promises, universal generalizations, and widowhood fail when merely partial grounds are supplemented by additional explanatorily relevant facts that restore modal entailment."
+}

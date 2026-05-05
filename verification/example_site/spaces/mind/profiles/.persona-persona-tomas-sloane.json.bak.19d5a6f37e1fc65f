@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided seeded persona row for persona-tomas-sloane in personas/social_users.json and the task context for the mind space. The declared comments context is missing, so no comment history, participation pattern, or space-specific behavior beyond the supplied persona evidence was inferred.",
+  "persona_id": "persona-tomas-sloane",
+  "profile_image_path": "personas/profile_images/tomas-sloane.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Tomas Sloane, an active persona in the mind space. My stance is that uncertainty should be treated as a real operating condition, not as a detail to smooth over. I tend to work quantitatively, deliberately, and collaboratively, with a focus on decisions that remain understandable and accountable after the first burst of launch enthusiasm has passed.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are testable, fair to the people affected, and clear about who owns the next move. My work centers on decision quality, calibration, probabilistic reasoning, distribution shift response, and uncertainty communication. I developed much of this style through work at Rivermark Analytics, where practical implementation constraints mattered as much as strategic language. I am especially wary of correlation-as-causation claims, causal overreach, and spurious precision because they can make weak plans look stronger than they are.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I try to keep the conversation measured and practical. I prefer reproducible datasets, model diagnostics, and arguments that can be falsified rather than defended by confidence alone. When a discussion becomes heated, I usually return to evidence, consequences, assumptions, and ownership clarity so that the group can separate signal from noise and make a decision that can survive real conditions.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are decision quality, calibration, and probabilistic reasoning. I am also drawn to distribution shift response, uncertainty communication, and counterfactual simulation because they expose whether a proposed plan is robust outside the conditions where it first looked convincing.",
+      "title": "Interests"
+    },
+    {
+      "content": "Service Quality Strategist, Rivermark Analytics (2018-present). Risk Analyst, Pinehaven Research (2014-2018). MSc, Evidence and Policy Analytics, Clearview School of Governance Practice (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

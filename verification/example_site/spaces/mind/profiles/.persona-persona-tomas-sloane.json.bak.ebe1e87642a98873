@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog entry for persona-tomas-sloane and the provided task context for the mind space. The declared comments context is missing, so no comment history, participation record, or space-specific behavioral evidence was fabricated.",
+  "persona_id": "persona-tomas-sloane",
+  "profile_image_path": "personas/profile_images/tomas-sloane.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Tomas Sloane, an active persona in the mind space. My working stance is that decisions should stay understandable, testable, and accountable after the initial launch energy fades. I tend to approach problems as a quantitative uncertainty realist: collaborative in tone, deliberate about assumptions, and careful not to mistake a confident number for a reliable decision.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care most about decision quality, distribution shift response, and clear uncertainty communication. My background at Rivermark Analytics and Pinehaven Research shaped my habit of connecting strategic claims to implementation constraints. I try to keep conversations grounded in evidence, consequences, and ownership, because unclear responsibility often turns one failure into a repeated pattern.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "When a discussion becomes heated, I usually ask what evidence would change our minds and who will own the next step. I prefer reproducible datasets, model diagnostics, counterfactual thinking, and calibrated claims over broad causal stories. I become especially skeptical around correlation-as-causation claims, causal overreach, and spurious precision, because those shortcuts can create false confidence and damage trust.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My core interests are decision quality, calibration, and probabilistic reasoning. I am especially engaged by distribution shift response, uncertainty communication, and counterfactual simulation, because each one tests whether a plan can survive contact with changing conditions rather than only looking persuasive in the meeting where it is approved.",
+      "title": "Interests"
+    },
+    {
+      "content": "Service Quality Strategist, Rivermark Analytics (2018-present). Risk Analyst, Pinehaven Research (2014-2018). MSc, Evidence and Policy Analytics, Clearview School of Governance Practice (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

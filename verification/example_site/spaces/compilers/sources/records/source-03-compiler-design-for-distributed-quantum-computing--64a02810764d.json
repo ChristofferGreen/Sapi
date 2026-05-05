@@ -1,0 +1,1387 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-03-compiler-design-for-distributed-quantum-computing--64a02810764d/front_page.png",
+    "source_extraction": "sources/artifacts/source-03-compiler-design-for-distributed-quantum-computing--64a02810764d/source_extraction.json",
+    "source_file": "sources/artifacts/source-03-compiler-design-for-distributed-quantum-computing--64a02810764d/source.pdf",
+    "source_markdown": "sources/artifacts/source-03-compiler-design-for-distributed-quantum-computing--64a02810764d/source.md",
+    "source_provenance": "sources/artifacts/source-03-compiler-design-for-distributed-quantum-computing--64a02810764d/source_provenance.md"
+  },
+  "authors": [
+    "Davide Ferrari",
+    "Angela Sara Cacciapuoti",
+    "Michele Amoretti",
+    "Marcello Caleffi"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like that the paper treats Bell-state availability as something the compiler has to budget, not as a network detail that magically works out later. That makes the remote CNOT cost model feel closer to the actual distributed-machine constraint.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-maya-santoro--kqm444stv5",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-maya-santoro--kqm444stv5",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Specific, grounded in the paper's remote-CNOT and Bell-state constraints, and adds a clear interpretation.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-maya-santoro--kqm444stv5",
+        "thread_state_key": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-maya-santoro--kqm444stv5"
+      },
+      {
+        "body": "The one-data-qubit-per-QPU line topology is a harsh model, but that harshness is useful. It keeps the linear bounds from being oversold as average behavior on richer quantum-network topologies.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-eli-okafor--f7jumqz203",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-eli-okafor--f7jumqz203",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately frames the restrictive architecture as a conservative analytical choice without overstating results.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-eli-okafor--f7jumqz203",
+        "thread_state_key": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-eli-okafor--f7jumqz203"
+      },
+      {
+        "body": "The data-qubit-swapping result seems especially relevant for circuits with repeated interaction patterns. If moving the data once helps several later CNOT layers, the n/4-style bound is not just a better constant but a hint about workload structure.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-lina-kovac--s0v21wg471",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-lina-kovac--s0v21wg471",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Connects the theorem and repeated interaction patterns to a practical compiler-design implication.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-lina-kovac--s0v21wg471",
+        "thread_state_key": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-lina-kovac--s0v21wg471"
+      },
+      {
+        "body": "That comparison with the hypercube-based compiler needs careful reading. A method tuned for a line network is solving a different problem than one that can assume much more favorable connectivity.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-rory-chen--rld7rj636l",
+        "parent_comment_uid": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-eli-okafor--f7jumqz203",
+        "permalink": "#comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-rory-chen--rld7rj636l",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Useful reply that reinforces the topology caveat from the experiments, though it is less detailed than the root comments.",
+          "score": 19
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 19,
+          "upvotes": 31
+        },
+        "thread_expansion_key": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-rory-chen--rld7rj636l",
+        "thread_state_key": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-rory-chen--rld7rj636l"
+      },
+      {
+        "body": "The O(dn2) distribution complexity is an important part of the contribution for me. It signals that the authors are not chasing optimal distributed compilation, but a scalable heuristic with analytically bounded overhead.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-samira-haddad--x12n0yw0h1",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-samira-haddad--x12n0yw0h1",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Highlights the implementation complexity and correctly situates it against impractical optimal compilation.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-samira-haddad--x12n0yw0h1",
+        "thread_state_key": "comment-source-source-03-compiler-design-for-distributed-quantum-computing-64a02810764d-persona-samira-haddad--x12n0yw0h1"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-03-compiler-design-for-distributed-quantum-computing--64a02810764d"
+  },
+  "date": null,
+  "display_title": "Compiler Design for Distributed Quantum Computing",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[38].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "1 A. S. Cacciapuoti M. Caleffi F. Tafuri F. S. Cataliotti S. Gherar",
+      "url": "https://doi.org/10.1145/3233188.3233224"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[25].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "10 M. Zomorodi-Moghadam M. Houshmand and M. Houshmand \u201cOpti",
+      "url": "https://doi.org/10.1103/physreva.71.052320"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[42].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "11 L. Gyongyosi and S. Imre \u201cEntanglement concentration service for Comput. vol. 4 pp. 237\u2013251",
+      "url": "https://doi.org/10.5555/2011827.2011828"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[41].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "12 L. Gyongyosi and S. Imre \u201cRouting space exploration for scalable routing pp. 383\u2013391",
+      "url": "https://doi.org/10.5555/2011725.2011732"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[37].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "16 M. A. Nielsen and I. L. Chuang Quantum Computation and Quan- vol. 7 no. 3 Art. no. 11",
+      "url": "https://doi.org/10.1145/2000502.2000504"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[23].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "17 D. Deutsch \u201cQuantum theory the Church-Turing principle and the uni",
+      "url": "https://doi.org/10.1098/rspa.2012.0686"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[6].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "19 A. Kandala K. Temme A. D. Crcoles A. Mezzacapo J. M. Chow and Art. no. 360",
+      "url": "https://doi.org/10.1007/s11128-020-02871-7"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[17].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "23 J. C. Garcia-Escartin and P. Chamorro-Posada \u201cEquivalent quantum cir- Sci. Rep. vol. 7 no. 1 Art. no. 45353",
+      "url": "https://doi.org/10.1038/srep45353"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[35].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "5 S. Pirandola and S. L. Braunstein \u201cPhysics: Unite to build a quan",
+      "url": "https://doi.org/10.1142/s0219749918400063"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[21].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "6 E. Gibney \u201cChinese satellite is one giant step for the quantum Internet \u201d Art. no. 113022",
+      "url": "https://doi.org/10.1088/1367-2630/aae94a"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[19].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "9 S. Wehner D. Elkouss and R. Hanson \u201cQuantum internet: A vision for",
+      "url": "https://doi.org/10.1073/pnas.1618020114"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[7].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "A Math. Phys. Eng. Sci. vol. 469 no. 2153 Art. no. 20120686",
+      "url": "https://doi.org/10.1017/cbo9780511976667"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[10].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Armonk NY USA . pp. 242\u2013246 Sep. 2017",
+      "url": "https://doi.org/10.1038/nature23879"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[14].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Art. no. 032308 10.1103/PhysRevA.100.032308",
+      "url": "https://doi.org/10.1038/s41586-019-1040-7"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[5].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Art. no. 221 . on a linear nearest neighbor architecture \u201d Quantum Inf. Comp. vol. 7",
+      "url": "https://doi.org/10.1007/s11128-020-02716-3"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[28].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Aug. . 48 A. Peruzzo et al. \u201cA variational eigenvalue solver on a photonic",
+      "url": "https://doi.org/10.1109/jproc.2019.2954005"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[33].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Digital Object Identifier",
+      "url": "https://doi.org/10.1109/tqe.2021.3053921"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[15].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Eng. Exp. pp. 28\u201342 10.1137/1.9781611974768.3",
+      "url": "https://doi.org/10.1038/s41598-020-67014-5"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[26].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "era quantum devices \u201d in Proc. Int. Conf. Archit. Support Program. Lang",
+      "url": "https://doi.org/10.1103/physreva.98.022322"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[16].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Fourier transform \u201d in Proc. Quantum Inf. Technol. Symp",
+      "url": "https://doi.org/10.1038/s41598-020-68354-y"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[27].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "glement meets classical communications: Quantum teleportation for the pp. 22 299\u201322 312",
+      "url": "https://doi.org/10.1109/access.2017.2763325"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[29].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Int. J. Quantum Inf. vol. 16 no. 08 2018 Art. no. 1840006",
+      "url": "https://doi.org/10.1109/mc.2016.291"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[20].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "J. Phys. vol. 38 no. 4 May Art. no. 043001 net Engineering Task Force Internet-Draft draft-irtf-qirg-principles-03",
+      "url": "https://doi.org/10.1088/1361-"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[30].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Jan./Feb. . 10.1109/MC. 71",
+      "url": "https://doi.org/10.1109/mnet.001.1900092"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[18].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Jul. . 37 R. Van Meter W. J. Munro K. Nemoto and K. M. Itoh \u201cArith",
+      "url": "https://doi.org/10.1049/iet-qtc.2020.0002"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[31].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Jul. . ture calculations: Particle-hole Hamiltonian and optimized wave-function",
+      "url": "https://doi.org/10.1109/tcad.2018.2846658"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[32].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Jun. . ing. vol. 3 2nd ed. Boston MA USA: Addison Wesley Longman",
+      "url": "https://doi.org/10.1109/tcomm.2020.2978071"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[11].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "mapping quantum circuits to the IBM QX architectures \u201d IEEE Trans",
+      "url": "https://doi.org/10.1038/ncomms5213"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[13].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Nat. Phys. vol. 14 no. 6 pp. 595\u2013600 Baygi \u201cA dynamic programming approach for distributing quantum",
+      "url": "https://doi.org/10.1038/s41567-018-"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[9].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Nature vol. 535 no. 7613 pp. 478\u2013479 Jul. . 30 W. Kozlowski S. Wehner R. Van Meter B. Rijsman A. S. Cacciapuoti",
+      "url": "https://doi.org/10.1038/535478a"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[34].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "nentiation \u201d Phys. Rev. A vol. 71 May Art. no. 052320",
+      "url": "https://doi.org/10.1126/science.aam9288"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[12].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "no. 11 pp. 678\u2013680 . architectures \u201d Proc. Nat. Acad. Sci. vol. 114 no. 13 pp. 3305\u20133310",
+      "url": "https://doi.org/10.1038/s41566-017-0032-0"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[39].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Oper. Syst. pp. 1001\u20131014 . 50 A. Kandala et al. \u201cHardware-efficient variational quantum eigensolver",
+      "url": "https://doi.org/10.1145/3297858.3304023"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[4].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Phys. vol. 57 pp. 848\u2013861 . SHOR\u2019s algorithm on a linear nearest neighbor qubit array \u201d Quantum Inf",
+      "url": "https://doi.org/10.1007/s10773-017-3618-x"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[36].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "pp. 138\u2013142",
+      "url": "https://doi.org/10.1145/1324177.1324179"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[22].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Sci. vol. 400 pp. 97\u2013117 . Algorithms 2nd ed. Cambridge MA: USA: MIT Press 2001",
+      "url": "https://doi.org/10.1098/rspa.1985.0070"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[40].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "tion Cambridge MA USA: MIT Press . tance on quantum addition circuits \u201d J. Emerg. Technol. Comput. Syst",
+      "url": "https://doi.org/10.5555/1973124"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[8].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "tum algorithm for state overlap \u201d New J. Phys. vol. 20 no. 11 Nov",
+      "url": "https://doi.org/10.1038/532169a"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[24].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "tum computing systems \u201d Proc. IEEE vol. 108 no. 8 pp. 1338\u20131352 Art. no. 032301",
+      "url": "https://doi.org/10.1103/physreva.67.032301"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[38].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "1 A. S. Cacciapuoti M. Caleffi F. Tafuri F. S. Cataliotti S. Gherar",
+      "url": "https://arxiv.org/abs/3188.32332"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[42].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "11 L. Gyongyosi and S. Imre \u201cEntanglement concentration service for Comput. vol. 4 pp. 237\u2013251",
+      "url": "https://arxiv.org/abs/1827.20118"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[41].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "12 L. Gyongyosi and S. Imre \u201cRouting space exploration for scalable routing pp. 383\u2013391",
+      "url": "https://arxiv.org/abs/1725.20117"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[37].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "16 M. A. Nielsen and I. L. Chuang Quantum Computation and Quan- vol. 7 no. 3 Art. no. 11",
+      "url": "https://arxiv.org/abs/0502.20005"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[23].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "17 D. Deutsch \u201cQuantum theory the Church-Turing principle and the uni",
+      "url": "https://arxiv.org/abs/2012.0686"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[28].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Aug. . 48 A. Peruzzo et al. \u201cA variational eigenvalue solver on a photonic",
+      "url": "https://arxiv.org/abs/2019.29540"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[3].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "cuits \u201d . 47 N. Schuch and J. Siewert \u201cNatural two-qubit gate for quantum com",
+      "url": "https://arxiv.org/abs/1110.2998"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[33].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Digital Object Identifier",
+      "url": "https://arxiv.org/abs/2021.30539"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[27].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "glement meets classical communications: Quantum teleportation for the pp. 22 299\u201322 312",
+      "url": "https://arxiv.org/abs/2017.27633"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[30].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Jan./Feb. . 10.1109/MC. 71",
+      "url": "https://arxiv.org/abs/2020.29848"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[18].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Jul. . 37 R. Van Meter W. J. Munro K. Nemoto and K. M. Itoh \u201cArith",
+      "url": "https://arxiv.org/abs/2020.0002"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[31].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Jul. . ture calculations: Particle-hole Hamiltonian and optimized wave-function",
+      "url": "https://arxiv.org/abs/2018.28466"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[32].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Jun. . ing. vol. 3 2nd ed. Boston MA USA: Addison Wesley Longman",
+      "url": "https://arxiv.org/abs/2020.29780"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[39].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Oper. Syst. pp. 1001\u20131014 . 50 A. Kandala et al. \u201cHardware-efficient variational quantum eigensolver",
+      "url": "https://arxiv.org/abs/7858.33040"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[36].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "pp. 138\u2013142",
+      "url": "https://arxiv.org/abs/4177.13241"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[22].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Sci. vol. 400 pp. 97\u2013117 . Algorithms 2nd ed. Cambridge MA: USA: MIT Press 2001",
+      "url": "https://arxiv.org/abs/1985.0070"
+    },
+    {
+      "confidence": "medium",
+      "domain": "github.com",
+      "link_type": "repository",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[1].url"
+      },
+      "quality_status": "contextual",
+      "rationale": "Captured from normalized source references.",
+      "title": "11 /",
+      "url": "https://github.com/deeptechlabs/quantum_compiler_optim/tree"
+    }
+  ],
+  "ingested_at": "2026-04-26T17:40:34Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "This work is licensed under a Creative Commons Attribution 4.0 License. For more information see /",
+      "url": "http://creativecommons.org/licenses/by/4.0",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "11 /",
+      "url": "https://github.com/deeptechlabs/quantum_compiler_optim/tree",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "22 IBM IBM quantum systems . Online . Available: 1998",
+      "url": "https://quantum-",
+      "year": 2020
+    },
+    {
+      "arxiv": "1110.2998",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "cuits \u201d . 47 N. Schuch and J. Siewert \u201cNatural two-qubit gate for quantum com",
+      "url": null,
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s10773-017-3618-x",
+      "linked_source_ids": [],
+      "title": "Phys. vol. 57 pp. 848\u2013861 . SHOR\u2019s algorithm on a linear nearest neighbor qubit array \u201d Quantum Inf",
+      "url": null,
+      "year": 2018
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s11128-020-02716-3",
+      "linked_source_ids": [],
+      "title": "Art. no. 221 . on a linear nearest neighbor architecture \u201d Quantum Inf. Comp. vol. 7",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s11128-020-02871-7",
+      "linked_source_ids": [],
+      "title": "19 A. Kandala K. Temme A. D. Crcoles A. Mezzacapo J. M. Chow and Art. no. 360",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1017/cbo9780511976667",
+      "linked_source_ids": [],
+      "title": "A Math. Phys. Eng. Sci. vol. 469 no. 2153 Art. no. 20120686",
+      "url": null,
+      "year": 2013
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/532169a",
+      "linked_source_ids": [],
+      "title": "tum algorithm for state overlap \u201d New J. Phys. vol. 20 no. 11 Nov",
+      "url": null,
+      "year": 2018
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/535478a",
+      "linked_source_ids": [],
+      "title": "Nature vol. 535 no. 7613 pp. 478\u2013479 Jul. . 30 W. Kozlowski S. Wehner R. Van Meter B. Rijsman A. S. Cacciapuoti",
+      "url": null,
+      "year": 2016
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/nature23879",
+      "linked_source_ids": [],
+      "title": "Armonk NY USA . pp. 242\u2013246 Sep. 2017",
+      "url": null,
+      "year": 2019
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/ncomms5213",
+      "linked_source_ids": [],
+      "title": "mapping quantum circuits to the IBM QX architectures \u201d IEEE Trans",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/s41566-017-0032-0",
+      "linked_source_ids": [],
+      "title": "no. 11 pp. 678\u2013680 . architectures \u201d Proc. Nat. Acad. Sci. vol. 114 no. 13 pp. 3305\u20133310",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/s41567-018-",
+      "linked_source_ids": [],
+      "title": "Nat. Phys. vol. 14 no. 6 pp. 595\u2013600 Baygi \u201cA dynamic programming approach for distributing quantum",
+      "url": null,
+      "year": 2018
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/s41586-019-1040-7",
+      "linked_source_ids": [],
+      "title": "Art. no. 032308 10.1103/PhysRevA.100.032308",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/s41598-020-67014-5",
+      "linked_source_ids": [],
+      "title": "Eng. Exp. pp. 28\u201342 10.1137/1.9781611974768.3",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/s41598-020-68354-y",
+      "linked_source_ids": [],
+      "title": "Fourier transform \u201d in Proc. Quantum Inf. Technol. Symp",
+      "url": null,
+      "year": 2004
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/srep45353",
+      "linked_source_ids": [],
+      "title": "23 J. C. Garcia-Escartin and P. Chamorro-Posada \u201cEquivalent quantum cir- Sci. Rep. vol. 7 no. 1 Art. no. 45353",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": "2020.0002",
+      "authors": [],
+      "doi": "10.1049/iet-qtc.2020.0002",
+      "linked_source_ids": [],
+      "title": "Jul. . 37 R. Van Meter W. J. Munro K. Nemoto and K. M. Itoh \u201cArith",
+      "url": null,
+      "year": 2020
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1073/pnas.1618020114",
+      "linked_source_ids": [],
+      "title": "9 S. Wehner D. Elkouss and R. Hanson \u201cQuantum internet: A vision for",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1088/1361-",
+      "linked_source_ids": [],
+      "title": "J. Phys. vol. 38 no. 4 May Art. no. 043001 net Engineering Task Force Internet-Draft draft-irtf-qirg-principles-03",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1088/1367-2630/aae94a",
+      "linked_source_ids": [],
+      "title": "6 E. Gibney \u201cChinese satellite is one giant step for the quantum Internet \u201d Art. no. 113022",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "1985.0070",
+      "authors": [],
+      "doi": "10.1098/rspa.1985.0070",
+      "linked_source_ids": [],
+      "title": "Sci. vol. 400 pp. 97\u2013117 . Algorithms 2nd ed. Cambridge MA: USA: MIT Press 2001",
+      "url": null,
+      "year": 1985
+    },
+    {
+      "arxiv": "2012.0686",
+      "authors": [],
+      "doi": "10.1098/rspa.2012.0686",
+      "linked_source_ids": [],
+      "title": "17 D. Deutsch \u201cQuantum theory the Church-Turing principle and the uni",
+      "url": null,
+      "year": 2012
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physreva.67.032301",
+      "linked_source_ids": [],
+      "title": "tum computing systems \u201d Proc. IEEE vol. 108 no. 8 pp. 1338\u20131352 Art. no. 032301",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physreva.71.052320",
+      "linked_source_ids": [],
+      "title": "10 M. Zomorodi-Moghadam M. Houshmand and M. Houshmand \u201cOpti",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physreva.98.022322",
+      "linked_source_ids": [],
+      "title": "era quantum devices \u201d in Proc. Int. Conf. Archit. Support Program. Lang",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "2017.27633",
+      "authors": [],
+      "doi": "10.1109/access.2017.2763325",
+      "linked_source_ids": [],
+      "title": "glement meets classical communications: Quantum teleportation for the pp. 22 299\u201322 312",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": "2019.29540",
+      "authors": [],
+      "doi": "10.1109/jproc.2019.2954005",
+      "linked_source_ids": [],
+      "title": "Aug. . 48 A. Peruzzo et al. \u201cA variational eigenvalue solver on a photonic",
+      "url": null,
+      "year": 2020
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1109/mc.2016.291",
+      "linked_source_ids": [],
+      "title": "Int. J. Quantum Inf. vol. 16 no. 08 2018 Art. no. 1840006",
+      "url": null,
+      "year": 2016
+    },
+    {
+      "arxiv": "2020.29848",
+      "authors": [],
+      "doi": "10.1109/mnet.001.1900092",
+      "linked_source_ids": [],
+      "title": "Jan./Feb. . 10.1109/MC. 71",
+      "url": null,
+      "year": 2020
+    },
+    {
+      "arxiv": "2018.28466",
+      "authors": [],
+      "doi": "10.1109/tcad.2018.2846658",
+      "linked_source_ids": [],
+      "title": "Jul. . ture calculations: Particle-hole Hamiltonian and optimized wave-function",
+      "url": null,
+      "year": 2019
+    },
+    {
+      "arxiv": "2020.29780",
+      "authors": [],
+      "doi": "10.1109/tcomm.2020.2978071",
+      "linked_source_ids": [],
+      "title": "Jun. . ing. vol. 3 2nd ed. Boston MA USA: Addison Wesley Longman",
+      "url": null,
+      "year": 2020
+    },
+    {
+      "arxiv": "2021.30539",
+      "authors": [],
+      "doi": "10.1109/tqe.2021.3053921",
+      "linked_source_ids": [],
+      "title": "Digital Object Identifier",
+      "url": null,
+      "year": 2021
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1126/science.aam9288",
+      "linked_source_ids": [],
+      "title": "nentiation \u201d Phys. Rev. A vol. 71 May Art. no. 052320",
+      "url": null,
+      "year": 2005
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1142/s0219749918400063",
+      "linked_source_ids": [],
+      "title": "5 S. Pirandola and S. L. Braunstein \u201cPhysics: Unite to build a quan",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "4177.13241",
+      "authors": [],
+      "doi": "10.1145/1324177.1324179",
+      "linked_source_ids": [],
+      "title": "pp. 138\u2013142",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "0502.20005",
+      "authors": [],
+      "doi": "10.1145/2000502.2000504",
+      "linked_source_ids": [],
+      "title": "16 M. A. Nielsen and I. L. Chuang Quantum Computation and Quan- vol. 7 no. 3 Art. no. 11",
+      "url": null,
+      "year": 2011
+    },
+    {
+      "arxiv": "3188.32332",
+      "authors": [],
+      "doi": "10.1145/3233188.3233224",
+      "linked_source_ids": [],
+      "title": "1 A. S. Cacciapuoti M. Caleffi F. Tafuri F. S. Cataliotti S. Gherar",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "7858.33040",
+      "authors": [],
+      "doi": "10.1145/3297858.3304023",
+      "linked_source_ids": [],
+      "title": "Oper. Syst. pp. 1001\u20131014 . 50 A. Kandala et al. \u201cHardware-efficient variational quantum eigensolver",
+      "url": null,
+      "year": 2019
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.5555/1973124",
+      "linked_source_ids": [],
+      "title": "tion Cambridge MA USA: MIT Press . tance on quantum addition circuits \u201d J. Emerg. Technol. Comput. Syst",
+      "url": null,
+      "year": 2011
+    },
+    {
+      "arxiv": "1725.20117",
+      "authors": [],
+      "doi": "10.5555/2011725.2011732",
+      "linked_source_ids": [],
+      "title": "12 L. Gyongyosi and S. Imre \u201cRouting space exploration for scalable routing pp. 383\u2013391",
+      "url": null,
+      "year": 2007
+    },
+    {
+      "arxiv": "1827.20118",
+      "authors": [],
+      "doi": "10.5555/2011827.2011828",
+      "linked_source_ids": [],
+      "title": "11 L. Gyongyosi and S. Imre \u201cEntanglement concentration service for Comput. vol. 4 pp. 237\u2013251",
+      "url": null,
+      "year": 2004
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 2 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2021-01-22",
+    "origin": "source_markdown_header",
+    "rationale": "The extracted front matter states that the article was received August 3, 2020, revised October 19, 2020, accepted January 19, 2021, and published January 22, 2021."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The paper treats distributed quantum computing as a way to combine remote QPUs into a larger virtual processor, but compilation must translate a logical circuit into operations that respect both local coupling maps and network resources. This turns remote CNOT placement, scheduling, and Bell-state availability into compiler-level concerns rather than merely hardware details.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ],
+        "heading": "Distributed Compilation Problem"
+      },
+      {
+        "body": "Remote CNOTs depend on Bell states stored in communication qubits. Because each remote CNOT consumes a Bell state and because simultaneous remote gates are limited by communication-qubit availability, distributed compilers must optimize around a slower and more resource-constrained class of operations than local gates.",
+        "grounding_claim_ids": [
+          "2",
+          "3"
+        ],
+        "heading": "Remote Operation Constraints"
+      },
+      {
+        "body": "Entanglement swapping gives a distributed processor virtual links beyond physical nearest-neighbor quantum links, which increases the set of possible remote interactions. The same mechanism consumes Bell states at intermediate processors, so added connectivity is not free and must be weighed against EPR-pair generation and scheduling cost.",
+        "grounding_claim_ids": [
+          "4"
+        ],
+        "heading": "Connectivity Versus EPR Cost"
+      },
+      {
+        "body": "The analysis intentionally chooses a restrictive architecture: one data qubit per QPU and a one-dimensional nearest-neighbor network. This makes every original CNOT remote and maximizes path lengths, allowing the resulting bounds to be read as conservative upper limits rather than average-case predictions for richer topologies.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ],
+        "heading": "Worst-Case Analytical Model"
+      },
+      {
+        "body": "The entanglement-swapping strategy directly realizes remote CNOTs after preparing virtual links and has a linear n/2-style bound per layer. The data-qubit-swapping strategy instead moves data qubits so interacting qubits become neighbors, yielding the paper's n/4-style theorem and explaining why repeated interaction patterns can be exploited.",
+        "grounding_claim_ids": [
+          "6",
+          "7"
+        ],
+        "heading": "Two Distribution Strategies"
+      },
+      {
+        "body": "The compiler implementation processes QASM circuits left to right, builds front layers of parallel CNOTs, and then compiles each front layer. Its O(dn2) distribution complexity is central to the claimed efficiency because the approach is intended to handle medium-to-large circuits where optimal distributed compilation is impractical.",
+        "grounding_claim_ids": [
+          "8"
+        ],
+        "heading": "Implementation And Complexity"
+      },
+      {
+        "body": "The performance section validates the theoretical upper bounds and reports that data-qubit swapping generally improves link-generation layers and circuit depth relative to entanglement swapping alone. The comparisons with prior work must be interpreted cautiously because the competing compiler benefits from a more favorable hypercube topology.",
+        "grounding_claim_ids": [
+          "9"
+        ],
+        "heading": "Experimental Interpretation"
+      }
+    ],
+    "summary_long": "The source addresses a specific bottleneck in distributed quantum computing: a quantum algorithm usually starts as a hardware-agnostic circuit, but a distributed machine imposes both local processor constraints and network-mediated constraints on remote two-qubit gates. Ferrari, Cacciapuoti, Amoretti, and Caleffi frame distributed QPUs as a virtual quantum processor enabled by the Quantum Internet, but emphasize that remote operations are expensive because they consume Bell states, require communication qubits, and depend on classical signaling and entanglement regeneration. The paper's analytical contribution is deliberately conservative. It models a worst-case distributed architecture with one data qubit per QPU and a one-dimensional nearest-neighbor topology, ensuring that every CNOT in the original circuit becomes remote and that nonadjacent communication is maximally constrained. Under this model, the entanglement-swapping strategy has a per-layer depth bound proportional to n/2, with hardware constants for link entanglement, Bell-state measurement, and remote CNOT execution. A second strategy swaps data qubits through the network so that the CNOTs in a layer eventually act on neighboring processors; Theorem 1 bounds its per-layer depth by n/4 dqs plus a constant term. The implementation reads QASM circuits left to right, builds front layers of parallel CNOTs, and compiles those layers using either entanglement swapping or data-qubit swapping. Its overall distribution complexity is O(dn2), so the design is intended to be general-purpose, computationally efficient, and effective in the sense that worst-case depth overhead grows linearly with circuit width. The experiments validate the derived bounds on medium-size circuits and compare both strategies with Andr\u00e9s-Mart\u00ednez and Heunen's compiler, noting that the comparison is structurally unfavorable because the other compiler assumes a hypercube topology. The practical takeaway is not that one strategy always dominates under every architecture, but that data-qubit movement can reduce link-generation layers and compiled depth when CNOT interaction patterns repeat, while topology, available communication qubits, and EPR consumption remain decisive design variables.",
+    "summary_short": "This IEEE Transactions on Quantum Engineering article studies how to compile quantum circuits for distributed quantum computers connected through quantum-network resources. It identifies remote-operation constraints, derives conservative depth-overhead bounds for two CNOT distribution strategies, implements the compiler in Qiskit, and validates the analysis on benchmark circuits."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "source_kind": "file",
+  "source_locator": "03-compiler-design-for-distributed-quantum-computing.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Davide Ferrari",
+      "Angela Sara Cacciapuoti",
+      "Michele Amoretti",
+      "Marcello Caleffi"
+    ],
+    "display_title": "Compiler Design for Distributed Quantum Computing",
+    "doi": "10.1109/TQE.2021.3053921",
+    "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+    "venue": "IEEE Transactions on Quantum Engineering"
+  },
+  "source_type": "file",
+  "summary": "Ferrari, Cacciapuoti, Amoretti, and Caleffi analyze compiler design for distributed quantum computing, derive linear worst-case overhead bounds for remote-CNOT compilation strategies, implement a Qiskit-based compiler, and validate the bounds and strategy tradeoffs on medium-size quantum circuits.",
+  "title": "03-compiler-design-for-distributed-quantum-computing",
+  "warnings": [
+    "The source record date was null, but the source markdown front matter names January 22, 2021 as the date of publication.",
+    "The markdown extraction is marked usable, but Table 1 numeric cells are not reliably preserved in the extracted text; evidence from the table is therefore represented qualitatively.",
+    "Existing claim and relation files in the provided context refer to earlier compiler sources, so generated relations reference the newly extracted claims by index rather than existing canonical claim IDs."
+  ]
+}

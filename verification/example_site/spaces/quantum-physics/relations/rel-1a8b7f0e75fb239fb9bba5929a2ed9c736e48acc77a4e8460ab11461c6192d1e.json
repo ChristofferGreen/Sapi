@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "The review's future-work caveats explicitly include the input and output problems.",
+  "relation_file_id": "rel-1a8b7f0e75fb239fb9bba5929a2ed9c736e48acc77a4e8460ab11461c6192d1e",
+  "relation_id": "supports:claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90->claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90",
+  "src_claim_ref": "9",
+  "status": "open"
+}

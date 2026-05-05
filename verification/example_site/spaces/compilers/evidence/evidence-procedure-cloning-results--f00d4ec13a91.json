@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-wcet-aware-procedure-cloning-improves-wcet-estimates-by-specializing-functions-w--808a9c5da846"
+  ],
+  "evidence_id": "evidence-procedure-cloning-results--f00d4ec13a91",
+  "evidence_type": "figure_result",
+  "excerpt": "For mpeg2, standard and WCET-aware cloning reduce WCET estimates by 63.6% and 62.7%. On average, standard cloning outperforms WCET-aware cloning by 1.3%, but epic has code-size increases of 693.7% after standard cloning and 357.9% after WCET-aware cloning.",
+  "overview": "The cloning results support both the benefit and the trade-off. They show that specialization can make loop bounds more precise and sharply lower WCET estimates, while also demonstrating why WCET-aware selection matters: unconstrained cloning can inflate code size substantially.",
+  "page_refs": [
+    "Fig. 6",
+    "pp.276-277"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "title": "Procedure Cloning Results"
+}

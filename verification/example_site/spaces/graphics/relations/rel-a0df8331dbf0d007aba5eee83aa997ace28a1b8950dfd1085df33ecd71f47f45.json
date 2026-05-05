@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+  "dst_claim_ref": "3",
+  "last_evaluated_run_id": null,
+  "rationale": "Texture packing frees memory that the system can spend on more human types and animation frames.",
+  "relation_file_id": "rel-a0df8331dbf0d007aba5eee83aa997ace28a1b8950dfd1085df33ecd71f47f45",
+  "relation_id": "supports:claim-packing-each-prerendered-human-sample-into-the-smallest-containing-rectangle-red--c2027548dc18->claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+  "relation_type": "supports",
+  "src_claim_id": "claim-packing-each-prerendered-human-sample-into-the-smallest-containing-rectangle-red--c2027548dc18",
+  "src_claim_ref": "2",
+  "status": "open"
+}

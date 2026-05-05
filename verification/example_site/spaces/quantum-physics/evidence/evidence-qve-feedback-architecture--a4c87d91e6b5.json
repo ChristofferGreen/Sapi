@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-quantum-variational-eigensolver-prepares-approximate-ground-states-by-using--0037de1d8464"
+  ],
+  "evidence_id": "evidence-qve-feedback-architecture--a4c87d91e6b5",
+  "evidence_type": "figure_result",
+  "excerpt": "Figure 1 describes QEE quantum modules that receive prepared states, compute expectation values <H_i>, pass those values to a CPU, and let a classical minimization algorithm compute <H> and determine new state parameters that are fed back to the quantum processing unit.",
+  "overview": "The figure caption gives the concrete control-flow evidence for the hybrid algorithm: the quantum processor estimates measurable terms and the classical processor performs aggregation and optimization. This supports the claim that QVE is not a standalone quantum circuit but a closed-loop quantum-classical variational procedure.",
+  "page_refs": [
+    "Fig.1",
+    "p.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "title": "Hybrid Feedback Architecture"
+}

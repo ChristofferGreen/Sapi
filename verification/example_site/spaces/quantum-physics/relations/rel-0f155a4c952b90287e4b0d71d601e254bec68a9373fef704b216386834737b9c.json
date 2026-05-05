@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-electromagnetically-induced-transparency-enables-deterministic-reversible-mappin--b76e4e96d4f0",
+  "dst_claim_ref": "3",
+  "last_evaluated_run_id": null,
+  "rationale": "Both claims concern reversible mapping between optical fields and matter memories, using different physical platforms.",
+  "relation_file_id": "rel-0f155a4c952b90287e4b0d71d601e254bec68a9373fef704b216386834737b9c",
+  "relation_id": "similar:claim-dark-state-adiabatic-control-can-reversibly-map-a-single-photon-optical-field-in--55c6ef7fe1ba|claim-electromagnetically-induced-transparency-enables-deterministic-reversible-mappin--b76e4e96d4f0",
+  "relation_type": "similar",
+  "src_claim_id": "claim-dark-state-adiabatic-control-can-reversibly-map-a-single-photon-optical-field-in--55c6ef7fe1ba",
+  "src_claim_ref": "7",
+  "status": "open"
+}

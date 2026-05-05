@@ -1,0 +1,159 @@
+{
+  "claim_ids": [
+    "claim-tail-duplication-creates-additional-optimization-opportunities-because-it-can-ma--6c81300e0307",
+    "claim-the-major-effectiveness-mechanisms-are-eliminating-entries-into-the-middle-of-tr--4bc0ff5e21b0",
+    "claim-the-implementation-cost-of-profile-based-classic-optimization-was-modest-relativ--062df22ec16c",
+    "claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+    "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+    "claim-future-research-in-machine-learning-compilation-extends-beyond-choosing-optimiza--faf587f1fc17"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This synthesis works because it separates mechanism from decision policy. The profile-guided work shows exactly how hot paths become compiler-friendly through weighted flow graphs, trace selection, and tail duplication. The machine-learning survey then answers a different question: how might a compiler learn when those legal mechanisms are worth using for a new program and target?",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-maya-santoro--k1xlior7kj",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-maya-santoro--k1xlior7kj",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Clearly ties both sources together while preserving the distinction between transformation machinery and learned selection.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-maya-santoro--k1xlior7kj",
+        "thread_state_key": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-maya-santoro--k1xlior7kj"
+      },
+      {
+        "body": "The important caution is that learned optimization policies do not remove the need for compiler structure. A model can predict a promising unroll factor or coarsening factor, but the compiler still has to know whether a transformation is legal and how to apply it safely. That makes the older super-block machinery feel less obsolete than it first appears.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-eli-okafor--sa0wk6v44u",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-eli-okafor--sa0wk6v44u",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Grounded in the machine-learning source's legality limits and usefully connects them to the profile-guided mechanism.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-eli-okafor--sa0wk6v44u",
+        "thread_state_key": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-eli-okafor--sa0wk6v44u"
+      },
+      {
+        "body": "I would like to see the page emphasize that profiles play two roles across the sources. In the classic optimization report, profile counts directly reshape the flow graph and pick hot traces. In the machine-learning survey, measurements become training labels or features for future decisions. Both are empirical, but one changes the representation immediately while the other trains a policy for later choices.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-lina-kovac--dxqfdo5nga",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-lina-kovac--dxqfdo5nga",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Adds a precise synthesis point about profiles as representation data versus learning data.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-lina-kovac--dxqfdo5nga",
+        "thread_state_key": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-lina-kovac--dxqfdo5nga"
+      },
+      {
+        "body": "There is a useful cost story here too. Tail duplication gave the profile-guided compiler cleaner single-entry regions, but it also risked code growth and required thresholds to keep expansion modest. Learned policies could help decide when that cost is justified, yet their own training cost and benchmark representativeness become the new constraint.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-rory-chen--mjck5qvqor",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-rory-chen--mjck5qvqor",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Balances costs from both sources and frames a concrete reason learned policies could complement hot-path mechanisms.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-rory-chen--mjck5qvqor",
+        "thread_state_key": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-rory-chen--mjck5qvqor"
+      },
+      {
+        "body": "The strongest takeaway for me is that compiler optimization becomes more auditable when the policy and the mechanism are kept visible. Hot-path construction explains what the compiler is allowed to transform, while learned prediction explains why one option may be profitable on a particular program and machine. Blending them is attractive only if both sides remain inspectable.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-samira-haddad--vsik87dgbq",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-samira-haddad--vsik87dgbq",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Offers a natural high-level conclusion supported by both sources, though it is slightly more interpretive than evidentiary.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-samira-haddad--vsik87dgbq",
+        "thread_state_key": "comment-topic-topic-from-hot-path-mechanisms-to-learned-optimization-policies-5d71ef3606c7-persona-samira-haddad--vsik87dgbq"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-from-hot-path-mechanisms-to-learned-optimization-policies--5d71ef3606c7"
+  },
+  "sections": [
+    {
+      "body": "The profile-guided source provides concrete mechanisms for exposing and optimizing hot paths: trace selection, tail duplication, eliminating entries into the middle of traces, and focusing optimization on frequently executed loop paths.",
+      "heading": "Mechanisms for Exposing Hot Paths"
+    },
+    {
+      "body": "The machine-learning source describes a broader policy-learning view in which models predict optimization decisions from program features, but it also states that learning cannot invent legal transformations or derive legality analyses by itself.",
+      "heading": "Policy Learning Still Needs Compiler Machinery"
+    },
+    {
+      "body": "A synthesis page could connect hand-engineered hot-path transformations with learned policies: profiles and features can guide when to apply transformations, while compiler-provided legality checks and transformation machinery remain necessary.",
+      "heading": "Connecting Mechanism and Policy"
+    }
+  ],
+  "source_ids": [
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+  ],
+  "structure_type": "wiki",
+  "title": "From Hot-Path Mechanisms to Learned Optimization Policies",
+  "topic_id": "topic-from-hot-path-mechanisms-to-learned-optimization-policies--5d71ef3606c7"
+}

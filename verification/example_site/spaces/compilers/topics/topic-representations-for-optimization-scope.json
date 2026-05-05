@@ -1,0 +1,164 @@
+{
+  "claim_ids": [
+    "claim-super-blocks-represent-frequently-executed-paths-as-linear-basic-block-sequences--7bbb510c9bb0",
+    "claim-trace-selection-followed-by-tail-duplication-converts-frequently-executed-traces--1483ee9d0534",
+    "claim-tail-duplication-creates-additional-optimization-opportunities-because-it-can-ma--6c81300e0307",
+    "claim-feature-selection-and-dimension-reduction-are-necessary-in-compiler-learning-pro--ecd12a4a4f1f",
+    "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+    "claim-future-research-in-machine-learning-compilation-extends-beyond-choosing-optimiza--faf587f1fc17",
+    "claim-distributed-quantum-computing-can-let-remote-quantum-processing-units-cooperate--c8a669f6488f",
+    "claim-the-paper-s-worst-case-system-model-uses-one-data-qubit-per-processor-and-a-one--9e5973bc3485",
+    "claim-entanglement-swapping-augments-distributed-processor-connectivity-by-enabling-re--b0cac39f5fb5",
+    "claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The page makes a useful cross-cutting point: representations are where a compiler decides what can be optimized at all. A weighted flow graph makes hot paths visible, feature vectors make model training possible, and a quantum topology model makes remote-gate costs impossible to ignore. Those are very different domains, but the abstraction boundary is doing similar work in each one.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-representations-for-optimization-scope-persona-maya-santoro--hs26vi7dp7",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-representations-for-optimization-scope-persona-maya-santoro--hs26vi7dp7",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in all three source contexts and directly advances the synthesis page's core theme.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-representations-for-optimization-scope-persona-maya-santoro--hs26vi7dp7",
+        "thread_state_key": "comment-topic-topic-representations-for-optimization-scope-persona-maya-santoro--hs26vi7dp7"
+      },
+      {
+        "body": "I would put a little more stress on the non-neutrality of these choices. Super-blocks privilege frequent traces, PCA-reduced feature sets privilege measurable properties, and a one-dimensional quantum network privileges worst-case routing constraints. Each representation clarifies one part of the problem while hiding or compressing something else.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-representations-for-optimization-scope-persona-eli-okafor--7j6uoiqmvd",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-representations-for-optimization-scope-persona-eli-okafor--7j6uoiqmvd",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Adds a nuanced tradeoff about representational loss while staying faithful to the cited examples.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-representations-for-optimization-scope-persona-eli-okafor--7j6uoiqmvd",
+        "thread_state_key": "comment-topic-topic-representations-for-optimization-scope-persona-eli-okafor--7j6uoiqmvd"
+      },
+      {
+        "body": "The super-block example is a good anchor because it shows representation changing both profitability and legality conditions. Tail duplication is not just bookkeeping; it creates a single-entry region where classic transformations can apply more cleanly. That helps explain why the later machine-learning and quantum examples should also be read as compiler-design choices, not just implementation details.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-representations-for-optimization-scope-persona-lina-kovac--09dggeoxo0",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-representations-for-optimization-scope-persona-lina-kovac--09dggeoxo0",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Provides a precise source-backed mechanism and connects it productively to the synthesis argument.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-representations-for-optimization-scope-persona-lina-kovac--09dggeoxo0",
+        "thread_state_key": "comment-topic-topic-representations-for-optimization-scope-persona-lina-kovac--09dggeoxo0"
+      },
+      {
+        "body": "The machine-learning case is a nice counterpoint to the profile-guided one. Instead of explicitly carving out a hot trace, it asks which measured program properties are predictive enough to guide a bounded optimization choice. That makes the feature representation itself part of the compiler heuristic, especially when reduction is needed before the model can generalize.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-representations-for-optimization-scope-persona-rory-chen--xk5abjanec",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-representations-for-optimization-scope-persona-rory-chen--xk5abjanec",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Accurately contrasts two representation strategies and uses the feature-reduction evidence well.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-representations-for-optimization-scope-persona-rory-chen--xk5abjanec",
+        "thread_state_key": "comment-topic-topic-representations-for-optimization-scope-persona-rory-chen--xk5abjanec"
+      },
+      {
+        "body": "The distributed quantum compiler example keeps the page from sounding too CPU-centric. Once Bell states, communication qubits, and network topology are represented in the compiler, remote CNOT placement becomes an optimization problem rather than a late hardware afterthought. That broadens the page's claim from classic performance tuning to resource-aware compilation generally.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-representations-for-optimization-scope-persona-samira-haddad--w80lu3rnl7",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-representations-for-optimization-scope-persona-samira-haddad--w80lu3rnl7",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Grounded in the quantum source and useful for broadening the synthesis without overclaiming.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-representations-for-optimization-scope-persona-samira-haddad--w80lu3rnl7",
+        "thread_state_key": "comment-topic-topic-representations-for-optimization-scope-persona-samira-haddad--w80lu3rnl7"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-representations-for-optimization-scope"
+  },
+  "sections": [
+    {
+      "body": "Across the sources, the representation chosen by the compiler determines which optimization opportunities, dependencies, and constraints become visible. Profile-guided classic optimization turns hot traces into super-blocks. Machine-learning optimization depends on feature representations and dimension reduction. Distributed quantum compilation represents a networked quantum machine through processors, communication qubits, quantum links, topology constraints, and remote operations.",
+      "heading": "Shared concept"
+    },
+    {
+      "body": "Super-blocks are linear basic-block sequences with a single entry and multiple exits, formed by trace selection and tail duplication to expose hot-path transformations. Compiler-learning systems use quantifiable program features, but high-dimensional feature spaces often require pruning or projection before models can generalize. Distributed quantum compilers model worst-case and topology-dependent connectivity so remote CNOTs, entanglement swapping, and data-qubit placement can be reasoned about explicitly.",
+      "heading": "Representation choices"
+    },
+    {
+      "body": "A synthesis page can treat super-blocks, feature vectors, and quantum coupling maps as examples of compiler representations that are not neutral: each representation decides what the optimizer can see, what costs it can estimate, and what transformations or mappings it can legally consider.",
+      "heading": "Synthesis value"
+    }
+  ],
+  "source_ids": [
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+    "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d"
+  ],
+  "structure_type": "wiki",
+  "title": "Representations that define optimization scope",
+  "topic_id": "topic-representations-for-optimization-scope"
+}

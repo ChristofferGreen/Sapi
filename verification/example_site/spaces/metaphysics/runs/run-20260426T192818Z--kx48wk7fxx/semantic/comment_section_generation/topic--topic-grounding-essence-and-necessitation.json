@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The synthesis is helpful because it keeps necessity from looking like a free-standing modal add-on. Trogdon explains why full grounds close the relevant explanatory question through essence, while Correia and Skiles try to build the necessitation pattern into generalized identity itself.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately connects both sources around essence-based explanation of grounding necessity.",
+        "score": 24
+      }
+    },
+    {
+      "body": "What I find interesting is that both routes resist the same bad shortcut: necessity alone cannot tell us what the essence or ground is. The Socrates-plus-primes style case and the worries about partial grounds both show that modal entailment needs an explanatory backing story.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Uses examples from both source contexts to state the shared anti-modal-reduction point.",
+        "score": 25
+      }
+    },
+    {
+      "body": "I am slightly cautious about treating the two accounts as doing the same job. Trogdon leans on cognitively significant connecting questions and Fine-style natures, whereas generalized identity is supposed to be a formal metaphysical tool. They converge on necessitation, but the explanatory route differs quite a bit.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Adds a relevant distinction between epistemic-significance and generalized-identity strategies.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The hardest question for the concept page may be whether generalized identity can replace the appeal to essence, or whether it is another way of regimenting essential structure. If it only formalizes the same constitutive facts, then the contrast with the Finean route is less dramatic than it first appears.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Raises a focused interpretive pressure point without misrepresenting either source.",
+        "score": 21
+      }
+    },
+    {
+      "body": "That is also why the full-versus-partial distinction matters so much. A partial ground or a merely necessary companion can travel with the fact in every possible case and still fail to reveal what makes the fact obtain. The page should keep that distinction visible throughout.",
+      "comment_ref": "draft-5",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Directly develops the thread by tying modal insufficiency to full grounding and partial essence.",
+        "score": 23
+      }
+    }
+  ],
+  "page_ref": "topic:topic-grounding-essence-and-necessitation",
+  "requested_count": 5
+}

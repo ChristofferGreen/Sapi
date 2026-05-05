@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:22:12Z",
+  "claim_id": "claim-in-intersensory-attention-tasks-attending-to-audition-increases-8-14-hz-parieto--6ff6ff285662",
+  "evidence_excerpts": [
+    "Figure 1 describes greater 8-14 Hz alpha activity in the 300 ms before the compound S2 when attention is cued to the auditory modality rather than the visual modality."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Auditory attention gates vision",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "In intersensory attention tasks, attending to audition increases 8-14 Hz parieto-occipital alpha activity before the audiovisual target, consistent with anticipatory gating of visual processing."
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:36:26Z",
+  "claim_id": "claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18",
+  "evidence_excerpts": [
+    "Une technique permet m\u00eame de recr\u00e9er de la profondeur dans le fragment shader et donc d'afficher \u00e0 nouveau de la 3D : le raymarching. ... Il s'agit de d\u00e9crire l'espace selon des fonctions de distances en un point donn\u00e9 ... Ensuite, pour chaque pixel de l'image, on lance un rayon sur lequel on va 'marcher' pas \u00e0 pas ... rencontrer un objet d\u00e9crit dans la fonction de distance (appel\u00e9e commun\u00e9ment SDF pour Signed Distance Field)."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Raymarching recreates shader depth",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "text": "Raymarching can recreate three-dimensional depth inside a fragment shader by marching a ray through a distance-field description until it reaches an object."
+}

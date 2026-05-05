@@ -1,0 +1,106 @@
+{
+  "topics": [
+    {
+      "topic_id": "topic-hybrid-shallow-quantum-algorithms-under-nisq-noise",
+      "title": "Hybrid Shallow Quantum Algorithms Under NISQ Noise",
+      "structure_type": "wiki",
+      "sections": [
+        {
+          "heading": "Concept",
+          "content": "Near-term quantum algorithms can be framed as hybrid workflows that keep coherent quantum circuits short while outsourcing parameter search and aggregation to classical computation. The photonic variational eigensolver illustrates this pattern by estimating Hamiltonian expectation values through repeated state preparations and Pauli measurements, then using a classical minimizer to improve the Rayleigh-Ritz quotient. Preskill's NISQ discussion supplies the broader constraint: noisy two-qubit gates and measurements limit the useful size of uncorrected circuits, so VQE-like and QAOA-like approaches are plausible testbeds rather than established routes to broad advantage."
+        },
+        {
+          "heading": "Cross-source synthesis",
+          "content": "The shared concept is not simply that hybrid algorithms exist, but that they are architectural responses to limited coherence. Source 04 emphasizes replacing long phase-estimation-style coherent evolution with many short expectation-value measurements; source 01 explains why that trade matters in NISQ hardware, where roughly one thousand fundamental two-qubit operations may already be too many before noise dominates."
+        },
+        {
+          "heading": "Limits and open questions",
+          "content": "The evidence supports hybrid shallow algorithms as experimentally meaningful, but not as proven sources of practical speedup. The NISQ source explicitly leaves unresolved whether VQE or QAOA can outperform mature classical approximation methods, while the photonic experiment reports systematic errors, optimizer sensitivity, and degeneracy-related difficulty at larger bond separations."
+        }
+      ],
+      "claim_ids": [
+        "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+        "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+        "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+        "claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4",
+        "claim-quantum-expectation-estimation-reduces-coherent-evolution-demands-relative-to-ph--e17864953251",
+        "claim-the-quantum-variational-eigensolver-prepares-approximate-ground-states-by-using--0037de1d8464",
+        "claim-for-the-demonstrated-4x4-hamiltonian-the-quantum-expectation-estimation-approach--8aea71f20a05",
+        "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5",
+        "claim-nelder-mead-direct-search-was-more-robust-than-gradient-descent-for-the-noisy-ph--c886fbe39dc2"
+      ],
+      "source_ids": [
+        "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb"
+      ]
+    },
+    {
+      "topic_id": "topic-quantum-advantage-requires-verifiable-hardness-and-error-models",
+      "title": "Quantum Advantage Requires Verifiable Hardness and Error Models",
+      "structure_type": "wiki",
+      "sections": [
+        {
+          "heading": "Concept",
+          "content": "Claims of quantum advantage depend on matching a hard-to-simulate quantum process with a verification method that remains credible as classical simulation becomes difficult. The Sycamore random-circuit experiment uses linear cross-entropy benchmarking, elided circuits, and component error models to infer fidelity for circuits whose full output distributions are classically expensive. The photonic variational solver uses expectation-value measurements instead of a supremacy benchmark, but it also relies on quantifying experimental errors and comparing measured outputs with theoretical molecular-energy targets."
+        },
+        {
+          "heading": "Cross-source synthesis",
+          "content": "Source 02 and source 04 share a verification problem: useful quantum experiments must report more than raw device output. Sycamore's evidence links observed bitstrings to ideal probabilities and extrapolates fidelity into harder circuits; the photonic solver links detector counts and Pauli-product estimates to molecular energies while identifying systematic shifts from source, circuit, calibration, coupling, and degeneracy effects."
+        },
+        {
+          "heading": "Boundary of the evidence",
+          "content": "The sources support task-specific experimental milestones rather than general-purpose fault-tolerant computation. Sycamore's speedup is tied to random circuit sampling, while the photonic demonstration is a proof-of-principle molecular-energy calculation on a small Hamiltonian. Both require careful caveats about what the measured task does and does not imply."
+        }
+      ],
+      "claim_ids": [
+        "claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb",
+        "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+        "claim-linear-cross-entropy-benchmarking-provides-a-fidelity-measure-by-comparing-exper--4abac38b173d",
+        "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279",
+        "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+        "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+        "claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+        "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5",
+        "claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4"
+      ],
+      "source_ids": [
+        "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb"
+      ]
+    },
+    {
+      "topic_id": "topic-hardware-native-interfaces-and-ansatz-design",
+      "title": "Hardware-Native Interfaces and Ansatz Design",
+      "structure_type": "wiki",
+      "sections": [
+        {
+          "heading": "Concept",
+          "content": "Several sources point toward designing quantum protocols around what a physical platform can reliably prepare, transform, and measure. The photonic variational solver proposes a device ansatz: build the device, characterize the states it can prepare within coherence limits, and optimize within that accessible family. The quantum-internet source treats interfaces similarly at the networking layer, emphasizing reversible conversion between matter and light, cavity-QED interactions, and memory mappings that preserve coherence and entanglement."
+        },
+        {
+          "heading": "Cross-source synthesis",
+          "content": "The shared concept is hardware-native quantum state engineering. Source 04 applies it to computation by using phase shifters, a CNOT gate, photon pairs, and detectors to prepare and measure two-qubit states for energy estimation. Source 03 applies it to communication by using controlled cavity pulses, dark-state adiabatic passage, and electromagnetically induced transparency to map quantum states between stationary matter systems and flying optical fields."
+        },
+        {
+          "heading": "Implication",
+          "content": "This topic is synthesis-worthy because both computation and networking are constrained by physical interfaces, not just abstract algorithms. The evidence supports a page about platform-shaped protocols, while leaving open which hardware-native approaches will scale best."
+        }
+      ],
+      "claim_ids": [
+        "claim-device-ansatz-strategies-can-provide-variationally-optimal-solutions-for-the-ava--64cad93bb7ab",
+        "claim-unitary-coupled-cluster-ansatz-states-can-be-represented-with-polynomially-many--7f92a3b77387",
+        "claim-the-demonstrated-integrated-photonic-processor-prepares-and-measures-arbitrary-t--f41a0c8f645b",
+        "claim-large-quantum-networks-require-reversible-interconnects-that-convert-quantum-sta--03b0b3a11218",
+        "claim-strong-cavity-qed-coupling-supplies-a-physical-regime-in-which-individual-atoms--9807d4e35625",
+        "claim-dark-state-adiabatic-control-can-reversibly-map-a-single-photon-optical-field-in--55c6ef7fe1ba",
+        "claim-electromagnetically-induced-transparency-enables-deterministic-reversible-mappin--b76e4e96d4f0",
+        "claim-controlled-cavity-pulses-can-generate-entanglement-first-between-an-atom-and-an--ee045e1c7175"
+      ],
+      "source_ids": [
+        "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+        "source-03-the-quantum-internet--cd7f6b2f11e2"
+      ]
+    }
+  ]
+}

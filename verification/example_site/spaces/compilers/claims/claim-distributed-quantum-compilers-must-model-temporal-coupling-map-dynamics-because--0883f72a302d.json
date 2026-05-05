@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:45:24Z",
+  "claim_id": "claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d",
+  "evidence_excerpts": [
+    "These additional constraints must be properly modeled within the coupling map, so that the distributed quantum compiler can optimize the quantum circuit by accounting for the temporal dynamics arising with the distributed architecture.",
+    "The clock of the remote operations will be significantly lower than the clock of the local operations."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Coupling maps become dynamic",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "text": "Distributed quantum compilers must model temporal coupling-map dynamics because remote operations are constrained by Bell-state availability, Bell-state regeneration, and classical communication latency."
+}

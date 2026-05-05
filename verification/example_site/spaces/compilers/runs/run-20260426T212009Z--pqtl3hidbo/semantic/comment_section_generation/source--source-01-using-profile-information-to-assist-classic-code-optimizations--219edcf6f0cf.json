@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What stands out to me is how the paper treats profiling as an extra pass over an already optimized program, rather than as a replacement for classic global optimization. That makes the 1.15 average speedup easier to interpret: the gains come from exposing hot-path structure that the baseline optimizer had already missed, not from skipping the normal compiler pipeline.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Grounded in the source workflow and benchmark result, with a clear interpretive point.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The weighted flow graph idea feels like the most durable part of the work. Once basic blocks and arcs carry execution counts, the compiler can stop pretending that all paths through a loop matter equally. Even if modern implementations would collect profiles differently, that representation-level move still explains why hot traces can justify different optimization choices.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately connects weighted flow graphs to hot-path optimization without overclaiming.",
+        "score": 22
+      }
+    },
+    {
+      "body": "I like the super-block construction, but the tail duplication tradeoff deserves as much attention as the speedup table. A single-entry region makes many transformations cleaner, yet copying code to get that shape is not free. The reported 1.07 average code growth sounds modest, though it still depends on the threshold and workload mix.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Balances the paper's core mechanism against its measured size cost.",
+        "score": 25
+      }
+    },
+    {
+      "body": "The separate profiling and performance inputs are an important detail. Without that split, the results could mostly show that the compiler learned one exact run. Using different timing inputs makes the evaluation more credible, even though the benchmark set is still relatively small and centered on non-numeric C programs.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Highlights a real evaluation strength while noting a reasonable limitation.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The profiling overhead is a reminder that this is a research prototype, not just a drop-in compiler flag. Runs that are 25 to 35 times slower would force users to choose profiling inputs carefully. Still, the paper's larger claim holds up: if you can afford representative profiles, classic optimizations become more targeted and sometimes more widely applicable.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Uses source-reported overhead to frame a fair, nuanced conclusion.",
+        "score": 24
+      }
+    }
+  ],
+  "page_ref": "source:source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "requested_count": 5
+}

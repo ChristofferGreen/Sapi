@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-participants-with-no-prior-psychedelic-experience-showed-larger-shifts-away-from--056a417d978d",
+    "claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c"
+  ],
+  "evidence_id": "evidence-naive-participant-effects--c83d4f51e6a0",
+  "evidence_type": "statistical_result",
+  "excerpt": "For respondents embarking on their first psychedelic experience, significant changes were found at 4 weeks (t(52) = 3.85, p = 0.001, d = 0.53, 95% CI [0.21, 0.66]) and 6 months (t(52) = 5.32, p < 0.0001, d = 0.73, 95% CI [0.36, 0.80]).",
+  "overview": "The stronger effect sizes among psychedelic-naive participants support the interpretation that the observed shifts are not merely a residue of earlier psychedelic exposure. This evidence is especially relevant to causal interpretation, while still sharing the observational limitations of the ceremony cohort.",
+  "page_refs": [
+    "Supplementary Fig. 1a",
+    "p.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "title": "Naive Participant Effects"
+}

@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+    "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+    "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e"
+  ],
+  "evidence_id": "evidence-quantum-classical-runtime-gap--f2a6c0d4be77",
+  "evidence_type": "statistical_result",
+  "excerpt": "Figure 4 states that one million samples at m = 20 take 200 seconds on Sycamore, while equal-fidelity classical sampling would take 10,000 years on one million cores and fidelity verification would take millions of years.",
+  "overview": "This evidence supports the headline speedup claim by pairing the quantum sampling runtime with the authors' extrapolated classical cost. The comparison is task-specific and model-dependent: it concerns equal-fidelity random circuit sampling, not arbitrary useful quantum algorithms.",
+  "page_refs": [
+    "Fig.4",
+    "p.508"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "title": "Quantum-Classical Runtime Gap"
+}

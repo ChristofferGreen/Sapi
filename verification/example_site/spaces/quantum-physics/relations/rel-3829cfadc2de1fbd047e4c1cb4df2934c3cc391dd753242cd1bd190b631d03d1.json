@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "The special promise of quantum dynamics follows from the broader argument that highly entangled systems resist classical simulation.",
+  "relation_file_id": "rel-3829cfadc2de1fbd047e4c1cb4df2934c3cc391dd753242cd1bd190b631d03d1",
+  "relation_id": "derived_from:claim-highly-entangled-quantum-dynamics-is-the-most-natural-arena-for-meaningful-quant--3b6f2f5ba268->claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-highly-entangled-quantum-dynamics-is-the-most-natural-arena-for-meaningful-quant--3b6f2f5ba268",
+  "src_claim_ref": "7",
+  "status": "open"
+}

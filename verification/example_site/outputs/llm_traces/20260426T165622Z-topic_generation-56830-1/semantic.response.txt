@@ -1,0 +1,75 @@
+{
+  "topics": [
+    {
+      "topic_id": "topic-image-space-geometric-abstraction-for-readable-visual-complexity",
+      "title": "Image-space geometric abstraction for readable visual complexity",
+      "structure_type": "wiki",
+      "sections": [
+        "Across the edge-bundling and crowd-rendering sources, dense visual scenes become manageable by replacing raw geometric complexity with structured image-space or sample-based abstractions. Skeleton-based edge bundling clusters geometrically similar edges, inflates cluster shapes, extracts skeletons, and attracts edges toward locally centered targets; image-based crowd rendering similarly uses impostor samples, positional and directional discretization, and optimized texture storage to display large animated crowds at interactive rates.",
+        "The shared concept is not merely acceleration: abstraction changes what the viewer can read. Edge bundling sacrifices individual edge identity and direction fidelity to expose coarse connectivity, while crowd impostors trade full per-avatar geometry for scalable visual presence. Shader raymarching provides a related but weaker cross-source bridge because it also treats geometry through mathematical spatial descriptions, marching rays through distance fields inside a fragment shader."
+      ],
+      "claim_ids": [
+        "claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+        "claim-hierarchical-agglomerative-clustering-with-full-linkage-and-euclidean-distances--759b1a2656e8",
+        "claim-the-attraction-rule-moves-interior-edge-points-toward-feature-transform-location--8607f298987e",
+        "claim-restricting-attraction-to-skeleton-paths-passing-through-endpoint-feature-points--86df6a0326fa",
+        "claim-repeated-reclustering-with-decreasing-similarity-thresholds-creates-bottom-up-bu--0f90a7b7b684",
+        "claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5",
+        "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+        "claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e",
+        "claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18"
+      ],
+      "source_ids": [
+        "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+        "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+        "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34"
+      ]
+    },
+    {
+      "topic_id": "topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images",
+      "title": "GPU pipelines turn mathematical structure into real-time images",
+      "structure_type": "wiki",
+      "sections": [
+        "The sources converge on a concept of graphics pipelines where mathematical structure becomes visible through GPU-oriented computation. Shadercoding describes GPU-directed programs that map spatial or pixel data into images through functions, vectors, matrices, and fragment operations. Skeleton-based edge bundling reports CUDA image-space distance transforms, feature transforms, skeletonization, path computation, and attraction as a fast alternative to a CPU AFMM implementation.",
+        "Crowd rendering adds a performance-oriented variant of the same theme: compressed textures, multipass rendering, compact frame storage, and impostor databases make large animated populations render interactively. The shared topic should acknowledge different goals: shadercoding emphasizes expressive image creation, edge bundling emphasizes graph readability, and crowd rendering emphasizes scalable virtual-environment display."
+      ],
+      "claim_ids": [
+        "claim-cuda-image-space-distance-transforms-skeletonization-path-computation-and-attrac--46de973cba61",
+        "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963",
+        "claim-a-shader-is-a-gpu-directed-program-that-describes-rendering-processes-for-turnin--64c2250afac1",
+        "claim-creating-original-shaders-requires-substantial-mathematical-and-technical-fluenc--7ec21177eabc",
+        "claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e",
+        "claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+        "claim-the-tested-system-renders-10-000-different-humans-in-a-41-260-polygon-village-at--6845dedcbaed"
+      ],
+      "source_ids": [
+        "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+        "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+        "source-02-image-based-crowd-rendering--565ae2b0e3a1"
+      ]
+    },
+    {
+      "topic_id": "topic-visual-control-tradeoffs-in-computed-graphics",
+      "title": "Visual control tradeoffs in computed graphics",
+      "structure_type": "wiki",
+      "sections": [
+        "A cross-source page can synthesize how computed graphics systems expose controls that improve visual legibility or variety while accepting artifacts, constraints, or information loss. Skeleton-based edge bundling lets users tune smoothing, relaxation, and cushion shading, but the same method is explicitly limited because bundling overdraws individual edges and distorts directions. Crowd rendering similarly uses PCA-informed impostor planes to reduce popping, alpha-channel multipass recoloring to add variation, and shadow projection to preserve posture cues, all within an impostor-based approximation.",
+        "Shadercoding supplies a conceptual parallel: mathematical and technical constraints can become creative motors, and mastery of the code-image system can support live improvisation. The evidence is stronger for technical tradeoffs in edge bundling and crowd rendering than for direct equivalence with performance art, so this topic should frame shadercoding as an interpretive extension rather than the core evidence."
+      ],
+      "claim_ids": [
+        "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963",
+        "claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5",
+        "claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e",
+        "claim-alpha-channel-multipass-rendering-can-recolor-significant-body-regions-such-as-c--265615107527",
+        "claim-the-same-image-database-used-for-impostors-can-project-posture-consistent-human--625367fc5d02",
+        "claim-mathematical-and-technical-constraints-in-shadercoding-can-become-creative-motor--5b703448e7f5",
+        "claim-mastered-shadercoding-can-support-real-time-artistic-improvisation-that-fuses-co--51c4a707f8d0"
+      ],
+      "source_ids": [
+        "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+        "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+        "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34"
+      ]
+    }
+  ]
+}

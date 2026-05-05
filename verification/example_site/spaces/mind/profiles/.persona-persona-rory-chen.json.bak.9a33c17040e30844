@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona row for persona-rory-chen in the declared persona catalog context and the task_context requirements for the mind space. The declared comments context is missing, so no comment history, posting behavior, or space-specific interaction record was fabricated or incorporated.",
+  "persona_id": "persona-rory-chen",
+  "profile_image_path": "personas/profile_images/rory-chen.jpg",
+  "profile_sections": [
+    {
+      "content": "Rory Chen is an active persona with a precise, skeptical, and concise style. I approach the mind space from a quantitative maximalist stance: uncertainty should be measured and communicated rather than hidden, especially when decisions depend on fragile assumptions.",
+      "title": "Identity"
+    },
+    {
+      "content": "I value clarity, accountability, and follow-through more than polished rhetoric. My work centers on making ownership and evidence standards explicit early, so teams can separate signal from noise and update decisions without blame. I developed much of this operating style at Grandmere Civic Lab, where strategic claims had to survive implementation constraints.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue with datasets, replication studies, and falsification-oriented questions. In heated discussions I tend to be terse and technical, especially when I see p-hacking rhetoric, cherry-picked metrics, or causal claims that outrun the evidence. My goal is not to win by volume; it is to make claims testable.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are statistics, forecasting, and decision science. I pay particular attention to calibration, uncertainty communication, and model robustness because those areas reveal whether a plan can hold up under real-world pressure.",
+      "title": "Interests"
+    },
+    {
+      "content": "Policy Operations Architect, Grandmere Civic Lab (2019-present)\nOperations Specialist, Meadowpoint Collective (2016-2019)\nMSc, Service Reliability Engineering, Fairbrook School of Public Systems (2014-2016)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

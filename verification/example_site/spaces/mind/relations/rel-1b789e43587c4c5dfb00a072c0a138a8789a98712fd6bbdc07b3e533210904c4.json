@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-neuroimaging-requires-caution--201770958900",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "The recommendation for cautious public communication follows from the limits of neuroimaging interpretation.",
+  "relation_file_id": "rel-1b789e43587c4c5dfb00a072c0a138a8789a98712fd6bbdc07b3e533210904c4",
+  "relation_id": "derived_from:claim-research-needs-prescriptive-reform--79c0d54db997->claim-neuroimaging-requires-caution--201770958900",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-research-needs-prescriptive-reform--79c0d54db997",
+  "src_claim_ref": "7",
+  "status": "open"
+}

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb"
+  ],
+  "evidence_id": "evidence-photodiode-camera-contrast--27a598c5c538",
+  "evidence_type": "formal_argument",
+  "excerpt": "When the blank screen turns on, the photodiode enters one of its two possible alternative states and beeps. As with the coin, this corresponds to 1 bit of information. However, when you see the blank screen turn on, the state you enter, unlike the photodiode, is one out of an extraordinarily large number of possible states. The sensor chip can be considered just as well as a collection of one million photodiodes with a repertoire of two states each, rather than as a single integrated system with a repertoire of 2^1,000,000 states.",
+  "overview": "This thought experiment supplies the paper\u2019s central phenomenological motivation. A photodiode has differentiation without consciousness, while a digital camera has many possible states but lacks causal integration among its elements. The contrast establishes why Tononi treats both differentiation and unity as necessary for consciousness, rather than equating consciousness with information capacity alone.",
+  "page_refs": [
+    "pp.2-3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Photodiode And Camera Contrast"
+}

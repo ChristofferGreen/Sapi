@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:45:24Z",
+  "claim_id": "claim-distributed-quantum-computing-requires-compilers-that-can-map-arbitrary-quantum--e4ea92cd41cd",
+  "evidence_excerpts": [
+    "Distributed quantum computing requires a new generation of quantum compilers, for mapping any quantum algorithm to any distributed quantum computing architecture."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Distributed architectures require compilers",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "text": "Distributed quantum computing requires compilers that can map arbitrary quantum algorithms to distributed architectures while accounting for network and communication constraints."
+}

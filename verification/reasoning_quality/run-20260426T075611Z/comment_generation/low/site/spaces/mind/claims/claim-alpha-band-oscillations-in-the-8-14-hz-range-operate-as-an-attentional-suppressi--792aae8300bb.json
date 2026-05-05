@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T08:02:42Z",
+  "claim_id": "claim-alpha-band-oscillations-in-the-8-14-hz-range-operate-as-an-attentional-suppressi--792aae8300bb",
+  "evidence_excerpts": [
+    "The weight of evidence suggests that alpha-band oscillations can be actively invoked within cortical regions across multiple sensory systems, particularly when these regions are involved in processing irrelevant or distracting information.",
+    "We have described evidence for alpha-band oscillations as a mechanism for attentionally mediated selective suppression of distracting information."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Alpha suppresses distractors",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Alpha-band oscillations in the 8-14 Hz range operate as an attentional suppression mechanism when sensory objects, features, or locations must be ignored."
+}

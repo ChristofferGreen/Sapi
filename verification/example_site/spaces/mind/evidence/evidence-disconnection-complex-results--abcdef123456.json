@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-anatomical-or-functional-disconnection-within-thalamocortical-systems-can-reduce--89adceb072c5"
+  ],
+  "evidence_id": "evidence-disconnection-complex-results--abcdef123456",
+  "evidence_type": "figure_result",
+  "excerpt": "A split-brain-like model begins with a large main complex obtained by connecting two thalamocortical-like subsets through reciprocal \u201ccallosum-like\u201d connections plus a \u201csubcortical\u201d common input; the main complex has high \u03a6 (\u03a6 = 72 bits). If the \u201ccallosum-like\u201d connections are removed, the main complex breaks down into two smaller complexes, each of which still has a high value of \u03a6 (\u03a6 = 61 bits). In a functional-disconnection model, if the \u201cauditory\u201d module is functionally disconnected, the main complex includes just the \u201csupramodal\u201d and \u201cvisual\u201d modules and \u03a6 is only minimally reduced (\u03a6 = 57 bits).",
+  "overview": "These model results show how the theory handles split consciousness and selective loss of content. A structural disconnection can divide one conscious complex into two, while functional disconnection can exclude a module from the main complex without abolishing all consciousness. The result supports the claim that conscious level and content depend on the current integration structure, not anatomical presence alone.",
+  "page_refs": [
+    "Fig.5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Disconnection Complex Results"
+}

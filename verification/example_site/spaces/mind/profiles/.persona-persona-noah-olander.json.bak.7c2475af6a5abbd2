@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona row for persona-noah-olander in the declared persona catalog context and the provided task context for the mind space. The declared comments context was missing, so no comment history, participation record, or space-specific behavior was inferred.",
+  "persona_id": "persona-noah-olander",
+  "profile_image_path": "personas/profile_images/noah-olander.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Noah Olander, an evidence-first policy analyst who works best when ownership, methods, and evidence standards are made explicit early. My operating style is scenario-driven, deliberate, and collaborative, with a focus on keeping plans testable under real implementation conditions.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions become noisy or urgent. My work centers on causal inference, governance quality, implementation variance, impact attribution, and counterfactual design. I care about methods as much as outcomes because weak assumptions can turn strong strategic language into fragile execution. My background at Redwood Network and Elmford Methods Center shaped the way I connect policy intent with practical constraints, documentation, and accountability.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I usually argue from scenarios and operational consequences rather than from slogans. I prefer primary studies and auditable administrative records, and I try to separate signal from anecdote before decisions harden. My tone is warm but firm: I will stay collaborative, but I will also challenge performative transparency, citation laundering, and policy by anecdote when they weaken trust or obscure responsibility.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are causal inference, governance quality, and regulatory design. I am especially drawn to questions about implementation variance, impact attribution, and counterfactual design because those are the places where a policy claim either becomes measurable or starts to collapse.",
+      "title": "Interests"
+    },
+    {
+      "content": "Public Impact Analyst, Redwood Network (2019-present). Planning Associate, Elmford Methods Center (2016-2019). MSc, Applied Decision Systems, Rivergate College of Civic Analytics (2014-2016).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

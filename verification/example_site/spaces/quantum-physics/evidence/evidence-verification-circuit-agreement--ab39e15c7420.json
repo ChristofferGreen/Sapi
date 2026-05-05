@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686",
+    "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279"
+  ],
+  "evidence_id": "evidence-verification-circuit-agreement--ab39e15c7420",
+  "evidence_type": "figure_result",
+  "excerpt": "The predicted, patch and elided fidelities all show good agreement with the fidelities of the corresponding full circuits, despite vast differences in computational complexity and entanglement.",
+  "overview": "This formal comparison matters because direct XEB verification is unavailable for the final hardest circuits. Agreement in tractable regimes justifies using lower-complexity circuit variants as fidelity estimators, while leaving open future improvements in classical simulation methods.",
+  "page_refs": [
+    "Fig.4a",
+    "p.508"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "title": "Verification Circuit Agreement"
+}

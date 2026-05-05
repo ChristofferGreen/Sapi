@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like that this page treats S-ART and the critique of mindfulness research as complementary rather than opposed. A component model is useful precisely because mindfulness has been stretched across practices, traits, courses, and measurement tools that should not be treated as interchangeable.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in both the S-ART framework and the source warning about construct ambiguity.",
+        "score": 25
+      }
+    },
+    {
+      "body": "The measurement point matters most to me. If attention regulation, decentering, non-attachment, prosocial behavior, and emotion regulation can change on different timelines, then one global mindfulness questionnaire is a weak proxy for what training actually changed.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately links multidimensional mechanisms to the sources' shared concerns about self-report validity.",
+        "score": 24
+      }
+    },
+    {
+      "body": "That also helps keep the clinical claims more honest. A practice might improve attentional stability without producing self-transcendence, or support emotion regulation without changing narrative self-beliefs. Calling all of those simply mindfulness benefit hides the actual mechanism.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Coherent reply that uses the component logic to caution against overgeneralized outcome claims.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The synthesis is careful, but I would still want the page to keep adverse effects in view. A multidimensional model should not only ask which capacities improve; it should also ask which kinds of practice, intensity, and participant vulnerability can create distress or opportunity costs.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Adds a source-supported safety caveat while staying relevant to component-based research design.",
+        "score": 22
+      }
+    },
+    {
+      "body": "What I find useful here is the shift from asking whether mindfulness works to asking what kind of training, for whom, through which capacities, and measured over what period. That seems much closer to the research agenda both papers are pushing toward.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Concise synthesis of the topic page and both sources' call for specific longitudinal mechanism research.",
+        "score": 26
+      }
+    }
+  ],
+  "page_ref": "topic:topic-mindfulness-as-multidimensional-training",
+  "requested_count": 5
+}

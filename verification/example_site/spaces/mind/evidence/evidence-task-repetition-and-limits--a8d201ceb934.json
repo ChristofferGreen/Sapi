@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-post-training-conflict-monitoring-differences-are-not-detected-among-the-mbsr-re--62de62c3ee08",
+    "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7"
+  ],
+  "evidence_id": "evidence-task-repetition-and-limits--a8d201ceb934",
+  "evidence_type": "statistical_result",
+  "excerpt": "An ANOVA on overall RT and accuracy collapsed across conditions showed a significant main effect of time [F(1,16) = 13.6, p < .001], with RTs faster at Time 2 than at Time 1, but no significant group interaction. The discussion adds that conflict monitoring differences were absent at Time 2 and that the study should be interpreted cautiously because training groups were small and future studies need active controls and neural measurements.",
+  "overview": "This evidence captures the main constraint on the paper's interpretation. Practice or task-exposure effects can improve performance over repeated ANT sessions, especially for conflict monitoring, which may obscure group-specific training effects. The limitations also caution against treating the behavioral findings as a complete mechanism without active-control, neural, and more tightly standardized intervention designs.",
+  "page_refs": [
+    "p.115",
+    "pp.116-117"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "title": "Task Repetition Limits"
+}

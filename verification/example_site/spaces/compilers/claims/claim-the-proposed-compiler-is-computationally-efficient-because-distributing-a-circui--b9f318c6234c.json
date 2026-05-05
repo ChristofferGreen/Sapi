@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:45:24Z",
+  "claim_id": "claim-the-proposed-compiler-is-computationally-efficient-because-distributing-a-circui--b9f318c6234c",
+  "evidence_excerpts": [
+    "Applying a remote CNOT has a computational complexity of O(n), with n being the number of QPUs. Given that we need at most n/4 swaps, the computational complexity of Algorithm 2 turns out to be O(n2). The overall computational complexity of distributing a circuit is, therefore, O(dn2)."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Compiler complexity is polynomial",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "text": "The proposed compiler is computationally efficient because distributing a circuit has O(d n squared) complexity, with d the circuit depth and n the number of QPUs or logical qubits in the modeled worst case."
+}

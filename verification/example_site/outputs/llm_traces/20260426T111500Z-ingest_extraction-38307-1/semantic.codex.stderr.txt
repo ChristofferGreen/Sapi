@@ -1,0 +1,8 @@
+[
+  {
+    "message": "'Foxe and Snyder argue that alpha-band brain oscillations are not merely signs of cortical idling but can be recruited to suppress distracting sensory processing during selective attention. The review synthesizes EEG, MEG, TMS, intracranial, and behavioral evidence across visual, auditory, and tactile domains. Its central practical message is that increased alpha often marks the neural system being ignored, not the item being selected.' is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

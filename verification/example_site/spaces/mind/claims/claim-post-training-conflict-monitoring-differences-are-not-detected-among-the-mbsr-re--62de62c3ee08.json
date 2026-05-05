@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:09:33Z",
+  "claim_id": "claim-post-training-conflict-monitoring-differences-are-not-detected-among-the-mbsr-re--62de62c3ee08",
+  "evidence_excerpts": [
+    "An ANOVA for the conflict monitoring component RT and accuracy difference scores revealed no significant main effects and no significant effects on any of the paired contrasts (p > .36)."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Conflict gains fade",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "text": "Post-training conflict-monitoring differences are not detected among the MBSR, retreat, and control groups, possibly because task repetition improves conflict scores in controls."
+}

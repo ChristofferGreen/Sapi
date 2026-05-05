@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-systematic-flow-shortens-unpurified-circuit-building--367a566abb69",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "Measured outlier gate ratios justify the procedure\u2019s outlier-identification and adjustment step.",
+  "relation_file_id": "rel-c438b81fc7a40faea6f7e079c7633128aa8642965d217e3713dae5d7e9fc8aa9",
+  "relation_id": "supports:claim-outlier-gates-expose-synthesis-variation--367a566abb69->claim-systematic-flow-shortens-unpurified-circuit-building--367a566abb69",
+  "relation_type": "supports",
+  "src_claim_id": "claim-outlier-gates-expose-synthesis-variation--367a566abb69",
+  "src_claim_ref": "4",
+  "status": "open"
+}

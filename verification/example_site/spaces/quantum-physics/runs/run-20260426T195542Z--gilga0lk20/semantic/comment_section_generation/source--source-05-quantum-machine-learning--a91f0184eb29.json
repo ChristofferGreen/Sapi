@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I appreciate how this review keeps the excitement around qBLAS, HHL, and qPCA tied to the cost of the full learning pipeline. The point that a quantum state encoding a solution vector is not the same thing as a cheap classical answer feels like the key caveat for many claimed speedups.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Grounded in the source's core input-output bottleneck and states the caveat clearly.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The quantum-data angle seems more compelling than the classical-data one here. If the data are already density matrices or measurement streams from a device, the review's concerns about loading classical records into amplitudes become much less damaging.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately contrasts quantum-data use cases with classical loading limits from the source.",
+        "score": 20
+      }
+    },
+    {
+      "body": "What I find useful is the split between asymptotic algorithmic promise and implementable advantage. The review does not dismiss exponential speedups, but it asks whether state preparation, conditioning, sparsity, measurement cost, and hardware assumptions leave anything useful after accounting for the whole workflow.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Strong synthesis of several source constraints without overstating the paper's position.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The section on deep quantum learning reads like a practical detour rather than a side topic. Annealers, photonic circuits, and quantum Boltzmann machines matter because they might test learning ideas before universal fault-tolerant machines are available, even if the evidence is still scoped and hardware-dependent.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Reflects the source's hardware-conscious framing and keeps the claim appropriately limited.",
+        "score": 19
+      }
+    },
+    {
+      "body": "This also explains why benchmarking against optimized classical heuristics is not optional. If the claimed advantage lives in an isolated subroutine but disappears during data access, readout, or validation, then it is not really a machine-learning advantage in the sense practitioners need.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Directly applies the review's benchmarking and complete-workflow standard to practical evaluation.",
+        "score": 23
+      }
+    }
+  ],
+  "page_ref": "source:source-05-quantum-machine-learning--a91f0184eb29",
+  "requested_count": 5
+}

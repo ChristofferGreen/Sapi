@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:27:45Z",
+  "claim_id": "claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0",
+  "evidence_excerpts": [
+    "Table 2 shows a list of classic code optimizations that we have extended to use profile information.",
+    "The non-loop based code optimizations work on a single super-block at a time. The loop based code optimizations work on a single super-block loop at a time."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Classic optimizations fit super-blocks",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "text": "Classic scalar optimizations can be reformulated to operate on super-blocks and super-block loops rather than only on traditional basic blocks or whole loops."
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:55:13Z",
+  "claim_id": "claim-interprocedural-slicing-and-polyhedral-loop-evaluation-substantially-reduce-loop--8f361a6ac310",
+  "evidence_excerpts": [
+    "Table 2 reports matmul falling from 8.4 s to 2.4 s with slicing and 0.8 s with polytope evaluation, while fft falls from 920.7 s to 119.7 s with slicing and 110.5 s with polytope evaluation."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Slicing accelerates loop analysis",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "text": "Interprocedural slicing and polyhedral loop evaluation substantially reduce loop-analysis time for many benchmarks while preserving safe loop-bound analysis."
+}

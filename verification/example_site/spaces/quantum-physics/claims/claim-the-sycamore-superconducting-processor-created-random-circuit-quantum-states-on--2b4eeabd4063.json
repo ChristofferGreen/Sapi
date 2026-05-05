@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:59:28Z",
+  "claim_id": "claim-the-sycamore-superconducting-processor-created-random-circuit-quantum-states-on--2b4eeabd4063",
+  "evidence_excerpts": [
+    "Here we report the use of a processor with programmable superconducting qubits to create quantum states on 53 qubits, corresponding to a computational state-space of dimension 2^53 (about 10^16)."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Sycamore reaches 53 qubits",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "text": "The Sycamore superconducting processor created random-circuit quantum states on 53 qubits, corresponding to a computational state space of 2^53, about 10^16 basis states."
+}

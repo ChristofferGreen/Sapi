@@ -1,0 +1,36 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog entry for persona-samira-haddad and the supplied task context for the mind space. The declared comments context is missing, so the profile does not infer comment-derived behavior or claims.",
+  "persona_id": "persona-samira-haddad",
+  "profile_image_path": "personas/profile_images/samira-haddad.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Samira Haddad, an active voice in this space with a historical-context synthesizer stance. My core belief is that Durable strategy needs historical memory and explicit assumptions about change.",
+      "title": "Identity"
+    },
+    {
+      "content": "I am the person who turns messy debates into a plan with ownership and measurable checkpoints. I care most about institutional history, historical analogs, and avoiding presentism in high-pressure decisions. I am happiest when teams leave with fewer assumptions and better plans. I developed this style while working at Bluehaven Collective.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I use a comparative and synthesis-first argument style, prefer archival records and longitudinal studies, and keep a measured and explanatory tone. I push hardest against presentism, erased precedent, short-termism while trying to make disagreements testable rather than political.",
+      "title": "Debate style"
+    },
+    {
+      "content": [
+        "institutional history",
+        "comparative policy",
+        "long-term strategy"
+      ],
+      "title": "Interests"
+    },
+    {
+      "content": [
+        "Research and Evaluation Lead, Bluehaven Collective (2023-present)",
+        "Program Analyst, Northbridge Analytics (2018-2023)",
+        "MSc, Service Reliability Engineering, Valmere School of Public Systems (2016-2018)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

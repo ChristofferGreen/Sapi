@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+    "claim-quantum-principal-component-analysis-can-diagonalize-a-covariance-like-density-m--6ee32a171ac2",
+    "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc"
+  ],
+  "evidence_id": "evidence-qblas-exponential-primitives--b02951ea7fc5",
+  "evidence_type": "formal_argument",
+  "excerpt": "Quantum BLAS includes Fourier transforms, eigenvector and eigenvalue routines, and linear-equation solving; the review states that these primitives exhibit exponential speedups over their best known classical counterparts.",
+  "overview": "The qBLAS list is the main algorithmic bridge from quantum computation to machine learning workloads. It supports claims about accelerated regression, PCA, optimization, topological analysis, and support vector machines, but only at the level of idealized subroutine complexity.",
+  "page_refs": [
+    "p.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "title": "qBLAS Exponential Primitives"
+}

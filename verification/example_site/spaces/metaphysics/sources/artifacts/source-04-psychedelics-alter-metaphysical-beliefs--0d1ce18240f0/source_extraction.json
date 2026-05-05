@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0/source.pdf",
+    "source_markdown": "sources/artifacts/source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "d887a59d86f555e6e88f7e34833d6081a951dd6c6014475cf136371b44786ba0",
+  "markdown_char_count": 100451,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "6aed40412178934a03e4328cc43758272cda3ad4307b00c75010c2813c565901",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

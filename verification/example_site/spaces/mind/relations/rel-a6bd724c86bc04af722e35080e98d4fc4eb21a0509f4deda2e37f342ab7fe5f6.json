@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-mindfulness-based-interventions-show-mixed-and-condition-dependent-clinical-effi--ada76b44a400",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "An immature clinical research base helps explain why efficacy conclusions remain mixed and preliminary.",
+  "relation_file_id": "rel-a6bd724c86bc04af722e35080e98d4fc4eb21a0509f4deda2e37f342ab7fe5f6",
+  "relation_id": "supports:claim-the-clinical-evidence-base-for-mindfulness-based-interventions-remains-insuffici--fd5df4ed74a7->claim-mindfulness-based-interventions-show-mixed-and-condition-dependent-clinical-effi--ada76b44a400",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-clinical-evidence-base-for-mindfulness-based-interventions-remains-insuffici--fd5df4ed74a7",
+  "src_claim_ref": "3",
+  "status": "open"
+}

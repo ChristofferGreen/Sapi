@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-straight-line-graph-drawings-can-be-rendered-interactively-with-adjustable-level--d4a598a6ca79",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The seed-point node aggregation makes the interactive level-of-detail renderer feasible for large visible node sets.",
+  "relation_file_id": "rel-6f88a7c5e64d9164750ce62295e2d5469597a56a60814490175682199dbe8c9d",
+  "relation_id": "supports:claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006->claim-straight-line-graph-drawings-can-be-rendered-interactively-with-adjustable-level--d4a598a6ca79",
+  "relation_type": "supports",
+  "src_claim_id": "claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006",
+  "src_claim_ref": "1",
+  "status": "open"
+}

@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-thread-coarsening-decisions-are-context-dependent-because-coarsening-can-improve--4878860bda89"
+  ],
+  "evidence_id": "evidence-thread-coarsening-factor-two--8b7d4e0c6a91",
+  "evidence_type": "figure_result",
+  "excerpt": "Fig. 2: An OpenCL thread coarsening example reproduced from [15]. The original OpenCL code is shown at (a) where each thread takes the square of one element of the input array. When coarsened by a factor of two (b), each thread now processes two elements of the input array.",
+  "overview": "The figure makes the optimization target concrete by showing how thread coarsening changes the mapping between GPU work-items and threads. Because the transformation has both potential benefits and costs, this artifact grounds the claim that a learned model can be useful for selecting when and how strongly to coarsen rather than applying a universal rule.",
+  "page_refs": [
+    "Fig. 2",
+    "p.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "title": "Thread Coarsening Example"
+}

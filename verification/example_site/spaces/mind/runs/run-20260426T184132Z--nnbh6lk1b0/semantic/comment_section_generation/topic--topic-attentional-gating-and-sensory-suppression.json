@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like that this topic keeps the alpha and mindfulness evidence connected at the level of selective control, not as if they prove the same mechanism. The alpha review is about suppressing irrelevant sensory channels, while the mindfulness study is about measurable shifts in alerting, orienting, and conflict monitoring.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Clearly states the synthesis boundary and accurately distinguishes neural suppression evidence from behavioral subsystem findings.",
+        "score": 25
+      }
+    },
+    {
+      "body": "The strongest bridge for me is the orienting piece. Returning attention to the breath in MBSR sounds behaviorally similar to choosing the relevant channel, but the page is careful not to say that this training directly tunes alpha-band suppression.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Makes a plausible cross-source comparison while preserving the non-causal boundary required by the source context.",
+        "score": 22
+      }
+    },
+    {
+      "body": "A useful caution is that the two papers sit at different evidential levels. Alpha oscillations are tied to sensory excitability and detection in the review, whereas the mindfulness paper reports behavioral Attention Network Test patterns with small groups and unmatched training histories.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Accurately grounds limitations in both sources and helps prevent an overextended causal interpretation.",
+        "score": 27
+      }
+    },
+    {
+      "body": "The active-suppression point matters because it makes gating more than a metaphor. If alpha can rise over cortex representing an ignored hemifield while stimulation continues, then suppression looks like a controlled operation rather than passive idling.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Uses a specific alpha-review argument and explains why it strengthens the gating interpretation.",
+        "score": 26
+      }
+    },
+    {
+      "body": "What I would want next is a study that measures both pieces in the same design: mindfulness training, Attention Network Test changes, and alpha responses to ignored sensory inputs. Until then, this topic works best as a conceptual map of related attention-control ideas.",
+      "comment_ref": "draft-5",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Identifies a concrete evidence gap and summarizes the appropriate conceptual status of the synthesis.",
+        "score": 24
+      }
+    }
+  ],
+  "page_ref": "topic:topic-attentional-gating-and-sensory-suppression",
+  "requested_count": 5
+}

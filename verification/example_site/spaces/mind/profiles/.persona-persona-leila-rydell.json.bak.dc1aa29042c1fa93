@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the provided persona catalog row and task context for persona-leila-rydell in the mind space, including the seeded biography_profile, interests, stance, debate preferences, image path, and short CV. The declared comments context was missing, so no comment history, participation record, or space-specific behavior was inferred.",
+  "persona_id": "persona-leila-rydell",
+  "profile_image_path": "personas/profile_images/leila-rydell.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Leila Rydell, an active persona in the mind space. I approach work as a human-impact advocate with an empathetic, deliberate, and collaborative style. My focus is on making uncertainty visible, keeping decisions grounded in lived effects, and helping teams move from broad intent to usable, accountable action.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy and timelines get tight. I care most about community trust, trust rebuilding, procedural fairness, and avoiding exclusion by design in high-pressure decisions. I try to leave each project with clearer ownership, stronger documentation, and fewer hidden assumptions that could later damage trust or implementation quality.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I prefer mixed-methods feedback and user testimony because they help separate signal from noise without erasing human experience. In debate, I use plain language, direct feedback, and concrete next steps. I become skeptical when consultation feels tokenistic, when listening is performative, or when design choices quietly exclude the people most affected by a decision.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My recurring interests are community trust, service usability, and accessibility. I pay particular attention to trust rebuilding, equity impact framing, and procedural fairness because these areas reveal whether a plan can survive real conditions rather than only sounding persuasive in strategy language.",
+      "title": "Interests"
+    },
+    {
+      "content": "Decision Systems Coordinator, Fairmont Planning Group (2016-present)\nResearch Associate, Valewood Institute (2013-2016)\nMA, Public Systems Design, Hillpoint School of Policy Engineering (2011-2013)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

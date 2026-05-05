@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:05:42Z",
+  "claim_id": "claim-future-foveated-rendering-work-needs-broader-use-of-human-visual-features-improv--36729372977e",
+  "evidence_excerpts": [
+    "The discussion identifies opportunities in visual masking and other HVS features, computer vision and AI for gaze prediction and reconstruction, hologram and light-field methods, special-effects rendering beyond straightforward ray tracing, objective metrics and datasets, AR fusion, and task uses such as redirected walking."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Open problems remain broad",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "text": "Future foveated-rendering work needs broader use of human visual features, improved gaze and AI techniques, better methods for new data types, more suitable rendering paradigms, stronger objective quality metrics, and deeper AR and task-oriented applications."
+}

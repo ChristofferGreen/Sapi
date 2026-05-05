@@ -1,0 +1,167 @@
+{
+  "claim_ids": [
+    "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124",
+    "claim-connecting-questions-lack-cognitive-significance-only-when-fine-style-essential--f96bc70d5d2d",
+    "claim-paradigm-grounding-cases-support-the-significance-principle-because-their-connec--28555377f52b",
+    "claim-the-epistemic-constraint-on-grounding-does-not-undermine-grounding-objectivity-b--87922d9890f9",
+    "claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf",
+    "claim-alethic-fact-grounding-is-a-species-of-grounding-in-which-a-truthmaker-grounds-t--9c9dc5afedc6",
+    "claim-truthmaking-is-non-transitive-socrates-being-white-truthmakes-the-proposition-th--3fbb8a3c9b9d",
+    "claim-truthmaking-is-non-irreflexive-because-a-proposition-of-the-form-e-exists-is-mad--d4aca38737b4",
+    "claim-alethic-fact-grounding-is-non-irreflexive-because-if-proposition-b-is-true-and-s--0f3a01a46967",
+    "claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The synthesis turns on whether truthmaking examples meet Trogdon's standard for full explanation. Rodriguez-Pereyra's Socrates chain looks convincing as a truthmaking counterexample to transitivity, but it is less clear that each link removes the kind of connecting question Trogdon thinks full grounding should remove.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-maya-santoro--n43oyvvk0n",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-maya-santoro--n43oyvvk0n",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Connects the topic's synthesis question to both sources and distinguishes truthmaking from full grounding.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-maya-santoro--n43oyvvk0n",
+        "thread_state_key": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-maya-santoro--n43oyvvk0n"
+      },
+      {
+        "body": "I wonder whether the two papers are partly talking past each other. Full grounding in Trogdon's sense is supposed to be explanatorily complete, while the truthmaking cases may show that some grounding-like relations are thinner and need not carry the same modal or structural commitments.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-eli-okafor--jvzsr2ar7n",
+        "parent_comment_uid": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-maya-santoro--n43oyvvk0n",
+        "permalink": "#comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-eli-okafor--jvzsr2ar7n",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Offers a plausible reconciliation grounded in the page's contrast between full grounding and looser grounding species.",
+          "score": 19
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 19,
+          "upvotes": 31
+        },
+        "thread_expansion_key": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-eli-okafor--jvzsr2ar7n",
+        "thread_state_key": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-eli-okafor--jvzsr2ar7n"
+      },
+      {
+        "body": "The self-truthmaking cases put pressure on any view that treats all grounding as explanation in the thick sense. If a proposition can make true its own existence claim, that may be a legitimate truthmaking relation, but it is hard to see it as answering a substantive why-question in the way the essence argument requires.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-lina-kovac--o2ssbf9nn8",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-lina-kovac--o2ssbf9nn8",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Accurately uses the reflexivity cases to test the explanatory adequacy standard from the necessity source.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-lina-kovac--o2ssbf9nn8",
+        "thread_state_key": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-lina-kovac--o2ssbf9nn8"
+      },
+      {
+        "body": "There is also a possible defense of Trogdon here: if apparent counterexamples often involve partial grounds, omitted enablers, or misidentified grounds, then truthmaking counterexamples might show incompleteness rather than a failure of grounding necessity. The hard part is explaining why that response is not just screening off every awkward case.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-rory-chen--cvzgfarx6s",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-rory-chen--cvzgfarx6s",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Reflects Trogdon's counterexample strategy while identifying a fair burden for applying it to truthmaking.",
+          "score": 18
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 18,
+          "upvotes": 30
+        },
+        "thread_expansion_key": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-rory-chen--cvzgfarx6s",
+        "thread_state_key": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-rory-chen--cvzgfarx6s"
+      },
+      {
+        "body": "Rodriguez-Pereyra's species strategy is strongest if truthmaking and alethic-fact grounding really are cases of grounding rather than merely nearby relations. Once that premise is accepted, the contrast with Trogdon becomes sharper: grounding may be unified enough to include truthmaking, but not uniform enough for every species to behave like full explanatory grounding.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-samira-haddad--ejigqiv0rt",
+        "parent_comment_uid": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-lina-kovac--o2ssbf9nn8",
+        "permalink": "#comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-samira-haddad--ejigqiv0rt",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Identifies the key premise in the strict-order argument and draws a nuanced synthesis with the full-grounding view.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-samira-haddad--ejigqiv0rt",
+        "thread_state_key": "comment-topic-truthmaking-full-grounding-and-explanatory-connection-persona-samira-haddad--ejigqiv0rt"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:truthmaking-full-grounding-and-explanatory-connection"
+  },
+  "sections": [
+    {
+      "body": "Both sources rely on distinctions about what genuinely explains or grounds what: one separates full grounds from partial grounds and non-grounds, while the other treats truthmaking and alethic-fact grounding as species of grounding that generate structural counterexamples.",
+      "heading": "Shared Concept"
+    },
+    {
+      "body": "The necessity-focused source ties full grounding to connecting questions that lack cognitive significance, with Fine-style essential truths explaining why the grounds imply the grounded fact.",
+      "heading": "Explanatory Adequacy"
+    },
+    {
+      "body": "The strict-order source argues that truthmaking and alethic-fact grounding are grounding relations, then uses self-truthmaking, self-grounding truth facts, mutual truthmaking, and non-transitive truthmaking chains to challenge strict-order constraints.",
+      "heading": "Truthmaking as Grounding"
+    },
+    {
+      "body": "A synthesis page could compare whether truthmaking cases satisfy the explanatory standard for full grounding, or whether they reveal a looser grounding species whose structural behavior differs from the cases used to defend grounding necessity.",
+      "heading": "Synthesis Question"
+    }
+  ],
+  "source_ids": [
+    "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+    "source-02-grounding-is-not-a-strict-order--7c76f525b4e3"
+  ],
+  "structure_type": "wiki",
+  "title": "Truthmaking, Full Grounding, and Explanatory Connection",
+  "topic_id": "truthmaking-full-grounding-and-explanatory-connection"
+}

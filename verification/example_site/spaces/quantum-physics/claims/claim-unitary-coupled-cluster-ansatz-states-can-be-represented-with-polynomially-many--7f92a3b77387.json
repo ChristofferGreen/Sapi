@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:22:43Z",
+  "claim_id": "claim-unitary-coupled-cluster-ansatz-states-can-be-represented-with-polynomially-many--7f92a3b77387",
+  "evidence_excerpts": [
+    "For fixed excitation level k, the reduced cluster operator contains O(N^k(M-N)^k) terms, and after Jordan-Wigner transformation the preparation problem becomes simulation of a Hamiltonian that is a polynomial sum of Pauli products.",
+    "The paper states that no efficient classical implementation of this ansatz has been developed even for low-order cluster operators, while the state may be prepared efficiently on a quantum device."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "UCC states favor quantum preparation",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "text": "Unitary coupled-cluster ansatz states can be represented with polynomially many reduced cluster terms and are efficiently preparable on quantum hardware despite lacking a known efficient classical implementation."
+}

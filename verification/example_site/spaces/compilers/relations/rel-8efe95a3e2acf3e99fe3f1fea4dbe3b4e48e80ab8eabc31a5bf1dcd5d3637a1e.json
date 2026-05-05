@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "The systematic build procedure leads into the full circuit implementation evaluated at 24 hours.",
+  "relation_file_id": "rel-8efe95a3e2acf3e99fe3f1fea4dbe3b4e48e80ab8eabc31a5bf1dcd5d3637a1e",
+  "relation_id": "supports:claim-systematic-flow-shortens-unpurified-circuit-building--367a566abb69->claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69",
+  "relation_type": "supports",
+  "src_claim_id": "claim-systematic-flow-shortens-unpurified-circuit-building--367a566abb69",
+  "src_claim_ref": "5",
+  "status": "open"
+}

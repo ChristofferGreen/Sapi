@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-straight-line-graph-drawings-can-be-rendered-interactively-with-adjustable-level--d4a598a6ca79",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Hill-climbed edge aggregation supplies the edge-level counterpart to density-based node aggregation.",
+  "relation_file_id": "rel-fa82ff7e7d127128069d22ee07745aba57ca50913096e698d6f83f94bb79ba30",
+  "relation_id": "supports:claim-edge-endpoints-can-be-aggregated-by-hill-climbing-on-the-node-density-field-so-t--6e6b82bcec81->claim-straight-line-graph-drawings-can-be-rendered-interactively-with-adjustable-level--d4a598a6ca79",
+  "relation_type": "supports",
+  "src_claim_id": "claim-edge-endpoints-can-be-aggregated-by-hill-climbing-on-the-node-density-field-so-t--6e6b82bcec81",
+  "src_claim_ref": "3",
+  "status": "open"
+}

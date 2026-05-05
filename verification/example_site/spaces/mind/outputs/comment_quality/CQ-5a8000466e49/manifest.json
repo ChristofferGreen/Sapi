@@ -1,0 +1,109 @@
+{
+  "aggregates": {
+    "dimensions": {
+      "argument_quality": 0.6,
+      "human_likeness": 0.85,
+      "novelty": 1.0,
+      "persona_consistency": 1.0,
+      "relevance": 1.0
+    },
+    "overall": 0.89
+  },
+  "as_of": "2026-04-26T18:53:13Z",
+  "benchmark_path": "sapi/benchmarks/comment_quality_benchmark_v1.json",
+  "dimensions": [
+    "persona_consistency",
+    "novelty",
+    "relevance",
+    "argument_quality",
+    "human_likeness"
+  ],
+  "evaluation_id": "CQ-5a8000466e49",
+  "fail_reasons": [],
+  "pass": true,
+  "row_count": 5,
+  "row_scores": [
+    {
+      "comment_uid": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-maya-santoro--1vvevfmmpx",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "topic:topic-mindfulness-as-multidimensional-training",
+      "persona_id": "persona-maya-santoro",
+      "row_index": 1
+    },
+    {
+      "comment_uid": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-eli-okafor--mxs4t72g6s",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "topic:topic-mindfulness-as-multidimensional-training",
+      "persona_id": "persona-eli-okafor",
+      "row_index": 2
+    },
+    {
+      "comment_uid": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-lina-kovac--xf77v1u3cy",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "topic:topic-mindfulness-as-multidimensional-training",
+      "persona_id": "persona-lina-kovac",
+      "row_index": 3
+    },
+    {
+      "comment_uid": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-rory-chen--v8fbgdo5ga",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "topic:topic-mindfulness-as-multidimensional-training",
+      "persona_id": "persona-rory-chen",
+      "row_index": 4
+    },
+    {
+      "comment_uid": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-samira-haddad--ye2wbe0c17",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "topic:topic-mindfulness-as-multidimensional-training",
+      "persona_id": "persona-samira-haddad",
+      "row_index": 5
+    }
+  ],
+  "schema_version": "comment_section_quality_eval_manifest_v1",
+  "snapshot_path": null,
+  "thresholds": {
+    "dimension_mins": {
+      "argument_quality": 0.55,
+      "human_likeness": 0.55,
+      "novelty": 0.5,
+      "persona_consistency": 0.5,
+      "relevance": 0.55
+    },
+    "overall_min": 0.62
+  }
+}

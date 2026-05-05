@@ -1,0 +1,401 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d/front_page.png",
+    "source_extraction": "sources/artifacts/source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d/source_extraction.json",
+    "source_file": "sources/artifacts/source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d/source.pdf",
+    "source_markdown": "sources/artifacts/source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d/source.md",
+    "source_provenance": "sources/artifacts/source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d/source_provenance.md"
+  },
+  "authors": [
+    "Zheng Wang",
+    "Michael O\u2019Boyle"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What I like about Wang and O\u2019Boyle\u2019s framing is that it treats compiler optimization as a measurable prediction problem rather than a hunt for one universal heuristic. The thread-coarsening example makes that concrete: the same transformation can help or hurt depending on kernel structure and the GPU, so collecting outcomes across candidate factors feels like the right level of empiricism.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-maya-santoro--9s2veq02im",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-maya-santoro--9s2veq02im",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the source\u2019s core argument and thread-coarsening evidence, with clear discussion value.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-maya-santoro--9s2veq02im",
+        "thread_state_key": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-maya-santoro--9s2veq02im"
+      },
+      {
+        "body": "The feature-engineering part seems just as important as the learning algorithm. If static LLVM features, profiling measurements, and hardware-sensitive values are noisy or redundant, the model can look sophisticated while still learning the wrong boundary. The PCA reduction from 17 OpenCL features to 7 aggregate features is a useful reminder that compiler ML is partly a representation problem.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-eli-okafor--kvshy3q3oj",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-eli-okafor--kvshy3q3oj",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately highlights a source-backed bottleneck and connects it to model reliability.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-eli-okafor--kvshy3q3oj",
+        "thread_state_key": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-eli-okafor--kvshy3q3oj"
+      },
+      {
+        "body": "I appreciate the restraint in the survey. A learned model can choose among legal transformations and parameter values, but it does not prove legality or invent the transformations themselves. That boundary matters because it keeps the technique positioned as an empirical assistant to compiler design, not a replacement for the compiler analyses that make optimization safe.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-lina-kovac--326vv8mn70",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-lina-kovac--326vv8mn70",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Balanced and well grounded in the source\u2019s stated limits around legality and compiler expertise.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-lina-kovac--326vv8mn70",
+        "thread_state_key": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-lina-kovac--326vv8mn70"
+      },
+      {
+        "body": "The loop-unroll result is encouraging but also shows where the approach is most comfortable: bounded choices with enough examples to label. Predicting unroll factors after training on thousands of loops is different from discovering a whole new optimization strategy, so the practical win may be in many small profitability decisions rather than in one dramatic compiler breakthrough.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-rory-chen--wiwr3bkbwe",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-rory-chen--wiwr3bkbwe",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Uses the quantitative loop-unroll evidence appropriately and avoids overstating the claim.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-rory-chen--wiwr3bkbwe",
+        "thread_state_key": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-rory-chen--wiwr3bkbwe"
+      },
+      {
+        "body": "One adoption issue I would want to see discussed further is benchmark representativeness. If training programs do not resemble the code people actually compile, the model may simply encode the benchmark suite\u2019s habits. The paper\u2019s caution about sparse data and black-box evaluation feels especially relevant for domains where performance measurements are expensive or unstable.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-samira-haddad--fwkwustfb2",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-samira-haddad--fwkwustfb2",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Raises a source-supported practical risk and extends it naturally without inventing new claims.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-samira-haddad--fwkwustfb2",
+        "thread_state_key": "comment-source-source-02-machine-learning-in-compiler-optimization-5fbaa9c3f69d-persona-samira-haddad--fwkwustfb2"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+  },
+  "date": null,
+  "display_title": "Machine Learning Makes Compiler Optimization Empirical",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[4].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "115 H. D. Nguyen and F. Chamroukhi \u201cAn introduction to the practical iv",
+      "url": "https://arxiv.org/abs/1610.09543"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[5].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "s/ . 132 A. Bhattacharyya G. Kwasniewski and T. Hoefler \u201cUsing compiler",
+      "url": "https://arxiv.org/abs/1701.07274"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[3].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "techniques. He/she does not need to worry about how they morphology classification \u201d arXiv preprint",
+      "url": "https://arxiv.org/abs/1005.0390"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[6].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "towards more intelligent predictive modeling \u201d in 43rd International",
+      "url": "https://arxiv.org/abs/1707.03538"
+    }
+  ],
+  "ingested_at": "2026-04-26T17:30:10Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "ser. CGO \u201912 pp. 1\u201312. research. Online . Available: /",
+      "url": "http://ctuning.org/ae",
+      "year": 2012
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "contention for qos in warehouse scale computers \u201d in Proceedings of the",
+      "url": "http://www.artifact-eval.org/about.html",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "coordinating their integration into a general purpose system",
+      "url": "https://tech.slashdot.org/story/09/07/03/0143233/ibm-releases-open-",
+      "year": null
+    },
+    {
+      "arxiv": "1005.0390",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "techniques. He/she does not need to worry about how they morphology classification \u201d arXiv preprint",
+      "url": null,
+      "year": 2010
+    },
+    {
+      "arxiv": "1610.09543",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "115 H. D. Nguyen and F. Chamroukhi \u201cAn introduction to the practical iv",
+      "url": null,
+      "year": 2016
+    },
+    {
+      "arxiv": "1701.07274",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "s/ . 132 A. Bhattacharyya G. Kwasniewski and T. Hoefler \u201cUsing compiler",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": "1707.03538",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "towards more intelligent predictive modeling \u201d in 43rd International",
+      "url": null,
+      "year": 2017
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 3 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The source argues that compilers and machine learning fit naturally because optimization decisions are prediction problems over programs, hardware, and candidate transformations. A learned model can stand inside the compiler and choose heuristics or optimization options based on data, making compiler optimization less dependent on fixed expert rules and more responsive to new architectures or domains.",
+        "grounding_claim_ids": [
+          "0",
+          "1",
+          "8"
+        ],
+        "heading": "Core Argument"
+      },
+      {
+        "body": "The described pipeline has three linked activities: feature engineering, learning, and deployment. Programs are converted into quantifiable feature vectors; training examples are generated by compiling and timing candidate options; and the resulting model is inserted into the compiler to predict decisions for new programs. This makes the quality of feature design and training programs central to the whole method.",
+        "grounding_claim_ids": [
+          "1",
+          "2",
+          "3"
+        ],
+        "heading": "Learning Pipeline"
+      },
+      {
+        "body": "The OpenCL thread-coarsening example shows why learned profitability models matter. Coarsening can let one thread process multiple elements, which may increase instruction-level parallelism and reduce memory operations, but it can also reduce parallelism and increase register pressure. The best factor therefore depends on both the kernel and target GPU architecture rather than on a universally safe heuristic.",
+        "grounding_claim_ids": [
+          "4",
+          "6"
+        ],
+        "heading": "Thread Coarsening Example"
+      },
+      {
+        "body": "The survey treats features as a technical bottleneck, not a bookkeeping detail. Static code properties, dynamic profiling values, and hardware-sensitive measurements can all describe programs, but high-dimensional or redundant feature spaces demand more training examples. The PCA example that maps 17 OpenCL features into 7 aggregate features illustrates why selection and reduction are part of model quality.",
+        "grounding_claim_ids": [
+          "2",
+          "5"
+        ],
+        "heading": "Feature Engineering Constraints"
+      },
+      {
+        "body": "The strongest quantitative evidence in the extracted text comes from bounded decision problems. A loop-unroll predictor trained from more than 2,500 loops across 72 benchmarks correctly predicted unroll factors for 65% of testing loops and produced an average 5% SPEC 2000 improvement. This supports direct prediction where the set of compiler options is relatively small and measurable.",
+        "grounding_claim_ids": [
+          "3",
+          "6"
+        ],
+        "heading": "Measured Predictive Evidence"
+      },
+      {
+        "body": "The source explicitly limits its optimism. Learned compilation cannot create new legal transformations, prove legality, or overcome unrepresentative data. Training can be costly, benchmarks may be sparse, and black-box models make peer scrutiny harder unless data and experiments are available. These constraints mean machine learning augments rather than replaces compiler expertise.",
+        "grounding_claim_ids": [
+          "7",
+          "8"
+        ],
+        "heading": "Limits and Risks"
+      },
+      {
+        "body": "For practitioners, the survey suggests using machine learning where decisions are empirically measurable and expensive to hand-tune: optimization flags, unroll factors, thread counts, coarsening factors, scheduling, or cost models. The method is strongest when the candidate space is clear, features are meaningful, benchmarks resemble deployment programs, and validation separates training from test behavior.",
+        "grounding_claim_ids": [
+          "0",
+          "3",
+          "6",
+          "7"
+        ],
+        "heading": "Practical Interpretation"
+      },
+      {
+        "body": "The paper\u2019s future directions broaden the agenda from choosing optimizations to understanding program and hardware spaces. It asks whether machine learning can help learn analyses such as dataflow or points-to reasoning, discover reusable feature sets, and perhaps shape better compiler intermediate representations. These are framed as open questions rather than established results.",
+        "grounding_claim_ids": [
+          "9"
+        ],
+        "heading": "Research Outlook"
+      }
+    ],
+    "summary_long": "Machine Learning in Compilers presents machine-learning-based compilation as a way to turn optimization heuristics into evidence-driven predictions. The central problem is familiar to compiler engineers: for a given program, architecture, and optimization space, it is hard to know which transformation or parameter choice will improve speed, code size, energy, or another quality metric. Wang and O\u2019Boyle describe a workflow in which training programs are represented by quantifiable features, compiled or executed under candidate options, labelled with the best observed choices, and used to train models that are later deployed inside the compiler. The survey treats this not as magic or as a replacement for compiler expertise, but as a way to automate profitability analysis and reduce reliance on brittle hand-tuned heuristics. The source\u2019s examples make the workflow concrete. In OpenCL thread coarsening, a factor-of-two transformation causes one thread to process two input elements, but the best coarsening factor depends on program structure and GPU architecture because coarsening can both expose instruction-level parallelism and reduce available parallelism or increase register pressure. The surveyed Magni et al. work therefore measures multiple coarsening factors, extracts static LLVM-derived features, reduces candidate feature dimensions with PCA, and trains a model from benchmark outcomes. The survey also reviews direct-prediction studies such as loop-unroll factor prediction, where models trained on thousands of loops achieved 65% test prediction accuracy and a 5% average SPEC 2000 improvement. These results support the paper\u2019s broader claim that supervised learning is especially useful when the compiler decision space is bounded enough to generate labels and compare alternatives. The paper is also careful about limitations. Machine learning can only learn from the training data and transformations provided; it cannot invent legal transformations or replace compiler analyses that prove legality. Training cost, sparse benchmark availability, specialist domains, noisy measurements, feature selection, and black-box model evaluation all constrain practical adoption. The survey\u2019s final interpretation is therefore balanced: machine learning can make compiler optimization more empirical, repeatable, and adaptable across hardware and domains, while opening new research questions about program-space maps, learned analyses, deep feature construction, and intermediate representations.",
+    "summary_short": "Zheng Wang and Michael O\u2019Boyle frame machine learning as a practical continuation of compiler automation: use empirical data to decide when optimizations help. The survey explains how compilers can learn from program features and measured outcomes, while stressing that learned models remain bounded by the data, transformations, and legality information supplied by compiler engineers."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "source_kind": "file",
+  "source_locator": "02-machine-learning-in-compiler-optimization.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Zheng Wang",
+      "Michael O\u2019Boyle"
+    ],
+    "display_title": "Machine Learning Makes Compiler Optimization Empirical",
+    "record_display_title": "Untitled Source",
+    "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+  },
+  "source_type": "file",
+  "summary": "Wang and O\u2019Boyle survey machine-learning-based compilation as an evidence-driven way to automate compiler optimization decisions. The source explains feature engineering, training, deployment, model families, direct prediction, thread-coarsening examples, and practical limits around data quality, training cost, legality, and representativeness.",
+  "title": "02-machine-learning-in-compiler-optimization",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved; continuing with date=null."
+    },
+    {
+      "code": "two_column_markdown_layout",
+      "message": "The pdftotext markdown is usable but contains two-column interleaving in several passages, so extracted claims are conservative and rely on clearly readable source fragments."
+    }
+  ]
+}

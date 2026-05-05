@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-paper-s-worst-case-system-model-uses-one-data-qubit-per-processor-and-a-one--9e5973bc3485",
+    "claim-in-the-worst-case-topology-the-entanglement-swapping-based-strategy-has-per-laye--bd58d42b2d90",
+    "claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172"
+  ],
+  "evidence_id": "evidence-worst-case-lnn-topology--d8c0a5f7139e",
+  "evidence_type": "model_constraint",
+  "excerpt": "The quantum processors are interconnected through a 1-D nearest-neighbor topology, and only one data qubit is available at each quantum processor. Whenever multiple data qubits are available at a single quantum processor, a local CNOT can be executed between these data qubits without incurring distributed-computation overhead; with just one data qubit available at each processor, each and every CNOT within the quantum circuit must be mapped into a remote CNOT.",
+  "overview": "This model constraint makes the subsequent bounds conservative. By forcing every two-qubit interaction to cross processor boundaries and by minimizing topology connectivity, the analysis estimates overhead under deliberately unfavorable architectural assumptions.",
+  "page_refs": [
+    "Fig. 7"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "title": "Worst-Case Linear Topology"
+}

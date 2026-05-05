@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:15:18Z",
+  "claim_id": "claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf",
+  "evidence_excerpts": [
+    "The relation between truthmaker and truth is compared with member-set, part-whole, and cruel-action/wrong-action relations as initially plausible grounding cases."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Truthmaking is grounding",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "text": "Truthmaking is a species of grounding because the relation between a truthmaker and what is true is analogous to standard ground-grounded relations."
+}

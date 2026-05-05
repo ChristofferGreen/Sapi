@@ -1,0 +1,98 @@
+{
+  "topics": [
+    {
+      "topic_id": "topic-nisq-scale-and-random-circuit-advantage",
+      "title": "NISQ Scale, Noise, and Random-Circuit Quantum Advantage",
+      "structure_type": "wiki",
+      "sections": [
+        {
+          "title": "NISQ threshold",
+          "body": "Preskill frames devices with roughly 50 to a few hundred noisy qubits as a threshold where brute-force classical simulation becomes difficult, while noise still sharply limits useful computation. The Sycamore experiment provides a concrete example of that threshold: a 53-qubit superconducting processor created random-circuit quantum states in a 2^53-dimensional state space."
+        },
+        {
+          "title": "Task-specific speedup",
+          "body": "The Sycamore result connects the NISQ regime to random-circuit sampling, where output distributions become exponentially harder to simulate classically as qubit count and circuit depth increase. For the hardest reported sampling task, the authors reported one million samples in about 200 seconds and estimated that equal-fidelity classical sampling would require about 10,000 years on one million cores."
+        },
+        {
+          "title": "Limits of the claim",
+          "body": "The speedup is evidence for a narrow random-circuit sampling task, not a general solution to near-term quantum computing limitations. Both sources keep the result within a noise-limited NISQ frame and distinguish it from the broader promise of fault-tolerant quantum algorithms."
+        }
+      ],
+      "claim_ids": [
+        "claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+        "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+        "claim-the-sycamore-superconducting-processor-created-random-circuit-quantum-states-on--2b4eeabd4063",
+        "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+        "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+        "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e"
+      ],
+      "source_ids": [
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+      ]
+    },
+    {
+      "topic_id": "topic-benchmarking-noisy-quantum-computation",
+      "title": "Benchmarking Noisy Quantum Computation",
+      "structure_type": "wiki",
+      "sections": [
+        {
+          "title": "Noise as the benchmark target",
+          "body": "Preskill's NISQ framing emphasizes that two-qubit gate and measurement errors limit how large uncorrected quantum circuits can grow before noise overwhelms the signal. The Sycamore paper turns that limitation into a measurement problem by estimating fidelity for random circuits whose ideal outputs become difficult to compute directly."
+        },
+        {
+          "title": "Cross-entropy and error models",
+          "body": "Linear cross-entropy benchmarking compares experimentally observed bitstrings with ideal probabilities computed by classical simulation. Sycamore's component error rates under simultaneous operation supported a model that predicted measurable fidelity for full random circuits, including the largest circuits with 53 qubits, 1,113 single-qubit gates, 430 two-qubit gates, and one measurement per qubit."
+        },
+        {
+          "title": "Evidence across verifiable regimes",
+          "body": "The largest elided 53-qubit, 20-cycle circuits yielded F_XEB = (2.24 ± 0.21) × 10^-3 over 30 million samples, supporting average fidelity above 0.1% with 5σ confidence. Agreement among full, patch, elided, and predicted fidelities on classically verifiable circuits supports using elided circuits to estimate fidelity when direct full-circuit verification becomes infeasible."
+        }
+      ],
+      "claim_ids": [
+        "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+        "claim-lower-gate-error-rates-matter-both-because-they-allow-larger-uncorrected-nisq-ci--043e58605f51",
+        "claim-linear-cross-entropy-benchmarking-provides-a-fidelity-measure-by-comparing-exper--4abac38b173d",
+        "claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686",
+        "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de",
+        "claim-the-largest-random-circuits-combined-53-qubits-1-113-single-qubit-gates-430-two--c8ece98aae87",
+        "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279"
+      ],
+      "source_ids": [
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+      ]
+    },
+    {
+      "topic_id": "topic-near-term-value-versus-fault-tolerant-promise",
+      "title": "Near-Term Quantum Value Versus Fault-Tolerant Promise",
+      "structure_type": "wiki",
+      "sections": [
+        {
+          "title": "Near-term scientific role",
+          "body": "Preskill characterizes NISQ devices as experimental tools for exploring many-body quantum physics and as stepping stones toward more powerful quantum technologies. This aligns with the Sycamore result as a demonstration of classically hard behavior in a specific sampling task rather than a claim that noisy processors are already broadly useful machines."
+        },
+        {
+          "title": "Plausible and uncertain applications",
+          "body": "Highly entangled quantum dynamics is presented as the most natural arena for meaningful quantum advantage, and hybrid QAOA or VQE approaches remain plausible NISQ-era testbeds. At the same time, the evidence does not support expecting near-term quantum computers to efficiently solve hard NP-hard optimization instances, and the random-circuit speedup does not by itself establish general application value."
+        },
+        {
+          "title": "Fault-tolerant horizon",
+          "body": "Both sources separate near-term noisy demonstrations from the longer-term goal of scalable fault-tolerant quantum computing. Preskill emphasizes the heavy physical-qubit overhead of quantum error correction, while the Sycamore source notes that applications such as Shor-style factoring still require fault-tolerant logical qubits."
+        }
+      ],
+      "claim_ids": [
+        "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+        "claim-highly-entangled-quantum-dynamics-is-the-most-natural-arena-for-meaningful-quant--3b6f2f5ba268",
+        "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+        "claim-quantum-computers-are-not-expected-to-efficiently-solve-hard-np-hard-combinatori--0d5f718c4d47",
+        "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+        "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e"
+      ],
+      "source_ids": [
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+      ]
+    }
+  ]
+}

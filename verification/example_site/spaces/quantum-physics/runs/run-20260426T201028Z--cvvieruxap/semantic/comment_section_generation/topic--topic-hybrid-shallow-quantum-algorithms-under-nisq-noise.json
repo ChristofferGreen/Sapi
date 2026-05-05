@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "This topic is useful because it puts VQE in the right NISQ-sized box. The photonic solver shows why shallow circuits plus classical feedback can be experimentally productive, while Preskill's framing keeps that from becoming a claim that noisy devices already deliver broad optimization or chemistry advantage.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strong synthesis of the topic's two sources while avoiding overclaiming practical advantage.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The key caveat for me is the comparison class. A shallow hybrid loop can beat the constraints of phase estimation on fragile hardware, but it still has to compete with very mature classical approximations, optimizers, and chemistry workflows before anyone should call it a practical speedup.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately reflects Preskill's caution about VQE and QAOA benchmarks and ties it to shallow hybrid methods.",
+        "score": 21
+      }
+    },
+    {
+      "body": "I like the emphasis on where the cost moves rather than pretending it disappears. Replacing long coherent evolution with repeated Pauli measurements helps under NISQ noise, but the burden shifts into sampling, calibration, optimizer robustness, and preparation-to-preparation variation.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Well grounded in the photonic VQE resource tradeoff and the NISQ noise constraints.",
+        "score": 24
+      }
+    },
+    {
+      "body": "That cost-shifting point also explains why the small photonic chemistry result is still valuable. It is not evidence that minimal-basis He-H+ scales into industrial chemistry, but it does show a concrete architecture for extracting meaningful energies without needing a deep phase-estimation circuit.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Relevant reply that preserves the proof-of-principle value while acknowledging scale limits.",
+        "score": 20
+      }
+    },
+    {
+      "body": "The hardware details matter here. Photon distinguishability, source impurities, beamsplitter errors, phase calibration, readout, and two-qubit gate noise are not side issues; they decide whether a shallow hybrid experiment stays informative or just becomes an optimizer chasing biased measurements.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Grounded in the experimental error sources and Preskill's broader emphasis on noise as the central constraint.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "topic:topic-hybrid-shallow-quantum-algorithms-under-nisq-noise",
+  "requested_count": 5
+}

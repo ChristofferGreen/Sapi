@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The non-factive no-difference operator supplies the common analytical tool used to unify grounding and essence.",
+  "relation_file_id": "rel-297478f9e860c398d6428ff1335cbdaeee74b51498299c179ccc3a0e2a0baf2c",
+  "relation_id": "supports:claim-generalized-identity-is-a-non-factive-no-difference-operator-that-can-apply-to-f--7cb985988184->claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+  "relation_type": "supports",
+  "src_claim_id": "claim-generalized-identity-is-a-non-factive-no-difference-operator-that-can-apply-to-f--7cb985988184",
+  "src_claim_ref": "1",
+  "status": "open"
+}

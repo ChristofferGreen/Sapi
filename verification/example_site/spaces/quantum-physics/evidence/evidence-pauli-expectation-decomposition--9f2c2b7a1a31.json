@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4",
+    "claim-quantum-expectation-estimation-reduces-coherent-evolution-demands-relative-to-ph--e17864953251"
+  ],
+  "evidence_id": "evidence-pauli-expectation-decomposition--9f2c2b7a1a31",
+  "evidence_type": "equation",
+  "excerpt": "Any Hamiltonian may be written as a sum of Pauli terms, H = sum h_i^a sigma_i^a + sum h_ij^ab sigma_i^a sigma_j^b + ..., and by exploiting linearity the expectation value becomes <H> = sum h_i^a <sigma_i^a> + sum h_ij^ab <sigma_i^a sigma_j^b> + .... The authors state that Hamiltonians with polynomially many terms include electronic-structure, Ising, Heisenberg, tensor-product, and k-sparse Hamiltonians.",
+  "overview": "This equation is the formal hinge of the algorithm. It turns an eigenvalue problem for a large Hermitian operator into a set of experimentally accessible expectation measurements, provided the Hamiltonian has a polynomial-size Pauli decomposition. The evidence establishes the measurement primitive but not by itself the quality of state preparation or convergence.",
+  "page_refs": [
+    "Eq.1",
+    "Eq.2",
+    "p.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "title": "Pauli Expectation Decomposition"
+}

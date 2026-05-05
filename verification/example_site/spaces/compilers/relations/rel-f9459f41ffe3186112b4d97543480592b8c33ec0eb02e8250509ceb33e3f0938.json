@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "The unpurified synthesis-error model explains why the successful full-circuit readout occurs on a slower 24-hour timescale.",
+  "relation_file_id": "rel-f9459f41ffe3186112b4d97543480592b8c33ec0eb02e8250509ceb33e3f0938",
+  "relation_id": "supports:claim-synthesis-error-model-explains-delayed-outputs--367a566abb69->claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69",
+  "relation_type": "supports",
+  "src_claim_id": "claim-synthesis-error-model-explains-delayed-outputs--367a566abb69",
+  "src_claim_ref": "7",
+  "status": "open"
+}

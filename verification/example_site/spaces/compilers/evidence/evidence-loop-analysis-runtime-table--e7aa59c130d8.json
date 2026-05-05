@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-interprocedural-slicing-and-polyhedral-loop-evaluation-substantially-reduce-loop--8f361a6ac310"
+  ],
+  "evidence_id": "evidence-loop-analysis-runtime-table--e7aa59c130d8",
+  "evidence_type": "table_result",
+  "excerpt": "Table 2 gives loop-analysis run times: matmul is 8.4 s basic, 2.4 s with slicing, and 0.8 s with polytope evaluation; fft is 920.7 s basic, 119.7 s with slicing, and 110.5 s with polytope evaluation; matrix1 is 0.8 s, 0.09 s, and 0.03 s respectively.",
+  "overview": "These measured timings show that the auxiliary loop-analysis techniques address scalability, not merely precision. The examples also reveal scope limits: polyhedral evaluation helps when its prerequisites apply, while other benchmarks may fall back to the iterative analysis.",
+  "page_refs": [
+    "Table 2",
+    "pp.271-272"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "title": "Loop Runtime Table"
+}

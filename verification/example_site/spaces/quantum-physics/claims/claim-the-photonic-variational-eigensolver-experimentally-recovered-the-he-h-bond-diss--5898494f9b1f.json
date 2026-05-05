@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:22:43Z",
+  "claim_id": "claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+  "evidence_excerpts": [
+    "The paper reports that, after correcting computed energies for experimental errors, the equilibrium bond length was R = 92.3\u00b10.1 pm with ground-state electronic energy E = -2.865\u00b10.008 MJ mol^-1.",
+    "More than 96% of the experimental data are reported to fall within chemical accuracy relative to theoretical values."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "QVE resolves He-H+ energy",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "text": "The photonic variational eigensolver experimentally recovered the He-H+ bond-dissociation curve, finding an equilibrium bond length of 92.3\u00b10.1 pm and a ground-state electronic energy of -2.865\u00b10.008 MJ mol^-1 after correction."
+}

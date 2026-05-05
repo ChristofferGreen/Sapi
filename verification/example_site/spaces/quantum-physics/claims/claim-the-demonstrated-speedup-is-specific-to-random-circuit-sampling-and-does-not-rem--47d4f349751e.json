@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:59:28Z",
+  "claim_id": "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+  "evidence_excerpts": [
+    "Realizing the full promise of quantum computing using Shor's algorithm for factoring, for example, still requires technical leaps to engineer fault-tolerant logical qubits."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Fault tolerance remains necessary",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "text": "The demonstrated speedup is specific to random circuit sampling and does not remove the need for fault-tolerant logical qubits for applications such as Shor-style factoring."
+}

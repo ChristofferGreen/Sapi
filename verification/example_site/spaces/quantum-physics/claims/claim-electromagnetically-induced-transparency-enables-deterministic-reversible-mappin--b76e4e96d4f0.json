@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:12:22Z",
+  "claim_id": "claim-electromagnetically-induced-transparency-enables-deterministic-reversible-mappin--b76e4e96d4f0",
+  "evidence_excerpts": [
+    "Deterministic mapping of quantum states of light to and from atomic ensembles is possible by way of electromagnetically induced transparency.",
+    "Reversible mapping of photonic entanglement into and out of pairs of quantum memories was realized by an EIT process."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "EIT maps photonic memories",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "text": "Electromagnetically induced transparency enables deterministic reversible mapping of photonic states and photonic entanglement into and out of atomic-ensemble quantum memories."
+}

@@ -1,0 +1,192 @@
+=== semantic invocation ===
+flow_key: topic_generation
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260426T170110Z--1t4ar4rlta/semantic/topic_generation.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims
+
+=== generation spec ===
+flow_key: topic_generation
+version: v1
+schema_path: schemas/topic_generation.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/topic_generation.json
+context_paths:
+  - <space_root>/sources
+  - <space_root>/claims
+---
+## Task
+Generate one strict JSON object for topic generation at `output_json_path`.
+Return a `topics` array containing 0..n concept-centric topic candidates.
+
+## Context Interpretation Rules
+- Use only evidence available under `context_paths`.
+- If support is weak/ambiguous, reflect that in section content rather than inventing facts.
+- Do not invent canonical IDs outside schema contracts.
+- Prefer topics that synthesize shared concepts across multiple sources.
+- If there is no clear cross-source concept worth a page, return an empty array (`"topics": []`).
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "topics": [
+    {
+      "topic_id": "",
+      "title": "",
+      "structure_type": "wiki",
+      "sections": [],
+      "claim_ids": [],
+      "source_ids": []
+    }
+  ]
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources"
+}
+
+=== repair context ===
+{
+  "previous_invalid_json": "{\n  \"topics\": [\n    {\n      \"claim_ids\": [\n        \"claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546\",\n        \"claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892\",\n        \"claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3\",\n        \"claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9\",\n        \"claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034\",\n        \"claim-packing-each-prerendered-human-sample-into-the-smallest-containing-rectangle-red--c2027548dc18\",\n        \"claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a\",\n        \"claim-the-tested-system-renders-10-000-different-humans-in-a-41-260-polygon-village-at--6845dedcbaed\"\n      ],\n      \"sections\": [\n        \"Foveated rendering and image-based impostor rendering both respond to real-time rendering pressure by reducing work where full geometric or full-quality rendering is not necessary. Foveated rendering allocates high quality to the foveal region and lower quality to peripheral regions, while crowd impostors replace complex human models with optimized image samples to keep dense virtual environments interactive.\",\n        \"The shared concept is selective fidelity: rendering systems can preserve the experience that matters to the viewer while changing the underlying representation, quality, or detail level. The foveated-rendering survey frames this around human-visual-system models and regional quality variation; the crowd-rendering system frames it around positional and directional discretization, texture compression, and impostors.\",\n        \"This topic should also note the limits of the comparison. Foveated rendering is explicitly perceptual and spans many rendering paradigms, whereas the crowd-rendering source focuses on a concrete image-based technique for animated humans in virtual cities. Both nevertheless treat rendering cost as a central design constraint for interactive visual systems.\"\n      ],\n      \"source_ids\": [\n        \"source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30\",\n        \"source-02-image-based-crowd-rendering--565ae2b0e3a1\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Perceptual and image-based strategies for real-time rendering acceleration\",\n      \"topic_id\": \"topic-perceptual-and-image-based-rendering-acceleration\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892\",\n        \"claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3\",\n        \"claim-a-regular-grid-of-environment-tiles-can-support-both-collision-behavior-and-shad--202b441327e8\",\n        \"claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127\",\n        \"claim-the-attraction-rule-moves-interior-edge-points-toward-feature-transform-location--8607f298987e\",\n        \"claim-restricting-attraction-to-skeleton-paths-passing-through-endpoint-feature-points--86df6a0326fa\"\n      ],\n      \"sections\": [\n        \"Several sources describe graphics methods that introduce an intermediate spatial guide to decide where computation, quality, or motion should go. Foveated rendering uses gaze-centered perceptual regions to guide quality allocation; image-based crowd rendering subdivides the environment into tiles for collision and shadowing; skeleton-based edge bundling extracts skeleton paths from inflated edge-cluster shapes to guide bundled edge geometry.\",\n        \"These guides differ in form but share a role: they simplify decisions across a complex visual system. Perceptual regions encode viewer sensitivity, tiles encode local environment behavior, and skeletons encode locally centered bundle targets. In each case, a spatial abstraction mediates between raw scene or data complexity and a tractable rendering or visualization operation.\",\n        \"The evidence supports a synthesis around control structures rather than a single algorithmic family. The methods are not interchangeable: foveated rendering is a perceptual rendering strategy, crowd tiles support simulation-adjacent rendering decisions, and graph skeletons support visualization layout. The common theme is that spatial structure can organize where visual fidelity, interaction constraints, or geometric attraction should be applied.\"\n      ],\n      \"source_ids\": [\n        \"source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30\",\n        \"source-02-image-based-crowd-rendering--565ae2b0e3a1\",\n        \"source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Spatial guides as compact control structures in graphics computation\",\n      \"topic_id\": \"topic-spatial-guides-for-graphics-computation\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499\",\n        \"claim-foveated-rendering-methods-span-multiple-data-types-foveation-principles-and-ren--0c481572e2ab\",\n        \"claim-the-survey-classifies-90-published-foveated-rendering-reports-from-1990-to-2021--d0734ae4812f\",\n        \"claim-a-shader-is-a-gpu-directed-program-that-describes-rendering-processes-for-turnin--64c2250afac1\",\n        \"claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e\",\n        \"claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18\",\n        \"claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034\",\n        \"claim-hierarchical-agglomerative-clustering-with-full-linkage-and-euclidean-distances--759b1a2656e8\"\n      ],\n      \"sections\": [\n        \"The foveated-rendering survey explicitly organizes a broad field by required input data type, foveation principle, and rendering paradigm, applying that taxonomy to 90 reports. That classification can be synthesized with the other sources as a broader need in graphics: complex techniques become easier to compare when described by their inputs, representational abstractions, computational principles, and visual outputs.\",\n        \"Shadercoding, crowd impostors, and skeleton-based edge bundling each emphasize a different abstraction boundary. Shadercoding describes GPU programs that transform spatial data and physical properties into images, including fragment shaders and raymarching distance fields. Crowd rendering uses image databases, impostor planes, alpha-guided passes, and compressed textures. Edge bundling uses sampled edges, clustering, distance-field shapes, skeletons, and GPU image-space transforms.\",\n        \"A useful page would not claim that these sources share the same taxonomy. Instead, it would use the foveated-rendering taxonomy as a seed for a concept page about how graphics literature classifies methods across input representation, rendering paradigm, performance goal, and perceptual or visual tradeoff.\"\n      ],\n      \"source_ids\": [\n        \"source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30\",\n        \"source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34\",\n        \"source-02-image-based-crowd-rendering--565ae2b0e3a1\",\n        \"source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Taxonomies and abstractions for comparing rendering paradigms\",\n      \"topic_id\": \"topic-taxonomies-and-abstractions-for-rendering-paradigms\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546\",\n        \"claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892\",\n        \"claim-future-foveated-rendering-work-needs-broader-use-of-human-visual-features-improv--36729372977e\",\n        \"claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5\",\n        \"claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963\",\n        \"claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034\",\n        \"claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e\",\n        \"claim-alpha-channel-multipass-rendering-can-recolor-significant-body-regions-such-as-c--265615107527\"\n      ],\n      \"sections\": [\n        \"Foveated rendering, edge bundling, and image-based crowd rendering all make controlled tradeoffs between visual utility and complete information. Foveated rendering intentionally lowers peripheral quality to preserve perceived quality; edge bundling reveals coarse connectivity while overdraw and distorted directions obscure individual edges; crowd impostors reduce geometric complexity and texture memory while introducing concerns such as viewpoint-change popping.\",\n        \"The shared concept is not simply optimization, but acceptable loss. These systems identify what must remain legible or perceptually convincing, then choose where detail can be compressed, approximated, merged, or regionally reduced. The evidence suggests that graphics methods often succeed by matching loss to the task: comfort and perceived quality in VR, coarse connectivity in graphs, and dense animated presence in virtual cities.\",\n        \"A balanced treatment should preserve the caveat that each source names different risks. Foveated rendering is concerned with latency, HVS modeling, and integration into rendering paradigms; edge bundling warns about destroyed edge-level information; crowd rendering addresses popping, texture memory, avatar variety, and shadow consistency.\"\n      ],\n      \"source_ids\": [\n        \"source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30\",\n        \"source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c\",\n        \"source-02-image-based-crowd-rendering--565ae2b0e3a1\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Quality tradeoffs and information loss in visual systems\",\n      \"topic_id\": \"topic-quality-tradeoffs-and-information-loss-in-visual-systems\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546\",\n        \"claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892\",\n        \"claim-future-foveated-rendering-work-needs-broader-use-of-human-visual-features-improv--36729372977e\",\n        \"claim-digital-art-practice-must-negotiate-the-tension-between-scientific-technical-pro--0ddadf7f5e3d\",\n        \"claim-mathematical-and-technical-constraints-in-shadercoding-can-become-creative-motor--5b703448e7f5\",\n        \"claim-mastered-shadercoding-can-support-real-time-artistic-improvisation-that-fuses-co--51c4a707f8d0\",\n        \"claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5\",\n        \"claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034\"\n      ],\n      \"sections\": [\n        \"The graphics sources repeatedly present constraints as productive rather than merely limiting. Shadercoding turns mathematical and GPU-programming constraints into a live digital-art practice; foveated rendering uses limits of real-time VR hardware and human perception to guide new rendering strategies; edge bundling accepts information loss to reveal coarse connectivity; crowd rendering uses impostor and texture constraints to enable dense virtual cities.\",\n        \"This topic can connect artistic and engineering accounts of constraint. In shadercoding, technical mastery supports improvisation and expressive performance. In foveated rendering and crowd rendering, perceptual, memory, and latency constraints motivate selective rendering. In edge bundling, the limitation that individual edges become less separable is reframed around the exploratory value of coarse-scale patterns.\",\n        \"The synthesis should avoid flattening artistic and technical aims into one motivation. The evidence supports a broader concept: graphics practice often turns limits in computation, perception, representation, or interface into design rules that shape what visual experiences become possible.\"\n      ],\n      \"source_ids\": [\n        \"source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30\",\n        \"source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34\",\n        \"source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c\",\n        \"source-02-image-based-crowd-rendering--565ae2b0e3a1\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Technical constraints as generative conditions for graphics practice\",\n      \"topic_id\": \"topic-technical-constraints-as-generative-conditions\"\n    }\n  ]\n}",
+  "require_complete_replacement_json": true,
+  "validation_errors": [
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/0/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/1/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/2/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/3/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/3/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/3/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/3/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/4/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/4/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/4/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/4/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Normalization error: topic_generation semantic output requires at least one section with non-empty body.",
+      "path": "/topics",
+      "validator": "post_schema_contract",
+      "validator_value": "topic_generation_normalizer"
+    }
+  ]
+}

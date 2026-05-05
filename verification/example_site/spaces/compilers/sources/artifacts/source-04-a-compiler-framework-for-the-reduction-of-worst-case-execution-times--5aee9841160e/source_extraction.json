@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e/source.pdf",
+    "source_markdown": "sources/artifacts/source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "290b77f7a7faeaa62c79cb35ee3e7cfc9d60c41186002d5273d4297fd5c9acc7",
+  "markdown_char_count": 156441,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "b2882d0aed65087ea2a3c23be69bfffdb2db9b6c3d610300251849dea65d2d50",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-wcet-aware-procedure-cloning-improves-wcet-estimates-by-specializing-functions-w--808a9c5da846",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "WCET-aware cloning relies on back-annotated timing and loop-context information to select profitable source-level clones.",
+  "relation_file_id": "rel-c969de686b81d47d1a85a7bafbccffe3a181825d8a18da949cea0353d328b239",
+  "relation_id": "derived_from:claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de->claim-wcet-aware-procedure-cloning-improves-wcet-estimates-by-specializing-functions-w--808a9c5da846",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de",
+  "src_claim_ref": "2",
+  "status": "open"
+}

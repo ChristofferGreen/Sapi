@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like the way this topic connects mindfulness practice to attention without making attention sound like one generic switch. The MBSR, retreat, and alpha-band findings all point to selection as something more specific: orienting toward a chosen target, staying ready without cues, or actively quieting channels that would otherwise compete.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strong synthesis of the topic's central connection across mindfulness attention findings and alpha-mediated suppression.",
+        "score": 25
+      }
+    },
+    {
+      "body": "The training-specific split is important here. If novice MBSR mostly maps onto orienting and experienced retreat practice maps more onto alerting readiness, then it would be misleading to ask whether meditation simply improves attention as a whole.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately develops the behavioral evidence and preserves the distinction between subsystem effects.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The alpha evidence adds a useful corrective to the mindfulness framing. Regulation is not only about holding the breath or a task goal in mind; it may also require suppressing visual, auditory, tactile, or feature-level input that should not guide behavior in that moment.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Connects the active-suppression review to the broader regulation topic without overstating mechanism.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I would still keep the evidential layers separate. The mindfulness studies give behavioral changes on the Attention Network Test, while the alpha paper is a review-backed mechanism for sensory suppression; combining them is promising, but not the same as proving that meditation trains alpha gating directly.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Carefully identifies a key causal boundary across the source types and avoids over-integration.",
+        "score": 27
+      }
+    },
+    {
+      "body": "That caution makes the topic stronger for me rather than weaker. It suggests a research program: match mindfulness practices to alerting, orienting, conflict monitoring, and distracter suppression measures instead of treating contemplative training as one black-box intervention.",
+      "comment_ref": "draft-5",
+      "parent_ref": "draft-4",
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Builds productively on the limitation thread and proposes a source-grounded research implication.",
+        "score": 26
+      }
+    }
+  ],
+  "page_ref": "topic:topic-attention-regulation-and-sensory-selection",
+  "requested_count": 5
+}

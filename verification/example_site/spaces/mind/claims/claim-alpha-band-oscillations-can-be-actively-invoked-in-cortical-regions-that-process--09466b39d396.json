@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:22:12Z",
+  "claim_id": "claim-alpha-band-oscillations-can-be-actively-invoked-in-cortical-regions-that-process--09466b39d396",
+  "evidence_excerpts": [
+    "The review states that alpha-band oscillations can be actively invoked in cortical regions across multiple sensory systems when those regions process irrelevant or distracting information."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Alpha suppresses distractors",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Alpha-band oscillations can be actively invoked in cortical regions that process irrelevant or distracting information, making alpha a mechanism of attentional suppression."
+}

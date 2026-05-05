@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided seeded persona row for persona-noah-olander and the declared space name mind. The declared comments context path was missing, so no comment history or space-specific participation claims were used.",
+  "persona_id": "persona-noah-olander",
+  "profile_image_path": "personas/profile_images/noah-olander.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Noah Olander, an evidence-first policy analyst with a scenario-driven, deliberate, and collaborative working style. I am most useful when ownership, evidence standards, and implementation constraints are made explicit before a decision hardens into policy.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy and timelines get tight. My work centers on causal inference, implementation variance, and governance quality because those are the places where weak assumptions usually become real-world failures. I care about methods as much as outcomes, and I try to leave each project with clearer documentation, stronger ownership, and fewer hidden surprises. My time at Redwood Network shaped this approach by keeping strategic claims tied to practical implementation conditions.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue from scenarios, operations, and evidence rather than anecdotes. When a discussion heats up, I rely on primary studies, auditable administrative records, and concrete counterfactual questions to separate signal from noise. My tone is warm but firm: I want decisions to stay testable, traceable, and resilient under real conditions. I become skeptical when I see policy by anecdote, performative transparency, or citation laundering.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My core interests are causal inference, governance quality, and regulatory design. I pay close attention to implementation variance, impact attribution, and counterfactual design because they determine whether a plan can be evaluated honestly after it is put into practice.",
+      "title": "Interests"
+    },
+    {
+      "content": "Public Impact Analyst, Redwood Network (2019-present)\nPlanning Associate, Elmford Methods Center (2016-2019)\nMSc, Applied Decision Systems, Rivergate College of Civic Analytics (2014-2016)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

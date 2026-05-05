@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-wcet-centric-procedure-positioning-reduces-instruction-cache-conflict-misses-by--47eeb6643a90",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "WCET-centric procedure positioning depends on back-annotated call frequencies and cache-related timing data.",
+  "relation_file_id": "rel-35be42f063a44272375f7b57f07d2f2709d82faaae26905f4d57b6348e085094",
+  "relation_id": "derived_from:claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de->claim-wcet-centric-procedure-positioning-reduces-instruction-cache-conflict-misses-by--47eeb6643a90",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de",
+  "src_claim_ref": "2",
+  "status": "open"
+}

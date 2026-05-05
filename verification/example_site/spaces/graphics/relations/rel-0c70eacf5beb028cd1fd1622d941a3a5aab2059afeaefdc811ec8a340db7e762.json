@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-measured-overview-rendering-stayed-below-one-second-for-several-datasets-up-to-a--d5763f10ba50",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "The linear complexity bound explains why the measured overview timings remain low across larger datasets.",
+  "relation_file_id": "rel-0c70eacf5beb028cd1fd1622d941a3a5aab2059afeaefdc811ec8a340db7e762",
+  "relation_id": "supports:claim-the-rendering-complexity-remains-linear-in-input-size-with-seed-point-rectangle--8a6cf3a6542e->claim-measured-overview-rendering-stayed-below-one-second-for-several-datasets-up-to-a--d5763f10ba50",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-rendering-complexity-remains-linear-in-input-size-with-seed-point-rectangle--8a6cf3a6542e",
+  "src_claim_ref": "5",
+  "status": "open"
+}

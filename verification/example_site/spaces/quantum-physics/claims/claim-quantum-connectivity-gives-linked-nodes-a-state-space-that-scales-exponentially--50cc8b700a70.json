@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:12:22Z",
+  "claim_id": "claim-quantum-connectivity-gives-linked-nodes-a-state-space-that-scales-exponentially--50cc8b700a70",
+  "evidence_excerpts": [
+    "A network of quantum nodes linked by classical channels comprised of k nodes each with n qubits has a state space of dimension k2n, whereas a fully quantum network linked by quantum channels has an exponentially larger dimension 2kn."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Quantum channels expand state space",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "text": "Quantum connectivity gives linked nodes a state space that scales exponentially across all nodes, unlike classically connected quantum processors whose state spaces remain separate by node."
+}

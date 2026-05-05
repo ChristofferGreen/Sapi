@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+    "claim-the-machine-learning-compiler-workflow-separates-model-learning-from-deployment--a04ee1ab9738",
+    "claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be"
+  ],
+  "evidence_id": "evidence-learning-deployment-workflow--d4a8f1c9e2b3",
+  "evidence_type": "formal_argument",
+  "excerpt": "There are two main stages involved: learning and deployment. The first stage learns the model based on training data, while the second uses the model on new unseen programs. Within the learning stage, we needs a way of representing programs in a systematic way. This representation is known as the program features.",
+  "overview": "This workflow fragment establishes the source\u2019s central mechanism: compiler optimization decisions are not hand-coded as fixed heuristics alone, but are learned from training examples and then deployed on new programs. It supports the broad claims about feature engineering, training data, and compiler-integrated prediction, while remaining scoped to optimization decisions rather than compiler correctness or transformation legality.",
+  "page_refs": [
+    "p.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "title": "Learning and Deployment Workflow"
+}

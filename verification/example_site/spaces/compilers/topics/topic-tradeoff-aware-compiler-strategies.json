@@ -1,0 +1,168 @@
+{
+  "claim_ids": [
+    "claim-profile-based-classic-optimizations-are-intended-to-complement-conventional-opti--6bcefbcf9607",
+    "claim-on-the-benchmark-suite-profile-based-super-block-optimizations-averaged-a-1-15-s--e5d7486c0e56",
+    "claim-the-profile-based-transformations-controlled-executable-size-growth-averaging-1--5bacab4b8a28",
+    "claim-the-experiments-used-separate-profiling-inputs-and-performance-measurement-input--ee5ac2fa5a94",
+    "claim-the-implementation-cost-of-profile-based-classic-optimization-was-modest-relativ--062df22ec16c",
+    "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3",
+    "claim-thread-coarsening-decisions-are-context-dependent-because-coarsening-can-improve--4878860bda89",
+    "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+    "claim-the-major-effectiveness-mechanisms-are-eliminating-entries-into-the-middle-of-tr--4bc0ff5e21b0",
+    "claim-remote-cnot-execution-consumes-bell-state-resources-and-is-limited-by-the-number--ff11e4d2be8e",
+    "claim-in-the-worst-case-topology-the-entanglement-swapping-based-strategy-has-per-laye--bd58d42b2d90",
+    "claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172",
+    "claim-the-proposed-compiler-is-computationally-efficient-because-distributing-a-circui--b9f318c6234c",
+    "claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This synthesis works because it does not treat optimization wins as free. The profile-guided work pairs a 1.15 average speedup with code-growth and profiling-overhead numbers, the machine-learning survey keeps asking whether the training data represents real programs, and the distributed quantum compiler makes Bell-state use part of the cost model. Those are very different compiler settings, but the evaluation habit is recognizably the same.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-maya-santoro--j8akas8des",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-tradeoff-aware-compiler-strategies-persona-maya-santoro--j8akas8des",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded across all three sources and captures the page's tradeoff theme clearly.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-maya-santoro--j8akas8des",
+        "thread_state_key": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-maya-santoro--j8akas8des"
+      },
+      {
+        "body": "The common thread I see is representation. Weighted flow graphs make hot paths visible, program features make machine-learning decisions measurable, and distributed circuit layers expose which remote CNOTs compete for network resources. In each case, the compiler only gets to make a better tradeoff after the problem has been recast into something it can count or compare.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-eli-okafor--i7vzsmuvzb",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-tradeoff-aware-compiler-strategies-persona-eli-okafor--i7vzsmuvzb",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Insightfully connects source-specific mechanisms without flattening their technical differences.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-eli-okafor--i7vzsmuvzb",
+        "thread_state_key": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-eli-okafor--i7vzsmuvzb"
+      },
+      {
+        "body": "I would be careful not to read the three examples as equally mature deployment stories. Profile-guided super-block optimization has concrete speed and size measurements, learned compiler heuristics depend heavily on benchmark coverage and feature quality, and the quantum compiler is intentionally analyzed under a restrictive topology. The page is strongest when it presents them as comparable decision patterns, not as equally settled engineering practices.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-lina-kovac--1c89nk67l5",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-tradeoff-aware-compiler-strategies-persona-lina-kovac--1c89nk67l5",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Adds a useful caveat while staying aligned with the evidence and synthesis framing.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-lina-kovac--1c89nk67l5",
+        "thread_state_key": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-lina-kovac--1c89nk67l5"
+      },
+      {
+        "body": "That distinction helps. The profile-guided paper can point to separate profiling and timing inputs, while the machine-learning survey is more exposed to training-set mismatch. Both are empirical, but the validation risk is not identical.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-rory-chen--gb8u0qbgs8",
+        "parent_comment_uid": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-lina-kovac--1c89nk67l5",
+        "permalink": "#comment-topic-topic-tradeoff-aware-compiler-strategies-persona-rory-chen--gb8u0qbgs8",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Good focused reply that sharpens an evaluation nuance, though narrower than the root comments.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-rory-chen--gb8u0qbgs8",
+        "thread_state_key": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-rory-chen--gb8u0qbgs8"
+      },
+      {
+        "body": "The distributed quantum example also broadens the idea of compiler cost. It is not just runtime, code size, or training effort; it is communication depth, Bell-pair consumption, topology assumptions, and available communication qubits. Including it keeps the page from making compiler tradeoffs look like a purely classical performance-tuning problem.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-samira-haddad--vbb4bmh3v2",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-tradeoff-aware-compiler-strategies-persona-samira-haddad--vbb4bmh3v2",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Accurately extends the synthesis using the quantum source's resource constraints.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-samira-haddad--vbb4bmh3v2",
+        "thread_state_key": "comment-topic-topic-tradeoff-aware-compiler-strategies-persona-samira-haddad--vbb4bmh3v2"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-tradeoff-aware-compiler-strategies"
+  },
+  "sections": [
+    {
+      "body": "The sources frame compiler optimization as a tradeoff problem whose success must be measured rather than assumed. Profile-based classic optimizations report speedup while tracking executable-size growth and using separate profiling and measurement inputs. Machine-learning compilation learns from empirical performance data but remains constrained by training quality, representativeness, and context-dependent optimization effects. Distributed quantum compilation compares remote-operation strategies under topology, depth, Bell-pair consumption, and communication-resource constraints.",
+      "heading": "Shared concept"
+    },
+    {
+      "body": "Profile-based super-block optimizations are described as complements to conventional optimization, with measured speedups and controlled code growth. Machine-learning approaches can directly predict compiler choices for bounded option spaces, while examples such as thread coarsening show that a choice can improve some performance factors and harm others. Distributed quantum strategies such as entanglement swapping and data-qubit swapping are evaluated through analytical depth bounds, computational complexity, and medium-size circuit experiments.",
+      "heading": "Measured costs and benefits"
+    },
+    {
+      "body": "A synthesis page can organize compiler strategies by the costs they trade off: runtime versus code size in profile-guided optimization, training-data cost versus prediction quality in machine-learning compilation, and communication depth versus Bell-state or qubit-resource consumption in distributed quantum compilation.",
+      "heading": "Synthesis value"
+    }
+  ],
+  "source_ids": [
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+    "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d"
+  ],
+  "structure_type": "wiki",
+  "title": "Tradeoff-aware compiler strategies and empirical validation",
+  "topic_id": "topic-tradeoff-aware-compiler-strategies"
+}

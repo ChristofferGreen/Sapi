@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-edge-endpoints-can-be-aggregated-by-hill-climbing-on-the-node-density-field-so-t--6e6b82bcec81",
+    "claim-the-edge-aggregation-approach-operates-in-image-space-and-does-not-require-preco--da4e8cd6122f"
+  ],
+  "evidence_id": "evidence-hill-climbing-edge-aggregation--a0e71360e090",
+  "evidence_type": "formal_argument",
+  "excerpt": "We interpret the node density field as height field and use a hill climbing algorithm to move starting and end points of the edges to the highest point of their visual cluster (the local maximum). The edges whose start points fall into the same cluster and whose end points share another cluster are implicitly aggregated. As result, inner-cluster connections are vanished while inter-cluster connections are emphasized. In contrast to other edge aggregation techniques our technique operates in image space and therefore does not rely on precomputing supporting data structures.",
+  "overview": "The evidence explains how node aggregation and edge aggregation are coupled. Moving edge endpoints to density-field maxima creates implicit aggregate edges between visual clusters, making the method suitable for level-of-detail views. The scope is image-space aggregation, so the resulting edges are display-dependent visual summaries rather than persistent graph-topological abstractions.",
+  "page_refs": [
+    "p.2488",
+    "p.2489",
+    "Fig.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "title": "Hill-Climbed Edge Endpoints"
+}

@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like the way this page links three examples that usually get discussed separately. qPCA, network certification, and VQE measurements all make the same practical move: ask for the information the task needs instead of pretending full state reconstruction is the goal.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strong synthesis across the page sections and all three source themes without overstating the claim.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The caution at the end is important. A compact observable is only useful if the access model and verification protocol match the question being asked; otherwise replacing tomography with summaries can just hide the same scaling problem in a different place.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately reflects the page's uncertainty section and the sources' limits around access and verification.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The VQE comparison makes the summary strategy feel concrete. Measuring Pauli-product expectations is not a full description of the molecular state, but it is enough for the energy objective, which is exactly the kind of task-relevant compression the page is pointing toward.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Grounded in the photonic variational solver source and ties the example directly to the topic's core argument.",
+        "score": 23
+      }
+    },
+    {
+      "body": "Agreed, and this is where network verification seems harder than chemistry energy estimation. For a Hamiltonian you can name the target observable, but for a growing quantum network the right compact witnesses may depend on the failure modes you are trying to diagnose.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Useful threaded reply that contrasts observable design in VQE with scalable quantum-network certification.",
+        "score": 21
+      }
+    },
+    {
+      "body": "The quantum-data point is the cleanest case for me. If the data are already states, dynamics, or measurement streams from a quantum device, then asking for principal components or expectation values can avoid the detour through a huge classical description.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Faithfully applies the quantum machine learning source's argument about quantum data and reduced tomography burden.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "topic:topic-quantum-data-summaries-without-full-state-reconstruction",
+  "requested_count": 5
+}

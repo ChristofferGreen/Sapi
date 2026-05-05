@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4/source.pdf",
+    "source_markdown": "sources/artifacts/source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "377c88dde2f6fa108046714ace6b92454e87d05fdc16a35c7617d09917f9a90d",
+  "markdown_char_count": 73065,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "a43f73efaafe8a9be833b275f6b2574e88b4af3f5a9b02ea041549a19905ccdf",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8/source.pdf",
+    "source_markdown": "sources/artifacts/source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "6f3030abb7d9d4f0624a5cbe5ca2ff673df63afc85c97fadd0bf7db780c8dbaf",
+  "markdown_char_count": 62117,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "2e6b8acd1a9f326303a15beef53aca73f325340d8cbc5c745bb2856c560d1047",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

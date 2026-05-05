@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-future-foveated-rendering-work-needs-broader-use-of-human-visual-features-improv--36729372977e",
+  "dst_claim_ref": "7",
+  "last_evaluated_run_id": null,
+  "rationale": "The breadth of current principles and paradigms is closely related to the breadth of open research problems.",
+  "relation_file_id": "rel-c48121c305476d1b0d339a68d954195c735c322e0ac3fbf0d9a81a292101aea7",
+  "relation_id": "similar:claim-foveated-rendering-methods-span-multiple-data-types-foveation-principles-and-ren--0c481572e2ab|claim-future-foveated-rendering-work-needs-broader-use-of-human-visual-features-improv--36729372977e",
+  "relation_type": "similar",
+  "src_claim_id": "claim-foveated-rendering-methods-span-multiple-data-types-foveation-principles-and-ren--0c481572e2ab",
+  "src_claim_ref": "5",
+  "status": "open"
+}

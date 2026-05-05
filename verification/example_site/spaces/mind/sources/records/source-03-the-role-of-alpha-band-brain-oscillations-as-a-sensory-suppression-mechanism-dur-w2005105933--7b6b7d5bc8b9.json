@@ -1,0 +1,348 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9/front_page.png",
+    "source_extraction": "sources/artifacts/source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9/source_extraction.json",
+    "source_file": "sources/artifacts/source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9/source.pdf",
+    "source_markdown": "sources/artifacts/source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9/source.md",
+    "source_provenance": "sources/artifacts/source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9/source_provenance.md"
+  },
+  "authors": [
+    "John J. Foxe",
+    "Adam C. Snyder"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like how this review turns the usual attention story around. Instead of asking only which representation gets boosted, Foxe and Snyder make a strong case that the ignored channel may need its own active control signal, with alpha rising where distracting input would otherwise compete.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-maya-santoro--0i9nrj7925",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-maya-santoro--0i9nrj7925",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately captures the review's central suppression argument and frames it clearly without overclaiming.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-maya-santoro--0i9nrj7925",
+        "thread_state_key": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-maya-santoro--0i9nrj7925"
+      },
+      {
+        "body": "The bilateral rapid-stream example seems especially important because it pushes against the old cortical-idling explanation. If both visual streams are still being stimulated and alpha climbs above the pre-cue baseline for the ignored side, that looks much more like active filtering than simple recovery after stimulation.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-eli-okafor--f0wwox6yze",
+        "parent_comment_uid": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-maya-santoro--0i9nrj7925",
+        "permalink": "#comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-eli-okafor--f0wwox6yze",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Uses a specific evidential test from the source and explains its relevance to the active-suppression claim.",
+          "score": 27
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 27,
+          "upvotes": 39
+        },
+        "thread_expansion_key": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-eli-okafor--f0wwox6yze",
+        "thread_state_key": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-eli-okafor--f0wwox6yze"
+      },
+      {
+        "body": "One thing I would keep in view is that this is a review article, so the force of the argument depends on how consistently the cited paradigms line up. The cross-modal pattern is compelling, but it is still a synthesis rather than one unified experiment testing the whole mechanism at once.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-lina-kovac--bgyukrgf69",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-lina-kovac--bgyukrgf69",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Adds a useful scope caveat grounded in the source's review status while acknowledging the convergent evidence.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-lina-kovac--bgyukrgf69",
+        "thread_state_key": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-lina-kovac--bgyukrgf69"
+      },
+      {
+        "body": "The retinotopic angle makes the claim feel more concrete to me. Alpha increasing over cortex that corresponds to the ignored hemifield is a cleaner prediction than a vague statement that attention changes oscillations somewhere in the back of the head.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-rory-chen--5blupbjuam",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-rory-chen--5blupbjuam",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Highlights anatomical specificity in the spatial attention evidence with a clear, source-consistent interpretation.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-rory-chen--5blupbjuam",
+        "thread_state_key": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-rory-chen--5blupbjuam"
+      },
+      {
+        "body": "I also appreciated that the authors do not treat all alpha as one thing. Separating attention-related alpha from arousal-related alpha makes the model less tidy, but it is probably necessary if frontal-parietal control and thalamic contributions are doing different jobs.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-samira-haddad--fe49mszu8s",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-samira-haddad--fe49mszu8s",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Engages the mechanism limits section thoughtfully and avoids overstating unresolved circuitry.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-samira-haddad--fe49mszu8s",
+        "thread_state_key": "comment-source-source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933-7b6b7d5bc8b9-persona-samira-haddad--fe49mszu8s"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9"
+  },
+  "date": null,
+  "display_title": "Alpha Oscillations Suppress Distracting Sensory Inputs",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[1].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "a versatile code for the definition Electroencephalogr. Clin. Neurophysiol. Worden M. S. Foxe J. J. Wang N. and",
+      "url": "https://doi.org/10.3389/fpsyg.2011.00154"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[0].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "density electrical mapping and source Englewood Cliffs NJ: Prentice-Hall. Posner M. I. and Petersen S. E. 1990",
+      "url": "https://doi.org/10.3389/fnhum.2010.00224"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[1].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "a versatile code for the definition Electroencephalogr. Clin. Neurophysiol. Worden M. S. Foxe J. J. Wang N. and",
+      "url": "https://arxiv.org/abs/2011.00154"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[0].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "density electrical mapping and source Englewood Cliffs NJ: Prentice-Hall. Posner M. I. and Petersen S. E. 1990",
+      "url": "https://arxiv.org/abs/2010.00224"
+    }
+  ],
+  "ingested_at": "2026-04-26T11:15:00Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": "2010.00224",
+      "authors": [],
+      "doi": "10.3389/fnhum.2010.00224",
+      "linked_source_ids": [],
+      "title": "density electrical mapping and source Englewood Cliffs NJ: Prentice-Hall. Posner M. I. and Petersen S. E. 1990",
+      "url": null,
+      "year": 2010
+    },
+    {
+      "arxiv": "2011.00154",
+      "authors": [],
+      "doi": "10.3389/fpsyg.2011.00154",
+      "linked_source_ids": [],
+      "title": "a versatile code for the definition Electroencephalogr. Clin. Neurophysiol. Worden M. S. Foxe J. J. Wang N. and",
+      "url": null,
+      "year": 2011
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": []
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2011-07-05",
+    "origin": "source_markdown_front_matter",
+    "rationale": "The source markdown front matter states 'published: 05 July 2011', and the citation block states the article was published online on 05 July 2011."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The review's central claim is that alpha-band activity can serve selection by suppressing the processing channels that should not drive behavior. This reverses the common tendency to look only for enhancement of attended representations. Alpha is treated as a negative biasing signal: it rises where distracting information is expected and thereby helps conserve limited attentional capacity.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ],
+        "heading": "Central Argument"
+      },
+      {
+        "body": "The intersensory findings provide a clear starting case. When visual word cues instructed participants to attend audition, parieto-occipital 8-14 Hz activity increased before the compound audiovisual target. Because fixation was maintained and the target had not yet appeared, this preparatory alpha increase supports anticipatory suppression of visual processing during auditory attention.",
+        "grounding_claim_ids": [
+          "2"
+        ],
+        "heading": "Intersensory Evidence"
+      },
+      {
+        "body": "The spatial attention evidence makes the suppression account more anatomically specific. In instructional cueing tasks, uncued locations never require a response, so they are genuine distracter sources. Alpha increases over occipital cortex ipsilateral to the attended side, matching the cortical territory expected to represent the ignored hemifield and shifting with retinotopic task demands.",
+        "grounding_claim_ids": [
+          "1",
+          "3"
+        ],
+        "heading": "Spatial And Retinotopic Bias"
+      },
+      {
+        "body": "The review argues that alpha gating is not confined to visual space. Feature-based tasks show alpha increases in dorsal or ventral stream regions according to whether motion or color is irrelevant, and auditory and tactile studies show comparable ipsilateral increases during spatial selection. Together these cases support a general suppression principle across sensory systems and stimulus dimensions.",
+        "grounding_claim_ids": [
+          "4",
+          "5"
+        ],
+        "heading": "Feature And Modality Generality"
+      },
+      {
+        "body": "A major interpretive risk is that alpha increases may only reflect passive return to baseline after stimulus-driven desynchronization. The bilateral rapid-stream experiment addresses this by keeping visual stimulation ongoing in both hemifields. Alpha still rises above pre-cue baseline for the ignored stream, making the active suppression interpretation more persuasive than a simple cortical-idling account.",
+        "grounding_claim_ids": [
+          "6"
+        ],
+        "heading": "Active Suppression Test"
+      },
+      {
+        "body": "The review links alpha power to perception rather than only to scalp topography. Higher alpha predicts weaker detection and greater perceptual thresholds, and rhythmic 10 Hz TMS can impair contralateral visual detection while leaving neighboring stimulation frequencies ineffective. These findings make alpha relevant for behavior, not merely for descriptive electrophysiology.",
+        "grounding_claim_ids": [
+          "7"
+        ],
+        "heading": "Perceptual Consequences"
+      },
+      {
+        "body": "The authors do not reduce all alpha phenomena to one source. They distinguish arousal-related alpha, likely with stronger thalamic involvement, from attention-related alpha, which appears more dependent on frontal and parietal cortico-cortical control. The mechanism remains partly unresolved, but the review narrows the likely circuitry and warns against treating alpha as a unitary rhythm.",
+        "grounding_claim_ids": [
+          "8"
+        ],
+        "heading": "Mechanistic Limits"
+      }
+    ],
+    "summary_long": "This review develops a suppression-centered interpretation of alpha-band oscillations in selective attention. Rather than treating alpha simply as a relaxed or idle rhythm, Foxe and Snyder frame 8-14 Hz activity as a mechanism that can be strategically increased in cortical systems that would otherwise process distracting input. The argument begins from cuing paradigms: when a symbolic cue instructs a participant which modality, location, or feature will matter, the interval before the target reveals how the brain prepares for selection. In that interval, alpha power repeatedly rises over regions corresponding to irrelevant information. In intersensory attention, alpha increases over parieto-occipital cortex when audition is attended and vision must be suppressed. In visual spatial attention, alpha rises over occipital cortex representing the uncued hemifield, and the effect follows retinotopic expectations. In feature-based attention, alpha-reactive sources separate by visual stream, rising in areas associated with the feature dimension that is currently irrelevant. The review also extends the pattern to auditory and tactile attention, where ipsilateral alpha increases suggest sensory-specific suppression outside the visual system. The strongest conceptual step is the distinction between passive idling and active suppression. The Kelly et al. bilateral stimulation design is especially important because alpha rose above pre-cue baseline while visual streams remained continuously active, weakening the idea that alpha merely rebounds after stimulation. TMS studies add causal plausibility: externally driving 10 Hz activity impaired contralateral detection while neighboring frequencies did not. The authors remain cautious about mechanism, separating attention-related alpha from arousal-related alpha and noting possible thalamo-cortical contributions. Still, they conclude that frontal and parietal cortico-cortical control networks are likely central for attention-sensitive alpha modulation. The source is therefore best read as a review-backed model of selective attention in which suppression is an active computational operation, implemented partly through alpha-band synchronization in task-irrelevant sensory circuits.",
+    "summary_short": "Foxe and Snyder argue that alpha-band oscillations can actively suppress distracting sensory processing during selective attention. The review shows that alpha often marks the neural system being ignored rather than the item being selected."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "source_kind": "file",
+  "source_locator": "03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur--w2005105933.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "article_type": "Review Article",
+    "authors": [
+      "John J. Foxe",
+      "Adam C. Snyder"
+    ],
+    "display_title": "Alpha Oscillations Suppress Distracting Sensory Inputs",
+    "doi": "10.3389/fpsyg.2011.00154",
+    "journal": "Frontiers in Psychology",
+    "original_title": "The role of alpha-band brain oscillations as a sensory suppression mechanism during selective attention",
+    "publication_date": "2011-07-05",
+    "record_display_title": "Untitled Source",
+    "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9"
+  },
+  "source_type": "file",
+  "summary": "Foxe and Snyder review evidence that alpha-band oscillations, especially 8-14 Hz activity, function as an active suppressive mechanism during selective attention. Across intersensory, spatial, feature-based, auditory, and tactile attention tasks, alpha power tends to increase in cortical regions responsible for processing irrelevant or distracting information, and causal and predictive evidence links stronger alpha to reduced visual excitability and weaker perception.",
+  "title": "03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur--w2005105933",
+  "warnings": [
+    {
+      "code": "task_context_date_missing_but_source_front_matter_available",
+      "message": "The task context reported date=null, but the source markdown front matter and citation block state publication on 05 July 2011."
+    },
+    {
+      "code": "review_article_evidence_scope",
+      "message": "The source is a review article, so many evidence items summarize concrete experiments and figures discussed by the review rather than new primary measurements collected in this paper."
+    },
+    {
+      "code": "existing_claim_context_unrelated",
+      "message": "The provided claims directory contained prior claims from other sources; generated claim references therefore use local claim indices for this extraction."
+    }
+  ]
+}

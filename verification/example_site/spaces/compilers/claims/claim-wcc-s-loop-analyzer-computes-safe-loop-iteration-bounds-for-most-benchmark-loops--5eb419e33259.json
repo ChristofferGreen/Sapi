@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:55:13Z",
+  "claim_id": "claim-wcc-s-loop-analyzer-computes-safe-loop-iteration-bounds-for-most-benchmark-loops--5eb419e33259",
+  "evidence_excerpts": [
+    "Table 1 reports 96 benchmarks with 707 loops in total; 99% of loops are analyzable and 96% have exact iteration counts on average."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Loop bounds become automatic",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "text": "WCC\u2019s loop analyzer computes safe loop iteration bounds for most benchmark loops and exact bounds for the great majority, reducing reliance on manual flow facts."
+}

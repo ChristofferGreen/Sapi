@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-within-the-retreat-group-greater-prior-meditation-experience-predicts-a-smaller--3ca73021a60e"
+  ],
+  "evidence_id": "evidence-experience-alerting-correlation--e19a03df4b67",
+  "evidence_type": "statistical_result",
+  "excerpt": "Since only the alerting component significantly changed at Time 2 for the retreat group, the authors examined whether months of meditation experience correlated with the magnitude of the alerting score at Time 2. The correlation value was R = -.52 and significant (t = 2.4, p = .03), showing reduced alerting score with increased meditation experience.",
+  "overview": "The correlation links individual differences in prior meditation experience to the retreat group's alerting outcome. It strengthens the interpretation that the Time 2 alerting pattern is related to meditation history, not merely group membership. Its scope is limited because the analysis is correlational within the retreat group and does not establish a randomized causal dose-response effect.",
+  "page_refs": [
+    "p.115"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "title": "Experience Alerting Correlation"
+}

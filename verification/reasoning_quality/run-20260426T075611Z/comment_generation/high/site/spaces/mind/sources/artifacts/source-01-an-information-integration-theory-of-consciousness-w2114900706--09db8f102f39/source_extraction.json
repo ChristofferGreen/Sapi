@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39/source.pdf",
+    "source_markdown": "sources/artifacts/source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "27a598c5c538d7c1e9a1e4e60ae081483313db298736e84645dc561cf5e83ef7",
+  "markdown_char_count": 141271,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "4c68a99ea55112b9581218df58777ba733f2b6630e1d60d25676ae83a21161c4",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Coherent geometric clustering is required before cluster skeletons can serve as meaningful bundling targets.",
+  "relation_file_id": "rel-0237b9b9e8524ebfefd8ececf4631bf1c8534d1553ce333426bdd7e0edd2a500",
+  "relation_id": "supports:claim-hierarchical-agglomerative-clustering-with-full-linkage-and-euclidean-distances--759b1a2656e8->claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+  "relation_type": "supports",
+  "src_claim_id": "claim-hierarchical-agglomerative-clustering-with-full-linkage-and-euclidean-distances--759b1a2656e8",
+  "src_claim_ref": "1",
+  "status": "open"
+}

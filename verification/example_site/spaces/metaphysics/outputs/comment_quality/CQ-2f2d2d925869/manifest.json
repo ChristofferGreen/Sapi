@@ -1,0 +1,109 @@
+{
+  "aggregates": {
+    "dimensions": {
+      "argument_quality": 0.6,
+      "human_likeness": 0.85,
+      "novelty": 1.0,
+      "persona_consistency": 1.0,
+      "relevance": 1.0
+    },
+    "overall": 0.89
+  },
+  "as_of": "2026-04-26T19:05:27Z",
+  "benchmark_path": "sapi/benchmarks/comment_quality_benchmark_v1.json",
+  "dimensions": [
+    "persona_consistency",
+    "novelty",
+    "relevance",
+    "argument_quality",
+    "human_likeness"
+  ],
+  "evaluation_id": "CQ-2f2d2d925869",
+  "fail_reasons": [],
+  "pass": true,
+  "row_count": 5,
+  "row_scores": [
+    {
+      "comment_uid": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-maya-santoro--p1hc1thmo2",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "source:source-01-grounding-necessary-or-contingent--6e8195a096f0",
+      "persona_id": "persona-maya-santoro",
+      "row_index": 1
+    },
+    {
+      "comment_uid": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-eli-okafor--6xzes5f63n",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "source:source-01-grounding-necessary-or-contingent--6e8195a096f0",
+      "persona_id": "persona-eli-okafor",
+      "row_index": 2
+    },
+    {
+      "comment_uid": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-lina-kovac--9lsz2vbxw8",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "source:source-01-grounding-necessary-or-contingent--6e8195a096f0",
+      "persona_id": "persona-lina-kovac",
+      "row_index": 3
+    },
+    {
+      "comment_uid": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-rory-chen--hpkwy1zq48",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "source:source-01-grounding-necessary-or-contingent--6e8195a096f0",
+      "persona_id": "persona-rory-chen",
+      "row_index": 4
+    },
+    {
+      "comment_uid": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-samira-haddad--bfly1ne7o8",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "source:source-01-grounding-necessary-or-contingent--6e8195a096f0",
+      "persona_id": "persona-samira-haddad",
+      "row_index": 5
+    }
+  ],
+  "schema_version": "comment_section_quality_eval_manifest_v1",
+  "snapshot_path": null,
+  "thresholds": {
+    "dimension_mins": {
+      "argument_quality": 0.55,
+      "human_likeness": 0.55,
+      "novelty": 0.5,
+      "persona_consistency": 0.5,
+      "relevance": 0.55
+    },
+    "overall_min": 0.62
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The factual grounding definition is the grounding half of the proposed unification.",
+  "relation_file_id": "rel-79c129b7960eaf0be7729619662a407c8d067a3dc6dfc68703c520bcb8a8379e",
+  "relation_id": "derived_from:claim-factual-grounding-is-analyzed-through-disjunctive-parthood-a-plurality-of-facts--d0a2dc4b2f48->claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-factual-grounding-is-analyzed-through-disjunctive-parthood-a-plurality-of-facts--d0a2dc4b2f48",
+  "src_claim_ref": "5",
+  "status": "open"
+}

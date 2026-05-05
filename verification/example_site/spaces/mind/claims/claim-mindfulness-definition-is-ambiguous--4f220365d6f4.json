@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T14:49:12Z",
+  "claim_id": "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+  "evidence_excerpts": [
+    "There is neither one universally accepted technical definition of \u201cmindfulness\u201d nor any broad agreement about detailed aspects of the underlying concept to which it refers.",
+    "A 5-minute meditation exercise from a popular phone application might be treated the same as a 3-month meditation retreat, and a self-report questionnaire might be equated with the characteristics of someone who has spent decades practicing."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Mindfulness is ambiguous",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "text": "The term mindfulness lacks a universally accepted technical definition and often conflates heterogeneous mental faculties, practices, interventions, and measurement targets."
+}

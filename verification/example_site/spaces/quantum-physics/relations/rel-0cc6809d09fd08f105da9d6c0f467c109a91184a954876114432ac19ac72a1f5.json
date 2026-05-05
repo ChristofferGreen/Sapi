@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772",
+  "dst_claim_ref": "9",
+  "last_evaluated_run_id": null,
+  "rationale": "The scaling barrier for verification motivates stronger procedures for heterogeneous scalable networks.",
+  "relation_file_id": "rel-0cc6809d09fd08f105da9d6c0f467c109a91184a954876114432ac19ac72a1f5",
+  "relation_id": "supports:claim-full-density-matrix-characterization-becomes-an-impractical-verification-strateg--65a0be3566e1->claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772",
+  "relation_type": "supports",
+  "src_claim_id": "claim-full-density-matrix-characterization-becomes-an-impractical-verification-strateg--65a0be3566e1",
+  "src_claim_ref": "8",
+  "status": "open"
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-shadercoding-blends-programming-mathematics-and-graphics-into-a-digital-art-prac--ba3619b7f801",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The fragment-shader account explains one technical basis for shadercoding as a mathematical graphic practice.",
+  "relation_file_id": "rel-adfcaa66463b55b11b56ad46fc3469cba07adf4278baff53db2261fa1716e263",
+  "relation_id": "supports:claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e->claim-shadercoding-blends-programming-mathematics-and-graphics-into-a-digital-art-prac--ba3619b7f801",
+  "relation_type": "supports",
+  "src_claim_id": "claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e",
+  "src_claim_ref": "2",
+  "status": "open"
+}

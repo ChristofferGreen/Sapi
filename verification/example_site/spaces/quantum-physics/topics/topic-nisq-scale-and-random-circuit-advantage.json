@@ -1,0 +1,159 @@
+{
+  "claim_ids": [
+    "claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+    "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+    "claim-the-sycamore-superconducting-processor-created-random-circuit-quantum-states-on--2b4eeabd4063",
+    "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+    "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+    "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The useful nuance here is that Sycamore fits Preskill's NISQ threshold without escaping Preskill's cautions. A 53-qubit random-circuit experiment can be classically inaccessible for that sampling task while still being far from a broadly useful, fault-tolerant quantum computer.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-maya-santoro--rq3kqn5cpp",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-maya-santoro--rq3kqn5cpp",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately connects the topic page to both source claims and preserves the narrow interpretation.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-maya-santoro--rq3kqn5cpp",
+        "thread_state_key": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-maya-santoro--rq3kqn5cpp"
+      },
+      {
+        "body": "I would separate two claims that often get collapsed together. The exponential classical difficulty of random circuits explains why this benchmark is meaningful, but it does not by itself show that NISQ hardware will beat mature classical methods on optimization, chemistry, or everyday workloads.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-eli-okafor--ws79cnpdo0",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-eli-okafor--ws79cnpdo0",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the sources' distinction between benchmark speedup and practical applications.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-eli-okafor--ws79cnpdo0",
+        "thread_state_key": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-eli-okafor--ws79cnpdo0"
+      },
+      {
+        "body": "The noise story is doing a lot of work. Preskill's warning about shallow useful depth makes the Sycamore calibration evidence important, because the sampling claim depends on errors remaining predictable enough across many simultaneous gates and measurements.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-lina-kovac--ish2hjm7qh",
+        "parent_comment_uid": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-maya-santoro--rq3kqn5cpp",
+        "permalink": "#comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-lina-kovac--ish2hjm7qh",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Builds a relevant reply by linking NISQ noise limits with Sycamore's hardware-error evidence.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-lina-kovac--ish2hjm7qh",
+        "thread_state_key": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-lina-kovac--ish2hjm7qh"
+      },
+      {
+        "body": "The 200 seconds versus 10,000 years comparison is compelling, but only if the task definition stays visible. It is an equal-fidelity estimate for sampling from random circuits, not a shortcut to factoring or a proof that all classical simulation techniques have been exhausted forever.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-rory-chen--ua63melohj",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-rory-chen--ua63melohj",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Clearly explains the runtime comparison while avoiding unsupported overgeneralization.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-rory-chen--ua63melohj",
+        "thread_state_key": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-rory-chen--ua63melohj"
+      },
+      {
+        "body": "What makes the page balanced is that it treats quantum advantage as a real experimental milestone rather than a product announcement. The result says controlled noisy processors can cross a specific classical-simulation boundary, while the path to robust algorithms still runs through lower errors and error correction.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-samira-haddad--5ecjau95hc",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-samira-haddad--5ecjau95hc",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Synthesizes the topic's central balance between demonstrated advantage and long-term fault tolerance.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-samira-haddad--5ecjau95hc",
+        "thread_state_key": "comment-topic-topic-nisq-scale-and-random-circuit-advantage-persona-samira-haddad--5ecjau95hc"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-nisq-scale-and-random-circuit-advantage"
+  },
+  "sections": [
+    {
+      "body": "Preskill frames devices with roughly 50 to a few hundred noisy qubits as a threshold where brute-force classical simulation becomes difficult, while noise still sharply limits useful computation. The Sycamore experiment provides a concrete example of that threshold: a 53-qubit superconducting processor created random-circuit quantum states in a 2^53-dimensional state space.",
+      "heading": "NISQ threshold"
+    },
+    {
+      "body": "The Sycamore result connects the NISQ regime to random-circuit sampling, where output distributions become exponentially harder to simulate classically as qubit count and circuit depth increase. For the hardest reported sampling task, the authors reported one million samples in about 200 seconds and estimated that equal-fidelity classical sampling would require about 10,000 years on one million cores.",
+      "heading": "Task-specific speedup"
+    },
+    {
+      "body": "The speedup is evidence for a narrow random-circuit sampling task, not a general solution to near-term quantum computing limitations. Both sources keep the result within a noise-limited NISQ frame and distinguish it from the broader promise of fault-tolerant quantum algorithms.",
+      "heading": "Limits of the claim"
+    }
+  ],
+  "source_ids": [
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+    "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+  ],
+  "structure_type": "wiki",
+  "title": "NISQ Scale, Noise, and Random-Circuit Quantum Advantage",
+  "topic_id": "topic-nisq-scale-and-random-circuit-advantage"
+}

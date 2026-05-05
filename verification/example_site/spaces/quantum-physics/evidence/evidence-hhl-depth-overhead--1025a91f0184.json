@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789",
+    "claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90"
+  ],
+  "evidence_id": "evidence-hhl-depth-overhead--1025a91f0184",
+  "evidence_type": "model_constraint",
+  "excerpt": "Despite potential exponential speedups, the review reports that circuit size and depth overhead can balloon to about 10^25 in one proposed realization of HHL without major optimization.",
+  "overview": "The overhead estimate gives a concrete scale for the gap between asymptotic complexity and implementable quantum machine learning. It supports a conservative reading: better algorithms and cost models are prerequisites for useful alternatives to classical methods.",
+  "page_refs": [
+    "p.9"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "title": "HHL Depth Overhead Estimate"
+}

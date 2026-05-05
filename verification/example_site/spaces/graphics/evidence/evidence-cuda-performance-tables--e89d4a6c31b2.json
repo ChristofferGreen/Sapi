@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-cuda-image-space-distance-transforms-skeletonization-path-computation-and-attrac--46de973cba61"
+  ],
+  "evidence_id": "evidence-cuda-performance-tables--e89d4a6c31b2",
+  "evidence_type": "table_result",
+  "excerpt": "Table 1 reports total GPU times of 6.3 seconds for US airlines, 4.1 seconds for US migrations, 7.4 seconds for Radial, 29.2 seconds for France air, and 5.2 seconds for Poker. Table 2 reports CUDA timings of 2 ms for inflation, 8 ms for holes, 2 ms for skeletonization, less than 12 ms for paths, and 3 ms for attraction.",
+  "overview": "The table values ground the performance claim in reported measurements rather than only complexity arguments. They show seconds-scale complete runs on several graph datasets and millisecond-scale GPU primitives, though the results are tied to the authors' hardware, image size, and implementation choices.",
+  "page_refs": [
+    "Table 1",
+    "Table 2",
+    "Sec. 3.1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "title": "CUDA Performance Measurements"
+}

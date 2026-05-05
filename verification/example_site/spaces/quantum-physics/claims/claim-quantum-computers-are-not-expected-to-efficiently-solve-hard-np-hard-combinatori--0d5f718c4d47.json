@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T15:52:46Z",
+  "claim_id": "claim-quantum-computers-are-not-expected-to-efficiently-solve-hard-np-hard-combinatori--0d5f718c4d47",
+  "evidence_excerpts": [
+    "We don\u2019t expect, for example, that a quantum computer will be able to solve efficiently the hard instances of NP-hard problems like the traveling salesman problem.",
+    "Quantum computers can speed up exhaustive search, but only modestly, so NP-hard problems are likely to be quantumly hard as well as classically hard."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "NP-hard problems remain hard",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "text": "Quantum computers are not expected to efficiently solve hard NP-hard combinatorial optimization instances, although they may provide modest search speedups or useful heuristic approximations."
+}

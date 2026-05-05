@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What stands out to me is that the paper does not just ask whether people feel more spiritual after psychedelics. It tries to put hard materialism, dualism, idealism, panpsychism, and related views on a shared measurement axis, then follows people over time. That makes the result more interesting than a simple before-and-after mood story, even if the sample and ceremony context still leave room for expectancy effects.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately summarizes the measurement strategy and balances significance with causal limits.",
+        "score": 20
+      }
+    },
+    {
+      "body": "The emotional synchrony part feels crucial. If shared ceremony experience predicts later belief change, then the finding is not simply about a compound changing metaphysics in isolation. It sounds more like a drug, setting, group interpretation, and personal susceptibility working together, which is exactly where informed consent becomes complicated.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Builds on the thread with a grounded mechanism and a relevant ethical implication.",
+        "score": 18
+      }
+    },
+    {
+      "body": "I would be careful about calling this proof that psychedelics cause metaphysical conversion. The prospective ceremony data are suggestive, and the psilocybin trial comparison helps, but the people entering these settings may already be unusually open to non-materialist interpretations. The study is still valuable because it makes that shift measurable instead of leaving it as folklore.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Strongly reflects the source's causality warning while preserving the study's contribution.",
+        "score": 21
+      }
+    },
+    {
+      "body": "That caution seems right, but I do not think it drains the result of importance. A durable movement away from hard materialism at four weeks and six months is still meaningful if the change happens through interpretation and social reinforcement. Lots of belief formation works that way; the question is whether psychedelic services are transparent about it.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Offers a nuanced reply that accepts confounds without dismissing durable belief change.",
+        "score": 19
+      }
+    },
+    {
+      "body": "The mental-health link is the part I find hardest to interpret. If responders to psilocybin also move farther from hard materialism than responders to escitalopram, that could mean belief flexibility helps therapy, or that improvement makes people reinterpret the experience in broader metaphysical terms. Either way, clinicians should treat belief change as a possible outcome, not just a side note.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Uses the trial comparison carefully and identifies a practical clinical implication.",
+        "score": 20
+      }
+    }
+  ],
+  "page_ref": "source:source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "requested_count": 5
+}

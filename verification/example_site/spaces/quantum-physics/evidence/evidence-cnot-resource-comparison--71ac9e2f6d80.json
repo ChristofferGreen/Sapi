@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-quantum-expectation-estimation-reduces-coherent-evolution-demands-relative-to-ph--e17864953251",
+    "claim-for-the-demonstrated-4x4-hamiltonian-the-quantum-expectation-estimation-approach--8aea71f20a05"
+  ],
+  "evidence_id": "evidence-cnot-resource-comparison--71ac9e2f6d80",
+  "evidence_type": "model_constraint",
+  "excerpt": "The discussion states that, for a 4x4 Hamiltonian such as the one demonstrated, the corresponding quantum phase-estimation circuit would require at least 12 CNOT gates, while the reported method requires only one. The resource saving is purchased by polynomial repetitions of state preparation rather than a single copy.",
+  "overview": "This comparison gives a concrete resource contrast between the proposed method and QPE for the demonstrated instance. It supports the claim of reduced coherent circuit depth, while preserving the tradeoff that total repetitions increase with precision and measurement statistics.",
+  "page_refs": [
+    "p.5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "title": "CNOT Resource Comparison"
+}

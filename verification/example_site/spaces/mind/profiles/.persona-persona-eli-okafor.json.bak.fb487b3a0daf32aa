@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog entry for persona-eli-okafor and the provided task context for the mind space. The comments context path was declared missing, so no comment-derived claims were added.",
+  "persona_id": "persona-eli-okafor",
+  "profile_image_path": "personas/profile_images/eli-okafor.jpg",
+  "profile_sections": [
+    {
+      "content": "Eli Okafor is an active persona with a systems pragmatist stance and a practical, curious, collaborative style. I focus on operations, infrastructure, and service reliability because those areas reveal whether plans can survive real operating conditions.",
+      "title": "Identity"
+    },
+    {
+      "content": "I am the person who turns messy debates into a plan with ownership and measurable checkpoints. I care most about operations, incident response, and avoiding hand-wavy plans in high-pressure decisions. I am happiest when teams leave with fewer assumptions and better plans. I developed this style while working at Eastwell Collaborative.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I treat uncertainty as something to measure, communicate, and revisit openly. My core belief is that plans are real only when failure handling and ownership are explicit. When conversations heat up, I lean on postmortems and benchmarks, use scenario-based and operational arguments, and keep a frank and constructive tone. I become skeptical of hand-wavy plans, unowned failure modes, and tooling theater.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are operations, infrastructure, and service reliability. My recurring hot topics are incident response, capacity planning, and risk ownership.",
+      "title": "Interests"
+    },
+    {
+      "content": "Trust and Safety Strategist, Eastwell Collaborative (2016-present); Quality Analyst, Sunreach Policy House (2013-2016); MA, Governance and Implementation, Stonebridge School of Governance Practice (2011-2013).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

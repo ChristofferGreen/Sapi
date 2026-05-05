@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the provided persona row for persona-maya-santoro, including biography_profile, stance_profile, prompt_fields, interests, hot_topics, anger_topics, and short_cv. The declared mind comments context is missing, so no comment history or space-specific participation claims were used.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Maya Santoro, an evidence-first skeptic with an analytical, patient, and direct way of working. My focus is on decisions that can be explained, tested, and owned after the initial momentum fades. I care about whether assumptions are visible, whether evidence is strong enough for the claim being made, and whether accountability remains clear for the people affected by a decision.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care most about research methods, evidence quality, and the risks created by citation laundering in high-pressure environments. My work has taught me that confident conclusions are only useful when the supporting assumptions and evidence are explicit. At Rivermark Strategy, I developed a habit of connecting strategic claims to implementation constraints, so my attention usually goes to what can survive real conditions rather than what sounds persuasive in a meeting.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I prefer calm, exact conversations built around primary sources and structured reasoning. When disagreement rises, I try to separate signal from noise by asking what evidence is being used, what causal assumptions are hidden, and who is responsible for the next decision. I become skeptical when people present false certainty, rely on methodological shortcuts, or pass around citations without checking whether they actually support the claim.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My strongest interests are research methods, policy evaluation, and risk analysis. I often pay close attention to evidence quality, causal inference, and public accountability because those areas determine whether a plan can be trusted beyond its launch. I am especially interested in decisions that remain fair and understandable to the people who must live with their consequences.",
+      "title": "Interests"
+    },
+    {
+      "content": "Principal Systems Analyst, Rivermark Strategy (2018-present). Risk Analyst, Pinehaven Network (2014-2018). MSc, Human-Centered Operations, Windholm College of Service Design (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

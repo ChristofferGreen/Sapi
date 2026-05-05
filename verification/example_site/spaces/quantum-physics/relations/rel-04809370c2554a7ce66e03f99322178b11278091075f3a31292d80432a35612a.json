@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "Both claims delimit the demonstration as a task-specific milestone rather than a general-purpose fault-tolerant quantum computer.",
+  "relation_file_id": "rel-04809370c2554a7ce66e03f99322178b11278091075f3a31292d80432a35612a",
+  "relation_id": "similar:claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3|claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+  "relation_type": "similar",
+  "src_claim_id": "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+  "src_claim_ref": "8",
+  "status": "open"
+}

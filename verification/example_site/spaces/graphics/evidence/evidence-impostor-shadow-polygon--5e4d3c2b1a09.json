@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-same-image-database-used-for-impostors-can-project-posture-consistent-human--625367fc5d02"
+  ],
+  "evidence_id": "evidence-impostor-shadow-polygon--5e4d3c2b1a09",
+  "evidence_type": "figure_result",
+  "excerpt": "Using the impostor approach, we can also compute and display the moving humans\u2019 shadows. To project the humans\u2019 shadows on the ground, we exploit the fact that the shadow of a virtual human is the projection onto the ground of its silhouette as seen from the light source. We can thus display the humans\u2019 shadow on the ground using one of the images already stored in the database that we use for the impostor. In this way, with the cost of only one additional polygon corresponding to the projection of the impostor polygon on the ground, we create a shadow corresponding to the human posture.",
+  "overview": "This figure-level result extends the impostor database beyond avatar appearance. It shows that the same stored silhouettes can create posture-aware ground shadows cheaply, which supports the paper's claim that visual quality can improve without returning to fully polygonal animated crowds.",
+  "page_refs": [
+    "p.41",
+    "Fig.7"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "title": "One-Polygon Human Shadows"
+}

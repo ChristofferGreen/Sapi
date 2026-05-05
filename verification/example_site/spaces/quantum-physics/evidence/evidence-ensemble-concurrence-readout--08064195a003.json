@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-atomic-ensemble-experiments-had-achieved-stored-heralded-entanglement-high-retri--7d38956d9ede"
+  ],
+  "evidence_id": "evidence-ensemble-concurrence-readout--08064195a003",
+  "evidence_type": "measurement",
+  "excerpt": "Conditional readout efficiencies of 74% in free space and 84% in a cavity were realized for transfer from a stored collective spin excitation to a single photon. Heralded entanglement was stored in ensembles in distinct apparatuses separated by 3 m, and later work inferred concurrence C = 0.9 \u00b1 0.3 for entanglement stored between L and R ensembles.",
+  "overview": "These measurements show that the DLCZ-style architecture was more than a paper protocol: the necessary pieces of retrieval, remote storage, and entanglement quantification had laboratory demonstrations. The values do not establish a full repeater, but they ground the claim that primitive scalable-node functions were emerging.",
+  "page_refs": [
+    "Fig. 3(b)"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "title": "Stored Ensemble Entanglement Metrics"
+}

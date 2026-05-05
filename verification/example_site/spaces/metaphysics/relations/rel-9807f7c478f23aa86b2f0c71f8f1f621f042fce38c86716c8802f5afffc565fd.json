@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-r-b-s-unowned-recollections-provide-an-existence-proof-for-apparent-memory-conte--6a14bce7e1a3",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "Unowned yet non-delusional autobiographical scenes supply the case used against Schechtman's dilemma.",
+  "relation_file_id": "rel-9807f7c478f23aa86b2f0c71f8f1f621f042fce38c86716c8802f5afffc565fd",
+  "relation_id": "supports:claim-episodic-recollection-can-preserve-temporally-and-spatially-situated-autobiograp--43867278649d->claim-r-b-s-unowned-recollections-provide-an-existence-proof-for-apparent-memory-conte--6a14bce7e1a3",
+  "relation_type": "supports",
+  "src_claim_id": "claim-episodic-recollection-can-preserve-temporally-and-spatially-situated-autobiograp--43867278649d",
+  "src_claim_ref": "0",
+  "status": "open"
+}

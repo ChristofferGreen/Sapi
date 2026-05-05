@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The measured benchmark speedups support the usefulness of integrating profile information into classic optimizations.",
+  "relation_file_id": "rel-9473b6fae4acc58fcfd6d11f8f154ab958a56c0f90edba6506a82159ba8eb894",
+  "relation_id": "supports:claim-on-the-benchmark-suite-profile-based-super-block-optimizations-averaged-a-1-15-s--e5d7486c0e56->claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+  "relation_type": "supports",
+  "src_claim_id": "claim-on-the-benchmark-suite-profile-based-super-block-optimizations-averaged-a-1-15-s--e5d7486c0e56",
+  "src_claim_ref": "6",
+  "status": "open"
+}

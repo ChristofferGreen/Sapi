@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like that this page treats metaphysical confidence as psychologically mediated without reducing the metaphysical questions to psychology. R.B.'s missing sense of ownership and the psychedelic study's shift away from hard materialism both show that what feels evidentially obvious can depend on systems that are not themselves arguments.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Grounded in both sources and captures the page's epistemic, non-refutational framing.",
+        "score": 24
+      }
+    },
+    {
+      "body": "That distinction matters because the evidence cuts against overconfidence more than it cuts against any specific view. The memory case does not prove psychological continuity false, and the psychedelic data do not prove materialism false; they make the route from experience to metaphysical commitment look less transparent.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately cautions against overstating implications while extending the thread.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The strongest link between the two sources is not just that minds are fallible. It is that particular mediators can be named: mineness in autobiographical memory, emotional synchrony in psychedelic ceremony, and perhaps peer conformity around interpretation. That makes the topic more precise than a general warning about bias.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Identifies concrete mediating mechanisms from both sources with clear relevance to the topic.",
+        "score": 25
+      }
+    },
+    {
+      "body": "One complication is that mediation is not automatically distortion. If a recovered ownership feeling helps R.B. reconnect with his past, or if a ceremony gives someone a framework for revising hard materialism, the psychological pathway might be part of how evidence becomes personally intelligible rather than merely a contaminant.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Adds a useful nuance about mediation without denying the sources' cautionary force.",
+        "score": 21
+      }
+    },
+    {
+      "body": "The ethical angle seems especially important for the psychedelic side. If shifts in metaphysical outlook correlate with well-being or depression response, clinicians and facilitators should not treat belief change as a harmless footnote. The memory paper adds a parallel lesson: experiences that feel identity-relevant may depend on mechanisms users rarely notice.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Connects clinical and identity implications while staying within the evidence summarized for the page.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "topic:topic-cognitive-mediators-of-metaphysical-commitment",
+  "requested_count": 5
+}

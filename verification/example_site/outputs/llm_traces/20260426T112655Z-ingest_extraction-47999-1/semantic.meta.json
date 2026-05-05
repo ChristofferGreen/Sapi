@@ -1,0 +1,27 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-04-26T11:31:11Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/relations"
+  ],
+  "flow_key": "ingest_extraction",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/runs/run-20260426T112655Z--cyawjphzg1/semantic/ingest_extraction.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json",
+  "started_at": "2026-04-26T11:26:55Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260426T112655Z-ingest_extraction-47999-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": false,
+  "validation_errors": [
+    {
+      "message": "'This article is a consensus-style critique of mindfulness and meditation research. It argues that public enthusiasm has outrun evidence because definitions, measures, clinical interventions, adverse-event reporting, and neuroimaging interpretation are often too loose. Its practical recommendation is not to abandon mindfulness research, but to make it more precise, controlled, safety-aware, and modest in public communication.' is too long",
+      "path": "/source_dossier/summary_short",
+      "validator": "maxLength",
+      "validator_value": 420
+    }
+  ]
+}

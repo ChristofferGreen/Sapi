@@ -1,0 +1,8 @@
+[
+  {
+    "message": "'This article is a consensus-style critique of mindfulness and meditation research. It argues that public enthusiasm has outrun evidence because definitions, measures, clinical interventions, adverse-event reporting, and neuroimaging interpretation are often too loose. Its practical recommendation is not to abandon mindfulness research, but to make it more precise, controlled, safety-aware, and modest in public communication.' is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

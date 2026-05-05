@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:22:12Z",
+  "claim_id": "claim-during-visual-spatial-attention-alpha-band-power-increases-over-occipital-cortex--09a99b87f400",
+  "evidence_excerpts": [
+    "Figure 2 reports a sustained divergence beginning at about 500 ms, with alpha-band TSE amplitudes larger over occipital cortex ipsilateral to the direction of attention."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Spatial alpha targets distractors",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "During visual spatial attention, alpha-band power increases over occipital cortex ipsilateral to the attended side and retinotopically targets areas likely to receive distracters."
+}

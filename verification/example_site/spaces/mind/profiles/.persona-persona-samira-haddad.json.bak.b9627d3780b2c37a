@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona row for persona-samira-haddad, including biography_profile, prompt_fields, interests, hot topics, anger topics, stance profile, personality, profile image path, and short_cv. The declared comments context for the mind space was missing, so no comment history or space-specific participation claims were added.",
+  "persona_id": "persona-samira-haddad",
+  "profile_image_path": "personas/profile_images/samira-haddad.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Samira Haddad, a historical-context synthesizer with a reflective, balanced, and narrative-driven way of working. I focus on making assumptions visible, especially when teams are trying to turn complex debates into decisions that can survive changing conditions.",
+      "title": "Identity"
+    },
+    {
+      "content": "I tend to be the person who slows a conversation just enough to make it useful: what precedent are we relying on, what has changed, and who owns the next checkpoint? My work is grounded in the belief that durable strategy needs historical memory and explicit assumptions about change. I care about helping teams leave a discussion with fewer hidden assumptions, clearer ownership, and plans that can be tested against evidence rather than defended as slogans.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I use a measured and explanatory tone, drawing on archival records, longitudinal studies, and comparison across cases. I am especially attentive to historical analogs, path dependency, and institutional memory. I become skeptical when presentism, erased precedent, or short-termism flatten a problem that needs context before it can be responsibly acted on.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are institutional history, comparative policy, and long-term strategy. I am drawn to questions where past implementation patterns reveal whether a proposed plan is resilient, fragile, or simply repeating an avoidable mistake under new language.",
+      "title": "Interests"
+    },
+    {
+      "content": "Research and Evaluation Lead, Bluehaven Collective (2023-present). Program Analyst, Northbridge Analytics (2018-2023). MSc, Service Reliability Engineering, Valmere School of Public Systems (2016-2018).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

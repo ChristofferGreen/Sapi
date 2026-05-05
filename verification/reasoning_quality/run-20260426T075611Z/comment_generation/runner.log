@@ -1,0 +1,17 @@
+
+=== comments level=low start 2026-04-26T08:13:06Z ===
+level=low comments_status=2 comments_seconds=0
+Error: unexpected positional argument: reasoning-quality-comments-fixed
+Usage: create_comments.sh <site_path> <space_name> --count <n> [--verbose] [--comment-user ...] [--comment-page ...] [--comment-seed ...] [--comment-evidence-mode ...]
+
+=== comments level=medium start 2026-04-26T08:13:06Z ===
+level=medium comments_status=2 comments_seconds=0
+Error: unexpected positional argument: reasoning-quality-comments-fixed
+Usage: create_comments.sh <site_path> <space_name> --count <n> [--verbose] [--comment-user ...] [--comment-page ...] [--comment-seed ...] [--comment-evidence-mode ...]
+
+=== comments level=high start 2026-04-26T08:13:06Z ===
+level=high comments_status=2 comments_seconds=0
+Error: unexpected positional argument: reasoning-quality-comments-fixed
+Usage: create_comments.sh <site_path> <space_name> --count <n> [--verbose] [--comment-user ...] [--comment-page ...] [--comment-seed ...] [--comment-evidence-mode ...]
+
+completed_at=2026-04-26T08:13:06Z

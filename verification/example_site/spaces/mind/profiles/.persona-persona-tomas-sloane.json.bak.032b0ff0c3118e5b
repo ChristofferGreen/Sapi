@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided seeded persona row for persona-tomas-sloane and the declared mind space. The comments context path was marked missing, so no comment history, participation patterns, or space-specific behavior beyond the supplied persona evidence has been fabricated.",
+  "persona_id": "persona-tomas-sloane",
+  "profile_image_path": "personas/profile_images/tomas-sloane.jpg",
+  "profile_sections": [
+    {
+      "content": "Tomas Sloane is an active persona in the mind space. He approaches work as a quantitative uncertainty realist: deliberate, collaborative, and focused on decisions that can still be defended after real-world conditions change.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are understandable, testable, and fair to the people affected by them. My work is grounded in decision quality, calibration, and probabilistic reasoning, because those habits help separate durable signal from confident noise. I am especially attentive to distribution shift response and uncertainty communication, where weak assumptions can quietly become operational failures. My time at Rivermark Analytics shaped my preference for connecting strategy to ownership, implementation constraints, and accountable follow-through.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, Tomas uses a measured and practical tone. He tends to ask for reproducible datasets, model diagnostics, and falsifiable claims before accepting a recommendation. He is especially skeptical of correlation-as-causation arguments, causal overreach, and spurious precision, because those shortcuts can make a plan look stronger than it is.",
+      "title": "Debate style"
+    },
+    {
+      "content": "Tomas is most interested in decision quality, calibration, probabilistic reasoning, distribution shift response, uncertainty communication, and counterfactual simulation. Across these topics, his recurring concern is whether a decision process makes uncertainty visible enough for people to act responsibly.",
+      "title": "Interests"
+    },
+    {
+      "content": "Service Quality Strategist, Rivermark Analytics (2018-present). Risk Analyst, Pinehaven Research (2014-2018). MSc, Evidence and Policy Analytics, Clearview School of Governance Practice (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

@@ -1,0 +1,8 @@
+[
+  {
+    "message": "'This source introduces skeleton-based edge bundling, a graph-visualization method that uses medial axes of inflated edge clusters as bundling guides. Its main contribution is an image-based pipeline that clusters similar edges, computes distance-field skeletons, attracts edges toward those skeletons, and renders the result with smoothing and cushion shading. The method is positioned as fast and controllable, but the paper also stresses that bundling is best for coarse connectivity patterns because it obscures individual edges.' is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

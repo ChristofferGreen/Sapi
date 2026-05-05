@@ -1,0 +1,80 @@
+{
+  "topics": [
+    {
+      "claim_ids": [
+        "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-the-conjunction-of--dbb969101dbd",
+        "claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869",
+        "claim-grounding-necessity-is-not-secured-merely-by-treating-grounding-as-a-determinati--23325d0a6e99",
+        "claim-apparent-counterexamples-to-grounding-necessity-fail-when-alleged-full-grounds-a--8cbbd720ef13",
+        "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+        "claim-schaffer-s-set-based-counterexample-does-not-establish-grounding-non-transitivit--49174a1f51f7",
+        "claim-grounding-does-not-entail-being-more-fundamental-than-so-appeals-to-relative-fun--0468a01c8a45",
+        "claim-schaffer-s-contrastive-or-differential-formulation-of-grounding-still-fails-to-m--7fd859e88bdc"
+      ],
+      "sections": [
+        {
+          "content": "Both sources treat grounding as constrained by modal or explanatory structure, but they press that structure in different directions: one defends metaphysical necessitation for full grounding, while the other argues that grounding should not be modeled as a strict order.",
+          "heading": "Shared Concept"
+        },
+        {
+          "content": "The necessity-focused source argues that if a fact is fully grounded in a plurality of facts, the corresponding conjunction metaphysically necessitates the grounded fact, deriving this from significance, essence, and the necessity of essential truths.",
+          "heading": "Necessity and Full Grounding"
+        },
+        {
+          "content": "The strict-order source argues that grounding is not transitive, irreflexive, or asymmetric, and it treats appeals to counterfactual necessity and relative fundamentality as insufficient to secure strict-order behavior.",
+          "heading": "Strict-Order Pressure"
+        },
+        {
+          "content": "A synthesis page could ask whether grounding necessity is a thesis about full grounding that remains compatible with failures of strict-order principles, especially when alleged counterexamples involve partial grounds, non-grounds, truthmaking, or alethic-fact grounding.",
+          "heading": "Synthesis Question"
+        }
+      ],
+      "source_ids": [
+        "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+        "source-02-grounding-is-not-a-strict-order--7c76f525b4e3"
+      ],
+      "structure_type": "wiki",
+      "title": "Grounding Necessity and Structural Order",
+      "topic_id": "grounding-necessity-and-structural-order"
+    },
+    {
+      "claim_ids": [
+        "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124",
+        "claim-connecting-questions-lack-cognitive-significance-only-when-fine-style-essential--f96bc70d5d2d",
+        "claim-paradigm-grounding-cases-support-the-significance-principle-because-their-connec--28555377f52b",
+        "claim-the-epistemic-constraint-on-grounding-does-not-undermine-grounding-objectivity-b--87922d9890f9",
+        "claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf",
+        "claim-alethic-fact-grounding-is-a-species-of-grounding-in-which-a-truthmaker-grounds-t--9c9dc5afedc6",
+        "claim-truthmaking-is-non-transitive-socrates-being-white-truthmakes-the-proposition-th--3fbb8a3c9b9d",
+        "claim-truthmaking-is-non-irreflexive-because-a-proposition-of-the-form-e-exists-is-mad--d4aca38737b4",
+        "claim-alethic-fact-grounding-is-non-irreflexive-because-if-proposition-b-is-true-and-s--0f3a01a46967",
+        "claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5"
+      ],
+      "sections": [
+        {
+          "content": "Both sources rely on distinctions about what genuinely explains or grounds what: one separates full grounds from partial grounds and non-grounds, while the other treats truthmaking and alethic-fact grounding as species of grounding that generate structural counterexamples.",
+          "heading": "Shared Concept"
+        },
+        {
+          "content": "The necessity-focused source ties full grounding to connecting questions that lack cognitive significance, with Fine-style essential truths explaining why the grounds imply the grounded fact.",
+          "heading": "Explanatory Adequacy"
+        },
+        {
+          "content": "The strict-order source argues that truthmaking and alethic-fact grounding are grounding relations, then uses self-truthmaking, self-grounding truth facts, mutual truthmaking, and non-transitive truthmaking chains to challenge strict-order constraints.",
+          "heading": "Truthmaking as Grounding"
+        },
+        {
+          "content": "A synthesis page could compare whether truthmaking cases satisfy the explanatory standard for full grounding, or whether they reveal a looser grounding species whose structural behavior differs from the cases used to defend grounding necessity.",
+          "heading": "Synthesis Question"
+        }
+      ],
+      "source_ids": [
+        "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+        "source-02-grounding-is-not-a-strict-order--7c76f525b4e3"
+      ],
+      "structure_type": "wiki",
+      "title": "Truthmaking, Full Grounding, and Explanatory Connection",
+      "topic_id": "truthmaking-full-grounding-and-explanatory-connection"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Durability at six months is derived from the same non-physicalist belief shift measured prospectively.",
+  "relation_file_id": "rel-f26caa6d39fc6e815567a4f1f748e24c4f793303d6a27d6923b3f0526c40bdd7",
+  "relation_id": "derived_from:claim-most-psychedelic-associated-shifts-in-non-physicalist-metaphysical-beliefs-persi--9591d5bd7c0c->claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-most-psychedelic-associated-shifts-in-non-physicalist-metaphysical-beliefs-persi--9591d5bd7c0c",
+  "src_claim_ref": "1",
+  "status": "open"
+}

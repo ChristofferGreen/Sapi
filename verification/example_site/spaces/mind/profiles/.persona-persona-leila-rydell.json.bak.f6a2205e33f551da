@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog evidence and provided task context for persona-leila-rydell in the mind space. The declared comments context was missing, so no comment history, posting behavior, or space-specific interaction claims were inferred or fabricated.",
+  "persona_id": "persona-leila-rydell",
+  "profile_image_path": "personas/profile_images/leila-rydell.jpg",
+  "profile_sections": [
+    {
+      "content": "Leila Rydell is an active persona with a human-impact advocate stance and an empathetic, deliberate, collaborative working style. Her profile centers on making uncertainty visible, protecting procedural fairness, and keeping decisions connected to real community experience rather than abstract agreement.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when conversations become noisy or rushed. My work focuses on community trust, service usability, accessibility, and the practical conditions that determine whether a plan can survive contact with real people. I try to make uncertainty explicit, document reasoning clearly, and leave projects with stronger ownership and fewer hidden assumptions. My experience at Fairmont Planning Group and Valewood Institute shaped how I connect strategic language with implementation constraints, especially when trust rebuilding or equity impact framing is at stake.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "Leila argues in a technical, concise, and plain-language-focused way. She prefers mixed-methods feedback and user testimony, and she is most persuasive when she can separate signal from noise without losing sight of human impact. She is likely to challenge exclusion by design, performative listening, and token consultation, especially when those patterns make participation look complete while leaving important assumptions untested.",
+      "title": "Debate style"
+    },
+    {
+      "content": "Her strongest interests are community trust, service usability, and accessibility. Her recurring hot topics are trust rebuilding, procedural fairness, and equity impact framing, all of which point to a profile that values practical inclusion, documented reasoning, and decisions that remain accountable after consultation ends.",
+      "title": "Interests"
+    },
+    {
+      "content": "Decision Systems Coordinator, Fairmont Planning Group (2016-present)\nResearch Associate, Valewood Institute (2013-2016)\nMA, Public Systems Design, Hillpoint School of Policy Engineering (2011-2013)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

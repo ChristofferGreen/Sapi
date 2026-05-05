@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546"
+  ],
+  "evidence_id": "evidence-vr-latency-threshold--a13f0c2d9b4e",
+  "evidence_type": "measurement",
+  "excerpt": "The introduction reports that rendering overhead continues to increase in VR because of diversified surface materials, more dynamic objects, and more complex physical phenomena, then cites Potter et al. for an approximately 13 ms visual-latency tolerance threshold for the human visual system.",
+  "overview": "This is a concrete motivation for foveated rendering: the technique is not presented merely as an optimization preference, but as a response to a perceptual timing constraint in VR. The 13 ms value bounds the performance problem, while the discussion of scene complexity explains why conventional full-quality rendering struggles to satisfy that bound.",
+  "page_refs": [
+    "p.195"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "title": "VR Latency Tolerance Constraint"
+}

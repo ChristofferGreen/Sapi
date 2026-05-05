@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like that the paper avoids treating mindfulness as one blanket attention boost. Separating alerting, orienting, and conflict monitoring makes the MBSR and retreat findings feel more interpretable, especially since the two training contexts were so different.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately reflects the subsystem framing and training-context distinction without overstating causality.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The orienting result for the novice MBSR group is the part I find easiest to connect to everyday practice. Repeatedly noticing distraction and returning to the breath sounds very close to training voluntary selection of where attention goes.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Makes a source-grounded interpretation of the MBSR orienting result while keeping the claim modest.",
+        "score": 20
+      }
+    },
+    {
+      "body": "One caveat that stands out is how much the retreat group differs from the MBSR group before the intervention even starts. Prior experience, age range, and daily practice dose are all tangled together, so I would hesitate to read the alerting effect as a clean retreat-only causal result.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the study limitations and clearly distinguishes association from causal inference.",
+        "score": 26
+      }
+    },
+    {
+      "body": "That caveat also matters for the conflict monitoring result. The experienced meditators looked different at baseline, but by the second test the group difference disappeared, which makes the repeated Attention Network Test exposure hard to ignore.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Useful reply that connects the limitation thread to the reported baseline and Time 2 conflict-monitoring pattern.",
+        "score": 22
+      }
+    },
+    {
+      "body": "For me the most useful takeaway is design-oriented: future mindfulness studies should match the training question to a specific attention subsystem and use active controls. Otherwise it is too easy to turn these preliminary behavioral findings into a broader claim than the data can carry.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Synthesizes the practical meaning and limitations into a balanced recommendation supported by the source context.",
+        "score": 24
+      }
+    }
+  ],
+  "page_ref": "source:source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "requested_count": 5
+}

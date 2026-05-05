@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T15:52:46Z",
+  "claim_id": "claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+  "evidence_excerpts": [
+    "50 qubits is a significant milestone, because that\u2019s beyond what can be simulated by brute force using the most powerful existing digital supercomputers.",
+    "Noisy emphasizes that we\u2019ll have imperfect control over those qubits; the noise will place serious limitations on what quantum devices can achieve in the near term."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Noise limits NISQ depth",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "text": "NISQ computers with roughly 50 to a few hundred qubits mark a classically hard simulation regime, but noisy gates place serious near-term limits on what they can compute."
+}

@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The bridge works best when attention is treated as organized function rather than a direct consciousness meter. Tononi's account asks whether differentiated parts are causally unified, while the mindfulness study only shows that training can shift particular attention subsystems.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately preserves the topic's cautious bridge and separates consciousness claims from behavioral attention findings.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I found the shared emphasis on specialization useful. The thalamocortical discussion argues that specialized areas need reciprocal integration, and the Attention Network Test similarly avoids collapsing alerting, orienting, and conflict monitoring into one vague attention score.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Grounded in both sources and highlights the organizational theme without overstating their relationship.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The boundary section matters because it stops the synthesis from becoming too loose. Improved orienting after MBSR is interesting, but it is not evidence that mindfulness increases \u03a6, changes complexes, or alters the substrate of consciousness.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Strongly enforces the evidential boundary and ties it to specific source-supported limits.",
+        "score": 26
+      }
+    },
+    {
+      "body": "That limitation also keeps the retreat findings in proportion. Faster no-cue detection and altered alerting may say something about readiness after extensive practice, but the study design mixes prior experience, training dose, and group differences.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "A useful reply that extends the caution to the retreat result and notes the study's confounds.",
+        "score": 22
+      }
+    },
+    {
+      "body": "What I like about pairing these papers is the pressure against global labels. Consciousness is not just lots of information, and mindfulness is not just better attention; in both cases the interesting claims depend on how differentiated parts are coordinated.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Concise synthesis of the shared theme, faithful to both source summaries and the topic framing.",
+        "score": 25
+      }
+    }
+  ],
+  "page_ref": "topic:topic-differentiated-and-integrated-mental-functions--b87bacda5cb9",
+  "requested_count": 5
+}

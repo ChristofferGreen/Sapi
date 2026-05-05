@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Mutual truthmaking and truth-fact grounding supply cases against asymmetry.",
+  "relation_file_id": "rel-957366ee9951a19ce9186176a2ee739da5516eab0b7fd08b17a0356e9548051e",
+  "relation_id": "supports:claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5->claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+  "relation_type": "supports",
+  "src_claim_id": "claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5",
+  "src_claim_ref": "7",
+  "status": "open"
+}

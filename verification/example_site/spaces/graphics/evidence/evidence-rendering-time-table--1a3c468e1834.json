@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-measured-overview-rendering-stayed-below-one-second-for-several-datasets-up-to-a--d5763f10ba50",
+    "claim-the-visualization-examples-reveal-interpretable-patterns-in-real-graph-datasets--6f7b292bd09e"
+  ],
+  "evidence_id": "evidence-rendering-time-table--1a3c468e1834",
+  "evidence_type": "table_result",
+  "excerpt": "Table 1 reports rendering times in seconds at 1500x750 resolution. US air-traffic has 275 nodes and 1,925 edges with 0.3s overview times at 32px and 128px. Wiki-Vote has 8,436 nodes and 103,660 edges with 0.3s and 0.4s overview times. net150 has 43,517 nodes and 1,538,840 edges with 0.4s overview times at both kernel sizes. The 4.5M dataset has 99,965 nodes and 4,551,564 edges with 1.2s overview times and 2.1s to 2.5s bad-case times. Europe has 37,612,093 nodes and overview times of 0.2s at 32px and 0.5s at 128px.",
+  "overview": "The table provides concrete measured evidence for interactive performance across small, medium, and very large datasets. It supports claims that overview rendering can remain subsecond through roughly million-edge scales and that even a multi-million-edge case is close to interactive. It also shows limits: kernel size and bad-case viewports can increase time substantially, especially for random or very dense visible distributions.",
+  "page_refs": [
+    "Table 1",
+    "p.2490"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "title": "Rendering Time Table"
+}

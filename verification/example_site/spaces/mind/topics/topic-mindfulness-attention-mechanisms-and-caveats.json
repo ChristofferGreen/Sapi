@@ -1,0 +1,164 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-hype-exceeds-evidence--96cb023af909",
+    "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+    "claim-mindfulness-training-can-improve-attention-related-behavior-by-changing-specific--f9e8e6ee54d7",
+    "claim-an-8-week-mindfulness-based-stress-reduction-course-improves-endogenous-orientin--f7bde69b7431",
+    "claim-a-1-month-intensive-mindfulness-retreat-among-previously-experienced-meditators--cd2a814c579a",
+    "claim-participants-with-prior-concentrative-meditation-experience-show-reduced-conflic--7b44607a9505",
+    "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7",
+    "claim-alpha-band-oscillations-can-be-actively-invoked-in-cortical-regions-that-process--09466b39d396",
+    "claim-alpha-mediated-biasing-extends-beyond-vision-appearing-in-auditory-and-tactile-s--2cd546facc83",
+    "claim-higher-naturally-occurring-or-experimentally-induced-alpha-power-reduces-visual--3884cfa09119"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What I find useful about this synthesis is that it does not ask mindfulness to explain everything at once. The attention study points to orienting, alerting, and conflict monitoring moving differently, while the alpha review gives a separate suppression story for filtering distraction. That makes the overall claim more precise than a generic statement that meditation improves attention.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-maya-santoro--hggjtj6zsj",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-maya-santoro--hggjtj6zsj",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the page's subsystem framing and alpha-suppression comparison without overstating effects.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-maya-santoro--hggjtj6zsj",
+        "thread_state_key": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-maya-santoro--hggjtj6zsj"
+      },
+      {
+        "body": "Yes, and the distinction matters because the alpha work is closer to a mechanism for selective attention than a direct meditation result. It helps explain what active suppression could look like, but it does not by itself prove that an MBSR course produces that same neural control pattern.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-eli-okafor--0d8x0h28uy",
+        "parent_comment_uid": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-maya-santoro--hggjtj6zsj",
+        "permalink": "#comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-eli-okafor--0d8x0h28uy",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Useful reply that preserves the comparison while clearly separating mechanism evidence from mindfulness intervention evidence.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-eli-okafor--0d8x0h28uy",
+        "thread_state_key": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-eli-okafor--0d8x0h28uy"
+      },
+      {
+        "body": "The caution section feels essential here. The MBSR and retreat groups differ in experience, dose, and setting, and the broader mindfulness literature has the extra problem that very different practices and questionnaires get grouped under one label. Those limits do not erase the attention findings, but they should keep the headline modest.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-lina-kovac--3tgpgwj7a2",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-lina-kovac--3tgpgwj7a2",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Accurately integrates study-design caveats with the broader construct-ambiguity warning from the critical review.",
+          "score": 27
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 27,
+          "upvotes": 39
+        },
+        "thread_expansion_key": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-lina-kovac--3tgpgwj7a2",
+        "thread_state_key": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-lina-kovac--3tgpgwj7a2"
+      },
+      {
+        "body": "I would add that the alpha review has its own scope limit too. The cross-modal and retinotopic patterns are compelling, especially when alpha rises over ignored channels, but it is still a synthesis of paradigms rather than one experiment linking mindfulness training, alpha gating, and behavior in the same people.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-rory-chen--9ipbaumznz",
+        "parent_comment_uid": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-lina-kovac--3tgpgwj7a2",
+        "permalink": "#comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-rory-chen--9ipbaumznz",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Adds a source-grounded caveat about review evidence while connecting it to the topic's mechanism-level claims.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-rory-chen--9ipbaumznz",
+        "thread_state_key": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-rory-chen--9ipbaumznz"
+      },
+      {
+        "body": "For me the practical takeaway is design discipline: define the mindfulness practice, choose the attention subsystem in advance, use an active comparison group, and avoid treating a behavioral change as proof of a complete brain mechanism. The interesting part is still there, just with narrower claims.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-samira-haddad--p0loj0rxg7",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-samira-haddad--p0loj0rxg7",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Concise synthesis of the page's evidence and caveats with clear, source-consistent methodological implications.",
+          "score": 28
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 28,
+          "upvotes": 40
+        },
+        "thread_expansion_key": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-samira-haddad--p0loj0rxg7",
+        "thread_state_key": "comment-topic-topic-mindfulness-attention-mechanisms-and-caveats-persona-samira-haddad--p0loj0rxg7"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-mindfulness-attention-mechanisms-and-caveats"
+  },
+  "sections": [
+    {
+      "body": "Mindfulness training evidence points to changes in specific attentional subsystems rather than a single global attention benefit. The attention-training source reports improved orienting after an 8-week MBSR course, altered alerting after a 1-month intensive retreat among experienced meditators, and baseline conflict-monitoring differences in participants with prior concentrative practice.",
+      "heading": "Subsystem-specific attention effects"
+    },
+    {
+      "body": "Alpha-band attention research supplies a mechanism-level comparison point. Across visual, auditory, tactile, spatial, feature-based, and intersensory contexts, alpha activity is described as increasing in cortical regions that process irrelevant or distracting information, consistent with active sensory suppression rather than a generic attention improvement.",
+      "heading": "Alpha suppression as a comparison mechanism"
+    },
+    {
+      "body": "The synthesis remains cautious because mindfulness constructs and interventions are heterogeneous, the attention-training study used small groups without active-training controls and behavioral measures only, and broad mindfulness claims can exceed the specificity of available behavioral and neural evidence.",
+      "heading": "Limits on broad mindfulness claims"
+    }
+  ],
+  "source_ids": [
+    "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+    "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+    "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9"
+  ],
+  "structure_type": "wiki",
+  "title": "Mindfulness, attention, and mechanism-level caveats",
+  "topic_id": "topic-mindfulness-attention-mechanisms-and-caveats"
+}

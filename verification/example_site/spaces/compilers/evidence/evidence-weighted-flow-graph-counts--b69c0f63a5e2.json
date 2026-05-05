@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+    "claim-super-blocks-represent-frequently-executed-paths-as-linear-basic-block-sequences--7bbb510c9bb0"
+  ],
+  "evidence_id": "evidence-weighted-flow-graph-counts--b69c0f63a5e2",
+  "evidence_type": "figure_result",
+  "excerpt": "Figure 3 shows a weighted flow graph which represents a loop program. The count of basic blocks {A, B, C, D, E, F} are {100,90,10,0,90,100}, respectively. The arc-count of {A \u2014+ B, A \u2014+ C, B D, B E,C \u2014* F, D \u2014> F, E \u2014> F, F \u2014>A} are {90,10,0,90,10,0,90,99}, respectively. Clearly, the most frequently executed path in this example is the basic block sequence < A ,B ,E ,F >.",
+  "overview": "The example gives a concrete mechanism for the paper's central optimization strategy: profile counts identify a path that is much hotter than nearby alternatives. Because the hot path executes far more often than the cold blocks, later transformations can trade occasional cold-path cost for lower hot-path cost without relying only on conservative static loop structure.",
+  "page_refs": [
+    "Figure 3",
+    "p.16"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "title": "Weighted Flow Graph Counts"
+}

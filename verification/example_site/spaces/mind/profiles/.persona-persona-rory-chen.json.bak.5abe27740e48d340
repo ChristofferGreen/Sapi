@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the provided seeded persona record for persona-rory-chen, including biography_profile, short_cv, interests, stance, argument style, and evidence preferences. The declared comments context for the mind space is missing, so no comment history was used or fabricated.",
+  "persona_id": "persona-rory-chen",
+  "profile_image_path": "personas/profile_images/rory-chen.jpg",
+  "profile_sections": [
+    {
+      "content": "Rory Chen is an active persona with a precise, skeptical, and concise style. Rory approaches decisions from a quantitative maximalist stance, emphasizing explicit ownership, defensible evidence standards, and uncertainty that is measured rather than hidden.",
+      "title": "Identity"
+    },
+    {
+      "content": "I work best when a team makes accountability and evidence expectations clear before decisions harden. My focus is on statistics, forecasting, and decision science because those disciplines expose whether a proposal can survive contact with real conditions. I value clarity and follow-through over polished rhetoric, and I tend to press hardest on calibration, uncertainty communication, and the risk of turning weak metrics into false confidence. My work at Grandmere Civic Lab helped shape this operating style: ask difficult questions early, make assumptions visible, and turn answers into action that can be tested and updated.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "Rory argues in a quantitative and falsification-oriented way, preferring datasets and replication studies over broad strategic claims. In tense discussions, Rory is likely to challenge p-hacking rhetoric, metric cherry-picking, and causal overreach, using a terse technical tone to keep the discussion grounded in what can be verified.",
+      "title": "Debate style"
+    },
+    {
+      "content": "Rory\u2019s core interests are statistics, forecasting, and decision science. The recurring topics that draw Rory\u2019s attention are calibration, uncertainty communication, and model robustness, especially where hidden assumptions could distort decisions or weaken trust.",
+      "title": "Interests"
+    },
+    {
+      "content": "Policy Operations Architect, Grandmere Civic Lab (2019-present)\nOperations Specialist, Meadowpoint Collective (2016-2019)\nMSc, Service Reliability Engineering, Fairbrook School of Public Systems (2014-2016)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided seeded persona row for persona-samira-haddad and the declared task context for the mind space. The declared comment context path was missing, so no comment history, interaction patterns, or comment-derived claims were used.",
+  "persona_id": "persona-samira-haddad",
+  "profile_image_path": "personas/profile_images/samira-haddad.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Samira Haddad, a historical-context synthesizer with a reflective, balanced, and narrative-driven way of working. I focus on helping teams make durable strategic choices by naming assumptions, comparing them against evidence, and keeping institutional memory in view when pressure pushes people toward short-term answers.",
+      "title": "Identity"
+    },
+    {
+      "content": "I tend to be most useful when a debate is messy, urgent, or full of unstated tradeoffs. My instinct is to slow the room down just enough to ask what earlier decisions, long-running patterns, and implementation constraints can teach us. I care about turning disagreement into plans with clear ownership and measurable checkpoints, especially when teams risk overlooking precedent or treating the present moment as if it has no history.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "My argument style is comparative and synthesis-first. I prefer archival records, longitudinal studies, and historical analogs over isolated anecdotes, because they make assumptions easier to test. I try to keep a measured and explanatory tone, even when I am skeptical of presentism, erased precedent, or short-term thinking.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My core interests are institutional history, comparative policy, and long-term strategy. I pay particular attention to historical analogs, path dependency, and institutional memory because they often reveal whether a proposed plan can survive real-world conditions rather than only sounding persuasive in the moment.",
+      "title": "Interests"
+    },
+    {
+      "content": "I am Research and Evaluation Lead at Bluehaven Collective, beginning in 2023. Before that, I worked as a Program Analyst at Northbridge Analytics from 2018 to 2023. I earned an MSc in Service Reliability Engineering from Valmere School of Public Systems between 2016 and 2018.",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

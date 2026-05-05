@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T14:49:12Z",
+  "claim_id": "claim-clinical-evidence-remains-preliminary--117717456958",
+  "evidence_excerpts": [
+    "Dimidjian and Segal estimate that only 30% of research using mindfulness-based interventions has moved beyond Stage 1; 20% was Stage 2a, 9% Stage 2b, and only 1% outside research contexts.",
+    "MBIs compared to active controls were found to have a mixture of only moderate, low, or no efficacy, depending on the disorder being treated."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Clinical evidence remains preliminary",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "text": "Clinical evidence for mindfulness-based interventions remains preliminary because much intervention research has not advanced beyond early-stage efficacy designs and often lacks active controls or real-world practice tests."
+}

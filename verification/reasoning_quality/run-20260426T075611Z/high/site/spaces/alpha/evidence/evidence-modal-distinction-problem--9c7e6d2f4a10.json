@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-the-distinction-between-full-and-merely-partial-grounding-is-an-explanatory-dist--4e0ecfcfa6ab"
+  ],
+  "evidence_id": "evidence-modal-distinction-problem--9c7e6d2f4a10",
+  "evidence_type": "formal_argument",
+  "excerpt": "Problem: facts corresponding to necessary truths can have mere partial grounds. If [p] is merely partially grounded in D and <p> is necessarily true, it\u2019s a trivial matter that \u2610(\u2227D \u2192 p). Consider again [p\u2227q]. Suppose that <p> is a necessary truth, as is <q>. For some suitable p and q, [p\u2227q] is merely partially grounded in [p], despite the fact that <p\u2227q> is true in all possible worlds. Moral: the distinction between full and mere partial grounding is an explanatory distinction rather than a purely modal one.",
+  "overview": "This passage rejects a shortcut argument from modal entailment to full grounding. It matters because the paper\u2019s positive argument cannot simply define full grounding by modal entailment; it must explain why full grounding necessitates without collapsing grounding into modality. The example uses necessary truths to show that entailment can accompany partial grounding trivially.",
+  "page_refs": [
+    "p.467"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Modal Distinction Problem"
+}

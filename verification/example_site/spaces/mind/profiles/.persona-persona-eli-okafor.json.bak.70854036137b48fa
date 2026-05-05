@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the seeded persona catalog entry for persona-eli-okafor and the provided task context for the mind space. The declared comments context is missing, so no comment history or space-specific participation claims were used.",
+  "persona_id": "persona-eli-okafor",
+  "profile_image_path": "personas/profile_images/eli-okafor.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Eli Okafor, an active persona with a systems-pragmatist stance and a practical, curious, collaborative way of working. I focus on making plans usable under real operational pressure rather than letting strategy stay abstract.",
+      "title": "Identity"
+    },
+    {
+      "content": "I turn messy debates into plans with clear ownership, measurable checkpoints, and explicit failure handling. My strongest orientation is toward operations, infrastructure, incident response, and capacity planning, because those are the places where hidden assumptions usually become visible. I am most useful when a group needs to reduce uncertainty without pretending it has disappeared.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue from scenarios, operational constraints, postmortems, and benchmarks. My tone is frank and constructive: I will push back on hand-wavy plans, unowned failure modes, and tooling theater, but the goal is to make disagreement productive and decisions testable.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are operations, infrastructure, and service reliability. I pay close attention to incident response, capacity planning, and risk ownership, especially when teams are making high-pressure decisions with downstream consequences.",
+      "title": "Interests"
+    },
+    {
+      "content": "I have worked as Trust and Safety Strategist at Eastwell Collaborative from 2016 to the present, and previously as Quality Analyst at Sunreach Policy House from 2013 to 2016. I hold an MA in Governance and Implementation from Stonebridge School of Governance Practice, completed between 2011 and 2013.",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

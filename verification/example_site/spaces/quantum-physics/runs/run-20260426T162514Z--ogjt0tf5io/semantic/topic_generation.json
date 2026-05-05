@@ -1,0 +1,171 @@
+{
+  "topics": [
+    {
+      "claim_ids": [
+        "claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+        "claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+        "claim-quantum-principal-component-analysis-can-diagonalize-a-covariance-like-density-m--6ee32a171ac2",
+        "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc",
+        "claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90",
+        "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+        "claim-quantum-computers-are-not-expected-to-efficiently-solve-hard-np-hard-combinatori--0d5f718c4d47",
+        "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3"
+      ],
+      "sections": [
+        {
+          "content": "Quantum machine learning claims identify speedups for pattern recognition, linear algebra, principal components, and linear-system solving, but the same source stresses that input, output, costing, and benchmarking constraints determine whether those speedups become practical. This aligns with NISQ cautions that mature classical approximation methods remain strong competitors and that quantum computers are not expected to efficiently solve hard NP-hard instances in general.",
+          "heading": "Why asymptotic speedups are not enough"
+        },
+        {
+          "content": "Random-circuit sampling on Sycamore provides a concrete task-specific super-classical benchmark, while the QML source frames speedup by lower query or gate complexity under particular access assumptions. Together they support a topic centered on distinguishing demonstrable sampling advantage from broadly useful algorithmic advantage.",
+          "heading": "Task-specific demonstrations versus reusable advantage"
+        },
+        {
+          "content": "The available evidence supports a cautious synthesis: advantage is credible for selected tasks and models, but each claimed gain depends on hardware errors, data loading, readout, circuit costs, and comparison against optimized classical methods.",
+          "heading": "Evidence boundaries"
+        }
+      ],
+      "source_ids": [
+        "source-05-quantum-machine-learning--a91f0184eb29",
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+      ],
+      "structure_type": "wiki",
+      "title": "Practical quantum advantage depends on benchmarks, access models, and classical baselines",
+      "topic_id": "topic-practical-quantum-advantage-benchmarks-and-bottlenecks"
+    },
+    {
+      "claim_ids": [
+        "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789",
+        "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc",
+        "claim-the-quantum-variational-eigensolver-prepares-approximate-ground-states-by-using--0037de1d8464",
+        "claim-quantum-expectation-estimation-reduces-coherent-evolution-demands-relative-to-ph--e17864953251",
+        "claim-device-ansatz-strategies-can-provide-variationally-optimal-solutions-for-the-ava--64cad93bb7ab",
+        "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+        "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb"
+      ],
+      "sections": [
+        {
+          "content": "The photonic variational eigensolver uses repeated expectation-value measurements inside a classical minimization loop, replacing long coherent phase-estimation evolutions with many short measurements. Quantum machine learning has a parallel theme: quantum subroutines can accelerate selected computations, but circuit depth and implementation overhead can erase nominal exponential gains if realistic costs are not controlled.",
+          "heading": "Hybrid loops reduce coherent runtime demands"
+        },
+        {
+          "content": "NISQ evidence suggests devices with tens to hundreds of noisy qubits may be valuable experimental tools, but gate errors limit uncorrected circuit depth. Hybrid methods such as VQE and QML routines are therefore synthesis-worthy as approaches that seek useful results before fault tolerance, while remaining vulnerable to noise, optimization difficulty, and classical competition.",
+          "heading": "NISQ fit and limitations"
+        },
+        {
+          "content": "Device ansatz strategies in the photonic VQE source show one route to adapting algorithms to available hardware. This complements the QML warning that unoptimized realizations, such as large HHL-style circuits, can become prohibitive despite attractive theoretical scaling.",
+          "heading": "Hardware-aware ansatz design"
+        }
+      ],
+      "source_ids": [
+        "source-05-quantum-machine-learning--a91f0184eb29",
+        "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb"
+      ],
+      "structure_type": "wiki",
+      "title": "Short-coherence hybrid algorithms adapt quantum computation to noisy devices",
+      "topic_id": "topic-short-coherence-hybrid-algorithms-for-noisy-devices"
+    },
+    {
+      "claim_ids": [
+        "claim-quantum-machine-learning-for-quantum-data-can-reduce-tomography-and-characteriza--b02ec76133c0",
+        "claim-quantum-principal-component-analysis-can-diagonalize-a-covariance-like-density-m--6ee32a171ac2",
+        "claim-full-density-matrix-characterization-becomes-an-impractical-verification-strateg--65a0be3566e1",
+        "claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4",
+        "claim-quantum-connectivity-gives-linked-nodes-a-state-space-that-scales-exponentially--50cc8b700a70",
+        "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772"
+      ],
+      "sections": [
+        {
+          "content": "Quantum machine learning for quantum data can extract principal components, dynamics, or expectation-value summaries with fewer measurements than full state reconstruction. The quantum-internet source independently warns that full density-matrix characterization fails as networks grow because the state description scales exponentially.",
+          "heading": "Avoiding full tomography"
+        },
+        {
+          "content": "The photonic VQE source shows that broad Hamiltonian classes can be reduced to measured Pauli-product expectation values, providing another example of replacing full state knowledge with task-relevant summaries. This connects quantum-data learning, molecular energy estimation, and network verification around the common problem of extracting useful evidence from exponentially large state spaces.",
+          "heading": "Expectation values as compact observables"
+        },
+        {
+          "content": "The sources do not establish a universal replacement for tomography. They instead support a family of summary-based strategies whose reliability depends on the target observable, access model, and verification protocol.",
+          "heading": "Verification uncertainty"
+        }
+      ],
+      "source_ids": [
+        "source-05-quantum-machine-learning--a91f0184eb29",
+        "source-03-the-quantum-internet--cd7f6b2f11e2",
+        "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b"
+      ],
+      "structure_type": "wiki",
+      "title": "Quantum data workflows seek useful summaries without full state reconstruction",
+      "topic_id": "topic-quantum-data-summaries-without-full-state-reconstruction"
+    },
+    {
+      "claim_ids": [
+        "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4",
+        "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc",
+        "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789",
+        "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+        "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+        "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de",
+        "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5"
+      ],
+      "sections": [
+        {
+          "content": "The QML source states that loading large classical datasets can require exponential time without qRAM and that reading full solution vectors or principal components can be exponentially hard. These caveats constrain linear-algebra speedups such as HHL and qPCA, especially when the desired answer is classical data rather than a quantum state or compact statistic.",
+          "heading": "Input and output bottlenecks"
+        },
+        {
+          "content": "NISQ evidence adds that uncorrected noisy circuits cannot grow far before noise overwhelms the signal, while scalable fault-tolerant computing requires large physical-qubit overhead. Sycamore and VQE sources show useful experiments under these constraints, but also expose fidelity, calibration, and measurement limits.",
+          "heading": "Hardware noise and fault-tolerance costs"
+        },
+        {
+          "content": "Across sources, scalability is not determined by asymptotic gate counts alone. Data loading, measurement demands, circuit depth, error rates, and correction overhead jointly decide whether a proposed quantum advantage remains meaningful.",
+          "heading": "Synthesis claim"
+        }
+      ],
+      "source_ids": [
+        "source-05-quantum-machine-learning--a91f0184eb29",
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+        "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b"
+      ],
+      "structure_type": "wiki",
+      "title": "Data access, readout, and error overheads shape whether quantum algorithms scale",
+      "topic_id": "topic-data-access-readout-and-error-overheads"
+    },
+    {
+      "claim_ids": [
+        "claim-deep-quantum-learning-can-use-quantum-annealers-programmable-photonic-circuits-a--0bdb973219c3",
+        "claim-quantum-boltzmann-machine-training-can-gain-quadratic-improvements-in-thermaliza--2d6a13e72831",
+        "claim-the-demonstrated-integrated-photonic-processor-prepares-and-measures-arbitrary-t--f41a0c8f645b",
+        "claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+        "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+        "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+        "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e"
+      ],
+      "sections": [
+        {
+          "content": "The QML source allows deep quantum learning to use quantum annealers, programmable photonic circuits, and quantum Boltzmann machines rather than requiring a large universal quantum computer. This connects to the photonic VQE experiment, which demonstrates a task-specific integrated photonic processor, and to NISQ framing that near-term devices are best understood as experimental tools and stepping stones.",
+          "heading": "Beyond universal fault-tolerant machines"
+        },
+        {
+          "content": "Quantum Boltzmann machine training claims quadratic improvements in thermalization, sampling, and data access under quantum-coherent or qRAM assumptions. Random-circuit sampling and photonic expectation estimation are different tasks, but they share a broader theme: near-term platforms may be evaluated by how well they produce, sample, or measure quantum distributions under constrained coherence.",
+          "heading": "Sampling and thermalization as shared primitives"
+        },
+        {
+          "content": "The evidence supports special-purpose platforms as plausible testbeds, not settled replacements for universal fault-tolerant computation. Their value depends on benchmarked performance against classical methods and on whether hardware-specific advantages survive realistic noise and access assumptions.",
+          "heading": "Open comparison problem"
+        }
+      ],
+      "source_ids": [
+        "source-05-quantum-machine-learning--a91f0184eb29",
+        "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+      ],
+      "structure_type": "wiki",
+      "title": "Special-purpose quantum platforms broaden the near-term learning landscape",
+      "topic_id": "topic-special-purpose-platforms-for-near-term-quantum-learning"
+    }
+  ]
+}

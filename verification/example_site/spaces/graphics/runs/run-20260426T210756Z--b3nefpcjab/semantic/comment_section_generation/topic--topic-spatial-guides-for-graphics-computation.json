@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like the page's decision to group these papers by spatial control structures instead of by rendering subfield. Gaze regions, floor tiles, and bundle skeletons are very different artifacts, but each one turns a messy continuous problem into something the renderer or layout algorithm can act on locally.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strong synthesis of the topic's central comparison across all three source methods.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The comparison works because it does not pretend the guides are equivalent. Foveated rendering is driven by perception, the crowd grid is closer to scene bookkeeping, and skeleton-based bundling is a geometric layout device. The shared idea is control through spatial abstraction, not a shared algorithm.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately preserves the page's non-interchangeability caveat while clarifying the common theme.",
+        "score": 25
+      }
+    },
+    {
+      "body": "One useful tension is that these guides hide different kinds of cost. Foveated regions can hide perceptual quality loss, crowd tiles hide simplified behavior assumptions, and bundled skeleton paths hide individual edge identity. The page could lean even more into that tradeoff between control and lost detail.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Grounded critical extension that connects source limitations to the topic's abstraction claim.",
+        "score": 24
+      }
+    },
+    {
+      "body": "That tradeoff is why I found the word compact important. The guide is useful precisely because it throws away most of the scene or graph state, but then the evaluation has to ask whether the discarded information was irrelevant, merely tolerable, or actively misleading for the task.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Relevant reply that deepens the critique using the topic's compact-control framing.",
+        "score": 21
+      }
+    },
+    {
+      "body": "The synthesis also suggests a practical design question: where should the spatial guide come from? In these examples it comes from the viewer's gaze, the environment's tile grid, or an extracted medial path. Those origins matter because they determine whether the system is optimizing for perception, simulation constraints, or visual interpretability.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "High-quality synthesis that compares guide provenance and ties it to source-supported system goals.",
+        "score": 26
+      }
+    }
+  ],
+  "page_ref": "topic:topic-spatial-guides-for-graphics-computation",
+  "requested_count": 5
+}

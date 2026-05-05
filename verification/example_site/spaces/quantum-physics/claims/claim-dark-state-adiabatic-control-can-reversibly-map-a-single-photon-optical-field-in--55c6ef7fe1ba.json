@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:12:22Z",
+  "claim_id": "claim-dark-state-adiabatic-control-can-reversibly-map-a-single-photon-optical-field-in--55c6ef7fe1ba",
+  "evidence_excerpts": [
+    "The dark state is |D\u27e9 = cos \u03b8 |a\u27e9|0\u27e9 + sin \u03b8 |b\u27e9|1\u27e9, with the control field \u03a9(t) steering the mapping between atomic and photonic components.",
+    "In the ideal case, |\u03c6field(t)\u27e9|b\u27e9 \u2192 |0\u27e9(c1|a\u27e9 + c0|b\u27e9) ... \u2192 |\u03c6field(t + \u03c4)\u27e9|b\u27e9."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Dark states map photons reversibly",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "text": "Dark-state adiabatic control can reversibly map a single-photon optical field into a trapped atom and later map the stored atomic state back into a flying optical field."
+}

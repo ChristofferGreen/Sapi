@@ -1,0 +1,14 @@
+{
+  "claim_ids": [
+    "claim-creating-original-shaders-requires-substantial-mathematical-and-technical-fluenc--7ec21177eabc",
+    "claim-digital-art-practice-must-negotiate-the-tension-between-scientific-technical-pro--0ddadf7f5e3d"
+  ],
+  "evidence_id": "evidence-vector-math-lighting-example--4f8e16b2c9ad",
+  "evidence_type": "formal_argument",
+  "excerpt": "Manipuler un shader requiert donc une certaine aisance math\u00e9matique et technique. ... savoir qu'un produit scalaire entre deux vecteurs orthonorm\u00e9s retourne l'angle entre ces deux vecteurs, ce qui va nous permettre de repr\u00e9senter le rebond de lumi\u00e8re sur une surface, en faisant le produit scalaire du vecteur normal au point et de la direction de la source lumineuse.",
+  "overview": "This example links a specific mathematical operation, the dot product, to a visual rendering effect. It concretizes the article's broader claim about technical fluency: shadercoding expertise is not abstract prestige but practical knowledge used to manipulate light, space, and image behavior.",
+  "page_refs": [],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "title": "Vector Math Lighting Example"
+}

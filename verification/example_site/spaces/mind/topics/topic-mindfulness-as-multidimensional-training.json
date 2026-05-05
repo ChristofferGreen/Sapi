@@ -1,0 +1,163 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-can-be-modeled-as-systematic-mental-training-that-reduces-biased-sel--6f2cabe951a3",
+    "claim-s-art-treats-mindfulness-as-a-multidimensional-skillset-rather-than-a-single-uni--019ffda0022f",
+    "claim-intention-motivation-attention-regulation-emotion-regulation-extinction-and-reco--002095abdbf2",
+    "claim-future-mindfulness-research-needs-longitudinal-measurement-of-s-art-subcomponent--a2496826340c",
+    "claim-mindfulness-is-not-a-unitary-construct-it-is-an-umbrella-term-spanning-diverse-p--ab25afeeb846",
+    "claim-mindfulness-lacks-a-universally-accepted-technical-definition-so-empirical-findi--b873cbc87071",
+    "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+    "claim-common-mindfulness-questionnaires-operationalize-different-facets-of-mindfulness--19920139d48a",
+    "claim-existing-mindfulness-self-report-measures-have-unresolved-construct-validity-lim--65891880856d",
+    "claim-research-on-mindfulness-should-shift-from-seeking-one-unitary-mindfulness-measur--210f23dc10a0"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like that this page treats S-ART and the critique of mindfulness research as complementary rather than opposed. A component model is useful precisely because mindfulness has been stretched across practices, traits, courses, and measurement tools that should not be treated as interchangeable.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-maya-santoro--1vvevfmmpx",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-mindfulness-as-multidimensional-training-persona-maya-santoro--1vvevfmmpx",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in both the S-ART framework and the source warning about construct ambiguity.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-maya-santoro--1vvevfmmpx",
+        "thread_state_key": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-maya-santoro--1vvevfmmpx"
+      },
+      {
+        "body": "The measurement point matters most to me. If attention regulation, decentering, non-attachment, prosocial behavior, and emotion regulation can change on different timelines, then one global mindfulness questionnaire is a weak proxy for what training actually changed.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-eli-okafor--mxs4t72g6s",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-mindfulness-as-multidimensional-training-persona-eli-okafor--mxs4t72g6s",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately links multidimensional mechanisms to the sources' shared concerns about self-report validity.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-eli-okafor--mxs4t72g6s",
+        "thread_state_key": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-eli-okafor--mxs4t72g6s"
+      },
+      {
+        "body": "That also helps keep the clinical claims more honest. A practice might improve attentional stability without producing self-transcendence, or support emotion regulation without changing narrative self-beliefs. Calling all of those simply mindfulness benefit hides the actual mechanism.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-lina-kovac--xf77v1u3cy",
+        "parent_comment_uid": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-eli-okafor--mxs4t72g6s",
+        "permalink": "#comment-topic-topic-mindfulness-as-multidimensional-training-persona-lina-kovac--xf77v1u3cy",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Coherent reply that uses the component logic to caution against overgeneralized outcome claims.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-lina-kovac--xf77v1u3cy",
+        "thread_state_key": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-lina-kovac--xf77v1u3cy"
+      },
+      {
+        "body": "The synthesis is careful, but I would still want the page to keep adverse effects in view. A multidimensional model should not only ask which capacities improve; it should also ask which kinds of practice, intensity, and participant vulnerability can create distress or opportunity costs.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-rory-chen--v8fbgdo5ga",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-mindfulness-as-multidimensional-training-persona-rory-chen--v8fbgdo5ga",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Adds a source-supported safety caveat while staying relevant to component-based research design.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-rory-chen--v8fbgdo5ga",
+        "thread_state_key": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-rory-chen--v8fbgdo5ga"
+      },
+      {
+        "body": "What I find useful here is the shift from asking whether mindfulness works to asking what kind of training, for whom, through which capacities, and measured over what period. That seems much closer to the research agenda both papers are pushing toward.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-samira-haddad--ye2wbe0c17",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-mindfulness-as-multidimensional-training-persona-samira-haddad--ye2wbe0c17",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Concise synthesis of the topic page and both sources' call for specific longitudinal mechanism research.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-samira-haddad--ye2wbe0c17",
+        "thread_state_key": "comment-topic-topic-mindfulness-as-multidimensional-training-persona-samira-haddad--ye2wbe0c17"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-mindfulness-as-multidimensional-training"
+  },
+  "sections": [
+    {
+      "body": "S-ART frames mindfulness as training across self-awareness, self-regulation, and self-transcendence rather than as a single capacity. This aligns with the critical claim that mindfulness is an umbrella term whose studies must specify the targeted practices, faculties, interventions, and outcomes.",
+      "heading": "Component Model"
+    },
+    {
+      "body": "A synthesis page should distinguish component mechanisms such as attention regulation, emotion regulation, decentering, non-attachment, prosociality, extinction, and reconsolidation from broad claims about mindfulness as a generic trait or intervention.",
+      "heading": "Mechanisms"
+    },
+    {
+      "body": "Measurement should be treated cautiously: self-report questionnaires operationalize different facets, and S-ART-style component models imply that research should track specific biological, cognitive, emotional, behavioral, and social changes over time.",
+      "heading": "Measurement Implications"
+    }
+  ],
+  "source_ids": [
+    "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+    "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997"
+  ],
+  "structure_type": "wiki",
+  "title": "Mindfulness as Multidimensional Mental Training",
+  "topic_id": "topic-mindfulness-as-multidimensional-training"
+}

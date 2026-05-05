@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like that this topic puts the DNA circuit paper beside profile-guided and machine-learning compiler work without flattening them into the same mechanism. In all three cases, the compiler becomes more credible when it listens to measured behavior: effective concentrations at the bench, execution counts in weighted flow graphs, or training outcomes over program features.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in all three source contexts and clearly captures the shared feedback-loop theme.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The comparison also shows why evidence is not automatically wisdom. A 0.44x outlier gate, a hot path in a C program, and a learned coarsening decision each need different interpretation before they should change the compiled artifact. The useful pattern is not measurement alone, but measurement folded back into a constrained design process.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Adds a nuanced synthesis across biochemical calibration, profiles, and learned optimization decisions.",
+        "score": 25
+      }
+    },
+    {
+      "body": "One useful distinction is that the DNA workflow uses feedback after a physical construction begins, while the C optimization papers mostly use evidence before or during code generation. That makes the word compilation stretch a bit, but productively: the output is not finished until the surrounding system has been calibrated enough for the generated design to behave.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Good thread reply that distinguishes timing of feedback while staying faithful to the topic's synthesis.",
+        "score": 22
+      }
+    },
+    {
+      "body": "I would be careful not to make feedback sound like a universal fix. The machine-learning survey is explicit that models inherit the limits of their features and training programs, and the unpurified seesaw circuit still has leak, stoichiometry, and synthesis-error concerns. Evidence-driven compilation helps most when the evidence is representative and the correction knobs are real.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Balances enthusiasm with source-backed limitations around representativeness and physical nonidealities.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The profile-guided optimization example is a nice bridge between the molecular and ML cases. It is less exotic than DNA strand displacement and less statistically open-ended than learned models, but the principle is the same: once the compiler can see which paths dominate execution, classic transformations stop being purely structural and become workload-sensitive.",
+      "comment_ref": "draft-5",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Accurately uses the weighted-flow-graph source as a middle case and connects it to the larger argument.",
+        "score": 21
+      }
+    }
+  ],
+  "page_ref": "topic:topic-calibration-and-feedback-in-evidence-driven-compilation",
+  "requested_count": 5
+}

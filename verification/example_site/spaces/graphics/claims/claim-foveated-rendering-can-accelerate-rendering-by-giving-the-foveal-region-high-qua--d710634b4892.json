@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:05:42Z",
+  "claim_id": "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+  "evidence_excerpts": [
+    "The source explains that foveated rendering performs high-quality rendering in the foveal region and low-quality rendering in the peripheral region, allowing rendering to speed up without sacrificing perceived visual quality."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Foveation preserves perceived quality",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "text": "Foveated rendering can accelerate rendering by giving the foveal region high quality and the peripheral region lower quality while preserving perceived visual quality."
+}

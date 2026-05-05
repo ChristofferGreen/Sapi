@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T18:03:17Z",
+  "claim_id": "claim-seesaw-compiler-automates-dna-circuit-design--367a566abb69",
+  "evidence_excerpts": [
+    "A feedforward digital logic circuit is first translated into an equivalent dual-rail logic circuit and then translated into an equivalent seesaw DNA circuit. Visual DSD code and Mathematica code are generated for analysing and simulating the seesaw DNA circuit, and DNA sequences are generated for constructing the circuit."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Compiler automates DNA circuits",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "text": "The Seesaw Compiler automates the translation of feedforward digital logic into equivalent dual-rail and seesaw DNA strand displacement circuits, while producing simulation code and DNA sequences for construction."
+}

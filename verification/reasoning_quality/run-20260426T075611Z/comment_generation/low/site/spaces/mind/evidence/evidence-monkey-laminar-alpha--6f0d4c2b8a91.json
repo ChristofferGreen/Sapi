@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-attention-related-alpha-modulation-is-likely-controlled-primarily-by-a-cortico-c--6009765cfbf7",
+    "claim-alpha-band-oscillations-in-the-8-14-hz-range-operate-as-an-attentional-suppressi--792aae8300bb"
+  ],
+  "evidence_id": "evidence-monkey-laminar-alpha--6f0d4c2b8a91",
+  "evidence_type": "observational_result",
+  "excerpt": "Bollimunta et al. recorded differential voltages across the approximately 2 mm cortical mantle with a 14-electrode linear array in alert monkeys. In areas V2 and V4, infragranular layers served as local alpha pacemakers with small granular influence; alpha power in V2 and V4 showed strong negative correlations with task performance.",
+  "overview": "The monkey laminar evidence supplies anatomical depth missing from scalp EEG. Local pacemaker patterns and performance correlations in V2/V4 are consistent with cortico-cortical feedback and suppression of competing visual information. The review also notes that IT showed a different positive correlation, so alpha is not treated as a unitary rhythm across cortical areas.",
+  "page_refs": [
+    "p.10"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "title": "Monkey Laminar Alpha"
+}

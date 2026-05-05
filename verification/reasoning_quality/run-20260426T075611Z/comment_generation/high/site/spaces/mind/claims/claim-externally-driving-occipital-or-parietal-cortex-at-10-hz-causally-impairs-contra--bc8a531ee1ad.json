@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T08:02:42Z",
+  "claim_id": "claim-externally-driving-occipital-or-parietal-cortex-at-10-hz-causally-impairs-contra--bc8a531ee1ad",
+  "evidence_excerpts": [
+    "TMS at 10 Hz impaired visual detection contralateral to the site of stimulation for both occipital and parietal stimulation sites, consistent with a spatially specific suppressive role of alpha-band activity with a cortical origin.",
+    "Critically, no effects on visual detection were seen for stimulation at either 5 or 20 Hz."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Ten hertz changes detection",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Externally driving occipital or parietal cortex at 10 Hz causally impairs contralateral visual detection and improves ipsilateral detection, whereas 5 Hz and 20 Hz stimulation do not produce the same effect."
+}

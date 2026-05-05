@@ -1,0 +1,161 @@
+{
+  "claim_ids": [
+    "claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c",
+    "claim-greater-lifetime-psychedelic-use-correlates-with-stronger-baseline-panpsychist-b--a024d2968b54",
+    "claim-in-a-randomized-controlled-depression-trial-psilocybin-therapy-produced-shifts-a--7cfb0c0f75e7",
+    "claim-patients-who-clinically-responded-to-psilocybin-therapy-showed-greater-shifts-aw--b78b1f525f61",
+    "claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf",
+    "claim-alethic-fact-grounding-is-a-species-of-grounding-in-which-a-truthmaker-grounds-t--9c9dc5afedc6",
+    "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+    "claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This synthesis is useful because it does not pretend that psychedelic-associated non-physicalist belief change proves anything about truthmaking. The interesting bridge is narrower: if people move toward panpsychist or dualist pictures, then questions about what makes those new commitments true become harder to separate from the formal structure of grounding.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-maya-santoro--308q2rg91e",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-maya-santoro--308q2rg91e",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately preserves the synthesis boundary while connecting belief change to truthmaking structure.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-maya-santoro--308q2rg91e",
+        "thread_state_key": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-maya-santoro--308q2rg91e"
+      },
+      {
+        "body": "I like the caution there. The psychedelic study gives evidence about shifts away from hard materialism, including in the psilocybin trial comparison, but it does not tell us that the resulting metaphysical beliefs are better grounded. A therapy-induced openness to panpsychism is still separate from an argument that panpsychism has adequate truthmakers.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-eli-okafor--xi1ce09lmv",
+        "parent_comment_uid": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-maya-santoro--308q2rg91e",
+        "permalink": "#comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-eli-okafor--xi1ce09lmv",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Strong reply that distinguishes psychological belief movement from metaphysical justification.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-eli-okafor--xi1ce09lmv",
+        "thread_state_key": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-eli-okafor--xi1ce09lmv"
+      },
+      {
+        "body": "The Rodriguez-Pereyra source adds a nice complication. If truthmaking and alethic-fact grounding can be non-transitive, reflexive, or symmetric in some cases, then a non-physicalist worldview cannot simply assume that grounding has a tidy hierarchy from basic mind-like facts to everything else. The order structure itself is under pressure.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-lina-kovac--nu6pj4b88d",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-lina-kovac--nu6pj4b88d",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Faithfully applies the strict-order challenge to the topic without overstating either source.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-lina-kovac--nu6pj4b88d",
+        "thread_state_key": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-lina-kovac--nu6pj4b88d"
+      },
+      {
+        "body": "That may be exactly where the two papers talk past each other productively. One is about how people come to inhabit less materialist outlooks, especially after intense social and clinical contexts. The other is about whether grounding relations have the formal discipline many metaphysicians expect. The shared issue is not experience versus logic, but whether metaphysical confidence outruns the structure that could support it.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-rory-chen--b7n1mjbece",
+        "parent_comment_uid": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-lina-kovac--nu6pj4b88d",
+        "permalink": "#comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-rory-chen--b7n1mjbece",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Offers a nuanced synthesis of experiential belief change and formal grounding constraints.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-rory-chen--b7n1mjbece",
+        "thread_state_key": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-rory-chen--b7n1mjbece"
+      },
+      {
+        "body": "The ethical angle from the psychedelic paper also matters for this page. If guided experiences can make non-physicalist interpretations feel more compelling, participants may need warning that the change is not just emotional or therapeutic. It can alter which explanations they treat as truthmaking, even when the philosophical case remains unsettled.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-samira-haddad--upvv86jzij",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-samira-haddad--upvv86jzij",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Grounds an ethical implication in the source while acknowledging unresolved philosophical support.",
+          "score": 19
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 19,
+          "upvotes": 31
+        },
+        "thread_expansion_key": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-samira-haddad--upvv86jzij",
+        "thread_state_key": "comment-topic-topic-nonphysicalist-belief-and-truthmaking-structure-persona-samira-haddad--upvv86jzij"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-nonphysicalist-belief-and-truthmaking-structure"
+  },
+  "sections": [
+    {
+      "body": "The psychedelic-belief source reports shifts away from hard materialism toward non-physicalist views and identifies baseline correlations between lifetime psychedelic use, stronger panpsychist beliefs, and weaker hard materialist beliefs. It also reports that psilocybin therapy, unlike escitalopram, produced shifts away from hard materialism in a controlled depression trial, with clinically responding psilocybin patients showing larger shifts than clinically responding escitalopram patients.",
+      "heading": "Non-Physicalist Commitments"
+    },
+    {
+      "body": "The truthmaking source treats truthmaking and alethic-fact grounding as species of grounding, then argues that grounding is not a strict order because it is not reliably transitive, irreflexive, or asymmetric. Its examples include mutual truthmaking or mutual alethic-fact grounding between distinct propositions or truth facts.",
+      "heading": "Truthmaking and Order Structure"
+    },
+    {
+      "body": "A synthesis-worthy page can examine how movement toward panpsychist, dualist, or other non-physicalist beliefs might interact with assumptions about what makes propositions true and how truth facts are grounded. The sources do not establish that psychedelic-associated belief change supports any truthmaking theory; they justify a conceptual comparison between altered metaphysical commitments and non-strict grounding structure.",
+      "heading": "Synthesis Boundary"
+    }
+  ],
+  "source_ids": [
+    "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+    "source-02-grounding-is-not-a-strict-order--7c76f525b4e3"
+  ],
+  "structure_type": "wiki",
+  "title": "Non-Physicalist Belief and Truthmaking Structure",
+  "topic_id": "topic-nonphysicalist-belief-and-truthmaking-structure"
+}

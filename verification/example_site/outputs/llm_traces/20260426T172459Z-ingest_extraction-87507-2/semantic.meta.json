@@ -1,0 +1,20 @@
+{
+  "attempt": 2,
+  "completed_at": "2026-04-26T17:27:45Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/relations"
+  ],
+  "flow_key": "ingest_extraction",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/runs/run-20260426T172044Z--yb7lj1jb6g/semantic/ingest_extraction.json",
+  "repair_context_present": true,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json",
+  "started_at": "2026-04-26T17:24:59Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260426T172459Z-ingest_extraction-87507-2",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": true,
+  "validation_errors": []
+}

@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c"
+  ],
+  "evidence_id": "evidence-validation-figures-table--c03e74a9b5d2",
+  "evidence_type": "table_result",
+  "excerpt": "Table 1 clearly shows that the upper bounds on the number of layers that result from compiling the layers of remote CNOTs are widely respected and hold for all the considered examples. Fig. 15(c) also shows that choosing the data-qubit-swapping-based strategy against the entanglement-swapping-based strategy is generally the best choice. Fig. 16(c) confirms that the data-qubit-swapping-based strategy is better than the entanglement-swapping-based one.",
+  "overview": "The evaluation evidence connects the analytical model to compiled benchmark circuits. The extracted markdown preserves the qualitative conclusions more reliably than the table's numeric cells, so this item supports validation and comparative strategy choice but not a specific numeric effect size.",
+  "page_refs": [
+    "Table 1",
+    "Fig. 15",
+    "Fig. 16"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "title": "Validation Figures and Table"
+}

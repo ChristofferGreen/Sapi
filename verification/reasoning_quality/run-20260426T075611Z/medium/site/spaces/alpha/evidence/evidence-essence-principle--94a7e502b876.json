@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-when-the-connecting-questions-for-p-and-d-lack-cognitive-significance-fine-style--10ca110e3a81",
+    "claim-the-argument-for-grounding-necessity-combines-full-grounding-the-significance-pr--6cd6bef0130d"
+  ],
+  "evidence_id": "evidence-essence-principle--94a7e502b876",
+  "evidence_type": "formal_argument",
+  "excerpt": "essence: the connecting questions with respect to [p] and D lack cognitive significance only if there are certain essential truths characteristic of [p], D, the plurality consisting of [p] and D, or the entities they involve according to which \u2227D \u2192 p.",
+  "overview": "The essence principle supplies the bridge from an epistemic constraint to modal entailment. Trogdon\u2019s idea is that a connecting question ceases to have substantive content because grasping the nature of the relevant facts or entities reveals an essential truth according to which the grounds suffice for the grounded proposition.",
+  "page_refs": [
+    "p.467",
+    "p.473"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Essence Principle"
+}

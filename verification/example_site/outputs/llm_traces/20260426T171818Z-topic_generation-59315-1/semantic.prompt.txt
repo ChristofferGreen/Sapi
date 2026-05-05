@@ -1,0 +1,144 @@
+=== semantic invocation ===
+flow_key: topic_generation
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260426T171122Z--orhuj9omy2/semantic/topic_generation.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims
+
+=== generation spec ===
+flow_key: topic_generation
+version: v1
+schema_path: schemas/topic_generation.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/topic_generation.json
+context_paths:
+  - <space_root>/sources
+  - <space_root>/claims
+---
+## Task
+Generate one strict JSON object for topic generation at `output_json_path`.
+Return a `topics` array containing 0..n concept-centric topic candidates.
+
+## Context Interpretation Rules
+- Use only evidence available under `context_paths`.
+- If support is weak/ambiguous, reflect that in section content rather than inventing facts.
+- Do not invent canonical IDs outside schema contracts.
+- Prefer topics that synthesize shared concepts across multiple sources.
+- If there is no clear cross-source concept worth a page, return an empty array (`"topics": []`).
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "topics": [
+    {
+      "topic_id": "",
+      "title": "",
+      "structure_type": "wiki",
+      "sections": [],
+      "claim_ids": [],
+      "source_ids": []
+    }
+  ]
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources"
+}
+
+=== repair context ===
+{
+  "previous_invalid_json": "{\n  \"topics\": [\n    {\n      \"claim_ids\": [\n        \"claim-straight-line-graph-drawings-can-be-rendered-interactively-with-adjustable-level--d4a598a6ca79\",\n        \"claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006\",\n        \"claim-a-two-pass-accumulation-field-method-fits-directly-into-the-opengl-pipeline-and--bf684a8c9b90\",\n        \"claim-the-edge-aggregation-approach-operates-in-image-space-and-does-not-require-preco--da4e8cd6122f\",\n        \"claim-the-rendering-complexity-remains-linear-in-input-size-with-seed-point-rectangle--8a6cf3a6542e\",\n        \"claim-measured-overview-rendering-stayed-below-one-second-for-several-datasets-up-to-a--d5763f10ba50\",\n        \"claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034\",\n        \"claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a\",\n        \"claim-cuda-image-space-distance-transforms-skeletonization-path-computation-and-attrac--46de973cba61\",\n        \"claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892\"\n      ],\n      \"sections\": [\n        \"Several sources describe real-time graphics pipelines that trade exact per-element rendering for perceptually or analytically useful aggregation. In large graph rendering, density-based node aggregation, edge cumulation, pixel-bin seed points, and a two-pass accumulation field reduce work while preserving the density field for a viewport.\",\n        \"The shared concept is not a single algorithm but a design pattern: move expensive structure into screen-space or image-space representations that fit GPU rendering workflows. This pattern appears in OpenGL graph level-of-detail rendering, image-based crowd impostors, CUDA-assisted edge bundling, and foveated rendering's regional quality allocation.\",\n        \"The evidence supports a topic focused on scale management, with caveats that each source optimizes a different visual object: graph nodes and edges, animated crowds, bundled connectivity, or perceptual display regions.\"\n      ],\n      \"source_ids\": [\n        \"source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7\",\n        \"source-02-image-based-crowd-rendering--565ae2b0e3a1\",\n        \"source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c\",\n        \"source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Image-space GPU aggregation for real-time visual scale\",\n      \"topic_id\": \"topic-image-space-gpu-aggregation-for-real-time-scale\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-edge-endpoints-can-be-aggregated-by-hill-climbing-on-the-node-density-field-so-t--6e6b82bcec81\",\n        \"claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006\",\n        \"claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127\",\n        \"claim-the-attraction-rule-moves-interior-edge-points-toward-feature-transform-location--8607f298987e\",\n        \"claim-restricting-attraction-to-skeleton-paths-passing-through-endpoint-feature-points--86df6a0326fa\",\n        \"claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18\",\n        \"claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e\"\n      ],\n      \"sections\": [\n        \"The sources repeatedly use fields, sampled spaces, or local geometric summaries to decide how visual elements should move, merge, or be rendered. Large-graph level-of-detail rendering treats node density as a height field and hill-climbs edge endpoints toward cluster maxima, while skeleton-based edge bundling constructs distance-field shapes and attracts edges toward skeleton paths.\",\n        \"Shadercoding and raymarching provide a related but broader rendering concept: spatial or distance-field descriptions can generate image structure inside fragment shaders. The connection is conceptual rather than identical, because the graph papers use fields for aggregation and layout readability, while shadercoding uses mathematical fields for image synthesis.\",\n        \"This topic can synthesize how spatial abstractions turn raw geometry or graph data into controllable visual structure.\"\n      ],\n      \"source_ids\": [\n        \"source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7\",\n        \"source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c\",\n        \"source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Fields and local structure as guides for visual aggregation\",\n      \"topic_id\": \"topic-fields-and-local-maxima-as-visual-structure-guides\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-the-lago-implementation-supports-interactive-zooming-panning-normalization-contr--0c65d7666097\",\n        \"claim-the-visualization-examples-reveal-interpretable-patterns-in-real-graph-datasets--6f7b292bd09e\",\n        \"claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5\",\n        \"claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963\",\n        \"claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3\",\n        \"claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9\",\n        \"claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499\"\n      ],\n      \"sections\": [\n        \"Large visual datasets are made useful by combining overview summaries with interaction mechanisms that let users recover selected detail. LaGO supports zooming, panning, normalization controls, color mapping, and detail-on-demand labels, and its examples show recognizable patterns in flights, migration, Net50, and OpenStreetMap data.\",\n        \"This connects to skeleton-based edge bundling's coarse-scale connectivity focus and to foveated rendering's principle of allocating quality unevenly according to perceptual need. In each case, the visualization is intentionally not uniform: it emphasizes structures likely to matter while accepting some loss or reduction elsewhere.\",\n        \"The topic should frame these systems as interactive summary interfaces, not as lossless data displays. The evidence explicitly warns that bundling can obscure individual edges, and foveation similarly depends on perceptual assumptions.\"\n      ],\n      \"source_ids\": [\n        \"source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7\",\n        \"source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c\",\n        \"source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Interactive visual summaries and detail on demand\",\n      \"topic_id\": \"topic-interactive-visual-summaries-and-detail-on-demand\"\n    }\n  ]\n}",
+  "require_complete_replacement_json": true,
+  "validation_errors": [
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/0/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/1/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/2/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Normalization error: topic_generation semantic output requires at least one section with non-empty body.",
+      "path": "/topics",
+      "validator": "post_schema_contract",
+      "validator_value": "topic_generation_normalizer"
+    }
+  ]
+}

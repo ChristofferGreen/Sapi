@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What I like about this topic is that it refuses to treat compilation as just translation. In all three cases, the useful compiler is the one that knows which constraint actually governs success: molecular impurity and calibration, the worst-case execution path, or Bell-state availability across a quantum network.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the topic's cross-source comparison and names the key constraints without overclaiming.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The comparison also makes the word resource do different work in each domain. For the DNA circuit, the scarce resource is reliable chemical behavior from imperfect strands; for WCC it is time along the worst-case path; for distributed quantum computing it is communication capacity mediated by entanglement.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Clearly distinguishes the three resource models while staying faithful to the provided source summaries.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The validation section is important because these are not just elegant compiler abstractions. A full DNA circuit reproducing the intended cellular automata patterns, WCET reductions from scratchpad and register choices, and quantum experiments matching analytical bounds are different kinds of evidence, but they all test whether the constraint model paid off.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Uses evidence from all three sources and explains why validation matters to the shared topic.",
+        "score": 25
+      }
+    },
+    {
+      "body": "I would still keep the scope boundaries visible. The DNA workflow is a demonstrated construction-and-debug method, WCC is tied to a specific compiler-analyzer-target stack, and the quantum results come from a deliberately restrictive line topology. The shared lesson is powerful, but not architecture- or chemistry-independent.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Adds a useful caveat grounded in stated limitations across the original source context.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The common pattern I see is feedback becoming part of the compiler contract. Calibration data guides DNA thresholds, static timing analysis feeds WCC transformations, and network constraints shape remote-CNOT distribution. That is a richer idea than simply saying the compiler optimizes better.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Synthesizes the topic naturally and accurately, though with slightly less concrete validation detail than the strongest comments.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "topic:topic-resource-aware-compilation-under-physical-and-timing-constraints",
+  "requested_count": 5
+}

@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T15:52:46Z",
+  "claim_id": "claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb",
+  "evidence_excerpts": [
+    "We have at least three good reasons for thinking that quantum computers have capabilities surpassing what classical computers can do.",
+    "The theoretical computer scientists have provided arguments, based on complexity theory, showing under reasonable assumptions that quantum states which are easy to prepare with a quantum computer have super-classical properties."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Quantum advantage has grounds",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "text": "Quantum computers have credible grounds for super-classical power because of known quantum algorithms, complexity-theoretic sampling arguments, and the absence of efficient classical simulations of general quantum computation."
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:56:22Z",
+  "claim_id": "claim-cuda-image-space-distance-transforms-skeletonization-path-computation-and-attrac--46de973cba61",
+  "evidence_excerpts": [
+    "The CUDA implementation takes about 4 milliseconds for distance, feature transform, and skeletonization on the same image, about 0.8 seconds per iteration for the graph in Figure 7a-b, and is reported as roughly 100 times faster than the CPU-based AFMM."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "CUDA accelerates skeleton bundling",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "text": "CUDA image-space distance transforms, skeletonization, path computation, and attraction make the skeleton-based edge bundling pipeline substantially faster than a CPU AFMM implementation on the tested graphs."
+}

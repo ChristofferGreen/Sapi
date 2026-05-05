@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I appreciate that the article does not dismiss mindfulness outright. The useful point is narrower: if an eight-week course, a phone exercise, a self-report score, and years of contemplative practice all get called the same thing, then broad claims about benefit become very hard to trust.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the source's distinction between cautious support and construct ambiguity.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The adverse-effects section feels especially important for public messaging. Trials that only wait for participants to volunteer problems cannot really support confident claims that meditation is harmless, especially when people may delay other care because the practice has been oversold.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately connects undermeasured harms with opportunity-cost concerns from the source.",
+        "score": 26
+      }
+    },
+    {
+      "body": "The critique of questionnaires is convincing to me. A person with no meditation experience and a long-term practitioner may interpret the same mindfulness item differently, so treating the score as a clean trait measure seems shaky without behavioral or biological anchors.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Relevant reply that reflects the source's concerns about self-report validity and measurement specificity.",
+        "score": 22
+      }
+    },
+    {
+      "body": "One thing I liked is the neuroscience caution. Brain-imaging findings can be useful for hypotheses, but the paper is right to resist turning group averages and colorful figures into simple stories about causality or clinical improvement.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Well aligned with the source's warning against overinterpreting neuroimaging evidence.",
+        "score": 21
+      }
+    },
+    {
+      "body": "For me the practical takeaway is that mindfulness research needs boring but essential upgrades: clearer intervention descriptions, active controls, preregistration, adverse-event tracking, and less promotional language. That still leaves room for real benefits, just not universal ones.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Concise synthesis of the reform agenda while preserving the source's balanced stance.",
+        "score": 27
+      }
+    }
+  ],
+  "page_ref": "source:source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "requested_count": 5
+}

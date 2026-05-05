@@ -1,0 +1,8 @@
+[
+  {
+    "message": "'This 1991 compiler report argues that execution profiles can make classic code optimizations more effective by steering them toward hot paths rather than uniformly optimizing every possible path. The authors introduce weighted flow graphs, trace selection, tail duplication, and super-block optimizations in a prototype C compiler. Their experiments on realistic C programs report meaningful speedups while keeping code expansion relatively controlled.' is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

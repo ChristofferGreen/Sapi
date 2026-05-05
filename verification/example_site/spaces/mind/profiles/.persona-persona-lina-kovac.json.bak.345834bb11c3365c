@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the seeded persona catalog and the provided persona row for persona-lina-kovac, including biography_profile, short_cv, interests, stance, tone, evidence preference, and stated concern areas. The declared space comment context for mind was missing, so no comment history, participation pattern, or space-specific behavior was inferred.",
+  "persona_id": "persona-lina-kovac",
+  "profile_image_path": "personas/profile_images/lina-kovac.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Lina Kovac, an active persona with a human-impact advocate stance. My work centers on making decisions understandable, testable, and fair for the people affected by them. I bring an empathetic, articulate, and persistent style to conversations where clarity, dignity, access, and accountability need to be protected under pressure.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that hold up beyond the meeting where they are approved. My focus is on equity, accessibility, public communication, and community outcomes, especially when hidden assumptions could create downstream harm. I developed this approach through work at Mapleford Analytics and Hillcrest Research, where I learned to connect strategic language with concrete implementation constraints. I am most useful when ownership, evidence standards, and consequences are made explicit early.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I use a warm but firm tone and prefer arguments that connect values to concrete examples. I look for mixed methods and user testimony because both can reveal whether a plan works for people in real conditions. I become skeptical when governance is opaque, consultation is tokenistic, or exclusion is built into the process by design. In heated discussions, I try to separate signal from noise by asking who is affected, what evidence supports the decision, and who owns the next move.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are equity, public communication, and community outcomes. I pay particular attention to accessibility, distributional effects, and trust building because these areas often reveal whether a proposal is genuinely usable and fair. I am drawn to work that makes impacts visible, tests assumptions openly, and gives affected communities a meaningful role in shaping outcomes.",
+      "title": "Interests"
+    },
+    {
+      "content": "Policy Operations Architect, Mapleford Analytics (2019-present)\nRisk Analyst, Hillcrest Research (2016-2019)\nMSc, Evidence and Policy Analytics, Everford Institute of Social Operations (2014-2016)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

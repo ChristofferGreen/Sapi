@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-unpurified-strands-can-build-complex-circuits--367a566abb69",
+  "dst_claim_ref": "2",
+  "last_evaluated_run_id": null,
+  "rationale": "The six-layer, 78-species implementation is the concrete case demonstrating complex circuits from unpurified strands.",
+  "relation_file_id": "rel-90e4fbc2b37f46d543636da970bae926e4496af9c522e177046455495397496f",
+  "relation_id": "supports:claim-rule-110-124-circuit-has-78-species--367a566abb69->claim-unpurified-strands-can-build-complex-circuits--367a566abb69",
+  "relation_type": "supports",
+  "src_claim_id": "claim-rule-110-124-circuit-has-78-species--367a566abb69",
+  "src_claim_ref": "1",
+  "status": "open"
+}

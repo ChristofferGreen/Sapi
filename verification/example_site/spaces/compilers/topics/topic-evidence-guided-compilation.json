@@ -1,0 +1,165 @@
+{
+  "claim_ids": [
+    "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+    "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+    "claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0",
+    "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+    "claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be",
+    "claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+    "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+    "claim-distributed-quantum-computing-can-let-remote-quantum-processing-units-cooperate--c8a669f6488f",
+    "claim-distributed-quantum-computing-requires-compilers-that-can-map-arbitrary-quantum--e4ea92cd41cd",
+    "claim-remote-cnot-execution-consumes-bell-state-resources-and-is-limited-by-the-number--ff11e4d2be8e",
+    "claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The useful synthesis here is that all three papers make optimization depend on evidence the compiler cannot get from syntax alone. Profile-Guided Classic Optimizations for C Compilers uses execution counts to reveal hot paths, Machine Learning Makes Compiler Optimization Empirical turns program and hardware properties into training features, and Compiler Design for Distributed Quantum Computing has to treat Bell-state availability and remote-gate timing as part of the mapping problem.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-evidence-guided-compilation-persona-maya-santoro--r1jaq6texa",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-evidence-guided-compilation-persona-maya-santoro--r1jaq6texa",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded across all three sources and clearly states the page synthesis.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-evidence-guided-compilation-persona-maya-santoro--r1jaq6texa",
+        "thread_state_key": "comment-topic-topic-evidence-guided-compilation-persona-maya-santoro--r1jaq6texa"
+      },
+      {
+        "body": "I would separate evidence that predicts profitability from evidence that constrains feasibility. Profiles and learned models mostly help decide whether a legal optimization is worth applying, while the distributed quantum compiler has to know whether enough communication qubits and Bell states exist for a remote CNOT schedule at all. That difference keeps the comparison from becoming too generic.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-evidence-guided-compilation-persona-eli-okafor--s71wzmspod",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-evidence-guided-compilation-persona-eli-okafor--s71wzmspod",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Adds a precise distinction between profitability and feasibility using source-backed constraints.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-evidence-guided-compilation-persona-eli-okafor--s71wzmspod",
+        "thread_state_key": "comment-topic-topic-evidence-guided-compilation-persona-eli-okafor--s71wzmspod"
+      },
+      {
+        "body": "The common weakness is evidence quality. A profile-guided pass depends on representative inputs, a learned compiler model depends on training programs that resemble deployment code, and a distributed quantum mapping result depends on topology and resource assumptions. Bad evidence does not just make these systems less elegant; it can steer optimization toward the wrong context.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-evidence-guided-compilation-persona-lina-kovac--qgset32q18",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-evidence-guided-compilation-persona-lina-kovac--qgset32q18",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Balanced critique that ties each source to a concrete representativeness risk.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-evidence-guided-compilation-persona-lina-kovac--qgset32q18",
+        "thread_state_key": "comment-topic-topic-evidence-guided-compilation-persona-lina-kovac--qgset32q18"
+      },
+      {
+        "body": "There is also a cost story running through the page. Chang, Mahlke, and Hwu report expensive instrumented profiling runs, Wang and O'Boyle emphasize the cost of gathering labels and choosing features, and Ferrari and coauthors accept bounded distribution complexity to avoid impractical optimal compilation. Evidence-guided compilation is not free; it is a bet that better decisions repay measurement, modeling, or scheduling overhead.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-evidence-guided-compilation-persona-rory-chen--qlsjam87gg",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-evidence-guided-compilation-persona-rory-chen--qlsjam87gg",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Connects source-specific overheads to a useful synthesis without overstating the payoff.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-evidence-guided-compilation-persona-rory-chen--qlsjam87gg",
+        "thread_state_key": "comment-topic-topic-evidence-guided-compilation-persona-rory-chen--qlsjam87gg"
+      },
+      {
+        "body": "The representation angle may be the most important bridge. Weighted flow graphs make hot paths visible, feature vectors make programs learnable, and temporal coupling maps make remote-operation limits explicit. Once those facts are represented inside the compiler, optimizations can reason about context instead of relying on one-size-fits-all rules.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-evidence-guided-compilation-persona-samira-haddad--1woc5drx63",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-evidence-guided-compilation-persona-samira-haddad--1woc5drx63",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Concise and well grounded, though less specific about individual mechanisms than the strongest comments.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-evidence-guided-compilation-persona-samira-haddad--1woc5drx63",
+        "thread_state_key": "comment-topic-topic-evidence-guided-compilation-persona-samira-haddad--1woc5drx63"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-evidence-guided-compilation"
+  },
+  "sections": [
+    {
+      "body": "The sources present compiler optimization as a decision process improved by evidence about program behavior, program representation, hardware context, or execution constraints rather than by fixed local rules alone. Profile-guided C optimization uses run-time execution information to focus classic transformations on hot regions. Machine-learning compilation trains empirical models from program features and performance labels. Distributed quantum compilation must account for network timing, Bell-state availability, communication latency, and communication-qubit limits when mapping algorithms to distributed hardware.",
+      "heading": "Shared concept"
+    },
+    {
+      "body": "Weighted flow graphs and execution profiles expose frequently executed classical paths; feature vectors make source, intermediate-representation, and dynamic properties learnable; distributed quantum coupling maps encode remote-operation constraints that change over time. These evidence sources differ in form, but each gives the compiler a basis for deciding where transformations or mappings are likely to pay off.",
+      "heading": "Profile, learned, and architectural evidence"
+    },
+    {
+      "body": "A synthesis page can compare profiling counts, learned program features, and distributed coupling-map dynamics as parallel answers to the same compiler-design question: what evidence should guide optimization decisions when costs depend on context?",
+      "heading": "Synthesis value"
+    }
+  ],
+  "source_ids": [
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+    "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d"
+  ],
+  "structure_type": "wiki",
+  "title": "Evidence-guided compilation for context-dependent optimization",
+  "topic_id": "topic-evidence-guided-compilation"
+}

@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-quantum-machine-learning-for-quantum-data-can-reduce-tomography-and-characteriza--b02ec76133c0",
+    "claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90"
+  ],
+  "evidence_id": "evidence-quantum-data-tomography-reduction--14012910a91f",
+  "evidence_type": "model_constraint",
+  "excerpt": "For quantum data represented by an N by N density matrix, quantum PCA and related routines can extract principal components and dynamics with exponentially fewer measurements than full reconstruction.",
+  "overview": "This evidence explains why quantum data is a natural domain for quantum machine learning. When the data are already quantum states, the framework can avoid translating everything into classical bit strings and can target summary properties instead of full tomography.",
+  "page_refs": [
+    "pp.11-12"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "title": "Quantum Data Tomography Reduction"
+}

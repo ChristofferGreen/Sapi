@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686",
+    "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279"
+  ],
+  "evidence_id": "evidence-elided-xeb-30-million-samples--e9b4d08f61aa",
+  "evidence_type": "statistical_result",
+  "excerpt": "For the largest 53-qubit, 20-cycle circuit, N_s = 30 \u00d7 10^6 samples over ten instances gave F_XEB = (2.24 \u00b1 0.21) \u00d7 10^-3, implying average fidelity above 0.1% with 5\u03c3 confidence.",
+  "overview": "This statistical result is the strongest direct fidelity evidence near the supremacy regime. Because the full hardest circuits could not be classically verified, the elided result provides a closely related, auditable proxy; the inference depends on the demonstrated correspondence among simplified, patch, elided, and full verification circuits.",
+  "page_refs": [
+    "Fig.4",
+    "p.508"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "title": "Elided-Circuit XEB Result"
+}

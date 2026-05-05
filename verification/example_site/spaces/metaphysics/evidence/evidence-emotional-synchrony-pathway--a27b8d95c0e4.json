@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-perceived-emotional-synchrony-during-the-psychedelic-ceremony-mediates-later-cha--adcb9ca374b4",
+    "claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c"
+  ],
+  "evidence_id": "evidence-emotional-synchrony-pathway--a27b8d95c0e4",
+  "evidence_type": "model_constraint",
+  "excerpt": "Path analysis supported a model with excellent fit in which perceived emotional synchrony with other participants\u2014moderated by baseline peer conformity\u2014predicted subsequent changes in the NPB factor. Acute emotional synchrony was itself predicted by trait absorption, gender, age, baseline beliefs, and identity fusion with the ceremony group.",
+  "overview": "The path model provides a candidate mechanism for belief change in ceremonial settings. It suggests that psychedelic effects operate through social and contextual experience, not only through isolated drug exposure. Because the model is observational, it should be read as mechanistic evidence for plausibility rather than proof of a single causal chain.",
+  "page_refs": [
+    "Fig. 4",
+    "p.5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "title": "Emotional Synchrony Pathway"
+}

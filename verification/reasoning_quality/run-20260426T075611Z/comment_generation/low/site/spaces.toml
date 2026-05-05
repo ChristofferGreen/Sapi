@@ -1,0 +1,33 @@
+# Sapi space registry bootstrap scaffold
+
+[[spaces]]
+space_name = "philosophy"
+space_root = "spaces/philosophy"
+
+[[spaces]]
+space_name = "mind"
+space_root = "spaces/mind"
+
+[[spaces]]
+space_name = "physics"
+space_root = "spaces/physics"
+
+[[spaces]]
+space_name = "metaphysics"
+space_root = "spaces/metaphysics"
+
+[[spaces]]
+space_name = "quantum-physics"
+space_root = "spaces/quantum-physics"
+
+[[spaces]]
+space_name = "computer-science"
+space_root = "spaces/computer-science"
+
+[[spaces]]
+space_name = "graphics"
+space_root = "spaces/graphics"
+
+[[spaces]]
+space_name = "compilers"
+space_root = "spaces/compilers"

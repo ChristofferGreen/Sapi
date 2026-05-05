@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:12:22Z",
+  "claim_id": "claim-large-quantum-networks-require-reversible-interconnects-that-convert-quantum-sta--03b0b3a11218",
+  "evidence_excerpts": [
+    "Fundamental to this endeavor are quantum interconnects that convert quantum states from one physical system to those of another in a reversible fashion.",
+    "Desiderata for a quantum interface include user-controlled coupling, robustness against imperfections, efficient error detection, and the rate hierarchy \u03c7 >> \u03ba >> \u03b3."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Networks require quantum interconnects",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "text": "Large quantum networks require reversible interconnects that convert quantum states between matter and light while preserving coherence and entanglement."
+}

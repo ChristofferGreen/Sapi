@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c",
+  "dst_claim_ref": "9",
+  "last_evaluated_run_id": null,
+  "rationale": "A plausible social-experiential pathway makes the causal interpretation more coherent while preserving contextual limits.",
+  "relation_file_id": "rel-b8ad5f7e8ca2e78b3656d817bd1029fe890587e67c7dcaf0370a0174e0ca0859",
+  "relation_id": "supports:claim-perceived-emotional-synchrony-during-the-psychedelic-ceremony-mediates-later-cha--adcb9ca374b4->claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c",
+  "relation_type": "supports",
+  "src_claim_id": "claim-perceived-emotional-synchrony-during-the-psychedelic-ceremony-mediates-later-cha--adcb9ca374b4",
+  "src_claim_ref": "6",
+  "status": "open"
+}

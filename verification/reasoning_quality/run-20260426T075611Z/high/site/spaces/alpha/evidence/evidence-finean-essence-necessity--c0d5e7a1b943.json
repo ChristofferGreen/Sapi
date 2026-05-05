@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-fine-style-essential-truths-are-metaphysically-necessary-so-essential-truths-of--ba393a6a4604",
+    "claim-when-a-connecting-question-lacks-cognitive-significance-relevant-fine-style-esse--5acde93f85f8"
+  ],
+  "evidence_id": "evidence-finean-essence-necessity--c0d5e7a1b943",
+  "evidence_type": "formal_argument",
+  "excerpt": "Fine\u2019s (1994) notion of essence is primitive, and he uses the notion of a \u2018real\u2019 as opposed to \u2018nominal\u2019 definition to communicate the notion he has mind. The basic idea is that, while a nominal definition says what a term means, a real definition tells us what an entity is. ... If p is an essential truth with respect to entity e, then p is true regardless of what the world might be like; the truth of p doesn\u2019t turn on how things turn out. Cast in terms of grounding, the idea is that the essential truths lack worldly grounds.",
+  "overview": "This evidence explains why essential truths can underwrite metaphysical necessity in the main argument. By adopting Fine\u2019s real-definition conception, the paper treats essential truths as not depending on contingent worldly arrangements. That makes the transition from an essential truth of the form \u2227D \u2192 p to \u25a1(\u2227D \u2192 p) intelligible.",
+  "page_refs": [
+    "p.474"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Finean Essence Necessity"
+}

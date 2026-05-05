@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-in-a-randomized-controlled-depression-trial-psilocybin-therapy-produced-shifts-a--7cfb0c0f75e7",
+    "claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c"
+  ],
+  "evidence_id": "evidence-controlled-psilocybin-comparison--b38c9ea6d1f5",
+  "evidence_type": "statistical_result",
+  "excerpt": "In the double-blind randomized trial, a significant drug versus time interaction was observed (F(56) = 3.13, p = 0.041, one-tailed). Shifts away from hard materialism were evident in the psilocybin group only (Z = 2.28, p = 0.02, d = 0.45), while the escitalopram group showed no changes in NPB (Z = 0.24, p = 0.33, d = 0.2).",
+  "overview": "The controlled-trial evidence is the strongest design element in the paper because it compares psilocybin therapy against an active antidepressant condition. It supports specificity of the belief shift to psilocybin in this depression-treatment sample, though the trial is smaller than the observational survey and differs in population and context.",
+  "page_refs": [
+    "Fig. 5a",
+    "p.5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "title": "Controlled Psilocybin Comparison"
+}

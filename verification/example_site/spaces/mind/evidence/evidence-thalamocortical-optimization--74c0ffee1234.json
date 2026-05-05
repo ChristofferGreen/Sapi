@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-a-distributed-thalamocortical-network-is-well-suited-to-generate-consciousness-b--571db463385d"
+  ],
+  "evidence_id": "evidence-thalamocortical-optimization--74c0ffee1234",
+  "evidence_type": "figure_result",
+  "excerpt": "A network whose connection matrix was obtained by optimization for \u03a6 (\u03a6 = 74 bits) has a heterogeneous arrangement of incoming and outgoing connections: each element is connected to a different subset of elements, with different weights. The same amount of connectivity, distributed homogeneously to eliminate functional specialization, yields a complex with much lower values of \u03a6 (\u03a6 = 20 bits). The same amount of connectivity, distributed in such a way as to form four independent modules to eliminate functional integration, yields four separate complexes with much lower values of \u03a6 (\u03a6 = 20 bits).",
+  "overview": "The simulation result links the biological thalamocortical discussion to the theory\u2019s formal criterion. High \u03a6 appears when a network is both specialized and integrated; removing either property lowers \u03a6 even when the amount of connectivity is held constant. This supports the claim that thalamocortical architecture is a plausible substrate for consciousness.",
+  "page_refs": [
+    "Fig.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Thalamocortical Optimization Result"
+}

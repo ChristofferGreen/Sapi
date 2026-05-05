@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "The latency and scene-complexity problem explains why foveated rendering's perceptual acceleration strategy is valuable.",
+  "relation_file_id": "rel-0d264238a34f6ae0c42102b7d74df1ab065edb60e7791c38d8dcdc206befe58b",
+  "relation_id": "supports:claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546->claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+  "relation_type": "supports",
+  "src_claim_id": "claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546",
+  "src_claim_ref": "0",
+  "status": "open"
+}

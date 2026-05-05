@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-straight-line-graph-drawings-can-be-rendered-interactively-with-adjustable-level--d4a598a6ca79",
+    "claim-the-edge-aggregation-approach-operates-in-image-space-and-does-not-require-preco--da4e8cd6122f"
+  ],
+  "evidence_id": "evidence-abstract-lod-graph-rendering--da3742d47ec2",
+  "evidence_type": "formal_argument",
+  "excerpt": "Abstract\u2014 We propose a technique that allows straight-line graph drawings to be rendered interactively with adjustable level of detail. The approach consists of a novel combination of edge cumulation with density-based node aggregation and is designed to exploit common graphics hardware for speed. It operates directly on graph data and does not require precomputed hierarchies or meshes. As proof of concept, we present an implementation that scales to graphs with millions of nodes and edges.",
+  "overview": "The abstract states the source's central contribution: an interactive, adjustable level-of-detail rendering method for large graph drawings. It matters because it frames the method as a direct graph-data renderer rather than a preprocessing-heavy layout or mesh pipeline, while limiting the claim to graphs that fit in graphics memory and to the proof-of-concept implementation described in the article.",
+  "page_refs": [
+    "p.2486"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "title": "Interactive LOD Rendering Claim"
+}

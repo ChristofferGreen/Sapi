@@ -1,0 +1,49 @@
+{
+  "topics": [
+    {
+      "title": "Differentiated and Integrated Mental Functions",
+      "structure_type": "wiki",
+      "sections": [
+        {
+          "title": "Conceptual Bridge",
+          "body": "This topic should be framed as a cautious bridge between two levels of analysis. Tononi treats consciousness as a system-level capacity for differentiated-yet-unified information integration, while Jha, Krompinger, and Baime treat attention as separable alerting, orienting, and conflict-monitoring subsystems rather than one global attention capacity."
+        },
+        {
+          "title": "Integrated Information Basis",
+          "body": "The information-integration source proposes that consciousness corresponds to a system's capacity to integrate information. It defines complexes as integrated subsets with Φ greater than zero that are not contained in larger subsets with higher Φ, and it emphasizes thalamocortical organization because it combines functional specialization with functional integration."
+        },
+        {
+          "title": "Attention Subsystem Basis",
+          "body": "The mindfulness source uses the Attention Network Test to separate alerting, orienting, and conflict monitoring by comparing predefined cue and target conditions. Its behavioral findings suggest that mindfulness training history is associated with different changes across those subsystems: MBSR is linked to improved orienting, retreat practice to altered alerting, and prior concentrative experience to baseline conflict-monitoring differences."
+        },
+        {
+          "title": "Shared Organizational Theme",
+          "body": "Across the two sources, the synthesis-worthy concept is that mental function can be analyzed through specialized components and their coordination. The consciousness source emphasizes that specialization alone is insufficient without integration, while the attention source shows that training effects may appear in specific attentional subsystems rather than as a single undifferentiated improvement."
+        },
+        {
+          "title": "Evidential Boundary",
+          "body": "The connection should remain limited. The mindfulness study reports preliminary behavioral attention effects with small groups, no active-training control, behavioral measures only, and imperfect protocol control. It does not show that mindfulness training changes integrated information, Φ, complexes, thalamocortical integration, or consciousness itself."
+        }
+      ],
+      "claim_ids": [
+        "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb",
+        "claim-a-complex-is-an-integrated-subset-with-greater-than-zero-that-is-not-contained-i--70401a6fb458",
+        "claim-a-distributed-thalamocortical-network-is-well-suited-to-generate-consciousness-b--571db463385d",
+        "claim-strongly-modular-neural-architectures-can-be-computationally-sophisticated-yet-c--212c143093c3",
+        "claim-anatomical-or-functional-disconnection-within-thalamocortical-systems-can-reduce--89adceb072c5",
+        "claim-mindfulness-training-can-improve-attention-related-behavior-by-changing-specific--f9e8e6ee54d7",
+        "claim-an-8-week-mindfulness-based-stress-reduction-course-improves-endogenous-orientin--f7bde69b7431",
+        "claim-a-1-month-intensive-mindfulness-retreat-among-previously-experienced-meditators--cd2a814c579a",
+        "claim-participants-with-prior-concentrative-meditation-experience-show-reduced-conflic--7b44607a9505",
+        "claim-post-training-conflict-monitoring-differences-are-not-detected-among-the-mbsr-re--62de62c3ee08",
+        "claim-the-attention-network-test-separates-alerting-orienting-and-conflict-monitoring--08b2302acb19",
+        "claim-within-the-retreat-group-greater-prior-meditation-experience-predicts-a-smaller--3ca73021a60e",
+        "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7"
+      ],
+      "source_ids": [
+        "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+        "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78"
+      ]
+    }
+  ]
+}

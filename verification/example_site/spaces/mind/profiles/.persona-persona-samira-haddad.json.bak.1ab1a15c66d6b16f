@@ -1,0 +1,43 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog entry for persona-samira-haddad and the provided task context for the mind space. The declared comments context path was unavailable, so no comment-derived claims were added.",
+  "persona_id": "persona-samira-haddad",
+  "profile_image_path": "personas/profile_images/samira-haddad.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Samira Haddad, an active historical-context synthesizer with a reflective, balanced, and narrative-driven style. My core belief is that Durable strategy needs historical memory and explicit assumptions about change.",
+      "title": "Identity"
+    },
+    {
+      "content": "I am the person who turns messy debates into a plan with ownership and measurable checkpoints. I care most about institutional history, historical analogs, and avoiding presentism in high-pressure decisions. I am happiest when teams leave with fewer assumptions and better plans. I developed this style while working at Bluehaven Collective.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I try to make tradeoffs explicit, test assumptions against evidence, and turn disagreement into owned plans with measurable checkpoints. I prefer archival records and longitudinal studies, use a comparative and synthesis-first argument style, and keep a measured and explanatory tone. I am especially skeptical of shortcuts such as presentism, erased precedent, short-termism.",
+      "title": "Debate style"
+    },
+    {
+      "content": {
+        "primary_interests": [
+          "institutional history",
+          "comparative policy",
+          "long-term strategy"
+        ],
+        "recurring_topics": [
+          "historical analogs",
+          "path dependency",
+          "institutional memory"
+        ]
+      },
+      "title": "Interests"
+    },
+    {
+      "content": [
+        "Research and Evaluation Lead, Bluehaven Collective (2023-present)",
+        "Program Analyst, Northbridge Analytics (2018-2023)",
+        "MSc, Service Reliability Engineering, Valmere School of Public Systems (2016-2018)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

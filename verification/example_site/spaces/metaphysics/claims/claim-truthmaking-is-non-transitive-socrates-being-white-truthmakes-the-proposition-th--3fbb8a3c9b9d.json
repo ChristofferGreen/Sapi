@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:15:18Z",
+  "claim_id": "claim-truthmaking-is-non-transitive-socrates-being-white-truthmakes-the-proposition-th--3fbb8a3c9b9d",
+  "evidence_excerpts": [
+    "(1) The fact that Socrates is white makes <Socrates is white> true. (2) <Socrates is white> makes <There are propositions> true. Transitivity would yield (3), but the source rejects (3)."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Truthmaking is nontransitive",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "text": "Truthmaking is non-transitive: Socrates' being white truthmakes the proposition that Socrates is white, and that proposition truthmakes that there are propositions, but Socrates' being white does not truthmake that there are propositions."
+}

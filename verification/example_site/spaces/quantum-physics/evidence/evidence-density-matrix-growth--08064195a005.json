@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-full-density-matrix-characterization-becomes-an-impractical-verification-strateg--65a0be3566e1",
+    "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772"
+  ],
+  "evidence_id": "evidence-density-matrix-growth--08064195a005",
+  "evidence_type": "formal_argument",
+  "excerpt": "As moderately complex quantum networks are realized, it will become difficult to assess whether entanglement extends across the whole network. Attempting to determine the density matrix \u03c1(t) for the network surely fails because of the exponential growth in \u03c1(t) with the size of the network.",
+  "overview": "The verification argument clarifies a limit that is independent of any one hardware platform. Even if nodes and interfaces work locally, conventional full-state reconstruction does not scale, so practical quantum networks require more targeted diagnostics or functional tests of multipartite entanglement.",
+  "page_refs": [
+    "Extending entanglement section"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "title": "Density-Matrix Verification Barrier"
+}

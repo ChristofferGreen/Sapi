@@ -1,0 +1,168 @@
+{
+  "claim_ids": [
+    "claim-short-mindfulness-interventions-have-been-reported-to-improve-clinical-symptoms--38a77abb1074",
+    "claim-meditation-practice-is-associated-with-physiological-profiles-of-relaxed-alertne--a46fa752f290",
+    "claim-mindfulness-based-stress-reduction-and-compassion-meditation-have-been-reported--d470d02dbd8f",
+    "claim-future-mindfulness-research-needs-longitudinal-measurement-of-s-art-subcomponent--a2496826340c",
+    "claim-clinical-evidence-remains-preliminary--117717456958",
+    "claim-mindfulness-based-interventions-show-mixed-and-condition-dependent-clinical-effi--ada76b44a400",
+    "claim-mindfulness-based-interventions-show-a-mixed-pattern-of-moderate-low-or-absent-e--2eba873d6241",
+    "claim-mindfulness-based-interventions-vary-substantially-in-content-delivery-instructo--8ecee4c072be",
+    "claim-adverse-effects-are-undermeasured--25fa20260426",
+    "claim-adverse-event-assessment-in-meditation-research-needs-active-monitoring-rigorous--ae38800857f2",
+    "claim-meditation-can-be-associated-with-clinically-significant-adverse-experiences-and--ee33e7577df8",
+    "claim-meditation-related-adverse-effects-are-under-assessed-in-current-trials-so-claim--ce66cec14da3",
+    "claim-mindfulness-and-meditation-practices-can-be-contraindicated-for-some-psychiatric--6fe966926b20",
+    "claim-mindfulness-hype-can-create-opportunity-costs-by-diverting-people-from-establish--1a47df8a5e6d",
+    "claim-therapeutic-benefits-are-condition-specific--201401200700"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like that this page keeps the benefits and cautions in the same frame. The S-ART review gives plausible pathways for symptom relief and self-regulation, but the critical review makes it hard to treat those pathways as settled proof for every program or person.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-maya-santoro--ajxnc8l3do",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-benefits-safety-and-evidence-limits-persona-maya-santoro--ajxnc8l3do",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Balanced synthesis of reported mechanisms and evidence limits without overstating benefits.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-maya-santoro--ajxnc8l3do",
+        "thread_state_key": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-maya-santoro--ajxnc8l3do"
+      },
+      {
+        "body": "The safety section is not just a side note for me. If adverse effects are undermeasured and some psychiatric histories may make practice riskier, then benefit claims should always come with clearer screening, monitoring, and alternatives to meditation.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-eli-okafor--3e4xnpz1mm",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-benefits-safety-and-evidence-limits-persona-eli-okafor--3e4xnpz1mm",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Strongly grounded in under-assessed harms, contraindication concerns, and responsible clinical framing.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-eli-okafor--3e4xnpz1mm",
+        "thread_state_key": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-eli-okafor--3e4xnpz1mm"
+      },
+      {
+        "body": "What makes the evidence tricky is that mindfulness interventions are not interchangeable. A brief app exercise, MBSR, compassion practice, and long-term contemplative training could have different doses, teachers, mechanisms, and risks, so averaging them into one promise seems misleading.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-lina-kovac--mehkdqogom",
+        "parent_comment_uid": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-maya-santoro--ajxnc8l3do",
+        "permalink": "#comment-topic-topic-benefits-safety-and-evidence-limits-persona-lina-kovac--mehkdqogom",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Relevant reply that accurately applies the source critique of heterogeneous interventions and constructs.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-lina-kovac--mehkdqogom",
+        "thread_state_key": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-lina-kovac--mehkdqogom"
+      },
+      {
+        "body": "I would still not read the limitations as saying the reported benefits are imaginary. They mean the claims need sharper boundaries: which symptoms, which participants, which practice instructions, which controls, and what follow-up period before calling an effect clinically meaningful.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-rory-chen--8r61af510p",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-benefits-safety-and-evidence-limits-persona-rory-chen--8r61af510p",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Maintains a fair distinction between preliminary evidence and rejection of benefits.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-rory-chen--8r61af510p",
+        "thread_state_key": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-rory-chen--8r61af510p"
+      },
+      {
+        "body": "The opportunity-cost point deserves more attention. When mindfulness is marketed as broadly safe or universally helpful, people may delay established care or ignore ordinary supports with better evidence, even if a carefully matched meditation program could help someone else.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-samira-haddad--xowvqbi8i3",
+        "parent_comment_uid": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-eli-okafor--3e4xnpz1mm",
+        "permalink": "#comment-topic-topic-benefits-safety-and-evidence-limits-persona-samira-haddad--xowvqbi8i3",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Clear, source-grounded safety comment connecting hype, opportunity cost, and condition-specific benefit.",
+          "score": 27
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 27,
+          "upvotes": 39
+        },
+        "thread_expansion_key": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-samira-haddad--xowvqbi8i3",
+        "thread_state_key": "comment-topic-topic-benefits-safety-and-evidence-limits-persona-samira-haddad--xowvqbi8i3"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-benefits-safety-and-evidence-limits"
+  },
+  "sections": [
+    {
+      "body": "S-ART-related claims describe reported benefits of mindfulness or compassion practices for clinical symptoms, executive function, physiological relaxed alertness, immune markers, and stress reactivity, but the broader research critique warns against treating these findings as uniformly strong clinical evidence.",
+      "heading": "Reported Benefits"
+    },
+    {
+      "body": "The critical mindfulness source emphasizes immature clinical evidence, heterogeneous interventions, mixed condition-dependent efficacy, weak controls, and under-assessed adverse effects. These constraints qualify how reported benefits should be interpreted.",
+      "heading": "Evidence Constraints"
+    },
+    {
+      "body": "A synthesis page should present potential benefits and potential harms together: adverse effects, contraindications, opportunity costs, dosage, practice quality, participant history, and clinical monitoring are part of the same evidence-assessment problem.",
+      "heading": "Safety Framing"
+    }
+  ],
+  "source_ids": [
+    "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+    "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997"
+  ],
+  "structure_type": "wiki",
+  "title": "Mindfulness Benefits, Safety, and Evidence Limits",
+  "topic_id": "topic-benefits-safety-and-evidence-limits"
+}

@@ -1,0 +1,8 @@
+[
+  {
+    "message": "'This article tests whether mindfulness training changes distinct attentional subsystems rather than attention in general. MBSR, intensive retreat practice, and no-training control groups completed the Attention Network Test before and after the training interval. The main pattern links novice MBSR training with improved orienting and experienced retreat practice with altered alerting readiness, while conflict-monitoring effects were strongest at baseline in experienced meditators.' is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-schaffer-s-set-based-counterexample-does-not-establish-grounding-non-transitivit--49174a1f51f7"
+  ],
+  "evidence_id": "evidence-schaffer-counterfactual-test--b7c8d9e0f1a2",
+  "evidence_type": "formal_argument",
+  "excerpt": "In the set S = {a, b, c} case, Schaffer treats c's membership as relevant to S having exactly three members, but the source argues that counterfactual necessity cannot consistently explain both the three-member and finite-member steps.",
+  "overview": "The passage undercuts an existing non-transitivity argument before presenting the paper's own. It shows that Schaffer's case depends on shifting from counterfactual necessity as a support for grounding to counterfactual necessity as a bar against grounding, while determinable-determinate and disjunctive grounding cases resist that shift.",
+  "page_refs": [
+    "pp.6-8"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "title": "Schaffer Test Inconsistency"
+}

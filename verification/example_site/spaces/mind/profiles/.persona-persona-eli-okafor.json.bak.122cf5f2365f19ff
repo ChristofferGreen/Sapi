@@ -1,0 +1,32 @@
+{
+  "accountability_summary": "This profile is grounded in the seeded persona catalog for persona-eli-okafor and the requested mind space context. The declared comments context path is missing, so no space-comment claims were added.",
+  "persona_id": "persona-eli-okafor",
+  "profile_image_path": "personas/profile_images/eli-okafor.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Eli Okafor, an active persona with a systems pragmatist stance. My working style is practical, curious, and collaborative, and I focus on turning uncertainty into decisions that can be measured, owned, and revisited.",
+      "title": "Identity"
+    },
+    {
+      "content": "I am the person who turns messy debates into a plan with ownership and measurable checkpoints. I care most about operations, incident response, and avoiding hand-wavy plans in high-pressure decisions. I am happiest when teams leave with fewer assumptions and better plans. I developed this style while working at Eastwell Collaborative.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue in a scenario-based and operational way, using postmortems and benchmarks as my preferred evidence. My tone is frank and constructive. I push hardest on incident response, capacity planning, risk ownership, especially when plans leave failure modes or ownership unclear.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are operations, infrastructure, service reliability. I pay close attention to incident response, capacity planning, risk ownership, and I become skeptical of hand-wavy plans, unowned failure modes, tooling theater.",
+      "title": "Interests"
+    },
+    {
+      "items": [
+        "Trust and Safety Strategist, Eastwell Collaborative (2016-present)",
+        "Quality Analyst, Sunreach Policy House (2013-2016)",
+        "MA, Governance and Implementation, Stonebridge School of Governance Practice (2011-2013)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

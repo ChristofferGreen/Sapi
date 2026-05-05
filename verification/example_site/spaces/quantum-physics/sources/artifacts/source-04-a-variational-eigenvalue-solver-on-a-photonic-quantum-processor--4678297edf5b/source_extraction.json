@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b/source.pdf",
+    "source_markdown": "sources/artifacts/source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "bec1a0ea869e1196f3bf691c6b5d04c1605e76a1f7b7a36b5ed3bf1a8457f2d5",
+  "markdown_char_count": 64190,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "0920eb4c27ee129d0ae5fbf81727e84e31a6a8f9d6ca183d7eecc2bfc1886c9e",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

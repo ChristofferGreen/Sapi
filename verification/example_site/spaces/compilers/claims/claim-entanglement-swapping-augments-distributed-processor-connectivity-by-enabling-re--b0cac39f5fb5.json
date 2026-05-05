@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:45:24Z",
+  "claim_id": "claim-entanglement-swapping-augments-distributed-processor-connectivity-by-enabling-re--b0cac39f5fb5",
+  "evidence_excerpts": [
+    "Entanglement swapping enhances the network connectivity through virtual quantum links.",
+    "Entanglement swapping consumes the Bell states stored within the communication qubits at the intermediate processors."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Entanglement swapping augments connectivity",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "text": "Entanglement swapping augments distributed-processor connectivity by enabling remote CNOTs between processors that are not directly connected by a quantum link, but it increases EPR-pair consumption at intermediate processors."
+}

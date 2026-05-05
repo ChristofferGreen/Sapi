@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "The recommendation for precise terminology follows from the paper\u2019s diagnosis of semantic ambiguity.",
+  "relation_file_id": "rel-8e7f579efc6ef57ec3751cb00585d667ee3d03a6d097e2f40c365f7235b5f978",
+  "relation_id": "derived_from:claim-research-needs-prescriptive-reform--79c0d54db997->claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-research-needs-prescriptive-reform--79c0d54db997",
+  "src_claim_ref": "7",
+  "status": "open"
+}

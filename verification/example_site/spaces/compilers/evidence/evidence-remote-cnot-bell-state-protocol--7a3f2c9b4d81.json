@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-remote-cnot-execution-consumes-bell-state-resources-and-is-limited-by-the-number--ff11e4d2be8e",
+    "claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d"
+  ],
+  "evidence_id": "evidence-remote-cnot-bell-state-protocol--7a3f2c9b4d81",
+  "evidence_type": "figure_result",
+  "excerpt": "Remote CNOT. To perform a CNOT between remote physical qubits stored at different processors, a Bell state such as Phi+ must be distributed through the quantum link so that each pair member is stored within a communication qubit at each processor. Once the Bell state is available, the remote CNOT is obtained with a local CNOT between the data and the communication qubit at each processor, followed by a conditional gate on the data qubit depending on the measurement of the remote communication qubit.",
+  "overview": "This figure-level construction is the operational foundation for the compiler problem. It establishes why distributed gates require communication qubits, Bell-state generation, local gates, measurement, and classical feed-forward, so remote CNOTs are not interchangeable with local CNOTs in cost or scheduling.",
+  "page_refs": [
+    "Fig. 4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "title": "Remote CNOT Bell-State Protocol"
+}

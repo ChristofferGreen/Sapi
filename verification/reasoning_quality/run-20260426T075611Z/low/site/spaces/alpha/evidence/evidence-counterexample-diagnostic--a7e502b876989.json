@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-putative-counterexamples-to-the-necessity-of-grounding-typically-misidentify-a-m--ce701eef5ee9",
+    "claim-the-distinction-between-full-and-merely-partial-grounding-is-explanatory-rather--9b0aa2b5c91e"
+  ],
+  "evidence_id": "evidence-counterexample-diagnostic--a7e502b876989",
+  "evidence_type": "formal_argument",
+  "excerpt": "When faced with a case in which it seems that [p] is fully grounded in D yet ~\u000b0(\u2227D \u2192 p), the advocate of necessity should check to see if there are additional explanatorily relevant facts P such that \u000b0(\u2227(D, P) \u2192 p). If such additional facts are available, we have reason to believe that D is a mere partial ground that was misidentified as a full ground; in such a case, [p] instead is fully grounded in D, P.",
+  "overview": "This passage gives the paper's method for handling apparent failures of necessity. It does not deny the intuitions behind counterexamples outright; it asks whether the proposed ground is incomplete and whether adding explanatorily relevant facts restores entailment.",
+  "page_refs": [
+    "p.478"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Counterexample Diagnostic"
+}

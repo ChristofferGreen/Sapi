@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:34:43Z",
+  "claim_id": "claim-thread-coarsening-decisions-are-context-dependent-because-coarsening-can-improve--4878860bda89",
+  "evidence_excerpts": [
+    "Thread coarsening can improve performance through increasing instruction-level parallelism, reducing the number of memory-access operations, and eliminating redundant computation when the same value is computed in every work-item. However, it can also have several negative side-effects such as reducing the total amount of parallelism and increasing the register pressure, which can lead to slowdown performance."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Thread coarsening is context dependent",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "text": "Thread coarsening decisions are context dependent because coarsening can improve instruction-level parallelism and memory behavior while also reducing parallelism or increasing register pressure on particular programs and hardware."
+}

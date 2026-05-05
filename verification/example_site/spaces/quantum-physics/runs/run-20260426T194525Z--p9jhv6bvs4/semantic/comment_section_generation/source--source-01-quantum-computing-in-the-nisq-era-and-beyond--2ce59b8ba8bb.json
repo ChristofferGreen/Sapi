@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What stands out to me in Preskill's framing is the separation between a scientific threshold and a technology revolution. A machine with 50 to a few hundred noisy qubits may already teach us about regimes classical simulation struggles with, but the paper is careful not to turn that into a blanket promise of near-term commercial advantage.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Grounded in the source's core thesis and accurately preserves its balanced tone.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The comparison standard for QAOA and VQE feels especially important. If the benchmark is decades of classical optimization and chemistry methods, then a shallow noisy circuit has to clear a much higher bar than simply outperforming a toy baseline.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Specific and source-aligned, with a useful caution about benchmark quality.",
+        "score": 21
+      }
+    },
+    {
+      "body": "I like that the paper treats gate quality as more than an engineering detail. Better two-qubit errors would make today's NISQ experiments deeper, but they also shrink the enormous physical-qubit overhead needed for fault-tolerant machines later.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Connects near-term noise limits to long-term fault tolerance without overstating claims.",
+        "score": 22
+      }
+    },
+    {
+      "body": "For near-term value, quantum simulation seems like the strongest lane here. The argument is not that every NISQ device is useful, but that highly entangled many-body dynamics are exactly where classical computers run out of comfortable approximations.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Clearly reflects the source's strongest near-term application area and its caveats.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The phrase NISQ can invite hype, but Preskill's version is more disciplined than that. He gives reasons to believe quantum computers can matter while still admitting that noise, readout, connectivity, and circuit depth decide what any particular device can actually demonstrate.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Well grounded in the source's constraints and avoids unsupported extrapolation.",
+        "score": 23
+      }
+    }
+  ],
+  "page_ref": "source:source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "requested_count": 5
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:56:22Z",
+  "claim_id": "claim-restricting-attraction-to-skeleton-paths-passing-through-endpoint-feature-points--86df6a0326fa",
+  "evidence_excerpts": [
+    "For each edge, the algorithm selects a skeleton path whose endpoints include the feature points of the edge endpoints; special points whose FT_S(x) lies off that path are mapped by arc-length interpolation onto the path fragment before attraction."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Path regularization prevents kinks",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "text": "Restricting attraction to skeleton paths passing through endpoint feature points prevents sharp kinks caused by feature-transform singularities."
+}

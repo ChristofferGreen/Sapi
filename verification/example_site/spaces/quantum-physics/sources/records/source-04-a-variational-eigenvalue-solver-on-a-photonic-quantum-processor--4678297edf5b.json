@@ -1,0 +1,363 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b/front_page.png",
+    "source_extraction": "sources/artifacts/source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b/source_extraction.json",
+    "source_file": "sources/artifacts/source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b/source.pdf",
+    "source_markdown": "sources/artifacts/source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b/source.md",
+    "source_provenance": "sources/artifacts/source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b/source_provenance.md"
+  },
+  "authors": [
+    "Alberto Peruzzo",
+    "Jarrod McClean",
+    "Peter Shadbolt",
+    "Man-Hong Yung",
+    "Xiao-Qi Zhou",
+    "Peter J. Love",
+    "Al\u00e1n Aspuru-Guzik",
+    "Jeremy L. O\u2019Brien"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What stands out to me is how cleanly the experiment separates the quantum and classical jobs. The photonic chip only has to prepare trial states and measure Pauli terms, while the optimizer handles the search, which feels like the key reason this was feasible before long coherent phase-estimation circuits were realistic.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-maya-santoro--ky72tbt33b",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-maya-santoro--ky72tbt33b",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately captures the hybrid VQE structure and near-term motivation from the source.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-maya-santoro--ky72tbt33b",
+        "thread_state_key": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-maya-santoro--ky72tbt33b"
+      },
+      {
+        "body": "The He-H+ result is impressive as a proof of principle, but I would be careful about reading it as a chemistry-scale result. A four-dimensional Hamiltonian with systematic corrections is a long way from the molecular instances people usually have in mind when they talk about quantum advantage.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-eli-okafor--ri9ikbvytf",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-eli-okafor--ri9ikbvytf",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Balances the reported molecular demonstration with the paper's stated scale limitations.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-eli-okafor--ri9ikbvytf",
+        "thread_state_key": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-eli-okafor--ri9ikbvytf"
+      },
+      {
+        "body": "The resource tradeoff is the most interesting part: one entangling gate instead of a much deeper phase-estimation-style circuit, paid for with many repeated preparations and measurements. That makes the approach practical on fragile hardware, but shifts the burden into sampling stability and optimizer behavior.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-lina-kovac--ap83iluzz7",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-lina-kovac--ap83iluzz7",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Clearly explains the depth-versus-repetition tradeoff emphasized in the source dossier.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-lina-kovac--ap83iluzz7",
+        "thread_state_key": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-lina-kovac--ap83iluzz7"
+      },
+      {
+        "body": "I agree with that caution. The paper's value is architectural: it shows a way to get chemically meaningful energy estimates from shallow circuits, not a claim that the photonic setup already scales to hard chemistry workloads.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-rory-chen--1ijhqjwxxx",
+        "parent_comment_uid": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-eli-okafor--ri9ikbvytf",
+        "permalink": "#comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-rory-chen--1ijhqjwxxx",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Relevant reply that reinforces the distinction between proof of principle and scalability.",
+          "score": 18
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 18,
+          "upvotes": 30
+        },
+        "thread_expansion_key": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-rory-chen--1ijhqjwxxx",
+        "thread_state_key": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-rory-chen--1ijhqjwxxx"
+      },
+      {
+        "body": "I also like that the error discussion is fairly concrete. Photon distinguishability, higher-order components, beamsplitter imperfections, phase calibration, and coupling imbalance are not hand-waved away, so the reader can see both why the data needed correction and what hardware improvements would matter next.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-samira-haddad--tuvgws4bwe",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-samira-haddad--tuvgws4bwe",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Grounded in specific experimental limitations listed by the authors and useful for discussion.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-samira-haddad--tuvgws4bwe",
+        "thread_state_key": "comment-source-source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor-4678297edf5b-persona-samira-haddad--tuvgws4bwe"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b"
+  },
+  "date": null,
+  "display_title": "Photonic Variational Solver for Molecular Energies",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[3].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Received 9 Dec | Accepted 27 May 2014 | Published 23 Jul 2014 OPEN",
+      "url": "https://doi.org/10.1038/ncomms5213"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[2].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "optimization. Preprint at http://arxiv.org/abs/ . Joe Fitzsimons and James Whit\ufb01eld for discussions. We acknowledge \ufb01nancial support",
+      "url": "http://arxiv.org/abs/0804.4457"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[2].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "optimization. Preprint at http://arxiv.org/abs/ . Joe Fitzsimons and James Whit\ufb01eld for discussions. We acknowledge \ufb01nancial support",
+      "url": "https://arxiv.org/abs/0804.4457"
+    }
+  ],
+  "ingested_at": "2026-04-26T16:17:50Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "simulation of the wavefunction to probe frustrated Heisenberg spin systems. Reprints and permission information is available online at /",
+      "url": "http://npg.nature.com",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "quantum computers. New J. Phys. 14 115023 . Supplementary Information accompanies this paper at /",
+      "url": "http://www.nature.com",
+      "year": 2012
+    },
+    {
+      "arxiv": "0804.4457",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "optimization. Preprint at http://arxiv.org/abs/ . Joe Fitzsimons and James Whit\ufb01eld for discussions. We acknowledge \ufb01nancial support",
+      "url": "http://arxiv.org/abs/0804.4457",
+      "year": 2008
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/ncomms5213",
+      "linked_source_ids": [],
+      "title": "Received 9 Dec | Accepted 27 May 2014 | Published 23 Jul 2014 OPEN",
+      "url": null,
+      "year": 2013
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 2 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2014-07-23",
+    "origin": "source_markdown_header",
+    "rationale": "The extracted source header states: Received 9 Dec 2013, Accepted 27 May 2014, Published 23 Jul 2014."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The central algorithmic move is to estimate <H> through a Pauli decomposition rather than through a long coherent phase-estimation circuit. For Hamiltonians with polynomially many terms, the QPU measures term expectations and the CPU adds weighted results. This establishes the measurement primitive behind the variational solver, while retaining a precision cost in repeated measurements.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ],
+        "heading": "Core Algorithm"
+      },
+      {
+        "body": "QVE wraps QEE in a Rayleigh-Ritz minimization loop. The quantum device prepares a parameterized trial state and estimates the Hamiltonian expectation; the classical optimizer then updates the state parameters. The endpoint is not only an energy estimate but also a parameter prescription for reconstructing the approximate eigenstate.",
+        "grounding_claim_ids": [
+          "2",
+          "8"
+        ],
+        "heading": "Variational Feedback Loop"
+      },
+      {
+        "body": "The paper connects the small demonstration to chemistry by discussing unitary coupled cluster and device-defined ansatz families. The UCC argument matters because fixed excitation level gives polynomially many terms after transformation, while the device-ansatz view admits circuits tailored to available hardware and coherence depth.",
+        "grounding_claim_ids": [
+          "3",
+          "9"
+        ],
+        "heading": "Ansatz Significance"
+      },
+      {
+        "body": "The experiment uses an integrated photonic processor rather than an abstract circuit simulation. Photon pairs encode the two-qubit input, phase shifters set state and measurement parameters, a CNOT supplies entangling capability, and detector counts feed the CPU. This grounds the feasibility claim in real optical hardware with identifiable strengths and imperfections.",
+        "grounding_claim_ids": [
+          "4",
+          "7"
+        ],
+        "heading": "Photonic Implementation"
+      },
+      {
+        "body": "The main experimental target is the He-H+ dissociation curve in a minimal basis. The reported corrected minimum at 92.3\u00b10.1 pm and -2.865\u00b10.008 MJ mol^-1 shows that the feedback loop can locate a chemically meaningful ground-state curve for a four-dimensional Hamiltonian, though not yet at industrial chemical scale.",
+        "grounding_claim_ids": [
+          "5"
+        ],
+        "heading": "Molecular Demonstration"
+      },
+      {
+        "body": "The method saves coherent gate depth by replacing a serial QPE process with short coherent measurements and repeated preparations. The paper\u2019s 4x4 comparison, one CNOT versus at least twelve for QPE, illustrates the benefit. The non-free part of the trade is extra repetitions and sensitivity to variation across preparations.",
+        "grounding_claim_ids": [
+          "1",
+          "6"
+        ],
+        "heading": "Resource Tradeoff"
+      },
+      {
+        "body": "The authors explicitly identify sources of error: photon distinguishability, higher-order photon components, imperfect beamsplitters and phase calibration, coupling imbalance, and increased optimization difficulty at larger separations. These details keep the result from being overread as scalable chemistry, but they also identify clear hardware-improvement paths.",
+        "grounding_claim_ids": [
+          "7",
+          "8"
+        ],
+        "heading": "Experimental Limits"
+      }
+    ],
+    "summary_long": "This Nature Communications article is a proof-of-principle demonstration of a hybrid variational eigenvalue solver, now recognizable as an early VQE-style architecture. The paper begins from the bottleneck that quantum phase estimation can estimate eigenvalues efficiently but demands long coherent controlled evolutions, which were far beyond near-term photonic hardware. Its alternative decomposes Hamiltonian expectation values into sums of Pauli-product measurements, estimates those terms on a quantum processing unit, and lets a classical optimizer choose the next state-preparation parameters. The quantum processor therefore supplies expectation values and state preparation, while the CPU performs aggregation and feedback. The experimental platform is a reconfigurable integrated photonic chip using downconversion photon pairs, voltage-controlled phase shifters, one CNOT gate, and photon-counting measurements. With this apparatus, the authors compute the ground state of a 4x4 full-configuration-interaction Hamiltonian for He-H+ at multiple bond lengths. After correcting systematic errors, they report an equilibrium bond length of 92.3\u00b10.1 pm and ground-state electronic energy of -2.865\u00b10.008 MJ mol^-1, with more than 96% of data points within chemical accuracy relative to the theoretical curve. The source is careful about limitations: the result depends on repeated state preparations, finite photon count rates, systematic photonic imperfections, and a small molecular problem. Its broader significance is architectural rather than chemical scale. It shows that useful eigenvalue experiments can be organized around shallow quantum circuits and classical optimization, opening a route for near-term processors that cannot sustain full phase-estimation circuits.",
+    "summary_short": "Peruzzo and collaborators present an early experimental variational quantum eigensolver implemented with integrated photonics. The work replaces phase-estimation-style long coherent evolution with repeated short Pauli measurements plus classical feedback, then demonstrates the method on the minimal-basis He-H+ ground-state energy curve."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "source_kind": "file",
+  "source_locator": "04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Alberto Peruzzo",
+      "Jarrod McClean",
+      "Peter Shadbolt",
+      "Man-Hong Yung",
+      "Xiao-Qi Zhou",
+      "Peter J. Love",
+      "Al\u00e1n Aspuru-Guzik",
+      "Jeremy L. O\u2019Brien"
+    ],
+    "display_title": "Photonic Variational Solver for Molecular Energies",
+    "doi": "10.1038/ncomms5213",
+    "journal": "Nature Communications",
+    "published_date": "2014-07-23",
+    "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b"
+  },
+  "source_type": "file",
+  "summary": "The source introduces and experimentally demonstrates a hybrid quantum-classical variational eigenvalue solver on an integrated photonic processor. Its central result is a proof-of-principle He-H+ molecular-energy calculation that trades QPE-style long coherent evolution for repeated short expectation-value measurements and classical optimization.",
+  "title": "04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor",
+  "warnings": [
+    {
+      "code": "source_record_placeholder_title",
+      "message": "The source record display title was 'Untitled Source'; the paper title, authors, DOI, and publication date were recovered from the extracted source markdown."
+    },
+    {
+      "code": "pdf_text_two_column_layout",
+      "message": "The pdftotext markdown is usable but contains two-column interleaving in several passages, so equations and figure captions were interpreted conservatively from nearby text."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:22:12Z",
+  "claim_id": "claim-attention-related-alpha-modulation-appears-primarily-controlled-by-cortico-corti--1eb91088cf2b",
+  "evidence_excerpts": [
+    "The conclusion contrasts attention-related alpha modulations, described as mainly cortico-cortical and involving frontal and parietal regions, with arousal-related alpha that is more likely thalamus-dominated."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Cortical networks control alpha",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Attention-related alpha modulation appears primarily controlled by cortico-cortical frontal and parietal networks, with thalamo-cortical connections possibly contributing secondarily."
+}

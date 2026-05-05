@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172"
+  ],
+  "evidence_id": "evidence-sorting-network-depth--0f6a81d4b3c9",
+  "evidence_type": "equation",
+  "excerpt": "By taking advantage of the sorting network theory, it is easy to model the network topology constraints through the notion of insertion network, or equivalently bubble network. As a consequence, the overall depth of the equivalent quantum circuit grows with the number n of logical qubits as 2n - 3 instead of a logarithmic log n depth factor as for classical sorting.",
+  "overview": "This equation-like model explains why moving data qubits across a nearest-neighbor quantum network has different depth behavior from unconstrained classical sorting. It underpins the paper's data-qubit-swapping strategy without pretending that arbitrary pair swaps are free.",
+  "page_refs": [
+    "Eq. 4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "title": "Sorting Network Depth Factor"
+}

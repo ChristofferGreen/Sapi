@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:56:22Z",
+  "claim_id": "claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+  "evidence_excerpts": [
+    "The method clusters edges, constructs a thin distance-field shape around each cluster, computes the shape skeleton and skeleton feature transform, then attracts the clustered edges toward that skeleton."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Skeletons guide edge bundles",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "text": "Skeletons of inflated edge-cluster shapes provide locally centered targets for bundling geometrically similar graph edges."
+}

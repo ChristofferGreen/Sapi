@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:22:12Z",
+  "claim_id": "claim-feature-based-visual-attention-increases-alpha-power-in-dorsal-or-ventral-stream--0c7646ad3b93",
+  "evidence_excerpts": [
+    "The feature-attention study isolated alpha-reactive components whose power differed by attended feature; dorsal stream sources increased when motion was irrelevant and ventral sources increased when color was irrelevant."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Feature alpha suppresses irrelevant streams",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Feature-based visual attention increases alpha power in dorsal or ventral stream regions when those regions process an irrelevant feature."
+}

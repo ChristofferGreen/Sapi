@@ -1,0 +1,316 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39/front_page.png",
+    "source_extraction": "sources/artifacts/source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39/source_extraction.json",
+    "source_file": "sources/artifacts/source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39/source.pdf",
+    "source_markdown": "sources/artifacts/source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39/source.md",
+    "source_provenance": "sources/artifacts/source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39/source_provenance.md"
+  },
+  "authors": [
+    "Giulio Tononi"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like that Tononi starts from the feel of experience rather than jumping straight to a brain map. The camera example also helps: lots of possible states are not enough if the parts do not causally constrain one another. That makes the theory feel less like a neuron-count story and more like a claim about what kind of causal unity a system has.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-maya-santoro--dl9xlqowmn",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-maya-santoro--dl9xlqowmn",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Clearly grounded in the source's differentiation, integration, and camera contrast, with a natural discussion tone.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-maya-santoro--dl9xlqowmn",
+        "thread_state_key": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-maya-santoro--dl9xlqowmn"
+      },
+      {
+        "body": "The boundary rule is the part I keep coming back to. If a complex is the subset that is integrated and not merely contained in a larger higher-\u03a6 whole, then the theory is trying to answer who the subject is, not just how conscious the system is. That is ambitious, though it also makes the measurement burden pretty heavy.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-eli-okafor--37mszh4oth",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-eli-okafor--37mszh4oth",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately captures complexes, \u03a6, subject boundaries, and a fair limitation about measurement difficulty.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-eli-okafor--37mszh4oth",
+        "thread_state_key": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-eli-okafor--37mszh4oth"
+      },
+      {
+        "body": "The cerebellum example is a useful check against simple intuitions. It is large, busy, and important for behavior, but Tononi's account says modular organization could still leave it as many smaller low-\u03a6 systems rather than one conscious contributor. Whether that is right or not, it forces the debate away from raw computational sophistication.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-lina-kovac--db1xyxdayt",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-lina-kovac--db1xyxdayt",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Well supported by the source's cerebellum contrast and distinguishes size, function, and integration.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-lina-kovac--db1xyxdayt",
+        "thread_state_key": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-lina-kovac--db1xyxdayt"
+      },
+      {
+        "body": "I found the quality-versus-quantity distinction important. Two systems could have similar amounts of integrated information while differing in their effective-information relationships, so the theory needs the relational structure to explain why experiences differ in kind. That move makes the proposal richer than a single consciousness meter.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-rory-chen--16mvu9f0qm",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-rory-chen--16mvu9f0qm",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Grounded in the qualia-space discussion and makes a concise interpretive point without overstating it.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-rory-chen--16mvu9f0qm",
+        "thread_state_key": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-rory-chen--16mvu9f0qm"
+      },
+      {
+        "body": "The sleep and anesthesia discussion keeps the theory from being purely anatomical. A thalamocortical system can have the right wiring, but if its dynamics collapse into undifferentiated or bistable responses, integrated information should drop. That seems especially relevant for non-reporting patients, where behavior alone may be a poor guide.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-samira-haddad--g2dvnjjq0k",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-samira-haddad--g2dvnjjq0k",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Strongly ties source claims about state-dependent dynamics to the practical assessment problem.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-samira-haddad--g2dvnjjq0k",
+        "thread_state_key": "comment-source-source-01-an-information-integration-theory-of-consciousness-w2114900706-09db8f102f39-persona-samira-haddad--g2dvnjjq0k"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39"
+  },
+  "date": null,
+  "display_title": "Consciousness Is Integrated Information",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[3].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "BMC Neuroscience 5:42",
+      "url": "https://doi.org/10.1186/1471-2202-5-42"
+    }
+  ],
+  "ingested_at": "2026-04-26T07:42:58Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "This is an Open Access article distributed under the terms of the Creative Commons Attribution License",
+      "url": "http://creativecommons.org/licenses/by/2.0",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "\u03a6 S is the main complex. MATLAB functions used for calculating effective information and complexes are at",
+      "url": "http://tononi.psy",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "This article is available from",
+      "url": "http://www.biomedcentral.com/1471-2202/5/42",
+      "year": 2004
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1186/1471-2202-5-42",
+      "linked_source_ids": [],
+      "title": "BMC Neuroscience 5:42",
+      "url": null,
+      "year": 2004
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 3 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2004-11-02",
+    "origin": "source_markdown_front_matter",
+    "rationale": "The extracted first page states: Published: 02 November 2004; BMC Neuroscience 2004, 5:42."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The argument begins with the structure of experience rather than with a particular brain area. Conscious states are informative because each one rules out many alternatives, and they are integrated because the experienced scene is not available as independent fragments. This dual constraint motivates the identification of consciousness with integrated information rather than raw state capacity.",
+        "grounding_claim_ids": [
+          "0"
+        ],
+        "heading": "Phenomenological Starting Point"
+      },
+      {
+        "body": "The source turns the phenomenological claim into a proposed measurement framework. Effective information evaluates causal effects across a bipartition, \u03a6 is tied to the weakest normalized bipartition of a subset, and complexes are the subsets that retain positive integration without being merely parts of larger higher-\u03a6 wholes. This makes the theory a boundary rule as well as a quantity rule.",
+        "grounding_claim_ids": [
+          "1",
+          "2"
+        ],
+        "heading": "Measurement Through \u03a6"
+      },
+      {
+        "body": "Tononi distinguishes how much consciousness exists from what kind of consciousness exists. Two complexes may have the same \u03a6 while differing in their effective-information matrices, and those relationship patterns define different qualia spaces. The present activity state of all elements in the complex then selects a point or trajectory within that space.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ],
+        "heading": "Quality As Relational Structure"
+      },
+      {
+        "body": "The theory fits thalamocortical organization because cortical systems are both specialized and reciprocally connected. Simulated networks optimized for \u03a6 show high integration when heterogeneity and reachability coexist, while homogeneous or modular rewiring sharply lowers \u03a6. This supports the source's claim that human consciousness is distributed rather than localized in a single cortical convergence point.",
+        "grounding_claim_ids": [
+          "5"
+        ],
+        "heading": "Thalamocortical Fit"
+      },
+      {
+        "body": "The cerebellum provides the central contrast case. It has many neurons, synapses, inputs, and outputs, yet its modular organization suggests many smaller low-\u03a6 complexes rather than one large high-\u03a6 subject. The theory therefore treats computational sophistication, neuron count, and behavioral importance as insufficient for direct conscious contribution.",
+        "grounding_claim_ids": [
+          "6"
+        ],
+        "heading": "Why Size Is Insufficient"
+      },
+      {
+        "body": "The source repeatedly separates causal influence from conscious membership. Sensory pathways, motor pathways, reticular modulation, and cortico-subcortical loops can shape, enable, or express conscious contents while remaining outside the main complex. This explains how unconscious processes can affect conscious life without themselves adding experiential dimensions.",
+        "grounding_claim_ids": [
+          "7"
+        ],
+        "heading": "Inputs And Outputs"
+      },
+      {
+        "body": "Sleep, anesthesia, and perceptual timing show that appropriate anatomy must be paired with suitable dynamics. Slow-wave bistability can wash out differentiated responses, reducing \u03a6 even when neurons remain active. Conversely, conscious perception requires enough time for distributed cortical interactions to become effective, usually over tens to hundreds of milliseconds.",
+        "grounding_claim_ids": [
+          "8",
+          "9"
+        ],
+        "heading": "State And Time Limits"
+      }
+    ],
+    "summary_long": "This source proposes a theory that treats consciousness as a fundamental property of systems capable of integrating information. Tononi begins from two phenomenological observations: conscious experience is highly differentiated, because any one experience rules out a vast repertoire of alternatives, and it is integrated, because each experience is unified and cannot be decomposed into independently experienced fragments. The paper argues that ordinary information measures are insufficient because they count state repertoires without asking whether the states belong to a single causally integrated system. A camera sensor can have an enormous number of possible states while still being only a collection of independent photodiodes; a conscious brain, by contrast, depends on causal interactions among its elements. The proposed measure, \u03a6, is the amount of effective information available across a complex's minimum information bipartition. A complex is not simply an anatomical region; it is a subset whose elements can integrate information and that is not contained in a larger subset with higher \u03a6. This lets the theory define both quantity and boundaries of consciousness. The source then extends the framework from quantity to quality: the kind of consciousness a complex has depends on the effective-information matrix among its elements, which defines a relational qualia space. Current activity values of the interaction-mediating variables specify the particular experience at a given moment. The application to neuroscience is central. The thalamocortical system is treated as a plausible substrate because it combines functional specialization with broad reciprocal integration. By contrast, the cerebellum, sensory afferents, motor outputs, subcortical modulatory systems, and cortico-subcortical loops can be powerful or sophisticated without directly joining the main conscious complex when they remain modular, feed-forward, or low-\u03a6. Sleep and anesthesia show that anatomy is not enough: physiological readiness and differentiated responses are also required. The source's practical interpretation is that consciousness can in principle be graded, measured, and assessed in animals, infants, artifacts, and non-reporting patients, but such measurement depends on difficult approximations of causal integration rather than surface behavior alone.",
+    "summary_short": "Tononi's article develops an information integration theory of consciousness. It defines \u03a6 as integrated causal information, links conscious quality to effective-information structure, and applies the theory to thalamocortex, cerebellum, sleep, anesthesia, and perceptual timing."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "source_kind": "file",
+  "source_locator": "01-an-information-integration-theory-of-consciousness--w2114900706.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Giulio Tononi"
+    ],
+    "display_title": "Consciousness Is Integrated Information",
+    "doi": "10.1186/1471-2202-5-42",
+    "journal": "BMC Neuroscience",
+    "original_title": "An information integration theory of consciousness",
+    "record_display_title": "Untitled Source",
+    "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39"
+  },
+  "source_type": "file",
+  "summary": "Giulio Tononi's source proposes that consciousness is integrated information: a system is conscious to the extent that it has a large differentiated repertoire that cannot be decomposed into independent parts. It defines \u03a6 through effective information across a minimum information bipartition, uses complexes to identify subject boundaries, and links the quality of experience to the effective-information structure among elements. The theory is applied to thalamocortical organization, cerebellar modularity, unconscious inputs and outputs, sleep, anesthesia, and temporal requirements for conscious perception.",
+  "title": "01-an-information-integration-theory-of-consciousness--w2114900706",
+  "warnings": [
+    "The source record supplied date=null, but the extracted source markdown reports Published: 02 November 2004; source_date_inference uses the markdown date.",
+    "Evidence items rely on usable pdftotext extraction; original PDF layout was not re-read because extraction metadata reported quality_status=usable and no warnings.",
+    "Relations are left empty because no relation schema was provided and strict source-grounded claim references are safer than unconstrained relation objects."
+  ]
+}

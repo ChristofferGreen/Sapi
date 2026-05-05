@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:09:33Z",
+  "claim_id": "claim-a-1-month-intensive-mindfulness-retreat-among-previously-experienced-meditators--cd2a814c579a",
+  "evidence_excerpts": [
+    "At Time 2, the alerting difference score was significantly smaller for the retreat group than for the combined control and MBSR groups, and no-cue response times were significantly shorter in the younger retreat subgroup."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Retreat improves alerting",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "text": "A 1-month intensive mindfulness retreat among previously experienced meditators improves exogenous alerting-related detection when no target cue is provided."
+}

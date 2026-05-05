@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "This page is strongest when it separates three different meanings of progress. Sycamore shows a real task-specific sampling result, Preskill gives a disciplined case for NISQ-era scientific experiments, and the quantum-internet work is still closer to a roadmap of primitives than a deployed scalable network.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately distinguishes demonstration, testbed, and roadmap evidence across the sources.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The optimization caveat matters because near-term quantum advantage can sound broader than the evidence. QAOA and VQE are valuable experimental probes, but beating decades of classical optimization or chemistry methods is a much stronger claim than running an interesting noisy circuit.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Source-grounded caution about NISQ algorithms and classical benchmark standards.",
+        "score": 23
+      }
+    },
+    {
+      "body": "I agree, and the same boundary shows up in the Sycamore result. The 53-qubit random-circuit experiment is important because it made a narrow sampling task classically hard at comparable fidelity, not because it removed the need for logical qubits, error correction, or application-specific algorithms.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Strong reply that links the parent caveat to the concrete Sycamore benchmark limits.",
+        "score": 25
+      }
+    },
+    {
+      "body": "The quantum-network examples make the page feel less computer-centric in a useful way. Stored heralded entanglement, retrieval efficiency, and early swapping are genuine milestones, but Kimble still frames repeaters, teleportation, local processing, and scalable verification as unsolved system-level requirements.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Broadens the discussion with accurate evidence from the quantum-internet source.",
+        "score": 22
+      }
+    },
+    {
+      "body": "A useful takeaway is that near-term devices can be scientifically serious without being fault tolerant. That middle category keeps both mistakes out of the discussion: dismissing noisy demonstrations as irrelevant, or treating every hard-to-simulate experiment as general-purpose quantum computing.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Balanced synthesis that matches the page thesis and avoids overclaiming.",
+        "score": 24
+      }
+    }
+  ],
+  "page_ref": "topic:topic-near-term-demonstrations-versus-fault-tolerant-systems",
+  "requested_count": 5
+}

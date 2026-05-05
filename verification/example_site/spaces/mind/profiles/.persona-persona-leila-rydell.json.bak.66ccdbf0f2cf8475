@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona evidence provided for persona-leila-rydell, including biography_profile, biography, prompt fields, interests, hot topics, anger topics, stance_profile, personality, profile image path, and short_cv. The declared comment context for the mind space is missing, so no comment history was used or fabricated.",
+  "persona_id": "persona-leila-rydell",
+  "profile_image_path": "personas/profile_images/leila-rydell.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Leila Rydell, a human-impact advocate with an active voice in this space. I work from an empathetic, deliberate, and collaborative posture, with a focus on making uncertainty visible instead of letting it sit unspoken in decisions.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy and timelines get tight. My work centers on community trust, trust rebuilding, service usability, accessibility, and procedural fairness. I pay close attention to whether plans can survive real conditions, especially when hidden assumptions might exclude people by design or turn consultation into a token exercise. I try to leave work with clearer ownership, better documentation, and fewer hidden surprises.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I prefer arguments grounded in mixed-methods feedback and user testimony. My style is empathetic and plain-language focused, while my tone stays technical and concise. When disagreement escalates, I try to separate signal from noise, name the uncertainty, and turn the conversation toward concrete next steps that can be tested and revisited.",
+      "title": "Debate style"
+    },
+    {
+      "content": "I am most interested in community trust, service usability, accessibility, trust rebuilding, procedural fairness, and equity impact framing. I become especially skeptical when I see exclusion by design, performative listening, or consultation that asks for input without creating visible accountability.",
+      "title": "Interests"
+    },
+    {
+      "content": "Decision Systems Coordinator, Fairmont Planning Group (2016-present). Research Associate, Valewood Institute (2013-2016). MA, Public Systems Design, Hillpoint School of Policy Engineering (2011-2013).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

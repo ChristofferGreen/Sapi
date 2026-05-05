@@ -1,0 +1,250 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: topic_generation
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/runs/run-20260426T152518Z--g2jrtnjpv1/semantic/topic_generation.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims
+
+=== generation spec ===
+flow_key: topic_generation
+version: v1
+schema_path: schemas/topic_generation.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/topic_generation.json
+context_paths:
+  - <space_root>/sources
+  - <space_root>/claims
+---
+## Task
+Generate one strict JSON object for topic generation at `output_json_path`.
+Return a `topics` array containing 0..n concept-centric topic candidates.
+
+## Context Interpretation Rules
+- Use only evidence available under `context_paths`.
+- If support is weak/ambiguous, reflect that in section content rather than inventing facts.
+- Do not invent canonical IDs outside schema contracts.
+- Prefer topics that synthesize shared concepts across multiple sources.
+- If there is no clear cross-source concept worth a page, return an empty array (`"topics": []`).
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "topics": [
+    {
+      "topic_id": "",
+      "title": "",
+      "structure_type": "wiki",
+      "sections": [],
+      "claim_ids": [],
+      "source_ids": []
+    }
+  ]
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources"
+}
+
+=== repair context ===
+{
+  "previous_invalid_json": "{\n  \"topics\": [\n    {\n      \"claim_ids\": [\n        \"claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c\",\n        \"claim-most-psychedelic-associated-shifts-in-non-physicalist-metaphysical-beliefs-persi--9591d5bd7c0c\",\n        \"claim-participants-with-no-prior-psychedelic-experience-showed-larger-shifts-away-from--056a417d978d\",\n        \"claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c\",\n        \"claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124\",\n        \"claim-connecting-questions-lack-cognitive-significance-only-when-fine-style-essential--f96bc70d5d2d\",\n        \"claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869\",\n        \"claim-the-epistemic-constraint-on-grounding-does-not-undermine-grounding-objectivity-b--87922d9890f9\"\n      ],\n      \"sections\": [\n        \"Psychedelic-associated movement away from hard materialism raises a concept-centric question about whether altered metaphysical commitments track changes in explanatory frameworks or merely changes in endorsed views.\",\n        \"The grounding-necessity source supplies a contrasting normative framework: full grounds require connecting questions to lack cognitive significance, and essence-based principles are used to derive metaphysical necessitation from genuine full grounding.\",\n        \"This topic can compare empirical belief shifts toward non-physicalism with philosophical criteria for when explanatory dependence is objective, necessary, and not reducible to a subject's current sense of significance. The support is cross-source but asymmetric: source 04 gives empirical belief-change evidence, while source 01 supplies conceptual constraints on grounding rather than direct claims about psychedelic experience.\"\n      ],\n      \"source_ids\": [\n        \"source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0\",\n        \"source-01-grounding-necessary-or-contingent--6e8195a096f0\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Metaphysical Belief Change and Grounding Necessity\",\n      \"topic_id\": \"topic-metaphysical-belief-change-and-grounding-necessity\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c\",\n        \"claim-greater-lifetime-psychedelic-use-correlates-with-stronger-baseline-panpsychist-b--a024d2968b54\",\n        \"claim-in-a-randomized-controlled-depression-trial-psilocybin-therapy-produced-shifts-a--7cfb0c0f75e7\",\n        \"claim-patients-who-clinically-responded-to-psilocybin-therapy-showed-greater-shifts-aw--b78b1f525f61\",\n        \"claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf\",\n        \"claim-alethic-fact-grounding-is-a-species-of-grounding-in-which-a-truthmaker-grounds-t--9c9dc5afedc6\",\n        \"claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b\",\n        \"claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5\"\n      ],\n      \"sections\": [\n        \"Source 04 reports shifts away from hard materialism toward non-physicalist positions including panpsychism, dualism, and non-naturalism, plus baseline correlations between psychedelic history and panpsychist or anti-materialist views.\",\n        \"The truthmaking and alethic-fact grounding source asks whether truthmaking behaves like a strict ordering relation, arguing through reflexive, symmetric, and non-transitive cases that grounding-like relations need not be strict orders.\",\n        \"A synthesis-worthy page could examine how commitments to non-physicalist metaphysical views interact with truthmaking assumptions: not whether psychedelics establish any metaphysics, but how belief movement toward panpsychism or dualism might depend on implicit views about what makes propositions true and how truth facts are grounded. The evidence justifies a conceptual comparison, not a causal or doctrinal bridge between the sources.\"\n      ],\n      \"source_ids\": [\n        \"source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0\",\n        \"source-02-grounding-is-not-a-strict-order--7c76f525b4e3\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Non-Physicalist Belief and Truthmaking Structure\",\n      \"topic_id\": \"topic-nonphysicalist-belief-and-truthmaking-structure\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-shifts-away-from-hard-materialism-are-positively-associated-with-increases-in-ps--4bb5f88069f2\",\n        \"claim-perceived-emotional-synchrony-during-the-psychedelic-ceremony-mediates-later-cha--adcb9ca374b4\",\n        \"claim-ceremonial-psychedelic-use-increased-fatalistic-determinism-at-four-weeks-in-the--f71a027b70cc\",\n        \"claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c\",\n        \"claim-generalized-identity-is-a-non-factive-no-difference-operator-that-can-apply-to-f--7cb985988184\",\n        \"claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9\",\n        \"claim-necessary-entailment-or-equivalence-is-not-sufficient-for-essence-because-genera--162946956228\",\n        \"claim-full-generic-essence-is-captured-by-generalized-identity-being-f-is-what-it-is-t--96f5798ed301\"\n      ],\n      \"sections\": [\n        \"The psychedelic-belief source links shifts away from hard materialism with psychological well-being, clinical response, emotional synchrony, and contextual moderators, while also noting sample-selection and contextual limitations.\",\n        \"The generalized-identity source analyzes essence and grounding through a non-factive no-difference operator, distinguishing essence from mere necessary equivalence and connecting grounding to identity-like structure.\",\n        \"This topic can synthesize two kinds of transformation: empirical change in metaphysical self-orientation and philosophical accounts of what it is for something to be what it is. The connection is conceptual rather than evidential: source 04 does not use generalized identity, but its findings concern changed commitments about mind, matter, and reality that source 03 helps frame in terms of essence, identity, and non-equivalent metaphysical structure.\"\n      ],\n      \"source_ids\": [\n        \"source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0\",\n        \"source-03-grounding-essence-and-identity--e857615fb05e\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Experience, Well-Being, and Generalized Identity\",\n      \"topic_id\": \"topic-experience-wellbeing-and-generalized-identity\"\n    }\n  ]\n}",
+  "require_complete_replacement_json": true,
+  "validation_errors": [
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/0/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/1/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/2/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Normalization error: topic_generation semantic output requires at least one section with non-empty body.",
+      "path": "/topics",
+      "validator": "post_schema_contract",
+      "validator_value": "topic_generation_normalizer"
+    }
+  ]
+}
+
+=== llm output ===
+{
+  "topics": [
+    {
+      "claim_ids": [
+        "claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c",
+        "claim-most-psychedelic-associated-shifts-in-non-physicalist-metaphysical-beliefs-persi--9591d5bd7c0c",
+        "claim-participants-with-no-prior-psychedelic-experience-showed-larger-shifts-away-from--056a417d978d",
+        "claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c",
+        "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124",
+        "claim-connecting-questions-lack-cognitive-significance-only-when-fine-style-essential--f96bc70d5d2d",
+        "claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869",
+        "claim-the-epistemic-constraint-on-grounding-does-not-undermine-grounding-objectivity-b--87922d9890f9"
+      ],
+      "sections": [
+        {
+          "heading": "Empirical Belief Movement",
+          "body": "Psychedelic use is reported as associated with significant movement away from hard physicalist or materialist metaphysical beliefs and toward non-physicalist positions such as panpsychism, dualism, and non-naturalism. The same source reports that most of these non-physicalist belief shifts persisted for at least six months and that psychedelic-naive participants showed larger shifts than the full observational sample."
+        },
+        {
+          "heading": "Grounding Necessity Framework",
+          "body": "The grounding-necessity source supplies a conceptual contrast: a fact is fully grounded in a plurality only if the connecting question asking why the grounded fact obtains given those grounds lacks cognitive significance. It further links that lack of cognitive significance to Fine-style essential truths and uses the significance and essence principles to argue that full grounding metaphysically necessitates what is grounded."
+        },
+        {
+          "heading": "Synthesis Boundary",
+          "body": "This topic can compare empirical shifts in metaphysical commitments with a philosophical account of when explanatory dependence is objective and necessary. The support is cross-source but asymmetric: the psychedelic source gives evidence of belief change, while the grounding source supplies criteria for explanatory dependence rather than direct claims about psychedelic experience."
+        }
+      ],
+      "source_ids": [
+        "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+        "source-01-grounding-necessary-or-contingent--6e8195a096f0"
+      ],
+      "structure_type": "wiki",
+      "title": "Metaphysical Belief Change and Grounding Necessity",
+      "topic_id": "topic-metaphysical-belief-change-and-grounding-necessity"
+    },
+    {
+      "claim_ids": [
+        "claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c",
+        "claim-greater-lifetime-psychedelic-use-correlates-with-stronger-baseline-panpsychist-b--a024d2968b54",
+        "claim-in-a-randomized-controlled-depression-trial-psilocybin-therapy-produced-shifts-a--7cfb0c0f75e7",
+        "claim-patients-who-clinically-responded-to-psilocybin-therapy-showed-greater-shifts-aw--b78b1f525f61",
+        "claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf",
+        "claim-alethic-fact-grounding-is-a-species-of-grounding-in-which-a-truthmaker-grounds-t--9c9dc5afedc6",
+        "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+        "claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5"
+      ],
+      "sections": [
+        {
+          "heading": "Non-Physicalist Commitments",
+          "body": "The psychedelic-belief source reports shifts away from hard materialism toward non-physicalist views and identifies baseline correlations between lifetime psychedelic use, stronger panpsychist beliefs, and weaker hard materialist beliefs. It also reports that psilocybin therapy, unlike escitalopram, produced shifts away from hard materialism in a controlled depression trial, with clinically responding psilocybin patients showing larger shifts than clinically responding escitalopram patients."
+        },
+        {
+          "heading": "Truthmaking and Order Structure",
+          "body": "The truthmaking source treats truthmaking and alethic-fact grounding as species of grounding, then argues that grounding is not a strict order because it is not reliably transitive, irreflexive, or asymmetric. Its examples include mutual truthmaking or mutual alethic-fact grounding between distinct propositions or truth facts."
+        },
+        {
+          "heading": "Synthesis Boundary",
+          "body": "A synthesis-worthy page can examine how movement toward panpsychist, dualist, or other non-physicalist beliefs might interact with assumptions about what makes propositions true and how truth facts are grounded. The sources do not establish that psychedelic-associated belief change supports any truthmaking theory; they justify a conceptual comparison between altered metaphysical commitments and non-strict grounding structure."
+        }
+      ],
+      "source_ids": [
+        "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+        "source-02-grounding-is-not-a-strict-order--7c76f525b4e3"
+      ],
+      "structure_type": "wiki",
+      "title": "Non-Physicalist Belief and Truthmaking Structure",
+      "topic_id": "topic-nonphysicalist-belief-and-truthmaking-structure"
+    },
+    {
+      "claim_ids": [
+        "claim-shifts-away-from-hard-materialism-are-positively-associated-with-increases-in-ps--4bb5f88069f2",
+        "claim-perceived-emotional-synchrony-during-the-psychedelic-ceremony-mediates-later-cha--adcb9ca374b4",
+        "claim-ceremonial-psychedelic-use-increased-fatalistic-determinism-at-four-weeks-in-the--f71a027b70cc",
+        "claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c",
+        "claim-generalized-identity-is-a-non-factive-no-difference-operator-that-can-apply-to-f--7cb985988184",
+        "claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+        "claim-necessary-entailment-or-equivalence-is-not-sufficient-for-essence-because-genera--162946956228",
+        "claim-full-generic-essence-is-captured-by-generalized-identity-being-f-is-what-it-is-t--96f5798ed301"
+      ],
+      "sections": [
+        {
+          "heading": "Experience and Well-Being",
+          "body": "The psychedelic-belief source links shifts away from hard materialism with increases in psychological well-being after ceremonies and reports that emotional synchrony during a ceremony mediates later changes in non-physicalist beliefs, with peer conformity moderating that pathway. It also reports a temporary overall increase in fatalistic determinism and notes that possible causal interpretation remains limited by sample selection and contextual confounds."
+        },
+        {
+          "heading": "Generalized Identity Framework",
+          "body": "The generalized-identity source analyzes grounding and essence through a non-factive no-difference operator that can apply to factual and generic contents. On that account, full generic essence is captured by generalized identity, while necessary entailment or equivalence alone is not sufficient for essence because identity and grounding can distinguish essential structure from merely necessary coextension."
+        },
+        {
+          "heading": "Synthesis Boundary",
+          "body": "This topic can synthesize empirical change in metaphysical self-orientation with a philosophical framework for essence, identity, and grounding. The connection is conceptual rather than evidential: the psychedelic source does not use generalized identity, but its findings concern changed commitments about mind, matter, and reality that can be framed against a theory separating essential structure from mere modal equivalence."
+        }
+      ],
+      "source_ids": [
+        "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+        "source-03-grounding-essence-and-identity--e857615fb05e"
+      ],
+      "structure_type": "wiki",
+      "title": "Experience, Well-Being, and Generalized Identity",
+      "topic_id": "topic-experience-wellbeing-and-generalized-identity"
+    }
+  ]
+}

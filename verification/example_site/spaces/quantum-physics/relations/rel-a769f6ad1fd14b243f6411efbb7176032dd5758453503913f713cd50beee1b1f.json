@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Input and output bottlenecks can prevent end-to-end advantage even when an internal quantum subroutine is faster.",
+  "relation_file_id": "rel-a769f6ad1fd14b243f6411efbb7176032dd5758453503913f713cd50beee1b1f",
+  "relation_id": "falsifies:claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4->claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+  "relation_type": "falsifies",
+  "src_claim_id": "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4",
+  "src_claim_ref": "4",
+  "status": "open"
+}

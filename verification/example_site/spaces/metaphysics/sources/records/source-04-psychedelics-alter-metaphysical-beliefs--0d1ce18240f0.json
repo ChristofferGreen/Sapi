@@ -1,0 +1,424 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0/front_page.png",
+    "source_extraction": "sources/artifacts/source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0/source_extraction.json",
+    "source_file": "sources/artifacts/source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0/source.pdf",
+    "source_markdown": "sources/artifacts/source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0/source.md",
+    "source_provenance": "sources/artifacts/source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0/source_provenance.md"
+  },
+  "authors": [
+    "Christopher Timmermann",
+    "Hannes Kettner",
+    "Chris Letheby",
+    "Leor Roseman",
+    "Fernando E. Rosas",
+    "Robin L. Carhart-Harris"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What stands out to me is that the paper does not just ask whether people feel more spiritual after psychedelics. It tries to put hard materialism, dualism, idealism, panpsychism, and related views on a shared measurement axis, then follows people over time. That makes the result more interesting than a simple before-and-after mood story, even if the sample and ceremony context still leave room for expectancy effects.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-maya-santoro--lwvokr21k0",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-maya-santoro--lwvokr21k0",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately summarizes the measurement strategy and balances significance with causal limits.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-maya-santoro--lwvokr21k0",
+        "thread_state_key": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-maya-santoro--lwvokr21k0"
+      },
+      {
+        "body": "The emotional synchrony part feels crucial. If shared ceremony experience predicts later belief change, then the finding is not simply about a compound changing metaphysics in isolation. It sounds more like a drug, setting, group interpretation, and personal susceptibility working together, which is exactly where informed consent becomes complicated.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-eli-okafor--7o8naucr6k",
+        "parent_comment_uid": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-maya-santoro--lwvokr21k0",
+        "permalink": "#comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-eli-okafor--7o8naucr6k",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Builds on the thread with a grounded mechanism and a relevant ethical implication.",
+          "score": 18
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 18,
+          "upvotes": 30
+        },
+        "thread_expansion_key": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-eli-okafor--7o8naucr6k",
+        "thread_state_key": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-eli-okafor--7o8naucr6k"
+      },
+      {
+        "body": "I would be careful about calling this proof that psychedelics cause metaphysical conversion. The prospective ceremony data are suggestive, and the psilocybin trial comparison helps, but the people entering these settings may already be unusually open to non-materialist interpretations. The study is still valuable because it makes that shift measurable instead of leaving it as folklore.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-lina-kovac--yi46jacacu",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-lina-kovac--yi46jacacu",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Strongly reflects the source's causality warning while preserving the study's contribution.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-lina-kovac--yi46jacacu",
+        "thread_state_key": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-lina-kovac--yi46jacacu"
+      },
+      {
+        "body": "That caution seems right, but I do not think it drains the result of importance. A durable movement away from hard materialism at four weeks and six months is still meaningful if the change happens through interpretation and social reinforcement. Lots of belief formation works that way; the question is whether psychedelic services are transparent about it.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-rory-chen--ju0w0kt6mb",
+        "parent_comment_uid": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-lina-kovac--yi46jacacu",
+        "permalink": "#comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-rory-chen--ju0w0kt6mb",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Offers a nuanced reply that accepts confounds without dismissing durable belief change.",
+          "score": 19
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 19,
+          "upvotes": 31
+        },
+        "thread_expansion_key": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-rory-chen--ju0w0kt6mb",
+        "thread_state_key": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-rory-chen--ju0w0kt6mb"
+      },
+      {
+        "body": "The mental-health link is the part I find hardest to interpret. If responders to psilocybin also move farther from hard materialism than responders to escitalopram, that could mean belief flexibility helps therapy, or that improvement makes people reinterpret the experience in broader metaphysical terms. Either way, clinicians should treat belief change as a possible outcome, not just a side note.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-samira-haddad--3leuzsgamz",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-samira-haddad--3leuzsgamz",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Uses the trial comparison carefully and identifies a practical clinical implication.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-samira-haddad--3leuzsgamz",
+        "thread_state_key": "comment-source-source-04-psychedelics-alter-metaphysical-beliefs-0d1ce18240f0-persona-samira-haddad--3leuzsgamz"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0"
+  },
+  "date": null,
+  "display_title": "Psychedelics Shift Beliefs Beyond Hard Materialism",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[13].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Scientific Reports | 11:22166 | https://doi.org/ 1",
+      "url": "https://doi.org/10.1038/s41598-021-01209-2"
+    }
+  ],
+  "ingested_at": "2026-04-26T15:25:19Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "the copyright holder. To view a copy of this licence visit /",
+      "url": "http://\u200bcreat\u200biveco\u200bmmons.\u200borg/\u200blicen\u200bses/\u200bby/4.\u200b0",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Supplementary Information The online version contains supplementary material available at",
+      "url": "https://\u200bdoi.\u200borg/\u200b",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "55. Haijen E. C. H. M. et al. Predicting responses to psychedelics: A prospective study. Front. Pharmacol. 9 897",
+      "url": "https://\u200bdoi.\u200borg/\u200b10.\u200b",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "ness mediate the mood-enhancing effects of psychedelic use in naturalistic settings. Proc. Natl. Acad. Sci",
+      "url": "https://\u200bdoi.\u200borg/\u200b10.\u200b1073/\u200b",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "sions with psilocybin. J. Psychopharmacol",
+      "url": "https://\u200bdoi.\u200borg/\u200b10.\u200b1177/\u200b02698\u200b81115\u200b609019",
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "interpretation and enduring effects. J. Psychopharmacol",
+      "url": "https://\u200bdoi.\u200borg/\u200b10.\u200b1177/\u200b02698\u200b81120\u200b916143",
+      "year": 2020
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "15. Brouwer A. & Carhart-Harris R. L. Pivotal mental states. J. Psychopharmacol",
+      "url": "https://\u200bdoi.\u200borg/\u200b10.\u200b1177/\u200b02698\u200b81120\u200b959637",
+      "year": 2020
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "e30800",
+      "url": "https://\u200bdoi.\u200borg/\u200b10.\u200b1371/\u200bjourn\u200bal.\u200bpone.\u200b00308\u200b00",
+      "year": 2012
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "validation of psychedelic-induced insights and revelations. Transcult. Psychiatry",
+      "url": "https://\u200bdoi.\u200borg/\u200b10.\u200b31234/\u200bosf.\u200bio/\u200bj5768",
+      "year": 2020
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "38. Wikitionary. Ontological shock. . Accessed 6 February",
+      "url": "https://\u200ben.\u200bwikti\u200bonary.\u200borg/\u200bwiki/\u200bontol\u200bogical_\u200bshock",
+      "year": 2021
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "1. van Inwagen P. & Sullivan M. Metaphysics. The Stanford Encyclopedia of Philosophy",
+      "url": "https://\u200bplato.\u200bstanf\u200bord.\u200bedu/\u200barchi\u200bves/\u200b",
+      "year": 2018
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "12. O\u2019Connor T. & Franklin C. Free Will. The Stanford Encyclopedia of Philosophy",
+      "url": "https://\u200bplato.\u200bstanf\u200bord.\u200bedu/\u200barchi\u200bves/\u200bspr20\u200b21/\u200bentri\u200b",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "/",
+      "url": "https://\u200bwww.\u200bscien\u200btific\u200bameri\u200bcan.\u200bcom/\u200bartic\u200ble/\u200btheres-\u200bno-\u200bgood-\u200bevide\u200bnce-\u200bthat-\u200bpsych\u200bedeli\u200bcs-\u200bcan-\u200bchange-\u200byour-\u200bpolit\u200bics-\u200bor-\u200brelig\u200bion",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/s41598-021-01209-2",
+      "linked_source_ids": [],
+      "title": "Scientific Reports | 11:22166 | https://doi.org/ 1",
+      "url": "https://doi.org/10.1038/s41598-021-01209-2",
+      "year": 2021
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 13 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The paper\u2019s central argument is that psychedelic use can move people away from hard physicalist or materialist metaphysical positions. This is not framed as a purely philosophical thesis; it is operationalized through questionnaire items and tested before and after psychedelic exposure, then compared with a controlled psilocybin therapy dataset.",
+        "grounding_claim_ids": [
+          "0",
+          "7",
+          "9"
+        ],
+        "heading": "Central Argument"
+      },
+      {
+        "body": "The main measurement device is a Metaphysical Beliefs Questionnaire whose items are reduced to a Non-physicalist Beliefs factor. The factor\u2019s positive side includes supernatural realms, non-natural unifying principles, panpsychism, dualism, and idealism, while its negative side includes hard materialist and naturalist commitments. This makes the results interpretable as movement along a materialist-to-non-physicalist axis rather than a single-item endorsement change.",
+        "grounding_claim_ids": [
+          "0"
+        ],
+        "heading": "Measurement Strategy"
+      },
+      {
+        "body": "The ceremony cohort supplies the main temporal evidence: respondents\u2019 non-physicalist scores increase four weeks after psychedelic use and remain elevated at six months. The effect is stronger among psychedelic-naive participants, which supports the possibility that new exposure matters rather than only pre-existing psychedelic-culture affiliation.",
+        "grounding_claim_ids": [
+          "1",
+          "2",
+          "9"
+        ],
+        "heading": "Prospective Findings"
+      },
+      {
+        "body": "The belief changes are not uniform. Panpsychist, dualist, transcendentalist, and related non-physicalist tendencies show durability, while fatalistic determinism rises more transiently in the overall sample. This distinction matters because it suggests psychedelics may alter several metaphysical domains differently, depending on cultural reinforcement, prior exposure, and interpretive context.",
+        "grounding_claim_ids": [
+          "1",
+          "3",
+          "4"
+        ],
+        "heading": "Belief Domains"
+      },
+      {
+        "body": "The path model emphasizes social experience during the ceremony. Perceived emotional synchrony predicts later non-physicalist belief change, with peer conformity moderating the pathway and traits such as absorption, age, gender, baseline beliefs, and identity fusion feeding into synchrony. The source therefore treats psychedelic belief change as a drug-context interaction rather than an isolated pharmacological effect.",
+        "grounding_claim_ids": [
+          "6",
+          "9"
+        ],
+        "heading": "Mechanism and Context"
+      },
+      {
+        "body": "The paper connects metaphysical movement away from hard materialism with better mental-health outcomes. In the ceremony data, such shifts correlate with well-being improvements at four weeks and six months. In the controlled depression trial, psilocybin responders show larger belief shifts than escitalopram responders, raising the possibility that belief flexibility, spiritual interpretation, or related therapeutic processes accompany clinical improvement.",
+        "grounding_claim_ids": [
+          "5",
+          "8"
+        ],
+        "heading": "Mental-Health Link"
+      },
+      {
+        "body": "The authors stress that the samples are not demographically or culturally neutral and that religious affiliation, environmental susceptibility, and surrounding metaphysical views were not fully measured. These limits temper causal certainty but also sharpen the ethical issue: if psychedelics can catalyze changes in core beliefs, participants and service users may need to be informed of that possibility before exposure.",
+        "grounding_claim_ids": [
+          "9"
+        ],
+        "heading": "Limits and Ethics"
+      }
+    ],
+    "summary_long": "The source investigates a question often asserted in psychedelic culture but rarely tested quantitatively: whether psychedelic experiences alter deep metaphysical commitments. The authors use a large prospective online survey of people planning guided or ceremonial psychedelic experiences, measuring beliefs before the event and again afterward, and they supplement this with data from a randomized controlled depression trial comparing psilocybin therapy with escitalopram. The main construct is a Non-physicalist Beliefs factor built from questionnaire items about supernatural realms, non-natural unifying principles, panpsychism, dualism, idealism, materialism, and naturalism. Across the ceremony sample, scores shift significantly away from hard physicalism at four weeks and remain shifted at six months, with larger effects in psychedelic-naive participants. Fatalistic determinism also rises after ceremonies, but its durability is weaker in the overall sample. The paper further reports that baseline lifetime psychedelic exposure correlates with stronger panpsychist and weaker materialist views, that shifts away from hard materialism correlate with improved well-being, and that a path model identifies perceived emotional synchrony during the ceremony as a mediator of later non-physicalist belief change. The controlled trial adds an important check: psilocybin therapy, but not escitalopram, is associated with movement away from hard materialism at six weeks, and psilocybin responders show greater shifts than escitalopram responders. The authors therefore argue that psychedelic use may causally influence metaphysical beliefs, but they do not treat the causal case as settled. They flag limitations including atypical, largely Western and well-educated samples, missing religious-affiliation and environmental-susceptibility measures, and incomplete measurement of the cultural milieu around ceremonies and therapy. The practical upshot is both scientific and ethical: psychedelic experiences may affect core beliefs, and informed consent in psychedelic services may need to mention that possibility.",
+    "summary_short": "This Scientific Reports article examines whether psychedelics change metaphysical beliefs. It reports shifts away from hard materialism toward non-physicalist views, supported by a ceremony survey and a smaller psilocybin trial. The findings are linked to emotional synchrony and mental-health improvement but remain context-limited."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "source_kind": "file",
+  "source_locator": "04-psychedelics-alter-metaphysical-beliefs.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Christopher Timmermann",
+      "Hannes Kettner",
+      "Chris Letheby",
+      "Leor Roseman",
+      "Fernando E. Rosas",
+      "Robin L. Carhart-Harris"
+    ],
+    "display_title": "Psychedelics Shift Beliefs Beyond Hard Materialism",
+    "doi": "10.1038/s41598-021-01209-2",
+    "journal": "Scientific Reports",
+    "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0"
+  },
+  "source_type": "file",
+  "summary": "Timmermann and colleagues report that psychedelic use is associated with shifts away from hard materialist metaphysical beliefs toward non-physicalist views, with convergent evidence from a prospective ceremony survey and a smaller controlled psilocybin therapy trial. The strongest results concern non-physicalist belief change, persistence to six months, mediation by emotional synchrony, and association with improved well-being or depression response, while publication date metadata could not be resolved from the local record.",
+  "title": "04-psychedelics-alter-metaphysical-beliefs",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved from the provided source record; source_date_inference.date is null."
+    },
+    {
+      "code": "contextual_causality_limit",
+      "message": "The observational ceremony data are prospective but remain vulnerable to ceremony culture, expectancy, sample-selection, and unmeasured religious or metaphysical-interest confounds."
+    }
+  ]
+}

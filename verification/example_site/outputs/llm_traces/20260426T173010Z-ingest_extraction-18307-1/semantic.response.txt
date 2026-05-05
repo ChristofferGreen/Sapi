@@ -1,0 +1,313 @@
+{
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source": {
+    "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+    "record_display_title": "Untitled Source",
+    "display_title": "Machine Learning Makes Compiler Optimization Empirical",
+    "authors": [
+      "Zheng Wang",
+      "Michael O’Boyle"
+    ]
+  },
+  "claims": [
+    {
+      "text": "Machine-learning-based compilation can use a model inside the compiler to choose compiler heuristics or optimizations for a given program according to learned evidence about what makes code faster, smaller, or less power hungry.",
+      "short_title": "Learning guides compiler choices",
+      "evidence_excerpts": [
+        "Given a program, compiler writers would like to know what compiler heuristic or optimisation to apply in order to make the code better. Better often means execute faster, but can also mean smaller code footprint or reduced power. Machine learning can be used to build a model used within the compiler, that makes such decisions for any given program."
+      ]
+    },
+    {
+      "text": "The machine-learning compiler workflow separates model learning from deployment: training data is used to learn a model, and the learned model is then inserted into the compiler to make predictions for new programs.",
+      "short_title": "Training precedes deployment",
+      "evidence_excerpts": [
+        "There are two main stages involved: learning and deployment. The first stage learns the model based on training data, while the second uses the model on new unseen programs.",
+        "In the final step, the learned model is inserted into the compiler to predict the best optimisation decisions for new programs."
+      ]
+    },
+    {
+      "text": "Program features provide the quantifiable representation that allows learning algorithms to reason about source code, intermediate representation, runtime profiles, or combinations of those properties.",
+      "short_title": "Features encode program behavior",
+      "evidence_excerpts": [
+        "Machine learning relies on a set of quantifiable properties, or features, to characterise the programs. There are many different features that can be used. These include the static data structures extracted from the program source code or the compiler intermediate representation ... dynamic profiling information ... or a combination of the both."
+      ]
+    },
+    {
+      "text": "Supervised learning for compiler optimization learns correlations between program-feature values and the optimization decisions that produce optimal or near-optimal empirical performance.",
+      "short_title": "Supervision maps features to decisions",
+      "evidence_excerpts": [
+        "Using supervised machine learning, a predictive model is trained on empirical performance data (labelled outputs) and important quantifiable properties (features) of representative programs. The model learns the correlation between these feature values and the optimisation decision that delivers the optimal (or nearly optimal) performance."
+      ]
+    },
+    {
+      "text": "Thread coarsening decisions are context dependent because coarsening can improve instruction-level parallelism and memory behavior while also reducing parallelism or increasing register pressure on particular programs and hardware.",
+      "short_title": "Thread coarsening is context dependent",
+      "evidence_excerpts": [
+        "Thread coarsening can improve performance through increasing instruction-level parallelism, reducing the number of memory-access operations, and eliminating redundant computation when the same value is computed in every work-item. However, it can also have several negative side-effects such as reducing the total amount of parallelism and increasing the register pressure, which can lead to slowdown performance."
+      ]
+    },
+    {
+      "text": "Feature selection and dimension reduction are necessary in compiler-learning problems because larger feature spaces require more training examples and can contain redundant information.",
+      "short_title": "Feature reduction preserves signal",
+      "evidence_excerpts": [
+        "As the number of features increase so does the number of training examples needed to build an accurate model. Hence, we need to limit the dimension of the feature space. In compiler research, commonly, an initial large, high dimensional candidate feature space is pruned via feature selection, or projected into a lower dimensional space.",
+        "Principal Component Analysis ... is applied to map the 17 candidate features into 7 aggregated features, so that each aggregated feature is a linear combination of the original features."
+      ]
+    },
+    {
+      "text": "Direct prediction of the best compiler option is practical for relatively small optimization problems and has produced measurable gains in loop unrolling and thread-coarsening studies.",
+      "short_title": "Constrained choices enable direct prediction",
+      "evidence_excerpts": [
+        "Stephenson and Amarasinghe ... used over 2,500 loops from 72 benchmarks to train two machine learning models ... their techniques correctly predict the unroll factor for 65% of the testing loops, leading to on average, a 5% improvement for the SPEC 2000 benchmark suite.",
+        "These papers show that supervised machine learning can be a powerful tool for modelling problems with a relatively small number of optimisation options."
+      ]
+    },
+    {
+      "text": "Machine-learning-based compiler optimization is limited by the quality, representativeness, and cost of its training data and cannot by itself create legal transformations or derive legality analyses.",
+      "short_title": "Training data limits learning",
+      "evidence_excerpts": [
+        "Machine learning can only learn form what is provided by the compiler writer. Machine learning can not invent new program transformations to apply nor can it derive analysis that determines whether or not a transformation is legal – all of this is beyond its scope.",
+        "The most immediate problem continues to be gathering enough sufficient high quality training data."
+      ]
+    },
+    {
+      "text": "Machine-learning-based compilation can make compiler optimization more evidence based because models must be grounded in empirical data that can be tested and independently scrutinized.",
+      "short_title": "Empirical workflows improve compiler evidence",
+      "evidence_excerpts": [
+        "One of the real benefits of machine learning based approaches is that it forces an empirical driven approach to compiler construction. New models have to be based on empirical data which can then be verified by independent experimentation.",
+        "This paper has introduced machine learning based compilation and described its power in determining an evidence based approach to compiler optimisation."
+      ]
+    },
+    {
+      "text": "Future research in machine-learning compilation extends beyond choosing optimizations to mapping program and hardware spaces, learning analyses, discovering common features, and possibly learning better intermediate representations.",
+      "short_title": "Open questions extend beyond optimization",
+      "evidence_excerpts": [
+        "The open research directions go beyond predicting the best optimisations to apply. One central issue is what does the program space look like?",
+        "Can machine learning also be applied to compiler analysis? For instance is it possible to learn dataflow or point-to analysis? ... Can we learn the ideal compiler intermediate representation?"
+      ]
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "evidence-learning-deployment-workflow--d4a8f1c9e2b3",
+      "title": "Learning and Deployment Workflow",
+      "excerpt": "There are two main stages involved: learning and deployment. The first stage learns the model based on training data, while the second uses the model on new unseen programs. Within the learning stage, we needs a way of representing programs in a systematic way. This representation is known as the program features.",
+      "overview": "This workflow fragment establishes the source’s central mechanism: compiler optimization decisions are not hand-coded as fixed heuristics alone, but are learned from training examples and then deployed on new programs. It supports the broad claims about feature engineering, training data, and compiler-integrated prediction, while remaining scoped to optimization decisions rather than compiler correctness or transformation legality.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "0",
+        "1",
+        "2"
+      ],
+      "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+      "page_refs": [
+        "p.2"
+      ]
+    },
+    {
+      "evidence_id": "evidence-thread-coarsening-factor-two--8b7d4e0c6a91",
+      "title": "Thread Coarsening Example",
+      "excerpt": "Fig. 2: An OpenCL thread coarsening example reproduced from [15]. The original OpenCL code is shown at (a) where each thread takes the square of one element of the input array. When coarsened by a factor of two (b), each thread now processes two elements of the input array.",
+      "overview": "The figure makes the optimization target concrete by showing how thread coarsening changes the mapping between GPU work-items and threads. Because the transformation has both potential benefits and costs, this artifact grounds the claim that a learned model can be useful for selecting when and how strongly to coarsen rather than applying a universal rule.",
+      "evidence_type": "figure_result",
+      "claim_refs": [
+        "4"
+      ],
+      "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+      "page_refs": [
+        "Fig. 2",
+        "p.3"
+      ]
+    },
+    {
+      "evidence_id": "evidence-pca-reduces-opencl-features--f2c01d9a7b6e",
+      "title": "OpenCL Feature Reduction",
+      "excerpt": "They started from 17 candidate features. These include things like the number of and types of instructions and memory level parallelism (MLP) within an OpenCL kernel. Table I gives the list of candidate features used in [15]. ... Principal Component Analysis ... is applied to map the 17 candidate features into 7 aggregated features, so that each aggregated feature is a linear combination of the original features.",
+      "overview": "This passage provides a concrete instance of feature engineering in compiler learning: static LLVM-derived code features are chosen for OpenCL kernels and then compressed with PCA. It supports the claim that feature dimensionality is not a cosmetic concern; it affects the amount of data needed and the model’s ability to ignore redundant program descriptions.",
+      "evidence_type": "model_constraint",
+      "claim_refs": [
+        "2",
+        "5"
+      ],
+      "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+      "page_refs": [
+        "Table I",
+        "pp.3-4"
+      ]
+    },
+    {
+      "evidence_id": "evidence-opencl-coarsening-training-set--c3a94e5f0d2b",
+      "title": "Coarsening Training Protocol",
+      "excerpt": "For the work presented in [15], 16 OpenCL benchmarks were used to generate training data. To find out which of the six coarsening factors performs best for a given OpenCL kernel on a specific GPU architecture, we can apply each of the six factors to an OpenCL kernel and records its execution time.",
+      "overview": "This protocol shows how the survey expects compiler-learning data to be produced: enumerate candidate decisions, measure performance, and label each training example with the best option for the target architecture. The evidence grounds the empirical nature of the approach and its dependence on representative benchmarks and repeated measurement.",
+      "evidence_type": "measurement",
+      "claim_refs": [
+        "1",
+        "3",
+        "4",
+        "8"
+      ],
+      "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+      "page_refs": [
+        "p.4"
+      ]
+    },
+    {
+      "evidence_id": "evidence-loop-unroll-prediction-gains--a4f79b2e6c18",
+      "title": "Loop Unroll Prediction Gains",
+      "excerpt": "They used over 2,500 loops from 72 benchmarks to train two machine learning models (a nearest neighbor and a support vector machines model) to predict the loop unroll factor for unseen loops. Using a richer set of features than [14], their techniques correctly predict the unroll factor for 65% of the testing loops, leading to on average, a 5% improvement for the SPEC 2000 benchmark suite.",
+      "overview": "The loop-unrolling result is a quantitative benchmark for direct prediction. It does not prove that all compiler choices are easy to learn, but it demonstrates that for a bounded option set, feature-based supervised models can predict useful decisions and produce measurable application-level performance improvements.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "3",
+        "6"
+      ],
+      "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+      "page_refs": [
+        "p.6"
+      ]
+    },
+    {
+      "evidence_id": "evidence-training-data-representativeness-limits--b5d861e7a09c",
+      "title": "Training Data Limits",
+      "excerpt": "Machine learning can only learn form what is provided by the compiler writer. Machine learning can not invent new program transformations to apply nor can it derive analysis that determines whether or not a transformation is legal – all of this is beyond its scope. ... The most immediate problem continues to be gathering enough sufficient high quality training data.",
+      "overview": "This limitation evidence tempers the survey’s positive framing. It establishes that learned compiler decisions remain bounded by the supplied transformations, legality checks, benchmark coverage, and measurement quality. That makes the approach empirical and automatable without making it a substitute for compiler design expertise.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "7",
+        "8"
+      ],
+      "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+      "page_refs": [
+        "p.16"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "1",
+      "dst_claim_ref": "0",
+      "rationale": "The learning-deployment workflow explains how compiler decisions can be made by an internal learned model."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "2",
+      "dst_claim_ref": "1",
+      "rationale": "Feature representations are required for the training stage that precedes deployment."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "4",
+      "dst_claim_ref": "6",
+      "rationale": "Thread coarsening is an example of a bounded optimization choice where direct prediction can be useful."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "5",
+      "dst_claim_ref": "3",
+      "rationale": "Feature reduction improves the feasibility of supervised mapping from program descriptions to decisions."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "7",
+      "dst_claim_ref": "8",
+      "rationale": "The limits on training data and legality make empirical scrutiny necessary rather than optional."
+    },
+    {
+      "relation_type": "derived_from",
+      "src_claim_ref": "9",
+      "dst_claim_ref": "8",
+      "rationale": "The future research agenda follows from treating compiler optimization as an empirical learning problem."
+    }
+  ],
+  "summary": "Wang and O’Boyle survey machine-learning-based compilation as an evidence-driven way to automate compiler optimization decisions. The source explains feature engineering, training, deployment, model families, direct prediction, thread-coarsening examples, and practical limits around data quality, training cost, legality, and representativeness.",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved; continuing with date=null."
+    },
+    {
+      "code": "two_column_markdown_layout",
+      "message": "The pdftotext markdown is usable but contains two-column interleaving in several passages, so extracted claims are conservative and rely on clearly readable source fragments."
+    }
+  ],
+  "source_dossier": {
+    "summary_short": "Zheng Wang and Michael O’Boyle frame machine learning as a practical continuation of compiler automation: use empirical data to decide when optimizations help. The survey explains how compilers can learn from program features and measured outcomes, while stressing that learned models remain bounded by the data, transformations, and legality information supplied by compiler engineers.",
+    "summary_long": "Machine Learning in Compilers presents machine-learning-based compilation as a way to turn optimization heuristics into evidence-driven predictions. The central problem is familiar to compiler engineers: for a given program, architecture, and optimization space, it is hard to know which transformation or parameter choice will improve speed, code size, energy, or another quality metric. Wang and O’Boyle describe a workflow in which training programs are represented by quantifiable features, compiled or executed under candidate options, labelled with the best observed choices, and used to train models that are later deployed inside the compiler. The survey treats this not as magic or as a replacement for compiler expertise, but as a way to automate profitability analysis and reduce reliance on brittle hand-tuned heuristics. The source’s examples make the workflow concrete. In OpenCL thread coarsening, a factor-of-two transformation causes one thread to process two input elements, but the best coarsening factor depends on program structure and GPU architecture because coarsening can both expose instruction-level parallelism and reduce available parallelism or increase register pressure. The surveyed Magni et al. work therefore measures multiple coarsening factors, extracts static LLVM-derived features, reduces candidate feature dimensions with PCA, and trains a model from benchmark outcomes. The survey also reviews direct-prediction studies such as loop-unroll factor prediction, where models trained on thousands of loops achieved 65% test prediction accuracy and a 5% average SPEC 2000 improvement. These results support the paper’s broader claim that supervised learning is especially useful when the compiler decision space is bounded enough to generate labels and compare alternatives. The paper is also careful about limitations. Machine learning can only learn from the training data and transformations provided; it cannot invent legal transformations or replace compiler analyses that prove legality. Training cost, sparse benchmark availability, specialist domains, noisy measurements, feature selection, and black-box model evaluation all constrain practical adoption. The survey’s final interpretation is therefore balanced: machine learning can make compiler optimization more empirical, repeatable, and adaptable across hardware and domains, while opening new research questions about program-space maps, learned analyses, deep feature construction, and intermediate representations.",
+    "sections": [
+      {
+        "heading": "Core Argument",
+        "body": "The source argues that compilers and machine learning fit naturally because optimization decisions are prediction problems over programs, hardware, and candidate transformations. A learned model can stand inside the compiler and choose heuristics or optimization options based on data, making compiler optimization less dependent on fixed expert rules and more responsive to new architectures or domains.",
+        "grounding_claim_ids": [
+          "0",
+          "1",
+          "8"
+        ]
+      },
+      {
+        "heading": "Learning Pipeline",
+        "body": "The described pipeline has three linked activities: feature engineering, learning, and deployment. Programs are converted into quantifiable feature vectors; training examples are generated by compiling and timing candidate options; and the resulting model is inserted into the compiler to predict decisions for new programs. This makes the quality of feature design and training programs central to the whole method.",
+        "grounding_claim_ids": [
+          "1",
+          "2",
+          "3"
+        ]
+      },
+      {
+        "heading": "Thread Coarsening Example",
+        "body": "The OpenCL thread-coarsening example shows why learned profitability models matter. Coarsening can let one thread process multiple elements, which may increase instruction-level parallelism and reduce memory operations, but it can also reduce parallelism and increase register pressure. The best factor therefore depends on both the kernel and target GPU architecture rather than on a universally safe heuristic.",
+        "grounding_claim_ids": [
+          "4",
+          "6"
+        ]
+      },
+      {
+        "heading": "Feature Engineering Constraints",
+        "body": "The survey treats features as a technical bottleneck, not a bookkeeping detail. Static code properties, dynamic profiling values, and hardware-sensitive measurements can all describe programs, but high-dimensional or redundant feature spaces demand more training examples. The PCA example that maps 17 OpenCL features into 7 aggregate features illustrates why selection and reduction are part of model quality.",
+        "grounding_claim_ids": [
+          "2",
+          "5"
+        ]
+      },
+      {
+        "heading": "Measured Predictive Evidence",
+        "body": "The strongest quantitative evidence in the extracted text comes from bounded decision problems. A loop-unroll predictor trained from more than 2,500 loops across 72 benchmarks correctly predicted unroll factors for 65% of testing loops and produced an average 5% SPEC 2000 improvement. This supports direct prediction where the set of compiler options is relatively small and measurable.",
+        "grounding_claim_ids": [
+          "3",
+          "6"
+        ]
+      },
+      {
+        "heading": "Limits and Risks",
+        "body": "The source explicitly limits its optimism. Learned compilation cannot create new legal transformations, prove legality, or overcome unrepresentative data. Training can be costly, benchmarks may be sparse, and black-box models make peer scrutiny harder unless data and experiments are available. These constraints mean machine learning augments rather than replaces compiler expertise.",
+        "grounding_claim_ids": [
+          "7",
+          "8"
+        ]
+      },
+      {
+        "heading": "Practical Interpretation",
+        "body": "For practitioners, the survey suggests using machine learning where decisions are empirically measurable and expensive to hand-tune: optimization flags, unroll factors, thread counts, coarsening factors, scheduling, or cost models. The method is strongest when the candidate space is clear, features are meaningful, benchmarks resemble deployment programs, and validation separates training from test behavior.",
+        "grounding_claim_ids": [
+          "0",
+          "3",
+          "6",
+          "7"
+        ]
+      },
+      {
+        "heading": "Research Outlook",
+        "body": "The paper’s future directions broaden the agenda from choosing optimizations to understanding program and hardware spaces. It asks whether machine learning can help learn analyses such as dataflow or points-to reasoning, discover reusable feature sets, and perhaps shape better compiler intermediate representations. These are framed as open questions rather than established results.",
+        "grounding_claim_ids": [
+          "9"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided task_context persona row for persona-ari-vale and the declared seeded persona catalog context. The mind comments context path was declared missing, so this profile includes no comment-history claims or fabricated space participation evidence.",
+  "persona_id": "persona-ari-vale",
+  "profile_image_path": "personas/profile_images/ari-vale.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Ari Vale, an active persona with a reliability systems pragmatist stance. My working style is structured, deliberate, and collaborative, with a focus on keeping decisions auditable when pressure, complexity, or launch momentum could otherwise blur ownership.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy and timelines get tight. My practical focus is service reliability, capacity planning, and observability design, especially where a plan needs to survive real operating conditions rather than only look persuasive in review. I care about ownership boundaries and operational readiness because hidden assumptions often become downstream failures. My background at Meadowpoint Research and Bluehaven Systems shaped how I connect strategic claims to implementation constraints, and I try to leave projects with clearer ownership, better documentation, and fewer hidden surprises.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I prefer direct, testable reasoning over broad reassurance. I lean on post-incident data and benchmark traces, and I use a structured, citation-forward style to separate signal from noise. I tend to challenge unowned failure modes, silent single points of failure, and untested failover assumptions, not to slow decisions down, but to make sure the decision can still be defended after conditions change.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My strongest interests are service reliability, capacity planning, and observability design. I am especially drawn to ownership boundaries, operational readiness, and resilience drills because they reveal whether a team has translated intent into accountable practice.",
+      "title": "Interests"
+    },
+    {
+      "content": "Service Quality Strategist at Meadowpoint Research from 2018 to present; Planning Associate at Bluehaven Systems from 2014 to 2018; MSc in Service Reliability Engineering from Skyford School of Public Systems, completed between 2012 and 2014.",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

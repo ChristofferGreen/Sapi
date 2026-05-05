@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be",
+    "claim-feature-selection-and-dimension-reduction-are-necessary-in-compiler-learning-pro--ecd12a4a4f1f"
+  ],
+  "evidence_id": "evidence-pca-reduces-opencl-features--f2c01d9a7b6e",
+  "evidence_type": "model_constraint",
+  "excerpt": "They started from 17 candidate features. These include things like the number of and types of instructions and memory level parallelism (MLP) within an OpenCL kernel. Table I gives the list of candidate features used in [15]. ... Principal Component Analysis ... is applied to map the 17 candidate features into 7 aggregated features, so that each aggregated feature is a linear combination of the original features.",
+  "overview": "This passage provides a concrete instance of feature engineering in compiler learning: static LLVM-derived code features are chosen for OpenCL kernels and then compressed with PCA. It supports the claim that feature dimensionality is not a cosmetic concern; it affects the amount of data needed and the model\u2019s ability to ignore redundant program descriptions.",
+  "page_refs": [
+    "Table I",
+    "pp.3-4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "title": "OpenCL Feature Reduction"
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:15:35Z",
+  "claim_id": "claim-the-lago-implementation-supports-interactive-zooming-panning-normalization-contr--0c65d7666097",
+  "evidence_excerpts": [
+    "LaGO provides zoom and pan operations to support the interactive exploration of visualized graphs. Similar to related density based approaches the bandwidth parameter h is bound to the viewport to support semantic zooming. The user selects a cluster by clicking onto it and the system retrieves the cluster nodes and sorts them according to their degree or a dedicated weight."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "LaGO enables graph exploration",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "text": "The LaGO implementation supports interactive zooming, panning, normalization control, color mapping, and detail-on-demand labeling for large graph exploration."
+}

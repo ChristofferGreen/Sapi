@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-quantity-of-consciousness-available-to-a-system-is-measured-by-the-value-of--48abc06d417d",
+    "claim-a-complex-is-an-integrated-subset-with-greater-than-zero-that-is-not-contained-i--70401a6fb458"
+  ],
+  "evidence_id": "evidence-minimum-bipartition-phi--09db8f102f39",
+  "evidence_type": "formal_argument",
+  "excerpt": "The minimum information bipartition MIB(S), the bipartition for which the normalized effective information reaches a minimum, and the corresponding value of \u03a6(S). To identify complexes and obtain their capacity for information integration, one considers every subset S of X composed of k elements, with k = 2,..., n. For each subset S, we consider all bipartitions and calculate EI(A \u2194 B) for each of them.",
+  "overview": "This procedure converts the theory into an auditable measurement recipe. Instead of asking only how much information a system can represent, it asks how much causally effective information survives the weakest partition. The weakest-link construction is why \u03a6 is meant to capture unified integration rather than total entropy or connectivity count.",
+  "page_refs": [
+    "pp.4-5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Minimum Bipartition Defines Phi"
+}

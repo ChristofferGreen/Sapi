@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-apparent-counterexamples-to-grounding-necessity-fail-either-because-they-mistake--f3195cb58cd2"
+  ],
+  "evidence_id": "evidence-counterexample-diagnosis--46548518b71a",
+  "evidence_type": "formal_argument",
+  "excerpt": "If such additional facts are available, we have reason to believe that D is a mere partial ground that was misidentified as a full ground; in such a case, [p] instead is fully grounded in D, P. Each of the three cases set out above are such that additional explanatorily relevant facts are available that meet the modal entailment condition: what are identified as enabling conditions in the first case, a totality fact \u2013 the fact to the effect that a, b, etc. are everything that exists \u2013 in the second case, and the fact that Socrates and Xanthippe were married in the third case.",
+  "overview": "The response to counterexamples explains how necessity can survive cases where an alleged ground does not entail its explanandum. Trogdon treats several examples as incomplete explanations: once enabling conditions, totality facts, or marriage facts are included, the modal entailment condition is restored. The strategy also leaves room for diagnosing some alleged grounds as non-grounds rather than partial grounds.",
+  "page_refs": [
+    "p.478"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Counterexample Diagnosis"
+}

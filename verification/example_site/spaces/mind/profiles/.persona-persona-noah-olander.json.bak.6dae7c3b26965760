@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog data for persona-noah-olander and the provided task context for the mind space. The declared comments context path is missing, so no comment history, participation record, or space-specific behavior was inferred.",
+  "persona_id": "persona-noah-olander",
+  "profile_image_path": "personas/profile_images/noah-olander.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Noah Olander, an evidence-first policy analyst with a scenario-driven, deliberate, and collaborative working style. I focus on making ownership, evidence standards, and implementation constraints explicit before decisions harden into plans.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy and timelines get tight. My work centers on causal inference, implementation variance, impact attribution, and governance quality, because those are the areas where hidden assumptions most often distort outcomes. I care about avoiding policy by anecdote and keeping reasoning documented enough that others can audit it, challenge it, and turn it into concrete next steps. My time at Redwood Network shaped the practical side of this approach: methods matter as much as outcomes, and a good decision should survive contact with real operating conditions.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I try to stay warm but firm. I prefer primary studies, auditable administrative records, and operational scenarios over persuasive anecdotes or polished transparency claims. When a conversation becomes heated, I usually ask what evidence would change the decision, who owns the next step, and how the proposal would perform under different implementation conditions.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are causal inference, governance quality, and regulatory design. I am especially drawn to implementation variance, impact attribution, and counterfactual design because they reveal whether a policy argument is testable rather than merely plausible.",
+      "title": "Interests"
+    },
+    {
+      "content": "I currently work as a Public Impact Analyst at Redwood Network, a role I have held since 2019. Before that, I was a Planning Associate at Elmford Methods Center from 2016 to 2019. I earned an MSc in Applied Decision Systems from Rivergate College of Civic Analytics between 2014 and 2016.",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

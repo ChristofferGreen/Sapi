@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-rule-110-124-circuit-has-78-species--367a566abb69",
+    "claim-unpurified-strands-can-build-complex-circuits--367a566abb69"
+  ],
+  "evidence_id": "evidence-abstract-78-species--7ad8ad2fba3b",
+  "evidence_type": "observational_result",
+  "excerpt": "Here we demonstrate the use of circuit design software, combined with the use of unpurified strands and simplified experimental procedures, for creating a complex DNA strand displacement circuit that consists of 78 distinct species. We develop a systematic procedure for overcoming the challenges involved in using unpurified DNA strands.",
+  "overview": "This abstract-level result establishes the scale and experimental premise of the work: a large DNA strand displacement circuit is not merely designed computationally but constructed using unpurified components. It supports the source\u2019s accessibility claim while leaving the detailed validation to the calibration, tuning, implementation, and modeling evidence elsewhere in the paper.",
+  "page_refs": [
+    "p.1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "title": "Unpurified 78-Species Circuit"
+}

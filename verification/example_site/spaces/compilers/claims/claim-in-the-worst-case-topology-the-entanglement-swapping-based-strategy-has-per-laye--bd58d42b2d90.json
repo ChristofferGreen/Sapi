@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:45:24Z",
+  "claim_id": "claim-in-the-worst-case-topology-the-entanglement-swapping-based-strategy-has-per-laye--bd58d42b2d90",
+  "evidence_excerpts": [
+    "The depth overhead of the entanglement-swapping-based strategy does not exceed the following depth: n/2 des.",
+    "des = cle + cbsm + ccx."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Entanglement strategy has linear bound",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "text": "In the worst-case topology, the entanglement-swapping-based strategy has per-layer depth overhead bounded by n/2 times a hardware-dependent constant des, where des equals cle plus cbsm plus ccx."
+}

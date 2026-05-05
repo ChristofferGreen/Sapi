@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:12:22Z",
+  "claim_id": "claim-full-density-matrix-characterization-becomes-an-impractical-verification-strateg--65a0be3566e1",
+  "evidence_excerpts": [
+    "Attempting to determine the density matrix \u03c1(t) for the network surely fails because of the exponential growth in \u03c1(t) with the size of the network."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Verification scales poorly",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "text": "Full density-matrix characterization becomes an impractical verification strategy as quantum networks grow because the state description scales exponentially with network size."
+}

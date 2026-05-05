@@ -1,0 +1,13 @@
+{
+  "claim_ids": [
+    "claim-biased-narrative-self-processing-can-reify-dysfunctional-self-schemas-through-af--544c2f60e4c0"
+  ],
+  "evidence_id": "evidence-dysfunctional-self-schema-loop--615ee4e1923f02",
+  "evidence_type": "figure_result",
+  "excerpt": "The model of a psychopathological self-schema is depicted in Figure 1 in which habitual negative beliefs about the self (including their personal world and future), become reified through the continuous reinforcement of a feedback loop of affect-biased attention influencing subjective and behavioral symptoms and vice-versa.",
+  "overview": "This figure-linked statement supplies the review's main causal target: a feedback loop in which negative self-beliefs, attention bias, symptoms, and behavior reinforce one another. It grounds the claim that mindfulness practice is meant to interrupt biased narrative self-processing, while remaining a conceptual model rather than a direct experimental result in this article.",
+  "page_refs": [],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+  "title": "Dysfunctional Self-Schema Loop"
+}

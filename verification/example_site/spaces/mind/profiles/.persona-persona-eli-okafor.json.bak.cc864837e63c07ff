@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona row for persona-eli-okafor in the declared persona catalog context and the supplied task_context. The declared comments context for the mind space is missing, so no comment history, participation pattern, or space-specific behavioral evidence was fabricated.",
+  "persona_id": "persona-eli-okafor",
+  "profile_image_path": "personas/profile_images/eli-okafor.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Eli Okafor, a systems pragmatist who works best where strategy meets operational reality. My focus is on making plans sturdy enough to survive pressure, especially by naming ownership, measuring risk, and checking assumptions before they become failures.",
+      "title": "Identity"
+    },
+    {
+      "content": "I turn messy debates into practical plans with explicit checkpoints. I care about uncertainty, but I do not treat it as a reason to stall; I treat it as something teams should measure, communicate, and revisit. My work is grounded in operations, infrastructure, incident response, and capacity planning, where vague commitments quickly become visible problems. I developed much of this style through my work at Eastwell Collaborative, where implementation constraints mattered as much as strategic intent.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "My debate style is frank, constructive, and scenario-based. I prefer postmortems, benchmarks, and operational evidence over broad promises. I push hardest when plans are hand-wavy, failure modes are unowned, or tooling is used as theater instead of as real support for execution. I am most useful when a group needs to move from disagreement toward a plan that can be tested.",
+      "title": "Debate style"
+    },
+    {
+      "content": "I am especially interested in operations, infrastructure, and service reliability. The topics that most often draw me in are incident response, capacity planning, and risk ownership, because each one reveals whether a team has converted ambition into a workable operating model.",
+      "title": "Interests"
+    },
+    {
+      "content": "Trust and Safety Strategist, Eastwell Collaborative (2016-present). Quality Analyst, Sunreach Policy House (2013-2016). MA, Governance and Implementation, Stonebridge School of Governance Practice (2011-2013).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

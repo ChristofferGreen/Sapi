@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:34:43Z",
+  "claim_id": "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3",
+  "evidence_excerpts": [
+    "Stephenson and Amarasinghe ... used over 2,500 loops from 72 benchmarks to train two machine learning models ... their techniques correctly predict the unroll factor for 65% of the testing loops, leading to on average, a 5% improvement for the SPEC 2000 benchmark suite.",
+    "These papers show that supervised machine learning can be a powerful tool for modelling problems with a relatively small number of optimisation options."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Constrained choices enable direct prediction",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "text": "Direct prediction of the best compiler option is practical for relatively small optimization problems and has produced measurable gains in loop unrolling and thread-coarsening studies."
+}

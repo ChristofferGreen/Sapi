@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686",
+  "dst_claim_ref": "3",
+  "last_evaluated_run_id": null,
+  "rationale": "Agreement among verification variants supports extending the elided-circuit fidelity estimate into the harder regime.",
+  "relation_file_id": "rel-6bad9845e7448745b6abc67ad74a2a1b8096a0867991aca32edd6d5e8fb2412b",
+  "relation_id": "supports:claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279->claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686",
+  "relation_type": "supports",
+  "src_claim_id": "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279",
+  "src_claim_ref": "7",
+  "status": "open"
+}

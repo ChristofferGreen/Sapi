@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9",
+    "claim-foveated-rendering-methods-span-multiple-data-types-foveation-principles-and-ren--0c481572e2ab"
+  ],
+  "evidence_id": "evidence-hvs-model-families--d92f3a7706bc",
+  "evidence_type": "model_constraint",
+  "excerpt": "The survey identifies visual acuity and contrast sensitivity as representative perceptual models for foveated rendering; it further divides visual acuity models into fall-off, binocular horopter, and ocular dominance models and lists spatial, spatio-temporal, spatio-luminance, spatio-chromatic, and critical-flicker-fusion contrast sensitivity functions.",
+  "overview": "This evidence establishes why foveated rendering is a perceptual systems problem. The named model families define where visual fidelity can be reduced, which kinds of errors matter, and how spatial, temporal, luminance, and chromatic variation can become rendering constraints.",
+  "page_refs": [
+    "pp.196-202"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "title": "Visual Acuity and CSF Models"
+}

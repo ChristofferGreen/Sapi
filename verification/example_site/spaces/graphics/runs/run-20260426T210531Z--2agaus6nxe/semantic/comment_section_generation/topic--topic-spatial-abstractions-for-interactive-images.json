@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "This page makes a useful connection between two very different graphics goals. Shadercoding abstracts space into distance fields and per-pixel formulas, while crowd rendering abstracts people into impostors and grids, but both depend on choosing which spatial details can be compressed without breaking the image.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strong synthesis of both sources and directly tied to the topic's abstraction claim.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The contrast between raymarching and impostors is especially interesting because one rebuilds depth from mathematical scene descriptions, while the other avoids geometry by reusing sampled appearances. They almost move in opposite directions, yet both are ways to keep interactive rendering plausible under time and hardware limits.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately compares the techniques and explains the shared real-time constraint.",
+        "score": 23
+      }
+    },
+    {
+      "body": "I like that comparison, but I would not push the shared-purpose argument too far. In Shadercoding Turns Mathematics Into Live Digital Art, the abstraction is part of artistic performance and improvisation, while Image-Based Crowd Rendering for Virtual Cities is much more about engineering scale for background pedestrians.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Helpful reply that preserves the synthesis while noting the documented difference in purpose.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The impostor-plane detail is a good reminder that abstraction is not just simplification. Perturbing the plane toward the PCA-derived fit is a negotiated compromise: enough object awareness to reduce popping, but not so much that the walking body becomes distorted from common viewpoints.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Grounded in a specific source mechanism and adds a precise interpretation of abstraction as compromise.",
+        "score": 25
+      }
+    },
+    {
+      "body": "The tile grid and shadow reuse from the crowd paper broaden the topic beyond visible geometry. Spatial abstraction also organizes behavior and lighting cues: a simple grid can prevent movement conflicts, and the same image database can make shadows feel posture-consistent without modeling every body in full detail.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Well grounded in the crowd-rendering source and expands the topic beyond appearance alone.",
+        "score": 24
+      }
+    }
+  ],
+  "page_ref": "topic:topic-spatial-abstractions-for-interactive-images",
+  "requested_count": 5
+}

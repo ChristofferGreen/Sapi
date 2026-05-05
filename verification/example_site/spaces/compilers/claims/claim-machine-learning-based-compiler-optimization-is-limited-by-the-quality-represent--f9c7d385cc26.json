@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:34:43Z",
+  "claim_id": "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+  "evidence_excerpts": [
+    "Machine learning can only learn form what is provided by the compiler writer. Machine learning can not invent new program transformations to apply nor can it derive analysis that determines whether or not a transformation is legal \u2013 all of this is beyond its scope.",
+    "The most immediate problem continues to be gathering enough sufficient high quality training data."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Training data limits learning",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "text": "Machine-learning-based compiler optimization is limited by the quality, representativeness, and cost of its training data and cannot by itself create legal transformations or derive legality analyses."
+}

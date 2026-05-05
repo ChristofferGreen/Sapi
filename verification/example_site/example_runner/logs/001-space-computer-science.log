@@ -1,0 +1,11 @@
+step=001-space-computer-science
+started_at=2026-04-26T10:56:50Z
+cwd=/Users/chrgre01/src/Sapi
+command=bash /Users/chrgre01/src/Sapi/create_space.sh /Users/chrgre01/src/Sapi/verification/example_site computer-science 
+
+attempt=1/10
+timeout_secs=1200
+attempt_started_at=2026-04-26T10:56:50Z
+Initialized space scaffold at /Users/chrgre01/src/Sapi/verification/example_site/spaces/computer-science
+attempt_exit_status=0
+

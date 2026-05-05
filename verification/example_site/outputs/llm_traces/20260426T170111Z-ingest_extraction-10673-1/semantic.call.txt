@@ -1,0 +1,451 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: ingest_extraction
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260426T170110Z--1t4ar4rlta/semantic/ingest_extraction.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/relations
+
+=== generation spec ===
+flow_key: ingest_extraction
+version: v1
+schema_path: schemas/ingest_extraction.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/ingest_extraction.json
+context_paths:
+  - <space_root>/sources/records
+  - <space_root>/sources/artifacts
+  - <space_root>/claims
+  - <space_root>/relations
+---
+## Task
+Generate one strict JSON object for ingest extraction at `output_json_path`.
+
+## Context Interpretation Rules
+- Treat `context_paths` as the only evidence scope for this generation.
+- For source reading, prefer `sources/artifacts/<source_id>/source.md` as the default analysis input.
+- Inspect `sources/artifacts/<source_id>/source_extraction.json` before trusting the markdown fully.
+- Use the original binary artifact only for fidelity-sensitive checks such as tables, figures, equations, or layout recovery when the extraction metadata says markdown quality is degraded or unusable.
+- If context is missing or ambiguous, keep values conservative and place details in `warnings`.
+- Do not invent canonical IDs beyond schema-allowed fields.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- `source.display_title` is required and MUST be a high-quality post-style title for UI display.
+  - target length: `4..12` words (`12..120` chars) for high-quality outputs
+  - schema lower bound is `4` chars for compatibility with short canonical titles; still prefer `12+`
+  - summarize the central claim/theme of the source
+  - avoid raw filenames, slugs, IDs, URLs, hashes, and boilerplate metadata fragments
+  - keep wording readable and specific (not clickbait, not generic placeholders)
+  - no trailing punctuation
+- `source.authors` SHOULD be included whenever the paper names identifiable authors.
+  - output an ordered JSON array of human author names as they appear on the paper
+  - do not emit placeholders like `unknown`, `the authors`, `editorial synthesis`, or organization names unless the paper truly credits only an organization
+  - if author names cannot be recovered with confidence, prefer omitting `source.authors` over guessing
+- `source_dossier` is required and MUST be included:
+  - `summary_short`: reader-facing abstract (2-4 sentences)
+  - `summary_long`: substantive overview/commentary so readers can understand the source without opening the PDF
+    - target depth: `~900..4000` chars (minimum schema requirement is 900)
+  - `sections`: 5..8 section objects with `heading`, `body`, and `grounding_claim_ids`
+    - each section body should be detailed (`~140..800` chars)
+  - section writing should cover: argument, evidence/reasoning path, assumptions/limits, and practical interpretation
+  - every section SHOULD cite relevant `claim_id` values in `grounding_claim_ids` when claim evidence exists
+  - avoid generic filler; write source-specific commentary grounded in extracted claims
+- `evidence_items` is required and MUST be the canonical evidence output for this flow:
+  - output `0..n` evidence items; emit an empty array if no concrete evidence artifacts exist
+  - each item MUST include:
+    - `evidence_id` in canonical slug+hash format (`evidence-<slug>--<hex>`)
+    - `title` (clear reader-facing label, target `3..8` words)
+    - `excerpt` (concrete evidence artifact text from source content)
+    - `overview` (why the evidence matters, what it establishes, and scope limits)
+    - `evidence_type` enum value
+    - `claim_refs` with one or more references to extracted claims (index, claim_key, or claim_id)
+    - `source_id` matching the ingested source
+  - evidence quality bar:
+    - acceptable evidence: measurements/statistics, theorem or proof steps, equations/derivations, table/figure findings, formal argument fragments
+    - reject low-information paraphrases and publication-process narration (`the paper claims...`, `the article argues...`)
+    - each evidence item should be independently meaningful and auditable
+  - do not emit synthetic evidence IDs/titles by truncation rules; author high-quality IDs/titles directly
+- each claim object SHOULD include `short_title` for UI claim-link labels:
+  - MUST be authored by the LLM from claim semantics (not a mechanical truncation of claim text)
+  - MUST be `3..7` words
+  - SHOULD follow compact truth-apt proposition style (`X is Y`, `X implies Y`, `X constrains Y`)
+  - MUST avoid lead-ins like `the paper claims`, `the article argues`, `authors show`
+  - MUST be a concise label, not a full sentence/parapraph
+- claim `text` MUST be a truth-apt proposition attributed to the source content itself
+  - avoid meta narration about the publication process (`the paper presents`, `the article gives`)
+  - when the source uses reporting lead-ins, rewrite to the underlying proposition
+- claim `evidence_excerpts` (or alias `evidence`) MAY be included as claim-local mirrors of `evidence_items` excerpts:
+  - acceptable: measurement values/statistics, theorem/proof steps, equations, formal derivations, table/figure findings
+  - avoid repeating the claim text itself or generic narrative summaries (`the paper claims...`)
+  - if no concrete evidence artifact is available, prefer an empty list over low-quality filler
+- `relations` MAY be empty, but when relation objects are emitted they MUST use the canonical relation shape:
+  - `relation_type`: one of `supports`, `derived_from`, `falsifies`, `contradictory`, `similar`
+  - `src_claim_ref` and `dst_claim_ref`: references to extracted claims by index, `claim_key`, or `claim_id`
+  - use `src_claim_id`/`dst_claim_id` only when you already know canonical claim IDs from context
+  - do not emit generic `type`, `src`, or `dst` keys; those are invalid for this schema
+  - optional `rationale` may explain the relation in one concise sentence
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "source_date_inference": null,
+  "source": {
+    "display_title": "",
+    "authors": ["Author One", "Author Two"]
+  },
+  "claims": [
+    {
+      "text": "",
+      "short_title": ""
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "",
+      "title": "",
+      "excerpt": "",
+      "overview": "",
+      "evidence_type": "formal_argument",
+      "claim_refs": ["0"],
+      "source_id": ""
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "0",
+      "dst_claim_ref": "1",
+      "rationale": ""
+    }
+  ],
+  "summary": "",
+  "warnings": [],
+  "source_dossier": {
+    "summary_short": "",
+    "summary_long": "",
+    "sections": [
+      {
+        "heading": "",
+        "body": "",
+        "grounding_claim_ids": []
+      }
+    ]
+  }
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/relations": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/relations",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+}
+
+=== llm output ===
+{
+  "source_date_inference": {
+    "date": "2023-06",
+    "confidence": "medium",
+    "origin": "source_markdown_header",
+    "rationale": "The extracted markdown header identifies Computational Visual Media, Vol. 9, No. 2, June 2023, while also showing copyright 2022 and manuscript received/accepted dates. The month-level publication context is therefore useful but not a precise day-level publication date."
+  },
+  "source": {
+    "display_title": "Foveated Rendering: A State-of-the-Art Survey",
+    "authors": [
+      "Lili Wang",
+      "Xuehuai Shi",
+      "Yi Liu"
+    ]
+  },
+  "claims": [
+    {
+      "text": "Complex VR scenes exceed the efficient real-time rendering capacity of current devices, and delayed rendering can make displayed content inconsistent with user interaction, causing discomfort.",
+      "short_title": "VR latency causes discomfort",
+      "evidence_excerpts": [
+        "The source states that rendering overhead continues to increase as VR scenes include diverse materials, more dynamic objects, and more complex simulated physical phenomena; it also reports a visual latency tolerance threshold of approximately 13 ms for the human visual system."
+      ]
+    },
+    {
+      "text": "Foveated rendering can accelerate rendering by giving the foveal region high quality and the peripheral region lower quality while preserving perceived visual quality.",
+      "short_title": "Foveation preserves perceived quality",
+      "evidence_excerpts": [
+        "The source explains that foveated rendering performs high-quality rendering in the foveal region and low-quality rendering in the peripheral region, allowing rendering to speed up without sacrificing perceived visual quality."
+      ]
+    },
+    {
+      "text": "Foveated rendering research is organized around three recurring problems: applying human-visual-system perceptual models, rendering regions at different qualities, and integrating foveation into rendering paradigms.",
+      "short_title": "Foveation requires three decisions",
+      "evidence_excerpts": [
+        "The paper identifies three challenges: use the perceptual model of the human visual system to guide foveated rendering, render different regions with different qualities, and integrate foveated rendering into existing rendering paradigms."
+      ]
+    },
+    {
+      "text": "Visual acuity models and contrast sensitivity models are the two representative perceptual-model families used to guide foveated rendering quality allocation.",
+      "short_title": "HVS models guide foveation",
+      "evidence_excerpts": [
+        "The survey names visual acuity and contrast sensitivity as the two most representative perceptual models related to foveated rendering and describes fall-off, binocular horopter, ocular dominance, and several contrast sensitivity functions."
+      ]
+    },
+    {
+      "text": "A useful taxonomy for foveated rendering classifies methods by required input data type, foveation principle, and rendering paradigm.",
+      "short_title": "Taxonomy has three dimensions",
+      "evidence_excerpts": [
+        "The proposed taxonomy classifies current foveated rendering methods according to three dimensions: required input data type, foveation principle, and rendering paradigm."
+      ]
+    },
+    {
+      "text": "Foveated rendering methods span multiple data types, foveation principles, and rendering paradigms, including image/video, volume data, meshes, point clouds, holograms, light fields, multi-resolution variants, LoD, rasterization, ray tracing, ray casting, neural rendering, phase retrieval, and data transmission.",
+      "short_title": "Foveation spans multiple principles",
+      "evidence_excerpts": [
+        "The taxonomy table lists input data types such as image/video, volume data, geometric meshes, point cloud, hologram data, and light field; it also lists foveation principles and rendering paradigms including multi-spatial resolution, LoD, rasterization, ray tracing, ray casting, neural rendering, phase retrieval, and data transmission."
+      ]
+    },
+    {
+      "text": "The survey classifies 90 published foveated-rendering reports from 1990 to 2021 using the three-dimensional taxonomy.",
+      "short_title": "Ninety reports fit taxonomy",
+      "evidence_excerpts": [
+        "Table 3 is introduced as a summary of 90 published reports on foveated rendering methods from 1990 to 2021, classified according to data type, foveation principle, and rendering paradigm."
+      ]
+    },
+    {
+      "text": "Future foveated-rendering work needs broader use of human visual features, improved gaze and AI techniques, better methods for new data types, more suitable rendering paradigms, stronger objective quality metrics, and deeper AR and task-oriented applications.",
+      "short_title": "Open problems remain broad",
+      "evidence_excerpts": [
+        "The discussion identifies opportunities in visual masking and other HVS features, computer vision and AI for gaze prediction and reconstruction, hologram and light-field methods, special-effects rendering beyond straightforward ray tracing, objective metrics and datasets, AR fusion, and task uses such as redirected walking."
+      ]
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "evidence-vr-latency-threshold--a13f0c2d9b4e",
+      "title": "VR Latency Tolerance Constraint",
+      "excerpt": "The introduction reports that rendering overhead continues to increase in VR because of diversified surface materials, more dynamic objects, and more complex physical phenomena, then cites Potter et al. for an approximately 13 ms visual-latency tolerance threshold for the human visual system.",
+      "overview": "This is a concrete motivation for foveated rendering: the technique is not presented merely as an optimization preference, but as a response to a perceptual timing constraint in VR. The 13 ms value bounds the performance problem, while the discussion of scene complexity explains why conventional full-quality rendering struggles to satisfy that bound.",
+      "evidence_type": "measurement",
+      "claim_refs": [
+        "0"
+      ],
+      "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+      "page_refs": [
+        "p.195"
+      ]
+    },
+    {
+      "evidence_id": "evidence-fovea-periphery-allocation--b84d6e218c03",
+      "title": "Fovea-Periphery Quality Allocation",
+      "excerpt": "The survey explains that approximately half of optic nerve fibers are distributed in the fovea and the rest across the periphery, then describes foveated rendering as high-quality rendering in the foveal region and low-quality rendering in the peripheral region.",
+      "overview": "This passage supplies the perceptual mechanism behind the acceleration claim. It connects retinal resource distribution to an engineering strategy: spend rendering work where the user can perceive fine detail and reduce work in peripheral regions where lower fidelity is less noticeable.",
+      "evidence_type": "model_constraint",
+      "claim_refs": [
+        "1",
+        "3"
+      ],
+      "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+      "page_refs": [
+        "p.196"
+      ]
+    },
+    {
+      "evidence_id": "evidence-three-foveation-challenges--c05ab729f41d",
+      "title": "Three Foveation Challenges",
+      "excerpt": "The paper states that three challenges must be addressed in foveated rendering: using human-visual-system perceptual models, rendering different regions with different qualities, and integrating foveated rendering into existing rendering paradigms to improve rendering performance.",
+      "overview": "This formal framing gives the survey its argumentative structure. It distinguishes perceptual modeling, regional quality assignment, and rendering-system integration as separate design obligations rather than treating foveated rendering as a single algorithmic trick.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "2"
+      ],
+      "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+      "page_refs": [
+        "pp.196-197"
+      ]
+    },
+    {
+      "evidence_id": "evidence-hvs-model-families--d92f3a7706bc",
+      "title": "Visual Acuity and CSF Models",
+      "excerpt": "The survey identifies visual acuity and contrast sensitivity as representative perceptual models for foveated rendering; it further divides visual acuity models into fall-off, binocular horopter, and ocular dominance models and lists spatial, spatio-temporal, spatio-luminance, spatio-chromatic, and critical-flicker-fusion contrast sensitivity functions.",
+      "overview": "This evidence establishes why foveated rendering is a perceptual systems problem. The named model families define where visual fidelity can be reduced, which kinds of errors matter, and how spatial, temporal, luminance, and chromatic variation can become rendering constraints.",
+      "evidence_type": "model_constraint",
+      "claim_refs": [
+        "3",
+        "5"
+      ],
+      "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+      "page_refs": [
+        "pp.196-202"
+      ]
+    },
+    {
+      "evidence_id": "evidence-taxonomy-dimensions--e6c4f913a0d2",
+      "title": "Three-Dimensional Taxonomy Table",
+      "excerpt": "The taxonomy section states that current foveated rendering methods are classified according to required input data type, foveation principle, and rendering paradigm; Table 2 then enumerates elements for those dimensions, including image/video, volume data, geometric meshes, point cloud, hologram data, light field, multi-resolution principles, LoD, and multiple rendering paradigms.",
+      "overview": "This table evidence supports the survey's core organizing contribution. It makes the taxonomy operational by listing dimensions and categories that can be used to compare prior work and to guide new method design across data representations and renderer architectures.",
+      "evidence_type": "table_result",
+      "claim_refs": [
+        "4",
+        "5"
+      ],
+      "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+      "page_refs": [
+        "Table 2",
+        "pp.202-204"
+      ]
+    },
+    {
+      "evidence_id": "evidence-ninety-report-classification--f72ad8e50139",
+      "title": "Ninety Reports Classified",
+      "excerpt": "Table 3 is introduced as a summary of foveated rendering technique implementations and the surrounding text says it classifies 90 published reports from 1990 to 2021 according to the three taxonomy dimensions, while also marking surveys, patents, and cutting-edge equipment.",
+      "overview": "This evidence shows that the taxonomy is applied to a substantial body of literature rather than left as a conceptual proposal. The count and date range support the survey's claim to broad historical coverage across early and more recent foveated rendering work.",
+      "evidence_type": "table_result",
+      "claim_refs": [
+        "6"
+      ],
+      "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+      "page_refs": [
+        "Table 3",
+        "pp.204-207"
+      ]
+    },
+    {
+      "evidence_id": "evidence-quality-metric-limitations--a6fb3120d477",
+      "title": "Foveated Metric Limitations",
+      "excerpt": "The discussion reviews FSNR, FWQI, FMSE, and WSSIM as objective quality metrics, then notes limitations: FSNR may miss perception, FWQI omits spatio-temporal CSF, FMSE assumes centered fixations, WSSIM depends on saliency-model choice, and no general accepted metric yet exists.",
+      "overview": "This evidence grounds one of the survey's key open problems. It shows that evaluating foveated output is difficult because existing metrics each encode restrictive assumptions, which complicates comparison among methods and motivates better datasets and objective measures.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "7"
+      ],
+      "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+      "page_refs": [
+        "pp.220-221"
+      ]
+    },
+    {
+      "evidence_id": "evidence-future-opportunity-set--b9e207c58aa4",
+      "title": "Future Research Opportunity Set",
+      "excerpt": "The discussion identifies opportunities in using more HVS features such as visual masking, applying computer vision and AI for gaze prediction and reconstruction, improving foveated methods for hologram data and light fields, adapting nontrivial rendering paradigms for effects such as global illumination and caustics, and extending foveated rendering to AR and task assistance.",
+      "overview": "This evidence consolidates the survey's practical interpretation. It identifies where the field remains underspecified: perceptual modeling, machine-learning assistance, emerging data types, renderer integration, AR display constraints, and foveated rendering as a tool for tasks beyond speed alone.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "7"
+      ],
+      "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+      "page_refs": [
+        "pp.219-221"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "0",
+      "dst_claim_ref": "1",
+      "rationale": "The latency and scene-complexity problem explains why foveated rendering's perceptual acceleration strategy is valuable."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "3",
+      "dst_claim_ref": "1",
+      "rationale": "Visual acuity and contrast sensitivity models justify allocating higher quality to the fovea and lower quality to the periphery."
+    },
+    {
+      "relation_type": "derived_from",
+      "src_claim_ref": "4",
+      "dst_claim_ref": "2",
+      "rationale": "The three-dimensional taxonomy elaborates the survey's three design problems into classifiable method dimensions."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "6",
+      "dst_claim_ref": "4",
+      "rationale": "Classifying 90 reports demonstrates that the taxonomy can organize a broad literature sample."
+    },
+    {
+      "relation_type": "similar",
+      "src_claim_ref": "5",
+      "dst_claim_ref": "7",
+      "rationale": "The breadth of current principles and paradigms is closely related to the breadth of open research problems."
+    }
+  ],
+  "summary": "Wang, Shi, and Liu survey foveated rendering as a perceptually grounded acceleration strategy for VR and related display systems. The source frames the field around HVS perceptual models, regional quality variation, and integration into rendering paradigms, then proposes a three-dimensional taxonomy and applies it to 90 reports from 1990 to 2021.",
+  "warnings": [
+    {
+      "code": "source_record_title_generic",
+      "message": "The source record display_title was generic, so the paper title was recovered from source.md."
+    },
+    {
+      "code": "publication_date_month_only",
+      "message": "The markdown header supports a June 2023 publication context, but no precise day-level publication date was recovered."
+    }
+  ],
+  "source_dossier": {
+    "summary_short": "This survey presents foveated rendering as a response to the real-time burden of complex VR scenes and the perceptual consequences of latency. It explains how human visual-system models let renderers concentrate fidelity near gaze while reducing work in peripheral regions. Its main contribution is a taxonomy organized by data type, foveation principle, and rendering paradigm, applied to 90 reports from 1990 to 2021.",
+    "summary_long": "The source is a broad survey of foveated rendering, centered on the idea that VR and related interactive graphics systems cannot simply render every part of every scene at maximum quality when scene complexity and human latency tolerance are both severe constraints. The paper motivates the field with the increasing cost of rendering diverse materials, dynamic objects, and complex physical phenomena, and with the approximately 13 ms visual-latency tolerance discussed in its introduction. Against that background, foveated rendering is presented as a perceptual allocation strategy: render the foveal region at high quality, render peripheral regions at lower quality, and rely on human visual-system limits so that the user does not perceive unacceptable loss. The survey's argument is structured around three problems that any foveated method must solve: it must use an appropriate perceptual model, decide how quality varies across regions, and fit that decision into a concrete rendering paradigm. The perceptual discussion emphasizes visual acuity and contrast sensitivity models, including spatial, temporal, luminance, chromatic, and binocular considerations. The taxonomy then turns those concerns into a practical classification with three axes: input data type, foveation principle, and rendering paradigm. This lets the paper compare work on image/video, volumes, meshes, point clouds, holograms, and light fields, as well as principles such as multi-spatial resolution, multi-temporal resolution, multi-luminance resolution, multi-color resolution, and level of detail. The rendering-paradigm axis includes rasterization, ray tracing, ray casting, instant radiosity, shadow mapping, simplification, neural rendering, photon mapping, phase retrieval, and data transmission. By applying the taxonomy to 90 reports from 1990 to 2021, the survey presents the field as mature in some areas, especially volume data and geometric meshes, but still unresolved in others. Its discussion highlights open problems in broader use of human visual features, AI-assisted gaze and reconstruction methods, emerging data types such as holograms and light fields, objective quality metrics, AR fusion constraints, and task-oriented uses beyond speed improvement alone.",
+    "sections": [
+      {
+        "heading": "Performance Motivation",
+        "body": "The survey begins from a concrete systems pressure: VR applications require real-time responses while scenes become more expensive to render. The 13 ms latency tolerance and the observation that delayed content can conflict with user interaction ground the problem in perception rather than only hardware throughput. This makes foveated rendering a practical response to a user-experience constraint.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ]
+      },
+      {
+        "heading": "Perceptual Mechanism",
+        "body": "The core mechanism is asymmetric human visual sensitivity. The source explains that the fovea supports clear central vision, while peripheral regions can tolerate reduced quality. Visual acuity and contrast sensitivity models turn that biological fact into rendering rules, indicating where spatial, temporal, luminance, or chromatic detail can be reduced with limited perceptual cost.",
+        "grounding_claim_ids": [
+          "1",
+          "3"
+        ]
+      },
+      {
+        "heading": "Three Design Problems",
+        "body": "The paper does not treat foveated rendering as one technique. It frames the area as a combination of perceptual modeling, multi-quality regional rendering, and integration into renderer architectures. This framing is useful because a method can fail by using the wrong perception model, by choosing poor quality falloff, or by being incompatible with the rendering pipeline it is supposed to accelerate.",
+        "grounding_claim_ids": [
+          "2",
+          "3"
+        ]
+      },
+      {
+        "heading": "Taxonomy Contribution",
+        "body": "The taxonomy is the survey's organizing contribution. By classifying methods by data type, foveation principle, and rendering paradigm, it connects design decisions to implementation contexts. The categories also prevent overly narrow comparisons: a technique for mesh rasterization, volume ray casting, hologram phase retrieval, or 360-degree video transmission may all be foveated, but they solve different engineering problems.",
+        "grounding_claim_ids": [
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "heading": "Historical Coverage",
+        "body": "The application of the taxonomy to 90 reports from 1990 to 2021 gives the survey more than a conceptual structure. It functions as a map of the literature, separating early approaches from the more recent decade and showing how methods diversified across data representations, principles, and renderer types as hardware and application needs changed.",
+        "grounding_claim_ids": [
+          "6"
+        ]
+      },
+      {
+        "heading": "Limits and Assumptions",
+        "body": "The source is careful about evaluation limits. Existing objective metrics such as FSNR, FWQI, FMSE, and WSSIM each omit or assume important perceptual factors, such as spatio-temporal contrast sensitivity, fixation position, or saliency-model accuracy. That means performance gains alone are not enough; comparability depends on better perceptual metrics and datasets.",
+        "grounding_claim_ids": [
+          "7"
+        ]
+      },
+      {
+        "heading": "Practical Interpretation",
+        "body": "For designers, the practical message is that foveated rendering should be chosen and evaluated as a system-level tradeoff among perception, data representation, rendering algorithm, display hardware, and task. The open problems around AR fusion, holograms, light fields, gaze prediction, AI reconstruction, and task guidance suggest that the field remains active even where core VR mesh and volume concepts are mature.",
+        "grounding_claim_ids": [
+          "5",
+          "7"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+    "claim-repeated-reclustering-with-decreasing-similarity-thresholds-creates-bottom-up-bu--0f90a7b7b684",
+    "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963"
+  ],
+  "evidence_id": "evidence-skeleton-bundling-pipeline--a18f4c9d72e6",
+  "evidence_type": "formal_argument",
+  "excerpt": "The method proceeds by clustering edges into geometrically similar groups, computing a thin distance-field shape around each cluster, extracting the shape skeleton and feature transform, attracting the cluster edges toward the skeleton, iterating the process, and finally smoothing and rendering the result with cushion-like shading.",
+  "overview": "This formal pipeline is the core evidence that SBEB treats skeletons as layout cues rather than merely as visual shading aids. It establishes how clustering, distance transforms, skeletonization, attraction, iteration, and rendering fit together, while leaving final visual quality dependent on graph layout, parameters, and subjective readability.",
+  "page_refs": [
+    "Fig. 1",
+    "Sec. 2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "title": "Skeleton Bundling Pipeline"
+}

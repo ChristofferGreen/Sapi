@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The partial essence definition extends generalized identity to partial essential structure.",
+  "relation_file_id": "rel-c57b77cf759002cd569cc6fbc2f4fa462b4c4e600bb365359198fd17a58bd381",
+  "relation_id": "derived_from:claim-partial-generic-essence-is-captured-by-conjunctive-partial-generalized-identity--13ec1cd27c1f->claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-partial-generic-essence-is-captured-by-conjunctive-partial-generalized-identity--13ec1cd27c1f",
+  "src_claim_ref": "3",
+  "status": "open"
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "QVE uses QEE's Pauli-expectation estimation as the measurement subroutine inside its variational loop.",
+  "relation_file_id": "rel-ac45217d28a9a77537aea2ce343b998fdec6ebbb596f281107ffab5d0794038d",
+  "relation_id": "derived_from:claim-the-quantum-variational-eigensolver-prepares-approximate-ground-states-by-using--0037de1d8464->claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-the-quantum-variational-eigensolver-prepares-approximate-ground-states-by-using--0037de1d8464",
+  "src_claim_ref": "2",
+  "status": "open"
+}

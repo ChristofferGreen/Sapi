@@ -1,0 +1,19 @@
+{
+  "claim_ids": [
+    "claim-future-mindfulness-research-should-replace-generic-labels-with-precise-descripti--0291ee9277c4",
+    "claim-the-clinical-evidence-base-for-mindfulness-based-interventions-remains-insuffici--fd5df4ed74a7",
+    "claim-meditation-related-adverse-effects-are-under-assessed-in-current-trials-so-claim--ce66cec14da3",
+    "claim-mindfulness-research-should-adopt-preregistration-open-science-replication-caref--5f747418bb67"
+  ],
+  "evidence_id": "evidence-mbi-study-design-checklist--e6f2b9c0a184",
+  "evidence_type": "table_result",
+  "excerpt": "Table 3 lists study design features for a mindfulness-based intervention: teacher information such as retreat attendance, contemplative instruction experience, clinical qualifications, and blinding; practice information such as setting, duration, meeting frequency, practice types, practice logs, and instructional materials; general information such as adherence assessment, control group, randomization method, and adverse events monitored; participant information such as inclusion/exclusion criteria and prior meditation experience; and conflicts of interest.",
+  "overview": "This checklist is a concrete methodological artifact. It translates the authors' criticism into a prescriptive reporting and design standard, making clear that intervention efficacy cannot be interpreted without knowing teacher qualifications, practice dose, controls, participant selection, and safety monitoring.",
+  "page_refs": [
+    "Table 3",
+    "p.43"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "MBI Design Checklist"
+}

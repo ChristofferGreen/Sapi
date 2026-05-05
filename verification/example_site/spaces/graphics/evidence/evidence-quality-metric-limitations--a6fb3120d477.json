@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-future-foveated-rendering-work-needs-broader-use-of-human-visual-features-improv--36729372977e"
+  ],
+  "evidence_id": "evidence-quality-metric-limitations--a6fb3120d477",
+  "evidence_type": "formal_argument",
+  "excerpt": "The discussion reviews FSNR, FWQI, FMSE, and WSSIM as objective quality metrics, then notes limitations: FSNR may miss perception, FWQI omits spatio-temporal CSF, FMSE assumes centered fixations, WSSIM depends on saliency-model choice, and no general accepted metric yet exists.",
+  "overview": "This evidence grounds one of the survey's key open problems. It shows that evaluating foveated output is difficult because existing metrics each encode restrictive assumptions, which complicates comparison among methods and motivates better datasets and objective measures.",
+  "page_refs": [
+    "pp.220-221"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "title": "Foveated Metric Limitations"
+}

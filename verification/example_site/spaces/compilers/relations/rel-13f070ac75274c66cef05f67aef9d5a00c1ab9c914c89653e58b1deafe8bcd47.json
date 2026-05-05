@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-in-the-worst-case-topology-the-entanglement-swapping-based-strategy-has-per-laye--bd58d42b2d90",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "The validation table reports that the analytical upper bounds hold across the evaluated benchmark circuits.",
+  "relation_file_id": "rel-13f070ac75274c66cef05f67aef9d5a00c1ab9c914c89653e58b1deafe8bcd47",
+  "relation_id": "supports:claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c->claim-in-the-worst-case-topology-the-entanglement-swapping-based-strategy-has-per-laye--bd58d42b2d90",
+  "relation_type": "supports",
+  "src_claim_id": "claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c",
+  "src_claim_ref": "9",
+  "status": "open"
+}

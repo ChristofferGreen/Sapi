@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127"
+  ],
+  "evidence_id": "evidence-shape-skeleton-definitions--c4f08d2b61a9",
+  "evidence_type": "equation",
+  "excerpt": "The shape around a cluster is defined as Omega={x in R^2 | DT_Delta(C)(x) <= omega}; its skeleton S_Omega is the set of points in Omega admitting at least two distinct boundary feature points at distance DT_boundary(Omega)(x), and the skeleton feature transform FT_S maps a point to a nearest skeleton feature point.",
+  "overview": "These definitions are the mathematical basis for using a skeleton as the centerline of a cluster's inflated edge shape. They show why the bundling target is locally centered, although the construction also depends on the chosen inflation radius omega and on image-space discretization.",
+  "page_refs": [
+    "Eq. 2",
+    "Eq. 3",
+    "Eq. 4",
+    "Eq. 5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "title": "Distance-Field Skeleton Definition"
+}

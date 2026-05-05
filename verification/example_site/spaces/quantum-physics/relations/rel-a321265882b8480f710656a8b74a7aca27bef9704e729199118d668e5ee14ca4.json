@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-unitary-coupled-cluster-ansatz-states-can-be-represented-with-polynomially-many--7f92a3b77387",
+  "dst_claim_ref": "9",
+  "last_evaluated_run_id": null,
+  "rationale": "Both claims concern ansatz choice as the bridge between available quantum hardware and useful variational states.",
+  "relation_file_id": "rel-a321265882b8480f710656a8b74a7aca27bef9704e729199118d668e5ee14ca4",
+  "relation_id": "similar:claim-device-ansatz-strategies-can-provide-variationally-optimal-solutions-for-the-ava--64cad93bb7ab|claim-unitary-coupled-cluster-ansatz-states-can-be-represented-with-polynomially-many--7f92a3b77387",
+  "relation_type": "similar",
+  "src_claim_id": "claim-device-ansatz-strategies-can-provide-variationally-optimal-solutions-for-the-ava--64cad93bb7ab",
+  "src_claim_ref": "3",
+  "status": "open"
+}

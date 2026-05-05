@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-if-being-f-grounds-being-g-then-the-fact-that-being-f-necessitates-being-g-can-b--685ae4dcbfb4"
+  ],
+  "evidence_id": "evidence-grounding-necessitates--a3b4c5d6e7f8",
+  "evidence_type": "proof_step",
+  "excerpt": "if being F grounds being G, our account implies that being G just is being F or H for some given H, and which on our account gives the (or a) full essence of being G. It then follows that necessarily, a thing is G iff it is F or H, which entails by straightforward modal reasoning that necessarily, a thing is F only if it\u2019s also G, as desired.",
+  "overview": "This passage connects the grounding analysis back to essence. It shows that the necessity linking a ground to what it grounds is not imposed as an isolated modal principle; it is derived from what the grounded phenomenon is, according to the generalized-identity account.",
+  "page_refs": [
+    "p.36"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "title": "Grounding Necessitation Derivation"
+}

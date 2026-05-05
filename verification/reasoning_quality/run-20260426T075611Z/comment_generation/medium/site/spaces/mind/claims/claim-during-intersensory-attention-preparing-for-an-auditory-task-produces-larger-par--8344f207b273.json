@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T08:02:42Z",
+  "claim_id": "claim-during-intersensory-attention-preparing-for-an-auditory-task-produces-larger-par--8344f207b273",
+  "evidence_excerpts": [
+    "The cue instruction to attend the auditory modality (the word 'BEEP') resulted in significantly larger 8-14 Hz activity over parieto-occipital cortex in the anticipatory period preceding the S2 than when subjects were cued to attend the visual modality (the word 'FLASH').",
+    "The fundamental finding of Foxe et al. (1998) - increases in parieto-occipital alpha power in preparation for the auditory task - was replicated."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Auditory attention gates vision",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "During intersensory attention, preparing for an auditory task produces larger parieto-occipital alpha activity than preparing for a visual task, consistent with visual gating."
+}

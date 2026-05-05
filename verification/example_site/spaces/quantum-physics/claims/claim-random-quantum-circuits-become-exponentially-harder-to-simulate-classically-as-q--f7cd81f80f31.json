@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:59:28Z",
+  "claim_id": "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+  "evidence_excerpts": [
+    "Random circuits are a suitable choice for benchmarking because they do not possess structure and therefore allow for limited guarantees of computational hardness. Classically computing this probability distribution becomes exponentially more difficult as the number of qubits and number of gate cycles grow."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Random circuits scale exponentially",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "text": "Random quantum circuits become exponentially harder to simulate classically as qubit count and circuit depth increase because their output distributions lack exploitable structure."
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+  "dst_claim_ref": "8",
+  "last_evaluated_run_id": null,
+  "rationale": "The limits on training data and legality make empirical scrutiny necessary rather than optional.",
+  "relation_file_id": "rel-4f8e7ec90c7afe78ad418e3a036e537a96d0ba685651b82417f1366976d045df",
+  "relation_id": "supports:claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26->claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+  "relation_type": "supports",
+  "src_claim_id": "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+  "src_claim_ref": "7",
+  "status": "open"
+}

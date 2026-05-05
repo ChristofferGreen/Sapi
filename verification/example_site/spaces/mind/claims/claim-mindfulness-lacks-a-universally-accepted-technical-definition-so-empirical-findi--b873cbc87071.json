@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:33:52Z",
+  "claim_id": "claim-mindfulness-lacks-a-universally-accepted-technical-definition-so-empirical-findi--b873cbc87071",
+  "evidence_excerpts": [
+    "There is neither one universally accepted technical definition of mindfulness nor any broad agreement about detailed aspects of the underlying concept to which it refers."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Mindfulness lacks shared definition",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "text": "Mindfulness lacks a universally accepted technical definition, so empirical findings require careful specification of the mental states, practices, and interventions under study."
+}

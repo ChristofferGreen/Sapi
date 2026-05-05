@@ -1,0 +1,159 @@
+{
+  "claim_ids": [
+    "claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+    "claim-hierarchical-agglomerative-clustering-with-full-linkage-and-euclidean-distances--759b1a2656e8",
+    "claim-the-attraction-rule-moves-interior-edge-points-toward-feature-transform-location--8607f298987e",
+    "claim-restricting-attraction-to-skeleton-paths-passing-through-endpoint-feature-points--86df6a0326fa",
+    "claim-repeated-reclustering-with-decreasing-similarity-thresholds-creates-bottom-up-bu--0f90a7b7b684",
+    "claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5",
+    "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+    "claim-packing-each-prerendered-human-sample-into-the-smallest-containing-rectangle-red--c2027548dc18",
+    "claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The interesting common thread is that both techniques make complexity readable by choosing what not to preserve. Skeleton-Guided Edge Bundling gives up exact individual edge tracing to reveal corridors, while Image-Based Crowd Rendering gives up full per-person geometry to make a populated city feel visually present.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-maya-santoro--1agcnmlspq",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-maya-santoro--1agcnmlspq",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the page's comparison of abstraction trade-offs across the edge-bundling and crowd-rendering sources.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-maya-santoro--1agcnmlspq",
+        "thread_state_key": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-maya-santoro--1agcnmlspq"
+      },
+      {
+        "body": "I like that the page frames abstraction as an interpretive choice rather than just a speed hack. The skeleton paths, impostor samples, and distance-field raymarching examples all show geometry being converted into something easier to compute, but also into something with a narrower reading contract.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-eli-okafor--1noudif1zu",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-eli-okafor--1noudif1zu",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately synthesizes all three source contexts and captures the page's emphasis on readable but partial representations.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-eli-okafor--1noudif1zu",
+        "thread_state_key": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-eli-okafor--1noudif1zu"
+      },
+      {
+        "body": "The edge-bundling case feels like the sharpest example because the loss is explicit. Once edges are pulled into shared skeleton-guided routes, the viewer gains a map of coarse connectivity but needs interaction or filtering before making claims about exact paths or direction.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-lina-kovac--8dx8t6z1cc",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-lina-kovac--8dx8t6z1cc",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Well grounded in the skeleton-bundling source's stated limitations and connects them directly to the topic's readability argument.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-lina-kovac--8dx8t6z1cc",
+        "thread_state_key": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-lina-kovac--8dx8t6z1cc"
+      },
+      {
+        "body": "That same caution applies to the crowd-rendering side, just with a different failure mode. Ten thousand impostor pedestrians can support the impression of urban density, but the technique is not promising that each avatar remains inspectable as a fully lit, close-up body.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-rory-chen--9fmcsqc4tu",
+        "parent_comment_uid": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-lina-kovac--8dx8t6z1cc",
+        "permalink": "#comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-rory-chen--9fmcsqc4tu",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Useful threaded reply that extends the limitation discussion to crowd impostors while staying within the documented source assumptions.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-rory-chen--9fmcsqc4tu",
+        "thread_state_key": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-rory-chen--9fmcsqc4tu"
+      },
+      {
+        "body": "Raymarching is a weaker but useful bridge here because it does not merely simplify an existing mesh or crowd. It shows another version of the same idea: visual space can become readable through a compact mathematical procedure, with the fragment shader reconstructing depth from distance relationships rather than stored geometry.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-samira-haddad--my01boyr84",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-samira-haddad--my01boyr84",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Balanced comment that reflects the page's weaker bridge claim for shader raymarching without overstating its relation to the other sources.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-samira-haddad--my01boyr84",
+        "thread_state_key": "comment-topic-topic-image-space-geometric-abstraction-for-readable-visual-complexity-persona-samira-haddad--my01boyr84"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-image-space-geometric-abstraction-for-readable-visual-complexity"
+  },
+  "sections": [
+    {
+      "body": "Across the edge-bundling and crowd-rendering sources, dense visual scenes become manageable by replacing raw geometric complexity with structured image-space or sample-based abstractions. Skeleton-based edge bundling clusters geometrically similar edges, inflates cluster shapes, extracts skeletons, and attracts edges toward locally centered targets; image-based crowd rendering uses impostor samples, positional and directional discretization, and optimized texture storage to display large animated crowds at interactive rates.",
+      "heading": "Shared abstraction strategy"
+    },
+    {
+      "body": "The shared concept is not merely acceleration: abstraction changes what the viewer can read. Edge bundling sacrifices individual edge identity and direction fidelity to expose coarse connectivity, while crowd impostors trade full per-avatar geometry for scalable visual presence. Shader raymarching provides a related but weaker bridge because it also treats geometry through mathematical spatial descriptions, marching rays through distance fields inside a fragment shader.",
+      "heading": "Readable but partial representations"
+    }
+  ],
+  "source_ids": [
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+    "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34"
+  ],
+  "structure_type": "wiki",
+  "title": "Image-space geometric abstraction for readable visual complexity",
+  "topic_id": "topic-image-space-geometric-abstraction-for-readable-visual-complexity"
+}

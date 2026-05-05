@@ -1,0 +1,301 @@
+{
+  "freshness": {
+    "claim_count": 66,
+    "generated_at": "2026-04-26T18:06:35Z",
+    "input_signature": "sha256:041d0c015c250632a95831f2318efb7c675050d23770c785255f74791447e22f",
+    "relation_count": 16,
+    "source_record_count": 5,
+    "topic_count": 10
+  },
+  "metadata": {
+    "overview_id": "subspace--mind",
+    "scope_kind": "subspace",
+    "scope_name": "mind",
+    "space_name": "mind",
+    "summary": "The mind subspace brings together formal theories of consciousness, attentional selection mechanisms, behavioral mindfulness training results, and critical reviews of mindfulness evidence. Its strongest through-line is that mental phenomena should be decomposed into specific mechanisms and measurements rather than treated as unitary constructs.",
+    "title": "Mind: Consciousness, Attention, and Mindfulness Evidence"
+  },
+  "references": {
+    "citation_anchors": [
+      {
+        "anchor_id": "anchor-tononi-iit",
+        "claim_ids": [
+          "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb",
+          "claim-a-complex-is-an-integrated-subset-with-greater-than-zero-that-is-not-contained-i--70401a6fb458",
+          "claim-the-quantity-of-consciousness-available-to-a-system-is-measured-by-the-value-of--48abc06d417d",
+          "claim-the-quality-of-consciousness-is-specified-by-the-informational-relationships-amo--52a77799b51d",
+          "claim-consciousness-is-graded-rather-than-all-or-none-and-could-in-principle-exist-in--76ebdb9cb6bc",
+          "claim-a-distributed-thalamocortical-network-is-well-suited-to-generate-consciousness-b--571db463385d",
+          "claim-strongly-modular-neural-architectures-can-be-computationally-sophisticated-yet-c--212c143093c3",
+          "claim-anatomical-or-functional-disconnection-within-thalamocortical-systems-can-reduce--89adceb072c5"
+        ],
+        "label": "Tononi information integration theory",
+        "locator": null,
+        "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39"
+      },
+      {
+        "anchor_id": "anchor-mindfulness-attention",
+        "claim_ids": [
+          "claim-the-attention-network-test-separates-alerting-orienting-and-conflict-monitoring--08b2302acb19",
+          "claim-mindfulness-training-can-improve-attention-related-behavior-by-changing-specific--f9e8e6ee54d7",
+          "claim-an-8-week-mindfulness-based-stress-reduction-course-improves-endogenous-orientin--f7bde69b7431",
+          "claim-a-1-month-intensive-mindfulness-retreat-among-previously-experienced-meditators--cd2a814c579a",
+          "claim-participants-with-prior-concentrative-meditation-experience-show-reduced-conflic--7b44607a9505",
+          "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7"
+        ],
+        "label": "Mindfulness training and attention subsystems",
+        "locator": null,
+        "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78"
+      },
+      {
+        "anchor_id": "anchor-alpha-suppression",
+        "claim_ids": [
+          "claim-alpha-band-oscillations-can-be-actively-invoked-in-cortical-regions-that-process--09466b39d396",
+          "claim-alpha-mediated-biasing-extends-beyond-vision-appearing-in-auditory-and-tactile-s--2cd546facc83",
+          "claim-attention-related-alpha-modulation-appears-primarily-controlled-by-cortico-corti--1eb91088cf2b",
+          "claim-higher-naturally-occurring-or-experimentally-induced-alpha-power-reduces-visual--3884cfa09119",
+          "claim-sustained-focal-alpha-increases-above-pre-cue-baseline-during-rapid-bilateral-st--8699d621dccc",
+          "claim-during-visual-spatial-attention-alpha-band-power-increases-over-occipital-cortex--09a99b87f400"
+        ],
+        "label": "Alpha-band sensory suppression review",
+        "locator": null,
+        "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9"
+      },
+      {
+        "anchor_id": "anchor-critical-mindfulness",
+        "claim_ids": [
+          "claim-mindfulness-is-not-a-unitary-construct-it-is-an-umbrella-term-spanning-diverse-p--ab25afeeb846",
+          "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+          "claim-self-report-measures-lack-validity--56550542660a",
+          "claim-mindfulness-hype-exceeds-evidence--96cb023af909",
+          "claim-adverse-effects-are-undermeasured--25fa20260426",
+          "claim-adverse-event-assessment-in-meditation-research-needs-active-monitoring-rigorous--ae38800857f2",
+          "claim-clinical-evidence-remains-preliminary--117717456958",
+          "claim-mindfulness-based-interventions-show-mixed-and-condition-dependent-clinical-effi--ada76b44a400",
+          "claim-therapeutic-benefits-are-condition-specific--201401200700",
+          "claim-research-needs-prescriptive-reform--79c0d54db997",
+          "claim-neuroimaging-requires-caution--201770958900",
+          "claim-mindfulness-research-should-adopt-preregistration-open-science-replication-caref--5f747418bb67",
+          "claim-common-mindfulness-questionnaires-operationalize-different-facets-of-mindfulness--19920139d48a"
+        ],
+        "label": "Critical mindfulness research agenda",
+        "locator": null,
+        "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997"
+      },
+      {
+        "anchor_id": "anchor-sart-framework",
+        "claim_ids": [
+          "claim-s-art-treats-mindfulness-as-a-multidimensional-skillset-rather-than-a-single-uni--019ffda0022f",
+          "claim-mindfulness-can-be-modeled-as-systematic-mental-training-that-reduces-biased-sel--6f2cabe951a3",
+          "claim-intention-motivation-attention-regulation-emotion-regulation-extinction-and-reco--002095abdbf2",
+          "claim-biased-narrative-self-processing-can-reify-dysfunctional-self-schemas-through-af--544c2f60e4c0",
+          "claim-mindfulness-based-meditation-is-proposed-to-modulate-self-specifying-and-narrati--0ff3acc89706",
+          "claim-future-mindfulness-research-needs-longitudinal-measurement-of-s-art-subcomponent--a2496826340c",
+          "claim-short-mindfulness-interventions-have-been-reported-to-improve-clinical-symptoms--38a77abb1074",
+          "claim-s-art-distinguishes-experiential-enactive-experiential-phenomenological-and-narr--3e3013b46122"
+        ],
+        "label": "S-ART mindfulness framework",
+        "locator": null,
+        "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+      }
+    ],
+    "claim_ids": [
+      "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb",
+      "claim-a-complex-is-an-integrated-subset-with-greater-than-zero-that-is-not-contained-i--70401a6fb458",
+      "claim-the-quantity-of-consciousness-available-to-a-system-is-measured-by-the-value-of--48abc06d417d",
+      "claim-the-quality-of-consciousness-is-specified-by-the-informational-relationships-amo--52a77799b51d",
+      "claim-consciousness-is-graded-rather-than-all-or-none-and-could-in-principle-exist-in--76ebdb9cb6bc",
+      "claim-a-distributed-thalamocortical-network-is-well-suited-to-generate-consciousness-b--571db463385d",
+      "claim-strongly-modular-neural-architectures-can-be-computationally-sophisticated-yet-c--212c143093c3",
+      "claim-anatomical-or-functional-disconnection-within-thalamocortical-systems-can-reduce--89adceb072c5",
+      "claim-the-attention-network-test-separates-alerting-orienting-and-conflict-monitoring--08b2302acb19",
+      "claim-mindfulness-training-can-improve-attention-related-behavior-by-changing-specific--f9e8e6ee54d7",
+      "claim-an-8-week-mindfulness-based-stress-reduction-course-improves-endogenous-orientin--f7bde69b7431",
+      "claim-a-1-month-intensive-mindfulness-retreat-among-previously-experienced-meditators--cd2a814c579a",
+      "claim-participants-with-prior-concentrative-meditation-experience-show-reduced-conflic--7b44607a9505",
+      "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7",
+      "claim-alpha-band-oscillations-can-be-actively-invoked-in-cortical-regions-that-process--09466b39d396",
+      "claim-alpha-mediated-biasing-extends-beyond-vision-appearing-in-auditory-and-tactile-s--2cd546facc83",
+      "claim-attention-related-alpha-modulation-appears-primarily-controlled-by-cortico-corti--1eb91088cf2b",
+      "claim-higher-naturally-occurring-or-experimentally-induced-alpha-power-reduces-visual--3884cfa09119",
+      "claim-sustained-focal-alpha-increases-above-pre-cue-baseline-during-rapid-bilateral-st--8699d621dccc",
+      "claim-during-visual-spatial-attention-alpha-band-power-increases-over-occipital-cortex--09a99b87f400",
+      "claim-mindfulness-is-not-a-unitary-construct-it-is-an-umbrella-term-spanning-diverse-p--ab25afeeb846",
+      "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+      "claim-self-report-measures-lack-validity--56550542660a",
+      "claim-mindfulness-hype-exceeds-evidence--96cb023af909",
+      "claim-adverse-effects-are-undermeasured--25fa20260426",
+      "claim-adverse-event-assessment-in-meditation-research-needs-active-monitoring-rigorous--ae38800857f2",
+      "claim-clinical-evidence-remains-preliminary--117717456958",
+      "claim-mindfulness-based-interventions-show-mixed-and-condition-dependent-clinical-effi--ada76b44a400",
+      "claim-therapeutic-benefits-are-condition-specific--201401200700",
+      "claim-research-needs-prescriptive-reform--79c0d54db997",
+      "claim-neuroimaging-requires-caution--201770958900",
+      "claim-mindfulness-research-should-adopt-preregistration-open-science-replication-caref--5f747418bb67",
+      "claim-common-mindfulness-questionnaires-operationalize-different-facets-of-mindfulness--19920139d48a",
+      "claim-s-art-treats-mindfulness-as-a-multidimensional-skillset-rather-than-a-single-uni--019ffda0022f",
+      "claim-mindfulness-can-be-modeled-as-systematic-mental-training-that-reduces-biased-sel--6f2cabe951a3",
+      "claim-intention-motivation-attention-regulation-emotion-regulation-extinction-and-reco--002095abdbf2",
+      "claim-biased-narrative-self-processing-can-reify-dysfunctional-self-schemas-through-af--544c2f60e4c0",
+      "claim-mindfulness-based-meditation-is-proposed-to-modulate-self-specifying-and-narrati--0ff3acc89706",
+      "claim-future-mindfulness-research-needs-longitudinal-measurement-of-s-art-subcomponent--a2496826340c",
+      "claim-short-mindfulness-interventions-have-been-reported-to-improve-clinical-symptoms--38a77abb1074",
+      "claim-s-art-distinguishes-experiential-enactive-experiential-phenomenological-and-narr--3e3013b46122"
+    ],
+    "source_ids": [
+      "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+      "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+      "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+    ]
+  },
+  "schema_version": "space_overview_v1",
+  "sections": [
+    {
+      "body": "This scope frames mind as a problem of integration, selection, and trainable regulation. Tononi defines consciousness through differentiated yet unified information integration, while the mindfulness records caution that mindfulness is an umbrella term spanning heterogeneous faculties, practices, interventions, and measures. The attention evidence adds a more operational layer: the Attention Network Test separates alerting, orienting, and conflict monitoring, and alpha-band work treats suppression of irrelevant input as an active attentional mechanism. S-ART then bridges these strands by modeling mindfulness as multidimensional mental training aimed at self-awareness, self-regulation, and self-transcendence rather than as a single capacity.",
+      "citation_anchor_ids": [
+        "anchor-tononi-iit",
+        "anchor-mindfulness-attention",
+        "anchor-alpha-suppression",
+        "anchor-critical-mindfulness",
+        "anchor-sart-framework"
+      ],
+      "claim_ids": [
+        "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb",
+        "claim-mindfulness-is-not-a-unitary-construct-it-is-an-umbrella-term-spanning-diverse-p--ab25afeeb846",
+        "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+        "claim-the-attention-network-test-separates-alerting-orienting-and-conflict-monitoring--08b2302acb19",
+        "claim-alpha-band-oscillations-can-be-actively-invoked-in-cortical-regions-that-process--09466b39d396",
+        "claim-s-art-treats-mindfulness-as-a-multidimensional-skillset-rather-than-a-single-uni--019ffda0022f"
+      ],
+      "heading": "Topic framing",
+      "section_id": "topic_framing",
+      "source_ids": [
+        "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+        "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+        "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+        "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+        "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+      ]
+    },
+    {
+      "body": "Several themes recur across the evidence. First, conscious access is described as depending on integrated organization: high-\u03a6 complexes, thalamocortical specialization plus integration, and reduced consciousness when integration is anatomically or functionally disrupted. Second, attention is treated as separable subsystems and as sensory gating: mindfulness training is reported to affect orienting, alerting, and conflict monitoring differently, while alpha power is linked to suppressing distracting regions and lowering visual excitability. Third, mindfulness is treated by S-ART as a coordinated set of mechanisms including attention regulation, emotion regulation, extinction and reconsolidation, prosociality, non-attachment, and decentering. Fourth, clinical and public claims are constrained by construct ambiguity, mixed efficacy, undermeasured adverse effects, and the need for more precise intervention descriptions.",
+      "citation_anchor_ids": [
+        "anchor-tononi-iit",
+        "anchor-mindfulness-attention",
+        "anchor-alpha-suppression",
+        "anchor-critical-mindfulness",
+        "anchor-sart-framework"
+      ],
+      "claim_ids": [
+        "claim-a-complex-is-an-integrated-subset-with-greater-than-zero-that-is-not-contained-i--70401a6fb458",
+        "claim-a-distributed-thalamocortical-network-is-well-suited-to-generate-consciousness-b--571db463385d",
+        "claim-anatomical-or-functional-disconnection-within-thalamocortical-systems-can-reduce--89adceb072c5",
+        "claim-mindfulness-training-can-improve-attention-related-behavior-by-changing-specific--f9e8e6ee54d7",
+        "claim-higher-naturally-occurring-or-experimentally-induced-alpha-power-reduces-visual--3884cfa09119",
+        "claim-intention-motivation-attention-regulation-emotion-regulation-extinction-and-reco--002095abdbf2",
+        "claim-mindfulness-based-interventions-show-mixed-and-condition-dependent-clinical-effi--ada76b44a400",
+        "claim-adverse-effects-are-undermeasured--25fa20260426"
+      ],
+      "heading": "Key themes",
+      "section_id": "key_themes",
+      "source_ids": [
+        "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+        "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+        "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+        "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+        "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+      ]
+    },
+    {
+      "body": "The records mostly agree on decomposition: consciousness, attention, self-processing, and mindfulness outcomes are all presented as structured phenomena whose mechanisms should not be collapsed into a single global score. Relations reinforce this pattern by connecting ambiguous mindfulness definitions to weak self-report validity, intervention heterogeneity to mixed efficacy, and S-ART component research needs to mindfulness as a multidimensional skillset. The main tension is not a direct contradiction but a difference in evidential posture. Mechanistic and framework papers propose plausible routes from meditation to attention, physiology, and self-processing change, while the critical mindfulness review warns that hype, immature trials, weak measures, preliminary neuroimaging, and undermeasured adverse events make broad benefit claims unsafe.",
+      "citation_anchor_ids": [
+        "anchor-mindfulness-attention",
+        "anchor-alpha-suppression",
+        "anchor-critical-mindfulness",
+        "anchor-sart-framework"
+      ],
+      "claim_ids": [
+        "claim-mindfulness-training-can-improve-attention-related-behavior-by-changing-specific--f9e8e6ee54d7",
+        "claim-alpha-mediated-biasing-extends-beyond-vision-appearing-in-auditory-and-tactile-s--2cd546facc83",
+        "claim-common-mindfulness-questionnaires-operationalize-different-facets-of-mindfulness--19920139d48a",
+        "claim-self-report-measures-lack-validity--56550542660a",
+        "claim-mindfulness-based-interventions-show-mixed-and-condition-dependent-clinical-effi--ada76b44a400",
+        "claim-mindfulness-hype-exceeds-evidence--96cb023af909",
+        "claim-neuroimaging-requires-caution--201770958900",
+        "claim-s-art-treats-mindfulness-as-a-multidimensional-skillset-rather-than-a-single-uni--019ffda0022f",
+        "claim-short-mindfulness-interventions-have-been-reported-to-improve-clinical-symptoms--38a77abb1074"
+      ],
+      "heading": "Agreement and disagreement",
+      "section_id": "agreement_and_disagreement",
+      "source_ids": [
+        "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+        "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+        "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+        "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+      ]
+    },
+    {
+      "body": "The evidence mix is methodologically varied. Tononi supplies a formal theory with \u03a6, complexes, and qualia-space relationships, applying those constructs to thalamocortical organization and disconnection. Jha, Krompinger, and Baime provide behavioral ANT evidence, but their own claim set flags small groups, no active-training control, behavioral measures only, and imperfect protocol control. Foxe and Snyder synthesize electrophysiological, cuing, sensory, and causal/predictive evidence for alpha as active suppression. Van Dam and colleagues audit the field\u2019s construct definitions, questionnaires, clinical designs, neuroimaging interpretations, and adverse-event practices. S-ART is a neurobiological framework review that organizes hypothesized mechanisms and explicitly calls for longitudinal component measurement, dose tracking, practice-quality assessment, and adverse-effect monitoring.",
+      "citation_anchor_ids": [
+        "anchor-tononi-iit",
+        "anchor-mindfulness-attention",
+        "anchor-alpha-suppression",
+        "anchor-critical-mindfulness",
+        "anchor-sart-framework"
+      ],
+      "claim_ids": [
+        "claim-the-quantity-of-consciousness-available-to-a-system-is-measured-by-the-value-of--48abc06d417d",
+        "claim-the-quality-of-consciousness-is-specified-by-the-informational-relationships-amo--52a77799b51d",
+        "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7",
+        "claim-sustained-focal-alpha-increases-above-pre-cue-baseline-during-rapid-bilateral-st--8699d621dccc",
+        "claim-mindfulness-research-should-adopt-preregistration-open-science-replication-caref--5f747418bb67",
+        "claim-neuroimaging-requires-caution--201770958900",
+        "claim-future-mindfulness-research-needs-longitudinal-measurement-of-s-art-subcomponent--a2496826340c"
+      ],
+      "heading": "Methods and evidence",
+      "section_id": "methods_and_evidence",
+      "source_ids": [
+        "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+        "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+        "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+        "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+        "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+      ]
+    },
+    {
+      "body": "The scope leaves several questions open. The consciousness material needs empirical bridges between \u03a6-based formal claims and practical measurement across biological and artificial systems. The attention material needs larger and better controlled tests that separate training history, task repetition, and active control effects. Alpha suppression remains a strong organizing hypothesis, but the balance of cortico-cortical and thalamo-cortical control needs sharper specification. Mindfulness research needs shared terminology, construct-valid measures, preregistered replications, detailed protocol reporting, active adverse-event assessment, and condition-specific clinical claims. S-ART adds the need to track dose, practice quality, component mechanisms, and possible harms over time rather than inferring a single mindfulness effect.",
+      "citation_anchor_ids": [
+        "anchor-tononi-iit",
+        "anchor-mindfulness-attention",
+        "anchor-alpha-suppression",
+        "anchor-critical-mindfulness",
+        "anchor-sart-framework"
+      ],
+      "claim_ids": [
+        "claim-consciousness-is-graded-rather-than-all-or-none-and-could-in-principle-exist-in--76ebdb9cb6bc",
+        "claim-strongly-modular-neural-architectures-can-be-computationally-sophisticated-yet-c--212c143093c3",
+        "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7",
+        "claim-attention-related-alpha-modulation-appears-primarily-controlled-by-cortico-corti--1eb91088cf2b",
+        "claim-adverse-event-assessment-in-meditation-research-needs-active-monitoring-rigorous--ae38800857f2",
+        "claim-research-needs-prescriptive-reform--79c0d54db997",
+        "claim-future-mindfulness-research-needs-longitudinal-measurement-of-s-art-subcomponent--a2496826340c"
+      ],
+      "heading": "Open questions",
+      "section_id": "open_questions",
+      "source_ids": [
+        "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+        "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+        "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+        "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+        "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+      ]
+    }
+  ],
+  "warnings": [
+    "subspaces.json was absent in the supplied context paths, so no child-subspace structure was inferred.",
+    "Relation records are open and do not provide evaluated contradiction-confidence scores, so agreement and disagreement are synthesized cautiously.",
+    "Citation locators are null because the provided source records and claim context did not include stable page-level locators."
+  ]
+}

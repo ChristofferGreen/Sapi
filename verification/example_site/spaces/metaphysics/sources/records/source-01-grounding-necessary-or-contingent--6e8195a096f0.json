@@ -1,0 +1,299 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-01-grounding-necessary-or-contingent--6e8195a096f0",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-01-grounding-necessary-or-contingent--6e8195a096f0/front_page.png",
+    "source_extraction": "sources/artifacts/source-01-grounding-necessary-or-contingent--6e8195a096f0/source_extraction.json",
+    "source_file": "sources/artifacts/source-01-grounding-necessary-or-contingent--6e8195a096f0/source.pdf",
+    "source_markdown": "sources/artifacts/source-01-grounding-necessary-or-contingent--6e8195a096f0/source.md",
+    "source_provenance": "sources/artifacts/source-01-grounding-necessary-or-contingent--6e8195a096f0/source_provenance.md"
+  },
+  "authors": [
+    "Kelly Trogdon"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "Trogdon's move from full grounding to the absence of a cognitively significant connecting question is doing a lot of work here. I like that it treats necessity as a mark of complete explanation rather than as something every partial ground has to carry on its own.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-maya-santoro--p1hc1thmo2",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-maya-santoro--p1hc1thmo2",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately identifies the target thesis and distinguishes full from partial grounding.",
+          "score": 16
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 16,
+          "upvotes": 28
+        },
+        "thread_expansion_key": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-maya-santoro--p1hc1thmo2",
+        "thread_state_key": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-maya-santoro--p1hc1thmo2"
+      },
+      {
+        "body": "The causation comparison helps clarify the issue. If causation can determine without metaphysical entailment, then simply calling grounding a determination relation cannot explain why full grounds necessitate what they ground.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-eli-okafor--6xzes5f63n",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-eli-okafor--6xzes5f63n",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Grounded in the paper's rejection of the determination-relation shortcut.",
+          "score": 14
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 14,
+          "upvotes": 26
+        },
+        "thread_expansion_key": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-eli-okafor--6xzes5f63n",
+        "thread_state_key": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-eli-okafor--6xzes5f63n"
+      },
+      {
+        "body": "I am less sure about the epistemic route. Saying that a suitably informed rational subject would no longer have a substantive why-question seems plausible in logical cases, but it may be harder to apply cleanly in messy metaphysical examples.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-lina-kovac--9lsz2vbxw8",
+        "parent_comment_uid": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-maya-santoro--p1hc1thmo2",
+        "permalink": "#comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-lina-kovac--9lsz2vbxw8",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Raises a relevant pressure point while preserving the source's idealized epistemic framing.",
+          "score": 11
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 11,
+          "upvotes": 23
+        },
+        "thread_expansion_key": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-lina-kovac--9lsz2vbxw8",
+        "thread_state_key": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-lina-kovac--9lsz2vbxw8"
+      },
+      {
+        "body": "The Fine-style essence step is the most interesting part to me. The argument is not just that D entails p, but that the natures involved explain why the entailment is intelligible rather than a brute modal fact.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-rory-chen--hpkwy1zq48",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-rory-chen--hpkwy1zq48",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Clearly captures the essence principle and its role in avoiding arbitrary modal entailment.",
+          "score": 18
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 18,
+          "upvotes": 30
+        },
+        "thread_expansion_key": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-rory-chen--hpkwy1zq48",
+        "thread_state_key": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-rory-chen--hpkwy1zq48"
+      },
+      {
+        "body": "The counterexample strategy also matters: many apparent failures look like incomplete grounds once enablers, totality facts, or marriage facts are added. That makes the thesis less brittle, though it also shifts pressure onto how we tell when a proposed full ground is genuinely complete.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-samira-haddad--bfly1ne7o8",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-samira-haddad--bfly1ne7o8",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Reflects the source's treatment of counterexamples and adds a measured completeness concern.",
+          "score": 15
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 15,
+          "upvotes": 27
+        },
+        "thread_expansion_key": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-samira-haddad--bfly1ne7o8",
+        "thread_state_key": "comment-source-source-01-grounding-necessary-or-contingent-6e8195a096f0-persona-samira-haddad--bfly1ne7o8"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-01-grounding-necessary-or-contingent--6e8195a096f0"
+  },
+  "date": null,
+  "display_title": "Grounding Is Necessary Through Essence",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[1].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Pacific Philosophical Quarterly 94 465\u2013485",
+      "url": "https://doi.org/10.1111/papq.12009"
+    }
+  ],
+  "ingested_at": "2026-04-26T15:04:12Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Philosophy Spring Edition . Available online at: /",
+      "url": "http://plato.stanford.edu/entries",
+      "year": 2010
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1111/papq.12009",
+      "linked_source_ids": [],
+      "title": "Pacific Philosophical Quarterly 94 465\u2013485",
+      "url": null,
+      "year": 2013
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 1 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The article\u2019s central thesis is not that grounding is a modal relation in every possible respect, but that full grounds necessitate what they ground. Formally, when [p] is fully grounded in D, the conjunction of propositions corresponding to D metaphysically entails p. This makes necessity a constraint on complete explanations rather than on every partial explanatory factor.",
+        "grounding_claim_ids": [
+          "0"
+        ],
+        "heading": "Target Thesis"
+      },
+      {
+        "body": "Trogdon rejects two quick routes to the conclusion. A determination-relation argument is too broad because causation can determine without the relevant necessity. A definitional route is also unstable because necessary truths can have partial grounds that satisfy modal entailment trivially. The necessity thesis therefore needs a non-circular explanation.",
+        "grounding_claim_ids": [
+          "1"
+        ],
+        "heading": "Why Shortcuts Fail"
+      },
+      {
+        "body": "The significance principle introduces the epistemic constraint: full grounding rules out a cognitively significant connecting question. If a suitably informed rational subject could still find it substantively open why [p] obtains given D, then D has not supplied a full ground for [p]. Paradigm logical grounding cases are used to motivate this generalization.",
+        "grounding_claim_ids": [
+          "2",
+          "6"
+        ],
+        "heading": "Cognitive Significance"
+      },
+      {
+        "body": "The essence principle explains why the connecting question disappears. On the Finean picture, real definitions or essential truths disclose what the relevant facts and entities are. When those truths include or entail \u2227D \u2192 p, grasping the natures involved makes the connection intelligible rather than arbitrarily modal.",
+        "grounding_claim_ids": [
+          "3"
+        ],
+        "heading": "Essence Link"
+      },
+      {
+        "body": "The proof combines the two principles with the necessity of essential truths. Full grounding gives cognitive insignificance; cognitive insignificance points to essential truths by which D entails p; and essential truths hold metaphysically necessarily. The result is \u25a1(\u2227D \u2192 p), which is the article\u2019s target form of grounding necessity.",
+        "grounding_claim_ids": [
+          "0",
+          "2",
+          "3",
+          "4"
+        ],
+        "heading": "Necessity Argument"
+      },
+      {
+        "body": "Because the account uses epistemic notions, the paper addresses whether grounding becomes subjective. The answer is no: the relevant condition is about general epistemic facts concerning rational subjects who meet idealized information conditions. It is not about what any actual person happens to know, wonder, or be able to process.",
+        "grounding_claim_ids": [
+          "5"
+        ],
+        "heading": "Objectivity Concern"
+      },
+      {
+        "body": "The final section treats apparent counterexamples as diagnostic tests for explanatory completeness. Some cases omit enablers, totality facts, or marriage facts that are needed for full grounding. Another case involving a rose and its redness is treated more strongly: the alleged substance ground is not even a partial ground of the mode\u2019s existence.",
+        "grounding_claim_ids": [
+          "7"
+        ],
+        "heading": "Counterexample Strategy"
+      }
+    ],
+    "summary_long": "The source develops a metaphysical argument for the thesis that full grounding is necessary: if [p] is fully grounded in D, then it is metaphysically necessary that the conjunction of the propositions corresponding to D entails p. Trogdon first separates this target from weaker or different modal ideas, such as the thought that the same grounding relation must hold whenever the grounds obtain, or that some grounded fact must result whenever the grounds obtain. The argument is needed because two tempting shortcuts fail. Grounding cannot simply inherit necessity from being a determination relation, since causation is plausibly a determination relation without the relevant modal force. Nor can full grounding be defined as grounding plus modal entailment, because necessary truths can have merely partial grounds that satisfy entailment trivially. The positive argument turns on two principles. The significance principle says full grounding requires the relevant connecting question to lack cognitive significance: once the relevant nature of the facts and entities is understood, the question why [p] obtains given D should no longer remain a substantive explanatory demand. The essence principle then says that this absence of cognitive significance is explained by Fine-style essential truths characteristic of [p], D, their plurality, or the entities involved, and those truths yield \u2227D \u2192 p. Since essential truths are metaphysically necessary, the grounded proposition follows necessarily from the full grounds. The paper treats this epistemic vocabulary as compatible with objective grounding because the constraint concerns general facts about what questions could have substantive content for rationally informed subjects, not the ignorance of a particular person. In closing, Trogdon considers counterexamples involving moral reasons and enablers, universal facts, widowhood, and substance-mode dependence. The response is that the first group omits additional explanatorily relevant facts needed for full grounding, while the substance-mode case misidentifies a non-ground as a ground. The resulting picture is that grounding has modal consequences because essence closes the relevant explanatory gap.",
+    "summary_short": "Kelly Trogdon\u2019s article asks whether grounding is necessary in the sense that full grounds metaphysically entail what they ground. It answers yes, arguing from a constraint on cognitively significant connecting questions and a Fine-style account of essence. The paper also explains why familiar counterexamples are best treated as partial-ground or non-ground cases rather than failures of necessity."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+  "source_kind": "file",
+  "source_locator": "01-grounding-necessary-or-contingent.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Kelly Trogdon"
+    ],
+    "display_title": "Grounding Is Necessary Through Essence",
+    "doi": "10.1111/papq.12009",
+    "journal": "Pacific Philosophical Quarterly",
+    "record_display_title": "Untitled Source",
+    "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0"
+  },
+  "source_type": "file",
+  "summary": "Kelly Trogdon argues that full grounding is necessary: whenever [p] is fully grounded in D, the propositions corresponding to D metaphysically entail p. The argument relies on an epistemic significance constraint and a Fine-style essence principle, then answers apparent counterexamples by distinguishing full grounds from partial grounds and non-grounds.",
+  "title": "01-grounding-necessary-or-contingent",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved from the source record; source_date_inference.date is null."
+    }
+  ]
+}

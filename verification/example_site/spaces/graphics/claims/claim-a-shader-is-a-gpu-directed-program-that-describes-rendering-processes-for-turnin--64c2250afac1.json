@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:36:26Z",
+  "claim_id": "claim-a-shader-is-a-gpu-directed-program-that-describes-rendering-processes-for-turnin--64c2250afac1",
+  "evidence_excerpts": [
+    "Le shadercoding d\u00e9signe l'action de coder un shader. Celui-ci est un programme s'adressant directement \u00e0 la carte graphique, aussi appel\u00e9 GPU pour Graphic Processing Unit, de l'ordinateur sur lequel il est ex\u00e9cut\u00e9. Il d\u00e9crit chaque \u00e9tape du rendu, c'est-\u00e0-dire chaque processus qui vont permettre \u00e0 la machine d'afficher une image en fonction des informations des points dans l'espace 3D et de leurs propri\u00e9t\u00e9s physiques."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Shaders direct GPU rendering",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "text": "A shader is a GPU-directed program that describes rendering processes for turning 3D spatial data and physical properties into an image."
+}

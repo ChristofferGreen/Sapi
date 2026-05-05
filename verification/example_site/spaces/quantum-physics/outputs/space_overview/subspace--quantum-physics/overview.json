@@ -1,0 +1,296 @@
+{
+  "freshness": {
+    "claim_count": 49,
+    "generated_at": "2026-04-26T18:16:07Z",
+    "input_signature": "sha256:8e11fe08c698fcb6e5974c22c9aef0fb96800d40aa6bbcf7dc07bc93454d0ea9",
+    "relation_count": 30,
+    "source_record_count": 5,
+    "topic_count": 15
+  },
+  "metadata": {
+    "overview_id": "subspace--quantum-physics",
+    "scope_kind": "subspace",
+    "scope_name": "quantum-physics",
+    "space_name": "quantum-physics",
+    "summary": "The collected quantum-physics evidence presents near-term quantum systems as scientifically valuable but constrained: noisy processors can reach classically hard sampling regimes, hybrid algorithms can reduce coherence demands, quantum networks require reliable light-matter interfaces, and machine-learning speedups remain conditional on access, readout, and benchmarking assumptions.",
+    "title": "State of the Evidence in Quantum Physics"
+  },
+  "references": {
+    "citation_anchors": [
+      {
+        "anchor_id": "anchor-nisq-scale",
+        "claim_ids": [
+          "claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+          "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+          "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+          "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+          "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+          "claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb"
+        ],
+        "label": "[S1]",
+        "locator": null,
+        "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb"
+      },
+      {
+        "anchor_id": "anchor-random-circuit-sampling",
+        "claim_ids": [
+          "claim-the-sycamore-superconducting-processor-created-random-circuit-quantum-states-on--2b4eeabd4063",
+          "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+          "claim-linear-cross-entropy-benchmarking-provides-a-fidelity-measure-by-comparing-exper--4abac38b173d",
+          "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279",
+          "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+          "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+          "claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686",
+          "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de"
+        ],
+        "label": "[S2]",
+        "locator": null,
+        "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+      },
+      {
+        "anchor_id": "anchor-quantum-networks",
+        "claim_ids": [
+          "claim-large-quantum-networks-require-reversible-interconnects-that-convert-quantum-sta--03b0b3a11218",
+          "claim-strong-cavity-qed-coupling-supplies-a-physical-regime-in-which-individual-atoms--9807d4e35625",
+          "claim-electromagnetically-induced-transparency-enables-deterministic-reversible-mappin--b76e4e96d4f0",
+          "claim-full-density-matrix-characterization-becomes-an-impractical-verification-strateg--65a0be3566e1",
+          "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772",
+          "claim-quantum-connectivity-gives-linked-nodes-a-state-space-that-scales-exponentially--50cc8b700a70",
+          "claim-the-dlcz-protocol-creates-heralded-entanglement-between-atomic-ensembles-by-inte--aa516185d3b2"
+        ],
+        "label": "[S3]",
+        "locator": null,
+        "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2"
+      },
+      {
+        "anchor_id": "anchor-photonic-vqe",
+        "claim_ids": [
+          "claim-the-demonstrated-integrated-photonic-processor-prepares-and-measures-arbitrary-t--f41a0c8f645b",
+          "claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+          "claim-quantum-expectation-estimation-reduces-coherent-evolution-demands-relative-to-ph--e17864953251",
+          "claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4",
+          "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5",
+          "claim-device-ansatz-strategies-can-provide-variationally-optimal-solutions-for-the-ava--64cad93bb7ab"
+        ],
+        "label": "[S4]",
+        "locator": null,
+        "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b"
+      },
+      {
+        "anchor_id": "anchor-qml-bottlenecks",
+        "claim_ids": [
+          "claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+          "claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+          "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc",
+          "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4",
+          "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789",
+          "claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90",
+          "claim-quantum-machine-learning-for-quantum-data-can-reduce-tomography-and-characteriza--b02ec76133c0"
+        ],
+        "label": "[S5]",
+        "locator": null,
+        "source_id": "source-05-quantum-machine-learning--a91f0184eb29"
+      }
+    ],
+    "claim_ids": [
+      "claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+      "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+      "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+      "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+      "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+      "claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb",
+      "claim-the-sycamore-superconducting-processor-created-random-circuit-quantum-states-on--2b4eeabd4063",
+      "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+      "claim-linear-cross-entropy-benchmarking-provides-a-fidelity-measure-by-comparing-exper--4abac38b173d",
+      "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279",
+      "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+      "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+      "claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686",
+      "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de",
+      "claim-large-quantum-networks-require-reversible-interconnects-that-convert-quantum-sta--03b0b3a11218",
+      "claim-strong-cavity-qed-coupling-supplies-a-physical-regime-in-which-individual-atoms--9807d4e35625",
+      "claim-electromagnetically-induced-transparency-enables-deterministic-reversible-mappin--b76e4e96d4f0",
+      "claim-full-density-matrix-characterization-becomes-an-impractical-verification-strateg--65a0be3566e1",
+      "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772",
+      "claim-quantum-connectivity-gives-linked-nodes-a-state-space-that-scales-exponentially--50cc8b700a70",
+      "claim-the-dlcz-protocol-creates-heralded-entanglement-between-atomic-ensembles-by-inte--aa516185d3b2",
+      "claim-the-demonstrated-integrated-photonic-processor-prepares-and-measures-arbitrary-t--f41a0c8f645b",
+      "claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+      "claim-quantum-expectation-estimation-reduces-coherent-evolution-demands-relative-to-ph--e17864953251",
+      "claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4",
+      "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5",
+      "claim-device-ansatz-strategies-can-provide-variationally-optimal-solutions-for-the-ava--64cad93bb7ab",
+      "claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+      "claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+      "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc",
+      "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4",
+      "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789",
+      "claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90",
+      "claim-quantum-machine-learning-for-quantum-data-can-reduce-tomography-and-characteriza--b02ec76133c0"
+    ],
+    "source_ids": [
+      "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+      "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+      "source-03-the-quantum-internet--cd7f6b2f11e2",
+      "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+      "source-05-quantum-machine-learning--a91f0184eb29"
+    ]
+  },
+  "schema_version": "space_overview_v1",
+  "sections": [
+    {
+      "body": "This subspace is framed around the transition from theoretical quantum advantage to experimentally constrained quantum technologies. The NISQ evidence treats devices with roughly 50 to a few hundred noisy qubits as a classically hard regime, but not as general-purpose fault-tolerant machines. The Sycamore evidence supplies a concrete random-circuit sampling milestone, while the network, variational, and machine-learning sources broaden the frame from isolated processors to interfaces, short-coherence algorithms, and conditional data-analysis speedups.",
+      "citation_anchor_ids": [
+        "anchor-nisq-scale",
+        "anchor-random-circuit-sampling",
+        "anchor-quantum-networks",
+        "anchor-photonic-vqe",
+        "anchor-qml-bottlenecks"
+      ],
+      "claim_ids": [
+        "claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+        "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+        "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+        "claim-the-sycamore-superconducting-processor-created-random-circuit-quantum-states-on--2b4eeabd4063",
+        "claim-large-quantum-networks-require-reversible-interconnects-that-convert-quantum-sta--03b0b3a11218",
+        "claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+        "claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0"
+      ],
+      "heading": "Topic Framing",
+      "section_id": "topic_framing",
+      "source_ids": [
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+        "source-03-the-quantum-internet--cd7f6b2f11e2",
+        "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+        "source-05-quantum-machine-learning--a91f0184eb29"
+      ]
+    },
+    {
+      "body": "The dominant themes are scale, noise, verification, and hardware-native adaptation. Random circuits become harder to simulate as qubits and depth grow, but their claims depend on cross-entropy benchmarking, component-error models, and extrapolation from verifiable circuits. Hybrid variational methods respond to short coherence by replacing long coherent evolution with repeated expectation measurements and classical optimization. Quantum-network claims likewise center on preserving coherence across matter-light interfaces, while quantum machine learning turns on whether qBLAS, HHL, qPCA, or quantum-data workflows can avoid data-loading and readout bottlenecks.",
+      "citation_anchor_ids": [
+        "anchor-random-circuit-sampling",
+        "anchor-photonic-vqe",
+        "anchor-quantum-networks",
+        "anchor-qml-bottlenecks"
+      ],
+      "claim_ids": [
+        "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+        "claim-linear-cross-entropy-benchmarking-provides-a-fidelity-measure-by-comparing-exper--4abac38b173d",
+        "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279",
+        "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de",
+        "claim-quantum-expectation-estimation-reduces-coherent-evolution-demands-relative-to-ph--e17864953251",
+        "claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4",
+        "claim-large-quantum-networks-require-reversible-interconnects-that-convert-quantum-sta--03b0b3a11218",
+        "claim-strong-cavity-qed-coupling-supplies-a-physical-regime-in-which-individual-atoms--9807d4e35625",
+        "claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+        "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc",
+        "claim-quantum-machine-learning-for-quantum-data-can-reduce-tomography-and-characteriza--b02ec76133c0"
+      ],
+      "heading": "Key Themes",
+      "section_id": "key_themes",
+      "source_ids": [
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+        "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+        "source-03-the-quantum-internet--cd7f6b2f11e2",
+        "source-05-quantum-machine-learning--a91f0184eb29"
+      ]
+    },
+    {
+      "body": "Across the sources there is broad agreement that quantum systems can access regimes with poor classical simulability, especially through entanglement, sampling, and quantum data. The tensions are mostly about scope rather than the existence of quantum effects: NISQ and Sycamore evidence agree that near-term demonstrations do not remove the need for fault tolerance; QML speedup claims are explicitly weakened by circuit-depth, qRAM, input, output, and costing constraints; and network proposals agree on the promise of distributed entanglement while warning that full density-matrix verification will not scale.",
+      "citation_anchor_ids": [
+        "anchor-nisq-scale",
+        "anchor-random-circuit-sampling",
+        "anchor-qml-bottlenecks",
+        "anchor-quantum-networks"
+      ],
+      "claim_ids": [
+        "claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb",
+        "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+        "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+        "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+        "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+        "claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+        "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4",
+        "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789",
+        "claim-full-density-matrix-characterization-becomes-an-impractical-verification-strateg--65a0be3566e1",
+        "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772"
+      ],
+      "heading": "Agreement and Disagreement",
+      "section_id": "agreement_and_disagreement",
+      "source_ids": [
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+        "source-05-quantum-machine-learning--a91f0184eb29",
+        "source-03-the-quantum-internet--cd7f6b2f11e2"
+      ]
+    },
+    {
+      "body": "The evidence base mixes review synthesis with laboratory demonstrations. Preskill supplies a conceptual and error-budget framing for NISQ limits. The Sycamore source uses a programmable 53-qubit superconducting processor, XEB, elided-circuit fidelity estimates, and classical simulation comparisons. Kimble surveys cavity-QED, EIT, and DLCZ-style interfaces for quantum networking. The photonic VQE work demonstrates a two-qubit integrated processor and expectation-estimation loop for He-H+ energies, while the QML review catalogs algorithmic primitives and the assumptions needed for end-to-end advantage.",
+      "citation_anchor_ids": [
+        "anchor-nisq-scale",
+        "anchor-random-circuit-sampling",
+        "anchor-quantum-networks",
+        "anchor-photonic-vqe",
+        "anchor-qml-bottlenecks"
+      ],
+      "claim_ids": [
+        "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+        "claim-linear-cross-entropy-benchmarking-provides-a-fidelity-measure-by-comparing-exper--4abac38b173d",
+        "claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686",
+        "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+        "claim-strong-cavity-qed-coupling-supplies-a-physical-regime-in-which-individual-atoms--9807d4e35625",
+        "claim-electromagnetically-induced-transparency-enables-deterministic-reversible-mappin--b76e4e96d4f0",
+        "claim-the-dlcz-protocol-creates-heralded-entanglement-between-atomic-ensembles-by-inte--aa516185d3b2",
+        "claim-the-demonstrated-integrated-photonic-processor-prepares-and-measures-arbitrary-t--f41a0c8f645b",
+        "claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+        "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5",
+        "claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+        "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc"
+      ],
+      "heading": "Methods and Evidence",
+      "section_id": "methods_and_evidence",
+      "source_ids": [
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+        "source-03-the-quantum-internet--cd7f6b2f11e2",
+        "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+        "source-05-quantum-machine-learning--a91f0184eb29"
+      ]
+    },
+    {
+      "body": "The open questions are practical and comparative. The corpus does not resolve whether NISQ hybrid algorithms can beat mature classical heuristics, how quickly lower error rates can reduce fault-tolerance overhead, or which benchmarks establish useful quantum advantage beyond random sampling. It also leaves open how scalable networks should verify entanglement without exponential tomography, and whether quantum machine-learning pipelines can supply input, preserve speedups through circuit implementation, and extract useful classical outputs without erasing the promised advantage.",
+      "citation_anchor_ids": [
+        "anchor-nisq-scale",
+        "anchor-random-circuit-sampling",
+        "anchor-quantum-networks",
+        "anchor-qml-bottlenecks",
+        "anchor-photonic-vqe"
+      ],
+      "claim_ids": [
+        "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+        "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+        "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+        "claim-full-density-matrix-characterization-becomes-an-impractical-verification-strateg--65a0be3566e1",
+        "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772",
+        "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4",
+        "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789",
+        "claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90",
+        "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5",
+        "claim-device-ansatz-strategies-can-provide-variationally-optimal-solutions-for-the-ava--64cad93bb7ab"
+      ],
+      "heading": "Open Questions",
+      "section_id": "open_questions",
+      "source_ids": [
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+        "source-03-the-quantum-internet--cd7f6b2f11e2",
+        "source-05-quantum-machine-learning--a91f0184eb29",
+        "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b"
+      ]
+    }
+  ],
+  "warnings": [
+    "subspaces.json was absent in the provided context, so this overview does not include child-subspace structure."
+  ]
+}

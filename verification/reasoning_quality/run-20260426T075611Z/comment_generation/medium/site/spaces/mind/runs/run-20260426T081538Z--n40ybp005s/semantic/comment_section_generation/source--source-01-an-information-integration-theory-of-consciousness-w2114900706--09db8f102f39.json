@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What stands out to me is how Tononi starts from the unity of experience rather than from a favorite neural structure. The camera example makes the point nicely: a huge number of possible states is not enough if the parts do not causally constrain one another. That gives the theory a clearer target than simple complexity talk.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately captures the differentiation-plus-integration argument and uses a source-grounded example.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I like the boundary implication of the complex idea, but it also feels like the hardest part to operationalize. Saying the subject is the subset that is not contained in a larger higher-\u03a6 whole is elegant; actually finding that subset in a real brain seems computationally and empirically daunting.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Raises a fair implementation concern while staying close to the paper's complex-boundary claim.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The cerebellum contrast is the most useful test case for me. It blocks the easy move from neuron count or behavioral importance to consciousness, while still allowing cerebellar processing to influence conscious life indirectly. That separation between causal influence and conscious membership is doing a lot of work.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the source's cerebellum and input-output distinctions.",
+        "score": 25
+      }
+    },
+    {
+      "body": "The quality side of the theory deserves more attention than it usually gets. If two systems can have the same amount of integrated information but different effective-information matrices, then \u03a6 alone is not the whole story; the relational structure matters for what the experience is like.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Correctly distinguishes quantity from quality using the effective-information matrix discussion.",
+        "score": 23
+      }
+    },
+    {
+      "body": "A useful consequence is that sleep and anesthesia are not treated as just switches in overall activity. The same broad anatomy can fail to support consciousness if the dynamics collapse into slow, undifferentiated responses, which makes the theory sensitive to state and timing rather than just wiring diagrams.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Accurately reflects the source's claim that anatomy must be paired with suitable dynamics.",
+        "score": 24
+      }
+    }
+  ],
+  "page_ref": "source:source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "requested_count": 5
+}

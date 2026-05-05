@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-mastered-shadercoding-can-support-real-time-artistic-improvisation-that-fuses-co--51c4a707f8d0"
+  ],
+  "evidence_id": "evidence-revision-performance-experience--f3a9d2756c4b",
+  "evidence_type": "observational_result",
+  "excerpt": "En mars 2018, apr\u00e8s deux ans de pratiques et de petits tournois amicaux sur Paris, je me suis retrouv\u00e9e propuls\u00e9e sur la m\u00eame sc\u00e8ne ... J'ai pu participer au Shader Showdown de la Revision 2018 et aller jusqu'\u00e0 la finale. ... Tout cela \u00e9tait possible aussi car j'avais de la marge pour improviser et \u00eatre impulsive du fait de ma ma\u00eetrise du langage et de la technicit\u00e9 de cette programmation. J'avais trouv\u00e9 le moyen technique me correspondant et me permettant de \u00ab faire na\u00eetre une \u0153uvre \u00bb, par la communion entre le code (la technique), l'image et l'\u00e9change.",
+  "overview": "This first-person account supplies the source's main practice-based evidence for shadercoding as performance art. It matters because the article's strongest artistic conclusion rests on lived performance, audience interaction, and technical mastery enabling improvisation. The evidence is experiential rather than controlled or generalizable.",
+  "page_refs": [
+    "Revision 2018"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "title": "Revision Performance Experience"
+}

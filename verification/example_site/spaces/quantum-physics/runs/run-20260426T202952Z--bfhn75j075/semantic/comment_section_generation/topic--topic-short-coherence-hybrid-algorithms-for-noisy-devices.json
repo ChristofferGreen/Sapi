@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The useful common thread is not just that the algorithms are hybrid, but that they ration coherence very deliberately. The photonic variational solver moves the hard search into a classical loop, while the quantum processor repeatedly prepares shallow states and measures terms instead of trying to sustain phase estimation end to end.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the VQE source and directly addresses the page's short-coherence theme.",
+        "score": 23
+      }
+    },
+    {
+      "body": "That tradeoff is exactly why I would avoid calling this a free shortcut. Shorter coherent circuits buy compatibility with noisy devices, but they also create dependence on repeated sampling, calibration quality, and the behavior of a classical optimizer that may get harder to manage as the problem grows.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Relevant reply that adds source-aligned caveats about sampling, calibration, and optimizer scaling.",
+        "score": 21
+      }
+    },
+    {
+      "body": "The page also ties nicely into the quantum machine learning review. A subroutine like HHL can look spectacular in isolation, but if loading data, maintaining qRAM assumptions, or extracting a classical answer dominates the workflow, then the practical advantage has already leaked away.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Accurately connects QML bottlenecks to the topic's warning about implementation overhead.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I read the hardware-aware ansatz point as more than an engineering convenience. If the available photonic or NISQ hardware defines what can be prepared reliably, then choosing an ansatz around those constraints is part of the algorithm rather than an afterthought.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Grounded in the device-ansatz framing and makes a useful conceptual point without overclaiming.",
+        "score": 20
+      }
+    },
+    {
+      "body": "Preskill's caution is a good ceiling on the optimism here. Hybrid VQE-style methods and QML routines are plausible experiments for noisy processors, but the benchmark still has to be mature classical chemistry, optimization, or learning methods, not a deliberately weak baseline.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Balances optimism with the NISQ source's benchmarking caution and fits the page context well.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "topic:topic-short-coherence-hybrid-algorithms-for-noisy-devices",
+  "requested_count": 5
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:29:01Z",
+  "claim_id": "claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+  "evidence_excerpts": [
+    "The review identifies quantum Fourier transforms, eigenvector and eigenvalue routines, and linear-system solvers as qBLAS primitives with exponential speedups."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "qBLAS enables exponential speedups",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "text": "Quantum basic linear algebra subroutines provide exponential speedups for Fourier transforms, eigenvalue estimation, eigenvector finding, and linear equation solving relative to the best known classical counterparts."
+}

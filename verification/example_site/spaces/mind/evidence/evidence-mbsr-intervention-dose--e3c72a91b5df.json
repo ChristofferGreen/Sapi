@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-undifferentiated-use-of-mindfulness-and-meditation-can-make-brief-app-exercises--0796f143a40c",
+    "claim-mindfulness-based-interventions-vary-substantially-in-content-delivery-instructo--8ecee4c072be"
+  ],
+  "evidence_id": "evidence-mbsr-intervention-dose--e3c72a91b5df",
+  "evidence_type": "model_constraint",
+  "excerpt": "The gold-standard model of MBSR is an 8-week course involving 20 to 26 hours of formal meditation training during eight weekly group classes of 1.5 to 2.5 hours, one all-day 6-hour class, and home practice of about 45 minutes per day, 6 days per week; brief adaptations may involve as few as four 20-minute sessions.",
+  "overview": "This protocol description makes the intervention-heterogeneity problem auditable. When studies label both intensive MBSR and very brief training as mindfulness-based, pooled conclusions can obscure dose, content, and delivery differences that matter for efficacy and safety.",
+  "page_refs": [
+    "p.45"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "MBSR Intervention Dose"
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The learning-deployment workflow explains how compiler decisions can be made by an internal learned model.",
+  "relation_file_id": "rel-679d0183214a394730311f922b080afcbdc172ff7bd1ac3f954d1ec3e3acaa7f",
+  "relation_id": "supports:claim-the-machine-learning-compiler-workflow-separates-model-learning-from-deployment--a04ee1ab9738->claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-machine-learning-compiler-workflow-separates-model-learning-from-deployment--a04ee1ab9738",
+  "src_claim_ref": "1",
+  "status": "open"
+}

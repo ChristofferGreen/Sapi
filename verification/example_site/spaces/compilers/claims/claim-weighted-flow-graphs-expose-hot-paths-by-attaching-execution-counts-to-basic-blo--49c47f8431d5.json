@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:27:45Z",
+  "claim_id": "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+  "evidence_excerpts": [
+    "We define a weighted flow graph as a quadruplet {V,E, count, arc.count], where each node in V is a basic block, each arc in E is a potential control flow path between two basic blocks, count{v) is a function that returns the execution count of a basic block u, and arc-count(e) is a function that returns the taken count of a control flow path e."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Weighted graphs expose hot paths",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "text": "Weighted flow graphs expose hot paths by attaching execution counts to basic blocks and taken counts to control-flow arcs."
+}

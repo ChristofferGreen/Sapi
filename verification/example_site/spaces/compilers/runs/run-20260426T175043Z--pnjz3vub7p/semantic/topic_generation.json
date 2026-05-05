@@ -1,0 +1,161 @@
+{
+  "topics": [
+    {
+      "claim_ids": [
+        "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+        "claim-super-blocks-represent-frequently-executed-paths-as-linear-basic-block-sequences--7bbb510c9bb0",
+        "claim-trace-selection-followed-by-tail-duplication-converts-frequently-executed-traces--1483ee9d0534",
+        "claim-the-major-effectiveness-mechanisms-are-eliminating-entries-into-the-middle-of-tr--4bc0ff5e21b0",
+        "claim-on-the-benchmark-suite-profile-based-super-block-optimizations-averaged-a-1-15-s--e5d7486c0e56",
+        "claim-static-wcet-reduction-depends-on-optimizing-the-worst-case-execution-path-becaus--b6a70fae6e3d",
+        "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de",
+        "claim-wcet-aware-register-allocation-lowers-wcet-by-avoiding-spill-code-on-the-wcep-ev--a21ac879b656",
+        "claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616"
+      ],
+      "sections": [
+        {
+          "content": "Several compiler strategies become more effective when they focus optimization effort on the execution paths that matter most. Profile-guided classic optimization identifies frequently executed paths using weighted flow graphs and converts them into super-blocks, while WCC uses static WCET analysis to identify the worst-case execution path and direct transformations toward timing-critical regions. The common concept is path-sensitive feedback: measured hotness and statically derived worst-case criticality are different evidence sources for deciding where optimizations should be concentrated.",
+          "heading": "Shared concept"
+        },
+        {
+          "content": "The profile-guided source describes weighted flow graphs with execution counts on basic blocks and taken counts on control-flow arcs, then uses trace selection and tail duplication to form super-blocks from frequently executed traces. Its effectiveness claims emphasize eliminating entries into the middle of traces and optimizing the most frequently executed loop path, with benchmark speedups and controlled code growth.",
+          "heading": "Evidence from profile-guided compilation"
+        },
+        {
+          "content": "The WCC source frames timing improvement around the worst-case execution path: reducing a noncritical block may leave global WCET unchanged, so optimizations use WCEP membership, execution frequencies, cache misses, spill-code data, and other back-annotated facts. Register allocation, scratchpad allocation, and composed optimization sequences then reduce WCET by prioritizing the statically critical path.",
+          "heading": "Evidence from WCET-aware compilation"
+        },
+        {
+          "content": "This topic can compare dynamic hot-path optimization with static worst-case-path optimization without treating them as the same problem. Both sources support a broader page about compiler feedback loops that select regions, reshape control flow or placement, and trade local costs such as code size or spill code against path-level performance goals.",
+          "heading": "Why this supports a topic page"
+        }
+      ],
+      "source_ids": [
+        "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+        "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+      ],
+      "structure_type": "wiki",
+      "title": "Feedback-Directed Optimization of Critical Execution Paths",
+      "topic_id": "topic-feedback-directed-critical-path-optimization"
+    },
+    {
+      "claim_ids": [
+        "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+        "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+        "claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be",
+        "claim-feature-selection-and-dimension-reduction-are-necessary-in-compiler-learning-pro--ecd12a4a4f1f",
+        "claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+        "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+        "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+        "claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9",
+        "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de",
+        "claim-wcc-s-loop-analyzer-computes-safe-loop-iteration-bounds-for-most-benchmark-loops--5eb419e33259"
+      ],
+      "sections": [
+        {
+          "content": "The sources collectively support a topic about compilers as decision systems that use evidence about programs, executions, hardware, or timing models to select transformations. Machine-learning compilation uses empirical training data and program features to predict optimization choices, profile-guided optimization uses runtime counts to select hot super-block regions, and WCC uses static analyzer output to choose WCET-reducing transformations.",
+          "heading": "Shared concept"
+        },
+        {
+          "content": "Machine-learning compilation separates model learning from deployment and relies on quantifiable program features, empirical labels, and careful feature selection. Profile-guided classic optimization similarly turns runtime behavior into compiler guidance, using execution profiles to focus conventional transformations on frequently run regions.",
+          "heading": "Learning and profiling evidence"
+        },
+        {
+          "content": "WCC broadens the evidence-driven idea from average-case performance to worst-case timing. It integrates aiT static analysis into compilation, back-annotates assembly-level WCET facts to source-level structures, computes safe loop bounds, and applies optimizations whose value is judged by their impact on the WCEP rather than by profiling input data.",
+          "heading": "Static timing evidence"
+        },
+        {
+          "content": "The sources also show important limits. Machine learning depends on feature quality, representative data, and legality analyses supplied by compiler writers; profile-guided optimization depends on useful profiling inputs; WCC depends on safe static analysis and may trade timing improvements against code-size growth. These contrasts make the shared concept stronger rather than collapsing the methods into one technique.",
+          "heading": "Limits and contrasts"
+        }
+      ],
+      "source_ids": [
+        "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+        "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+        "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+      ],
+      "structure_type": "wiki",
+      "title": "Compiler Optimization as Evidence-Driven Decision Making",
+      "topic_id": "topic-compiler-optimization-as-evidence-driven-decision-making"
+    },
+    {
+      "claim_ids": [
+        "claim-ilp-based-code-scratchpad-allocation-lowers-wcet-by-moving-beneficial-basic-bloc--d5d88da4e90e",
+        "claim-ilp-based-data-scratchpad-allocation-lowers-wcet-by-moving-frequently-accessed-v--8ceca90523fc",
+        "claim-wcet-centric-procedure-positioning-reduces-instruction-cache-conflict-misses-by--47eeb6643a90",
+        "claim-wcet-aware-procedure-cloning-improves-wcet-estimates-by-specializing-functions-w--808a9c5da846",
+        "claim-remote-cnot-execution-consumes-bell-state-resources-and-is-limited-by-the-number--ff11e4d2be8e",
+        "claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d",
+        "claim-entanglement-swapping-augments-distributed-processor-connectivity-by-enabling-re--b0cac39f5fb5",
+        "claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172",
+        "claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c"
+      ],
+      "sections": [
+        {
+          "content": "Compiler optimization in the provided sources is often constrained by scarce architectural resources. WCC allocates code and data to limited scratchpad memories and reorders or clones procedures to affect cache behavior; distributed quantum compilation schedules remote operations under limits from Bell-state availability, communication qubits, topology, and regeneration latency. Both cases require the compiler to model resource capacity and communication or memory costs rather than only local instruction transformations.",
+          "heading": "Shared concept"
+        },
+        {
+          "content": "The WCC source supports resource-aware compilation through ILP-based code and data scratchpad allocation, WCET-centric procedure positioning, and WCET-aware procedure cloning. These transformations reduce worst-case timing by placing beneficial regions or variables in faster memories, reducing instruction-cache conflict misses, or specializing calls, while also exposing tradeoffs such as code-size growth.",
+          "heading": "Classical embedded timing resources"
+        },
+        {
+          "content": "The distributed quantum source supports the same high-level theme in a different architecture. Remote CNOT execution consumes Bell states, is limited by communication qubits, and requires coupling maps that model temporal dynamics. Entanglement swapping can create virtual links but consumes intermediate Bell states, while data-qubit swapping changes placement so CNOTs operate on neighboring processors.",
+          "heading": "Distributed quantum resources"
+        },
+        {
+          "content": "The evidence justifies a concept-centric topic about resource-aware compiler mapping, not a claim that classical WCET compilers and quantum compilers use identical algorithms. The shared issue is that compilation quality depends on representing limited hardware resources and choosing transformations that reduce the dominant cost under those constraints.",
+          "heading": "Synthesis boundary"
+        }
+      ],
+      "source_ids": [
+        "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+        "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+      ],
+      "structure_type": "wiki",
+      "title": "Resource-Aware Compilation Under Architectural Constraints",
+      "topic_id": "topic-resource-aware-compilation-under-architectural-constraints"
+    },
+    {
+      "claim_ids": [
+        "claim-profile-based-classic-optimizations-are-intended-to-complement-conventional-opti--6bcefbcf9607",
+        "claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0",
+        "claim-the-implementation-cost-of-profile-based-classic-optimization-was-modest-relativ--062df22ec16c",
+        "claim-the-machine-learning-compiler-workflow-separates-model-learning-from-deployment--a04ee1ab9738",
+        "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3",
+        "claim-distributed-quantum-computing-requires-compilers-that-can-map-arbitrary-quantum--e4ea92cd41cd",
+        "claim-the-proposed-compiler-is-computationally-efficient-because-distributing-a-circui--b9f318c6234c",
+        "claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9",
+        "claim-interprocedural-slicing-and-polyhedral-loop-evaluation-substantially-reduce-loop--8f361a6ac310",
+        "claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616"
+      ],
+      "sections": [
+        {
+          "content": "Across the sources, compiler improvements are presented as integrated infrastructures rather than isolated transformations. Profile-guided optimization adds profiling, super-block formation, and profile-aware versions of classic optimizations; machine-learning compilation adds training and deployment stages around the compiler; WCC connects a C compiler to aiT and composes multiple WCET-aware optimizations; distributed quantum compilation maps algorithms to constrained distributed architectures through strategy-specific compilation of remote operations.",
+          "heading": "Shared concept"
+        },
+        {
+          "content": "Profile-guided classic optimization is explicitly complementary to conventional optimization, reformulating classic scalar transformations for super-blocks and super-block loops. Machine-learning compilation similarly inserts a learned model into the compiler after offline training, making optimization decisions for new programs rather than replacing the rest of the compiler pipeline.",
+          "heading": "Classical and learned compiler pipelines"
+        },
+        {
+          "content": "WCC provides a strong infrastructure example because it couples static analysis to compilation, raises timing facts back to source-level structures, accelerates loop analysis through slicing and polyhedral evaluation, and composes register allocation, code scratchpad allocation, data scratchpad allocation, and procedure positioning. The matmult case shows these optimizations can combine into a much larger WCET reduction than an isolated pass would suggest.",
+          "heading": "WCET-aware composition"
+        },
+        {
+          "content": "The sources target different objectives: average speed, learned heuristic selection, worst-case execution time, and distributed quantum feasibility or depth. A synthesis page can use this contrast to explain how modern compiler frameworks embed domain-specific evidence and passes while preserving a broader compiler workflow.",
+          "heading": "Domain-specific objectives"
+        }
+      ],
+      "source_ids": [
+        "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+        "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+        "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+        "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+      ],
+      "structure_type": "wiki",
+      "title": "Compositional Compiler Infrastructure for Domain-Specific Objectives",
+      "topic_id": "topic-compositional-compiler-infrastructure-for-domain-specific-objectives"
+    }
+  ]
+}

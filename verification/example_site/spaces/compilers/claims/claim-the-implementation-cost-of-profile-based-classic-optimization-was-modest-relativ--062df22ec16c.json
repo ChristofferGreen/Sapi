@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:27:45Z",
+  "claim_id": "claim-the-implementation-cost-of-profile-based-classic-optimization-was-modest-relativ--062df22ec16c",
+  "evidence_excerpts": [
+    "The global code optimizer in our prototype compiler consists of approximately 32,000 lines of C code. The profile-based classic code optimizer consists of approximately 11,000 lines of C code. The profiler has about 2,000 lines of C code and a few assembly language subroutines."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Implementation cost is modest",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "text": "The implementation cost of profile-based classic optimization was modest relative to the existing global optimizer."
+}

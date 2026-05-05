@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:59:28Z",
+  "claim_id": "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+  "evidence_excerpts": [
+    "For m = 20, obtaining a million samples on the quantum processor takes 200 seconds, whereas an equal-fidelity classical sampling would take 10,000 years on a million cores."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Quantum sampling outpaces classical",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "text": "For the hardest reported random-circuit sampling task, Sycamore produced one million samples in about 200 seconds while the authors estimated equal-fidelity classical sampling would take about 10,000 years on one million cores."
+}

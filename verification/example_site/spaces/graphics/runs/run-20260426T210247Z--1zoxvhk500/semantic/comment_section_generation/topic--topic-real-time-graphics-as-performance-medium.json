@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I appreciate that this page does not flatten performance into a single meaning. Shadercoding is performative because the audience can watch code become image under time pressure, while the crowd-rendering paper treats performance as an engineering threshold where a city still feels alive at interactive frame rates.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in both sources and clearly preserves the artistic versus engineering distinction.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The comparison works best when real time is treated as a constraint that changes the medium. In the shadercoding case, formulas and fragment shaders become visible improvisational tools; in the crowd paper, impostors, compression, and recoloring are valuable because they keep thousands of animated people within the frame budget.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately connects technical mechanisms from both sources to the shared live-constraint theme.",
+        "score": 23
+      }
+    },
+    {
+      "body": "I would be careful not to imply that the crowd-rendering work is performance art in the same sense as Shader Showdowns. Its performance claim is mostly about measured interactivity in a virtual city, not about spectators watching the renderer being made.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Useful threaded correction that reinforces the page's stated domain boundary without dismissing the comparison.",
+        "score": 25
+      }
+    },
+    {
+      "body": "What links the two examples for me is technical control under scarcity. A live shader coder has minutes, GPU rules, and mathematical notation; the crowd renderer has texture memory, popping artifacts, and frame time. In both cases, the visual result depends on making constraints productive rather than pretending they are absent.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Well written synthesis with concrete constraints, though it is more interpretive than evidentiary.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The evidence balance is worth noting. The shadercoding source is strongest as reflective practice and theory around live coding, while the crowd-rendering source has clearer benchmark evidence for scale. Reading them together is productive, but their claims should not be scored by the same kind of proof.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Excellent source-aware comment that distinguishes evidence types and improves critical interpretation of the topic.",
+        "score": 26
+      }
+    }
+  ],
+  "page_ref": "topic:topic-real-time-graphics-as-performance-medium",
+  "requested_count": 5
+}

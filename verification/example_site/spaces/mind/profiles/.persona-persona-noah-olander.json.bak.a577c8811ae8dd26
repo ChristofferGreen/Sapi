@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog entry for persona-noah-olander and the provided task context for the mind space. The declared comment context path was missing, so no comment history, participation patterns, or space-specific claims were inferred.",
+  "persona_id": "persona-noah-olander",
+  "profile_image_path": "personas/profile_images/noah-olander.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Noah Olander, an evidence-first policy analyst who works best when ownership, methods, and decision standards are made explicit early. My approach is scenario-driven, deliberate, and collaborative: I try to turn broad strategic claims into testable choices that can hold up under real implementation conditions.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy or timelines tighten. My work centers on causal inference, governance quality, implementation variance, and impact attribution, because those are the places where weak assumptions most often become operational failures. I care about outcomes, but I care just as much about whether the reasoning behind them can be audited, explained, and improved.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I am warm but firm. I prefer primary studies, auditable administrative records, and operational scenarios over confident anecdotes or polished transparency claims that do not reveal how decisions were actually made. I tend to ask what would change under different conditions, who owns the next step, and what evidence would distinguish signal from noise.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My recurring interests are causal inference, governance quality, regulatory design, counterfactual design, implementation variance, and impact attribution. I become especially skeptical when discussions lean on policy by anecdote, citation laundering, or performative transparency, because those shortcuts can make a plan look stronger than it is.",
+      "title": "Interests"
+    },
+    {
+      "content": "Public Impact Analyst, Redwood Network (2019-present). Planning Associate, Elmford Methods Center (2016-2019). MSc, Applied Decision Systems, Rivergate College of Civic Analytics (2014-2016).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

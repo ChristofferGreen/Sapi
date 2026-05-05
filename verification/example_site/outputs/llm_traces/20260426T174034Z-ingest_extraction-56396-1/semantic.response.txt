@@ -1,0 +1,336 @@
+{
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2021-01-22",
+    "origin": "source_markdown_header",
+    "rationale": "The extracted front matter states that the article was received August 3, 2020, revised October 19, 2020, accepted January 19, 2021, and published January 22, 2021."
+  },
+  "source": {
+    "display_title": "Compiler Design for Distributed Quantum Computing",
+    "authors": [
+      "Davide Ferrari",
+      "Angela Sara Cacciapuoti",
+      "Michele Amoretti",
+      "Marcello Caleffi"
+    ],
+    "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+    "doi": "10.1109/TQE.2021.3053921",
+    "venue": "IEEE Transactions on Quantum Engineering"
+  },
+  "claims": [
+    {
+      "text": "Distributed quantum computing can let remote quantum processing units cooperate as a virtual quantum processor for tasks that individual noisy intermediate-scale quantum devices cannot handle alone.",
+      "short_title": "Distributed QPUs cooperate virtually",
+      "evidence_excerpts": [
+        "Remote quantum processing units can communicate and cooperate for executing computational tasks that single, noisy, intermediate-scale quantum devices cannot handle by themselves."
+      ]
+    },
+    {
+      "text": "Distributed quantum computing requires compilers that can map arbitrary quantum algorithms to distributed architectures while accounting for network and communication constraints.",
+      "short_title": "Distributed architectures require compilers",
+      "evidence_excerpts": [
+        "Distributed quantum computing requires a new generation of quantum compilers, for mapping any quantum algorithm to any distributed quantum computing architecture."
+      ]
+    },
+    {
+      "text": "Remote CNOT execution consumes Bell-state resources and is limited by the number of available communication qubits, creating a tradeoff between communication capacity and data-qubit capacity.",
+      "short_title": "Remote CNOTs consume Bell states",
+      "evidence_excerpts": [
+        "For each remote CNOT, a Bell state is consumed and a new Bell state must be distributed between the remote processors through the quantum link before another remote CNOT can be executed.",
+        "The number of remote CNOTs that can be executed simultaneously between two processors is limited by the number of communication qubits jointly available at each processor."
+      ]
+    },
+    {
+      "text": "Distributed quantum compilers must model temporal coupling-map dynamics because remote operations are constrained by Bell-state availability, Bell-state regeneration, and classical communication latency.",
+      "short_title": "Coupling maps become dynamic",
+      "evidence_excerpts": [
+        "These additional constraints must be properly modeled within the coupling map, so that the distributed quantum compiler can optimize the quantum circuit by accounting for the temporal dynamics arising with the distributed architecture.",
+        "The clock of the remote operations will be significantly lower than the clock of the local operations."
+      ]
+    },
+    {
+      "text": "Entanglement swapping augments distributed-processor connectivity by enabling remote CNOTs between processors that are not directly connected by a quantum link, but it increases EPR-pair consumption at intermediate processors.",
+      "short_title": "Entanglement swapping augments connectivity",
+      "evidence_excerpts": [
+        "Entanglement swapping enhances the network connectivity through virtual quantum links.",
+        "Entanglement swapping consumes the Bell states stored within the communication qubits at the intermediate processors."
+      ]
+    },
+    {
+      "text": "The paper's worst-case system model uses one data qubit per processor and a one-dimensional nearest-neighbor processor topology, making every CNOT remote and maximizing distributed-computation overhead.",
+      "short_title": "Worst case maximizes overhead",
+      "evidence_excerpts": [
+        "Only one data qubit is available at each quantum processor.",
+        "The quantum processors are interconnected through a 1-D nearest-neighbor topology, and only one data qubit is available at each quantum processor."
+      ]
+    },
+    {
+      "text": "In the worst-case topology, the entanglement-swapping-based strategy has per-layer depth overhead bounded by n/2 times a hardware-dependent constant des, where des equals cle plus cbsm plus ccx.",
+      "short_title": "Entanglement strategy has linear bound",
+      "evidence_excerpts": [
+        "The depth overhead of the entanglement-swapping-based strategy does not exceed the following depth: n/2 des.",
+        "des = cle + cbsm + ccx."
+      ]
+    },
+    {
+      "text": "The data-qubit-swapping-based strategy arranges data qubits so each CNOT in a layer operates on neighboring processors, and its compiled per-layer depth does not exceed n/4 dqs plus dqs prime.",
+      "short_title": "Data swapping lowers asymptotic overhead",
+      "evidence_excerpts": [
+        "The objective is to arrange (i.e., to swap) the data qubits within the quantum processors so that eventually each CNOT of the original layer operates on qubits stored at neighbor processors within the network topology.",
+        "Theorem 1: Let us consider the ith layer of an arbitrary n-qubit quantum circuit. The depth of the corresponding compiled quantum circuit, obtained through the data-qubit-swapping-based strategy, does not exceed the following depth: n/4 dqs + dqs'."
+      ]
+    },
+    {
+      "text": "The proposed compiler is computationally efficient because distributing a circuit has O(d n squared) complexity, with d the circuit depth and n the number of QPUs or logical qubits in the modeled worst case.",
+      "short_title": "Compiler complexity is polynomial",
+      "evidence_excerpts": [
+        "Applying a remote CNOT has a computational complexity of O(n), with n being the number of QPUs. Given that we need at most n/4 swaps, the computational complexity of Algorithm 2 turns out to be O(n2). The overall computational complexity of distributing a circuit is, therefore, O(dn2)."
+      ]
+    },
+    {
+      "text": "Experimental validation on medium-size quantum circuits respected the analytical bounds, and the data-qubit-swapping strategy generally required fewer link-generation layers and lower circuit depth than entanglement swapping alone.",
+      "short_title": "Experiments respect analytical bounds",
+      "evidence_excerpts": [
+        "Table 1 clearly shows that the upper bounds on the number of layers that result from compiling the layers of remote CNOTs are widely respected and hold for all the considered examples.",
+        "Fig. 15(c) also shows that choosing the data-qubit-swapping-based strategy against the entanglement-swapping-based strategy is generally the best choice.",
+        "Fig. 16(c) confirms that the data-qubit-swapping-based strategy is better than the entanglement-swapping-based one."
+      ]
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "evidence-remote-cnot-bell-state-protocol--7a3f2c9b4d81",
+      "title": "Remote CNOT Bell-State Protocol",
+      "excerpt": "Remote CNOT. To perform a CNOT between remote physical qubits stored at different processors, a Bell state such as Phi+ must be distributed through the quantum link so that each pair member is stored within a communication qubit at each processor. Once the Bell state is available, the remote CNOT is obtained with a local CNOT between the data and the communication qubit at each processor, followed by a conditional gate on the data qubit depending on the measurement of the remote communication qubit.",
+      "overview": "This figure-level construction is the operational foundation for the compiler problem. It establishes why distributed gates require communication qubits, Bell-state generation, local gates, measurement, and classical feed-forward, so remote CNOTs are not interchangeable with local CNOTs in cost or scheduling.",
+      "evidence_type": "figure_result",
+      "claim_refs": [
+        "2",
+        "3"
+      ],
+      "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+      "page_refs": [
+        "Fig. 4"
+      ]
+    },
+    {
+      "evidence_id": "evidence-dynamic-coupling-map-equation--2c61e90ab7f4",
+      "title": "Dynamic Coupling Map Model",
+      "excerpt": "Formally, a coupling map is a visual representation of the directed graph G = (V, E), where V = {vi} denotes the set of vertices representing the qubits and E = {ei,j} denotes the set of directed edges representing the possibility to perform a CNOT, with vi and vj acting as control and target qubit, respectively.",
+      "overview": "The coupling-map equation supplies the formal object that distributed compilation must extend. The paper uses it to argue that a static graph is insufficient once remote operations depend on Bell-state availability and regeneration timing, motivating dynamic scheduling constraints.",
+      "evidence_type": "equation",
+      "claim_refs": [
+        "3"
+      ],
+      "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+      "page_refs": [
+        "Eq. 1"
+      ]
+    },
+    {
+      "evidence_id": "evidence-entanglement-swapping-connectivity--91b4ef03c6a2",
+      "title": "Entanglement Swapping Connectivity Gain",
+      "excerpt": "Entanglement swapping enhances the network connectivity through virtual quantum links. The number of additional interactions via entanglement swapping scales linearly with the number of available processors when only two communication qubits are available at each intermediate processor. If this constraint is relaxed, the number of additional interactions via entanglement swapping scales more than linearly.",
+      "overview": "This figure-backed reasoning explains the benefit side of the distributed architecture: processors that are not adjacent can still interact through virtual links. It also scopes the result by tying the scaling to communication-qubit availability and by noting the associated EPR cost.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "4"
+      ],
+      "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+      "page_refs": [
+        "Fig. 6"
+      ]
+    },
+    {
+      "evidence_id": "evidence-worst-case-lnn-topology--d8c0a5f7139e",
+      "title": "Worst-Case Linear Topology",
+      "excerpt": "The quantum processors are interconnected through a 1-D nearest-neighbor topology, and only one data qubit is available at each quantum processor. Whenever multiple data qubits are available at a single quantum processor, a local CNOT can be executed between these data qubits without incurring distributed-computation overhead; with just one data qubit available at each processor, each and every CNOT within the quantum circuit must be mapped into a remote CNOT.",
+      "overview": "This model constraint makes the subsequent bounds conservative. By forcing every two-qubit interaction to cross processor boundaries and by minimizing topology connectivity, the analysis estimates overhead under deliberately unfavorable architectural assumptions.",
+      "evidence_type": "model_constraint",
+      "claim_refs": [
+        "5",
+        "6",
+        "7"
+      ],
+      "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+      "page_refs": [
+        "Fig. 7"
+      ]
+    },
+    {
+      "evidence_id": "evidence-entanglement-depth-bound--5b7e1d2c8a0f",
+      "title": "Entanglement Strategy Depth Bound",
+      "excerpt": "The depth overhead of the entanglement-swapping-based strategy does not exceed n/2 des, where n denotes the number of logical qubits within the quantum circuit and des is a constant factor independent from the characteristics of the original quantum circuit given by des = cle + cbsm + ccx.",
+      "overview": "The equations give an explicit linear-in-n worst-case upper bound for one strategy. They separate architecture-independent circuit size from hardware constants for link entanglement, Bell-state measurement, and remote CNOT execution after Bell-state distribution.",
+      "evidence_type": "theorem",
+      "claim_refs": [
+        "6"
+      ],
+      "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+      "page_refs": [
+        "Eq. 2",
+        "Eq. 3"
+      ]
+    },
+    {
+      "evidence_id": "evidence-sorting-network-depth--0f6a81d4b3c9",
+      "title": "Sorting Network Depth Factor",
+      "excerpt": "By taking advantage of the sorting network theory, it is easy to model the network topology constraints through the notion of insertion network, or equivalently bubble network. As a consequence, the overall depth of the equivalent quantum circuit grows with the number n of logical qubits as 2n - 3 instead of a logarithmic log n depth factor as for classical sorting.",
+      "overview": "This equation-like model explains why moving data qubits across a nearest-neighbor quantum network has different depth behavior from unconstrained classical sorting. It underpins the paper's data-qubit-swapping strategy without pretending that arbitrary pair swaps are free.",
+      "evidence_type": "equation",
+      "claim_refs": [
+        "7"
+      ],
+      "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+      "page_refs": [
+        "Eq. 4"
+      ]
+    },
+    {
+      "evidence_id": "evidence-data-qubit-swapping-theorem--a41c9e6b057d",
+      "title": "Data-Qubit Swapping Theorem",
+      "excerpt": "Theorem 1: Let us consider the ith layer of an arbitrary n-qubit quantum circuit. The depth of the corresponding compiled quantum circuit, obtained through the data-qubit-swapping-based strategy, does not exceed n/4 dqs + dqs', where dqs = 3(cle + cbsm + ccx) and dqs' = cle + ccx.",
+      "overview": "The theorem is the paper's central analytical artifact for the improved strategy. It claims a smaller asymptotic factor than the entanglement-only approach, while keeping hardware-dependent costs explicit and preserving a worst-case interpretation.",
+      "evidence_type": "theorem",
+      "claim_refs": [
+        "7"
+      ],
+      "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+      "page_refs": [
+        "Theorem 1",
+        "Eq. 5",
+        "Eq. 6",
+        "Eq. 7"
+      ]
+    },
+    {
+      "evidence_id": "evidence-compiler-complexity-bound--6d9f30b2e8ac",
+      "title": "Compiler Complexity Bound",
+      "excerpt": "The compiler reads the circuit from left to right while updating the front layer, so its computational complexity is O(d), where d is the depth of the circuit. Applying a remote CNOT has a computational complexity of O(n), with n being the number of QPUs. Given that we need at most n/4 swaps, the computational complexity of Algorithm 2 turns out to be O(n2). The overall computational complexity of distributing a circuit is, therefore, O(dn2).",
+      "overview": "This formal complexity argument supports the efficiency claim. It ties the proposed front-layer workflow to a polynomial bound rather than only reporting empirical behavior, although the bound is expressed for the modeled compiler and architecture assumptions.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "8"
+      ],
+      "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+      "page_refs": [
+        "Algorithm 2",
+        "Algorithm 3",
+        "Algorithm 4"
+      ]
+    },
+    {
+      "evidence_id": "evidence-validation-figures-table--c03e74a9b5d2",
+      "title": "Validation Figures and Table",
+      "excerpt": "Table 1 clearly shows that the upper bounds on the number of layers that result from compiling the layers of remote CNOTs are widely respected and hold for all the considered examples. Fig. 15(c) also shows that choosing the data-qubit-swapping-based strategy against the entanglement-swapping-based strategy is generally the best choice. Fig. 16(c) confirms that the data-qubit-swapping-based strategy is better than the entanglement-swapping-based one.",
+      "overview": "The evaluation evidence connects the analytical model to compiled benchmark circuits. The extracted markdown preserves the qualitative conclusions more reliably than the table's numeric cells, so this item supports validation and comparative strategy choice but not a specific numeric effect size.",
+      "evidence_type": "table_result",
+      "claim_refs": [
+        "9"
+      ],
+      "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+      "page_refs": [
+        "Table 1",
+        "Fig. 15",
+        "Fig. 16"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "2",
+      "dst_claim_ref": "3",
+      "rationale": "Bell-state consumption and communication-qubit limits are the resource dynamics that require distributed coupling maps to become temporal rather than static."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "5",
+      "dst_claim_ref": "6",
+      "rationale": "The entanglement-swapping bound is derived under the stated one-data-qubit linear-nearest-neighbor worst-case architecture."
+    },
+    {
+      "relation_type": "derived_from",
+      "src_claim_ref": "7",
+      "dst_claim_ref": "8",
+      "rationale": "The data-qubit-swapping theorem contributes to the compiler's polynomial effectiveness and complexity profile."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "9",
+      "dst_claim_ref": "6",
+      "rationale": "The validation table reports that the analytical upper bounds hold across the evaluated benchmark circuits."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "9",
+      "dst_claim_ref": "7",
+      "rationale": "The comparative figures support the practical value of the data-qubit-swapping strategy relative to entanglement swapping alone."
+    }
+  ],
+  "summary": "Ferrari, Cacciapuoti, Amoretti, and Caleffi analyze compiler design for distributed quantum computing, derive linear worst-case overhead bounds for remote-CNOT compilation strategies, implement a Qiskit-based compiler, and validate the bounds and strategy tradeoffs on medium-size quantum circuits.",
+  "warnings": [
+    "The source record date was null, but the source markdown front matter names January 22, 2021 as the date of publication.",
+    "The markdown extraction is marked usable, but Table 1 numeric cells are not reliably preserved in the extracted text; evidence from the table is therefore represented qualitatively.",
+    "Existing claim and relation files in the provided context refer to earlier compiler sources, so generated relations reference the newly extracted claims by index rather than existing canonical claim IDs."
+  ],
+  "source_dossier": {
+    "summary_short": "This IEEE Transactions on Quantum Engineering article studies how to compile quantum circuits for distributed quantum computers connected through quantum-network resources. It identifies remote-operation constraints, derives conservative depth-overhead bounds for two CNOT distribution strategies, implements the compiler in Qiskit, and validates the analysis on benchmark circuits.",
+    "summary_long": "The source addresses a specific bottleneck in distributed quantum computing: a quantum algorithm usually starts as a hardware-agnostic circuit, but a distributed machine imposes both local processor constraints and network-mediated constraints on remote two-qubit gates. Ferrari, Cacciapuoti, Amoretti, and Caleffi frame distributed QPUs as a virtual quantum processor enabled by the Quantum Internet, but emphasize that remote operations are expensive because they consume Bell states, require communication qubits, and depend on classical signaling and entanglement regeneration. The paper's analytical contribution is deliberately conservative. It models a worst-case distributed architecture with one data qubit per QPU and a one-dimensional nearest-neighbor topology, ensuring that every CNOT in the original circuit becomes remote and that nonadjacent communication is maximally constrained. Under this model, the entanglement-swapping strategy has a per-layer depth bound proportional to n/2, with hardware constants for link entanglement, Bell-state measurement, and remote CNOT execution. A second strategy swaps data qubits through the network so that the CNOTs in a layer eventually act on neighboring processors; Theorem 1 bounds its per-layer depth by n/4 dqs plus a constant term. The implementation reads QASM circuits left to right, builds front layers of parallel CNOTs, and compiles those layers using either entanglement swapping or data-qubit swapping. Its overall distribution complexity is O(dn2), so the design is intended to be general-purpose, computationally efficient, and effective in the sense that worst-case depth overhead grows linearly with circuit width. The experiments validate the derived bounds on medium-size circuits and compare both strategies with Andrés-Martínez and Heunen's compiler, noting that the comparison is structurally unfavorable because the other compiler assumes a hypercube topology. The practical takeaway is not that one strategy always dominates under every architecture, but that data-qubit movement can reduce link-generation layers and compiled depth when CNOT interaction patterns repeat, while topology, available communication qubits, and EPR consumption remain decisive design variables.",
+    "sections": [
+      {
+        "heading": "Distributed Compilation Problem",
+        "body": "The paper treats distributed quantum computing as a way to combine remote QPUs into a larger virtual processor, but compilation must translate a logical circuit into operations that respect both local coupling maps and network resources. This turns remote CNOT placement, scheduling, and Bell-state availability into compiler-level concerns rather than merely hardware details.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ]
+      },
+      {
+        "heading": "Remote Operation Constraints",
+        "body": "Remote CNOTs depend on Bell states stored in communication qubits. Because each remote CNOT consumes a Bell state and because simultaneous remote gates are limited by communication-qubit availability, distributed compilers must optimize around a slower and more resource-constrained class of operations than local gates.",
+        "grounding_claim_ids": [
+          "2",
+          "3"
+        ]
+      },
+      {
+        "heading": "Connectivity Versus EPR Cost",
+        "body": "Entanglement swapping gives a distributed processor virtual links beyond physical nearest-neighbor quantum links, which increases the set of possible remote interactions. The same mechanism consumes Bell states at intermediate processors, so added connectivity is not free and must be weighed against EPR-pair generation and scheduling cost.",
+        "grounding_claim_ids": [
+          "4"
+        ]
+      },
+      {
+        "heading": "Worst-Case Analytical Model",
+        "body": "The analysis intentionally chooses a restrictive architecture: one data qubit per QPU and a one-dimensional nearest-neighbor network. This makes every original CNOT remote and maximizes path lengths, allowing the resulting bounds to be read as conservative upper limits rather than average-case predictions for richer topologies.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ]
+      },
+      {
+        "heading": "Two Distribution Strategies",
+        "body": "The entanglement-swapping strategy directly realizes remote CNOTs after preparing virtual links and has a linear n/2-style bound per layer. The data-qubit-swapping strategy instead moves data qubits so interacting qubits become neighbors, yielding the paper's n/4-style theorem and explaining why repeated interaction patterns can be exploited.",
+        "grounding_claim_ids": [
+          "6",
+          "7"
+        ]
+      },
+      {
+        "heading": "Implementation And Complexity",
+        "body": "The compiler implementation processes QASM circuits left to right, builds front layers of parallel CNOTs, and then compiles each front layer. Its O(dn2) distribution complexity is central to the claimed efficiency because the approach is intended to handle medium-to-large circuits where optimal distributed compilation is impractical.",
+        "grounding_claim_ids": [
+          "8"
+        ]
+      },
+      {
+        "heading": "Experimental Interpretation",
+        "body": "The performance section validates the theoretical upper bounds and reports that data-qubit swapping generally improves link-generation layers and circuit depth relative to entanglement swapping alone. The comparisons with prior work must be interpreted cautiously because the competing compiler benefits from a more favorable hypercube topology.",
+        "grounding_claim_ids": [
+          "9"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:44:00Z",
+  "claim_id": "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+  "evidence_excerpts": [
+    "To display many different individual people at interactive frame rates, we combined texture compression with multipass rendering.",
+    "Our system allows real-time rendering of densely populated large-scale environments. The rendering speed is independent of the avatar model\u2019s complexity."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Impostors enable real-time crowds",
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "text": "Image-based impostor rendering with positional and directional discretization can display dense animated crowds in large virtual urban environments at interactive rates."
+}

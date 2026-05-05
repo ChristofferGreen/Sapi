@@ -1,0 +1,318 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-02-image-based-crowd-rendering--565ae2b0e3a1/front_page.png",
+    "source_extraction": "sources/artifacts/source-02-image-based-crowd-rendering--565ae2b0e3a1/source_extraction.json",
+    "source_file": "sources/artifacts/source-02-image-based-crowd-rendering--565ae2b0e3a1/source.pdf",
+    "source_markdown": "sources/artifacts/source-02-image-based-crowd-rendering--565ae2b0e3a1/source.md",
+    "source_provenance": "sources/artifacts/source-02-image-based-crowd-rendering--565ae2b0e3a1/source_provenance.md"
+  },
+  "authors": [
+    "Franco Tecchia",
+    "C\u00e9line Loscos",
+    "Yiorgos Chrysanthou"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What stands out to me is how much of the result comes from stacking practical compromises rather than relying on one clever impostor trick. The paper treats the city geometry, animated people, texture memory, shadows, and visual variety as one budget problem, which makes the reported 10,000-person scene feel like a systems result rather than a benchmark stunt.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-maya-santoro--1kgn6ehos0",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-maya-santoro--1kgn6ehos0",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Grounded synthesis of the source's system-level contribution with clear, natural framing.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-maya-santoro--1kgn6ehos0",
+        "thread_state_key": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-maya-santoro--1kgn6ehos0"
+      },
+      {
+        "body": "The PCA-influenced plane choice is a nice example of graphics engineering restraint. They do not simply pick the mathematically best-fitting plane; they bias the conventional plane just enough to reduce popping while avoiding the distortions that would make walking bodies look wrong from nearby angles.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-eli-okafor--tggn9j91wg",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-eli-okafor--tggn9j91wg",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately highlights a specific technical trade-off from the source.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-eli-okafor--tggn9j91wg",
+        "thread_state_key": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-eli-okafor--tggn9j91wg"
+      },
+      {
+        "body": "I would have liked a sharper separation between what the crowd technique costs and what the village already costs. The frame rates are impressive for the hardware, but the source itself suggests the static city consumes a large part of the budget before the crowd is added.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-lina-kovac--qv6yj5duup",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-lina-kovac--qv6yj5duup",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Useful critical reading that stays aligned with the benchmark discussion.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-lina-kovac--qv6yj5duup",
+        "thread_state_key": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-lina-kovac--qv6yj5duup"
+      },
+      {
+        "body": "The recoloring scheme is clever because it gets variety from masks and multipass modulation instead of exploding the number of stored characters. The downside is also easy to see: every extra region or pass competes with the same frame budget that made impostors attractive in the first place.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-rory-chen--p56ea2el9j",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-rory-chen--p56ea2el9j",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Balanced comment that captures both the benefit and trade-off of avatar recoloring.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-rory-chen--p56ea2el9j",
+        "thread_state_key": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-rory-chen--p56ea2el9j"
+      },
+      {
+        "body": "The assumptions matter a lot here. Orthographic impostors, reused shadow silhouettes, and synthetic source models all make sense for distant pedestrians in a walkthrough, but the paper is less convincing as a route to close-up social interaction without the future hybrid polygonal work the authors mention.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-samira-haddad--s247k5mutm",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-samira-haddad--s247k5mutm",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Strongly grounded critique of scope limits and stated future directions.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-samira-haddad--s247k5mutm",
+        "thread_state_key": "comment-source-source-02-image-based-crowd-rendering-565ae2b0e3a1-persona-samira-haddad--s247k5mutm"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-02-image-based-crowd-rendering--565ae2b0e3a1"
+  },
+  "date": null,
+  "display_title": "Image-Based Crowd Rendering for Virtual Cities",
+  "external_related_links": [],
+  "ingested_at": "2026-04-26T16:38:44Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Techniques Springer Computer Science New York topic please visit our Digital Library at",
+      "url": "http://computer",
+      "year": 2000
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "samples on a texture using a regular grid.1 Each sample compressed format /",
+      "url": "http://oss.sgi.com/projects",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "s3tc compression source",
+      "url": "http://oss.sgi.com/projects/ogl-sam-",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "project at University College London. See . ronments: From Realism to Real Time Addison Wesley",
+      "url": "http://www",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "9 A closer view algorithms. Visit",
+      "url": "http://www.cs.ucl",
+      "year": null
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": "no_curated_links_found",
+    "sources": [
+      "references"
+    ],
+    "status": "skipped",
+    "warnings": [
+      "Skipped 5 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The source frames crowd rendering as the intersection of two expensive tasks: navigating a polygon-heavy city and animating many human agents. Its key proposition is that distant avatars do not need full polygonal treatment when image-based impostors can preserve plausible appearance at interactive rates. This motivates the entire pipeline rather than treating texture compression or recoloring as isolated optimizations.",
+        "grounding_claim_ids": [
+          "0",
+          "7"
+        ],
+        "heading": "Rendering Problem"
+      },
+      {
+        "body": "The most specific rendering-quality argument concerns popping when the viewpoint changes. A conventional plane perpendicular to the sampling camera ignores object shape, while the full PCA best-fit plane can introduce distortions. The compromise is to perturb the conventional plane toward the PCA-derived orientation, reducing visible popping for human impostors while keeping artifacts bounded.",
+        "grounding_claim_ids": [
+          "1"
+        ],
+        "heading": "Impostor Plane Choice"
+      },
+      {
+        "body": "The memory strategy has two layers. First, symmetric walking motion reduces directional samples, and rectangle packing removes unused texture space around each prerendered human. Second, OpenGL compression provides a further 1:4 reduction and preserves alpha values, making a multi-type, multi-frame human library plausible within the cited 25 Mbyte budget.",
+        "grounding_claim_ids": [
+          "2",
+          "3"
+        ],
+        "heading": "Texture Memory Strategy"
+      },
+      {
+        "body": "Visual variety comes from recoloring regions rather than generating a fully distinct model for every person. Alpha-channel masks identify body regions such as clothes, hair, and skin; multipass rendering then modulates selected regions with different colors. The source is careful to note a trade-off: additional passes and regions can improve variety but may reduce rendering speed.",
+        "grounding_claim_ids": [
+          "4"
+        ],
+        "heading": "Avatar Variety Mechanism"
+      },
+      {
+        "body": "The renderer is paired with simple environmental state. Regular floor tiles encode collision and shadow information, giving agents local movement decisions and preventing occupied-destination conflicts. The impostor database is also reused to project human shadows, which adds environmental visual integration at only one extra polygon per avatar shadow.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ],
+        "heading": "Behavior and Shadows"
+      },
+      {
+        "body": "The reported results support the system-level claim but should be read with their constraints. On an 800-MHz Pentium III with a GeForce GTS2, the system displays 10,000 humans in a 41,260-polygon village at 12 to 20 frames per second. The frame-rate series also shows that the static city already costs much of the budget and that crowd scaling is close to linear in time per frame.",
+        "grounding_claim_ids": [
+          "7",
+          "0"
+        ],
+        "heading": "Benchmark Interpretation"
+      },
+      {
+        "body": "The method assumes viewers remain far enough from avatars for orthographic impostors and limited texture dimensions to hold up. It also assumes effectively sun-like lighting for shadow reuse and relies on synthetic models rather than captured humans. The authors identify hybrid polygonal close-ups, normal-map shading, culling, photographic acquisition, and richer behavior as future improvements.",
+        "grounding_claim_ids": [
+          "1",
+          "6",
+          "7"
+        ],
+        "heading": "Assumptions and Limits"
+      }
+    ],
+    "summary_long": "The article addresses a specific graphics bottleneck: populated virtual cities require both large static environments and many animated human agents, but fully polygonal crowds make real-time display expensive. Tecchia, Loscos, and Chrysanthou therefore use image-based impostors for distant humans, exploiting the typical viewing conditions of urban walkthroughs where many people are visible but not necessarily close to the camera. Their approach is not just a generic billboard substitution. They tune the impostor representation for walking human geometry, reduce the texture-memory footprint of prerendered samples, and use multipass rendering to create visual variety from a limited set of human models. The technical path is pragmatic: reduce the number of polygons per person, retain enough directional and animation sampling to avoid severe artifacts, and spend saved memory on more types and appearances. Several pieces of evidence anchor the proposal. A PCA-informed plane-selection argument explains how the system reduces viewpoint-change popping without fully adopting a distortion-prone best-fitting plane. Packing each sample into its smallest rectangle cuts memory to 25 percent of the original sample layout, and OpenGL texture compression further reduces frame storage while retaining alpha data for later recoloring. Alpha-channel masks then support multipass rendering, changing clothes and other body regions while preserving the baked shading in the source texture. The implementation also integrates a grid for collision and shadowing, and reuses impostor silhouettes to create posture-aware shadows with one additional polygon. The benchmark demonstrates the intended scale: six avatar types, 10,000 different humans, a 41,260-polygon village, and measured frame rates that remain interactive despite falling as crowd size grows. The source is strongest as a systems paper showing how several approximate techniques combine into a usable real-time renderer; its limits are equally clear, including assumptions about camera distance, sunlight-like illumination, synthetic source models, and the need for culling and richer behavior in future work.",
+    "summary_short": "This source presents an image-based rendering pipeline for animated crowds in virtual cities. It combines optimized impostors, texture packing, compression, alpha-guided recoloring, and grid-based behavior support. The implementation reports 10,000 varied humans in a 41,260-polygon village at interactive frame rates."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "source_kind": "file",
+  "source_locator": "02-image-based-crowd-rendering.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Franco Tecchia",
+      "C\u00e9line Loscos",
+      "Yiorgos Chrysanthou"
+    ],
+    "display_title": "Image-Based Crowd Rendering for Virtual Cities"
+  },
+  "source_type": "file",
+  "summary": "Tecchia, Loscos, and Chrysanthou describe an image-based crowd-rendering system for virtual cities that replaces distant animated humans with optimized impostors. The pipeline reduces popping through PCA-informed impostor planes, reduces texture memory through packing and compression, adds variation through alpha-guided multipass coloring, and reports interactive rendering of 10,000 humans in a 41,260-polygon village.",
+  "title": "02-image-based-crowd-rendering",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved; continuing with date=null."
+    },
+    {
+      "code": "layout_recovery_used",
+      "message": "The markdown extraction was usable, but the two-column layout interleaved several excerpts; the PDF text stream was used for fidelity-sensitive excerpt recovery."
+    }
+  ]
+}

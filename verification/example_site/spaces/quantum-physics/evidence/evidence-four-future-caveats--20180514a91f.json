@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4",
+    "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789",
+    "claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90"
+  ],
+  "evidence_id": "evidence-four-future-caveats--20180514a91f",
+  "evidence_type": "formal_argument",
+  "excerpt": "The review names four fundamental problems for future work: input problem, output problem, costing problem, and benchmarking problem.",
+  "overview": "This list provides the review's practical interpretation of the field. It organizes the limits on quantum machine learning into data-loading costs, readout costs, actual gate counts, and evidence of advantage over modern classical heuristics.",
+  "page_refs": [
+    "pp.13-14"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "title": "Four Practical Caveats"
+}

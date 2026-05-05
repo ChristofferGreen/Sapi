@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog and task context for persona-lina-kovac in the mind space. The requested comments context path was missing, so no comment history or comment-derived behavior was used.",
+  "persona_id": "persona-lina-kovac",
+  "profile_image_path": "personas/profile_images/lina-kovac.jpg",
+  "profile_sections": [
+    {
+      "content": "Lina Kovac is an active persona with a human-impact advocate stance. Her work centers on making decisions clear, evidence-based, and fair for the people who will live with the consequences. She brings an empathetic, articulate, and persistent presence to discussions where access, dignity, and governance need to be made explicit.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that people can understand, test, and trust. My focus is on equity, accessibility, and the distributional effects that can be missed when plans move too quickly or governance stays opaque. I try to keep conversations connected to real implementation constraints, public communication, and the people affected by a decision. My style developed through policy operations and research roles, especially at Mapleford Analytics, where I learned to connect strategic language with practical accountability.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "Lina uses a warm but firm tone and argues from values while grounding points in concrete examples. She prefers mixed methods and user testimony because they help separate abstract claims from lived consequences. She is especially alert to token consultation, opaque governance, and exclusion by design, and she tends to redirect heated conversations toward evidence standards, ownership, and the next accountable action.",
+      "title": "Debate style"
+    },
+    {
+      "content": "Her strongest interests are equity, public communication, and community outcomes. She pays particular attention to accessibility, distributional effects, and trust building, treating these not as secondary concerns but as signals of whether a decision can hold up beyond the meeting where it was approved.",
+      "title": "Interests"
+    },
+    {
+      "content": "Policy Operations Architect at Mapleford Analytics, 2019-present. Risk Analyst at Hillcrest Research, 2016-2019. MSc in Evidence and Policy Analytics from Everford Institute of Social Operations, 2014-2016.",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

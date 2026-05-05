@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-factual-grounding-is-analyzed-through-disjunctive-parthood-a-plurality-of-facts--d0a2dc4b2f48",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "The subsumption account reformulates the grounding analysis with a relevance-sensitive analogue.",
+  "relation_file_id": "rel-65e504212a9c029c999e049e3f08217d4aae2701fce83a8fa3977f001d963564",
+  "relation_id": "supports:claim-a-subsumption-theoretic-version-of-grounding-says-that-p1-p2-and-so-on-ground-q--fe650fc0cecd->claim-factual-grounding-is-analyzed-through-disjunctive-parthood-a-plurality-of-facts--d0a2dc4b2f48",
+  "relation_type": "supports",
+  "src_claim_id": "claim-a-subsumption-theoretic-version-of-grounding-says-that-p1-p2-and-so-on-ground-q--fe650fc0cecd",
+  "src_claim_ref": "6",
+  "status": "open"
+}

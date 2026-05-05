@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5"
+  ],
+  "evidence_id": "evidence-limitations-information-loss--9ac3b7d85021",
+  "evidence_type": "formal_argument",
+  "excerpt": "The discussion states that any bundling inherently destroys information: edges are overdrawn, individual edges cannot be identified separately, and edge directions are distorted. The recommended use is for applications interested in coarse-scale connectivity patterns where explicit graph simplification cannot be applied.",
+  "overview": "This limitation evidence is important because it bounds the interpretation of the method's visual results. SBEB improves structural readability for large graphs, but the paper explicitly cautions that bundled drawings should not be treated as preserving all individual-edge information.",
+  "page_refs": [
+    "Sec. 5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "title": "Bundling Information Loss"
+}

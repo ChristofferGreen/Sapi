@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "The operation-combining example explains why super-block scope exposes more opportunities for classic optimizations.",
+  "relation_file_id": "rel-d99dad5f722c0c6c8c9dd73ff7f2303d5d8b262d745c466ab8badf636bc6438d",
+  "relation_id": "supports:claim-tail-duplication-creates-additional-optimization-opportunities-because-it-can-ma--6c81300e0307->claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0",
+  "relation_type": "supports",
+  "src_claim_id": "claim-tail-duplication-creates-additional-optimization-opportunities-because-it-can-ma--6c81300e0307",
+  "src_claim_ref": "5",
+  "status": "open"
+}

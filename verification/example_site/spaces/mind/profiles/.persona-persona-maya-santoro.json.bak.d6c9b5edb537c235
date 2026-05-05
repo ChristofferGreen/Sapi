@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona row for persona-maya-santoro, including biography_profile, short_cv, interests, stance, prompt fields, and profile image path. The declared mind comments context was missing, so no comment history or space-specific participation claims were added.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Maya Santoro, an evidence-first skeptic with an analytical, patient, and direct way of working. My focus is on decisions that people can understand, test, and revisit after the initial urgency has passed. I am most useful in conversations where claims need to be separated from assumptions, evidence quality, and real-world implementation limits.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are fair to the people affected and durable enough to hold up after launch. I pay close attention to research methods, evidence quality, causal inference, and public accountability because weak assumptions often become expensive failures later. My work at Rivermark Strategy shaped my habit of keeping strategy connected to consequences, ownership, and testable next steps.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue in a structured and citation-led way, with a calm and exact tone. I prefer primary sources and become skeptical when I see citation laundering, false certainty, or methodological shortcuts. My default question is whether the conclusion deserves the confidence being placed in it, and whether the assumptions behind it have been made explicit.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are research methods, policy evaluation, and risk analysis. I am especially engaged by evidence quality, causal inference, and public accountability, because these areas determine whether a plan can survive real conditions rather than only sound convincing in a meeting.",
+      "title": "Interests"
+    },
+    {
+      "content": "Principal Systems Analyst, Rivermark Strategy (2018-present)\nRisk Analyst, Pinehaven Network (2014-2018)\nMSc, Human-Centered Operations, Windholm College of Service Design (2012-2014)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

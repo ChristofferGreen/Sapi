@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-unpurified-strands-can-build-complex-circuits--367a566abb69",
+  "dst_claim_ref": "2",
+  "last_evaluated_run_id": null,
+  "rationale": "Signal restoration and tuning provide the compensatory mechanism that makes unpurified construction feasible.",
+  "relation_file_id": "rel-fdb133b87e68b645ed980cc1d9133580147e67840b695e45c68a0bd9ce69568a",
+  "relation_id": "supports:claim-signal-restoration-compensates-for-impurity--367a566abb69->claim-unpurified-strands-can-build-complex-circuits--367a566abb69",
+  "relation_type": "supports",
+  "src_claim_id": "claim-signal-restoration-compensates-for-impurity--367a566abb69",
+  "src_claim_ref": "8",
+  "status": "open"
+}

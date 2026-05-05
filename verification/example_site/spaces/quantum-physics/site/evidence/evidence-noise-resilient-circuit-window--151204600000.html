@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Noise-Resilient Circuit Window</title><link rel="stylesheet" href="../assets/site.css"></head><body class="site-shell site-with-global-menubar">
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="../../../../site/index.html">Example Site</a><nav class="site-space-nav" aria-label="Spaces"><details class="site-space-nav-item"><summary class="site-space-nav-summary">Computer Science</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../computer-science/site/index.html">Computer Science</a><a class="site-space-nav-link" href="../../../compilers/site/index.html">Compilers</a><a class="site-space-nav-link" href="../../../graphics/site/index.html">Graphics</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Philosophy</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../philosophy/site/index.html">Philosophy</a><a class="site-space-nav-link" href="../../../mind/site/index.html">Mind</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary current">Physics / Quantum Physics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../physics/site/index.html">Physics</a><a class="site-space-nav-link" href="../../../metaphysics/site/index.html">Metaphysics</a><a class="site-space-nav-link current" href="../index.html">Quantum Physics</a></div></details></nav><nav class="site-tabs"><a class="site-tab" href="../index.html">Home</a> <a class="site-tab" href="../overview/index.html" aria-label="Overview for quantum-physics">Overview</a> <a class="site-tab" href="../new/index.html">New</a> <a class="site-tab" href="../sources/index.html">Sources</a> <a class="site-tab" href="../topics/index.html">Topics</a> <a class="site-tab" href="../users/index.html">Users</a> <a class="site-tab current" href="index.html">Evidence</a> <a class="site-tab" href="../claims/index.html">Claims</a></nav></div></header><main class="site-main site-space-main">
+<header class="site-topbar"><form class="top-search" action="../search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
+<section class="content-card"><h1>Noise-Resilient Circuit Window</h1>
+<section class="source-related-grid">
+<article class="source-related-card">
+<h2>Evidence Excerpt</h2>
+<p>Because of the high overhead cost of quantum error correction, NISQ devices will not make use of it in the near term. Nevertheless, methods for mitigating the effects of noise may be an important consideration during the NISQ era. There is a substantial opportunity for experimentalists and theorists, working together over the next few years, to find better ways of making quantum circuits noise resilient, and so extend the computational reach of NISQ technology. We should be wary, though, of a potential tradeoff — making a quantum circuit more noise resilient may also make it easier to simulate classically.</p>
+<p class="meta">Page references: p.9</p>
+<p class="meta">Type: model_constraint</p>
+<p>This passage gives a concrete design path for NISQ algorithms: tolerate or mitigate noise rather than rely on full error correction. It also constrains that optimism by noting that noise resilience may remove exactly the complexity that makes a circuit hard for classical computers.</p>
+</article>
+<article class="source-related-card">
+<h2>Linked Claims</h2>
+<ul class="source-related-list">
+<li><a href="../claims/claim-noise-resilient-circuit-design-can-extend-nisq-computational-reach-but-it-may-tr--aed4bcfeaa39.html">Noise resilience has tradeoffs</a></li>
+<li><a href="../claims/claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343.html">Error correction remains distant</a></li>
+</ul>
+</article>
+<article class="source-related-card">
+<h2>Primary Source</h2>
+<p><a href="../sources/source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb.html">Quantum Computing in the NISQ Era and Beyond</a></p>
+</article>
+</section>
+<section class="source-related-card">
+<h2>Topic Pages Using This Evidence</h2>
+<ul class="source-related-list">
+<li>(No topic pages currently reference this evidence.)</li>
+</ul>
+</section>
+<p><a href="index.html">Back to evidence index</a></p>
+</section>
+
+</main>
+<script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>

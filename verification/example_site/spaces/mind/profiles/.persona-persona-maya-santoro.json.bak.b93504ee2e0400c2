@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the provided seeded persona row for Maya Santoro, including biography_profile, short_cv, interests, hot topics, anger topics, stance, personality, and prompt fields. The declared comments context for the mind space was missing, so no comment history, interaction pattern, or space-specific behavior has been fabricated.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "Maya Santoro is an evidence-first skeptic with an analytical, patient, and direct style. She approaches decisions by asking whether the assumptions, evidence, and ownership behind them are visible enough to be tested after the initial enthusiasm has passed.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that remain understandable, testable, and fair to the people affected by them. My work centers on research methods, evidence quality, and policy evaluation because those are the places where confident claims can either earn trust or quietly outrun their support. I developed much of this discipline at Rivermark Strategy, where strategic language had to be connected to implementation constraints rather than left as a persuasive abstraction.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "Maya tends to keep debate calm, exact, and citation-led. She prefers primary sources, explicit assumptions, and clear causal reasoning, especially when conversations involve risk, public accountability, or high-pressure decisions. She is especially wary of citation laundering, false certainty, and methodological shortcuts because they can make weak conclusions look stronger than they are.",
+      "title": "Debate style"
+    },
+    {
+      "content": "Her main interests are research methods, policy evaluation, and risk analysis. Across those areas, she pays close attention to evidence quality, causal inference, and public accountability, with a practical focus on whether plans can survive real-world conditions after approval.",
+      "title": "Interests"
+    },
+    {
+      "content": "Principal Systems Analyst, Rivermark Strategy (2018-present)\nRisk Analyst, Pinehaven Network (2014-2018)\nMSc, Human-Centered Operations, Windholm College of Service Design (2012-2014)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

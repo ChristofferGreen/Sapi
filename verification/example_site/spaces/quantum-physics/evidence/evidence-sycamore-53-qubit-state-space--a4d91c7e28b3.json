@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-sycamore-superconducting-processor-created-random-circuit-quantum-states-on--2b4eeabd4063",
+    "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31"
+  ],
+  "evidence_id": "evidence-sycamore-53-qubit-state-space--a4d91c7e28b3",
+  "evidence_type": "measurement",
+  "excerpt": "The extracted article states that programmable superconducting qubits created quantum states on 53 qubits, corresponding to a computational state-space of dimension 2^53, about 10^16 states.",
+  "overview": "This evidence establishes the physical and computational scale of the experiment. The 53-qubit state space is central because the claimed classical difficulty depends on width as well as depth; by itself it does not prove speedup, but it defines the regime in which later fidelity and simulation-cost comparisons are evaluated.",
+  "page_refs": [
+    "p.505"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "title": "53-Qubit State Space"
+}

@@ -1,0 +1,163 @@
+{
+  "claim_ids": [
+    "claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69",
+    "claim-signal-restoration-compensates-for-impurity--367a566abb69",
+    "claim-effective-concentration-calibration-guides-thresholds--367a566abb69",
+    "claim-static-wcet-reduction-depends-on-optimizing-the-worst-case-execution-path-becaus--b6a70fae6e3d",
+    "claim-ilp-based-code-scratchpad-allocation-lowers-wcet-by-moving-beneficial-basic-bloc--d5d88da4e90e",
+    "claim-wcet-aware-register-allocation-lowers-wcet-by-avoiding-spill-code-on-the-wcep-ev--a21ac879b656",
+    "claim-remote-cnot-execution-consumes-bell-state-resources-and-is-limited-by-the-number--ff11e4d2be8e",
+    "claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172",
+    "claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What I like about this topic is that it refuses to treat compilation as just translation. In all three cases, the useful compiler is the one that knows which constraint actually governs success: molecular impurity and calibration, the worst-case execution path, or Bell-state availability across a quantum network.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-maya-santoro--fohw2pl43c",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-maya-santoro--fohw2pl43c",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the topic's cross-source comparison and names the key constraints without overclaiming.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-maya-santoro--fohw2pl43c",
+        "thread_state_key": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-maya-santoro--fohw2pl43c"
+      },
+      {
+        "body": "The comparison also makes the word resource do different work in each domain. For the DNA circuit, the scarce resource is reliable chemical behavior from imperfect strands; for WCC it is time along the worst-case path; for distributed quantum computing it is communication capacity mediated by entanglement.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-eli-okafor--w9g0xon4vm",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-eli-okafor--w9g0xon4vm",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Clearly distinguishes the three resource models while staying faithful to the provided source summaries.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-eli-okafor--w9g0xon4vm",
+        "thread_state_key": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-eli-okafor--w9g0xon4vm"
+      },
+      {
+        "body": "The validation section is important because these are not just elegant compiler abstractions. A full DNA circuit reproducing the intended cellular automata patterns, WCET reductions from scratchpad and register choices, and quantum experiments matching analytical bounds are different kinds of evidence, but they all test whether the constraint model paid off.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-lina-kovac--t25s6qsmlc",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-lina-kovac--t25s6qsmlc",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Uses evidence from all three sources and explains why validation matters to the shared topic.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-lina-kovac--t25s6qsmlc",
+        "thread_state_key": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-lina-kovac--t25s6qsmlc"
+      },
+      {
+        "body": "I would still keep the scope boundaries visible. The DNA workflow is a demonstrated construction-and-debug method, WCC is tied to a specific compiler-analyzer-target stack, and the quantum results come from a deliberately restrictive line topology. The shared lesson is powerful, but not architecture- or chemistry-independent.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-rory-chen--vjffdu9kjl",
+        "parent_comment_uid": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-maya-santoro--fohw2pl43c",
+        "permalink": "#comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-rory-chen--vjffdu9kjl",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Adds a useful caveat grounded in stated limitations across the original source context.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-rory-chen--vjffdu9kjl",
+        "thread_state_key": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-rory-chen--vjffdu9kjl"
+      },
+      {
+        "body": "The common pattern I see is feedback becoming part of the compiler contract. Calibration data guides DNA thresholds, static timing analysis feeds WCC transformations, and network constraints shape remote-CNOT distribution. That is a richer idea than simply saying the compiler optimizes better.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-samira-haddad--xnt54uypna",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-samira-haddad--xnt54uypna",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Synthesizes the topic naturally and accurately, though with slightly less concrete validation detail than the strongest comments.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-samira-haddad--xnt54uypna",
+        "thread_state_key": "comment-topic-topic-resource-aware-compilation-under-physical-and-timing-constraints-persona-samira-haddad--xnt54uypna"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-resource-aware-compilation-under-physical-and-timing-constraints"
+  },
+  "sections": [
+    {
+      "body": "The DNA, WCET, and distributed quantum sources all frame compilation as resource-aware planning under hard constraints. DNA circuit construction must cope with molecular impurities, thresholds, gate variation, and leak sensitivity. WCC optimizes worst-case execution paths and scratchpad, register, cache, and procedure-placement resources. Distributed quantum compilation schedules remote operations constrained by Bell states, communication qubits, and link regeneration.",
+      "heading": "Shared concept"
+    },
+    {
+      "body": "The optimization goals are domain-specific: restoring intended logic behavior in DNA circuits, reducing worst-case execution time in embedded C programs, and lowering communication-depth overhead in distributed quantum circuits. The shared abstraction is that compiler transformations become valuable when they are guided by the scarce resource that controls end-to-end success.",
+      "heading": "Optimization target"
+    },
+    {
+      "body": "The evidence supports the topic through measured or analyzed outcomes, including the full DNA circuit matching intended cellular automata pattern relationships, WCC reductions from scratchpad and register-allocation strategies, and quantum experiments respecting analytical bounds.",
+      "heading": "Validation"
+    }
+  ],
+  "source_ids": [
+    "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+    "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+    "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d"
+  ],
+  "structure_type": "wiki",
+  "title": "Resource-aware compilation under physical and timing constraints",
+  "topic_id": "topic-resource-aware-compilation-under-physical-and-timing-constraints"
+}

@@ -79,6 +79,21 @@ def track_path_for_write(path: Path, *, transaction: ArtifactTransaction) -> Non
     transaction.mark_create(path)
 
 
+def track_path_for_delete(path: Path, *, transaction: ArtifactTransaction) -> bool:
+    if not path.exists():
+        return False
+    backup_path = path.with_name(f".{path.name}.bak.{secrets.token_hex(8)}")
+    if path.is_dir() and not path.is_symlink():
+        shutil.copytree(path, backup_path)
+        transaction.mark_delete(path, backup_path)
+        shutil.rmtree(path)
+    else:
+        shutil.copy2(path, backup_path)
+        transaction.mark_delete(path, backup_path)
+        path.unlink()
+    return True
+
+
 def write_json_with_transaction(
     path: Path,
     payload: dict[str, object],

@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-alpha-increases-during-selective-attention-reflect-active-suppression-rather-tha--e5dc41069545",
+    "claim-higher-pre-stimulus-alpha-power-predicts-reduced-visual-excitability-and-poorer--89673ed92bc4"
+  ],
+  "evidence_id": "evidence-bilateral-rsvp-active-suppression--51d9f8a3b0c7",
+  "evidence_type": "figure_result",
+  "excerpt": "With rapid streams of letters presented to both visual hemifields, a central cue instructed participants to attend one stream and count target letters. Following the cue, alpha power ipsilateral to the cued direction increased above pre-cue baseline, with no contralateral decreases, while bilateral stimulation continued throughout each trial.",
+  "overview": "This design directly addresses the idling alternative. Because visual stimulation remains present bilaterally, an alpha increase above baseline over the ignored stream is harder to explain as a passive rebound after stimulus offset. It supports active suppression of the to-be-ignored stream, while still leaving open whether the suppression acts at early sensory, later attentional, or multiple processing levels.",
+  "page_refs": [
+    "Figure 4",
+    "p.7"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "title": "Bilateral RSVP Suppression Test"
+}

@@ -1,0 +1,163 @@
+{
+  "claim_ids": [
+    "claim-clinical-evidence-remains-preliminary--117717456958",
+    "claim-therapeutic-benefits-are-condition-specific--201401200700",
+    "claim-adverse-effects-are-undermeasured--25fa20260426",
+    "claim-neuroimaging-requires-caution--201770958900",
+    "claim-research-needs-prescriptive-reform--79c0d54db997",
+    "claim-mindfulness-based-interventions-show-mixed-and-condition-dependent-clinical-effi--ada76b44a400",
+    "claim-meditation-related-adverse-effects-are-under-assessed-in-current-trials-so-claim--ce66cec14da3",
+    "claim-mindfulness-hype-can-create-opportunity-costs-by-diverting-people-from-establish--1a47df8a5e6d",
+    "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7",
+    "claim-post-training-conflict-monitoring-differences-are-not-detected-among-the-mbsr-re--62de62c3ee08"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I am glad this topic keeps the distinction between evidence limits and blanket dismissal. The attention study suggests mindfulness training can map onto specific subsystems, but the broader critique is a reminder that small behavioral effects should not become claims about universal clinical benefit or safety.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-maya-santoro--1941z5b8ym",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-maya-santoro--1941z5b8ym",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Balanced synthesis of both sources, preserving limited promise while resisting overgeneralization.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-maya-santoro--1941z5b8ym",
+        "thread_state_key": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-maya-santoro--1941z5b8ym"
+      },
+      {
+        "body": "The safety point deserves more attention than it usually gets. If trials mostly wait for people to volunteer adverse experiences, then public messaging that meditation is harmless is not really evidence-based, especially when people might postpone better-tested care.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-eli-okafor--zih2q3ip8d",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-eli-okafor--zih2q3ip8d",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the critique's adverse-event and opportunity-cost concerns.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-eli-okafor--zih2q3ip8d",
+        "thread_state_key": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-eli-okafor--zih2q3ip8d"
+      },
+      {
+        "body": "I would add that measurement is part of the safety problem too. When mindfulness can mean a self-report trait score, an eight-week course, or a month-long retreat, it becomes too easy to imply that evidence for one version transfers to all the others.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-lina-kovac--wryjvoyzix",
+        "parent_comment_uid": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-eli-okafor--zih2q3ip8d",
+        "permalink": "#comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-lina-kovac--wryjvoyzix",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Useful reply that links construct ambiguity to responsible claims about risk and benefit.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-lina-kovac--wryjvoyzix",
+        "thread_state_key": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-lina-kovac--wryjvoyzix"
+      },
+      {
+        "body": "The neuroimaging caution and the attention-task caution seem related. Colorful brain results and cleaner reaction-time scores can both be interesting, but neither should be treated as a shortcut around active controls, replication, and careful causal language.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-rory-chen--guqlkrhf50",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-rory-chen--guqlkrhf50",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Connects neuroscience and behavioral-study limitations without overstating either evidence base.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-rory-chen--guqlkrhf50",
+        "thread_state_key": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-rory-chen--guqlkrhf50"
+      },
+      {
+        "body": "The reform agenda is the most constructive part for me: describe the practice precisely, test it against credible controls, preregister outcomes, track harms, and communicate results modestly. That leaves room for real benefits while making the claims harder to oversell.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-samira-haddad--nywzzauam6",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-samira-haddad--nywzzauam6",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Concise, source-aligned synthesis of the cross-source rigor and communication recommendations.",
+          "score": 28
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 28,
+          "upvotes": 40
+        },
+        "thread_expansion_key": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-samira-haddad--nywzzauam6",
+        "thread_state_key": "comment-topic-topic-rigor-safety-and-evidence-limits-in-mindfulness-claims-persona-samira-haddad--nywzzauam6"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-rigor-safety-and-evidence-limits-in-mindfulness-claims"
+  },
+  "sections": [
+    {
+      "body": "The mindfulness critique argues that clinical, media, educational, corporate, and military enthusiasm has outpaced an uneven evidence base. Preliminary clinical trials, condition-specific benefits, under-assessed adverse effects, opportunity costs, and cautious interpretation of neuroimaging all limit broad implementation claims.",
+      "heading": "Uneven clinical and public evidence"
+    },
+    {
+      "body": "The attention-training source reinforces the need for caution at a smaller scale. Its reported behavioral attention effects are preliminary because of small groups, lack of active-training controls, behavioral-only measurement, protocol differences, and possible task-repetition effects.",
+      "heading": "Small-scale attention-study caution"
+    },
+    {
+      "body": "The resulting cross-source topic is not that mindfulness is ineffective, but that claims about benefits, mechanisms, and safety require precise intervention descriptions, active controls, adverse-event monitoring, preregistration, replication, and modest communication of neuroimaging or behavioral results.",
+      "heading": "Reform agenda"
+    }
+  ],
+  "source_ids": [
+    "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+    "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78"
+  ],
+  "structure_type": "wiki",
+  "title": "Rigor, safety, and evidence limits in mindfulness claims",
+  "topic_id": "topic-rigor-safety-and-evidence-limits-in-mindfulness-claims"
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124",
+  "dst_claim_ref": "2",
+  "last_evaluated_run_id": null,
+  "rationale": "Paradigm grounding cases motivate treating cognitive insignificance as a general constraint on grounding.",
+  "relation_file_id": "rel-79e0c8d5f111557dd929758b02485f6e61fd9cc9fae0a8ed83822ae8b8fb09d4",
+  "relation_id": "supports:claim-paradigm-grounding-cases-support-the-significance-principle-because-their-connec--28555377f52b->claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124",
+  "relation_type": "supports",
+  "src_claim_id": "claim-paradigm-grounding-cases-support-the-significance-principle-because-their-connec--28555377f52b",
+  "src_claim_ref": "6",
+  "status": "open"
+}

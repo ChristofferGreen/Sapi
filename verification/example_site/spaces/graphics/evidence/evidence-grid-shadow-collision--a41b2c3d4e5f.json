@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-a-regular-grid-of-environment-tiles-can-support-both-collision-behavior-and-shad--202b441327e8"
+  ],
+  "evidence_id": "evidence-grid-shadow-collision--a41b2c3d4e5f",
+  "evidence_type": "model_constraint",
+  "excerpt": "To control the virtual humans\u2019 motion, we subdivided the floor of the environment into regular-sized tiles. While the humans move around, they check information corresponding to the tile they occupy. Several types of information can be stored, but presently, we only use this information for collision detection and shadowing. When we encode the tile with black, it\u2019s impassable and the avatar needs to change direction. In addition, we performed intercollision detection between humans by checking if a destination tile is already occupied.",
+  "overview": "The grid evidence matters because the rendering system also needs crowd behavior and spatial constraints. It establishes that motion decisions are not solved by the impostor images alone; a tile map supplies collision and shadow state, including impassable cells and checks for occupied destinations.",
+  "page_refs": [
+    "p.41"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "title": "Grid-Based Motion and Shadows"
+}

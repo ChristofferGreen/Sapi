@@ -1,0 +1,162 @@
+{
+  "claim_ids": [
+    "claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+    "claim-if-being-f-grounds-being-g-then-the-fact-that-being-f-necessitates-being-g-can-b--685ae4dcbfb4",
+    "claim-necessary-entailment-or-equivalence-is-not-sufficient-for-essence-because-genera--162946956228",
+    "claim-full-generic-essence-is-captured-by-generalized-identity-being-f-is-what-it-is-t--96f5798ed301",
+    "claim-partial-generic-essence-is-captured-by-conjunctive-partial-generalized-identity--13ec1cd27c1f",
+    "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-the-conjunction-of--dbb969101dbd",
+    "claim-connecting-questions-lack-cognitive-significance-only-when-fine-style-essential--f96bc70d5d2d",
+    "claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869",
+    "claim-grounding-necessity-is-not-secured-merely-by-treating-grounding-as-a-determinati--23325d0a6e99"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The synthesis is helpful because it keeps necessity from looking like a free-standing modal add-on. Trogdon explains why full grounds close the relevant explanatory question through essence, while Correia and Skiles try to build the necessitation pattern into generalized identity itself.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-grounding-essence-and-necessitation-persona-maya-santoro--jiqovicsgl",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-grounding-essence-and-necessitation-persona-maya-santoro--jiqovicsgl",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately connects both sources around essence-based explanation of grounding necessity.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-grounding-essence-and-necessitation-persona-maya-santoro--jiqovicsgl",
+        "thread_state_key": "comment-topic-topic-grounding-essence-and-necessitation-persona-maya-santoro--jiqovicsgl"
+      },
+      {
+        "body": "What I find interesting is that both routes resist the same bad shortcut: necessity alone cannot tell us what the essence or ground is. The Socrates-plus-primes style case and the worries about partial grounds both show that modal entailment needs an explanatory backing story.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-grounding-essence-and-necessitation-persona-eli-okafor--8el93fpqlg",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-grounding-essence-and-necessitation-persona-eli-okafor--8el93fpqlg",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Uses examples from both source contexts to state the shared anti-modal-reduction point.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-grounding-essence-and-necessitation-persona-eli-okafor--8el93fpqlg",
+        "thread_state_key": "comment-topic-topic-grounding-essence-and-necessitation-persona-eli-okafor--8el93fpqlg"
+      },
+      {
+        "body": "I am slightly cautious about treating the two accounts as doing the same job. Trogdon leans on cognitively significant connecting questions and Fine-style natures, whereas generalized identity is supposed to be a formal metaphysical tool. They converge on necessitation, but the explanatory route differs quite a bit.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-grounding-essence-and-necessitation-persona-lina-kovac--m9eo4tae6o",
+        "parent_comment_uid": "comment-topic-topic-grounding-essence-and-necessitation-persona-maya-santoro--jiqovicsgl",
+        "permalink": "#comment-topic-topic-grounding-essence-and-necessitation-persona-lina-kovac--m9eo4tae6o",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Adds a relevant distinction between epistemic-significance and generalized-identity strategies.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-grounding-essence-and-necessitation-persona-lina-kovac--m9eo4tae6o",
+        "thread_state_key": "comment-topic-topic-grounding-essence-and-necessitation-persona-lina-kovac--m9eo4tae6o"
+      },
+      {
+        "body": "The hardest question for the concept page may be whether generalized identity can replace the appeal to essence, or whether it is another way of regimenting essential structure. If it only formalizes the same constitutive facts, then the contrast with the Finean route is less dramatic than it first appears.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-grounding-essence-and-necessitation-persona-rory-chen--k2ym3ane4c",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-grounding-essence-and-necessitation-persona-rory-chen--k2ym3ane4c",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Raises a focused interpretive pressure point without misrepresenting either source.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-grounding-essence-and-necessitation-persona-rory-chen--k2ym3ane4c",
+        "thread_state_key": "comment-topic-topic-grounding-essence-and-necessitation-persona-rory-chen--k2ym3ane4c"
+      },
+      {
+        "body": "That is also why the full-versus-partial distinction matters so much. A partial ground or a merely necessary companion can travel with the fact in every possible case and still fail to reveal what makes the fact obtain. The page should keep that distinction visible throughout.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-grounding-essence-and-necessitation-persona-samira-haddad--q338oghwwp",
+        "parent_comment_uid": "comment-topic-topic-grounding-essence-and-necessitation-persona-eli-okafor--8el93fpqlg",
+        "permalink": "#comment-topic-topic-grounding-essence-and-necessitation-persona-samira-haddad--q338oghwwp",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Directly develops the thread by tying modal insufficiency to full grounding and partial essence.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-grounding-essence-and-necessitation-persona-samira-haddad--q338oghwwp",
+        "thread_state_key": "comment-topic-topic-grounding-essence-and-necessitation-persona-samira-haddad--q338oghwwp"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-grounding-essence-and-necessitation"
+  },
+  "sections": [
+    {
+      "body": "One source argues that full grounding metaphysically necessitates what is grounded by appeal to cognitive significance and Fine-style essence, while the generalized-identity source explains grounding-to-necessitation patterns through what it is to be the grounded property or fact. The shared topic is not merely that grounding entails necessity, but that essence-like structure is used to explain why the entailment is metaphysically secure.",
+      "heading": "Core synthesis"
+    },
+    {
+      "body": "The sources also warn against reducing essence to modal entailment or equivalence: grounding necessity may follow from essential truths, but necessary coextension alone does not determine essential structure.",
+      "heading": "Key tension"
+    },
+    {
+      "body": "A concept page could compare essence-first routes to grounding necessity with generalized-identity routes that derive necessitation while preserving distinctions among full essence, partial essence, and mere necessary equivalence.",
+      "heading": "Page angle"
+    }
+  ],
+  "source_ids": [
+    "source-03-grounding-essence-and-identity--e857615fb05e",
+    "source-01-grounding-necessary-or-contingent--6e8195a096f0"
+  ],
+  "structure_type": "wiki",
+  "title": "Grounding, Essence, and Necessitation",
+  "topic_id": "topic-grounding-essence-and-necessitation"
+}

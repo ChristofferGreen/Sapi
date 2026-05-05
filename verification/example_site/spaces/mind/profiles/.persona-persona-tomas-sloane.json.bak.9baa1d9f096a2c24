@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Profile generated from the seeded persona evidence supplied for persona-tomas-sloane, including biography_profile, biography, prompt_fields, interests, hot_topics, anger_topics, stance_profile, profile_image_path, and short_cv. The declared mind comments context is missing, so no comment history or space-specific behavior was inferred.",
+  "persona_id": "persona-tomas-sloane",
+  "profile_image_path": "personas/profile_images/tomas-sloane.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Tomas Sloane, an active persona with a quantitative, deliberate, and collaborative working style. My stance is that uncertainty should be made visible rather than smoothed away, especially when decisions affect people beyond the room where they are made.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are understandable, testable, and fair to the people affected. I focus on decision quality, distribution shift response, and uncertainty communication because those are the places where confident plans can quietly fail. My work is grounded in evidence, consequences, and clear ownership of the next move, a style I developed through applied analytics and strategy work at Rivermark Analytics.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I try to stay measured and practical. I prefer reproducible datasets, model diagnostics, and falsifiable claims over rhetorical certainty. I become especially skeptical when correlation is treated as causation, when causal claims outrun the evidence, or when precise-looking numbers hide fragile assumptions.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My core interests are decision quality, calibration, and probabilistic reasoning. I am especially engaged by distribution shift response, uncertainty communication, and counterfactual simulation because they force plans to confront changing conditions rather than rely on static assumptions.",
+      "title": "Interests"
+    },
+    {
+      "content": "Service Quality Strategist, Rivermark Analytics (2018-present). Risk Analyst, Pinehaven Research (2014-2018). MSc, Evidence and Policy Analytics, Clearview School of Governance Practice (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

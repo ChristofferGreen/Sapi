@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T18:03:17Z",
+  "claim_id": "claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69",
+  "evidence_excerpts": [
+    "The arrays for the DNA circuit were plotted using the output values at 24 h from the data. The ideal logic circuit behaviour corresponds to an image of a black dog with a white background for R1241, an inverted image for R1240 and their mirror images for R1101 and R1100, respectively."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Outputs match automata patterns",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "text": "The full rule 110-124 DNA circuit produced dual-rail fluorescence outputs at 24 hours that visually matched the intended cellular automata pattern relationships."
+}

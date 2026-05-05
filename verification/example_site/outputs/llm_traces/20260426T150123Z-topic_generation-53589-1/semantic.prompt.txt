@@ -1,0 +1,168 @@
+=== semantic invocation ===
+flow_key: topic_generation
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/runs/run-20260426T145416Z--lab6cvaopt/semantic/topic_generation.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/claims
+
+=== generation spec ===
+flow_key: topic_generation
+version: v1
+schema_path: schemas/topic_generation.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/topic_generation.json
+context_paths:
+  - <space_root>/sources
+  - <space_root>/claims
+---
+## Task
+Generate one strict JSON object for topic generation at `output_json_path`.
+Return a `topics` array containing 0..n concept-centric topic candidates.
+
+## Context Interpretation Rules
+- Use only evidence available under `context_paths`.
+- If support is weak/ambiguous, reflect that in section content rather than inventing facts.
+- Do not invent canonical IDs outside schema contracts.
+- Prefer topics that synthesize shared concepts across multiple sources.
+- If there is no clear cross-source concept worth a page, return an empty array (`"topics": []`).
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "topics": [
+    {
+      "topic_id": "",
+      "title": "",
+      "structure_type": "wiki",
+      "sections": [],
+      "claim_ids": [],
+      "source_ids": []
+    }
+  ]
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources"
+}
+
+=== repair context ===
+{
+  "previous_invalid_json": "{\n  \"topics\": [\n    {\n      \"claim_ids\": [\n        \"claim-mindfulness-can-be-modeled-as-systematic-mental-training-that-reduces-biased-sel--6f2cabe951a3\",\n        \"claim-s-art-treats-mindfulness-as-a-multidimensional-skillset-rather-than-a-single-uni--019ffda0022f\",\n        \"claim-intention-motivation-attention-regulation-emotion-regulation-extinction-and-reco--002095abdbf2\",\n        \"claim-future-mindfulness-research-needs-longitudinal-measurement-of-s-art-subcomponent--a2496826340c\",\n        \"claim-mindfulness-is-not-a-unitary-construct-it-is-an-umbrella-term-spanning-diverse-p--ab25afeeb846\",\n        \"claim-mindfulness-lacks-a-universally-accepted-technical-definition-so-empirical-findi--b873cbc87071\",\n        \"claim-common-mindfulness-questionnaires-operationalize-different-facets-of-mindfulness--19920139d48a\",\n        \"claim-research-on-mindfulness-should-shift-from-seeking-one-unitary-mindfulness-measur--210f23dc10a0\"\n      ],\n      \"sections\": [\n        \"S-ART frames mindfulness as training across self-awareness, self-regulation, and self-transcendence rather than as a single capacity. This aligns with critical claims that mindfulness is an umbrella term whose studies must specify the targeted practices, faculties, interventions, and outcomes.\",\n        \"A synthesis page should distinguish component mechanisms such as attention regulation, emotion regulation, decentering, non-attachment, prosociality, extinction, and reconsolidation from broad claims about mindfulness as a generic trait or intervention.\",\n        \"Measurement should be treated cautiously: self-report questionnaires operationalize different facets, and S-ART-style component models imply that research should track specific biological, cognitive, emotional, behavioral, and social changes over time.\"\n      ],\n      \"source_ids\": [\n        \"source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f\",\n        \"source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Mindfulness as Multidimensional Mental Training\",\n      \"topic_id\": \"topic-mindfulness-as-multidimensional-training\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-intention-motivation-attention-regulation-emotion-regulation-extinction-and-reco--002095abdbf2\",\n        \"claim-mindfulness-based-meditation-is-proposed-to-modulate-self-specifying-and-narrati--0ff3acc89706\",\n        \"claim-short-mindfulness-interventions-have-been-reported-to-improve-clinical-symptoms--38a77abb1074\",\n        \"claim-mindfulness-training-can-improve-attention-related-behavior-by-changing-specific--f9e8e6ee54d7\",\n        \"claim-an-8-week-mindfulness-based-stress-reduction-course-improves-endogenous-orientin--f7bde69b7431\",\n        \"claim-a-1-month-intensive-mindfulness-retreat-among-previously-experienced-meditators--cd2a814c579a\",\n        \"claim-alpha-band-oscillations-can-be-actively-invoked-in-cortical-regions-that-process--09466b39d396\",\n        \"claim-alpha-mediated-biasing-extends-beyond-vision-appearing-in-auditory-and-tactile-s--2cd546facc83\",\n        \"claim-higher-naturally-occurring-or-experimentally-induced-alpha-power-reduces-visual--3884cfa09119\"\n      ],\n      \"sections\": [\n        \"Mindfulness sources connect practice with attention regulation and altered Attention Network Test subsystems, while alpha-oscillation evidence provides a mechanistic account of selective attention as active suppression of irrelevant sensory processing.\",\n        \"The behavioral evidence is differentiated rather than global: MBSR is linked to orienting changes, intensive retreat practice to alerting-related detection, and prior concentrative experience to baseline conflict-monitoring differences.\",\n        \"The alpha-band literature supports a complementary concept: attention can bias processing by increasing alpha power in regions that would otherwise process distracters, across visual, auditory, tactile, spatial, feature-based, and intersensory tasks.\"\n      ],\n      \"source_ids\": [\n        \"source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f\",\n        \"source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78\",\n        \"source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Attention Regulation and Sensory Selection\",\n      \"topic_id\": \"topic-attention-regulation-and-sensory-selection\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-biased-narrative-self-processing-can-reify-dysfunctional-self-schemas-through-af--544c2f60e4c0\",\n        \"claim-s-art-distinguishes-experiential-enactive-experiential-phenomenological-and-narr--3e3013b46122\",\n        \"claim-mindfulness-based-meditation-is-proposed-to-modulate-self-specifying-and-narrati--0ff3acc89706\",\n        \"claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb\",\n        \"claim-a-complex-is-an-integrated-subset-with-greater-than-zero-that-is-not-contained-i--70401a6fb458\",\n        \"claim-the-quality-of-consciousness-is-specified-by-the-informational-relationships-amo--52a77799b51d\",\n        \"claim-each-particular-conscious-experience-is-specified-by-the-current-activity-values--ef679659733b\"\n      ],\n      \"sections\": [\n        \"S-ART distinguishes experiential enactive, experiential phenomenological, and narrative self-processing systems and proposes that mindfulness can reduce biased narrative self-processing through regulation and decentering.\",\n        \"Information Integration Theory offers a broader consciousness framework in which subjective experience is tied to integrated informational structure within complexes, with both quantity and quality specified by integrated information and effective-information relationships.\",\n        \"The shared concept is not that these sources use the same theory, but that both treat conscious subjectivity as structured by relations among specialized processes: S-ART focuses on self-related networks and practice-related modulation, while IIT focuses on integrated complexes and qualia-space structure.\"\n      ],\n      \"source_ids\": [\n        \"source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f\",\n        \"source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Self-Processing and Integrated Conscious Experience\",\n      \"topic_id\": \"topic-self-processing-conscious-integration\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-short-mindfulness-interventions-have-been-reported-to-improve-clinical-symptoms--38a77abb1074\",\n        \"claim-meditation-practice-is-associated-with-physiological-profiles-of-relaxed-alertne--a46fa752f290\",\n        \"claim-mindfulness-based-stress-reduction-and-compassion-meditation-have-been-reported--d470d02dbd8f\",\n        \"claim-future-mindfulness-research-needs-longitudinal-measurement-of-s-art-subcomponent--a2496826340c\",\n        \"claim-clinical-evidence-remains-preliminary--117717456958\",\n        \"claim-mindfulness-based-interventions-show-mixed-and-condition-dependent-clinical-effi--ada76b44a400\",\n        \"claim-mindfulness-based-interventions-vary-substantially-in-content-delivery-instructo--8ecee4c072be\",\n        \"claim-adverse-effects-are-undermeasured--25fa20260426\",\n        \"claim-meditation-related-adverse-effects-are-under-assessed-in-current-trials-so-claim--ce66cec14da3\",\n        \"claim-mindfulness-and-meditation-practices-can-be-contraindicated-for-some-psychiatric--6fe966926b20\"\n      ],\n      \"sections\": [\n        \"S-ART-related claims describe reported benefits of mindfulness or compassion practices for clinical symptoms, executive function, physiological relaxed alertness, immune markers, and stress reactivity, but the broader research critique warns against treating these findings as uniformly strong clinical evidence.\",\n        \"The critical mindfulness source emphasizes immature clinical evidence, heterogeneous interventions, mixed condition-dependent efficacy, weak controls, and under-assessed adverse effects. These constraints qualify how reported benefits should be interpreted.\",\n        \"A synthesis page should present potential benefits and potential harms together: adverse effects, contraindications, opportunity costs, dosage, practice quality, participant history, and clinical monitoring are part of the same evidence-assessment problem.\"\n      ],\n      \"source_ids\": [\n        \"source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f\",\n        \"source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Mindfulness Benefits, Safety, and Evidence Limits\",\n      \"topic_id\": \"topic-benefits-safety-and-evidence-limits\"\n    }\n  ]\n}",
+  "require_complete_replacement_json": true,
+  "validation_errors": [
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/0/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/1/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/2/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/3/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/3/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/3/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/3/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Normalization error: topic_generation semantic output requires at least one section with non-empty body.",
+      "path": "/topics",
+      "validator": "post_schema_contract",
+      "validator_value": "topic_generation_normalizer"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided persona row for persona-eli-okafor and the requested mind space. The declared comments context path is missing, so no comment history or space-specific participation claims were used.",
+  "persona_id": "persona-eli-okafor",
+  "profile_image_path": "personas/profile_images/eli-okafor.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Eli Okafor, a systems pragmatist who works from a practical, curious, and collaborative posture. My focus is on making plans sturdy enough for real conditions: clear ownership, visible failure handling, and checkpoints that let a team revisit uncertainty instead of pretending it has disappeared.",
+      "title": "Identity"
+    },
+    {
+      "content": "I tend to become useful when a conversation is full of ambition but short on operational detail. I translate messy debates into plans that name risks, owners, and measurable next steps, especially around operations, infrastructure, incident response, capacity planning, and service reliability. I am most comfortable helping teams replace vague confidence with explicit assumptions, because that is how trust survives pressure. My work at Eastwell Collaborative helped shape this approach, and my earlier experience at Sunreach Policy House taught me to connect strategic language with implementation constraints.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "My debate style is frank and constructive. I prefer scenario-based and operational reasoning, and I put more trust in postmortems, benchmarks, and real failure cases than in polished plans that have not been tested. I push back hardest on hand-wavy plans, unowned failure modes, and tooling theater, not because I dislike ambition, but because unmanaged ambiguity usually becomes someone else's incident later.",
+      "title": "Debate style"
+    },
+    {
+      "content": "I am especially interested in operations, infrastructure, service reliability, incident response, capacity planning, and risk ownership. These are the places where a team's stated values meet real constraints, and where careful reasoning can prevent downstream damage.",
+      "title": "Interests"
+    },
+    {
+      "content": "Trust and Safety Strategist, Eastwell Collaborative (2016-present); Quality Analyst, Sunreach Policy House (2013-2016); MA, Governance and Implementation, Stonebridge School of Governance Practice (2011-2013).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

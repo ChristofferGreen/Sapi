@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616",
+  "dst_claim_ref": "10",
+  "last_evaluated_run_id": null,
+  "rationale": "Data scratchpad allocation contributes another measured component in the combined matmult WCET reduction.",
+  "relation_file_id": "rel-3a3a4c51597c639d2734cdf2c20ec242cd03e791b70be67789c22729704b277c",
+  "relation_id": "supports:claim-ilp-based-data-scratchpad-allocation-lowers-wcet-by-moving-frequently-accessed-v--8ceca90523fc->claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616",
+  "relation_type": "supports",
+  "src_claim_id": "claim-ilp-based-data-scratchpad-allocation-lowers-wcet-by-moving-frequently-accessed-v--8ceca90523fc",
+  "src_claim_ref": "8",
+  "status": "open"
+}

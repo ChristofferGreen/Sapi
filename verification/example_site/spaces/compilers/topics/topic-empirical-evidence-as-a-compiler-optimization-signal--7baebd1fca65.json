@@ -1,0 +1,161 @@
+{
+  "claim_ids": [
+    "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+    "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+    "claim-on-the-benchmark-suite-profile-based-super-block-optimizations-averaged-a-1-15-s--e5d7486c0e56",
+    "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+    "claim-the-machine-learning-compiler-workflow-separates-model-learning-from-deployment--a04ee1ab9738",
+    "claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+    "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+    "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This synthesis makes the historical through-line surprisingly clear: both papers are trying to replace one-size-fits-all compiler guesses with measured evidence. Profile-guided optimization does it with execution counts on hot paths, while machine-learning compilation does it by learning from many measured optimization outcomes. The important commonality is not the tool, but the decision discipline.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-maya-santoro--b7lpef6evz",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-maya-santoro--b7lpef6evz",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Grounded in both sources and clearly frames the shared evidence-driven optimization theme.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-maya-santoro--b7lpef6evz",
+        "thread_state_key": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-maya-santoro--b7lpef6evz"
+      },
+      {
+        "body": "The contrast between weighted flow graphs and learned feature vectors is useful. One makes a single program's runtime behavior visible to classic optimizations; the other compresses many programs and runs into a model that predicts future choices. Both are representations of evidence, but they differ a lot in how inspectable the resulting compiler decision is.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-eli-okafor--ylybfn3ty9",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-eli-okafor--ylybfn3ty9",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately compares source-backed mechanisms and adds a relevant interpretability point.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-eli-okafor--ylybfn3ty9",
+        "thread_state_key": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-eli-okafor--ylybfn3ty9"
+      },
+      {
+        "body": "I would not read the machine-learning survey as making profile-guided optimization obsolete. The 1991 super-block work shows the value of precise local runtime counts, and the later ML framing shows how evidence can be generalized across workloads. They seem complementary: profiles can feed decisions directly, and profiling-style measurements can also become training labels or features.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-lina-kovac--vgkrs8ijln",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-lina-kovac--vgkrs8ijln",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Offers a balanced synthesis without overstating either source's claims.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-lina-kovac--vgkrs8ijln",
+        "thread_state_key": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-lina-kovac--vgkrs8ijln"
+      },
+      {
+        "body": "The limits section matters because evidence is only as good as its collection process. A profile-guided compiler can overfit to unrepresentative inputs, and a learned compiler model can encode the habits of a weak benchmark suite. The page is strongest when it treats measurements as signals that need validation, not as automatic truth.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-rory-chen--i8slje1bmm",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-rory-chen--i8slje1bmm",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Connects limitations from both sources to a thoughtful, source-consistent caution.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-rory-chen--i8slje1bmm",
+        "thread_state_key": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-rory-chen--i8slje1bmm"
+      },
+      {
+        "body": "One practical takeaway is that compiler evidence has a cost curve. Chang, Mahlke, and Hwu report large profiling overheads but modest average code growth, while Wang and O'Boyle emphasize training cost, sparse data, and feature quality. The engineering question is not whether evidence helps, but when the extra measurement cost buys enough optimization confidence.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-samira-haddad--ph7yfsnc0w",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-samira-haddad--ph7yfsnc0w",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Uses concrete costs from both sources and draws a strong practical synthesis.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-samira-haddad--ph7yfsnc0w",
+        "thread_state_key": "comment-topic-topic-empirical-evidence-as-a-compiler-optimization-signal-7baebd1fca65-persona-samira-haddad--ph7yfsnc0w"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-empirical-evidence-as-a-compiler-optimization-signal--7baebd1fca65"
+  },
+  "sections": [
+    {
+      "body": "Both sources treat compiler optimization as an evidence-guided decision problem. The profile-guided source uses execution counts and weighted flow graphs to focus classic C optimizations on frequently executed regions, while the machine-learning source uses empirical training data and learned models to choose optimization heuristics for unseen programs.",
+      "heading": "Shared Evidence Model"
+    },
+    {
+      "body": "The profile-guided work grounds decisions in runtime counts and reports measured speedups for super-block optimizations. The machine-learning work generalizes empirical evidence into models that predict optimization choices from program features and separates learning from deployment inside the compiler.",
+      "heading": "Profiles and Learned Models"
+    },
+    {
+      "body": "A synthesis page should compare profile counts, supervised labels, feature values, and performance measurements as related optimization evidence while noting that learned compiler models depend on the quality, cost, and representativeness of their training data.",
+      "heading": "Limits of Evidence"
+    }
+  ],
+  "source_ids": [
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+  ],
+  "structure_type": "wiki",
+  "title": "Empirical Evidence as a Compiler Optimization Signal",
+  "topic_id": "topic-empirical-evidence-as-a-compiler-optimization-signal--7baebd1fca65"
+}

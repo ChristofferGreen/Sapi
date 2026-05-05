@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-profile-based-transformations-controlled-executable-size-growth-averaging-1--5bacab4b8a28"
+  ],
+  "evidence_id": "evidence-code-expansion-ratios--9c31e0d14b7a",
+  "evidence_type": "table_result",
+  "excerpt": "For these experiments the authors use an execution count threshold of 100 before adding basic blocks to a trace. Table 6 reports profile-based executable size ratios relative to globally optimized programs: cccp 1.03, cmp 1.11, compress 1.01, eqn 1.10, eqntott 1.00, espresso 1.07, grep 1.09, lex 1.08, mpla 1.13, tbl 1.06, wc 1.01, xlisp 1.20, yacc 1.09, with average 1.07.",
+  "overview": "This evidence addresses the main cost risk of super-block formation: tail duplication can increase code size. The reported threshold and size ratios show a deliberate control mechanism and quantify the remaining expansion. The worst listed case is larger than average, so the result supports controlled rather than zero-cost growth.",
+  "page_refs": [
+    "Table 6",
+    "p.43"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "title": "Code Expansion Ratios"
+}

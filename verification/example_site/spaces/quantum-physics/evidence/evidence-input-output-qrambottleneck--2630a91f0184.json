@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4",
+    "claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90"
+  ],
+  "evidence_id": "evidence-input-output-qrambottleneck--2630a91f0184",
+  "evidence_type": "model_constraint",
+  "excerpt": "Applying HHL, least-squares fitting, qPCA, support vector machines, and related methods to classical data begins by loading large data sets into a quantum system, which can require exponential time without qRAM.",
+  "overview": "This passage is the strongest limit on headline speedup claims for classical data. It separates quantum processing time from the end-to-end pipeline cost and explains why input and output assumptions can dominate practical performance.",
+  "page_refs": [
+    "pp.8-9"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "title": "Input Output qRAM Bottleneck"
+}

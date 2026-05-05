@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-a-shader-is-a-gpu-directed-program-that-describes-rendering-processes-for-turnin--64c2250afac1"
+  ],
+  "evidence_id": "evidence-gpu-rendering-stage-taxonomy--c05d92a76e31",
+  "evidence_type": "formal_argument",
+  "excerpt": "Il existe 4 grands types de shader, repr\u00e9sentant chacun une \u00e9tape du rendu de l'image finale : Vertex shader > D\u00e9crit la position des points dans l'espace 3D; Tessellation shader > Assemble les points en formant des triangles; Geometry shader > Ajoute de nouveaux points et de la d\u00e9finition suppl\u00e9mentaire aux triangles pr\u00e9c\u00e9dents si besoin; Fragment (ou pixel) shader > Intervient apr\u00e8s la rast\u00e9risation, donne une couleur au pixel en fonction de sa position sur la grille de projection.",
+  "overview": "The four-part taxonomy gives a concrete technical scaffold for the article's account of shadercoding. It supports the claim that shaders are GPU rendering programs by naming the rendering stages and their respective roles. The evidence is explanatory rather than experimental, and its scope is an introductory model of the graphics pipeline.",
+  "page_refs": [
+    "Fig.1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "title": "GPU Rendering Stage Taxonomy"
+}

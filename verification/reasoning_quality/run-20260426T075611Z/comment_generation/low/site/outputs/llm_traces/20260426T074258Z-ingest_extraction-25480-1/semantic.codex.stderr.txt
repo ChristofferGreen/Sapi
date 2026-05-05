@@ -1,0 +1,8 @@
+[
+  {
+    "message": "\"Giulio Tononi's article develops an information integration theory of consciousness. It argues that consciousness requires both differentiation and integration, proposes \u03a6 as a measure of integrated causal information, and uses this framework to explain why thalamocortical networks support consciousness while modular or merely input-output systems often do not. The source also connects changes in sleep, anesthesia, and perceptual timing to changes in effective thalamocortical interactions.\" is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

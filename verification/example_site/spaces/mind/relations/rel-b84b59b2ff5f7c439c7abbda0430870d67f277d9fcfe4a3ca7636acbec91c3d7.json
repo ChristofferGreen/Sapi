@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-s-art-distinguishes-experiential-enactive-experiential-phenomenological-and-narr--3e3013b46122",
+  "dst_claim_ref": "3",
+  "last_evaluated_run_id": null,
+  "rationale": "The proposed fronto-parietal integration claim depends on the paper's parcellation of self-processing systems.",
+  "relation_file_id": "rel-b84b59b2ff5f7c439c7abbda0430870d67f277d9fcfe4a3ca7636acbec91c3d7",
+  "relation_id": "derived_from:claim-mindfulness-based-meditation-is-proposed-to-modulate-self-specifying-and-narrati--0ff3acc89706->claim-s-art-distinguishes-experiential-enactive-experiential-phenomenological-and-narr--3e3013b46122",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-mindfulness-based-meditation-is-proposed-to-modulate-self-specifying-and-narrati--0ff3acc89706",
+  "src_claim_ref": "4",
+  "status": "open"
+}

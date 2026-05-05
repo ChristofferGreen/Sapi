@@ -1,0 +1,271 @@
+{
+  "source_date_inference": {
+    "date": "2012-07",
+    "confidence": "medium",
+    "origin": "source_markdown",
+    "rationale": "The extracted source text identifies the article as Mind, Vol. 121, No. 483, July 2012, while also noting Advance Access publication on 30 October 2012."
+  },
+  "source": {
+    "display_title": "Memory and the Sense of Personal Identity",
+    "authors": [
+      "Stanley B. Klein",
+      "Shaun Nichols"
+    ]
+  },
+  "claims": [
+    {
+      "text": "Episodic recollection can preserve temporally and spatially situated autobiographical content while lacking a felt sense of personal ownership.",
+      "short_title": "Episodic memory lacks ownership",
+      "evidence_excerpts": [
+        "Almost immediately following his accident, R.B. was able to intentionally recall specific events temporally and spatially situated in his personal past, but his recollection of those events was compromised in an unusual manner — memory for those events, though fitting the standard criteria for episodic recollection, was not accompanied by a sense of personal ownership.",
+        "I was remembering scenes, not facts … I could clearly recall a scene of me at the beach in New London with my family as a child. But the feeling was that the scene was not my memory. As if I was looking at a photo of someone else’s vacation."
+      ]
+    },
+    {
+      "text": "The memory-based sense of personal identity depends on at least two separable components: event content and a mechanism that supplies mineness.",
+      "short_title": "Identity sense has components",
+      "evidence_excerpts": [
+        "The apparent paradox — episodic memory of past events absent the feeling of personal ownership — can be understood by situating episodic memory in the context of a system of interrelated memory processes, some of which provide the raw data for experience and some of which enable the experience to be ‘mine’."
+      ]
+    },
+    {
+      "text": "Trait self-knowledge can remain accurate and resilient even when episodic memory no longer supports a sense of diachronic personal identity.",
+      "short_title": "Trait self is insufficient",
+      "evidence_excerpts": [
+        "There now exists an extensive database showing that even patients suffering total anterograde and retrograde episodic amnesia can describe their own personal characteristics both reliably and accurately.",
+        "D.B. had knowledge of his own traits, and yet he was ‘unaware that he had a past and unable to imagine what his experiences might be like in the future’."
+      ]
+    },
+    {
+      "text": "R.B. retained factual self-knowledge, trait self-knowledge, voluntary scene recall, and some future planning despite lacking ownership for many pre-injury memories.",
+      "short_title": "R.B. retained future planning",
+      "evidence_excerpts": [
+        "I can recall memories [from the non-ownership period of his life] at will. I have normal control over remembering facts and scenes from my past. But when I remember scenes from before the injury, they do not feel as if they happened to me — though intellectually I know that they did — they felt as if they happened to someone else.",
+        "During the un-owned period I was able to plan for the future. Although my working memory loss and lack of skill at compensation made it challenging."
+      ]
+    },
+    {
+      "text": "The sense of numerical personal identity is a contingent feature of episodic memory rather than a necessary output of episodic recall.",
+      "short_title": "Mineness is contingent",
+      "evidence_excerpts": [
+        "As we have seen, the sense of personal identity given by episodic memory is robust — it gives us an ‘irresistible’ sense of being the same person, and it has seemed to many to be a necessary concomitant of episodic memory. But the case of R.B. indicates that this sense of identity is dissociable from episodic memory itself. The sense of identity turns out to be, pace Reid, a contingent feature of memory."
+      ]
+    },
+    {
+      "text": "R.B.'s unowned recollections provide an existence proof for apparent memory content that is neither delusional nor identity-presupposing.",
+      "short_title": "R.B. answers quasi-memory",
+      "evidence_excerpts": [
+        "R.B.’s recollections provide an existence proof for a kind of memory that navigates between the horns of Schechtman’s dilemma. In R.B., the ‘mineness’ of episodic recollection is separated from the content."
+      ]
+    },
+    {
+      "text": "Quasi-memory accounts must specify which form of self-representation is required for causally normal memory to constitute personal identity.",
+      "short_title": "Quasi-memory needs self criteria",
+      "evidence_excerpts": [
+        "The notion of quasi-memory is supposed to undergird a theory of personal identity, but which (if any) of these self-representations is required in order for a candidate quasi-memory to count as being ‘caused in the normal way’?"
+      ]
+    },
+    {
+      "text": "The evidential force of memory for personal identity depends on the contingent cognitive systems that generate ownership feelings.",
+      "short_title": "Memory evidence is contingent",
+      "evidence_excerpts": [
+        "Knowing the nature of the systems that deliver these judgements might be an important source of information for evaluating the extent to which the sense of identity can be taken to reflect the reality of identity."
+      ]
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "evidence-unowned-pre-injury-memories--a1fbe0966ca4",
+      "title": "Unowned Pre-Injury Memories",
+      "excerpt": "What I realized was that I did not ‘own’ any memories that came before my injury. I knew things that came before my injury. In fact, it seemed that my memory was just fine for things that happened going back years in the past [the period close to the injury was more disrupted]. I could answer any question about where I lived at different times in my life, who my friends were, where I went to school, activities I enjoyed, etc. But none of it was ‘me’. It was the same sort of knowledge I might have about how my parents met or the history of the Civil War or something like that.",
+      "overview": "This first-person report is the central observational datum of the article. It separates accurate autobiographical access from the phenomenal ownership normally associated with remembering one's past, thereby grounding the claim that episodic memory content and mineness can come apart.",
+      "evidence_type": "observational_result",
+      "claim_refs": [
+        "0",
+        "1",
+        "4"
+      ],
+      "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+      "page_refs": [
+        "p.685"
+      ]
+    },
+    {
+      "evidence_id": "evidence-beach-scene-without-ownership--b6d0c0f2a91e",
+      "title": "Beach Scene Without Ownership",
+      "excerpt": "I was remembering scenes, not facts … I was recalling scenes … that is … I could clearly recall a scene of me at the beach in New London with my family as a child. But the feeling was that the scene was not my memory. As if I was looking at a photo of someone else’s vacation. Note that these memories were substantiated by third parties as valid renditions of events that actually transpired in R.B.’s life.",
+      "overview": "The beach recollection matters because it satisfies the article's criteria for episodic recall: a scene located in time and space, involving R.B., and corroborated as autobiographical. Its lack of ownership directly supports the dissociation rather than merely showing semantic relearning.",
+      "evidence_type": "observational_result",
+      "claim_refs": [
+        "0",
+        "5"
+      ],
+      "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+      "page_refs": [
+        "p.686"
+      ]
+    },
+    {
+      "evidence_id": "evidence-mit-scene-as-other--c83f75a414d2",
+      "title": "MIT Scene Recalled As Other",
+      "excerpt": "I can picture the scene perfectly clearly … studying with my friends in our study lounge. I can ‘relive’ it in the sense of re-running the experience of being there. But it has the feeling of imagining, [as if] re-running an experience that my parents described from their college days. It did not feel like it was something that really had been a part of my life. Intellectually I suppose I never doubted that it was a part of my life.",
+      "overview": "The MIT recollection shows that R.B. could relive a vivid personal scene and intellectually accept its autobiographical status while still lacking ownership. It is especially useful for distinguishing first-person mineness from ordinary factual belief about the self.",
+      "evidence_type": "observational_result",
+      "claim_refs": [
+        "0",
+        "3",
+        "5"
+      ],
+      "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+      "page_refs": [
+        "p.686"
+      ]
+    },
+    {
+      "evidence_id": "evidence-voluntary-recall-and-planning--d45e8a02b7c9",
+      "title": "Voluntary Recall And Planning",
+      "excerpt": "I can recall memories [from the non-ownership period of his life] at will. I have normal control over remembering facts and scenes from my past. But when I remember scenes from before the injury, they do not feel as if they happened to me — though intellectually I know that they did — they felt as if they happened to someone else. During the un-owned period I was able to plan for the future.",
+      "overview": "This evidence constrains overly simple interpretations of R.B.'s deficit. The problem was not a total loss of retrieval control, factual self-knowledge, or future-directed cognition; it was specifically the ownership component attached to pre-injury episodic recollection.",
+      "evidence_type": "observational_result",
+      "claim_refs": [
+        "3",
+        "4"
+      ],
+      "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+      "page_refs": [
+        "pp.687-689"
+      ]
+    },
+    {
+      "evidence_id": "evidence-component-model-of-mineness--e9a07d312f44",
+      "title": "Component Model Of Mineness",
+      "excerpt": "The apparent paradox — episodic memory of past events absent the feeling of personal ownership — can be understood by situating episodic memory in the context of a system of interrelated memory processes, some of which provide the raw data for experience and some of which enable the experience to be ‘mine’. R.B.’s recollections during his ‘unowned’ period can be explained in the context of the view that there is specialized neural machinery that inserts the conceptual element self into the agent slot of an episodic memory attribution.",
+      "overview": "This passage supplies the article's model constraint: a memory system can deliver scene content while a distinct self-tagging or I-concept mechanism supplies ownership. It supports the transition from case report to theoretical architecture.",
+      "evidence_type": "model_constraint",
+      "claim_refs": [
+        "1",
+        "4",
+        "7"
+      ],
+      "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+      "page_refs": [
+        "p.689"
+      ]
+    },
+    {
+      "evidence_id": "evidence-quasi-memory-dilemma-response--f12c6be90a37",
+      "title": "Quasi-Memory Dilemma Response",
+      "excerpt": "R.B.’s recollections provide an existence proof for a kind of memory that navigates between the horns of Schechtman’s dilemma. In R.B., the ‘mineness’ of episodic recollection is separated from the content. The notion of quasi-memory is supposed to undergird a theory of personal identity, but which (if any) of these self-representations is required in order for a candidate quasi-memory to count as being ‘caused in the normal way’ ?",
+      "overview": "This formal-philosophical evidence links the neurological case to the quasi-memory debate. R.B. is used to challenge the claim that apparent memory must either be delusional or presuppose identity, while also forcing quasi-memory theorists to define which self-representation matters.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "5",
+        "6"
+      ],
+      "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+      "page_refs": [
+        "pp.694-695"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "0",
+      "dst_claim_ref": "1",
+      "rationale": "The dissociation between episodic content and ownership motivates the two-component account of identity sense."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "3",
+      "dst_claim_ref": "4",
+      "rationale": "R.B.'s retained cognitive abilities narrow the deficit to ownership rather than episodic recall as a whole."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "0",
+      "dst_claim_ref": "5",
+      "rationale": "Unowned yet non-delusional autobiographical scenes supply the case used against Schechtman's dilemma."
+    },
+    {
+      "relation_type": "derived_from",
+      "src_claim_ref": "6",
+      "dst_claim_ref": "5",
+      "rationale": "The demand for sharper quasi-memory criteria follows from treating R.B.'s recollections as a possible existence proof."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "1",
+      "dst_claim_ref": "7",
+      "rationale": "If mineness is generated by a contingent subsystem, memory's evidential role must be assessed through that subsystem."
+    }
+  ],
+  "summary": "Klein and Nichols use the neurological case of patient R.B. to argue that episodic memory content can be dissociated from the sense of personal ownership or mineness. The paper proposes a component model of memory-based personal identity and applies it to debates over quasi-memory and the evidential value of memory for persistence of self.",
+  "warnings": [
+    {
+      "code": "source_record_title_low_quality",
+      "message": "The source record supplied 'Untitled Source', so the display title was recovered from the source markdown title and article header."
+    },
+    {
+      "code": "publication_date_inferred_from_markdown",
+      "message": "Task context reported an unresolved date; the markdown masthead supports July 2012 while the DOI line reports Advance Access publication on 30 October 2012."
+    }
+  ],
+  "source_dossier": {
+    "summary_short": "Klein and Nichols argue that autobiographical memory does not always carry a felt sense of ownership. Their central evidence is patient R.B., who could recall vivid pre-injury scenes but experienced them as not really his. The case supports a two-component model in which memory content and mineness can separate, with consequences for quasi-memory and philosophical claims about identity over time.",
+    "summary_long": "This article connects empirical memory science with classic debates about personal identity. Klein and Nichols begin from the familiar thought that memory seems to tell a person that they are identical with someone in the past. Philosophers such as Locke, Reid, Butler, Hume, Parfit, and Schechtman treat memory as central either to constituting identity, evidencing identity, or explaining the illusion of identity. The authors argue that these debates need a more fine-grained account of the sense of identity delivered by memory. Contemporary psychology distinguishes procedural, semantic, and episodic memory, and also distinguishes factual self-knowledge and trait self-knowledge from recollective re-experience. That framework makes it possible to ask whether autobiographical content, self-reference, and ownership are one package or separable components. The case of R.B. is used to answer that question. After a serious bicycle accident and head trauma, R.B. could intentionally retrieve temporally and spatially situated scenes from before the injury, and he often intellectually accepted that the events were part of his life. Yet he reported that the memories lacked ownership: they were like scenes from someone else's vacation or experiences described by another person. He also retained trait self-knowledge, present ownership, some future planning, and eventual recovery of ownership memory by memory. On this basis, Klein and Nichols propose that the sense of numerical personal identity is not guaranteed by episodic memory itself. Instead, a memory system may supply scene content while another mechanism supplies the first-person I-tag or mineness. Philosophically, this weakens claims that memory necessarily presupposes identity and gives quasi-memory theorists a real case that lies between delusion and identity-presupposing memory. At the same time, the case raises a further burden: theories of psychological continuity must say which self-representational elements matter for constituting personal identity.",
+    "sections": [
+      {
+        "heading": "Central Argument",
+        "body": "The paper's central argument is that the felt sense of being identical with a past person is not built into episodic memory as an indivisible necessity. R.B. could recall autobiographical scenes with time, place, and self-involving content, but the scenes did not feel owned. This supports a model in which content retrieval and mineness are separable contributors to personal identity experience.",
+        "grounding_claim_ids": [
+          "0",
+          "1",
+          "4"
+        ]
+      },
+      {
+        "heading": "Case Evidence",
+        "body": "R.B. is treated as an unusually probative neurological case because his reports are not merely about lost memory. He describes vivid scenes, voluntary recall, and intellectual acceptance that the events fit his life history, while denying that they feel like his own memories. The beach and MIT examples make the deficit specific: ownership is absent even where scene-like recollection remains.",
+        "grounding_claim_ids": [
+          "0",
+          "3",
+          "5"
+        ]
+      },
+      {
+        "heading": "Memory Architecture",
+        "body": "The authors situate the case within a multiple-systems view of long-term memory. Semantic memory can contain factual and trait self-knowledge, while episodic memory normally supports re-experiencing events. D.B. and related findings show that trait self-knowledge can persist without a robust memory-based sense of past existence, helping isolate different self-related memory systems.",
+        "grounding_claim_ids": [
+          "2",
+          "3"
+        ]
+      },
+      {
+        "heading": "Model Of Mineness",
+        "body": "The proposed explanation is not that R.B. lacked all self-representation. He knew the memories were about R.B. and could connect them with facts about his biography. What was missing was a first-person ownership representation, described as an I-concept or self-tag inserted into the agent slot of episodic attribution. This makes mineness a contingent cognitive product.",
+        "grounding_claim_ids": [
+          "1",
+          "4",
+          "7"
+        ]
+      },
+      {
+        "heading": "Quasi-Memory Implications",
+        "body": "The case matters for quasi-memory because Schechtman's dilemma says apparent memory must be either delusional or identity-presupposing. R.B.'s recollections appear to avoid both horns: they are accurate autobiographical recollections, yet he does not experience them as straightforwardly his. That gives psychological-continuity theorists a more concrete resource than bare conceivability arguments.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ]
+      },
+      {
+        "heading": "Limits And Interpretation",
+        "body": "The argument is cautious about what follows for metaphysics. R.B. does not settle whether personal identity is psychological, biological, or something else, and the neural details of the ownership mechanism remain incomplete. The practical lesson is narrower but important: before treating memory as evidence for identity, philosophers should ask how the ownership-producing system works and how reliable it is.",
+        "grounding_claim_ids": [
+          "6",
+          "7"
+        ]
+      }
+    ]
+  }
+}

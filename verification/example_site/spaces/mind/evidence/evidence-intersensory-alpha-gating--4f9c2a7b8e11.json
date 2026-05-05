@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-alpha-band-oscillations-can-be-actively-invoked-in-cortical-regions-that-process--09466b39d396",
+    "claim-in-intersensory-attention-tasks-attending-to-audition-increases-8-14-hz-parieto--6ff6ff285662"
+  ],
+  "evidence_id": "evidence-intersensory-alpha-gating--4f9c2a7b8e11",
+  "evidence_type": "figure_result",
+  "excerpt": "Figure 1 reports an intersensory cueing task in which BEEP and FLASH cues indicated whether audition or vision was relevant. After a 1085 ms cue-target interval, the 8-14 Hz filtered waveforms showed greater alpha activity in the 300 ms before the compound audiovisual S2 when attention was cued to audition, with greater parietal field power for auditory than visual cues.",
+  "overview": "This figure-level result grounds the review's claim that alpha can gate a modality before the relevant stimulus arrives. Because the task required fixation and compared auditory versus visual attention after symbolic cues, the effect is interpreted as anticipatory suppression of visual processing rather than eye closure or direct sensory stimulation by the target.",
+  "page_refs": [
+    "Figure 1",
+    "p.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "title": "Auditory Cue Alpha Increase"
+}

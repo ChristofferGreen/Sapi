@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-most-psychedelic-associated-shifts-in-non-physicalist-metaphysical-beliefs-persi--9591d5bd7c0c",
+    "claim-ceremonial-psychedelic-use-increased-fatalistic-determinism-at-four-weeks-in-the--f71a027b70cc"
+  ],
+  "evidence_id": "evidence-fatalism-time-course--e05f6b73a8c2",
+  "evidence_type": "statistical_result",
+  "excerpt": "The psychedelic ceremony was associated with increases in Fatalistic determinism at 4 weeks versus baseline (t(121) = 2.81, p = 0.012, d = 0.25, 95% CI [0.06, 0.37]); however, this effect did not persist at 6 months. For psychedelic-naive participants, the 6-month effect persisted (t(52) = 2.86, p = 0.012, d = 0.39, 95% CI [0.11, 0.64]).",
+  "overview": "This result separates fatalism from the more durable non-physicalist belief changes. It shows that psychedelic-associated belief change is not uniform across metaphysical domains and that subgroup history matters: the overall sample shows a temporary fatalism increase, while first-time users show a longer-lasting one.",
+  "page_refs": [
+    "Supplementary Fig. 2a",
+    "p.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "title": "Fatalism Time Course"
+}

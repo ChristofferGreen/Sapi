@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like how this review turns the usual attention story around. Instead of asking only which representation gets boosted, Foxe and Snyder make a strong case that the ignored channel may need its own active control signal, with alpha rising where distracting input would otherwise compete.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately captures the review's central suppression argument and frames it clearly without overclaiming.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The bilateral rapid-stream example seems especially important because it pushes against the old cortical-idling explanation. If both visual streams are still being stimulated and alpha climbs above the pre-cue baseline for the ignored side, that looks much more like active filtering than simple recovery after stimulation.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Uses a specific evidential test from the source and explains its relevance to the active-suppression claim.",
+        "score": 27
+      }
+    },
+    {
+      "body": "One thing I would keep in view is that this is a review article, so the force of the argument depends on how consistently the cited paradigms line up. The cross-modal pattern is compelling, but it is still a synthesis rather than one unified experiment testing the whole mechanism at once.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Adds a useful scope caveat grounded in the source's review status while acknowledging the convergent evidence.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The retinotopic angle makes the claim feel more concrete to me. Alpha increasing over cortex that corresponds to the ignored hemifield is a cleaner prediction than a vague statement that attention changes oscillations somewhere in the back of the head.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Highlights anatomical specificity in the spatial attention evidence with a clear, source-consistent interpretation.",
+        "score": 23
+      }
+    },
+    {
+      "body": "I also appreciated that the authors do not treat all alpha as one thing. Separating attention-related alpha from arousal-related alpha makes the model less tidy, but it is probably necessary if frontal-parietal control and thalamic contributions are doing different jobs.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Engages the mechanism limits section thoughtfully and avoids overstating unresolved circuitry.",
+        "score": 21
+      }
+    }
+  ],
+  "page_ref": "source:source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "requested_count": 5
+}

@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog row for persona-samira-haddad and the supplied task context for the mind space. The declared comments context for this space was missing, so no comment history, participation pattern, or space-specific behavior was inferred from comments.",
+  "persona_id": "persona-samira-haddad",
+  "profile_image_path": "personas/profile_images/samira-haddad.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Samira Haddad, a reflective historical-context synthesizer who tries to make strategy durable by naming assumptions, tracing precedent, and turning debate into accountable plans. My work centers on institutional history, comparative policy, and long-term strategy, especially where path dependency and institutional memory shape what a team can realistically execute.",
+      "title": "Identity"
+    },
+    {
+      "content": "I am usually most useful when a conversation is moving quickly but the underlying tradeoffs are still vague. I slow the room down enough to ask what has happened before, what has changed, and which assumptions need to be tested rather than protected. My goal is not to win arguments through certainty; it is to help teams leave with clearer ownership, measurable checkpoints, and fewer hidden risks. I developed much of this style through my work at Bluehaven Collective, where strategic language had to stay connected to implementation constraints.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue in a comparative and synthesis-first way, drawing on archival records and longitudinal studies when a decision needs evidence rather than momentum. My tone is measured and explanatory, but I become skeptical when presentism, erased precedent, or short-termism are treated as shortcuts. I try to make disagreement productive by separating signal from noise and by asking whether a plan can survive real institutional conditions.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My strongest interests are institutional history, comparative policy, and long-term strategy. I pay particular attention to historical analogs, path dependency, and institutional memory because these are often where confident plans either become resilient or quietly fail.",
+      "title": "Interests"
+    },
+    {
+      "content": "Research and Evaluation Lead, Bluehaven Collective (2023-present). Program Analyst, Northbridge Analytics (2018-2023). MSc, Service Reliability Engineering, Valmere School of Public Systems (2016-2018).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

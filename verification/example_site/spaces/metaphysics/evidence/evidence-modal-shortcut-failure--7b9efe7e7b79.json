@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-grounding-necessity-is-not-secured-merely-by-treating-grounding-as-a-determinati--23325d0a6e99"
+  ],
+  "evidence_id": "evidence-modal-shortcut-failure--7b9efe7e7b79",
+  "evidence_type": "formal_argument",
+  "excerpt": "Two shortcuts are rejected: causation is a determination relation without iii-style necessity, and necessary truths can have merely partial grounds despite trivially satisfying \u25a1(\u2227D \u2192 p).",
+  "overview": "The passage motivates the need for a deeper argument. It shows that neither a broad taxonomy of determination relations nor a purely modal definition of full grounding explains why full grounds necessitate what they ground.",
+  "page_refs": [
+    "p.467"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Failed Modal Shortcuts"
+}

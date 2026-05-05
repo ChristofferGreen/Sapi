@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:56:22Z",
+  "claim_id": "claim-the-attraction-rule-moves-interior-edge-points-toward-feature-transform-location--8607f298987e",
+  "evidence_excerpts": [
+    "x_new = [1 - alpha phi(lambda(x)/lambda(e_ei))] x + alpha phi(lambda(x)/lambda(e_ei)) FT_S(x), with phi(t)=[2 min(t,1-t)]^K, so endpoint motion is zero and middle-edge motion is largest."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Attraction preserves node endpoints",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "text": "The attraction rule moves interior edge points toward feature-transform locations on the skeleton while keeping edge endpoints fixed at their node positions."
+}

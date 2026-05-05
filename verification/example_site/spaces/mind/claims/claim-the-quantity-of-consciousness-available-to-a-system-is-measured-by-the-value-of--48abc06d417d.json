@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T11:02:43Z",
+  "claim_id": "claim-the-quantity-of-consciousness-available-to-a-system-is-measured-by-the-value-of--48abc06d417d",
+  "evidence_excerpts": [
+    "\u03a6 is the amount of effective information that can be exchanged across the minimum information bipartition of a complex.",
+    "The minimum information bipartition MIB(S) is the bipartition for which the normalized effective information reaches a minimum, and the corresponding value is \u03a6(S)."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Phi measures conscious quantity",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "text": "The quantity of consciousness available to a system is measured by the \u03a6 value of a complex, where \u03a6 is effective information across the minimum information bipartition."
+}

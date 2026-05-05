@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Quantum Simulation Arena</title><link rel="stylesheet" href="../assets/site.css"></head><body class="site-shell site-with-global-menubar">
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="../../../../site/index.html">Example Site</a><nav class="site-space-nav" aria-label="Spaces"><details class="site-space-nav-item"><summary class="site-space-nav-summary">Computer Science</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../computer-science/site/index.html">Computer Science</a><a class="site-space-nav-link" href="../../../compilers/site/index.html">Compilers</a><a class="site-space-nav-link" href="../../../graphics/site/index.html">Graphics</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Philosophy</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../philosophy/site/index.html">Philosophy</a><a class="site-space-nav-link" href="../../../mind/site/index.html">Mind</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary current">Physics / Quantum Physics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../physics/site/index.html">Physics</a><a class="site-space-nav-link" href="../../../metaphysics/site/index.html">Metaphysics</a><a class="site-space-nav-link current" href="../index.html">Quantum Physics</a></div></details></nav><nav class="site-tabs"><a class="site-tab" href="../index.html">Home</a> <a class="site-tab" href="../overview/index.html" aria-label="Overview for quantum-physics">Overview</a> <a class="site-tab" href="../new/index.html">New</a> <a class="site-tab" href="../sources/index.html">Sources</a> <a class="site-tab" href="../topics/index.html">Topics</a> <a class="site-tab" href="../users/index.html">Users</a> <a class="site-tab current" href="index.html">Evidence</a> <a class="site-tab" href="../claims/index.html">Claims</a></nav></div></header><main class="site-main site-space-main">
+<header class="site-topbar"><form class="top-search" action="../search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
+<section class="content-card"><h1>Quantum Simulation Arena</h1>
+<section class="source-related-grid">
+<article class="source-related-card">
+<h2>Evidence Excerpt</h2>
+<p>As Feynman argued, the simulation of highly entangled quantum matter is the natural arena where quantum computers seem to have a clear advantage over classical ones. Classical computers are especially bad at simulating quantum dynamics — that is, predicting how a highly-entangled quantum state will change with time. Quantum computers have a big advantage for that task, and physicists hope to learn interesting things about quantum dynamics using NISQ technology in the relatively near term. Valuable insights might already be gleaned using noisy devices with of order 100 qubits.</p>
+<p class="meta">Page references: pp.12-13</p>
+<p class="meta">Type: formal_argument</p>
+<p>The evidence distinguishes quantum simulation from broader commercial claims. It says the best near-term scientific target is not generic acceleration, but the study of highly entangled dynamics where classical computation is structurally weak.</p>
+</article>
+<article class="source-related-card">
+<h2>Linked Claims</h2>
+<ul class="source-related-list">
+<li><a href="../claims/claim-highly-entangled-quantum-dynamics-is-the-most-natural-arena-for-meaningful-quant--3b6f2f5ba268.html">Quantum dynamics is promising</a></li>
+<li><a href="../claims/claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb.html">NISQ enables quantum exploration</a></li>
+<li><a href="../claims/claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb.html">Quantum advantage has grounds</a></li>
+</ul>
+</article>
+<article class="source-related-card">
+<h2>Primary Source</h2>
+<p><a href="../sources/source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb.html">Quantum Computing in the NISQ Era and Beyond</a></p>
+</article>
+</section>
+<section class="source-related-card">
+<h2>Topic Pages Using This Evidence</h2>
+<ul class="source-related-list">
+<li>(No topic pages currently reference this evidence.)</li>
+</ul>
+</section>
+<p><a href="index.html">Back to evidence index</a></p>
+</section>
+
+</main>
+<script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>

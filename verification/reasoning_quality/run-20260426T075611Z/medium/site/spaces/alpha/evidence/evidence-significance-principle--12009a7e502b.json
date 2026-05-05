@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--50bf5a84b4af",
+    "claim-paradigm-cases-such-as-the-grounding-of-conjunctions-and-disjunctions-support-th--626ca9ab4815"
+  ],
+  "evidence_id": "evidence-significance-principle--12009a7e502b",
+  "evidence_type": "model_constraint",
+  "excerpt": "significance: [p] is (fully) grounded in D only if the connecting questions with respect to [p] and D lack cognitive significance.",
+  "overview": "The significance principle supplies the first substantive premise of the central argument. It links full grounding to a broadly epistemic condition: once the relevant entities and facts are properly grasped, the question why the grounded fact obtains given the grounds should not remain a live substantive explanatory demand.",
+  "page_refs": [
+    "p.467",
+    "p.472"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Significance Principle"
+}

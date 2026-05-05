@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:08:29Z",
+  "claim_id": "claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869",
+  "evidence_excerpts": [
+    "Formal chain: grounding plus significance gives cognitive insignificance; essence gives \u2227D \u2192 p; essential truths are metaphysically necessary; therefore \u25a1(\u2227D \u2192 p)."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Essence Yields Necessity",
+  "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "The conjunction of the significance principle, the essence principle, and the metaphysical necessity of essential truths yields the necessity of grounding."
+}

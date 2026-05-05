@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like that this topic groups three very different compiler feedback loops without flattening them into one method. Profiles, learned models, and WCET analysis all turn evidence into optimization choices, but they answer different questions: what ran hot, what has worked on similar programs, and what moves the worst-case path.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately synthesizes the topic's shared concept while preserving the source-specific distinctions.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The comparison also makes feature representation feel central rather than incidental. Weighted flow graphs expose hot paths, ML feature vectors expose measurable program properties, and WCC back-annotation exposes timing facts at the level where transformations can use them. In each case, the compiler improves only after the evidence is put into a usable representation.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Strongly grounded across all three sources and adds a useful representation-focused synthesis.",
+        "score": 25
+      }
+    },
+    {
+      "body": "One useful contrast is that the evidence is not equally risky in all three settings. Profile-guided optimization can chase unrepresentative inputs, learned heuristics can inherit benchmark bias, and WCET-aware compilation must trust conservative static analysis. That shared dependence on evidence quality is probably the strongest caution for the whole page.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Raises source-supported limitations for each approach without overstating or drifting off topic.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The WCC example usefully widens the discussion beyond speedup. If the objective is a safe upper bound, optimizing a frequent average-case path may be the wrong decision. That makes evidence-driven compilation less about one performance metric and more about making the compiler's objective explicit before choosing transformations.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Connects the WCET source to the topic's broader decision-making frame with a clear metric distinction.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The page is strongest when read as an argument for auditable compiler decisions. The Chang, Wang and O'Boyle, and Falk papers all still need legality checks, cost models, and engineering judgment; the evidence changes which legal choice looks worthwhile. That boundary keeps the topic realistic instead of treating data as a substitute for compiler analysis.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Balanced synthesis that uses source authors and shared constraints to frame a realistic conclusion.",
+        "score": 24
+      }
+    }
+  ],
+  "page_ref": "topic:topic-compiler-optimization-as-evidence-driven-decision-making",
+  "requested_count": 5
+}

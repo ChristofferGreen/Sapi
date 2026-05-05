@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-trace-selection-followed-by-tail-duplication-converts-frequently-executed-traces--1483ee9d0534",
+  "dst_claim_ref": "3",
+  "last_evaluated_run_id": null,
+  "rationale": "Controlled code expansion is evidence that tail duplication can be practical when trace inclusion is thresholded.",
+  "relation_file_id": "rel-bd44c7e51a831c750641082d7551db30be6f4ee1a239e138e19313174f002f91",
+  "relation_id": "supports:claim-the-profile-based-transformations-controlled-executable-size-growth-averaging-1--5bacab4b8a28->claim-trace-selection-followed-by-tail-duplication-converts-frequently-executed-traces--1483ee9d0534",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-profile-based-transformations-controlled-executable-size-growth-averaging-1--5bacab4b8a28",
+  "src_claim_ref": "8",
+  "status": "open"
+}

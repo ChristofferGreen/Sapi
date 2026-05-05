@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T07:50:34Z",
+  "claim_id": "claim-cerebellar-and-similarly-modular-neural-architectures-can-contain-many-neurons-a--b77ed5672f9b",
+  "evidence_excerpts": [
+    "Figure 4 describes a cerebellum-like organization with three separate complexes of \u03a6 = 20 bits and little interaction among modules."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Cerebellar modularity lowers \u03a6",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "text": "Cerebellar and similarly modular neural architectures can contain many neurons and synapses while contributing little directly to consciousness because their modular organization yields many small low-\u03a6 complexes rather than one large high-\u03a6 complex."
+}

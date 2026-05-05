@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0",
+    "claim-tail-duplication-creates-additional-optimization-opportunities-because-it-can-ma--6c81300e0307"
+  ],
+  "evidence_id": "evidence-operation-combining-preconditions--f41c9d82e7a6",
+  "evidence_type": "formal_argument",
+  "excerpt": "The precondition function of operation combining consists of predicates requiring dest(x) to be a subset of src(y), no modification of dest(x) between the two instructions, no modification of src(x) between the two instructions, and a simple transformation of op(y) to use src(x) together with the non-dest operands of src(y). The action replaces op(y) by the transformed operation.",
+  "overview": "The formal precondition/action description makes the optimization auditable. It shows that the profile-guided version still depends on correctness predicates over instruction operands and intervening modifications; profile information expands the region and opportunity set rather than discarding data-dependence constraints.",
+  "page_refs": [
+    "Section 4.4",
+    "p.24"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "title": "Operation Combining Preconditions"
+}

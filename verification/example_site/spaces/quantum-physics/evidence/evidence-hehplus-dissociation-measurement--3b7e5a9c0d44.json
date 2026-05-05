@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f"
+  ],
+  "evidence_id": "evidence-hehplus-dissociation-measurement--3b7e5a9c0d44",
+  "evidence_type": "measurement",
+  "excerpt": "Repeating the procedure for several nuclear separations R gives the bond dissociation curve. After correcting computed energies for experimental errors, the equilibrium bond length was R = 92.3\u00b10.1 pm, with corresponding ground-state electronic energy E = -2.865\u00b10.008 MJ mol^-1. More than 96% of the experimental data are within chemical accuracy with respect to theoretical values.",
+  "overview": "This is the main quantitative result. It shows that the hybrid photonic solver produced a chemically meaningful molecular curve for a minimal-basis He-H+ problem, while the need for systematic-error correction and comparison to a full-configuration-interaction curve limits the result to a proof of feasibility.",
+  "page_refs": [
+    "Fig.4",
+    "p.4",
+    "p.5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "title": "He-H+ Dissociation Result"
+}

@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:44:00Z",
+  "claim_id": "claim-alpha-channel-multipass-rendering-can-recolor-significant-body-regions-such-as-c--265615107527",
+  "evidence_excerpts": [
+    "We performed multipass rendering using the alpha channel to select the parts to render. For each pass, we change the impostor polygon color to the desired color.",
+    "Computing a texture modulation preserves the shading because it\u2019s already included in the texture."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Multipass coloring diversifies avatars",
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "text": "Alpha-channel multipass rendering can recolor significant body regions such as clothes, hair, and skin to increase avatar variety while preserving baked texture shading."
+}

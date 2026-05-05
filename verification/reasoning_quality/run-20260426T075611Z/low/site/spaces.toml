@@ -1,0 +1,5 @@
+# Sapi space registry bootstrap scaffold
+
+[[spaces]]
+space_name = "alpha"
+space_root = "spaces/alpha"

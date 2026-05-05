@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:27:45Z",
+  "claim_id": "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+  "evidence_excerpts": [
+    "An execution profiler can be integrated into an optimizing compiler to provide the compiler with run-time information about user programs. For each code optimization, the profile information along with information from static loop analysis is used to reduce the execution time of the most frequently executed program regions."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Profiles guide classic optimizations",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "text": "Execution profiles integrated into an optimizing C compiler can guide classic optimizations toward the program regions that run most often."
+}

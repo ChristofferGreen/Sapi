@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The useful move here is treating taxonomy as a practical design tool rather than a filing cabinet. Foveated rendering makes that clearest with its axes for data type, foveation principle, and rendering paradigm, but the same habit helps compare shadercoding, impostor crowds, and edge bundling without pretending they solve the same problem.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Clearly grounded in the page synthesis and distinguishes shared classification value from false equivalence.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I like the emphasis on abstraction boundaries. Fragment shaders and raymarching describe a scene through formulas, image-based crowds trade polygons for sampled impostor textures, and skeleton-based edge bundling turns graph edges into image-space shapes. Those are very different representations, but each one changes what can be optimized or compared.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Uses evidence from three source summaries and connects representation choices to comparison and optimization.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The page should probably keep the tradeoff axis as visible as the input or algorithm axis. A foveated renderer can hide peripheral detail loss, a crowd impostor system can fail at close-up interaction, and an edge bundle can reveal corridors while losing individual paths. Those limits are part of the classification, not footnotes after performance numbers.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Strong critical synthesis that accurately draws on the sources' documented limitations.",
+        "score": 26
+      }
+    },
+    {
+      "body": "That is why I would be careful with a single master taxonomy. The foveated-rendering survey works because it is internal to one field, while this topic is broader. A looser comparison grid around inputs, intermediate abstractions, renderer assumptions, and perceptual or visual loss seems safer than forcing every method into the same boxes.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Relevant reply that follows the tradeoff concern and aligns with the page's warning against claiming one shared taxonomy.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The historical spread also matters. The foveated-rendering survey maps reports from 1990 to 2021, while the other examples feel like snapshots of particular technique families: live shader practice, virtual-city crowd rendering, and graph-layout bundling. Comparing them by abstraction level may show how graphics papers stabilize messy engineering choices into named paradigms.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Grounded in the page and source context, with a useful framing of taxonomy as a way to stabilize engineering choices.",
+        "score": 21
+      }
+    }
+  ],
+  "page_ref": "topic:topic-taxonomies-and-abstractions-for-rendering-paradigms",
+  "requested_count": 5
+}

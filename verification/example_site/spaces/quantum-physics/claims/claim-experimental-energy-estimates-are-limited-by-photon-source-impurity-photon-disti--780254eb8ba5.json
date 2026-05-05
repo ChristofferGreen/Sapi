@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:22:43Z",
+  "claim_id": "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5",
+  "evidence_excerpts": [
+    "The systematic-error section reports a constant reproducible shift of 50 kJ mol^-1 in measured expectation values relative to theoretical energy, attributed to source, circuit, calibration, and coupling effects.",
+    "The paper notes that error magnitude increases with R because the first and second excited states become degenerate, making classical minimization harder and increasing estimation variance."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Noise shifts measured energies",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "text": "Experimental energy estimates are limited by photon-source impurity, photon distinguishability, circuit imperfections, coupling imbalance, and increasing degeneracy-related difficulty at larger bond separations."
+}

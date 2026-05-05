@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Self-truthmaking supplies a case against irreflexivity.",
+  "relation_file_id": "rel-d320fa93571942b877ed906822139f1808dca9a7281b397a8db9751a399943be",
+  "relation_id": "supports:claim-truthmaking-is-non-irreflexive-because-a-proposition-of-the-form-e-exists-is-mad--d4aca38737b4->claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+  "relation_type": "supports",
+  "src_claim_id": "claim-truthmaking-is-non-irreflexive-because-a-proposition-of-the-form-e-exists-is-mad--d4aca38737b4",
+  "src_claim_ref": "5",
+  "status": "open"
+}

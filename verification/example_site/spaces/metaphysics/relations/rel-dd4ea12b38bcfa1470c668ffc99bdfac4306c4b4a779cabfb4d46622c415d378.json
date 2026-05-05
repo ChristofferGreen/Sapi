@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The full generic essence definition is one half of the source\u2019s unified identity-based account.",
+  "relation_file_id": "rel-dd4ea12b38bcfa1470c668ffc99bdfac4306c4b4a779cabfb4d46622c415d378",
+  "relation_id": "derived_from:claim-full-generic-essence-is-captured-by-generalized-identity-being-f-is-what-it-is-t--96f5798ed301->claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-full-generic-essence-is-captured-by-generalized-identity-being-f-is-what-it-is-t--96f5798ed301",
+  "src_claim_ref": "2",
+  "status": "open"
+}

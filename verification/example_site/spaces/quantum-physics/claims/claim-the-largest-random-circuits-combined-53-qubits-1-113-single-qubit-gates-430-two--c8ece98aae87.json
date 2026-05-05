@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:59:28Z",
+  "claim_id": "claim-the-largest-random-circuits-combined-53-qubits-1-113-single-qubit-gates-430-two--c8ece98aae87",
+  "evidence_excerpts": [
+    "Our largest random quantum circuits have 53 qubits, 1,113 single-qubit gates, 430 two-qubit gates, and a measurement on each qubit, for which we predict a total fidelity of 0.2%."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Large circuits remain measurable",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "text": "The largest random circuits combined 53 qubits, 1,113 single-qubit gates, 430 two-qubit gates, and one measurement per qubit, for which the authors predicted a total fidelity of 0.2%."
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3",
+  "dst_claim_ref": "2",
+  "last_evaluated_run_id": null,
+  "rationale": "The three-dimensional taxonomy elaborates the survey's three design problems into classifiable method dimensions.",
+  "relation_file_id": "rel-44f0411fc9da42004ef185d95d7054c17553c1df15f7551082011bc5ee0143f0",
+  "relation_id": "derived_from:claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499->claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499",
+  "src_claim_ref": "4",
+  "status": "open"
+}

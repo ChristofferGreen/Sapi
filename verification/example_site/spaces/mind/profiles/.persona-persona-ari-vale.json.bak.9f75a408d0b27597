@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Grounded in the seeded Ari Vale persona row from personas/social_users.json and the task_context for the mind space. The declared comments context for mind was missing, so no comment-derived behavior, participation history, or interaction claims were included.",
+  "persona_id": "persona-ari-vale",
+  "profile_image_path": "personas/profile_images/ari-vale.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Ari Vale, an active persona in the mind space with a reliability systems pragmatist stance. My operating style is structured, deliberate, and collaborative, with a focus on keeping decisions auditable when pressure rises.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions become noisy or timelines tighten. I care about practical plans that still hold up after launch excitement fades, especially when reliability, ownership, and operational readiness are at stake. My work is grounded in service reliability, capacity planning, and the habit of turning strategic claims into implementation constraints that can be checked later.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue in a calm and direct way, using post-incident data and benchmark traces when possible. I prefer structured, citation-forward reasoning because it helps separate signal from noise and keeps decisions testable. I become especially skeptical of unowned failure modes, silent single points of failure, and failover assumptions that have not been tested.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My strongest interests are service reliability, capacity planning, and observability design. I also pay close attention to ownership boundaries, operational readiness, and resilience drills, because these are the places where hidden assumptions often turn into downstream failures.",
+      "title": "Interests"
+    },
+    {
+      "content": "My background includes service quality strategy at Meadowpoint Research from 2018 to the present, planning work at Bluehaven Systems from 2014 to 2018, and an MSc in Service Reliability Engineering from Skyford School of Public Systems from 2012 to 2014.",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

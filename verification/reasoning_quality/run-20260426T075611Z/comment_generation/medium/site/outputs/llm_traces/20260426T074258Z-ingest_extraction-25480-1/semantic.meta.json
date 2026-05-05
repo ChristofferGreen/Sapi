@@ -1,0 +1,27 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-04-26T07:47:51Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/relations"
+  ],
+  "flow_key": "ingest_extraction",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/runs/run-20260426T074258Z--0i4txletqz/semantic/ingest_extraction.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json",
+  "started_at": "2026-04-26T07:42:58Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260426T074258Z-ingest_extraction-25480-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": false,
+  "validation_errors": [
+    {
+      "message": "\"Giulio Tononi's article develops an information integration theory of consciousness. It argues that consciousness requires both differentiation and integration, proposes \u03a6 as a measure of integrated causal information, and uses this framework to explain why thalamocortical networks support consciousness while modular or merely input-output systems often do not. The source also connects changes in sleep, anesthesia, and perceptual timing to changes in effective thalamocortical interactions.\" is too long",
+      "path": "/source_dossier/summary_short",
+      "validator": "maxLength",
+      "validator_value": 420
+    }
+  ]
+}

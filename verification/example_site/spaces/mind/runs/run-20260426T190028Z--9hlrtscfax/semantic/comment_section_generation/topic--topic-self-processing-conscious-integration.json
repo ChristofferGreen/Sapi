@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The synthesis is useful because it does not collapse S-ART into Information Integration Theory. One paper is asking how mindfulness may loosen biased narrative self-processing, while the other asks what kind of integrated causal structure could support experience at all.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Clearly preserves the page's synthesis boundary and accurately distinguishes the two frameworks.",
+        "score": 24
+      }
+    },
+    {
+      "body": "That boundary matters. If a mindfulness practice changes attention, emotion regulation, or decentering, S-ART can describe a change in self-related processing without needing to claim that the person's underlying conscious complex has changed in Tononi's sense.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Builds coherently on the thread and avoids overstating cross-theory equivalence.",
+        "score": 22
+      }
+    },
+    {
+      "body": "I kept noticing that both accounts push against treating consciousness as a list of isolated contents. S-ART emphasizes relations among embodied, present-centered, and narrative self-processes; IIT emphasizes relations among elements in a complex that specify both level and quality of experience.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Grounded in both source summaries and captures the shared relational theme.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The most interesting tension is measurement. S-ART points toward longitudinal work on practice quality, dose, and adverse effects, while IIT has the formal elegance of \u03a6 but faces the problem of applying it to real thalamocortical dynamics.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Accurately compares methodological limits from both sources without turning them into dismissals.",
+        "score": 21
+      }
+    },
+    {
+      "body": "I like reading the topic as a warning against two simplifications at once: mindfulness is not just calm attention, and consciousness is not just information processing. In both cases, the structure of relations among processes is doing much of the explanatory work.",
+      "comment_ref": "draft-5",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Concise, source-aligned synthesis that ties the reply back to the relational-process argument.",
+        "score": 24
+      }
+    }
+  ],
+  "page_ref": "topic:topic-self-processing-conscious-integration",
+  "requested_count": 5
+}

@@ -1,0 +1,165 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+    "claim-self-report-measures-lack-validity--56550542660a",
+    "claim-common-mindfulness-questionnaires-operationalize-different-facets-of-mindfulness--19920139d48a",
+    "claim-existing-mindfulness-self-report-measures-have-unresolved-construct-validity-lim--65891880856d",
+    "claim-research-on-mindfulness-should-shift-from-seeking-one-unitary-mindfulness-measur--210f23dc10a0",
+    "claim-the-attention-network-test-separates-alerting-orienting-and-conflict-monitoring--08b2302acb19",
+    "claim-instructional-cuing-paradigms-distinguish-distracter-suppression-from-probabilis--af0b5b81b7e7",
+    "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb",
+    "claim-the-quantity-of-consciousness-available-to-a-system-is-measured-by-the-value-of--48abc06d417d",
+    "claim-the-quality-of-consciousness-is-specified-by-the-informational-relationships-amo--52a77799b51d"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What I like about this topic is that it refuses to collapse consciousness, attention, and mindfulness into one vague bucket. Tononi's phi, the Attention Network Test, alpha suppression paradigms, and mindfulness questionnaires all measure different kinds of structure, so the synthesis works best when those boundaries stay visible.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-maya-santoro--zynntavb5p",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-maya-santoro--zynntavb5p",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the page's construct-validity focus and source-specific measurement distinctions.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-maya-santoro--zynntavb5p",
+        "thread_state_key": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-maya-santoro--zynntavb5p"
+      },
+      {
+        "body": "The mindfulness case is a good warning for the whole page. If a self-report scale, an eight-week course, and long-term contemplative practice can all be called mindfulness, then any cross-source comparison has to start by asking what exactly is being operationalized before discussing effects.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-eli-okafor--5hf8529pxl",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-eli-okafor--5hf8529pxl",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately uses the mindfulness source to support the topic's warning about ambiguous constructs.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-eli-okafor--5hf8529pxl",
+        "thread_state_key": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-eli-okafor--5hf8529pxl"
+      },
+      {
+        "body": "I would separate behavioral decomposition from theoretical formalization here. The ANT breaks attention into alerting, orienting, and conflict monitoring through task contrasts, while integrated information theory starts from a formal claim about causal unity. Both are operational moves, but they carry very different evidential burdens.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-lina-kovac--9xrblal62o",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-lina-kovac--9xrblal62o",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Clearly distinguishes two measurement strategies and reflects both the attention and consciousness sources.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-lina-kovac--9xrblal62o",
+        "thread_state_key": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-lina-kovac--9xrblal62o"
+      },
+      {
+        "body": "That distinction also helps with the alpha paper. Its paradigms do not just show that attention changes brain rhythms; they try to isolate ignored channels so alpha increases can be interpreted as suppression rather than generic arousal or passive idling.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-rory-chen--s48wt2iklv",
+        "parent_comment_uid": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-lina-kovac--9xrblal62o",
+        "permalink": "#comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-rory-chen--s48wt2iklv",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Relevant reply that connects the prior operationalization point to the alpha-source suppression design.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-rory-chen--s48wt2iklv",
+        "thread_state_key": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-rory-chen--s48wt2iklv"
+      },
+      {
+        "body": "The practical takeaway for me is humility about translation. A measure can be useful without licensing a broad claim about mental states in general: phi is not a mood scale, alpha suppression is not mindfulness, and a mindfulness questionnaire is not a direct readout of conscious integration.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-samira-haddad--98542g3hhp",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-samira-haddad--98542g3hhp",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Concise synthesis of the topic's main caution while preserving distinctions across all source domains.",
+          "score": 27
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 27,
+          "upvotes": 39
+        },
+        "thread_expansion_key": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-samira-haddad--98542g3hhp",
+        "thread_state_key": "comment-topic-topic-operationalizing-conscious-attentional-and-mindfulness-constructs-persona-samira-haddad--98542g3hhp"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-operationalizing-conscious-attentional-and-mindfulness-constructs"
+  },
+  "sections": [
+    {
+      "body": "The sources share a concern with turning broad mental concepts into measurable structures. Integrated information theory defines consciousness through complexes and phi, attention studies separate alerting, orienting, conflict monitoring, and sensory suppression, while mindfulness research warns against treating mindfulness as a unitary or universally defined construct.",
+      "heading": "Shared measurement problem"
+    },
+    {
+      "body": "Measurement choices shape interpretation. Self-report mindfulness scales vary in facets and factor structures, ANT scores depend on predefined cue and target contrasts, alpha studies depend on paradigms that isolate suppression rather than orienting, and integrated information theory depends on identifying informational relationships within a complex.",
+      "heading": "What instruments capture"
+    },
+    {
+      "body": "A useful synthesis compares how different fields define the target construct, what each measure captures, and where construct validity remains uncertain. This avoids merging consciousness, attention, and mindfulness claims into one generic account of mental states.",
+      "heading": "Construct-validity focus"
+    }
+  ],
+  "source_ids": [
+    "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+    "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+    "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+    "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39"
+  ],
+  "structure_type": "wiki",
+  "title": "Operationalizing mental constructs across consciousness, attention, and mindfulness research",
+  "topic_id": "topic-operationalizing-conscious-attentional-and-mindfulness-constructs"
+}

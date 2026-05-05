@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-quality-of-consciousness-is-specified-by-the-informational-relationships-amo--52a77799b51d",
+    "claim-each-particular-conscious-experience-is-specified-by-the-current-activity-values--ef679659733b"
+  ],
+  "evidence_id": "evidence-qualia-space-matrix--5e83ef7a2116",
+  "evidence_type": "formal_argument",
+  "excerpt": "The values of effective information among the elements of a complex, by defining the relationships among these dimensions, specify the structure of this space. The effective information matrix defines the set of informational relationships, or \u201cqualia space\u201d for each complex. The effective information matrix is different for the two complexes, even though \u03a6 is the same.",
+  "overview": "This is the main evidence for the theory\u2019s distinction between quantity and quality. Two systems can have the same amount of integrated information while differing in the pattern of effective-information relations among their elements. The theory therefore treats conscious content as structure in a relational space, not as a scalar level alone.",
+  "page_refs": [
+    "Fig.2",
+    "pp.7-8"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Qualia Space Matrix"
+}

@@ -1,0 +1,159 @@
+{
+  "claim_ids": [
+    "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+    "claim-highly-entangled-quantum-dynamics-is-the-most-natural-arena-for-meaningful-quant--3b6f2f5ba268",
+    "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+    "claim-quantum-computers-are-not-expected-to-efficiently-solve-hard-np-hard-combinatori--0d5f718c4d47",
+    "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+    "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This page gets the balance right: NISQ machines can be scientifically valuable without being broadly useful computers yet. Preskill's framing and the Sycamore benchmark both point to noisy devices as ways to probe classically hard quantum behavior, not as proof that near-term hardware is ready for general applications.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-maya-santoro--fztfl1x3xx",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-maya-santoro--fztfl1x3xx",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately synthesizes both sources and avoids overstating near-term utility.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-maya-santoro--fztfl1x3xx",
+        "thread_state_key": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-maya-santoro--fztfl1x3xx"
+      },
+      {
+        "body": "The application discussion should stay especially careful around optimization. QAOA and VQE are good experimental testbeds, but beating mature classical optimization or chemistry workflows is a much stronger claim than producing interesting behavior on a shallow noisy circuit.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-eli-okafor--jwahvi0zws",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-eli-okafor--jwahvi0zws",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Grounded in the Preskill source's caution about benchmark standards and hybrid algorithms.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-eli-okafor--jwahvi0zws",
+        "thread_state_key": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-eli-okafor--jwahvi0zws"
+      },
+      {
+        "body": "That caution also matters because the Sycamore result is deliberately task-specific. Random circuit sampling can be a real milestone in controllability and classical hardness while still saying very little about whether the same hardware can solve useful optimization instances.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-lina-kovac--oq820mep53",
+        "parent_comment_uid": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-eli-okafor--jwahvi0zws",
+        "permalink": "#comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-lina-kovac--oq820mep53",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Builds coherently on the parent and ties the optimization caveat to the Sycamore benchmark limits.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-lina-kovac--oq820mep53",
+        "thread_state_key": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-lina-kovac--oq820mep53"
+      },
+      {
+        "body": "The strongest near-term case still seems to be quantum simulation, especially highly entangled many-body dynamics. That is where the sources make a more structural argument: classical methods struggle for principled reasons, so even noisy experiments may teach us something before fault tolerance arrives.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-rory-chen--xzx7ns222q",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-rory-chen--xzx7ns222q",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Highlights the best-supported near-term value claim with clear source alignment.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-rory-chen--xzx7ns222q",
+        "thread_state_key": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-rory-chen--xzx7ns222q"
+      },
+      {
+        "body": "I appreciate that the page keeps the fault-tolerant horizon separate from the NISQ story. Error correction, logical qubits, and large physical-qubit overhead are not minor implementation details; they are the reason factoring-scale promises belong in a different time frame from today's noisy demonstrations.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-samira-haddad--j00oiq89mr",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-samira-haddad--j00oiq89mr",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Clearly reflects both sources' distinction between noisy demonstrations and fault-tolerant applications.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-samira-haddad--j00oiq89mr",
+        "thread_state_key": "comment-topic-topic-near-term-value-versus-fault-tolerant-promise-persona-samira-haddad--j00oiq89mr"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-near-term-value-versus-fault-tolerant-promise"
+  },
+  "sections": [
+    {
+      "body": "Preskill characterizes NISQ devices as experimental tools for exploring many-body quantum physics and as stepping stones toward more powerful quantum technologies. This aligns with the Sycamore result as a demonstration of classically hard behavior in a specific sampling task rather than a claim that noisy processors are already broadly useful machines.",
+      "heading": "Near-term scientific role"
+    },
+    {
+      "body": "Highly entangled quantum dynamics is presented as the most natural arena for meaningful quantum advantage, and hybrid QAOA or VQE approaches remain plausible NISQ-era testbeds. At the same time, the evidence does not support expecting near-term quantum computers to efficiently solve hard NP-hard optimization instances, and the random-circuit speedup does not by itself establish general application value.",
+      "heading": "Plausible and uncertain applications"
+    },
+    {
+      "body": "Both sources separate near-term noisy demonstrations from the longer-term goal of scalable fault-tolerant quantum computing. Preskill emphasizes the heavy physical-qubit overhead of quantum error correction, while the Sycamore source notes that applications such as Shor-style factoring still require fault-tolerant logical qubits.",
+      "heading": "Fault-tolerant horizon"
+    }
+  ],
+  "source_ids": [
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+    "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+  ],
+  "structure_type": "wiki",
+  "title": "Near-Term Quantum Value Versus Fault-Tolerant Promise",
+  "topic_id": "topic-near-term-value-versus-fault-tolerant-promise"
+}

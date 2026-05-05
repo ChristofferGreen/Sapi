@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-profile-based-classic-optimizations-are-intended-to-complement-conventional-opti--6bcefbcf9607",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Both claims frame profile-based optimization as an addition to, rather than a replacement for, conventional optimization.",
+  "relation_file_id": "rel-b92b13361722074e4c62b8a70db5da145a188c4637c50e8a5f99ff530615b0af",
+  "relation_id": "similar:claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e|claim-profile-based-classic-optimizations-are-intended-to-complement-conventional-opti--6bcefbcf9607",
+  "relation_type": "similar",
+  "src_claim_id": "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+  "src_claim_ref": "10",
+  "status": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:22:07Z",
+  "claim_id": "claim-partial-generic-essence-is-captured-by-conjunctive-partial-generalized-identity--13ec1cd27c1f",
+  "evidence_excerpts": [
+    "PARTIAL-GENERIC-ESSENCE Being F is partially what it is to be G iff: there is some H such that for a thing to be G is for it to be both F and H (in symbols: Gx \u00bax Fx \u00d9 Hx)."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Partial essence is conjunctive",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "text": "Partial generic essence is captured by conjunctive partial generalized identity: being F is partially what it is to be G exactly when being G is being both F and some H."
+}

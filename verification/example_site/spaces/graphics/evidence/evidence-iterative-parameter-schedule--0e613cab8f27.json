@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-repeated-reclustering-with-decreasing-similarity-thresholds-creates-bottom-up-bu--0f90a7b7b684",
+    "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963"
+  ],
+  "evidence_id": "evidence-iterative-parameter-schedule--0e613cab8f27",
+  "evidence_type": "model_constraint",
+  "excerpt": "The iterative algorithm begins with a high similarity threshold to obtain thin coherent clusters, then decreases delta and reclusters every three to five iterations so that already bundled edges form fewer, larger, locally elongated clusters. The authors also state that alpha decreases from 0.9 to 0.2 and that I=15 is used in practice.",
+  "overview": "This evidence establishes why SBEB is progressive: it first creates local bundles and then lets those bundles merge into coarser structures. The parameter schedule gives practical defaults, but it also shows that results are controlled by heuristic choices rather than by a single optimality theorem.",
+  "page_refs": [
+    "Sec. 2.5",
+    "Sec. 3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "title": "Progressive Reclustering Schedule"
+}

@@ -1,0 +1,108 @@
+=== semantic invocation ===
+flow_key: topic_generation
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/runs/run-20260426T110455Z--i0ytd7tpj8/semantic/topic_generation.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/claims
+
+=== generation spec ===
+flow_key: topic_generation
+version: v1
+schema_path: schemas/topic_generation.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/topic_generation.json
+context_paths:
+  - <space_root>/sources
+  - <space_root>/claims
+---
+## Task
+Generate one strict JSON object for topic generation at `output_json_path`.
+Return a `topics` array containing 0..n concept-centric topic candidates.
+
+## Context Interpretation Rules
+- Use only evidence available under `context_paths`.
+- If support is weak/ambiguous, reflect that in section content rather than inventing facts.
+- Do not invent canonical IDs outside schema contracts.
+- Prefer topics that synthesize shared concepts across multiple sources.
+- If there is no clear cross-source concept worth a page, return an empty array (`"topics": []`).
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "topics": [
+    {
+      "topic_id": "",
+      "title": "",
+      "structure_type": "wiki",
+      "sections": [],
+      "claim_ids": [],
+      "source_ids": []
+    }
+  ]
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources"
+}
+
+=== repair context ===
+{
+  "previous_invalid_json": "{\n  \"topics\": [\n    {\n      \"claim_ids\": [\n        \"claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb\",\n        \"claim-a-complex-is-an-integrated-subset-with-greater-than-zero-that-is-not-contained-i--70401a6fb458\",\n        \"claim-a-distributed-thalamocortical-network-is-well-suited-to-generate-consciousness-b--571db463385d\",\n        \"claim-strongly-modular-neural-architectures-can-be-computationally-sophisticated-yet-c--212c143093c3\",\n        \"claim-anatomical-or-functional-disconnection-within-thalamocortical-systems-can-reduce--89adceb072c5\",\n        \"claim-mindfulness-training-can-improve-attention-related-behavior-by-changing-specific--f9e8e6ee54d7\",\n        \"claim-an-8-week-mindfulness-based-stress-reduction-course-improves-endogenous-orientin--f7bde69b7431\",\n        \"claim-a-1-month-intensive-mindfulness-retreat-among-previously-experienced-meditators--cd2a814c579a\",\n        \"claim-participants-with-prior-concentrative-meditation-experience-show-reduced-conflic--7b44607a9505\",\n        \"claim-post-training-conflict-monitoring-differences-are-not-detected-among-the-mbsr-re--62de62c3ee08\",\n        \"claim-the-attention-network-test-separates-alerting-orienting-and-conflict-monitoring--08b2302acb19\",\n        \"claim-within-the-retreat-group-greater-prior-meditation-experience-predicts-a-smaller--3ca73021a60e\",\n        \"claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7\"\n      ],\n      \"sections\": [\n        \"Frame the topic as a cautious bridge between two levels of analysis: Tononi treats consciousness as differentiated-yet-unified information integration, while Jha, Krompinger, and Baime treat attention as separable alerting, orienting, and conflict-monitoring subsystems rather than one global attention capacity.\",\n        \"Summarize the information-integration basis: consciousness is proposed to depend on complexes that integrate information, and thalamocortical organization is emphasized because it combines functional specialization with functional integration.\",\n        \"Summarize the attentional-subsystem basis: the Attention Network Test separates alerting, orienting, and conflict monitoring, and mindfulness training history is associated with different changes across these subsystems.\",\n        \"Develop the synthesis around subsystem organization: both sources support analyzing mind in terms of specialized components and their coordination, while resisting a single undifferentiated measure of mental function.\",\n        \"State the evidential boundary clearly: the mindfulness study reports preliminary behavioral attention effects and does not show that mindfulness training changes integrated information, \\u03a6, complexes, or consciousness itself.\"\n      ],\n      \"source_ids\": [\n        \"source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39\",\n        \"source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Differentiated and Integrated Mental Functions\"\n    }\n  ]\n}",
+  "require_complete_replacement_json": true,
+  "validation_errors": [
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/3",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/4",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/0/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Normalization error: topic_generation semantic output requires at least one section with non-empty body.",
+      "path": "/topics",
+      "validator": "post_schema_contract",
+      "validator_value": "topic_generation_normalizer"
+    }
+  ]
+}

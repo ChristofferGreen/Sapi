@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:44:00Z",
+  "claim_id": "claim-a-regular-grid-of-environment-tiles-can-support-both-collision-behavior-and-shad--202b441327e8",
+  "evidence_excerpts": [
+    "To control the virtual humans\u2019 motion, we subdivided the floor of the environment into regular-sized tiles.",
+    "Several types of information can be stored, but presently, we only use this information for collision detection and shadowing."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Grid tiles guide motion",
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "text": "A regular grid of environment tiles can support both collision behavior and shadowing decisions for moving virtual humans."
+}

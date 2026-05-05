@@ -1,0 +1,19 @@
+{
+  "context_by_path": {
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/relations": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/relations",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/artifacts": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/records"
+  },
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/relations"
+  ],
+  "flow_key": "ingest_extraction",
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/runs/run-20260426T150412Z--adf48yqh3d/semantic/ingest_extraction.json",
+  "repair_context": null,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json",
+  "version": "v1"
+}

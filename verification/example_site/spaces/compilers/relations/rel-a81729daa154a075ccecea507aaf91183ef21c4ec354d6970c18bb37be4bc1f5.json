@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+  "dst_claim_ref": "3",
+  "last_evaluated_run_id": null,
+  "rationale": "Feature reduction improves the feasibility of supervised mapping from program descriptions to decisions.",
+  "relation_file_id": "rel-a81729daa154a075ccecea507aaf91183ef21c4ec354d6970c18bb37be4bc1f5",
+  "relation_id": "supports:claim-feature-selection-and-dimension-reduction-are-necessary-in-compiler-learning-pro--ecd12a4a4f1f->claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+  "relation_type": "supports",
+  "src_claim_id": "claim-feature-selection-and-dimension-reduction-are-necessary-in-compiler-learning-pro--ecd12a4a4f1f",
+  "src_claim_ref": "5",
+  "status": "open"
+}

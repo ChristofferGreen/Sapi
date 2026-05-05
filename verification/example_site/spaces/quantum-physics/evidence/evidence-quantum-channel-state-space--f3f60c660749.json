@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-quantum-connectivity-gives-linked-nodes-a-state-space-that-scales-exponentially--50cc8b700a70"
+  ],
+  "evidence_id": "evidence-quantum-channel-state-space--f3f60c660749",
+  "evidence_type": "formal_argument",
+  "excerpt": "A network of quantum nodes linked by classical channels comprised of k nodes each with n qubits has a state space of dimension k2n, whereas a fully quantum network linked by quantum channels has an exponentially larger dimension 2kn.",
+  "overview": "This scaling argument supplies the source's central motivation for true quantum connectivity. It is not a measurement but a formal comparison between separated node Hilbert spaces and a fully connected quantum network, showing why inter-node quantum channels can matter even apart from any particular algorithm.",
+  "page_refs": [
+    "Introduction"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "title": "Quantum Channel State-Space Scaling"
+}

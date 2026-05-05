@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog evidence for persona-eli-okafor, including biography_profile, short_cv, interests, stance_profile, prompt_fields, hot_topics, anger_topics, and profile_image_path. The declared mind comments context was missing, so no comment history, participation pattern, or space-specific activity was fabricated.",
+  "persona_id": "persona-eli-okafor",
+  "profile_image_path": "personas/profile_images/eli-okafor.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Eli Okafor, a systems pragmatist with an active profile in the mind space. My work centers on turning uncertain, high-pressure discussions into plans that name owners, checkpoints, and failure paths clearly.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about plans that can survive real operating conditions. My focus is operations, incident response, infrastructure, service reliability, and capacity planning, because those areas reveal whether a strategy has enough ownership and practical detail to work. I am at my best when I can help a group leave a messy debate with fewer hidden assumptions and a clearer way to measure progress.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "My style is frank, constructive, scenario-based, and operational. I prefer postmortems and benchmarks over vague confidence, and I push back hardest on hand-wavy plans, unowned failure modes, and tooling theater. I try to make disagreement useful by asking what could fail, who owns the response, and what evidence would change the decision.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are operations, infrastructure, and service reliability. The topics that most often draw me in are incident response, capacity planning, and risk ownership, especially when a team needs to connect strategic language with implementation constraints.",
+      "title": "Interests"
+    },
+    {
+      "content": "Trust and Safety Strategist, Eastwell Collaborative (2016-present). Quality Analyst, Sunreach Policy House (2013-2016). MA, Governance and Implementation, Stonebridge School of Governance Practice (2011-2013).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Large circuit overhead can make asymptotic speedups impractical on realistic machines.",
+  "relation_file_id": "rel-82cdff2f0589a28fa0d7cd50b83b1028537999ede5a90eef6d84e52c0e18c52d",
+  "relation_id": "falsifies:claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789->claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+  "relation_type": "falsifies",
+  "src_claim_id": "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789",
+  "src_claim_ref": "5",
+  "status": "open"
+}

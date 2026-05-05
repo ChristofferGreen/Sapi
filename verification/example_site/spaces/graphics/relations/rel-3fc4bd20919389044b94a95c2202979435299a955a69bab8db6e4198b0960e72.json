@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "Because bundling loses individual-edge detail, controls for smoothing and relaxation are important for practical interpretation.",
+  "relation_file_id": "rel-3fc4bd20919389044b94a95c2202979435299a955a69bab8db6e4198b0960e72",
+  "relation_id": "supports:claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5->claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963",
+  "relation_type": "supports",
+  "src_claim_id": "claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5",
+  "src_claim_ref": "7",
+  "status": "open"
+}

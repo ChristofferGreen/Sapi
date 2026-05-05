@@ -1,0 +1,8 @@
+[
+  {
+    "message": "'This source presents the quantum internet as a network architecture built from quantum nodes, quantum channels, and reversible light-matter interfaces. It argues that genuine quantum connectivity provides scaling advantages over classically linked quantum devices and reviews two main physical routes: cavity QED with single atoms and atomic ensembles using DLCZ/EIT protocols. The piece is also cautious: memories, repeaters, local processing, error-corrected teleportation, and scalable verification remain major unsolved requirements.' is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

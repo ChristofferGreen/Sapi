@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-ilp-based-data-scratchpad-allocation-lowers-wcet-by-moving-frequently-accessed-v--8ceca90523fc"
+  ],
+  "evidence_id": "evidence-data-spm-results--0f48d6aa271e",
+  "evidence_type": "figure_result",
+  "excerpt": "For petrinet, an 8-byte data SPM yields 82.5% of original WCET, 32 bytes yields 71.4%, and fitting all global data yields 69.7%. For fsm, 8 bytes yields 93.5% and 256 bytes or larger yields 78.6%. With the real TriCore 40 kB SPM, average WCET reaches 79.8% of original WCET.",
+  "overview": "The data scratchpad evidence shows that WCET improvements come from selecting high-value variables, not from changing instruction sequences. It also marks the architecture-specific scope: the reported gains rely on TriCore memory characteristics and on benchmarks with static or global data.",
+  "page_refs": [
+    "Fig. 12",
+    "Fig. 13",
+    "pp.290-292"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "title": "Data SPM Results"
+}

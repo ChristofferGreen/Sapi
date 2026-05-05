@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T14:49:12Z",
+  "claim_id": "claim-self-report-measures-lack-validity--56550542660a",
+  "evidence_excerpts": [
+    "Table 1 lists multiple mindfulness measures with different theoretical contexts and factor structures, including FMI, MAAS, KIMS, FFMQ, TMS, CAMS-R, PHLMS, SMQ, and SMS.",
+    "Several of these scales exhibit different factor structures and response properties between meditators and nonmeditators, as well as before and after mindfulness training."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Self reports lack validity",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "text": "Self-report mindfulness questionnaires often have weak construct validity because scale meanings, factor structures, item interpretation, social desirability, and introspective limitations vary across participants and practice histories."
+}

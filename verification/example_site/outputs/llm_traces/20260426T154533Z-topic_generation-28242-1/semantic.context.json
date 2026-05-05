@@ -1,0 +1,122 @@
+{
+  "context_by_path": {
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources"
+  },
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims"
+  ],
+  "flow_key": "topic_generation",
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/runs/run-20260426T153814Z--0hanve31d5/semantic/topic_generation.json",
+  "repair_context": {
+    "previous_invalid_json": "{\n  \"topics\": [\n    {\n      \"claim_ids\": [\n        \"claim-episodic-recollection-can-preserve-temporally-and-spatially-situated-autobiograp--43867278649d\",\n        \"claim-the-memory-based-sense-of-personal-identity-depends-on-at-least-two-separable-co--f9eaee4ce165\",\n        \"claim-the-sense-of-numerical-personal-identity-is-a-contingent-feature-of-episodic-mem--b672a3618f23\",\n        \"claim-r-b-retained-factual-self-knowledge-trait-self-knowledge-voluntary-scene-recall--fc36edde2153\",\n        \"claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-the-conjunction-of--dbb969101dbd\",\n        \"claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869\",\n        \"claim-necessary-entailment-or-equivalence-is-not-sufficient-for-essence-because-genera--162946956228\",\n        \"claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9\"\n      ],\n      \"sections\": [\n        \"R.B.'s case supports a page on how apparently necessary links between episodic recollection and numerical personal identity can turn out to be contingent: autobiographical event content, trait self-knowledge, and voluntary recall can persist while the felt mineness normally taken to certify identity is absent.\",\n        \"This can be set against grounding-and-essence accounts that distinguish genuine essence from mere modal entailment. The grounding sources argue that full grounding requires metaphysical necessitation through essence, while generalized identity distinguishes essential structure from necessary coextension.\",\n        \"A synthesis page should treat the connection carefully: the memory source is not offering a formal grounding theory, but it supplies evidence that some identity-involving appearances depend on separable cognitive mechanisms rather than on essence-like necessity.\"\n      ],\n      \"source_ids\": [\n        \"source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4\",\n        \"source-01-grounding-necessary-or-contingent--6e8195a096f0\",\n        \"source-03-grounding-essence-and-identity--e857615fb05e\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Contingent Selfhood and Essential Explanation\",\n      \"topic_id\": \"topic-contingent-selfhood-and-essential-explanation\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-the-evidential-force-of-memory-for-personal-identity-depends-on-the-contingent-c--ef23d993b2fe\",\n        \"claim-the-memory-based-sense-of-personal-identity-depends-on-at-least-two-separable-co--f9eaee4ce165\",\n        \"claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c\",\n        \"claim-perceived-emotional-synchrony-during-the-psychedelic-ceremony-mediates-later-cha--adcb9ca374b4\",\n        \"claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c\",\n        \"claim-in-a-randomized-controlled-depression-trial-psilocybin-therapy-produced-shifts-a--7cfb0c0f75e7\",\n        \"claim-shifts-away-from-hard-materialism-are-positively-associated-with-increases-in-ps--4bb5f88069f2\"\n      ],\n      \"sections\": [\n        \"The memory and psychedelic-belief sources jointly support a topic on how metaphysical commitments may be shaped by contingent psychological systems rather than by argument alone. In the memory case, ownership feelings affect the evidential force of memory for personal identity; in the psychedelic studies, ceremonies and psilocybin therapy are associated with shifts away from hard materialism.\",\n        \"The shared concept is mediation: R.B.'s dissociation suggests that the sense of diachronic identity depends on mechanisms supplying mineness, while the psychedelic source reports emotional synchrony and baseline peer conformity as predictors or mediators of later non-physicalist belief change.\",\n        \"The topic should not claim that these mechanisms refute the metaphysical views involved. The stronger supported point is epistemic: local evidence suggests that some intuitions or commitments about selfhood, physicalism, and identity are sensitive to cognitive and social conditions.\"\n      ],\n      \"source_ids\": [\n        \"source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4\",\n        \"source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Cognitive Mediators of Metaphysical Commitment\",\n      \"topic_id\": \"topic-cognitive-mediators-of-metaphysical-commitment\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-r-b-s-unowned-recollections-provide-an-existence-proof-for-apparent-memory-conte--6a14bce7e1a3\",\n        \"claim-quasi-memory-accounts-must-specify-which-form-of-self-representation-is-required--4b048f888bc8\",\n        \"claim-episodic-recollection-can-preserve-temporally-and-spatially-situated-autobiograp--43867278649d\",\n        \"claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b\",\n        \"claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf\",\n        \"claim-alethic-fact-grounding-is-non-irreflexive-because-if-proposition-b-is-true-and-s--0f3a01a46967\",\n        \"claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5\",\n        \"claim-grounding-does-not-entail-being-more-fundamental-than-so-appeals-to-relative-fun--0468a01c8a45\"\n      ],\n      \"sections\": [\n        \"R.B.'s unowned recollections create a natural bridge to debates about whether metaphysical relations must have strict-order structure. The memory source pressures simple views that episodic memory automatically grounds or guarantees personal identity, because apparent memory content can remain without felt ownership.\",\n        \"The grounding-order source similarly challenges structural assumptions about grounding by arguing that grounding is not transitive, irreflexive, or asymmetric, especially through truthmaking and alethic-fact grounding cases.\",\n        \"The cross-source synthesis is limited but useful: both sources warn against building metaphysical theory around an over-simple relational template. A page can compare identity-through-memory and ground-grounded relations as cases where intuitive direction, priority, or evidential force needs finer analysis.\"\n      ],\n      \"source_ids\": [\n        \"source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4\",\n        \"source-02-grounding-is-not-a-strict-order--7c76f525b4e3\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Memory, Identity, and Relational Grounding\",\n      \"topic_id\": \"topic-memory-identity-and-relational-grounding\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-trait-self-knowledge-can-remain-accurate-and-resilient-even-when-episodic-memory--e1d296edc23e\",\n        \"claim-r-b-retained-factual-self-knowledge-trait-self-knowledge-voluntary-scene-recall--fc36edde2153\",\n        \"claim-objectual-essence-can-be-accounted-for-through-generic-essence-so-a-feature-is-w--bd5daa95f779\",\n        \"claim-full-generic-essence-is-captured-by-generalized-identity-being-f-is-what-it-is-t--96f5798ed301\",\n        \"claim-partial-generic-essence-is-captured-by-conjunctive-partial-generalized-identity--13ec1cd27c1f\",\n        \"claim-generalized-identity-is-a-non-factive-no-difference-operator-that-can-apply-to-f--7cb985988184\",\n        \"claim-ground-theoretic-status-is-preserved-under-factual-identity-because-the-proposed--4aecebbdb4a2\"\n      ],\n      \"sections\": [\n        \"The memory source supplies a focused topic on the distinction between episodic ownership and other forms of self-knowledge: trait self-knowledge, factual self-knowledge, voluntary scene recall, and some future planning can remain in place even when past scenes no longer feel personally owned.\",\n        \"This can be synthesized with the generalized-identity source because both distinguish different roles that may be conflated under one broad identity vocabulary. The metaphysical source separates generic essence, objectual essence, factual identity, and ground-theoretic status; the memory source separates event content, mineness, trait knowledge, and diachronic identity feeling.\",\n        \"The conceptual overlap is structural rather than doctrinal. The page should not claim that generalized identity analyzes personal memory directly, but it can use the formal source as a contrast case for why identity claims often need decomposition into finer relations.\"\n      ],\n      \"source_ids\": [\n        \"source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4\",\n        \"source-03-grounding-essence-and-identity--e857615fb05e\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Self-Knowledge Without Episodic Ownership\",\n      \"topic_id\": \"topic-self-knowledge-without-episodic-ownership\"\n    }\n  ]\n}",
+    "require_complete_replacement_json": true,
+    "validation_errors": [
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/0/sections/0",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/0/sections/1",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/0/sections/2",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+        "path": "/topics/0/sections",
+        "validator": "section_body_contract",
+        "validator_value": "at_least_one_non_empty_body"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/1/sections/0",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/1/sections/1",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/1/sections/2",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+        "path": "/topics/1/sections",
+        "validator": "section_body_contract",
+        "validator_value": "at_least_one_non_empty_body"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/2/sections/0",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/2/sections/1",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/2/sections/2",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+        "path": "/topics/2/sections",
+        "validator": "section_body_contract",
+        "validator_value": "at_least_one_non_empty_body"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/3/sections/0",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/3/sections/1",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/3/sections/2",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+        "path": "/topics/3/sections",
+        "validator": "section_body_contract",
+        "validator_value": "at_least_one_non_empty_body"
+      },
+      {
+        "message": "Normalization error: topic_generation semantic output requires at least one section with non-empty body.",
+        "path": "/topics",
+        "validator": "post_schema_contract",
+        "validator_value": "topic_generation_normalizer"
+      }
+    ]
+  },
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json",
+  "version": "v1"
+}

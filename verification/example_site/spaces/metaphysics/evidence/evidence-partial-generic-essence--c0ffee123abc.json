@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-partial-generic-essence-is-captured-by-conjunctive-partial-generalized-identity--13ec1cd27c1f"
+  ],
+  "evidence_id": "evidence-partial-generic-essence--c0ffee123abc",
+  "evidence_type": "equation",
+  "excerpt": "PARTIAL-GENERIC-ESSENCE Being F is partially what it is to be G iff: there is some H such that for a thing to be G is for it to be both F and H (in symbols: Gx \u00bax Fx \u00d9 Hx).",
+  "overview": "The formula specifies how partial essence differs from full essence. Partial essence is modeled by conjunctive parthood within generalized identity, giving the paper a structured way to say that one feature is only part of what another feature is.",
+  "page_refs": [
+    "p.11"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "title": "Partial Essence Formula"
+}

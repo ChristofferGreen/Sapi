@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:15:18Z",
+  "claim_id": "claim-grounding-does-not-entail-being-more-fundamental-than-so-appeals-to-relative-fun--0468a01c8a45",
+  "evidence_excerpts": [
+    "Bottomless or dense grounding chains are used to argue that x can ground y without x being closer to a fundamental entity than y."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Grounding need not imply fundamentality",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "text": "Grounding does not entail being more fundamental than, so appeals to relative fundamentality do not rule out reflexive or symmetric grounding."
+}

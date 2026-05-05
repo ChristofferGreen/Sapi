@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What stands out to me is how carefully the paper narrows the claim. Sycamore is not presented as a general-purpose quantum computer, but as a device that samples from random circuits in a regime where the authors argue equal-fidelity classical sampling becomes impractical.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately frames the benchmark claim and avoids overstating the result.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The verification strategy is the interesting weak point, not because it is careless, but because the hardest full circuits are exactly where direct classical checking stops being available. The use of patch, elided, and verification circuits makes the argument empirical and indirect.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Identifies a central methodological limitation while representing the paper fairly.",
+        "score": 25
+      }
+    },
+    {
+      "body": "I agree with that caveat, and I think it also explains why the component error data matters so much. If simultaneous gate and readout errors had behaved very differently at scale, the transfer from simpler circuits to the supremacy-regime estimate would be much harder to trust.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Builds on the parent comment with relevant hardware-error evidence.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The 200 seconds versus 10,000 years comparison is memorable, but it is easy to misread. It is a comparison for random circuit sampling at comparable fidelity, not a claim that Sycamore can now accelerate ordinary workloads or cryptographic factoring.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Clarifies the runtime comparison and distinguishes benchmark speedup from applications.",
+        "score": 23
+      }
+    },
+    {
+      "body": "For me the milestone is less about immediate usefulness and more about controllability. A 53-qubit noisy processor producing statistically meaningful samples from deep random circuits is still a serious engineering result, even if fault-tolerant algorithms remain far beyond this experiment.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Gives a balanced interpretation grounded in the source's stated limits.",
+        "score": 21
+      }
+    }
+  ],
+  "page_ref": "source:source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "requested_count": 5
+}

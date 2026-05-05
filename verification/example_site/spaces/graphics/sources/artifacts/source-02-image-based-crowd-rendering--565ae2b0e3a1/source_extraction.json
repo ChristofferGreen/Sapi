@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-02-image-based-crowd-rendering--565ae2b0e3a1/source.pdf",
+    "source_markdown": "sources/artifacts/source-02-image-based-crowd-rendering--565ae2b0e3a1/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "355d8c048e196c415dd083e9df0df4a299a4eb939f3d5ad8ad56739789e03cbd",
+  "markdown_char_count": 64988,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "60fd8389df6b0011f785a6f91d6881df503421991892e9a8c641b1dbd546a3fd",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

@@ -1,0 +1,329 @@
+{
+  "claims": [
+    {
+      "evidence_excerpts": [
+        "50 qubits is a significant milestone, because that\u2019s beyond what can be simulated by brute force using the most powerful existing digital supercomputers.",
+        "Noisy emphasizes that we\u2019ll have imperfect control over those qubits; the noise will place serious limitations on what quantum devices can achieve in the near term."
+      ],
+      "short_title": "Noise limits NISQ depth",
+      "text": "NISQ computers with roughly 50 to a few hundred qubits mark a classically hard simulation regime, but noisy gates place serious near-term limits on what they can compute."
+    },
+    {
+      "evidence_excerpts": [
+        "Physicists are excited about this NISQ technology, which gives us new tools for exploring the physics of many entangled particles.",
+        "NISQ is not likely to change the world all by itself. Instead, the primary goal for near-term quantum platforms should be to pave the way for bigger payoffs."
+      ],
+      "short_title": "NISQ enables quantum exploration",
+      "text": "NISQ devices are best understood as experimental tools for exploring many-body quantum physics and as stepping stones toward more powerful quantum technologies, not as near-term world-changing machines."
+    },
+    {
+      "evidence_excerpts": [
+        "With the best hardware we have now for controlling trapped ions or superconducting circuits, the error rate per gate for two-qubit gates is above the .1% level (and often much worse).",
+        "With these noisy devices we don\u2019t expect to be able to execute a circuit that contains many more than about 1000 gates."
+      ],
+      "short_title": "Gate errors cap circuits",
+      "text": "Current two-qubit gate and measurement error rates imply that uncorrected NISQ circuits cannot grow much beyond about one thousand fundamental two-qubit operations before noise overwhelms the signal."
+    },
+    {
+      "evidence_excerpts": [
+        "Quantum error correction imposes a heavy overhead cost in number of qubits and number of gates, scaling up using quantum error correction is a more distant goal.",
+        "To run algorithms involving thousands of protected qubits we\u2019ll need a number of physical qubits which is in the millions, or more."
+      ],
+      "short_title": "Error correction remains distant",
+      "text": "Scalable fault-tolerant quantum computing depends on quantum error correction, but the physical-qubit overhead makes that era a longer-term objective rather than a near-term NISQ capability."
+    },
+    {
+      "evidence_excerpts": [
+        "We have at least three good reasons for thinking that quantum computers have capabilities surpassing what classical computers can do.",
+        "The theoretical computer scientists have provided arguments, based on complexity theory, showing under reasonable assumptions that quantum states which are easy to prepare with a quantum computer have super-classical properties."
+      ],
+      "short_title": "Quantum advantage has grounds",
+      "text": "Quantum computers have credible grounds for super-classical power because of known quantum algorithms, complexity-theoretic sampling arguments, and the absence of efficient classical simulations of general quantum computation."
+    },
+    {
+      "evidence_excerpts": [
+        "We don\u2019t expect, for example, that a quantum computer will be able to solve efficiently the hard instances of NP-hard problems like the traveling salesman problem.",
+        "Quantum computers can speed up exhaustive search, but only modestly, so NP-hard problems are likely to be quantumly hard as well as classically hard."
+      ],
+      "short_title": "NP-hard problems remain hard",
+      "text": "Quantum computers are not expected to efficiently solve hard NP-hard combinatorial optimization instances, although they may provide modest search speedups or useful heuristic approximations."
+    },
+    {
+      "evidence_excerpts": [
+        "Will NISQ technology running QAOA or VQE be able to outperform classical algorithms that find approximate solutions to the same problems? Nobody knows.",
+        "The classical methods we use to solve these problems are well honed after decades of development."
+      ],
+      "short_title": "NISQ speedups remain uncertain",
+      "text": "Hybrid QAOA and VQE approaches are plausible NISQ-era testbeds, but their ability to outperform mature classical approximation methods remains unresolved."
+    },
+    {
+      "evidence_excerpts": [
+        "The simulation of highly entangled quantum matter is the natural arena where quantum computers seem to have a clear advantage over classical ones.",
+        "Valuable insights might already be gleaned using noisy devices with of order 100 qubits."
+      ],
+      "short_title": "Quantum dynamics is promising",
+      "text": "Highly entangled quantum dynamics is the most natural arena for meaningful quantum advantage, and noisy devices around one hundred qubits may already yield valuable physical insight."
+    },
+    {
+      "evidence_excerpts": [
+        "There is a substantial opportunity for experimentalists and theorists, working together over the next few years, to find better ways of making quantum circuits noise resilient.",
+        "Making a quantum circuit more noise resilient may also make it easier to simulate classically."
+      ],
+      "short_title": "Noise resilience has tradeoffs",
+      "text": "Noise-resilient circuit design can extend NISQ computational reach, but it may trade off against classical simulability."
+    },
+    {
+      "evidence_excerpts": [
+        "With more accurate quantum gates, quantum computers operating without error correction will be able to go further by executing larger circuits.",
+        "Better gates will also lower the overhead cost of doing quantum error correction when we eventually move on to fault-tolerant quantum computing."
+      ],
+      "short_title": "Better gates enable scale",
+      "text": "Lower gate error rates matter both because they allow larger uncorrected NISQ circuits and because they reduce the future overhead of fault-tolerant error correction."
+    }
+  ],
+  "evidence_items": [
+    {
+      "claim_refs": [
+        "0",
+        "1"
+      ],
+      "evidence_id": "evidence-50-qubit-classical-barrier--2ce59b8ba8bb",
+      "evidence_type": "model_constraint",
+      "excerpt": "Here \u201cintermediate scale\u201d refers to the size of quantum computers which will be available in the next few years, with a number of qubits ranging from 50 to a few hundred. 50 qubits is a significant milestone, because that\u2019s beyond what can be simulated by brute force using the most powerful existing digital supercomputers. \u201cNoisy\u201d emphasizes that we\u2019ll have imperfect control over those qubits; the noise will place serious limitations on what quantum devices can achieve in the near term.",
+      "overview": "This passage defines the NISQ scale and states the source's core constraint: devices large enough to strain brute-force classical simulation are still noisy enough that their computational reach is sharply limited. It grounds both the opportunity and the caution in the paper's central framing.",
+      "page_refs": [
+        "p.4"
+      ],
+      "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+      "title": "50-Qubit Classical Barrier"
+    },
+    {
+      "claim_refs": [
+        "0",
+        "2",
+        "9"
+      ],
+      "evidence_id": "evidence-two-qubit-gate-ceiling--06fd0388985b",
+      "evidence_type": "measurement",
+      "excerpt": "With the best hardware we have now for controlling trapped ions or superconducting circuits, the error rate per gate for two-qubit gates is above the .1% level (and often much worse). Furthermore, we don\u2019t yet know whether error rates that low can be maintained in larger devices with many qubits. Naively, then, and as I\u2019ll say later this might be too naive, with these noisy devices we don\u2019t expect to be able to execute a circuit that contains many more than about 1000 gates.",
+      "overview": "The error-rate figures give a concrete engineering reason why uncorrected NISQ devices cannot simply scale circuit depth with qubit count. The author treats the thousand-gate estimate as naive but still uses it to explain why gate quality, not only qubit number, sets near-term computational limits.",
+      "page_refs": [
+        "p.5"
+      ],
+      "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+      "title": "Two-Qubit Gate Ceiling"
+    },
+    {
+      "claim_refs": [
+        "4"
+      ],
+      "evidence_id": "evidence-quantum-power-arguments--1b39a30f048b",
+      "evidence_type": "formal_argument",
+      "excerpt": "We have at least three good reasons for thinking that quantum computers have capabilities surpassing what classical computers can do. (1) Quantum algorithms for classically intractable problems. (2) Complexity theory arguments. (3) No known classical algorithm can simulate a quantum computer.",
+      "overview": "This formal argument summarizes why the paper regards quantum advantage as credible rather than speculative enthusiasm. It separates long-term confidence in quantum computing from claims about what noisy near-term machines can actually deliver.",
+      "page_refs": [
+        "pp.2-3"
+      ],
+      "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+      "title": "Three Power Arguments"
+    },
+    {
+      "claim_refs": [
+        "5"
+      ],
+      "evidence_id": "evidence-np-hard-quantum-limits--081131710000",
+      "evidence_type": "formal_argument",
+      "excerpt": "We should recognize in particular that the power of a quantum computer is not unlimited. We don\u2019t expect, for example, that a quantum computer will be able to solve efficiently the hard instances of NP-hard problems like the traveling salesman problem. For such hard combinatorial search problems we probably can\u2019t do much better than exhaustively searching for a solution. Quantum computers can speed up exhaustive search, but only modestly, so NP-hard problems are likely to be quantumly hard as well as classically hard.",
+      "overview": "The excerpt establishes a boundary condition on quantum optimism. It matters because many commercial expectations center on optimization, yet the source explicitly warns that worst-case NP-hard search should not be expected to become easy on quantum hardware.",
+      "page_refs": [
+        "p.3"
+      ],
+      "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+      "title": "NP-Hard Limitation Argument"
+    },
+    {
+      "claim_refs": [
+        "6"
+      ],
+      "evidence_id": "evidence-hybrid-optimization-uncertainty--1608035aa002",
+      "evidence_type": "formal_argument",
+      "excerpt": "The emerging paradigm for solving optimization problems using near-term quantum technology is a kind of hybrid quantum-classical algorithm. In this scheme, we use a quantum processor to prepare an n-qubit state, then measure all the qubits and process the measurement outcomes using a classical optimizer. Will NISQ technology running QAOA or VQE be able to outperform classical algorithms that find approximate solutions to the same problems? Nobody knows, but we\u2019re going to try it and see how well we can do.",
+      "overview": "This evidence identifies QAOA and VQE as serious NISQ-era experiments while explicitly refusing to claim proven advantage. It supports a practical interpretation: near-term value may come through empirical testbeds and algorithm discovery rather than guaranteed speedups.",
+      "page_refs": [
+        "p.8"
+      ],
+      "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+      "title": "Hybrid Optimization Uncertainty"
+    },
+    {
+      "claim_refs": [
+        "8",
+        "3"
+      ],
+      "evidence_id": "evidence-noise-resilient-circuit-window--151204600000",
+      "evidence_type": "model_constraint",
+      "excerpt": "Because of the high overhead cost of quantum error correction, NISQ devices will not make use of it in the near term. Nevertheless, methods for mitigating the effects of noise may be an important consideration during the NISQ era. There is a substantial opportunity for experimentalists and theorists, working together over the next few years, to find better ways of making quantum circuits noise resilient, and so extend the computational reach of NISQ technology. We should be wary, though, of a potential tradeoff \u2014 making a quantum circuit more noise resilient may also make it easier to simulate classically.",
+      "overview": "This passage gives a concrete design path for NISQ algorithms: tolerate or mitigate noise rather than rely on full error correction. It also constrains that optimism by noting that noise resilience may remove exactly the complexity that makes a circuit hard for classical computers.",
+      "page_refs": [
+        "p.9"
+      ],
+      "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+      "title": "Noise-Resilient Circuit Window"
+    },
+    {
+      "claim_refs": [
+        "7",
+        "1",
+        "4"
+      ],
+      "evidence_id": "evidence-quantum-simulation-arena--180100862003",
+      "evidence_type": "formal_argument",
+      "excerpt": "As Feynman argued, the simulation of highly entangled quantum matter is the natural arena where quantum computers seem to have a clear advantage over classical ones. Classical computers are especially bad at simulating quantum dynamics \u2014 that is, predicting how a highly-entangled quantum state will change with time. Quantum computers have a big advantage for that task, and physicists hope to learn interesting things about quantum dynamics using NISQ technology in the relatively near term. Valuable insights might already be gleaned using noisy devices with of order 100 qubits.",
+      "overview": "The evidence distinguishes quantum simulation from broader commercial claims. It says the best near-term scientific target is not generic acceleration, but the study of highly entangled dynamics where classical computation is structurally weak.",
+      "page_refs": [
+        "pp.12-13"
+      ],
+      "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+      "title": "Quantum Simulation Arena"
+    },
+    {
+      "claim_refs": [
+        "3",
+        "9"
+      ],
+      "evidence_id": "evidence-physical-qubit-chasm--161104471000",
+      "evidence_type": "model_constraint",
+      "excerpt": "Solving really hard problems (like factoring numbers which are thousands of bits long) using fault-tolerant quantum computing is not likely to happen for a while, because of the large number of physical qubits needed. To run algorithms involving thousands of protected qubits we\u2019ll need a number of physical qubits which is in the millions, or more. That\u2019s a very large leap from where we will be for the next few years, with of order a hundred qubits. Crossing the \u201cquantum chasm,\u201d from hundreds of physical qubits to millions of physical qubits, is going to take some time.",
+      "overview": "The millions-of-qubits estimate makes the gap between NISQ experiments and transformative fault-tolerant applications auditable. It grounds the paper's recommendation to pursue both near-term experiments and sustained long-term error-correction progress.",
+      "page_refs": [
+        "p.14"
+      ],
+      "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+      "title": "Physical Qubit Chasm"
+    }
+  ],
+  "relations": [
+    {
+      "dst_claim_ref": "0",
+      "rationale": "The two-qubit error and thousand-gate estimates explain why NISQ scale does not by itself produce deep reliable computation.",
+      "relation_type": "supports",
+      "src_claim_ref": "2"
+    },
+    {
+      "dst_claim_ref": "1",
+      "rationale": "The overhead and distance of fault tolerance support the claim that NISQ is a stepping stone rather than an immediate transformation.",
+      "relation_type": "supports",
+      "src_claim_ref": "3"
+    },
+    {
+      "dst_claim_ref": "4",
+      "rationale": "The special promise of quantum dynamics follows from the broader argument that highly entangled systems resist classical simulation.",
+      "relation_type": "derived_from",
+      "src_claim_ref": "7"
+    },
+    {
+      "dst_claim_ref": "0",
+      "rationale": "Noise-resilient design is presented as a way to stretch, but not remove, the noise-imposed limits of NISQ devices.",
+      "relation_type": "supports",
+      "src_claim_ref": "8"
+    },
+    {
+      "dst_claim_ref": "3",
+      "rationale": "Lower gate error rates reduce both near-term circuit failure and the future overhead required for fault-tolerant operation.",
+      "relation_type": "supports",
+      "src_claim_ref": "9"
+    },
+    {
+      "dst_claim_ref": "6",
+      "rationale": "Both claims temper optimization expectations by emphasizing hard classical baselines and unresolved quantum advantage.",
+      "relation_type": "similar",
+      "src_claim_ref": "5"
+    }
+  ],
+  "source": {
+    "authors": [
+      "John Preskill"
+    ],
+    "display_title": "Quantum Computing in the NISQ Era and Beyond",
+    "original_title": "Quantum Computing in the NISQ era and beyond",
+    "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+    "source_title": "Untitled Source"
+  },
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2018-07-30",
+    "origin": "source_front_matter_and_acceptance_line",
+    "rationale": "The markdown front matter names 30 July 2018 and repeated page footers state Accepted in Quantum 2018-07-30."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The source's main position is that NISQ devices represent a major scientific threshold but not an immediate technological revolution. Preskill frames 50 to a few hundred noisy qubits as enough to enter classically difficult territory while still too limited for many reliable practical computations.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ],
+        "heading": "Core Thesis"
+      },
+      {
+        "body": "The long-term optimism rests on specific reasons rather than hype: quantum algorithms for classically hard tasks, complexity-theory sampling arguments, and the lack of efficient classical simulations for general quantum computation. These arguments justify pursuing quantum hardware even while near-term payoffs remain uncertain.",
+        "grounding_claim_ids": [
+          "4",
+          "7"
+        ],
+        "heading": "Why Quantum Power Is Plausible"
+      },
+      {
+        "body": "The paper treats qubit count as insufficient by itself. Two-qubit gate errors above roughly 0.1 percent and other control imperfections mean that uncorrected devices may fail beyond about one thousand two-qubit operations. That makes circuit depth and gate quality central measures of NISQ capability.",
+        "grounding_claim_ids": [
+          "0",
+          "2",
+          "9"
+        ],
+        "heading": "Noise As The Central Constraint"
+      },
+      {
+        "body": "Preskill identifies QAOA and VQE as important hybrid quantum-classical experiments, but he refuses to assert a proven advantage. The limiting comparison is not against naive classical methods, but against decades of classical optimization work, so NISQ optimization should be read as exploratory rather than guaranteed commercial acceleration.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ],
+        "heading": "Optimization Expectations"
+      },
+      {
+        "body": "The strongest near-term application area is quantum simulation, especially the dynamics of highly entangled many-particle states. The paper argues that classical computers are particularly weak at this task and that noisy devices around one hundred qubits may still produce valuable insight into quantum chaos and many-body behavior.",
+        "grounding_claim_ids": [
+          "1",
+          "7"
+        ],
+        "heading": "Most Promising Scientific Use"
+      },
+      {
+        "body": "The source makes fault tolerance the long-term destination. Error correction is essential for reliable large computations, but the overhead can push required hardware into the millions of physical qubits. Lower gate error rates are therefore valuable twice: they extend NISQ experiments now and reduce future fault-tolerance costs.",
+        "grounding_claim_ids": [
+          "3",
+          "8",
+          "9"
+        ],
+        "heading": "Path Beyond NISQ"
+      }
+    ],
+    "summary_long": "John Preskill's essay defines a practical turning point in quantum computing: the NISQ era, where devices become large enough to stress brute-force classical simulation but remain too noisy for fully reliable, fault-tolerant computation. The central argument is deliberately balanced. Quantum computing has deep reasons to matter: known algorithms, complexity-theory evidence, and the persistent inability of classical machines to simulate general quantum evolution all point toward genuine super-classical capabilities. Yet the paper repeatedly separates long-term confidence from near-term deliverability. NISQ systems may have 50 to a few hundred qubits, but two-qubit gate errors, measurement errors, connectivity, fabrication yield, and circuit depth all determine what they can actually do. Preskill therefore treats near-term devices less as universal commercial disruptors than as experimental platforms for discovering algorithms, validating heuristics, and probing many-body physics. Hybrid algorithms such as QAOA and VQE are worth trying, especially because hardware availability can accelerate empirical algorithm development, but the paper does not claim they will beat mature classical methods. The strongest near-term scientific case is quantum simulation of highly entangled dynamics, where classical computers are structurally weak and devices of order one hundred qubits may already reveal new phenomena. The long-term transformative applications, including large-scale factoring and accurate simulation of complex chemistry and materials, are tied to fault tolerance. Because useful protected computations may require millions of physical qubits, the paper urges sustained work on lowering gate error rates and developing error correction while keeping expectations for NISQ grounded.",
+    "summary_short": "Preskill introduces the NISQ era as the arrival of noisy, intermediate-scale quantum devices with roughly 50 to a few hundred qubits. The paper is optimistic about scientific discovery, especially in highly entangled quantum dynamics, but cautious about near-term commercial breakthroughs because gate noise, limited circuit depth, and error-correction overhead remain severe constraints."
+  },
+  "summary": "John Preskill frames the NISQ era as a real scientific threshold but warns against overclaiming near-term commercial transformation. Devices around 50 to a few hundred noisy qubits may illuminate many-body quantum physics and test heuristic algorithms, yet gate errors, circuit-depth limits, and error-correction overhead keep transformative fault-tolerant applications at a longer horizon.",
+  "warnings": [
+    {
+      "code": "source_record_title_placeholder",
+      "message": "The source record title is Untitled Source, but the markdown front matter recovered the paper title and author."
+    },
+    {
+      "code": "date_recovered_from_markdown",
+      "message": "Task context reported date=null, while the markdown front matter and acceptance footer provide 2018-07-30."
+    },
+    {
+      "code": "markdown_quality_usable",
+      "message": "Extraction metadata reports pdftotext output as usable with no warnings; the PDF was not needed for layout recovery."
+    }
+  ]
+}

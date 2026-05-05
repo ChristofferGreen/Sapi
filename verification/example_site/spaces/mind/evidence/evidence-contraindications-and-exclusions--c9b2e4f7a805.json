@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-and-meditation-practices-can-be-contraindicated-for-some-psychiatric--6fe966926b20",
+    "claim-mindfulness-hype-can-create-opportunity-costs-by-diverting-people-from-establish--1a47df8a5e6d"
+  ],
+  "evidence_id": "evidence-contraindications-and-exclusions--c9b2e4f7a805",
+  "evidence_type": "formal_argument",
+  "excerpt": "The source says official standards of practice for MBSR exclude suicidality and the presence of any psychiatric disorder, with case-by-case exceptions only when medical treatment is maintained or an instructor has sufficient clinical training. It also reports concerns from the American Psychiatric Association, NIH, and leading researchers that meditation may be contraindicated for schizophrenia spectrum disorders, bipolar disorder, post-traumatic stress disorder, depression, and psychosis risk factors.",
+  "overview": "This evidence makes the safety argument clinically specific. The point is not that all meditation is unsafe, but that some populations require screening, monitoring, and clinical expertise. It also challenges generic wellness messaging that presents mindfulness as universally benign.",
+  "page_refs": [
+    "pp.47-48"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Contraindications and Exclusions"
+}

@@ -1,0 +1,264 @@
+{
+  "source_date_inference": {
+    "date": "2007",
+    "confidence": "medium",
+    "origin": "source markdown header",
+    "rationale": "The extracted article header states Cognitive, Affective, & Behavioral Neuroscience, 2007, 7(2), 109-119; no month or day was recovered."
+  },
+  "source": {
+    "display_title": "Mindfulness Training Modifies Subsystems of Attention",
+    "authors": [
+      "Amishi P. Jha",
+      "Jason Krompinger",
+      "Michael J. Baime"
+    ]
+  },
+  "claims": [
+    {
+      "text": "Mindfulness training can improve attention-related behavior by changing specific attentional subsystems rather than producing a single global attention benefit.",
+      "short_title": "Training modifies attention subsystems",
+      "evidence_excerpts": [
+        "The study examined alerting, orienting, and conflict monitoring with the Attention Network Test before and after mindfulness training, and the authors report different post-training effects for MBSR and retreat participants."
+      ]
+    },
+    {
+      "text": "An 8-week mindfulness-based stress reduction course improves endogenous orienting relative to control and retreat groups at post-training testing.",
+      "short_title": "MBSR improves orienting",
+      "evidence_excerpts": [
+        "An ANOVA for the RT difference scores of the orienting component revealed a significant factor of group [F(2,48) = 10.13, p < .001]. A series of contrasts revealed that the MBSR group differed from the control group and the retreat group."
+      ]
+    },
+    {
+      "text": "A 1-month intensive mindfulness retreat among previously experienced meditators improves exogenous alerting-related detection when no target cue is provided.",
+      "short_title": "Retreat improves alerting",
+      "evidence_excerpts": [
+        "At Time 2, the alerting difference score was significantly smaller for the retreat group than for the combined control and MBSR groups, and no-cue response times were significantly shorter in the younger retreat subgroup."
+      ]
+    },
+    {
+      "text": "Participants with prior concentrative meditation experience show reduced conflict-monitoring interference at baseline relative to meditation-naive participants.",
+      "short_title": "Experience reduces conflict",
+      "evidence_excerpts": [
+        "At Time 1, the retreat group differed from the combined control and MBSR participants for conflict monitoring in RT [t(1,49) = 2.22, p = .03] and accuracy [t(1,49) = 5.62, p < .001]."
+      ]
+    },
+    {
+      "text": "Post-training conflict-monitoring differences are not detected among the MBSR, retreat, and control groups, possibly because task repetition improves conflict scores in controls.",
+      "short_title": "Conflict gains fade",
+      "evidence_excerpts": [
+        "An ANOVA for the conflict monitoring component RT and accuracy difference scores revealed no significant main effects and no significant effects on any of the paired contrasts (p > .36)."
+      ]
+    },
+    {
+      "text": "The Attention Network Test separates alerting, orienting, and conflict monitoring by subtracting performance across predefined cue and target conditions.",
+      "short_title": "ANT partitions attention",
+      "evidence_excerpts": [
+        "Alerting was indexed by subtracting performance measures on double-cue trials from those on no-cue trials; orienting by subtracting spatial-cue trials from center-cue trials; and conflict monitoring by subtracting congruent target trials from incongruent target trials."
+      ]
+    },
+    {
+      "text": "Within the retreat group, greater prior meditation experience predicts a smaller Time 2 alerting score, consistent with a more readied attentional state.",
+      "short_title": "Experience predicts alerting",
+      "evidence_excerpts": [
+        "The correlation value (R = -.52) was significant (t = 2.4, p = .03), indicating a significant reduction in alerting score with increased meditation experience in the retreat group."
+      ]
+    },
+    {
+      "text": "The attentional effects should be treated as preliminary because the study used small groups, no active-training control, behavioral measures only, and imperfect control over training protocols.",
+      "short_title": "Findings require caution",
+      "evidence_excerpts": [
+        "The discussion states that the results should be interpreted cautiously, that the training groups included relatively small numbers of participants, and that future work should include an active-training control group and neural measurements."
+      ]
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "evidence-ant-subtraction-indices--0f4e7a9c2b11",
+      "title": "ANT Difference Scores",
+      "excerpt": "All analyses were performed on RT scores for correct trials only and accuracy scores. Alerting was indexed by subtracting performance measures on double-cue trials from those on no-cue trials. Orienting was indexed by subtracting performance measures on spatial-cue trials from those on center-cue trials. Conflict monitoring was indexed by subtracting performance measures on congruent target trials from those on incongruent target trials.",
+      "overview": "This methods passage defines the measurement structure used for all main claims. It shows that the study did not treat attention as a single undifferentiated outcome, but mapped behavioral response-time and accuracy differences onto alerting, orienting, and conflict-monitoring subsystems. The definitions also limit interpretation to ANT-derived behavioral indices rather than direct neural measurements.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "0",
+        "5"
+      ],
+      "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+      "page_refs": [
+        "p.112"
+      ]
+    },
+    {
+      "evidence_id": "evidence-training-group-doses--8b2d4a6f90c3",
+      "title": "Training Group Doses",
+      "excerpt": "The MBSR group included 17 meditation-naive participants in an 8-week course that met once weekly for 3 h and assigned 30 min of daily sitting meditation. The retreat group participated in a full-time 1-month residential mindfulness retreat, had prior concentrative meditation experience ranging from 4 to 360 months, and engaged in formal mindfulness meditation practices for 10-12 h per day.",
+      "overview": "These participant and training descriptions ground the comparison between novice MBSR participants, experienced retreat participants, and meditation-naive controls. They matter because the authors interpret different ANT changes as consequences of different training histories and practice intensities. The evidence also marks a limitation: groups differed not only in intervention type but also in prior experience and training dose.",
+      "evidence_type": "measurement",
+      "claim_refs": [
+        "0",
+        "1",
+        "2",
+        "6",
+        "7"
+      ],
+      "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+      "page_refs": [
+        "p.111"
+      ]
+    },
+    {
+      "evidence_id": "evidence-baseline-conflict-reduction--c7a91f02de45",
+      "title": "Baseline Conflict Reduction",
+      "excerpt": "At Time 1, the first contrast between the MBSR group and the control group revealed no significant conflict-monitoring difference. The second contrast, comparing the collapsed meditation-naive groups with the retreat group, revealed a significant difference for RT [t(1,49) = 2.22, p = .03] and accuracy [t(1,49) = 5.62, p < .001], with reduced flanker interference for retreat participants.",
+      "overview": "This statistical result supports the claim that prior meditation experience was associated with better baseline conflict monitoring. Because the retreat group was already experienced before the formal study intervention, the result is evidence about prior concentrative meditation experience rather than a randomized post-training effect. It helps separate baseline expertise from changes observed after MBSR or retreat participation.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "3"
+      ],
+      "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+      "page_refs": [
+        "p.113",
+        "Figure 2"
+      ]
+    },
+    {
+      "evidence_id": "evidence-mbsr-orienting-anova--3b6f8d0a4c12",
+      "title": "MBSR Orienting ANOVA",
+      "excerpt": "At Time 2, an ANOVA for the RT difference scores of the orienting component revealed a significant factor of group [F(2,48) = 10.13, p < .001]. Planned contrasts showed that the MBSR group differed from the control group (Bonferroni-adjusted p = .046) and the retreat group (Bonferroni-adjusted p < .001), while the retreat and control groups did not differ.",
+      "overview": "This is the central statistical evidence for the MBSR orienting claim. The finding indicates that the novice mindfulness course changed the ANT orienting score relative to both no-training controls and the intensive retreat group. The result is restricted to response-time difference scores; the same passage reports no significant group effect for accuracy difference scores.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "1"
+      ],
+      "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+      "page_refs": [
+        "p.114",
+        "Figure 3"
+      ]
+    },
+    {
+      "evidence_id": "evidence-retreat-alerting-contrast--92da34bc781e",
+      "title": "Retreat Alerting Contrast",
+      "excerpt": "At Time 2, planned contrasts for alerting found no significant MBSR-control difference, but the collapsed control and MBSR groups differed from the retreat group in RT scores [t(1,49) = 3.55, p < .001]. No-cue RTs were significantly shorter in the younger retreat group than in the control plus MBSR group [t(1,40) = 2.17, p = .03], whereas double-cue RTs were not significantly different.",
+      "overview": "This result supports the interpretation that retreat participation altered alerting-related performance by improving target detection when no temporal or spatial cue was available. The double-cue non-difference narrows the effect to no-cue readiness rather than a general speed advantage across alerting conditions. The evidence is strongest for the younger retreat subgroup when explicit RT comparisons are made because the full retreat group had broader age variation.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "2"
+      ],
+      "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+      "page_refs": [
+        "p.115",
+        "Figure 4"
+      ]
+    },
+    {
+      "evidence_id": "evidence-experience-alerting-correlation--e19a03df4b67",
+      "title": "Experience Alerting Correlation",
+      "excerpt": "Since only the alerting component significantly changed at Time 2 for the retreat group, the authors examined whether months of meditation experience correlated with the magnitude of the alerting score at Time 2. The correlation value was R = -.52 and significant (t = 2.4, p = .03), showing reduced alerting score with increased meditation experience.",
+      "overview": "The correlation links individual differences in prior meditation experience to the retreat group's alerting outcome. It strengthens the interpretation that the Time 2 alerting pattern is related to meditation history, not merely group membership. Its scope is limited because the analysis is correlational within the retreat group and does not establish a randomized causal dose-response effect.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "6"
+      ],
+      "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+      "page_refs": [
+        "p.115"
+      ]
+    },
+    {
+      "evidence_id": "evidence-task-repetition-and-limits--a8d201ceb934",
+      "title": "Task Repetition Limits",
+      "excerpt": "An ANOVA on overall RT and accuracy collapsed across conditions showed a significant main effect of time [F(1,16) = 13.6, p < .001], with RTs faster at Time 2 than at Time 1, but no significant group interaction. The discussion adds that conflict monitoring differences were absent at Time 2 and that the study should be interpreted cautiously because training groups were small and future studies need active controls and neural measurements.",
+      "overview": "This evidence captures the main constraint on the paper's interpretation. Practice or task-exposure effects can improve performance over repeated ANT sessions, especially for conflict monitoring, which may obscure group-specific training effects. The limitations also caution against treating the behavioral findings as a complete mechanism without active-control, neural, and more tightly standardized intervention designs.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "4",
+        "7"
+      ],
+      "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+      "page_refs": [
+        "p.115",
+        "pp.116-117"
+      ]
+    }
+  ],
+  "relations": [],
+  "summary": "Jha, Krompinger, and Baime report that mindfulness training changes ANT-measured attention subsystems in different ways depending on training history. Novice MBSR participants showed improved orienting after an 8-week course, experienced retreat participants showed altered alerting and faster no-cue detection after a 1-month retreat, and experienced meditators already showed reduced conflict interference at baseline. The findings are behavioral and preliminary, with important limits from group size, prior-experience differences, task repetition, and lack of active-training controls.",
+  "warnings": [
+    {
+      "code": "source_record_title_placeholder",
+      "message": "The source record display_title is Untitled Source, but the extracted article header identifies the paper title and authors."
+    },
+    {
+      "code": "publication_date_year_only",
+      "message": "Only the publication year 2007 was inferred from the article header; no month or day was recovered."
+    },
+    {
+      "code": "ocr_symbol_normalization",
+      "message": "The pdftotext markdown contains degraded comparison/equality glyphs in statistical expressions; evidence excerpts normalize obviously intended symbols where the surrounding text supports the reading."
+    }
+  ],
+  "source_dossier": {
+    "summary_short": "This study tests whether mindfulness training changes separable attention subsystems measured by the ANT. Novice MBSR participants improved orienting, experienced retreat participants showed stronger no-cue alerting readiness, and prior meditation experience aligned with better baseline conflict monitoring. The authors treat the causal interpretation as preliminary.",
+    "summary_long": "Mindfulness Training Modifies Subsystems of Attention asks whether mindfulness training affects attention as a set of separable behavioral systems rather than as a broad, undifferentiated capacity. Jha, Krompinger, and Baime compare three groups: meditation-naive participants enrolled in an 8-week mindfulness-based stress reduction course, experienced meditators entering a 1-month intensive retreat, and meditation-naive controls receiving no mindfulness training. All groups completed the Attention Network Test at two time points. The ANT lets the authors estimate alerting, orienting, and conflict monitoring through response-time and accuracy differences across cue and target conditions. The paper's strongest source-specific claim is that different training contexts map onto different subsystems. At baseline, the experienced retreat participants show less conflict interference than the meditation-naive groups, consistent with prior concentrative practice improving voluntary conflict-related selection. After training, the MBSR group shows a significantly larger orienting score than both the control and retreat groups, which the authors interpret as improved endogenous orienting after structured concentrative practice. The retreat group, by contrast, shows a smaller alerting score and faster no-cue detection than the combined control and MBSR groups; months of prior meditation experience also correlate with smaller alerting scores. The authors interpret this as a possible emergence of receptive attention or readiness for unexpected events. The evidence is important because it links mindfulness training to specific behavioral indices rather than relying on self-report or broad clinical outcomes. However, the causal claims are bounded. The retreat group differed in prior experience and age range, the intervention doses were not matched, the control group was passive rather than an active training control, and repeated ANT exposure improved overall response times. The discussion therefore frames the study as a provocative early demonstration that mindfulness can entrain attention in specific ways, not as a definitive mechanism or a complete clinical prescription.",
+    "sections": [
+      {
+        "heading": "Central Argument",
+        "body": "The paper argues that mindfulness training should be evaluated at the level of attentional subsystems. Instead of asking whether meditation generally improves attention, the authors separate alerting, orienting, and conflict monitoring and show that different mindfulness histories are associated with different ANT outcomes. This framing supports a targeted interpretation of training effects rather than a single global-benefit narrative.",
+        "grounding_claim_ids": [
+          "0",
+          "5"
+        ]
+      },
+      {
+        "heading": "Training Design",
+        "body": "The study contrasts a structured MBSR course, an intensive residential retreat, and a no-training control group. MBSR participants were meditation-naive and practiced concentrative exercises over 8 weeks, while retreat participants had months to years of prior experience and practiced for 10-12 hours per day during the retreat. These design differences are central to the interpretation because training type, intensity, and prior experience vary together.",
+        "grounding_claim_ids": [
+          "1",
+          "2",
+          "6",
+          "7"
+        ]
+      },
+      {
+        "heading": "Orienting Evidence",
+        "body": "The MBSR result is the clearest post-training dorsal-system finding. At Time 2, orienting response-time difference scores differed significantly by group, and planned contrasts showed that MBSR participants differed from both controls and retreat participants. The authors interpret the pattern as improved endogenous orienting, plausibly linked to repeated practice in engaging and returning attention to a chosen focus such as the breath.",
+        "grounding_claim_ids": [
+          "1"
+        ]
+      },
+      {
+        "heading": "Alerting Evidence",
+        "body": "The retreat result points to a different attentional change. Experienced meditators after retreat showed a smaller alerting score than the combined MBSR and control participants, driven by faster no-cue detection rather than a general double-cue speed advantage. The correlation between prior meditation experience and smaller alerting scores reinforces the authors' interpretation that receptive attentional readiness may emerge with extensive practice.",
+        "grounding_claim_ids": [
+          "2",
+          "6"
+        ]
+      },
+      {
+        "heading": "Conflict Monitoring",
+        "body": "Conflict monitoring shows a baseline expertise signal but not a clean post-training group difference. Experienced retreat participants had reduced flanker interference at Time 1 relative to meditation-naive participants, but group differences disappeared at Time 2. The authors suggest that repeated exposure to the ANT may improve conflict monitoring in controls and mask any additional meditation-related change.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ]
+      },
+      {
+        "heading": "Interpretive Limits",
+        "body": "The findings are suggestive rather than definitive. The groups were small, the retreat group had broad age and experience variation, intervention dose differed sharply between MBSR and retreat, and the control condition did not match expectancy or training contact. Because the measures are behavioral, the paper can show subsystem-specific performance changes but cannot directly identify neural mechanisms.",
+        "grounding_claim_ids": [
+          "7"
+        ]
+      },
+      {
+        "heading": "Practical Meaning",
+        "body": "For readers, the practical takeaway is that mindfulness practice may train attention in different ways depending on stage and context. Structured novice training appears most related to voluntary orienting, while intensive practice among experienced meditators appears more related to alert readiness without cues. The study encourages more precise designs that match interventions to specific attentional targets and include active controls.",
+        "grounding_claim_ids": [
+          "0",
+          "1",
+          "2",
+          "7"
+        ]
+      }
+    ]
+  }
+}

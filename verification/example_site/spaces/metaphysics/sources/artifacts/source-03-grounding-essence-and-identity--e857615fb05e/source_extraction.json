@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-03-grounding-essence-and-identity--e857615fb05e/source.pdf",
+    "source_markdown": "sources/artifacts/source-03-grounding-essence-and-identity--e857615fb05e/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "04773c29d2b6d306cd2193628f328db72bf281d85c5f791798a58371ffd76adc",
+  "markdown_char_count": 100031,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "38c73cf08babdfb0d028dec7db375540c0c9cd9cd5d09c58bfab46b3a29f0c8b",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

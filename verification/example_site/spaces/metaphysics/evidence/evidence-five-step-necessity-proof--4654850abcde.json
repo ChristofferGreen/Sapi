@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-the-conjunction-of--dbb969101dbd",
+    "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124",
+    "claim-connecting-questions-lack-cognitive-significance-only-when-fine-style-essential--f96bc70d5d2d",
+    "claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869"
+  ],
+  "evidence_id": "evidence-five-step-necessity-proof--4654850abcde",
+  "evidence_type": "proof_step",
+  "excerpt": "Formal chain: assume [p] is fully grounded in D; significance removes cognitive significance; essence supplies essential truths for \u2227D \u2192 p; essential truths are metaphysically necessary; so \u25a1(\u2227D \u2192 p).",
+  "overview": "The proof step integrates the article\u2019s two substantive principles with the modal status of essential truths. It is the central argumentative bridge from an epistemic condition on grounding to the modal necessity of full grounding.",
+  "page_refs": [
+    "p.467"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Five-Step Necessity Proof"
+}

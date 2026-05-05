@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T11:02:43Z",
+  "claim_id": "claim-each-particular-conscious-experience-is-specified-by-the-current-activity-values--ef679659733b",
+  "evidence_excerpts": [
+    "Each conscious state is defined by the set of all its coordinates, which are given by the activity values of all elements of a complex.",
+    "Each particular conscious experience is specified by the value, at any given time, of the variables mediating informational interactions among the elements of a complex."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Current states specify experiences",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "text": "Each particular conscious experience is specified by the current activity values of the variables that mediate informational interactions within a complex."
+}

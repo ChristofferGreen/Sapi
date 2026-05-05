@@ -1,0 +1,27 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-04-26T11:19:39Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/relations"
+  ],
+  "flow_key": "ingest_extraction",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/runs/run-20260426T111459Z--lhudn2ntw8/semantic/ingest_extraction.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json",
+  "started_at": "2026-04-26T11:15:00Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260426T111500Z-ingest_extraction-38307-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": false,
+  "validation_errors": [
+    {
+      "message": "'Foxe and Snyder argue that alpha-band brain oscillations are not merely signs of cortical idling but can be recruited to suppress distracting sensory processing during selective attention. The review synthesizes EEG, MEG, TMS, intracranial, and behavioral evidence across visual, auditory, and tactile domains. Its central practical message is that increased alpha often marks the neural system being ignored, not the item being selected.' is too long",
+      "path": "/source_dossier/summary_short",
+      "validator": "maxLength",
+      "validator_value": 420
+    }
+  ]
+}

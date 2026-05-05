@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:34:43Z",
+  "claim_id": "claim-feature-selection-and-dimension-reduction-are-necessary-in-compiler-learning-pro--ecd12a4a4f1f",
+  "evidence_excerpts": [
+    "As the number of features increase so does the number of training examples needed to build an accurate model. Hence, we need to limit the dimension of the feature space. In compiler research, commonly, an initial large, high dimensional candidate feature space is pruned via feature selection, or projected into a lower dimensional space.",
+    "Principal Component Analysis ... is applied to map the 17 candidate features into 7 aggregated features, so that each aggregated feature is a linear combination of the original features."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Feature reduction preserves signal",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "text": "Feature selection and dimension reduction are necessary in compiler-learning problems because larger feature spaces require more training examples and can contain redundant information."
+}

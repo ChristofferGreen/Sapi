@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:15:18Z",
+  "claim_id": "claim-schaffer-s-set-based-counterexample-does-not-establish-grounding-non-transitivit--49174a1f51f7",
+  "evidence_excerpts": [
+    "The source says Schaffer's support for the set case treats counterfactual necessity as sufficient in one step and necessary in another, while determinable-determinate and disjunctive cases undermine that test."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Schaffer counterexample is inconclusive",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "text": "Schaffer's set-based counterexample does not establish grounding non-transitivity because it relies on an unstable counterfactual-necessity test."
+}

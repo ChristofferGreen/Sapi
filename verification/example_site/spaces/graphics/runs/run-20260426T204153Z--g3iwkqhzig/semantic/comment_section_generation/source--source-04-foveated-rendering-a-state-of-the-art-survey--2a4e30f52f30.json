@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The survey is useful because it treats foveated rendering as a whole system choice, not just a shader trick. The split between perceptual model, quality falloff, and rendering paradigm makes it easier to see why a method that works for mesh rasterization might not transfer cleanly to holograms or light fields.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately reflects the survey taxonomy and draws a clear implementation implication.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I appreciated the emphasis on latency as a perceptual problem. Rendering budgets in VR often get discussed as raw throughput, but the point about roughly 13 ms of tolerance makes the case for reallocating detail around gaze much more concrete.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Grounded in the source's performance motivation and adds a practical framing.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The caution about objective metrics seems especially important. If FSNR, FWQI, FMSE, or WSSIM each miss parts of fixation, saliency, or spatio-temporal sensitivity, then papers can look comparable on acceleration while still measuring different perceptual compromises.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Strongly tied to the evaluation-limits section and identifies a real comparison risk.",
+        "score": 26
+      }
+    },
+    {
+      "body": "That is the part I would like to see pushed further too. A shared benchmark would need to cover more than image quality, since the survey keeps returning to task, display hardware, gaze prediction, and renderer compatibility as variables that change what counts as a good tradeoff.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Relevant reply that extends the metric concern using source-supported open problems.",
+        "score": 21
+      }
+    },
+    {
+      "body": "The historical range from 1990 to 2021 also helps explain why the field feels uneven. Some areas, like volume data and geometric meshes, appear fairly mature, while AR fusion, AI reconstruction, holograms, and light fields still sound more open-ended than settled.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Summarizes the literature-map evidence and distinguishes mature from open areas.",
+        "score": 23
+      }
+    }
+  ],
+  "page_ref": "source:source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "requested_count": 5
+}

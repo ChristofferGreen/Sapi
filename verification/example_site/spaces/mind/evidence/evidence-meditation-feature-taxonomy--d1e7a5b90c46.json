@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-is-not-a-unitary-construct-it-is-an-umbrella-term-spanning-diverse-p--ab25afeeb846",
+    "claim-future-mindfulness-research-should-replace-generic-labels-with-precise-descripti--0291ee9277c4",
+    "claim-mindfulness-research-should-adopt-preregistration-open-science-replication-caref--5f747418bb67"
+  ],
+  "evidence_id": "evidence-meditation-feature-taxonomy--d1e7a5b90c46",
+  "evidence_type": "table_result",
+  "excerpt": "Table 2 provides a nonexhaustive list of defining features for characterization of meditation practice, including arousal, orientation of attention, spatial dynamic of attention, temporal dynamic of attention, object of attention, aperture of attention, and effort, each with variations such as inward versus outward orientation or narrow versus diffuse aperture.",
+  "overview": "The feature taxonomy operationalizes the article's proposed remedy for vague mindfulness terminology. It shows how researchers can describe what participants actually do and experience, reducing ambiguity when comparing practices, building theories, or designing interventions.",
+  "page_refs": [
+    "Table 2",
+    "p.42"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Meditation Feature Taxonomy"
+}

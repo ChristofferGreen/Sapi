@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-reticular-sensory-afferent-motor-efferent-and-subcortical-loop-activity-can-modu--173db43834c9",
+    "claim-strongly-modular-neural-architectures-can-be-computationally-sophisticated-yet-c--212c143093c3"
+  ],
+  "evidence_id": "evidence-modular-and-port-architectures--8badf00d0420",
+  "evidence_type": "figure_result",
+  "excerpt": "A cerebellum-like organization with three modules of eight elements yields three separate complexes with low values of \u03a6 (\u03a6 = 20 bits), and a large complex encompassing all the elements has an extremely low \u03a6 value of 5 bits. A reticular element providing common input to a thalamocortical-like main complex has a combined 9-element complex with much lower \u03a6 (\u03a6 = 10 bits), while the thalamocortical-like main complex remains high (\u03a6 = 61 bits). Afferent and efferent pathways can affect the main complex while the larger combined complex has low \u03a6 (\u03a6 = 10 bits).",
+  "overview": "Figure 4 grounds two linked claims: modular architectures can be information-rich yet poor in integration, and external input/output systems can influence a conscious complex without becoming part of it. The evidence explains why the cerebellum, brainstem arousal systems, sensory pathways, and motor pathways are assigned different constitutive roles despite their causal importance.",
+  "page_refs": [
+    "Fig.4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Modular And Port Architectures"
+}

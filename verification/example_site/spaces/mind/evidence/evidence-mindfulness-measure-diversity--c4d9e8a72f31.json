@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-is-not-a-unitary-construct-it-is-an-umbrella-term-spanning-diverse-p--ab25afeeb846",
+    "claim-common-mindfulness-questionnaires-operationalize-different-facets-of-mindfulness--19920139d48a"
+  ],
+  "evidence_id": "evidence-mindfulness-measure-diversity--c4d9e8a72f31",
+  "evidence_type": "table_result",
+  "excerpt": "Table 1 lists mindfulness measures with different publication dates, theoretical contexts, citation counts, and factors: FMI as general; MAAS as attentiveness and awareness; KIMS as observing, describing, awareness, and acceptance; FFMQ as nonreactivity, observing, awareness, describing, and nonjudging; TMS as curiosity and decentering; CAMS-R as attention, present focus, awareness, and acceptance; and other scales with still different factor structures.",
+  "overview": "This table is concrete evidence for the source's semantic critique. If major measures emphasize different facets and come from different conceptual backgrounds, then study results labeled as mindfulness cannot be assumed to concern the same underlying construct without inspecting the measure and intervention details.",
+  "page_refs": [
+    "Table 1",
+    "p.40"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Diverse Mindfulness Measures"
+}

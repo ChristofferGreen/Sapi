@@ -1,0 +1,376 @@
+{
+  "claims": [
+    {
+      "evidence_excerpts": [
+        "Here we report the use of a processor with programmable superconducting qubits to create quantum states on 53 qubits, corresponding to a computational state-space of dimension 2^53 (about 10^16)."
+      ],
+      "short_title": "Sycamore reaches 53 qubits",
+      "text": "The Sycamore superconducting processor created random-circuit quantum states on 53 qubits, corresponding to a computational state space of 2^53, about 10^16 basis states."
+    },
+    {
+      "evidence_excerpts": [
+        "For m = 20, obtaining a million samples on the quantum processor takes 200 seconds, whereas an equal-fidelity classical sampling would take 10,000 years on a million cores."
+      ],
+      "short_title": "Quantum sampling outpaces classical",
+      "text": "For the hardest reported random-circuit sampling task, Sycamore produced one million samples in about 200 seconds while the authors estimated equal-fidelity classical sampling would take about 10,000 years on one million cores."
+    },
+    {
+      "evidence_excerpts": [
+        "F_XEB = 2^n <P(x_i)>_i - 1, where n is the number of qubits, P(x_i) is the probability of bitstring x_i computed for the ideal quantum circuit, and the average is over the observed bitstrings."
+      ],
+      "short_title": "XEB measures circuit fidelity",
+      "text": "Linear cross-entropy benchmarking provides a fidelity measure by comparing experimentally observed bitstrings with ideal probabilities computed by classical simulation."
+    },
+    {
+      "evidence_excerpts": [
+        "For the largest circuit with 53 qubits and 20 cycles, we collected N_s = 30 \u00d7 10^6 samples over ten circuit instances, obtaining F_XEB = (2.24 \u00b10.21) \u00d7 10^-3 for the elided circuits. With 5\u03c3 confidence, we assert that the average fidelity of running these circuits on the quantum processor is greater than at least 0.1%."
+      ],
+      "short_title": "Elided circuits retain fidelity",
+      "text": "The largest elided 53-qubit, 20-cycle circuits yielded F_XEB = (2.24 \u00b1 0.21) \u00d7 10^-3 over 30 million samples, supporting an average fidelity above 0.1% with 5\u03c3 confidence."
+    },
+    {
+      "evidence_excerpts": [
+        "Average error values under simultaneous operation were single-qubit e1 = 0.16%, two-qubit e2 = 0.62%, two-qubit cycle e2c = 0.93%, and readout er = 3.8%."
+      ],
+      "short_title": "Gate errors predict fidelity",
+      "text": "Measured component error rates under simultaneous operation were low enough to support a model predicting measurable fidelity for full random circuits."
+    },
+    {
+      "evidence_excerpts": [
+        "Our largest random quantum circuits have 53 qubits, 1,113 single-qubit gates, 430 two-qubit gates, and a measurement on each qubit, for which we predict a total fidelity of 0.2%."
+      ],
+      "short_title": "Large circuits remain measurable",
+      "text": "The largest random circuits combined 53 qubits, 1,113 single-qubit gates, 430 two-qubit gates, and one measurement per qubit, for which the authors predicted a total fidelity of 0.2%."
+    },
+    {
+      "evidence_excerpts": [
+        "Random circuits are a suitable choice for benchmarking because they do not possess structure and therefore allow for limited guarantees of computational hardness. Classically computing this probability distribution becomes exponentially more difficult as the number of qubits and number of gate cycles grow."
+      ],
+      "short_title": "Random circuits scale exponentially",
+      "text": "Random quantum circuits become exponentially harder to simulate classically as qubit count and circuit depth increase because their output distributions lack exploitable structure."
+    },
+    {
+      "evidence_excerpts": [
+        "The predicted, patch and elided fidelities all show good agreement with the fidelities of the corresponding full circuits, despite the vast differences in computational complexity and entanglement."
+      ],
+      "short_title": "Verification supports extrapolation",
+      "text": "Agreement among full, patch, elided, and predicted fidelities on classically verifiable circuits supports using elided circuits to estimate fidelity in the supremacy regime."
+    },
+    {
+      "evidence_excerpts": [
+        "Realizing the full promise of quantum computing using Shor's algorithm for factoring, for example, still requires technical leaps to engineer fault-tolerant logical qubits."
+      ],
+      "short_title": "Fault tolerance remains necessary",
+      "text": "The demonstrated speedup is specific to random circuit sampling and does not remove the need for fault-tolerant logical qubits for applications such as Shor-style factoring."
+    }
+  ],
+  "evidence_items": [
+    {
+      "claim_refs": [
+        "0",
+        "6"
+      ],
+      "evidence_id": "evidence-sycamore-53-qubit-state-space--a4d91c7e28b3",
+      "evidence_type": "measurement",
+      "excerpt": "The extracted article states that programmable superconducting qubits created quantum states on 53 qubits, corresponding to a computational state-space of dimension 2^53, about 10^16 states.",
+      "overview": "This evidence establishes the physical and computational scale of the experiment. The 53-qubit state space is central because the claimed classical difficulty depends on width as well as depth; by itself it does not prove speedup, but it defines the regime in which later fidelity and simulation-cost comparisons are evaluated.",
+      "page_refs": [
+        "p.505"
+      ],
+      "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+      "title": "53-Qubit State Space"
+    },
+    {
+      "claim_refs": [
+        "2",
+        "3",
+        "7"
+      ],
+      "evidence_id": "evidence-xeb-fidelity-equation--b73c50e9d2a1",
+      "evidence_type": "equation",
+      "excerpt": "F_XEB = 2^n <P(x_i)>_i - 1, where P(x_i) is the ideal-circuit probability of each measured bitstring and the average is taken over observed bitstrings.",
+      "overview": "The equation gives the audit path for the paper's verification claim. It ties measured samples to ideal probabilities, making fidelity a quantitative statistic rather than a qualitative assertion; its limitation is that ideal probabilities must be classically computed, which becomes infeasible in the largest circuits.",
+      "page_refs": [
+        "Eq.1",
+        "p.506"
+      ],
+      "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+      "title": "Cross-Entropy Fidelity Formula"
+    },
+    {
+      "claim_refs": [
+        "4",
+        "5"
+      ],
+      "evidence_id": "evidence-simultaneous-error-table--c6f80ab19e44",
+      "evidence_type": "table_result",
+      "excerpt": "Figure 2 reports average simultaneous-operation errors of single-qubit e1 = 0.16%, two-qubit e2 = 0.62%, two-qubit cycle e2c = 0.93%, and readout er = 3.8%.",
+      "overview": "These tabulated component measurements matter because the supremacy experiment depends on running many gates concurrently without hidden correlated failures overwhelming the circuit. They support the predictive error model, while still showing that readout and two-qubit operations are the dominant fidelity limits.",
+      "page_refs": [
+        "Fig.2",
+        "p.507"
+      ],
+      "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+      "title": "System-Wide Error Rates"
+    },
+    {
+      "claim_refs": [
+        "4",
+        "5",
+        "7"
+      ],
+      "evidence_id": "evidence-large-circuit-fidelity-model--d1ef9253a8c6",
+      "evidence_type": "model_constraint",
+      "excerpt": "The largest random circuits have 53 qubits, 1,113 single-qubit gates, 430 two-qubit gates, and a measurement on each qubit, for which the authors predict total fidelity of 0.2%.",
+      "overview": "This model constraint links component-level calibration to whole-circuit behavior. It shows that the expected fidelity is small but measurable with millions of samples, and it frames the later elided-circuit result as a test of whether independent local errors remain predictive at full scale.",
+      "page_refs": [
+        "p.507"
+      ],
+      "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+      "title": "Largest Circuit Fidelity Model"
+    },
+    {
+      "claim_refs": [
+        "3",
+        "7"
+      ],
+      "evidence_id": "evidence-elided-xeb-30-million-samples--e9b4d08f61aa",
+      "evidence_type": "statistical_result",
+      "excerpt": "For the largest 53-qubit, 20-cycle circuit, N_s = 30 \u00d7 10^6 samples over ten instances gave F_XEB = (2.24 \u00b1 0.21) \u00d7 10^-3, implying average fidelity above 0.1% with 5\u03c3 confidence.",
+      "overview": "This statistical result is the strongest direct fidelity evidence near the supremacy regime. Because the full hardest circuits could not be classically verified, the elided result provides a closely related, auditable proxy; the inference depends on the demonstrated correspondence among simplified, patch, elided, and full verification circuits.",
+      "page_refs": [
+        "Fig.4",
+        "p.508"
+      ],
+      "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+      "title": "Elided-Circuit XEB Result"
+    },
+    {
+      "claim_refs": [
+        "1",
+        "6",
+        "8"
+      ],
+      "evidence_id": "evidence-quantum-classical-runtime-gap--f2a6c0d4be77",
+      "evidence_type": "statistical_result",
+      "excerpt": "Figure 4 states that one million samples at m = 20 take 200 seconds on Sycamore, while equal-fidelity classical sampling would take 10,000 years on one million cores and fidelity verification would take millions of years.",
+      "overview": "This evidence supports the headline speedup claim by pairing the quantum sampling runtime with the authors' extrapolated classical cost. The comparison is task-specific and model-dependent: it concerns equal-fidelity random circuit sampling, not arbitrary useful quantum algorithms.",
+      "page_refs": [
+        "Fig.4",
+        "p.508"
+      ],
+      "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+      "title": "Quantum-Classical Runtime Gap"
+    },
+    {
+      "claim_refs": [
+        "3",
+        "7"
+      ],
+      "evidence_id": "evidence-verification-circuit-agreement--ab39e15c7420",
+      "evidence_type": "figure_result",
+      "excerpt": "The predicted, patch and elided fidelities all show good agreement with the fidelities of the corresponding full circuits, despite vast differences in computational complexity and entanglement.",
+      "overview": "This formal comparison matters because direct XEB verification is unavailable for the final hardest circuits. Agreement in tractable regimes justifies using lower-complexity circuit variants as fidelity estimators, while leaving open future improvements in classical simulation methods.",
+      "page_refs": [
+        "Fig.4a",
+        "p.508"
+      ],
+      "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+      "title": "Verification Circuit Agreement"
+    }
+  ],
+  "relations": [
+    {
+      "dst_claim_ref": "1",
+      "rationale": "The measured elided-circuit fidelity is needed for the equal-fidelity runtime comparison behind the speedup claim.",
+      "relation_type": "supports",
+      "src_claim_ref": "3"
+    },
+    {
+      "dst_claim_ref": "5",
+      "rationale": "Measured simultaneous component errors provide the inputs for predicting whole-circuit fidelity.",
+      "relation_type": "supports",
+      "src_claim_ref": "4"
+    },
+    {
+      "dst_claim_ref": "3",
+      "rationale": "Agreement among verification variants supports extending the elided-circuit fidelity estimate into the harder regime.",
+      "relation_type": "supports",
+      "src_claim_ref": "7"
+    },
+    {
+      "dst_claim_ref": "1",
+      "rationale": "The exponential classical scaling of random circuits explains why the reported runtime gap grows at the largest width and depth.",
+      "relation_type": "supports",
+      "src_claim_ref": "6"
+    },
+    {
+      "dst_claim_ref": "1",
+      "rationale": "Both claims delimit the demonstration as a task-specific milestone rather than a general-purpose fault-tolerant quantum computer.",
+      "relation_type": "similar",
+      "src_claim_ref": "8"
+    }
+  ],
+  "source": {
+    "authors": [
+      "Frank Arute",
+      "Kunal Arya",
+      "Ryan Babbush",
+      "Dave Bacon",
+      "Joseph C. Bardin",
+      "Rami Barends",
+      "Rupak Biswas",
+      "Sergio Boixo",
+      "Fernando G. S. L. Brandao",
+      "David A. Buell",
+      "Brian Burkett",
+      "Yu Chen",
+      "Zijun Chen",
+      "Ben Chiaro",
+      "Roberto Collins",
+      "William Courtney",
+      "Andrew Dunsworth",
+      "Edward Farhi",
+      "Brooks Foxen",
+      "Austin Fowler",
+      "Craig Gidney",
+      "Marissa Giustina",
+      "Rob Graff",
+      "Keith Guerin",
+      "Steve Habegger",
+      "Matthew P. Harrigan",
+      "Michael J. Hartmann",
+      "Alan Ho",
+      "Markus Hoffmann",
+      "Trent Huang",
+      "Travis S. Humble",
+      "Sergei V. Isakov",
+      "Evan Jeffrey",
+      "Zhang Jiang",
+      "Dvir Kafri",
+      "Kostyantyn Kechedzhi",
+      "Julian Kelly",
+      "Paul V. Klimov",
+      "Sergey Knysh",
+      "Alexander Korotkov",
+      "Fedor Kostritsa",
+      "David Landhuis",
+      "Mike Lindmark",
+      "Erik Lucero",
+      "Dmitry Lyakh",
+      "Salvatore Mandr\u00e0",
+      "Jarrod R. McClean",
+      "Matthew McEwen",
+      "Anthony Megrant",
+      "Xiao Mi",
+      "Kristel Michielsen",
+      "Masoud Mohseni",
+      "Josh Mutus",
+      "Ofer Naaman",
+      "Matthew Neeley",
+      "Charles Neill",
+      "Murphy Yuezhen Niu",
+      "Eric Ostby",
+      "Andre Petukhov",
+      "John C. Platt",
+      "Chris Quintana",
+      "Eleanor G. Rieffel",
+      "Pedram Roushan",
+      "Nicholas C. Rubin",
+      "Daniel Sank",
+      "Kevin J. Satzinger",
+      "Vadim Smelyanskiy",
+      "Kevin J. Sung",
+      "Matthew D. Trevithick",
+      "Amit Vainsencher",
+      "Benjamin Villalonga",
+      "Theodore White",
+      "Z. Jamie Yao",
+      "Ping Yeh",
+      "Adam Zalcman",
+      "Hartmut Neven",
+      "John M. Martinis"
+    ],
+    "display_title": "Quantum Supremacy Using a Programmable Superconducting Processor",
+    "doi": "10.1038/s41586-019-1666-5",
+    "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+  },
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2019-10-23",
+    "origin": "sources/artifacts/source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8/source.md",
+    "rationale": "The extracted markdown header states 'Published online: 23 October 2019'."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The source's main proposition is that Sycamore performed random circuit sampling in a classically inaccessible regime. The experiment uses 53 active qubits and deep random circuits to create a state space of about 10^16 possibilities, then asks the processor to sample bitstrings from the resulting distribution rather than solve a practical application directly.",
+        "grounding_claim_ids": [
+          "0",
+          "1",
+          "6"
+        ],
+        "heading": "Central Benchmark Claim"
+      },
+      {
+        "body": "Cross-entropy benchmarking supplies the quantitative bridge between measured bitstrings and ideal circuit probabilities. In tractable regimes, ideal probabilities can be computed classically and compared with the quantum samples; in the largest regime, the same method becomes too costly, so verification has to be transferred through carefully simplified circuit families.",
+        "grounding_claim_ids": [
+          "2",
+          "3",
+          "7"
+        ],
+        "heading": "Verification Method"
+      },
+      {
+        "body": "The processor evidence is not just a headline qubit count. The article reports simultaneous-operation error rates for gates and readout, then uses those rates to predict total circuit fidelity. This matters because the supremacy claim would fail if large-scale simultaneous operation introduced uncontrolled correlated errors not visible in isolated gate calibration.",
+        "grounding_claim_ids": [
+          "4",
+          "5"
+        ],
+        "heading": "Hardware Error Evidence"
+      },
+      {
+        "body": "The hardest full circuits are not directly verified by classical simulation. Instead, the article compares full, patch, elided, and predicted fidelities where verification is possible, then uses elided circuits at 53 qubits and 20 cycles as the closest auditable proxy. The inference is therefore empirical and model-supported rather than a direct full-circuit probability check.",
+        "grounding_claim_ids": [
+          "3",
+          "7"
+        ],
+        "heading": "Supremacy-Regime Inference"
+      },
+      {
+        "body": "The dramatic runtime gap depends on matching the quantum task to an equal-fidelity classical sampling estimate. Sycamore's reported 200 seconds for one million samples is compared with 10,000 years on one million cores, but this is an extrapolated benchmark for random circuit sampling, not evidence that all valuable computations are now faster on quantum hardware.",
+        "grounding_claim_ids": [
+          "1",
+          "6",
+          "8"
+        ],
+        "heading": "Classical Cost Comparison"
+      },
+      {
+        "body": "The article explicitly separates this NISQ-era milestone from full-scale fault-tolerant quantum computing. It argues that quantum speedup is achievable in a real physical device, while acknowledging that applications such as Shor-style factoring still require logical qubits and major engineering advances beyond the reported noisy processor.",
+        "grounding_claim_ids": [
+          "1",
+          "8"
+        ],
+        "heading": "Limits and Interpretation"
+      }
+    ],
+    "summary_long": "The article presents a landmark random-circuit sampling experiment using Google's Sycamore superconducting processor. Its central claim is that a programmable 53-qubit device sampled from a distribution generated by pseudo-random quantum circuits in a regime where equal-fidelity classical sampling was estimated to be prohibitively expensive. The source grounds this claim in several layers of evidence. First, it defines a benchmark whose classical difficulty grows with both qubit number and circuit depth because random circuits lack exploitable structure. Second, it uses linear cross-entropy benchmarking to compare measured bitstrings with ideal probabilities wherever classical simulation remains possible. Third, it measures component error rates for single-qubit gates, two-qubit gates, cycles, and readout under simultaneous operation, then uses those rates to predict whole-circuit fidelity. The decisive regime cannot be fully verified by direct classical simulation, so the article relies on patch, elided, and verification circuits to test whether lower-complexity variants track full-circuit behavior. For the largest elided 53-qubit, 20-cycle data set, the reported F_XEB statistic supports fidelity above 0.1% at 5\u03c3 confidence. Against this measured fidelity, the authors compare Sycamore's 200-second runtime for one million samples with an extrapolated 10,000-year classical sampling cost on one million cores. The practical interpretation is deliberately narrow: the result demonstrates a super-classical benchmark computation in a noisy intermediate-scale device, not immediate fault-tolerant quantum computing or a broad application such as factoring. Its importance lies in showing that controlled, many-qubit quantum dynamics can be engineered, benchmarked, and made classically inaccessible for a specific task.",
+    "summary_short": "This Nature article reports Sycamore random-circuit sampling on 53 qubits. Cross-entropy benchmarking, component error calibration, and classical-cost estimates support a task-specific quantum supremacy claim. The result is a benchmark speedup, not general fault-tolerant quantum computing."
+  },
+  "summary": "The source reports Google's Sycamore experiment demonstrating task-specific quantum supremacy in random circuit sampling. It combines a 53-qubit programmable superconducting processor, cross-entropy benchmarking, component error modeling, and classical simulation cost estimates to argue that Sycamore performed a sampling task in minutes that would take state-of-the-art classical resources thousands of years at equal fidelity.",
+  "warnings": [
+    {
+      "code": "date_inferred_from_markdown",
+      "message": "Task context supplied date=null, but source.md contains 'Published online: 23 October 2019', so source_date_inference was populated from the markdown."
+    },
+    {
+      "code": "noisy_reference_extraction",
+      "message": "The source_record reference list contains malformed or noisy extracted entries; claims and evidence were grounded in source_extraction.json and source.md instead."
+    },
+    {
+      "code": "full_supremacy_data_not_directly_verified",
+      "message": "The hardest full-circuit samples were archived but not directly classically simulated in the source; fidelity support comes from elided and verification-circuit evidence."
+    }
+  ]
+}

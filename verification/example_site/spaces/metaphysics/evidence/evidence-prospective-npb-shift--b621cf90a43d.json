@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c",
+    "claim-most-psychedelic-associated-shifts-in-non-physicalist-metaphysical-beliefs-persi--9591d5bd7c0c"
+  ],
+  "evidence_id": "evidence-prospective-npb-shift--b621cf90a43d",
+  "evidence_type": "statistical_result",
+  "excerpt": "Pooling scores for the NPB factor, analyses revealed a significant shift away from physicalism at 4 weeks compared with baseline (t(121) = 3.66, p = 0.001, d = 0.33, 95% CI [0.12, 0.39]). These changes were sustained 6 months after the ceremony (t(121) = 5.07, p < 0.0001, d = 0.46, 95% CI [0.22, 0.50]).",
+  "overview": "The pre-versus-post comparison is the central prospective evidence that psychedelic ceremonies were followed by measurable movement away from hard physicalism. It establishes temporal ordering and durability for the composite non-physicalist belief measure, though the observational ceremony context means it does not by itself fully isolate the pharmacological cause.",
+  "page_refs": [
+    "Fig. 1",
+    "p.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "title": "Prospective Belief Shift"
+}

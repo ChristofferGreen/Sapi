@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-undifferentiated-use-of-mindfulness-and-meditation-can-make-brief-app-exercises--0796f143a40c",
+    "claim-future-mindfulness-science-should-emphasize-preregistration-open-science-replica--ad9bbbab2603"
+  ],
+  "evidence_id": "evidence-growth-in-mindfulness-coverage--a1f4c8d29e73",
+  "evidence_type": "figure_result",
+  "excerpt": "Fig. 1. Scientific and news media articles on mindfulness and/or meditation by year from 1970 to 2015. Empirical scientific articles with the term mindfulness or meditation in the abstract, title, or keywords were searched using Scopus; media pieces with the term mindfulness or meditation were searched using LexisNexis.",
+  "overview": "The figure operationalizes the article's claim that mindfulness became a rapidly expanding scientific and media topic. It does not prove hype by itself, but it documents the growth context in which public exaggeration, inconsistent terminology, and pressure for clinical uptake became consequential.",
+  "page_refs": [
+    "Fig. 1",
+    "p.37"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Growth In Mindfulness Coverage"
+}

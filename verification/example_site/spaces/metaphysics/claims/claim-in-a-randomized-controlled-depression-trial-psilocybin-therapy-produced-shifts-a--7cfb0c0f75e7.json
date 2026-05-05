@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T15:32:25Z",
+  "claim_id": "claim-in-a-randomized-controlled-depression-trial-psilocybin-therapy-produced-shifts-a--7cfb0c0f75e7",
+  "evidence_excerpts": [
+    "A significant drug versus time interaction was observed (F(56) = 3.13, p = 0.041, one-tailed).",
+    "Post-hoc tests reveal that shifts away from hard materialism were evident in the psilocybin group only (Z = 2.28, p = 0.02, d = 0.45). The escitalopram group showed no changes in NPB (Z = 0.24, p = 0.33, d = 0.2)."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Psilocybin shifts materialism",
+  "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "text": "In a randomized controlled depression trial, psilocybin therapy produced shifts away from hard materialism at six weeks whereas escitalopram did not."
+}

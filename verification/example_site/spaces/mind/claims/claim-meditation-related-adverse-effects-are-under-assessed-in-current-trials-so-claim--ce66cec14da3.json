@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T13:44:42Z",
+  "claim_id": "claim-meditation-related-adverse-effects-are-under-assessed-in-current-trials-so-claim--ce66cec14da3",
+  "evidence_excerpts": [
+    "Less than 25% of meditation trials actively assess adverse effects, compared to 100% of pharmacology trials, and many rely on spontaneous reporting that may underestimate adverse-effect frequency by more than 20-fold.",
+    "The article states that the assumption of minimal adverse effects associated with meditation is largely based on a lack of research rather than substantive evidence."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Adverse effects are underassessed",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "text": "Meditation-related adverse effects are under-assessed in current trials, so claims that meditation is free of adverse effects rest on inadequate evidence."
+}

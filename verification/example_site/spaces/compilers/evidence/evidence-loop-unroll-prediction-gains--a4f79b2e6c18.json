@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+    "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3"
+  ],
+  "evidence_id": "evidence-loop-unroll-prediction-gains--a4f79b2e6c18",
+  "evidence_type": "statistical_result",
+  "excerpt": "They used over 2,500 loops from 72 benchmarks to train two machine learning models (a nearest neighbor and a support vector machines model) to predict the loop unroll factor for unseen loops. Using a richer set of features than [14], their techniques correctly predict the unroll factor for 65% of the testing loops, leading to on average, a 5% improvement for the SPEC 2000 benchmark suite.",
+  "overview": "The loop-unrolling result is a quantitative benchmark for direct prediction. It does not prove that all compiler choices are easy to learn, but it demonstrates that for a bounded option set, feature-based supervised models can predict useful decisions and produce measurable application-level performance improvements.",
+  "page_refs": [
+    "p.6"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "title": "Loop Unroll Prediction Gains"
+}

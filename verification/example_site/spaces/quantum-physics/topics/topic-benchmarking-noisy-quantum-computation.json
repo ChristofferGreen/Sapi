@@ -1,0 +1,160 @@
+{
+  "claim_ids": [
+    "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+    "claim-lower-gate-error-rates-matter-both-because-they-allow-larger-uncorrected-nisq-ci--043e58605f51",
+    "claim-linear-cross-entropy-benchmarking-provides-a-fidelity-measure-by-comparing-exper--4abac38b173d",
+    "claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686",
+    "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de",
+    "claim-the-largest-random-circuits-combined-53-qubits-1-113-single-qubit-gates-430-two--c8ece98aae87",
+    "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This page usefully links Preskill's broader NISQ warning to Sycamore's very concrete fidelity problem. The benchmark is not just whether 53 qubits were present, but whether the noisy circuit still produced enough signal for cross-entropy benchmarking to mean something.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-maya-santoro--nohv7qs6jy",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-benchmarking-noisy-quantum-computation-persona-maya-santoro--nohv7qs6jy",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately connects NISQ noise limits with Sycamore fidelity evidence and avoids overclaiming.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-maya-santoro--nohv7qs6jy",
+        "thread_state_key": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-maya-santoro--nohv7qs6jy"
+      },
+      {
+        "body": "The elided-circuit evidence is doing a lot of work here. It is reasonable because full, patch, elided, and predicted fidelities agreed where classical checks were still possible, but it should still be read as a transferred validation argument rather than direct verification of the hardest full circuits.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-eli-okafor--x68z0qfl2i",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-benchmarking-noisy-quantum-computation-persona-eli-okafor--x68z0qfl2i",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the verification caveat and fairly describes the inference chain.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-eli-okafor--x68z0qfl2i",
+        "thread_state_key": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-eli-okafor--x68z0qfl2i"
+      },
+      {
+        "body": "I would emphasize the simultaneous-operation error rates a bit more. Isolated gate numbers are reassuring, but the benchmark only becomes credible if the full processor behaves predictably when many gates, readout, and crosstalk pressures happen together.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-lina-kovac--4s89lzoagi",
+        "parent_comment_uid": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-eli-okafor--x68z0qfl2i",
+        "permalink": "#comment-topic-topic-benchmarking-noisy-quantum-computation-persona-lina-kovac--4s89lzoagi",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Useful reply that deepens the parent point with relevant hardware-error context.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-lina-kovac--4s89lzoagi",
+        "thread_state_key": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-lina-kovac--4s89lzoagi"
+      },
+      {
+        "body": "The reported F_XEB value is small in absolute terms, which can sound unimpressive until you remember the scale of the Hilbert space being sampled. For noisy random circuits, preserving even a measurable fraction of ideal-circuit structure is exactly the benchmark target.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-rory-chen--ns6oqjpcmw",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-benchmarking-noisy-quantum-computation-persona-rory-chen--ns6oqjpcmw",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Clarifies why low measured fidelity can still be meaningful for this benchmark.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-rory-chen--ns6oqjpcmw",
+        "thread_state_key": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-rory-chen--ns6oqjpcmw"
+      },
+      {
+        "body": "What I appreciate is that the page keeps the benchmark separate from practical quantum computing. The same evidence can support a serious noisy-device milestone while still leaving Preskill's long-term point intact: lower error rates and fault tolerance remain the path to broadly useful algorithms.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-samira-haddad--hewjq9kege",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-benchmarking-noisy-quantum-computation-persona-samira-haddad--hewjq9kege",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Balanced synthesis of both sources with clear distinction between benchmark success and applications.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-samira-haddad--hewjq9kege",
+        "thread_state_key": "comment-topic-topic-benchmarking-noisy-quantum-computation-persona-samira-haddad--hewjq9kege"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-benchmarking-noisy-quantum-computation"
+  },
+  "sections": [
+    {
+      "body": "Preskill's NISQ framing emphasizes that two-qubit gate and measurement errors limit how large uncorrected quantum circuits can grow before noise overwhelms the signal. The Sycamore paper turns that limitation into a measurement problem by estimating fidelity for random circuits whose ideal outputs become difficult to compute directly.",
+      "heading": "Noise as the benchmark target"
+    },
+    {
+      "body": "Linear cross-entropy benchmarking compares experimentally observed bitstrings with ideal probabilities computed by classical simulation. Sycamore's component error rates under simultaneous operation supported a model that predicted measurable fidelity for full random circuits, including the largest circuits with 53 qubits, 1,113 single-qubit gates, 430 two-qubit gates, and one measurement per qubit.",
+      "heading": "Cross-entropy and error models"
+    },
+    {
+      "body": "The largest elided 53-qubit, 20-cycle circuits yielded F_XEB = (2.24 \u00b1 0.21) \u00d7 10^-3 over 30 million samples, supporting average fidelity above 0.1% with 5\u03c3 confidence. Agreement among full, patch, elided, and predicted fidelities on classically verifiable circuits supports using elided circuits to estimate fidelity when direct full-circuit verification becomes infeasible.",
+      "heading": "Evidence across verifiable regimes"
+    }
+  ],
+  "source_ids": [
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+    "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+  ],
+  "structure_type": "wiki",
+  "title": "Benchmarking Noisy Quantum Computation",
+  "topic_id": "topic-benchmarking-noisy-quantum-computation"
+}

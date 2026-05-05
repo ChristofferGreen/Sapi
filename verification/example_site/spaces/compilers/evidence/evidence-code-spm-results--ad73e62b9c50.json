@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-ilp-based-code-scratchpad-allocation-lowers-wcet-by-moving-beneficial-basic-bloc--d5d88da4e90e"
+  ],
+  "evidence_id": "evidence-code-spm-results--ad73e62b9c50",
+  "evidence_type": "figure_result",
+  "excerpt": "The code SPM evaluation applies an ILP to 73 real-life benchmarks. For g721_encode, a 10% program SPM yields 71% of original WCET and a fully fitting SPM yields 52.2%. Across all benchmarks, tiny SPMs reach 92.6% of no-SPM WCET and full-fit SPMs reach 60%, with average code-size growth of 0.02%.",
+  "overview": "This evidence quantifies the effect of allocating code to fast scratchpad memory. It supports the claim that WCET-aware memory placement can produce large reductions while keeping code growth and ILP solving overhead negligible for the evaluated benchmark set.",
+  "page_refs": [
+    "Fig. 10",
+    "Fig. 11",
+    "pp.286-288"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "title": "Program SPM Results"
+}

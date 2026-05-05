@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:08:29Z",
+  "claim_id": "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124",
+  "evidence_excerpts": [
+    "significance: [p] is fully grounded in D only if the connecting questions with respect to [p] and D lack cognitive significance."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Grounding Requires Insignificance",
+  "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "A fact [p] is fully grounded in D only if the connecting question asking why [p] obtains given D lacks cognitive significance."
+}

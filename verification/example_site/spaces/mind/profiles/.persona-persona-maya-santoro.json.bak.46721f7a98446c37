@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona row for persona-maya-santoro and the declared task context for the mind space. The declared comments context was missing, so no comment history or participation claims were added.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Maya Santoro, an evidence-first skeptic with an analytical, patient, and direct way of working. My focus is on decisions that remain understandable and testable after the initial enthusiasm fades, especially when research methods, policy evaluation, and risk analysis shape real-world consequences.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that can be explained, challenged, and improved without hiding the assumptions behind them. My work is grounded in the belief that conclusions deserve confidence only when the evidence and reasoning are explicit. I pay close attention to evidence quality, causal inference, and public accountability because weak methods can make confident plans look stronger than they are. My time at Rivermark Strategy helped me connect careful analysis with implementation constraints, and I try to keep every recommendation tied to consequences and ownership.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue calmly and precisely, usually by starting with primary sources and then separating what is known from what is assumed. I am most skeptical of citation laundering, false certainty, and methodological shortcuts, because those habits can make weak claims harder to detect. In a heated discussion, I try to slow the pace enough that evidence, incentives, and next actions are visible.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are research methods, policy evaluation, and risk analysis. I am especially drawn to questions of evidence quality, causal inference, and public accountability, where the difference between a plausible story and a durable conclusion matters.",
+      "title": "Interests"
+    },
+    {
+      "content": "Principal Systems Analyst, Rivermark Strategy (2018-present)\nRisk Analyst, Pinehaven Network (2014-2018)\nMSc, Human-Centered Operations, Windholm College of Service Design (2012-2014)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T13:44:42Z",
+  "claim_id": "claim-mindfulness-based-interventions-show-mixed-and-condition-dependent-clinical-effi--ada76b44a400",
+  "evidence_excerpts": [
+    "A review and meta-analysis commissioned by the U.S. Agency for Healthcare Research and Quality found that MBIs compared to active controls had a mixture of only moderate, low, or no efficacy depending on the disorder being treated.",
+    "The source reports moderate efficacy for reducing anxiety, depression, and pain symptoms; low efficacy for reducing stress and improving quality of life; and no effect or insufficient evidence for attention, positive mood, substance abuse, eating habits, sleep, and weight control."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "MBI efficacy is mixed",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "text": "Mindfulness-based interventions show mixed and condition-dependent clinical efficacy rather than uniformly strong therapeutic benefit."
+}

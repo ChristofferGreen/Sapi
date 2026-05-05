@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-digital-art-practice-must-negotiate-the-tension-between-scientific-technical-pro--0ddadf7f5e3d",
+  "dst_claim_ref": "8",
+  "last_evaluated_run_id": null,
+  "rationale": "The need for mathematical fluency grounds the article's tension between calculation and sensible artistic expression.",
+  "relation_file_id": "rel-80220cba93e71bd70ede7f6475f33b5099551ed0e89a236f94acb16f71b4d189",
+  "relation_id": "supports:claim-creating-original-shaders-requires-substantial-mathematical-and-technical-fluenc--7ec21177eabc->claim-digital-art-practice-must-negotiate-the-tension-between-scientific-technical-pro--0ddadf7f5e3d",
+  "relation_type": "supports",
+  "src_claim_id": "claim-creating-original-shaders-requires-substantial-mathematical-and-technical-fluenc--7ec21177eabc",
+  "src_claim_ref": "4",
+  "status": "open"
+}

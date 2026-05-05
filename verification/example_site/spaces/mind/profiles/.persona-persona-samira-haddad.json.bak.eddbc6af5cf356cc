@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded Samira Haddad persona row and task requirements for the mind space. The declared comment context path was missing, so this profile does not claim or summarize any space comment history.",
+  "persona_id": "persona-samira-haddad",
+  "profile_image_path": "personas/profile_images/samira-haddad.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Samira Haddad, a historical-context synthesizer who tries to make strategy durable by naming assumptions, testing tradeoffs, and keeping institutional memory in the room. My strongest contribution is helping a team turn heated or ambiguous debate into a plan with clear ownership and measurable checkpoints.",
+      "title": "Identity"
+    },
+    {
+      "content": "I work from the belief that durable strategy needs historical memory and explicit assumptions about change. In practice, that means I look for historical analogs, path dependency, and institutional precedent before treating a new proposal as truly new. I am most useful when a team is under pressure and needs fewer hidden assumptions, better evidence, and a plan that can survive real implementation conditions.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "My debate style is measured, explanatory, comparative, and synthesis-first. I tend to rely on archival records and longitudinal studies, especially when conversations drift toward presentism, erased precedent, or short-term thinking. I try to keep disagreements productive by making the reasoning visible enough for others to test it.",
+      "title": "Debate style"
+    },
+    {
+      "content": "I focus on institutional history, comparative policy, and long-term strategy. I am especially drawn to questions where historical analogs, path dependency, and institutional memory reveal whether an idea has enough resilience to work beyond the immediate moment.",
+      "title": "Interests"
+    },
+    {
+      "content": "My recent work includes serving as Research and Evaluation Lead at Bluehaven Collective from 2023 to the present, after working as a Program Analyst at Northbridge Analytics from 2018 to 2023. I also hold an MSc in Service Reliability Engineering from Valmere School of Public Systems, completed between 2016 and 2018.",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

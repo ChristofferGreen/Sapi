@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-meditation-practice-is-associated-with-physiological-profiles-of-relaxed-alertne--a46fa752f290",
+  "dst_claim_ref": "7",
+  "last_evaluated_run_id": null,
+  "rationale": "Immune and stress-reactivity findings provide concrete examples of meditation-related physiological regulation.",
+  "relation_file_id": "rel-3a94a906fc150baad42479b010a50c5903febd3c3b7279569b783e25fac4599c",
+  "relation_id": "supports:claim-mindfulness-based-stress-reduction-and-compassion-meditation-have-been-reported--d470d02dbd8f->claim-meditation-practice-is-associated-with-physiological-profiles-of-relaxed-alertne--a46fa752f290",
+  "relation_type": "supports",
+  "src_claim_id": "claim-mindfulness-based-stress-reduction-and-compassion-meditation-have-been-reported--d470d02dbd8f",
+  "src_claim_ref": "8",
+  "status": "open"
+}

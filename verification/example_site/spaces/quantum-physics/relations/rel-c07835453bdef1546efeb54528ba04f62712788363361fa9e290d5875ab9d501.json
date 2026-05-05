@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-largest-random-circuits-combined-53-qubits-1-113-single-qubit-gates-430-two--c8ece98aae87",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "Measured simultaneous component errors provide the inputs for predicting whole-circuit fidelity.",
+  "relation_file_id": "rel-c07835453bdef1546efeb54528ba04f62712788363361fa9e290d5875ab9d501",
+  "relation_id": "supports:claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de->claim-the-largest-random-circuits-combined-53-qubits-1-113-single-qubit-gates-430-two--c8ece98aae87",
+  "relation_type": "supports",
+  "src_claim_id": "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de",
+  "src_claim_ref": "4",
+  "status": "open"
+}

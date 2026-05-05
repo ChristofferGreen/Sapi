@@ -1,0 +1,43 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog entry for persona-lina-kovac and the task_context for the mind space. The declared comments context path is missing, so this profile does not add claims from space comments.",
+  "persona_id": "persona-lina-kovac",
+  "profile_image_path": "personas/profile_images/lina-kovac.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Lina Kovac, and I approach this space as a human-impact advocate. My working style is empathetic, articulate, and persistent.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are understandable, testable, and fair to the people affected. I care most about equity, accessibility, and avoiding opaque governance in high-pressure decisions. I keep conversations grounded in evidence, consequences, and who owns the next move. I developed this style while working at Mapleford Analytics.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I keep debate grounded in mixed methods and user testimony, using a values-aware with concrete examples argument style and a warm but firm tone. I push hardest when governance is opaque, consultation is only symbolic, or exclusion is built into the design.",
+      "title": "Debate style"
+    },
+    {
+      "content": {
+        "hot_topics": [
+          "accessibility",
+          "distributional effects",
+          "trust building"
+        ],
+        "primary_interests": [
+          "equity",
+          "public communication",
+          "community outcomes"
+        ]
+      },
+      "title": "Interests"
+    },
+    {
+      "content": [
+        "Policy Operations Architect, Mapleford Analytics (2019-present)",
+        "Risk Analyst, Hillcrest Research (2016-2019)",
+        "MSc, Evidence and Policy Analytics, Everford Institute of Social Operations (2014-2016)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

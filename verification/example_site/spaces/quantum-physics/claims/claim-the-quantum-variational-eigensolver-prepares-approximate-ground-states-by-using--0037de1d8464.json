@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:22:43Z",
+  "claim_id": "claim-the-quantum-variational-eigensolver-prepares-approximate-ground-states-by-using--0037de1d8464",
+  "evidence_excerpts": [
+    "Figure 1 describes quantum modules passing expectation values to a CPU, which computes the Hamiltonian expectation and feeds new state parameters back to the quantum processing unit.",
+    "The text states that varying experimental state-preparation parameters and computing the Rayleigh-Ritz quotient using QEE as a subroutine can prepare unknown eigenvectors."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "QVE minimizes Rayleigh Ritz energy",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "text": "The quantum variational eigensolver prepares approximate ground states by using quantum expectation estimation inside a classical minimization of the Rayleigh-Ritz quotient."
+}

@@ -503,21 +503,25 @@ Control flow:
    then transactionally append source/claim/evidence links to matched question records
 10. when no active prepared questions exist, skip `question_relevance_mapping` and set
    `question_mapping_status = no_active_questions` with `question_matches_changed = 0`
-11. for each mapped question whose canonical synthesis input signature changed, run semantic flow
+11. for each mapped question whose canonical measurement input signature changed, run semantic flow
+   `question_measurement_extraction`, validate that output references only linked canonical
+   source/claim/evidence IDs, and persist measurement rows plus freshness metadata back to the
+   question record
+12. for each mapped question whose canonical synthesis input signature changed, run semantic flow
    `question_synthesis`, validate that output references only linked canonical source/claim/evidence
    IDs, and persist synthesis plus freshness metadata back to the question record
-12. run semantic flow `topic_generation`
-13. deterministically write 0..n canonical topic artifacts from shared cross-source concepts
-14. set `semantic_flows = [ingest_extraction, topic_generation]`, `[ingest_extraction, question_relevance_mapping, question_synthesis, topic_generation]`, or `[source_revision_detection, ingest_extraction, question_relevance_mapping, question_synthesis, topic_generation]` only when those optional flows actually run
-15. set `semantic_flow_invocation_counts` to match exactly the flows invoked in this ingest run
-16. run link reconciliation
+13. run semantic flow `topic_generation`
+14. deterministically write 0..n canonical topic artifacts from shared cross-source concepts
+15. set `semantic_flows = [ingest_extraction, topic_generation]`, `[ingest_extraction, question_relevance_mapping, question_measurement_extraction, question_synthesis, topic_generation]`, or `[source_revision_detection, ingest_extraction, question_relevance_mapping, question_measurement_extraction, question_synthesis, topic_generation]` only when those optional flows actually run
+16. set `semantic_flow_invocation_counts` to match exactly the flows invoked in this ingest run
+17. run link reconciliation
     - reference extraction prefers `source.md` when `analysis_policy.quality_status != unusable`
     - same step MAY persist curated `external_related_links[]` plus `related_link_enrichment`
       summary metadata on source records
-16. run deterministic projection/build and site-root `New` index refresh (or bootstrap deferred mode)
-17. run lint and warning-threshold evaluation
-18. write `run.md` and `lint.json` for committed run
-19. release lock
+18. run deterministic projection/build and site-root `New` index refresh (or bootstrap deferred mode)
+19. run lint and warning-threshold evaluation
+20. write `run.md` and `lint.json` for committed run
+21. release lock
 
 Bootstrap deferred-build behavior:
 - when projection/build modules are intentionally unavailable during reconstruction bootstrap, ingest MAY mark:
@@ -761,7 +765,7 @@ Wrapper to script mapping:
 - `ingest.sh` -> `scripts/ingest_source.py`
 - `create_questions.sh` -> `scripts/create_prepared_questions.py`
 - `create_space.sh` -> bootstraps registered spaces and invokes `create_questions.sh` for checked-in
-  example seed rows matching the created space name
+  example seed rows matching the created space name only when `--seed-example-questions` is supplied
 - `refresh_questions.sh` -> `scripts/refresh_questions.py`
 - `query.sh` -> `scripts/query.py`
 - `create_comments.sh` -> `scripts/create_comments.py`

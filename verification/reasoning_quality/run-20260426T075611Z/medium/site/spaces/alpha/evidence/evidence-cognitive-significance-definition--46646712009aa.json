@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-a-connecting-question-is-cognitively-significant-exactly-when-full-information-a--1302bcf4da84"
+  ],
+  "evidence_id": "evidence-cognitive-significance-definition--46646712009aa",
+  "evidence_type": "model_constraint",
+  "excerpt": "Let a connecting question of the form \u2018Why should [p] obtain given that each of the members of D obtains?\u2019 be cognitively significant just in case it\u2019s metaphysically necessary that, for any rational individual, being fully informed about the nature of [p], D, the plurality consisting of [p] and D, and the entities these facts involve doesn\u2019t suffice for the question to lack substantive content for that individual.",
+  "overview": "This definition clarifies the epistemic notion used in the argument. Cognitive significance is not merely current ignorance by a particular person; it concerns whether full information about the relevant natures would still leave a rational individual with a substantive explanatory question. That helps Trogdon distinguish the explanatory gap and open question cases from ordinary explanatory incompleteness.",
+  "page_refs": [
+    "pp.469-470"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Cognitive Significance Definition"
+}

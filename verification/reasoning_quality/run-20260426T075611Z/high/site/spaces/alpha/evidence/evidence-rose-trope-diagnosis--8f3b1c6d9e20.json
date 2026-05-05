@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-rose-trope-objection-fails-because-the-existence-of-a-particular-redness-is--a14d5a95160c",
+    "claim-putative-counterexamples-involving-promises-universal-generalizations-and-widowh--77be6c83064e"
+  ],
+  "evidence_id": "evidence-rose-trope-diagnosis--8f3b1c6d9e20",
+  "evidence_type": "formal_argument",
+  "excerpt": "I agree that the fact that the rose is a particular shade of red seems explanatorily relevant to the fact that the particular redness exists. But, following Schnieder (2006a), tacking on the fact that the rose exists to this explanans seems to add nothing to the overall explanation. Since any partial ground in a grounding explanation is explanatorily relevant to the explanandum, it seems, then, that the existence of the particular redness isn\u2019t even partially grounded in the existence of the rose. I suggest instead (as Schnieder does) that the existence of the particular redness is fully grounded in the fact that the rose is a particular shade of red.",
+  "overview": "This evidence handles a different kind of counterexample. Rather than adding missing grounds, Trogdon argues that the alleged ground is not a ground at all. The passage preserves necessity by relocating the full ground of the redness trope in a more specific fact about the rose\u2019s shade, while treating the rose\u2019s bare existence as explanatorily idle.",
+  "page_refs": [
+    "p.479"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Rose Trope Diagnosis"
+}

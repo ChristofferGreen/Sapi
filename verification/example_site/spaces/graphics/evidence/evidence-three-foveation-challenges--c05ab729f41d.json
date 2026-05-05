@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3"
+  ],
+  "evidence_id": "evidence-three-foveation-challenges--c05ab729f41d",
+  "evidence_type": "formal_argument",
+  "excerpt": "The paper states that three challenges must be addressed in foveated rendering: using human-visual-system perceptual models, rendering different regions with different qualities, and integrating foveated rendering into existing rendering paradigms to improve rendering performance.",
+  "overview": "This formal framing gives the survey its argumentative structure. It distinguishes perceptual modeling, regional quality assignment, and rendering-system integration as separate design obligations rather than treating foveated rendering as a single algorithmic trick.",
+  "page_refs": [
+    "pp.196-197"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "title": "Three Foveation Challenges"
+}

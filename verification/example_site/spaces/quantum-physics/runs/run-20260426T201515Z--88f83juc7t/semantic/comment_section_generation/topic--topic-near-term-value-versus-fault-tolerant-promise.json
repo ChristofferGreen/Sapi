@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "This page gets the balance right: NISQ machines can be scientifically valuable without being broadly useful computers yet. Preskill's framing and the Sycamore benchmark both point to noisy devices as ways to probe classically hard quantum behavior, not as proof that near-term hardware is ready for general applications.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately synthesizes both sources and avoids overstating near-term utility.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The application discussion should stay especially careful around optimization. QAOA and VQE are good experimental testbeds, but beating mature classical optimization or chemistry workflows is a much stronger claim than producing interesting behavior on a shallow noisy circuit.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Grounded in the Preskill source's caution about benchmark standards and hybrid algorithms.",
+        "score": 23
+      }
+    },
+    {
+      "body": "That caution also matters because the Sycamore result is deliberately task-specific. Random circuit sampling can be a real milestone in controllability and classical hardness while still saying very little about whether the same hardware can solve useful optimization instances.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Builds coherently on the parent and ties the optimization caveat to the Sycamore benchmark limits.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The strongest near-term case still seems to be quantum simulation, especially highly entangled many-body dynamics. That is where the sources make a more structural argument: classical methods struggle for principled reasons, so even noisy experiments may teach us something before fault tolerance arrives.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Highlights the best-supported near-term value claim with clear source alignment.",
+        "score": 25
+      }
+    },
+    {
+      "body": "I appreciate that the page keeps the fault-tolerant horizon separate from the NISQ story. Error correction, logical qubits, and large physical-qubit overhead are not minor implementation details; they are the reason factoring-scale promises belong in a different time frame from today's noisy demonstrations.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Clearly reflects both sources' distinction between noisy demonstrations and fault-tolerant applications.",
+        "score": 24
+      }
+    }
+  ],
+  "page_ref": "topic:topic-near-term-value-versus-fault-tolerant-promise",
+  "requested_count": 5
+}

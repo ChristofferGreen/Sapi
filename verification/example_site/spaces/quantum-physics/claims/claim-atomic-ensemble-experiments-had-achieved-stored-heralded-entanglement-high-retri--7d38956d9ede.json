@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:12:22Z",
+  "claim_id": "claim-atomic-ensemble-experiments-had-achieved-stored-heralded-entanglement-high-retri--7d38956d9ede",
+  "evidence_excerpts": [
+    "Conditional readout efficiencies of 74% in free space and 84% in a cavity were realized for state transfer from a single collective spin excitation to a single photon.",
+    "Heralded entanglement between distant ensembles was achieved in 2005, with the entangled state stored in quantum memories located in distinct apparatuses separated by 3 m; later work inferred C = 0.9 \u00b1 0.3 for the concurrence."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Ensemble experiments store entanglement",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "text": "Atomic-ensemble experiments had achieved stored heralded entanglement, high retrieval efficiencies, and minimal scalable-node functionality by the time of the source discussion."
+}

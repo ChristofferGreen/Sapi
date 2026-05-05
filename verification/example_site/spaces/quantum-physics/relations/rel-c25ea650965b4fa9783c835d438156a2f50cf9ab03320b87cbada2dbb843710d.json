@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Quantum data analysis provides a natural setting where quantum systems avoid some classical data-loading costs.",
+  "relation_file_id": "rel-c25ea650965b4fa9783c835d438156a2f50cf9ab03320b87cbada2dbb843710d",
+  "relation_id": "supports:claim-quantum-machine-learning-for-quantum-data-can-reduce-tomography-and-characteriza--b02ec76133c0->claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+  "relation_type": "supports",
+  "src_claim_id": "claim-quantum-machine-learning-for-quantum-data-can-reduce-tomography-and-characteriza--b02ec76133c0",
+  "src_claim_ref": "8",
+  "status": "open"
+}

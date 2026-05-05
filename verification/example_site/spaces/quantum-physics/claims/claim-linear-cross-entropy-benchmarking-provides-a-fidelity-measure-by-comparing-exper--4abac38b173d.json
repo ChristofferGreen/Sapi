@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:59:28Z",
+  "claim_id": "claim-linear-cross-entropy-benchmarking-provides-a-fidelity-measure-by-comparing-exper--4abac38b173d",
+  "evidence_excerpts": [
+    "F_XEB = 2^n <P(x_i)>_i - 1, where n is the number of qubits, P(x_i) is the probability of bitstring x_i computed for the ideal quantum circuit, and the average is over the observed bitstrings."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "XEB measures circuit fidelity",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "text": "Linear cross-entropy benchmarking provides a fidelity measure by comparing experimentally observed bitstrings with ideal probabilities computed by classical simulation."
+}

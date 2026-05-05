@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-in-the-worst-case-topology-the-entanglement-swapping-based-strategy-has-per-laye--bd58d42b2d90",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "The entanglement-swapping bound is derived under the stated one-data-qubit linear-nearest-neighbor worst-case architecture.",
+  "relation_file_id": "rel-79bc2c410a63641a3f83d7dbff99e22b77e9f5b9c7e8e000102e98e2cfbda16f",
+  "relation_id": "supports:claim-the-paper-s-worst-case-system-model-uses-one-data-qubit-per-processor-and-a-one--9e5973bc3485->claim-in-the-worst-case-topology-the-entanglement-swapping-based-strategy-has-per-laye--bd58d42b2d90",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-paper-s-worst-case-system-model-uses-one-data-qubit-per-processor-and-a-one--9e5973bc3485",
+  "src_claim_ref": "5",
+  "status": "open"
+}

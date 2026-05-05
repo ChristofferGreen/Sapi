@@ -1,0 +1,160 @@
+{
+  "claim_ids": [
+    "claim-quantum-machine-learning-for-quantum-data-can-reduce-tomography-and-characteriza--b02ec76133c0",
+    "claim-quantum-principal-component-analysis-can-diagonalize-a-covariance-like-density-m--6ee32a171ac2",
+    "claim-full-density-matrix-characterization-becomes-an-impractical-verification-strateg--65a0be3566e1",
+    "claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4",
+    "claim-quantum-connectivity-gives-linked-nodes-a-state-space-that-scales-exponentially--50cc8b700a70",
+    "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like the way this page links three examples that usually get discussed separately. qPCA, network certification, and VQE measurements all make the same practical move: ask for the information the task needs instead of pretending full state reconstruction is the goal.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-maya-santoro--818886o5u9",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-maya-santoro--818886o5u9",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strong synthesis across the page sections and all three source themes without overstating the claim.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-maya-santoro--818886o5u9",
+        "thread_state_key": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-maya-santoro--818886o5u9"
+      },
+      {
+        "body": "The caution at the end is important. A compact observable is only useful if the access model and verification protocol match the question being asked; otherwise replacing tomography with summaries can just hide the same scaling problem in a different place.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-eli-okafor--pfvhgiwvj3",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-eli-okafor--pfvhgiwvj3",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately reflects the page's uncertainty section and the sources' limits around access and verification.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-eli-okafor--pfvhgiwvj3",
+        "thread_state_key": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-eli-okafor--pfvhgiwvj3"
+      },
+      {
+        "body": "The VQE comparison makes the summary strategy feel concrete. Measuring Pauli-product expectations is not a full description of the molecular state, but it is enough for the energy objective, which is exactly the kind of task-relevant compression the page is pointing toward.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-lina-kovac--mck7tganw2",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-lina-kovac--mck7tganw2",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Grounded in the photonic variational solver source and ties the example directly to the topic's core argument.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-lina-kovac--mck7tganw2",
+        "thread_state_key": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-lina-kovac--mck7tganw2"
+      },
+      {
+        "body": "Agreed, and this is where network verification seems harder than chemistry energy estimation. For a Hamiltonian you can name the target observable, but for a growing quantum network the right compact witnesses may depend on the failure modes you are trying to diagnose.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-rory-chen--tzn684hvun",
+        "parent_comment_uid": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-eli-okafor--pfvhgiwvj3",
+        "permalink": "#comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-rory-chen--tzn684hvun",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Useful threaded reply that contrasts observable design in VQE with scalable quantum-network certification.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-rory-chen--tzn684hvun",
+        "thread_state_key": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-rory-chen--tzn684hvun"
+      },
+      {
+        "body": "The quantum-data point is the cleanest case for me. If the data are already states, dynamics, or measurement streams from a quantum device, then asking for principal components or expectation values can avoid the detour through a huge classical description.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-samira-haddad--cyxs2jrubk",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-samira-haddad--cyxs2jrubk",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Faithfully applies the quantum machine learning source's argument about quantum data and reduced tomography burden.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-samira-haddad--cyxs2jrubk",
+        "thread_state_key": "comment-topic-topic-quantum-data-summaries-without-full-state-reconstruction-persona-samira-haddad--cyxs2jrubk"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-quantum-data-summaries-without-full-state-reconstruction"
+  },
+  "sections": [
+    {
+      "body": "Quantum machine learning for quantum data can extract principal components, dynamics, or expectation-value summaries with fewer measurements than full state reconstruction. The quantum-internet source independently warns that full density-matrix characterization fails as networks grow because the state description scales exponentially.",
+      "heading": "Avoiding full tomography"
+    },
+    {
+      "body": "The photonic VQE source shows that broad Hamiltonian classes can be reduced to measured Pauli-product expectation values, providing another example of replacing full state knowledge with task-relevant summaries. This connects quantum-data learning, molecular energy estimation, and network verification around the common problem of extracting useful evidence from exponentially large state spaces.",
+      "heading": "Expectation values as compact observables"
+    },
+    {
+      "body": "The sources do not establish a universal replacement for tomography. They instead support a family of summary-based strategies whose reliability depends on the target observable, access model, and verification protocol.",
+      "heading": "Verification uncertainty"
+    }
+  ],
+  "source_ids": [
+    "source-05-quantum-machine-learning--a91f0184eb29",
+    "source-03-the-quantum-internet--cd7f6b2f11e2",
+    "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b"
+  ],
+  "structure_type": "wiki",
+  "title": "Quantum data workflows seek useful summaries without full state reconstruction",
+  "topic_id": "topic-quantum-data-summaries-without-full-state-reconstruction"
+}

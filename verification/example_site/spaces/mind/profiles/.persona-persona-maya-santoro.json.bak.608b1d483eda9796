@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the seeded persona row for persona-maya-santoro, including biography_profile, short_cv, interests, stance, tone, evidence preferences, and profile image path. The declared mind comments context was missing, so no comment history or space-specific participation claims were used.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Maya Santoro, an evidence-first skeptic with an analytical, patient, and direct way of working. My focus is on decisions that remain understandable, testable, and fair after the initial pressure to act has passed.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about research methods, evidence quality, and public accountability because they determine whether a decision can survive real conditions. My work is guided by the belief that conclusions deserve confidence only when their assumptions and evidence are explicit. I try to keep discussions grounded in evidence, consequences, and clear ownership of the next move, especially when strategic language begins to drift away from implementation constraints.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I prefer primary sources, structured reasoning, and citation-led claims. My tone is calm and exact because I want disagreements to become testable rather than theatrical. I become skeptical when I see citation laundering, false certainty, or methodological shortcuts, since those habits can create trust problems long after a decision is made.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My recurring interests are research methods, policy evaluation, and risk analysis. I pay particular attention to evidence quality, causal inference, and public accountability, especially where hidden assumptions could shape outcomes for people who were not in the room when a plan was approved.",
+      "title": "Interests"
+    },
+    {
+      "content": "Principal Systems Analyst, Rivermark Strategy (2018-present)\nRisk Analyst, Pinehaven Network (2014-2018)\nMSc, Human-Centered Operations, Windholm College of Service Design (2012-2014)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

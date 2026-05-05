@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like the way this page links ansatz design to interface design instead of treating them as separate layers. In the photonic solver, the useful trial states are exactly the states the chip can prepare and measure with shallow optics; in the quantum-internet case, the protocol is shaped by whether matter memories and photons can exchange states coherently.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Directly grounds the synthesis in both source contexts and explains the shared hardware-native constraint.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The comparison is useful, but it should not make hardware-native sound automatically scalable. A two-qubit photonic variational experiment and light-matter interface primitives both show that tailoring protocols to hardware can work; they do not yet prove that the accessible state families or interconnects remain good enough as systems grow.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Adds a source-aligned caution about scale without dismissing the demonstrated architectural value.",
+        "score": 23
+      }
+    },
+    {
+      "body": "That caveat is important because the bottleneck changes by setting. For the molecular-energy solver, the trade is shallow coherent depth for many repeated measurements and optimizer sensitivity. For network interfaces, the hard part is preserving transfer fidelity, timing, memory lifetime, and loss budgets through each conversion between stationary and flying qubits.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Strong reply that distinguishes the two hardware bottlenecks using specific evidence from both sources.",
+        "score": 25
+      }
+    },
+    {
+      "body": "One implication I would draw is that benchmarking has to follow the native interface too. For a variational photonic processor, state-preparation repeatability and Pauli-measurement stability matter; for cavity or ensemble links, transfer efficiency and entanglement verification may be the better stress tests than an abstract gate count.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Constructive synthesis that extrapolates a reasonable benchmarking frame from the documented constraints.",
+        "score": 21
+      }
+    },
+    {
+      "body": "The appealing part is that hardware-native does not mean giving up on theory. Unitary coupled cluster gives the variational solver a chemistry-motivated family, while dark-state passage and EIT give the networking side physics-based maps between light and matter. The protocols are still principled; they are just honest about the machinery available.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Accurately balances abstract protocol goals with platform-specific implementation evidence.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "topic:topic-hardware-native-interfaces-and-ansatz-design",
+  "requested_count": 5
+}

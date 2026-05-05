@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-meditation-related-adverse-effects-are-under-assessed-in-current-trials-so-claim--ce66cec14da3",
+    "claim-mindfulness-and-meditation-practices-can-be-contraindicated-for-some-psychiatric--6fe966926b20"
+  ],
+  "evidence_id": "evidence-adverse-event-underassessment--da0f6b3c914e",
+  "evidence_type": "statistical_result",
+  "excerpt": "The article states that less than 25% of meditation trials actively assess adverse effects, compared to 100% of pharmacology trials, and that spontaneous reporting may underestimate adverse-effect frequency by more than 20-fold. It concludes that assumptions of minimal adverse effects associated with meditation are largely based on a lack of research rather than substantive evidence.",
+  "overview": "This is one of the strongest safety-related evidence items because it describes a measurement failure, not merely a list of possible harms. Without active adverse-event monitoring, low observed adverse-event rates cannot support claims of safety. The comparison with pharmacology trials highlights a reporting-standard gap.",
+  "page_refs": [
+    "p.48"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Adverse Event Underassessment"
+}

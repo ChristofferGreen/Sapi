@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:15:18Z",
+  "claim_id": "claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5",
+  "evidence_excerpts": [
+    "For C = <D exists> and D = <C exists>, D truthmakes C and C truthmakes D; for E = <F is true> and F = <E is true>, their truth-facts ground each other."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Mutual grounding defeats asymmetry",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "text": "Truthmaking and alethic-fact grounding are non-asymmetric because distinct propositions can mutually truthmake or ground each other's truth facts."
+}

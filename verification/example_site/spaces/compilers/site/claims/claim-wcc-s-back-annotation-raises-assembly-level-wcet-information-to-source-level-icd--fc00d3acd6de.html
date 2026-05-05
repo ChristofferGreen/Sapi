@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Back annotation enables optimization</title><link rel="stylesheet" href="../assets/site.css"></head><body class="site-shell site-with-global-menubar">
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="../../../../site/index.html">Example Site</a><nav class="site-space-nav" aria-label="Spaces"><details class="site-space-nav-item"><summary class="site-space-nav-summary current">Computer Science / Compilers</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../computer-science/site/index.html">Computer Science</a><a class="site-space-nav-link current" href="../index.html">Compilers</a><a class="site-space-nav-link" href="../../../graphics/site/index.html">Graphics</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Philosophy</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../philosophy/site/index.html">Philosophy</a><a class="site-space-nav-link" href="../../../mind/site/index.html">Mind</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Physics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../physics/site/index.html">Physics</a><a class="site-space-nav-link" href="../../../metaphysics/site/index.html">Metaphysics</a><a class="site-space-nav-link" href="../../../quantum-physics/site/index.html">Quantum Physics</a></div></details></nav><nav class="site-tabs"><a class="site-tab" href="../index.html">Home</a> <a class="site-tab" href="../overview/index.html" aria-label="Overview for compilers">Overview</a> <a class="site-tab" href="../new/index.html">New</a> <a class="site-tab" href="../sources/index.html">Sources</a> <a class="site-tab" href="../topics/index.html">Topics</a> <a class="site-tab" href="../users/index.html">Users</a> <a class="site-tab" href="../evidence/index.html">Evidence</a> <a class="site-tab current" href="index.html">Claims</a></nav></div></header><main class="site-main site-space-main">
+<header class="site-topbar"><form class="top-search" action="../search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
+<section class="content-card"><h1>Back annotation enables optimization</h1>
+<section class="source-related-grid">
+<article class="source-related-card">
+<h2>Claim Statement</h2>
+<p>WCC’s back-annotation raises assembly-level WCET information to source-level ICD-C structures, enabling source-level optimizations to use WCET, WCEP membership, execution frequencies, cache misses, code size, and spill-code data.</p>
+<p class="meta">Primary source: <a href="../sources/source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e.html">WCC Compiler Reduces Worst-Case Execution Times</a></p>
+</article>
+<article class="source-related-card">
+<h2>Overview and Interpretation</h2>
+<p>This claim can be read as the following statement: WCC’s back-annotation raises assembly-level WCET information to source-level ICD-C structures, enabling source-level optimizations to use WCET, WCEP membership, execution frequencies, cache misses, code size, and spill-code data.</p>
+<p>In this space, the claim is currently referenced by 0 topic page(s) and 1 source page(s).</p>
+</article>
+</section>
+<section class="source-related-grid">
+<article class="source-related-card">
+<h2>Pages Using This Claim</h2>
+<ul class="source-related-list">
+<li><span class="meta">source</span> <a href="../sources/source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e.html">WCC Compiler Reduces Worst-Case Execution Times</a><p class="summary">This source presents WCC, a C compiler framework designed to optimize hard real-time software for worst-case execution time rather than average-case speed. Its central idea is to integrate static WCET analysis into compilation, lift timing information across compiler abstraction levels, and use that information to drive source-level and assembly-level optimizations.</p></li>
+</ul>
+</article>
+</section>
+<section class="source-related-card">
+<h2>Evidence Items</h2>
+<ul class="source-related-list">
+<li><a href="../evidence/evidence-back-annotation-data-list--c02d9e5a8f71.html">Back-Annotation Data Inventory</a><p class="summary">The transformed back-annotation data are listed as WCET for the entire program, functions, and basic blocks; whether an ICD-C block lies on the WCEP; worst-case execution frequency per CFG edge; feasibility of...</p></li>
+</ul>
+<p><a href="../evidence/index.html">Browse all evidence</a></p>
+</section>
+<article class="source-related-card"><h2>External Related Links</h2><ul class="source-related-list"><li><a href="https://doi.org/10.1007/s11241-010-9101-x">DOI</a><p class="summary">Derived from a DOI found in the source references.</p><p class="meta">canonical paper | doi.org | trusted | medium confidence | from reference doi | via <a href="../sources/source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e.html">WCC Compiler Reduces Worst-Case Execution Times</a></p></li></ul></article>
+
+<p><a href="index.html">Back to claims index</a></p>
+</section>
+
+</main>
+<script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>

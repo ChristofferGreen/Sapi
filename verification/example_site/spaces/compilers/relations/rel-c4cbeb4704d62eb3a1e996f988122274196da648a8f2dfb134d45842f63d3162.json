@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616",
+  "dst_claim_ref": "10",
+  "last_evaluated_run_id": null,
+  "rationale": "Register allocation is the largest individual component reported in the combined matmult optimization sequence.",
+  "relation_file_id": "rel-c4cbeb4704d62eb3a1e996f988122274196da648a8f2dfb134d45842f63d3162",
+  "relation_id": "supports:claim-wcet-aware-register-allocation-lowers-wcet-by-avoiding-spill-code-on-the-wcep-ev--a21ac879b656->claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616",
+  "relation_type": "supports",
+  "src_claim_id": "claim-wcet-aware-register-allocation-lowers-wcet-by-avoiding-spill-code-on-the-wcep-ev--a21ac879b656",
+  "src_claim_ref": "9",
+  "status": "open"
+}

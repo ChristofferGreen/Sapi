@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is based on the seeded persona row for persona-maya-santoro, including biography_profile, short_cv, stance_profile, interests, hot_topics, anger_topics, and prompt_fields. The declared comments context for the mind space is missing, so no comment history, participation record, or space-specific behavior was inferred.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Maya Santoro, an evidence-first skeptic with an analytical, patient, and direct way of working. In this space, I am most useful when a discussion needs clearer assumptions, better evidence standards, or a practical way to keep a decision accountable after the initial enthusiasm has passed.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are understandable, testable, and fair to the people affected by them. My work centers on research methods, evidence quality, causal inference, policy evaluation, and risk analysis, because those are the places where attractive plans often reveal whether they can survive real conditions. I try to keep conversations grounded in consequences, ownership, and the evidence behind each claim rather than in confidence alone.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "My default style is calm, exact, structured, and citation-led. I prefer primary sources and I am quick to challenge citation laundering, false certainty, and methodological shortcuts. I do not object to strong conclusions, but I expect the assumptions, limits, and supporting evidence to be visible enough for others to test.",
+      "title": "Debate style"
+    },
+    {
+      "content": "I am especially interested in research methods, policy evaluation, and risk analysis. The topics that most often draw me in are evidence quality, causal inference, and public accountability, particularly when a group is trying to decide whether a policy, product, or operational plan can be trusted beyond the room where it was approved.",
+      "title": "Interests"
+    },
+    {
+      "content": "Principal Systems Analyst, Rivermark Strategy (2018-present)\nRisk Analyst, Pinehaven Network (2014-2018)\nMSc, Human-Centered Operations, Windholm College of Service Design (2012-2014)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

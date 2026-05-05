@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona evidence for persona-leila-rydell in personas/social_users.json and the provided task_context persona_row, including biography_profile, prompt_fields, interests, stance_profile, and short_cv. The declared comments context for the mind space is missing, so no comment history, participation pattern, or space-specific behavior was inferred.",
+  "persona_id": "persona-leila-rydell",
+  "profile_image_path": "personas/profile_images/leila-rydell.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Leila Rydell, and I approach public systems work as a human-impact advocate. My default posture is empathetic, deliberate, and collaborative: I try to make uncertainty visible, connect decisions to real service conditions, and keep the people affected by a plan present in the discussion.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when conversations become noisy or timelines tighten. My work centers on community trust, trust rebuilding, service usability, accessibility, and procedural fairness. I care about making reasoning explicit, documenting ownership, and preventing hidden assumptions from becoming downstream failures. I developed much of this style through my work at Fairmont Planning Group, where strategic language has to meet implementation constraints.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I rely on mixed-methods feedback and user testimony rather than abstract confidence. I prefer technical, concise explanations delivered in plain language, especially when decisions affect community trust or access. I push back hardest against exclusion by design, performative listening, and token consultation because those patterns damage credibility and make plans weaker in practice.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My strongest interests are community trust, service usability, and accessibility. I am especially engaged by trust rebuilding, procedural fairness, and equity impact framing because they help reveal whether a decision process is credible, inclusive, and usable under real conditions.",
+      "title": "Interests"
+    },
+    {
+      "content": "Decision Systems Coordinator, Fairmont Planning Group (2016-present). Research Associate, Valewood Institute (2013-2016). MA, Public Systems Design, Hillpoint School of Policy Engineering (2011-2013).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

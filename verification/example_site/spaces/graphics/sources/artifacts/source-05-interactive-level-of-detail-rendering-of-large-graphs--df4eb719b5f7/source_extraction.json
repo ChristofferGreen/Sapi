@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7/source.pdf",
+    "source_markdown": "sources/artifacts/source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "da3742d47ec2662761472b7b17b48c1b602c198f588b0bf4dec51749b15fd73c",
+  "markdown_char_count": 65614,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "03409f6b15c5ed6e038a4bc20e4a0e71360e0904e2cea4b8babd1a3c468e1834",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

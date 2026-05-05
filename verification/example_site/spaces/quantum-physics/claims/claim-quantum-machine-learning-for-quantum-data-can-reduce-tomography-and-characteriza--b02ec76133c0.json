@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:29:01Z",
+  "claim_id": "claim-quantum-machine-learning-for-quantum-data-can-reduce-tomography-and-characteriza--b02ec76133c0",
+  "evidence_excerpts": [
+    "Quantum analysis of density matrices can reveal principal components and dynamics with exponentially fewer measurements than full quantum state reconstruction."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Quantum data avoids full tomography",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "text": "Quantum machine learning for quantum data can reduce tomography and characterization costs by extracting principal components, dynamics, or expectation-value summaries without full state reconstruction."
+}

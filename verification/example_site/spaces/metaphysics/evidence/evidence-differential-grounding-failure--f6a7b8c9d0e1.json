@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-schaffer-s-contrastive-or-differential-formulation-of-grounding-still-fails-to-m--7fd859e88bdc",
+    "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b"
+  ],
+  "evidence_id": "evidence-differential-grounding-failure--f6a7b8c9d0e1",
+  "evidence_type": "formal_argument",
+  "excerpt": "Schaffer's contrastive grounding is formulated with facts F rather than F* grounding facts G rather than G*, but B's truth rather than falsity grounds itself, and E's and F's truth contrasts ground each other.",
+  "overview": "The final formal check prevents a retreat to contrastive grounding from restoring strict orderhood. Even when grounding is modeled as a quaternary relation between differences, the same reflexive and symmetric constructions violate differential irreflexivity and differential asymmetry.",
+  "page_refs": [
+    "pp.21-22"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "title": "Differential Grounding Failure"
+}

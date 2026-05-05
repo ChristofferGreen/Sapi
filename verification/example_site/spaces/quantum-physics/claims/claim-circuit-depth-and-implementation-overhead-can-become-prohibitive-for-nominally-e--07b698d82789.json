@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:29:01Z",
+  "claim_id": "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789",
+  "evidence_excerpts": [
+    "One proposed realization of HHL is described as ballooning to approximately 10^25 circuit-size and depth overhead before optimization."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Overheads threaten practical speedups",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "text": "Circuit depth and implementation overhead can become prohibitive for nominally exponential quantum machine learning speedups without substantial algorithmic optimization and realistic cost estimates."
+}

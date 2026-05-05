@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-quantum-principal-component-analysis-can-diagonalize-a-covariance-like-density-m--6ee32a171ac2",
+    "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4"
+  ],
+  "evidence_id": "evidence-qpca-density-matrix-route--f6d77381228b",
+  "evidence_type": "equation",
+  "excerpt": "For qPCA, qRAM maps a data vector v_j into |v_j>; repeated sampling prepares rho proportional to the covariance matrix, and phase estimation maps |v> into principal-component and eigenvalue registers.",
+  "overview": "This is a concrete algorithmic pathway rather than a broad promise. It shows how a classical covariance problem becomes density-matrix exponentiation and phase estimation, while making clear that the speedup depends on quantum state preparation and access to the data distribution.",
+  "page_refs": [
+    "pp.5-6"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "title": "qPCA Density Matrix Route"
+}

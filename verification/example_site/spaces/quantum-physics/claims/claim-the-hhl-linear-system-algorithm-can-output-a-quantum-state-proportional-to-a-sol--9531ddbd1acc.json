@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:29:01Z",
+  "claim_id": "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc",
+  "evidence_excerpts": [
+    "HHL takes O((log N)^2) quantum steps to output |x>, but full recovery of x can require many measurements and suitable state preparation."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "HHL has conditional advantage",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "text": "The HHL linear-system algorithm can output a quantum state proportional to a solution vector in polylogarithmic time under sparsity, conditioning, input-preparation, and readout assumptions."
+}

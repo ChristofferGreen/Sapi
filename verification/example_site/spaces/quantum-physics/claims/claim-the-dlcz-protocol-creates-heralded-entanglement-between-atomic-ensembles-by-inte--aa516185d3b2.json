@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:12:22Z",
+  "claim_id": "claim-the-dlcz-protocol-creates-heralded-entanglement-between-atomic-ensembles-by-inte--aa516185d3b2",
+  "evidence_excerpts": [
+    "A photoelectric detection event at either detector projects the ensembles into |\u03a8L,R\u27e9 = 1/\u221a2 [|0a\u27e9L|1a\u27e9R \u00b1 ei\u03b71|1a\u27e9L|0a\u27e9R].",
+    "Detection of a photon from one or the other atomic ensemble in an indistinguishable fashion results in an entangled state with one collective spin excitation shared coherently between the ensembles."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "DLCZ heralds ensemble entanglement",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "text": "The DLCZ protocol creates heralded entanglement between atomic ensembles by interfering emitted single-photon fields and conditioning on a detector event."
+}

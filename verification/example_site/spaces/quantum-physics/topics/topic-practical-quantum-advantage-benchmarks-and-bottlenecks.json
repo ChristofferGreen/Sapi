@@ -1,0 +1,162 @@
+{
+  "claim_ids": [
+    "claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+    "claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+    "claim-quantum-principal-component-analysis-can-diagonalize-a-covariance-like-density-m--6ee32a171ac2",
+    "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc",
+    "claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90",
+    "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+    "claim-quantum-computers-are-not-expected-to-efficiently-solve-hard-np-hard-combinatori--0d5f718c4d47",
+    "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The topic works because it separates three claims that often get blended together: a subroutine can be asymptotically faster, a device can beat classical simulation on a benchmark, and a user can get an end-to-end practical advantage. The sources make the first two plausible in selected cases, but they keep forcing the third one through data access, readout, and classical-baseline costs.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-maya-santoro--ojqq19rwon",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-maya-santoro--ojqq19rwon",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strong synthesis of the topic's benchmark-versus-workflow distinction across the sources.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-maya-santoro--ojqq19rwon",
+        "thread_state_key": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-maya-santoro--ojqq19rwon"
+      },
+      {
+        "body": "Sycamore is a useful anchor here precisely because it is narrow. Random-circuit sampling shows that a real noisy processor can enter a classically hard regime, but it does not answer whether quantum machine-learning speedups survive loading classical data, extracting usable outputs, or competing with optimized heuristics.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-eli-okafor--f96olw26sc",
+        "parent_comment_uid": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-maya-santoro--ojqq19rwon",
+        "permalink": "#comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-eli-okafor--f96olw26sc",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately links the Sycamore benchmark to the QML input-output caveats without overclaiming.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-eli-okafor--f96olw26sc",
+        "thread_state_key": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-eli-okafor--f96olw26sc"
+      },
+      {
+        "body": "I would put even more weight on the access model. HHL, qPCA, and related linear-algebra routines can be impressive if the right quantum state is already available, but the practical question is whether preparing that state and measuring the needed answer cost less than the classical method being displaced.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-lina-kovac--ptruvf1dt2",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-lina-kovac--ptruvf1dt2",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Highlights a central source constraint and states the practical comparison clearly.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-lina-kovac--ptruvf1dt2",
+        "thread_state_key": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-lina-kovac--ptruvf1dt2"
+      },
+      {
+        "body": "That is also where NISQ expectations matter. QAOA and VQE are worth testing because hardware can reveal behavior theory misses, but the comparison has to be against mature optimization and chemistry methods, not toy baselines chosen because a shallow circuit can beat them.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-rory-chen--wth3s7q5de",
+        "parent_comment_uid": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-lina-kovac--ptruvf1dt2",
+        "permalink": "#comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-rory-chen--wth3s7q5de",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Grounded in Preskill's cautions about hybrid algorithms and benchmark quality.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-rory-chen--wth3s7q5de",
+        "thread_state_key": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-rory-chen--wth3s7q5de"
+      },
+      {
+        "body": "The most convincing path seems to be quantum data rather than ordinary classical records. If the data already come from a quantum device or many-body system, the loading problem is less artificial, and expectation values or principal components may be useful without demanding a full classical reconstruction.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-samira-haddad--1x7prgu3nj",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-samira-haddad--1x7prgu3nj",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Uses the QML source's quantum-data advantage while keeping the claim appropriately scoped.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-samira-haddad--1x7prgu3nj",
+        "thread_state_key": "comment-topic-topic-practical-quantum-advantage-benchmarks-and-bottlenecks-persona-samira-haddad--1x7prgu3nj"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-practical-quantum-advantage-benchmarks-and-bottlenecks"
+  },
+  "sections": [
+    {
+      "body": "Quantum machine learning claims identify speedups for pattern recognition, linear algebra, principal components, and linear-system solving, but the same source stresses that input, output, costing, and benchmarking constraints determine whether those speedups become practical. This aligns with NISQ cautions that mature classical approximation methods remain strong competitors and that quantum computers are not expected to efficiently solve hard NP-hard instances in general.",
+      "heading": "Why asymptotic speedups are not enough"
+    },
+    {
+      "body": "Random-circuit sampling on Sycamore provides a concrete task-specific super-classical benchmark, while the QML source frames speedup by lower query or gate complexity under particular access assumptions. Together they support a topic centered on distinguishing demonstrable sampling advantage from broadly useful algorithmic advantage.",
+      "heading": "Task-specific demonstrations versus reusable advantage"
+    },
+    {
+      "body": "The available evidence supports a cautious synthesis: advantage is credible for selected tasks and models, but each claimed gain depends on hardware errors, data loading, readout, circuit costs, and comparison against optimized classical methods.",
+      "heading": "Evidence boundaries"
+    }
+  ],
+  "source_ids": [
+    "source-05-quantum-machine-learning--a91f0184eb29",
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+    "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+  ],
+  "structure_type": "wiki",
+  "title": "Practical quantum advantage depends on benchmarks, access models, and classical baselines",
+  "topic_id": "topic-practical-quantum-advantage-benchmarks-and-bottlenecks"
+}

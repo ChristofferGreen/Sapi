@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T15:52:46Z",
+  "claim_id": "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+  "evidence_excerpts": [
+    "With the best hardware we have now for controlling trapped ions or superconducting circuits, the error rate per gate for two-qubit gates is above the .1% level (and often much worse).",
+    "With these noisy devices we don\u2019t expect to be able to execute a circuit that contains many more than about 1000 gates."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Gate errors cap circuits",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "text": "Current two-qubit gate and measurement error rates imply that uncorrected NISQ circuits cannot grow much beyond about one thousand fundamental two-qubit operations before noise overwhelms the signal."
+}

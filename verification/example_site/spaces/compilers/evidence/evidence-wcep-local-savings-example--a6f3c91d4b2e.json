@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-static-wcet-reduction-depends-on-optimizing-the-worst-case-execution-path-becaus--b6a70fae6e3d"
+  ],
+  "evidence_id": "evidence-wcep-local-savings-example--a6f3c91d4b2e",
+  "evidence_type": "formal_argument",
+  "excerpt": "The source defines program WCET as the maximum path WCET over feasible paths and names the responsible path the WCEP. In the example CFG, the original WCEP has 205 cycles. Reducing one WCEP basic block from 80 to 40 cycles changes the global WCET to 195 cycles, so the global saving is 10 cycles rather than the local 40-cycle saving.",
+  "overview": "This formal example explains why WCET-aware compilation must reason globally about the worst-case execution path. It establishes that local timing gains do not automatically translate into equal whole-program WCET gains, because another path may become critical or partially absorb the local improvement.",
+  "page_refs": [
+    "pp.253-254"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "title": "WCEP Local Savings Example"
+}

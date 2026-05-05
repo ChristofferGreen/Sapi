@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-generalized-identity-is-a-non-factive-no-difference-operator-that-can-apply-to-f--7cb985988184"
+  ],
+  "evidence_id": "evidence-nonfactive-no-difference--a1b2c3d4e5f6",
+  "evidence_type": "formal_argument",
+  "excerpt": "Although it\u2019s tempting to read 'For \u2026 is for ___' statements as indicating a type of priority of one side to the other, \u00ba is instead to be read as what Rayo evocatively calls a 'no-difference operator'. Accordingly, we take it to behave like the familiar no-difference predicate for what we\u2019ve called objectual identity (a.k.a. =). As such, we take \u00ba to be reflexive, symmetric, and transitive.",
+  "overview": "This passage fixes the logical role of generalized identity. The operator is not itself an explanatory-priority relation; it behaves like identity, which is why it can underwrite later accounts of both essence and grounding without reducing either to ordinary objectual identity.",
+  "page_refs": [
+    "pp.4-5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "title": "No-Difference Operator"
+}

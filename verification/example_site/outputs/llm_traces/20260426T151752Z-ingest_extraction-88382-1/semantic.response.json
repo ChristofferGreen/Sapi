@@ -1,0 +1,345 @@
+{
+  "claims": [
+    {
+      "evidence_excerpts": [
+        "We develop a unified and uniform account of grounding and essence, one which understands them both in terms of a generalized notion of identity examined in recent work by Fabrice Correia, Cian Dorr, Agust\u00edn Rayo, and others."
+      ],
+      "short_title": "Generalized identity unifies metaphysics",
+      "text": "Grounding and essence can both be analyzed in terms of generalized identity, yielding a unified and uniform account of how the two metaphysical notions interact."
+    },
+    {
+      "evidence_excerpts": [
+        "we express generalized identity with an operator, \u00ba, indexed by zero or more variables, which takes two open or closed sentences and yields another. Where p and q are open or closed sentences, (5) p\u00baq should be read as 'For it to be the case that p is for it to be the case that q'.",
+        "we read such statements as not requiring that the flanking expressions be true/satisfied: for instance, it is intuitively no objection to (1) that there aren\u2019t any bachelors. For short, we read them non-factively."
+      ],
+      "short_title": "Generalized identity is nonfactive",
+      "text": "Generalized identity is a non-factive no-difference operator that can apply to factual and generic contents without requiring fact-shaped or property-shaped entities as its relata."
+    },
+    {
+      "evidence_excerpts": [
+        "FULL-GENERIC-ESSENCE Being F is what it is to be G in full iff: for a thing to be G is for it to be F (in symbols: Gx \u00bax Fx)."
+      ],
+      "short_title": "Full essence is identity",
+      "text": "Full generic essence is captured by generalized identity: being F is what it is to be G in full exactly when, for a thing to be G, is for it to be F."
+    },
+    {
+      "evidence_excerpts": [
+        "PARTIAL-GENERIC-ESSENCE Being F is partially what it is to be G iff: there is some H such that for a thing to be G is for it to be both F and H (in symbols: Gx \u00bax Fx \u00d9 Hx)."
+      ],
+      "short_title": "Partial essence is conjunctive",
+      "text": "Partial generic essence is captured by conjunctive partial generalized identity: being F is partially what it is to be G exactly when being G is being both F and some H."
+    },
+    {
+      "evidence_excerpts": [
+        "Following Correia (2006, pp. 764-5) we account for objectual essence in terms of generic essence: FULL-OBJECTUAL-ESSENCE Being F is what x is in full iff: being F is what it is to be identical to x in full."
+      ],
+      "short_title": "Objectual essence tracks identity",
+      "text": "Objectual essence can be accounted for through generic essence, so a feature is what an object is in full or in part according to whether it is what being identical to that object is in full or in part."
+    },
+    {
+      "evidence_excerpts": [
+        "FACTUAL-GROUNDING p1, p2, \u2026 < q iff: (i) p1 \u00d9 p2 \u00d9 \u2026 \u2291\u2228 q; and (ii) neither q \u2291\u2227\u2228 p1, nor q \u2291\u2227\u2228 p2, nor \u2026"
+      ],
+      "short_title": "Grounding uses disjunctive parthood",
+      "text": "Factual grounding is analyzed through disjunctive parthood: a plurality of facts grounds q exactly when their conjunction is a disjunctive part of q and q is not a relevant conjunctive-disjunctive part of any ground."
+    },
+    {
+      "evidence_excerpts": [
+        "Say that p is quasi-subsumed by q (in symbols: p \u2272 q) iff there is some r such that p \u2227 r \u2264 q. Replacing \u2291\u2228 with \u2264 in our original account of grounding, and \u2291\u2227\u2228 with \u2272, delivers the following subsumption-theoretic analogue: (18) p1, p2, \u2026 < q iff: (i) p1 \u00d9 p 2 \u00d9 \u2026 \u2264 q; and (ii) neither q \u2272 p1, nor q \u2272 p2, nor \u2026"
+      ],
+      "short_title": "Subsumption refines grounding",
+      "text": "A subsumption-theoretic version of grounding says that p1, p2, and so on ground q exactly when their conjunction is subsumed by q while q is not quasi-subsumed by any of them."
+    },
+    {
+      "evidence_excerpts": [
+        "given that generalized identity is symmetric and transitive, and that the rules R3 and R4 are truth-preserving, FACTUAL-GROUNDING entails that ground-theoretic status is preserved under factual identity. More precisely: (17) a. If p, p1, p2 \u2026 ground q and p \u00ba p* , then p*, p1, p2, \u2026 ground q. b. If p1, p2, \u2026 ground q and q \u00ba q*, then p1, p2, \u2026 ground q*."
+      ],
+      "short_title": "Identity preserves grounding status",
+      "text": "Ground-theoretic status is preserved under factual identity because the proposed account combines generalized identity with symmetric and transitive identity principles."
+    },
+    {
+      "evidence_excerpts": [
+        "if being F grounds being G, our account implies that being G just is being F or H for some given H, and which on our account gives the (or a) full essence of being G. It then follows that necessarily, a thing is G iff it is F or H, which entails by straightforward modal reasoning that necessarily, a thing is F only if it\u2019s also G, as desired."
+      ],
+      "short_title": "Grounding yields necessitation",
+      "text": "If being F grounds being G, then the fact that being F necessitates being G can be derived from what it is to be G."
+    },
+    {
+      "evidence_excerpts": [
+        "being Socrates and such that there are infinitely many prime numbers is necessarily entailed by and equivalent to being Socrates, yet presumably the former is ground-theoretically linked to the arithmetic realm in ways that the latter isn\u2019t. Given our account, this provides reason to believe that the former isn\u2019t part of the essence of the latter either, as desired."
+      ],
+      "short_title": "Necessity underdetermines essence",
+      "text": "Necessary entailment or equivalence is not sufficient for essence, because generalized identity and grounding can distinguish essential structure from merely necessary coextension."
+    }
+  ],
+  "evidence_items": [
+    {
+      "claim_refs": [
+        "0"
+      ],
+      "evidence_id": "evidence-abstract-unification-thesis--e857615fb05e",
+      "evidence_type": "formal_argument",
+      "excerpt": "We develop a unified and uniform account of grounding and essence, one which understands them both in terms of a generalized notion of identity examined in recent work by Fabrice Correia, Cian Dorr, Agust\u00edn Rayo, and others. We argue that the account comports with antecedently plausible principles governing grounding, essence, and identity taken individually, and illuminates how the three interact.",
+      "overview": "The abstract states the paper\u2019s central formal ambition: grounding and essence are not treated as independent primitive notions, but as two applications of generalized identity. This evidence grounds the overall unification claim while leaving detailed adequacy arguments to later definitions and comparisons.",
+      "page_refs": [
+        "p.1"
+      ],
+      "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+      "title": "Unified Identity Account"
+    },
+    {
+      "claim_refs": [
+        "1"
+      ],
+      "evidence_id": "evidence-nonfactive-no-difference--a1b2c3d4e5f6",
+      "evidence_type": "formal_argument",
+      "excerpt": "Although it\u2019s tempting to read 'For \u2026 is for ___' statements as indicating a type of priority of one side to the other, \u00ba is instead to be read as what Rayo evocatively calls a 'no-difference operator'. Accordingly, we take it to behave like the familiar no-difference predicate for what we\u2019ve called objectual identity (a.k.a. =). As such, we take \u00ba to be reflexive, symmetric, and transitive.",
+      "overview": "This passage fixes the logical role of generalized identity. The operator is not itself an explanatory-priority relation; it behaves like identity, which is why it can underwrite later accounts of both essence and grounding without reducing either to ordinary objectual identity.",
+      "page_refs": [
+        "pp.4-5"
+      ],
+      "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+      "title": "No-Difference Operator"
+    },
+    {
+      "claim_refs": [
+        "2"
+      ],
+      "evidence_id": "evidence-full-generic-essence--b7c8d9e0f1a2",
+      "evidence_type": "equation",
+      "excerpt": "FULL-GENERIC-ESSENCE Being F is what it is to be G in full iff: for a thing to be G is for it to be F (in symbols: Gx \u00bax Fx).",
+      "overview": "This definition is a compact formal artifact for the essence side of the account. It identifies full generic essence with generalized identity, making essence a matter of what it is for something to satisfy a predicate rather than a merely modal necessity claim.",
+      "page_refs": [
+        "p.11"
+      ],
+      "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+      "title": "Full Essence Formula"
+    },
+    {
+      "claim_refs": [
+        "3"
+      ],
+      "evidence_id": "evidence-partial-generic-essence--c0ffee123abc",
+      "evidence_type": "equation",
+      "excerpt": "PARTIAL-GENERIC-ESSENCE Being F is partially what it is to be G iff: there is some H such that for a thing to be G is for it to be both F and H (in symbols: Gx \u00bax Fx \u00d9 Hx).",
+      "overview": "The formula specifies how partial essence differs from full essence. Partial essence is modeled by conjunctive parthood within generalized identity, giving the paper a structured way to say that one feature is only part of what another feature is.",
+      "page_refs": [
+        "p.11"
+      ],
+      "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+      "title": "Partial Essence Formula"
+    },
+    {
+      "claim_refs": [
+        "4"
+      ],
+      "evidence_id": "evidence-objectual-essence-route--d4e5f6a7b8c9",
+      "evidence_type": "formal_argument",
+      "excerpt": "Following Correia (2006, pp. 764-5) we account for objectual essence in terms of generic essence: FULL-OBJECTUAL-ESSENCE Being F is what x is in full iff: being F is what it is to be identical to x in full.",
+      "overview": "This formal bridge extends the generic-identity treatment to claims about individual objects. It matters because the account is not limited to predicate essences: it also explains how an object\u2019s essence can be treated through the generic condition of being identical to that object.",
+      "page_refs": [
+        "p.12"
+      ],
+      "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+      "title": "Objectual Essence Reduction"
+    },
+    {
+      "claim_refs": [
+        "5"
+      ],
+      "evidence_id": "evidence-factual-grounding-definition--e857615fb06f",
+      "evidence_type": "equation",
+      "excerpt": "FACTUAL-GROUNDING p1, p2, \u2026 < q iff: (i) p1 \u00d9 p2 \u00d9 \u2026 \u2291\u2228 q; and (ii) neither q \u2291\u2227\u2228 p1, nor q \u2291\u2227\u2228 p2, nor \u2026",
+      "overview": "This definition supplies the grounding side of the unification. It translates strict full factual grounding into disjunctive and conjunctive parthood relations defined through generalized identity, while excluding cases where the grounded fact is already relevantly contained in the grounds.",
+      "page_refs": [
+        "p.20"
+      ],
+      "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+      "title": "Factual Grounding Definition"
+    },
+    {
+      "claim_refs": [
+        "7"
+      ],
+      "evidence_id": "evidence-grounding-status-preservation--f1e2d3c4b5a6",
+      "evidence_type": "proof_step",
+      "excerpt": "given that generalized identity is symmetric and transitive, and that the rules R3 and R4 are truth-preserving, FACTUAL-GROUNDING entails that ground-theoretic status is preserved under factual identity. More precisely: (17) a. If p, p1, p2 \u2026 ground q and p \u00ba p* , then p*, p1, p2, \u2026 ground q. b. If p1, p2, \u2026 ground q and q \u00ba q*, then p1, p2, \u2026 ground q*.",
+      "overview": "This proof-like passage shows a payoff of using identity rather than an unrelated explanatory primitive. Grounding status survives substitution by factual identity, but the result applies to a worldly conception of grounding rather than to every representation-sensitive explanatory context.",
+      "page_refs": [
+        "p.20"
+      ],
+      "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+      "title": "Grounding Identity Preservation"
+    },
+    {
+      "claim_refs": [
+        "6"
+      ],
+      "evidence_id": "evidence-subsumption-grounding--a18f0c7d3942",
+      "evidence_type": "equation",
+      "excerpt": "Say that p is quasi-subsumed by q (in symbols: p \u2272 q) iff there is some r such that p \u2227 r \u2264 q. Replacing \u2291\u2228 with \u2264 in our original account of grounding, and \u2291\u2227\u2228 with \u2272, delivers the following subsumption-theoretic analogue: (18) p1, p2, \u2026 < q iff: (i) p1 \u00d9 p 2 \u00d9 \u2026 \u2264 q; and (ii) neither q \u2272 p1, nor q \u2272 p2, nor \u2026",
+      "overview": "The subsumption definition refines the earlier disjunctive-parthood analysis by connecting grounding to the idea that the grounds constitute a wholly relevant way for the grounded fact to obtain. It also supplies a route for comparing the authors\u2019 account with nearby proposals in the grounding literature.",
+      "page_refs": [
+        "pp.24-25"
+      ],
+      "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+      "title": "Subsumption Analogue"
+    },
+    {
+      "claim_refs": [
+        "8"
+      ],
+      "evidence_id": "evidence-grounding-necessitates--a3b4c5d6e7f8",
+      "evidence_type": "proof_step",
+      "excerpt": "if being F grounds being G, our account implies that being G just is being F or H for some given H, and which on our account gives the (or a) full essence of being G. It then follows that necessarily, a thing is G iff it is F or H, which entails by straightforward modal reasoning that necessarily, a thing is F only if it\u2019s also G, as desired.",
+      "overview": "This passage connects the grounding analysis back to essence. It shows that the necessity linking a ground to what it grounds is not imposed as an isolated modal principle; it is derived from what the grounded phenomenon is, according to the generalized-identity account.",
+      "page_refs": [
+        "p.36"
+      ],
+      "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+      "title": "Grounding Necessitation Derivation"
+    },
+    {
+      "claim_refs": [
+        "9"
+      ],
+      "evidence_id": "evidence-necessity-underdetermines-essence--abcdef123456",
+      "evidence_type": "formal_argument",
+      "excerpt": "being Socrates and such that there are infinitely many prime numbers is necessarily entailed by and equivalent to being Socrates, yet presumably the former is ground-theoretically linked to the arithmetic realm in ways that the latter isn\u2019t. Given our account, this provides reason to believe that the former isn\u2019t part of the essence of the latter either, as desired.",
+      "overview": "The Fine-style example tests the modal adequacy of the account. It demonstrates why necessary equivalence alone cannot decide essence: two necessarily coextensive conditions may differ in grounding structure, and that difference blocks the stronger essentialist conclusion.",
+      "page_refs": [
+        "p.36"
+      ],
+      "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+      "title": "Necessity Is Insufficient"
+    }
+  ],
+  "relations": [
+    {
+      "dst_claim_ref": "0",
+      "rationale": "The non-factive no-difference operator supplies the common analytical tool used to unify grounding and essence.",
+      "relation_type": "supports",
+      "src_claim_ref": "1"
+    },
+    {
+      "dst_claim_ref": "0",
+      "rationale": "The full generic essence definition is one half of the source\u2019s unified identity-based account.",
+      "relation_type": "derived_from",
+      "src_claim_ref": "2"
+    },
+    {
+      "dst_claim_ref": "0",
+      "rationale": "The partial essence definition extends generalized identity to partial essential structure.",
+      "relation_type": "derived_from",
+      "src_claim_ref": "3"
+    },
+    {
+      "dst_claim_ref": "0",
+      "rationale": "The factual grounding definition is the grounding half of the proposed unification.",
+      "relation_type": "derived_from",
+      "src_claim_ref": "5"
+    },
+    {
+      "dst_claim_ref": "5",
+      "rationale": "The subsumption account reformulates the grounding analysis with a relevance-sensitive analogue.",
+      "relation_type": "supports",
+      "src_claim_ref": "6"
+    },
+    {
+      "dst_claim_ref": "0",
+      "rationale": "The necessitation derivation illustrates how the identity account links grounding to essence.",
+      "relation_type": "supports",
+      "src_claim_ref": "8"
+    },
+    {
+      "dst_claim_ref": "3",
+      "rationale": "The necessity example supports the need for an essence account stronger than modal entailment.",
+      "relation_type": "supports",
+      "src_claim_ref": "9"
+    }
+  ],
+  "source": {
+    "authors": [
+      "Fabrice Correia",
+      "Alexander Skiles"
+    ],
+    "display_title": "Grounding and Essence as Generalized Identity"
+  },
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The paper\u2019s governing claim is that grounding and essence can be analyzed by one identity-like notion rather than by separate primitives. Generalized identity supplies the common form: it can state what it is for something to be a certain way, and it can also support analyses of explanatory dependence. This gives the framework its intended unity and explains why the source repeatedly moves between essence, grounding, and identity rather than treating them as isolated topics.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ],
+        "heading": "Central Unification"
+      },
+      {
+        "body": "Generalized identity is not ordinary objectual identity in disguise. The authors use an operator that connects open or closed sentences and read it non-factively, so the truth of a generalized identity does not require both sides to be instantiated or true. Its no-difference behavior, including symmetry and transitivity, is crucial because later definitions rely on substituting identity-equivalent contents while avoiding opaque contexts such as belief reports.",
+        "grounding_claim_ids": [
+          "1",
+          "7"
+        ],
+        "heading": "Generalized Identity"
+      },
+      {
+        "body": "The essence account distinguishes full from partial essence. Full generic essence is directly identified with generalized identity, while partial essence is explained through conjunctive structure: something is partly what G is when it appears as a conjunct in what it is to be G. This lets the authors preserve the intuition that essence is more than necessity while also explaining why essentialist claims can resemble real definitions.",
+        "grounding_claim_ids": [
+          "2",
+          "3",
+          "4"
+        ],
+        "heading": "Essence Analysis"
+      },
+      {
+        "body": "Grounding is initially characterized through disjunctive parthood: a plurality grounds q when its conjunction is a disjunctive part of q, subject to an exclusion condition preventing q from being contained in the grounds in the wrong way. The later subsumption formulation sharpens this by connecting grounds to wholly relevant ways for the grounded fact to obtain, making relevance part of the metaphysical structure rather than an afterthought.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ],
+        "heading": "Grounding Analysis"
+      },
+      {
+        "body": "One payoff is that ground-theoretic status is preserved under factual identity, because generalized identity is governed by identity-like structural principles. Another is that grounding implies an essence-based necessitation pattern: if being F grounds being G, then being G is being F or some H, which yields the modal result that F necessitates G. The necessity is derived from essence, not merely stipulated.",
+        "grounding_claim_ids": [
+          "7",
+          "8"
+        ],
+        "heading": "Preservation And Necessitation"
+      },
+      {
+        "body": "The paper resists reducing essence to necessity. The Socrates-plus-infinitely-many-primes example shows that necessary entailment and equivalence can hold even where essential structure is absent, because the augmented condition is tied to arithmetic in a way bare Socrates is not. Grounding structure therefore helps separate genuinely essential conditions from merely necessary companions.",
+        "grounding_claim_ids": [
+          "9"
+        ],
+        "heading": "Limits Of Modality"
+      },
+      {
+        "body": "The authors position their proposal against Fine\u2019s unification of grounding and essence. Their main complaint is not that Fine cannot be supplemented, but that his primitive constitutive relations leave important explanatory links underdescribed. By contrast, generalized identity lets the authors derive several constraints, including asymmetries between grounding and essence, from a more uniform formal base.",
+        "grounding_claim_ids": [
+          "0",
+          "6",
+          "8",
+          "9"
+        ],
+        "heading": "Comparison With Fine"
+      }
+    ],
+    "summary_long": "This source develops a metaphysical framework in which grounding and essence are analyzed through generalized identity, a non-objectual identity-like operator expressed by the idiom 'For ... is for ...'. Correia and Skiles begin from the thought that grounding and essence are both Aristotelian notions often treated as closely related but not clearly unified. Their proposal is to use generalized identity as the common machinery: it can relate factual and generic contents without requiring ordinary entities such as facts or properties as relata, and it is governed by identity-like principles such as reflexivity, symmetry, transitivity, and restricted Leibniz-style substitutivity. On the essence side, full generic essence is identified with generalized identity: being F is what it is to be G in full exactly when for a thing to be G is for it to be F. Partial generic essence is then modeled by conjunctive parthood: F is partially what it is to be G when being G is being both F and some H. Objectual essence is routed through the generic essence of being identical to the object. On the grounding side, the authors first analyze factual grounding using disjunctive parthood and then present a subsumption-theoretic analogue that emphasizes relevance: the grounds must collectively constitute a way for q to obtain, while q must not be quasi-subsumed by the grounds in the wrong direction. These definitions allow them to explain why grounding status is preserved under factual identity and why grounding often carries an essence-based necessitation pattern. The account also distinguishes essence from mere modal necessity. Necessary equivalence does not guarantee essence when the relevant conditions differ in grounding structure, as in the Socrates-plus-primes example. The paper\u2019s comparison with Fine is therefore not simply terminological; it argues that generalized identity offers a more transparent and uniform explanation of the constitutive relations Fine leaves comparatively primitive.",
+    "summary_short": "Fabrice Correia and Alexander Skiles propose that grounding and essence can be unified through generalized identity. Their account treats essence through full and partial generic identity, and grounding through disjunctive parthood and subsumption. The paper\u2019s main payoff is an explanation of how grounding, essence, and identity constrain one another without reducing essence to mere necessity."
+  },
+  "summary": "Correia and Skiles argue that generalized identity can provide a unified analysis of grounding and essence. Full and partial essence are modeled through generic identity and conjunctive parthood, while grounding is modeled through disjunctive parthood and subsumption. The resulting framework aims to explain why grounding implies certain essence-based necessitation patterns without collapsing essence into mere modal equivalence.",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved; continuing with date=null."
+    }
+  ]
+}

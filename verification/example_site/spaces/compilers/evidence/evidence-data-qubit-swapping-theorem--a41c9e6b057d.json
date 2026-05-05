@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172"
+  ],
+  "evidence_id": "evidence-data-qubit-swapping-theorem--a41c9e6b057d",
+  "evidence_type": "theorem",
+  "excerpt": "Theorem 1: Let us consider the ith layer of an arbitrary n-qubit quantum circuit. The depth of the corresponding compiled quantum circuit, obtained through the data-qubit-swapping-based strategy, does not exceed n/4 dqs + dqs', where dqs = 3(cle + cbsm + ccx) and dqs' = cle + ccx.",
+  "overview": "The theorem is the paper's central analytical artifact for the improved strategy. It claims a smaller asymptotic factor than the entanglement-only approach, while keeping hardware-dependent costs explicit and preserving a worst-case interpretation.",
+  "page_refs": [
+    "Theorem 1",
+    "Eq. 5",
+    "Eq. 6",
+    "Eq. 7"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "title": "Data-Qubit Swapping Theorem"
+}

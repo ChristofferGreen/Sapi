@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-alpha-channel-multipass-rendering-can-recolor-significant-body-regions-such-as-c--265615107527",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "Compressed textures preserve alpha information that the multipass coloring method uses for visual variety.",
+  "relation_file_id": "rel-9f94d0a1eb4f52aa0cd7dcd7b3755d5fe0934a8b5e9d9d1ae50e9e90ff6f8a02",
+  "relation_id": "supports:claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a->claim-alpha-channel-multipass-rendering-can-recolor-significant-body-regions-such-as-c--265615107527",
+  "relation_type": "supports",
+  "src_claim_id": "claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+  "src_claim_ref": "3",
+  "status": "open"
+}

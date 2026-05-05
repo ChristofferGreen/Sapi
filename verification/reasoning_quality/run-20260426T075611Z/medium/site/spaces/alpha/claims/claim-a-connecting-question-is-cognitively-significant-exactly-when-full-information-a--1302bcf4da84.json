@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T08:05:25Z",
+  "claim_id": "claim-a-connecting-question-is-cognitively-significant-exactly-when-full-information-a--1302bcf4da84",
+  "evidence_excerpts": [
+    "Let a connecting question of the form \u2018Why should [p] obtain given that each of the members of D obtains?\u2019 be cognitively significant just in case it\u2019s metaphysically necessary that, for any rational individual, being fully informed about the nature of [p], D, the plurality consisting of [p] and D, and the entities these facts involve doesn\u2019t suffice for the question to lack substantive content for that individual."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Cognitive significance persists",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "A connecting question is cognitively significant exactly when full information about the relevant facts, plurality, and entities would still not make the question lose substantive content for any rational individual."
+}

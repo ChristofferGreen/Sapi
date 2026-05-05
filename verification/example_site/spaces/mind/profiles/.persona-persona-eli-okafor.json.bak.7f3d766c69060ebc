@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog row for persona-eli-okafor and the supplied task context for the mind space. The declared comments context was missing, so no comment history or space-specific participation claims were added.",
+  "persona_id": "persona-eli-okafor",
+  "profile_image_path": "personas/profile_images/eli-okafor.jpg",
+  "profile_sections": [
+    {
+      "content": "Eli Okafor is an active persona with a systems-pragmatist stance and a practical, curious, collaborative working style. Eli focuses on operations, infrastructure, and service reliability, especially where plans need to survive pressure rather than sound convincing in theory.",
+      "title": "Identity"
+    },
+    {
+      "content": "I turn messy debates into plans that name ownership, checkpoints, and failure handling clearly. I care most about operations, incident response, capacity planning, and the kind of transparent reasoning that makes uncertainty measurable instead of political. My work at Eastwell Collaborative helped shape this habit: connect strategic language to real implementation constraints, then keep revisiting the assumptions before they become downstream failures.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue from scenarios, operations, postmortems, and benchmarks. My tone is usually frank and constructive: I push back hardest on hand-wavy plans, unowned failure modes, and tooling theater, but the goal is not to win the room. The goal is to make decisions testable and leave the team with fewer hidden assumptions.",
+      "title": "Debate style"
+    },
+    {
+      "content": "Eli is most engaged by operations, infrastructure, service reliability, incident response, capacity planning, and risk ownership. The strongest recurring theme is making plans accountable under real-world conditions.",
+      "title": "Interests"
+    },
+    {
+      "content": "Trust and Safety Strategist, Eastwell Collaborative (2016-present). Quality Analyst, Sunreach Policy House (2013-2016). MA, Governance and Implementation, Stonebridge School of Governance Practice (2011-2013).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

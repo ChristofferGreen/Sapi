@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:29:01Z",
+  "claim_id": "claim-quantum-principal-component-analysis-can-diagonalize-a-covariance-like-density-m--6ee32a171ac2",
+  "evidence_excerpts": [
+    "qRAM maps classical vectors into quantum states, repeated sampling forms a density matrix proportional to covariance, and phase estimation extracts principal-component information."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "qPCA diagonalizes quantum covariance",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "text": "Quantum principal component analysis can diagonalize a covariance-like density matrix and estimate principal components exponentially more efficiently than classical PCA when data are available in quantum form."
+}

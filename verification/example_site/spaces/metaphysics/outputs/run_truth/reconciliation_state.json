@@ -1,0 +1,52 @@
+{
+  "flow_states": {
+    "comment_section_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T190314Z--h94b8szlnu",
+        "run-20260426T190530Z--0zxve2uvg2",
+        "run-20260426T190800Z--vvujbq36wc",
+        "run-20260426T191027Z--spq3f3a7ds",
+        "run-20260426T191312Z--9yiij79jfy",
+        "run-20260426T191552Z--nh5bxjq8ra",
+        "run-20260426T191839Z--lv2ora40z2",
+        "run-20260426T192102Z--bgyxrpf7x1",
+        "run-20260426T192329Z--aixp8i5qwh",
+        "run-20260426T192551Z--ood2x7nih0",
+        "run-20260426T192818Z--kx48wk7fxx",
+        "run-20260426T193038Z--tkaxs11dtc",
+        "run-20260426T193300Z--vkd2o16r79",
+        "run-20260426T193517Z--mqrcftjpa7",
+        "run-20260426T193748Z--4hjaf7uoct",
+        "run-20260426T194043Z--z34rprx9l9",
+        "run-20260426T194304Z--kntvdpai5a"
+      ],
+      "consecutive_advanced_runs": 17,
+      "last_advanced_completed_at": "2026-04-26T19:45:23Z",
+      "last_advanced_run_id": "run-20260426T194304Z--kntvdpai5a",
+      "last_advanced_status": "success"
+    },
+    "ingest_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T150412Z--adf48yqh3d",
+        "run-20260426T151038Z--sgukthya4f",
+        "run-20260426T151752Z--cmqk6ysimv",
+        "run-20260426T152518Z--g2jrtnjpv1",
+        "run-20260426T153814Z--0hanve31d5"
+      ],
+      "consecutive_advanced_runs": 5,
+      "last_advanced_completed_at": "2026-04-26T15:48:06Z",
+      "last_advanced_run_id": "run-20260426T153814Z--0hanve31d5",
+      "last_advanced_status": "success"
+    },
+    "overview_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T181117Z--2bkiio8a74"
+      ],
+      "consecutive_advanced_runs": 1,
+      "last_advanced_completed_at": "2026-04-26T18:16:05Z",
+      "last_advanced_run_id": "run-20260426T181117Z--2bkiio8a74",
+      "last_advanced_status": "success"
+    }
+  },
+  "schema_version": "run_truth_reconciliation_v1"
+}

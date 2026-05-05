@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-episodic-recollection-can-preserve-temporally-and-spatially-situated-autobiograp--43867278649d",
+    "claim-r-b-s-unowned-recollections-provide-an-existence-proof-for-apparent-memory-conte--6a14bce7e1a3"
+  ],
+  "evidence_id": "evidence-beach-scene-without-ownership--b6d0c0f2a91e",
+  "evidence_type": "observational_result",
+  "excerpt": "I was remembering scenes, not facts \u2026 I was recalling scenes \u2026 that is \u2026 I could clearly recall a scene of me at the beach in New London with my family as a child. But the feeling was that the scene was not my memory. As if I was looking at a photo of someone else\u2019s vacation. Note that these memories were substantiated by third parties as valid renditions of events that actually transpired in R.B.\u2019s life.",
+  "overview": "The beach recollection matters because it satisfies the article's criteria for episodic recall: a scene located in time and space, involving R.B., and corroborated as autobiographical. Its lack of ownership directly supports the dissociation rather than merely showing semantic relearning.",
+  "page_refs": [
+    "p.686"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+  "title": "Beach Scene Without Ownership"
+}

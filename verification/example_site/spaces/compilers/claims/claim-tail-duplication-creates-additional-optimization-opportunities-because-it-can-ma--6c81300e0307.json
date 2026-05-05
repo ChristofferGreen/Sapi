@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:27:45Z",
+  "claim_id": "claim-tail-duplication-creates-additional-optimization-opportunities-because-it-can-ma--6c81300e0307",
+  "evidence_excerpts": [
+    "Duplicating the tail part of a trace to form a super-block eliminates control paths that enter the trace in the middle. For many op(x) and op(y) instruction pairs, op(x) becomes the sole producer of one or more source operands of op(y). Therefore, profile-based operation combining can find more opportunities for optimization than traditional operation combining."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Duplication exposes producer relationships",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "text": "Tail duplication creates additional optimization opportunities because it can make an earlier operation the sole producer of operands used later in a hot path."
+}

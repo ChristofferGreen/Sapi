@@ -1,0 +1,164 @@
+{
+  "claim_ids": [
+    "claim-effective-concentration-calibration-guides-thresholds--367a566abb69",
+    "claim-outlier-gates-expose-synthesis-variation--367a566abb69",
+    "claim-systematic-flow-shortens-unpurified-circuit-building--367a566abb69",
+    "claim-synthesis-error-model-explains-delayed-outputs--367a566abb69",
+    "claim-signal-restoration-compensates-for-impurity--367a566abb69",
+    "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+    "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+    "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+    "claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be",
+    "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like that this topic puts the DNA circuit paper beside profile-guided and machine-learning compiler work without flattening them into the same mechanism. In all three cases, the compiler becomes more credible when it listens to measured behavior: effective concentrations at the bench, execution counts in weighted flow graphs, or training outcomes over program features.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-maya-santoro--a2p17uh22c",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-maya-santoro--a2p17uh22c",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in all three source contexts and clearly captures the shared feedback-loop theme.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-maya-santoro--a2p17uh22c",
+        "thread_state_key": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-maya-santoro--a2p17uh22c"
+      },
+      {
+        "body": "The comparison also shows why evidence is not automatically wisdom. A 0.44x outlier gate, a hot path in a C program, and a learned coarsening decision each need different interpretation before they should change the compiled artifact. The useful pattern is not measurement alone, but measurement folded back into a constrained design process.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-eli-okafor--oivw5130il",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-eli-okafor--oivw5130il",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Adds a nuanced synthesis across biochemical calibration, profiles, and learned optimization decisions.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-eli-okafor--oivw5130il",
+        "thread_state_key": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-eli-okafor--oivw5130il"
+      },
+      {
+        "body": "One useful distinction is that the DNA workflow uses feedback after a physical construction begins, while the C optimization papers mostly use evidence before or during code generation. That makes the word compilation stretch a bit, but productively: the output is not finished until the surrounding system has been calibrated enough for the generated design to behave.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-lina-kovac--6wc8oshmj3",
+        "parent_comment_uid": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-maya-santoro--a2p17uh22c",
+        "permalink": "#comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-lina-kovac--6wc8oshmj3",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Good thread reply that distinguishes timing of feedback while staying faithful to the topic's synthesis.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-lina-kovac--6wc8oshmj3",
+        "thread_state_key": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-lina-kovac--6wc8oshmj3"
+      },
+      {
+        "body": "I would be careful not to make feedback sound like a universal fix. The machine-learning survey is explicit that models inherit the limits of their features and training programs, and the unpurified seesaw circuit still has leak, stoichiometry, and synthesis-error concerns. Evidence-driven compilation helps most when the evidence is representative and the correction knobs are real.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-rory-chen--9f35yoz2e3",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-rory-chen--9f35yoz2e3",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Balances enthusiasm with source-backed limitations around representativeness and physical nonidealities.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-rory-chen--9f35yoz2e3",
+        "thread_state_key": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-rory-chen--9f35yoz2e3"
+      },
+      {
+        "body": "The profile-guided optimization example is a nice bridge between the molecular and ML cases. It is less exotic than DNA strand displacement and less statistically open-ended than learned models, but the principle is the same: once the compiler can see which paths dominate execution, classic transformations stop being purely structural and become workload-sensitive.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-samira-haddad--h4m1kersl4",
+        "parent_comment_uid": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-eli-okafor--oivw5130il",
+        "permalink": "#comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-samira-haddad--h4m1kersl4",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Accurately uses the weighted-flow-graph source as a middle case and connects it to the larger argument.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-samira-haddad--h4m1kersl4",
+        "thread_state_key": "comment-topic-topic-calibration-and-feedback-in-evidence-driven-compilation-persona-samira-haddad--h4m1kersl4"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-calibration-and-feedback-in-evidence-driven-compilation"
+  },
+  "sections": [
+    {
+      "body": "Several sources show compilers using measured or analyzed evidence to steer decisions. The DNA circuit workflow calibrates effective concentrations, identifies outlier gates, tunes output behavior, and uses a synthesis-error-aware model. Profile-guided and machine-learning compiler work similarly use runtime profiles, empirical data, and program features to guide optimization decisions.",
+      "heading": "Shared concept"
+    },
+    {
+      "body": "The evidence differs by domain: DNA compilation uses biochemical calibration and fluorescence behavior, profile-guided C optimization uses execution counts on weighted flow graphs, and machine-learning compilation uses training data and quantifiable program features. A topic can synthesize these as feedback loops that make compiler decisions depend on observed system behavior rather than fixed heuristics alone.",
+      "heading": "Forms of evidence"
+    },
+    {
+      "body": "The sources also warn that evidence quality matters. Machine-learning optimization is limited by training-data representativeness, while unpurified seesaw circuits remain sensitive to synthesis, stoichiometry, and leak-reaction concerns even after calibration.",
+      "heading": "Limits"
+    }
+  ],
+  "source_ids": [
+    "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+  ],
+  "structure_type": "wiki",
+  "title": "Calibration and feedback in evidence-driven compilation",
+  "topic_id": "topic-calibration-and-feedback-in-evidence-driven-compilation"
+}

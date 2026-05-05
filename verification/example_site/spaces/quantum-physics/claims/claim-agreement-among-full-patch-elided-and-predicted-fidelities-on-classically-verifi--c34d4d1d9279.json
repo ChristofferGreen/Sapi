@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:59:28Z",
+  "claim_id": "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279",
+  "evidence_excerpts": [
+    "The predicted, patch and elided fidelities all show good agreement with the fidelities of the corresponding full circuits, despite the vast differences in computational complexity and entanglement."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Verification supports extrapolation",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "text": "Agreement among full, patch, elided, and predicted fidelities on classically verifiable circuits supports using elided circuits to estimate fidelity in the supremacy regime."
+}

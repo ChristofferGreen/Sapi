@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-quantum-expectation-estimation-reduces-coherent-evolution-demands-relative-to-ph--e17864953251",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "The CNOT comparison is a concrete instance of the broader coherent-resource reduction claim.",
+  "relation_file_id": "rel-1b95b1e8996782fcc720d528bf65e59f5787d4490430e6affaa24af5f135aa8f",
+  "relation_id": "supports:claim-for-the-demonstrated-4x4-hamiltonian-the-quantum-expectation-estimation-approach--8aea71f20a05->claim-quantum-expectation-estimation-reduces-coherent-evolution-demands-relative-to-ph--e17864953251",
+  "relation_type": "supports",
+  "src_claim_id": "claim-for-the-demonstrated-4x4-hamiltonian-the-quantum-expectation-estimation-approach--8aea71f20a05",
+  "src_claim_ref": "6",
+  "status": "open"
+}

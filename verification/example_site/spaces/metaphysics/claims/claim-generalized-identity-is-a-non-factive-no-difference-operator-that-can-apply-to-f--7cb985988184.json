@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T15:22:07Z",
+  "claim_id": "claim-generalized-identity-is-a-non-factive-no-difference-operator-that-can-apply-to-f--7cb985988184",
+  "evidence_excerpts": [
+    "we express generalized identity with an operator, \u00ba, indexed by zero or more variables, which takes two open or closed sentences and yields another. Where p and q are open or closed sentences, (5) p\u00baq should be read as 'For it to be the case that p is for it to be the case that q'.",
+    "we read such statements as not requiring that the flanking expressions be true/satisfied: for instance, it is intuitively no objection to (1) that there aren\u2019t any bachelors. For short, we read them non-factively."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Generalized identity is nonfactive",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "text": "Generalized identity is a non-factive no-difference operator that can apply to factual and generic contents without requiring fact-shaped or property-shaped entities as its relata."
+}

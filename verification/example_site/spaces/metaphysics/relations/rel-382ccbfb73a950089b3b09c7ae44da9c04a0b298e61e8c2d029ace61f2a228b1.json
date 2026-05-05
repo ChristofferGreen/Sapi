@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-r-b-s-unowned-recollections-provide-an-existence-proof-for-apparent-memory-conte--6a14bce7e1a3",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "The demand for sharper quasi-memory criteria follows from treating R.B.'s recollections as a possible existence proof.",
+  "relation_file_id": "rel-382ccbfb73a950089b3b09c7ae44da9c04a0b298e61e8c2d029ace61f2a228b1",
+  "relation_id": "derived_from:claim-quasi-memory-accounts-must-specify-which-form-of-self-representation-is-required--4b048f888bc8->claim-r-b-s-unowned-recollections-provide-an-existence-proof-for-apparent-memory-conte--6a14bce7e1a3",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-quasi-memory-accounts-must-specify-which-form-of-self-representation-is-required--4b048f888bc8",
+  "src_claim_ref": "6",
+  "status": "open"
+}

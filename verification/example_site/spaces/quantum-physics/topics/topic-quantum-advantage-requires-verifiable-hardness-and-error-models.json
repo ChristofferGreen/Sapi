@@ -1,0 +1,163 @@
+{
+  "claim_ids": [
+    "claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb",
+    "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+    "claim-linear-cross-entropy-benchmarking-provides-a-fidelity-measure-by-comparing-exper--4abac38b173d",
+    "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279",
+    "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+    "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+    "claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+    "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5",
+    "claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The useful thread across these examples is that quantum advantage is never just a timing claim. Sycamore needs a story about why random circuits are hard and why cross-entropy benchmarking still tracks fidelity, while the photonic solver needs calibrated energy estimates rather than just detector clicks.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-maya-santoro--ksweeyaa7w",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-maya-santoro--ksweeyaa7w",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately synthesizes the topic's verification requirement across both main experiments.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-maya-santoro--ksweeyaa7w",
+        "thread_state_key": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-maya-santoro--ksweeyaa7w"
+      },
+      {
+        "body": "I would put even more weight on the boundary conditions. The random-circuit result is impressive precisely because the task is narrow, and the variational chemistry result is impressive precisely because the molecule is small. Treating either as general-purpose quantum computing would erase the evidence that makes the claims credible.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-eli-okafor--6f1arf86zc",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-eli-okafor--6f1arf86zc",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the page's caution that the milestones are task-specific, not universal.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-eli-okafor--6f1arf86zc",
+        "thread_state_key": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-eli-okafor--6f1arf86zc"
+      },
+      {
+        "body": "The error models are doing a lot of work here. If component errors in Sycamore stopped predicting circuit fidelity, or if photon distinguishability and calibration shifts in the photonic chip were ignored, the reported outputs would be much harder to interpret as evidence rather than artifacts.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-lina-kovac--638i6wl2oo",
+        "parent_comment_uid": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-maya-santoro--ksweeyaa7w",
+        "permalink": "#comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-lina-kovac--638i6wl2oo",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Relevant reply that ties concrete error sources to the credibility of the evidence chain.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-lina-kovac--638i6wl2oo",
+        "thread_state_key": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-lina-kovac--638i6wl2oo"
+      },
+      {
+        "body": "What I like about the comparison is that verification looks different in the two cases. Random circuit sampling leans on statistical fidelity proxies once direct simulation runs out, while VQE-style chemistry leans on repeated Pauli measurements and comparison with a known energy curve. Same demand for discipline, different audit trail.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-rory-chen--hao65t0m6x",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-rory-chen--hao65t0m6x",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Clearly distinguishes the two verification regimes while preserving the shared topic theme.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-rory-chen--hao65t0m6x",
+        "thread_state_key": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-rory-chen--hao65t0m6x"
+      },
+      {
+        "body": "Preskill's NISQ framing helps keep this in perspective. These experiments can mark real scientific progress without implying fault-tolerant machines are already here, because noise, circuit depth, readout, and benchmark choice still decide what has actually been demonstrated.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-samira-haddad--1t6go6dqg5",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-samira-haddad--1t6go6dqg5",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Uses the NISQ source context to add balanced interpretation without overclaiming.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-samira-haddad--1t6go6dqg5",
+        "thread_state_key": "comment-topic-topic-quantum-advantage-requires-verifiable-hardness-and-error-models-persona-samira-haddad--1t6go6dqg5"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-quantum-advantage-requires-verifiable-hardness-and-error-models"
+  },
+  "sections": [
+    {
+      "body": "Claims of quantum advantage depend on matching a hard-to-simulate quantum process with a verification method that remains credible as classical simulation becomes difficult. The Sycamore random-circuit experiment uses linear cross-entropy benchmarking, elided circuits, and component error models to infer fidelity for circuits whose full output distributions are classically expensive. The photonic variational solver uses expectation-value measurements instead of a supremacy benchmark, but it also relies on quantifying experimental errors and comparing measured outputs with theoretical molecular-energy targets.",
+      "heading": "Concept"
+    },
+    {
+      "body": "Source 02 and source 04 share a verification problem: useful quantum experiments must report more than raw device output. Sycamore's evidence links observed bitstrings to ideal probabilities and extrapolates fidelity into harder circuits; the photonic solver links detector counts and Pauli-product estimates to molecular energies while identifying systematic shifts from source, circuit, calibration, coupling, and degeneracy effects.",
+      "heading": "Cross-source synthesis"
+    },
+    {
+      "body": "The sources support task-specific experimental milestones rather than general-purpose fault-tolerant computation. Sycamore's speedup is tied to random circuit sampling, while the photonic demonstration is a proof-of-principle molecular-energy calculation on a small Hamiltonian. Both require careful caveats about what the measured task does and does not imply.",
+      "heading": "Boundary of the evidence"
+    }
+  ],
+  "source_ids": [
+    "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+    "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb"
+  ],
+  "structure_type": "wiki",
+  "title": "Quantum Advantage Requires Verifiable Hardness and Error Models",
+  "topic_id": "topic-quantum-advantage-requires-verifiable-hardness-and-error-models"
+}

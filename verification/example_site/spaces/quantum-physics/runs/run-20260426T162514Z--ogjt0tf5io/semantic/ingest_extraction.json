@@ -1,0 +1,370 @@
+{
+  "claims": [
+    {
+      "evidence_excerpts": [
+        "Quantum speedup is defined by lower query or gate complexity for a quantum algorithm than for the corresponding classical algorithm."
+      ],
+      "short_title": "Quantum learning can accelerate analysis",
+      "text": "Quantum machine learning can outperform classical algorithms on specific pattern-recognition and data-analysis tasks when quantum algorithms exploit coherence, entanglement, or quantum access models."
+    },
+    {
+      "evidence_excerpts": [
+        "The review identifies quantum Fourier transforms, eigenvector and eigenvalue routines, and linear-system solvers as qBLAS primitives with exponential speedups."
+      ],
+      "short_title": "qBLAS enables exponential speedups",
+      "text": "Quantum basic linear algebra subroutines provide exponential speedups for Fourier transforms, eigenvalue estimation, eigenvector finding, and linear equation solving relative to the best known classical counterparts."
+    },
+    {
+      "evidence_excerpts": [
+        "qRAM maps classical vectors into quantum states, repeated sampling forms a density matrix proportional to covariance, and phase estimation extracts principal-component information."
+      ],
+      "short_title": "qPCA diagonalizes quantum covariance",
+      "text": "Quantum principal component analysis can diagonalize a covariance-like density matrix and estimate principal components exponentially more efficiently than classical PCA when data are available in quantum form."
+    },
+    {
+      "evidence_excerpts": [
+        "HHL takes O((log N)^2) quantum steps to output |x>, but full recovery of x can require many measurements and suitable state preparation."
+      ],
+      "short_title": "HHL has conditional advantage",
+      "text": "The HHL linear-system algorithm can output a quantum state proportional to a solution vector in polylogarithmic time under sparsity, conditioning, input-preparation, and readout assumptions."
+    },
+    {
+      "evidence_excerpts": [
+        "Loading large classical data sets can require exponential time without qRAM, and reading full solution vectors or principal components can be exponentially hard."
+      ],
+      "short_title": "Input output bottlenecks dominate",
+      "text": "Large-scale quantum random access memory and quantum-state readout constraints can erase practical advantages for many linear-algebra-based quantum machine learning algorithms on classical data."
+    },
+    {
+      "evidence_excerpts": [
+        "One proposed realization of HHL is described as ballooning to approximately 10^25 circuit-size and depth overhead before optimization."
+      ],
+      "short_title": "Overheads threaten practical speedups",
+      "text": "Circuit depth and implementation overhead can become prohibitive for nominally exponential quantum machine learning speedups without substantial algorithmic optimization and realistic cost estimates."
+    },
+    {
+      "evidence_excerpts": [
+        "The review states that quantum annealers are easier to construct and scale than general-purpose quantum computers and are suited to deep quantum learners."
+      ],
+      "short_title": "Special hardware supports deep learning",
+      "text": "Deep quantum learning can use quantum annealers, programmable photonic circuits, and quantum Boltzmann machines rather than requiring a large universal quantum computer."
+    },
+    {
+      "evidence_excerpts": [
+        "Quantum methods can make Boltzmann systems thermalize quadratically faster and can quadratically reduce samples and training-data accesses."
+      ],
+      "short_title": "Quantum Boltzmann training accelerates",
+      "text": "Quantum Boltzmann machine training can gain quadratic improvements in thermalization, sampling, and training-data access under quantum-coherent or qRAM access assumptions."
+    },
+    {
+      "evidence_excerpts": [
+        "Quantum analysis of density matrices can reveal principal components and dynamics with exponentially fewer measurements than full quantum state reconstruction."
+      ],
+      "short_title": "Quantum data avoids full tomography",
+      "text": "Quantum machine learning for quantum data can reduce tomography and characterization costs by extracting principal components, dynamics, or expectation-value summaries without full state reconstruction."
+    },
+    {
+      "evidence_excerpts": [
+        "The review distills four caveats for future work: input problem, output problem, costing problem, and benchmarking problem."
+      ],
+      "short_title": "Viability needs practical benchmarks",
+      "text": "The near-term viability of quantum machine learning depends on solving input, output, costing, and benchmarking problems rather than only proving asymptotic speedups."
+    }
+  ],
+  "evidence_items": [
+    {
+      "claim_refs": [
+        "0",
+        "9"
+      ],
+      "evidence_id": "evidence-speedup-resource-definition--a91f0184eb29",
+      "evidence_type": "formal_argument",
+      "excerpt": "Quantum speedup is evaluated through query complexity and gate complexity: a speedup exists when a quantum algorithm needs fewer information-source queries or fewer elementary operations than the classical alternative.",
+      "overview": "This formal resource criterion grounds the review's claims about quantum machine learning advantages. It keeps the discussion tied to algorithmic costs rather than vague statements that quantum computers are faster, while also exposing why real-device benchmarking remains necessary.",
+      "page_refs": [
+        "Box 1",
+        "pp.2-4"
+      ],
+      "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+      "title": "Quantum Speedup Resource Test"
+    },
+    {
+      "claim_refs": [
+        "1",
+        "2",
+        "3"
+      ],
+      "evidence_id": "evidence-qblas-exponential-primitives--b02951ea7fc5",
+      "evidence_type": "formal_argument",
+      "excerpt": "Quantum BLAS includes Fourier transforms, eigenvector and eigenvalue routines, and linear-equation solving; the review states that these primitives exhibit exponential speedups over their best known classical counterparts.",
+      "overview": "The qBLAS list is the main algorithmic bridge from quantum computation to machine learning workloads. It supports claims about accelerated regression, PCA, optimization, topological analysis, and support vector machines, but only at the level of idealized subroutine complexity.",
+      "page_refs": [
+        "p.3"
+      ],
+      "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+      "title": "qBLAS Exponential Primitives"
+    },
+    {
+      "claim_refs": [
+        "2",
+        "4"
+      ],
+      "evidence_id": "evidence-qpca-density-matrix-route--f6d77381228b",
+      "evidence_type": "equation",
+      "excerpt": "For qPCA, qRAM maps a data vector v_j into |v_j>; repeated sampling prepares rho proportional to the covariance matrix, and phase estimation maps |v> into principal-component and eigenvalue registers.",
+      "overview": "This is a concrete algorithmic pathway rather than a broad promise. It shows how a classical covariance problem becomes density-matrix exponentiation and phase estimation, while making clear that the speedup depends on quantum state preparation and access to the data distribution.",
+      "page_refs": [
+        "pp.5-6"
+      ],
+      "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+      "title": "qPCA Density Matrix Route"
+    },
+    {
+      "claim_refs": [
+        "3",
+        "5"
+      ],
+      "evidence_id": "evidence-hhl-runtime-caveats--71436a91f018",
+      "evidence_type": "theorem",
+      "excerpt": "The HHL box gives O((log N)^2) quantum steps to output |x>, while warning that full recovery of the vector, data input, matrix sparsity, and condition number constrain the advantage.",
+      "overview": "The HHL discussion captures both the appeal and the fragility of exponential speedup claims. The evidence supports the conditional nature of quantum linear-system advantages: the output is a quantum state and many useful classical answers require additional extraction work.",
+      "page_refs": [
+        "Box 2",
+        "pp.6-7"
+      ],
+      "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+      "title": "HHL Runtime Caveats"
+    },
+    {
+      "claim_refs": [
+        "4",
+        "9"
+      ],
+      "evidence_id": "evidence-input-output-qrambottleneck--2630a91f0184",
+      "evidence_type": "model_constraint",
+      "excerpt": "Applying HHL, least-squares fitting, qPCA, support vector machines, and related methods to classical data begins by loading large data sets into a quantum system, which can require exponential time without qRAM.",
+      "overview": "This passage is the strongest limit on headline speedup claims for classical data. It separates quantum processing time from the end-to-end pipeline cost and explains why input and output assumptions can dominate practical performance.",
+      "page_refs": [
+        "pp.8-9"
+      ],
+      "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+      "title": "Input Output qRAM Bottleneck"
+    },
+    {
+      "claim_refs": [
+        "5",
+        "9"
+      ],
+      "evidence_id": "evidence-hhl-depth-overhead--1025a91f0184",
+      "evidence_type": "model_constraint",
+      "excerpt": "Despite potential exponential speedups, the review reports that circuit size and depth overhead can balloon to about 10^25 in one proposed realization of HHL without major optimization.",
+      "overview": "The overhead estimate gives a concrete scale for the gap between asymptotic complexity and implementable quantum machine learning. It supports a conservative reading: better algorithms and cost models are prerequisites for useful alternatives to classical methods.",
+      "page_refs": [
+        "p.9"
+      ],
+      "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+      "title": "HHL Depth Overhead Estimate"
+    },
+    {
+      "claim_refs": [
+        "6"
+      ],
+      "evidence_id": "evidence-dwave-thousand-spins--16019a91f018",
+      "evidence_type": "observational_result",
+      "excerpt": "The review states that D-Wave's tunable transverse Ising hardware has been used for deep quantum learning protocols on more than a thousand spins.",
+      "overview": "This hardware evidence supports the near-term deep-learning pathway because it does not require a universal fault-tolerant quantum computer. It is evidence for scale and suitability of special-purpose devices, not proof of general quantum advantage.",
+      "page_refs": [
+        "p.10"
+      ],
+      "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+      "title": "Thousand Spin Annealer Demo"
+    },
+    {
+      "claim_refs": [
+        "7",
+        "4"
+      ],
+      "evidence_id": "evidence-boltzmann-quadratic-training--160102036a91",
+      "evidence_type": "formal_argument",
+      "excerpt": "Quantum methods can make Boltzmann systems thermalize quadratically faster, reduce the samples needed to learn performance, and use quadratically fewer accesses to training data under qRAM or black-box access.",
+      "overview": "The Boltzmann-machine evidence is concrete because it identifies where quantum resources enter training: thermalization, sampling, and data access. The gains are conditional on coherent access models and do not by themselves remove the input bottleneck for arbitrary classical data.",
+      "page_refs": [
+        "pp.10-11"
+      ],
+      "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+      "title": "Quadratic Boltzmann Training Gains"
+    },
+    {
+      "claim_refs": [
+        "8",
+        "9"
+      ],
+      "evidence_id": "evidence-quantum-data-tomography-reduction--14012910a91f",
+      "evidence_type": "model_constraint",
+      "excerpt": "For quantum data represented by an N by N density matrix, quantum PCA and related routines can extract principal components and dynamics with exponentially fewer measurements than full reconstruction.",
+      "overview": "This evidence explains why quantum data is a natural domain for quantum machine learning. When the data are already quantum states, the framework can avoid translating everything into classical bit strings and can target summary properties instead of full tomography.",
+      "page_refs": [
+        "pp.11-12"
+      ],
+      "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+      "title": "Quantum Data Tomography Reduction"
+    },
+    {
+      "claim_refs": [
+        "4",
+        "5",
+        "9"
+      ],
+      "evidence_id": "evidence-four-future-caveats--20180514a91f",
+      "evidence_type": "formal_argument",
+      "excerpt": "The review names four fundamental problems for future work: input problem, output problem, costing problem, and benchmarking problem.",
+      "overview": "This list provides the review's practical interpretation of the field. It organizes the limits on quantum machine learning into data-loading costs, readout costs, actual gate counts, and evidence of advantage over modern classical heuristics.",
+      "page_refs": [
+        "pp.13-14"
+      ],
+      "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+      "title": "Four Practical Caveats"
+    }
+  ],
+  "relations": [
+    {
+      "dst_claim_ref": "0",
+      "rationale": "Exponential qBLAS speedups are a core mechanism behind the broader claim that quantum learning can accelerate data analysis.",
+      "relation_type": "supports",
+      "src_claim_ref": "1"
+    },
+    {
+      "dst_claim_ref": "1",
+      "rationale": "qPCA applies qBLAS-style density-matrix and eigenvalue routines to a specific machine learning task.",
+      "relation_type": "derived_from",
+      "src_claim_ref": "2"
+    },
+    {
+      "dst_claim_ref": "1",
+      "rationale": "HHL is one of the linear-algebra primitives that underwrite quantum machine learning speedup claims.",
+      "relation_type": "derived_from",
+      "src_claim_ref": "3"
+    },
+    {
+      "dst_claim_ref": "0",
+      "rationale": "Input and output bottlenecks can prevent end-to-end advantage even when an internal quantum subroutine is faster.",
+      "relation_type": "falsifies",
+      "src_claim_ref": "4"
+    },
+    {
+      "dst_claim_ref": "0",
+      "rationale": "Large circuit overhead can make asymptotic speedups impractical on realistic machines.",
+      "relation_type": "falsifies",
+      "src_claim_ref": "5"
+    },
+    {
+      "dst_claim_ref": "6",
+      "rationale": "Quadratic Boltzmann training improvements explain why special-purpose quantum hardware is relevant to deep quantum learning.",
+      "relation_type": "supports",
+      "src_claim_ref": "7"
+    },
+    {
+      "dst_claim_ref": "0",
+      "rationale": "Quantum data analysis provides a natural setting where quantum systems avoid some classical data-loading costs.",
+      "relation_type": "supports",
+      "src_claim_ref": "8"
+    },
+    {
+      "dst_claim_ref": "4",
+      "rationale": "The review's future-work caveats explicitly include the input and output problems.",
+      "relation_type": "supports",
+      "src_claim_ref": "9"
+    }
+  ],
+  "source": {
+    "authors": [
+      "Jacob Biamonte",
+      "Peter Wittek",
+      "Nicola Pancotti",
+      "Patrick Rebentrost",
+      "Nathan Wiebe",
+      "Seth Lloyd"
+    ],
+    "display_title": "Quantum Machine Learning Speedups and Bottlenecks"
+  },
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "task_context",
+    "rationale": "Publication date could not be resolved by the ingest context; the markdown shows a manuscript date of May 14, 2018 but this is not treated as a resolved publication date."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The review's core argument is that quantum machine learning is plausible because quantum processors can manipulate patterns and amplitudes in ways classical machines may not efficiently simulate. That claim is not treated as a blanket guarantee; the source anchors it in specific mechanisms such as query complexity, gate complexity, qBLAS, and sampling. The field is therefore presented as a search for tasks where quantum structure survives the full learning pipeline.",
+        "grounding_claim_ids": [
+          "0",
+          "1",
+          "9"
+        ],
+        "heading": "Core Argument"
+      },
+      {
+        "body": "The most developed path runs through quantum linear algebra. qPCA, HHL, support vector machines, regression, and optimization inherit their promise from subroutines for Fourier transforms, eigenvalue estimation, eigenvector extraction, and linear-system solving. These are strong mathematical hooks for speedup, but the review emphasizes that they usually return quantum states or summary statistics rather than complete classical data products.",
+        "grounding_claim_ids": [
+          "1",
+          "2",
+          "3"
+        ],
+        "heading": "Linear Algebra Pathway"
+      },
+      {
+        "body": "The source repeatedly warns that loading classical data and reading classical answers can dominate the cost of a quantum algorithm. qRAM can make some encodings efficient in principle, but large coherent memory arrays are technologically difficult, and extracting full vectors or principal components can require exponentially many measurements. This turns many headline speedups into conditional, pipeline-level hypotheses.",
+        "grounding_claim_ids": [
+          "4",
+          "5",
+          "9"
+        ],
+        "heading": "Input And Output Limits"
+      },
+      {
+        "body": "Deep quantum learning is presented as a hardware-conscious route that may not need a large universal quantum computer. Quantum annealers, photonic circuits, and quantum Boltzmann machines can instantiate learning models directly as physical systems. The evidence is promising but scoped: thousand-spin annealer demonstrations and quadratic sampling or thermalization arguments show feasibility signals, not universal superiority.",
+        "grounding_claim_ids": [
+          "6",
+          "7"
+        ],
+        "heading": "Deep Quantum Learning"
+      },
+      {
+        "body": "Quantum data is the cleanest setting for the review's logic because the data need not first be converted from classical records into amplitudes. For density matrices, dynamics, and measurement streams from quantum devices, algorithms can seek principal components or expectation-value summaries directly. This can reduce tomography burdens and supports applications in device characterization and quantum-state learning.",
+        "grounding_claim_ids": [
+          "8",
+          "9"
+        ],
+        "heading": "Quantum Data Advantage"
+      },
+      {
+        "body": "The practical takeaway is cautious optimism. The review identifies credible mechanisms for quantum advantage and credible hardware trajectories, including annealers, photonic chips, cloud-accessible processors, and qRAM research. But it treats input, output, costing, and benchmarking as first-class scientific problems, meaning a useful quantum machine learning result must demonstrate complete workflow advantage, not just an isolated fast subroutine.",
+        "grounding_claim_ids": [
+          "0",
+          "4",
+          "5",
+          "9"
+        ],
+        "heading": "Practical Interpretation"
+      }
+    ],
+    "summary_long": "The source is a broad review of quantum machine learning, using the field's strongest algorithmic ideas while repeatedly distinguishing asymptotic promise from implementable advantage. It begins from the observation that quantum systems can generate patterns that classical systems may not efficiently reproduce; if quantum processors can generate such patterns, quantum learning systems may also recognize or model them. The review then formalizes speedup in terms of query and gate complexity, because practical superiority over classical machine learning is hard to prove and must eventually be benchmarked against optimized heuristics. Its most important technical pathway is quantum linear algebra: qBLAS primitives, HHL-style linear-system solving, qPCA, support vector machines, and related optimization routines can in principle give exponential or polynomial improvements for suitable problem encodings. The source is careful, however, to state that these gains depend on state preparation, qRAM, sparsity, conditioning, and output requirements. A quantum state proportional to a solution vector is not the same as a cheaply available classical answer. The review also treats deep quantum learning as a separate route, where special-purpose hardware such as quantum annealers, photonic circuits, and quantum Boltzmann machines may be relevant before large universal machines exist. In that setting, speedups arise from thermalization, sampling, and training-data access, but they still rely on hardware and access assumptions. The most natural domain may be quantum data itself: when data are already quantum states, quantum routines can target principal components, dynamics, or expectation values without reconstructing the whole state. Overall, the source argues that quantum machine learning is promising but not automatically transformative; the decisive research tasks are to solve input and output bottlenecks, produce realistic gate and hardware costings, and benchmark against the best classical methods.",
+    "summary_short": "This review frames quantum machine learning as the attempt to convert quantum algorithmic speedups into practical learning and data-analysis tools. Its central message is balanced: qBLAS, HHL, qPCA, quantum support vector machines, and quantum Boltzmann machines create plausible advantages, but input, output, costing, and benchmarking problems determine whether those advantages survive in complete systems."
+  },
+  "summary": "The source reviews quantum machine learning as a field built on possible quantum speedups for linear algebra, optimization, sampling, deep learning, and quantum-data analysis, while emphasizing that input, output, circuit-cost, and benchmarking constraints determine whether these speedups become practical.",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved in task context; date remains null despite a May 14, 2018 manuscript date in the extracted markdown."
+    },
+    {
+      "code": "markdown_extraction_usable_not_verified_against_pdf",
+      "message": "source_extraction.json reports usable pdftotext markdown with no warnings, so the PDF binary was not consulted for layout-sensitive recovery."
+    },
+    {
+      "code": "claim_refs_are_generated_indices",
+      "message": "No prior canonical claim IDs were available in the provided context, so evidence and relation endpoints use generated claim indices."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:56:22Z",
+  "claim_id": "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963",
+  "evidence_excerpts": [
+    "Smoothing removes the skeleton effect from bundles, relaxation makes bundles thicker with less effect on curvature, and cushion shading modulates saturation and brightness using distance to the skeleton to help users follow overlapping bundles."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Smoothing controls bundle structure",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "text": "Smoothing, relaxation, and cushion shading let users adjust whether bundles appear as sharp organic branches or smoother force-directed-like curves while preserving the computed connectivity pattern."
+}

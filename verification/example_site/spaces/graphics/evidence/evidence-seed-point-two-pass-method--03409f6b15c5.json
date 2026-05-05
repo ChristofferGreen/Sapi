@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006",
+    "claim-a-two-pass-accumulation-field-method-fits-directly-into-the-opengl-pipeline-and--bf684a8c9b90"
+  ],
+  "evidence_id": "evidence-seed-point-two-pass-method--03409f6b15c5",
+  "evidence_type": "formal_argument",
+  "excerpt": "For large node sets, however, the described method is time inefficient because the amount of textured rectangles depends linearly on the number of nodes within the screen area. Therefore, we extend the method and significantly reduce rendering time by binning nearby node coordinates into pixels. Instead of rasterizing multiple rectangles at the same position, a single weighted rasterization step per bin is then sufficient to create the same density field. Therefore we propose the Seed Point Method, a technique that uses two render-passes: one to merge the nodes in their pixel-sized bins and one to create the actual density field.",
+  "overview": "This passage supplies the mechanism behind the node aggregation claim. It identifies the original cost driver, explains pixel binning as a mathematically equivalent density-field shortcut for a viewport, and describes the two-pass rendering structure. The evidence supports speed and storage claims but does not by itself prove user-facing readability or superiority over every possible spatial hierarchy.",
+  "page_refs": [
+    "p.2488",
+    "Fig.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "title": "Two-Pass Seed Points"
+}

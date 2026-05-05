@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-demonstrated-integrated-photonic-processor-prepares-and-measures-arbitrary-t--f41a0c8f645b"
+  ],
+  "evidence_id": "evidence-photonic-qpu-chip-design--6e91f4b0c2ad",
+  "evidence_type": "figure_result",
+  "excerpt": "Figure 2 reports that quantum-state preparation and measurement of <psi|sigma_i tensor sigma_j|psi> are performed using a photonic chip. Photon pairs from spontaneous parametric downconversion encode |00>, the state is prepared with thermal phase shifters and one CNOT gate, measured by photon detectors, and detector count rates are passed to the CPU optimizer.",
+  "overview": "This figure-level evidence ties the algorithm to an implemented physical processor. It establishes which photonic elements perform state preparation, measurement, and feedback, while also delimiting the demonstration to arbitrary two-qubit pure states rather than a large molecular register.",
+  "page_refs": [
+    "Fig.2",
+    "p.4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "title": "Photonic QPU Chip Design"
+}

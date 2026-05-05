@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-deep-quantum-learning-can-use-quantum-annealers-programmable-photonic-circuits-a--0bdb973219c3"
+  ],
+  "evidence_id": "evidence-dwave-thousand-spins--16019a91f018",
+  "evidence_type": "observational_result",
+  "excerpt": "The review states that D-Wave's tunable transverse Ising hardware has been used for deep quantum learning protocols on more than a thousand spins.",
+  "overview": "This hardware evidence supports the near-term deep-learning pathway because it does not require a universal fault-tolerant quantum computer. It is evidence for scale and suitability of special-purpose devices, not proof of general quantum advantage.",
+  "page_refs": [
+    "p.10"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "title": "Thousand Spin Annealer Demo"
+}

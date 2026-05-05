@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-dlcz-protocol-creates-heralded-entanglement-between-atomic-ensembles-by-inte--aa516185d3b2",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "The stored-entanglement experiments demonstrate key laboratory capabilities presupposed by the DLCZ protocol.",
+  "relation_file_id": "rel-514d84013b0ab8fd57e6320b15e95f6a4d31911648bd4aeb9f32081509c3fcdc",
+  "relation_id": "supports:claim-atomic-ensemble-experiments-had-achieved-stored-heralded-entanglement-high-retri--7d38956d9ede->claim-the-dlcz-protocol-creates-heralded-entanglement-between-atomic-ensembles-by-inte--aa516185d3b2",
+  "relation_type": "supports",
+  "src_claim_id": "claim-atomic-ensemble-experiments-had-achieved-stored-heralded-entanglement-high-retri--7d38956d9ede",
+  "src_claim_ref": "6",
+  "status": "open"
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "The measured elided-circuit fidelity is needed for the equal-fidelity runtime comparison behind the speedup claim.",
+  "relation_file_id": "rel-9a0c58940fa79b4ac7c8bb90346d9fe305b805b3dd6f4d294439ac631e405898",
+  "relation_id": "supports:claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686->claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686",
+  "src_claim_ref": "3",
+  "status": "open"
+}

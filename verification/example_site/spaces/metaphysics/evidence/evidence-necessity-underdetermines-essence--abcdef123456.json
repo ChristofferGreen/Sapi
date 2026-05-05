@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-necessary-entailment-or-equivalence-is-not-sufficient-for-essence-because-genera--162946956228"
+  ],
+  "evidence_id": "evidence-necessity-underdetermines-essence--abcdef123456",
+  "evidence_type": "formal_argument",
+  "excerpt": "being Socrates and such that there are infinitely many prime numbers is necessarily entailed by and equivalent to being Socrates, yet presumably the former is ground-theoretically linked to the arithmetic realm in ways that the latter isn\u2019t. Given our account, this provides reason to believe that the former isn\u2019t part of the essence of the latter either, as desired.",
+  "overview": "The Fine-style example tests the modal adequacy of the account. It demonstrates why necessary equivalence alone cannot decide essence: two necessarily coextensive conditions may differ in grounding structure, and that difference blocks the stronger essentialist conclusion.",
+  "page_refs": [
+    "p.36"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "title": "Necessity Is Insufficient"
+}

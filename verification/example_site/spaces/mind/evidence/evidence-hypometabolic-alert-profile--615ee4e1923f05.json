@@ -1,0 +1,13 @@
+{
+  "claim_ids": [
+    "claim-meditation-practice-is-associated-with-physiological-profiles-of-relaxed-alertne--a46fa752f290"
+  ],
+  "evidence_id": "evidence-hypometabolic-alert-profile--615ee4e1923f05",
+  "evidence_type": "measurement",
+  "excerpt": "Studies comparing experienced meditators to controls or short-term meditators have demonstrated a particular physiological profile across styles of practice suggestive of an alert, but hypometabolic state in which there is decreased sympathetic nervous system activity, and increased parasympathetic activity. Across meditation styles, electromyography has revealed muscle relaxation in spite of the upright, unsupported posture. Skin conductivity, along with oxygen consumption, heart rate, blood pressure, cortisol, muscle tone, urinary vanillyl mandelic acid (VMA) (a catecholamine metabolite), and rate of breathing all decrease during meditation.",
+  "overview": "This is a concrete synthesis of physiological measures rather than a general theoretical statement. It supports the self-regulation arm of S-ART by identifying autonomic, metabolic, muscular, endocrine, and respiratory markers that move toward relaxed alertness during meditation. The evidence is cross-study and practice-general, so it should be interpreted as a convergent pattern rather than a single controlled experiment.",
+  "page_refs": [],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+  "title": "Alert Hypometabolic Physiology"
+}

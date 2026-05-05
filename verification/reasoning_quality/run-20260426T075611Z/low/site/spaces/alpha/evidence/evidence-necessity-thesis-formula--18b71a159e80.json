@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-it-is-metaphysicall--2de4b0891870"
+  ],
+  "evidence_id": "evidence-necessity-thesis-formula--18b71a159e80",
+  "evidence_type": "formal_argument",
+  "excerpt": "necessity: if [p] is (fully) grounded in D, then \u000b0(\u2227D \u2192 p).",
+  "overview": "This displayed formal thesis is the paper's target proposition. It fixes the exact modal sense of grounding necessity under discussion: full grounds need not guarantee that the grounding relation itself recurs, but their corresponding propositions must metaphysically entail the grounded proposition.",
+  "page_refs": [
+    "p.467"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Necessity Thesis Formula"
+}

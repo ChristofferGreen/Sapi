@@ -1,0 +1,27 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-04-26T16:09:29Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/quantum-physics/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/quantum-physics/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/quantum-physics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/quantum-physics/relations"
+  ],
+  "flow_key": "ingest_extraction",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/quantum-physics/runs/run-20260426T160450Z--7gd5v9f70v/semantic/ingest_extraction.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json",
+  "started_at": "2026-04-26T16:04:50Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260426T160450Z-ingest_extraction-95159-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": false,
+  "validation_errors": [
+    {
+      "message": "'This source presents the quantum internet as a network architecture built from quantum nodes, quantum channels, and reversible light-matter interfaces. It argues that genuine quantum connectivity provides scaling advantages over classically linked quantum devices and reviews two main physical routes: cavity QED with single atoms and atomic ensembles using DLCZ/EIT protocols. The piece is also cautious: memories, repeaters, local processing, error-corrected teleportation, and scalable verification remain major unsolved requirements.' is too long",
+      "path": "/source_dossier/summary_short",
+      "validator": "maxLength",
+      "validator_value": 420
+    }
+  ]
+}

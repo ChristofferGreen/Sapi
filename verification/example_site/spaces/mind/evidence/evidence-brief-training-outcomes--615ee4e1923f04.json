@@ -1,0 +1,14 @@
+{
+  "claim_ids": [
+    "claim-short-mindfulness-interventions-have-been-reported-to-improve-clinical-symptoms--38a77abb1074",
+    "claim-future-mindfulness-research-needs-longitudinal-measurement-of-s-art-subcomponent--a2496826340c"
+  ],
+  "evidence_id": "evidence-brief-training-outcomes--615ee4e1923f04",
+  "evidence_type": "observational_result",
+  "excerpt": "In fact, there have been reported improvements in clinical symptoms and executive function in short-term training of specific mindfulness-based practices as short as three 20 min sessions (Zeidan et al., 2010) and changes in white matter connectivity after 11 h of training (Tang et al., 2010).",
+  "overview": "This review passage summarizes empirical findings used to motivate the plausibility of practice-dependent change even after short interventions. It supports the claim that mindfulness practices can alter behavioral and neural outcomes, but the source treats these reports as part of an emerging evidence base rather than as final dose-response proof.",
+  "page_refs": [],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+  "title": "Brief Training Outcome Reports"
+}

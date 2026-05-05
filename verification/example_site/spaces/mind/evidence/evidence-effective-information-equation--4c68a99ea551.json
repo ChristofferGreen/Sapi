@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-the-quantity-of-consciousness-available-to-a-system-is-measured-by-the-value-of--48abc06d417d"
+  ],
+  "evidence_id": "evidence-effective-information-equation--4c68a99ea551",
+  "evidence_type": "equation",
+  "excerpt": "Specifically, we define the effective information between A and B as EI(A\u2192B) = MI(AHmax;B). Here MI(A;B) = H(A) + H(B) - H(AB) stands for mutual information, a measure of the entropy or information shared between a source (A) and a target (B). For a given bipartition of a subset, the sum of the effective information for both directions is indicated as EI(A \u2194 B) = EI(A\u2192B) + EI(B\u2192A).",
+  "overview": "The equation is the formal hinge between causal perturbation and information integration. It defines effective information as mutual information generated when one part of a system is perturbed with maximum entropy, then combines both directions across a bipartition. This lets the theory distinguish strongly specialized reciprocal causal organization from mere correlation or passive information storage.",
+  "page_refs": [
+    "p.4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Effective Information Equation"
+}

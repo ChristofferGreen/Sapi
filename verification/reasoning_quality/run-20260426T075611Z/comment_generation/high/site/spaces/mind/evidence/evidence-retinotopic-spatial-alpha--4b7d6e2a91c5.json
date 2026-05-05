@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-visual-spatial-attention-increases-alpha-activity-over-occipital-cortex-ipsilate--d220c6a2c1c0",
+    "claim-instructional-cuing-paradigms-isolate-suppressive-attention-because-uncued-locat--e0aadc29c4e6"
+  ],
+  "evidence_id": "evidence-retinotopic-spatial-alpha--4b7d6e2a91c5",
+  "evidence_type": "figure_result",
+  "excerpt": "In the visuo-spatial cueing experiment, alpha-band TSE amplitudes were larger over occipital cortex ipsilateral to the direction of attention, with sustained divergence beginning around 500 ms. The review states that enhanced alpha occurred over the retinotopic area likely to contain distracter stimuli and moved with upper or lower quadrant attention.",
+  "overview": "The retinotopic pattern is important because it links alpha power to the sensory map of ignored space rather than to a global arousal state. Alpha rises where distracters are expected, not simply everywhere, making the suppressive interpretation more anatomically specific. The cited finding remains a scalp-level EEG inference and is strongest as converging evidence with later replications.",
+  "page_refs": [
+    "Figure 2",
+    "pp.3-4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "title": "Retinotopic Spatial Alpha"
+}

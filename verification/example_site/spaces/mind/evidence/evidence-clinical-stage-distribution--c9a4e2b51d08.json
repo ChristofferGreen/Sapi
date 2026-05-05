@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-clinical-evidence-base-for-mindfulness-based-interventions-is-too-immature-t--464dc35b525d",
+    "claim-future-mindfulness-science-should-emphasize-preregistration-open-science-replica--ad9bbbab2603"
+  ],
+  "evidence_id": "evidence-clinical-stage-distribution--c9a4e2b51d08",
+  "evidence_type": "statistical_result",
+  "excerpt": "Dimidjian and Segal estimate, using the NIH stage model, that only 30% of research using mindfulness-based interventions has moved beyond Stage 1; the majority beyond Stage 1 has been conducted at Stage 2a, only 9% of the total at Stage 2b with active controls, and only 1% outside research contexts.",
+  "overview": "These percentages anchor the article's clinical caution. They show that much MBI research remains early-stage or weakly controlled, with very little evidence from ordinary clinical settings, making broad implementation claims premature even where some efficacy signals exist.",
+  "page_refs": [
+    "p.45"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Clinical Stage Distribution"
+}

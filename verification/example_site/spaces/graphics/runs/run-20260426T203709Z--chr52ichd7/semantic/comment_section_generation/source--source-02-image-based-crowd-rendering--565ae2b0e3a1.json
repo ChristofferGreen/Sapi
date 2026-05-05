@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What stands out to me is how much of the result comes from stacking practical compromises rather than relying on one clever impostor trick. The paper treats the city geometry, animated people, texture memory, shadows, and visual variety as one budget problem, which makes the reported 10,000-person scene feel like a systems result rather than a benchmark stunt.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Grounded synthesis of the source's system-level contribution with clear, natural framing.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The PCA-influenced plane choice is a nice example of graphics engineering restraint. They do not simply pick the mathematically best-fitting plane; they bias the conventional plane just enough to reduce popping while avoiding the distortions that would make walking bodies look wrong from nearby angles.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately highlights a specific technical trade-off from the source.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I would have liked a sharper separation between what the crowd technique costs and what the village already costs. The frame rates are impressive for the hardware, but the source itself suggests the static city consumes a large part of the budget before the crowd is added.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Useful critical reading that stays aligned with the benchmark discussion.",
+        "score": 20
+      }
+    },
+    {
+      "body": "The recoloring scheme is clever because it gets variety from masks and multipass modulation instead of exploding the number of stored characters. The downside is also easy to see: every extra region or pass competes with the same frame budget that made impostors attractive in the first place.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Balanced comment that captures both the benefit and trade-off of avatar recoloring.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The assumptions matter a lot here. Orthographic impostors, reused shadow silhouettes, and synthetic source models all make sense for distant pedestrians in a walkthrough, but the paper is less convincing as a route to close-up social interaction without the future hybrid polygonal work the authors mention.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Strongly grounded critique of scope limits and stated future directions.",
+        "score": 25
+      }
+    }
+  ],
+  "page_ref": "source:source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "requested_count": 5
+}

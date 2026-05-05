@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "This synthesis makes the historical through-line surprisingly clear: both papers are trying to replace one-size-fits-all compiler guesses with measured evidence. Profile-guided optimization does it with execution counts on hot paths, while machine-learning compilation does it by learning from many measured optimization outcomes. The important commonality is not the tool, but the decision discipline.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Grounded in both sources and clearly frames the shared evidence-driven optimization theme.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The contrast between weighted flow graphs and learned feature vectors is useful. One makes a single program's runtime behavior visible to classic optimizations; the other compresses many programs and runs into a model that predicts future choices. Both are representations of evidence, but they differ a lot in how inspectable the resulting compiler decision is.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately compares source-backed mechanisms and adds a relevant interpretability point.",
+        "score": 25
+      }
+    },
+    {
+      "body": "I would not read the machine-learning survey as making profile-guided optimization obsolete. The 1991 super-block work shows the value of precise local runtime counts, and the later ML framing shows how evidence can be generalized across workloads. They seem complementary: profiles can feed decisions directly, and profiling-style measurements can also become training labels or features.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Offers a balanced synthesis without overstating either source's claims.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The limits section matters because evidence is only as good as its collection process. A profile-guided compiler can overfit to unrepresentative inputs, and a learned compiler model can encode the habits of a weak benchmark suite. The page is strongest when it treats measurements as signals that need validation, not as automatic truth.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Connects limitations from both sources to a thoughtful, source-consistent caution.",
+        "score": 24
+      }
+    },
+    {
+      "body": "One practical takeaway is that compiler evidence has a cost curve. Chang, Mahlke, and Hwu report large profiling overheads but modest average code growth, while Wang and O'Boyle emphasize training cost, sparse data, and feature quality. The engineering question is not whether evidence helps, but when the extra measurement cost buys enough optimization confidence.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Uses concrete costs from both sources and draws a strong practical synthesis.",
+        "score": 26
+      }
+    }
+  ],
+  "page_ref": "topic:topic-empirical-evidence-as-a-compiler-optimization-signal--7baebd1fca65",
+  "requested_count": 5
+}

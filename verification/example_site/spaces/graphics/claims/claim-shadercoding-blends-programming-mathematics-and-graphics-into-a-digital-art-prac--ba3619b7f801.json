@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:36:26Z",
+  "claim_id": "claim-shadercoding-blends-programming-mathematics-and-graphics-into-a-digital-art-prac--ba3619b7f801",
+  "evidence_excerpts": [
+    "Dans un contexte o\u00f9 l'art num\u00e9rique est de plus en plus pr\u00e9sent, il convient de questionner certains de ses aspects, notamment celui du profil de l'artiste technique. Pour se faire, cet article propose une introduction th\u00e9orique au shadercoding, une discipline m\u00ealant programmation, math\u00e9matiques et graphisme, mais \u00e9galement une r\u00e9flexion sur la performance d'art num\u00e9rique au travers de cette pratique, dans des \u00e9v\u00e9nements de programmation en temps-r\u00e9el."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Shadercoding blends code and art",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "text": "Shadercoding blends programming, mathematics, and graphics into a digital-art practice that can be theorized technically and performatively."
+}

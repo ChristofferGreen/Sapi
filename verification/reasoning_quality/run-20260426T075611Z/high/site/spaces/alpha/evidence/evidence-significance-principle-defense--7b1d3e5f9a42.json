@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-full-grounding-obtains-only-when-the-relevant-connecting-question-lacks-cognitiv--dd35324d3686",
+    "claim-paradigmatic-grounding-cases-support-the-significance-principle-because-their-co--de87cc0c5006"
+  ],
+  "evidence_id": "evidence-significance-principle-defense--7b1d3e5f9a42",
+  "evidence_type": "formal_argument",
+  "excerpt": "significance: [p] is (fully) grounded in D only if the connecting questions with respect to [p] and D lack cognitive significance. According to significance, this broadly epistemic feature is characteristic of grounding in general. ... paradigm cases of grounding have the relevant epistemic feature, two of which we\u2019ve already discussed: the grounding of [p\u2227q] in [p], [q], and the grounding of [p\u2044q] in [p], for some suitable p and q. With respect to the latter, for example, the connecting question, \u2018Why should [p\u2044q] obtain given that [p] obtains?\u2019 certainly lacks cognitive significance.",
+  "overview": "This evidence supports the bridge from grounding to epistemology. Trogdon motivates the principle by appeal to paradigmatic cases of grounding whose explanatory connection is transparent enough that the associated connecting question lacks substantive content. The defense is abductive rather than deductive: paradigms guide extension to less clear grounding cases.",
+  "page_refs": [
+    "pp.472-473"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Significance Principle Defense"
+}

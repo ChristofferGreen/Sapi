@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:55:13Z",
+  "claim_id": "claim-static-wcet-reduction-depends-on-optimizing-the-worst-case-execution-path-becaus--b6a70fae6e3d",
+  "evidence_excerpts": [
+    "A program\u2019s WCET is computed by finding the maximum path WCET for all feasible paths; the path leading to the WCET is called the worst-case execution path. The source example reduces one WCEP block by 40 cycles but lowers global WCET only from 205 to 195 cycles."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "WCEP governs WCET savings",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "text": "Static WCET reduction depends on optimizing the worst-case execution path, because reducing a noncritical path or a local block can leave the global WCET unchanged or only partly reduced."
+}

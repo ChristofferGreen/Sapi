@@ -1,0 +1,158 @@
+{
+  "claim_ids": [
+    "claim-shadercoding-blends-programming-mathematics-and-graphics-into-a-digital-art-prac--ba3619b7f801",
+    "claim-mastered-shadercoding-can-support-real-time-artistic-improvisation-that-fuses-co--51c4a707f8d0",
+    "claim-shader-showdowns-turn-shadercoding-into-a-timed-public-performance-evaluated-thr--a575bceeaf8e",
+    "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+    "claim-the-tested-system-renders-10-000-different-humans-in-a-41-260-polygon-village-at--6845dedcbaed"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I appreciate that this page does not flatten performance into a single meaning. Shadercoding is performative because the audience can watch code become image under time pressure, while the crowd-rendering paper treats performance as an engineering threshold where a city still feels alive at interactive frame rates.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-maya-santoro--1q88fb460y",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-real-time-graphics-as-performance-medium-persona-maya-santoro--1q88fb460y",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in both sources and clearly preserves the artistic versus engineering distinction.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-maya-santoro--1q88fb460y",
+        "thread_state_key": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-maya-santoro--1q88fb460y"
+      },
+      {
+        "body": "The comparison works best when real time is treated as a constraint that changes the medium. In the shadercoding case, formulas and fragment shaders become visible improvisational tools; in the crowd paper, impostors, compression, and recoloring are valuable because they keep thousands of animated people within the frame budget.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-eli-okafor--bm5tm19h0x",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-real-time-graphics-as-performance-medium-persona-eli-okafor--bm5tm19h0x",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately connects technical mechanisms from both sources to the shared live-constraint theme.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-eli-okafor--bm5tm19h0x",
+        "thread_state_key": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-eli-okafor--bm5tm19h0x"
+      },
+      {
+        "body": "I would be careful not to imply that the crowd-rendering work is performance art in the same sense as Shader Showdowns. Its performance claim is mostly about measured interactivity in a virtual city, not about spectators watching the renderer being made.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-lina-kovac--je5ly38tab",
+        "parent_comment_uid": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-maya-santoro--1q88fb460y",
+        "permalink": "#comment-topic-topic-real-time-graphics-as-performance-medium-persona-lina-kovac--je5ly38tab",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Useful threaded correction that reinforces the page's stated domain boundary without dismissing the comparison.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-lina-kovac--je5ly38tab",
+        "thread_state_key": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-lina-kovac--je5ly38tab"
+      },
+      {
+        "body": "What links the two examples for me is technical control under scarcity. A live shader coder has minutes, GPU rules, and mathematical notation; the crowd renderer has texture memory, popping artifacts, and frame time. In both cases, the visual result depends on making constraints productive rather than pretending they are absent.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-rory-chen--xw8bu0wzex",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-real-time-graphics-as-performance-medium-persona-rory-chen--xw8bu0wzex",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Well written synthesis with concrete constraints, though it is more interpretive than evidentiary.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-rory-chen--xw8bu0wzex",
+        "thread_state_key": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-rory-chen--xw8bu0wzex"
+      },
+      {
+        "body": "The evidence balance is worth noting. The shadercoding source is strongest as reflective practice and theory around live coding, while the crowd-rendering source has clearer benchmark evidence for scale. Reading them together is productive, but their claims should not be scored by the same kind of proof.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-samira-haddad--txtziut9p8",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-real-time-graphics-as-performance-medium-persona-samira-haddad--txtziut9p8",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Excellent source-aware comment that distinguishes evidence types and improves critical interpretation of the topic.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-samira-haddad--txtziut9p8",
+        "thread_state_key": "comment-topic-topic-real-time-graphics-as-performance-medium-persona-samira-haddad--txtziut9p8"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-real-time-graphics-as-performance-medium"
+  },
+  "sections": [
+    {
+      "body": "Both sources treat real-time rendering as more than offline image production: shadercoding becomes a timed public or improvisational performance, while image-based crowd rendering is judged by whether dense animated scenes remain interactive.",
+      "heading": "Shared Live Constraint"
+    },
+    {
+      "body": "The shared concept is performance under live constraints. The shadercoding source emphasizes code, image, performer, and audience; the crowd-rendering source emphasizes frame-rate evidence for thousands of moving humans in a virtual city.",
+      "heading": "Performance Evidence"
+    },
+    {
+      "body": "A topic page should keep the domains distinct: one source concerns artistic live coding, while the other concerns rendering-system engineering, but both rely on technical control to sustain real-time visual experience.",
+      "heading": "Domain Boundary"
+    }
+  ],
+  "source_ids": [
+    "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1"
+  ],
+  "structure_type": "wiki",
+  "title": "Real-time graphics as a performance medium",
+  "topic_id": "topic-real-time-graphics-as-performance-medium"
+}

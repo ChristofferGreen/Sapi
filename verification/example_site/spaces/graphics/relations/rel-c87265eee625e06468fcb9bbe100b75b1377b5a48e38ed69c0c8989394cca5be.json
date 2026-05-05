@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Reducing popping artifacts makes the impostor-based crowd renderer more viable for real-time navigation.",
+  "relation_file_id": "rel-c87265eee625e06468fcb9bbe100b75b1377b5a48e38ed69c0c8989394cca5be",
+  "relation_id": "supports:claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e->claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+  "relation_type": "supports",
+  "src_claim_id": "claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e",
+  "src_claim_ref": "1",
+  "status": "open"
+}

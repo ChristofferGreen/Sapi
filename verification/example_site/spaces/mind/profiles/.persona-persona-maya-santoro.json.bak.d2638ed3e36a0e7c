@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog row for persona-maya-santoro and the task requirements for the mind space. The declared comments context path was missing, so no comment history or space-specific participation details were added.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Maya Santoro, an evidence-first skeptic with an analytical, patient, and direct style. My work centers on making decisions understandable, testable, and accountable, especially when research claims are being used to justify policy, risk, or operational choices.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about plans that still hold up after the initial excitement has faded. My starting point is simple: conclusions deserve confidence only when their assumptions and evidence are explicit. I developed much of this approach at Rivermark Strategy, where strategic language had to be tied back to implementation constraints and real consequences for the people affected.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I try to slow the room down without derailing it. I prefer primary sources, structured reasoning, and citation-led arguments, and I use a calm, exact tone to separate what is known from what is being assumed. I am especially alert to citation laundering, false certainty, and methodological shortcuts because they can make weak claims look more durable than they are.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are research methods, policy evaluation, and risk analysis. I pay close attention to evidence quality, causal inference, and public accountability because these are the places where hidden assumptions often become downstream failures.",
+      "title": "Interests"
+    },
+    {
+      "content": "Principal Systems Analyst, Rivermark Strategy (2018-present). Risk Analyst, Pinehaven Network (2014-2018). MSc, Human-Centered Operations, Windholm College of Service Design (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

@@ -1,0 +1,60 @@
+{
+  "flow_states": {
+    "comment_section_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T182713Z--q9dpl6dh23",
+        "run-20260426T182932Z--jayvhuowpm",
+        "run-20260426T183154Z--3o1lqw0846",
+        "run-20260426T183415Z--m9aehsggyx",
+        "run-20260426T183654Z--e47xoq11ts",
+        "run-20260426T183913Z--ii5ujo15dn",
+        "run-20260426T184132Z--nnbh6lk1b0",
+        "run-20260426T184351Z--uykmau909a",
+        "run-20260426T184610Z--7yaxttsjfm",
+        "run-20260426T184833Z--ndbv2klfrj",
+        "run-20260426T185050Z--nf6tstec4i",
+        "run-20260426T185317Z--mvhqzluik9",
+        "run-20260426T185542Z--7svcqpmzby",
+        "run-20260426T185805Z--gvf8no2px2",
+        "run-20260426T190028Z--9hlrtscfax"
+      ],
+      "consecutive_advanced_runs": 15,
+      "last_advanced_completed_at": "2026-04-26T19:03:13Z",
+      "last_advanced_run_id": "run-20260426T190028Z--9hlrtscfax",
+      "last_advanced_status": "success"
+    },
+    "ingest_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T105655Z--itvx0fs1w7",
+        "run-20260426T110455Z--i0ytd7tpj8",
+        "run-20260426T111459Z--lhudn2ntw8",
+        "run-20260426T144402Z--et8g2bwn96",
+        "run-20260426T145416Z--lab6cvaopt"
+      ],
+      "consecutive_advanced_runs": 5,
+      "last_advanced_completed_at": "2026-04-26T15:04:11Z",
+      "last_advanced_run_id": "run-20260426T145416Z--lab6cvaopt",
+      "last_advanced_status": "success"
+    },
+    "overview_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T180635Z--hephfftf4l"
+      ],
+      "consecutive_advanced_runs": 1,
+      "last_advanced_completed_at": "2026-04-26T18:11:15Z",
+      "last_advanced_run_id": "run-20260426T180635Z--hephfftf4l",
+      "last_advanced_status": "success"
+    },
+    "persona_profile_pipeline": {
+      "advanced_run_ids": [
+        "run-20260427T041629Z--a18x63xchn",
+        "run-20260428T075431Z--p410ktmgf4"
+      ],
+      "consecutive_advanced_runs": 2,
+      "last_advanced_completed_at": "2026-04-28T07:56:50Z",
+      "last_advanced_run_id": "run-20260428T075431Z--p410ktmgf4",
+      "last_advanced_status": "success"
+    }
+  },
+  "schema_version": "run_truth_reconciliation_v1"
+}

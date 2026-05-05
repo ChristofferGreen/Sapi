@@ -1,0 +1,2318 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-05-quantum-machine-learning--a91f0184eb29",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-05-quantum-machine-learning--a91f0184eb29/front_page.png",
+    "source_extraction": "sources/artifacts/source-05-quantum-machine-learning--a91f0184eb29/source_extraction.json",
+    "source_file": "sources/artifacts/source-05-quantum-machine-learning--a91f0184eb29/source.pdf",
+    "source_markdown": "sources/artifacts/source-05-quantum-machine-learning--a91f0184eb29/source.md",
+    "source_provenance": "sources/artifacts/source-05-quantum-machine-learning--a91f0184eb29/source_provenance.md"
+  },
+  "authors": [
+    "Jacob Biamonte",
+    "Peter Wittek",
+    "Nicola Pancotti",
+    "Patrick Rebentrost",
+    "Nathan Wiebe",
+    "Seth Lloyd"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I appreciate how this review keeps the excitement around qBLAS, HHL, and qPCA tied to the cost of the full learning pipeline. The point that a quantum state encoding a solution vector is not the same thing as a cheap classical answer feels like the key caveat for many claimed speedups.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-maya-santoro--9109niq9vg",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-maya-santoro--9109niq9vg",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Grounded in the source's core input-output bottleneck and states the caveat clearly.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-maya-santoro--9109niq9vg",
+        "thread_state_key": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-maya-santoro--9109niq9vg"
+      },
+      {
+        "body": "The quantum-data angle seems more compelling than the classical-data one here. If the data are already density matrices or measurement streams from a device, the review's concerns about loading classical records into amplitudes become much less damaging.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-eli-okafor--g8qe7m3egd",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-eli-okafor--g8qe7m3egd",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately contrasts quantum-data use cases with classical loading limits from the source.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-eli-okafor--g8qe7m3egd",
+        "thread_state_key": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-eli-okafor--g8qe7m3egd"
+      },
+      {
+        "body": "What I find useful is the split between asymptotic algorithmic promise and implementable advantage. The review does not dismiss exponential speedups, but it asks whether state preparation, conditioning, sparsity, measurement cost, and hardware assumptions leave anything useful after accounting for the whole workflow.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-lina-kovac--xyi9gty8ch",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-lina-kovac--xyi9gty8ch",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Strong synthesis of several source constraints without overstating the paper's position.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-lina-kovac--xyi9gty8ch",
+        "thread_state_key": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-lina-kovac--xyi9gty8ch"
+      },
+      {
+        "body": "The section on deep quantum learning reads like a practical detour rather than a side topic. Annealers, photonic circuits, and quantum Boltzmann machines matter because they might test learning ideas before universal fault-tolerant machines are available, even if the evidence is still scoped and hardware-dependent.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-rory-chen--zibsdsj7ac",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-rory-chen--zibsdsj7ac",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Reflects the source's hardware-conscious framing and keeps the claim appropriately limited.",
+          "score": 19
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 19,
+          "upvotes": 31
+        },
+        "thread_expansion_key": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-rory-chen--zibsdsj7ac",
+        "thread_state_key": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-rory-chen--zibsdsj7ac"
+      },
+      {
+        "body": "This also explains why benchmarking against optimized classical heuristics is not optional. If the claimed advantage lives in an isolated subroutine but disappears during data access, readout, or validation, then it is not really a machine-learning advantage in the sense practitioners need.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-samira-haddad--ovj360yyxf",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-samira-haddad--ovj360yyxf",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Directly applies the review's benchmarking and complete-workflow standard to practical evaluation.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-samira-haddad--ovj360yyxf",
+        "thread_state_key": "comment-source-source-05-quantum-machine-learning-a91f0184eb29-persona-samira-haddad--ovj360yyxf"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-05-quantum-machine-learning--a91f0184eb29"
+  },
+  "date": null,
+  "display_title": "Quantum Machine Learning Speedups and Bottlenecks",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[83].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "/",
+      "url": "https://doi.org/10.1126/science.aag2302"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[62].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "032324 . DOI",
+      "url": "https://doi.org/10.1103/physreva.81.032324"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[80].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "041012 . DOI . Defines closeness mea",
+      "url": "https://doi.org/10.1103/physrevx.4.041012"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[38].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "124 273\u2013296 . DOI",
+      "url": "https://doi.org/10.1016/s0020-0255(99)00101-2"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[47].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "2 16019 . DOI",
+      "url": "https://doi.org/10.1038/npjqi.2016.19"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[81].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "345 420\u2013424 . DOI",
+      "url": "https://doi.org/10.1126/science.1252319"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[65].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "6 054005 . DOI",
+      "url": "https://doi.org/10.1103/physrevapplied.6.054005"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[61].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "79 042321 . DOI",
+      "url": "https://doi.org/10.1103/physreva.79.042321"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[45].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "analysis. Nat. Phys. 10 631\u2013633 . DOI . Letter",
+      "url": "https://doi.org/10.1038/nphys3029"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[77].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "aps.org/doi/ . DOI 10.1103/Phys",
+      "url": "https://doi.org/10.1103/physrevlett.118.190503"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[57].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "chine learning. Phys. Rev. Lett. 117 130501 . DOI",
+      "url": "https://doi.org/10.1103/phys-"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[39].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI",
+      "url": "https://doi.org/10.1016/s0893-6080(03)00087-x"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[54].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI",
+      "url": "https://doi.org/10.1088/1367-2630/17/2/022005"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[56].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI",
+      "url": "https://doi.org/10.1088/1367-2630/18/2/023042"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[59].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI",
+      "url": "https://doi.org/10.1103/physreva.64.023420"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[70].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI",
+      "url": "https://doi.org/10.1103/physrevlett.112.190501"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[73].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI",
+      "url": "https://doi.org/10.1103/physrevlett.114.200502"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[74].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI",
+      "url": "https://doi.org/10.1103/physrevlett.116.230504"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[79].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI",
+      "url": "https://doi.org/10.1103/physrevx.4.031002"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[82].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI",
+      "url": "https://doi.org/10.1126/science.273.5278.1073"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[84].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI",
+      "url": "https://doi.org/10.1137/s0097539795293172"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[49].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI . Article",
+      "url": "https://doi.org/10.1038/srep12874"
+    },
+    {
+      "confidence": "medium",
+      "domain": "dx.doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[40].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "DOI . http://dx.doi.org/",
+      "url": "http://dx.doi.org/10.1021/j100014a048"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[40].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI . http://dx.doi.org/",
+      "url": "https://doi.org/10.1021/j100014a048"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[86].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "EPJ Quantum Technol. 2 10 . DOI",
+      "url": "https://doi.org/10.1140/epjqt/s40507-015-0023-"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[85].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "EPJ Quantum Technology 2 17 . DOI",
+      "url": "https://doi.org/10.1140/epjqt/s40507-015-"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[88].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Europhys. Lett. 99 57004 . DOI",
+      "url": "https://doi.org/10.1209/0295-5075/99/57004"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[52].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Hamiltonian learning. New J. Phys. 14 103013 . DOI",
+      "url": "https://doi.org/10.1088/1367-"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[76].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://doi.org/10.1103/physrevlett.118.080501"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[68].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Lett. 110 220501 . DOI",
+      "url": "https://doi.org/10.1103/physrevlett.110.220501"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[44].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Nature Communications 5 3371 . DOI . 1309",
+      "url": "https://doi.org/10.1038/ncomms4371"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[42].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Nature Communications 8 14106 . DOI",
+      "url": "https://doi.org/10.1038/ncomms14106"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[50].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "networks. Sci. Rep. 7 45672 . DOI",
+      "url": "https://doi.org/10.1038/srep45672"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[53].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "New J. Phys. 17 123010 . DOI",
+      "url": "https://doi.org/10.1088/1367-2630/17/12/123010"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[63].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Phys. Rev. A 94 022308 . DOI",
+      "url": "https://doi.org/10.1103/physreva.94.022308"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[34].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1007/s11128-011-0235-0"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[35].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1007/s11128-016-1495-5"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[36].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1016/j.neucom.2016.12.087"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[41].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1038/ncomms10138"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[46].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1038/nphys3272"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[51].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1080/00107514.2014.964942"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[55].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1088/1367-2630/17/2/023006"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[64].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1103/physreva.94.022342"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[66].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1103/physrevlett.103.150502"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[69].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1103/physrevlett.110.250504"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[72].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1103/physrevlett.114.140504"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[75].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1103/physrevlett.117.150502"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[78].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1103/physrevlett.98.023003"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[87].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Referenced DOI",
+      "url": "https://doi.org/10.1140/epjst/e2015-02349-9"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[58].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Rev. A 64 022317 . DOI",
+      "url": "https://doi.org/10.1103/physreva.64.022317"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[67].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Rev. Lett. 109 050505 . DOI",
+      "url": "https://doi.org/10.1103/physrevlett.109.050505"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[37].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "S0375960111009467. DOI",
+      "url": "https://doi.org/10.1016/j.physleta.2011.08.002"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[43].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "states. Nat. Commun. 4 1364 . DOI",
+      "url": "https://doi.org/10.1038/ncomms2368"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[71].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "This study applies quantum matrix",
+      "url": "https://doi.org/10.1103/physrevlett.113.130503"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[60].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "This study established the contemporary ex",
+      "url": "https://doi.org/10.1103/physreva.78.012352"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[48].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "without quantum memory. Sci. Rep. 2 708 . DOI",
+      "url": "https://doi.org/10.1038/srep00708"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[81].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "345 420\u2013424 . DOI",
+      "url": "https://arxiv.org/abs/1401.2910"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[6].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1412.3489"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[10].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1511.02306"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[17].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1603.08675"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[82].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "DOI",
+      "url": "https://arxiv.org/abs/5278.1073"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[33].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "for dense matrices. . /",
+      "url": "https://arxiv.org/abs"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[33].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "for dense matrices. . /",
+      "url": "https://arxiv.org/abs/1704.06174"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[4].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1312.5258"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[7].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1504.01446"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[9].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1510.06356"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[11].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1511.08862"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[12].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1512.02900"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[13].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1512.03145"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[16].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1601.02036"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[76].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1603.06222"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[18].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1604.00279"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[19].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1606.02734"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[20].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1607.05404"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[21].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1608.00281"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[22].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1608.07848"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[25].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1612.01045"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[27].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1612.03713"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[28].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1612.05204"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[30].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1701.01198"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[9].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/arXiv:1510.06356"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[16].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/arXiv:1601.02036"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[29].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "ments. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1612.05535"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[23].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "ming. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1609.05537"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[1].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Preprint at",
+      "url": "https://arxiv.org/abs/quant-ph/9607014"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[8].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1505.06552"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[26].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1612.01789"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[31].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1701.06806"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[14].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "process regression. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1512.03929"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[24].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "quant-ph 10 May",
+      "url": "https://arxiv.org/abs/1611.09347v2"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[32].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "quantum interference circuit. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1703.10793"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[51].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Referenced arXiv entry",
+      "url": "https://arxiv.org/abs/7514.2014"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[5].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "tion algorithm. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1411.4028"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[15].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "using quantum annealing. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1512.09328"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[3].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "vised and unsupervised machine learning",
+      "url": "https://arxiv.org/abs/1307.0411"
+    }
+  ],
+  "ingested_at": "2026-04-26T16:25:14Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "URL /",
+      "url": "http://www.sciencedirect.com/science/article/pii",
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Preprint at",
+      "url": "https://arxiv.org/abs/quant-ph/9607014",
+      "year": 1996
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "learning. Phys. Rev. Lett. 118 190503 . URL",
+      "url": "https://link",
+      "year": 2017
+    },
+    {
+      "arxiv": "1307.0411",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "vised and unsupervised machine learning",
+      "url": null,
+      "year": 2013
+    },
+    {
+      "arxiv": "1312.5258",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1312.5258",
+      "year": 2013
+    },
+    {
+      "arxiv": "1411.4028",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "tion algorithm. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1411.4028",
+      "year": 2014
+    },
+    {
+      "arxiv": "1412.3489",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1412.3489",
+      "year": 2014
+    },
+    {
+      "arxiv": "1504.01446",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1504.01446",
+      "year": 2015
+    },
+    {
+      "arxiv": "1505.06552",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1505.06552",
+      "year": 2015
+    },
+    {
+      "arxiv": "1510.06356",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/arXiv:1510.06356",
+      "year": 2015
+    },
+    {
+      "arxiv": "1511.02306",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1511.02306",
+      "year": 2015
+    },
+    {
+      "arxiv": "1511.08862",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1511.08862",
+      "year": 2015
+    },
+    {
+      "arxiv": "1512.02900",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1512.02900",
+      "year": 2015
+    },
+    {
+      "arxiv": "1512.03145",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1512.03145",
+      "year": 2015
+    },
+    {
+      "arxiv": "1512.03929",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "process regression. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1512.03929",
+      "year": 2015
+    },
+    {
+      "arxiv": "1512.09328",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "using quantum annealing. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1512.09328",
+      "year": null
+    },
+    {
+      "arxiv": "1601.02036",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/arXiv:1601.02036",
+      "year": 2016
+    },
+    {
+      "arxiv": "1603.08675",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1603.08675",
+      "year": 2016
+    },
+    {
+      "arxiv": "1604.00279",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1604.00279",
+      "year": 2016
+    },
+    {
+      "arxiv": "1606.02734",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1606.02734",
+      "year": 2016
+    },
+    {
+      "arxiv": "1607.05404",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1607.05404",
+      "year": 2016
+    },
+    {
+      "arxiv": "1608.00281",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1608.00281",
+      "year": 2016
+    },
+    {
+      "arxiv": "1608.07848",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1608.07848",
+      "year": 2016
+    },
+    {
+      "arxiv": "1609.05537",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "ming. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1609.05537",
+      "year": 2016
+    },
+    {
+      "arxiv": "1611.09347v2",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "quant-ph 10 May",
+      "url": null,
+      "year": 2018
+    },
+    {
+      "arxiv": "1612.01045",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1612.01045",
+      "year": 2016
+    },
+    {
+      "arxiv": "1612.01789",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1612.01789",
+      "year": 2016
+    },
+    {
+      "arxiv": "1612.03713",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1612.03713",
+      "year": 2016
+    },
+    {
+      "arxiv": "1612.05204",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1612.05204",
+      "year": 2016
+    },
+    {
+      "arxiv": "1612.05535",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "ments. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1612.05535",
+      "year": 2016
+    },
+    {
+      "arxiv": "1701.01198",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1701.01198",
+      "year": 2017
+    },
+    {
+      "arxiv": "1701.06806",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1701.06806",
+      "year": 2017
+    },
+    {
+      "arxiv": "1703.10793",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "quantum interference circuit. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1703.10793",
+      "year": null
+    },
+    {
+      "arxiv": "1704.06174",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "for dense matrices. . /",
+      "url": "https://arxiv.org/abs",
+      "year": 2017
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s11128-011-0235-0",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s11128-016-1495-5",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.neucom.2016.12.087",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": 2016
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.physleta.2011.08.002",
+      "linked_source_ids": [],
+      "title": "S0375960111009467. DOI",
+      "url": null,
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/s0020-0255(99)00101-2",
+      "linked_source_ids": [],
+      "title": "124 273\u2013296 . DOI",
+      "url": null,
+      "year": 2000
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/s0893-6080(03)00087-x",
+      "linked_source_ids": [],
+      "title": "DOI",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1021/j100014a048",
+      "linked_source_ids": [],
+      "title": "DOI . http://dx.doi.org/",
+      "url": "http://dx.doi.org/10.1021/j100014a048",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/ncomms10138",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/ncomms14106",
+      "linked_source_ids": [],
+      "title": "Nature Communications 8 14106 . DOI",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/ncomms2368",
+      "linked_source_ids": [],
+      "title": "states. Nat. Commun. 4 1364 . DOI",
+      "url": null,
+      "year": 2013
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/ncomms4371",
+      "linked_source_ids": [],
+      "title": "Nature Communications 5 3371 . DOI . 1309",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/nphys3029",
+      "linked_source_ids": [],
+      "title": "analysis. Nat. Phys. 10 631\u2013633 . DOI . Letter",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/nphys3272",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/npjqi.2016.19",
+      "linked_source_ids": [],
+      "title": "2 16019 . DOI",
+      "url": null,
+      "year": 2016
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/srep00708",
+      "linked_source_ids": [],
+      "title": "without quantum memory. Sci. Rep. 2 708 . DOI",
+      "url": null,
+      "year": 2012
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/srep12874",
+      "linked_source_ids": [],
+      "title": "DOI . Article",
+      "url": null,
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/srep45672",
+      "linked_source_ids": [],
+      "title": "networks. Sci. Rep. 7 45672 . DOI",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": "7514.2014",
+      "authors": [],
+      "doi": "10.1080/00107514.2014.964942",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1088/1367-",
+      "linked_source_ids": [],
+      "title": "Hamiltonian learning. New J. Phys. 14 103013 . DOI",
+      "url": null,
+      "year": 2012
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1088/1367-2630/17/12/123010",
+      "linked_source_ids": [],
+      "title": "New J. Phys. 17 123010 . DOI",
+      "url": null,
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1088/1367-2630/17/2/022005",
+      "linked_source_ids": [],
+      "title": "DOI",
+      "url": null,
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1088/1367-2630/17/2/023006",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1088/1367-2630/18/2/023042",
+      "linked_source_ids": [],
+      "title": "DOI",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/phys-",
+      "linked_source_ids": [],
+      "title": "chine learning. Phys. Rev. Lett. 117 130501 . DOI",
+      "url": null,
+      "year": 2016
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physreva.64.022317",
+      "linked_source_ids": [],
+      "title": "Rev. A 64 022317 . DOI",
+      "url": null,
+      "year": 2001
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physreva.64.023420",
+      "linked_source_ids": [],
+      "title": "DOI",
+      "url": null,
+      "year": 2001
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physreva.78.012352",
+      "linked_source_ids": [],
+      "title": "This study established the contemporary ex",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physreva.79.042321",
+      "linked_source_ids": [],
+      "title": "79 042321 . DOI",
+      "url": null,
+      "year": 2009
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physreva.81.032324",
+      "linked_source_ids": [],
+      "title": "032324 . DOI",
+      "url": null,
+      "year": 2010
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physreva.94.022308",
+      "linked_source_ids": [],
+      "title": "Phys. Rev. A 94 022308 . DOI",
+      "url": null,
+      "year": 2016
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physreva.94.022342",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevapplied.6.054005",
+      "linked_source_ids": [],
+      "title": "6 054005 . DOI",
+      "url": null,
+      "year": 2016
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevlett.103.150502",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevlett.109.050505",
+      "linked_source_ids": [],
+      "title": "Rev. Lett. 109 050505 . DOI",
+      "url": null,
+      "year": 2012
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevlett.110.220501",
+      "linked_source_ids": [],
+      "title": "Lett. 110 220501 . DOI",
+      "url": null,
+      "year": 2013
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevlett.110.250504",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevlett.112.190501",
+      "linked_source_ids": [],
+      "title": "DOI",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevlett.113.130503",
+      "linked_source_ids": [],
+      "title": "This study applies quantum matrix",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevlett.114.140504",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevlett.114.200502",
+      "linked_source_ids": [],
+      "title": "DOI",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevlett.116.230504",
+      "linked_source_ids": [],
+      "title": "DOI",
+      "url": null,
+      "year": 2016
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevlett.117.150502",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "1603.06222",
+      "authors": [],
+      "doi": "10.1103/physrevlett.118.080501",
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1603.06222",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevlett.118.190503",
+      "linked_source_ids": [],
+      "title": "aps.org/doi/ . DOI 10.1103/Phys",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevlett.98.023003",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevx.4.031002",
+      "linked_source_ids": [],
+      "title": "DOI",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1103/physrevx.4.041012",
+      "linked_source_ids": [],
+      "title": "041012 . DOI . Defines closeness mea",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": "1401.2910",
+      "authors": [],
+      "doi": "10.1126/science.1252319",
+      "linked_source_ids": [],
+      "title": "345 420\u2013424 . DOI",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": "5278.1073",
+      "authors": [],
+      "doi": "10.1126/science.273.5278.1073",
+      "linked_source_ids": [],
+      "title": "DOI",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1126/science.aag2302",
+      "linked_source_ids": [],
+      "title": "/",
+      "url": "http://science.sciencemag.org/content",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1137/s0097539795293172",
+      "linked_source_ids": [],
+      "title": "DOI",
+      "url": null,
+      "year": 1997
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1140/epjqt/s40507-015-",
+      "linked_source_ids": [],
+      "title": "EPJ Quantum Technology 2 17 . DOI",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1140/epjqt/s40507-015-0023-",
+      "linked_source_ids": [],
+      "title": "EPJ Quantum Technol. 2 10 . DOI",
+      "url": null,
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1140/epjst/e2015-02349-9",
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1209/0295-5075/99/57004",
+      "linked_source_ids": [],
+      "title": "Europhys. Lett. 99 57004 . DOI",
+      "url": null,
+      "year": 2012
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 3 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "task_context",
+    "rationale": "Publication date could not be resolved by the ingest context; the markdown shows a manuscript date of May 14, 2018 but this is not treated as a resolved publication date."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The review's core argument is that quantum machine learning is plausible because quantum processors can manipulate patterns and amplitudes in ways classical machines may not efficiently simulate. That claim is not treated as a blanket guarantee; the source anchors it in specific mechanisms such as query complexity, gate complexity, qBLAS, and sampling. The field is therefore presented as a search for tasks where quantum structure survives the full learning pipeline.",
+        "grounding_claim_ids": [
+          "0",
+          "1",
+          "9"
+        ],
+        "heading": "Core Argument"
+      },
+      {
+        "body": "The most developed path runs through quantum linear algebra. qPCA, HHL, support vector machines, regression, and optimization inherit their promise from subroutines for Fourier transforms, eigenvalue estimation, eigenvector extraction, and linear-system solving. These are strong mathematical hooks for speedup, but the review emphasizes that they usually return quantum states or summary statistics rather than complete classical data products.",
+        "grounding_claim_ids": [
+          "1",
+          "2",
+          "3"
+        ],
+        "heading": "Linear Algebra Pathway"
+      },
+      {
+        "body": "The source repeatedly warns that loading classical data and reading classical answers can dominate the cost of a quantum algorithm. qRAM can make some encodings efficient in principle, but large coherent memory arrays are technologically difficult, and extracting full vectors or principal components can require exponentially many measurements. This turns many headline speedups into conditional, pipeline-level hypotheses.",
+        "grounding_claim_ids": [
+          "4",
+          "5",
+          "9"
+        ],
+        "heading": "Input And Output Limits"
+      },
+      {
+        "body": "Deep quantum learning is presented as a hardware-conscious route that may not need a large universal quantum computer. Quantum annealers, photonic circuits, and quantum Boltzmann machines can instantiate learning models directly as physical systems. The evidence is promising but scoped: thousand-spin annealer demonstrations and quadratic sampling or thermalization arguments show feasibility signals, not universal superiority.",
+        "grounding_claim_ids": [
+          "6",
+          "7"
+        ],
+        "heading": "Deep Quantum Learning"
+      },
+      {
+        "body": "Quantum data is the cleanest setting for the review's logic because the data need not first be converted from classical records into amplitudes. For density matrices, dynamics, and measurement streams from quantum devices, algorithms can seek principal components or expectation-value summaries directly. This can reduce tomography burdens and supports applications in device characterization and quantum-state learning.",
+        "grounding_claim_ids": [
+          "8",
+          "9"
+        ],
+        "heading": "Quantum Data Advantage"
+      },
+      {
+        "body": "The practical takeaway is cautious optimism. The review identifies credible mechanisms for quantum advantage and credible hardware trajectories, including annealers, photonic chips, cloud-accessible processors, and qRAM research. But it treats input, output, costing, and benchmarking as first-class scientific problems, meaning a useful quantum machine learning result must demonstrate complete workflow advantage, not just an isolated fast subroutine.",
+        "grounding_claim_ids": [
+          "0",
+          "4",
+          "5",
+          "9"
+        ],
+        "heading": "Practical Interpretation"
+      }
+    ],
+    "summary_long": "The source is a broad review of quantum machine learning, using the field's strongest algorithmic ideas while repeatedly distinguishing asymptotic promise from implementable advantage. It begins from the observation that quantum systems can generate patterns that classical systems may not efficiently reproduce; if quantum processors can generate such patterns, quantum learning systems may also recognize or model them. The review then formalizes speedup in terms of query and gate complexity, because practical superiority over classical machine learning is hard to prove and must eventually be benchmarked against optimized heuristics. Its most important technical pathway is quantum linear algebra: qBLAS primitives, HHL-style linear-system solving, qPCA, support vector machines, and related optimization routines can in principle give exponential or polynomial improvements for suitable problem encodings. The source is careful, however, to state that these gains depend on state preparation, qRAM, sparsity, conditioning, and output requirements. A quantum state proportional to a solution vector is not the same as a cheaply available classical answer. The review also treats deep quantum learning as a separate route, where special-purpose hardware such as quantum annealers, photonic circuits, and quantum Boltzmann machines may be relevant before large universal machines exist. In that setting, speedups arise from thermalization, sampling, and training-data access, but they still rely on hardware and access assumptions. The most natural domain may be quantum data itself: when data are already quantum states, quantum routines can target principal components, dynamics, or expectation values without reconstructing the whole state. Overall, the source argues that quantum machine learning is promising but not automatically transformative; the decisive research tasks are to solve input and output bottlenecks, produce realistic gate and hardware costings, and benchmark against the best classical methods.",
+    "summary_short": "This review frames quantum machine learning as the attempt to convert quantum algorithmic speedups into practical learning and data-analysis tools. Its central message is balanced: qBLAS, HHL, qPCA, quantum support vector machines, and quantum Boltzmann machines create plausible advantages, but input, output, costing, and benchmarking problems determine whether those advantages survive in complete systems."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "source_kind": "file",
+  "source_locator": "05-quantum-machine-learning.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Jacob Biamonte",
+      "Peter Wittek",
+      "Nicola Pancotti",
+      "Patrick Rebentrost",
+      "Nathan Wiebe",
+      "Seth Lloyd"
+    ],
+    "display_title": "Quantum Machine Learning Speedups and Bottlenecks"
+  },
+  "source_type": "file",
+  "summary": "The source reviews quantum machine learning as a field built on possible quantum speedups for linear algebra, optimization, sampling, deep learning, and quantum-data analysis, while emphasizing that input, output, circuit-cost, and benchmarking constraints determine whether these speedups become practical.",
+  "title": "05-quantum-machine-learning",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved in task context; date remains null despite a May 14, 2018 manuscript date in the extracted markdown."
+    },
+    {
+      "code": "markdown_extraction_usable_not_verified_against_pdf",
+      "message": "source_extraction.json reports usable pdftotext markdown with no warnings, so the PDF binary was not consulted for layout-sensitive recovery."
+    },
+    {
+      "code": "claim_refs_are_generated_indices",
+      "message": "No prior canonical claim IDs were available in the provided context, so evidence and relation endpoints use generated claim indices."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:22:43Z",
+  "claim_id": "claim-quantum-expectation-estimation-reduces-coherent-evolution-demands-relative-to-ph--e17864953251",
+  "evidence_excerpts": [
+    "The approach gives O(1) coherence time for a single measurement after state preparation, while requiring O(|hmax|^2 M p^-2) repetitions to estimate a Hamiltonian term to precision p.",
+    "The source contrasts this with standard quantum phase estimation, where O(p^-1) successive applications of e^-iHt determine the coherent runtime."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "QEE reduces coherent evolution",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "text": "Quantum expectation estimation reduces coherent-evolution demands relative to phase estimation by replacing one long coherent evolution with many short expectation-value measurements."
+}

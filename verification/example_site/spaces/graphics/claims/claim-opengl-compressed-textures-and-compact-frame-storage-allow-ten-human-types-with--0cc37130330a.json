@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:44:00Z",
+  "claim_id": "claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+  "evidence_excerpts": [
+    "We then stored the texture using the OpenGL compressed format, which gives a further memory compression ratio of 1:4.",
+    "To simulate 10 different types of human with 10 frames of animation each, we need about 25 Mbytes of texture memory."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Compressed textures enable variety",
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "text": "OpenGL compressed textures and compact frame storage allow ten human types with ten animation frames each to fit in about 25 Mbytes of texture memory."
+}

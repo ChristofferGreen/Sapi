@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc",
+    "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789"
+  ],
+  "evidence_id": "evidence-hhl-runtime-caveats--71436a91f018",
+  "evidence_type": "theorem",
+  "excerpt": "The HHL box gives O((log N)^2) quantum steps to output |x>, while warning that full recovery of the vector, data input, matrix sparsity, and condition number constrain the advantage.",
+  "overview": "The HHL discussion captures both the appeal and the fragility of exponential speedup claims. The evidence supports the conditional nature of quantum linear-system advantages: the output is a quantum state and many useful classical answers require additional extraction work.",
+  "page_refs": [
+    "Box 2",
+    "pp.6-7"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "title": "HHL Runtime Caveats"
+}

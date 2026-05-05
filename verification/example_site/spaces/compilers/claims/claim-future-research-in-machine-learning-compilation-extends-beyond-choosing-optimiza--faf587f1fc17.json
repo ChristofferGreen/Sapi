@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:34:43Z",
+  "claim_id": "claim-future-research-in-machine-learning-compilation-extends-beyond-choosing-optimiza--faf587f1fc17",
+  "evidence_excerpts": [
+    "The open research directions go beyond predicting the best optimisations to apply. One central issue is what does the program space look like?",
+    "Can machine learning also be applied to compiler analysis? For instance is it possible to learn dataflow or point-to analysis? ... Can we learn the ideal compiler intermediate representation?"
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Open questions extend beyond optimization",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "text": "Future research in machine-learning compilation extends beyond choosing optimizations to mapping program and hardware spaces, learning analyses, discovering common features, and possibly learning better intermediate representations."
+}

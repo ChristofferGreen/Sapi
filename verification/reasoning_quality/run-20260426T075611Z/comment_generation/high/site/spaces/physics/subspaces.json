@@ -1,0 +1,15 @@
+{
+  "schema_version": "space_subspaces_v1",
+  "subspaces": [
+    {
+      "space_name": "metaphysics",
+      "space_root": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics",
+      "title": "Metaphysics"
+    },
+    {
+      "space_name": "quantum-physics",
+      "space_root": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/quantum-physics",
+      "title": "Quantum Physics"
+    }
+  ]
+}

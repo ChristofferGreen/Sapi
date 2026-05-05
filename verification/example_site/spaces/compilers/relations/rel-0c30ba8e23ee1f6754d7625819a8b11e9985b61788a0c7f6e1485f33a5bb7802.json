@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172",
+  "dst_claim_ref": "7",
+  "last_evaluated_run_id": null,
+  "rationale": "The comparative figures support the practical value of the data-qubit-swapping strategy relative to entanglement swapping alone.",
+  "relation_file_id": "rel-0c30ba8e23ee1f6754d7625819a8b11e9985b61788a0c7f6e1485f33a5bb7802",
+  "relation_id": "supports:claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c->claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172",
+  "relation_type": "supports",
+  "src_claim_id": "claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c",
+  "src_claim_ref": "9",
+  "status": "open"
+}

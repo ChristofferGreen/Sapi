@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T08:02:42Z",
+  "claim_id": "claim-attention-related-alpha-modulation-is-likely-controlled-primarily-by-a-cortico-c--6009765cfbf7",
+  "evidence_excerpts": [
+    "These results strongly implicate the involvement of a fronto-parietal attention control network in the deployment of alpha-mediated gating mechanisms in visual cortex.",
+    "The strongest evidence from human TMS studies and monkey intracranial recordings indicates that attention-related alpha modulations are predominately under the control of a cortico-cortical network involving frontal and parietal regions, with a possible secondary influence from thalamo-cortical connections."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Fronto-parietal networks control alpha",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Attention-related alpha modulation is likely controlled primarily by a cortico-cortical fronto-parietal network with possible secondary thalamo-cortical influence."
+}

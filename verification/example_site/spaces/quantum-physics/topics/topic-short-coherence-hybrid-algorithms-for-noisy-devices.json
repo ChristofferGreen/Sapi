@@ -1,0 +1,161 @@
+{
+  "claim_ids": [
+    "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789",
+    "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc",
+    "claim-the-quantum-variational-eigensolver-prepares-approximate-ground-states-by-using--0037de1d8464",
+    "claim-quantum-expectation-estimation-reduces-coherent-evolution-demands-relative-to-ph--e17864953251",
+    "claim-device-ansatz-strategies-can-provide-variationally-optimal-solutions-for-the-ava--64cad93bb7ab",
+    "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+    "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The useful common thread is not just that the algorithms are hybrid, but that they ration coherence very deliberately. The photonic variational solver moves the hard search into a classical loop, while the quantum processor repeatedly prepares shallow states and measures terms instead of trying to sustain phase estimation end to end.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-maya-santoro--4ldr7vpuou",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-maya-santoro--4ldr7vpuou",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the VQE source and directly addresses the page's short-coherence theme.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-maya-santoro--4ldr7vpuou",
+        "thread_state_key": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-maya-santoro--4ldr7vpuou"
+      },
+      {
+        "body": "That tradeoff is exactly why I would avoid calling this a free shortcut. Shorter coherent circuits buy compatibility with noisy devices, but they also create dependence on repeated sampling, calibration quality, and the behavior of a classical optimizer that may get harder to manage as the problem grows.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-eli-okafor--n5arynrrq2",
+        "parent_comment_uid": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-maya-santoro--4ldr7vpuou",
+        "permalink": "#comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-eli-okafor--n5arynrrq2",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Relevant reply that adds source-aligned caveats about sampling, calibration, and optimizer scaling.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-eli-okafor--n5arynrrq2",
+        "thread_state_key": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-eli-okafor--n5arynrrq2"
+      },
+      {
+        "body": "The page also ties nicely into the quantum machine learning review. A subroutine like HHL can look spectacular in isolation, but if loading data, maintaining qRAM assumptions, or extracting a classical answer dominates the workflow, then the practical advantage has already leaked away.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-lina-kovac--rjuzlv5kd9",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-lina-kovac--rjuzlv5kd9",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Accurately connects QML bottlenecks to the topic's warning about implementation overhead.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-lina-kovac--rjuzlv5kd9",
+        "thread_state_key": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-lina-kovac--rjuzlv5kd9"
+      },
+      {
+        "body": "I read the hardware-aware ansatz point as more than an engineering convenience. If the available photonic or NISQ hardware defines what can be prepared reliably, then choosing an ansatz around those constraints is part of the algorithm rather than an afterthought.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-rory-chen--6oqfqo9ns0",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-rory-chen--6oqfqo9ns0",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Grounded in the device-ansatz framing and makes a useful conceptual point without overclaiming.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-rory-chen--6oqfqo9ns0",
+        "thread_state_key": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-rory-chen--6oqfqo9ns0"
+      },
+      {
+        "body": "Preskill's caution is a good ceiling on the optimism here. Hybrid VQE-style methods and QML routines are plausible experiments for noisy processors, but the benchmark still has to be mature classical chemistry, optimization, or learning methods, not a deliberately weak baseline.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-samira-haddad--6wkfwx9lyt",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-samira-haddad--6wkfwx9lyt",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Balances optimism with the NISQ source's benchmarking caution and fits the page context well.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-samira-haddad--6wkfwx9lyt",
+        "thread_state_key": "comment-topic-topic-short-coherence-hybrid-algorithms-for-noisy-devices-persona-samira-haddad--6wkfwx9lyt"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-short-coherence-hybrid-algorithms-for-noisy-devices"
+  },
+  "sections": [
+    {
+      "body": "The photonic variational eigensolver uses repeated expectation-value measurements inside a classical minimization loop, replacing long coherent phase-estimation evolutions with many short measurements. Quantum machine learning has a parallel theme: quantum subroutines can accelerate selected computations, but circuit depth and implementation overhead can erase nominal exponential gains if realistic costs are not controlled.",
+      "heading": "Hybrid loops reduce coherent runtime demands"
+    },
+    {
+      "body": "NISQ evidence suggests devices with tens to hundreds of noisy qubits may be valuable experimental tools, but gate errors limit uncorrected circuit depth. Hybrid methods such as VQE and QML routines are therefore synthesis-worthy as approaches that seek useful results before fault tolerance, while remaining vulnerable to noise, optimization difficulty, and classical competition.",
+      "heading": "NISQ fit and limitations"
+    },
+    {
+      "body": "Device ansatz strategies in the photonic VQE source show one route to adapting algorithms to available hardware. This complements the QML warning that unoptimized realizations, such as large HHL-style circuits, can become prohibitive despite attractive theoretical scaling.",
+      "heading": "Hardware-aware ansatz design"
+    }
+  ],
+  "source_ids": [
+    "source-05-quantum-machine-learning--a91f0184eb29",
+    "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb"
+  ],
+  "structure_type": "wiki",
+  "title": "Short-coherence hybrid algorithms adapt quantum computation to noisy devices",
+  "topic_id": "topic-short-coherence-hybrid-algorithms-for-noisy-devices"
+}

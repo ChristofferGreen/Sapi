@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:15:35Z",
+  "claim_id": "claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006",
+  "evidence_excerpts": [
+    "For large node sets, however, the described method is time inefficient because the amount of textured rectangles depends linearly on the number of nodes within the screen area. Therefore, we extend the method and significantly reduce rendering time by binning nearby node coordinates into pixels. Instead of rasterizing multiple rectangles at the same position, a single weighted rasterization step per bin is then sufficient to create the same density field."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Seed points preserve density",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "text": "Pixel-bin seed points reduce node-density rendering work without changing the density field produced for a given viewport."
+}

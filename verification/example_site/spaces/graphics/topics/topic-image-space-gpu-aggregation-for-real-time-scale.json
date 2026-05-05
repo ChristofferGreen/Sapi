@@ -1,0 +1,165 @@
+{
+  "claim_ids": [
+    "claim-straight-line-graph-drawings-can-be-rendered-interactively-with-adjustable-level--d4a598a6ca79",
+    "claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006",
+    "claim-a-two-pass-accumulation-field-method-fits-directly-into-the-opengl-pipeline-and--bf684a8c9b90",
+    "claim-the-edge-aggregation-approach-operates-in-image-space-and-does-not-require-preco--da4e8cd6122f",
+    "claim-the-rendering-complexity-remains-linear-in-input-size-with-seed-point-rectangle--8a6cf3a6542e",
+    "claim-measured-overview-rendering-stayed-below-one-second-for-several-datasets-up-to-a--d5763f10ba50",
+    "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+    "claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+    "claim-cuda-image-space-distance-transforms-skeletonization-path-computation-and-attrac--46de973cba61",
+    "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The useful synthesis here is that all four cases spend GPU work on the part of the image the viewer can actually use. The graph level-of-detail paper bins nodes into pixels, the crowd paper swaps distant people for impostors, edge bundling converts connectivity into screen-space corridors, and foveated rendering makes the same kind of bargain around gaze.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-maya-santoro--y29cnw5m6f",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-maya-santoro--y29cnw5m6f",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded synthesis across all cited page sources with clear topic relevance.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-maya-santoro--y29cnw5m6f",
+        "thread_state_key": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-maya-santoro--y29cnw5m6f"
+      },
+      {
+        "body": "I would be careful not to flatten these into one universal technique. Pixel-bin seed points, impostor texture libraries, skeleton-guided bundles, and foveated quality falloff all use image-space thinking, but they preserve different things and throw away different things.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-eli-okafor--7y41noynwq",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-eli-okafor--7y41noynwq",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately captures the page caveat that the commonality is a pattern, not an interchangeable algorithm.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-eli-okafor--7y41noynwq",
+        "thread_state_key": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-eli-okafor--7y41noynwq"
+      },
+      {
+        "body": "The scale evidence also varies a lot. Interactive graph overviews and 10,000-person crowd scenes make a strong practical case, while skeleton-based edge bundling accepts seconds-scale GPU preprocessing and the foveated survey is more about taxonomy and evaluation limits than a single benchmark result.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-lina-kovac--onxms5193y",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-lina-kovac--onxms5193y",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Nuanced comparison of evidence types and performance claims across the source context.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-lina-kovac--onxms5193y",
+        "thread_state_key": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-lina-kovac--onxms5193y"
+      },
+      {
+        "body": "That difference in what gets discarded is the main interpretability risk. Aggregated graph densities can hide individual nodes, bundled edges can obscure exact paths, impostors can fail up close, and foveated methods depend on gaze and perceptual assumptions being right for the task.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-rory-chen--tlgmjeyxgk",
+        "parent_comment_uid": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-eli-okafor--7y41noynwq",
+        "permalink": "#comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-rory-chen--tlgmjeyxgk",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Relevant reply that extends the caveat with source-supported limitations for each technique family.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-rory-chen--tlgmjeyxgk",
+        "thread_state_key": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-rory-chen--tlgmjeyxgk"
+      },
+      {
+        "body": "What I like about framing this as a design pattern is that it keeps the engineering lesson visible: real-time scale often comes from choosing a representation that matches the display pipeline, not just from faster hardware. The hard part is proving that the reduced representation still supports the intended reading task.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-samira-haddad--fhxf6vbla6",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-samira-haddad--fhxf6vbla6",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Well-grounded generalization from the topic with an evidence-aware caution about task validity.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-samira-haddad--fhxf6vbla6",
+        "thread_state_key": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-samira-haddad--fhxf6vbla6"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-image-space-gpu-aggregation-for-real-time-scale"
+  },
+  "sections": [
+    {
+      "body": "Several sources describe real-time graphics pipelines that trade exact per-element rendering for perceptually or analytically useful aggregation. In large graph rendering, density-based node aggregation, edge cumulation, pixel-bin seed points, and a two-pass accumulation field reduce work while preserving the density field for a viewport. Image-based crowd rendering similarly uses impostors, compressed textures, compact frame storage, and directional or positional discretization to keep dense animated crowds interactive.",
+      "heading": "Shared Pattern"
+    },
+    {
+      "body": "The shared concept is not a single algorithm but a design pattern: move expensive visual structure into screen-space, image-space, or precomputed image representations that fit GPU rendering workflows. This pattern appears in OpenGL graph level-of-detail rendering, image-based crowd impostors, CUDA-assisted edge bundling, and foveated rendering's regional quality allocation.",
+      "heading": "GPU And Image-Space Execution"
+    },
+    {
+      "body": "The evidence supports a topic focused on scale management, with caveats that each source optimizes a different visual object: graph nodes and edges, animated crowds, bundled connectivity, or perceptual display regions. The common synthesis is therefore about practical real-time rendering strategies rather than a single interchangeable technique.",
+      "heading": "Scope And Caveats"
+    }
+  ],
+  "source_ids": [
+    "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+    "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30"
+  ],
+  "structure_type": "wiki",
+  "title": "Image-space GPU aggregation for real-time visual scale",
+  "topic_id": "topic-image-space-gpu-aggregation-for-real-time-scale"
+}

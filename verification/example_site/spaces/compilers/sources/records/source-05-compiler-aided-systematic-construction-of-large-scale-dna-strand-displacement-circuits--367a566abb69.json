@@ -1,0 +1,434 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69/front_page.png",
+    "source_extraction": "sources/artifacts/source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69/source_extraction.json",
+    "source_file": "sources/artifacts/source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69/source.pdf",
+    "source_markdown": "sources/artifacts/source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69/source.md",
+    "source_provenance": "sources/artifacts/source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69/source_provenance.md"
+  },
+  "authors": [
+    "Anupama J. Thubagere",
+    "Chris Thachuk",
+    "Joseph Berleant",
+    "Robert F. Johnson",
+    "Diana A. Ardelean",
+    "Kevin M. Cherry",
+    "Lulu Qian"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like how this paper treats compilation as only the first half of the engineering problem. The Seesaw Compiler produces the logic, simulation, and sequence artifacts, but the useful part is that the authors then connect those artifacts to calibration, outlier detection, and output tuning at the bench.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-maya-santoro--dpy76rzh3z",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-maya-santoro--dpy76rzh3z",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Grounded in the source's compiler-to-molecule workflow and notes the experimental follow-through without overstating it.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-maya-santoro--dpy76rzh3z",
+        "thread_state_key": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-maya-santoro--dpy76rzh3z"
+      },
+      {
+        "body": "The six-layer, 78-species circuit is doing a lot of work rhetorically here. It makes the result feel less like a tidy gate demo and more like a stress test of whether unpurified oligos can be composed into something large enough to need a compiler in the first place.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-eli-okafor--11m3waa62u",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-eli-okafor--11m3waa62u",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately uses the scale evidence and explains its significance for composition and compiler usefulness.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-eli-okafor--11m3waa62u",
+        "thread_state_key": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-eli-okafor--11m3waa62u"
+      },
+      {
+        "body": "The outlier-gate story is the most practically convincing part to me. A failed two-layer composition could have been reported as mysterious noise, but measuring effective concentrations down to cases like the roughly 0.44x gate turns the failure into something the workflow can diagnose and compensate for.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-lina-kovac--ao98japv0k",
+        "parent_comment_uid": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-maya-santoro--dpy76rzh3z",
+        "permalink": "#comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-lina-kovac--ao98japv0k",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Strongly tied to the calibration and outlier evidence while adding a clear discussion point.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-lina-kovac--ao98japv0k",
+        "thread_state_key": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-lina-kovac--ao98japv0k"
+      },
+      {
+        "body": "One caveat is that the paper still depends on a fairly disciplined debug loop. Reading the fluorescence outputs at 24 hours, rather than the faster timing predicted for purified strands, is a reminder that the method improves accessibility without making molecular circuits plug-and-play.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-rory-chen--i4lpmz7noc",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-rory-chen--i4lpmz7noc",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Balances the positive result with the source's timing and limitation evidence.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-rory-chen--i4lpmz7noc",
+        "thread_state_key": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-rory-chen--i4lpmz7noc"
+      },
+      {
+        "body": "The unpurified-strand angle seems especially important for adoption. If every larger DNA circuit requires purification before you can even begin debugging, the barrier stays high; this paper argues that measured nonideal behavior can be folded into the construction process instead of treated as a reason to stop.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-samira-haddad--wiwm5hqt7g",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-samira-haddad--wiwm5hqt7g",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Captures the accessibility claim and the conditional nature of using unpurified components.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-samira-haddad--wiwm5hqt7g",
+        "thread_state_key": "comment-source-source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits-367a566abb69-persona-samira-haddad--wiwm5hqt7g"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69"
+  },
+  "date": null,
+  "display_title": "Compiler-Aided DNA Strand Displacement Circuits",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[11].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Received 7 Aug | Accepted 21 Dec | Published 23 Feb 2017 OPEN",
+      "url": "https://doi.org/10.1038/ncomms14373"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[9].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1411.0782"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[6].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "pseudoknotted secondary structures. Preprint at /",
+      "url": "https://arxiv.org/abs"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[10].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Referenced arXiv entry",
+      "url": "https://arxiv.org/abs/1505.03738"
+    }
+  ],
+  "ingested_at": "2026-04-26T17:58:08Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "26. Lakin M. et al.Visual DSD https://www.microsoft.com/en-us/research/project/ To view a copy of this license visit /",
+      "url": "http://creativecommons.org/licenses/by/4.0",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "19. Chandrasekaran A. R. Anderson N. Kizer M. Halvorsen K. & Wang X. Reprints and permission information is available online at /",
+      "url": "http://npg.nature.com",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "improve the building blocks such that they are substantially less \ufb01les are available to download at the Seesaw Compiler website",
+      "url": "http://qianlab.cal-",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "27. Soloveichik D. CRNSimulator /",
+      "url": "http://users.ece.utexas.edu/~soloveichik",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "5636\u20135646 . Supplementary Information accompanies this paper at /",
+      "url": "http://www.nature.com",
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "24. Qian L. Seesaw Compiler / International License. The images or other third party material in this",
+      "url": "http://www.qianlab.caltech.edu/SeesawCompiler",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "pseudoknotted secondary structures. Preprint at /",
+      "url": "https://arxiv.org/abs",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "kinetics of multiple interacting nucleic acid strands. LNCS 9211 194\u2013211 Oligonucleotides /",
+      "url": "https://www.idtdna.com/pages/docs/technical-reports",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "26. Lakin M. et al.Visual DSD / To view a copy of this license visit http://creativecommons.org/licenses/by/4.0/",
+      "url": "https://www.microsoft.com/en-us/research/project",
+      "year": null
+    },
+    {
+      "arxiv": "1411.0782",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1411.0782",
+      "year": 2014
+    },
+    {
+      "arxiv": "1505.03738",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/ncomms14373",
+      "linked_source_ids": [],
+      "title": "Received 7 Aug | Accepted 21 Dec | Published 23 Feb 2017 OPEN",
+      "url": null,
+      "year": 2016
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 8 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2017-02-23",
+    "origin": "source_markdown_front_matter",
+    "rationale": "The source markdown front matter states \u201cPublished 23 Feb 2017\u201d and gives DOI 10.1038/ncomms14373."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The paper grounds its software contribution in a concrete translation path: feedforward digital logic is converted to dual-rail logic, then to a seesaw DNA circuit, and then to Visual DSD, Mathematica, and sequence files. That makes the compiler a practical construction aid rather than only a high-level design notation. The workflow is especially important because the later experimental protocol depends on knowing which gates, thresholds, fuels, reporters, and signals should be assembled.",
+        "grounding_claim_ids": [
+          "claim-seesaw-compiler-automates-dna-circuit-design--367a566abb69"
+        ],
+        "heading": "Compiler-to-Molecule Workflow"
+      },
+      {
+        "body": "The benchmark circuit computes a combined rule 110 and rule 124 transition function, giving the experiment a nontrivial logic target. Its compiled seesaw implementation has six layers and 78 distinct initial DNA species. Those counts make the demonstration a test of composition, not just an isolated reaction, and explain why automated design and systematic debugging matter for this source.",
+        "grounding_claim_ids": [
+          "claim-rule-110-124-circuit-has-78-species--367a566abb69"
+        ],
+        "heading": "Scale of Demonstration"
+      },
+      {
+        "body": "The article frames accessibility as a core bottleneck for molecular programming. Unpurified standard-desalting oligonucleotides reduce experimental burden, but they introduce synthesis errors and effective-concentration uncertainty. The source\u2019s main practical claim is therefore conditional: unpurified strands are usable for complex circuits when their nonideal behavior is measured, modeled, and corrected rather than ignored.",
+        "grounding_claim_ids": [
+          "claim-unpurified-strands-can-build-complex-circuits--367a566abb69",
+          "claim-signal-restoration-compensates-for-impurity--367a566abb69"
+        ],
+        "heading": "Why Unpurified Components Matter"
+      },
+      {
+        "body": "The strongest experimental reasoning comes from calibration values and outlier measurements. The authors use an estimated b/a ratio of 1.4 to choose nominal thresholds for OR and AND gates, then test gate behavior. When a composed two-layer circuit fails symmetrically, the gate-calibration data reveal unequal effective gate concentrations, including a gate near 0.44x. This evidence turns impurity from an opaque failure into a diagnosable parameter.",
+        "grounding_claim_ids": [
+          "claim-effective-concentration-calibration-guides-thresholds--367a566abb69",
+          "claim-outlier-gates-expose-synthesis-variation--367a566abb69"
+        ],
+        "heading": "Calibration and Outlier Handling"
+      },
+      {
+        "body": "The proposed workflow sequences calibration, outlier adjustment, and final output tuning. That structure is practically important because it gives novice or non-specialist users an ordered way to recover desired behavior without purifying every component. The reported three-day construction of the rule 110 sub-circuit is evidence for the procedure\u2019s utility, but it should be read as a demonstrated case rather than a universal build-time bound.",
+        "grounding_claim_ids": [
+          "claim-systematic-flow-shortens-unpurified-circuit-building--367a566abb69"
+        ],
+        "heading": "Procedure as Experimental Infrastructure"
+      },
+      {
+        "body": "The full rule 110-124 circuit is evaluated through two pairs of dual-rail fluorescence outputs. At 24 hours, the plotted outputs reproduce the intended image relationships: a dog image, its inverse, and corresponding mirror images. This is the central integration evidence because it combines compiler design, unpurified-component preparation, calibration, outlier correction, and tuning in one working circuit.",
+        "grounding_claim_ids": [
+          "claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69"
+        ],
+        "heading": "Full-Circuit Readout"
+      },
+      {
+        "body": "The synthesis-error-aware model helps explain why the unpurified circuit should be read around 24 hours rather than the roughly 8-hour timing suggested by a purified-circuit model. The paper\u2019s own limitations are clear: sequence-dependent defects, stoichiometry errors, and leak reactions remain obstacles. The result is best interpreted as a validated design-and-debug methodology, not proof that all future DNA circuits will compile and run without expert intervention.",
+        "grounding_claim_ids": [
+          "claim-synthesis-error-model-explains-delayed-outputs--367a566abb69",
+          "claim-signal-restoration-compensates-for-impurity--367a566abb69"
+        ],
+        "heading": "Modeling Assumptions and Limits"
+      }
+    ],
+    "summary_long": "The source presents a practical bridge between molecular compiler design and bench-top DNA strand displacement construction. Its central contribution is not just that the Seesaw Compiler can translate digital logic into seesaw DNA circuits, but that the resulting circuit can be built using unpurified components under a systematic experimental procedure. The paper targets a combined rule 110 and rule 124 cellular-automata logic function, which gives the demonstration a recognizable computational structure while avoiding a spatial cellular automaton implementation; the computation occurs in a well-mixed reaction. The compiled molecular circuit contains six layers and 78 distinct initial DNA species, making it large relative to many earlier strand-displacement demonstrations. The evidence path is staged. First, the compiler produces dual-rail logic, seesaw circuit structure, Visual DSD and Mathematica simulation artifacts, and DNA sequence outputs. Second, the authors calibrate effective concentrations for signal, threshold, and gate species because unpurified strands do not behave like ideal stoichiometric components. The reported threshold values for two- and three-input OR and AND gates show how measured ratios are turned into design choices. Third, the paper confronts composition failures by identifying outlier gates, including one measured gate ratio near 0.44x compared with another near 0.8x, and by tuning downstream behavior. Fourth, the full circuit is evaluated with fluorescence outputs at 24 hours, where the reported dual-rail patterns match the intended cellular automata image relationships. Finally, a model that includes synthesis-error populations semi-quantitatively explains why the unpurified circuit behaves on a slower timescale than a purified-circuit model would predict. The practical interpretation is that molecular compilers need not stop at sequence generation: for unpurified circuits, useful compilation must be paired with calibration protocols, debugging simulations, outlier handling, and models of imperfect molecular populations. The limits are equally important. The paper does not claim arbitrary plug-and-play reliability; it explicitly notes continuing needs to reduce leak reactions and make building blocks less sensitive to synthesis and stoichiometry errors.",
+    "summary_short": "This Nature Communications article reports a compiler-aided workflow for designing and building a large DNA strand displacement circuit from unpurified oligonucleotides. The demonstrated rule 110-124 circuit contains six layers and 78 initial DNA species, and the authors show how calibration, outlier detection, tuning, and synthesis-error modeling make the construction experimentally workable."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "source_kind": "file",
+  "source_locator": "05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Anupama J. Thubagere",
+      "Chris Thachuk",
+      "Joseph Berleant",
+      "Robert F. Johnson",
+      "Diana A. Ardelean",
+      "Kevin M. Cherry",
+      "Lulu Qian"
+    ],
+    "display_title": "Compiler-Aided DNA Strand Displacement Circuits"
+  },
+  "source_type": "file",
+  "summary": "Thubagere and coauthors demonstrate a compiler-aided workflow for constructing a six-layer, 78-species DNA strand displacement circuit from unpurified components. The paper combines automated Seesaw Compiler design, effective concentration calibration, outlier correction, output tuning, fluorescence validation, and a synthesis-error-aware model to make large unpurified seesaw circuits more accessible.",
+  "title": "05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits",
+  "warnings": [
+    "Task context listed publication date as unresolved, but the source markdown front matter states Published 23 Feb 2017.",
+    "The source markdown extraction is marked usable; no PDF fallback was used for layout-sensitive recovery.",
+    "Some mathematical notation in extracted text was normalized to ASCII for JSON readability."
+  ]
+}

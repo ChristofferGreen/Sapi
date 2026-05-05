@@ -1,0 +1,476 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: ingest_extraction
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/runs/run-20260426T175808Z--a8di4sg2ro/semantic/ingest_extraction.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/artifacts
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/relations
+
+=== generation spec ===
+flow_key: ingest_extraction
+version: v1
+schema_path: schemas/ingest_extraction.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/ingest_extraction.json
+context_paths:
+  - <space_root>/sources/records
+  - <space_root>/sources/artifacts
+  - <space_root>/claims
+  - <space_root>/relations
+---
+## Task
+Generate one strict JSON object for ingest extraction at `output_json_path`.
+
+## Context Interpretation Rules
+- Treat `context_paths` as the only evidence scope for this generation.
+- For source reading, prefer `sources/artifacts/<source_id>/source.md` as the default analysis input.
+- Inspect `sources/artifacts/<source_id>/source_extraction.json` before trusting the markdown fully.
+- Use the original binary artifact only for fidelity-sensitive checks such as tables, figures, equations, or layout recovery when the extraction metadata says markdown quality is degraded or unusable.
+- If context is missing or ambiguous, keep values conservative and place details in `warnings`.
+- Do not invent canonical IDs beyond schema-allowed fields.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- `source.display_title` is required and MUST be a high-quality post-style title for UI display.
+  - target length: `4..12` words (`12..120` chars) for high-quality outputs
+  - schema lower bound is `4` chars for compatibility with short canonical titles; still prefer `12+`
+  - summarize the central claim/theme of the source
+  - avoid raw filenames, slugs, IDs, URLs, hashes, and boilerplate metadata fragments
+  - keep wording readable and specific (not clickbait, not generic placeholders)
+  - no trailing punctuation
+- `source.authors` SHOULD be included whenever the paper names identifiable authors.
+  - output an ordered JSON array of human author names as they appear on the paper
+  - do not emit placeholders like `unknown`, `the authors`, `editorial synthesis`, or organization names unless the paper truly credits only an organization
+  - if author names cannot be recovered with confidence, prefer omitting `source.authors` over guessing
+- `source_dossier` is required and MUST be included:
+  - `summary_short`: reader-facing abstract (2-4 sentences)
+  - `summary_long`: substantive overview/commentary so readers can understand the source without opening the PDF
+    - target depth: `~900..4000` chars (minimum schema requirement is 900)
+  - `sections`: 5..8 section objects with `heading`, `body`, and `grounding_claim_ids`
+    - each section body should be detailed (`~140..800` chars)
+  - section writing should cover: argument, evidence/reasoning path, assumptions/limits, and practical interpretation
+  - every section SHOULD cite relevant `claim_id` values in `grounding_claim_ids` when claim evidence exists
+  - avoid generic filler; write source-specific commentary grounded in extracted claims
+- `evidence_items` is required and MUST be the canonical evidence output for this flow:
+  - output `0..n` evidence items; emit an empty array if no concrete evidence artifacts exist
+  - each item MUST include:
+    - `evidence_id` in canonical slug+hash format (`evidence-<slug>--<hex>`)
+    - `title` (clear reader-facing label, target `3..8` words)
+    - `excerpt` (concrete evidence artifact text from source content)
+    - `overview` (why the evidence matters, what it establishes, and scope limits)
+    - `evidence_type` enum value
+    - `claim_refs` with one or more references to extracted claims (index, claim_key, or claim_id)
+    - `source_id` matching the ingested source
+  - evidence quality bar:
+    - acceptable evidence: measurements/statistics, theorem or proof steps, equations/derivations, table/figure findings, formal argument fragments
+    - reject low-information paraphrases and publication-process narration (`the paper claims...`, `the article argues...`)
+    - each evidence item should be independently meaningful and auditable
+  - do not emit synthetic evidence IDs/titles by truncation rules; author high-quality IDs/titles directly
+- each claim object SHOULD include `short_title` for UI claim-link labels:
+  - MUST be authored by the LLM from claim semantics (not a mechanical truncation of claim text)
+  - MUST be `3..7` words
+  - SHOULD follow compact truth-apt proposition style (`X is Y`, `X implies Y`, `X constrains Y`)
+  - MUST avoid lead-ins like `the paper claims`, `the article argues`, `authors show`
+  - MUST be a concise label, not a full sentence/parapraph
+- claim `text` MUST be a truth-apt proposition attributed to the source content itself
+  - avoid meta narration about the publication process (`the paper presents`, `the article gives`)
+  - when the source uses reporting lead-ins, rewrite to the underlying proposition
+- claim `evidence_excerpts` (or alias `evidence`) MAY be included as claim-local mirrors of `evidence_items` excerpts:
+  - acceptable: measurement values/statistics, theorem/proof steps, equations, formal derivations, table/figure findings
+  - avoid repeating the claim text itself or generic narrative summaries (`the paper claims...`)
+  - if no concrete evidence artifact is available, prefer an empty list over low-quality filler
+- `relations` MAY be empty, but when relation objects are emitted they MUST use the canonical relation shape:
+  - `relation_type`: one of `supports`, `derived_from`, `falsifies`, `contradictory`, `similar`
+  - `src_claim_ref` and `dst_claim_ref`: references to extracted claims by index, `claim_key`, or `claim_id`
+  - use `src_claim_id`/`dst_claim_id` only when you already know canonical claim IDs from context
+  - do not emit generic `type`, `src`, or `dst` keys; those are invalid for this schema
+  - optional `rationale` may explain the relation in one concise sentence
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "source_date_inference": null,
+  "source": {
+    "display_title": "",
+    "authors": ["Author One", "Author Two"]
+  },
+  "claims": [
+    {
+      "text": "",
+      "short_title": ""
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "",
+      "title": "",
+      "excerpt": "",
+      "overview": "",
+      "evidence_type": "formal_argument",
+      "claim_refs": ["0"],
+      "source_id": ""
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "0",
+      "dst_claim_ref": "1",
+      "rationale": ""
+    }
+  ],
+  "summary": "",
+  "warnings": [],
+  "source_dossier": {
+    "summary_short": "",
+    "summary_long": "",
+    "sections": [
+      {
+        "heading": "",
+        "body": "",
+        "grounding_claim_ids": []
+      }
+    ]
+  }
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/relations": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/relations",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/artifacts": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/artifacts",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records"
+}
+
+=== llm output ===
+{
+  "source_date_inference": {
+    "date": "2017-02-23",
+    "confidence": "high",
+    "origin": "source_markdown_front_matter",
+    "rationale": "The source markdown front matter states “Published 23 Feb 2017” and gives DOI 10.1038/ncomms14373."
+  },
+  "source": {
+    "display_title": "Compiler-Aided DNA Strand Displacement Circuits",
+    "authors": [
+      "Anupama J. Thubagere",
+      "Chris Thachuk",
+      "Joseph Berleant",
+      "Robert F. Johnson",
+      "Diana A. Ardelean",
+      "Kevin M. Cherry",
+      "Lulu Qian"
+    ]
+  },
+  "claims": [
+    {
+      "claim_id": "claim-seesaw-compiler-automates-dna-circuit-design--367a566abb69",
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "text": "The Seesaw Compiler automates the translation of feedforward digital logic into equivalent dual-rail and seesaw DNA strand displacement circuits, while producing simulation code and DNA sequences for construction.",
+      "short_title": "Compiler automates DNA circuits",
+      "evidence_excerpts": [
+        "A feedforward digital logic circuit is first translated into an equivalent dual-rail logic circuit and then translated into an equivalent seesaw DNA circuit. Visual DSD code and Mathematica code are generated for analysing and simulating the seesaw DNA circuit, and DNA sequences are generated for constructing the circuit."
+      ]
+    },
+    {
+      "claim_id": "claim-rule-110-124-circuit-has-78-species--367a566abb69",
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "text": "The compiled rule 110-124 DNA strand displacement circuit contains six layers and 78 distinct initial DNA species.",
+      "short_title": "Circuit has 78 species",
+      "evidence_excerpts": [
+        "The DNA circuit generated by the Seesaw Compiler consisted of 6 layers and a total of 78 distinct initial DNA species."
+      ]
+    },
+    {
+      "claim_id": "claim-unpurified-strands-can-build-complex-circuits--367a566abb69",
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "text": "Unpurified DNA strands can be used to construct complex DNA strand displacement circuits when circuit design software is combined with simplified experimental procedures.",
+      "short_title": "Unpurified strands support circuits",
+      "evidence_excerpts": [
+        "Here we demonstrate the use of circuit design software, combined with the use of unpurified strands and simplified experimental procedures, for creating a complex DNA strand displacement circuit that consists of 78 distinct species."
+      ]
+    },
+    {
+      "claim_id": "claim-effective-concentration-calibration-guides-thresholds--367a566abb69",
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "text": "Effective concentration calibration provides quantitative threshold choices that restore desired OR and AND gate behavior for unpurified seesaw components.",
+      "short_title": "Calibration guides gate thresholds",
+      "evidence_excerpts": [
+        "Using b/a = 1.4, we chose a nominal threshold of 0.35x and 0.85x for two-input OR and AND gate, respectively, and 0.4x and 1.6x for three-input OR and AND gate. Experiments of the logic gates showed desired behaviours."
+      ]
+    },
+    {
+      "claim_id": "claim-outlier-gates-expose-synthesis-variation--367a566abb69",
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "text": "Gate calibration can identify outlier unpurified components whose effective concentrations differ enough to disrupt multi-layer circuit composition.",
+      "short_title": "Outliers disrupt gate composition",
+      "evidence_excerpts": [
+        "With a gate calibration experiment shown in Fig. 4b, we measured that g18,53/a18,53 = 0.8x for one gate and g22,53/a22,53 = 0.44x for another."
+      ]
+    },
+    {
+      "claim_id": "claim-systematic-flow-shortens-unpurified-circuit-building--367a566abb69",
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "text": "A three-step systematic procedure of calibration, outlier adjustment, and output tuning enabled construction of the rule 110 sub-circuit in three days.",
+      "short_title": "Procedure shortens circuit building",
+      "evidence_excerpts": [
+        "Starting from the calibration of effective concentrations for threshold and gate species in general, to the identification and adjustment of any outliers, and then to the final tuning of circuit output, we established three sequential steps for building unpurified seesaw circuits.",
+        "Following the flowchart, we completed the construction of the rule 110 sub-circuit in only 3 days."
+      ]
+    },
+    {
+      "claim_id": "claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69",
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "text": "The full rule 110-124 DNA circuit produced dual-rail fluorescence outputs at 24 hours that visually matched the intended cellular automata pattern relationships.",
+      "short_title": "Outputs match automata patterns",
+      "evidence_excerpts": [
+        "The arrays for the DNA circuit were plotted using the output values at 24 h from the data. The ideal logic circuit behaviour corresponds to an image of a black dog with a white background for R1241, an inverted image for R1240 and their mirror images for R1101 and R1100, respectively."
+      ]
+    },
+    {
+      "claim_id": "claim-synthesis-error-model-explains-delayed-outputs--367a566abb69",
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "text": "A model that represents synthesis errors in unpurified molecules predicts the slower 24-hour behavior of the rule 110-124 circuit better than the purified-circuit model.",
+      "short_title": "Error model explains delay",
+      "evidence_excerpts": [
+        "Simulations of the rule 110-124 circuit using the previously developed model for purified seesaw circuits predicted desired outputs in roughly 8 h and undesired reactions taking over in 24 h, while simulations using the new model for unpurified seesaw circuits predicted desired outputs in roughly 24 h."
+      ]
+    },
+    {
+      "claim_id": "claim-signal-restoration-compensates-for-impurity--367a566abb69",
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "text": "Signal restoration and component tuning compensate for impurity in unpurified seesaw circuits, although leak reactions and sensitivity to synthesis and stoichiometry errors remain limiting concerns.",
+      "short_title": "Restoration compensates impurity",
+      "evidence_excerpts": [
+        "The signal restoration built in to every logic gate allows simple tuning to restore desired circuit behaviour, compensating for the impurity of molecules.",
+        "It is also necessary to eliminate leak reactions in DNA circuits and to improve the building blocks such that they are substantially less sensitive to synthesis errors and stoichiometry errors."
+      ]
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "evidence-abstract-78-species--7ad8ad2fba3b",
+      "title": "Unpurified 78-Species Circuit",
+      "excerpt": "Here we demonstrate the use of circuit design software, combined with the use of unpurified strands and simplified experimental procedures, for creating a complex DNA strand displacement circuit that consists of 78 distinct species. We develop a systematic procedure for overcoming the challenges involved in using unpurified DNA strands.",
+      "overview": "This abstract-level result establishes the scale and experimental premise of the work: a large DNA strand displacement circuit is not merely designed computationally but constructed using unpurified components. It supports the source’s accessibility claim while leaving the detailed validation to the calibration, tuning, implementation, and modeling evidence elsewhere in the paper.",
+      "evidence_type": "observational_result",
+      "claim_refs": [
+        "1",
+        "2"
+      ],
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "page_refs": [
+        "p.1"
+      ]
+    },
+    {
+      "evidence_id": "evidence-compiler-translation-pipeline--d0e184d4f09a",
+      "title": "Compiler Translation Pipeline",
+      "excerpt": "A feedforward digital logic circuit is first translated into an equivalent dual-rail logic circuit and then translated into an equivalent seesaw DNA circuit. Visual DSD code and Mathematica code are generated for analysing and simulating the seesaw DNA circuit, and DNA sequences are generated for constructing the circuit.",
+      "overview": "The figure caption gives a concrete formal workflow for the compiler rather than a generic software claim. It matters because the paper’s experimental construction depends on automated movement from high-level logic to molecular species, simulation artifacts, and constructible DNA sequences. The evidence does not prove all compiler outputs are correct in general, but it grounds the claimed design path for the demonstrated circuit.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "0"
+      ],
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "page_refs": [
+        "Fig.1"
+      ]
+    },
+    {
+      "evidence_id": "evidence-rule-110-124-six-layers--367a566abb69",
+      "title": "Six-Layer Rule Circuit",
+      "excerpt": "The DNA circuit generated by the Seesaw Compiler consisted of 6 layers and a total of 78 distinct initial DNA species. The circuit was designed to compute a combined logic function of the rule 110 and rule 124 transition rules.",
+      "overview": "This design evidence fixes the circuit’s functional target and molecular scale. Rule 110 and rule 124 provide a recognizable nontrivial logic benchmark, while six layers and 78 initial species show that the experiment goes beyond one- or two-component demonstrations. The evidence supports claims about the particular circuit’s complexity, not arbitrary scalability to all molecular programs.",
+      "evidence_type": "figure_result",
+      "claim_refs": [
+        "1"
+      ],
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "page_refs": [
+        "Fig.2"
+      ]
+    },
+    {
+      "evidence_id": "evidence-threshold-calibration-values--7ad8ad2fba3bd",
+      "title": "Threshold Calibration Values",
+      "excerpt": "Using b/a = 1.4, we chose a nominal threshold of 0.35x and 0.85x for two-input OR and AND gate, respectively, and 0.4x and 1.6x for three-input OR and AND gate. Experiments of the logic gates showed desired behaviours.",
+      "overview": "These numerical threshold choices are a concrete calibration artifact. They show how unpurified threshold and signal concentrations are not assumed ideal but are measured and folded into gate design. The values directly support the paper’s claim that systematic calibration can recover desired OR and AND behavior, although they remain tied to the strands, provider, procedure, and batch conditions used in the study.",
+      "evidence_type": "measurement",
+      "claim_refs": [
+        "3"
+      ],
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "page_refs": [
+        "Fig.3"
+      ]
+    },
+    {
+      "evidence_id": "evidence-outlier-gate-ratios--d0e184d4f09af",
+      "title": "Outlier Gate Ratios",
+      "excerpt": "With a gate calibration experiment shown in Fig. 4b, we measured that g18,53/a18,53 = 0.8x for one gate and g22,53/a22,53 = 0.44x for another. The output wires of the two upstream OR gates were significantly different from each other.",
+      "overview": "The contrasting gate ratios document a specific failure mode in composing unpurified parts: nominally comparable gates can release signals at materially different effective concentrations. This evidence motivates the outlier-identification step and constrains the overall conclusion, because successful construction depends on detecting and compensating for such sequence- or synthesis-dependent variation.",
+      "evidence_type": "measurement",
+      "claim_refs": [
+        "4"
+      ],
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "page_refs": [
+        "Fig.4"
+      ]
+    },
+    {
+      "evidence_id": "evidence-three-step-flowchart--367a566abb690",
+      "title": "Three-Step Build Procedure",
+      "excerpt": "Starting from the calibration of effective concentrations for threshold and gate species in general, to the identification and adjustment of any outliers, and then to the final tuning of circuit output, we established three sequential steps for building unpurified seesaw circuits. Following the flowchart, we completed the construction of the rule 110 sub-circuit in only 3 days.",
+      "overview": "The flowchart evidence turns the experimental adjustments into a reproducible procedure. It establishes that the authors did not rely on ad hoc luck after observing impurity effects: they sequenced calibration, outlier correction, and tuning. The three-day result is a practical benchmark for this sub-circuit, not a universal time guarantee for all circuits.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "5"
+      ],
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "page_refs": [
+        "Fig.6"
+      ]
+    },
+    {
+      "evidence_id": "evidence-full-circuit-24h-output--7ad8ad2fba3bd2",
+      "title": "Full Circuit 24-Hour Output",
+      "excerpt": "Figure 7 reports fluorescence kinetics data of the two pairs of dual-rail outputs. The arrays for the DNA circuit were plotted using the output values at 24 h from the data, and the ideal logic circuit behaviour corresponds to a black dog image for R1241, an inverted image for R1240, and mirror images for R1101 and R1100.",
+      "overview": "This figure-level evidence connects molecular fluorescence measurements to the intended cellular automata visualization. It matters because the paper’s design and tuning pipeline culminates in the full rule 110-124 circuit, not only isolated gates or sub-circuits. The comparison is qualitative and visual, so it supports successful pattern-level computation rather than exact analog agreement at every time point.",
+      "evidence_type": "figure_result",
+      "claim_refs": [
+        "6"
+      ],
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "page_refs": [
+        "Fig.7"
+      ]
+    },
+    {
+      "evidence_id": "evidence-unpurified-model-timing--d0e184d4f09af6",
+      "title": "Unpurified Model Timing",
+      "excerpt": "Simulations of the rule 110-124 circuit using the previously developed model for purified seesaw circuits predicted that the circuit should yield desired outputs in roughly 8 h and the undesired reactions will take over in 24 h. Simulations using the new model for unpurified seesaw circuits predicted that the circuit should yield desired outputs in roughly 24 h.",
+      "overview": "The timing comparison is a concrete modeling result showing why a purified-circuit kinetic expectation is misleading for unpurified strands. By incorporating synthesis-error populations, the new model aligns with the experimentally relevant slower output time. The evidence supports semi-quantitative explanatory power, while the source itself still frames future robustness improvements as necessary.",
+      "evidence_type": "model_constraint",
+      "claim_refs": [
+        "7"
+      ],
+      "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+      "page_refs": [
+        "Fig.9"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "1",
+      "dst_claim_ref": "2",
+      "rationale": "The six-layer, 78-species implementation is the concrete case demonstrating complex circuits from unpurified strands."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "3",
+      "dst_claim_ref": "2",
+      "rationale": "Calibrated thresholds explain how unpurified components can still produce desired gate behavior."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "4",
+      "dst_claim_ref": "5",
+      "rationale": "Measured outlier gate ratios justify the procedure’s outlier-identification and adjustment step."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "5",
+      "dst_claim_ref": "6",
+      "rationale": "The systematic build procedure leads into the full circuit implementation evaluated at 24 hours."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "7",
+      "dst_claim_ref": "6",
+      "rationale": "The unpurified synthesis-error model explains why the successful full-circuit readout occurs on a slower 24-hour timescale."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "8",
+      "dst_claim_ref": "2",
+      "rationale": "Signal restoration and tuning provide the compensatory mechanism that makes unpurified construction feasible."
+    }
+  ],
+  "summary": "Thubagere and coauthors demonstrate a compiler-aided workflow for constructing a six-layer, 78-species DNA strand displacement circuit from unpurified components. The paper combines automated Seesaw Compiler design, effective concentration calibration, outlier correction, output tuning, fluorescence validation, and a synthesis-error-aware model to make large unpurified seesaw circuits more accessible.",
+  "warnings": [
+    "Task context listed publication date as unresolved, but the source markdown front matter states Published 23 Feb 2017.",
+    "The source markdown extraction is marked usable; no PDF fallback was used for layout-sensitive recovery.",
+    "Some mathematical notation in extracted text was normalized to ASCII for JSON readability."
+  ],
+  "source_dossier": {
+    "summary_short": "This Nature Communications article reports a compiler-aided workflow for designing and building a large DNA strand displacement circuit from unpurified oligonucleotides. The demonstrated rule 110-124 circuit contains six layers and 78 initial DNA species, and the authors show how calibration, outlier detection, tuning, and synthesis-error modeling make the construction experimentally workable.",
+    "summary_long": "The source presents a practical bridge between molecular compiler design and bench-top DNA strand displacement construction. Its central contribution is not just that the Seesaw Compiler can translate digital logic into seesaw DNA circuits, but that the resulting circuit can be built using unpurified components under a systematic experimental procedure. The paper targets a combined rule 110 and rule 124 cellular-automata logic function, which gives the demonstration a recognizable computational structure while avoiding a spatial cellular automaton implementation; the computation occurs in a well-mixed reaction. The compiled molecular circuit contains six layers and 78 distinct initial DNA species, making it large relative to many earlier strand-displacement demonstrations. The evidence path is staged. First, the compiler produces dual-rail logic, seesaw circuit structure, Visual DSD and Mathematica simulation artifacts, and DNA sequence outputs. Second, the authors calibrate effective concentrations for signal, threshold, and gate species because unpurified strands do not behave like ideal stoichiometric components. The reported threshold values for two- and three-input OR and AND gates show how measured ratios are turned into design choices. Third, the paper confronts composition failures by identifying outlier gates, including one measured gate ratio near 0.44x compared with another near 0.8x, and by tuning downstream behavior. Fourth, the full circuit is evaluated with fluorescence outputs at 24 hours, where the reported dual-rail patterns match the intended cellular automata image relationships. Finally, a model that includes synthesis-error populations semi-quantitatively explains why the unpurified circuit behaves on a slower timescale than a purified-circuit model would predict. The practical interpretation is that molecular compilers need not stop at sequence generation: for unpurified circuits, useful compilation must be paired with calibration protocols, debugging simulations, outlier handling, and models of imperfect molecular populations. The limits are equally important. The paper does not claim arbitrary plug-and-play reliability; it explicitly notes continuing needs to reduce leak reactions and make building blocks less sensitive to synthesis and stoichiometry errors.",
+    "sections": [
+      {
+        "heading": "Compiler-to-Molecule Workflow",
+        "body": "The paper grounds its software contribution in a concrete translation path: feedforward digital logic is converted to dual-rail logic, then to a seesaw DNA circuit, and then to Visual DSD, Mathematica, and sequence files. That makes the compiler a practical construction aid rather than only a high-level design notation. The workflow is especially important because the later experimental protocol depends on knowing which gates, thresholds, fuels, reporters, and signals should be assembled.",
+        "grounding_claim_ids": [
+          "claim-seesaw-compiler-automates-dna-circuit-design--367a566abb69"
+        ]
+      },
+      {
+        "heading": "Scale of Demonstration",
+        "body": "The benchmark circuit computes a combined rule 110 and rule 124 transition function, giving the experiment a nontrivial logic target. Its compiled seesaw implementation has six layers and 78 distinct initial DNA species. Those counts make the demonstration a test of composition, not just an isolated reaction, and explain why automated design and systematic debugging matter for this source.",
+        "grounding_claim_ids": [
+          "claim-rule-110-124-circuit-has-78-species--367a566abb69"
+        ]
+      },
+      {
+        "heading": "Why Unpurified Components Matter",
+        "body": "The article frames accessibility as a core bottleneck for molecular programming. Unpurified standard-desalting oligonucleotides reduce experimental burden, but they introduce synthesis errors and effective-concentration uncertainty. The source’s main practical claim is therefore conditional: unpurified strands are usable for complex circuits when their nonideal behavior is measured, modeled, and corrected rather than ignored.",
+        "grounding_claim_ids": [
+          "claim-unpurified-strands-can-build-complex-circuits--367a566abb69",
+          "claim-signal-restoration-compensates-for-impurity--367a566abb69"
+        ]
+      },
+      {
+        "heading": "Calibration and Outlier Handling",
+        "body": "The strongest experimental reasoning comes from calibration values and outlier measurements. The authors use an estimated b/a ratio of 1.4 to choose nominal thresholds for OR and AND gates, then test gate behavior. When a composed two-layer circuit fails symmetrically, the gate-calibration data reveal unequal effective gate concentrations, including a gate near 0.44x. This evidence turns impurity from an opaque failure into a diagnosable parameter.",
+        "grounding_claim_ids": [
+          "claim-effective-concentration-calibration-guides-thresholds--367a566abb69",
+          "claim-outlier-gates-expose-synthesis-variation--367a566abb69"
+        ]
+      },
+      {
+        "heading": "Procedure as Experimental Infrastructure",
+        "body": "The proposed workflow sequences calibration, outlier adjustment, and final output tuning. That structure is practically important because it gives novice or non-specialist users an ordered way to recover desired behavior without purifying every component. The reported three-day construction of the rule 110 sub-circuit is evidence for the procedure’s utility, but it should be read as a demonstrated case rather than a universal build-time bound.",
+        "grounding_claim_ids": [
+          "claim-systematic-flow-shortens-unpurified-circuit-building--367a566abb69"
+        ]
+      },
+      {
+        "heading": "Full-Circuit Readout",
+        "body": "The full rule 110-124 circuit is evaluated through two pairs of dual-rail fluorescence outputs. At 24 hours, the plotted outputs reproduce the intended image relationships: a dog image, its inverse, and corresponding mirror images. This is the central integration evidence because it combines compiler design, unpurified-component preparation, calibration, outlier correction, and tuning in one working circuit.",
+        "grounding_claim_ids": [
+          "claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69"
+        ]
+      },
+      {
+        "heading": "Modeling Assumptions and Limits",
+        "body": "The synthesis-error-aware model helps explain why the unpurified circuit should be read around 24 hours rather than the roughly 8-hour timing suggested by a purified-circuit model. The paper’s own limitations are clear: sequence-dependent defects, stoichiometry errors, and leak reactions remain obstacles. The result is best interpreted as a validated design-and-debug methodology, not proof that all future DNA circuits will compile and run without expert intervention.",
+        "grounding_claim_ids": [
+          "claim-synthesis-error-model-explains-delayed-outputs--367a566abb69",
+          "claim-signal-restoration-compensates-for-impurity--367a566abb69"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-restricting-attraction-to-skeleton-paths-passing-through-endpoint-feature-points--86df6a0326fa",
+    "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963"
+  ],
+  "evidence_id": "evidence-feature-transform-regularization--f71a0c6e2b55",
+  "evidence_type": "formal_argument",
+  "excerpt": "For each edge, the algorithm selects a skeleton path passing through the feature points of both edge endpoints. If a point's FT_S(x) is not on that path, the point is treated as special and mapped to a corresponding point on the path by arc-length interpolation before the attraction formula is applied.",
+  "overview": "This procedural evidence explains how the method avoids discontinuities that would otherwise create sharp kinks when edges cross Voronoi-like feature-transform boundaries. It supports the robustness claim for smooth bundles, while depending on correctly detected skeleton tips and paths.",
+  "page_refs": [
+    "Sec. 2.4.1",
+    "Fig. 3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "title": "Path-Based Singularity Regularization"
+}

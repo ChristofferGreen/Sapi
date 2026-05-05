@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T18:03:17Z",
+  "claim_id": "claim-signal-restoration-compensates-for-impurity--367a566abb69",
+  "evidence_excerpts": [
+    "The signal restoration built in to every logic gate allows simple tuning to restore desired circuit behaviour, compensating for the impurity of molecules.",
+    "It is also necessary to eliminate leak reactions in DNA circuits and to improve the building blocks such that they are substantially less sensitive to synthesis errors and stoichiometry errors."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Restoration compensates impurity",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "text": "Signal restoration and component tuning compensate for impurity in unpurified seesaw circuits, although leak reactions and sensitivity to synthesis and stoichiometry errors remain limiting concerns."
+}

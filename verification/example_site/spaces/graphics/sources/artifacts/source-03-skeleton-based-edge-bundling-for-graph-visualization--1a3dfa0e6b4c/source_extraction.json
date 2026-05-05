@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c/source.pdf",
+    "source_markdown": "sources/artifacts/source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "e8211534b2b55d2584911b0a2d151e483ab02f034852fba71d1585007b467ad8",
+  "markdown_char_count": 83527,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "cbea3af262f89b440f62de70d7dd4f0322de84369c8c9cb5518871a279958874",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

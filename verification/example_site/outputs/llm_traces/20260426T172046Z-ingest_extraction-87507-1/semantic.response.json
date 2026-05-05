@@ -1,0 +1,308 @@
+{
+  "claims": [
+    {
+      "evidence_excerpts": [
+        "An execution profiler can be integrated into an optimizing compiler to provide the compiler with run-time information about user programs. For each code optimization, the profile information along with information from static loop analysis is used to reduce the execution time of the most frequently executed program regions."
+      ],
+      "short_title": "Profiles guide classic optimizations",
+      "text": "Execution profiles integrated into an optimizing C compiler can guide classic optimizations toward the program regions that run most often."
+    },
+    {
+      "evidence_excerpts": [
+        "We define a weighted flow graph as a quadruplet {V,E, count, arc.count], where each node in V is a basic block, each arc in E is a potential control flow path between two basic blocks, count{v) is a function that returns the execution count of a basic block u, and arc-count(e) is a function that returns the taken count of a control flow path e."
+      ],
+      "short_title": "Weighted graphs expose hot paths",
+      "text": "Weighted flow graphs expose hot paths by attaching execution counts to basic blocks and taken counts to control-flow arcs."
+    },
+    {
+      "evidence_excerpts": [
+        "A super-block has the following features. (1) It is a linear sequence of basic blocks B(i),i = l..n, where n > 1. (2) It can be entered only from B( 1). (3) The program control may leave the super-block from any basic block."
+      ],
+      "short_title": "Super-blocks isolate hot paths",
+      "text": "Super-blocks represent frequently executed paths as linear basic-block sequences that can only be entered at the first block but may exit from any block."
+    },
+    {
+      "evidence_excerpts": [
+        "The formation of super-blocks is a two step procedure: (1) trace selection and (2) tail duplication. Trace selection identifies basic blocks that tend to execute in a sequence and groups them into a trace.",
+        "After trace selection, each trace is converted into a super-block by duplicating the tail part of the trace, in order to ensure that the program control can only enter at the top basic block."
+      ],
+      "short_title": "Tail duplication forms super-blocks",
+      "text": "Trace selection followed by tail duplication converts frequently executed traces into super-blocks by removing control-flow entries into the middle of a trace."
+    },
+    {
+      "evidence_excerpts": [
+        "Table 2 shows a list of classic code optimizations that we have extended to use profile information.",
+        "The non-loop based code optimizations work on a single super-block at a time. The loop based code optimizations work on a single super-block loop at a time."
+      ],
+      "short_title": "Classic optimizations fit super-blocks",
+      "text": "Classic scalar optimizations can be reformulated to operate on super-blocks and super-block loops rather than only on traditional basic blocks or whole loops."
+    },
+    {
+      "evidence_excerpts": [
+        "Duplicating the tail part of a trace to form a super-block eliminates control paths that enter the trace in the middle. For many op(x) and op(y) instruction pairs, op(x) becomes the sole producer of one or more source operands of op(y). Therefore, profile-based operation combining can find more opportunities for optimization than traditional operation combining."
+      ],
+      "short_title": "Duplication exposes producer relationships",
+      "text": "Tail duplication creates additional optimization opportunities because it can make an earlier operation the sole producer of operands used later in a hot path."
+    },
+    {
+      "evidence_excerpts": [
+        "name     global profile local MIPS. 04 GNU.O ... cmp       1.0    1.42 0.95 0.96         0.95 ... wc        1.0    1.32 0.97 0.96         0.87 ... avg.      1.0    1.15 0.89 0.96         0.88 ... Table 5: Speed for each individual benchmark."
+      ],
+      "short_title": "Profile optimization speeds benchmarks",
+      "text": "On the benchmark suite, profile-based super-block optimizations averaged a 1.15 speedup over the prototype compiler's globally optimized code."
+    },
+    {
+      "evidence_excerpts": [
+        "For each benchmark program, we have selected a number of input data for profiling. Table 4 shows the inputs that are used for each benchmark program. For each benchmark program, we have selected one additional input and used that input to measure the performance."
+      ],
+      "short_title": "Benchmarks use separate inputs",
+      "text": "The experiments used separate profiling inputs and performance-measurement inputs across realistic C application programs."
+    },
+    {
+      "evidence_excerpts": [
+        "For these experiments we use an execution count threshold of 100. Table 6 shows how code optimizations affect the sizes of the benchmark programs.",
+        "name     global profile local ... xlisp      1.0   1.20 1.01 ... avg.       1.0   1.07 1.00 ... Table 6: Ratios of code expansion."
+      ],
+      "short_title": "Code expansion stays controlled",
+      "text": "The profile-based transformations controlled executable size growth, averaging 1.07 relative size compared with globally optimized programs."
+    },
+    {
+      "evidence_excerpts": [
+        "The global code optimizer in our prototype compiler consists of approximately 32,000 lines of C code. The profile-based classic code optimizer consists of approximately 11,000 lines of C code. The profiler has about 2,000 lines of C code and a few assembly language subroutines."
+      ],
+      "short_title": "Implementation cost is modest",
+      "text": "The implementation cost of profile-based classic optimization was modest relative to the existing global optimizer."
+    },
+    {
+      "evidence_excerpts": [
+        "It should be noted that profile-based code optimizations are not alternatives to conventional optimizations, but are meant to be applied in addition to conventional optimizations."
+      ],
+      "short_title": "Profile optimizations complement convention",
+      "text": "Profile-based classic optimizations are intended to complement conventional optimizations rather than replace them."
+    },
+    {
+      "evidence_excerpts": [
+        "We have identified two major reasons why these code optimizations are effective: (1) eliminating control flows into the middle sections of a trace, and (2) optimizing the most frequently executed path in a loop."
+      ],
+      "short_title": "Effectiveness has two mechanisms",
+      "text": "The major effectiveness mechanisms are eliminating entries into the middle of traces and optimizing the most frequently executed loop path."
+    }
+  ],
+  "evidence_items": [
+    {
+      "claim_refs": [
+        "1",
+        "2"
+      ],
+      "evidence_id": "evidence-weighted-flow-graph-counts--b69c0f63a5e2",
+      "evidence_type": "figure_result",
+      "excerpt": "Figure 3 shows a weighted flow graph which represents a loop program. The count of basic blocks {A, B, C, D, E, F} are {100,90,10,0,90,100}, respectively. The arc-count of {A \u2014+ B, A \u2014+ C, B D, B E,C \u2014* F, D \u2014> F, E \u2014> F, F \u2014>A} are {90,10,0,90,10,0,90,99}, respectively. Clearly, the most frequently executed path in this example is the basic block sequence < A ,B ,E ,F >.",
+      "overview": "The example gives a concrete mechanism for the paper's central optimization strategy: profile counts identify a path that is much hotter than nearby alternatives. Because the hot path executes far more often than the cold blocks, later transformations can trade occasional cold-path cost for lower hot-path cost without relying only on conservative static loop structure.",
+      "page_refs": [
+        "Figure 3",
+        "p.16"
+      ],
+      "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+      "title": "Weighted Flow Graph Counts"
+    },
+    {
+      "claim_refs": [
+        "4"
+      ],
+      "evidence_id": "evidence-super-block-optimization-list--e8ad4c77291b",
+      "evidence_type": "table_result",
+      "excerpt": "Table 2 lists super-block code optimizations: constant propagation, copy propagation, constant combining, common subexpression elimination, redundant store elimination, redundant load elimination, dead code removal, loop invariant code removal, loop induction variable elimination, and global variable migration. The non-loop based code optimizations work on a single super-block at a time. The loop based code optimizations work on a single super-block loop at a time.",
+      "overview": "This table grounds the breadth of the reformulation. The paper is not limited to one isolated transformation; it extends a family of classic scalar optimizations to profile-selected regions. The scope distinction also explains why the approach can preserve familiar optimization logic while changing the region of analysis to a hot path or hot loop path.",
+      "page_refs": [
+        "Table 2",
+        "p.23"
+      ],
+      "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+      "title": "Super-Block Optimization Inventory"
+    },
+    {
+      "claim_refs": [
+        "4",
+        "5"
+      ],
+      "evidence_id": "evidence-operation-combining-preconditions--f41c9d82e7a6",
+      "evidence_type": "formal_argument",
+      "excerpt": "The precondition function of operation combining consists of predicates requiring dest(x) to be a subset of src(y), no modification of dest(x) between the two instructions, no modification of src(x) between the two instructions, and a simple transformation of op(y) to use src(x) together with the non-dest operands of src(y). The action replaces op(y) by the transformed operation.",
+      "overview": "The formal precondition/action description makes the optimization auditable. It shows that the profile-guided version still depends on correctness predicates over instruction operands and intervening modifications; profile information expands the region and opportunity set rather than discarding data-dependence constraints.",
+      "page_refs": [
+        "Section 4.4",
+        "p.24"
+      ],
+      "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+      "title": "Operation Combining Preconditions"
+    },
+    {
+      "claim_refs": [
+        "6",
+        "7",
+        "11"
+      ],
+      "evidence_id": "evidence-benchmark-speedups-table--d3f7c9a06421",
+      "evidence_type": "table_result",
+      "excerpt": "Table 5 reports speedups over globally optimized code for profile-based optimization: cccp 1.04, cmp 1.42, compress 1.11, eqn 1.25, eqntott 1.16, espresso 1.03, grep 1.21, lex 1.01, mpla 1.18, tbl 1.03, wc 1.32, xlisp 1.16, yacc 1.08, with average 1.15 and standard deviation 0.12.",
+      "overview": "The table is the strongest empirical support for the performance claim. It compares profile-based super-block optimization against the authors' own globally optimized baseline across multiple non-numeric C programs. The average improvement is meaningful, though the per-program spread shows that benefit depends on workload structure and available hot-path opportunities.",
+      "page_refs": [
+        "Table 5",
+        "p.42"
+      ],
+      "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+      "title": "Benchmark Speedup Results"
+    },
+    {
+      "claim_refs": [
+        "8"
+      ],
+      "evidence_id": "evidence-code-expansion-ratios--9c31e0d14b7a",
+      "evidence_type": "table_result",
+      "excerpt": "For these experiments the authors use an execution count threshold of 100 before adding basic blocks to a trace. Table 6 reports profile-based executable size ratios relative to globally optimized programs: cccp 1.03, cmp 1.11, compress 1.01, eqn 1.10, eqntott 1.00, espresso 1.07, grep 1.09, lex 1.08, mpla 1.13, tbl 1.06, wc 1.01, xlisp 1.20, yacc 1.09, with average 1.07.",
+      "overview": "This evidence addresses the main cost risk of super-block formation: tail duplication can increase code size. The reported threshold and size ratios show a deliberate control mechanism and quantify the remaining expansion. The worst listed case is larger than average, so the result supports controlled rather than zero-cost growth.",
+      "page_refs": [
+        "Table 6",
+        "p.43"
+      ],
+      "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+      "title": "Code Expansion Ratios"
+    },
+    {
+      "claim_refs": [
+        "9"
+      ],
+      "evidence_id": "evidence-implementation-size-measurements--a47e65bd934f",
+      "evidence_type": "measurement",
+      "excerpt": "The global code optimizer in our prototype compiler consists of approximately 32,000 lines of C code. The profile-based classic code optimizer consists of approximately 11,000 lines of C code. The profiler has about 2,000 lines of C code and a few assembly language subroutines.",
+      "overview": "The line-count comparison supports the claim that implementation effort is moderate in the context of an existing optimizer. It does not prove portability to every compiler, but it gives a concrete engineering scale: the profile-guided optimizer is roughly one third the size of the global optimizer, with a smaller profiler component.",
+      "page_refs": [
+        "p.44"
+      ],
+      "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+      "title": "Implementation Size Measurements"
+    }
+  ],
+  "relations": [
+    {
+      "dst_claim_ref": "0",
+      "rationale": "Weighted execution counts provide the runtime information that lets the compiler focus optimizations on frequently executed regions.",
+      "relation_type": "supports",
+      "src_claim_ref": "1"
+    },
+    {
+      "dst_claim_ref": "2",
+      "rationale": "Trace selection and tail duplication are the construction steps that enforce the entry property of super-blocks.",
+      "relation_type": "derived_from",
+      "src_claim_ref": "3"
+    },
+    {
+      "dst_claim_ref": "4",
+      "rationale": "The operation-combining example explains why super-block scope exposes more opportunities for classic optimizations.",
+      "relation_type": "supports",
+      "src_claim_ref": "5"
+    },
+    {
+      "dst_claim_ref": "0",
+      "rationale": "The measured benchmark speedups support the usefulness of integrating profile information into classic optimizations.",
+      "relation_type": "supports",
+      "src_claim_ref": "6"
+    },
+    {
+      "dst_claim_ref": "3",
+      "rationale": "Controlled code expansion is evidence that tail duplication can be practical when trace inclusion is thresholded.",
+      "relation_type": "supports",
+      "src_claim_ref": "8"
+    },
+    {
+      "dst_claim_ref": "0",
+      "rationale": "Both claims frame profile-based optimization as an addition to, rather than a replacement for, conventional optimization.",
+      "relation_type": "similar",
+      "src_claim_ref": "10"
+    },
+    {
+      "dst_claim_ref": "6",
+      "rationale": "The identified mechanisms explain why the measured performance improvements can arise.",
+      "relation_type": "supports",
+      "src_claim_ref": "11"
+    }
+  ],
+  "source": {
+    "authors": [
+      "Pohua P. Chang",
+      "Scott A. Mahlke",
+      "Wen-mei W. Hwu"
+    ],
+    "display_title": "Profile-Guided Classic Optimizations for C Compilers",
+    "record_display_title": "Untitled Source",
+    "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source_locator": "01-using-profile-information-to-assist-classic-code-optimizations.pdf"
+  },
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "1991-04",
+    "origin": "report cover page and documentation page in source markdown",
+    "rationale": "The extracted cover material lists April 1991 and the report documentation page records the date of report as 1991 April."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The proposed workflow inserts profiling after conventional global optimization and before final code generation. The compiler first lowers C to intermediate code, applies classic global optimizations, generates and runs a profiler on selected inputs, maps the summarized profile back onto the intermediate representation, and then reruns modified optimizations with profile data. This sequencing makes profile guidance additive rather than a replacement for the existing optimizer.",
+        "grounding_claim_ids": [
+          "0",
+          "10"
+        ],
+        "heading": "Compiler Integration"
+      },
+      {
+        "body": "The paper extends ordinary flow graphs into weighted flow graphs by associating execution counts with basic blocks and taken counts with arcs. This representation matters because static loop structure can treat cold and hot paths alike, while the profile-weighted graph makes skew explicit. The example path A-B-E-F executes far more often than nearby alternatives, motivating transformations that optimize that path even if cold paths become slightly more expensive.",
+        "grounding_claim_ids": [
+          "1",
+          "2"
+        ],
+        "heading": "Weighted Flow Representation"
+      },
+      {
+        "body": "Super-blocks are created by selecting traces and then using tail duplication to prevent entries into the middle of the selected trace. The result is a single-entry, multi-exit region where a compiler can reason about a frequently executed sequence with less interference from rare control-flow joins. This construction is the enabling representation behind the later optimization rules.",
+        "grounding_claim_ids": [
+          "2",
+          "3",
+          "11"
+        ],
+        "heading": "Super-Block Construction"
+      },
+      {
+        "body": "The source adapts a broad set of classic optimizations to super-blocks and super-block loops. Non-loop transformations operate on one super-block, while loop transformations operate on super-block loops with frequent back edges. The formal operation-combining example shows that the approach still respects operand and modification preconditions; the profile-guided representation expands legal and profitable cases rather than simply ignoring correctness constraints.",
+        "grounding_claim_ids": [
+          "4",
+          "5"
+        ],
+        "heading": "Optimization Reformulation"
+      },
+      {
+        "body": "The benchmark results give the strongest support for the practical value of the method. Across thirteen listed C programs, profile-based optimization averages a 1.15 speedup over globally optimized code, with substantial improvements for cmp, wc, eqn, grep, and mpla. The evaluation also uses separate performance inputs after profiling inputs, which reduces the chance that timing results merely measure the exact profiling runs.",
+        "grounding_claim_ids": [
+          "6",
+          "7"
+        ],
+        "heading": "Empirical Performance"
+      },
+      {
+        "body": "The method is not free. The prototype profiler slows instrumented executions by 25 to 35 times, and tail duplication can enlarge executables. The authors manage expansion with a trace-inclusion threshold of 100 executions and report an average size ratio of 1.07, but some programs still grow more. The implementation-size measurements suggest a feasible research prototype, not a proof that integration would be cheap in every production compiler.",
+        "grounding_claim_ids": [
+          "8",
+          "9"
+        ],
+        "heading": "Costs And Limits"
+      }
+    ],
+    "summary_long": "The report develops an early profile-guided optimization design for classic scalar compiler transformations. Its central move is to add execution counts to the compiler's flow-graph representation, then use those counts to identify the paths that dominate runtime. Rather than replacing conventional optimization, the approach applies ordinary global optimization first and then performs profile-based transformations on a restructured representation. The key representation is the super-block: a linear sequence of basic blocks selected from a hot trace, constrained so control can enter only at the first block while exiting remains possible at multiple points. Tail duplication enforces this shape by copying suffixes of traces that would otherwise have entries in the middle. Once the region has a single entry, familiar transformations such as propagation, common subexpression elimination, redundant load/store elimination, dead code removal, loop invariant code motion, induction variable elimination, and global variable migration can be applied with fewer conservative blockers. The technical argument is that hot-path isolation changes profitability and sometimes changes legality preconditions because operations become unique producers or variables become invariant within a super-block loop even when they are not invariant in the full loop body. The empirical section tests the prototype on non-numeric C applications using separate profiling and timing inputs. Profile-based optimization improves speed by an average factor of 1.15 over the authors' globally optimized baseline, with larger wins for programs such as cmp and wc. The report also acknowledges cost: probe-instrumented profiling runs are 25 to 35 times slower in the prototype, and tail duplication increases executable size. A threshold of 100 executions is used to limit trace growth, yielding an average profile-optimized size ratio of 1.07. Overall, the source is best read as a concrete compiler-engineering argument that profile information can expand the useful scope of classic optimizations when paired with a representation that makes hot paths explicit and auditable.",
+    "summary_short": "This 1991 compiler report argues that execution profiles can make classic code optimizations more effective by steering them toward hot paths rather than uniformly optimizing every possible path. The authors introduce weighted flow graphs, trace selection, tail duplication, and super-block optimizations in a prototype C compiler. Their experiments on realistic C programs report meaningful speedups while keeping code expansion relatively controlled."
+  },
+  "summary": "Chang, Mahlke, and Hwu describe how execution profiles can guide classic C compiler optimizations by forming super-blocks around hot paths and applying familiar transformations within those regions. Their prototype reports average speedups of 1.15 over globally optimized code while controlling code expansion to an average factor of 1.07.",
+  "warnings": [
+    "The source record display title was Untitled Source, but the markdown extraction recovered the report title, authors, and April 1991 report date.",
+    "The markdown was marked usable by extraction metadata; OCR artifacts are present in front matter but core technical sections, tables, and conclusions are readable.",
+    "Evidence page references are approximate because the provided markdown is plain text extracted from PDF layout rather than page-anchored structured text."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "space_subspaces_v1",
+  "subspaces": [
+    {
+      "space_name": "mind",
+      "space_root": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind",
+      "title": "Mind"
+    }
+  ]
+}

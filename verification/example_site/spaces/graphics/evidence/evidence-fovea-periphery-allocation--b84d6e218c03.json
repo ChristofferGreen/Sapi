@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+    "claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9"
+  ],
+  "evidence_id": "evidence-fovea-periphery-allocation--b84d6e218c03",
+  "evidence_type": "model_constraint",
+  "excerpt": "The survey explains that approximately half of optic nerve fibers are distributed in the fovea and the rest across the periphery, then describes foveated rendering as high-quality rendering in the foveal region and low-quality rendering in the peripheral region.",
+  "overview": "This passage supplies the perceptual mechanism behind the acceleration claim. It connects retinal resource distribution to an engineering strategy: spend rendering work where the user can perceive fine detail and reduce work in peripheral regions where lower fidelity is less noticeable.",
+  "page_refs": [
+    "p.196"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "title": "Fovea-Periphery Quality Allocation"
+}

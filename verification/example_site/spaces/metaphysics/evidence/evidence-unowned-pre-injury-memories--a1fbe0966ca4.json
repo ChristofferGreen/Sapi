@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-episodic-recollection-can-preserve-temporally-and-spatially-situated-autobiograp--43867278649d",
+    "claim-the-memory-based-sense-of-personal-identity-depends-on-at-least-two-separable-co--f9eaee4ce165",
+    "claim-the-sense-of-numerical-personal-identity-is-a-contingent-feature-of-episodic-mem--b672a3618f23"
+  ],
+  "evidence_id": "evidence-unowned-pre-injury-memories--a1fbe0966ca4",
+  "evidence_type": "observational_result",
+  "excerpt": "What I realized was that I did not \u2018own\u2019 any memories that came before my injury. I knew things that came before my injury. In fact, it seemed that my memory was just fine for things that happened going back years in the past [the period close to the injury was more disrupted]. I could answer any question about where I lived at different times in my life, who my friends were, where I went to school, activities I enjoyed, etc. But none of it was \u2018me\u2019. It was the same sort of knowledge I might have about how my parents met or the history of the Civil War or something like that.",
+  "overview": "This first-person report is the central observational datum of the article. It separates accurate autobiographical access from the phenomenal ownership normally associated with remembering one's past, thereby grounding the claim that episodic memory content and mineness can come apart.",
+  "page_refs": [
+    "p.685"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+  "title": "Unowned Pre-Injury Memories"
+}

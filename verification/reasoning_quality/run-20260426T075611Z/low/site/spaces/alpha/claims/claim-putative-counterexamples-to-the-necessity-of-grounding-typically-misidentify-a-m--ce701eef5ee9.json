@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T08:01:29Z",
+  "claim_id": "claim-putative-counterexamples-to-the-necessity-of-grounding-typically-misidentify-a-m--ce701eef5ee9",
+  "evidence_excerpts": [
+    "When faced with a case in which it seems that [p] is fully grounded in D yet ~ 0(\u2227D \u2192 p), the advocate of necessity should check to see if there are additional explanatorily relevant facts P such that 0(\u2227(D, P) \u2192 p).",
+    "Hence, it seems that the proponent of this putative counterexample, rather than mistaking a mere partial ground for a complete ground, mistakes a non-ground for a ground."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Counterexamples misidentify grounds",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "Putative counterexamples to the necessity of grounding typically misidentify a merely partial ground, or even a non-ground, as a full ground."
+}

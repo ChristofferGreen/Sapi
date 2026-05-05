@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-when-connecting-questions-lack-cognitive-significance-fine-style-essential-truth--6cba612fbc37",
+    "claim-because-essential-truths-are-metaphysically-necessary-the-significance-and-essen--91a2b8cae171"
+  ],
+  "evidence_id": "evidence-essence-principle--6e8195a096f0",
+  "evidence_type": "formal_argument",
+  "excerpt": "essence: the connecting questions with respect to [p] and D lack cognitive significance only if there are certain essential truths characteristic of [p], D, the plurality consisting of [p] and D, or the entities they involve according to which \u2227D \u2192 p.",
+  "overview": "This principle connects the epistemic condition to Finean essence. It is the bridge from the absence of cognitive significance to a metaphysical basis for entailment, making the argument more than a stipulative association between grounding and modality.",
+  "page_refs": [
+    "pp.467, 473-474"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Essence Entailment Principle"
+}

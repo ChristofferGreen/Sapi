@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:55:13Z",
+  "claim_id": "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de",
+  "evidence_excerpts": [
+    "The transformed back-annotation data include WCET for the entire program, functions, and basic blocks; WCEP membership; worst-case execution frequency per CFG edge; execution feasibility; I-cache misses per basic block; code size; and spill-code amount."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Back annotation enables optimization",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "text": "WCC\u2019s back-annotation raises assembly-level WCET information to source-level ICD-C structures, enabling source-level optimizations to use WCET, WCEP membership, execution frequencies, cache misses, code size, and spill-code data."
+}

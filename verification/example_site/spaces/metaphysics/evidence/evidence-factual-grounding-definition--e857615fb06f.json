@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-factual-grounding-is-analyzed-through-disjunctive-parthood-a-plurality-of-facts--d0a2dc4b2f48"
+  ],
+  "evidence_id": "evidence-factual-grounding-definition--e857615fb06f",
+  "evidence_type": "equation",
+  "excerpt": "FACTUAL-GROUNDING p1, p2, \u2026 < q iff: (i) p1 \u00d9 p2 \u00d9 \u2026 \u2291\u2228 q; and (ii) neither q \u2291\u2227\u2228 p1, nor q \u2291\u2227\u2228 p2, nor \u2026",
+  "overview": "This definition supplies the grounding side of the unification. It translates strict full factual grounding into disjunctive and conjunctive parthood relations defined through generalized identity, while excluding cases where the grounded fact is already relevantly contained in the grounds.",
+  "page_refs": [
+    "p.20"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "title": "Factual Grounding Definition"
+}

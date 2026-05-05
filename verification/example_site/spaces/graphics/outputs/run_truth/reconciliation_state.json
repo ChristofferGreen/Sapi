@@ -1,0 +1,54 @@
+{
+  "flow_states": {
+    "comment_section_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T203446Z--b5s60z7dat",
+        "run-20260426T203709Z--chr52ichd7",
+        "run-20260426T203933Z--skkq4u3p1p",
+        "run-20260426T204153Z--g3iwkqhzig",
+        "run-20260426T204411Z--l4fu8od8dn",
+        "run-20260426T204629Z--vql2a8ym7m",
+        "run-20260426T204856Z--927x1avtce",
+        "run-20260426T205113Z--ycbz5dwi9l",
+        "run-20260426T205331Z--gn6kskgv75",
+        "run-20260426T205554Z--q82w9xgk0g",
+        "run-20260426T205811Z--u6i9cqlt03",
+        "run-20260426T210027Z--34gs7so9d2",
+        "run-20260426T210247Z--1zoxvhk500",
+        "run-20260426T210531Z--2agaus6nxe",
+        "run-20260426T210756Z--b3nefpcjab",
+        "run-20260426T211038Z--x7efr4tli3",
+        "run-20260426T211309Z--z8mu9c58w6",
+        "run-20260426T211527Z--vq68wi1xrm",
+        "run-20260426T211750Z--5wuymkp6zl"
+      ],
+      "consecutive_advanced_runs": 19,
+      "last_advanced_completed_at": "2026-04-26T21:20:07Z",
+      "last_advanced_run_id": "run-20260426T211750Z--5wuymkp6zl",
+      "last_advanced_status": "success"
+    },
+    "ingest_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T163144Z--n28eae4022",
+        "run-20260426T163844Z--hlmvvvvg9j",
+        "run-20260426T164930Z--dj3neh2btz",
+        "run-20260426T170110Z--1t4ar4rlta",
+        "run-20260426T171122Z--orhuj9omy2"
+      ],
+      "consecutive_advanced_runs": 5,
+      "last_advanced_completed_at": "2026-04-26T17:20:43Z",
+      "last_advanced_run_id": "run-20260426T171122Z--orhuj9omy2",
+      "last_advanced_status": "success"
+    },
+    "overview_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T182002Z--yvmzjqk5pt"
+      ],
+      "consecutive_advanced_runs": 1,
+      "last_advanced_completed_at": "2026-04-26T18:23:50Z",
+      "last_advanced_run_id": "run-20260426T182002Z--yvmzjqk5pt",
+      "last_advanced_status": "success"
+    }
+  },
+  "schema_version": "run_truth_reconciliation_v1"
+}

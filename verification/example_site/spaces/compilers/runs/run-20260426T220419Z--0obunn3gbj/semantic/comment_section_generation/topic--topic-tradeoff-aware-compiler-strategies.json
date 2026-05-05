@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "This synthesis works because it does not treat optimization wins as free. The profile-guided work pairs a 1.15 average speedup with code-growth and profiling-overhead numbers, the machine-learning survey keeps asking whether the training data represents real programs, and the distributed quantum compiler makes Bell-state use part of the cost model. Those are very different compiler settings, but the evaluation habit is recognizably the same.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded across all three sources and captures the page's tradeoff theme clearly.",
+        "score": 25
+      }
+    },
+    {
+      "body": "The common thread I see is representation. Weighted flow graphs make hot paths visible, program features make machine-learning decisions measurable, and distributed circuit layers expose which remote CNOTs compete for network resources. In each case, the compiler only gets to make a better tradeoff after the problem has been recast into something it can count or compare.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Insightfully connects source-specific mechanisms without flattening their technical differences.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I would be careful not to read the three examples as equally mature deployment stories. Profile-guided super-block optimization has concrete speed and size measurements, learned compiler heuristics depend heavily on benchmark coverage and feature quality, and the quantum compiler is intentionally analyzed under a restrictive topology. The page is strongest when it presents them as comparable decision patterns, not as equally settled engineering practices.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Adds a useful caveat while staying aligned with the evidence and synthesis framing.",
+        "score": 26
+      }
+    },
+    {
+      "body": "That distinction helps. The profile-guided paper can point to separate profiling and timing inputs, while the machine-learning survey is more exposed to training-set mismatch. Both are empirical, but the validation risk is not identical.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Good focused reply that sharpens an evaluation nuance, though narrower than the root comments.",
+        "score": 20
+      }
+    },
+    {
+      "body": "The distributed quantum example also broadens the idea of compiler cost. It is not just runtime, code size, or training effort; it is communication depth, Bell-pair consumption, topology assumptions, and available communication qubits. Including it keeps the page from making compiler tradeoffs look like a purely classical performance-tuning problem.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Accurately extends the synthesis using the quantum source's resource constraints.",
+        "score": 23
+      }
+    }
+  ],
+  "page_ref": "topic:topic-tradeoff-aware-compiler-strategies",
+  "requested_count": 5
+}

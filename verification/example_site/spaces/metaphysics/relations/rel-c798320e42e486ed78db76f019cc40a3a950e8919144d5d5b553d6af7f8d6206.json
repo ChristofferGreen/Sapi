@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-shifts-away-from-hard-materialism-are-positively-associated-with-increases-in-ps--4bb5f88069f2",
+  "dst_claim_ref": "8",
+  "last_evaluated_run_id": null,
+  "rationale": "Both claims connect movement away from materialism with positive mental-health or clinical-response outcomes.",
+  "relation_file_id": "rel-c798320e42e486ed78db76f019cc40a3a950e8919144d5d5b553d6af7f8d6206",
+  "relation_id": "similar:claim-patients-who-clinically-responded-to-psilocybin-therapy-showed-greater-shifts-aw--b78b1f525f61|claim-shifts-away-from-hard-materialism-are-positively-associated-with-increases-in-ps--4bb5f88069f2",
+  "relation_type": "similar",
+  "src_claim_id": "claim-patients-who-clinically-responded-to-psilocybin-therapy-showed-greater-shifts-aw--b78b1f525f61",
+  "src_claim_ref": "5",
+  "status": "open"
+}

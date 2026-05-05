@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-wcet-aware-register-allocation-lowers-wcet-by-avoiding-spill-code-on-the-wcep-ev--a21ac879b656",
+    "claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616"
+  ],
+  "evidence_id": "evidence-register-and-combined-results--6c5f58db924a",
+  "evidence_type": "observational_result",
+  "excerpt": "Across 46 benchmarks, WCET-aware register allocation achieves 68.8% of the original WCET on average, a 31.2% reduction, while spectral reaches 24.1% and qurt reaches 93.1%. For matmult, the combined sequence reduces WCET from 775,720 cycles to 227,794 cycles, an overall reduction of more than 70%.",
+  "overview": "This evidence covers both a single optimization and the composition claim. Register allocation demonstrates WCEP-sensitive spill placement, while matmult demonstrates that multiple WCET-aware optimizations can add constructively rather than merely duplicating the same savings.",
+  "page_refs": [
+    "Fig. 15",
+    "Fig. 16",
+    "pp.295-297"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "title": "Register and Combined Results"
+}

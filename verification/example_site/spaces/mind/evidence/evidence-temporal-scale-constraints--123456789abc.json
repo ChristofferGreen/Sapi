@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb",
+    "claim-the-quantity-of-consciousness-available-to-a-system-is-measured-by-the-value-of--48abc06d417d"
+  ],
+  "evidence_id": "evidence-temporal-scale-constraints--123456789abc",
+  "evidence_type": "observational_result",
+  "excerpt": "Studies of how a percept is progressively specified and stabilized indicate that it takes up to 100\u2013200 milliseconds to develop a fully formed sensory experience. Other evidence indicates that a single conscious moment does not extend beyond 2\u20133 seconds. Time wise, \u03a6 values in the brain are likely to show a maximum between tens and hundreds of milliseconds.",
+  "overview": "The temporal evidence constrains what counts as an element state and interaction window for measuring \u03a6. Consciousness is not predicted at arbitrarily fast or slow scales; the relevant causal interactions must unfold on time scales where differential effects can propagate without dissolving into independent settled states. This limits the theory\u2019s measurement target and links it to known perceptual timing.",
+  "page_refs": [
+    "pp.3",
+    "p.6"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Temporal Scale Constraints"
+}

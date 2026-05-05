@@ -1,0 +1,134 @@
+{
+  "context_by_path": {
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources"
+  },
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims"
+  ],
+  "flow_key": "topic_generation",
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/runs/run-20260426T174034Z--a48ivfove6/semantic/topic_generation.json",
+  "repair_context": {
+    "previous_invalid_json": "{\n  \"topics\": [\n    {\n      \"claim_ids\": [\n        \"claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e\",\n        \"claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5\",\n        \"claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0\",\n        \"claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d\",\n        \"claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be\",\n        \"claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992\",\n        \"claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c\",\n        \"claim-distributed-quantum-computing-requires-compilers-that-can-map-arbitrary-quantum--e4ea92cd41cd\",\n        \"claim-remote-cnot-execution-consumes-bell-state-resources-and-is-limited-by-the-number--ff11e4d2be8e\",\n        \"claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d\"\n      ],\n      \"sections\": [\n        \"Compilers in all three sources improve decisions by incorporating evidence about the program, machine, or execution context rather than relying only on fixed local rules.\",\n        \"In classical C optimization, execution profiles and weighted flow graphs identify frequently executed regions so familiar scalar optimizations can be focused on hot paths and super-block loops.\",\n        \"In machine-learning compilation, quantified program features and empirical performance labels train models that can later choose heuristics or optimization options for unseen programs.\",\n        \"In distributed quantum compilation, the compiler must account for remote-operation timing, Bell-state availability, communication latency, and communication-qubit limits when mapping quantum algorithms to a distributed architecture.\",\n        \"A useful synthesis page would compare profiling counts, learned features, and distributed coupling-map dynamics as different evidence sources for deciding where and how transformations should be applied.\"\n      ],\n      \"source_ids\": [\n        \"source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf\",\n        \"source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d\",\n        \"source-03-compiler-design-for-distributed-quantum-computing--64a02810764d\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Evidence-guided compilation for context-dependent optimization\",\n      \"topic_id\": \"topic-evidence-guided-compilation\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-super-blocks-represent-frequently-executed-paths-as-linear-basic-block-sequences--7bbb510c9bb0\",\n        \"claim-trace-selection-followed-by-tail-duplication-converts-frequently-executed-traces--1483ee9d0534\",\n        \"claim-tail-duplication-creates-additional-optimization-opportunities-because-it-can-ma--6c81300e0307\",\n        \"claim-feature-selection-and-dimension-reduction-are-necessary-in-compiler-learning-pro--ecd12a4a4f1f\",\n        \"claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26\",\n        \"claim-future-research-in-machine-learning-compilation-extends-beyond-choosing-optimiza--faf587f1fc17\",\n        \"claim-distributed-quantum-computing-can-let-remote-quantum-processing-units-cooperate--c8a669f6488f\",\n        \"claim-the-paper-s-worst-case-system-model-uses-one-data-qubit-per-processor-and-a-one--9e5973bc3485\",\n        \"claim-entanglement-swapping-augments-distributed-processor-connectivity-by-enabling-re--b0cac39f5fb5\"\n      ],\n      \"sections\": [\n        \"Across the sources, the form of the compiler's representation determines which choices become visible and tractable.\",\n        \"Profile-guided classic optimization converts hot traces into super-blocks by trace selection and tail duplication, creating linear regions with a single entry and many possible exits.\",\n        \"Machine-learning optimization depends on feature representations, and the evidence warns that high-dimensional feature spaces often require selection or reduction before models can generalize usefully.\",\n        \"Distributed quantum compilation models a networked machine as processors, communication qubits, quantum links, remote CNOT operations, and topology-dependent constraints; the worst-case model deliberately makes every CNOT remote to expose overhead.\",\n        \"The shared concept is that a compiler representation is not neutral: super-blocks, feature vectors, and coupling maps each decide what dependencies, costs, and legal transformations the optimizer can reason about.\"\n      ],\n      \"source_ids\": [\n        \"source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf\",\n        \"source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d\",\n        \"source-03-compiler-design-for-distributed-quantum-computing--64a02810764d\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Representations that define optimization scope\",\n      \"topic_id\": \"topic-representations-for-optimization-scope\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-profile-based-classic-optimizations-are-intended-to-complement-conventional-opti--6bcefbcf9607\",\n        \"claim-on-the-benchmark-suite-profile-based-super-block-optimizations-averaged-a-1-15-s--e5d7486c0e56\",\n        \"claim-the-profile-based-transformations-controlled-executable-size-growth-averaging-1--5bacab4b8a28\",\n        \"claim-the-experiments-used-separate-profiling-inputs-and-performance-measurement-input--ee5ac2fa5a94\",\n        \"claim-the-implementation-cost-of-profile-based-classic-optimization-was-modest-relativ--062df22ec16c\",\n        \"claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3\",\n        \"claim-thread-coarsening-decisions-are-context-dependent-because-coarsening-can-improve--4878860bda89\",\n        \"claim-the-major-effectiveness-mechanisms-are-eliminating-entries-into-the-middle-of-tr--4bc0ff5e21b0\",\n        \"claim-in-the-worst-case-topology-the-entanglement-swapping-based-strategy-has-per-laye--bd58d42b2d90\",\n        \"claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172\",\n        \"claim-the-proposed-compiler-is-computationally-efficient-because-distributing-a-circui--b9f318c6234c\",\n        \"claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c\"\n      ],\n      \"sections\": [\n        \"The sources share a view of compiler optimization as a tradeoff problem whose success must be measured rather than assumed.\",\n        \"Profile-based classic optimizations are presented as complements to conventional optimization, with reported speedups but also measured executable-size growth and separate profiling versus measurement inputs.\",\n        \"Machine-learning compilation emphasizes empirically trained decisions, but also highlights context dependence, such as thread coarsening improving some performance factors while hurting parallelism or register pressure on particular hardware.\",\n        \"Distributed quantum compilation compares data-qubit swapping and entanglement swapping under topology and resource constraints, using analytical bounds and medium-size circuit experiments to validate strategy choices.\",\n        \"A synthesis page could organize compiler strategies by the costs they trade off: runtime versus code size, training-data cost versus prediction quality, and communication depth versus Bell-pair or qubit-resource consumption.\"\n      ],\n      \"source_ids\": [\n        \"source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf\",\n        \"source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d\",\n        \"source-03-compiler-design-for-distributed-quantum-computing--64a02810764d\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Tradeoff-aware compiler strategies and empirical validation\",\n      \"topic_id\": \"topic-tradeoff-aware-compiler-strategies\"\n    }\n  ]\n}",
+    "require_complete_replacement_json": true,
+    "validation_errors": [
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/0/sections/0",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/0/sections/1",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/0/sections/2",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/0/sections/3",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/0/sections/4",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+        "path": "/topics/0/sections",
+        "validator": "section_body_contract",
+        "validator_value": "at_least_one_non_empty_body"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/1/sections/0",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/1/sections/1",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/1/sections/2",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/1/sections/3",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/1/sections/4",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+        "path": "/topics/1/sections",
+        "validator": "section_body_contract",
+        "validator_value": "at_least_one_non_empty_body"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/2/sections/0",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/2/sections/1",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/2/sections/2",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/2/sections/3",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/2/sections/4",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+        "path": "/topics/2/sections",
+        "validator": "section_body_contract",
+        "validator_value": "at_least_one_non_empty_body"
+      },
+      {
+        "message": "Normalization error: topic_generation semantic output requires at least one section with non-empty body.",
+        "path": "/topics",
+        "validator": "post_schema_contract",
+        "validator_value": "topic_generation_normalizer"
+      }
+    ]
+  },
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json",
+  "version": "v1"
+}

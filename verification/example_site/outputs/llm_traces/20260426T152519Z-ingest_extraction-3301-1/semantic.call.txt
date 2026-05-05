@@ -1,0 +1,507 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: ingest_extraction
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/runs/run-20260426T152518Z--g2jrtnjpv1/semantic/ingest_extraction.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/artifacts
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/relations
+
+=== generation spec ===
+flow_key: ingest_extraction
+version: v1
+schema_path: schemas/ingest_extraction.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/ingest_extraction.json
+context_paths:
+  - <space_root>/sources/records
+  - <space_root>/sources/artifacts
+  - <space_root>/claims
+  - <space_root>/relations
+---
+## Task
+Generate one strict JSON object for ingest extraction at `output_json_path`.
+
+## Context Interpretation Rules
+- Treat `context_paths` as the only evidence scope for this generation.
+- For source reading, prefer `sources/artifacts/<source_id>/source.md` as the default analysis input.
+- Inspect `sources/artifacts/<source_id>/source_extraction.json` before trusting the markdown fully.
+- Use the original binary artifact only for fidelity-sensitive checks such as tables, figures, equations, or layout recovery when the extraction metadata says markdown quality is degraded or unusable.
+- If context is missing or ambiguous, keep values conservative and place details in `warnings`.
+- Do not invent canonical IDs beyond schema-allowed fields.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- `source.display_title` is required and MUST be a high-quality post-style title for UI display.
+  - target length: `4..12` words (`12..120` chars) for high-quality outputs
+  - schema lower bound is `4` chars for compatibility with short canonical titles; still prefer `12+`
+  - summarize the central claim/theme of the source
+  - avoid raw filenames, slugs, IDs, URLs, hashes, and boilerplate metadata fragments
+  - keep wording readable and specific (not clickbait, not generic placeholders)
+  - no trailing punctuation
+- `source.authors` SHOULD be included whenever the paper names identifiable authors.
+  - output an ordered JSON array of human author names as they appear on the paper
+  - do not emit placeholders like `unknown`, `the authors`, `editorial synthesis`, or organization names unless the paper truly credits only an organization
+  - if author names cannot be recovered with confidence, prefer omitting `source.authors` over guessing
+- `source_dossier` is required and MUST be included:
+  - `summary_short`: reader-facing abstract (2-4 sentences)
+  - `summary_long`: substantive overview/commentary so readers can understand the source without opening the PDF
+    - target depth: `~900..4000` chars (minimum schema requirement is 900)
+  - `sections`: 5..8 section objects with `heading`, `body`, and `grounding_claim_ids`
+    - each section body should be detailed (`~140..800` chars)
+  - section writing should cover: argument, evidence/reasoning path, assumptions/limits, and practical interpretation
+  - every section SHOULD cite relevant `claim_id` values in `grounding_claim_ids` when claim evidence exists
+  - avoid generic filler; write source-specific commentary grounded in extracted claims
+- `evidence_items` is required and MUST be the canonical evidence output for this flow:
+  - output `0..n` evidence items; emit an empty array if no concrete evidence artifacts exist
+  - each item MUST include:
+    - `evidence_id` in canonical slug+hash format (`evidence-<slug>--<hex>`)
+    - `title` (clear reader-facing label, target `3..8` words)
+    - `excerpt` (concrete evidence artifact text from source content)
+    - `overview` (why the evidence matters, what it establishes, and scope limits)
+    - `evidence_type` enum value
+    - `claim_refs` with one or more references to extracted claims (index, claim_key, or claim_id)
+    - `source_id` matching the ingested source
+  - evidence quality bar:
+    - acceptable evidence: measurements/statistics, theorem or proof steps, equations/derivations, table/figure findings, formal argument fragments
+    - reject low-information paraphrases and publication-process narration (`the paper claims...`, `the article argues...`)
+    - each evidence item should be independently meaningful and auditable
+  - do not emit synthetic evidence IDs/titles by truncation rules; author high-quality IDs/titles directly
+- each claim object SHOULD include `short_title` for UI claim-link labels:
+  - MUST be authored by the LLM from claim semantics (not a mechanical truncation of claim text)
+  - MUST be `3..7` words
+  - SHOULD follow compact truth-apt proposition style (`X is Y`, `X implies Y`, `X constrains Y`)
+  - MUST avoid lead-ins like `the paper claims`, `the article argues`, `authors show`
+  - MUST be a concise label, not a full sentence/parapraph
+- claim `text` MUST be a truth-apt proposition attributed to the source content itself
+  - avoid meta narration about the publication process (`the paper presents`, `the article gives`)
+  - when the source uses reporting lead-ins, rewrite to the underlying proposition
+- claim `evidence_excerpts` (or alias `evidence`) MAY be included as claim-local mirrors of `evidence_items` excerpts:
+  - acceptable: measurement values/statistics, theorem/proof steps, equations, formal derivations, table/figure findings
+  - avoid repeating the claim text itself or generic narrative summaries (`the paper claims...`)
+  - if no concrete evidence artifact is available, prefer an empty list over low-quality filler
+- `relations` MAY be empty, but when relation objects are emitted they MUST use the canonical relation shape:
+  - `relation_type`: one of `supports`, `derived_from`, `falsifies`, `contradictory`, `similar`
+  - `src_claim_ref` and `dst_claim_ref`: references to extracted claims by index, `claim_key`, or `claim_id`
+  - use `src_claim_id`/`dst_claim_id` only when you already know canonical claim IDs from context
+  - do not emit generic `type`, `src`, or `dst` keys; those are invalid for this schema
+  - optional `rationale` may explain the relation in one concise sentence
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "source_date_inference": null,
+  "source": {
+    "display_title": "",
+    "authors": ["Author One", "Author Two"]
+  },
+  "claims": [
+    {
+      "text": "",
+      "short_title": ""
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "",
+      "title": "",
+      "excerpt": "",
+      "overview": "",
+      "evidence_type": "formal_argument",
+      "claim_refs": ["0"],
+      "source_id": ""
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "0",
+      "dst_claim_ref": "1",
+      "rationale": ""
+    }
+  ],
+  "summary": "",
+  "warnings": [],
+  "source_dossier": {
+    "summary_short": "",
+    "summary_long": "",
+    "sections": [
+      {
+        "heading": "",
+        "body": "",
+        "grounding_claim_ids": []
+      }
+    ]
+  }
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/relations": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/relations",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/artifacts": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/artifacts",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/records"
+}
+
+=== llm output ===
+{
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source": {
+    "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+    "display_title": "Psychedelics Shift Beliefs Beyond Hard Materialism",
+    "authors": [
+      "Christopher Timmermann",
+      "Hannes Kettner",
+      "Chris Letheby",
+      "Leor Roseman",
+      "Fernando E. Rosas",
+      "Robin L. Carhart-Harris"
+    ],
+    "doi": "10.1038/s41598-021-01209-2",
+    "journal": "Scientific Reports"
+  },
+  "claims": [
+    {
+      "text": "Psychedelic use is associated with significant shifts away from hard physicalist or materialist metaphysical beliefs and toward non-physicalist positions such as panpsychism, dualism, and non-naturalism.",
+      "short_title": "Psychedelics reduce hard materialism",
+      "evidence_excerpts": [
+        "Pooling scores for the NPB factor, analyses revealed a significant shift away from physicalism at 4 weeks compared with baseline (t(121) = 3.66, p = 0.001, d = 0.33, 95% CI [0.12, 0.39]).",
+        "The Non-Physicalist Beliefs factor included positive loadings for beliefs in supernatural realms, non-natural unifying principles, panpsychism, dualism, and solipsism/idealism, while materialism and naturalism loaded negatively."
+      ]
+    },
+    {
+      "text": "Most psychedelic-associated shifts in non-physicalist metaphysical beliefs persisted for at least six months, while fatalistic determinism was less durable in the overall observational sample.",
+      "short_title": "Belief shifts partly endure",
+      "evidence_excerpts": [
+        "These changes were sustained 6 months after the ceremony (t(121) = 5.07, p < 0.0001, d = 0.46, 95% CI [0.22, 0.50]).",
+        "The observed changes were enduring, persisting for up to 6 months in most domains, with the exception of fatalistic determinism."
+      ]
+    },
+    {
+      "text": "Participants with no prior psychedelic experience showed larger shifts away from physicalism than the full observational sample.",
+      "short_title": "Naive users shift more",
+      "evidence_excerpts": [
+        "Their first psychedelic experience ... significant changes found at 4 weeks (t(52) = 3.85, p = 0.001, d = 0.53, 95% CI [0.21, 0.66]) and 6 months (t(52) = 5.32, p < 0.0001, d = 0.73, 95% CI [0.36, 0.80])."
+      ]
+    },
+    {
+      "text": "Greater lifetime psychedelic use correlates with stronger baseline panpsychist beliefs and weaker baseline hard materialist beliefs.",
+      "short_title": "Past use predicts panpsychism",
+      "evidence_excerpts": [
+        "A significant positive correlation was found between previous psychedelic use and shifts away from the hard-materialism pole of the hard-materialism vs. hard-dualism spectrum at baseline (r = 0.223, p < 0.0001).",
+        "Lifetime psychedelic use was positively correlated with panpsychist views and negatively correlated with hard materialistic views measured at baseline."
+      ]
+    },
+    {
+      "text": "Ceremonial psychedelic use increased fatalistic determinism at four weeks in the overall prospective sample, but this effect did not persist to six months except in the psychedelic-naive subgroup.",
+      "short_title": "Fatalism rises temporarily",
+      "evidence_excerpts": [
+        "The psychedelic ceremony was associated with increases in scores of Fatalistic determinism at 4 weeks versus baseline (t(121) = 2.81, p = 0.012, d = 0.25, 95% CI [0.06, 0.37]); however, this effect did not persist at 6 months.",
+        "For psychedelic-naïve participants ... the changes persisted for at least 6 months (t(52) = 2.86, p = 0.012, d = 0.39, 95% CI [0.11, 0.64])."
+      ]
+    },
+    {
+      "text": "Shifts away from hard materialism are positively associated with increases in psychological well-being after psychedelic ceremonies.",
+      "short_title": "Belief change tracks wellbeing",
+      "evidence_excerpts": [
+        "A significant positive correlation was found between shifts away from hard-materialism (the NPB factor) and changes in well-being. The correlation was significant at 4 weeks and at 6 months post-ceremony.",
+        "Figure 3. Shifts away from hard materialistic beliefs are associated with increases in well-being."
+      ]
+    },
+    {
+      "text": "Perceived emotional synchrony during the psychedelic ceremony mediates later changes in non-physicalist beliefs, with baseline peer conformity moderating that pathway.",
+      "short_title": "Synchrony mediates belief change",
+      "evidence_excerpts": [
+        "Results supported a model with excellent fit in which perceived ‘emotional synchrony’ with other participants—moderated by baseline scores of peer conformity—predicted subsequent changes in the NPB factor.",
+        "Figure 4. Changes in non-physicalist beliefs are moderated by baseline variables and pre-state identify fusion and mediated by acute emotional synchrony during the psychedelic session."
+      ]
+    },
+    {
+      "text": "In a randomized controlled depression trial, psilocybin therapy produced shifts away from hard materialism at six weeks whereas escitalopram did not.",
+      "short_title": "Psilocybin shifts materialism",
+      "evidence_excerpts": [
+        "A significant drug versus time interaction was observed (F(56) = 3.13, p = 0.041, one-tailed).",
+        "Post-hoc tests reveal that shifts away from hard materialism were evident in the psilocybin group only (Z = 2.28, p = 0.02, d = 0.45). The escitalopram group showed no changes in NPB (Z = 0.24, p = 0.33, d = 0.2)."
+      ]
+    },
+    {
+      "text": "Patients who clinically responded to psilocybin therapy showed greater shifts away from hard materialist beliefs than patients who responded to escitalopram.",
+      "short_title": "Psilocybin response shifts beliefs",
+      "evidence_excerpts": [
+        "Significantly greater shifts away from hard materialistic beliefs were found for those patients who showed a clinically meaningful response to psilocybin only ... versus those who showed a response to escitalopram (Z = 1.74, p = 0.041, g = 0.56, 90% CI [− 0.17, 1.26])."
+      ]
+    },
+    {
+      "text": "The combined prospective, correlational, mechanistic, and controlled-trial evidence supports a possible causal influence of psychedelic use on metaphysical belief change, while remaining limited by sample selection and contextual confounds.",
+      "short_title": "Causality remains context-limited",
+      "evidence_excerpts": [
+        "These lines of evidence include: (1) that the belief-shifts were observed prospectively ... (5) independent data from a separate controlled study in a different population, replicated our observational research findings.",
+        "The study did not collect respondents’ and patients’ religious affiliations at baseline, differential environmental susceptibilities, or interests concerning metaphysical beliefs."
+      ]
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "evidence-nonphysicalist-factor-loadings--a15b9c27d4e8",
+      "title": "Non-Physicalist Factor Structure",
+      "excerpt": "A factor analysis on the belief items revealed a single Non-physicalist Beliefs factor with good internal consistency (Cronbach’s alpha = 0.86). Positive loadings included separate and supernatural realms, a non-natural unifying principle, panpsychism, dualism, and solipsism/idealism; negative loadings included hard materialism, physicalism, and naturalism.",
+      "overview": "This factor-analysis result defines the main outcome variable used throughout the study. It matters because the reported belief changes are not tied to a single questionnaire item, but to a composite that contrasts non-physicalist positions with hard materialist or naturalist positions. The interpretation remains bounded by the authors’ warning that philosophical labels for items are contestable.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "0"
+      ],
+      "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+      "page_refs": [
+        "Table 1",
+        "p.2"
+      ]
+    },
+    {
+      "evidence_id": "evidence-prospective-npb-shift--b621cf90a43d",
+      "title": "Prospective Belief Shift",
+      "excerpt": "Pooling scores for the NPB factor, analyses revealed a significant shift away from physicalism at 4 weeks compared with baseline (t(121) = 3.66, p = 0.001, d = 0.33, 95% CI [0.12, 0.39]). These changes were sustained 6 months after the ceremony (t(121) = 5.07, p < 0.0001, d = 0.46, 95% CI [0.22, 0.50]).",
+      "overview": "The pre-versus-post comparison is the central prospective evidence that psychedelic ceremonies were followed by measurable movement away from hard physicalism. It establishes temporal ordering and durability for the composite non-physicalist belief measure, though the observational ceremony context means it does not by itself fully isolate the pharmacological cause.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "0",
+        "1"
+      ],
+      "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+      "page_refs": [
+        "Fig. 1",
+        "p.2"
+      ]
+    },
+    {
+      "evidence_id": "evidence-naive-participant-effects--c83d4f51e6a0",
+      "title": "Naive Participant Effects",
+      "excerpt": "For respondents embarking on their first psychedelic experience, significant changes were found at 4 weeks (t(52) = 3.85, p = 0.001, d = 0.53, 95% CI [0.21, 0.66]) and 6 months (t(52) = 5.32, p < 0.0001, d = 0.73, 95% CI [0.36, 0.80]).",
+      "overview": "The stronger effect sizes among psychedelic-naive participants support the interpretation that the observed shifts are not merely a residue of earlier psychedelic exposure. This evidence is especially relevant to causal interpretation, while still sharing the observational limitations of the ceremony cohort.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "2",
+        "9"
+      ],
+      "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+      "page_refs": [
+        "Supplementary Fig. 1a",
+        "p.3"
+      ]
+    },
+    {
+      "evidence_id": "evidence-lifetime-use-correlations--d94e5a62f7b1",
+      "title": "Lifetime Use Correlations",
+      "excerpt": "A significant positive correlation was found between previous psychedelic use and shifts away from the hard-materialism pole of the hard-materialism vs. hard-dualism spectrum at baseline (r = 0.223, p < 0.0001). Figure 2 reports that lifetime psychedelic use was positively correlated with panpsychist views and negatively correlated with hard materialistic views measured at baseline.",
+      "overview": "The cross-sectional baseline correlation gives convergent evidence that psychedelic exposure and metaphysical orientation vary together even before the prospective ceremony interval. It is not sufficient for causation, but it reinforces the direction of the prospective findings and specifically links past exposure to panpsychist and anti-materialist endorsement.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "3",
+        "9"
+      ],
+      "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+      "page_refs": [
+        "Fig. 1",
+        "Fig. 2",
+        "pp.3-4"
+      ]
+    },
+    {
+      "evidence_id": "evidence-fatalism-time-course--e05f6b73a8c2",
+      "title": "Fatalism Time Course",
+      "excerpt": "The psychedelic ceremony was associated with increases in Fatalistic determinism at 4 weeks versus baseline (t(121) = 2.81, p = 0.012, d = 0.25, 95% CI [0.06, 0.37]); however, this effect did not persist at 6 months. For psychedelic-naive participants, the 6-month effect persisted (t(52) = 2.86, p = 0.012, d = 0.39, 95% CI [0.11, 0.64]).",
+      "overview": "This result separates fatalism from the more durable non-physicalist belief changes. It shows that psychedelic-associated belief change is not uniform across metaphysical domains and that subgroup history matters: the overall sample shows a temporary fatalism increase, while first-time users show a longer-lasting one.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "1",
+        "4"
+      ],
+      "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+      "page_refs": [
+        "Supplementary Fig. 2a",
+        "p.3"
+      ]
+    },
+    {
+      "evidence_id": "evidence-wellbeing-association--f16a7c84b9d3",
+      "title": "Well-Being Association",
+      "excerpt": "A significant positive correlation was found between shifts away from hard-materialism (the NPB factor) and changes in well-being. The correlation was significant at 4 weeks and at 6 months post-ceremony. Figure 3 states that shifts away from hard materialistic beliefs are associated with increases in well-being.",
+      "overview": "This figure-level and text-level evidence connects metaphysical belief change to psychological outcome, making the findings relevant beyond abstract belief measurement. The evidence establishes association, not whether non-physicalist belief change causes well-being improvement or whether both reflect a wider therapeutic process.",
+      "evidence_type": "figure_result",
+      "claim_refs": [
+        "5"
+      ],
+      "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+      "page_refs": [
+        "Fig. 3",
+        "p.5"
+      ]
+    },
+    {
+      "evidence_id": "evidence-emotional-synchrony-pathway--a27b8d95c0e4",
+      "title": "Emotional Synchrony Pathway",
+      "excerpt": "Path analysis supported a model with excellent fit in which perceived emotional synchrony with other participants—moderated by baseline peer conformity—predicted subsequent changes in the NPB factor. Acute emotional synchrony was itself predicted by trait absorption, gender, age, baseline beliefs, and identity fusion with the ceremony group.",
+      "overview": "The path model provides a candidate mechanism for belief change in ceremonial settings. It suggests that psychedelic effects operate through social and contextual experience, not only through isolated drug exposure. Because the model is observational, it should be read as mechanistic evidence for plausibility rather than proof of a single causal chain.",
+      "evidence_type": "model_constraint",
+      "claim_refs": [
+        "6",
+        "9"
+      ],
+      "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+      "page_refs": [
+        "Fig. 4",
+        "p.5"
+      ]
+    },
+    {
+      "evidence_id": "evidence-controlled-psilocybin-comparison--b38c9ea6d1f5",
+      "title": "Controlled Psilocybin Comparison",
+      "excerpt": "In the double-blind randomized trial, a significant drug versus time interaction was observed (F(56) = 3.13, p = 0.041, one-tailed). Shifts away from hard materialism were evident in the psilocybin group only (Z = 2.28, p = 0.02, d = 0.45), while the escitalopram group showed no changes in NPB (Z = 0.24, p = 0.33, d = 0.2).",
+      "overview": "The controlled-trial evidence is the strongest design element in the paper because it compares psilocybin therapy against an active antidepressant condition. It supports specificity of the belief shift to psilocybin in this depression-treatment sample, though the trial is smaller than the observational survey and differs in population and context.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "7",
+        "9"
+      ],
+      "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+      "page_refs": [
+        "Fig. 5a",
+        "p.5"
+      ]
+    },
+    {
+      "evidence_id": "evidence-psilocybin-responder-shift--c49dab17e2a6",
+      "title": "Responder Belief Shift",
+      "excerpt": "Greater shifts away from hard materialistic beliefs were found for patients with a clinically meaningful response to psilocybin therapy, defined as at least 50% reduction in depression scores from baseline to week 6, compared with responders to escitalopram (Z = 1.74, p = 0.041, g = 0.56, 90% CI [− 0.17, 1.26]).",
+      "overview": "This result links metaphysical belief change to clinically meaningful improvement within the controlled depression study. It complements the ceremony cohort’s well-being association, but it still leaves open whether belief change is a driver, marker, or consequence of clinical response.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "8",
+        "5"
+      ],
+      "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+      "page_refs": [
+        "Fig. 5b",
+        "p.5"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "2",
+      "dst_claim_ref": "9",
+      "rationale": "Larger effects among first-time psychedelic users strengthen the inference that new psychedelic exposure contributes to belief change."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "6",
+      "dst_claim_ref": "9",
+      "rationale": "A plausible social-experiential pathway makes the causal interpretation more coherent while preserving contextual limits."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "7",
+      "dst_claim_ref": "9",
+      "rationale": "The randomized psilocybin comparison independently reproduces the predicted movement away from hard materialism."
+    },
+    {
+      "relation_type": "derived_from",
+      "src_claim_ref": "1",
+      "dst_claim_ref": "0",
+      "rationale": "Durability at six months is derived from the same non-physicalist belief shift measured prospectively."
+    },
+    {
+      "relation_type": "similar",
+      "src_claim_ref": "5",
+      "dst_claim_ref": "8",
+      "rationale": "Both claims connect movement away from materialism with positive mental-health or clinical-response outcomes."
+    }
+  ],
+  "summary": "Timmermann and colleagues report that psychedelic use is associated with shifts away from hard materialist metaphysical beliefs toward non-physicalist views, with convergent evidence from a prospective ceremony survey and a smaller controlled psilocybin therapy trial. The strongest results concern non-physicalist belief change, persistence to six months, mediation by emotional synchrony, and association with improved well-being or depression response, while publication date metadata could not be resolved from the local record.",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved from the provided source record; source_date_inference.date is null."
+    },
+    {
+      "code": "contextual_causality_limit",
+      "message": "The observational ceremony data are prospective but remain vulnerable to ceremony culture, expectancy, sample-selection, and unmeasured religious or metaphysical-interest confounds."
+    }
+  ],
+  "source_dossier": {
+    "summary_short": "This Scientific Reports article examines whether psychedelic use changes metaphysical beliefs about reality, consciousness, and free will. It finds shifts away from hard physicalism or materialism and toward non-physicalist views, especially panpsychism and dualism, using both a prospective ceremony survey and a smaller randomized psilocybin therapy comparison. The results are tied to emotional synchrony and mental-health improvement, but the authors emphasize contextual and sample-selection limits.",
+    "summary_long": "The source investigates a question often asserted in psychedelic culture but rarely tested quantitatively: whether psychedelic experiences alter deep metaphysical commitments. The authors use a large prospective online survey of people planning guided or ceremonial psychedelic experiences, measuring beliefs before the event and again afterward, and they supplement this with data from a randomized controlled depression trial comparing psilocybin therapy with escitalopram. The main construct is a Non-physicalist Beliefs factor built from questionnaire items about supernatural realms, non-natural unifying principles, panpsychism, dualism, idealism, materialism, and naturalism. Across the ceremony sample, scores shift significantly away from hard physicalism at four weeks and remain shifted at six months, with larger effects in psychedelic-naive participants. Fatalistic determinism also rises after ceremonies, but its durability is weaker in the overall sample. The paper further reports that baseline lifetime psychedelic exposure correlates with stronger panpsychist and weaker materialist views, that shifts away from hard materialism correlate with improved well-being, and that a path model identifies perceived emotional synchrony during the ceremony as a mediator of later non-physicalist belief change. The controlled trial adds an important check: psilocybin therapy, but not escitalopram, is associated with movement away from hard materialism at six weeks, and psilocybin responders show greater shifts than escitalopram responders. The authors therefore argue that psychedelic use may causally influence metaphysical beliefs, but they do not treat the causal case as settled. They flag limitations including atypical, largely Western and well-educated samples, missing religious-affiliation and environmental-susceptibility measures, and incomplete measurement of the cultural milieu around ceremonies and therapy. The practical upshot is both scientific and ethical: psychedelic experiences may affect core beliefs, and informed consent in psychedelic services may need to mention that possibility.",
+    "sections": [
+      {
+        "heading": "Central Argument",
+        "body": "The paper’s central argument is that psychedelic use can move people away from hard physicalist or materialist metaphysical positions. This is not framed as a purely philosophical thesis; it is operationalized through questionnaire items and tested before and after psychedelic exposure, then compared with a controlled psilocybin therapy dataset.",
+        "grounding_claim_ids": [
+          "0",
+          "7",
+          "9"
+        ]
+      },
+      {
+        "heading": "Measurement Strategy",
+        "body": "The main measurement device is a Metaphysical Beliefs Questionnaire whose items are reduced to a Non-physicalist Beliefs factor. The factor’s positive side includes supernatural realms, non-natural unifying principles, panpsychism, dualism, and idealism, while its negative side includes hard materialist and naturalist commitments. This makes the results interpretable as movement along a materialist-to-non-physicalist axis rather than a single-item endorsement change.",
+        "grounding_claim_ids": [
+          "0"
+        ]
+      },
+      {
+        "heading": "Prospective Findings",
+        "body": "The ceremony cohort supplies the main temporal evidence: respondents’ non-physicalist scores increase four weeks after psychedelic use and remain elevated at six months. The effect is stronger among psychedelic-naive participants, which supports the possibility that new exposure matters rather than only pre-existing psychedelic-culture affiliation.",
+        "grounding_claim_ids": [
+          "1",
+          "2",
+          "9"
+        ]
+      },
+      {
+        "heading": "Belief Domains",
+        "body": "The belief changes are not uniform. Panpsychist, dualist, transcendentalist, and related non-physicalist tendencies show durability, while fatalistic determinism rises more transiently in the overall sample. This distinction matters because it suggests psychedelics may alter several metaphysical domains differently, depending on cultural reinforcement, prior exposure, and interpretive context.",
+        "grounding_claim_ids": [
+          "1",
+          "3",
+          "4"
+        ]
+      },
+      {
+        "heading": "Mechanism and Context",
+        "body": "The path model emphasizes social experience during the ceremony. Perceived emotional synchrony predicts later non-physicalist belief change, with peer conformity moderating the pathway and traits such as absorption, age, gender, baseline beliefs, and identity fusion feeding into synchrony. The source therefore treats psychedelic belief change as a drug-context interaction rather than an isolated pharmacological effect.",
+        "grounding_claim_ids": [
+          "6",
+          "9"
+        ]
+      },
+      {
+        "heading": "Mental-Health Link",
+        "body": "The paper connects metaphysical movement away from hard materialism with better mental-health outcomes. In the ceremony data, such shifts correlate with well-being improvements at four weeks and six months. In the controlled depression trial, psilocybin responders show larger belief shifts than escitalopram responders, raising the possibility that belief flexibility, spiritual interpretation, or related therapeutic processes accompany clinical improvement.",
+        "grounding_claim_ids": [
+          "5",
+          "8"
+        ]
+      },
+      {
+        "heading": "Limits and Ethics",
+        "body": "The authors stress that the samples are not demographically or culturally neutral and that religious affiliation, environmental susceptibility, and surrounding metaphysical views were not fully measured. These limits temper causal certainty but also sharpen the ethical issue: if psychedelics can catalyze changes in core beliefs, participants and service users may need to be informed of that possibility before exposure.",
+        "grounding_claim_ids": [
+          "9"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5",
+    "claim-nelder-mead-direct-search-was-more-robust-than-gradient-descent-for-the-noisy-ph--c886fbe39dc2"
+  ],
+  "evidence_id": "evidence-photonic-error-budget--c0d3a8b64f21",
+  "evidence_type": "measurement",
+  "excerpt": "The methods report a constant reproducible shift of 50 kJ mol^-1 in measured expectation value relative to theoretical energy. Contributing effects include higher-order photon-number terms, photon distinguishability, circuit imperfections, phase-shifter calibration errors, and unbalanced input-output coupling. The mean count rate was about 2,000-4,000 twofold events per measurement.",
+  "overview": "The error discussion is important because it marks the boundary between algorithmic feasibility and experimental precision. It shows that the reported chemical result depends on correction for identifiable photonic imperfections, and that statistical uncertainty is tied directly to photon count rates.",
+  "page_refs": [
+    "Methods",
+    "p.6"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "title": "Photonic Error Budget"
+}

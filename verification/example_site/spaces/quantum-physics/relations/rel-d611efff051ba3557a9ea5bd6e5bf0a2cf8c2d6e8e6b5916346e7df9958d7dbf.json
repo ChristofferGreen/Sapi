@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "The two-qubit photonic processor supplies the implemented platform used to measure the He-H+ dissociation curve.",
+  "relation_file_id": "rel-d611efff051ba3557a9ea5bd6e5bf0a2cf8c2d6e8e6b5916346e7df9958d7dbf",
+  "relation_id": "supports:claim-the-demonstrated-integrated-photonic-processor-prepares-and-measures-arbitrary-t--f41a0c8f645b->claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-demonstrated-integrated-photonic-processor-prepares-and-measures-arbitrary-t--f41a0c8f645b",
+  "src_claim_ref": "4",
+  "status": "open"
+}

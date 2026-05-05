@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69"
+  ],
+  "evidence_id": "evidence-full-circuit-24h-output--7ad8ad2fba3bd2",
+  "evidence_type": "figure_result",
+  "excerpt": "Figure 7 reports fluorescence kinetics data of the two pairs of dual-rail outputs. The arrays for the DNA circuit were plotted using the output values at 24 h from the data, and the ideal logic circuit behaviour corresponds to a black dog image for R1241, an inverted image for R1240, and mirror images for R1101 and R1100.",
+  "overview": "This figure-level evidence connects molecular fluorescence measurements to the intended cellular automata visualization. It matters because the paper\u2019s design and tuning pipeline culminates in the full rule 110-124 circuit, not only isolated gates or sub-circuits. The comparison is qualitative and visual, so it supports successful pattern-level computation rather than exact analog agreement at every time point.",
+  "page_refs": [
+    "Fig.7"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "title": "Full Circuit 24-Hour Output"
+}

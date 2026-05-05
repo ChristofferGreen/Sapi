@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T14:58:46Z",
+  "claim_id": "claim-mindfulness-based-stress-reduction-and-compassion-meditation-have-been-reported--d470d02dbd8f",
+  "evidence_excerpts": [
+    "Davidson and colleagues (2003b) found that MBSR produced significant increases in antibody titers to influenza vaccine compared with those subjects in a wait-list control group.",
+    "Pace and colleagues (2010) reported that after 6-weeks of compassion meditation practice, there were reduced innate cytokine (IL-6) and subjective distress responses to a standardized laboratory psychosocial stressor [Trier Social Stress Test (TSST)]."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Practice alters stress markers",
+  "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+  "text": "Mindfulness-based stress reduction and compassion meditation have been reported to influence immune and stress-reactivity markers."
+}

@@ -2,16 +2,24 @@
 set -euo pipefail
 
 usage() {
-  echo "Usage: create_space.sh <site_path> <space_name>" >&2
+  echo "Usage: create_space.sh <site_path> <space_name> [--seed-example-questions]" >&2
 }
 
-if [[ $# -ne 2 ]]; then
+if [[ $# -lt 2 || $# -gt 3 ]]; then
   usage
   exit 2
 fi
 
 site_path="$1"
 space_name="$2"
+seed_example_questions=0
+if [[ $# -eq 3 ]]; then
+  if [[ "$3" != "--seed-example-questions" ]]; then
+    usage
+    exit 2
+  fi
+  seed_example_questions=1
+fi
 registry_path="$site_path/spaces.toml"
 space_root="$site_path/spaces/$space_name"
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
@@ -63,7 +71,7 @@ space_root = "spaces/$space_name"
 TOML
 fi
 
-if [[ -f "$example_questions_tsv" ]] && awk -F '\t' -v space="$space_name" '
+if [[ "$seed_example_questions" -eq 1 && -f "$example_questions_tsv" ]] && awk -F '\t' -v space="$space_name" '
   /^[[:space:]]*#/ || /^[[:space:]]*$/ { next }
   $1 == space { found = 1 }
   END { exit found ? 0 : 1 }

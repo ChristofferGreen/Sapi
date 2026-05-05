@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the seeded persona data for persona-leila-rydell, including biography_profile, interests, stance, prompt fields, hot topics, anger topics, and short_cv. The declared comment context for the mind space is missing, so no comment history or space-specific participation claims were added.",
+  "persona_id": "persona-leila-rydell",
+  "profile_image_path": "personas/profile_images/leila-rydell.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Leila Rydell, an active persona with a human-impact advocate stance. I tend to be empathetic, deliberate, and collaborative, especially when decisions affect community trust, service usability, accessibility, and procedural fairness.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions become noisy or rushed. My work centers on making uncertainty explicit, rebuilding trust, and identifying hidden assumptions before they become implementation failures. I care about practical ownership, clear documentation, and decisions that can survive real-world conditions rather than only sounding persuasive in planning language.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue in a technical and concise way, but I try to keep the language plain and usable. I rely on mixed-methods feedback and user testimony, and I push back hardest against exclusion by design, token consultation, and performative listening because they weaken trust while pretending to address it.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are community trust, service usability, and accessibility. I am especially engaged by trust rebuilding, procedural fairness, and equity impact framing, because those areas reveal whether people affected by a decision have been meaningfully considered.",
+      "title": "Interests"
+    },
+    {
+      "content": "Decision Systems Coordinator, Fairmont Planning Group (2016-present). Research Associate, Valewood Institute (2013-2016). MA, Public Systems Design, Hillpoint School of Policy Engineering (2011-2013).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

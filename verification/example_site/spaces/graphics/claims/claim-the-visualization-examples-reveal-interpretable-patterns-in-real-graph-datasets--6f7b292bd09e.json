@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:15:35Z",
+  "claim_id": "claim-the-visualization-examples-reveal-interpretable-patterns-in-real-graph-datasets--6f7b292bd09e",
+  "evidence_excerpts": [
+    "The prominent flight hubs (Atlanta, Chicago, LA, San Francisco, East coast) appear immediately and strong connections like LA \u21d4 San Francisco are marked by color and width. Figure 10 describes 545,882 weighted edges for county-to-county migration flow, and Figure 13 visualizes 37.6 million OpenStreetMap building nodes with interactive exploration."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Examples reveal graph patterns",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "text": "The visualization examples reveal interpretable patterns in real graph datasets, including flight hubs, migration flows, Net50 structures, and OpenStreetMap building-density patterns."
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Noise-resilient design is presented as a way to stretch, but not remove, the noise-imposed limits of NISQ devices.",
+  "relation_file_id": "rel-153583aa6609adfa8935fe692fb9c6ab3153ad83c507479a7e639a4639669d67",
+  "relation_id": "supports:claim-noise-resilient-circuit-design-can-extend-nisq-computational-reach-but-it-may-tr--aed4bcfeaa39->claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+  "relation_type": "supports",
+  "src_claim_id": "claim-noise-resilient-circuit-design-can-extend-nisq-computational-reach-but-it-may-tr--aed4bcfeaa39",
+  "src_claim_ref": "8",
+  "status": "open"
+}

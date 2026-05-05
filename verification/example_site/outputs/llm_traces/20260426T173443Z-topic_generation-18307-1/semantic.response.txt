@@ -1,0 +1,90 @@
+{
+  "topics": [
+    {
+      "title": "Empirical Evidence as a Compiler Optimization Signal",
+      "structure_type": "wiki",
+      "sections": [
+        "Both sources treat compiler optimization as an evidence-guided decision problem: one uses execution profiles to focus classic optimizations on frequently executed regions, while the other uses empirical training data to learn optimization choices for unseen programs.",
+        "The profile-guided work grounds decisions in runtime counts and reports measured speedups, whereas the machine-learning work generalizes this evidence into models that select heuristics or optimization settings from program features.",
+        "A useful page could compare profile counts, supervised labels, feature values, and performance measurements as related forms of optimization evidence, while noting that learned models depend on the quality and representativeness of training data."
+      ],
+      "claim_ids": [
+        "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+        "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+        "claim-on-the-benchmark-suite-profile-based-super-block-optimizations-averaged-a-1-15-s--e5d7486c0e56",
+        "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+        "claim-the-machine-learning-compiler-workflow-separates-model-learning-from-deployment--a04ee1ab9738",
+        "claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+        "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+        "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26"
+      ],
+      "source_ids": [
+        "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+        "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+      ]
+    },
+    {
+      "title": "Program Representation Choices Shape Optimization Opportunities",
+      "structure_type": "wiki",
+      "sections": [
+        "The sources share a concern with how programs are represented before optimization decisions are made. The profile-guided source reshapes control-flow regions into super-blocks and super-block loops, while the machine-learning source represents programs as quantifiable static, dynamic, or combined features.",
+        "Super-block formation makes hot paths easier for classic scalar optimizations to exploit; feature engineering makes program behavior and structure available to learning algorithms.",
+        "The topic should preserve the distinction between structural compiler regions and statistical feature vectors, but can synthesize them as representation layers that determine what an optimizer can see and act upon."
+      ],
+      "claim_ids": [
+        "claim-super-blocks-represent-frequently-executed-paths-as-linear-basic-block-sequences--7bbb510c9bb0",
+        "claim-trace-selection-followed-by-tail-duplication-converts-frequently-executed-traces--1483ee9d0534",
+        "claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0",
+        "claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be",
+        "claim-feature-selection-and-dimension-reduction-are-necessary-in-compiler-learning-pro--ecd12a4a4f1f",
+        "claim-future-research-in-machine-learning-compilation-extends-beyond-choosing-optimiza--faf587f1fc17"
+      ],
+      "source_ids": [
+        "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+        "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+      ]
+    },
+    {
+      "title": "Context-Dependent Optimization Tradeoffs",
+      "structure_type": "wiki",
+      "sections": [
+        "Both sources emphasize that optimization choices are context dependent rather than universally beneficial. Profile-based classic optimizations target hot paths and complement conventional optimization, while machine-learning examples such as thread coarsening depend on program and hardware context.",
+        "The profile-guided work manages tradeoffs such as executable-size growth while seeking speedups; the machine-learning work highlights tradeoffs among parallelism, register pressure, memory behavior, and instruction-level parallelism.",
+        "This topic can frame compiler optimization as selecting transformations under competing objectives, with evidence used to identify when a transformation is likely to pay off."
+      ],
+      "claim_ids": [
+        "claim-profile-based-classic-optimizations-are-intended-to-complement-conventional-opti--6bcefbcf9607",
+        "claim-the-profile-based-transformations-controlled-executable-size-growth-averaging-1--5bacab4b8a28",
+        "claim-the-experiments-used-separate-profiling-inputs-and-performance-measurement-input--ee5ac2fa5a94",
+        "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+        "claim-thread-coarsening-decisions-are-context-dependent-because-coarsening-can-improve--4878860bda89",
+        "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3"
+      ],
+      "source_ids": [
+        "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+        "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+      ]
+    },
+    {
+      "title": "From Hot-Path Mechanisms to Learned Optimization Policies",
+      "structure_type": "wiki",
+      "sections": [
+        "The profile-guided source provides concrete mechanisms for exposing and optimizing hot paths: trace selection, tail duplication, eliminating entries into the middle of traces, and focusing on frequently executed loop paths.",
+        "The machine-learning source describes a broader policy-learning view in which models predict optimization decisions from program features, but it also makes clear that learning cannot invent legal transformations or analyses by itself.",
+        "A synthesis page could connect hand-engineered hot-path transformations with learned policies: profiles and features can guide when to apply transformations, while compiler-provided legality and transformation machinery remain necessary."
+      ],
+      "claim_ids": [
+        "claim-tail-duplication-creates-additional-optimization-opportunities-because-it-can-ma--6c81300e0307",
+        "claim-the-major-effectiveness-mechanisms-are-eliminating-entries-into-the-middle-of-tr--4bc0ff5e21b0",
+        "claim-the-implementation-cost-of-profile-based-classic-optimization-was-modest-relativ--062df22ec16c",
+        "claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+        "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+        "claim-future-research-in-machine-learning-compilation-extends-beyond-choosing-optimiza--faf587f1fc17"
+      ],
+      "source_ids": [
+        "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+        "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+      ]
+    }
+  ]
+}

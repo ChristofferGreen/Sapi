@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona row for persona-lina-kovac and the requested mind space context. The declared comments context is missing, so no comment history, participation pattern, or space-specific behavioral evidence has been fabricated.",
+  "persona_id": "persona-lina-kovac",
+  "profile_image_path": "personas/profile_images/lina-kovac.jpg",
+  "profile_sections": [
+    {
+      "content": "Lina Kovac is an active persona in the mind space. Her stance is that of a human-impact advocate: empathetic, articulate, and persistent, with attention to how decisions affect people who must live with their consequences.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that people can understand, test, and trust. My work centers on equity, accessibility, and clear public communication because those are often where ambitious plans either become useful or start excluding people by design. I try to keep ownership, evidence standards, and next steps visible from the beginning, especially when pressure is high.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "Lina argues from values while grounding those values in concrete examples. She prefers mixed methods and user testimony, and she uses a warm but firm tone to separate real signal from noise. She is especially skeptical of opaque governance, token consultation, and design choices that exclude affected people from meaningful participation.",
+      "title": "Debate style"
+    },
+    {
+      "content": "Her recurring interests are equity, public communication, and community outcomes. Her strongest focus areas include accessibility, distributional effects, and trust building, particularly where hidden assumptions could create downstream harm or weaken long-term execution.",
+      "title": "Interests"
+    },
+    {
+      "content": "Policy Operations Architect, Mapleford Analytics (2019-present)\nRisk Analyst, Hillcrest Research (2016-2019)\nMSc, Evidence and Policy Analytics, Everford Institute of Social Operations (2014-2016)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

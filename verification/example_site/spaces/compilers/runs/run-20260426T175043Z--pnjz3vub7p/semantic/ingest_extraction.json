@@ -1,0 +1,381 @@
+{
+  "claims": [
+    {
+      "evidence_excerpts": [
+        "A program\u2019s WCET is computed by finding the maximum path WCET for all feasible paths; the path leading to the WCET is called the worst-case execution path. The source example reduces one WCEP block by 40 cycles but lowers global WCET only from 205 to 195 cycles."
+      ],
+      "short_title": "WCEP governs WCET savings",
+      "text": "Static WCET reduction depends on optimizing the worst-case execution path, because reducing a noncritical path or a local block can leave the global WCET unchanged or only partly reduced."
+    },
+    {
+      "evidence_excerpts": [
+        "WCC produces a CRL2 file, invokes aiT transparently, and performs value, loop bound, cache, pipeline, and path analysis while the compiler user is unaware that timing analysis is running in the background."
+      ],
+      "short_title": "WCC integrates static analysis",
+      "text": "WCC couples a C compiler to the aiT static WCET analyzer so that WCET data is produced transparently during compilation rather than by a separate manual post-compilation step."
+    },
+    {
+      "evidence_excerpts": [
+        "The transformed back-annotation data include WCET for the entire program, functions, and basic blocks; WCEP membership; worst-case execution frequency per CFG edge; execution feasibility; I-cache misses per basic block; code size; and spill-code amount."
+      ],
+      "short_title": "Back annotation enables optimization",
+      "text": "WCC\u2019s back-annotation raises assembly-level WCET information to source-level ICD-C structures, enabling source-level optimizations to use WCET, WCEP membership, execution frequencies, cache misses, code size, and spill-code data."
+    },
+    {
+      "evidence_excerpts": [
+        "Table 1 reports 96 benchmarks with 707 loops in total; 99% of loops are analyzable and 96% have exact iteration counts on average."
+      ],
+      "short_title": "Loop bounds become automatic",
+      "text": "WCC\u2019s loop analyzer computes safe loop iteration bounds for most benchmark loops and exact bounds for the great majority, reducing reliance on manual flow facts."
+    },
+    {
+      "evidence_excerpts": [
+        "Table 2 reports matmul falling from 8.4 s to 2.4 s with slicing and 0.8 s with polytope evaluation, while fft falls from 920.7 s to 119.7 s with slicing and 110.5 s with polytope evaluation."
+      ],
+      "short_title": "Slicing accelerates loop analysis",
+      "text": "Interprocedural slicing and polyhedral loop evaluation substantially reduce loop-analysis time for many benchmarks while preserving safe loop-bound analysis."
+    },
+    {
+      "evidence_excerpts": [
+        "For mpeg2, procedure cloning reduces WCET estimates by 63.6% for standard cloning and 62.7% for WCET-aware cloning; epic has a 693.7% code-size increase after standard cloning and 357.9% after WCET-aware cloning."
+      ],
+      "short_title": "Cloning sharpens loop bounds",
+      "text": "WCET-aware procedure cloning improves WCET estimates by specializing functions whose data-dependent loop bounds become constant in cloned calling contexts, but it trades timing precision for code-size growth."
+    },
+    {
+      "evidence_excerpts": [
+        "Figure 7 reports that greedy procedure positioning achieves an average WCET reduction of 10%, while the heuristic reduces WCET by 4% on average; combined cloning and positioning reaches reductions up to 64%."
+      ],
+      "short_title": "Positioning reduces cache misses",
+      "text": "WCET-centric procedure positioning reduces instruction-cache conflict misses by reordering functions using static WCET-derived call frequencies rather than profiling input data."
+    },
+    {
+      "evidence_excerpts": [
+        "Across 73 benchmarks, tiny program SPMs reduce WCET to 92.6% of the no-SPM WCET, and SPMs large enough for entire benchmarks reach 60% of original WCET; average code size increases by 0.02%."
+      ],
+      "short_title": "Code SPM reduces WCET",
+      "text": "ILP-based code scratchpad allocation lowers WCET by moving beneficial basic-block regions into fast program scratchpad memory with negligible code-size and solver overhead."
+    },
+    {
+      "evidence_excerpts": [
+        "For petrinet, an 8-byte data SPM reduces WCET to 82.5% and fitting all global data reaches 69.7%; for the real TriCore 40 kB SPM, average WCET reaches 79.8% of original WCET."
+      ],
+      "short_title": "Data SPM reduces WCET",
+      "text": "ILP-based data scratchpad allocation lowers WCET by moving frequently accessed variables into fast data scratchpad memory without changing generated code size."
+    },
+    {
+      "evidence_excerpts": [
+        "Across 46 benchmarks, WCET-aware register allocation achieves an average WCET of 68.8% of traditional graph coloring, reducing WCET by 31.2%, while text size increases by 29.8% on average."
+      ],
+      "short_title": "Register allocation protects WCEP",
+      "text": "WCET-aware register allocation lowers WCET by avoiding spill code on the WCEP, even when this increases total spill code or text size outside the critical path."
+    },
+    {
+      "evidence_excerpts": [
+        "For matmult, the combined sequence reduces WCET from 775,720 cycles to 227,794 cycles, with register allocation saving 284,000 cycles, code SPM a further 120,000 cycles, data SPM another 135,000 cycles, and procedure positioning 8,000 cycles."
+      ],
+      "short_title": "Optimizations compose strongly",
+      "text": "The WCC optimizations compose: applying register allocation, code and data scratchpad allocation, and procedure positioning to matmult reduces WCET by more than 70 percent relative to WCC -O2."
+    }
+  ],
+  "evidence_items": [
+    {
+      "claim_refs": [
+        "0"
+      ],
+      "evidence_id": "evidence-wcep-local-savings-example--a6f3c91d4b2e",
+      "evidence_type": "formal_argument",
+      "excerpt": "The source defines program WCET as the maximum path WCET over feasible paths and names the responsible path the WCEP. In the example CFG, the original WCEP has 205 cycles. Reducing one WCEP basic block from 80 to 40 cycles changes the global WCET to 195 cycles, so the global saving is 10 cycles rather than the local 40-cycle saving.",
+      "overview": "This formal example explains why WCET-aware compilation must reason globally about the worst-case execution path. It establishes that local timing gains do not automatically translate into equal whole-program WCET gains, because another path may become critical or partially absorb the local improvement.",
+      "page_refs": [
+        "pp.253-254"
+      ],
+      "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+      "title": "WCEP Local Savings Example"
+    },
+    {
+      "claim_refs": [
+        "1"
+      ],
+      "evidence_id": "evidence-transparent-ait-invocation--b19e7f2a0c64",
+      "evidence_type": "formal_argument",
+      "excerpt": "WCC produces a CRL2 file for the program requiring WCET timing data, invokes aiT fully transparently, and performs value, loop bound, cache, pipeline, and path analysis. The compiler user is described as unaware that timing analysis is performed in the background.",
+      "overview": "This passage is concrete process evidence for the compiler-analyzer integration. It shows that timing analysis is not a detached manual step; it is embedded in the compiler workflow and supplies the WCET data used by later optimization decisions.",
+      "page_refs": [
+        "Sect. 3.3",
+        "p.261"
+      ],
+      "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+      "title": "Transparent aiT Invocation"
+    },
+    {
+      "claim_refs": [
+        "2",
+        "5",
+        "6"
+      ],
+      "evidence_id": "evidence-back-annotation-data-list--c02d9e5a8f71",
+      "evidence_type": "model_constraint",
+      "excerpt": "The transformed back-annotation data are listed as WCET for the entire program, functions, and basic blocks; whether an ICD-C block lies on the WCEP; worst-case execution frequency per CFG edge; feasibility of blocks and edges; I-cache misses per basic block; code size; and spill code per assembly-level basic block.",
+      "overview": "The inventory identifies the exact timing and structural facts lifted from low-level analysis into source-level ICD-C. This matters because high-level transformations such as cloning and positioning can only be WCET-aware if these optimization inputs are available at their abstraction level.",
+      "page_refs": [
+        "Sect. 6.2",
+        "p.274"
+      ],
+      "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+      "title": "Back-Annotation Data Inventory"
+    },
+    {
+      "claim_refs": [
+        "3"
+      ],
+      "evidence_id": "evidence-loop-analysis-table-one--d44c2a9fb703",
+      "evidence_type": "table_result",
+      "excerpt": "Table 1 reports loop-analysis precision over MRTC, DSPStone, MediaBench/MiBench, UTDSP, and miscellaneous benchmarks. The total row covers 96 benchmarks and 707 loops, with 99% analyzable loops and 96% exact loop iteration counts.",
+      "overview": "This table is the strongest quantitative evidence for the automatic flow-fact claim. It demonstrates broad benchmark coverage and distinguishes safe analyzability from exactness, while also showing that remaining imprecision is limited to a small minority of loops.",
+      "page_refs": [
+        "Table 1",
+        "p.271"
+      ],
+      "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+      "title": "Loop Precision Table"
+    },
+    {
+      "claim_refs": [
+        "4"
+      ],
+      "evidence_id": "evidence-loop-analysis-runtime-table--e7aa59c130d8",
+      "evidence_type": "table_result",
+      "excerpt": "Table 2 gives loop-analysis run times: matmul is 8.4 s basic, 2.4 s with slicing, and 0.8 s with polytope evaluation; fft is 920.7 s basic, 119.7 s with slicing, and 110.5 s with polytope evaluation; matrix1 is 0.8 s, 0.09 s, and 0.03 s respectively.",
+      "overview": "These measured timings show that the auxiliary loop-analysis techniques address scalability, not merely precision. The examples also reveal scope limits: polyhedral evaluation helps when its prerequisites apply, while other benchmarks may fall back to the iterative analysis.",
+      "page_refs": [
+        "Table 2",
+        "pp.271-272"
+      ],
+      "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+      "title": "Loop Runtime Table"
+    },
+    {
+      "claim_refs": [
+        "5"
+      ],
+      "evidence_id": "evidence-procedure-cloning-results--f00d4ec13a91",
+      "evidence_type": "figure_result",
+      "excerpt": "For mpeg2, standard and WCET-aware cloning reduce WCET estimates by 63.6% and 62.7%. On average, standard cloning outperforms WCET-aware cloning by 1.3%, but epic has code-size increases of 693.7% after standard cloning and 357.9% after WCET-aware cloning.",
+      "overview": "The cloning results support both the benefit and the trade-off. They show that specialization can make loop bounds more precise and sharply lower WCET estimates, while also demonstrating why WCET-aware selection matters: unconstrained cloning can inflate code size substantially.",
+      "page_refs": [
+        "Fig. 6",
+        "pp.276-277"
+      ],
+      "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+      "title": "Procedure Cloning Results"
+    },
+    {
+      "claim_refs": [
+        "6"
+      ],
+      "evidence_id": "evidence-procedure-positioning-results--9a4d7826bc03",
+      "evidence_type": "figure_result",
+      "excerpt": "Figure 7 reports greedy and heuristic procedure positioning on real-life MRTC and MediaBench benchmarks compiled at -O3. Greedy positioning achieves an average WCET reduction of 10%, the heuristic achieves 4%, and combined procedure cloning plus positioning reaches WCET reductions up to 64%.",
+      "overview": "This figure-derived evidence links the WCET-centric call graph to observed timing gains. It also shows an important limit: the heuristic is faster but may accept WCET increases because it does not reevaluate WCEP changes, while greedy positioning avoids accepted degradations.",
+      "page_refs": [
+        "Fig. 7",
+        "Fig. 8",
+        "pp.279-280"
+      ],
+      "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+      "title": "Procedure Positioning Results"
+    },
+    {
+      "claim_refs": [
+        "7"
+      ],
+      "evidence_id": "evidence-code-spm-results--ad73e62b9c50",
+      "evidence_type": "figure_result",
+      "excerpt": "The code SPM evaluation applies an ILP to 73 real-life benchmarks. For g721_encode, a 10% program SPM yields 71% of original WCET and a fully fitting SPM yields 52.2%. Across all benchmarks, tiny SPMs reach 92.6% of no-SPM WCET and full-fit SPMs reach 60%, with average code-size growth of 0.02%.",
+      "overview": "This evidence quantifies the effect of allocating code to fast scratchpad memory. It supports the claim that WCET-aware memory placement can produce large reductions while keeping code growth and ILP solving overhead negligible for the evaluated benchmark set.",
+      "page_refs": [
+        "Fig. 10",
+        "Fig. 11",
+        "pp.286-288"
+      ],
+      "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+      "title": "Program SPM Results"
+    },
+    {
+      "claim_refs": [
+        "8"
+      ],
+      "evidence_id": "evidence-data-spm-results--0f48d6aa271e",
+      "evidence_type": "figure_result",
+      "excerpt": "For petrinet, an 8-byte data SPM yields 82.5% of original WCET, 32 bytes yields 71.4%, and fitting all global data yields 69.7%. For fsm, 8 bytes yields 93.5% and 256 bytes or larger yields 78.6%. With the real TriCore 40 kB SPM, average WCET reaches 79.8% of original WCET.",
+      "overview": "The data scratchpad evidence shows that WCET improvements come from selecting high-value variables, not from changing instruction sequences. It also marks the architecture-specific scope: the reported gains rely on TriCore memory characteristics and on benchmarks with static or global data.",
+      "page_refs": [
+        "Fig. 12",
+        "Fig. 13",
+        "pp.290-292"
+      ],
+      "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+      "title": "Data SPM Results"
+    },
+    {
+      "claim_refs": [
+        "9",
+        "10"
+      ],
+      "evidence_id": "evidence-register-and-combined-results--6c5f58db924a",
+      "evidence_type": "observational_result",
+      "excerpt": "Across 46 benchmarks, WCET-aware register allocation achieves 68.8% of the original WCET on average, a 31.2% reduction, while spectral reaches 24.1% and qurt reaches 93.1%. For matmult, the combined sequence reduces WCET from 775,720 cycles to 227,794 cycles, an overall reduction of more than 70%.",
+      "overview": "This evidence covers both a single optimization and the composition claim. Register allocation demonstrates WCEP-sensitive spill placement, while matmult demonstrates that multiple WCET-aware optimizations can add constructively rather than merely duplicating the same savings.",
+      "page_refs": [
+        "Fig. 15",
+        "Fig. 16",
+        "pp.295-297"
+      ],
+      "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+      "title": "Register and Combined Results"
+    }
+  ],
+  "relations": [
+    {
+      "dst_claim_ref": "1",
+      "rationale": "The need to optimize the WCEP explains why WCC integrates static WCET analysis into compilation.",
+      "relation_type": "supports",
+      "src_claim_ref": "0"
+    },
+    {
+      "dst_claim_ref": "2",
+      "rationale": "Transparent aiT integration supplies the low-level WCET data that back-annotation raises to source-level structures.",
+      "relation_type": "supports",
+      "src_claim_ref": "1"
+    },
+    {
+      "dst_claim_ref": "5",
+      "rationale": "WCET-aware cloning relies on back-annotated timing and loop-context information to select profitable source-level clones.",
+      "relation_type": "derived_from",
+      "src_claim_ref": "2"
+    },
+    {
+      "dst_claim_ref": "6",
+      "rationale": "WCET-centric procedure positioning depends on back-annotated call frequencies and cache-related timing data.",
+      "relation_type": "derived_from",
+      "src_claim_ref": "2"
+    },
+    {
+      "dst_claim_ref": "10",
+      "rationale": "Code scratchpad allocation contributes one of the measured components in the combined matmult WCET reduction.",
+      "relation_type": "supports",
+      "src_claim_ref": "7"
+    },
+    {
+      "dst_claim_ref": "10",
+      "rationale": "Data scratchpad allocation contributes another measured component in the combined matmult WCET reduction.",
+      "relation_type": "supports",
+      "src_claim_ref": "8"
+    },
+    {
+      "dst_claim_ref": "10",
+      "rationale": "Register allocation is the largest individual component reported in the combined matmult optimization sequence.",
+      "relation_type": "supports",
+      "src_claim_ref": "9"
+    }
+  ],
+  "source": {
+    "authors": [
+      "Heiko Falk",
+      "Paul Lokuciejewski"
+    ],
+    "display_title": "WCC Compiler Reduces Worst-Case Execution Times",
+    "doi": "10.1007/s11241-010-9101-x",
+    "publication_venue": "Real-Time Systems",
+    "record_display_title": "Untitled Source",
+    "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+  },
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2010-07-22",
+    "origin": "source.md front matter",
+    "rationale": "The extracted markdown states \u201cPublished online: 22 July 2010\u201d immediately below the authors."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The paper\u2019s motivating claim is that hard real-time development cannot rely on average-case compiler optimization or late manual timing checks. WCET reduction is path-sensitive: optimizing a block or a noncritical path may not reduce the global bound. This makes the compiler\u2019s lack of timing knowledge a root cause rather than a minor tooling gap.",
+        "grounding_claim_ids": [
+          "0"
+        ],
+        "heading": "Problem and Motivation"
+      },
+      {
+        "body": "WCC addresses the tooling gap by embedding aiT into compilation. The compiler converts its low-level representation into CRL2, invokes aiT without making the user manage analyzer setup, and imports value, loop-bound, cache, pipeline, and path-analysis results. This turns WCET analysis from a separate post-build activity into an optimization input.",
+        "grounding_claim_ids": [
+          "1"
+        ],
+        "heading": "Compiler-Analyzer Integration"
+      },
+      {
+        "body": "A central architectural move is back-annotation from assembly-level structures to source-level ICD-C structures. The paper treats this mapping carefully because basic blocks do not always correspond one-to-one across IRs. Once mapped, WCC can expose WCEP membership, edge execution frequencies, cache misses, code size, and spill-code data to high-level transformations.",
+        "grounding_claim_ids": [
+          "2"
+        ],
+        "heading": "Back-Annotation as Bridge"
+      },
+      {
+        "body": "Static WCET analysis needs safe loop iteration bounds, and manually supplying them is tedious and error-prone. WCC\u2019s loop analyzer substantially automates this part: the reported benchmark table covers 707 loops with 99% analyzability and 96% exactness. Slicing and polyhedral evaluation then address analysis cost, with major runtime reductions on examples such as fft and matmul.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ],
+        "heading": "Flow Facts and Loop Bounds"
+      },
+      {
+        "body": "Procedure cloning and positioning show why WCET information is useful above assembly level. Cloning specializes functions so data-dependent loop bounds become constant in important call contexts, improving WCET precision but increasing code size. Positioning reorders functions using WCET-derived call frequencies to improve instruction-cache behavior without relying on potentially unrepresentative profiling inputs.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ],
+        "heading": "Source-Level Optimizations"
+      },
+      {
+        "body": "The scratchpad-memory results show the value of assembly-level optimization guided by WCET data. The code allocator chooses beneficial basic-block regions for fast program SPM, while the data allocator chooses frequently accessed variables for fast data SPM. Reported average reductions are substantial, and the code-size or solver overhead is described as negligible in the evaluated setting.",
+        "grounding_claim_ids": [
+          "7",
+          "8"
+        ],
+        "heading": "Memory Allocation Optimizations"
+      },
+      {
+        "body": "The register allocator deliberately protects the WCEP from spill code, even if that can increase total text size. Across 46 benchmarks it reduces WCET by 31.2% on average versus traditional graph coloring. The matmult sequence then demonstrates practical composition: register allocation, scratchpad allocation, and procedure positioning together cut the reported WCET by more than 70%.",
+        "grounding_claim_ids": [
+          "9",
+          "10"
+        ],
+        "heading": "Register Allocation and Composition"
+      },
+      {
+        "body": "The paper\u2019s strongest claims are grounded in a specific toolchain and target: WCC, aiT, and Infineon TriCore processors. The results therefore support the feasibility and effectiveness of this integrated architecture, but they should not be read as architecture-independent speedups. Several optimizations also involve trade-offs, especially analysis time and code-size growth.",
+        "grounding_claim_ids": [
+          "1",
+          "5",
+          "7",
+          "8",
+          "9"
+        ],
+        "heading": "Assumptions and Limits"
+      }
+    ],
+    "summary_long": "Falk and Lokuciejewski frame WCC as a response to a practical real-time-systems problem: ordinary compilers optimize primarily for average-case behavior, while industrial real-time workflows often disable optimizations and perform WCET analysis only after code generation. The paper argues that this separation is both costly and technically weak, because WCET reduction depends on knowing the worst-case execution path and on understanding how local changes affect global timing. WCC therefore integrates the aiT static WCET analyzer into the compiler, translates low-level compiler IR into aiT\u2019s CRL2 format, invokes aiT transparently, imports timing results, and back-annotates those results to source-level ICD-C structures. This infrastructure supports automated loop-bound analysis, source-level optimizations such as procedure cloning and positioning, and assembly-level optimizations such as scratchpad allocation and WCET-aware register allocation. The evidence base is largely benchmark-driven. The loop analyzer handles 707 loops across 96 benchmarks with 99% analyzability and 96% exactness, while slicing and polyhedral evaluation reduce analysis time sharply on selected examples. Procedure cloning can reduce WCET estimates dramatically when call contexts make loop bounds constant, though the paper is candid about code-size expansion. Procedure positioning improves cache behavior using WCET-derived call frequencies. ILP-based code and data scratchpad allocation reduce WCET by prioritizing regions and variables with high worst-case benefit. Register allocation avoids spill code on the WCEP and gives the largest average reduction among the reported individual optimizations. The final matmult experiment shows that several optimizations can compose, reducing WCET from 775,720 cycles to 227,794 cycles. The main limitation is that the results are tied to the WCC/TriCore/aiT environment and to benchmark suites, but the paper provides a coherent architecture and quantitative evidence for WCET-aware compilation as a system-level approach.",
+    "summary_short": "This source presents WCC, a C compiler framework designed to optimize hard real-time software for worst-case execution time rather than average-case speed. Its central idea is to integrate static WCET analysis into compilation, lift timing information across compiler abstraction levels, and use that information to drive source-level and assembly-level optimizations."
+  },
+  "summary": "Falk and Lokuciejewski describe WCC, a WCET-aware C compiler that integrates static timing analysis into compilation and uses the resulting WCEP, loop-bound, cache, scratchpad, and register-allocation information to reduce worst-case execution times. The paper combines infrastructure claims with benchmark evidence for loop analysis, procedure cloning and positioning, scratchpad allocation, register allocation, and a composed matmult case study.",
+  "warnings": [
+    {
+      "code": "source_record_title_was_placeholder",
+      "message": "The task_context source record display title was \u201cUntitled Source\u201d; title, authors, DOI, and publication date were recovered from source.md."
+    },
+    {
+      "code": "markdown_extraction_used",
+      "message": "source_extraction.json reported usable markdown with no warnings, so the binary PDF was not opened for layout recovery."
+    }
+  ]
+}

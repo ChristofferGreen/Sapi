@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-self-report-measures-lack-validity--56550542660a",
+  "dst_claim_ref": "2",
+  "last_evaluated_run_id": null,
+  "rationale": "Ambiguous definitions make self-report measures harder to interpret as measures of a single construct.",
+  "relation_file_id": "rel-8d3e7797ed1db0ed88e1e899fa1b9f8409028033014e4c88fceb85c172e2a0a0",
+  "relation_id": "supports:claim-mindfulness-definition-is-ambiguous--4f220365d6f4->claim-self-report-measures-lack-validity--56550542660a",
+  "relation_type": "supports",
+  "src_claim_id": "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+  "src_claim_ref": "1",
+  "status": "open"
+}

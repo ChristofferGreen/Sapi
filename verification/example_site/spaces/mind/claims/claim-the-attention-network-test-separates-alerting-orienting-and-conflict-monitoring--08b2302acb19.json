@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:09:33Z",
+  "claim_id": "claim-the-attention-network-test-separates-alerting-orienting-and-conflict-monitoring--08b2302acb19",
+  "evidence_excerpts": [
+    "Alerting was indexed by subtracting performance measures on double-cue trials from those on no-cue trials; orienting by subtracting spatial-cue trials from center-cue trials; and conflict monitoring by subtracting congruent target trials from incongruent target trials."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "ANT partitions attention",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "text": "The Attention Network Test separates alerting, orienting, and conflict monitoring by subtracting performance across predefined cue and target conditions."
+}

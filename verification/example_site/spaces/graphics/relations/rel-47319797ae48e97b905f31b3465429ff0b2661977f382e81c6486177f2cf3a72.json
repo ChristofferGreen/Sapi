@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-shadercoding-blends-programming-mathematics-and-graphics-into-a-digital-art-prac--ba3619b7f801",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Raymarching shows how shadercoding connects mathematical space descriptions to real-time visual production.",
+  "relation_file_id": "rel-47319797ae48e97b905f31b3465429ff0b2661977f382e81c6486177f2cf3a72",
+  "relation_id": "supports:claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18->claim-shadercoding-blends-programming-mathematics-and-graphics-into-a-digital-art-prac--ba3619b7f801",
+  "relation_type": "supports",
+  "src_claim_id": "claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18",
+  "src_claim_ref": "3",
+  "status": "open"
+}

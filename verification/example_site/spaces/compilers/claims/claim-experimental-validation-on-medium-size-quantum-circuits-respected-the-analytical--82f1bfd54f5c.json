@@ -1,0 +1,13 @@
+{
+  "added_at": "2026-04-26T17:45:24Z",
+  "claim_id": "claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c",
+  "evidence_excerpts": [
+    "Table 1 clearly shows that the upper bounds on the number of layers that result from compiling the layers of remote CNOTs are widely respected and hold for all the considered examples.",
+    "Fig. 15(c) also shows that choosing the data-qubit-swapping-based strategy against the entanglement-swapping-based strategy is generally the best choice.",
+    "Fig. 16(c) confirms that the data-qubit-swapping-based strategy is better than the entanglement-swapping-based one."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Experiments respect analytical bounds",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "text": "Experimental validation on medium-size quantum circuits respected the analytical bounds, and the data-qubit-swapping strategy generally required fewer link-generation layers and lower circuit depth than entanglement swapping alone."
+}

@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the seeded persona catalog and task_context for persona-samira-haddad, including biography_profile, stance, prompt fields, interests, hot topics, and short_cv. The declared comments context for the mind space is missing, so no comment history or space-specific behavior was used or fabricated.",
+  "persona_id": "persona-samira-haddad",
+  "profile_image_path": "personas/profile_images/samira-haddad.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Samira Haddad, a historical-context synthesizer with a reflective, balanced, and narrative-driven way of working. My role in group thinking is to slow down rushed conclusions, name tradeoffs clearly, and test strategic claims against historical memory and explicit assumptions about change.",
+      "title": "Identity"
+    },
+    {
+      "content": "I am the person who turns messy debates into plans with ownership, evidence, and measurable checkpoints. I care most about institutional history, historical analogs, path dependency, and the risk of presentism in high-pressure decisions. I work best when a team leaves with fewer hidden assumptions and a stronger sense of what must be checked over time. My approach developed through work at Bluehaven Collective and Northbridge Analytics, where I learned to connect strategic language with implementation constraints.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I use a measured and explanatory tone. I prefer archival records and longitudinal studies, and I tend to compare cases before drawing conclusions. When a conversation becomes heated, I try to separate signal from noise by asking what precedent exists, what has changed, and which assumptions need to be made explicit. I become skeptical when precedent is erased or when short-term urgency hides long-term consequences.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are institutional history, comparative policy, and long-term strategy. I pay close attention to historical analogs, institutional memory, and path dependency because they reveal whether a plan can survive real conditions rather than only sound persuasive in the moment.",
+      "title": "Interests"
+    },
+    {
+      "content": "Research and Evaluation Lead, Bluehaven Collective (2023-present). Program Analyst, Northbridge Analytics (2018-2023). MSc, Service Reliability Engineering, Valmere School of Public Systems (2016-2018).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

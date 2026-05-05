@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T15:52:46Z",
+  "claim_id": "claim-highly-entangled-quantum-dynamics-is-the-most-natural-arena-for-meaningful-quant--3b6f2f5ba268",
+  "evidence_excerpts": [
+    "The simulation of highly entangled quantum matter is the natural arena where quantum computers seem to have a clear advantage over classical ones.",
+    "Valuable insights might already be gleaned using noisy devices with of order 100 qubits."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Quantum dynamics is promising",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "text": "Highly entangled quantum dynamics is the most natural arena for meaningful quantum advantage, and noisy devices around one hundred qubits may already yield valuable physical insight."
+}

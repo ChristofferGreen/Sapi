@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:55:13Z",
+  "claim_id": "claim-ilp-based-code-scratchpad-allocation-lowers-wcet-by-moving-beneficial-basic-bloc--d5d88da4e90e",
+  "evidence_excerpts": [
+    "Across 73 benchmarks, tiny program SPMs reduce WCET to 92.6% of the no-SPM WCET, and SPMs large enough for entire benchmarks reach 60% of original WCET; average code size increases by 0.02%."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Code SPM reduces WCET",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "text": "ILP-based code scratchpad allocation lowers WCET by moving beneficial basic-block regions into fast program scratchpad memory with negligible code-size and solver overhead."
+}

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-shadercoding-blends-programming-mathematics-and-graphics-into-a-digital-art-prac--ba3619b7f801"
+  ],
+  "evidence_id": "evidence-shadercoding-field-definition--a41f2c93d8b7",
+  "evidence_type": "formal_argument",
+  "excerpt": "Dans un contexte o\u00f9 l'art num\u00e9rique est de plus en plus pr\u00e9sent, il convient de questionner certains de ses aspects, notamment celui du profil de l'artiste technique. Pour se faire, cet article propose une introduction th\u00e9orique au shadercoding, une discipline m\u00ealant programmation, math\u00e9matiques et graphisme, mais \u00e9galement une r\u00e9flexion sur la performance d'art num\u00e9rique au travers de cette pratique, dans des \u00e9v\u00e9nements de programmation en temps-r\u00e9el.",
+  "overview": "This abstract passage establishes the source's central frame: shadercoding is not treated only as software technique, but as a hybrid field connecting code, mathematics, graphics, and live digital-art performance. It grounds the broad interpretive claim while remaining limited to the authors' theoretical and practice-based framing rather than an empirical survey.",
+  "page_refs": [
+    "R\u00e9sum\u00e9"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "title": "Shadercoding Field Definition"
+}

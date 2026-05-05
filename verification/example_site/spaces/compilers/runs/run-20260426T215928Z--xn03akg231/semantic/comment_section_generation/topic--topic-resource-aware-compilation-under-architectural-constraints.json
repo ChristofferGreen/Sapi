@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like this topic because it treats resource awareness as the common compiler problem without flattening the two domains together. WCC has to know which paths, cache effects, scratchpad placements, and spills matter for the worst-case bound, while the distributed quantum compiler has to know when Bell states, communication qubits, and topology make a remote CNOT expensive.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in both sources and clearly explains the shared compiler theme without overclaiming equivalence.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The synthesis boundary is important here. Procedure positioning and scratchpad allocation are not analogous to entanglement swapping in any mechanical sense; the analogy is that both compilers expose hidden architectural bottlenecks to the optimizer instead of treating them as late-stage hardware consequences.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately preserves the topic's boundary condition and adds a useful distinction between algorithmic similarity and conceptual similarity.",
+        "score": 23
+      }
+    },
+    {
+      "body": "One practical connection is that both papers make the cost model visible early enough to change mapping decisions. WCC can prioritize blocks, variables, procedures, and spills based on WCET impact, while the quantum compiler can choose between virtual links and moving data qubits based on Bell-state and path costs.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "High-quality reply that connects concrete transformations from both sources to the timing of compiler decisions.",
+        "score": 25
+      }
+    },
+    {
+      "body": "I would still avoid calling this a general theory of resource-aware compilation. The WCC evidence is tied to aiT, ICD-C, and TriCore, and the quantum paper deliberately uses a harsh one-dimensional distributed model. That makes the comparison useful, but mainly as a disciplined cross-domain lens.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Balanced and evidence-aware, noting the source-specific assumptions while preserving the value of the synthesis.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The most interesting shared pattern to me is that the compiler optimizes the dominant constrained cost, not just generic speed. For real-time C, that means reducing a safe upper bound on execution time; for distributed quantum circuits, it means reducing depth and link-generation pressure under scarce network resources.",
+      "comment_ref": "draft-5",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Concise and well-grounded in the two source contexts, though it is less detailed than the strongest comments.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "topic:topic-resource-aware-compilation-under-architectural-constraints",
+  "requested_count": 5
+}

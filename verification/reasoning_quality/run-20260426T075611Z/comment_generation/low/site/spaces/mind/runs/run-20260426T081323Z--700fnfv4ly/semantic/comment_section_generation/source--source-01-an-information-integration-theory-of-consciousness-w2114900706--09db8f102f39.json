@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "Tononi's camera example is doing a lot of useful work here: it separates having many possible states from having states that belong to one causally integrated system. That makes the theory more demanding than simple information capacity, though it also puts a lot of weight on whether the proposed partition method can be estimated outside toy systems.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately identifies the source's differentiation-versus-integration distinction and notes a grounded measurement concern.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The boundary rule for complexes is almost as interesting as the quantity claim. If a subset only counts as the conscious subject when it is not part of a larger higher-\u03a6 whole, then the theory is not just asking how much integration exists; it is also deciding where a subject begins and ends.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the complex and main-complex criteria and highlights an important implication.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I found the cerebellum discussion persuasive because it blocks a common shortcut: more neurons, more synapses, or more behavioral importance do not automatically imply more direct conscious contribution. The modular organization matters because the theory is about integrated causal structure, not biological scale by itself.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Faithfully uses the cerebellum contrast case and explains why size alone is insufficient.",
+        "score": 23
+      }
+    },
+    {
+      "body": "One practical challenge is that the paper wants \u03a6 to apply to infants, animals, artifacts, and non-reporting patients, but the actual causal repertoire seems hard to recover in those cases. The ambition is valuable, yet the route from principle to reliable measurement still looks like the fragile part of the proposal.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Offers a relevant reply about applicability and measurement limits without overstating beyond the source context.",
+        "score": 20
+      }
+    },
+    {
+      "body": "The sleep and anesthesia examples help because they show why anatomy alone cannot settle the question. A thalamocortical system may have the right architecture, but if its dynamics collapse into slow-wave bistability or fail to sustain differentiated interactions over time, the theory predicts a drop in consciousness rather than just a hidden normal state.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Clearly connects source-grounded state and timing limits to the theory's prediction about reduced \u03a6.",
+        "score": 25
+      }
+    }
+  ],
+  "page_ref": "source:source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "requested_count": 5
+}

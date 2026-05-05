@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The attraction rule operationalizes the central idea of moving clustered edges toward skeleton centerlines.",
+  "relation_file_id": "rel-8e3aa6f395109751c8b002ad62a0dda2a81148bedd5ed6d7e5e1910890bcfc90",
+  "relation_id": "derived_from:claim-the-attraction-rule-moves-interior-edge-points-toward-feature-transform-location--8607f298987e->claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-the-attraction-rule-moves-interior-edge-points-toward-feature-transform-location--8607f298987e",
+  "src_claim_ref": "2",
+  "status": "open"
+}

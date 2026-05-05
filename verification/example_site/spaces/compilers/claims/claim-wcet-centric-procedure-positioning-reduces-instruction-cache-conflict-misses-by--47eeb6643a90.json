@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:55:13Z",
+  "claim_id": "claim-wcet-centric-procedure-positioning-reduces-instruction-cache-conflict-misses-by--47eeb6643a90",
+  "evidence_excerpts": [
+    "Figure 7 reports that greedy procedure positioning achieves an average WCET reduction of 10%, while the heuristic reduces WCET by 4% on average; combined cloning and positioning reaches reductions up to 64%."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Positioning reduces cache misses",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "text": "WCET-centric procedure positioning reduces instruction-cache conflict misses by reordering functions using static WCET-derived call frequencies rather than profiling input data."
+}

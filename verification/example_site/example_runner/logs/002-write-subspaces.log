@@ -1,0 +1,11 @@
+step=002-write-subspaces
+started_at=2026-04-26T10:56:53Z
+cwd=/Users/chrgre01/src/Sapi
+command=bash /Users/chrgre01/src/Sapi/create_subspaces.sh /Users/chrgre01/src/Sapi/verification/example_site /Users/chrgre01/src/Sapi/tests/example/subspaces.tsv 
+
+attempt=1/10
+timeout_secs=1200
+attempt_started_at=2026-04-26T10:56:53Z
+Initialized subspace metadata from /Users/chrgre01/src/Sapi/tests/example/subspaces.tsv
+attempt_exit_status=0
+

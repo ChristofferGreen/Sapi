@@ -1,0 +1,324 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-02-grounding-is-not-a-strict-order--7c76f525b4e3/front_page.png",
+    "source_extraction": "sources/artifacts/source-02-grounding-is-not-a-strict-order--7c76f525b4e3/source_extraction.json",
+    "source_file": "sources/artifacts/source-02-grounding-is-not-a-strict-order--7c76f525b4e3/source.pdf",
+    "source_markdown": "sources/artifacts/source-02-grounding-is-not-a-strict-order--7c76f525b4e3/source.md",
+    "source_provenance": "sources/artifacts/source-02-grounding-is-not-a-strict-order--7c76f525b4e3/source_provenance.md"
+  },
+  "authors": [
+    "Gonzalo Rodriguez-Pereyra"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like how the argument does not just pick at one axiom of strict orderhood. Treating truthmaking and alethic-fact grounding as species of grounding gives the paper a clear route from local counterexamples to a broader claim about grounding itself.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-maya-santoro--lsld47rxu0",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-maya-santoro--lsld47rxu0",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately identifies the paper's species strategy and connects it to the strict-order thesis.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-maya-santoro--lsld47rxu0",
+        "thread_state_key": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-maya-santoro--lsld47rxu0"
+      },
+      {
+        "body": "That species move is doing a lot of work, though. If someone thinks truthmaking is only related to grounding rather than a genuine case of it, the examples may show something important without settling the formal status of grounding in general.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-eli-okafor--e0demjhhd3",
+        "parent_comment_uid": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-maya-santoro--lsld47rxu0",
+        "permalink": "#comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-eli-okafor--e0demjhhd3",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Raises a relevant limitation while staying anchored in the source's key premise.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-eli-okafor--e0demjhhd3",
+        "thread_state_key": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-eli-okafor--e0demjhhd3"
+      },
+      {
+        "body": "The Socrates example is a neat pressure point on transitivity: Socrates being white can make the proposition about his whiteness true, and that proposition can make it true that there are propositions, but the first fact does not seem to make the existential claim true. That gap feels more intuitive than the set case the paper rejects.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-lina-kovac--ttm09gxpwk",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-lina-kovac--ttm09gxpwk",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Clearly reconstructs the non-transitivity example and contrasts it with the rejected Schaffer case.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-lina-kovac--ttm09gxpwk",
+        "thread_state_key": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-lina-kovac--ttm09gxpwk"
+      },
+      {
+        "body": "I am less sure about the self-grounding cases. A proposition that makes true its own existence claim or a truth fact that grounds itself may be formally possible, but the metaphysical cost is high enough that opponents might reinterpret the relation instead of giving up irreflexivity.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-rory-chen--vp9p57guzz",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-rory-chen--vp9p57guzz",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Engages the irreflexivity challenge thoughtfully, though it gestures at objections without developing them fully.",
+          "score": 18
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 18,
+          "upvotes": 30
+        },
+        "thread_expansion_key": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-rory-chen--vp9p57guzz",
+        "thread_state_key": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-rory-chen--vp9p57guzz"
+      },
+      {
+        "body": "The reply about fundamentality seems important. If grounding can appear in bottomless or dense chains, then grounding need not always mark a step from less fundamental to more fundamental, which weakens the quick argument from explanation to asymmetry.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-samira-haddad--37oloz9ted",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-samira-haddad--37oloz9ted",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Faithfully captures the fundamentality objection and the source's response about bottomless or dense chains.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-samira-haddad--37oloz9ted",
+        "thread_state_key": "comment-source-source-02-grounding-is-not-a-strict-order-7c76f525b4e3-persona-samira-haddad--37oloz9ted"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-02-grounding-is-not-a-strict-order--7c76f525b4e3"
+  },
+  "date": null,
+  "display_title": "Grounding Is Not a Strict Order",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "dx.doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[1].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "http://dx.doi.org/ \u00ad\u2010",
+      "url": "http://dx.doi.org/10.7710/1526-\u00ad\u20100569.1453"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[1].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "http://dx.doi.org/ \u00ad\u2010",
+      "url": "https://doi.org/10.7710/1526-"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[1].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "http://dx.doi.org/ \u00ad\u2010",
+      "url": "https://arxiv.org/abs/0569.1453"
+    }
+  ],
+  "ingested_at": "2026-04-26T15:10:38Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "http://www.personal.leeds.ac.uk/~phlejb/symmetric%20dependence.pdf",
+      "year": null
+    },
+    {
+      "arxiv": "0569.1453",
+      "authors": [],
+      "doi": "10.7710/1526-",
+      "linked_source_ids": [],
+      "title": "http://dx.doi.org/ \u00ad\u2010",
+      "url": "http://dx.doi.org/10.7710/1526-\u00ad\u20100569.1453",
+      "year": null
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 1 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The source's central thesis is that grounding is not a strict order. Since strict orders are transitive, irreflexive, and asymmetric, the paper aims to defeat each formal feature rather than merely challenge one controversial assumption about grounding.",
+        "grounding_claim_ids": [
+          "0"
+        ],
+        "heading": "Core Thesis"
+      },
+      {
+        "body": "The argument depends on classifying truthmaking and alethic-fact grounding as cases of grounding. Truthmaking connects what is true with that in virtue of which it is true; alethic-fact grounding connects a truthmaker with the fact that the truthmade proposition is true.",
+        "grounding_claim_ids": [
+          "1",
+          "2"
+        ],
+        "heading": "Species Strategy"
+      },
+      {
+        "body": "The paper distinguishes its own argument from Schaffer's. Schaffer's set example is rejected as inconclusive, while the Socrates/proposition chain is used to show that two plausible truthmaking links need not compose into a third truthmaking link.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ],
+        "heading": "Transitivity Argument"
+      },
+      {
+        "body": "Against irreflexivity, the paper relies on formal constructions involving existence and truth. If proposition A exists, then <A exists> can be made true by A itself; if B says that B is true, then the fact that B is true can ground itself.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ],
+        "heading": "Reflexivity Cases"
+      },
+      {
+        "body": "The asymmetry challenge is stronger than mere self-grounding. The source constructs distinct propositions C and D that truthmake one another's existence claims, and distinct propositions E and F whose truth facts ground one another.",
+        "grounding_claim_ids": [
+          "7"
+        ],
+        "heading": "Asymmetry Cases"
+      },
+      {
+        "body": "The paper anticipates the objection that grounding must be asymmetric because grounds are more fundamental than what they ground. It replies that grounding need not entail relative fundamentality, especially in bottomless or dense grounding chains without an ungrounded first element.",
+        "grounding_claim_ids": [
+          "8"
+        ],
+        "heading": "Fundamentality Objection"
+      },
+      {
+        "body": "A contrastive or differential version of grounding also fails to restore strict orderhood. The same self-truth and mutual-truth examples can be reformulated as differences that violate differential irreflexivity and differential asymmetry.",
+        "grounding_claim_ids": [
+          "9"
+        ],
+        "heading": "Contrastive Grounding"
+      }
+    ],
+    "summary_long": "This source is a sustained metaphysical argument against the influential assumption that grounding is a strict order. It begins from the standard definition of a strict order as transitive, irreflexive, and asymmetric, then argues that grounding lacks all three features. The strategy is indirect but systematic: truthmaking and alethic-fact grounding are presented as species or cases of grounding, so formal failures in those species have consequences for the genus. Rodriguez-Pereyra first criticizes Schaffer's proposed non-transitivity cases, especially the set S = {a, b, c}, because the argument appears to rely on an unstable counterfactual-necessity test. The paper then offers its own non-transitivity case for truthmaking: Socrates' being white makes the proposition that Socrates is white true, and that proposition can make true the existential proposition that there are propositions, but Socrates' being white is not what makes it true that there are propositions. For irreflexivity, the paper uses self-referential existence and truth propositions: if an existing proposition is itself the entity whose existence is asserted, truthmaker theory permits self-truthmaking; if a true proposition says of itself that it is true, alethic-fact grounding permits the fact of its truth to ground itself. For asymmetry, the paper uses paired propositions that mutually truthmake or mutually ground each other's truth facts. It also answers the worry that grounding must track relative fundamentality or explanatory asymmetry, arguing that bottomless or dense grounding chains show that grounding need not always mark greater fundamentality. Finally, it argues that Schaffer's contrastive, quaternary treatment of grounding does not rescue strict orderhood, because the same self-grounding and mutual-grounding patterns violate differential irreflexivity and differential asymmetry.",
+    "summary_short": "Gonzalo Rodriguez-Pereyra argues that grounding should not be classified as a strict order. The source challenges transitivity, irreflexivity, and asymmetry by treating truthmaking and alethic-fact grounding as species of grounding, then constructing cases in which those relations fail strict-order constraints."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "source_kind": "file",
+  "source_locator": "02-grounding-is-not-a-strict-order.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Gonzalo Rodriguez-Pereyra"
+    ],
+    "display_title": "Grounding Is Not a Strict Order"
+  },
+  "source_type": "file",
+  "summary": "Gonzalo Rodriguez-Pereyra argues that grounding is not a strict order. The paper builds the case through truthmaking and alethic-fact grounding, rejects Schaffer's set-based transitivity counterexample as inconclusive, then offers formal examples against transitivity, irreflexivity, and asymmetry.",
+  "title": "02-grounding-is-not-a-strict-order",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved; continuing with date=null."
+    },
+    {
+      "code": "title_recovered_from_pdf_text",
+      "message": "The source record title was generic, so the display title and author were recovered from the extracted first page."
+    }
+  ]
+}

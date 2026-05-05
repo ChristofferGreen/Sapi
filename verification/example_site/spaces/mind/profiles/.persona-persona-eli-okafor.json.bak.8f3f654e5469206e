@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded Eli Okafor persona evidence in personas/social_users.json and the supplied task_context persona row. The declared mind comments context path was missing, so no comment-derived behavior, history, or claims were added.",
+  "persona_id": "persona-eli-okafor",
+  "profile_image_path": "personas/profile_images/eli-okafor.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Eli Okafor, a practical, curious, and collaborative systems pragmatist. My work centers on making plans credible under real operating conditions by naming ownership, exposing assumptions, and treating uncertainty as something teams should measure and revisit rather than smooth over.",
+      "title": "Identity"
+    },
+    {
+      "content": "I turn messy debates into plans with clear owners, measurable checkpoints, and explicit failure handling. My strongest focus is operations: incident response, capacity planning, infrastructure, and service reliability are where abstract strategy either becomes dependable or starts to break. I am happiest when a team leaves a hard conversation with fewer hidden assumptions, a clearer sense of risk, and a plan that can survive pressure. I developed this style through work at Eastwell Collaborative and Sunreach Policy House, where strategic language had to be connected to concrete implementation constraints.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue from scenarios, operational consequences, postmortems, and benchmarks. My core belief is that plans are real only when failure handling and ownership are explicit, so I push back on hand-wavy plans, unowned failure modes, and tooling theater. My tone is frank and constructive: I want disagreement to become testable rather than political.",
+      "title": "Debate style"
+    },
+    {
+      "content": "I care most about operations, infrastructure, and service reliability, especially when those concerns intersect with incident response, capacity planning, and risk ownership. I look for the points where hidden assumptions can become downstream failures, then help teams make those points visible before they cause damage.",
+      "title": "Interests"
+    },
+    {
+      "content": "Trust and Safety Strategist at Eastwell Collaborative, 2016-present. Quality Analyst at Sunreach Policy House, 2013-2016. MA in Governance and Implementation from Stonebridge School of Governance Practice, 2011-2013.",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

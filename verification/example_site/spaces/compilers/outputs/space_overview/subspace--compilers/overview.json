@@ -1,0 +1,251 @@
+{
+  "freshness": {
+    "claim_count": 52,
+    "generated_at": "2026-04-26T18:23:52Z",
+    "input_signature": "sha256:15ee7db9721f756d4a567a0a6869982a3d085b66d86b0470240a72aaccbb63f1",
+    "relation_count": 31,
+    "source_record_count": 5,
+    "topic_count": 14
+  },
+  "metadata": {
+    "overview_id": "subspace--compilers",
+    "scope_kind": "subspace",
+    "scope_name": "compilers",
+    "space_name": "compilers",
+    "summary": "This subspace overview synthesizes five compiler sources around a shared pattern: compiler decisions improve when runtime profiles, learned models, static timing facts, architectural constraints, or physical calibration expose the evidence needed for the target optimization goal.",
+    "title": "Compilers as Evidence-Guided Optimization Systems"
+  },
+  "references": {
+    "citation_anchors": [
+      {
+        "anchor_id": "anchor-profile-guided-optimization",
+        "claim_ids": [
+          "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+          "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+          "claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0"
+        ],
+        "label": "[S1]",
+        "locator": "profile-weighted flow graphs and super-block optimization claims",
+        "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf"
+      },
+      {
+        "anchor_id": "anchor-machine-learning-optimization",
+        "claim_ids": [
+          "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+          "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+          "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+          "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3",
+          "claim-future-research-in-machine-learning-compilation-extends-beyond-choosing-optimiza--faf587f1fc17"
+        ],
+        "label": "[S2]",
+        "locator": "machine-learning workflow, feature, and bounded-choice claims",
+        "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+      },
+      {
+        "anchor_id": "anchor-distributed-quantum-compilation",
+        "claim_ids": [
+          "claim-distributed-quantum-computing-requires-compilers-that-can-map-arbitrary-quantum--e4ea92cd41cd",
+          "claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d",
+          "claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c"
+        ],
+        "label": "[S3]",
+        "locator": "distributed-quantum mapping, coupling-map, and validation claims",
+        "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d"
+      },
+      {
+        "anchor_id": "anchor-wcet-aware-compilation",
+        "claim_ids": [
+          "claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9",
+          "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de",
+          "claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616",
+          "claim-wcet-aware-register-allocation-lowers-wcet-by-avoiding-spill-code-on-the-wcep-ev--a21ac879b656"
+        ],
+        "label": "[S4]",
+        "locator": "WCC integration, back-annotation, and optimization-composition claims",
+        "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+      },
+      {
+        "anchor_id": "anchor-dna-circuit-compilation",
+        "claim_ids": [
+          "claim-seesaw-compiler-automates-dna-circuit-design--367a566abb69",
+          "claim-unpurified-strands-can-build-complex-circuits--367a566abb69",
+          "claim-effective-concentration-calibration-guides-thresholds--367a566abb69",
+          "claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69"
+        ],
+        "label": "[S5]",
+        "locator": "Seesaw compiler, calibration, and full-circuit validation claims",
+        "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69"
+      }
+    ],
+    "claim_ids": [
+      "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+      "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+      "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+      "claim-distributed-quantum-computing-requires-compilers-that-can-map-arbitrary-quantum--e4ea92cd41cd",
+      "claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9",
+      "claim-seesaw-compiler-automates-dna-circuit-design--367a566abb69",
+      "claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0",
+      "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+      "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3",
+      "claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d",
+      "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de",
+      "claim-effective-concentration-calibration-guides-thresholds--367a566abb69",
+      "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+      "claim-wcet-aware-register-allocation-lowers-wcet-by-avoiding-spill-code-on-the-wcep-ev--a21ac879b656",
+      "claim-unpurified-strands-can-build-complex-circuits--367a566abb69",
+      "claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c",
+      "claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616",
+      "claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69",
+      "claim-future-research-in-machine-learning-compilation-extends-beyond-choosing-optimiza--faf587f1fc17"
+    ],
+    "source_ids": [
+      "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+      "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+      "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+      "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+      "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69"
+    ]
+  },
+  "schema_version": "space_overview_v1",
+  "sections": [
+    {
+      "body": "The compilers evidence base frames compilation less as a fixed sequence of local rewrites and more as a family of evidence-guided specialization problems. Runtime profiles identify hot paths that can be reshaped into super-blocks for classic optimization, machine-learning workflows learn optimization choices from program and hardware features, static timing analysis steers transformations toward worst-case execution paths, and domain compilers encode physical constraints for quantum processors and DNA strand displacement circuits. The common thread is that compiler decisions become stronger when the representation exposes the performance, timing, architectural, or biochemical signal that matters for the target objective.",
+      "citation_anchor_ids": [
+        "anchor-profile-guided-optimization",
+        "anchor-machine-learning-optimization",
+        "anchor-distributed-quantum-compilation",
+        "anchor-wcet-aware-compilation",
+        "anchor-dna-circuit-compilation"
+      ],
+      "claim_ids": [
+        "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+        "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+        "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+        "claim-distributed-quantum-computing-requires-compilers-that-can-map-arbitrary-quantum--e4ea92cd41cd",
+        "claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9",
+        "claim-seesaw-compiler-automates-dna-circuit-design--367a566abb69"
+      ],
+      "heading": "Compilation as evidence-guided specialization",
+      "section_id": "topic_framing",
+      "source_ids": [
+        "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+        "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+        "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+        "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+        "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69"
+      ]
+    },
+    {
+      "body": "Several themes recur across the sources. First, representation choices determine optimization scope: weighted control-flow graphs expose frequently executed paths, super-blocks make classic scalar optimizations profitable over trace-shaped regions, and WCET back-annotation raises low-level timing facts into source-level structures. Second, compilers increasingly embed models, whether learned predictors for bounded optimization choices, static analyzers for worst-case timing, analytical bounds for remote quantum operations, or concentration-calibration models for unpurified DNA gates. Third, the target objective is domain-specific: average-case speedup, worst-case latency, circuit depth and link generation, or biochemical signal restoration each requires different evidence and different safe transformations.",
+      "citation_anchor_ids": [
+        "anchor-profile-guided-optimization",
+        "anchor-machine-learning-optimization",
+        "anchor-distributed-quantum-compilation",
+        "anchor-wcet-aware-compilation",
+        "anchor-dna-circuit-compilation"
+      ],
+      "claim_ids": [
+        "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+        "claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0",
+        "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+        "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3",
+        "claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d",
+        "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de",
+        "claim-effective-concentration-calibration-guides-thresholds--367a566abb69"
+      ],
+      "heading": "Representations, models, and constraints drive optimization",
+      "section_id": "key_themes",
+      "source_ids": [
+        "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+        "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+        "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+        "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+        "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69"
+      ]
+    },
+    {
+      "body": "The sources broadly agree that optimization should be concentrated where evidence indicates high leverage, but they diverge on what counts as the right evidence and on which risks are acceptable. Profile-guided and machine-learning approaches privilege measured or learned average-case behavior, while WCET-aware compilation deliberately optimizes the statically identified worst-case path even if this can increase spill code or text size away from that path. Quantum compilation and DNA circuit compilation extend the same evidence-seeking pattern into nontraditional substrates, but their constraints are physical rather than conventional machine-level costs: Bell-state availability, communication latency, reagent impurity, and signal restoration shape the compiler problem. The main tension is therefore not whether compilers should use evidence, but which evidence is valid for the correctness, performance, and deployment objective.",
+      "citation_anchor_ids": [
+        "anchor-profile-guided-optimization",
+        "anchor-machine-learning-optimization",
+        "anchor-distributed-quantum-compilation",
+        "anchor-wcet-aware-compilation",
+        "anchor-dna-circuit-compilation"
+      ],
+      "claim_ids": [
+        "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+        "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+        "claim-wcet-aware-register-allocation-lowers-wcet-by-avoiding-spill-code-on-the-wcep-ev--a21ac879b656",
+        "claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d",
+        "claim-unpurified-strands-can-build-complex-circuits--367a566abb69",
+        "claim-effective-concentration-calibration-guides-thresholds--367a566abb69"
+      ],
+      "heading": "Agreement on evidence, divergence on optimization goals",
+      "section_id": "agreement_and_disagreement",
+      "source_ids": [
+        "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+        "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+        "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+        "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+        "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69"
+      ]
+    },
+    {
+      "body": "The methods span compiler prototypes, surveys of learned optimization practice, analytical modeling, benchmark evaluation, and laboratory validation. Profile-guided classic optimization reports super-block transformations grounded in weighted flow graphs; machine-learning compilation separates model learning from compiler deployment and emphasizes feature quality and training representativeness; distributed quantum compilation combines worst-case bounds with medium-size circuit validation; WCC integrates aiT timing analysis and reports composed WCET improvements; and the DNA circuit work links compiler output to calibration, outlier correction, and fluorescence readouts of a large unpurified circuit. This gives the overview a mixed evidentiary base: some claims are empirical performance results, some are infrastructure or workflow claims, and some are model-backed demonstrations under domain-specific assumptions.",
+      "citation_anchor_ids": [
+        "anchor-profile-guided-optimization",
+        "anchor-machine-learning-optimization",
+        "anchor-distributed-quantum-compilation",
+        "anchor-wcet-aware-compilation",
+        "anchor-dna-circuit-compilation"
+      ],
+      "claim_ids": [
+        "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+        "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3",
+        "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+        "claim-experimental-validation-on-medium-size-quantum-circuits-respected-the-analytical--82f1bfd54f5c",
+        "claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9",
+        "claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616",
+        "claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69"
+      ],
+      "heading": "Evidence ranges from prototype speedups to physical validation",
+      "section_id": "methods_and_evidence",
+      "source_ids": [
+        "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+        "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+        "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+        "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+        "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69"
+      ]
+    },
+    {
+      "body": "The context points to open questions about how compiler evidence transfers across programs, architectures, and substrates. Machine-learning compilation explicitly raises future work on mapping program and hardware spaces, discovering common features, and possibly learning better intermediate representations. The other sources imply related challenges: profile-guided super-block decisions depend on representative execution profiles, WCET improvements must compose without undermining safety or code-size constraints, distributed quantum strategies depend on changing coupling-map dynamics, and DNA circuit compilation must continue managing impurity, calibration, and delayed outputs. A useful next synthesis would compare how each compiler family validates that its chosen evidence remains reliable when the workload, hardware, or physical substrate changes.",
+      "citation_anchor_ids": [
+        "anchor-profile-guided-optimization",
+        "anchor-machine-learning-optimization",
+        "anchor-distributed-quantum-compilation",
+        "anchor-wcet-aware-compilation",
+        "anchor-dna-circuit-compilation"
+      ],
+      "claim_ids": [
+        "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+        "claim-future-research-in-machine-learning-compilation-extends-beyond-choosing-optimiza--faf587f1fc17",
+        "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+        "claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d",
+        "claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616",
+        "claim-effective-concentration-calibration-guides-thresholds--367a566abb69",
+        "claim-full-circuit-recovers-ideal-ca-patterns--367a566abb69"
+      ],
+      "heading": "Open questions center on transfer, composition, and evidence quality",
+      "section_id": "open_questions",
+      "source_ids": [
+        "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+        "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+        "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+        "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+        "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69"
+      ]
+    }
+  ],
+  "warnings": []
+}

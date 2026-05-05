@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What I find powerful here is the split between recalling a scene and feeling it as mine. R.B. can apparently place himself in the autobiographical record while still missing the ownership tone, which makes memory look less like a single mental certificate of identity and more like a bundle of coordinated systems.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Closely tracks the paper's central dissociation and frames it in clear discussion terms.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I agree, though I wonder how much the case really pressures metaphysical views rather than just epistemic claims about memory. It shows that autobiographical recall is not automatically experienced as ownership, but it does not by itself tell us whether the person persisted biologically, psychologically, or in some other way.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Adds an accurate caution about the paper's limited metaphysical implications.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The quasi-memory angle feels especially helpful because R.B. is not simply mistaken about another person's past, yet he also is not treating the memory as transparently his. That middle position gives philosophers a real psychological case to work with instead of relying only on thought experiments.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Strongly connects the case evidence to the quasi-memory debate without overstating it.",
+        "score": 25
+      }
+    },
+    {
+      "body": "One thing I would like to know is whether the missing ownership is all-or-nothing. R.B.'s intellectual acceptance that the events fit his biography sounds like a thin kind of self-link, even if the vivid first-person mineness is gone. Maybe the paper is pointing to layers of ownership rather than one absent tag.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Raises a plausible nuance about graded ownership while staying grounded in R.B.'s reports.",
+        "score": 20
+      }
+    },
+    {
+      "body": "The recovery detail is easy to overlook. If R.B. regained ownership memory by memory, that makes the sense of personal identity seem like something reconstructed and stabilized over time, not just something memory either has or lacks from the start.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Uses a specific source detail to draw a measured implication about reconstruction.",
+        "score": 23
+      }
+    }
+  ],
+  "page_ref": "source:source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+  "requested_count": 5
+}

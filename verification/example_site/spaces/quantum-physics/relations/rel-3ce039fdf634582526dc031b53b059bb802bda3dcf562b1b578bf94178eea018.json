@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-large-quantum-networks-require-reversible-interconnects-that-convert-quantum-sta--03b0b3a11218",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "DLCZ ensemble entanglement supplies a second grounded route for distributing coherence between network nodes.",
+  "relation_file_id": "rel-3ce039fdf634582526dc031b53b059bb802bda3dcf562b1b578bf94178eea018",
+  "relation_id": "supports:claim-the-dlcz-protocol-creates-heralded-entanglement-between-atomic-ensembles-by-inte--aa516185d3b2->claim-large-quantum-networks-require-reversible-interconnects-that-convert-quantum-sta--03b0b3a11218",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-dlcz-protocol-creates-heralded-entanglement-between-atomic-ensembles-by-inte--aa516185d3b2",
+  "src_claim_ref": "5",
+  "status": "open"
+}

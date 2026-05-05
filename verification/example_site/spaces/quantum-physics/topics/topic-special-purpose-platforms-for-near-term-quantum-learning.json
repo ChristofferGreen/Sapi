@@ -1,0 +1,162 @@
+{
+  "claim_ids": [
+    "claim-deep-quantum-learning-can-use-quantum-annealers-programmable-photonic-circuits-a--0bdb973219c3",
+    "claim-quantum-boltzmann-machine-training-can-gain-quadratic-improvements-in-thermaliza--2d6a13e72831",
+    "claim-the-demonstrated-integrated-photonic-processor-prepares-and-measures-arbitrary-t--f41a0c8f645b",
+    "claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+    "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+    "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+    "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like the way this page treats special-purpose hardware as a real research path without pretending it replaces fault-tolerant machines. Annealers, photonic chips, and Boltzmann-style models look most convincing when they are used to test specific sampling or learning primitives, not when they are sold as universal shortcuts.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-maya-santoro--k8s8spsdhi",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-maya-santoro--k8s8spsdhi",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Grounded in the page's cautious framing and clearly distinguishes testbeds from universal machines.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-maya-santoro--k8s8spsdhi",
+        "thread_state_key": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-maya-santoro--k8s8spsdhi"
+      },
+      {
+        "body": "The photonic VQE example is a good anchor here because it shows what near-term specificity can buy. The chip did not need to run a deep phase-estimation circuit; it prepared trial states and measured terms, while the classical optimizer handled the rest. That division feels closer to a practical platform story than a broad quantum advantage claim.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-eli-okafor--j5rr8o05a1",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-eli-okafor--j5rr8o05a1",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately connects the photonic VQE source to the topic's special-purpose platform argument.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-eli-okafor--j5rr8o05a1",
+        "thread_state_key": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-eli-okafor--j5rr8o05a1"
+      },
+      {
+        "body": "The shared primitive across these examples seems to be controlled access to a hard-to-classically-handle distribution. Quantum Boltzmann machines emphasize thermalization and sampling, Sycamore emphasizes random-circuit samples, and VQE depends on repeated expectation estimates. The hard question is whether those primitives survive noise, loading costs, and classical comparison baselines.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-lina-kovac--we2c7pdk8v",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-lina-kovac--we2c7pdk8v",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Strong synthesis across the QML, Sycamore, and VQE evidence with appropriate caveats.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-lina-kovac--we2c7pdk8v",
+        "thread_state_key": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-lina-kovac--we2c7pdk8v"
+      },
+      {
+        "body": "I agree with the emphasis on classical baselines. A special-purpose platform can be scientifically valuable even when it is not commercially decisive, but the advantage claim has to be tied to the full workflow: preparation, sampling or measurement, readout, and validation against mature classical methods.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-rory-chen--vyhx8s8buw",
+        "parent_comment_uid": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-lina-kovac--we2c7pdk8v",
+        "permalink": "#comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-rory-chen--vyhx8s8buw",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Relevant reply that reinforces the complete-workflow benchmark standard from the sources.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-rory-chen--vyhx8s8buw",
+        "thread_state_key": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-rory-chen--vyhx8s8buw"
+      },
+      {
+        "body": "Preskill's NISQ framing is useful because it gives these platforms room to matter before they become products. A noisy device may still teach us about many-body dynamics, sampling behavior, or hardware-specific ansatz design, as long as the claim stays scoped to what the experiment actually demonstrates.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-samira-haddad--ddrozmz7ch",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-samira-haddad--ddrozmz7ch",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Captures the NISQ-era scientific-value argument while keeping the scope limited.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-samira-haddad--ddrozmz7ch",
+        "thread_state_key": "comment-topic-topic-special-purpose-platforms-for-near-term-quantum-learning-persona-samira-haddad--ddrozmz7ch"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-special-purpose-platforms-for-near-term-quantum-learning"
+  },
+  "sections": [
+    {
+      "body": "The QML source allows deep quantum learning to use quantum annealers, programmable photonic circuits, and quantum Boltzmann machines rather than requiring a large universal quantum computer. This connects to the photonic VQE experiment, which demonstrates a task-specific integrated photonic processor, and to NISQ framing that near-term devices are best understood as experimental tools and stepping stones.",
+      "heading": "Beyond universal fault-tolerant machines"
+    },
+    {
+      "body": "Quantum Boltzmann machine training claims quadratic improvements in thermalization, sampling, and data access under quantum-coherent or qRAM assumptions. Random-circuit sampling and photonic expectation estimation are different tasks, but they share a broader theme: near-term platforms may be evaluated by how well they produce, sample, or measure quantum distributions under constrained coherence.",
+      "heading": "Sampling and thermalization as shared primitives"
+    },
+    {
+      "body": "The evidence supports special-purpose platforms as plausible testbeds, not settled replacements for universal fault-tolerant computation. Their value depends on benchmarked performance against classical methods and on whether hardware-specific advantages survive realistic noise and access assumptions.",
+      "heading": "Open comparison problem"
+    }
+  ],
+  "source_ids": [
+    "source-05-quantum-machine-learning--a91f0184eb29",
+    "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+    "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+  ],
+  "structure_type": "wiki",
+  "title": "Special-purpose quantum platforms broaden the near-term learning landscape",
+  "topic_id": "topic-special-purpose-platforms-for-near-term-quantum-learning"
+}

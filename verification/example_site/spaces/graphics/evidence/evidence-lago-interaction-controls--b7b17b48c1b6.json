@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-the-lago-implementation-supports-interactive-zooming-panning-normalization-contr--0c65d7666097"
+  ],
+  "evidence_id": "evidence-lago-interaction-controls--b7b17b48c1b6",
+  "evidence_type": "observational_result",
+  "excerpt": "LaGO provides zoom and pan operations to support the interactive exploration of visualized graphs. Similar to related density based approaches the bandwidth parameter h is bound to the viewport to support semantic zooming. The interactive exploration leads to large variations of the visualized density values and fixed color mapping cannot address sparse and crowded viewports equally. We therefore provide an automatic normalization of the densities with the maximal value of the current viewport. LaGO therefore provides a detail on demand implementation that allows the interactive labeling of the node density field.",
+  "overview": "This evidence connects the rendering method to an exploratory software workflow. It shows that the implementation is not only a batch renderer: zooming, panning, bandwidth adjustment, normalization, color mapping, and label retrieval are treated as part of the graph-analysis interface. The evidence is descriptive rather than a controlled user-study result.",
+  "page_refs": [
+    "p.2492"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "title": "LaGO Interaction Controls"
+}

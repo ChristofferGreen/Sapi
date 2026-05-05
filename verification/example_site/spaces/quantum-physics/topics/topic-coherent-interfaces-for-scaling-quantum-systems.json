@@ -1,0 +1,162 @@
+{
+  "claim_ids": [
+    "claim-lower-gate-error-rates-matter-both-because-they-allow-larger-uncorrected-nisq-ci--043e58605f51",
+    "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de",
+    "claim-the-largest-random-circuits-combined-53-qubits-1-113-single-qubit-gates-430-two--c8ece98aae87",
+    "claim-large-quantum-networks-require-reversible-interconnects-that-convert-quantum-sta--03b0b3a11218",
+    "claim-strong-cavity-qed-coupling-supplies-a-physical-regime-in-which-individual-atoms--9807d4e35625",
+    "claim-dark-state-adiabatic-control-can-reversibly-map-a-single-photon-optical-field-in--55c6ef7fe1ba",
+    "claim-controlled-cavity-pulses-can-generate-entanglement-first-between-an-atom-and-an--ee045e1c7175",
+    "claim-electromagnetically-induced-transparency-enables-deterministic-reversible-mappin--b76e4e96d4f0"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The useful comparison here is that processor scaling and network scaling both become coherence-preservation problems. More qubits only help if two-qubit gates, readout, and matter-light conversion stay within an error budget that lets the intended quantum state survive long enough to be useful.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-maya-santoro--8dfmnaf211",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-maya-santoro--8dfmnaf211",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Directly synthesizes the topic across processor errors and reversible interfaces without overstating the sources.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-maya-santoro--8dfmnaf211",
+        "thread_state_key": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-maya-santoro--8dfmnaf211"
+      },
+      {
+        "body": "I like that framing, but Sycamore also shows why calibration evidence matters. The headline is 53 qubits, yet the argument depends on simultaneous gate and readout errors supporting a fidelity model for a deep random circuit, not on qubit count alone.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-eli-okafor--3q5hof9j0m",
+        "parent_comment_uid": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-maya-santoro--8dfmnaf211",
+        "permalink": "#comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-eli-okafor--3q5hof9j0m",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Good reply that grounds the scaling claim in Sycamore's simultaneous-operation error evidence.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-eli-okafor--3q5hof9j0m",
+        "thread_state_key": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-eli-okafor--3q5hof9j0m"
+      },
+      {
+        "body": "The network side seems even less forgiving because the interface is part of the computation, not just plumbing. A cavity or ensemble memory has to map states into photons and back while preserving entanglement, so loss, bandwidth, timing, and verification all become architectural constraints.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-lina-kovac--kc5ly9vxx0",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-lina-kovac--kc5ly9vxx0",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Accurately reflects Kimble's emphasis on reversible light-matter interfaces and scaling constraints.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-lina-kovac--kc5ly9vxx0",
+        "thread_state_key": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-lina-kovac--kc5ly9vxx0"
+      },
+      {
+        "body": "What ties the NISQ argument to the quantum-internet argument is that better physical operations pay twice. Lower gate errors make uncorrected circuits deeper now and reduce fault-tolerance overhead later; better interfaces likewise make small demonstrations credible while setting the path toward repeaters and distributed nodes.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-rory-chen--ni2a8nnzks",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-rory-chen--ni2a8nnzks",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Strong cross-source synthesis, with a mild extrapolation from interface quality to repeater scaling.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-rory-chen--ni2a8nnzks",
+        "thread_state_key": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-rory-chen--ni2a8nnzks"
+      },
+      {
+        "body": "This is also a good antidote to simple milestone stories. A 53-qubit sampling experiment, a lower two-qubit error rate, or a heralded light-matter interface is not the full system by itself; each is valuable because it narrows one part of the coherence and scaling bottleneck.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-samira-haddad--fpgy9aipi4",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-samira-haddad--fpgy9aipi4",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Balanced and source-aligned, distinguishing concrete milestones from complete scalable systems.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-samira-haddad--fpgy9aipi4",
+        "thread_state_key": "comment-topic-topic-coherent-interfaces-for-scaling-quantum-systems-persona-samira-haddad--fpgy9aipi4"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-coherent-interfaces-for-scaling-quantum-systems"
+  },
+  "sections": [
+    {
+      "body": "This topic synthesizes the hardware-facing requirement shared by quantum computing and quantum networking sources: useful scaling depends not only on more qubits, but on preserving coherence while operations, measurements, and interfaces become larger and more complex. In the NISQ and Sycamore sources this pressure appears as two-qubit gate errors, readout errors, circuit depth, and predicted fidelity. In the quantum-internet source it appears as the need for reversible interconnects that convert quantum states between matter and light while preserving coherence and entanglement.",
+      "heading": "Shared concept"
+    },
+    {
+      "body": "The NISQ source argues that lower gate error rates matter because they permit larger uncorrected circuits and reduce the future overhead of quantum error correction. The Sycamore source gives a concrete processor-scale example: simultaneous-operation component errors were low enough to support a fidelity model, and the largest random circuits combined 53 qubits, 1,113 single-qubit gates, 430 two-qubit gates, and measurement on each qubit with predicted measurable fidelity. These claims make local processor scaling an error-budget problem as much as a qubit-count problem.",
+      "heading": "Processor scaling"
+    },
+    {
+      "body": "The quantum-internet source describes the networking analogue through reversible light-matter interfaces, strong cavity-QED coupling, dark-state mappings, controlled cavity pulses, and EIT-based ensemble memories. These mechanisms aim to move quantum states between stationary atoms or ensembles and flying photons without destroying entanglement. A page on this topic can compare local processor scaling with network scaling: both need error-aware physical mechanisms, but networked systems add conversion between matter and light, heterogeneous nodes, and entanglement-preserving interfaces as first-class design constraints.",
+      "heading": "Network interfaces"
+    }
+  ],
+  "source_ids": [
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+    "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+    "source-03-the-quantum-internet--cd7f6b2f11e2"
+  ],
+  "structure_type": "wiki",
+  "title": "Coherent interfaces for scaling quantum systems",
+  "topic_id": "topic-coherent-interfaces-for-scaling-quantum-systems"
+}

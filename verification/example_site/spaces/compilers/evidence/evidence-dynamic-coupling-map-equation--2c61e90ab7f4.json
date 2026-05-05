@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d"
+  ],
+  "evidence_id": "evidence-dynamic-coupling-map-equation--2c61e90ab7f4",
+  "evidence_type": "equation",
+  "excerpt": "Formally, a coupling map is a visual representation of the directed graph G = (V, E), where V = {vi} denotes the set of vertices representing the qubits and E = {ei,j} denotes the set of directed edges representing the possibility to perform a CNOT, with vi and vj acting as control and target qubit, respectively.",
+  "overview": "The coupling-map equation supplies the formal object that distributed compilation must extend. The paper uses it to argue that a static graph is insufficient once remote operations depend on Bell-state availability and regeneration timing, motivating dynamic scheduling constraints.",
+  "page_refs": [
+    "Eq. 1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "title": "Dynamic Coupling Map Model"
+}

@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-02-grounding-is-not-a-strict-order--7c76f525b4e3/source.pdf",
+    "source_markdown": "sources/artifacts/source-02-grounding-is-not-a-strict-order--7c76f525b4e3/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "0acc011d9874048a791e359d6814d4f3579d70893f05f85d020a2b0fe8c0a314",
+  "markdown_char_count": 89462,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "e6551a990d76927bacb90eaa690ff430e95d435a893853cd7aae106efb1469fe",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

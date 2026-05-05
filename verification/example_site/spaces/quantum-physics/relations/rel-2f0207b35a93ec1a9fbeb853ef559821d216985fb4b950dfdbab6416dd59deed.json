@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "qPCA applies qBLAS-style density-matrix and eigenvalue routines to a specific machine learning task.",
+  "relation_file_id": "rel-2f0207b35a93ec1a9fbeb853ef559821d216985fb4b950dfdbab6416dd59deed",
+  "relation_id": "derived_from:claim-quantum-principal-component-analysis-can-diagonalize-a-covariance-like-density-m--6ee32a171ac2->claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-quantum-principal-component-analysis-can-diagonalize-a-covariance-like-density-m--6ee32a171ac2",
+  "src_claim_ref": "2",
+  "status": "open"
+}

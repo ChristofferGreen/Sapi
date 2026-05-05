@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T11:02:43Z",
+  "claim_id": "claim-a-distributed-thalamocortical-network-is-well-suited-to-generate-consciousness-b--571db463385d",
+  "evidence_excerpts": [
+    "The thalamocortical system is organized in a way that appears to emphasize at once both functional specialization and functional integration.",
+    "Connection matrices yielding the highest values of information integration (\u03a6 = 74 bits) share two key characteristics: connection patterns are different for different elements, and all elements can be reached from all other elements."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Thalamocortical networks maximize Phi",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "text": "A distributed thalamocortical network is well suited to generate consciousness because it combines functional specialization with functional integration."
+}

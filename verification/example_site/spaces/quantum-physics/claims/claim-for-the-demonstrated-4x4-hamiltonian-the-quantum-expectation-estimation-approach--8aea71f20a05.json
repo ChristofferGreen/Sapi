@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:22:43Z",
+  "claim_id": "claim-for-the-demonstrated-4x4-hamiltonian-the-quantum-expectation-estimation-approach--8aea71f20a05",
+  "evidence_excerpts": [
+    "The discussion states that a QPE circuit for a 4x4 Hamiltonian such as the one demonstrated would require at least 12 CNOT gates, while the reported method requires one.",
+    "The paper attributes this resource saving to replacing a serial sequence of controlled operations with parallelizable short coherent calculations and repeated state preparations."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "QEE reduces CNOT requirements",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "text": "For the demonstrated 4x4 Hamiltonian, the quantum expectation-estimation approach uses fewer entangling-gate resources than phase estimation, requiring one CNOT gate instead of at least twelve."
+}

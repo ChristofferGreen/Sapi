@@ -1,0 +1,14 @@
+{
+  "claim_ids": [
+    "claim-s-art-distinguishes-experiential-enactive-experiential-phenomenological-and-narr--3e3013b46122",
+    "claim-mindfulness-based-meditation-is-proposed-to-modulate-self-specifying-and-narrati--0ff3acc89706"
+  ],
+  "evidence_id": "evidence-self-system-parcellation--615ee4e1923f03",
+  "evidence_type": "formal_argument",
+  "excerpt": "The networks identified in the S-ART framework elaborates upon past conceptualizations of self and distinguishes between two functional aspects of self-specifying processes, (1) non-conscious sensory-affective-motor processing, referred to here as the experiential enactive self (EES); (2) an agentic, self-as-subject acting as awareness in the present moment, referred to as an experiential phenomenological self (EPS). The S-ART also distinguishes between self-specifying processes and self-related processes, which refer to the evaluative self-as-object, reflecting the autobiographical narrative reconstructed from the past or projected into the future.",
+  "overview": "The excerpt provides the taxonomic structure that lets the paper connect phenomenology to neural systems. EES, EPS, and narrative self-processing are not presented as a complete theory of self, but as a practical parcellation for identifying where mindfulness training might change perception, agency, and autobiographical evaluation.",
+  "page_refs": [],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+  "title": "Three Self-Processing Systems"
+}

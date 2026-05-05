@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:45:24Z",
+  "claim_id": "claim-the-paper-s-worst-case-system-model-uses-one-data-qubit-per-processor-and-a-one--9e5973bc3485",
+  "evidence_excerpts": [
+    "Only one data qubit is available at each quantum processor.",
+    "The quantum processors are interconnected through a 1-D nearest-neighbor topology, and only one data qubit is available at each quantum processor."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Worst case maximizes overhead",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "text": "The paper's worst-case system model uses one data qubit per processor and a one-dimensional nearest-neighbor processor topology, making every CNOT remote and maximizing distributed-computation overhead."
+}

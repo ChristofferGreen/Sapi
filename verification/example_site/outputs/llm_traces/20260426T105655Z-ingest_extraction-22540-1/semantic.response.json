@@ -1,0 +1,330 @@
+{
+  "claims": [
+    {
+      "evidence_excerpts": [
+        "The theory presented here claims that consciousness has to do with the capacity to integrate information.",
+        "Phenomenological analysis indicates that consciousness has to do with the ability to integrate a large amount of information."
+      ],
+      "short_title": "Consciousness integrates information",
+      "text": "Consciousness corresponds to a system\u2019s capacity to integrate information, because conscious experience is both highly differentiated and unified."
+    },
+    {
+      "evidence_excerpts": [
+        "\u03a6 is the amount of effective information that can be exchanged across the minimum information bipartition of a complex.",
+        "The minimum information bipartition MIB(S) is the bipartition for which the normalized effective information reaches a minimum, and the corresponding value is \u03a6(S)."
+      ],
+      "short_title": "Phi measures conscious quantity",
+      "text": "The quantity of consciousness available to a system is measured by the \u03a6 value of a complex, where \u03a6 is effective information across the minimum information bipartition."
+    },
+    {
+      "evidence_excerpts": [
+        "A complex is a subset S having \u03a6>0 that is not included within a larger subset having higher \u03a6.",
+        "To the extent that consciousness corresponds to the capacity to integrate information, complexes are the \u201csubjects\u201d of experience, being the locus where information can be integrated."
+      ],
+      "short_title": "Complexes are experiential subjects",
+      "text": "A complex is an integrated subset with \u03a6 greater than zero that is not contained in a larger subset with higher \u03a6, and complexes are the loci of subjective experience."
+    },
+    {
+      "evidence_excerpts": [
+        "The values of effective information among the elements of a complex, by defining the relationships among these dimensions, specify the structure of this space.",
+        "The effective information matrix defines the set of informational relationships, or \u201cqualia space\u201d for each complex."
+      ],
+      "short_title": "Qualia space determines quality",
+      "text": "The quality of consciousness is specified by the informational relationships among the elements of a complex, represented as an effective-information-defined qualia space."
+    },
+    {
+      "evidence_excerpts": [
+        "Each conscious state is defined by the set of all its coordinates, which are given by the activity values of all elements of a complex.",
+        "Each particular conscious experience is specified by the value, at any given time, of the variables mediating informational interactions among the elements of a complex."
+      ],
+      "short_title": "Current states specify experiences",
+      "text": "Each particular conscious experience is specified by the current activity values of the variables that mediate informational interactions within a complex."
+    },
+    {
+      "evidence_excerpts": [
+        "The thalamocortical system is organized in a way that appears to emphasize at once both functional specialization and functional integration.",
+        "Connection matrices yielding the highest values of information integration (\u03a6 = 74 bits) share two key characteristics: connection patterns are different for different elements, and all elements can be reached from all other elements."
+      ],
+      "short_title": "Thalamocortical networks maximize Phi",
+      "text": "A distributed thalamocortical network is well suited to generate consciousness because it combines functional specialization with functional integration."
+    },
+    {
+      "evidence_excerpts": [
+        "Neural elements that have widespread and effective connections to a main complex of high \u03a6 may nevertheless remain informationally excluded from it.",
+        "Elements in afferent pathways can affect the main complex without belonging to it."
+      ],
+      "short_title": "Ports influence without belonging",
+      "text": "Reticular, sensory afferent, motor efferent, and subcortical loop activity can modulate or affect the thalamocortical main complex without directly contributing to conscious experience."
+    },
+    {
+      "evidence_excerpts": [
+        "A strongly modular network, consisting of three modules of eight strongly interconnected elements each, yields \u03a6 = 20 bits for each of its three modules.",
+        "The large complex encompassing all the elements has an extremely low \u03a6 value of 5 bits."
+      ],
+      "short_title": "Modularity lowers conscious integration",
+      "text": "Strongly modular neural architectures can be computationally sophisticated yet contribute little to consciousness because they generate many small low-\u03a6 complexes rather than one high-\u03a6 complex."
+    },
+    {
+      "evidence_excerpts": [
+        "If the \u201ccallosum-like\u201d connections are removed, the main complex breaks down into two smaller complexes, each of which still has a high value of \u03a6.",
+        "If the \u201cauditory\u201d module is functionally disconnected from the rest, the main complex includes just the \u201csupramodal\u201d and \u201cvisual\u201d modules."
+      ],
+      "short_title": "Disconnection reduces conscious level",
+      "text": "Anatomical or functional disconnection within thalamocortical systems can reduce, split, or selectively alter consciousness by changing the system\u2019s integrated-information structure."
+    },
+    {
+      "evidence_excerpts": [
+        "Consciousness is not an all-or-none property, but it is graded: to varying degrees, it should exist in most natural and artificial systems.",
+        "It should be possible to construct conscious artifacts by endowing them with a complex of high \u03a6."
+      ],
+      "short_title": "High Phi enables artifacts",
+      "text": "Consciousness is graded rather than all-or-none and could in principle exist in infants, animals, or artificial systems when they possess complexes with sufficiently high \u03a6."
+    }
+  ],
+  "evidence_items": [
+    {
+      "claim_refs": [
+        "0"
+      ],
+      "evidence_id": "evidence-photodiode-camera-contrast--27a598c5c538",
+      "evidence_type": "formal_argument",
+      "excerpt": "When the blank screen turns on, the photodiode enters one of its two possible alternative states and beeps. As with the coin, this corresponds to 1 bit of information. However, when you see the blank screen turn on, the state you enter, unlike the photodiode, is one out of an extraordinarily large number of possible states. The sensor chip can be considered just as well as a collection of one million photodiodes with a repertoire of two states each, rather than as a single integrated system with a repertoire of 2^1,000,000 states.",
+      "overview": "This thought experiment supplies the paper\u2019s central phenomenological motivation. A photodiode has differentiation without consciousness, while a digital camera has many possible states but lacks causal integration among its elements. The contrast establishes why Tononi treats both differentiation and unity as necessary for consciousness, rather than equating consciousness with information capacity alone.",
+      "page_refs": [
+        "pp.2-3"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "title": "Photodiode And Camera Contrast"
+    },
+    {
+      "claim_refs": [
+        "1"
+      ],
+      "evidence_id": "evidence-effective-information-equation--4c68a99ea551",
+      "evidence_type": "equation",
+      "excerpt": "Specifically, we define the effective information between A and B as EI(A\u2192B) = MI(AHmax;B). Here MI(A;B) = H(A) + H(B) - H(AB) stands for mutual information, a measure of the entropy or information shared between a source (A) and a target (B). For a given bipartition of a subset, the sum of the effective information for both directions is indicated as EI(A \u2194 B) = EI(A\u2192B) + EI(B\u2192A).",
+      "overview": "The equation is the formal hinge between causal perturbation and information integration. It defines effective information as mutual information generated when one part of a system is perturbed with maximum entropy, then combines both directions across a bipartition. This lets the theory distinguish strongly specialized reciprocal causal organization from mere correlation or passive information storage.",
+      "page_refs": [
+        "p.4"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "title": "Effective Information Equation"
+    },
+    {
+      "claim_refs": [
+        "1",
+        "2"
+      ],
+      "evidence_id": "evidence-minimum-bipartition-phi--09db8f102f39",
+      "evidence_type": "formal_argument",
+      "excerpt": "The minimum information bipartition MIB(S), the bipartition for which the normalized effective information reaches a minimum, and the corresponding value of \u03a6(S). To identify complexes and obtain their capacity for information integration, one considers every subset S of X composed of k elements, with k = 2,..., n. For each subset S, we consider all bipartitions and calculate EI(A \u2194 B) for each of them.",
+      "overview": "This procedure converts the theory into an auditable measurement recipe. Instead of asking only how much information a system can represent, it asks how much causally effective information survives the weakest partition. The weakest-link construction is why \u03a6 is meant to capture unified integration rather than total entropy or connectivity count.",
+      "page_refs": [
+        "pp.4-5"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "title": "Minimum Bipartition Defines Phi"
+    },
+    {
+      "claim_refs": [
+        "2",
+        "6"
+      ],
+      "evidence_id": "evidence-complex-definition-subject--1f4a6b8c9d0e",
+      "evidence_type": "formal_argument",
+      "excerpt": "A complex is a subset S having \u03a6>0 that is not included within a larger subset having higher \u03a6. For a complex, and only for a complex, it is appropriate to say that, when it enters a particular state out of its repertoire, it generates an amount of integrated information corresponding to its \u03a6 value. Complexes are the \u201csubjects\u201d of experience, being the locus where information can be integrated.",
+      "overview": "The complex definition gives the theory its boundary rule. Elements outside a complex may exchange signals with it, but they do not belong to the same subject of experience unless they raise the integrated-information structure. This supports later claims about afferents, efferents, reticular systems, and subcortical loops influencing consciousness without directly constituting it.",
+      "page_refs": [
+        "p.6"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "title": "Complexes Define Experiential Loci"
+    },
+    {
+      "claim_refs": [
+        "3",
+        "4"
+      ],
+      "evidence_id": "evidence-qualia-space-matrix--5e83ef7a2116",
+      "evidence_type": "formal_argument",
+      "excerpt": "The values of effective information among the elements of a complex, by defining the relationships among these dimensions, specify the structure of this space. The effective information matrix defines the set of informational relationships, or \u201cqualia space\u201d for each complex. The effective information matrix is different for the two complexes, even though \u03a6 is the same.",
+      "overview": "This is the main evidence for the theory\u2019s distinction between quantity and quality. Two systems can have the same amount of integrated information while differing in the pattern of effective-information relations among their elements. The theory therefore treats conscious content as structure in a relational space, not as a scalar level alone.",
+      "page_refs": [
+        "Fig.2",
+        "pp.7-8"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "title": "Qualia Space Matrix"
+    },
+    {
+      "claim_refs": [
+        "5"
+      ],
+      "evidence_id": "evidence-thalamocortical-optimization--74c0ffee1234",
+      "evidence_type": "figure_result",
+      "excerpt": "A network whose connection matrix was obtained by optimization for \u03a6 (\u03a6 = 74 bits) has a heterogeneous arrangement of incoming and outgoing connections: each element is connected to a different subset of elements, with different weights. The same amount of connectivity, distributed homogeneously to eliminate functional specialization, yields a complex with much lower values of \u03a6 (\u03a6 = 20 bits). The same amount of connectivity, distributed in such a way as to form four independent modules to eliminate functional integration, yields four separate complexes with much lower values of \u03a6 (\u03a6 = 20 bits).",
+      "overview": "The simulation result links the biological thalamocortical discussion to the theory\u2019s formal criterion. High \u03a6 appears when a network is both specialized and integrated; removing either property lowers \u03a6 even when the amount of connectivity is held constant. This supports the claim that thalamocortical architecture is a plausible substrate for consciousness.",
+      "page_refs": [
+        "Fig.3"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "title": "Thalamocortical Optimization Result"
+    },
+    {
+      "claim_refs": [
+        "6",
+        "7"
+      ],
+      "evidence_id": "evidence-modular-and-port-architectures--8badf00d0420",
+      "evidence_type": "figure_result",
+      "excerpt": "A cerebellum-like organization with three modules of eight elements yields three separate complexes with low values of \u03a6 (\u03a6 = 20 bits), and a large complex encompassing all the elements has an extremely low \u03a6 value of 5 bits. A reticular element providing common input to a thalamocortical-like main complex has a combined 9-element complex with much lower \u03a6 (\u03a6 = 10 bits), while the thalamocortical-like main complex remains high (\u03a6 = 61 bits). Afferent and efferent pathways can affect the main complex while the larger combined complex has low \u03a6 (\u03a6 = 10 bits).",
+      "overview": "Figure 4 grounds two linked claims: modular architectures can be information-rich yet poor in integration, and external input/output systems can influence a conscious complex without becoming part of it. The evidence explains why the cerebellum, brainstem arousal systems, sensory pathways, and motor pathways are assigned different constitutive roles despite their causal importance.",
+      "page_refs": [
+        "Fig.4"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "title": "Modular And Port Architectures"
+    },
+    {
+      "claim_refs": [
+        "8"
+      ],
+      "evidence_id": "evidence-disconnection-complex-results--abcdef123456",
+      "evidence_type": "figure_result",
+      "excerpt": "A split-brain-like model begins with a large main complex obtained by connecting two thalamocortical-like subsets through reciprocal \u201ccallosum-like\u201d connections plus a \u201csubcortical\u201d common input; the main complex has high \u03a6 (\u03a6 = 72 bits). If the \u201ccallosum-like\u201d connections are removed, the main complex breaks down into two smaller complexes, each of which still has a high value of \u03a6 (\u03a6 = 61 bits). In a functional-disconnection model, if the \u201cauditory\u201d module is functionally disconnected, the main complex includes just the \u201csupramodal\u201d and \u201cvisual\u201d modules and \u03a6 is only minimally reduced (\u03a6 = 57 bits).",
+      "overview": "These model results show how the theory handles split consciousness and selective loss of content. A structural disconnection can divide one conscious complex into two, while functional disconnection can exclude a module from the main complex without abolishing all consciousness. The result supports the claim that conscious level and content depend on the current integration structure, not anatomical presence alone.",
+      "page_refs": [
+        "Fig.5"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "title": "Disconnection Complex Results"
+    },
+    {
+      "claim_refs": [
+        "0",
+        "1"
+      ],
+      "evidence_id": "evidence-temporal-scale-constraints--123456789abc",
+      "evidence_type": "observational_result",
+      "excerpt": "Studies of how a percept is progressively specified and stabilized indicate that it takes up to 100\u2013200 milliseconds to develop a fully formed sensory experience. Other evidence indicates that a single conscious moment does not extend beyond 2\u20133 seconds. Time wise, \u03a6 values in the brain are likely to show a maximum between tens and hundreds of milliseconds.",
+      "overview": "The temporal evidence constrains what counts as an element state and interaction window for measuring \u03a6. Consciousness is not predicted at arbitrarily fast or slow scales; the relevant causal interactions must unfold on time scales where differential effects can propagate without dissolving into independent settled states. This limits the theory\u2019s measurement target and links it to known perceptual timing.",
+      "page_refs": [
+        "pp.3",
+        "p.6"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "title": "Temporal Scale Constraints"
+    },
+    {
+      "claim_refs": [
+        "9"
+      ],
+      "evidence_id": "evidence-graded-artifact-implication--fedcba654321",
+      "evidence_type": "formal_argument",
+      "excerpt": "Consciousness is not an all-or-none property, but it is graded: to varying degrees, it should exist in most natural and artificial systems. Because the conditions needed to build complexes of high \u03a6 are apparently not easy to achieve, however, correspondingly high levels of experience are probably available to only a few kinds of systems. It should be possible to construct conscious artifacts by endowing them with a complex of high \u03a6.",
+      "overview": "The implication section extends the theory beyond ordinary adult human report. If consciousness is identical with integrated information, then it should vary by degree across biological and artificial systems according to their \u03a6. The passage is explicitly qualified: high levels of experience require architectures that jointly support specialization and integration, so the theory does not treat every information-processing system as richly conscious.",
+      "page_refs": [
+        "pp.18-19"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "title": "Graded Artifact Implication"
+    }
+  ],
+  "relations": [],
+  "source": {
+    "authors": [
+      "Giulio Tononi"
+    ],
+    "display_title": "Information Integration Theory of Consciousness",
+    "doi": "10.1186/1471-2202-5-42",
+    "journal": "BMC Neuroscience",
+    "publication_date": "2004-11-02",
+    "record_display_title": "Untitled Source",
+    "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39"
+  },
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2004-11-02",
+    "origin": "source_markdown_front_matter",
+    "rationale": "The extracted first page states \u201cPublished: 02 November 2004\u201d for BMC Neuroscience 2004, 5:42."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The argument begins from the claim that conscious experience is both differentiated and integrated. Seeing a blank screen as light rules out many alternatives for a human observer, but a photodiode only discriminates one bit. A camera has a huge repertoire of states, yet its photodiodes do not causally integrate their states. Tononi uses this contrast to motivate consciousness as integrated information rather than raw information capacity.",
+        "grounding_claim_ids": [
+          "0"
+        ],
+        "heading": "Core Argument"
+      },
+      {
+        "body": "The paper defines effective information by applying maximum-entropy perturbations to one part of a system and measuring the mutual information caused in another part. \u03a6 is then found at the weakest bipartition of a subset, so the measure asks how much causal information remains integrated when the system is divided at its least integrated point. This makes the theory sensitive to causal architecture rather than component count alone.",
+        "grounding_claim_ids": [
+          "1",
+          "2"
+        ],
+        "heading": "Formal Measurement Path"
+      },
+      {
+        "body": "Complexes provide the boundary rule for conscious subjects. A subset counts as a complex only if it has \u03a6 greater than zero and is not merely part of a larger subset with higher \u03a6. This allows the source to distinguish a conscious main complex from ports-in, ports-out, and neighboring systems that can causally influence it without belonging to the same experiential subject.",
+        "grounding_claim_ids": [
+          "2",
+          "6"
+        ],
+        "heading": "Subjects And Boundaries"
+      },
+      {
+        "body": "The theory does not reduce consciousness to a scalar level. Quality is assigned to the pattern of effective-information relationships among the elements of a complex, called a qualia space. The source\u2019s examples of two systems with equal \u03a6 but different effective information matrices illustrate how two systems could have the same quantity of consciousness while differing in what experience is like.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ],
+        "heading": "Quality Of Experience"
+      },
+      {
+        "body": "Tononi maps the formal account onto thalamocortical anatomy. The thalamocortical system combines functional specialization with reciprocal, distributed integration, and model networks optimized for \u03a6 show the same paired requirements. Making the same connectivity homogeneous lowers specialization and \u03a6; splitting it into modules lowers integration and \u03a6. This supports the source\u2019s claim that consciousness depends on organized causal integration.",
+        "grounding_claim_ids": [
+          "5"
+        ],
+        "heading": "Neural Architecture"
+      },
+      {
+        "body": "The account explains why some neural structures are necessary or influential without directly contributing contents. Reticular systems can switch the thalamocortical system into a responsive state, sensory afferents can determine what is experienced, and motor efferents can express conscious states, yet these pathways can remain outside the main complex. Cerebellar-like modular architectures likewise remain low in \u03a6 despite rich computation.",
+        "grounding_claim_ids": [
+          "6",
+          "7"
+        ],
+        "heading": "Exclusions And Modulators"
+      },
+      {
+        "body": "The model cases for split-brain and functional disconnection show how consciousness can divide or lose specific contents without disappearing entirely. Removing callosal-like links splits one high-\u03a6 system into two high-\u03a6 systems; disconnecting an auditory module leaves a visual-supramodal complex. The same logic underlies the treatment of dreamless sleep, seizures, and other states as changes in integration structure rather than mere changes in activity.",
+        "grounding_claim_ids": [
+          "8"
+        ],
+        "heading": "Disconnection And Level Changes"
+      },
+      {
+        "body": "The source\u2019s most ambitious implication is that consciousness is graded and substrate-neutral: any system with the right high-\u03a6 architecture could be conscious to some degree. That includes infants, animals, impaired patients, and possible artifacts. The claim is not a simple attribution of consciousness to every information processor; high levels require architectures that maintain both differentiation and integration at appropriate spatial and temporal scales.",
+        "grounding_claim_ids": [
+          "0",
+          "5",
+          "9"
+        ],
+        "heading": "Practical Interpretation"
+      }
+    ],
+    "summary_long": "This source is a foundational presentation of information integration theory. Its starting point is phenomenological: conscious experience is highly differentiated, because any particular experience rules out an enormous repertoire of alternatives, and it is unified, because an experience is not normally available as a collection of independently experienced fragments. Tononi argues that neither differentiation nor unity alone is enough. A photodiode has minimal differentiation; a megapixel camera has many possible states but lacks internal causal integration. Consciousness therefore corresponds to integrated information: information generated by causal interactions within a system that cannot be decomposed without loss. The paper turns that idea into a formal measure. Effective information is defined by perturbing one part of a system with maximum entropy and measuring the mutual information induced in another part. For each subset, \u03a6 is the effective information across its weakest or minimum information bipartition. A complex is then a subset with \u03a6 greater than zero that is not included in a larger subset with higher \u03a6, and the main complex is the one with maximal \u03a6. This gives the theory a principled boundary rule for what counts as a subject of experience. The account of quality is also structural: the values of effective information among elements form a relational \u201cqualia space,\u201d and a particular experience is a point in that space determined by the current state of the relevant variables. The biological interpretation centers on the thalamocortical system, whose mixture of specialized local organization and broad reciprocal integration is said to support high \u03a6. Simplified model results show that \u03a6 is high when specialization and integration coexist, but falls when connectivity is made homogeneous or split into modules. The same reasoning explains why cerebellar-like modular systems, sensory afferents, motor efferents, and reticular arousal systems can be computationally or causally important without directly constituting consciousness. The article\u2019s reach is broad and speculative: it treats consciousness as graded, potentially present in infants and animals, and in principle constructible in artifacts with high \u03a6. Its limits are also clear from the source: the examples use simplified models, the practical measurement of \u03a6 in real brains is difficult, and the framework requires further development to handle memory, language, selfhood, and higher-order aspects of human consciousness.",
+    "summary_short": "Giulio Tononi\u2019s article defines consciousness as integrated information. It introduces \u03a6 as a measure of conscious quantity, treats complexes as experiential subjects, and explains conscious quality through effective-information relationships. The framework interprets thalamocortical organization, modular neural systems, disconnection, sleep, seizures, and possible artificial consciousness."
+  },
+  "summary": "Tononi\u2019s 2004 article argues that consciousness is identical with a system\u2019s capacity to integrate information. The theory defines \u03a6 as effective information across a complex\u2019s minimum information bipartition, uses complexes to delimit subjects of experience, and uses effective-information relationships to explain the quality of experience. It applies the framework to thalamocortical organization, modular cerebellar-like systems, afferent/efferent pathways, arousal systems, split-brain cases, sleep, seizures, and the possibility of graded consciousness in animals, infants, and artifacts.",
+  "warnings": [
+    {
+      "code": "record_title_placeholder",
+      "message": "The source record display title was \u201cUntitled Source\u201d; the UI title was recovered from the extracted first page instead."
+    },
+    {
+      "code": "source_date_recovered_from_markdown",
+      "message": "Task context reported an unknown date, but the extracted first page states Published: 02 November 2004."
+    }
+  ]
+}

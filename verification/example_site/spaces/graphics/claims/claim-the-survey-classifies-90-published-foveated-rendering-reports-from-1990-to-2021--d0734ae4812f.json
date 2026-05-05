@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:05:42Z",
+  "claim_id": "claim-the-survey-classifies-90-published-foveated-rendering-reports-from-1990-to-2021--d0734ae4812f",
+  "evidence_excerpts": [
+    "Table 3 is introduced as a summary of 90 published reports on foveated rendering methods from 1990 to 2021, classified according to data type, foveation principle, and rendering paradigm."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Ninety reports fit taxonomy",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "text": "The survey classifies 90 published foveated-rendering reports from 1990 to 2021 using the three-dimensional taxonomy."
+}

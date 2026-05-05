@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-mastered-shadercoding-can-support-real-time-artistic-improvisation-that-fuses-co--51c4a707f8d0",
+  "dst_claim_ref": "7",
+  "last_evaluated_run_id": null,
+  "rationale": "The Shader Showdown format supplies the public, timed setting in which the performance-art claim is made.",
+  "relation_file_id": "rel-ea324684464d4088dd5bd75a557884c023a52df41fc2c2badc2d73da9cc315c0",
+  "relation_id": "supports:claim-shader-showdowns-turn-shadercoding-into-a-timed-public-performance-evaluated-thr--a575bceeaf8e->claim-mastered-shadercoding-can-support-real-time-artistic-improvisation-that-fuses-co--51c4a707f8d0",
+  "relation_type": "supports",
+  "src_claim_id": "claim-shader-showdowns-turn-shadercoding-into-a-timed-public-performance-evaluated-thr--a575bceeaf8e",
+  "src_claim_ref": "6",
+  "status": "open"
+}

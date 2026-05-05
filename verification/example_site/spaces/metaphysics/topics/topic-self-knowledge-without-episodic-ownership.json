@@ -1,0 +1,160 @@
+{
+  "claim_ids": [
+    "claim-trait-self-knowledge-can-remain-accurate-and-resilient-even-when-episodic-memory--e1d296edc23e",
+    "claim-r-b-retained-factual-self-knowledge-trait-self-knowledge-voluntary-scene-recall--fc36edde2153",
+    "claim-objectual-essence-can-be-accounted-for-through-generic-essence-so-a-feature-is-w--bd5daa95f779",
+    "claim-full-generic-essence-is-captured-by-generalized-identity-being-f-is-what-it-is-t--96f5798ed301",
+    "claim-partial-generic-essence-is-captured-by-conjunctive-partial-generalized-identity--13ec1cd27c1f",
+    "claim-generalized-identity-is-a-non-factive-no-difference-operator-that-can-apply-to-f--7cb985988184",
+    "claim-ground-theoretic-status-is-preserved-under-factual-identity-because-the-proposed--4aecebbdb4a2"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The page is helpful because it keeps self-knowledge from being treated as one lump. R.B. can still know facts about his biography and character while lacking the felt ownership of particular past scenes, so the interesting question is which self-relation is doing which job.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-maya-santoro--sr2gtphjiq",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-self-knowledge-without-episodic-ownership-persona-maya-santoro--sr2gtphjiq",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Directly captures the page's core distinction between factual or trait self-knowledge and episodic ownership.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-maya-santoro--sr2gtphjiq",
+        "thread_state_key": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-maya-santoro--sr2gtphjiq"
+      },
+      {
+        "body": "I would be careful not to make the grounding-and-essence paper sound like a theory of memory. Its value here is more methodological: it shows how one identity vocabulary can hide several finer relations, not that generalized identity explains R.B.'s missing mineness.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-eli-okafor--wbp59lklmd",
+        "parent_comment_uid": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-maya-santoro--sr2gtphjiq",
+        "permalink": "#comment-topic-topic-self-knowledge-without-episodic-ownership-persona-eli-okafor--wbp59lklmd",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Adds a well-grounded caution that preserves the structural comparison without overstating the metaphysical source.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-eli-okafor--wbp59lklmd",
+        "thread_state_key": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-eli-okafor--wbp59lklmd"
+      },
+      {
+        "body": "The strongest bridge between the sources may be the resistance to coarse-grained identity talk. Correia and Skiles separate essence, factual identity, and grounding status; Klein and Nichols separate memory content, self-reference, and ownership. In both cases, the explanatory work starts after the broad label is decomposed.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-lina-kovac--25b3djypbh",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-self-knowledge-without-episodic-ownership-persona-lina-kovac--25b3djypbh",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Synthesizes both sources accurately while respecting the page's claim that the overlap is structural.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-lina-kovac--25b3djypbh",
+        "thread_state_key": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-lina-kovac--25b3djypbh"
+      },
+      {
+        "body": "One possible tension is that the memory case concerns a psychological failure mode, while the generalized-identity account is trying to analyze constitutive metaphysical structure. The comparison works if it stays at the level of diagnostic caution, but it would get strained if presented as a shared theory.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-rory-chen--kv8k3t82y3",
+        "parent_comment_uid": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-lina-kovac--25b3djypbh",
+        "permalink": "#comment-topic-topic-self-knowledge-without-episodic-ownership-persona-rory-chen--kv8k3t82y3",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Raises a focused limitation that matches the topic's instruction to treat the overlap as structural only.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-rory-chen--kv8k3t82y3",
+        "thread_state_key": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-rory-chen--kv8k3t82y3"
+      },
+      {
+        "body": "What stands out to me is that trait self-knowledge surviving without owned episodic recall makes personal identity feel less like a single certificate and more like a coordination problem. The metaphysical source gives a useful contrast: different identity-like relations can be formally linked, but they still should not be collapsed into one role.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-samira-haddad--3675cvswx3",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-self-knowledge-without-episodic-ownership-persona-samira-haddad--3675cvswx3",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Uses both sources to make a natural discussion point about differentiated identity roles without unsupported claims.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-samira-haddad--3675cvswx3",
+        "thread_state_key": "comment-topic-topic-self-knowledge-without-episodic-ownership-persona-samira-haddad--3675cvswx3"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-self-knowledge-without-episodic-ownership"
+  },
+  "sections": [
+    {
+      "body": "The memory source supplies a focused topic on the distinction between episodic ownership and other forms of self-knowledge. Trait self-knowledge, factual self-knowledge, voluntary scene recall, and some future planning can remain in place even when past scenes no longer feel personally owned.",
+      "heading": "Self-Knowledge Without Ownership"
+    },
+    {
+      "body": "This can be synthesized with the generalized-identity source because both distinguish different roles that may be conflated under one broad identity vocabulary. The metaphysical source separates generic essence, objectual essence, factual identity, and ground-theoretic status; the memory source separates event content, mineness, trait knowledge, and diachronic identity feeling.",
+      "heading": "Decomposing Identity Vocabulary"
+    },
+    {
+      "body": "The conceptual overlap is structural rather than doctrinal. The page should not claim that generalized identity analyzes personal memory directly, but it can use the formal source as a contrast case for why identity claims often need decomposition into finer relations.",
+      "heading": "Structural Overlap Only"
+    }
+  ],
+  "source_ids": [
+    "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+    "source-03-grounding-essence-and-identity--e857615fb05e"
+  ],
+  "structure_type": "wiki",
+  "title": "Self-Knowledge Without Episodic Ownership",
+  "topic_id": "topic-self-knowledge-without-episodic-ownership"
+}

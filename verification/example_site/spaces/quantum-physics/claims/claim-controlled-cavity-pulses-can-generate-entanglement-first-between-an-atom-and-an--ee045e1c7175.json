@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:12:22Z",
+  "claim_id": "claim-controlled-cavity-pulses-can-generate-entanglement-first-between-an-atom-and-an--ee045e1c7175",
+  "evidence_excerpts": [
+    "An initial control field \u03a91(t1) produces entanglement between internal atomic states and the polarization state of a flying photon; a second control field \u03a92(t2) returns the atom to its initial state while generating a second flying photon, thereby leading to entanglement between the two emitted fields."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Cavity pulses entangle photons",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "text": "Controlled cavity pulses can generate entanglement first between an atom and an emitted photon and then between sequentially emitted photon polarizations."
+}

@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c"
+  ],
+  "evidence_id": "evidence-nonphysicalist-factor-loadings--a15b9c27d4e8",
+  "evidence_type": "statistical_result",
+  "excerpt": "A factor analysis on the belief items revealed a single Non-physicalist Beliefs factor with good internal consistency (Cronbach\u2019s alpha = 0.86). Positive loadings included separate and supernatural realms, a non-natural unifying principle, panpsychism, dualism, and solipsism/idealism; negative loadings included hard materialism, physicalism, and naturalism.",
+  "overview": "This factor-analysis result defines the main outcome variable used throughout the study. It matters because the reported belief changes are not tied to a single questionnaire item, but to a composite that contrasts non-physicalist positions with hard materialist or naturalist positions. The interpretation remains bounded by the authors\u2019 warning that philosophical labels for items are contestable.",
+  "page_refs": [
+    "Table 1",
+    "p.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "title": "Non-Physicalist Factor Structure"
+}

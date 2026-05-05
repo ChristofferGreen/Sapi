@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {
+      "as_of": "2026-04-26",
+      "comments_total": 15,
+      "unavailable_metrics": [
+        "retraction_rate",
+        "forecast_accuracy"
+      ],
+      "unsupported_claim_rate": 0.0
+    }
+  ],
+  "persona_id": "persona-maya-santoro",
+  "schema_version": "persona_profile_history_v1",
+  "space_name": "mind"
+}

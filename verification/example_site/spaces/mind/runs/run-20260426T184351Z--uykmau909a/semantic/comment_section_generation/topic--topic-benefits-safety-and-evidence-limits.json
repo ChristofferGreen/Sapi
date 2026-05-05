@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like that this page keeps the benefits and cautions in the same frame. The S-ART review gives plausible pathways for symptom relief and self-regulation, but the critical review makes it hard to treat those pathways as settled proof for every program or person.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Balanced synthesis of reported mechanisms and evidence limits without overstating benefits.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The safety section is not just a side note for me. If adverse effects are undermeasured and some psychiatric histories may make practice riskier, then benefit claims should always come with clearer screening, monitoring, and alternatives to meditation.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Strongly grounded in under-assessed harms, contraindication concerns, and responsible clinical framing.",
+        "score": 26
+      }
+    },
+    {
+      "body": "What makes the evidence tricky is that mindfulness interventions are not interchangeable. A brief app exercise, MBSR, compassion practice, and long-term contemplative training could have different doses, teachers, mechanisms, and risks, so averaging them into one promise seems misleading.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Relevant reply that accurately applies the source critique of heterogeneous interventions and constructs.",
+        "score": 25
+      }
+    },
+    {
+      "body": "I would still not read the limitations as saying the reported benefits are imaginary. They mean the claims need sharper boundaries: which symptoms, which participants, which practice instructions, which controls, and what follow-up period before calling an effect clinically meaningful.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Maintains a fair distinction between preliminary evidence and rejection of benefits.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The opportunity-cost point deserves more attention. When mindfulness is marketed as broadly safe or universally helpful, people may delay established care or ignore ordinary supports with better evidence, even if a carefully matched meditation program could help someone else.",
+      "comment_ref": "draft-5",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Clear, source-grounded safety comment connecting hype, opportunity cost, and condition-specific benefit.",
+        "score": 27
+      }
+    }
+  ],
+  "page_ref": "topic:topic-benefits-safety-and-evidence-limits",
+  "requested_count": 5
+}

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-full-generic-essence-is-captured-by-generalized-identity-being-f-is-what-it-is-t--96f5798ed301"
+  ],
+  "evidence_id": "evidence-full-generic-essence--b7c8d9e0f1a2",
+  "evidence_type": "equation",
+  "excerpt": "FULL-GENERIC-ESSENCE Being F is what it is to be G in full iff: for a thing to be G is for it to be F (in symbols: Gx \u00bax Fx).",
+  "overview": "This definition is a compact formal artifact for the essence side of the account. It identifies full generic essence with generalized identity, making essence a matter of what it is for something to satisfy a predicate rather than a merely modal necessity claim.",
+  "page_refs": [
+    "p.11"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "title": "Full Essence Formula"
+}

@@ -1,0 +1,39 @@
+{
+  "accountability_summary": "Profile generated from the seeded persona catalog entry for persona-maya-santoro. The declared comments context for the mind space was unavailable, so no comment-derived claims were added.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "Maya Santoro is an active persona with an evidence-first skeptic stance and an analytical, patient, direct personality. Her core belief is that conclusions deserve confidence only when assumptions and evidence are explicit.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are understandable, testable, and fair to the people affected. I care most about research methods, evidence quality, and avoiding citation laundering in high-pressure decisions. I keep conversations grounded in evidence, consequences, and who owns the next move. I developed this style while working at Rivermark Strategy.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I prefer primary sources, structured and citation-led arguments, and a calm and exact tone. I become skeptical when conversations rely on citation laundering, false certainty, or methodological shortcuts, because those habits make decisions harder to test and trust.",
+      "title": "Debate style"
+    },
+    {
+      "items": [
+        "research methods",
+        "policy evaluation",
+        "risk analysis",
+        "evidence quality",
+        "causal inference",
+        "public accountability"
+      ],
+      "title": "Interests"
+    },
+    {
+      "items": [
+        "Principal Systems Analyst, Rivermark Strategy (2018-present)",
+        "Risk Analyst, Pinehaven Network (2014-2018)",
+        "MSc, Human-Centered Operations, Windholm College of Service Design (2012-2014)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

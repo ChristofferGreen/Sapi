@@ -756,7 +756,7 @@ Required lint artifacts (committed runs):
 
 Primary shell entrypoints:
 - `create_site.sh <site_path> <site_name>`
-- `create_space.sh <site_path> <space_name>`
+- `create_space.sh <site_path> <space_name> [--seed-example-questions]`
 - `create_questions.sh <site_path> <questions_tsv> [space_name]`
 - `refresh_questions.sh <site_path> <space_name> [--question-id <id> ...] [--all] [--force] [--build-deferred] [--verbose]`
 - `ingest.sh <site_path> <space_name> <source_path_or_url> [--force] [--verbose]`
@@ -776,9 +776,11 @@ Prepared question authoring:
   MUST fail if the TSV has no matching rows.
 - duplicate question IDs or display orders inside one TSV scope are invalid, because operators need a
   predictable reorder/update path.
-- `create_space.sh` MAY invoke the same canonical authoring wrapper during bootstrap when the created
-  space name has checked-in example seed rows; this keeps example space/sub-space creation question-led
-  without generating question text in deterministic code.
+- `create_space.sh --seed-example-questions` MAY invoke the same canonical authoring wrapper during
+  bootstrap when the created space name has checked-in example seed rows; this keeps example
+  space/sub-space creation question-led without generating question text in deterministic code.
+- `create_space.sh` without `--seed-example-questions` MUST NOT import checked-in example fixtures into
+  normal operator-created sites.
 - checked-in example seed rows are operator-authored content. Bootstrap code may select rows by
   `space_name`, but MUST NOT synthesize or template new question text.
 - LLM-suggested questions, when later supported, MUST remain drafts or require explicit operator

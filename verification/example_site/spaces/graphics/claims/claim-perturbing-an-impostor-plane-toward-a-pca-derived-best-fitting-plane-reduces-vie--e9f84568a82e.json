@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:44:00Z",
+  "claim_id": "claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e",
+  "evidence_excerpts": [
+    "Starting from an impostor plane purely perpendicular to the camera, we \u201cperturbed\u201d its orientation using the resulting plane obtained from a PCA of the sample image. This minimized the popping while limiting the introduction of other artifacts."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "PCA planes reduce popping",
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "text": "Perturbing an impostor plane toward a PCA-derived best-fitting plane reduces viewpoint-change popping for walking human impostors while limiting newly introduced distortions."
+}

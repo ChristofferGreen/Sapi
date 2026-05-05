@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+    "claim-lower-gate-error-rates-matter-both-because-they-allow-larger-uncorrected-nisq-ci--043e58605f51"
+  ],
+  "evidence_id": "evidence-physical-qubit-chasm--161104471000",
+  "evidence_type": "model_constraint",
+  "excerpt": "Solving really hard problems (like factoring numbers which are thousands of bits long) using fault-tolerant quantum computing is not likely to happen for a while, because of the large number of physical qubits needed. To run algorithms involving thousands of protected qubits we\u2019ll need a number of physical qubits which is in the millions, or more. That\u2019s a very large leap from where we will be for the next few years, with of order a hundred qubits. Crossing the \u201cquantum chasm,\u201d from hundreds of physical qubits to millions of physical qubits, is going to take some time.",
+  "overview": "The millions-of-qubits estimate makes the gap between NISQ experiments and transformative fault-tolerant applications auditable. It grounds the paper's recommendation to pursue both near-term experiments and sustained long-term error-correction progress.",
+  "page_refs": [
+    "p.14"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "title": "Physical Qubit Chasm"
+}

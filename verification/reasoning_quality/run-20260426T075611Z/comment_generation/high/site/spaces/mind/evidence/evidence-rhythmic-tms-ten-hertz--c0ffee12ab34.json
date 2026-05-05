@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-externally-driving-occipital-or-parietal-cortex-at-10-hz-causally-impairs-contra--bc8a531ee1ad",
+    "claim-higher-pre-stimulus-alpha-power-predicts-reduced-visual-excitability-and-poorer--89673ed92bc4"
+  ],
+  "evidence_id": "evidence-rhythmic-tms-ten-hertz--c0ffee12ab34",
+  "evidence_type": "statistical_result",
+  "excerpt": "Rhythmic TMS pulses were applied at 10 Hz, 20 Hz, or 5 Hz to occipital and parietal regions while participants reported near-threshold visual stimuli. Ten hertz TMS impaired visual detection contralateral to stimulation and improved ipsilateral detection; no visual detection effects were observed for 5 Hz or 20 Hz stimulation.",
+  "overview": "The rhythmic TMS result is the review's clearest causal evidence. Driving cortex at an alpha-band frequency selectively changes perception in the predicted spatial direction, strengthening the interpretation that alpha oscillations can suppress sensory processing. Its scope is restricted to short-lived externally induced effects and does not by itself specify the full circuit mechanism.",
+  "page_refs": [
+    "p.8"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "title": "Ten Hertz TMS Effect"
+}

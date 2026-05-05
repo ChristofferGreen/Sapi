@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+    "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+    "claim-lower-gate-error-rates-matter-both-because-they-allow-larger-uncorrected-nisq-ci--043e58605f51"
+  ],
+  "evidence_id": "evidence-two-qubit-gate-ceiling--06fd0388985b",
+  "evidence_type": "measurement",
+  "excerpt": "With the best hardware we have now for controlling trapped ions or superconducting circuits, the error rate per gate for two-qubit gates is above the .1% level (and often much worse). Furthermore, we don\u2019t yet know whether error rates that low can be maintained in larger devices with many qubits. Naively, then, and as I\u2019ll say later this might be too naive, with these noisy devices we don\u2019t expect to be able to execute a circuit that contains many more than about 1000 gates.",
+  "overview": "The error-rate figures give a concrete engineering reason why uncorrected NISQ devices cannot simply scale circuit depth with qubit count. The author treats the thousand-gate estimate as naive but still uses it to explain why gate quality, not only qubit number, sets near-term computational limits.",
+  "page_refs": [
+    "p.5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "title": "Two-Qubit Gate Ceiling"
+}

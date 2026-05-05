@@ -1,0 +1,471 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f/front_page.png",
+    "source_extraction": "sources/artifacts/source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f/source_extraction.json",
+    "source_file": "sources/artifacts/source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f/source.pdf",
+    "source_markdown": "sources/artifacts/source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f/source.md",
+    "source_provenance": "sources/artifacts/source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f/source_provenance.md"
+  },
+  "authors": [
+    "David R. Vago",
+    "David A. Silbersweig"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What I like about Vago and Silbersweig's framing is that mindfulness is not treated as a single calm mental state. The S-ART split makes room for attention, emotion regulation, decentering, and prosocial change to be related without pretending they are the same mechanism.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-maya-santoro--3n93tuw3sf",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-maya-santoro--3n93tuw3sf",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately captures the article's plural mechanism framework and avoids overstating the evidence.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-maya-santoro--3n93tuw3sf",
+        "thread_state_key": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-maya-santoro--3n93tuw3sf"
+      },
+      {
+        "body": "The strongest caution for me is that the paper is still a map, not proof that all these pathways move together in practice. It points toward longitudinal and dose-response studies, which feels essential before turning S-ART into a clinical checklist.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-eli-okafor--hru1wpf4h3",
+        "parent_comment_uid": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-maya-santoro--3n93tuw3sf",
+        "permalink": "#comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-eli-okafor--hru1wpf4h3",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Grounded in the review's stated limits and research agenda, with a balanced interpretation.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-eli-okafor--hru1wpf4h3",
+        "thread_state_key": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-eli-okafor--hru1wpf4h3"
+      },
+      {
+        "body": "The narrative self part stood out to me. If rumination and affect-biased attention keep reifying a self-schema, then mindfulness is less about deleting the self and more about seeing how that schema gets assembled moment by moment.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-lina-kovac--3qo1y0lh7q",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-lina-kovac--3qo1y0lh7q",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Faithfully reflects the model of suffering while adding a clear interpretive angle.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-lina-kovac--3qo1y0lh7q",
+        "thread_state_key": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-lina-kovac--3qo1y0lh7q"
+      },
+      {
+        "body": "I am glad the review keeps adverse effects in view. Intensive contemplative practice can be discussed with too much therapeutic certainty, so the call for better measures of practice quality and expertise seems just as important as the neural model.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-rory-chen--y4bcpcyvq6",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-rory-chen--y4bcpcyvq6",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Highlights a real methodological caution from the source and connects it to responsible interpretation.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-rory-chen--y4bcpcyvq6",
+        "thread_state_key": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-rory-chen--y4bcpcyvq6"
+      },
+      {
+        "body": "That distinction helps explain why the framework needs embodied, present-centered, and autobiographical layers. A practice could change bodily salience or attentional control before a person has any tidy story about who they are becoming.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-samira-haddad--mkvmnz8io7",
+        "parent_comment_uid": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-lina-kovac--3qo1y0lh7q",
+        "permalink": "#comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-samira-haddad--mkvmnz8io7",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Builds coherently on the thread and uses the source's self-processing taxonomy appropriately.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-samira-haddad--mkvmnz8io7",
+        "thread_state_key": "comment-source-source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581-615ee4e1923f-persona-samira-haddad--mkvmnz8io7"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+  },
+  "date": null,
+  "display_title": "Mindfulness as Self-Awareness, Regulation, and Transcendence",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[6].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "and Brass M. . Neural and N. H. et al. . Reduced right of Being and Art of Living",
+      "url": "https://doi.org/10.3389/fnhum.2011.00183"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[5].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "eral prefrontal cortex to the acqui- A global workspace model for phe- Roy M. Shohamy D. and Wager T",
+      "url": "https://doi.org/10.1371/journal.pone.0003083"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[7].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "HUMAN NEUROSCIENCE",
+      "url": "https://doi.org/10.3389/fnhum.2012.00296"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[8].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "J. Krietemeyer J. and Toney L. Manual of Abhidhamma: The Immun. 21 1038\u20131049",
+      "url": "https://doi.org/10.3389/fpsyg.2011.00218"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[4].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Kerr C. E. Shaw J. R. Wasserman with increased cortical thickness. McRae K. Ochsner K. N. and Gross",
+      "url": "https://doi.org/10.1371/journal.pone.0001897"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[2].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Neurosci. . The bodily self as power for action. Grant J. A. and Rainville P. . spective. Perspect. Psychol. Sci. 6",
+      "url": "https://doi.org/10.1093/scan/nss066"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[3].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "PLoS Biol. 5:e138. agency. Nat. Neurosci. 10 150\u2013151. Vincent J. L. Kahn I. Snyder A. J. G. and Coghill R. C",
+      "url": "https://doi.org/10.1371/jour-"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[6].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "and Brass M. . Neural and N. H. et al. . Reduced right of Being and Art of Living",
+      "url": "https://arxiv.org/abs/2011.00183"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[7].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "HUMAN NEUROSCIENCE",
+      "url": "https://arxiv.org/abs/2012.00296"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[8].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "J. Krietemeyer J. and Toney L. Manual of Abhidhamma: The Immun. 21 1038\u20131049",
+      "url": "https://arxiv.org/abs/2011.00218"
+    }
+  ],
+  "ingested_at": "2026-04-26T14:54:16Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "at: Brain Res. 13 255\u2013259. Crockett M. J. Tom S. M. Pfeifer MacLean K. A. Ferrer E. Aichele S",
+      "url": "http://contemplativemind.word",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Sin N. L. and Lyubomirsky S. . Wang J. Feng S. et al. . with alterations in bottom-up at: /",
+      "url": "http://shinzen.org/Articles",
+      "year": 2009
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1093/scan/nss066",
+      "linked_source_ids": [],
+      "title": "Neurosci. . The bodily self as power for action. Grant J. A. and Rainville P. . spective. Perspect. Psychol. Sci. 6",
+      "url": null,
+      "year": 2009
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1371/jour-",
+      "linked_source_ids": [],
+      "title": "PLoS Biol. 5:e138. agency. Nat. Neurosci. 10 150\u2013151. Vincent J. L. Kahn I. Snyder A. J. G. and Coghill R. C",
+      "url": null,
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1371/journal.pone.0001897",
+      "linked_source_ids": [],
+      "title": "Kerr C. E. Shaw J. R. Wasserman with increased cortical thickness. McRae K. Ochsner K. N. and Gross",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1371/journal.pone.0003083",
+      "linked_source_ids": [],
+      "title": "eral prefrontal cortex to the acqui- A global workspace model for phe- Roy M. Shohamy D. and Wager T",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "2011.00183",
+      "authors": [],
+      "doi": "10.3389/fnhum.2011.00183",
+      "linked_source_ids": [],
+      "title": "and Brass M. . Neural and N. H. et al. . Reduced right of Being and Art of Living",
+      "url": null,
+      "year": 2011
+    },
+    {
+      "arxiv": "2012.00296",
+      "authors": [],
+      "doi": "10.3389/fnhum.2012.00296",
+      "linked_source_ids": [],
+      "title": "HUMAN NEUROSCIENCE",
+      "url": null,
+      "year": 2012
+    },
+    {
+      "arxiv": "2011.00218",
+      "authors": [],
+      "doi": "10.3389/fpsyg.2011.00218",
+      "linked_source_ids": [],
+      "title": "J. Krietemeyer J. and Toney L. Manual of Abhidhamma: The Immun. 21 1038\u20131049",
+      "url": null,
+      "year": 2011
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 2 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2012-10-25",
+    "origin": "source_markdown_front_matter",
+    "rationale": "The extracted first page states 'published: 25 October 2012' for the Frontiers in Human Neuroscience review article."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The article's main argument is that mindfulness is best understood as training in self-awareness, self-regulation, and self-transcendence rather than as one generic mental state. This reframing lets the authors connect meditation practice to biased self-processing, clinical symptoms, and prosocial change without relying on a single overloaded definition of mindfulness.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ],
+        "heading": "Central Argument"
+      },
+      {
+        "body": "The paper treats suffering and psychopathology as partly maintained by distorted narrative self-processing. Habitual negative beliefs, affect-biased attention, rumination, and symptoms reinforce one another until a self-schema becomes reified. Mindfulness matters because it is proposed to expose and loosen this loop rather than merely suppress symptoms.",
+        "grounding_claim_ids": [
+          "2"
+        ],
+        "heading": "Model of Suffering"
+      },
+      {
+        "body": "S-ART separates self-processing into embodied enactive, present phenomenological, and autobiographical narrative modes. That taxonomy supports the claim that mindfulness may alter relationships among self-specifying and narrative systems through fronto-parietal control, while preserving the article's caution that this is a simplified scaffold rather than a complete account of selfhood.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ],
+        "heading": "Neurocognitive Architecture"
+      },
+      {
+        "body": "The framework's mechanism list is deliberately plural. Intention, motivation, attention regulation, emotion regulation, extinction, reconsolidation, prosociality, non-attachment, and decentering are presented as interdependent processes strengthened by practice. This is why the review resists reducing mindfulness to attention alone or to a uniform clinical ingredient.",
+        "grounding_claim_ids": [
+          "5",
+          "1"
+        ],
+        "heading": "Mechanism Pathway"
+      },
+      {
+        "body": "Although the article is a review, it anchors the framework in concrete empirical reports: brief training effects on symptoms, executive function, and white matter connectivity; physiological signatures of relaxed alertness; and immune or stress-reactivity findings after MBSR or compassion practice. These examples make the framework biologically plausible without settling causal specificity.",
+        "grounding_claim_ids": [
+          "6",
+          "7",
+          "8"
+        ],
+        "heading": "Empirical Anchors"
+      },
+      {
+        "body": "The authors repeatedly signal that the field needs stronger methods. They call for longitudinal tracking of S-ART components, better measures of practice duration and quality, objective standards for expertise, and explicit study of adverse effects. The practical interpretation is that mindfulness research should decompose practices into mechanisms before making broad therapeutic claims.",
+        "grounding_claim_ids": [
+          "9",
+          "1"
+        ],
+        "heading": "Limits and Research Needs"
+      }
+    ],
+    "summary_long": "Vago and Silbersweig's article is a theory-building review that tries to make mindfulness scientifically tractable without flattening it into one vague attentional skill. The central move is the S-ART framework: mindfulness training develops self-awareness, self-regulation, and self-transcendence, and these capacities reduce biased self-processing. The authors argue that suffering and psychopathology often involve distorted narrative self-schemas, affect-biased attention, and rumination. Mindfulness practices are therefore framed as methods for noticing and modifying the conditions that create these distortions. The review connects this psychological argument to a neurobiological model of self-processing. It distinguishes embodied, present-centered, and autobiographical forms of self-related processing, then proposes that mindfulness-based practice can modulate self-specifying and narrative self networks through integrative fronto-parietal control. The framework is broad: it includes intention and motivation, attention regulation, emotion regulation, extinction and reconsolidation, prosociality, non-attachment, and decentering. Empirical support is synthesized rather than newly generated. The article cites reports of brief training effects, physiological changes during meditation, immune and stress-reactivity findings, and network-level hypotheses. It also emphasizes limits. The authors warn that mindfulness research needs more precise operational definitions, objective measures of practice quality, longitudinal designs, dose-response evidence, and attention to adverse effects, especially in long-term or intensive practice contexts. The result is not a settled mechanistic proof, but a detailed map for decomposing mindfulness into testable components and for connecting contemplative practice to self-processing, clinical change, and brain-body regulation.",
+    "summary_short": "Vago and Silbersweig propose S-ART as a framework for mindfulness built around self-awareness, self-regulation, and self-transcendence. The review links meditation practice to biased self-processing, neurocognitive control, body regulation, prosociality, and a research agenda for testing specific mechanisms rather than treating mindfulness as a black box."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+  "source_kind": "file",
+  "source_locator": "05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde--w2005022581.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "David R. Vago",
+      "David A. Silbersweig"
+    ],
+    "display_title": "Mindfulness as Self-Awareness, Regulation, and Transcendence"
+  },
+  "source_type": "file",
+  "summary": "Vago and Silbersweig propose S-ART as a neurobiological framework for mindfulness, organizing practice-related change around self-awareness, self-regulation, and self-transcendence. The review argues that mindfulness practices can reduce biased narrative self-processing through interdependent mechanisms including attention and emotion regulation, extinction and reconsolidation, prosociality, non-attachment, and decentering, while calling for more precise longitudinal research on dose, practice quality, component mechanisms, and adverse effects.",
+  "title": "05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde--w2005022581",
+  "warnings": [
+    "The source record reported an unresolved publication date, but the extracted source markdown front matter states 'published: 25 October 2012'.",
+    "The markdown extraction is marked usable, but the layout-preserved text interleaves two-column material; excerpts were selected from coherent passages and should be checked against the PDF for page-perfect quotation.",
+    "The article is a narrative review and theoretical framework, so several claims are formal arguments or synthesized evidence rather than direct experimental results produced by this source."
+  ]
+}

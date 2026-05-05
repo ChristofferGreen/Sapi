@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like how this paper treats compilation as only the first half of the engineering problem. The Seesaw Compiler produces the logic, simulation, and sequence artifacts, but the useful part is that the authors then connect those artifacts to calibration, outlier detection, and output tuning at the bench.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Grounded in the source's compiler-to-molecule workflow and notes the experimental follow-through without overstating it.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The six-layer, 78-species circuit is doing a lot of work rhetorically here. It makes the result feel less like a tidy gate demo and more like a stress test of whether unpurified oligos can be composed into something large enough to need a compiler in the first place.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately uses the scale evidence and explains its significance for composition and compiler usefulness.",
+        "score": 21
+      }
+    },
+    {
+      "body": "The outlier-gate story is the most practically convincing part to me. A failed two-layer composition could have been reported as mysterious noise, but measuring effective concentrations down to cases like the roughly 0.44x gate turns the failure into something the workflow can diagnose and compensate for.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Strongly tied to the calibration and outlier evidence while adding a clear discussion point.",
+        "score": 25
+      }
+    },
+    {
+      "body": "One caveat is that the paper still depends on a fairly disciplined debug loop. Reading the fluorescence outputs at 24 hours, rather than the faster timing predicted for purified strands, is a reminder that the method improves accessibility without making molecular circuits plug-and-play.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Balances the positive result with the source's timing and limitation evidence.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The unpurified-strand angle seems especially important for adoption. If every larger DNA circuit requires purification before you can even begin debugging, the barrier stays high; this paper argues that measured nonideal behavior can be folded into the construction process instead of treated as a reason to stop.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Captures the accessibility claim and the conditional nature of using unpurified components.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "source:source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "requested_count": 5
+}

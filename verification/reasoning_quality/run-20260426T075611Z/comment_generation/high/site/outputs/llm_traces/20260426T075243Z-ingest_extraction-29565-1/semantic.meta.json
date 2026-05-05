@@ -1,0 +1,27 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-04-26T07:56:57Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/relations"
+  ],
+  "flow_key": "ingest_extraction",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/runs/run-20260426T075243Z--34k57xhutd/semantic/ingest_extraction.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json",
+  "started_at": "2026-04-26T07:52:43Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260426T075243Z-ingest_extraction-29565-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": false,
+  "validation_errors": [
+    {
+      "message": "'This article tests whether mindfulness training changes distinct attentional subsystems rather than attention in general. MBSR, intensive retreat practice, and no-training control groups completed the Attention Network Test before and after the training interval. The main pattern links novice MBSR training with improved orienting and experienced retreat practice with altered alerting readiness, while conflict-monitoring effects were strongest at baseline in experienced meditators.' is too long",
+      "path": "/source_dossier/summary_short",
+      "validator": "maxLength",
+      "validator_value": 420
+    }
+  ]
+}

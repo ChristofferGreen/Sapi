@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-apparent-counterexamples-to-grounding-necessity-fail-when-alleged-full-grounds-a--8cbbd720ef13"
+  ],
+  "evidence_id": "evidence-counterexample-diagnosis--0d0e0f1a2b3c",
+  "evidence_type": "formal_argument",
+  "excerpt": "Alleged failures of necessity are diagnosed by adding missing explanatorily relevant facts for partial grounds, or by denying that the alleged ground is a ground at all.",
+  "overview": "The conclusion protects the necessity thesis against cases involving enabling conditions, universal generalizations, widowhood, and substance-mode dependence. The response limits the thesis to full grounds and rejects cases where explanatory relevance is absent.",
+  "page_refs": [
+    "pp.477-479"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Counterexample Diagnosis"
+}

@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-neural-inputs-outputs-subcortical-centers-and-cortico-subcortical-loops-can-modu--d2995497666a"
+  ],
+  "evidence_id": "evidence-ports-excluded-from-complex--5fa720c93b1e",
+  "evidence_type": "model_constraint",
+  "excerpt": "For incoming sensory pathways, the source states that adding or removing multiple segregated incoming pathways does not change the composition of the main complex and causes little change in \u03a6; the larger complex including those pathways has low \u03a6 because it is limited by effective information between each afferent pathway and its port-in. A parallel point is made for outgoing pathways and port-out elements.",
+  "overview": "This model constraint explains how unconscious processes can influence conscious contents without being constituents of consciousness. Inputs and outputs can be causally important for what a conscious complex does or receives, yet fail to add dimensions to the experience if they are informationally segregated from the main complex. The scope is boundary-setting: it distinguishes modulation and access from direct phenomenological contribution.",
+  "page_refs": [
+    "pp.11-13",
+    "Fig.4c-d"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Ports Stay Outside Complex"
+}

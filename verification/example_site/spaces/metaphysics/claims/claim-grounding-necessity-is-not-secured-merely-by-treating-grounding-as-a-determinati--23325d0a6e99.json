@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:08:29Z",
+  "claim_id": "claim-grounding-necessity-is-not-secured-merely-by-treating-grounding-as-a-determinati--23325d0a6e99",
+  "evidence_excerpts": [
+    "Causation is a determination relation but is not plausibly iii-style necessary; necessary truths can also have merely partial grounds."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Modal Definitions Fail",
+  "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "Grounding necessity is not secured merely by treating grounding as a determination relation or by defining full grounding in modal terms."
+}

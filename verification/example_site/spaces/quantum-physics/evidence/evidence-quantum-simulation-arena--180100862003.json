@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-highly-entangled-quantum-dynamics-is-the-most-natural-arena-for-meaningful-quant--3b6f2f5ba268",
+    "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+    "claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb"
+  ],
+  "evidence_id": "evidence-quantum-simulation-arena--180100862003",
+  "evidence_type": "formal_argument",
+  "excerpt": "As Feynman argued, the simulation of highly entangled quantum matter is the natural arena where quantum computers seem to have a clear advantage over classical ones. Classical computers are especially bad at simulating quantum dynamics \u2014 that is, predicting how a highly-entangled quantum state will change with time. Quantum computers have a big advantage for that task, and physicists hope to learn interesting things about quantum dynamics using NISQ technology in the relatively near term. Valuable insights might already be gleaned using noisy devices with of order 100 qubits.",
+  "overview": "The evidence distinguishes quantum simulation from broader commercial claims. It says the best near-term scientific target is not generic acceleration, but the study of highly entangled dynamics where classical computation is structurally weak.",
+  "page_refs": [
+    "pp.12-13"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "title": "Quantum Simulation Arena"
+}

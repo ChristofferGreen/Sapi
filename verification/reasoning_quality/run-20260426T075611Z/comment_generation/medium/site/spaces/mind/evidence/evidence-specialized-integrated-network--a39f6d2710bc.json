@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-combin--26bb48bfe4b5",
+    "claim-the-thalamocortical-system-is-a-plausible-neural-substrate-for-human-consciousne--2cfee4ce61ff"
+  ],
+  "evidence_id": "evidence-specialized-integrated-network--a39f6d2710bc",
+  "evidence_type": "figure_result",
+  "excerpt": "Figure 3 reports a thalamocortical-like architecture obtained by optimizing information integration. The optimized eight-element network has heterogeneous incoming and outgoing connections and \u03a6 = 74 bits. When the same amount of connectivity is made homogeneous, reducing specialization, \u03a6 falls to 20 bits; when connectivity is rearranged into independent modules, reducing integration, the result is four separate complexes with \u03a6 = 20 bits.",
+  "overview": "This simulation result is the most concrete bridge between the abstract theory and brain architecture. It shows that high \u03a6 depends on the joint presence of specialization and integration, matching the paper's description of thalamocortical organization. The evidence is model-based, so it supports plausibility and mechanism rather than directly measuring human thalamocortical \u03a6.",
+  "page_refs": [
+    "pp.10-11",
+    "Fig.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Specialized Integrated Network \u03a6"
+}

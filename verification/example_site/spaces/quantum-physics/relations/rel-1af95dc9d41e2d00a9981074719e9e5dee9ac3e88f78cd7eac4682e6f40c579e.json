@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "The exponential classical scaling of random circuits explains why the reported runtime gap grows at the largest width and depth.",
+  "relation_file_id": "rel-1af95dc9d41e2d00a9981074719e9e5dee9ac3e88f78cd7eac4682e6f40c579e",
+  "relation_id": "supports:claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31->claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+  "relation_type": "supports",
+  "src_claim_id": "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+  "src_claim_ref": "6",
+  "status": "open"
+}

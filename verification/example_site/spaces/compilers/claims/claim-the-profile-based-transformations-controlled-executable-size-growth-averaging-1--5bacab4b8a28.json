@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:27:45Z",
+  "claim_id": "claim-the-profile-based-transformations-controlled-executable-size-growth-averaging-1--5bacab4b8a28",
+  "evidence_excerpts": [
+    "For these experiments we use an execution count threshold of 100. Table 6 shows how code optimizations affect the sizes of the benchmark programs.",
+    "name global profile local ... xlisp 1.0 1.20 1.01 ... avg. 1.0 1.07 1.00 ... Table 6: Ratios of code expansion."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Code expansion stays controlled",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "text": "The profile-based transformations controlled executable size growth, averaging 1.07 relative size compared with globally optimized programs."
+}

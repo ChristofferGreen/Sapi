@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:27:45Z",
+  "claim_id": "claim-the-major-effectiveness-mechanisms-are-eliminating-entries-into-the-middle-of-tr--4bc0ff5e21b0",
+  "evidence_excerpts": [
+    "We have identified two major reasons why these code optimizations are effective: (1) eliminating control flows into the middle sections of a trace, and (2) optimizing the most frequently executed path in a loop."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Effectiveness has two mechanisms",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "text": "The major effectiveness mechanisms are eliminating entries into the middle of traces and optimizing the most frequently executed loop path."
+}

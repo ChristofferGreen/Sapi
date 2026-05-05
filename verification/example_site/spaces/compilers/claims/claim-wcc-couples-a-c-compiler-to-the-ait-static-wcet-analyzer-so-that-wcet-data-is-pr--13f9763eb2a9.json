@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:55:13Z",
+  "claim_id": "claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9",
+  "evidence_excerpts": [
+    "WCC produces a CRL2 file, invokes aiT transparently, and performs value, loop bound, cache, pipeline, and path analysis while the compiler user is unaware that timing analysis is running in the background."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "WCC integrates static analysis",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "text": "WCC couples a C compiler to the aiT static WCET analyzer so that WCET data is produced transparently during compilation rather than by a separate manual post-compilation step."
+}

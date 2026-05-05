@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:44:00Z",
+  "claim_id": "claim-packing-each-prerendered-human-sample-into-the-smallest-containing-rectangle-red--c2027548dc18",
+  "evidence_excerpts": [
+    "Thanks to this process, the resulting new image is much smaller than the original without any loss of image quality.",
+    "With our current reorganization strategy, we can reduce the amount of texture memory necessary to store our human images to 25 percent of the original value."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Sample packing cuts memory",
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "text": "Packing each prerendered human sample into the smallest containing rectangle reduces the texture memory needed for human images to one quarter of the original value without loss of image quality."
+}

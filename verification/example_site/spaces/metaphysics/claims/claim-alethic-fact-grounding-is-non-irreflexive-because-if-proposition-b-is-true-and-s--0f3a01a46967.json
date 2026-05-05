@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:15:18Z",
+  "claim_id": "claim-alethic-fact-grounding-is-non-irreflexive-because-if-proposition-b-is-true-and-s--0f3a01a46967",
+  "evidence_excerpts": [
+    "If proposition B is true, the fact that B is true is grounded in the fact stated by B; where B says that B is true, the fact grounds itself."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Alethic grounding is reflexive",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "text": "Alethic-fact grounding is non-irreflexive because if proposition B is true and says that B is true, the fact that B is true grounds itself."
+}

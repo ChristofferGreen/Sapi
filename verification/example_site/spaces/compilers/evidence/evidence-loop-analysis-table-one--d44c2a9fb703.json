@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-wcc-s-loop-analyzer-computes-safe-loop-iteration-bounds-for-most-benchmark-loops--5eb419e33259"
+  ],
+  "evidence_id": "evidence-loop-analysis-table-one--d44c2a9fb703",
+  "evidence_type": "table_result",
+  "excerpt": "Table 1 reports loop-analysis precision over MRTC, DSPStone, MediaBench/MiBench, UTDSP, and miscellaneous benchmarks. The total row covers 96 benchmarks and 707 loops, with 99% analyzable loops and 96% exact loop iteration counts.",
+  "overview": "This table is the strongest quantitative evidence for the automatic flow-fact claim. It demonstrates broad benchmark coverage and distinguishes safe analyzability from exactness, while also showing that remaining imprecision is limited to a small minority of loops.",
+  "page_refs": [
+    "Table 1",
+    "p.271"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "title": "Loop Precision Table"
+}

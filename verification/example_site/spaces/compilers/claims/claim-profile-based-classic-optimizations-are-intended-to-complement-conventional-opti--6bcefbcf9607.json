@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:27:45Z",
+  "claim_id": "claim-profile-based-classic-optimizations-are-intended-to-complement-conventional-opti--6bcefbcf9607",
+  "evidence_excerpts": [
+    "It should be noted that profile-based code optimizations are not alternatives to conventional optimizations, but are meant to be applied in addition to conventional optimizations."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Profile optimizations complement convention",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "text": "Profile-based classic optimizations are intended to complement conventional optimizations rather than replace them."
+}

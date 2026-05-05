@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-super-blocks-represent-frequently-executed-paths-as-linear-basic-block-sequences--7bbb510c9bb0",
+  "dst_claim_ref": "2",
+  "last_evaluated_run_id": null,
+  "rationale": "Trace selection and tail duplication are the construction steps that enforce the entry property of super-blocks.",
+  "relation_file_id": "rel-24b8c45fcb5b0e4b02bba20c52dae7887f933e3bbecb8a06fc49be7714604c52",
+  "relation_id": "derived_from:claim-trace-selection-followed-by-tail-duplication-converts-frequently-executed-traces--1483ee9d0534->claim-super-blocks-represent-frequently-executed-paths-as-linear-basic-block-sequences--7bbb510c9bb0",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-trace-selection-followed-by-tail-duplication-converts-frequently-executed-traces--1483ee9d0534",
+  "src_claim_ref": "3",
+  "status": "open"
+}

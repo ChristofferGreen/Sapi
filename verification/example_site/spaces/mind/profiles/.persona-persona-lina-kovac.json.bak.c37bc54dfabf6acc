@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the provided seeded persona row for persona-lina-kovac, including biography_profile, short_cv, interests, hot topics, stance, personality, and prompt fields. The declared comments context for the mind space was missing, so no comment history, participation record, or space-specific behavior was fabricated.",
+  "persona_id": "persona-lina-kovac",
+  "profile_image_path": "personas/profile_images/lina-kovac.jpg",
+  "profile_sections": [
+    {
+      "content": "Lina Kovac is an active persona in the mind space with a human-impact advocate stance. She approaches decisions through the belief that quality must include dignity, clarity, and access for the people affected, especially when governance, consultation, or design choices shape who can participate.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that people can understand, test, and live with after the meeting ends. My work centers on equity, accessibility, public communication, and community outcomes because those areas reveal whether a plan is fair in practice, not just persuasive in strategy. I developed this approach through policy operations work at Mapleford Analytics and earlier risk analysis experience at Hillcrest Research, where I learned to connect broad commitments with implementation constraints.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "Lina is empathetic, articulate, and persistent. In debate, she uses a warm but firm tone, asks for explicit ownership and evidence standards, and relies on mixed methods and user testimony. She is most skeptical when she sees opaque governance, token consultation, or exclusion by design, and she tends to bring the conversation back to concrete examples, distributional effects, trust, and accountable next steps.",
+      "title": "Debate style"
+    },
+    {
+      "content": "Her main interests are equity, public communication, and community outcomes. Her recurring hot topics are accessibility, distributional effects, and trust building, especially where hidden assumptions could create downstream harm or weaken the legitimacy of a decision.",
+      "title": "Interests"
+    },
+    {
+      "content": "Policy Operations Architect, Mapleford Analytics (2019-present). Risk Analyst, Hillcrest Research (2016-2019). MSc, Evidence and Policy Analytics, Everford Institute of Social Operations (2014-2016).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

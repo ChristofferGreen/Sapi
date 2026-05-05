@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:32:25Z",
+  "claim_id": "claim-patients-who-clinically-responded-to-psilocybin-therapy-showed-greater-shifts-aw--b78b1f525f61",
+  "evidence_excerpts": [
+    "Significantly greater shifts away from hard materialistic beliefs were found for those patients who showed a clinically meaningful response to psilocybin only ... versus those who showed a response to escitalopram (Z = 1.74, p = 0.041, g = 0.56, 90% CI [\u2212 0.17, 1.26])."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Psilocybin response shifts beliefs",
+  "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "text": "Patients who clinically responded to psilocybin therapy showed greater shifts away from hard materialist beliefs than patients who responded to escitalopram."
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+  "dst_claim_ref": "3",
+  "last_evaluated_run_id": null,
+  "rationale": "Lower gate error rates reduce both near-term circuit failure and the future overhead required for fault-tolerant operation.",
+  "relation_file_id": "rel-e807c7ca70656a359ae0a809aeecdb332c3329aa745730875ccc40ea6ff5d76f",
+  "relation_id": "supports:claim-lower-gate-error-rates-matter-both-because-they-allow-larger-uncorrected-nisq-ci--043e58605f51->claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+  "relation_type": "supports",
+  "src_claim_id": "claim-lower-gate-error-rates-matter-both-because-they-allow-larger-uncorrected-nisq-ci--043e58605f51",
+  "src_claim_ref": "9",
+  "status": "open"
+}

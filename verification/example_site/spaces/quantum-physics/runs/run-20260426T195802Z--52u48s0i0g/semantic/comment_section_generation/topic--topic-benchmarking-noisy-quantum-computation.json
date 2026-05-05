@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "This page usefully links Preskill's broader NISQ warning to Sycamore's very concrete fidelity problem. The benchmark is not just whether 53 qubits were present, but whether the noisy circuit still produced enough signal for cross-entropy benchmarking to mean something.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately connects NISQ noise limits with Sycamore fidelity evidence and avoids overclaiming.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The elided-circuit evidence is doing a lot of work here. It is reasonable because full, patch, elided, and predicted fidelities agreed where classical checks were still possible, but it should still be read as a transferred validation argument rather than direct verification of the hardest full circuits.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the verification caveat and fairly describes the inference chain.",
+        "score": 26
+      }
+    },
+    {
+      "body": "I would emphasize the simultaneous-operation error rates a bit more. Isolated gate numbers are reassuring, but the benchmark only becomes credible if the full processor behaves predictably when many gates, readout, and crosstalk pressures happen together.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Useful reply that deepens the parent point with relevant hardware-error context.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The reported F_XEB value is small in absolute terms, which can sound unimpressive until you remember the scale of the Hilbert space being sampled. For noisy random circuits, preserving even a measurable fraction of ideal-circuit structure is exactly the benchmark target.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Clarifies why low measured fidelity can still be meaningful for this benchmark.",
+        "score": 22
+      }
+    },
+    {
+      "body": "What I appreciate is that the page keeps the benchmark separate from practical quantum computing. The same evidence can support a serious noisy-device milestone while still leaving Preskill's long-term point intact: lower error rates and fault tolerance remain the path to broadly useful algorithms.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Balanced synthesis of both sources with clear distinction between benchmark success and applications.",
+        "score": 25
+      }
+    }
+  ],
+  "page_ref": "topic:topic-benchmarking-noisy-quantum-computation",
+  "requested_count": 5
+}

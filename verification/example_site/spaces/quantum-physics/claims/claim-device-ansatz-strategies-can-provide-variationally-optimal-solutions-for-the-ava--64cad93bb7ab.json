@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:22:43Z",
+  "claim_id": "claim-device-ansatz-strategies-can-provide-variationally-optimal-solutions-for-the-ava--64cad93bb7ab",
+  "evidence_excerpts": [
+    "The discussion proposes constructing the device first, defining its preparable states as a device ansatz, and obtaining a variationally optimal solution for the available quantum resources with circuit depth fixed by qubit coherence time."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Device ansatz optimizes resources",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "text": "Device ansatz strategies can provide variationally optimal solutions for the available quantum resources even when the ansatz differs from traditional chemistry-motivated forms."
+}

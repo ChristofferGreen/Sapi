@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-higher-pre-stimulus-alpha-power-predicts-reduced-visual-excitability-and-poorer--89673ed92bc4"
+  ],
+  "evidence_id": "evidence-alpha-performance-correlations--2a6e5d9c4178",
+  "evidence_type": "statistical_result",
+  "excerpt": "The review reports that detection and discrimination of near-threshold visual stimuli are inversely related to pre-stimulus alpha amplitude, and that participants with greater tonic alpha levels in a sustained-attention task had larger LP1 components, with that relationship predicting task performance.",
+  "overview": "Performance correlations make the alpha pattern behaviorally consequential. The evidence indicates that alpha level is not merely an electrophysiological by-product; it tracks perceptual sensitivity and attentional success. These are correlational findings, so they establish prediction and functional relevance but require causal manipulation for stronger mechanistic inference.",
+  "page_refs": [
+    "p.7"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "title": "Alpha Predicts Performance"
+}

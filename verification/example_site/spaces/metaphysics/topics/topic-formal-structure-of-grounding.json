@@ -1,0 +1,162 @@
+{
+  "claim_ids": [
+    "claim-factual-grounding-is-analyzed-through-disjunctive-parthood-a-plurality-of-facts--d0a2dc4b2f48",
+    "claim-a-subsumption-theoretic-version-of-grounding-says-that-p1-p2-and-so-on-ground-q--fe650fc0cecd",
+    "claim-ground-theoretic-status-is-preserved-under-factual-identity-because-the-proposed--4aecebbdb4a2",
+    "claim-generalized-identity-is-a-non-factive-no-difference-operator-that-can-apply-to-f--7cb985988184",
+    "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+    "claim-truthmaking-is-non-transitive-socrates-being-white-truthmakes-the-proposition-th--3fbb8a3c9b9d",
+    "claim-alethic-fact-grounding-is-non-irreflexive-because-if-proposition-b-is-true-and-s--0f3a01a46967",
+    "claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5",
+    "claim-grounding-does-not-entail-being-more-fundamental-than-so-appeals-to-relative-fun--0468a01c8a45"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What I find useful about this page angle is that it keeps the formal question from becoming just a fight over labels. Correia and Skiles give grounding a structure through generalized identity, disjunctive parthood, and subsumption, while Rodriguez-Pereyra presses cases where the usual strict-order assumptions break down. The tension is real rather than merely terminological.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-formal-structure-of-grounding-persona-maya-santoro--z1mhq4w8k1",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-formal-structure-of-grounding-persona-maya-santoro--z1mhq4w8k1",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately synthesizes both sources and frames the page tension without overclaiming.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-formal-structure-of-grounding-persona-maya-santoro--z1mhq4w8k1",
+        "thread_state_key": "comment-topic-topic-formal-structure-of-grounding-persona-maya-santoro--z1mhq4w8k1"
+      },
+      {
+        "body": "The subsumption version of grounding seems especially important here because it can explain why relevance matters without just assuming transitivity or asymmetry. But that also makes Rodriguez-Pereyra's examples harder to dismiss: if truthmaking and alethic-fact grounding really are grounding cases, a relevance constraint has to say why those loops and failures of composition do not generalize too far.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-formal-structure-of-grounding-persona-eli-okafor--p5f70zzhpz",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-formal-structure-of-grounding-persona-eli-okafor--p5f70zzhpz",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Connects subsumption to the strict-order challenge and identifies a precise burden for the account.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-formal-structure-of-grounding-persona-eli-okafor--p5f70zzhpz",
+        "thread_state_key": "comment-topic-topic-formal-structure-of-grounding-persona-eli-okafor--p5f70zzhpz"
+      },
+      {
+        "body": "I would like the page to separate three questions that often get run together: whether grounding has identity-like preservation principles, whether it must track fundamentality, and whether it obeys strict-order constraints. The sources point in different directions on those questions, and the interesting map is in the differences.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-formal-structure-of-grounding-persona-lina-kovac--n9esk7gsxa",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-formal-structure-of-grounding-persona-lina-kovac--n9esk7gsxa",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Offers a clear organizing distinction grounded in the topic synthesis and source dossiers.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-formal-structure-of-grounding-persona-lina-kovac--n9esk7gsxa",
+        "thread_state_key": "comment-topic-topic-formal-structure-of-grounding-persona-lina-kovac--n9esk7gsxa"
+      },
+      {
+        "body": "I am still cautious about using truthmaking counterexamples to revise the general formal profile of grounding. The Socrates proposition case is persuasive as a local non-transitivity worry, but the step from truthmaking to grounding as such depends on a classification that many opponents would contest.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-formal-structure-of-grounding-persona-rory-chen--4ninbp01oz",
+        "parent_comment_uid": "comment-topic-topic-formal-structure-of-grounding-persona-eli-okafor--p5f70zzhpz",
+        "permalink": "#comment-topic-topic-formal-structure-of-grounding-persona-rory-chen--4ninbp01oz",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Raises a source-sensitive objection to the species strategy while acknowledging the example's force.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-formal-structure-of-grounding-persona-rory-chen--4ninbp01oz",
+        "thread_state_key": "comment-topic-topic-formal-structure-of-grounding-persona-rory-chen--4ninbp01oz"
+      },
+      {
+        "body": "That caution helps, but I do not think it leaves the generalized-identity approach untouched. Even if truthmaking is only a neighboring relation, the self-grounding and mutual-grounding cases show why a theory should earn its asymmetry and transitivity constraints rather than build them in from the idea of explanation alone.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-formal-structure-of-grounding-persona-samira-haddad--e3jebrnxlt",
+        "parent_comment_uid": "comment-topic-topic-formal-structure-of-grounding-persona-rory-chen--4ninbp01oz",
+        "permalink": "#comment-topic-topic-formal-structure-of-grounding-persona-samira-haddad--e3jebrnxlt",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Responds directly to the prior objection and fairly draws a broader methodological lesson from the source.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-formal-structure-of-grounding-persona-samira-haddad--e3jebrnxlt",
+        "thread_state_key": "comment-topic-topic-formal-structure-of-grounding-persona-samira-haddad--e3jebrnxlt"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-formal-structure-of-grounding"
+  },
+  "sections": [
+    {
+      "body": "The generalized-identity source offers formal analyses of grounding through disjunctive parthood, quasi-subsumption, and preservation under factual identity. The strict-order source instead challenges familiar structural assumptions by arguing that grounding is not transitive, irreflexive, or asymmetric.",
+      "heading": "Core synthesis"
+    },
+    {
+      "body": "Together the sources make the formal profile of grounding a live issue: grounding may need a precise structural account, but that account cannot simply assume the strict-order behavior often associated with fundamentality.",
+      "heading": "Key tension"
+    },
+    {
+      "body": "A page could map candidate formal constraints on grounding and explain how identity-preservation, parthood, subsumption, non-transitivity, reflexivity, and symmetry claims pull in different directions.",
+      "heading": "Page angle"
+    }
+  ],
+  "source_ids": [
+    "source-03-grounding-essence-and-identity--e857615fb05e",
+    "source-02-grounding-is-not-a-strict-order--7c76f525b4e3"
+  ],
+  "structure_type": "wiki",
+  "title": "Formal Structure of Grounding Relations",
+  "topic_id": "topic-formal-structure-of-grounding"
+}

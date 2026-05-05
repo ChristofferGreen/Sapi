@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+    "claim-alpha-channel-multipass-rendering-can-recolor-significant-body-regions-such-as-c--265615107527"
+  ],
+  "evidence_id": "evidence-s3tc-avatar-budget--7ab42c91de03",
+  "evidence_type": "measurement",
+  "excerpt": "We then stored the texture using the OpenGL compressed format, which gives a further memory compression ratio of 1:4. The compression format lets us keep alpha values and encodes them in 4 bits. Once loaded in texture memory, each animation frame for a single human model requires 256 Kbytes. To simulate 10 different types of human with 10 frames of animation each, we need about 25 Mbytes of texture memory.",
+  "overview": "These numeric constraints show the system's practical texture budget after compression. They connect frame-level storage, alpha-channel preservation, and total memory for a multi-avatar crowd, while also indicating a quality trade-off because the cited compression loses some image quality.",
+  "page_refs": [
+    "p.40"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "title": "Compressed Avatar Texture Budget"
+}

@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-memory-based-sense-of-personal-identity-depends-on-at-least-two-separable-co--f9eaee4ce165",
+    "claim-the-sense-of-numerical-personal-identity-is-a-contingent-feature-of-episodic-mem--b672a3618f23",
+    "claim-the-evidential-force-of-memory-for-personal-identity-depends-on-the-contingent-c--ef23d993b2fe"
+  ],
+  "evidence_id": "evidence-component-model-of-mineness--e9a07d312f44",
+  "evidence_type": "model_constraint",
+  "excerpt": "The apparent paradox \u2014 episodic memory of past events absent the feeling of personal ownership \u2014 can be understood by situating episodic memory in the context of a system of interrelated memory processes, some of which provide the raw data for experience and some of which enable the experience to be \u2018mine\u2019. R.B.\u2019s recollections during his \u2018unowned\u2019 period can be explained in the context of the view that there is specialized neural machinery that inserts the conceptual element self into the agent slot of an episodic memory attribution.",
+  "overview": "This passage supplies the article's model constraint: a memory system can deliver scene content while a distinct self-tagging or I-concept mechanism supplies ownership. It supports the transition from case report to theoretical architecture.",
+  "page_refs": [
+    "p.689"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+  "title": "Component Model Of Mineness"
+}

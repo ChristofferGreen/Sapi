@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T08:01:29Z",
+  "claim_id": "claim-when-connecting-questions-lack-cognitive-significance-fine-style-essential-truth--6cba612fbc37",
+  "evidence_excerpts": [
+    "essence: the connecting questions with respect to [p] and D lack cognitive significance only if there are certain essential truths characteristic of [p], D, the plurality consisting of [p] and D, or the entities they involve according to which \u2227D \u2192 p."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Essence supplies entailment",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "When connecting questions lack cognitive significance, Fine-style essential truths about the grounded fact, its grounds, their plurality, or involved entities explain why the grounds entail the grounded proposition."
+}

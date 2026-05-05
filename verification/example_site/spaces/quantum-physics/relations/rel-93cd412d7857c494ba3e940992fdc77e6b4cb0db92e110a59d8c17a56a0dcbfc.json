@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-quantum-computers-are-not-expected-to-efficiently-solve-hard-np-hard-combinatori--0d5f718c4d47",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "Both claims temper optimization expectations by emphasizing hard classical baselines and unresolved quantum advantage.",
+  "relation_file_id": "rel-93cd412d7857c494ba3e940992fdc77e6b4cb0db92e110a59d8c17a56a0dcbfc",
+  "relation_id": "similar:claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767|claim-quantum-computers-are-not-expected-to-efficiently-solve-hard-np-hard-combinatori--0d5f718c4d47",
+  "relation_type": "similar",
+  "src_claim_id": "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+  "src_claim_ref": "5",
+  "status": "open"
+}

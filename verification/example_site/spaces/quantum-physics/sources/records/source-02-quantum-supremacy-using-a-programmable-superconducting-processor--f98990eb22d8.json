@@ -1,0 +1,899 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8/front_page.png",
+    "source_extraction": "sources/artifacts/source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8/source_extraction.json",
+    "source_file": "sources/artifacts/source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8/source.pdf",
+    "source_markdown": "sources/artifacts/source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8/source.md",
+    "source_provenance": "sources/artifacts/source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8/source_provenance.md"
+  },
+  "authors": [
+    "Frank Arute",
+    "Kunal Arya",
+    "Ryan Babbush",
+    "Dave Bacon",
+    "Joseph C. Bardin",
+    "Rami Barends",
+    "Rupak Biswas",
+    "Sergio Boixo",
+    "Fernando G. S. L. Brandao",
+    "David A. Buell",
+    "Brian Burkett",
+    "Yu Chen",
+    "Zijun Chen",
+    "Ben Chiaro",
+    "Roberto Collins",
+    "William Courtney",
+    "Andrew Dunsworth",
+    "Edward Farhi",
+    "Brooks Foxen",
+    "Austin Fowler",
+    "Craig Gidney",
+    "Marissa Giustina",
+    "Rob Graff",
+    "Keith Guerin",
+    "Steve Habegger",
+    "Matthew P. Harrigan",
+    "Michael J. Hartmann",
+    "Alan Ho",
+    "Markus Hoffmann",
+    "Trent Huang",
+    "Travis S. Humble",
+    "Sergei V. Isakov",
+    "Evan Jeffrey",
+    "Zhang Jiang",
+    "Dvir Kafri",
+    "Kostyantyn Kechedzhi",
+    "Julian Kelly",
+    "Paul V. Klimov",
+    "Sergey Knysh",
+    "Alexander Korotkov",
+    "Fedor Kostritsa",
+    "David Landhuis",
+    "Mike Lindmark",
+    "Erik Lucero",
+    "Dmitry Lyakh",
+    "Salvatore Mandr\u00e0",
+    "Jarrod R. McClean",
+    "Matthew McEwen",
+    "Anthony Megrant",
+    "Xiao Mi",
+    "Kristel Michielsen",
+    "Masoud Mohseni",
+    "Josh Mutus",
+    "Ofer Naaman",
+    "Matthew Neeley",
+    "Charles Neill",
+    "Murphy Yuezhen Niu",
+    "Eric Ostby",
+    "Andre Petukhov",
+    "John C. Platt",
+    "Chris Quintana",
+    "Eleanor G. Rieffel",
+    "Pedram Roushan",
+    "Nicholas C. Rubin",
+    "Daniel Sank",
+    "Kevin J. Satzinger",
+    "Vadim Smelyanskiy",
+    "Kevin J. Sung",
+    "Matthew D. Trevithick",
+    "Amit Vainsencher",
+    "Benjamin Villalonga",
+    "Theodore White",
+    "Z. Jamie Yao",
+    "Ping Yeh",
+    "Adam Zalcman",
+    "Hartmut Neven",
+    "John M. Martinis"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What stands out to me is how carefully the paper narrows the claim. Sycamore is not presented as a general-purpose quantum computer, but as a device that samples from random circuits in a regime where the authors argue equal-fidelity classical sampling becomes impractical.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-maya-santoro--2knvjwpahc",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-maya-santoro--2knvjwpahc",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately frames the benchmark claim and avoids overstating the result.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-maya-santoro--2knvjwpahc",
+        "thread_state_key": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-maya-santoro--2knvjwpahc"
+      },
+      {
+        "body": "The verification strategy is the interesting weak point, not because it is careless, but because the hardest full circuits are exactly where direct classical checking stops being available. The use of patch, elided, and verification circuits makes the argument empirical and indirect.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-eli-okafor--168gw8yi59",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-eli-okafor--168gw8yi59",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Identifies a central methodological limitation while representing the paper fairly.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-eli-okafor--168gw8yi59",
+        "thread_state_key": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-eli-okafor--168gw8yi59"
+      },
+      {
+        "body": "I agree with that caveat, and I think it also explains why the component error data matters so much. If simultaneous gate and readout errors had behaved very differently at scale, the transfer from simpler circuits to the supremacy-regime estimate would be much harder to trust.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-lina-kovac--0x82nlyei0",
+        "parent_comment_uid": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-eli-okafor--168gw8yi59",
+        "permalink": "#comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-lina-kovac--0x82nlyei0",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Builds on the parent comment with relevant hardware-error evidence.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-lina-kovac--0x82nlyei0",
+        "thread_state_key": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-lina-kovac--0x82nlyei0"
+      },
+      {
+        "body": "The 200 seconds versus 10,000 years comparison is memorable, but it is easy to misread. It is a comparison for random circuit sampling at comparable fidelity, not a claim that Sycamore can now accelerate ordinary workloads or cryptographic factoring.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-rory-chen--5tk7o4xcv5",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-rory-chen--5tk7o4xcv5",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Clarifies the runtime comparison and distinguishes benchmark speedup from applications.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-rory-chen--5tk7o4xcv5",
+        "thread_state_key": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-rory-chen--5tk7o4xcv5"
+      },
+      {
+        "body": "For me the milestone is less about immediate usefulness and more about controllability. A 53-qubit noisy processor producing statistically meaningful samples from deep random circuits is still a serious engineering result, even if fault-tolerant algorithms remain far beyond this experiment.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-samira-haddad--zt904om739",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-samira-haddad--zt904om739",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Gives a balanced interpretation grounded in the source's stated limits.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-samira-haddad--zt904om739",
+        "thread_state_key": "comment-source-source-02-quantum-supremacy-using-a-programmable-superconducting-processor-f98990eb22d8-persona-samira-haddad--zt904om739"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+  },
+  "date": null,
+  "display_title": "Quantum Supremacy Using a Programmable Superconducting Processor",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[16].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "25th Solvay Conference on Physics Brussels https://doi.org/ World",
+      "url": "https://doi.org/10.1142/8674"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[15].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "algorithm away from valuable near-term applications. org/ IEEE",
+      "url": "https://doi.org/10.1109/sfcs.1994.365700"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[18].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Ann. Symp. on Theory of Computing https://doi.org/ ACM",
+      "url": "https://doi.org/10.1145/1993636.1993682"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[13].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "appreciate support from the NASA Ames Research Center and from the Air Force Supplementary information is available for this paper at https://doi.org/",
+      "url": "https://doi.org/10.1038/s41586-019-"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[19].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "experiments. In 32nd Computational Complexity Conf. https://doi.org/",
+      "url": "https://doi.org/10.4230/LIPIcs"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[19].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "experiments. In 32nd Computational Complexity Conf. https://doi.org/",
+      "url": "https://doi.org/10.4230/lipics"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[12].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://doi.org/ . published maps and institutional affiliations",
+      "url": "https://doi.org/10.1038/s41567-019-0648-8"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[14].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://doi.org/ Frank Arute1 Kunal Arya1 Ryan Babbush1 Dave Bacon1 Joseph C. Bardin1 2 Rami Barends1",
+      "url": "https://doi.org/10.1038/s41586-019-1666-5"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[20].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "public Dryad repository https://doi.org/ . 29. Ofek N. et al. Extending the lifetime of a quantum bit with error correction in",
+      "url": "https://doi.org/10.5061/dryad.k6t1rj8"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[17].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Theory of Computing https://doi.org/ ACM",
+      "url": "https://doi.org/10.1145/167088.167097"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[5].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "abs/",
+      "url": "https://arxiv.org/abs/1712.05384"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[15].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "algorithm away from valuable near-term applications. org/ IEEE",
+      "url": "https://arxiv.org/abs/1994.36570"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[18].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Ann. Symp. on Theory of Computing https://doi.org/ ACM",
+      "url": "https://arxiv.org/abs/3636.19936"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[2].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "circuits as complex undirected graphical models. Preprint at /",
+      "url": "https://arxiv.org"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[8].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "farther than it appears. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1807.10749"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[4].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1710.05867"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[6].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "processors. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1802.06002"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[10].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "quantum circuits. Preprint at https://arxiv.org/abs/ 2019",
+      "url": "https://arxiv.org/abs/1901.05003"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[11].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "simulation. Preprint at https://arxiv.org/abs/ 2019",
+      "url": "https://arxiv.org/abs/1905.00444"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[7].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "size quantum circuits. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1805.01450"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[9].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "the press preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1811.09599"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[17].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Theory of Computing https://doi.org/ ACM",
+      "url": "https://arxiv.org/abs/7088.16709"
+    }
+  ],
+  "ingested_at": "2026-04-26T15:54:54Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Communication and Cryptography /",
+      "url": "http://drops.dagstuhl.de/opus/volltexte/2018/9256",
+      "year": 2018
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "government. Reprints and permissions information is available at",
+      "url": "http://www.nature.com/reprints",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "circuits as complex undirected graphical models. Preprint at /",
+      "url": "https://arxiv.org",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "that unlocks new computational capabilities. We are only one creative proceedings. In Proc. 35th Ann. Symp. on Foundations of Computer Science",
+      "url": "https://doi",
+      "year": null
+    },
+    {
+      "arxiv": "1710.05867",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1710.05867",
+      "year": 2017
+    },
+    {
+      "arxiv": "1712.05384",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "abs/",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": "1802.06002",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "processors. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1802.06002",
+      "year": 2018
+    },
+    {
+      "arxiv": "1805.01450",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "size quantum circuits. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1805.01450",
+      "year": 2018
+    },
+    {
+      "arxiv": "1807.10749",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "farther than it appears. Preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1807.10749",
+      "year": 2018
+    },
+    {
+      "arxiv": "1811.09599",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "the press preprint at https://arxiv.org/abs/",
+      "url": "https://arxiv.org/abs/1811.09599",
+      "year": 2018
+    },
+    {
+      "arxiv": "1901.05003",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "quantum circuits. Preprint at https://arxiv.org/abs/ 2019",
+      "url": "https://arxiv.org/abs/1901.05003",
+      "year": 1901
+    },
+    {
+      "arxiv": "1905.00444",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "simulation. Preprint at https://arxiv.org/abs/ 2019",
+      "url": "https://arxiv.org/abs/1905.00444",
+      "year": 1905
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/s41567-019-0648-8",
+      "linked_source_ids": [],
+      "title": "https://doi.org/ . published maps and institutional affiliations",
+      "url": "https://doi.org/10.1038/s41567-019-0648-8",
+      "year": 2019
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/s41586-019-",
+      "linked_source_ids": [],
+      "title": "appreciate support from the NASA Ames Research Center and from the Air Force Supplementary information is available for this paper at https://doi.org/",
+      "url": "https://doi.org/10.1038/s41586-019-",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/s41586-019-1666-5",
+      "linked_source_ids": [],
+      "title": "https://doi.org/ Frank Arute1 Kunal Arya1 Ryan Babbush1 Dave Bacon1 Joseph C. Bardin1 2 Rami Barends1",
+      "url": "https://doi.org/10.1038/s41586-019-1666-5",
+      "year": 2014
+    },
+    {
+      "arxiv": "1994.36570",
+      "authors": [],
+      "doi": "10.1109/sfcs.1994.365700",
+      "linked_source_ids": [],
+      "title": "algorithm away from valuable near-term applications. org/ IEEE",
+      "url": null,
+      "year": 1994
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1142/8674",
+      "linked_source_ids": [],
+      "title": "25th Solvay Conference on Physics Brussels https://doi.org/ World",
+      "url": "https://doi.org/10.1142/8674",
+      "year": null
+    },
+    {
+      "arxiv": "7088.16709",
+      "authors": [],
+      "doi": "10.1145/167088.167097",
+      "linked_source_ids": [],
+      "title": "Theory of Computing https://doi.org/ ACM",
+      "url": "https://doi.org/10.1145/167088.167097",
+      "year": 1993
+    },
+    {
+      "arxiv": "3636.19936",
+      "authors": [],
+      "doi": "10.1145/1993636.1993682",
+      "linked_source_ids": [],
+      "title": "Ann. Symp. on Theory of Computing https://doi.org/ ACM",
+      "url": "https://doi.org/10.1145/1993636.1993682",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.4230/lipics",
+      "linked_source_ids": [],
+      "title": "experiments. In 32nd Computational Complexity Conf. https://doi.org/",
+      "url": "https://doi.org/10.4230/LIPIcs",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.5061/dryad.k6t1rj8",
+      "linked_source_ids": [],
+      "title": "public Dryad repository https://doi.org/ . 29. Ofek N. et al. Extending the lifetime of a quantum bit with error correction in",
+      "url": "https://doi.org/10.5061/dryad.k6t1rj8",
+      "year": null
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 3 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2019-10-23",
+    "origin": "sources/artifacts/source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8/source.md",
+    "rationale": "The extracted markdown header states 'Published online: 23 October 2019'."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The source's main proposition is that Sycamore performed random circuit sampling in a classically inaccessible regime. The experiment uses 53 active qubits and deep random circuits to create a state space of about 10^16 possibilities, then asks the processor to sample bitstrings from the resulting distribution rather than solve a practical application directly.",
+        "grounding_claim_ids": [
+          "0",
+          "1",
+          "6"
+        ],
+        "heading": "Central Benchmark Claim"
+      },
+      {
+        "body": "Cross-entropy benchmarking supplies the quantitative bridge between measured bitstrings and ideal circuit probabilities. In tractable regimes, ideal probabilities can be computed classically and compared with the quantum samples; in the largest regime, the same method becomes too costly, so verification has to be transferred through carefully simplified circuit families.",
+        "grounding_claim_ids": [
+          "2",
+          "3",
+          "7"
+        ],
+        "heading": "Verification Method"
+      },
+      {
+        "body": "The processor evidence is not just a headline qubit count. The article reports simultaneous-operation error rates for gates and readout, then uses those rates to predict total circuit fidelity. This matters because the supremacy claim would fail if large-scale simultaneous operation introduced uncontrolled correlated errors not visible in isolated gate calibration.",
+        "grounding_claim_ids": [
+          "4",
+          "5"
+        ],
+        "heading": "Hardware Error Evidence"
+      },
+      {
+        "body": "The hardest full circuits are not directly verified by classical simulation. Instead, the article compares full, patch, elided, and predicted fidelities where verification is possible, then uses elided circuits at 53 qubits and 20 cycles as the closest auditable proxy. The inference is therefore empirical and model-supported rather than a direct full-circuit probability check.",
+        "grounding_claim_ids": [
+          "3",
+          "7"
+        ],
+        "heading": "Supremacy-Regime Inference"
+      },
+      {
+        "body": "The dramatic runtime gap depends on matching the quantum task to an equal-fidelity classical sampling estimate. Sycamore's reported 200 seconds for one million samples is compared with 10,000 years on one million cores, but this is an extrapolated benchmark for random circuit sampling, not evidence that all valuable computations are now faster on quantum hardware.",
+        "grounding_claim_ids": [
+          "1",
+          "6",
+          "8"
+        ],
+        "heading": "Classical Cost Comparison"
+      },
+      {
+        "body": "The article explicitly separates this NISQ-era milestone from full-scale fault-tolerant quantum computing. It argues that quantum speedup is achievable in a real physical device, while acknowledging that applications such as Shor-style factoring still require logical qubits and major engineering advances beyond the reported noisy processor.",
+        "grounding_claim_ids": [
+          "1",
+          "8"
+        ],
+        "heading": "Limits and Interpretation"
+      }
+    ],
+    "summary_long": "The article presents a landmark random-circuit sampling experiment using Google's Sycamore superconducting processor. Its central claim is that a programmable 53-qubit device sampled from a distribution generated by pseudo-random quantum circuits in a regime where equal-fidelity classical sampling was estimated to be prohibitively expensive. The source grounds this claim in several layers of evidence. First, it defines a benchmark whose classical difficulty grows with both qubit number and circuit depth because random circuits lack exploitable structure. Second, it uses linear cross-entropy benchmarking to compare measured bitstrings with ideal probabilities wherever classical simulation remains possible. Third, it measures component error rates for single-qubit gates, two-qubit gates, cycles, and readout under simultaneous operation, then uses those rates to predict whole-circuit fidelity. The decisive regime cannot be fully verified by direct classical simulation, so the article relies on patch, elided, and verification circuits to test whether lower-complexity variants track full-circuit behavior. For the largest elided 53-qubit, 20-cycle data set, the reported F_XEB statistic supports fidelity above 0.1% at 5\u03c3 confidence. Against this measured fidelity, the authors compare Sycamore's 200-second runtime for one million samples with an extrapolated 10,000-year classical sampling cost on one million cores. The practical interpretation is deliberately narrow: the result demonstrates a super-classical benchmark computation in a noisy intermediate-scale device, not immediate fault-tolerant quantum computing or a broad application such as factoring. Its importance lies in showing that controlled, many-qubit quantum dynamics can be engineered, benchmarked, and made classically inaccessible for a specific task.",
+    "summary_short": "This Nature article reports Sycamore random-circuit sampling on 53 qubits. Cross-entropy benchmarking, component error calibration, and classical-cost estimates support a task-specific quantum supremacy claim. The result is a benchmark speedup, not general fault-tolerant quantum computing."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "source_kind": "file",
+  "source_locator": "02-quantum-supremacy-using-a-programmable-superconducting-processor.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Frank Arute",
+      "Kunal Arya",
+      "Ryan Babbush",
+      "Dave Bacon",
+      "Joseph C. Bardin",
+      "Rami Barends",
+      "Rupak Biswas",
+      "Sergio Boixo",
+      "Fernando G. S. L. Brandao",
+      "David A. Buell",
+      "Brian Burkett",
+      "Yu Chen",
+      "Zijun Chen",
+      "Ben Chiaro",
+      "Roberto Collins",
+      "William Courtney",
+      "Andrew Dunsworth",
+      "Edward Farhi",
+      "Brooks Foxen",
+      "Austin Fowler",
+      "Craig Gidney",
+      "Marissa Giustina",
+      "Rob Graff",
+      "Keith Guerin",
+      "Steve Habegger",
+      "Matthew P. Harrigan",
+      "Michael J. Hartmann",
+      "Alan Ho",
+      "Markus Hoffmann",
+      "Trent Huang",
+      "Travis S. Humble",
+      "Sergei V. Isakov",
+      "Evan Jeffrey",
+      "Zhang Jiang",
+      "Dvir Kafri",
+      "Kostyantyn Kechedzhi",
+      "Julian Kelly",
+      "Paul V. Klimov",
+      "Sergey Knysh",
+      "Alexander Korotkov",
+      "Fedor Kostritsa",
+      "David Landhuis",
+      "Mike Lindmark",
+      "Erik Lucero",
+      "Dmitry Lyakh",
+      "Salvatore Mandr\u00e0",
+      "Jarrod R. McClean",
+      "Matthew McEwen",
+      "Anthony Megrant",
+      "Xiao Mi",
+      "Kristel Michielsen",
+      "Masoud Mohseni",
+      "Josh Mutus",
+      "Ofer Naaman",
+      "Matthew Neeley",
+      "Charles Neill",
+      "Murphy Yuezhen Niu",
+      "Eric Ostby",
+      "Andre Petukhov",
+      "John C. Platt",
+      "Chris Quintana",
+      "Eleanor G. Rieffel",
+      "Pedram Roushan",
+      "Nicholas C. Rubin",
+      "Daniel Sank",
+      "Kevin J. Satzinger",
+      "Vadim Smelyanskiy",
+      "Kevin J. Sung",
+      "Matthew D. Trevithick",
+      "Amit Vainsencher",
+      "Benjamin Villalonga",
+      "Theodore White",
+      "Z. Jamie Yao",
+      "Ping Yeh",
+      "Adam Zalcman",
+      "Hartmut Neven",
+      "John M. Martinis"
+    ],
+    "display_title": "Quantum Supremacy Using a Programmable Superconducting Processor",
+    "doi": "10.1038/s41586-019-1666-5",
+    "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8"
+  },
+  "source_type": "file",
+  "summary": "The source reports Google's Sycamore experiment demonstrating task-specific quantum supremacy in random circuit sampling. It combines a 53-qubit programmable superconducting processor, cross-entropy benchmarking, component error modeling, and classical simulation cost estimates to argue that Sycamore performed a sampling task in minutes that would take state-of-the-art classical resources thousands of years at equal fidelity.",
+  "title": "02-quantum-supremacy-using-a-programmable-superconducting-processor",
+  "warnings": [
+    {
+      "code": "date_inferred_from_markdown",
+      "message": "Task context supplied date=null, but source.md contains 'Published online: 23 October 2019', so source_date_inference was populated from the markdown."
+    },
+    {
+      "code": "noisy_reference_extraction",
+      "message": "The source_record reference list contains malformed or noisy extracted entries; claims and evidence were grounded in source_extraction.json and source.md instead."
+    },
+    {
+      "code": "full_supremacy_data_not_directly_verified",
+      "message": "The hardest full-circuit samples were archived but not directly classically simulated in the source; fidelity support comes from elided and verification-circuit evidence."
+    }
+  ]
+}

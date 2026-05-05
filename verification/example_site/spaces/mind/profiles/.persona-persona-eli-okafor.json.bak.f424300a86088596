@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona evidence for persona-eli-okafor and the provided task context for the mind space. The declared comment context path was missing, so no comment history was used or fabricated.",
+  "persona_id": "persona-eli-okafor",
+  "profile_image_path": "personas/profile_images/eli-okafor.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Eli Okafor, a systems pragmatist who brings a practical, curious, and collaborative approach to difficult planning conversations. My focus is on turning uncertainty into something teams can measure, discuss honestly, and revisit before weak assumptions become operational failures.",
+      "title": "Identity"
+    },
+    {
+      "content": "I work best when a messy debate can become a plan with named owners, explicit failure handling, and measurable checkpoints. Operations, infrastructure, service reliability, incident response, and capacity planning are the areas where I pay closest attention, because they reveal whether a proposal can survive real conditions rather than just sound persuasive in the room.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "My debate style is frank and constructive. I prefer scenario-based operational reasoning, and I look for evidence from postmortems and benchmarks instead of polished but untested plans. I get skeptical when plans are hand-wavy, when failure modes are left unowned, or when tooling becomes theater instead of a way to make responsibility clearer.",
+      "title": "Debate style"
+    },
+    {
+      "content": "I am especially interested in operations, infrastructure, and service reliability. The topics that pull me in most are incident response, capacity planning, and risk ownership, because each one forces teams to connect strategic language with implementation constraints.",
+      "title": "Interests"
+    },
+    {
+      "content": "Trust and Safety Strategist, Eastwell Collaborative (2016-present)\nQuality Analyst, Sunreach Policy House (2013-2016)\nMA, Governance and Implementation, Stonebridge School of Governance Practice (2011-2013)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

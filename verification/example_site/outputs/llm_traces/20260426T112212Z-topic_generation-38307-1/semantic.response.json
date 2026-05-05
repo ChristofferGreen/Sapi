@@ -1,0 +1,60 @@
+{
+  "topics": [
+    {
+      "claim_ids": [
+        "claim-alpha-band-oscillations-can-be-actively-invoked-in-cortical-regions-that-process--09466b39d396",
+        "claim-instructional-cuing-paradigms-distinguish-distracter-suppression-from-probabilis--af0b5b81b7e7",
+        "claim-in-intersensory-attention-tasks-attending-to-audition-increases-8-14-hz-parieto--6ff6ff285662",
+        "claim-during-visual-spatial-attention-alpha-band-power-increases-over-occipital-cortex--09a99b87f400",
+        "claim-feature-based-visual-attention-increases-alpha-power-in-dorsal-or-ventral-stream--0c7646ad3b93",
+        "claim-alpha-mediated-biasing-extends-beyond-vision-appearing-in-auditory-and-tactile-s--2cd546facc83",
+        "claim-sustained-focal-alpha-increases-above-pre-cue-baseline-during-rapid-bilateral-st--8699d621dccc",
+        "claim-higher-naturally-occurring-or-experimentally-induced-alpha-power-reduces-visual--3884cfa09119",
+        "claim-attention-related-alpha-modulation-appears-primarily-controlled-by-cortico-corti--1eb91088cf2b",
+        "claim-mindfulness-training-can-improve-attention-related-behavior-by-changing-specific--f9e8e6ee54d7",
+        "claim-an-8-week-mindfulness-based-stress-reduction-course-improves-endogenous-orientin--f7bde69b7431",
+        "claim-a-1-month-intensive-mindfulness-retreat-among-previously-experienced-meditators--cd2a814c579a",
+        "claim-the-attention-network-test-separates-alerting-orienting-and-conflict-monitoring--08b2302acb19",
+        "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7"
+      ],
+      "sections": [
+        "Selective attention can be framed as a family of gating mechanisms that improve behavior by prioritizing relevant inputs and suppressing distracting ones.",
+        "Alpha-band evidence supports an active-suppression account: alpha power rises in cortical regions processing irrelevant visual, auditory, tactile, spatial, feature-based, or intersensory information, and stronger alpha is linked to weaker perceptual detection.",
+        "Mindfulness evidence provides a behavioral counterpart: training changes separable attention subsystems rather than producing a single global attention benefit, with MBSR improving endogenous orienting and intensive retreat experience altering alerting-related readiness.",
+        "The cross-source synthesis is strongest at the level of attention as selective control; the available evidence does not show that mindfulness training causes alpha-band suppression changes."
+      ],
+      "source_ids": [
+        "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+        "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78"
+      ],
+      "structure_type": "wiki",
+      "title": "Attentional Gating and Sensory Suppression",
+      "topic_id": "topic-attentional-gating-and-sensory-suppression"
+    },
+    {
+      "claim_ids": [
+        "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb",
+        "claim-a-complex-is-an-integrated-subset-with-greater-than-zero-that-is-not-contained-i--70401a6fb458",
+        "claim-a-distributed-thalamocortical-network-is-well-suited-to-generate-consciousness-b--571db463385d",
+        "claim-anatomical-or-functional-disconnection-within-thalamocortical-systems-can-reduce--89adceb072c5",
+        "claim-reticular-sensory-afferent-motor-efferent-and-subcortical-loop-activity-can-modu--173db43834c9",
+        "claim-attention-related-alpha-modulation-appears-primarily-controlled-by-cortico-corti--1eb91088cf2b",
+        "claim-alpha-band-oscillations-can-be-actively-invoked-in-cortical-regions-that-process--09466b39d396",
+        "claim-higher-naturally-occurring-or-experimentally-induced-alpha-power-reduces-visual--3884cfa09119"
+      ],
+      "sections": [
+        "Across the sources, cortical organization matters both for conscious experience and for selective attention, but the claims operate at different explanatory levels.",
+        "Information integration theory argues that consciousness depends on complexes with high integrated information, especially distributed thalamocortical systems combining functional specialization with functional integration.",
+        "Alpha-band attention research describes suppressive modulation as primarily cortico-cortical, involving frontal and parietal networks, with possible thalamo-cortical contributions when distracting sensory processing must be reduced.",
+        "A cautious synthesis is that conscious access and attentional suppression both depend on organized interactions among specialized cortical systems, while the provided evidence does not establish alpha oscillations as a direct measure of integrated information or consciousness."
+      ],
+      "source_ids": [
+        "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+        "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39"
+      ],
+      "structure_type": "wiki",
+      "title": "Cortical Network Organization and Conscious Access",
+      "topic_id": "topic-cortical-network-organization-and-conscious-access"
+    }
+  ]
+}

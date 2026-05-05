@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:05:42Z",
+  "claim_id": "claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546",
+  "evidence_excerpts": [
+    "The source states that rendering overhead continues to increase as VR scenes include diverse materials, more dynamic objects, and more complex simulated physical phenomena; it also reports a visual latency tolerance threshold of approximately 13 ms for the human visual system."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "VR latency causes discomfort",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "text": "Complex VR scenes exceed the efficient real-time rendering capacity of current devices, and delayed rendering can make displayed content inconsistent with user interaction, causing discomfort."
+}

@@ -1,0 +1,171 @@
+{
+  "claim_ids": [
+    "claim-alpha-band-oscillations-can-be-actively-invoked-in-cortical-regions-that-process--09466b39d396",
+    "claim-instructional-cuing-paradigms-distinguish-distracter-suppression-from-probabilis--af0b5b81b7e7",
+    "claim-in-intersensory-attention-tasks-attending-to-audition-increases-8-14-hz-parieto--6ff6ff285662",
+    "claim-during-visual-spatial-attention-alpha-band-power-increases-over-occipital-cortex--09a99b87f400",
+    "claim-feature-based-visual-attention-increases-alpha-power-in-dorsal-or-ventral-stream--0c7646ad3b93",
+    "claim-alpha-mediated-biasing-extends-beyond-vision-appearing-in-auditory-and-tactile-s--2cd546facc83",
+    "claim-sustained-focal-alpha-increases-above-pre-cue-baseline-during-rapid-bilateral-st--8699d621dccc",
+    "claim-higher-naturally-occurring-or-experimentally-induced-alpha-power-reduces-visual--3884cfa09119",
+    "claim-attention-related-alpha-modulation-appears-primarily-controlled-by-cortico-corti--1eb91088cf2b",
+    "claim-mindfulness-training-can-improve-attention-related-behavior-by-changing-specific--f9e8e6ee54d7",
+    "claim-an-8-week-mindfulness-based-stress-reduction-course-improves-endogenous-orientin--f7bde69b7431",
+    "claim-a-1-month-intensive-mindfulness-retreat-among-previously-experienced-meditators--cd2a814c579a",
+    "claim-the-attention-network-test-separates-alerting-orienting-and-conflict-monitoring--08b2302acb19",
+    "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like that this topic keeps the alpha and mindfulness evidence connected at the level of selective control, not as if they prove the same mechanism. The alpha review is about suppressing irrelevant sensory channels, while the mindfulness study is about measurable shifts in alerting, orienting, and conflict monitoring.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-maya-santoro--1dupjrh29k",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-attentional-gating-and-sensory-suppression-persona-maya-santoro--1dupjrh29k",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Clearly states the synthesis boundary and accurately distinguishes neural suppression evidence from behavioral subsystem findings.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-maya-santoro--1dupjrh29k",
+        "thread_state_key": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-maya-santoro--1dupjrh29k"
+      },
+      {
+        "body": "The strongest bridge for me is the orienting piece. Returning attention to the breath in MBSR sounds behaviorally similar to choosing the relevant channel, but the page is careful not to say that this training directly tunes alpha-band suppression.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-eli-okafor--6r42wkenex",
+        "parent_comment_uid": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-maya-santoro--1dupjrh29k",
+        "permalink": "#comment-topic-topic-attentional-gating-and-sensory-suppression-persona-eli-okafor--6r42wkenex",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Makes a plausible cross-source comparison while preserving the non-causal boundary required by the source context.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-eli-okafor--6r42wkenex",
+        "thread_state_key": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-eli-okafor--6r42wkenex"
+      },
+      {
+        "body": "A useful caution is that the two papers sit at different evidential levels. Alpha oscillations are tied to sensory excitability and detection in the review, whereas the mindfulness paper reports behavioral Attention Network Test patterns with small groups and unmatched training histories.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-lina-kovac--x1u3htj1d1",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-attentional-gating-and-sensory-suppression-persona-lina-kovac--x1u3htj1d1",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Accurately grounds limitations in both sources and helps prevent an overextended causal interpretation.",
+          "score": 27
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 27,
+          "upvotes": 39
+        },
+        "thread_expansion_key": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-lina-kovac--x1u3htj1d1",
+        "thread_state_key": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-lina-kovac--x1u3htj1d1"
+      },
+      {
+        "body": "The active-suppression point matters because it makes gating more than a metaphor. If alpha can rise over cortex representing an ignored hemifield while stimulation continues, then suppression looks like a controlled operation rather than passive idling.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-rory-chen--10niy2gtdf",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-attentional-gating-and-sensory-suppression-persona-rory-chen--10niy2gtdf",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Uses a specific alpha-review argument and explains why it strengthens the gating interpretation.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-rory-chen--10niy2gtdf",
+        "thread_state_key": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-rory-chen--10niy2gtdf"
+      },
+      {
+        "body": "What I would want next is a study that measures both pieces in the same design: mindfulness training, Attention Network Test changes, and alpha responses to ignored sensory inputs. Until then, this topic works best as a conceptual map of related attention-control ideas.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-samira-haddad--tqqo18fho2",
+        "parent_comment_uid": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-lina-kovac--x1u3htj1d1",
+        "permalink": "#comment-topic-topic-attentional-gating-and-sensory-suppression-persona-samira-haddad--tqqo18fho2",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Identifies a concrete evidence gap and summarizes the appropriate conceptual status of the synthesis.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-samira-haddad--tqqo18fho2",
+        "thread_state_key": "comment-topic-topic-attentional-gating-and-sensory-suppression-persona-samira-haddad--tqqo18fho2"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-attentional-gating-and-sensory-suppression"
+  },
+  "sections": [
+    {
+      "body": "Selective attention can be framed as a family of gating mechanisms that improve behavior by prioritizing relevant inputs and suppressing distracting ones. The alpha-oscillation source emphasizes neural suppression of irrelevant sensory processing, while the mindfulness source distinguishes behavioral attention subsystems that can change with training.",
+      "heading": "Shared Concept"
+    },
+    {
+      "body": "Alpha-band evidence supports an active-suppression account: alpha power rises in cortical regions processing irrelevant visual, auditory, tactile, spatial, feature-based, or intersensory information. Stronger naturally occurring or induced alpha is linked to reduced visual cortical excitability and weaker perceptual detection.",
+      "heading": "Alpha-Band Suppression"
+    },
+    {
+      "body": "Mindfulness evidence provides a behavioral counterpart rather than a direct neural mechanism. The Attention Network Test separates alerting, orienting, and conflict monitoring, and the reported effects differ by training history: MBSR improves endogenous orienting, while intensive retreat experience alters alerting-related readiness.",
+      "heading": "Mindfulness and Attention Subsystems"
+    },
+    {
+      "body": "The cross-source synthesis is strongest at the level of attention as selective control. The available evidence does not show that mindfulness training causes alpha-band suppression changes, so the relationship should be treated as conceptual rather than causal.",
+      "heading": "Synthesis Boundary"
+    }
+  ],
+  "source_ids": [
+    "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+    "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78"
+  ],
+  "structure_type": "wiki",
+  "title": "Attentional Gating and Sensory Suppression",
+  "topic_id": "topic-attentional-gating-and-sensory-suppression"
+}

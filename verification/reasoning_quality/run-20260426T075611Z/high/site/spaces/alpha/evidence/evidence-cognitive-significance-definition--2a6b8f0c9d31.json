@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-a-connecting-question-has-cognitive-significance-only-when-full-information-abou--59ca96dc9a81",
+    "claim-full-grounding-obtains-only-when-the-relevant-connecting-question-lacks-cognitiv--dd35324d3686"
+  ],
+  "evidence_id": "evidence-cognitive-significance-definition--2a6b8f0c9d31",
+  "evidence_type": "formal_argument",
+  "excerpt": "Let a connecting question of the form \u2018Why should [p] obtain given that each of the members of D obtains?\u2019 be cognitively significant just in case it\u2019s metaphysically necessary that, for any rational individual, being fully informed about the nature of [p], D, the plurality consisting of [p] and D, and the entities these facts involve doesn\u2019t suffice for the question to lack substantive content for that individual. So a connecting question of this form lacks cognitive significance just in case it\u2019s possible that being fully informed about the natures of the relevant entities suffices for the question to lack substantive content for some rational individual.",
+  "overview": "The definition fixes the epistemic notion used in the main argument. It distinguishes questions whose explanatory force survives ideal information from questions that would disappear once a rational agent grasped the relevant natures. This makes the later significance principle a general constraint on grounding rather than a claim about any actual person\u2019s ignorance.",
+  "page_refs": [
+    "pp.469-470"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Cognitive Significance Definition"
+}

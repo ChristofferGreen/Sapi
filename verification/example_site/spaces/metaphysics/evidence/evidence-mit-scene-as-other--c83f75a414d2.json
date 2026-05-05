@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-episodic-recollection-can-preserve-temporally-and-spatially-situated-autobiograp--43867278649d",
+    "claim-r-b-retained-factual-self-knowledge-trait-self-knowledge-voluntary-scene-recall--fc36edde2153",
+    "claim-r-b-s-unowned-recollections-provide-an-existence-proof-for-apparent-memory-conte--6a14bce7e1a3"
+  ],
+  "evidence_id": "evidence-mit-scene-as-other--c83f75a414d2",
+  "evidence_type": "observational_result",
+  "excerpt": "I can picture the scene perfectly clearly \u2026 studying with my friends in our study lounge. I can \u2018relive\u2019 it in the sense of re-running the experience of being there. But it has the feeling of imagining, [as if] re-running an experience that my parents described from their college days. It did not feel like it was something that really had been a part of my life. Intellectually I suppose I never doubted that it was a part of my life.",
+  "overview": "The MIT recollection shows that R.B. could relive a vivid personal scene and intellectually accept its autobiographical status while still lacking ownership. It is especially useful for distinguishing first-person mineness from ordinary factual belief about the self.",
+  "page_refs": [
+    "p.686"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+  "title": "MIT Scene Recalled As Other"
+}

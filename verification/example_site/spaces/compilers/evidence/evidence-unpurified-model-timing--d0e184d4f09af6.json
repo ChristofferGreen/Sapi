@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-synthesis-error-model-explains-delayed-outputs--367a566abb69"
+  ],
+  "evidence_id": "evidence-unpurified-model-timing--d0e184d4f09af6",
+  "evidence_type": "model_constraint",
+  "excerpt": "Simulations of the rule 110-124 circuit using the previously developed model for purified seesaw circuits predicted that the circuit should yield desired outputs in roughly 8 h and the undesired reactions will take over in 24 h. Simulations using the new model for unpurified seesaw circuits predicted that the circuit should yield desired outputs in roughly 24 h.",
+  "overview": "The timing comparison is a concrete modeling result showing why a purified-circuit kinetic expectation is misleading for unpurified strands. By incorporating synthesis-error populations, the new model aligns with the experimentally relevant slower output time. The evidence supports semi-quantitative explanatory power, while the source itself still frames future robustness improvements as necessary.",
+  "page_refs": [
+    "Fig.9"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "title": "Unpurified Model Timing"
+}

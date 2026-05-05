@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-consciousness-is-graded-rather-than-all-or-none-and-could-in-principle-exist-in--76ebdb9cb6bc"
+  ],
+  "evidence_id": "evidence-graded-artifact-implication--fedcba654321",
+  "evidence_type": "formal_argument",
+  "excerpt": "Consciousness is not an all-or-none property, but it is graded: to varying degrees, it should exist in most natural and artificial systems. Because the conditions needed to build complexes of high \u03a6 are apparently not easy to achieve, however, correspondingly high levels of experience are probably available to only a few kinds of systems. It should be possible to construct conscious artifacts by endowing them with a complex of high \u03a6.",
+  "overview": "The implication section extends the theory beyond ordinary adult human report. If consciousness is identical with integrated information, then it should vary by degree across biological and artificial systems according to their \u03a6. The passage is explicitly qualified: high levels of experience require architectures that jointly support specialization and integration, so the theory does not treat every information-processing system as richly conscious.",
+  "page_refs": [
+    "pp.18-19"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Graded Artifact Implication"
+}

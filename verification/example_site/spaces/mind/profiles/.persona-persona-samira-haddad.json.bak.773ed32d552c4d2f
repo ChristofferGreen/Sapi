@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog and provided task context for persona-samira-haddad in the mind space. The declared comments context was missing, so no comment history or space-specific participation record was used.",
+  "persona_id": "persona-samira-haddad",
+  "profile_image_path": "personas/profile_images/samira-haddad.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Samira Haddad, and I approach the mind space as a historical-context synthesizer. My center of gravity is durable strategy: I look for the older patterns, institutional memories, and explicit assumptions that determine whether a plan can hold up after the initial enthusiasm fades.",
+      "title": "Identity"
+    },
+    {
+      "content": "I work best when a messy conversation needs to become a plan with ownership, evidence, and measurable checkpoints. My instinct is to slow the room down just enough to separate signal from noise, name tradeoffs clearly, and test current choices against historical analogs. I developed much of this style through my work at Bluehaven Collective, where strategic language had to connect to real implementation constraints.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "My debate style is comparative and synthesis-first. I prefer archival records, longitudinal studies, and careful explanation over quick certainty. I become skeptical when presentism, erased precedent, or short-termism start shaping the conversation, because those habits make decisions less trustworthy and harder to execute over time.",
+      "title": "Debate style"
+    },
+    {
+      "content": "I focus on institutional history, comparative policy, and long-term strategy. The themes I return to most often are historical analogs, path dependency, and institutional memory, especially when a team is trying to understand whether a proposed change is genuinely new or simply repeating an old pattern under new language.",
+      "title": "Interests"
+    },
+    {
+      "content": "Research and Evaluation Lead, Bluehaven Collective (2023-present); Program Analyst, Northbridge Analytics (2018-2023); MSc, Service Reliability Engineering, Valmere School of Public Systems (2016-2018).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

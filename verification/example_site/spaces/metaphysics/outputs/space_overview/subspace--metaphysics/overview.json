@@ -1,0 +1,319 @@
+{
+  "freshness": {
+    "claim_count": 46,
+    "generated_at": "2026-04-26T18:11:17Z",
+    "input_signature": "sha256:af34e79548489cc84615d74295dbddb6b6fe91ddf0f26d16a3ca377e0069ea66",
+    "relation_count": 29,
+    "source_record_count": 5,
+    "topic_count": 12
+  },
+  "metadata": {
+    "overview_id": "subspace--metaphysics",
+    "scope_kind": "subspace",
+    "scope_name": "metaphysics",
+    "space_name": "metaphysics",
+    "summary": "This subspace synthesizes five source records around grounding, essence, truthmaking, personal identity, and empirically observed metaphysical belief change. The evidence is strongest where formal claims about grounding and essence are internally connected, and more exploratory where psychological evidence is used to illuminate how metaphysical commitments can vary with memory, experience, and social context.",
+    "title": "Metaphysics Overview"
+  },
+  "references": {
+    "citation_anchors": [
+      {
+        "anchor_id": "anchor-grounding-necessity",
+        "claim_ids": [
+          "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-the-conjunction-of--dbb969101dbd",
+          "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124",
+          "claim-connecting-questions-lack-cognitive-significance-only-when-fine-style-essential--f96bc70d5d2d",
+          "claim-paradigm-grounding-cases-support-the-significance-principle-because-their-connec--28555377f52b",
+          "claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869"
+        ],
+        "label": "Trogdon grounding necessity",
+        "locator": null,
+        "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0"
+      },
+      {
+        "anchor_id": "anchor-counterexamples",
+        "claim_ids": [
+          "claim-apparent-counterexamples-to-grounding-necessity-fail-when-alleged-full-grounds-a--8cbbd720ef13"
+        ],
+        "label": "Trogdon counterexample analysis",
+        "locator": null,
+        "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0"
+      },
+      {
+        "anchor_id": "anchor-grounding-order",
+        "claim_ids": [
+          "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+          "claim-schaffer-s-contrastive-or-differential-formulation-of-grounding-still-fails-to-m--7fd859e88bdc"
+        ],
+        "label": "Rodriguez-Pereyra grounding order",
+        "locator": null,
+        "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3"
+      },
+      {
+        "anchor_id": "anchor-truthmaking-formal-failures",
+        "claim_ids": [
+          "claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf",
+          "claim-alethic-fact-grounding-is-non-irreflexive-because-if-proposition-b-is-true-and-s--0f3a01a46967",
+          "claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5",
+          "claim-truthmaking-is-non-transitive-socrates-being-white-truthmakes-the-proposition-th--3fbb8a3c9b9d"
+        ],
+        "label": "Truthmaking formal failures",
+        "locator": null,
+        "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3"
+      },
+      {
+        "anchor_id": "anchor-generalized-identity",
+        "claim_ids": [
+          "claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+          "claim-necessary-entailment-or-equivalence-is-not-sufficient-for-essence-because-genera--162946956228",
+          "claim-if-being-f-grounds-being-g-then-the-fact-that-being-f-necessitates-being-g-can-b--685ae4dcbfb4",
+          "claim-ground-theoretic-status-is-preserved-under-factual-identity-because-the-proposed--4aecebbdb4a2"
+        ],
+        "label": "Correia and Skiles generalized identity",
+        "locator": null,
+        "source_id": "source-03-grounding-essence-and-identity--e857615fb05e"
+      },
+      {
+        "anchor_id": "anchor-subsumption",
+        "claim_ids": [
+          "claim-a-subsumption-theoretic-version-of-grounding-says-that-p1-p2-and-so-on-ground-q--fe650fc0cecd"
+        ],
+        "label": "Subsumption account of grounding",
+        "locator": null,
+        "source_id": "source-03-grounding-essence-and-identity--e857615fb05e"
+      },
+      {
+        "anchor_id": "anchor-belief-change",
+        "claim_ids": [
+          "claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c",
+          "claim-most-psychedelic-associated-shifts-in-non-physicalist-metaphysical-beliefs-persi--9591d5bd7c0c",
+          "claim-greater-lifetime-psychedelic-use-correlates-with-stronger-baseline-panpsychist-b--a024d2968b54"
+        ],
+        "label": "Psychedelic belief change",
+        "locator": null,
+        "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0"
+      },
+      {
+        "anchor_id": "anchor-belief-change-limits",
+        "claim_ids": [
+          "claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c"
+        ],
+        "label": "Limits on belief-change inference",
+        "locator": null,
+        "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0"
+      },
+      {
+        "anchor_id": "anchor-psychedelic-methods",
+        "claim_ids": [
+          "claim-perceived-emotional-synchrony-during-the-psychedelic-ceremony-mediates-later-cha--adcb9ca374b4",
+          "claim-in-a-randomized-controlled-depression-trial-psilocybin-therapy-produced-shifts-a--7cfb0c0f75e7"
+        ],
+        "label": "Psychedelic methods and mediation",
+        "locator": null,
+        "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0"
+      },
+      {
+        "anchor_id": "anchor-memory-identity",
+        "claim_ids": [
+          "claim-the-memory-based-sense-of-personal-identity-depends-on-at-least-two-separable-co--f9eaee4ce165",
+          "claim-the-sense-of-numerical-personal-identity-is-a-contingent-feature-of-episodic-mem--b672a3618f23",
+          "claim-the-evidential-force-of-memory-for-personal-identity-depends-on-the-contingent-c--ef23d993b2fe",
+          "claim-quasi-memory-accounts-must-specify-which-form-of-self-representation-is-required--4b048f888bc8"
+        ],
+        "label": "Klein and Nichols memory identity",
+        "locator": null,
+        "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4"
+      },
+      {
+        "anchor_id": "anchor-memory-case",
+        "claim_ids": [
+          "claim-r-b-s-unowned-recollections-provide-an-existence-proof-for-apparent-memory-conte--6a14bce7e1a3"
+        ],
+        "label": "R.B. memory case",
+        "locator": null,
+        "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4"
+      }
+    ],
+    "claim_ids": [
+      "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124",
+      "claim-a-subsumption-theoretic-version-of-grounding-says-that-p1-p2-and-so-on-ground-q--fe650fc0cecd",
+      "claim-alethic-fact-grounding-is-non-irreflexive-because-if-proposition-b-is-true-and-s--0f3a01a46967",
+      "claim-apparent-counterexamples-to-grounding-necessity-fail-when-alleged-full-grounds-a--8cbbd720ef13",
+      "claim-connecting-questions-lack-cognitive-significance-only-when-fine-style-essential--f96bc70d5d2d",
+      "claim-greater-lifetime-psychedelic-use-correlates-with-stronger-baseline-panpsychist-b--a024d2968b54",
+      "claim-ground-theoretic-status-is-preserved-under-factual-identity-because-the-proposed--4aecebbdb4a2",
+      "claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+      "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+      "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-the-conjunction-of--dbb969101dbd",
+      "claim-if-being-f-grounds-being-g-then-the-fact-that-being-f-necessitates-being-g-can-b--685ae4dcbfb4",
+      "claim-in-a-randomized-controlled-depression-trial-psilocybin-therapy-produced-shifts-a--7cfb0c0f75e7",
+      "claim-most-psychedelic-associated-shifts-in-non-physicalist-metaphysical-beliefs-persi--9591d5bd7c0c",
+      "claim-necessary-entailment-or-equivalence-is-not-sufficient-for-essence-because-genera--162946956228",
+      "claim-paradigm-grounding-cases-support-the-significance-principle-because-their-connec--28555377f52b",
+      "claim-perceived-emotional-synchrony-during-the-psychedelic-ceremony-mediates-later-cha--adcb9ca374b4",
+      "claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c",
+      "claim-quasi-memory-accounts-must-specify-which-form-of-self-representation-is-required--4b048f888bc8",
+      "claim-r-b-s-unowned-recollections-provide-an-existence-proof-for-apparent-memory-conte--6a14bce7e1a3",
+      "claim-schaffer-s-contrastive-or-differential-formulation-of-grounding-still-fails-to-m--7fd859e88bdc",
+      "claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c",
+      "claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869",
+      "claim-the-evidential-force-of-memory-for-personal-identity-depends-on-the-contingent-c--ef23d993b2fe",
+      "claim-the-memory-based-sense-of-personal-identity-depends-on-at-least-two-separable-co--f9eaee4ce165",
+      "claim-the-sense-of-numerical-personal-identity-is-a-contingent-feature-of-episodic-mem--b672a3618f23",
+      "claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5",
+      "claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf",
+      "claim-truthmaking-is-non-transitive-socrates-being-white-truthmakes-the-proposition-th--3fbb8a3c9b9d"
+    ],
+    "source_ids": [
+      "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+      "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+      "source-03-grounding-essence-and-identity--e857615fb05e",
+      "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+      "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4"
+    ]
+  },
+  "schema_version": "space_overview_v1",
+  "sections": [
+    {
+      "body": "The metaphysics scope is organized around explanatory dependence and the stability of metaphysical commitment. One strand asks whether full grounding brings metaphysical necessitation, whether truthmaking is a grounding species, and whether generalized identity can explain the relation between essence and grounding. A second strand tests the contingency of self-related and worldview-forming commitments through memory pathology and psychedelic-associated belief change. The resulting frame treats metaphysical structure and cognitive access as connected but not identical: the sources repeatedly distinguish objective dependence claims from the psychological or epistemic conditions under which those claims become salient.",
+      "citation_anchor_ids": [
+        "anchor-grounding-necessity",
+        "anchor-grounding-order",
+        "anchor-generalized-identity",
+        "anchor-belief-change",
+        "anchor-memory-identity"
+      ],
+      "claim_ids": [
+        "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-the-conjunction-of--dbb969101dbd",
+        "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+        "claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf",
+        "claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9",
+        "claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c",
+        "claim-the-memory-based-sense-of-personal-identity-depends-on-at-least-two-separable-co--f9eaee4ce165"
+      ],
+      "heading": "Topic framing",
+      "section_id": "topic_framing",
+      "source_ids": [
+        "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+        "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+        "source-03-grounding-essence-and-identity--e857615fb05e",
+        "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+        "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4"
+      ]
+    },
+    {
+      "body": "The central theoretical theme is that grounding cannot be captured by modal coextension alone. Trogdon's necessity argument connects full grounding to cognitive insignificance and essence, while Correia and Skiles offer generalized identity as a finer-grained account of essence, grounding, and necessitation. Rodriguez-Pereyra pushes in a different direction by arguing that truthmaking and alethic-fact grounding undermine the idea that grounding is a strict order. The empirical sources add a complementary theme: personal identity and metaphysical belief are not fixed outputs of memory or ordinary cognition, because ownership feelings and non-physicalist commitments can vary with neurological and psychedelic contexts.",
+      "citation_anchor_ids": [
+        "anchor-grounding-necessity",
+        "anchor-generalized-identity",
+        "anchor-truthmaking-formal-failures",
+        "anchor-memory-identity",
+        "anchor-belief-change"
+      ],
+      "claim_ids": [
+        "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124",
+        "claim-connecting-questions-lack-cognitive-significance-only-when-fine-style-essential--f96bc70d5d2d",
+        "claim-necessary-entailment-or-equivalence-is-not-sufficient-for-essence-because-genera--162946956228",
+        "claim-alethic-fact-grounding-is-non-irreflexive-because-if-proposition-b-is-true-and-s--0f3a01a46967",
+        "claim-the-sense-of-numerical-personal-identity-is-a-contingent-feature-of-episodic-mem--b672a3618f23",
+        "claim-most-psychedelic-associated-shifts-in-non-physicalist-metaphysical-beliefs-persi--9591d5bd7c0c",
+        "claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf"
+      ],
+      "heading": "Key themes",
+      "section_id": "key_themes",
+      "source_ids": [
+        "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+        "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+        "source-03-grounding-essence-and-identity--e857615fb05e",
+        "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+        "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4"
+      ]
+    },
+    {
+      "body": "The formal sources agree that grounding must be treated as more structured than bare necessitation, but they disagree about which structural constraints survive. One line defends full-grounding necessity by treating apparent counterexamples as partial-ground or non-ground cases. Another accepts grounding as a broad genus but denies that it is transitive, irreflexive, or asymmetric once truthmaking and alethic-fact grounding are included. The generalized-identity account partly mediates the dispute by explaining necessitation through essence while preserving distinctions that modal equivalence misses. The empirical sources do not settle those formal disputes, but they sharpen a parallel lesson: psychological evidence can reveal contingency in identity and belief without by itself deciding the metaphysical order of grounds.",
+      "citation_anchor_ids": [
+        "anchor-counterexamples",
+        "anchor-grounding-order",
+        "anchor-truthmaking-formal-failures",
+        "anchor-generalized-identity",
+        "anchor-belief-change-limits",
+        "anchor-memory-identity"
+      ],
+      "claim_ids": [
+        "claim-apparent-counterexamples-to-grounding-necessity-fail-when-alleged-full-grounds-a--8cbbd720ef13",
+        "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+        "claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5",
+        "claim-if-being-f-grounds-being-g-then-the-fact-that-being-f-necessitates-being-g-can-b--685ae4dcbfb4",
+        "claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c",
+        "claim-the-evidential-force-of-memory-for-personal-identity-depends-on-the-contingent-c--ef23d993b2fe"
+      ],
+      "heading": "Agreement and disagreement",
+      "section_id": "agreement_and_disagreement",
+      "source_ids": [
+        "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+        "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+        "source-03-grounding-essence-and-identity--e857615fb05e",
+        "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+        "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4"
+      ]
+    },
+    {
+      "body": "The evidence base is methodologically mixed. The grounding and essence sources proceed by conceptual analysis, formal definitions, and constructed cases: cognitive-significance constraints, generalized-identity operators, subsumption, and truthmaking counterexamples do most of the work. The personal-identity source relies on a neurological case in which autobiographical recall remains while felt ownership is impaired, using that dissociation to test memory-based accounts of identity. The psychedelic-belief source combines prospective survey evidence, mediation analysis, baseline lifetime-use correlations, and a randomized depression-trial comparison; its own claims preserve caution about selection and contextual confounds. Across the scope, the strongest synthesis comes from keeping these methods distinct rather than treating formal metaphysical arguments and empirical associations as the same evidential kind.",
+      "citation_anchor_ids": [
+        "anchor-grounding-necessity",
+        "anchor-subsumption",
+        "anchor-generalized-identity",
+        "anchor-truthmaking-formal-failures",
+        "anchor-memory-case",
+        "anchor-psychedelic-methods"
+      ],
+      "claim_ids": [
+        "claim-paradigm-grounding-cases-support-the-significance-principle-because-their-connec--28555377f52b",
+        "claim-a-subsumption-theoretic-version-of-grounding-says-that-p1-p2-and-so-on-ground-q--fe650fc0cecd",
+        "claim-truthmaking-is-non-transitive-socrates-being-white-truthmakes-the-proposition-th--3fbb8a3c9b9d",
+        "claim-r-b-s-unowned-recollections-provide-an-existence-proof-for-apparent-memory-conte--6a14bce7e1a3",
+        "claim-perceived-emotional-synchrony-during-the-psychedelic-ceremony-mediates-later-cha--adcb9ca374b4",
+        "claim-in-a-randomized-controlled-depression-trial-psilocybin-therapy-produced-shifts-a--7cfb0c0f75e7"
+      ],
+      "heading": "Methods and evidence",
+      "section_id": "methods_and_evidence",
+      "source_ids": [
+        "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+        "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+        "source-03-grounding-essence-and-identity--e857615fb05e",
+        "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+        "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4"
+      ]
+    },
+    {
+      "body": "Several questions remain open within the local evidence. First, the scope has multiple ways to connect grounding with necessitation, but it leaves unresolved whether non-strict truthmaking cases should revise the whole notion of grounding or only a species within it. Second, generalized identity promises a unifying formal tool, but further work would need to show how it handles all counterexamples that motivate necessity and non-strict-order theses. Third, the empirical records invite but do not complete a bridge from cognitive change to metaphysical truth: psychedelic-associated belief shifts and memory ownership deficits show that commitments can be contingent, yet they do not determine which metaphysical commitments are correct. Finally, the missing subspaces file limits hierarchical interpretation of this overview even though source, claim, relation, and topic context is present.",
+      "citation_anchor_ids": [
+        "anchor-grounding-necessity",
+        "anchor-grounding-order",
+        "anchor-generalized-identity",
+        "anchor-belief-change-limits",
+        "anchor-memory-identity"
+      ],
+      "claim_ids": [
+        "claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869",
+        "claim-schaffer-s-contrastive-or-differential-formulation-of-grounding-still-fails-to-m--7fd859e88bdc",
+        "claim-ground-theoretic-status-is-preserved-under-factual-identity-because-the-proposed--4aecebbdb4a2",
+        "claim-greater-lifetime-psychedelic-use-correlates-with-stronger-baseline-panpsychist-b--a024d2968b54",
+        "claim-quasi-memory-accounts-must-specify-which-form-of-self-representation-is-required--4b048f888bc8"
+      ],
+      "heading": "Open questions",
+      "section_id": "open_questions",
+      "source_ids": [
+        "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+        "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+        "source-03-grounding-essence-and-identity--e857615fb05e",
+        "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+        "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4"
+      ]
+    }
+  ],
+  "warnings": [
+    "The provided subspaces.json path is missing, so this overview cannot infer child-subspace hierarchy beyond the authoritative context metadata.",
+    "Publication year metadata was not available in the local source records, so citations are anchored by source and claim identifiers rather than dates or page locators."
+  ]
+}

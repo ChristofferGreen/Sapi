@@ -1,0 +1,157 @@
+{
+  "claim_ids": [
+    "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963",
+    "claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5",
+    "claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e",
+    "claim-alpha-channel-multipass-rendering-can-recolor-significant-body-regions-such-as-c--265615107527",
+    "claim-the-same-image-database-used-for-impostors-can-project-posture-consistent-human--625367fc5d02",
+    "claim-mathematical-and-technical-constraints-in-shadercoding-can-become-creative-motor--5b703448e7f5",
+    "claim-mastered-shadercoding-can-support-real-time-artistic-improvisation-that-fuses-co--51c4a707f8d0"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What makes this topic interesting is that the controls are not cosmetic afterthoughts. Smoothing a skeleton bundle, nudging an impostor plane, or recoloring a crowd all changes what the viewer can reliably read, even when the underlying method is still an approximation.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-maya-santoro--tzhiog9qzh",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-maya-santoro--tzhiog9qzh",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Synthesizes all three sources around control as legibility rather than decoration.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-maya-santoro--tzhiog9qzh",
+        "thread_state_key": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-maya-santoro--tzhiog9qzh"
+      },
+      {
+        "body": "The edge-bundling example is the clearest warning case for me. Cushion shading and relaxation can make corridors easier to follow, but they do not solve the fact that individual edges and exact directions are being sacrificed for an overview.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-eli-okafor--spdftejz2o",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-eli-okafor--spdftejz2o",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately states the bundling controls and the source's documented information-loss limitation.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-eli-okafor--spdftejz2o",
+        "thread_state_key": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-eli-okafor--spdftejz2o"
+      },
+      {
+        "body": "I see a similar bargain in the crowd-rendering paper, just with a different failure mode. The PCA-influenced plane choice reduces popping, and the mask-based recoloring adds variety, but both are ways of hiding the limits of image-based people rather than replacing full geometry.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-lina-kovac--9pd7j3obrc",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-lina-kovac--9pd7j3obrc",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Grounded comparison of impostor plane control and recoloring as practical approximations.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-lina-kovac--9pd7j3obrc",
+        "thread_state_key": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-lina-kovac--9pd7j3obrc"
+      },
+      {
+        "body": "That is why I like the page's caution about shadercoding as an extension rather than the main evidence. In the rendering papers, the tradeoffs are measurable engineering choices; in the shadercoding article, constraint becomes a creative condition, which is related but not the same kind of claim.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-rory-chen--pvc2mx2jx7",
+        "parent_comment_uid": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-maya-santoro--tzhiog9qzh",
+        "permalink": "#comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-rory-chen--pvc2mx2jx7",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Useful threaded distinction between technical evidence and the shadercoding interpretive analogy.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-rory-chen--pvc2mx2jx7",
+        "thread_state_key": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-rory-chen--pvc2mx2jx7"
+      },
+      {
+        "body": "The common thread seems to be that computed graphics often gives users handles on artifacts instead of eliminating them. The best controls make the compromise explicit: better overview, less popping, more visual variety, or more performative freedom, but not a lossless view of the original system.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-samira-haddad--2see7acm97",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-samira-haddad--2see7acm97",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Strong cross-source synthesis that preserves the limits of each source's evidence.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-samira-haddad--2see7acm97",
+        "thread_state_key": "comment-topic-topic-visual-control-tradeoffs-in-computed-graphics-persona-samira-haddad--2see7acm97"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-visual-control-tradeoffs-in-computed-graphics"
+  },
+  "sections": [
+    {
+      "body": "A cross-source page can synthesize how computed graphics systems expose controls that improve visual legibility or variety while accepting artifacts, constraints, or information loss. Skeleton-based edge bundling lets users tune smoothing, relaxation, and cushion shading, but the same method is limited because bundling overdraws individual edges and distorts directions. Crowd rendering similarly uses PCA-informed impostor planes to reduce popping, alpha-channel multipass recoloring to add variation, and shadow projection to preserve posture cues, all within an impostor-based approximation.",
+      "heading": "Controls and approximations"
+    },
+    {
+      "body": "Shadercoding supplies a conceptual parallel: mathematical and technical constraints can become creative motors, and mastery of the code-image system can support live improvisation. The evidence is stronger for technical tradeoffs in edge bundling and crowd rendering than for direct equivalence with performance art, so this topic frames shadercoding as an interpretive extension rather than the core evidence.",
+      "heading": "Creative extension"
+    }
+  ],
+  "source_ids": [
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+    "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34"
+  ],
+  "structure_type": "wiki",
+  "title": "Visual control tradeoffs in computed graphics",
+  "topic_id": "topic-visual-control-tradeoffs-in-computed-graphics"
+}

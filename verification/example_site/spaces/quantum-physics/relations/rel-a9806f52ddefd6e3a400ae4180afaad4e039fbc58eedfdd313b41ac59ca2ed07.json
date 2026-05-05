@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-deep-quantum-learning-can-use-quantum-annealers-programmable-photonic-circuits-a--0bdb973219c3",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "Quadratic Boltzmann training improvements explain why special-purpose quantum hardware is relevant to deep quantum learning.",
+  "relation_file_id": "rel-a9806f52ddefd6e3a400ae4180afaad4e039fbc58eedfdd313b41ac59ca2ed07",
+  "relation_id": "supports:claim-quantum-boltzmann-machine-training-can-gain-quadratic-improvements-in-thermaliza--2d6a13e72831->claim-deep-quantum-learning-can-use-quantum-annealers-programmable-photonic-circuits-a--0bdb973219c3",
+  "relation_type": "supports",
+  "src_claim_id": "claim-quantum-boltzmann-machine-training-can-gain-quadratic-improvements-in-thermaliza--2d6a13e72831",
+  "src_claim_ref": "7",
+  "status": "open"
+}

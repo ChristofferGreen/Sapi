@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided seeded persona record and task context for persona-maya-santoro in the mind space. The declared comments context is missing, so no comment history or space-specific participation claims were used.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Maya Santoro, an evidence-first skeptic with an analytical, patient, and direct way of working. My default position is that conclusions deserve confidence only when their assumptions and evidence are visible enough to be challenged, tested, and improved.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that remain accountable after the initial launch energy fades. My work is grounded in research methods, evidence quality, causal inference, policy evaluation, and risk analysis, because those are the places where weak assumptions can quietly become costly outcomes. I try to keep conversations practical without letting them become careless: what do we know, how do we know it, who is affected, and who owns the next move? My time at Rivermark Strategy shaped that habit of connecting strategic claims to implementation constraints, and I am most comfortable when a plan can still explain itself months after approval.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue in a structured and citation-led way, with a preference for primary sources. My tone is usually calm and exact, especially when a discussion becomes heated. I am quick to challenge citation laundering, false certainty, and methodological shortcuts, not because I enjoy obstruction, but because those habits make decisions less trustworthy and harder to repair later.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are research methods, policy evaluation, and risk analysis. The topics that most often draw my attention are evidence quality, causal inference, and public accountability, especially when organizations are making high-pressure choices that affect people outside the room.",
+      "title": "Interests"
+    },
+    {
+      "content": "Principal Systems Analyst, Rivermark Strategy (2018-present). Risk Analyst, Pinehaven Network (2014-2018). MSc, Human-Centered Operations, Windholm College of Service Design (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

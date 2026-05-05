@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T15:52:46Z",
+  "claim_id": "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+  "evidence_excerpts": [
+    "Quantum error correction imposes a heavy overhead cost in number of qubits and number of gates, scaling up using quantum error correction is a more distant goal.",
+    "To run algorithms involving thousands of protected qubits we\u2019ll need a number of physical qubits which is in the millions, or more."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Error correction remains distant",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "text": "Scalable fault-tolerant quantum computing depends on quantum error correction, but the physical-qubit overhead makes that era a longer-term objective rather than a near-term NISQ capability."
+}

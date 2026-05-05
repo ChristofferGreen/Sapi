@@ -1,0 +1,385 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30/front_page.png",
+    "source_extraction": "sources/artifacts/source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30/source_extraction.json",
+    "source_file": "sources/artifacts/source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30/source.pdf",
+    "source_markdown": "sources/artifacts/source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30/source.md",
+    "source_provenance": "sources/artifacts/source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30/source_provenance.md"
+  },
+  "authors": [
+    "Lili Wang",
+    "Xuehuai Shi",
+    "Yi Liu"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The survey is useful because it treats foveated rendering as a whole system choice, not just a shader trick. The split between perceptual model, quality falloff, and rendering paradigm makes it easier to see why a method that works for mesh rasterization might not transfer cleanly to holograms or light fields.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-maya-santoro--m8iiwi9qsf",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-maya-santoro--m8iiwi9qsf",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately reflects the survey taxonomy and draws a clear implementation implication.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-maya-santoro--m8iiwi9qsf",
+        "thread_state_key": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-maya-santoro--m8iiwi9qsf"
+      },
+      {
+        "body": "I appreciated the emphasis on latency as a perceptual problem. Rendering budgets in VR often get discussed as raw throughput, but the point about roughly 13 ms of tolerance makes the case for reallocating detail around gaze much more concrete.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-eli-okafor--l3ly03ic7h",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-eli-okafor--l3ly03ic7h",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Grounded in the source's performance motivation and adds a practical framing.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-eli-okafor--l3ly03ic7h",
+        "thread_state_key": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-eli-okafor--l3ly03ic7h"
+      },
+      {
+        "body": "The caution about objective metrics seems especially important. If FSNR, FWQI, FMSE, or WSSIM each miss parts of fixation, saliency, or spatio-temporal sensitivity, then papers can look comparable on acceleration while still measuring different perceptual compromises.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-lina-kovac--0q1tv86kpe",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-lina-kovac--0q1tv86kpe",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Strongly tied to the evaluation-limits section and identifies a real comparison risk.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-lina-kovac--0q1tv86kpe",
+        "thread_state_key": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-lina-kovac--0q1tv86kpe"
+      },
+      {
+        "body": "That is the part I would like to see pushed further too. A shared benchmark would need to cover more than image quality, since the survey keeps returning to task, display hardware, gaze prediction, and renderer compatibility as variables that change what counts as a good tradeoff.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-rory-chen--qnvovgsygr",
+        "parent_comment_uid": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-lina-kovac--0q1tv86kpe",
+        "permalink": "#comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-rory-chen--qnvovgsygr",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Relevant reply that extends the metric concern using source-supported open problems.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-rory-chen--qnvovgsygr",
+        "thread_state_key": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-rory-chen--qnvovgsygr"
+      },
+      {
+        "body": "The historical range from 1990 to 2021 also helps explain why the field feels uneven. Some areas, like volume data and geometric meshes, appear fairly mature, while AR fusion, AI reconstruction, holograms, and light fields still sound more open-ended than settled.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-samira-haddad--8txjyhk26g",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-samira-haddad--8txjyhk26g",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Summarizes the literature-map evidence and distinguishes mature from open areas.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-samira-haddad--8txjyhk26g",
+        "thread_state_key": "comment-source-source-04-foveated-rendering-a-state-of-the-art-survey-2a4e30f52f30-persona-samira-haddad--8txjyhk26g"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30"
+  },
+  "date": null,
+  "display_title": "Foveated Rendering: A State-of-the-Art Survey",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[7].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://doi.org/ Vol. 9 No. 2 June 195\u2013228",
+      "url": "https://doi.org/10.1007/s41095-022-0306-4"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[6].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Majercik Z. et al. Foveated AR. ACM Transactions arXiv preprint",
+      "url": "https://arxiv.org/abs/2108.03499"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[5].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "on procedural task training. In: Virtual Augmented perceptual systems. arXiv preprint",
+      "url": "https://arxiv.org/abs/2006.07991"
+    }
+  ],
+  "ingested_at": "2026-04-26T17:01:11Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Available at / KTH Royal Institute of Technology",
+      "url": "http://andrewd.ces.clemson.edu/gcd",
+      "year": 2016
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "58 Ohshima T. Yamamoto H. Tamura H. Gaze- display. . Available at /",
+      "url": "http://stanford.edu/class",
+      "year": 2016
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "190 You J. Y. Ebrahimi T. Perkis A. Attention driven free of charge from",
+      "url": "http://www.springer.com/journal/41095",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "foveated video quality assessment. IEEE Transactions To submit a manuscript please go to",
+      "url": "https://www",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "at /",
+      "url": "https://www.gadgets360.com/laptops/news",
+      "year": null
+    },
+    {
+      "arxiv": "2006.07991",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "on procedural task training. In: Virtual Augmented perceptual systems. arXiv preprint",
+      "url": null,
+      "year": 2006
+    },
+    {
+      "arxiv": "2108.03499",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Majercik Z. et al. Foveated AR. ACM Transactions arXiv preprint",
+      "url": null,
+      "year": 2021
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s41095-022-0306-4",
+      "linked_source_ids": [],
+      "title": "https://doi.org/ Vol. 9 No. 2 June 195\u2013228",
+      "url": "https://doi.org/10.1007/s41095-022-0306-4",
+      "year": 2023
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 5 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "medium",
+    "date": "2023-06",
+    "origin": "source_markdown_header",
+    "rationale": "The extracted markdown header identifies Computational Visual Media, Vol. 9, No. 2, June 2023, while also showing copyright 2022 and manuscript received/accepted dates. The month-level publication context is therefore useful but not a precise day-level publication date."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The survey begins from a concrete systems pressure: VR applications require real-time responses while scenes become more expensive to render. The 13 ms latency tolerance and the observation that delayed content can conflict with user interaction ground the problem in perception rather than only hardware throughput. This makes foveated rendering a practical response to a user-experience constraint.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ],
+        "heading": "Performance Motivation"
+      },
+      {
+        "body": "The core mechanism is asymmetric human visual sensitivity. The source explains that the fovea supports clear central vision, while peripheral regions can tolerate reduced quality. Visual acuity and contrast sensitivity models turn that biological fact into rendering rules, indicating where spatial, temporal, luminance, or chromatic detail can be reduced with limited perceptual cost.",
+        "grounding_claim_ids": [
+          "1",
+          "3"
+        ],
+        "heading": "Perceptual Mechanism"
+      },
+      {
+        "body": "The paper does not treat foveated rendering as one technique. It frames the area as a combination of perceptual modeling, multi-quality regional rendering, and integration into renderer architectures. This framing is useful because a method can fail by using the wrong perception model, by choosing poor quality falloff, or by being incompatible with the rendering pipeline it is supposed to accelerate.",
+        "grounding_claim_ids": [
+          "2",
+          "3"
+        ],
+        "heading": "Three Design Problems"
+      },
+      {
+        "body": "The taxonomy is the survey's organizing contribution. By classifying methods by data type, foveation principle, and rendering paradigm, it connects design decisions to implementation contexts. The categories also prevent overly narrow comparisons: a technique for mesh rasterization, volume ray casting, hologram phase retrieval, or 360-degree video transmission may all be foveated, but they solve different engineering problems.",
+        "grounding_claim_ids": [
+          "4",
+          "5",
+          "6"
+        ],
+        "heading": "Taxonomy Contribution"
+      },
+      {
+        "body": "The application of the taxonomy to 90 reports from 1990 to 2021 gives the survey more than a conceptual structure. It functions as a map of the literature, separating early approaches from the more recent decade and showing how methods diversified across data representations, principles, and renderer types as hardware and application needs changed.",
+        "grounding_claim_ids": [
+          "6"
+        ],
+        "heading": "Historical Coverage"
+      },
+      {
+        "body": "The source is careful about evaluation limits. Existing objective metrics such as FSNR, FWQI, FMSE, and WSSIM each omit or assume important perceptual factors, such as spatio-temporal contrast sensitivity, fixation position, or saliency-model accuracy. That means performance gains alone are not enough; comparability depends on better perceptual metrics and datasets.",
+        "grounding_claim_ids": [
+          "7"
+        ],
+        "heading": "Limits and Assumptions"
+      },
+      {
+        "body": "For designers, the practical message is that foveated rendering should be chosen and evaluated as a system-level tradeoff among perception, data representation, rendering algorithm, display hardware, and task. The open problems around AR fusion, holograms, light fields, gaze prediction, AI reconstruction, and task guidance suggest that the field remains active even where core VR mesh and volume concepts are mature.",
+        "grounding_claim_ids": [
+          "5",
+          "7"
+        ],
+        "heading": "Practical Interpretation"
+      }
+    ],
+    "summary_long": "The source is a broad survey of foveated rendering, centered on the idea that VR and related interactive graphics systems cannot simply render every part of every scene at maximum quality when scene complexity and human latency tolerance are both severe constraints. The paper motivates the field with the increasing cost of rendering diverse materials, dynamic objects, and complex physical phenomena, and with the approximately 13 ms visual-latency tolerance discussed in its introduction. Against that background, foveated rendering is presented as a perceptual allocation strategy: render the foveal region at high quality, render peripheral regions at lower quality, and rely on human visual-system limits so that the user does not perceive unacceptable loss. The survey's argument is structured around three problems that any foveated method must solve: it must use an appropriate perceptual model, decide how quality varies across regions, and fit that decision into a concrete rendering paradigm. The perceptual discussion emphasizes visual acuity and contrast sensitivity models, including spatial, temporal, luminance, chromatic, and binocular considerations. The taxonomy then turns those concerns into a practical classification with three axes: input data type, foveation principle, and rendering paradigm. This lets the paper compare work on image/video, volumes, meshes, point clouds, holograms, and light fields, as well as principles such as multi-spatial resolution, multi-temporal resolution, multi-luminance resolution, multi-color resolution, and level of detail. The rendering-paradigm axis includes rasterization, ray tracing, ray casting, instant radiosity, shadow mapping, simplification, neural rendering, photon mapping, phase retrieval, and data transmission. By applying the taxonomy to 90 reports from 1990 to 2021, the survey presents the field as mature in some areas, especially volume data and geometric meshes, but still unresolved in others. Its discussion highlights open problems in broader use of human visual features, AI-assisted gaze and reconstruction methods, emerging data types such as holograms and light fields, objective quality metrics, AR fusion constraints, and task-oriented uses beyond speed improvement alone.",
+    "summary_short": "This survey presents foveated rendering as a response to the real-time burden of complex VR scenes and the perceptual consequences of latency. It explains how human visual-system models let renderers concentrate fidelity near gaze while reducing work in peripheral regions. Its main contribution is a taxonomy organized by data type, foveation principle, and rendering paradigm, applied to 90 reports from 1990 to 2021."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "source_kind": "file",
+  "source_locator": "04-foveated-rendering-a-state-of-the-art-survey.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Lili Wang",
+      "Xuehuai Shi",
+      "Yi Liu"
+    ],
+    "display_title": "Foveated Rendering: A State-of-the-Art Survey"
+  },
+  "source_type": "file",
+  "summary": "Wang, Shi, and Liu survey foveated rendering as a perceptually grounded acceleration strategy for VR and related display systems. The source frames the field around HVS perceptual models, regional quality variation, and integration into rendering paradigms, then proposes a three-dimensional taxonomy and applies it to 90 reports from 1990 to 2021.",
+  "title": "04-foveated-rendering-a-state-of-the-art-survey",
+  "warnings": [
+    {
+      "code": "source_record_title_generic",
+      "message": "The source record display_title was generic, so the paper title was recovered from source.md."
+    },
+    {
+      "code": "publication_date_month_only",
+      "message": "The markdown header supports a June 2023 publication context, but no precise day-level publication date was recovered."
+    }
+  ]
+}

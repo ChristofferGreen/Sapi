@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T07:50:34Z",
+  "claim_id": "claim-the-thalamocortical-system-is-a-plausible-neural-substrate-for-human-consciousne--2cfee4ce61ff",
+  "evidence_excerpts": [
+    "Figure 3 reports a specialized and integrated eight-element network optimized for \u03a6 with \u03a6 = 74 bits, while less specialized or less integrated variants fall to \u03a6 = 20 bits."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Thalamocortex maximizes integration",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "text": "The thalamocortical system is a plausible neural substrate for human consciousness because its organization combines functional specialization with functional integration and is associated with high \u03a6."
+}

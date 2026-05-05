@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "If alethic-fact grounding is a grounding species, its formal failures bear on grounding itself.",
+  "relation_file_id": "rel-cc07ba6489d4d2427e186d2ac1b38fcd9ea744a43ee690e9028f75f55309fc96",
+  "relation_id": "supports:claim-alethic-fact-grounding-is-a-species-of-grounding-in-which-a-truthmaker-grounds-t--9c9dc5afedc6->claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+  "relation_type": "supports",
+  "src_claim_id": "claim-alethic-fact-grounding-is-a-species-of-grounding-in-which-a-truthmaker-grounds-t--9c9dc5afedc6",
+  "src_claim_ref": "2",
+  "status": "open"
+}

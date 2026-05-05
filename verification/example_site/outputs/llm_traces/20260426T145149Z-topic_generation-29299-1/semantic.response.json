@@ -1,0 +1,112 @@
+{
+  "topics": [
+    {
+      "claim_ids": [
+        "claim-mindfulness-hype-exceeds-evidence--96cb023af909",
+        "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+        "claim-mindfulness-training-can-improve-attention-related-behavior-by-changing-specific--f9e8e6ee54d7",
+        "claim-an-8-week-mindfulness-based-stress-reduction-course-improves-endogenous-orientin--f7bde69b7431",
+        "claim-a-1-month-intensive-mindfulness-retreat-among-previously-experienced-meditators--cd2a814c579a",
+        "claim-participants-with-prior-concentrative-meditation-experience-show-reduced-conflic--7b44607a9505",
+        "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7",
+        "claim-alpha-band-oscillations-can-be-actively-invoked-in-cortical-regions-that-process--09466b39d396",
+        "claim-alpha-mediated-biasing-extends-beyond-vision-appearing-in-auditory-and-tactile-s--2cd546facc83",
+        "claim-higher-naturally-occurring-or-experimentally-induced-alpha-power-reduces-visual--3884cfa09119"
+      ],
+      "sections": [
+        {
+          "body": "Mindfulness training evidence points to changes in specific attentional subsystems rather than a single global attention benefit. The attention-training source reports improved orienting after an 8-week MBSR course, altered alerting after a 1-month intensive retreat among experienced meditators, and baseline conflict-monitoring differences in participants with prior concentrative practice.",
+          "title": "Subsystem-specific attention effects"
+        },
+        {
+          "body": "Alpha-band attention research supplies a mechanism-level comparison point. Across visual, auditory, tactile, spatial, feature-based, and intersensory contexts, alpha activity is described as increasing in cortical regions that process irrelevant or distracting information, consistent with active sensory suppression rather than a generic attention improvement.",
+          "title": "Alpha suppression as a comparison mechanism"
+        },
+        {
+          "body": "The synthesis remains cautious because mindfulness constructs and interventions are heterogeneous, the attention-training study used small groups without active-training controls and behavioral measures only, and broad mindfulness claims can exceed the specificity of available behavioral and neural evidence.",
+          "title": "Limits on broad mindfulness claims"
+        }
+      ],
+      "source_ids": [
+        "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+        "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+        "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9"
+      ],
+      "structure_type": "wiki",
+      "title": "Mindfulness, attention, and mechanism-level caveats",
+      "topic_id": "topic-mindfulness-attention-mechanisms-and-caveats"
+    },
+    {
+      "claim_ids": [
+        "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+        "claim-self-report-measures-lack-validity--56550542660a",
+        "claim-common-mindfulness-questionnaires-operationalize-different-facets-of-mindfulness--19920139d48a",
+        "claim-existing-mindfulness-self-report-measures-have-unresolved-construct-validity-lim--65891880856d",
+        "claim-research-on-mindfulness-should-shift-from-seeking-one-unitary-mindfulness-measur--210f23dc10a0",
+        "claim-the-attention-network-test-separates-alerting-orienting-and-conflict-monitoring--08b2302acb19",
+        "claim-instructional-cuing-paradigms-distinguish-distracter-suppression-from-probabilis--af0b5b81b7e7",
+        "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb",
+        "claim-the-quantity-of-consciousness-available-to-a-system-is-measured-by-the-value-of--48abc06d417d",
+        "claim-the-quality-of-consciousness-is-specified-by-the-informational-relationships-amo--52a77799b51d"
+      ],
+      "sections": [
+        {
+          "body": "The sources share a concern with turning broad mental concepts into measurable structures. Integrated information theory defines consciousness through complexes and phi, attention studies separate alerting, orienting, conflict monitoring, and sensory suppression, while mindfulness research warns against treating mindfulness as a unitary or universally defined construct.",
+          "title": "Shared measurement problem"
+        },
+        {
+          "body": "Measurement choices shape interpretation. Self-report mindfulness scales vary in facets and factor structures, ANT scores depend on predefined cue and target contrasts, alpha studies depend on paradigms that isolate suppression rather than orienting, and integrated information theory depends on identifying informational relationships within a complex.",
+          "title": "What instruments capture"
+        },
+        {
+          "body": "A useful synthesis compares how different fields define the target construct, what each measure captures, and where construct validity remains uncertain. This avoids merging consciousness, attention, and mindfulness claims into one generic account of mental states.",
+          "title": "Construct-validity focus"
+        }
+      ],
+      "source_ids": [
+        "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+        "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+        "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+        "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39"
+      ],
+      "structure_type": "wiki",
+      "title": "Operationalizing mental constructs across consciousness, attention, and mindfulness research",
+      "topic_id": "topic-operationalizing-conscious-attentional-and-mindfulness-constructs"
+    },
+    {
+      "claim_ids": [
+        "claim-clinical-evidence-remains-preliminary--117717456958",
+        "claim-therapeutic-benefits-are-condition-specific--201401200700",
+        "claim-adverse-effects-are-undermeasured--25fa20260426",
+        "claim-neuroimaging-requires-caution--201770958900",
+        "claim-research-needs-prescriptive-reform--79c0d54db997",
+        "claim-mindfulness-based-interventions-show-mixed-and-condition-dependent-clinical-effi--ada76b44a400",
+        "claim-meditation-related-adverse-effects-are-under-assessed-in-current-trials-so-claim--ce66cec14da3",
+        "claim-mindfulness-hype-can-create-opportunity-costs-by-diverting-people-from-establish--1a47df8a5e6d",
+        "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7",
+        "claim-post-training-conflict-monitoring-differences-are-not-detected-among-the-mbsr-re--62de62c3ee08"
+      ],
+      "sections": [
+        {
+          "body": "The mindfulness critique argues that clinical, media, educational, corporate, and military enthusiasm has outpaced an uneven evidence base. Preliminary clinical trials, condition-specific benefits, under-assessed adverse effects, opportunity costs, and cautious interpretation of neuroimaging all limit broad implementation claims.",
+          "title": "Uneven clinical and public evidence"
+        },
+        {
+          "body": "The attention-training source reinforces the need for caution at a smaller scale. Its reported behavioral attention effects are preliminary because of small groups, lack of active-training controls, behavioral-only measurement, protocol differences, and possible task-repetition effects.",
+          "title": "Small-scale attention-study caution"
+        },
+        {
+          "body": "The resulting cross-source topic is not that mindfulness is ineffective, but that claims about benefits, mechanisms, and safety require precise intervention descriptions, active controls, adverse-event monitoring, preregistration, replication, and modest communication of neuroimaging or behavioral results.",
+          "title": "Reform agenda"
+        }
+      ],
+      "source_ids": [
+        "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+        "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78"
+      ],
+      "structure_type": "wiki",
+      "title": "Rigor, safety, and evidence limits in mindfulness claims",
+      "topic_id": "topic-rigor-safety-and-evidence-limits-in-mindfulness-claims"
+    }
+  ]
+}

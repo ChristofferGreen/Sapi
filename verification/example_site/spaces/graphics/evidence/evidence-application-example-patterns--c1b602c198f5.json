@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-visualization-examples-reveal-interpretable-patterns-in-real-graph-datasets--6f7b292bd09e"
+  ],
+  "evidence_id": "evidence-application-example-patterns--c1b602c198f5",
+  "evidence_type": "figure_result",
+  "excerpt": "The prominent flight hubs (Atlanta, Chicago, LA, San Francisco, East coast) appear immediately and strong connections like LA \u21d4 San Francisco are marked by color and width. Figure 10 shows a US census data set with 545,882 weighted edges depicting county-to-county migration flow between 1995 and 2000, where the overview aggregates nearby clusters and allows observation of higher level patterns like the connection between New York and Florida. Figure 13 visualizes the Europe dataset with 37.6 million nodes that represent all tagged buildings from OpenStreetMap.",
+  "overview": "The example passages show the kinds of patterns the method exposes in practice: hubs and strong routes in air traffic, regional movement in migration data, structural clusters in Net50, and building-density patterns in OpenStreetMap. These examples support interpretability claims, but they are demonstrations rather than quantitative accuracy measurements.",
+  "page_refs": [
+    "Fig.7",
+    "Fig.10",
+    "Fig.13"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "title": "Example Pattern Findings"
+}

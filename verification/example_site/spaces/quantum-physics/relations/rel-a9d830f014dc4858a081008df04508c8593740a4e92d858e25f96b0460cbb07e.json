@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Exponential qBLAS speedups are a core mechanism behind the broader claim that quantum learning can accelerate data analysis.",
+  "relation_file_id": "rel-a9d830f014dc4858a081008df04508c8593740a4e92d858e25f96b0460cbb07e",
+  "relation_id": "supports:claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6->claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+  "relation_type": "supports",
+  "src_claim_id": "claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+  "src_claim_ref": "1",
+  "status": "open"
+}

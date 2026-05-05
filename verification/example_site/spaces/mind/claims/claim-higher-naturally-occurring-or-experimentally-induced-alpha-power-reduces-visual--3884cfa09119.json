@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:22:12Z",
+  "claim_id": "claim-higher-naturally-occurring-or-experimentally-induced-alpha-power-reduces-visual--3884cfa09119",
+  "evidence_excerpts": [
+    "Romei et al. found that 10 Hz TMS impaired visual detection contralateral to stimulation, improved ipsilateral detection, and produced no comparable effects at 5 or 20 Hz."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Alpha lowers visual excitability",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Higher naturally occurring or experimentally induced alpha power reduces visual cortical excitability and predicts weaker perceptual detection."
+}

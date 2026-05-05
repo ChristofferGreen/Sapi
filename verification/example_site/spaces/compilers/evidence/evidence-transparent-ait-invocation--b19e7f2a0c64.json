@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9"
+  ],
+  "evidence_id": "evidence-transparent-ait-invocation--b19e7f2a0c64",
+  "evidence_type": "formal_argument",
+  "excerpt": "WCC produces a CRL2 file for the program requiring WCET timing data, invokes aiT fully transparently, and performs value, loop bound, cache, pipeline, and path analysis. The compiler user is described as unaware that timing analysis is performed in the background.",
+  "overview": "This passage is concrete process evidence for the compiler-analyzer integration. It shows that timing analysis is not a detached manual step; it is embedded in the compiler workflow and supplies the WCET data used by later optimization decisions.",
+  "page_refs": [
+    "Sect. 3.3",
+    "p.261"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "title": "Transparent aiT Invocation"
+}

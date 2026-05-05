@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:59:28Z",
+  "claim_id": "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de",
+  "evidence_excerpts": [
+    "Average error values under simultaneous operation were single-qubit e1 = 0.16%, two-qubit e2 = 0.62%, two-qubit cycle e2c = 0.93%, and readout er = 3.8%."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Gate errors predict fidelity",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "text": "Measured component error rates under simultaneous operation were low enough to support a model predicting measurable fidelity for full random circuits."
+}

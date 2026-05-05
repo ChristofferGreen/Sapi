@@ -1,0 +1,49 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78/front_page.png",
+    "source_extraction": "sources/artifacts/source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78/source_extraction.json",
+    "source_file": "sources/artifacts/source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78/source.pdf",
+    "source_markdown": "sources/artifacts/source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78/source.md",
+    "source_provenance": "sources/artifacts/source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78/source_provenance.md"
+  },
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "date": null,
+  "display_title": "Untitled Source",
+  "external_related_links": [],
+  "ingested_at": "2026-04-26T07:52:43Z",
+  "linked_source_ids": [],
+  "references": [],
+  "related_link_enrichment": {
+    "skip_reason": "no_curated_links_found",
+    "sources": [],
+    "status": "skipped",
+    "warnings": []
+  },
+  "schema_version": "source_record_v1",
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "source_kind": "file",
+  "source_locator": "02-mindfulness-training-modifies-subsystems-of-attention--w2132002500.pdf",
+  "source_media_type": "application/pdf",
+  "source_type": "file",
+  "title": "02-mindfulness-training-modifies-subsystems-of-attention--w2132002500"
+}

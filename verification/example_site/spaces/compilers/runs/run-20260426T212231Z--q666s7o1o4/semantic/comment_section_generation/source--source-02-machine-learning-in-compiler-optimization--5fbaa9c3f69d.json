@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What I like about Wang and O\u2019Boyle\u2019s framing is that it treats compiler optimization as a measurable prediction problem rather than a hunt for one universal heuristic. The thread-coarsening example makes that concrete: the same transformation can help or hurt depending on kernel structure and the GPU, so collecting outcomes across candidate factors feels like the right level of empiricism.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the source\u2019s core argument and thread-coarsening evidence, with clear discussion value.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The feature-engineering part seems just as important as the learning algorithm. If static LLVM features, profiling measurements, and hardware-sensitive values are noisy or redundant, the model can look sophisticated while still learning the wrong boundary. The PCA reduction from 17 OpenCL features to 7 aggregate features is a useful reminder that compiler ML is partly a representation problem.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately highlights a source-backed bottleneck and connects it to model reliability.",
+        "score": 22
+      }
+    },
+    {
+      "body": "I appreciate the restraint in the survey. A learned model can choose among legal transformations and parameter values, but it does not prove legality or invent the transformations themselves. That boundary matters because it keeps the technique positioned as an empirical assistant to compiler design, not a replacement for the compiler analyses that make optimization safe.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Balanced and well grounded in the source\u2019s stated limits around legality and compiler expertise.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The loop-unroll result is encouraging but also shows where the approach is most comfortable: bounded choices with enough examples to label. Predicting unroll factors after training on thousands of loops is different from discovering a whole new optimization strategy, so the practical win may be in many small profitability decisions rather than in one dramatic compiler breakthrough.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Uses the quantitative loop-unroll evidence appropriately and avoids overstating the claim.",
+        "score": 21
+      }
+    },
+    {
+      "body": "One adoption issue I would want to see discussed further is benchmark representativeness. If training programs do not resemble the code people actually compile, the model may simply encode the benchmark suite\u2019s habits. The paper\u2019s caution about sparse data and black-box evaluation feels especially relevant for domains where performance measurements are expensive or unstable.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Raises a source-supported practical risk and extends it naturally without inventing new claims.",
+        "score": 20
+      }
+    }
+  ],
+  "page_ref": "source:source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "requested_count": 5
+}

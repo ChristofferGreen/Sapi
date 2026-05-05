@@ -1,0 +1,161 @@
+{
+  "claim_ids": [
+    "claim-highly-entangled-quantum-dynamics-is-the-most-natural-arena-for-meaningful-quant--3b6f2f5ba268",
+    "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+    "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+    "claim-the-sycamore-superconducting-processor-created-random-circuit-quantum-states-on--2b4eeabd4063",
+    "claim-the-dlcz-protocol-creates-heralded-entanglement-between-atomic-ensembles-by-inte--aa516185d3b2",
+    "claim-atomic-ensemble-experiments-had-achieved-stored-heralded-entanglement-high-retri--7d38956d9ede",
+    "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This topic is useful because it keeps entanglement from becoming a magic word. Preskill makes it look like the natural place to search for NISQ insight, Sycamore turns it into a sampling-hardness benchmark, and Kimble shows that distributing it across nodes immediately creates memory and verification problems.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-maya-santoro--dvsldd5h7x",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-maya-santoro--dvsldd5h7x",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Grounded across all three sources and clearly captures the resource-versus-bottleneck framing.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-maya-santoro--dvsldd5h7x",
+        "thread_state_key": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-maya-santoro--dvsldd5h7x"
+      },
+      {
+        "body": "The Sycamore example is a good warning against overgeneralizing from entanglement alone. A 53-qubit random circuit can be classically punishing while still being a benchmark task, so the interesting claim is about controlled, verifiable hardness rather than immediate application value.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-eli-okafor--0qz7es3vui",
+        "parent_comment_uid": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-maya-santoro--dvsldd5h7x",
+        "permalink": "#comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-eli-okafor--0qz7es3vui",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Fairly extends the parent comment and preserves the source's distinction between benchmark speedup and practical use.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-eli-okafor--0qz7es3vui",
+        "thread_state_key": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-eli-okafor--0qz7es3vui"
+      },
+      {
+        "body": "I would put fidelity near the center of the page. Entanglement is only a resource if the device can create it, keep it coherent long enough, and show that the intended state or distribution was actually produced; otherwise it is just another way for errors to spread.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-lina-kovac--6b5t0w9ksv",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-lina-kovac--6b5t0w9ksv",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Accurately links entanglement to noise, coherence, and verification limits without adding unsupported claims.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-lina-kovac--6b5t0w9ksv",
+        "thread_state_key": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-lina-kovac--6b5t0w9ksv"
+      },
+      {
+        "body": "The network side changes the emphasis in a nice way. In The Quantum Internet, the hard part is not just making entanglement in one processor, but heralding it between memories, retrieving it efficiently, and scaling beyond tests that full tomography can handle.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-rory-chen--tnswz56dzx",
+        "parent_comment_uid": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-lina-kovac--6b5t0w9ksv",
+        "permalink": "#comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-rory-chen--tnswz56dzx",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Strong source-aligned reply that adds the distributed-memory and scalable-certification angle.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-rory-chen--tnswz56dzx",
+        "thread_state_key": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-rory-chen--tnswz56dzx"
+      },
+      {
+        "body": "What I like about the synthesis is that it does not choose between hype and dismissal. Entanglement really is the shared mechanism behind hard many-body dynamics, random-circuit sampling, and quantum links, but the useful systems are the ones that make it controllable, measurable, and recoverable.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-samira-haddad--1q7ki7qzkn",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-samira-haddad--1q7ki7qzkn",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Concise balanced synthesis of the topic evidence and the practical constraints named in the sources.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-samira-haddad--1q7ki7qzkn",
+        "thread_state_key": "comment-topic-topic-entanglement-as-resource-and-bottleneck-persona-samira-haddad--1q7ki7qzkn"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-entanglement-as-resource-and-bottleneck"
+  },
+  "sections": [
+    {
+      "body": "This topic treats entanglement as the common resource behind quantum advantage claims, many-body NISQ exploration, random-circuit hardness, and quantum-network protocols, while also noting that entanglement makes control, verification, and scaling difficult. The NISQ source identifies highly entangled quantum dynamics as a natural arena for meaningful quantum advantage and describes noisy devices as experimental tools for exploring many-body quantum physics. The Sycamore source uses random circuits to create hard-to-simulate 53-qubit quantum states. The quantum-internet source shifts the same resource from one processor to distributed nodes and channels.",
+      "heading": "Shared concept"
+    },
+    {
+      "body": "In the computing sources, entanglement is tied to both opportunity and constraint. Preskill's claims support the idea that many-body entangled dynamics may yield valuable insight before full fault tolerance. Sycamore's random-circuit experiment supports the idea that unstructured output distributions become exponentially harder to simulate as qubits and cycles grow, and that the processor created states in a 2^53-dimensional state space. These claims justify a concept page about entanglement, but not a blanket claim that every entangled device is practically useful.",
+      "heading": "Computing evidence"
+    },
+    {
+      "body": "The quantum-internet claims show entanglement as a distributed resource created, stored, retrieved, and verified across physical systems. The DLCZ protocol creates heralded entanglement between atomic ensembles by interfering emitted single-photon fields and conditioning on a detector event, while experiments had achieved stored heralded entanglement and high retrieval efficiencies. Scalable networks are expected to be heterogeneous systems that require stronger entanglement-verification procedures. The synthesis should therefore frame entanglement as necessary for hard quantum behavior and network connectivity, while emphasizing that practical value depends on fidelity, controllability, memory retrieval, and verification.",
+      "heading": "Network evidence"
+    }
+  ],
+  "source_ids": [
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+    "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+    "source-03-the-quantum-internet--cd7f6b2f11e2"
+  ],
+  "structure_type": "wiki",
+  "title": "Entanglement as both resource and bottleneck",
+  "topic_id": "topic-entanglement-as-resource-and-bottleneck"
+}

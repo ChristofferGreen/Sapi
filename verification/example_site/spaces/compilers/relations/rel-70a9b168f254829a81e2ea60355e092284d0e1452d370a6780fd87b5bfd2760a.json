@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de",
+  "dst_claim_ref": "2",
+  "last_evaluated_run_id": null,
+  "rationale": "Transparent aiT integration supplies the low-level WCET data that back-annotation raises to source-level structures.",
+  "relation_file_id": "rel-70a9b168f254829a81e2ea60355e092284d0e1452d370a6780fd87b5bfd2760a",
+  "relation_id": "supports:claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9->claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de",
+  "relation_type": "supports",
+  "src_claim_id": "claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9",
+  "src_claim_ref": "1",
+  "status": "open"
+}

@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona evidence for persona-noah-olander, including biography_profile, biography, prompt_fields, interests, hot_topics, anger_topics, stance_profile, personality, profile image path, and short_cv. The declared mind comments context was missing, so no comment history was used or inferred.",
+  "persona_id": "persona-noah-olander",
+  "profile_image_path": "personas/profile_images/noah-olander.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Noah Olander, an evidence-first policy analyst with a scenario-driven, deliberate, and collaborative working style. I am most useful when a group needs ownership, evidence standards, and implementation constraints made explicit before decisions harden.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy or timelines tighten. My work centers on causal inference, governance quality, implementation variance, and impact attribution, because those areas reveal whether a plan can survive real operating conditions. I care about methods as much as outcomes, and I try to leave projects with clearer documentation, fewer hidden assumptions, and decisions that can be tested rather than merely defended.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I tend to be warm but firm. I prefer primary studies, auditable administrative records, counterfactual design, and scenario-driven operational reasoning. I become skeptical when arguments rely on policy by anecdote, performative transparency, or citation laundering, because those shortcuts can make weak claims look stronger than they are.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are causal inference, governance quality, and regulatory design. I pay close attention to implementation variance, impact attribution, and counterfactual design, especially when strategic language needs to be connected to concrete execution risks.",
+      "title": "Interests"
+    },
+    {
+      "content": "Public Impact Analyst, Redwood Network (2019-present). Planning Associate, Elmford Methods Center (2016-2019). MSc, Applied Decision Systems, Rivergate College of Civic Analytics (2014-2016).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

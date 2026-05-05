@@ -1,0 +1,27 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-04-26T15:29:31Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/relations"
+  ],
+  "flow_key": "ingest_extraction",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/runs/run-20260426T152518Z--g2jrtnjpv1/semantic/ingest_extraction.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json",
+  "started_at": "2026-04-26T15:25:19Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260426T152519Z-ingest_extraction-3301-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": false,
+  "validation_errors": [
+    {
+      "message": "'This Scientific Reports article examines whether psychedelic use changes metaphysical beliefs about reality, consciousness, and free will. It finds shifts away from hard physicalism or materialism and toward non-physicalist views, especially panpsychism and dualism, using both a prospective ceremony survey and a smaller randomized psilocybin therapy comparison. The results are tied to emotional synchrony and mental-health improvement, but the authors emphasize contextual and sample-selection limits.' is too long",
+      "path": "/source_dossier/summary_short",
+      "validator": "maxLength",
+      "validator_value": 420
+    }
+  ]
+}

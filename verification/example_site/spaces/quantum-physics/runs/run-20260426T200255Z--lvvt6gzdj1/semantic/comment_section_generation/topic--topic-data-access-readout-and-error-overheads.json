@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The page's synthesis is a useful antidote to algorithm-only scaling claims. HHL or qPCA can look dramatic on paper, but if the input has to be loaded through a hard classical-to-quantum interface and the output has to be read back as a full vector, the practical advantage can vanish before anyone gets a usable answer.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the QML source's data-loading and readout bottlenecks.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I would separate two different overhead stories here. qRAM and measurement overhead are mostly about whether a linear-algebra speedup survives contact with classical data, while gate noise and error correction are about whether the circuit can be made deep and reliable enough in the first place.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Clearly distinguishes input-output limits from hardware reliability limits across sources.",
+        "score": 22
+      }
+    },
+    {
+      "body": "Sycamore is a good example of why this topic needs careful wording. Its random-circuit result showed impressive control and sampling behavior, but the verification chain depended on fidelity estimates and simplified circuit families, so it does not erase the broader problem of checking large noisy computations.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Accurately applies the Sycamore verification caveat to the topic without overstating it.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The VQE example makes the tradeoff feel concrete. Shallow circuits can avoid long phase-estimation depth, but the cost moves into repeated preparations, Pauli measurements, optimizer stability, and hardware calibration. That is still progress, just not free scalability.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Grounded in the photonic VQE source's shallow-circuit and measurement-repetition tradeoff.",
+        "score": 21
+      }
+    },
+    {
+      "body": "What I like about this page is that it treats overhead as part of the claim rather than as a cleanup detail. A quantum advantage should include the cost of preparing data, keeping gates coherent, correcting or tolerating errors, and extracting whatever answer the user actually needs.",
+      "comment_ref": "draft-5",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Good reply that synthesizes the page's pipeline-level standard across all source constraints.",
+        "score": 25
+      }
+    }
+  ],
+  "page_ref": "topic:topic-data-access-readout-and-error-overheads",
+  "requested_count": 5
+}

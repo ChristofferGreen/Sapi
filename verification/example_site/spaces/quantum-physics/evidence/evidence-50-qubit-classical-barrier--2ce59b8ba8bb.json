@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+    "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb"
+  ],
+  "evidence_id": "evidence-50-qubit-classical-barrier--2ce59b8ba8bb",
+  "evidence_type": "model_constraint",
+  "excerpt": "Here \u201cintermediate scale\u201d refers to the size of quantum computers which will be available in the next few years, with a number of qubits ranging from 50 to a few hundred. 50 qubits is a significant milestone, because that\u2019s beyond what can be simulated by brute force using the most powerful existing digital supercomputers. \u201cNoisy\u201d emphasizes that we\u2019ll have imperfect control over those qubits; the noise will place serious limitations on what quantum devices can achieve in the near term.",
+  "overview": "This passage defines the NISQ scale and states the source's core constraint: devices large enough to strain brute-force classical simulation are still noisy enough that their computational reach is sharply limited. It grounds both the opportunity and the caution in the paper's central framing.",
+  "page_refs": [
+    "p.4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "title": "50-Qubit Classical Barrier"
+}

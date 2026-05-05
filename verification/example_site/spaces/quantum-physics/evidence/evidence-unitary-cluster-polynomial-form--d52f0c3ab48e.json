@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-unitary-coupled-cluster-ansatz-states-can-be-represented-with-polynomially-many--7f92a3b77387"
+  ],
+  "evidence_id": "evidence-unitary-cluster-polynomial-form--d52f0c3ab48e",
+  "evidence_type": "formal_argument",
+  "excerpt": "The source defines |C> = exp(T - T\u2020)|Phi_ref>, T = T1 + T2 + ... + TN, and states that for fixed excitation level k the reduced cluster operator contains O(N^k(M-N)^k) terms. After Jordan-Wigner transformation, the preparation reduces to quantum simulation of a Hamiltonian that is a polynomial sum of Pauli products.",
+  "overview": "This formal argument explains why chemistry-motivated ansatz preparation can be plausible on quantum hardware while remaining hard for known classical methods. It grounds the scalability discussion in the structure of coupled-cluster operators rather than only in the small photonic demonstration.",
+  "page_refs": [
+    "Eq.4",
+    "Eq.5",
+    "Eq.8",
+    "p.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "title": "Unitary Cluster Ansatz Form"
+}

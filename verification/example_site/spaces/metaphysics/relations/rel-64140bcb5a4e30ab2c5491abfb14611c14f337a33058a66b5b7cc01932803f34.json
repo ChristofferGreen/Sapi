@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-the-conjunction-of--dbb969101dbd",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The counterexample diagnosis defends the necessity thesis by preserving the distinction between full grounds, partial grounds, and non-grounds.",
+  "relation_file_id": "rel-64140bcb5a4e30ab2c5491abfb14611c14f337a33058a66b5b7cc01932803f34",
+  "relation_id": "supports:claim-apparent-counterexamples-to-grounding-necessity-fail-when-alleged-full-grounds-a--8cbbd720ef13->claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-the-conjunction-of--dbb969101dbd",
+  "relation_type": "supports",
+  "src_claim_id": "claim-apparent-counterexamples-to-grounding-necessity-fail-when-alleged-full-grounds-a--8cbbd720ef13",
+  "src_claim_ref": "7",
+  "status": "open"
+}

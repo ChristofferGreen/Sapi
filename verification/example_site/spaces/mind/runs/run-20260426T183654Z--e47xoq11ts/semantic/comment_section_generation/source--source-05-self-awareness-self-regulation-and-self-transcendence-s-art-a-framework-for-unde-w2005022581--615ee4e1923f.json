@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What I like about Vago and Silbersweig's framing is that mindfulness is not treated as a single calm mental state. The S-ART split makes room for attention, emotion regulation, decentering, and prosocial change to be related without pretending they are the same mechanism.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately captures the article's plural mechanism framework and avoids overstating the evidence.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The strongest caution for me is that the paper is still a map, not proof that all these pathways move together in practice. It points toward longitudinal and dose-response studies, which feels essential before turning S-ART into a clinical checklist.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Grounded in the review's stated limits and research agenda, with a balanced interpretation.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The narrative self part stood out to me. If rumination and affect-biased attention keep reifying a self-schema, then mindfulness is less about deleting the self and more about seeing how that schema gets assembled moment by moment.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Faithfully reflects the model of suffering while adding a clear interpretive angle.",
+        "score": 23
+      }
+    },
+    {
+      "body": "I am glad the review keeps adverse effects in view. Intensive contemplative practice can be discussed with too much therapeutic certainty, so the call for better measures of practice quality and expertise seems just as important as the neural model.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Highlights a real methodological caution from the source and connects it to responsible interpretation.",
+        "score": 20
+      }
+    },
+    {
+      "body": "That distinction helps explain why the framework needs embodied, present-centered, and autobiographical layers. A practice could change bodily salience or attentional control before a person has any tidy story about who they are becoming.",
+      "comment_ref": "draft-5",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Builds coherently on the thread and uses the source's self-processing taxonomy appropriately.",
+        "score": 21
+      }
+    }
+  ],
+  "page_ref": "source:source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+  "requested_count": 5
+}

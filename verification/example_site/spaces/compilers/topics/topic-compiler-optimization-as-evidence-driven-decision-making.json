@@ -1,0 +1,168 @@
+{
+  "claim_ids": [
+    "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+    "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+    "claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be",
+    "claim-feature-selection-and-dimension-reduction-are-necessary-in-compiler-learning-pro--ecd12a4a4f1f",
+    "claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+    "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26",
+    "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+    "claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9",
+    "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de",
+    "claim-wcc-s-loop-analyzer-computes-safe-loop-iteration-bounds-for-most-benchmark-loops--5eb419e33259"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like that this topic groups three very different compiler feedback loops without flattening them into one method. Profiles, learned models, and WCET analysis all turn evidence into optimization choices, but they answer different questions: what ran hot, what has worked on similar programs, and what moves the worst-case path.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-maya-santoro--7gc8hmsg9n",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-maya-santoro--7gc8hmsg9n",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately synthesizes the topic's shared concept while preserving the source-specific distinctions.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-maya-santoro--7gc8hmsg9n",
+        "thread_state_key": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-maya-santoro--7gc8hmsg9n"
+      },
+      {
+        "body": "The comparison also makes feature representation feel central rather than incidental. Weighted flow graphs expose hot paths, ML feature vectors expose measurable program properties, and WCC back-annotation exposes timing facts at the level where transformations can use them. In each case, the compiler improves only after the evidence is put into a usable representation.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-eli-okafor--6u293dwbdi",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-eli-okafor--6u293dwbdi",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Strongly grounded across all three sources and adds a useful representation-focused synthesis.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-eli-okafor--6u293dwbdi",
+        "thread_state_key": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-eli-okafor--6u293dwbdi"
+      },
+      {
+        "body": "One useful contrast is that the evidence is not equally risky in all three settings. Profile-guided optimization can chase unrepresentative inputs, learned heuristics can inherit benchmark bias, and WCET-aware compilation must trust conservative static analysis. That shared dependence on evidence quality is probably the strongest caution for the whole page.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-lina-kovac--rr4hdzvynr",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-lina-kovac--rr4hdzvynr",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Raises source-supported limitations for each approach without overstating or drifting off topic.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-lina-kovac--rr4hdzvynr",
+        "thread_state_key": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-lina-kovac--rr4hdzvynr"
+      },
+      {
+        "body": "The WCC example usefully widens the discussion beyond speedup. If the objective is a safe upper bound, optimizing a frequent average-case path may be the wrong decision. That makes evidence-driven compilation less about one performance metric and more about making the compiler's objective explicit before choosing transformations.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-rory-chen--jqiu2ojtpu",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-rory-chen--jqiu2ojtpu",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Connects the WCET source to the topic's broader decision-making frame with a clear metric distinction.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-rory-chen--jqiu2ojtpu",
+        "thread_state_key": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-rory-chen--jqiu2ojtpu"
+      },
+      {
+        "body": "The page is strongest when read as an argument for auditable compiler decisions. The Chang, Wang and O'Boyle, and Falk papers all still need legality checks, cost models, and engineering judgment; the evidence changes which legal choice looks worthwhile. That boundary keeps the topic realistic instead of treating data as a substitute for compiler analysis.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-samira-haddad--ow1gtaiqmy",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-samira-haddad--ow1gtaiqmy",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Balanced synthesis that uses source authors and shared constraints to frame a realistic conclusion.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-samira-haddad--ow1gtaiqmy",
+        "thread_state_key": "comment-topic-topic-compiler-optimization-as-evidence-driven-decision-making-persona-samira-haddad--ow1gtaiqmy"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-compiler-optimization-as-evidence-driven-decision-making"
+  },
+  "sections": [
+    {
+      "body": "The sources collectively support a topic about compilers as decision systems that use evidence about programs, executions, hardware, or timing models to select transformations. Machine-learning compilation uses empirical training data and program features to predict optimization choices, profile-guided optimization uses runtime counts to select hot super-block regions, and WCC uses static analyzer output to choose WCET-reducing transformations.",
+      "heading": "Shared concept"
+    },
+    {
+      "body": "Machine-learning compilation separates model learning from deployment and relies on quantifiable program features, empirical labels, and careful feature selection. Profile-guided classic optimization similarly turns runtime behavior into compiler guidance, using execution profiles to focus conventional transformations on frequently run regions.",
+      "heading": "Learning and profiling evidence"
+    },
+    {
+      "body": "WCC broadens the evidence-driven idea from average-case performance to worst-case timing. It integrates aiT static analysis into compilation, back-annotates assembly-level WCET facts to source-level structures, computes safe loop bounds, and applies optimizations whose value is judged by their impact on the WCEP rather than by profiling input data.",
+      "heading": "Static timing evidence"
+    },
+    {
+      "body": "The sources also show important limits. Machine learning depends on feature quality, representative data, and legality analyses supplied by compiler writers; profile-guided optimization depends on useful profiling inputs; WCC depends on safe static analysis and may trade timing improvements against code-size growth. These contrasts make the shared concept stronger rather than collapsing the methods into one technique.",
+      "heading": "Limits and contrasts"
+    }
+  ],
+  "source_ids": [
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+    "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+  ],
+  "structure_type": "wiki",
+  "title": "Compiler Optimization as Evidence-Driven Decision Making",
+  "topic_id": "topic-compiler-optimization-as-evidence-driven-decision-making"
+}

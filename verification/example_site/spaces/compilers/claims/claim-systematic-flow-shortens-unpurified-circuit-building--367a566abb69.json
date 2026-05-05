@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T18:03:17Z",
+  "claim_id": "claim-systematic-flow-shortens-unpurified-circuit-building--367a566abb69",
+  "evidence_excerpts": [
+    "Starting from the calibration of effective concentrations for threshold and gate species in general, to the identification and adjustment of any outliers, and then to the final tuning of circuit output, we established three sequential steps for building unpurified seesaw circuits.",
+    "Following the flowchart, we completed the construction of the rule 110 sub-circuit in only 3 days."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Procedure shortens circuit building",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "text": "A three-step systematic procedure of calibration, outlier adjustment, and output tuning enabled construction of the rule 110 sub-circuit in three days."
+}

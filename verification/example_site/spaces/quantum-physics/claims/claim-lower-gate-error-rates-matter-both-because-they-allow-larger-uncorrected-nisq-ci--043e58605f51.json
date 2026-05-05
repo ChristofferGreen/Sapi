@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T15:52:46Z",
+  "claim_id": "claim-lower-gate-error-rates-matter-both-because-they-allow-larger-uncorrected-nisq-ci--043e58605f51",
+  "evidence_excerpts": [
+    "With more accurate quantum gates, quantum computers operating without error correction will be able to go further by executing larger circuits.",
+    "Better gates will also lower the overhead cost of doing quantum error correction when we eventually move on to fault-tolerant quantum computing."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Better gates enable scale",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "text": "Lower gate error rates matter both because they allow larger uncorrected NISQ circuits and because they reduce the future overhead of fault-tolerant error correction."
+}

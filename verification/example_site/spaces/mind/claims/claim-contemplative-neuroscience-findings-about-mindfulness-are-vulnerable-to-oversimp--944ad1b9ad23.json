@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T13:44:42Z",
+  "claim_id": "claim-contemplative-neuroscience-findings-about-mindfulness-are-vulnerable-to-oversimp--944ad1b9ad23",
+  "evidence_excerpts": [
+    "Representative pictures from fMRI and other neuroimaging methods do not clearly convey the complex chain of biological and computational steps behind inferences about brain structure and function, nor that such inferences are frequently derived from group averages.",
+    "Many neuroimaging studies have used cross-sectional designs, precluding possible inferences about underlying cause-and-effect relationships, and physical artifacts involving head movements and cardiorespiratory effects are especially notable."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Neuroimaging evidence is limited",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "text": "Contemplative neuroscience findings about mindfulness are vulnerable to oversimplified public interpretation, group-level averaging, cross-sectional confounds, movement and cardiorespiratory artifacts, and uncertain practical significance."
+}

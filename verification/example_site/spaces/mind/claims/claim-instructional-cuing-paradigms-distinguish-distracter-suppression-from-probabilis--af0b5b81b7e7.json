@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:22:12Z",
+  "claim_id": "claim-instructional-cuing-paradigms-distinguish-distracter-suppression-from-probabilis--af0b5b81b7e7",
+  "evidence_excerpts": [
+    "In instructional cuing, participants respond only to targets at the cued location and ignore uncued locations completely, turning uncued locations into sources of potential distraction."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Instructional cues isolate distractors",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Instructional cuing paradigms distinguish distracter suppression from probabilistic orienting because uncued locations never require a response."
+}

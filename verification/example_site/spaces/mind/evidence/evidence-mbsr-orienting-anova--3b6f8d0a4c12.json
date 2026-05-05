@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-an-8-week-mindfulness-based-stress-reduction-course-improves-endogenous-orientin--f7bde69b7431"
+  ],
+  "evidence_id": "evidence-mbsr-orienting-anova--3b6f8d0a4c12",
+  "evidence_type": "statistical_result",
+  "excerpt": "At Time 2, an ANOVA for the RT difference scores of the orienting component revealed a significant factor of group [F(2,48) = 10.13, p < .001]. Planned contrasts showed that the MBSR group differed from the control group (Bonferroni-adjusted p = .046) and the retreat group (Bonferroni-adjusted p < .001), while the retreat and control groups did not differ.",
+  "overview": "This is the central statistical evidence for the MBSR orienting claim. The finding indicates that the novice mindfulness course changed the ANT orienting score relative to both no-training controls and the intensive retreat group. The result is restricted to response-time difference scores; the same passage reports no significant group effect for accuracy difference scores.",
+  "page_refs": [
+    "p.114",
+    "Figure 3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "title": "MBSR Orienting ANOVA"
+}

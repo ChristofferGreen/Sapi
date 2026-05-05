@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-putative-counterexamples-involving-promises-universal-generalizations-and-widowh--77be6c83064e",
+    "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-it-is-metaphysicall--8e6651258a61"
+  ],
+  "evidence_id": "evidence-counterexample-repair-test--e15f2c8a7d64",
+  "evidence_type": "formal_argument",
+  "excerpt": "When faced with a case in which it seems that [p] is fully grounded in D yet ~\u2610(\u2227D \u2192 p), the advocate of necessity should check to see if there are additional explanatorily relevant facts P such that \u2610(\u2227(D, P) \u2192 p). If such additional facts are available, we have reason to believe that D is a mere partial ground that was misidentified as a full ground; in such a case, [p] instead is fully grounded in D, P. Each of the three cases set out above are such that additional explanatorily relevant facts are available that meet the modal entailment condition: what are identified as enabling conditions in the first case, a totality fact ... in the second case, and the fact that Socrates and Xanthippe were married in the third case.",
+  "overview": "This is the paper\u2019s general diagnostic for apparent failures of necessity. It narrows the target to full grounds and shows how several alleged counterexamples instead identify incomplete grounds. The test is important because it prevents ordinary explanatory relevance from being mistaken for complete metaphysical grounding.",
+  "page_refs": [
+    "p.478"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Counterexample Repair Test"
+}

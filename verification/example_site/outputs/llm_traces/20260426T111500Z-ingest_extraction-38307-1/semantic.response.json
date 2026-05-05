@@ -1,0 +1,253 @@
+{
+  "claims": [
+    {
+      "evidence_excerpts": [
+        "The review states that alpha-band oscillations can be actively invoked in cortical regions across multiple sensory systems when those regions process irrelevant or distracting information."
+      ],
+      "short_title": "Alpha suppresses distractors",
+      "text": "Alpha-band oscillations can be actively invoked in cortical regions that process irrelevant or distracting information, making alpha a mechanism of attentional suppression."
+    },
+    {
+      "evidence_excerpts": [
+        "In instructional cuing, participants respond only to targets at the cued location and ignore uncued locations completely, turning uncued locations into sources of potential distraction."
+      ],
+      "short_title": "Instructional cues isolate distractors",
+      "text": "Instructional cuing paradigms distinguish distracter suppression from probabilistic orienting because uncued locations never require a response."
+    },
+    {
+      "evidence_excerpts": [
+        "Figure 1 describes greater 8\u201314 Hz alpha activity in the 300 ms before the compound S2 when attention is cued to the auditory modality rather than the visual modality."
+      ],
+      "short_title": "Auditory attention gates vision",
+      "text": "In intersensory attention tasks, attending to audition increases 8\u201314 Hz parieto-occipital alpha activity before the audiovisual target, consistent with anticipatory gating of visual processing."
+    },
+    {
+      "evidence_excerpts": [
+        "Figure 2 reports a sustained divergence beginning at about 500 ms, with alpha-band TSE amplitudes larger over occipital cortex ipsilateral to the direction of attention."
+      ],
+      "short_title": "Spatial alpha targets distractors",
+      "text": "During visual spatial attention, alpha-band power increases over occipital cortex ipsilateral to the attended side and retinotopically targets areas likely to receive distracters."
+    },
+    {
+      "evidence_excerpts": [
+        "The feature-attention study isolated alpha-reactive components whose power differed by attended feature; dorsal stream sources increased when motion was irrelevant and ventral sources increased when color was irrelevant."
+      ],
+      "short_title": "Feature alpha suppresses irrelevant streams",
+      "text": "Feature-based visual attention increases alpha power in dorsal or ventral stream regions when those regions process an irrelevant feature."
+    },
+    {
+      "evidence_excerpts": [
+        "Auditory spatial attention studies found alpha-band increases over parietal cortex ipsilateral to the cued direction, and tactile studies found increases over somatosensory cortex ipsilateral to the cued direction."
+      ],
+      "short_title": "Alpha bias spans senses",
+      "text": "Alpha-mediated biasing extends beyond vision, appearing in auditory and tactile spatial attention with increases over cortical regions ipsilateral to the cued direction."
+    },
+    {
+      "evidence_excerpts": [
+        "In the Kelly et al. rapid bilateral letter-stream experiment, alpha power ipsilateral to attention rose above pre-cue baseline while bilateral stimulation continued, and contralateral decreases were not observed."
+      ],
+      "short_title": "Alpha is active suppression",
+      "text": "Sustained focal alpha increases above pre-cue baseline during rapid bilateral stimulation support an active suppression account rather than a mere return to cortical idling."
+    },
+    {
+      "evidence_excerpts": [
+        "Romei et al. found that 10 Hz TMS impaired visual detection contralateral to stimulation, improved ipsilateral detection, and produced no comparable effects at 5 or 20 Hz."
+      ],
+      "short_title": "Alpha lowers visual excitability",
+      "text": "Higher naturally occurring or experimentally induced alpha power reduces visual cortical excitability and predicts weaker perceptual detection."
+    },
+    {
+      "evidence_excerpts": [
+        "The conclusion contrasts attention-related alpha modulations, described as mainly cortico-cortical and involving frontal and parietal regions, with arousal-related alpha that is more likely thalamus-dominated."
+      ],
+      "short_title": "Cortical networks control alpha",
+      "text": "Attention-related alpha modulation appears primarily controlled by cortico-cortical frontal and parietal networks, with thalamo-cortical connections possibly contributing secondarily."
+    }
+  ],
+  "evidence_items": [
+    {
+      "claim_refs": [
+        "0",
+        "2"
+      ],
+      "evidence_id": "evidence-intersensory-alpha-gating--4f9c2a7b8e11",
+      "evidence_type": "figure_result",
+      "excerpt": "Figure 1 reports an intersensory cueing task in which BEEP and FLASH cues indicated whether audition or vision was relevant. After a 1085 ms cue-target interval, the 8\u201314 Hz filtered waveforms showed greater alpha activity in the 300 ms before the compound audiovisual S2 when attention was cued to audition, with greater parietal field power for auditory than visual cues.",
+      "overview": "This figure-level result grounds the review's claim that alpha can gate a modality before the relevant stimulus arrives. Because the task required fixation and compared auditory versus visual attention after symbolic cues, the effect is interpreted as anticipatory suppression of visual processing rather than eye closure or direct sensory stimulation by the target.",
+      "page_refs": [
+        "Figure 1",
+        "p.3"
+      ],
+      "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+      "title": "Auditory Cue Alpha Increase"
+    },
+    {
+      "claim_refs": [
+        "1",
+        "3"
+      ],
+      "evidence_id": "evidence-retinotopic-spatial-alpha--a6d3179bc042",
+      "evidence_type": "figure_result",
+      "excerpt": "Figure 2 describes a visual spatial attention task with central arrow cues, a 1 s cue-target interval, and difficult orientation or motion judgments at the cued location. The alpha-band TSE waveforms showed a sustained divergence beginning at roughly 500 ms, with amplitudes larger over occipital cortex ipsilateral to the attended direction.",
+      "overview": "The spatial result links alpha topography to the location of likely distracters. Since only the cued location was task-relevant, the ipsilateral occipital alpha increase is evidence that alpha targets the cortical representation of the ignored hemifield rather than merely tracking general alertness or motor preparation.",
+      "page_refs": [
+        "Figure 2",
+        "p.4"
+      ],
+      "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+      "title": "Retinotopic Spatial Alpha Bias"
+    },
+    {
+      "claim_refs": [
+        "4"
+      ],
+      "evidence_id": "evidence-feature-stream-alpha--d2b18fc7a901",
+      "evidence_type": "figure_result",
+      "excerpt": "The feature-based attention study used ICA on 8\u201315 Hz band-pass filtered single trials and found alpha-reactive components during the preparatory cue-S2 interval. Components with higher alpha power for attention to color were generally localized to putative dorsal visual stream regions, while components with higher alpha power for attention to motion were generally localized to putative ventral visual stream regions.",
+      "overview": "This evidence extends the suppression account from locations to feature-processing systems. The dorsal and ventral stream dissociation matters because it shows that alpha increases are not only spatial markers; they can also appear in cortical systems responsible for processing an irrelevant feature dimension.",
+      "page_refs": [
+        "Figure 3",
+        "pp.5-6"
+      ],
+      "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+      "title": "Feature Stream Alpha Separation"
+    },
+    {
+      "claim_refs": [
+        "6"
+      ],
+      "evidence_id": "evidence-bilateral-stimulation-alpha--8e33fa92c0d5",
+      "evidence_type": "observational_result",
+      "excerpt": "In the Kelly et al. task, rapid letter streams were presented to both hemifields at rates from 9.45 to 17.01 Hz, with each stimulus lasting 11 ms. After a central arrow cue, alpha power ipsilateral to the cued direction increased above pre-cue baseline, no contralateral decreases were observed, and bilateral stimulation continued throughout the trial.",
+      "overview": "This is the review's key answer to the idling objection. By maintaining bilateral visual stimulation, the design reduces the chance that alpha asymmetry simply reflects recovery from cue-induced desynchronization. The observed above-baseline alpha increase therefore supports active suppression of the ignored stream.",
+      "page_refs": [
+        "Figure 4",
+        "p.7"
+      ],
+      "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+      "title": "Bilateral Stream Baseline Test"
+    },
+    {
+      "claim_refs": [
+        "7"
+      ],
+      "evidence_id": "evidence-ten-hertz-tms-detection--c91a6e74b208",
+      "evidence_type": "observational_result",
+      "excerpt": "Romei et al. applied rhythmic TMS at 10 Hz, 20 Hz, or 5 Hz to occipital and parietal regions while participants reported near-threshold visual stimuli. TMS at 10 Hz impaired visual detection contralateral to stimulation, improved detection ipsilateral to stimulation, subsided within 3 s, and produced no comparable detection effects at 5 or 20 Hz.",
+      "overview": "The frequency-specific TMS result gives the review a causal line of evidence. If driving alpha-range activity selectively impairs contralateral perception while neighboring frequencies do not, alpha is more plausibly a suppressive mechanism than a passive correlate of attention state.",
+      "page_refs": [
+        "p.8"
+      ],
+      "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+      "title": "Ten Hertz TMS Suppression"
+    },
+    {
+      "claim_refs": [
+        "7"
+      ],
+      "evidence_id": "evidence-alpha-lapses-sart--f0d6c3a99b17",
+      "evidence_type": "observational_result",
+      "excerpt": "In the sustained attention task discussed by the review, alpha-band power was much higher before performance errors and could predict errors up to 20 s before they occurred. The same experiment found no differences in SSVEP amplitude between periods preceding erroneous and correct performance.",
+      "overview": "This result sharpens the interpretation of alpha suppression. Alpha power can forecast lapses in attention, but the absence of a low-level SSVEP difference suggests that alpha's behavioral effect may operate through attentional control or access rather than simply weakening all early sensory encoding.",
+      "page_refs": [
+        "p.8"
+      ],
+      "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+      "title": "Alpha Predicts Attentional Lapses"
+    }
+  ],
+  "relations": [],
+  "source": {
+    "article_type": "Review Article",
+    "authors": [
+      "John J. Foxe",
+      "Adam C. Snyder"
+    ],
+    "display_title": "Alpha Oscillations Suppress Distracting Sensory Inputs",
+    "doi": "10.3389/fpsyg.2011.00154",
+    "journal": "Frontiers in Psychology",
+    "original_title": "The role of alpha-band brain oscillations as a sensory suppression mechanism during selective attention",
+    "publication_date": "2011-07-05",
+    "record_display_title": "Untitled Source",
+    "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9"
+  },
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2011-07-05",
+    "origin": "source_markdown_front_matter",
+    "rationale": "The source markdown front matter states 'published: 05 July 2011', and the citation block states the article was published online on 05 July 2011."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The review's central claim is that alpha-band activity can serve selection by suppressing the processing channels that should not drive behavior. This reverses the common tendency to look only for enhancement of attended representations. Alpha is treated as a negative biasing signal: it rises where distracting information is expected and thereby helps conserve limited attentional capacity.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ],
+        "heading": "Central Argument"
+      },
+      {
+        "body": "The intersensory findings provide a clear starting case. When visual word cues instructed participants to attend audition, parieto-occipital 8\u201314 Hz activity increased before the compound audiovisual target. Because fixation was maintained and the target had not yet appeared, this preparatory alpha increase supports anticipatory suppression of visual processing during auditory attention.",
+        "grounding_claim_ids": [
+          "2"
+        ],
+        "heading": "Intersensory Evidence"
+      },
+      {
+        "body": "The spatial attention evidence makes the suppression account more anatomically specific. In instructional cueing tasks, uncued locations never require a response, so they are genuine distracter sources. Alpha increases over occipital cortex ipsilateral to the attended side, matching the cortical territory expected to represent the ignored hemifield and shifting with retinotopic task demands.",
+        "grounding_claim_ids": [
+          "1",
+          "3"
+        ],
+        "heading": "Spatial And Retinotopic Bias"
+      },
+      {
+        "body": "The review argues that alpha gating is not confined to visual space. Feature-based tasks show alpha increases in dorsal or ventral stream regions according to whether motion or color is irrelevant, and auditory and tactile studies show comparable ipsilateral increases during spatial selection. Together these cases support a general suppression principle across sensory systems and stimulus dimensions.",
+        "grounding_claim_ids": [
+          "4",
+          "5"
+        ],
+        "heading": "Feature And Modality Generality"
+      },
+      {
+        "body": "A major interpretive risk is that alpha increases may only reflect passive return to baseline after stimulus-driven desynchronization. The bilateral rapid-stream experiment addresses this by keeping visual stimulation ongoing in both hemifields. Alpha still rises above pre-cue baseline for the ignored stream, making the active suppression interpretation more persuasive than a simple cortical-idling account.",
+        "grounding_claim_ids": [
+          "6"
+        ],
+        "heading": "Active Suppression Test"
+      },
+      {
+        "body": "The review links alpha power to perception rather than only to scalp topography. Higher alpha predicts weaker detection and greater perceptual thresholds, and rhythmic 10 Hz TMS can impair contralateral visual detection while leaving neighboring stimulation frequencies ineffective. These findings make alpha relevant for behavior, not merely for descriptive electrophysiology.",
+        "grounding_claim_ids": [
+          "7"
+        ],
+        "heading": "Perceptual Consequences"
+      },
+      {
+        "body": "The authors do not reduce all alpha phenomena to one source. They distinguish arousal-related alpha, likely with stronger thalamic involvement, from attention-related alpha, which appears more dependent on frontal and parietal cortico-cortical control. The mechanism remains partly unresolved, but the review narrows the likely circuitry and warns against treating alpha as a unitary rhythm.",
+        "grounding_claim_ids": [
+          "8"
+        ],
+        "heading": "Mechanistic Limits"
+      }
+    ],
+    "summary_long": "This review develops a suppression-centered interpretation of alpha-band oscillations in selective attention. Rather than treating alpha simply as a relaxed or idle rhythm, Foxe and Snyder frame 8\u201314 Hz activity as a mechanism that can be strategically increased in cortical systems that would otherwise process distracting input. The argument begins from cuing paradigms: when a symbolic cue instructs a participant which modality, location, or feature will matter, the interval before the target reveals how the brain prepares for selection. In that interval, alpha power repeatedly rises over regions corresponding to irrelevant information. In intersensory attention, alpha increases over parieto-occipital cortex when audition is attended and vision must be suppressed. In visual spatial attention, alpha rises over occipital cortex representing the uncued hemifield, and the effect follows retinotopic expectations. In feature-based attention, alpha-reactive sources separate by visual stream, rising in areas associated with the feature dimension that is currently irrelevant. The review also extends the pattern to auditory and tactile attention, where ipsilateral alpha increases suggest sensory-specific suppression outside the visual system. The strongest conceptual step is the distinction between passive idling and active suppression. The Kelly et al. bilateral stimulation design is especially important because alpha rose above pre-cue baseline while visual streams remained continuously active, weakening the idea that alpha merely rebounds after stimulation. TMS studies add causal plausibility: externally driving 10 Hz activity impaired contralateral detection while neighboring frequencies did not. The authors remain cautious about mechanism, separating attention-related alpha from arousal-related alpha and noting possible thalamo-cortical contributions. Still, they conclude that frontal and parietal cortico-cortical control networks are likely central for attention-sensitive alpha modulation. The source is therefore best read as a review-backed model of selective attention in which suppression is an active computational operation, implemented partly through alpha-band synchronization in task-irrelevant sensory circuits.",
+    "summary_short": "Foxe and Snyder argue that alpha-band brain oscillations are not merely signs of cortical idling but can be recruited to suppress distracting sensory processing during selective attention. The review synthesizes EEG, MEG, TMS, intracranial, and behavioral evidence across visual, auditory, and tactile domains. Its central practical message is that increased alpha often marks the neural system being ignored, not the item being selected."
+  },
+  "summary": "Foxe and Snyder review evidence that alpha-band oscillations, especially 8\u201314 Hz activity, function as an active suppressive mechanism during selective attention. Across intersensory, spatial, feature-based, auditory, and tactile attention tasks, alpha power tends to increase in cortical regions responsible for processing irrelevant or distracting information, and causal and predictive evidence links stronger alpha to reduced visual excitability and weaker perception.",
+  "warnings": [
+    {
+      "code": "task_context_date_missing_but_source_front_matter_available",
+      "message": "The task context reported date=null, but the source markdown front matter and citation block state publication on 05 July 2011."
+    },
+    {
+      "code": "review_article_evidence_scope",
+      "message": "The source is a review article, so many evidence items summarize concrete experiments and figures discussed by the review rather than new primary measurements collected in this paper."
+    },
+    {
+      "code": "existing_claim_context_unrelated",
+      "message": "The provided claims directory contained prior claims from other sources; generated claim references therefore use local claim indices for this extraction."
+    }
+  ]
+}

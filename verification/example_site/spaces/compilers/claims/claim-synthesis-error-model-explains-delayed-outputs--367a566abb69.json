@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T18:03:17Z",
+  "claim_id": "claim-synthesis-error-model-explains-delayed-outputs--367a566abb69",
+  "evidence_excerpts": [
+    "Simulations of the rule 110-124 circuit using the previously developed model for purified seesaw circuits predicted desired outputs in roughly 8 h and undesired reactions taking over in 24 h, while simulations using the new model for unpurified seesaw circuits predicted desired outputs in roughly 24 h."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Error model explains delay",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "text": "A model that represents synthesis errors in unpurified molecules predicts the slower 24-hour behavior of the rule 110-124 circuit better than the purified-circuit model."
+}

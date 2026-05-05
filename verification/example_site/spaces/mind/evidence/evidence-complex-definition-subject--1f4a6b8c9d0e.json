@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-a-complex-is-an-integrated-subset-with-greater-than-zero-that-is-not-contained-i--70401a6fb458",
+    "claim-reticular-sensory-afferent-motor-efferent-and-subcortical-loop-activity-can-modu--173db43834c9"
+  ],
+  "evidence_id": "evidence-complex-definition-subject--1f4a6b8c9d0e",
+  "evidence_type": "formal_argument",
+  "excerpt": "A complex is a subset S having \u03a6>0 that is not included within a larger subset having higher \u03a6. For a complex, and only for a complex, it is appropriate to say that, when it enters a particular state out of its repertoire, it generates an amount of integrated information corresponding to its \u03a6 value. Complexes are the \u201csubjects\u201d of experience, being the locus where information can be integrated.",
+  "overview": "The complex definition gives the theory its boundary rule. Elements outside a complex may exchange signals with it, but they do not belong to the same subject of experience unless they raise the integrated-information structure. This supports later claims about afferents, efferents, reticular systems, and subcortical loops influencing consciousness without directly constituting it.",
+  "page_refs": [
+    "p.6"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Complexes Define Experiential Loci"
+}

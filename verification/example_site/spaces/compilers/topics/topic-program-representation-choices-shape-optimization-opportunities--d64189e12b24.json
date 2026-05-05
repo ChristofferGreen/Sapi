@@ -1,0 +1,159 @@
+{
+  "claim_ids": [
+    "claim-super-blocks-represent-frequently-executed-paths-as-linear-basic-block-sequences--7bbb510c9bb0",
+    "claim-trace-selection-followed-by-tail-duplication-converts-frequently-executed-traces--1483ee9d0534",
+    "claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0",
+    "claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be",
+    "claim-feature-selection-and-dimension-reduction-are-necessary-in-compiler-learning-pro--ecd12a4a4f1f",
+    "claim-future-research-in-machine-learning-compilation-extends-beyond-choosing-optimiza--faf587f1fc17"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This page draws a useful line between changing the program shape and changing the evidence available to the optimizer. Super-blocks make a hot control-flow path look like a single-entry region, while learned models need feature vectors that summarize behavior without carrying every raw detail. In both cases, the representation is not neutral; it decides which opportunities become visible.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-maya-santoro--hnogfirnh6",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-maya-santoro--hnogfirnh6",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in both sources and directly addresses the topic synthesis.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-maya-santoro--hnogfirnh6",
+        "thread_state_key": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-maya-santoro--hnogfirnh6"
+      },
+      {
+        "body": "I would keep the distinction between super-blocks and compiler-learning features fairly sharp. A super-block changes the compiler's local region for applying classic transformations, but a feature vector is more like an input contract for prediction. Treating both as representation layers is helpful, as long as the page does not imply they solve the same problem.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-eli-okafor--vni3aljk73",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-eli-okafor--vni3aljk73",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately preserves a key conceptual distinction while supporting the synthesis.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-eli-okafor--vni3aljk73",
+        "thread_state_key": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-eli-okafor--vni3aljk73"
+      },
+      {
+        "body": "The optimization opportunity here is partly about reducing false conservatism. Tail duplication can isolate a frequent trace so classic scalar optimizations face fewer awkward joins, and feature selection can remove noisy or redundant measurements before learning. Different mechanisms, but both try to stop irrelevant structure from dominating the decision.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-lina-kovac--y15hj1giwn",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-lina-kovac--y15hj1giwn",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Makes a well-supported cross-source comparison with clear technical relevance.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-lina-kovac--y15hj1giwn",
+        "thread_state_key": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-lina-kovac--y15hj1giwn"
+      },
+      {
+        "body": "One caution is that better representation also introduces new costs and assumptions. Super-block construction can grow code through tail duplication, and machine-learning features only help when the training examples resemble later workloads. The page is strongest if it presents representation choice as leverage, not as a free improvement.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-rory-chen--9v8qiqeb5g",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-rory-chen--9v8qiqeb5g",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Balances the topic claim with source-backed limitations on cost and generalization.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-rory-chen--9v8qiqeb5g",
+        "thread_state_key": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-rory-chen--9v8qiqeb5g"
+      },
+      {
+        "body": "The shared lesson seems practical: optimizers act on what their intermediate view makes measurable. Execution counts make hot paths explicit for profile-guided classic optimization, while static and dynamic features make programs comparable for learned profitability models. The hard part is choosing abstractions rich enough to guide decisions but small enough to remain usable.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-samira-haddad--37xyxoyikh",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-samira-haddad--37xyxoyikh",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Concise, natural, and well grounded in the source evidence and page framing.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-samira-haddad--37xyxoyikh",
+        "thread_state_key": "comment-topic-topic-program-representation-choices-shape-optimization-opportunities-d64189e12b24-persona-samira-haddad--37xyxoyikh"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-program-representation-choices-shape-optimization-opportunities--d64189e12b24"
+  },
+  "sections": [
+    {
+      "body": "The sources share a concern with how programs are represented before optimization decisions are made. The profile-guided source reshapes hot control-flow paths into super-blocks and super-block loops, while the machine-learning source represents programs through quantifiable static, dynamic, or combined features.",
+      "heading": "Representation Before Optimization"
+    },
+    {
+      "body": "Super-block formation makes frequently executed paths easier for classic scalar optimizations to exploit. Feature engineering, feature selection, and dimension reduction make program behavior and structure available to learning algorithms without overwhelming models with redundant or sparse feature spaces.",
+      "heading": "What Optimizers Can See"
+    },
+    {
+      "body": "The topic should preserve the distinction between structural compiler regions and statistical feature vectors, but can synthesize them as representation layers that determine what an optimizer can observe, compare, and act upon.",
+      "heading": "Structural and Statistical Views"
+    }
+  ],
+  "source_ids": [
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+  ],
+  "structure_type": "wiki",
+  "title": "Program Representation Choices Shape Optimization Opportunities",
+  "topic_id": "topic-program-representation-choices-shape-optimization-opportunities--d64189e12b24"
+}

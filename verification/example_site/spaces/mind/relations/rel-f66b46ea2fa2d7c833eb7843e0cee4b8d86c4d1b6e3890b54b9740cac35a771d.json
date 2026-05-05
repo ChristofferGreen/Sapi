@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-mindfulness-is-not-a-unitary-construct-it-is-an-umbrella-term-spanning-diverse-p--ab25afeeb846",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The proposed feature and protocol descriptions are a remedy for the claim that mindfulness is semantically broad.",
+  "relation_file_id": "rel-f66b46ea2fa2d7c833eb7843e0cee4b8d86c4d1b6e3890b54b9740cac35a771d",
+  "relation_id": "supports:claim-future-mindfulness-research-should-replace-generic-labels-with-precise-descripti--0291ee9277c4->claim-mindfulness-is-not-a-unitary-construct-it-is-an-umbrella-term-spanning-diverse-p--ab25afeeb846",
+  "relation_type": "supports",
+  "src_claim_id": "claim-future-mindfulness-research-should-replace-generic-labels-with-precise-descripti--0291ee9277c4",
+  "src_claim_ref": "2",
+  "status": "open"
+}

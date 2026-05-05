@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T18:03:17Z",
+  "claim_id": "claim-outlier-gates-expose-synthesis-variation--367a566abb69",
+  "evidence_excerpts": [
+    "With a gate calibration experiment shown in Fig. 4b, we measured that g18,53/a18,53 = 0.8x for one gate and g22,53/a22,53 = 0.44x for another."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Outliers disrupt gate composition",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "text": "Gate calibration can identify outlier unpurified components whose effective concentrations differ enough to disrupt multi-layer circuit composition."
+}

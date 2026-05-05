@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-in-the-worst-case-topology-the-entanglement-swapping-based-strategy-has-per-laye--bd58d42b2d90"
+  ],
+  "evidence_id": "evidence-entanglement-depth-bound--5b7e1d2c8a0f",
+  "evidence_type": "theorem",
+  "excerpt": "The depth overhead of the entanglement-swapping-based strategy does not exceed n/2 des, where n denotes the number of logical qubits within the quantum circuit and des is a constant factor independent from the characteristics of the original quantum circuit given by des = cle + cbsm + ccx.",
+  "overview": "The equations give an explicit linear-in-n worst-case upper bound for one strategy. They separate architecture-independent circuit size from hardware constants for link entanglement, Bell-state measurement, and remote CNOT execution after Bell-state distribution.",
+  "page_refs": [
+    "Eq. 2",
+    "Eq. 3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "title": "Entanglement Strategy Depth Bound"
+}

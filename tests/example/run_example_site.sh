@@ -221,12 +221,14 @@ bootstrap_site() {
     [[ "${parent_slug:0:1}" == "#" ]] && continue
 
     if [[ " $parent_seen " != *" $parent_slug "* ]]; then
-      run_step "001-space-${parent_slug}" bash "$REPO_ROOT/create_space.sh" "$SITE_PATH" "$parent_slug"
+      run_step "001-space-${parent_slug}" \
+        bash "$REPO_ROOT/create_space.sh" "$SITE_PATH" "$parent_slug" --seed-example-questions
       parent_seen+=" $parent_slug"
     fi
 
     if [[ " $child_seen " != *" $child_slug "* ]]; then
-      run_step "001-space-${child_slug}" bash "$REPO_ROOT/create_space.sh" "$SITE_PATH" "$child_slug"
+      run_step "001-space-${child_slug}" \
+        bash "$REPO_ROOT/create_space.sh" "$SITE_PATH" "$child_slug" --seed-example-questions
       child_seen+=" $child_slug"
     fi
   done < "$SUBSPACES_TSV"

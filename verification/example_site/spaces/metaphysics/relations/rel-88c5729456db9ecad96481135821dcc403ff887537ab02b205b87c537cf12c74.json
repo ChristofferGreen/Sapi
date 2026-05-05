@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-partial-generic-essence-is-captured-by-conjunctive-partial-generalized-identity--13ec1cd27c1f",
+  "dst_claim_ref": "3",
+  "last_evaluated_run_id": null,
+  "rationale": "The necessity example supports the need for an essence account stronger than modal entailment.",
+  "relation_file_id": "rel-88c5729456db9ecad96481135821dcc403ff887537ab02b205b87c537cf12c74",
+  "relation_id": "supports:claim-necessary-entailment-or-equivalence-is-not-sufficient-for-essence-because-genera--162946956228->claim-partial-generic-essence-is-captured-by-conjunctive-partial-generalized-identity--13ec1cd27c1f",
+  "relation_type": "supports",
+  "src_claim_id": "claim-necessary-entailment-or-equivalence-is-not-sufficient-for-essence-because-genera--162946956228",
+  "src_claim_ref": "9",
+  "status": "open"
+}

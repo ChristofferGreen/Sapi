@@ -1,0 +1,14 @@
+{
+  "claim_ids": [
+    "claim-mathematical-and-technical-constraints-in-shadercoding-can-become-creative-motor--5b703448e7f5",
+    "claim-shader-showdowns-turn-shadercoding-into-a-timed-public-performance-evaluated-thr--a575bceeaf8e"
+  ],
+  "evidence_id": "evidence-live-showdown-judging-criteria--e6b33a4c0189",
+  "evidence_type": "observational_result",
+  "excerpt": "Plus commun\u00e9ment appel\u00e9 Shader Showdown, il s'agit de coder son effet visuel \u00e0 l'aide d'un shader en 25 ou 30 minutes devant un public. Suite \u00e0 cette \u00e9preuve, les participants seront jug\u00e9s par les spectateurs sur diff\u00e9rents crit\u00e8res : l'image finale produite, la technicit\u00e9 du code mais \u00e9galement l'\u00e9volution de l'effet au cours de l'\u00e9preuve. Ce dernier crit\u00e8re peut \u00eatre particuli\u00e8rement important car, comme son nom l'indique, il est question ici de show, de spectacle \u00e0 la fois technique et artistique.",
+  "overview": "The timed format and judging criteria make the performative status of shadercoding auditable: audience, duration, code visibility, evolving effect, and technical-artistic spectacle all matter. The passage supports claims about live performance conditions and also shows the specific limits of the argument: it describes Shader Showdown conventions, not all shadercoding contexts.",
+  "page_refs": [],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "title": "Live Showdown Judging Criteria"
+}

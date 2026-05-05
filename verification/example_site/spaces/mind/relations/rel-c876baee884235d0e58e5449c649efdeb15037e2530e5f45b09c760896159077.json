@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-therapeutic-benefits-are-condition-specific--201401200700",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "The preliminary clinical evidence base constrains claims about broad therapeutic benefit.",
+  "relation_file_id": "rel-c876baee884235d0e58e5449c649efdeb15037e2530e5f45b09c760896159077",
+  "relation_id": "supports:claim-clinical-evidence-remains-preliminary--117717456958->claim-therapeutic-benefits-are-condition-specific--201401200700",
+  "relation_type": "supports",
+  "src_claim_id": "claim-clinical-evidence-remains-preliminary--117717456958",
+  "src_claim_ref": "3",
+  "status": "open"
+}

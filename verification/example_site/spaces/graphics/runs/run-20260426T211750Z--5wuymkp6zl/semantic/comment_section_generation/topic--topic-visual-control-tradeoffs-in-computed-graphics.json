@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What makes this topic interesting is that the controls are not cosmetic afterthoughts. Smoothing a skeleton bundle, nudging an impostor plane, or recoloring a crowd all changes what the viewer can reliably read, even when the underlying method is still an approximation.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Synthesizes all three sources around control as legibility rather than decoration.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The edge-bundling example is the clearest warning case for me. Cushion shading and relaxation can make corridors easier to follow, but they do not solve the fact that individual edges and exact directions are being sacrificed for an overview.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately states the bundling controls and the source's documented information-loss limitation.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I see a similar bargain in the crowd-rendering paper, just with a different failure mode. The PCA-influenced plane choice reduces popping, and the mask-based recoloring adds variety, but both are ways of hiding the limits of image-based people rather than replacing full geometry.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Grounded comparison of impostor plane control and recoloring as practical approximations.",
+        "score": 22
+      }
+    },
+    {
+      "body": "That is why I like the page's caution about shadercoding as an extension rather than the main evidence. In the rendering papers, the tradeoffs are measurable engineering choices; in the shadercoding article, constraint becomes a creative condition, which is related but not the same kind of claim.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Useful threaded distinction between technical evidence and the shadercoding interpretive analogy.",
+        "score": 21
+      }
+    },
+    {
+      "body": "The common thread seems to be that computed graphics often gives users handles on artifacts instead of eliminating them. The best controls make the compromise explicit: better overview, less popping, more visual variety, or more performative freedom, but not a lossless view of the original system.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Strong cross-source synthesis that preserves the limits of each source's evidence.",
+        "score": 25
+      }
+    }
+  ],
+  "page_ref": "topic:topic-visual-control-tradeoffs-in-computed-graphics",
+  "requested_count": 5
+}

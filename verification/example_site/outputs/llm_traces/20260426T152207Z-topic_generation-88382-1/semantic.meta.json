@@ -1,0 +1,18 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-04-26T15:25:09Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/sources",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/claims"
+  ],
+  "flow_key": "topic_generation",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/metaphysics/runs/run-20260426T151752Z--cmqk6ysimv/semantic/topic_generation.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json",
+  "started_at": "2026-04-26T15:22:07Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260426T152207Z-topic_generation-88382-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": true,
+  "validation_errors": []
+}

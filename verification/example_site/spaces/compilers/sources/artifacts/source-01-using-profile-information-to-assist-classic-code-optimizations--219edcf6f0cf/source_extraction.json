@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf/source.pdf",
+    "source_markdown": "sources/artifacts/source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "ebca9721804fb2d4b28332daba736165fcbf0dfb952ef849ac1e9999a9d52a6a",
+  "markdown_char_count": 70527,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "41cdad267501deb7d8f02e01e554a8401353aa9a59a39d5fdd22a508cef760ca",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

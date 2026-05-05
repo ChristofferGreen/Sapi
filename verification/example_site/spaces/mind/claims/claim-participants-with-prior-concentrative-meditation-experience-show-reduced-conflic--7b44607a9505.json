@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:09:33Z",
+  "claim_id": "claim-participants-with-prior-concentrative-meditation-experience-show-reduced-conflic--7b44607a9505",
+  "evidence_excerpts": [
+    "At Time 1, the retreat group differed from the combined control and MBSR participants for conflict monitoring in RT [t(1,49) = 2.22, p = .03] and accuracy [t(1,49) = 5.62, p < .001]."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Experience reduces conflict",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "text": "Participants with prior concentrative meditation experience show reduced conflict-monitoring interference at baseline relative to meditation-naive participants."
+}

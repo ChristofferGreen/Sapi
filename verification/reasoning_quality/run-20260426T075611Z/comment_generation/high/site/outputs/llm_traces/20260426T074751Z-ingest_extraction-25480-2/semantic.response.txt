@@ -1,0 +1,294 @@
+{
+  "source_date_inference": {
+    "date": "2004-11-02",
+    "confidence": "high",
+    "origin": "source_markdown_front_matter",
+    "rationale": "The extracted first page states: Published: 02 November 2004; BMC Neuroscience 2004, 5:42."
+  },
+  "source": {
+    "display_title": "Consciousness Is Integrated Information",
+    "authors": [
+      "Giulio Tononi"
+    ],
+    "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+    "original_title": "An information integration theory of consciousness",
+    "journal": "BMC Neuroscience",
+    "doi": "10.1186/1471-2202-5-42",
+    "record_display_title": "Untitled Source"
+  },
+  "claims": [
+    {
+      "text": "Consciousness corresponds to a system's capacity to integrate information, combining a large differentiated repertoire with unity across interacting elements.",
+      "short_title": "Consciousness integrates information",
+      "evidence_excerpts": [
+        "The abstract states that consciousness corresponds to the capacity of a system to integrate information, motivated by differentiation and integration."
+      ]
+    },
+    {
+      "text": "The quantity of consciousness available to a system can be measured by the Φ value of a complex, where Φ is effective information across the minimum information bipartition.",
+      "short_title": "Φ quantifies conscious capacity",
+      "evidence_excerpts": [
+        "The theory defines Φ as the amount of effective information exchanged across the minimum information bipartition of a complex."
+      ]
+    },
+    {
+      "text": "A complex is a subset of elements with Φ greater than zero that is not included within a larger subset having higher Φ; the main complex is the complex with maximum Φ.",
+      "short_title": "Complexes bound subjectivity",
+      "evidence_excerpts": [
+        "Complexes are identified by evaluating subsets and discarding those included in larger subsets with higher Φ."
+      ]
+    },
+    {
+      "text": "The quality of consciousness is determined by the effective-information relationships among elements of a complex, represented as an effective information matrix or qualia space.",
+      "short_title": "Relations determine quality",
+      "evidence_excerpts": [
+        "Two four-element systems can have the same Φ but different effective information matrices, implying different qualia spaces."
+      ]
+    },
+    {
+      "text": "A particular conscious experience at a given time is specified by the activity values of the variables that mediate informational interactions among all elements of the complex.",
+      "short_title": "Activity specifies experience",
+      "evidence_excerpts": [
+        "The source says the values of variables mediating informational interactions among complex elements specify the particular conscious experience at any given time."
+      ]
+    },
+    {
+      "text": "The thalamocortical system is a plausible neural substrate for human consciousness because its organization combines functional specialization with functional integration and is associated with high Φ.",
+      "short_title": "Thalamocortex maximizes integration",
+      "evidence_excerpts": [
+        "Figure 3 reports a specialized and integrated eight-element network optimized for Φ with Φ = 74 bits, while less specialized or less integrated variants fall to Φ = 20 bits."
+      ]
+    },
+    {
+      "text": "Cerebellar and similarly modular neural architectures can contain many neurons and synapses while contributing little directly to consciousness because their modular organization yields many small low-Φ complexes rather than one large high-Φ complex.",
+      "short_title": "Cerebellar modularity lowers Φ",
+      "evidence_excerpts": [
+        "Figure 4 describes a cerebellum-like organization with three separate complexes of Φ = 20 bits and little interaction among modules."
+      ]
+    },
+    {
+      "text": "Neural inputs, outputs, subcortical centers, and cortico-subcortical loops can modulate or influence conscious contents without directly contributing to consciousness when they remain outside the main high-Φ complex.",
+      "short_title": "Ports influence without belonging",
+      "evidence_excerpts": [
+        "The source explains that incoming and outgoing pathways may participate in larger low-Φ complexes while leaving the main complex and its Φ largely unchanged."
+      ]
+    },
+    {
+      "text": "Dreamless sleep, deep anesthesia, and related unconscious states reduce consciousness by reducing response readiness or response differentiation even when anatomical connectivity and substantial neural activity remain present.",
+      "short_title": "Sleep reduces differentiation",
+      "evidence_excerpts": [
+        "During slow-wave sleep, cortical neurons engage in roughly 1 Hz slow oscillations and model networks enter stereotyped bistable responses rather than differentiated perturbation responses."
+      ]
+    },
+    {
+      "text": "Conscious experience requires time for effective thalamocortical interactions to build, with relevant integration unfolding over tens to hundreds of milliseconds rather than instantaneously.",
+      "short_title": "Experience needs interaction time",
+      "evidence_excerpts": [
+        "The source links conscious perception to 100–200 ms microgenesis, reports stimulation requirements up to 500 ms, and cites model interactions requiring at least about 80 ms."
+      ]
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "evidence-photodiode-camera-contrast--7b3a41d09e2f",
+      "title": "Photodiode And Camera Contrast",
+      "excerpt": "The source contrasts a photodiode, a megapixel camera, and a brain. A camera sensor could differentiate among an immense number of states, but because the photodiodes do not causally interact, the chip can be decomposed into independent elements and no information is integrated among them. Brain elements, by contrast, are mutually causally dependent, and disconnecting the elements underlying consciousness has disastrous effects.",
+      "overview": "This thought experiment is the core formal motivation for identifying consciousness with integrated information rather than sheer state count. It establishes the distinction between many independent bits of information and a unified system whose states matter because they are causally interdependent. Its scope is conceptual rather than empirical: it supports the theory's criterion but does not by itself measure Φ in a biological system.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "0"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "page_refs": [
+        "pp.2-3"
+      ]
+    },
+    {
+      "evidence_id": "evidence-effective-information-equation--2d6c98a40f13",
+      "title": "Effective Information Equation",
+      "excerpt": "For a bipartition of a subset into A and B, the source defines effective information in both directions and writes EI(A↔B) as EI(A→B) + EI(B→A). It states that EI(A→B) is high when connections from A to B are strong and specialized so that different outputs from A induce different firing patterns in B, and low or zero when outputs have scarce or invariant effects.",
+      "overview": "This definition supplies the causal measurement primitive for the theory. It matters because the proposed measure does not merely ask whether two parts are statistically related; it asks how much differentiated causal effect one part can have on the other under maximal perturbation. That makes the later definition of Φ a model constraint on integrated causal capacity, not a generic correlation measure.",
+      "evidence_type": "equation",
+      "claim_refs": [
+        "1",
+        "2"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "page_refs": [
+        "pp.4-5",
+        "Fig.1"
+      ]
+    },
+    {
+      "evidence_id": "evidence-minimum-bipartition-phi--91f0ab6c3d54",
+      "title": "Minimum Bipartition Defines Φ",
+      "excerpt": "The methodological note explains that every subset S is evaluated across all bipartitions, the minimum information bipartition MIB(S) is the bipartition where normalized effective information reaches a minimum, and the corresponding value is Φ(S). Complexes are then subsets with Φ>0 that are not included within a subset having higher Φ, and the complex with the maximum Φ(S) is the main complex.",
+      "overview": "This is the operational rule connecting the theory's phenomenological commitments to a computable quantity. It establishes why Φ is tied to the weakest informational link: if a subset can be decomposed across a low- or zero-information partition, it cannot function as one integrated subject. The rule also explains why the theory treats subject boundaries as emergent from integration rather than anatomical labels.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "1",
+        "2"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "page_refs": [
+        "p.5",
+        "Fig.1"
+      ]
+    },
+    {
+      "evidence_id": "evidence-qualia-space-matrix--c4e19a82b765",
+      "title": "Qualia Space Matrix",
+      "excerpt": "Figure 2 compares a divergent four-element complex and a chain four-element complex. Both contain a complex with Φ = 10, yet their effective information matrices differ. The text states that the matrix specifies informational relationships among elements, defines the relational structure of qualia space, and can make the same activity state correspond to different experiences in different complexes.",
+      "overview": "This figure-result separates quantity from quality. Equal Φ does not imply the same kind of consciousness, because the internal pattern of causal relationships can differ while the total integrated-information capacity remains equal. It supports the theory's account of modality and quale differences, while remaining an idealized four-element demonstration rather than a direct map of human phenomenology.",
+      "evidence_type": "figure_result",
+      "claim_refs": [
+        "3",
+        "4"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "page_refs": [
+        "pp.7-9",
+        "Fig.2"
+      ]
+    },
+    {
+      "evidence_id": "evidence-specialized-integrated-network--a39f6d2710bc",
+      "title": "Specialized Integrated Network Φ",
+      "excerpt": "Figure 3 reports a thalamocortical-like architecture obtained by optimizing information integration. The optimized eight-element network has heterogeneous incoming and outgoing connections and Φ = 74 bits. When the same amount of connectivity is made homogeneous, reducing specialization, Φ falls to 20 bits; when connectivity is rearranged into independent modules, reducing integration, the result is four separate complexes with Φ = 20 bits.",
+      "overview": "This simulation result is the most concrete bridge between the abstract theory and brain architecture. It shows that high Φ depends on the joint presence of specialization and integration, matching the paper's description of thalamocortical organization. The evidence is model-based, so it supports plausibility and mechanism rather than directly measuring human thalamocortical Φ.",
+      "evidence_type": "figure_result",
+      "claim_refs": [
+        "0",
+        "5"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "page_refs": [
+        "pp.10-11",
+        "Fig.3"
+      ]
+    },
+    {
+      "evidence_id": "evidence-cerebellar-modules-low-phi--e081b4c72a9d",
+      "title": "Cerebellar Modules Low Φ",
+      "excerpt": "The source notes that the cerebellum contains more neurons than the cerebral cortex and many synapses, yet lesions or ablations suggest minimal direct contribution to conscious experience. Figure 4a models a cerebellum-like organization as three strongly interconnected modules with minimal connections among modules; the analysis reveals three separate low-Φ complexes, each with Φ = 20 bits.",
+      "overview": "This evidence supports the theory's explanation of why computational power and neuron count are insufficient for consciousness. Modular architectures can execute sophisticated specialized routines while failing to form a large integrated complex. The result also clarifies the theory's practical interpretation: direct conscious contribution depends on causal integration pattern, not anatomical size alone.",
+      "evidence_type": "figure_result",
+      "claim_refs": [
+        "6"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "page_refs": [
+        "pp.10-12",
+        "Fig.4a"
+      ]
+    },
+    {
+      "evidence_id": "evidence-ports-excluded-from-complex--5fa720c93b1e",
+      "title": "Ports Stay Outside Complex",
+      "excerpt": "For incoming sensory pathways, the source states that adding or removing multiple segregated incoming pathways does not change the composition of the main complex and causes little change in Φ; the larger complex including those pathways has low Φ because it is limited by effective information between each afferent pathway and its port-in. A parallel point is made for outgoing pathways and port-out elements.",
+      "overview": "This model constraint explains how unconscious processes can influence conscious contents without being constituents of consciousness. Inputs and outputs can be causally important for what a conscious complex does or receives, yet fail to add dimensions to the experience if they are informationally segregated from the main complex. The scope is boundary-setting: it distinguishes modulation and access from direct phenomenological contribution.",
+      "evidence_type": "model_constraint",
+      "claim_refs": [
+        "7"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "page_refs": [
+        "pp.11-13",
+        "Fig.4c-d"
+      ]
+    },
+    {
+      "evidence_id": "evidence-slow-wave-bistability--d6b10ea7c542",
+      "title": "Slow-Wave Bistability Lowers Φ",
+      "excerpt": "During slow-wave sleep, the source reports that cortical neurons engage in slow oscillations around 1 Hz with depolarized and hyperpolarized phases. It argues that reduced readiness to respond during hyperpolarization reduces consciousness. It also reports simulations in which waking-mode thalamocortical perturbations yield specific responses, whereas sleep-mode networks become bistable and different perturbations are quickly washed out into stereotyped depolarized or hyperpolarized phases.",
+      "overview": "This evidence connects altered consciousness to dynamics rather than anatomy. The same connectivity can support different levels of consciousness when physiological parameters alter whether perturbations produce differentiated causal effects. The point is especially important for sleep, anesthesia, and seizures: neural activity can remain substantial, but low differentiation and low response readiness can still reduce integrated information.",
+      "evidence_type": "observational_result",
+      "claim_refs": [
+        "8"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "page_refs": [
+        "pp.16-17"
+      ]
+    },
+    {
+      "evidence_id": "evidence-thalamocortical-interaction-time--84f2a91d0c6b",
+      "title": "Thalamocortical Interaction Time",
+      "excerpt": "The source says conscious sensory experience can take 100–200 milliseconds to develop, low-intensity cortical stimulation may need up to 500 milliseconds to produce a conscious sensation, and visual cortical firing predicts conscious detection after about 80–100 milliseconds. In a model with nine segregated visual areas, functionally specialized neurons in several areas required at least 80 milliseconds to interact constructively and produce a specific correlated firing pattern.",
+      "overview": "This evidence gives a temporal constraint on information integration. It supports the claim that consciousness is not tied to the first local response to a stimulus but to the later period when effective interactions among distributed cortical elements can build. The evidence combines psychophysics, stimulation, recordings, and large-scale modeling, so it is stronger as converging timing support than as a single direct measurement of Φ.",
+      "evidence_type": "model_constraint",
+      "claim_refs": [
+        "9"
+      ],
+      "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+      "page_refs": [
+        "pp.17-18"
+      ]
+    }
+  ],
+  "relations": [],
+  "summary": "Giulio Tononi's source proposes that consciousness is integrated information: a system is conscious to the extent that it has a large differentiated repertoire that cannot be decomposed into independent parts. It defines Φ through effective information across a minimum information bipartition, uses complexes to identify subject boundaries, and links the quality of experience to the effective-information structure among elements. The theory is applied to thalamocortical organization, cerebellar modularity, unconscious inputs and outputs, sleep, anesthesia, and temporal requirements for conscious perception.",
+  "warnings": [
+    "The source record supplied date=null, but the extracted source markdown reports Published: 02 November 2004; source_date_inference uses the markdown date.",
+    "Evidence items rely on usable pdftotext extraction; original PDF layout was not re-read because extraction metadata reported quality_status=usable and no warnings.",
+    "Relations are left empty because no relation schema was provided and strict source-grounded claim references are safer than unconstrained relation objects."
+  ],
+  "source_dossier": {
+    "summary_short": "Tononi's article develops an information integration theory of consciousness. It defines Φ as integrated causal information, links conscious quality to effective-information structure, and applies the theory to thalamocortex, cerebellum, sleep, anesthesia, and perceptual timing.",
+    "summary_long": "This source proposes a theory that treats consciousness as a fundamental property of systems capable of integrating information. Tononi begins from two phenomenological observations: conscious experience is highly differentiated, because any one experience rules out a vast repertoire of alternatives, and it is integrated, because each experience is unified and cannot be decomposed into independently experienced fragments. The paper argues that ordinary information measures are insufficient because they count state repertoires without asking whether the states belong to a single causally integrated system. A camera sensor can have an enormous number of possible states while still being only a collection of independent photodiodes; a conscious brain, by contrast, depends on causal interactions among its elements. The proposed measure, Φ, is the amount of effective information available across a complex's minimum information bipartition. A complex is not simply an anatomical region; it is a subset whose elements can integrate information and that is not contained in a larger subset with higher Φ. This lets the theory define both quantity and boundaries of consciousness. The source then extends the framework from quantity to quality: the kind of consciousness a complex has depends on the effective-information matrix among its elements, which defines a relational qualia space. Current activity values of the interaction-mediating variables specify the particular experience at a given moment. The application to neuroscience is central. The thalamocortical system is treated as a plausible substrate because it combines functional specialization with broad reciprocal integration. By contrast, the cerebellum, sensory afferents, motor outputs, subcortical modulatory systems, and cortico-subcortical loops can be powerful or sophisticated without directly joining the main conscious complex when they remain modular, feed-forward, or low-Φ. Sleep and anesthesia show that anatomy is not enough: physiological readiness and differentiated responses are also required. The source's practical interpretation is that consciousness can in principle be graded, measured, and assessed in animals, infants, artifacts, and non-reporting patients, but such measurement depends on difficult approximations of causal integration rather than surface behavior alone.",
+    "sections": [
+      {
+        "heading": "Phenomenological Starting Point",
+        "body": "The argument begins with the structure of experience rather than with a particular brain area. Conscious states are informative because each one rules out many alternatives, and they are integrated because the experienced scene is not available as independent fragments. This dual constraint motivates the identification of consciousness with integrated information rather than raw state capacity.",
+        "grounding_claim_ids": [
+          "0"
+        ]
+      },
+      {
+        "heading": "Measurement Through Φ",
+        "body": "The source turns the phenomenological claim into a proposed measurement framework. Effective information evaluates causal effects across a bipartition, Φ is tied to the weakest normalized bipartition of a subset, and complexes are the subsets that retain positive integration without being merely parts of larger higher-Φ wholes. This makes the theory a boundary rule as well as a quantity rule.",
+        "grounding_claim_ids": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "heading": "Quality As Relational Structure",
+        "body": "Tononi distinguishes how much consciousness exists from what kind of consciousness exists. Two complexes may have the same Φ while differing in their effective-information matrices, and those relationship patterns define different qualia spaces. The present activity state of all elements in the complex then selects a point or trajectory within that space.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ]
+      },
+      {
+        "heading": "Thalamocortical Fit",
+        "body": "The theory fits thalamocortical organization because cortical systems are both specialized and reciprocally connected. Simulated networks optimized for Φ show high integration when heterogeneity and reachability coexist, while homogeneous or modular rewiring sharply lowers Φ. This supports the source's claim that human consciousness is distributed rather than localized in a single cortical convergence point.",
+        "grounding_claim_ids": [
+          "5"
+        ]
+      },
+      {
+        "heading": "Why Size Is Insufficient",
+        "body": "The cerebellum provides the central contrast case. It has many neurons, synapses, inputs, and outputs, yet its modular organization suggests many smaller low-Φ complexes rather than one large high-Φ subject. The theory therefore treats computational sophistication, neuron count, and behavioral importance as insufficient for direct conscious contribution.",
+        "grounding_claim_ids": [
+          "6"
+        ]
+      },
+      {
+        "heading": "Inputs And Outputs",
+        "body": "The source repeatedly separates causal influence from conscious membership. Sensory pathways, motor pathways, reticular modulation, and cortico-subcortical loops can shape, enable, or express conscious contents while remaining outside the main complex. This explains how unconscious processes can affect conscious life without themselves adding experiential dimensions.",
+        "grounding_claim_ids": [
+          "7"
+        ]
+      },
+      {
+        "heading": "State And Time Limits",
+        "body": "Sleep, anesthesia, and perceptual timing show that appropriate anatomy must be paired with suitable dynamics. Slow-wave bistability can wash out differentiated responses, reducing Φ even when neurons remain active. Conversely, conscious perception requires enough time for distributed cortical interactions to become effective, usually over tens to hundreds of milliseconds.",
+        "grounding_claim_ids": [
+          "8",
+          "9"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de",
+    "claim-the-largest-random-circuits-combined-53-qubits-1-113-single-qubit-gates-430-two--c8ece98aae87",
+    "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279"
+  ],
+  "evidence_id": "evidence-large-circuit-fidelity-model--d1ef9253a8c6",
+  "evidence_type": "model_constraint",
+  "excerpt": "The largest random circuits have 53 qubits, 1,113 single-qubit gates, 430 two-qubit gates, and a measurement on each qubit, for which the authors predict total fidelity of 0.2%.",
+  "overview": "This model constraint links component-level calibration to whole-circuit behavior. It shows that the expected fidelity is small but measurable with millions of samples, and it frames the later elided-circuit result as a test of whether independent local errors remain predictive at full scale.",
+  "page_refs": [
+    "p.507"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "title": "Largest Circuit Fidelity Model"
+}

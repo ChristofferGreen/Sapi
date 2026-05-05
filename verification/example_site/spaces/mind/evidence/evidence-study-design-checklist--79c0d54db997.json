@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+    "claim-clinical-evidence-remains-preliminary--117717456958",
+    "claim-research-needs-prescriptive-reform--79c0d54db997"
+  ],
+  "evidence_id": "evidence-study-design-checklist--79c0d54db997",
+  "evidence_type": "formal_argument",
+  "excerpt": "Table 3 lists study design features for a mindfulness-based intervention: teacher information, practice information, physical and social settings, overall duration, meeting frequency and length, types and percentages of formal practice, informal practice, logs, instructional materials, instructor adherence, control group use, randomization/allocation method, adverse events monitored, inclusion/exclusion criteria, prior meditation experience, and conflicts of interest.",
+  "overview": "The checklist is a prescriptive artifact rather than an outcome result. It concretely specifies the reporting and design details needed to make mindfulness studies interpretable, comparable, and safer, especially when different interventions share the same umbrella label.",
+  "page_refs": [
+    "Table 3",
+    "p. 42"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Mindfulness Study Design Checklist"
+}

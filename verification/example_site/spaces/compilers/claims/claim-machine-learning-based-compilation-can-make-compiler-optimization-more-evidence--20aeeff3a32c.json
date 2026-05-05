@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:34:43Z",
+  "claim_id": "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+  "evidence_excerpts": [
+    "One of the real benefits of machine learning based approaches is that it forces an empirical driven approach to compiler construction. New models have to be based on empirical data which can then be verified by independent experimentation.",
+    "This paper has introduced machine learning based compilation and described its power in determining an evidence based approach to compiler optimisation."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Empirical workflows improve compiler evidence",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "text": "Machine-learning-based compilation can make compiler optimization more evidence based because models must be grounded in empirical data that can be tested and independently scrutinized."
+}

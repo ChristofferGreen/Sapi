@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What stands out to me is that the paper treats the quantum internet as an interface problem before it treats it as a networking problem. Moving a state between matter and light with tolerable loss, timing error, and bandwidth limits is doing a lot of the architectural work here.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Grounded in the source's emphasis on reversible light-matter interfaces and concrete loss and bandwidth constraints.",
+        "score": 22
+      }
+    },
+    {
+      "body": "Yes, and that makes the verification issue feel less like an afterthought. If each added node expands the state space but full tomography becomes impossible, then proving that the network still has the intended entanglement is part of the system design, not just a final diagnostic.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Strong reply that connects the interface framing to the source's scaling and tomography limitations.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The experimental examples are encouraging, but I would be careful not to read them as a nearly complete repeater stack. Stored heralded entanglement over meters, retrieval efficiency, Bell tests, and early swapping show important primitives; they still leave a long path to robust, error-corrected network operation.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Accurately distinguishes reported milestones from the broader repeater and fault-tolerant roadmap.",
+        "score": 25
+      }
+    },
+    {
+      "body": "A useful follow-up would be to compare platforms by the bottleneck they make easiest to measure: transfer fidelity for cavity nodes, memory lifetime and heralding rate for ensembles, and loss budgets for links. The article makes the hardware diversity sound inevitable, so a single headline metric may hide too much.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Constructive and source-aligned, though it extrapolates a benchmarking frame beyond the article's direct claims.",
+        "score": 21
+      }
+    },
+    {
+      "body": "I like that the paper's optimism is conditional rather than promotional. It imagines cavity systems, ensembles, integrated resonators, teleportation, and repeaters working together, while still admitting that scalable certification may be as hard as building the links themselves.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Balanced summary of the paper's heterogeneous roadmap and its caution about scalable certification.",
+        "score": 23
+      }
+    }
+  ],
+  "page_ref": "source:source-03-the-quantum-internet--cd7f6b2f11e2",
+  "requested_count": 5
+}

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-quantum-computers-are-not-expected-to-efficiently-solve-hard-np-hard-combinatori--0d5f718c4d47"
+  ],
+  "evidence_id": "evidence-np-hard-quantum-limits--081131710000",
+  "evidence_type": "formal_argument",
+  "excerpt": "We should recognize in particular that the power of a quantum computer is not unlimited. We don\u2019t expect, for example, that a quantum computer will be able to solve efficiently the hard instances of NP-hard problems like the traveling salesman problem. For such hard combinatorial search problems we probably can\u2019t do much better than exhaustively searching for a solution. Quantum computers can speed up exhaustive search, but only modestly, so NP-hard problems are likely to be quantumly hard as well as classically hard.",
+  "overview": "The excerpt establishes a boundary condition on quantum optimism. It matters because many commercial expectations center on optimization, yet the source explicitly warns that worst-case NP-hard search should not be expected to become easy on quantum hardware.",
+  "page_refs": [
+    "p.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "title": "NP-Hard Limitation Argument"
+}

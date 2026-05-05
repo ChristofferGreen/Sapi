@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-proposed-compiler-is-computationally-efficient-because-distributing-a-circui--b9f318c6234c",
+  "dst_claim_ref": "8",
+  "last_evaluated_run_id": null,
+  "rationale": "The data-qubit-swapping theorem contributes to the compiler's polynomial effectiveness and complexity profile.",
+  "relation_file_id": "rel-6486c825920aa0036dd740b1cf65adc723d01de83d27dae8164bc98b59bbcad3",
+  "relation_id": "derived_from:claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172->claim-the-proposed-compiler-is-computationally-efficient-because-distributing-a-circui--b9f318c6234c",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172",
+  "src_claim_ref": "7",
+  "status": "open"
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-a-regular-grid-of-environment-tiles-can-support-both-collision-behavior-and-shad--202b441327e8",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "The shadow projection method depends on the same grid-supported environment information used for shadowing decisions.",
+  "relation_file_id": "rel-8ece80acf161d5e05e7f531498337a83a7d5847cec955b1d875293b962cead5a",
+  "relation_id": "derived_from:claim-the-same-image-database-used-for-impostors-can-project-posture-consistent-human--625367fc5d02->claim-a-regular-grid-of-environment-tiles-can-support-both-collision-behavior-and-shad--202b441327e8",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-the-same-image-database-used-for-impostors-can-project-posture-consistent-human--625367fc5d02",
+  "src_claim_ref": "6",
+  "status": "open"
+}

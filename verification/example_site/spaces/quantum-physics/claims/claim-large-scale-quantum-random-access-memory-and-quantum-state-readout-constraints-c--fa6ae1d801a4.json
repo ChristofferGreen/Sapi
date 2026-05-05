@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:29:01Z",
+  "claim_id": "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4",
+  "evidence_excerpts": [
+    "Loading large classical data sets can require exponential time without qRAM, and reading full solution vectors or principal components can be exponentially hard."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Input output bottlenecks dominate",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "text": "Large-scale quantum random access memory and quantum-state readout constraints can erase practical advantages for many linear-algebra-based quantum machine learning algorithms on classical data."
+}

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-effective-concentration-calibration-guides-thresholds--367a566abb69"
+  ],
+  "evidence_id": "evidence-threshold-calibration-values--7ad8ad2fba3bd",
+  "evidence_type": "measurement",
+  "excerpt": "Using b/a = 1.4, we chose a nominal threshold of 0.35x and 0.85x for two-input OR and AND gate, respectively, and 0.4x and 1.6x for three-input OR and AND gate. Experiments of the logic gates showed desired behaviours.",
+  "overview": "These numerical threshold choices are a concrete calibration artifact. They show how unpurified threshold and signal concentrations are not assumed ideal but are measured and folded into gate design. The values directly support the paper\u2019s claim that systematic calibration can recover desired OR and AND behavior, although they remain tied to the strands, provider, procedure, and batch conditions used in the study.",
+  "page_refs": [
+    "Fig.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "title": "Threshold Calibration Values"
+}

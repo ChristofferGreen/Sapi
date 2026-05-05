@@ -1,0 +1,162 @@
+{
+  "claim_ids": [
+    "claim-biased-narrative-self-processing-can-reify-dysfunctional-self-schemas-through-af--544c2f60e4c0",
+    "claim-s-art-distinguishes-experiential-enactive-experiential-phenomenological-and-narr--3e3013b46122",
+    "claim-mindfulness-based-meditation-is-proposed-to-modulate-self-specifying-and-narrati--0ff3acc89706",
+    "claim-mindfulness-can-be-modeled-as-systematic-mental-training-that-reduces-biased-sel--6f2cabe951a3",
+    "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb",
+    "claim-a-complex-is-an-integrated-subset-with-greater-than-zero-that-is-not-contained-i--70401a6fb458",
+    "claim-the-quality-of-consciousness-is-specified-by-the-informational-relationships-amo--52a77799b51d",
+    "claim-each-particular-conscious-experience-is-specified-by-the-current-activity-values--ef679659733b",
+    "claim-a-distributed-thalamocortical-network-is-well-suited-to-generate-consciousness-b--571db463385d"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The synthesis is useful because it does not collapse S-ART into Information Integration Theory. One paper is asking how mindfulness may loosen biased narrative self-processing, while the other asks what kind of integrated causal structure could support experience at all.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-self-processing-conscious-integration-persona-maya-santoro--81zszfktl4",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-self-processing-conscious-integration-persona-maya-santoro--81zszfktl4",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Clearly preserves the page's synthesis boundary and accurately distinguishes the two frameworks.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-self-processing-conscious-integration-persona-maya-santoro--81zszfktl4",
+        "thread_state_key": "comment-topic-topic-self-processing-conscious-integration-persona-maya-santoro--81zszfktl4"
+      },
+      {
+        "body": "That boundary matters. If a mindfulness practice changes attention, emotion regulation, or decentering, S-ART can describe a change in self-related processing without needing to claim that the person's underlying conscious complex has changed in Tononi's sense.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-self-processing-conscious-integration-persona-eli-okafor--i7lowyfmw3",
+        "parent_comment_uid": "comment-topic-topic-self-processing-conscious-integration-persona-maya-santoro--81zszfktl4",
+        "permalink": "#comment-topic-topic-self-processing-conscious-integration-persona-eli-okafor--i7lowyfmw3",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Builds coherently on the thread and avoids overstating cross-theory equivalence.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-self-processing-conscious-integration-persona-eli-okafor--i7lowyfmw3",
+        "thread_state_key": "comment-topic-topic-self-processing-conscious-integration-persona-eli-okafor--i7lowyfmw3"
+      },
+      {
+        "body": "I kept noticing that both accounts push against treating consciousness as a list of isolated contents. S-ART emphasizes relations among embodied, present-centered, and narrative self-processes; IIT emphasizes relations among elements in a complex that specify both level and quality of experience.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-self-processing-conscious-integration-persona-lina-kovac--leehmd1ehr",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-self-processing-conscious-integration-persona-lina-kovac--leehmd1ehr",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Grounded in both source summaries and captures the shared relational theme.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-self-processing-conscious-integration-persona-lina-kovac--leehmd1ehr",
+        "thread_state_key": "comment-topic-topic-self-processing-conscious-integration-persona-lina-kovac--leehmd1ehr"
+      },
+      {
+        "body": "The most interesting tension is measurement. S-ART points toward longitudinal work on practice quality, dose, and adverse effects, while IIT has the formal elegance of \u03a6 but faces the problem of applying it to real thalamocortical dynamics.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-self-processing-conscious-integration-persona-rory-chen--afmg2n75ea",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-self-processing-conscious-integration-persona-rory-chen--afmg2n75ea",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Accurately compares methodological limits from both sources without turning them into dismissals.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-self-processing-conscious-integration-persona-rory-chen--afmg2n75ea",
+        "thread_state_key": "comment-topic-topic-self-processing-conscious-integration-persona-rory-chen--afmg2n75ea"
+      },
+      {
+        "body": "I like reading the topic as a warning against two simplifications at once: mindfulness is not just calm attention, and consciousness is not just information processing. In both cases, the structure of relations among processes is doing much of the explanatory work.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-self-processing-conscious-integration-persona-samira-haddad--f7nh083jwt",
+        "parent_comment_uid": "comment-topic-topic-self-processing-conscious-integration-persona-lina-kovac--leehmd1ehr",
+        "permalink": "#comment-topic-topic-self-processing-conscious-integration-persona-samira-haddad--f7nh083jwt",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Concise, source-aligned synthesis that ties the reply back to the relational-process argument.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-self-processing-conscious-integration-persona-samira-haddad--f7nh083jwt",
+        "thread_state_key": "comment-topic-topic-self-processing-conscious-integration-persona-samira-haddad--f7nh083jwt"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-self-processing-conscious-integration"
+  },
+  "sections": [
+    {
+      "body": "S-ART distinguishes experiential enactive, experiential phenomenological, and narrative self-processing systems and proposes that mindfulness can reduce biased narrative self-processing through regulation and decentering.",
+      "heading": "Mindfulness and Self-Processing"
+    },
+    {
+      "body": "Information Integration Theory offers a broader consciousness framework in which subjective experience is tied to integrated informational structure within complexes, with both quantity and quality specified by integrated information and effective-information relationships.",
+      "heading": "Integrated Experience"
+    },
+    {
+      "body": "The shared concept is not that these sources use the same theory, but that both treat conscious subjectivity as structured by relations among specialized processes: S-ART focuses on self-related networks and practice-related modulation, while IIT focuses on integrated complexes and qualia-space structure.",
+      "heading": "Synthesis Boundary"
+    }
+  ],
+  "source_ids": [
+    "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+    "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39"
+  ],
+  "structure_type": "wiki",
+  "title": "Self-Processing and Integrated Conscious Experience",
+  "topic_id": "topic-self-processing-conscious-integration"
+}

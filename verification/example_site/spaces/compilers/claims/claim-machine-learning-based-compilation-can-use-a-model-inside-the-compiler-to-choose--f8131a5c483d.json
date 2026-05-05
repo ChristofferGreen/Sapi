@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:34:43Z",
+  "claim_id": "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+  "evidence_excerpts": [
+    "Given a program, compiler writers would like to know what compiler heuristic or optimisation to apply in order to make the code better. Better often means execute faster, but can also mean smaller code footprint or reduced power. Machine learning can be used to build a model used within the compiler, that makes such decisions for any given program."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Learning guides compiler choices",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "text": "Machine-learning-based compilation can use a model inside the compiler to choose compiler heuristics or optimizations for a given program according to learned evidence about what makes code faster, smaller, or less power hungry."
+}

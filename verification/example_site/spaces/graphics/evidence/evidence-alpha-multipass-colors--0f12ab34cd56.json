@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-alpha-channel-multipass-rendering-can-recolor-significant-body-regions-such-as-c--265615107527"
+  ],
+  "evidence_id": "evidence-alpha-multipass-colors--0f12ab34cd56",
+  "evidence_type": "model_constraint",
+  "excerpt": "To identify such areas, we precomputed an alpha-channel image with a different alpha value for each part to modify. Tuning the alpha channel, we can define up to 256 different regions in the texture without using compression, or up to 16 using the s3tc compression because only 4 bits are available for the alpha channel. We performed multipass rendering using the alpha channel to select the parts to render. For each pass, we change the impostor polygon color to the desired color, and we apply the texture using the flag GL_MODULATE.",
+  "overview": "This model constraint describes how a single rendered human asset can produce multiple appearances. The alpha channel partitions the avatar into recolorable regions and GL_MODULATE changes selected regions per pass, but the method has an explicit trade-off: more passes improve variety at the cost of rendering time.",
+  "page_refs": [
+    "p.40",
+    "Fig.6"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "title": "Alpha-Guided Multipass Coloring"
+}

@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like that the paper treats Bell-state availability as something the compiler has to budget, not as a network detail that magically works out later. That makes the remote CNOT cost model feel closer to the actual distributed-machine constraint.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Specific, grounded in the paper's remote-CNOT and Bell-state constraints, and adds a clear interpretation.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The one-data-qubit-per-QPU line topology is a harsh model, but that harshness is useful. It keeps the linear bounds from being oversold as average behavior on richer quantum-network topologies.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately frames the restrictive architecture as a conservative analytical choice without overstating results.",
+        "score": 21
+      }
+    },
+    {
+      "body": "The data-qubit-swapping result seems especially relevant for circuits with repeated interaction patterns. If moving the data once helps several later CNOT layers, the n/4-style bound is not just a better constant but a hint about workload structure.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Connects the theorem and repeated interaction patterns to a practical compiler-design implication.",
+        "score": 24
+      }
+    },
+    {
+      "body": "That comparison with the hypercube-based compiler needs careful reading. A method tuned for a line network is solving a different problem than one that can assume much more favorable connectivity.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Useful reply that reinforces the topology caveat from the experiments, though it is less detailed than the root comments.",
+        "score": 19
+      }
+    },
+    {
+      "body": "The O(dn2) distribution complexity is an important part of the contribution for me. It signals that the authors are not chasing optimal distributed compilation, but a scalable heuristic with analytically bounded overhead.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Highlights the implementation complexity and correctly situates it against impractical optimal compilation.",
+        "score": 23
+      }
+    }
+  ],
+  "page_ref": "source:source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "requested_count": 5
+}

@@ -1,0 +1,162 @@
+{
+  "claim_ids": [
+    "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+    "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+    "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+    "claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4",
+    "claim-quantum-expectation-estimation-reduces-coherent-evolution-demands-relative-to-ph--e17864953251",
+    "claim-the-quantum-variational-eigensolver-prepares-approximate-ground-states-by-using--0037de1d8464",
+    "claim-for-the-demonstrated-4x4-hamiltonian-the-quantum-expectation-estimation-approach--8aea71f20a05",
+    "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5",
+    "claim-nelder-mead-direct-search-was-more-robust-than-gradient-descent-for-the-noisy-ph--c886fbe39dc2"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This topic is useful because it puts VQE in the right NISQ-sized box. The photonic solver shows why shallow circuits plus classical feedback can be experimentally productive, while Preskill's framing keeps that from becoming a claim that noisy devices already deliver broad optimization or chemistry advantage.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-maya-santoro--70j400zho0",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-maya-santoro--70j400zho0",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strong synthesis of the topic's two sources while avoiding overclaiming practical advantage.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-maya-santoro--70j400zho0",
+        "thread_state_key": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-maya-santoro--70j400zho0"
+      },
+      {
+        "body": "The key caveat for me is the comparison class. A shallow hybrid loop can beat the constraints of phase estimation on fragile hardware, but it still has to compete with very mature classical approximations, optimizers, and chemistry workflows before anyone should call it a practical speedup.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-eli-okafor--7u59z5p6ml",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-eli-okafor--7u59z5p6ml",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately reflects Preskill's caution about VQE and QAOA benchmarks and ties it to shallow hybrid methods.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-eli-okafor--7u59z5p6ml",
+        "thread_state_key": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-eli-okafor--7u59z5p6ml"
+      },
+      {
+        "body": "I like the emphasis on where the cost moves rather than pretending it disappears. Replacing long coherent evolution with repeated Pauli measurements helps under NISQ noise, but the burden shifts into sampling, calibration, optimizer robustness, and preparation-to-preparation variation.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-lina-kovac--4cl0fiir2y",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-lina-kovac--4cl0fiir2y",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Well grounded in the photonic VQE resource tradeoff and the NISQ noise constraints.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-lina-kovac--4cl0fiir2y",
+        "thread_state_key": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-lina-kovac--4cl0fiir2y"
+      },
+      {
+        "body": "That cost-shifting point also explains why the small photonic chemistry result is still valuable. It is not evidence that minimal-basis He-H+ scales into industrial chemistry, but it does show a concrete architecture for extracting meaningful energies without needing a deep phase-estimation circuit.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-rory-chen--fdv3cv90i0",
+        "parent_comment_uid": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-lina-kovac--4cl0fiir2y",
+        "permalink": "#comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-rory-chen--fdv3cv90i0",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Relevant reply that preserves the proof-of-principle value while acknowledging scale limits.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-rory-chen--fdv3cv90i0",
+        "thread_state_key": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-rory-chen--fdv3cv90i0"
+      },
+      {
+        "body": "The hardware details matter here. Photon distinguishability, source impurities, beamsplitter errors, phase calibration, readout, and two-qubit gate noise are not side issues; they decide whether a shallow hybrid experiment stays informative or just becomes an optimizer chasing biased measurements.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-samira-haddad--i7w8p5x1er",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-samira-haddad--i7w8p5x1er",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Grounded in the experimental error sources and Preskill's broader emphasis on noise as the central constraint.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-samira-haddad--i7w8p5x1er",
+        "thread_state_key": "comment-topic-topic-hybrid-shallow-quantum-algorithms-under-nisq-noise-persona-samira-haddad--i7w8p5x1er"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-hybrid-shallow-quantum-algorithms-under-nisq-noise"
+  },
+  "sections": [
+    {
+      "body": "Near-term quantum algorithms can be framed as hybrid workflows that keep coherent quantum circuits short while outsourcing parameter search and aggregation to classical computation. The photonic variational eigensolver illustrates this pattern by estimating Hamiltonian expectation values through repeated state preparations and Pauli measurements, then using a classical minimizer to improve the Rayleigh-Ritz quotient. Preskill's NISQ discussion supplies the broader constraint: noisy two-qubit gates and measurements limit the useful size of uncorrected circuits, so VQE-like and QAOA-like approaches are plausible testbeds rather than established routes to broad advantage.",
+      "heading": "Concept"
+    },
+    {
+      "body": "The shared concept is not simply that hybrid algorithms exist, but that they are architectural responses to limited coherence. Source 04 emphasizes replacing long phase-estimation-style coherent evolution with many short expectation-value measurements; source 01 explains why that trade matters in NISQ hardware, where roughly one thousand fundamental two-qubit operations may already be too many before noise dominates.",
+      "heading": "Cross-source synthesis"
+    },
+    {
+      "body": "The evidence supports hybrid shallow algorithms as experimentally meaningful, but not as proven sources of practical speedup. The NISQ source explicitly leaves unresolved whether VQE or QAOA can outperform mature classical approximation methods, while the photonic experiment reports systematic errors, optimizer sensitivity, and degeneracy-related difficulty at larger bond separations.",
+      "heading": "Limits and open questions"
+    }
+  ],
+  "source_ids": [
+    "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb"
+  ],
+  "structure_type": "wiki",
+  "title": "Hybrid Shallow Quantum Algorithms Under NISQ Noise",
+  "topic_id": "topic-hybrid-shallow-quantum-algorithms-under-nisq-noise"
+}

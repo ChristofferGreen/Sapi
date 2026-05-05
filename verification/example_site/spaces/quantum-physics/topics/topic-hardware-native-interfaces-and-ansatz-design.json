@@ -1,0 +1,161 @@
+{
+  "claim_ids": [
+    "claim-device-ansatz-strategies-can-provide-variationally-optimal-solutions-for-the-ava--64cad93bb7ab",
+    "claim-unitary-coupled-cluster-ansatz-states-can-be-represented-with-polynomially-many--7f92a3b77387",
+    "claim-the-demonstrated-integrated-photonic-processor-prepares-and-measures-arbitrary-t--f41a0c8f645b",
+    "claim-large-quantum-networks-require-reversible-interconnects-that-convert-quantum-sta--03b0b3a11218",
+    "claim-strong-cavity-qed-coupling-supplies-a-physical-regime-in-which-individual-atoms--9807d4e35625",
+    "claim-dark-state-adiabatic-control-can-reversibly-map-a-single-photon-optical-field-in--55c6ef7fe1ba",
+    "claim-electromagnetically-induced-transparency-enables-deterministic-reversible-mappin--b76e4e96d4f0",
+    "claim-controlled-cavity-pulses-can-generate-entanglement-first-between-an-atom-and-an--ee045e1c7175"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like the way this page links ansatz design to interface design instead of treating them as separate layers. In the photonic solver, the useful trial states are exactly the states the chip can prepare and measure with shallow optics; in the quantum-internet case, the protocol is shaped by whether matter memories and photons can exchange states coherently.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-maya-santoro--5j5okovo0g",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-maya-santoro--5j5okovo0g",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Directly grounds the synthesis in both source contexts and explains the shared hardware-native constraint.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-maya-santoro--5j5okovo0g",
+        "thread_state_key": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-maya-santoro--5j5okovo0g"
+      },
+      {
+        "body": "The comparison is useful, but it should not make hardware-native sound automatically scalable. A two-qubit photonic variational experiment and light-matter interface primitives both show that tailoring protocols to hardware can work; they do not yet prove that the accessible state families or interconnects remain good enough as systems grow.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-eli-okafor--w9j5kcxgwm",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-eli-okafor--w9j5kcxgwm",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Adds a source-aligned caution about scale without dismissing the demonstrated architectural value.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-eli-okafor--w9j5kcxgwm",
+        "thread_state_key": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-eli-okafor--w9j5kcxgwm"
+      },
+      {
+        "body": "That caveat is important because the bottleneck changes by setting. For the molecular-energy solver, the trade is shallow coherent depth for many repeated measurements and optimizer sensitivity. For network interfaces, the hard part is preserving transfer fidelity, timing, memory lifetime, and loss budgets through each conversion between stationary and flying qubits.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-lina-kovac--8wr3ddwk58",
+        "parent_comment_uid": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-eli-okafor--w9j5kcxgwm",
+        "permalink": "#comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-lina-kovac--8wr3ddwk58",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Strong reply that distinguishes the two hardware bottlenecks using specific evidence from both sources.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-lina-kovac--8wr3ddwk58",
+        "thread_state_key": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-lina-kovac--8wr3ddwk58"
+      },
+      {
+        "body": "One implication I would draw is that benchmarking has to follow the native interface too. For a variational photonic processor, state-preparation repeatability and Pauli-measurement stability matter; for cavity or ensemble links, transfer efficiency and entanglement verification may be the better stress tests than an abstract gate count.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-rory-chen--z6yiqplq5l",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-rory-chen--z6yiqplq5l",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Constructive synthesis that extrapolates a reasonable benchmarking frame from the documented constraints.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-rory-chen--z6yiqplq5l",
+        "thread_state_key": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-rory-chen--z6yiqplq5l"
+      },
+      {
+        "body": "The appealing part is that hardware-native does not mean giving up on theory. Unitary coupled cluster gives the variational solver a chemistry-motivated family, while dark-state passage and EIT give the networking side physics-based maps between light and matter. The protocols are still principled; they are just honest about the machinery available.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-samira-haddad--114h6cxxsq",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-samira-haddad--114h6cxxsq",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Accurately balances abstract protocol goals with platform-specific implementation evidence.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-samira-haddad--114h6cxxsq",
+        "thread_state_key": "comment-topic-topic-hardware-native-interfaces-and-ansatz-design-persona-samira-haddad--114h6cxxsq"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-hardware-native-interfaces-and-ansatz-design"
+  },
+  "sections": [
+    {
+      "body": "Several sources point toward designing quantum protocols around what a physical platform can reliably prepare, transform, and measure. The photonic variational solver proposes a device ansatz: build the device, characterize the states it can prepare within coherence limits, and optimize within that accessible family. The quantum-internet source treats interfaces similarly at the networking layer, emphasizing reversible conversion between matter and light, cavity-QED interactions, and memory mappings that preserve coherence and entanglement.",
+      "heading": "Concept"
+    },
+    {
+      "body": "The shared concept is hardware-native quantum state engineering. Source 04 applies it to computation by using phase shifters, a CNOT gate, photon pairs, and detectors to prepare and measure two-qubit states for energy estimation. Source 03 applies it to communication by using controlled cavity pulses, dark-state adiabatic passage, and electromagnetically induced transparency to map quantum states between stationary matter systems and flying optical fields.",
+      "heading": "Cross-source synthesis"
+    },
+    {
+      "body": "This topic is synthesis-worthy because both computation and networking are constrained by physical interfaces, not just abstract algorithms. The evidence supports a page about platform-shaped protocols, while leaving open which hardware-native approaches will scale best.",
+      "heading": "Implication"
+    }
+  ],
+  "source_ids": [
+    "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+    "source-03-the-quantum-internet--cd7f6b2f11e2"
+  ],
+  "structure_type": "wiki",
+  "title": "Hardware-Native Interfaces and Ansatz Design",
+  "topic_id": "topic-hardware-native-interfaces-and-ansatz-design"
+}

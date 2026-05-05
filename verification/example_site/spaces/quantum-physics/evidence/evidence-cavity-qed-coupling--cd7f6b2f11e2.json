@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-strong-cavity-qed-coupling-supplies-a-physical-regime-in-which-individual-atoms--9807d4e35625"
+  ],
+  "evidence_id": "evidence-cavity-qed-coupling--cd7f6b2f11e2",
+  "evidence_type": "equation",
+  "excerpt": "The coupling frequency for one atom to a single resonator mode is g = sqrt(|\u03b5\u00b7\u03bc0|\u00b2\u03c9C/(2\u210f\u03b50Vm)). Experiments in cavity QED explore strong coupling with g > (\u03b3, \u03ba); the saturation photon number is n0 \u223c \u03b3\u00b2/g\u00b2 and the critical atom number is N0 \u223c \u03ba\u03b3/g\u00b2, so strong coupling explores (n0, N0) << 1.",
+  "overview": "These equations define the physical threshold behind the cavity-QED route to network nodes. They show why small mode volume, high quality factor, and low loss are not incidental engineering details but determine whether single photons and single atoms can coherently control one another.",
+  "page_refs": [
+    "Eq. 1",
+    "Fig. 2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "title": "Cavity-QED Coupling Conditions"
+}

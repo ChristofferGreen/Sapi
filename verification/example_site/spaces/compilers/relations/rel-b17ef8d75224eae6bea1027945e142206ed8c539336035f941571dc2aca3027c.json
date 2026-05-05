@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Weighted execution counts provide the runtime information that lets the compiler focus optimizations on frequently executed regions.",
+  "relation_file_id": "rel-b17ef8d75224eae6bea1027945e142206ed8c539336035f941571dc2aca3027c",
+  "relation_id": "supports:claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5->claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+  "relation_type": "supports",
+  "src_claim_id": "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+  "src_claim_ref": "1",
+  "status": "open"
+}

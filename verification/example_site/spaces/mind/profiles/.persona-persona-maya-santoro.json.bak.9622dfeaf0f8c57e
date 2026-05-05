@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Profile generated from the seeded persona catalog and task_context for persona-maya-santoro in the mind space. The declared comments context is missing, so no comment history, participation record, or space-specific behavior was inferred or fabricated.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Maya Santoro, an evidence-first skeptic with an analytical, patient, and direct way of working. My focus is on decisions that can be explained clearly, tested against evidence, and traced back to the assumptions behind them. I care about accountability after the first round of enthusiasm has passed, especially when policy, risk, or research claims affect other people.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are understandable, testable, and fair to the people affected. My work centers on research methods, evidence quality, and the risks that appear when weak claims are treated as settled facts. I developed this style while working at Rivermark Strategy, where strategic language had to be connected to implementation constraints. I try to keep conversations grounded in evidence, consequences, and who owns the next move.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue in a structured, citation-led way and prefer primary sources over recycled summaries. My tone is usually calm and exact because I want disagreements to become testable rather than personal. I am especially cautious around citation laundering, false certainty, and methodological shortcuts, since those habits can make a weak conclusion look stronger than it is.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My recurring interests are research methods, policy evaluation, and risk analysis. I pay close attention to evidence quality, causal inference, and public accountability because those areas reveal whether a plan can hold up under real-world pressure. I am drawn to questions where the method matters as much as the conclusion.",
+      "title": "Interests"
+    },
+    {
+      "content": "Principal Systems Analyst, Rivermark Strategy (2018-present). Risk Analyst, Pinehaven Network (2014-2018). MSc, Human-Centered Operations, Windholm College of Service Design (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

@@ -1,0 +1,2123 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997/front_page.png",
+    "source_extraction": "sources/artifacts/source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997/source_extraction.json",
+    "source_file": "sources/artifacts/source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997/source.pdf",
+    "source_markdown": "sources/artifacts/source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997/source.md",
+    "source_provenance": "sources/artifacts/source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997/source_provenance.md"
+  },
+  "authors": [
+    "Nicholas T. Van Dam",
+    "Marieke K. van Vugt",
+    "David R. Vago",
+    "Laura Schmalzl",
+    "Clifford D. Saron",
+    "Andrew Olendzki",
+    "Ted Meissner",
+    "Sara W. Lazar",
+    "Catherine E. Kerr",
+    "Jolie Gorchov",
+    "Kieran C. R. Fox",
+    "Brent A. Field",
+    "Willoughby B. Britton",
+    "Julie A. Brefczynski-Lewis",
+    "David E. Meyer"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I appreciate that the article does not dismiss mindfulness outright. The useful point is narrower: if an eight-week course, a phone exercise, a self-report score, and years of contemplative practice all get called the same thing, then broad claims about benefit become very hard to trust.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-maya-santoro--6bw3wxg53a",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-maya-santoro--6bw3wxg53a",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the source's distinction between cautious support and construct ambiguity.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-maya-santoro--6bw3wxg53a",
+        "thread_state_key": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-maya-santoro--6bw3wxg53a"
+      },
+      {
+        "body": "The adverse-effects section feels especially important for public messaging. Trials that only wait for participants to volunteer problems cannot really support confident claims that meditation is harmless, especially when people may delay other care because the practice has been oversold.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-eli-okafor--9r42ykrvr7",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-eli-okafor--9r42ykrvr7",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately connects undermeasured harms with opportunity-cost concerns from the source.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-eli-okafor--9r42ykrvr7",
+        "thread_state_key": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-eli-okafor--9r42ykrvr7"
+      },
+      {
+        "body": "The critique of questionnaires is convincing to me. A person with no meditation experience and a long-term practitioner may interpret the same mindfulness item differently, so treating the score as a clean trait measure seems shaky without behavioral or biological anchors.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-lina-kovac--kontvyd6bs",
+        "parent_comment_uid": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-maya-santoro--6bw3wxg53a",
+        "permalink": "#comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-lina-kovac--kontvyd6bs",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Relevant reply that reflects the source's concerns about self-report validity and measurement specificity.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-lina-kovac--kontvyd6bs",
+        "thread_state_key": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-lina-kovac--kontvyd6bs"
+      },
+      {
+        "body": "One thing I liked is the neuroscience caution. Brain-imaging findings can be useful for hypotheses, but the paper is right to resist turning group averages and colorful figures into simple stories about causality or clinical improvement.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-rory-chen--eqbsax0ij6",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-rory-chen--eqbsax0ij6",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Well aligned with the source's warning against overinterpreting neuroimaging evidence.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-rory-chen--eqbsax0ij6",
+        "thread_state_key": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-rory-chen--eqbsax0ij6"
+      },
+      {
+        "body": "For me the practical takeaway is that mindfulness research needs boring but essential upgrades: clearer intervention descriptions, active controls, preregistration, adverse-event tracking, and less promotional language. That still leaves room for real benefits, just not universal ones.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-samira-haddad--gz9cyd7h44",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-samira-haddad--gz9cyd7h44",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Concise synthesis of the reform agenda while preserving the source's balanced stance.",
+          "score": 27
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 27,
+          "upvotes": 39
+        },
+        "thread_expansion_key": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-samira-haddad--gz9cyd7h44",
+        "thread_state_key": "comment-source-source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918-79c0d54db997-persona-samira-haddad--gz9cyd7h44"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997"
+  },
+  "date": null,
+  "display_title": "Mindfulness Research Needs Less Hype and More Rigor",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[77].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "09.004",
+      "url": "https://doi.org/10.1371/journal.pone.0073417"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[48].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "10 8\u201311. chy of the sciences. PLOS ONE 5 4 e10068. 10.1371/",
+      "url": "https://doi.org/10.1037/a0018480"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[54].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "148\u2013170. Haarig F. Jaeger S. & Kunze S. . The psychologi",
+      "url": "https://doi.org/10.1037/a0038032"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[24].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "2 254\u2013269. Cognitive Neuroscience 18 101\u2013112",
+      "url": "https://doi.org/10.1007/s12671-011-0069-y"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[41].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "207\u2013218. rent depressed patients with and without a current depres",
+      "url": "https://doi.org/10.1016/j.ridd.2003.05.001"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[61].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "26 372\u2013379. The influence of head motion on intrinsic functional con",
+      "url": "https://doi.org/10.1089/cap.2015.0054"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[20].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "286\u2013296. based cognitive therapy vs cognitive behaviour therapy",
+      "url": "https://doi.org/10.1002/cpp.1765"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[68].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "3019\u20133025. sis. Psychopathology 40 461\u2013464",
+      "url": "https://doi.org/10.1159/000108125"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[75].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "325. 219\u2013239. 10.1080/1463 .564841",
+      "url": "https://doi.org/10.1192/bjp.bp.111.104851"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[43].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "464\u2013472. induced psychosis in Thai . Journal of the Psychiatric",
+      "url": "https://doi.org/10.1016/j.tins.2007.06.011"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[46].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "5 37. Shonin E. Van Gordon W. & Griffiths M. D. 2014a . Are",
+      "url": "https://doi.org/10.1037/1522-3736.5.1.537c"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[84].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "6 346. 55 849\u2013855. 10.1016/j.comppsych.2014.01.001",
+      "url": "https://doi.org/10.3389/fnhum.2012.00346"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[47].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "65 21\u201333. gytoday.com/blog/compassion-matters/201303/benefits",
+      "url": "https://doi.org/10.1037/a0017299"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[38].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "665\u2013678. Sethi S. 2003 . Relationship of meditation and psycho",
+      "url": "https://doi.org/10.1016/j.neuron.2011.09.006"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[36].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "750\u2013760. Johnson G. 2014a January 21 . New truths that only one",
+      "url": "https://doi.org/10.1016/j.neuroimage.2011.07.008"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[22].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "758\u2013774. Greenberg M. T. & Harris A. R. . Nurturing mindful",
+      "url": "https://doi.org/10.1007/s10608-007-9142-1"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[23].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "an-alternative-to-antidepressants Mindfulness 2 154\u2013166",
+      "url": "https://doi.org/10.1007/s12671-011-0054-5"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[74].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "and General Mills are investing in mindfulness. Harvard",
+      "url": "https://doi.org/10.1177/1948550611419031"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[62].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "and Practice 11 230\u2013241. Inquiry 18 211\u2013237",
+      "url": "https://doi.org/10.1093/clipsy.bph077"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[27].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "based cognitive therapy MBCT implementation resources",
+      "url": "https://doi.org/10.1007/s12671-014-0329-8"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[65].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Birnie K. Garland S. N. & Carlson L. E. . Psychological 64\u201381",
+      "url": "https://doi.org/10.1111/nyas.12279"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[45].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Bishop S. R. Lau M. Shapiro S. Carlson L. Anderson 822\u2013848",
+      "url": "https://doi.org/10.1037/0022-3514.84.4.822"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[37].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Brefczynski-Lewis J. A. Lutz A. Schaefer H. S. Levinson",
+      "url": "https://doi.org/10.1016/j.neuroimage.2013.04.083"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[33].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Briggs J. & Killen J. . Perspectives on complemen- Review 31 449\u2013464",
+      "url": "https://doi.org/10.1016/j.cpr.2010.11.003"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[25].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "british-journal-of-psychiatry-how-to-publish-a-null-trial/",
+      "url": "https://doi.org/10.1007/s12671-011-0079-9"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[39].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "der. A meta-analysis of randomised controlled trials. PLOS",
+      "url": "https://doi.org/10.1016/j.paid.2009.05.005"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[80].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "e0176239. https://doi.org/ Therapy 50 3\u201312",
+      "url": "https://doi.org/10.1371/journal.pone.0176239"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[76].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "e45370. Goyal M. Singh S. Sibinga E. M. Gould N. F. Rowland",
+      "url": "https://doi.org/10.1371/journal.pone.0045370"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[67].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "emotion regulation. Psychological Inquiry 26 293\u2013314",
+      "url": "https://doi.org/10.1159/000107560"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[49].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Geschwind N. Peeters F. Huibers M. van Os J. & Wichers Assessment 23 1034\u20131040",
+      "url": "https://doi.org/10.1037/a0022713"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[50].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Hasenkamp W. Wilson-Mendenhall C. D. Duncan E. General 141 106\u2013123",
+      "url": "https://doi.org/10.1037/a0024931"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[72].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.1177/1745691617709589"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[86].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "in psychotherapy: From unwanted events to adverse treat- Neuroscience 7 8",
+      "url": "https://doi.org/10.3389/fnins.2013.00008"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[21].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "ing on physiological and subjective arousal. Journal of 18 80\u201393",
+      "url": "https://doi.org/10.1002/cpp.700"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[82].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "it attentional effort? Journal of Experimental Psychology",
+      "url": "https://doi.org/10.3389/fnhum.2012.00038"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[29].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "J. & Kober H. . Meditation experience is associated Research and Therapy 51 573\u2013578",
+      "url": "https://doi.org/10.1016/j"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[57].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Manuel J. A. Somohano V. C. & Bowen S. . Psychiatry 14 119\u2013120",
+      "url": "https://doi.org/10.1038/mp.2008.77"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[55].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "ment. Religions 5 1062\u20131086",
+      "url": "https://doi.org/10.1037/a0039512"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[71].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "mindfulness. Frontiers in Human Neuroscience 6 00296",
+      "url": "https://doi.org/10.1177/0956797611417632"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[85].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "mindthebrain/ /05/20/is-mindfulness-based-therapy- Neuroscience 7 582",
+      "url": "https://doi.org/10.3389/fnhum.2013.00582"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[58].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Neuroscience 16 213\u2013225. rience? Magnitude of the attentional blink depends on",
+      "url": "https://doi.org/10.1038/nrn3916"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[28].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Neuroscience 3 473\u2013478",
+      "url": "https://doi.org/10.1007/s12671-016-0605-x"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[44].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Nieuwenhuis S. Davis J. M. & Davidson R. J. . Medicine 42 989\u20131001",
+      "url": "https://doi.org/10.1017/s0033291711002054"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[51].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "of Affective Disorders 130 138\u2013144",
+      "url": "https://doi.org/10.1037/a0026678"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[69].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "of Psychiatry 208 260\u2013265",
+      "url": "https://doi.org/10.1159/000142525"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[78].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "ONE 9 4 e96110. Van den Hurk P. A. M. Giommi F. Gielen S. C. Speckens",
+      "url": "https://doi.org/10.1371/journal.pone.0096110"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[42].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Physiology 221 795\u2013799. Cognitive Sciences 14 489\u2013496",
+      "url": "https://doi.org/10.1016/j.tics.2010"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[64].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "policies of the Mind and Life Institute nor any other organiza- 9 67\u2013103",
+      "url": "https://doi.org/10.1111/j.1539-6053.2009.01036.x"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[32].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Posner M. I. . Short-term meditation training",
+      "url": "https://doi.org/10.1016/j.concog.2013.11.001"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[73].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "PPSXXX Dam et al.Critical Evaluation of Mindfulness Research",
+      "url": "https://doi.org/10.1177/1745691617709589van"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[63].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "prevention. Addiction 100 595\u2013604. Unifying the discipline to improve public health. Clinical",
+      "url": "https://doi.org/10.1111/j.1360-"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[40].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Proposing mechanisms of action from a conceptual and",
+      "url": "https://doi.org/10.1016/j.pscychresns.2014.02.003"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[56].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Psychology. General 144 e1\u201315. from",
+      "url": "https://doi.org/10.1037/xge0000038"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[31].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Research and Therapy 63 83\u201389. gamma activity during NREM sleep. PLOS ONE 8 e73417",
+      "url": "https://doi.org/10.1016/j.brat.2014"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[34].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Reviews 43 48\u201373. anxiety disorder: A randomized controlled trial. Journal of",
+      "url": "https://doi.org/10.1016/j.neubiorev.2014.03.016"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[79].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "School Psychology 52 263\u2013278. e0153220",
+      "url": "https://doi.org/10.1371/journal.pone.0153220"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[30].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Shapiro S. L. Carlson L. E. Astin J. A. & Freedman B",
+      "url": "https://doi.org/10.1016/j.biopsycho.2014.12.010"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[83].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Singh N. N. Lancioni G. E. Winton A. S. W. Wahler R. G",
+      "url": "https://doi.org/10.3389/fnhum.2012.00296"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[66].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "T. Hanke M. . . . Yeo B. T. T. . Best practices",
+      "url": "https://doi.org/10.1126/science.1245317"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[53].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "tation. Journal of Neuroscience 31 5540\u20135548",
+      "url": "https://doi.org/10.1037/a0035036"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[26].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Therapist 5 137\u2013138",
+      "url": "https://doi.org/10.1007/s12671-012-0121-6"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[52].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "to the special section on replicability in psychological sci- Bulletin 138 1139\u20131171",
+      "url": "https://doi.org/10.1037/a0028168"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[70].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "University of Massachusetts Medical School. Psychiatry 48 124\u2013127",
+      "url": "https://doi.org/10.1177/0004867413512688"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[59].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "USA 108 20254\u201320259. according to science . Huffington Post. Retrieved from",
+      "url": "https://doi.org/10.1073/pnas.1112029108"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[60].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "We dedicate this article to our dear friend and colleague Buddhism 12 241\u2013261",
+      "url": "https://doi.org/10.1080/14639947.2011.564842"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[35].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "wellness_b_2903222.html tion task. NeuroImage 59 745\u2013749",
+      "url": "https://doi.org/10.1016/j.neuro"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[81].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Williams J. M. Crane C. Barnhofer T. Brennan K. Duggan 35 15307\u201315325",
+      "url": "https://doi.org/10.1523/jneurosci.2542-15"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[15].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "01073.x Psychological Science 2 22\u201334",
+      "url": "https://arxiv.org/abs/0443.2005"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[18].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "1082 .705710 7 657\u2013660",
+      "url": "https://arxiv.org/abs/6084.2012"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[19].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "1111/j.1745- .00051.x",
+      "url": "https://arxiv.org/abs/6916.2007"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[61].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "26 372\u2013379. The influence of head motion on intrinsic functional con",
+      "url": "https://arxiv.org/abs/2015.0054"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[75].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "325. 219\u2013239. 10.1080/1463 .564841",
+      "url": "https://arxiv.org/abs/9947.2011"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[84].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "6 346. 55 849\u2013855. 10.1016/j.comppsych.2014.01.001",
+      "url": "https://arxiv.org/abs/2012.00346"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[17].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "fpsyg. Lutz A. Slagter H. A. Dunne J. D. & Davidson R. J. 2008",
+      "url": "https://arxiv.org/abs/2014.01202"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[86].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "in psychotherapy: From unwanted events to adverse treat- Neuroscience 7 8",
+      "url": "https://arxiv.org/abs/2013.00008"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[82].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "it attentional effort? Journal of Experimental Psychology",
+      "url": "https://arxiv.org/abs/2012.00038"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[85].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "mindthebrain/ /05/20/is-mindfulness-based-therapy- Neuroscience 7 582",
+      "url": "https://arxiv.org/abs/2013.00582"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[64].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "policies of the Mind and Life Institute nor any other organiza- 9 67\u2013103",
+      "url": "https://arxiv.org/abs/6053.2009"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[83].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "Singh N. N. Lancioni G. E. Winton A. S. W. Wahler R. G",
+      "url": "https://arxiv.org/abs/2012.00296"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_arxiv",
+        "source_field": "references[16].arxiv"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from an arXiv identifier found in the source references.",
+      "title": "tation might rival medication. Forbes pp. 1\u20133. fnhum",
+      "url": "https://arxiv.org/abs/2013.00566"
+    }
+  ],
+  "ingested_at": "2026-04-26T14:44:02Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "depression? PLOS. Retrieved from / MEG neurophenomenological study. Frontiers in Human",
+      "url": "http://blogs.plos.org",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "trial. PLOS. Retrieved from may participation in a mindfulness-based stress reduc",
+      "url": "http://blogs.plos.org/mindthe-",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Goldberg S. B. Wielgosz J. Dahl C. Shuyler B. MacCoon Retrieved from",
+      "url": "http://www.forbes.com/sites/garrett-",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Brewin C. R. . Re-experiencing traumatic events in",
+      "url": "http://www.huffingtonpost.com/2013/04/08/mindful",
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "58\u201366. coda. New York Times. Retrieved from",
+      "url": "http://www.nytimes",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Moher D. Schulz K. F. & Altman D. G. . The from",
+      "url": "http://www.nytimes.com/2014/09/19/upshot/to-get-",
+      "year": 2001
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "if psychotherapy were harmful? American Psychologist Psychology Today. Retrieved from",
+      "url": "http://www.psycholo",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Downloaded from the University of Groningen/UMCG research database Pure : . For technical reasons the",
+      "url": "http://www.rug.nl/research/portal",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Papies E. K. Pronk T. M. Keesman M. & Barsalou L. W. Business Review. Retrieved from /",
+      "url": "https://hbr.org/2015/12",
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "69 35\u201342. from #DSM",
+      "url": "https://nccih.nih.gov/grants/toolbox",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "based cognitive therapy for people with recurrent depres",
+      "url": "https://shop.time.com/storefront/books/mindfulness-",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Psychologist 28 9 . Retrieved from Shapiro D. H. Jr. . Overview: Clinical and physio",
+      "url": "https://thepsycholo",
+      "year": 1982
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Medicine. Retrieved from / Sayadaw M. . The progress of insight: A modern",
+      "url": "https://www.ncbi.nlm.nih.gov",
+      "year": 1965
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "More information can be found on the University of Groningen website",
+      "url": "https://www.rug.nl/library/open-access/self-archiving-pure/taverne-",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Guardian. Retrieved from / Grabovac A. Lau M. & Willett B. . Mechanisms",
+      "url": "https://www.theguardian.com",
+      "year": 2011
+    },
+    {
+      "arxiv": "0443.2005",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "01073.x Psychological Science 2 22\u201334",
+      "url": null,
+      "year": 2005
+    },
+    {
+      "arxiv": "2013.00566",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "tation might rival medication. Forbes pp. 1\u20133. fnhum",
+      "url": null,
+      "year": 2013
+    },
+    {
+      "arxiv": "2014.01202",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "fpsyg. Lutz A. Slagter H. A. Dunne J. D. & Davidson R. J. 2008",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": "6084.2012",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "1082 .705710 7 657\u2013660",
+      "url": null,
+      "year": 2012
+    },
+    {
+      "arxiv": "6916.2007",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "1111/j.1745- .00051.x",
+      "url": null,
+      "year": 2007
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1002/cpp.1765",
+      "linked_source_ids": [],
+      "title": "286\u2013296. based cognitive therapy vs cognitive behaviour therapy",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1002/cpp.700",
+      "linked_source_ids": [],
+      "title": "ing on physiological and subjective arousal. Journal of 18 80\u201393",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s10608-007-9142-1",
+      "linked_source_ids": [],
+      "title": "758\u2013774. Greenberg M. T. & Harris A. R. . Nurturing mindful",
+      "url": null,
+      "year": 2012
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s12671-011-0054-5",
+      "linked_source_ids": [],
+      "title": "an-alternative-to-antidepressants Mindfulness 2 154\u2013166",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s12671-011-0069-y",
+      "linked_source_ids": [],
+      "title": "2 254\u2013269. Cognitive Neuroscience 18 101\u2013112",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s12671-011-0079-9",
+      "linked_source_ids": [],
+      "title": "british-journal-of-psychiatry-how-to-publish-a-null-trial/",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s12671-012-0121-6",
+      "linked_source_ids": [],
+      "title": "Therapist 5 137\u2013138",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s12671-014-0329-8",
+      "linked_source_ids": [],
+      "title": "based cognitive therapy MBCT implementation resources",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s12671-016-0605-x",
+      "linked_source_ids": [],
+      "title": "Neuroscience 3 473\u2013478",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j",
+      "linked_source_ids": [],
+      "title": "J. & Kober H. . Meditation experience is associated Research and Therapy 51 573\u2013578",
+      "url": null,
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.biopsycho.2014.12.010",
+      "linked_source_ids": [],
+      "title": "Shapiro S. L. Carlson L. E. Astin J. A. & Freedman B",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.brat.2014",
+      "linked_source_ids": [],
+      "title": "Research and Therapy 63 83\u201389. gamma activity during NREM sleep. PLOS ONE 8 e73417",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.concog.2013.11.001",
+      "linked_source_ids": [],
+      "title": "Posner M. I. . Short-term meditation training",
+      "url": null,
+      "year": 2007
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.cpr.2010.11.003",
+      "linked_source_ids": [],
+      "title": "Briggs J. & Killen J. . Perspectives on complemen- Review 31 449\u2013464",
+      "url": null,
+      "year": 2013
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.neubiorev.2014.03.016",
+      "linked_source_ids": [],
+      "title": "Reviews 43 48\u201373. anxiety disorder: A randomized controlled trial. Journal of",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.neuro",
+      "linked_source_ids": [],
+      "title": "wellness_b_2903222.html tion task. NeuroImage 59 745\u2013749",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.neuroimage.2011.07.008",
+      "linked_source_ids": [],
+      "title": "750\u2013760. Johnson G. 2014a January 21 . New truths that only one",
+      "url": null,
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.neuroimage.2013.04.083",
+      "linked_source_ids": [],
+      "title": "Brefczynski-Lewis J. A. Lutz A. Schaefer H. S. Levinson",
+      "url": null,
+      "year": 2013
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.neuron.2011.09.006",
+      "linked_source_ids": [],
+      "title": "665\u2013678. Sethi S. 2003 . Relationship of meditation and psycho",
+      "url": null,
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.paid.2009.05.005",
+      "linked_source_ids": [],
+      "title": "der. A meta-analysis of randomised controlled trials. PLOS",
+      "url": null,
+      "year": 2009
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.pscychresns.2014.02.003",
+      "linked_source_ids": [],
+      "title": "Proposing mechanisms of action from a conceptual and",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.ridd.2003.05.001",
+      "linked_source_ids": [],
+      "title": "207\u2013218. rent depressed patients with and without a current depres",
+      "url": null,
+      "year": 2003
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.tics.2010",
+      "linked_source_ids": [],
+      "title": "Physiology 221 795\u2013799. Cognitive Sciences 14 489\u2013496",
+      "url": null,
+      "year": 2010
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.tins.2007.06.011",
+      "linked_source_ids": [],
+      "title": "464\u2013472. induced psychosis in Thai . Journal of the Psychiatric",
+      "url": null,
+      "year": 2007
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1017/s0033291711002054",
+      "linked_source_ids": [],
+      "title": "Nieuwenhuis S. Davis J. M. & Davidson R. J. . Medicine 42 989\u20131001",
+      "url": null,
+      "year": 2007
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/0022-3514.84.4.822",
+      "linked_source_ids": [],
+      "title": "Bishop S. R. Lau M. Shapiro S. Carlson L. Anderson 822\u2013848",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/1522-3736.5.1.537c",
+      "linked_source_ids": [],
+      "title": "5 37. Shonin E. Van Gordon W. & Griffiths M. D. 2014a . Are",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/a0017299",
+      "linked_source_ids": [],
+      "title": "65 21\u201333. gytoday.com/blog/compassion-matters/201303/benefits",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/a0018480",
+      "linked_source_ids": [],
+      "title": "10 8\u201311. chy of the sciences. PLOS ONE 5 4 e10068. 10.1371/",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/a0022713",
+      "linked_source_ids": [],
+      "title": "Geschwind N. Peeters F. Huibers M. van Os J. & Wichers Assessment 23 1034\u20131040",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/a0024931",
+      "linked_source_ids": [],
+      "title": "Hasenkamp W. Wilson-Mendenhall C. D. Duncan E. General 141 106\u2013123",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/a0026678",
+      "linked_source_ids": [],
+      "title": "of Affective Disorders 130 138\u2013144",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/a0028168",
+      "linked_source_ids": [],
+      "title": "to the special section on replicability in psychological sci- Bulletin 138 1139\u20131171",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/a0035036",
+      "linked_source_ids": [],
+      "title": "tation. Journal of Neuroscience 31 5540\u20135548",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/a0038032",
+      "linked_source_ids": [],
+      "title": "148\u2013170. Haarig F. Jaeger S. & Kunze S. . The psychologi",
+      "url": null,
+      "year": 2012
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/a0039512",
+      "linked_source_ids": [],
+      "title": "ment. Religions 5 1062\u20131086",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/xge0000038",
+      "linked_source_ids": [],
+      "title": "Psychology. General 144 e1\u201315. from",
+      "url": "https://nccih.nih.gov/health/meditation/overview",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/mp.2008.77",
+      "linked_source_ids": [],
+      "title": "Manuel J. A. Somohano V. C. & Bowen S. . Psychiatry 14 119\u2013120",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1038/nrn3916",
+      "linked_source_ids": [],
+      "title": "Neuroscience 16 213\u2013225. rience? Magnitude of the attentional blink depends on",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1073/pnas.1112029108",
+      "linked_source_ids": [],
+      "title": "USA 108 20254\u201320259. according to science . Huffington Post. Retrieved from",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "9947.2011",
+      "authors": [],
+      "doi": "10.1080/14639947.2011.564842",
+      "linked_source_ids": [],
+      "title": "We dedicate this article to our dear friend and colleague Buddhism 12 241\u2013261",
+      "url": null,
+      "year": 2011
+    },
+    {
+      "arxiv": "2015.0054",
+      "authors": [],
+      "doi": "10.1089/cap.2015.0054",
+      "linked_source_ids": [],
+      "title": "26 372\u2013379. The influence of head motion on intrinsic functional con",
+      "url": null,
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1093/clipsy.bph077",
+      "linked_source_ids": [],
+      "title": "and Practice 11 230\u2013241. Inquiry 18 211\u2013237",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1111/j.1360-",
+      "linked_source_ids": [],
+      "title": "prevention. Addiction 100 595\u2013604. Unifying the discipline to improve public health. Clinical",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "6053.2009",
+      "authors": [],
+      "doi": "10.1111/j.1539-6053.2009.01036.x",
+      "linked_source_ids": [],
+      "title": "policies of the Mind and Life Institute nor any other organiza- 9 67\u2013103",
+      "url": null,
+      "year": 2009
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1111/nyas.12279",
+      "linked_source_ids": [],
+      "title": "Birnie K. Garland S. N. & Carlson L. E. . Psychological 64\u201381",
+      "url": null,
+      "year": 2010
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1126/science.1245317",
+      "linked_source_ids": [],
+      "title": "T. Hanke M. . . . Yeo B. T. T. . Best practices",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1159/000107560",
+      "linked_source_ids": [],
+      "title": "emotion regulation. Psychological Inquiry 26 293\u2013314",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1159/000108125",
+      "linked_source_ids": [],
+      "title": "3019\u20133025. sis. Psychopathology 40 461\u2013464",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1159/000142525",
+      "linked_source_ids": [],
+      "title": "of Psychiatry 208 260\u2013265",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1177/0004867413512688",
+      "linked_source_ids": [],
+      "title": "University of Massachusetts Medical School. Psychiatry 48 124\u2013127",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1177/0956797611417632",
+      "linked_source_ids": [],
+      "title": "mindfulness. Frontiers in Human Neuroscience 6 00296",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1177/1745691617709589",
+      "linked_source_ids": [],
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.1177/1745691617709589",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1177/1745691617709589van",
+      "linked_source_ids": [],
+      "title": "PPSXXX Dam et al.Critical Evaluation of Mindfulness Research",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1177/1948550611419031",
+      "linked_source_ids": [],
+      "title": "and General Mills are investing in mindfulness. Harvard",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "9947.2011",
+      "authors": [],
+      "doi": "10.1192/bjp.bp.111.104851",
+      "linked_source_ids": [],
+      "title": "325. 219\u2013239. 10.1080/1463 .564841",
+      "url": null,
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1371/journal.pone.0045370",
+      "linked_source_ids": [],
+      "title": "e45370. Goyal M. Singh S. Sibinga E. M. Gould N. F. Rowland",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1371/journal.pone.0073417",
+      "linked_source_ids": [],
+      "title": "09.004",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1371/journal.pone.0096110",
+      "linked_source_ids": [],
+      "title": "ONE 9 4 e96110. Van den Hurk P. A. M. Giommi F. Gielen S. C. Speckens",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1371/journal.pone.0153220",
+      "linked_source_ids": [],
+      "title": "School Psychology 52 263\u2013278. e0153220",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1371/journal.pone.0176239",
+      "linked_source_ids": [],
+      "title": "e0176239. https://doi.org/ Therapy 50 3\u201312",
+      "url": "https://doi.org/10.1371/journal.pone.0176239",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1523/jneurosci.2542-15",
+      "linked_source_ids": [],
+      "title": "Williams J. M. Crane C. Barnhofer T. Brennan K. Duggan 35 15307\u201315325",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "2012.00038",
+      "authors": [],
+      "doi": "10.3389/fnhum.2012.00038",
+      "linked_source_ids": [],
+      "title": "it attentional effort? Journal of Experimental Psychology",
+      "url": null,
+      "year": 2012
+    },
+    {
+      "arxiv": "2012.00296",
+      "authors": [],
+      "doi": "10.3389/fnhum.2012.00296",
+      "linked_source_ids": [],
+      "title": "Singh N. N. Lancioni G. E. Winton A. S. W. Wahler R. G",
+      "url": null,
+      "year": 2012
+    },
+    {
+      "arxiv": "2012.00346",
+      "authors": [],
+      "doi": "10.3389/fnhum.2012.00346",
+      "linked_source_ids": [],
+      "title": "6 346. 55 849\u2013855. 10.1016/j.comppsych.2014.01.001",
+      "url": null,
+      "year": 2012
+    },
+    {
+      "arxiv": "2013.00582",
+      "authors": [],
+      "doi": "10.3389/fnhum.2013.00582",
+      "linked_source_ids": [],
+      "title": "mindthebrain/ /05/20/is-mindfulness-based-therapy- Neuroscience 7 582",
+      "url": null,
+      "year": 2015
+    },
+    {
+      "arxiv": "2013.00008",
+      "authors": [],
+      "doi": "10.3389/fnins.2013.00008",
+      "linked_source_ids": [],
+      "title": "in psychotherapy: From unwanted events to adverse treat- Neuroscience 7 8",
+      "url": null,
+      "year": 2013
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 16 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2018",
+    "origin": "source_markdown_publication_date",
+    "rationale": "The source markdown cover page and citation state Publication date: 2018 for the Perspectives on Psychological Science article."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The source argues that mindfulness research has generated genuine scientific interest, but that public enthusiasm, media messaging, and some applied rollouts have moved faster than the evidence. Its critical stance is balanced: mindfulness may help some people in some contexts, yet the authors reject claims that it is a broadly proven remedy or a risk-free replacement for established care.",
+        "grounding_claim_ids": [
+          "claim-mindfulness-hype-exceeds-evidence--96cb023af909",
+          "claim-therapeutic-benefits-are-condition-specific--201401200700"
+        ],
+        "heading": "Central Argument"
+      },
+      {
+        "body": "A major source of confusion is the umbrella use of \u201cmindfulness.\u201d The paper treats semantic precision as a methodological requirement, because a brief phone-app exercise, an eight-week MBSR course, a self-report questionnaire, and decades of contemplative practice are not interchangeable evidence targets. Without differentiating practices, mechanisms, and measures, studies are difficult to compare.",
+        "grounding_claim_ids": [
+          "claim-mindfulness-definition-is-ambiguous--4f220365d6f4"
+        ],
+        "heading": "Definition Problem"
+      },
+      {
+        "body": "The discussion of questionnaires shows why simple mindfulness scores can mislead. The listed measures differ in origins and factor structures, and the authors highlight problems with introspection, social desirability, demand characteristics, and different item meanings before versus after training. The recommended path is to measure more specific cognitive, affective, behavioral, and biological capacities rather than treating mindfulness as a unitary latent trait.",
+        "grounding_claim_ids": [
+          "claim-self-report-measures-lack-validity--56550542660a",
+          "claim-research-needs-prescriptive-reform--79c0d54db997"
+        ],
+        "heading": "Measurement Path"
+      },
+      {
+        "body": "The article distinguishes limited, condition-specific promise from generalized clinical efficacy. It notes possible benefits in some depression-related contexts and some symptom outcomes, but the broader evidence base is constrained by early-stage designs, limited active controls, inconsistent intervention content, and very little research outside controlled research settings. The result is a call for caution before mainstream implementation.",
+        "grounding_claim_ids": [
+          "claim-clinical-evidence-remains-preliminary--117717456958",
+          "claim-therapeutic-benefits-are-condition-specific--201401200700"
+        ],
+        "heading": "Clinical Evidence"
+      },
+      {
+        "body": "The source treats adverse effects as an underdeveloped research area rather than a settled objection to meditation. Case reports and observational studies document serious distressing experiences, while trial monitoring has often been weak. The authors also emphasize opportunity cost: overstated claims may divert vulnerable people from better established treatment or ordinary activities with known mental and physical benefits.",
+        "grounding_claim_ids": [
+          "claim-adverse-effects-are-undermeasured--25fa20260426"
+        ],
+        "heading": "Safety and Harms"
+      },
+      {
+        "body": "Contemplative neuroscience receives a nuanced assessment. Brain imaging can generate promising hypotheses and meta-analytic patterns, but the paper warns against translating colorful images into simple claims about benefit, causality, or clinical importance. Group averaging, cross-sectional comparisons, respiration, cardiac activity, head movement, and lifestyle differences can all affect interpretation.",
+        "grounding_claim_ids": [
+          "claim-neuroimaging-requires-caution--201770958900"
+        ],
+        "heading": "Neuroscience Limits"
+      },
+      {
+        "body": "The practical lesson is reform rather than rejection. The authors want mindfulness research to adopt clearer taxonomies, stronger reporting checklists, active control groups, preregistration, multidisciplinary and skeptical collaboration, adverse-event assessment, and careful public communication. Readers should treat mindfulness as a family of practices requiring context-specific evidence, not as a single validated intervention with universal effects.",
+        "grounding_claim_ids": [
+          "claim-research-needs-prescriptive-reform--79c0d54db997",
+          "claim-mindfulness-hype-exceeds-evidence--96cb023af909"
+        ],
+        "heading": "Practical Interpretation"
+      }
+    ],
+    "summary_long": "Mind the Hype evaluates the modern mindfulness movement from the standpoint of psychological science, clinical intervention research, adverse-event monitoring, and contemplative neuroscience. Its central argument is not that mindfulness is useless or harmful in general; rather, it argues that public and institutional claims about mindfulness often exceed what the evidence can responsibly support. The article first identifies a semantic problem: \u201cmindfulness\u201d can refer to mental traits, temporary states, formal meditation practices, intervention packages, self-report scales, or long-term contemplative training. Because those uses differ so much, findings about one form of practice or measurement cannot automatically generalize to another. The authors then show how this ambiguity affects measurement. Existing questionnaires come from different theoretical traditions, use different factor structures, and may be interpreted differently by meditators and nonmeditators. Clinical evidence receives a similarly cautious treatment. The review recognizes possible benefits for some depression-related and symptom domains, but it emphasizes that much intervention work remains early-stage, often uses wait-list or treatment-as-usual controls, and only rarely tests real-world implementation. Safety is another major theme: meditation-related adverse experiences have been documented, yet trials have often relied on passive reporting, making \u201cno evidence of harm\u201d a weak basis for public reassurance. Finally, the article warns that neuroimaging evidence is especially vulnerable to oversimplification because brain images depend on complex group-level, statistical, physiological, and design assumptions. The prescriptive agenda is therefore multipronged: define practices and constructs precisely, report intervention details, use active controls and preregistration, include skeptical and multidisciplinary teams, systematically assess adverse events, and communicate findings to the public without exaggerating benefits or certainty.",
+    "summary_short": "This article is a critical review and agenda-setting paper about mindfulness and meditation research. It argues that enthusiasm in media, clinical practice, education, and neuroscience has outrun the precision and strength of the evidence. The authors call for clearer terminology, stronger measures, better clinical designs, active monitoring of harms, and more cautious communication of brain-imaging findings."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "source_kind": "file",
+  "source_locator": "04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind--w2761197918.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Nicholas T. Van Dam",
+      "Marieke K. van Vugt",
+      "David R. Vago",
+      "Laura Schmalzl",
+      "Clifford D. Saron",
+      "Andrew Olendzki",
+      "Ted Meissner",
+      "Sara W. Lazar",
+      "Catherine E. Kerr",
+      "Jolie Gorchov",
+      "Kieran C. R. Fox",
+      "Brent A. Field",
+      "Willoughby B. Britton",
+      "Julie A. Brefczynski-Lewis",
+      "David E. Meyer"
+    ],
+    "canonical_title": "Mind the Hype: A Critical Evaluation and Prescriptive Agenda for Research on Mindfulness and Meditation",
+    "display_title": "Mindfulness Research Needs Less Hype and More Rigor",
+    "doi": "10.1177/1745691617709589",
+    "publication": "Perspectives on Psychological Science",
+    "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997"
+  },
+  "source_type": "file",
+  "summary": "Van Dam and colleagues argue that mindfulness research has been promoted faster than its evidence base can support. The source identifies semantic ambiguity, weak measurement, immature clinical trials, underreported adverse effects, and overinterpreted neuroimaging as major reasons for a more cautious and rigorous research agenda.",
+  "title": "04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind--w2761197918",
+  "warnings": [
+    {
+      "code": "task_context_date_unresolved",
+      "message": "The task_context reported date=null, but the source markdown itself states a 2018 publication date; the output uses the markdown evidence."
+    },
+    {
+      "code": "markdown_layout_artifacts",
+      "message": "The pdftotext markdown is usable but includes two-column layout interleaving in some passages; extracted claims rely on repeated, clear passages and table captions rather than ambiguous line joins."
+    }
+  ]
+}

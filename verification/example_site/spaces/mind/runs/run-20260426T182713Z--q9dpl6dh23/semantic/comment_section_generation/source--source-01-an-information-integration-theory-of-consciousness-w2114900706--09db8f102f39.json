@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "Tononi's camera example is useful because it separates a huge state repertoire from causal unity. A megapixel sensor can discriminate many inputs, but if each photodiode is effectively isolated, the system has information without the kind of integrated causal structure the theory is trying to capture.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Grounded in the source's differentiation-versus-integration contrast and adds a clear explanatory point.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I like that the boundary of a conscious subject is not just assumed here. The complex rule gives a principled way to say why afferents, effectors, and arousal systems can matter causally without becoming part of the experience-bearing system itself.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately connects complexes with the source's exclusion of ports and modulatory systems.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The weakest-bipartition idea seems doing a lot of philosophical work. It makes the measure less about how many parts a system has and more about whether causal information survives the most damaging split, which is a pretty demanding test for unity.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Faithfully summarizes the formal measurement path while offering a useful interpretation.",
+        "score": 21
+      }
+    },
+    {
+      "body": "The article's substrate-neutral implications feel bold but not indiscriminate. It does not say every information processor is conscious; it asks for architectures that combine specialization with reciprocal integration at the right scale.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Balanced reading of the source's graded artificial-consciousness claims and constraints.",
+        "score": 23
+      }
+    },
+    {
+      "body": "One limitation I kept noticing is practical measurement. The framework is elegant in simplified networks, but applying \u03a6 to real thalamocortical dynamics seems much harder than the conceptual contrast with cameras, cerebellum, or split-brain cases.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Raises a source-supported limitation without overstating beyond the provided dossier.",
+        "score": 20
+      }
+    }
+  ],
+  "page_ref": "source:source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "requested_count": 5
+}

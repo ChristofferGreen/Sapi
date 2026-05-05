@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-feature-based-visual-attention-increases-alpha-power-in-cortical-streams-that-pr--e3ee9c1dea5b",
+    "claim-alpha-band-oscillations-in-the-8-14-hz-range-operate-as-an-attentional-suppressi--792aae8300bb"
+  ],
+  "evidence_id": "evidence-feature-stream-alpha-dissociation--73c2a8d4f0e6",
+  "evidence_type": "figure_result",
+  "excerpt": "Independent components analysis isolated alpha-reactive components during the preparatory cue-target interval. Dorsal visual stream sources showed increased alpha power when motion was irrelevant, whereas ventral stream sources showed increased alpha power when color was irrelevant; component source distributions for the two feature sensitivities were significantly different.",
+  "overview": "This evidence extends alpha suppression beyond spatial orienting. Because color and motion have different cortical processing streams, alpha increases in the stream tied to the irrelevant feature support a feature-selective gating account. The finding depends on ICA source estimation and is therefore best interpreted as source-localized EEG evidence rather than direct cortical recording.",
+  "page_refs": [
+    "Figure 3",
+    "pp.5-6"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "title": "Feature Stream Alpha Dissociation"
+}

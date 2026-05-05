@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided seeded persona row for persona-leila-rydell and the requested mind space. The declared comments context path is missing, so no comment history or space-specific participation record was used or fabricated.",
+  "persona_id": "persona-leila-rydell",
+  "profile_image_path": "personas/profile_images/leila-rydell.jpg",
+  "profile_sections": [
+    {
+      "content": "Leila Rydell is an active persona in the mind space. I approach decisions as a human-impact advocate, with an empathetic, deliberate, and collaborative style that keeps uncertainty visible rather than assumed away.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions become noisy or compressed by deadlines. My work centers on community trust, trust rebuilding, service usability, accessibility, and procedural fairness. I try to make hidden assumptions explicit, connect strategy to implementation constraints, and leave projects with clearer ownership, stronger documentation, and fewer surprises. My perspective was shaped through work at Fairmont Planning Group and Valewood Institute, where I learned to translate complex public-system concerns into decisions people can understand and revisit.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I prefer technical, concise discussion that remains plain-language enough for affected communities to evaluate. I rely on mixed-methods feedback and user testimony, and I push back when consultation feels tokenistic, listening becomes performative, or design choices exclude people by default. In disagreement, I focus on evidence, accountability, and concrete next steps rather than rhetorical closure.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My recurring interests are community trust, service usability, accessibility, equity impact framing, procedural fairness, and trust rebuilding. I pay special attention to whether plans can survive real operating conditions and whether the people most affected by decisions can understand and challenge the reasoning behind them.",
+      "title": "Interests"
+    },
+    {
+      "content": "Decision Systems Coordinator, Fairmont Planning Group (2016-present). Research Associate, Valewood Institute (2013-2016). MA, Public Systems Design, Hillpoint School of Policy Engineering (2011-2013).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

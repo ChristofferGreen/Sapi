@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-mindfulness-is-not-a-unitary-construct-it-is-an-umbrella-term-spanning-diverse-p--ab25afeeb846",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Diverse measurement facets are one concrete consequence of the broader semantic ambiguity around mindfulness.",
+  "relation_file_id": "rel-3685d680527dd45122674d7104aa4e2ec011ab1ec1426606ab55342d94bcca25",
+  "relation_id": "supports:claim-common-mindfulness-questionnaires-operationalize-different-facets-of-mindfulness--19920139d48a->claim-mindfulness-is-not-a-unitary-construct-it-is-an-umbrella-term-spanning-diverse-p--ab25afeeb846",
+  "relation_type": "supports",
+  "src_claim_id": "claim-common-mindfulness-questionnaires-operationalize-different-facets-of-mindfulness--19920139d48a",
+  "src_claim_ref": "1",
+  "status": "open"
+}

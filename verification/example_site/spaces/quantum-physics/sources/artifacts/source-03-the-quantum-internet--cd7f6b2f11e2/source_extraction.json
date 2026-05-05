@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-03-the-quantum-internet--cd7f6b2f11e2/source.pdf",
+    "source_markdown": "sources/artifacts/source-03-the-quantum-internet--cd7f6b2f11e2/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "f3f60c66074933e09ae19024a1b444e477c694c956caaaa2cc376d6b3b09e775",
+  "markdown_char_count": 69167,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "7240c022b1bbb4eab568d476baa2af7d029ffaa7c8155f88a4c61c3ccd6be9b3",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

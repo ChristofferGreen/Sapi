@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "The reported molecular energy result is qualified by the measured systematic and statistical error budget.",
+  "relation_file_id": "rel-bc4ec0ef1dff0d1afc48fb41d2a51c6dd07178e0b0e7715a3afb33a2bddfbbf5",
+  "relation_id": "supports:claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5->claim-the-photonic-variational-eigensolver-experimentally-recovered-the-he-h-bond-diss--5898494f9b1f",
+  "relation_type": "supports",
+  "src_claim_id": "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5",
+  "src_claim_ref": "7",
+  "status": "open"
+}

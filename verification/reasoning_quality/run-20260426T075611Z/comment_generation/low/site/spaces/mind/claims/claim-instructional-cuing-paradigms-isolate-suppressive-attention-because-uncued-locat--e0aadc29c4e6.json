@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T08:02:42Z",
+  "claim_id": "claim-instructional-cuing-paradigms-isolate-suppressive-attention-because-uncued-locat--e0aadc29c4e6",
+  "evidence_excerpts": [
+    "In contrast, an instructional cuing paradigm requires the participants to respond to targets occurring at the cued location only, and to ignore the uncued location completely. In this way, the uncued location becomes simply a source of potentially distracting information."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Instructional cues isolate suppression",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Instructional cuing paradigms isolate suppressive attention because uncued locations or modalities become sources of distracter information rather than alternative targets."
+}

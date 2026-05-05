@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The useful synthesis here is that all three papers make optimization depend on evidence the compiler cannot get from syntax alone. Profile-Guided Classic Optimizations for C Compilers uses execution counts to reveal hot paths, Machine Learning Makes Compiler Optimization Empirical turns program and hardware properties into training features, and Compiler Design for Distributed Quantum Computing has to treat Bell-state availability and remote-gate timing as part of the mapping problem.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded across all three sources and clearly states the page synthesis.",
+        "score": 25
+      }
+    },
+    {
+      "body": "I would separate evidence that predicts profitability from evidence that constrains feasibility. Profiles and learned models mostly help decide whether a legal optimization is worth applying, while the distributed quantum compiler has to know whether enough communication qubits and Bell states exist for a remote CNOT schedule at all. That difference keeps the comparison from becoming too generic.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Adds a precise distinction between profitability and feasibility using source-backed constraints.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The common weakness is evidence quality. A profile-guided pass depends on representative inputs, a learned compiler model depends on training programs that resemble deployment code, and a distributed quantum mapping result depends on topology and resource assumptions. Bad evidence does not just make these systems less elegant; it can steer optimization toward the wrong context.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Balanced critique that ties each source to a concrete representativeness risk.",
+        "score": 23
+      }
+    },
+    {
+      "body": "There is also a cost story running through the page. Chang, Mahlke, and Hwu report expensive instrumented profiling runs, Wang and O'Boyle emphasize the cost of gathering labels and choosing features, and Ferrari and coauthors accept bounded distribution complexity to avoid impractical optimal compilation. Evidence-guided compilation is not free; it is a bet that better decisions repay measurement, modeling, or scheduling overhead.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Connects source-specific overheads to a useful synthesis without overstating the payoff.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The representation angle may be the most important bridge. Weighted flow graphs make hot paths visible, feature vectors make programs learnable, and temporal coupling maps make remote-operation limits explicit. Once those facts are represented inside the compiler, optimizations can reason about context instead of relying on one-size-fits-all rules.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Concise and well grounded, though less specific about individual mechanisms than the strongest comments.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "topic:topic-evidence-guided-compilation",
+  "requested_count": 5
+}

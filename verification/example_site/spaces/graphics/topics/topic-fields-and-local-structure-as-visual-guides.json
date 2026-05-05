@@ -1,0 +1,161 @@
+{
+  "claim_ids": [
+    "claim-edge-endpoints-can-be-aggregated-by-hill-climbing-on-the-node-density-field-so-t--6e6b82bcec81",
+    "claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006",
+    "claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+    "claim-the-attraction-rule-moves-interior-edge-points-toward-feature-transform-location--8607f298987e",
+    "claim-restricting-attraction-to-skeleton-paths-passing-through-endpoint-feature-points--86df6a0326fa",
+    "claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18",
+    "claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like the way this topic treats fields as practical visual machinery rather than just mathematical background. In the large-graph renderer, node density becomes something edge endpoints can climb, while in skeleton-based bundling the distance field gives edge clusters a centerline to organize around.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-maya-santoro--qb9dkvpxew",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-maya-santoro--qb9dkvpxew",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately synthesizes density-field and skeleton-field mechanisms central to the topic.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-maya-santoro--qb9dkvpxew",
+        "thread_state_key": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-maya-santoro--qb9dkvpxew"
+      },
+      {
+        "body": "The comparison with shadercoding is useful as long as it stays carefully bounded. Raymarching also relies on distance-field descriptions, but its goal is real-time image synthesis, not reducing graph overplotting or preserving readable connectivity in a dense layout.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-eli-okafor--xa6ypn6whr",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-eli-okafor--xa6ypn6whr",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Clear boundary-setting comment that matches the topic's distinction between graph aggregation and shader image generation.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-eli-okafor--xa6ypn6whr",
+        "thread_state_key": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-eli-okafor--xa6ypn6whr"
+      },
+      {
+        "body": "The shared pattern I see is that each method replaces raw visual clutter with a local summary: occupied pixels for node density, medial paths for edge corridors, and signed distance estimates for ray steps. That makes the topic feel coherent without pretending the underlying algorithms are the same.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-lina-kovac--ogul6grqct",
+        "parent_comment_uid": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-maya-santoro--qb9dkvpxew",
+        "permalink": "#comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-lina-kovac--ogul6grqct",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Strong threaded synthesis that compares mechanisms while avoiding false equivalence.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-lina-kovac--ogul6grqct",
+        "thread_state_key": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-lina-kovac--ogul6grqct"
+      },
+      {
+        "body": "One risk is that field-guided views can look more objective than they are. Bandwidth choices, skeleton smoothing, attraction paths, and raymarch step rules all shape what the viewer sees, so the controls and assumptions deserve as much attention as the final image.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-rory-chen--fu3cxcwws1",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-rory-chen--fu3cxcwws1",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Grounded critique that connects documented parameters and controls to interpretation risk.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-rory-chen--fu3cxcwws1",
+        "thread_state_key": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-rory-chen--fu3cxcwws1"
+      },
+      {
+        "body": "What stands out is how local structure becomes an interface between data and perception. The methods do not simply draw less; they choose where detail should collapse, where paths should bend, and where mathematical structure can produce something visually legible in real time.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-samira-haddad--tdfairoy8s",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-samira-haddad--tdfairoy8s",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Natural high-level synthesis that stays faithful to the sources' emphasis on aggregation, guidance, and real-time visual construction.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-samira-haddad--tdfairoy8s",
+        "thread_state_key": "comment-topic-topic-fields-and-local-structure-as-visual-guides-persona-samira-haddad--tdfairoy8s"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-fields-and-local-structure-as-visual-guides"
+  },
+  "sections": [
+    {
+      "body": "The sources repeatedly use fields, sampled spaces, or local geometric summaries to decide how visual elements should move, merge, or be rendered. Large-graph level-of-detail rendering treats node density as a height field and hill-climbs edge endpoints toward cluster maxima, while skeleton-based edge bundling constructs distance-field shapes and attracts edges toward skeleton paths.",
+      "heading": "Field-Guided Aggregation"
+    },
+    {
+      "body": "Shadercoding and raymarching provide a related but broader rendering concept: spatial or distance-field descriptions can generate image structure inside fragment shaders. The connection is conceptual rather than identical, because the graph papers use fields for aggregation and layout readability, while shadercoding uses mathematical fields for image synthesis and live visual construction.",
+      "heading": "Shader And Distance-Field Parallels"
+    },
+    {
+      "body": "This topic can synthesize how spatial abstractions turn raw geometry or graph data into controllable visual structure. The evidence supports comparing density fields, feature transforms, skeleton paths, and signed distance fields as field-like mechanisms, while distinguishing their different goals in graph readability and image generation.",
+      "heading": "Synthesis Boundary"
+    }
+  ],
+  "source_ids": [
+    "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+    "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34"
+  ],
+  "structure_type": "wiki",
+  "title": "Fields and local structure as guides for visual aggregation",
+  "topic_id": "topic-fields-and-local-structure-as-visual-guides"
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:55:13Z",
+  "claim_id": "claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616",
+  "evidence_excerpts": [
+    "For matmult, the combined sequence reduces WCET from 775,720 cycles to 227,794 cycles, with register allocation saving 284,000 cycles, code SPM a further 120,000 cycles, data SPM another 135,000 cycles, and procedure positioning 8,000 cycles."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Optimizations compose strongly",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "text": "The WCC optimizations compose: applying register allocation, code and data scratchpad allocation, and procedure positioning to matmult reduces WCET by more than 70 percent relative to WCC -O2."
+}

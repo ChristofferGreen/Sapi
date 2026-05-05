@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de",
+    "claim-the-largest-random-circuits-combined-53-qubits-1-113-single-qubit-gates-430-two--c8ece98aae87"
+  ],
+  "evidence_id": "evidence-simultaneous-error-table--c6f80ab19e44",
+  "evidence_type": "table_result",
+  "excerpt": "Figure 2 reports average simultaneous-operation errors of single-qubit e1 = 0.16%, two-qubit e2 = 0.62%, two-qubit cycle e2c = 0.93%, and readout er = 3.8%.",
+  "overview": "These tabulated component measurements matter because the supremacy experiment depends on running many gates concurrently without hidden correlated failures overwhelming the circuit. They support the predictive error model, while still showing that readout and two-qubit operations are the dominant fidelity limits.",
+  "page_refs": [
+    "Fig.2",
+    "p.507"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+  "title": "System-Wide Error Rates"
+}

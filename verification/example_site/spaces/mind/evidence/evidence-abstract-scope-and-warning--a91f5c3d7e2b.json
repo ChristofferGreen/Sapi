@@ -1,0 +1,19 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-is-not-a-unitary-construct-it-is-an-umbrella-term-spanning-diverse-p--ab25afeeb846",
+    "claim-the-clinical-evidence-base-for-mindfulness-based-interventions-remains-insuffici--fd5df4ed74a7",
+    "claim-mindfulness-hype-can-create-opportunity-costs-by-diverting-people-from-establish--1a47df8a5e6d",
+    "claim-mindfulness-research-should-adopt-preregistration-open-science-replication-caref--5f747418bb67"
+  ],
+  "evidence_id": "evidence-abstract-scope-and-warning--a91f5c3d7e2b",
+  "evidence_type": "formal_argument",
+  "excerpt": "During the past two decades, mindfulness meditation has gone from being a fringe topic of scientific investigation to being an occasional replacement for psychotherapy, tool of corporate well-being, widely implemented educational practice, and key to building more resilient soldiers. The abstract warns that misinformation and poor methodology associated with past studies of mindfulness may lead public consumers to be harmed, misled, and disappointed.",
+  "overview": "The abstract frames the entire source as a corrective to exaggerated claims and weak methods in mindfulness research. It establishes that the article is not rejecting mindfulness outright; instead, it argues that uncertain definitions, poor methodology, untracked adverse effects, and overconfident publicity can mislead users and distort science.",
+  "page_refs": [
+    "Abstract",
+    "pp.36-37"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Abstract Scope Warning"
+}

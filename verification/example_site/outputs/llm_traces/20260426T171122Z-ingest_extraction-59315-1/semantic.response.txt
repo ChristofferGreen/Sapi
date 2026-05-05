@@ -1,0 +1,296 @@
+{
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source": {
+    "display_title": "Interactive Level-of-Detail Rendering for Large Graphs",
+    "authors": [
+      "Michael Zinsmaier",
+      "Ulrik Brandes",
+      "Oliver Deussen",
+      "Hendrik Strobelt"
+    ],
+    "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+    "record_display_title": "Untitled Source",
+    "venue_note": "IEEE Transactions on Visualization and Computer Graphics 18(12), pages 2486-2495"
+  },
+  "claims": [
+    {
+      "text": "Straight-line graph drawings can be rendered interactively with adjustable level of detail by combining density-based node aggregation with edge cumulation on graphics hardware.",
+      "short_title": "LOD renders large graphs",
+      "evidence_excerpts": [
+        "We propose a technique that allows straight-line graph drawings to be rendered interactively with adjustable level of detail. The approach consists of a novel combination of edge cumulation with density-based node aggregation and is designed to exploit common graphics hardware for speed."
+      ]
+    },
+    {
+      "text": "Pixel-bin seed points reduce node-density rendering work without changing the density field produced for a given viewport.",
+      "short_title": "Seed points preserve density",
+      "evidence_excerpts": [
+        "For large node sets, however, the described method is time inefficient because the amount of textured rectangles depends linearly on the number of nodes within the screen area. Therefore, we extend the method and significantly reduce rendering time by binning nearby node coordinates into pixels. Instead of rasterizing multiple rectangles at the same position, a single weighted rasterization step per bin is then sufficient to create the same density field."
+      ]
+    },
+    {
+      "text": "A two-pass accumulation-field method fits directly into the OpenGL pipeline and avoids extra point-hierarchy storage for node aggregation.",
+      "short_title": "Two passes avoid hierarchies",
+      "evidence_excerpts": [
+        "Therefore we propose the Seed Point Method, a technique that uses two render-passes: one to merge the nodes in their pixel-sized bins and one to create the actual density field. In the first pass the node coordinates xi are mapped to pixel positions xi' of an Accumulation Field. The Accumulation Field is a frame buffer object (FBO) in screen resolution."
+      ]
+    },
+    {
+      "text": "Edge endpoints can be aggregated by hill-climbing on the node density field so that inter-cluster connections are emphasized and inner-cluster connections vanish.",
+      "short_title": "Hill climbing aggregates edges",
+      "evidence_excerpts": [
+        "We interpret the node density field as height field and use a hill climbing algorithm to move starting and end points of the edges to the highest point of their visual cluster (the local maximum). The edges whose start points fall into the same cluster and whose end points share another cluster are implicitly aggregated. As result, inner-cluster connections are vanished while inter-cluster connections are emphasized."
+      ]
+    },
+    {
+      "text": "The edge aggregation approach operates in image space and does not require precomputed supporting data structures such as hierarchies or meshes.",
+      "short_title": "Image space avoids preprocessing",
+      "evidence_excerpts": [
+        "In contrast to other edge aggregation techniques our technique operates in image space and therefore does not rely on precomputing supporting data structures."
+      ]
+    },
+    {
+      "text": "The rendering complexity remains linear in input size, with seed-point rectangle work bounded by the smaller of node count and pixel count.",
+      "short_title": "Complexity stays linear",
+      "evidence_excerpts": [
+        "The worst case complexity for p pixels, n nodes and m edges is defined as: O(n · Rs + min(n, p) · Rr + m · Re). Thus we are able to maintain a linear dependency towards the size of the input data."
+      ]
+    },
+    {
+      "text": "Measured overview rendering stayed below one second for several datasets up to about 1.5 million edges, while a 4.55 million-edge dataset required about 1.2 seconds for overview rendering.",
+      "short_title": "Overview rendering stays fast",
+      "evidence_excerpts": [
+        "Table 1 reports overview GPU times at 1500x750 resolution: Wiki-Vote with 103,660 edges took 0.3s at 32px and 0.4s at 128px; net150 with 1,538,840 edges took 0.4s at both kernel sizes; the 4.5M dataset with 4,551,564 edges took 1.2s at both kernel sizes."
+      ]
+    },
+    {
+      "text": "The LaGO implementation supports interactive zooming, panning, normalization control, color mapping, and detail-on-demand labeling for large graph exploration.",
+      "short_title": "LaGO enables graph exploration",
+      "evidence_excerpts": [
+        "LaGO provides zoom and pan operations to support the interactive exploration of visualized graphs. Similar to related density based approaches the bandwidth parameter h is bound to the viewport to support semantic zooming. The user selects a cluster by clicking onto it and the system retrieves the cluster nodes and sorts them according to their degree or a dedicated weight."
+      ]
+    },
+    {
+      "text": "The visualization examples reveal interpretable patterns in real graph datasets, including flight hubs, migration flows, Net50 structures, and OpenStreetMap building-density patterns.",
+      "short_title": "Examples reveal graph patterns",
+      "evidence_excerpts": [
+        "The prominent flight hubs (Atlanta, Chicago, LA, San Francisco, East coast) appear immediately and strong connections like LA ⇔ San Francisco are marked by color and width. Figure 10 describes 545,882 weighted edges for county-to-county migration flow, and Figure 13 visualizes 37.6 million OpenStreetMap building nodes with interactive exploration."
+      ]
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "evidence-abstract-lod-graph-rendering--da3742d47ec2",
+      "title": "Interactive LOD Rendering Claim",
+      "excerpt": "Abstract— We propose a technique that allows straight-line graph drawings to be rendered interactively with adjustable level of detail. The approach consists of a novel combination of edge cumulation with density-based node aggregation and is designed to exploit common graphics hardware for speed. It operates directly on graph data and does not require precomputed hierarchies or meshes. As proof of concept, we present an implementation that scales to graphs with millions of nodes and edges.",
+      "overview": "The abstract states the source's central contribution: an interactive, adjustable level-of-detail rendering method for large graph drawings. It matters because it frames the method as a direct graph-data renderer rather than a preprocessing-heavy layout or mesh pipeline, while limiting the claim to graphs that fit in graphics memory and to the proof-of-concept implementation described in the article.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "0",
+        "4"
+      ],
+      "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+      "page_refs": [
+        "p.2486"
+      ]
+    },
+    {
+      "evidence_id": "evidence-seed-point-two-pass-method--03409f6b15c5",
+      "title": "Two-Pass Seed Points",
+      "excerpt": "For large node sets, however, the described method is time inefficient because the amount of textured rectangles depends linearly on the number of nodes within the screen area. Therefore, we extend the method and significantly reduce rendering time by binning nearby node coordinates into pixels. Instead of rasterizing multiple rectangles at the same position, a single weighted rasterization step per bin is then sufficient to create the same density field. Therefore we propose the Seed Point Method, a technique that uses two render-passes: one to merge the nodes in their pixel-sized bins and one to create the actual density field.",
+      "overview": "This passage supplies the mechanism behind the node aggregation claim. It identifies the original cost driver, explains pixel binning as a mathematically equivalent density-field shortcut for a viewport, and describes the two-pass rendering structure. The evidence supports speed and storage claims but does not by itself prove user-facing readability or superiority over every possible spatial hierarchy.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "1",
+        "2"
+      ],
+      "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+      "page_refs": [
+        "p.2488",
+        "Fig.2"
+      ]
+    },
+    {
+      "evidence_id": "evidence-hill-climbing-edge-aggregation--a0e71360e090",
+      "title": "Hill-Climbed Edge Endpoints",
+      "excerpt": "We interpret the node density field as height field and use a hill climbing algorithm to move starting and end points of the edges to the highest point of their visual cluster (the local maximum). The edges whose start points fall into the same cluster and whose end points share another cluster are implicitly aggregated. As result, inner-cluster connections are vanished while inter-cluster connections are emphasized. In contrast to other edge aggregation techniques our technique operates in image space and therefore does not rely on precomputing supporting data structures.",
+      "overview": "The evidence explains how node aggregation and edge aggregation are coupled. Moving edge endpoints to density-field maxima creates implicit aggregate edges between visual clusters, making the method suitable for level-of-detail views. The scope is image-space aggregation, so the resulting edges are display-dependent visual summaries rather than persistent graph-topological abstractions.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "3",
+        "4"
+      ],
+      "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+      "page_refs": [
+        "p.2488",
+        "p.2489",
+        "Fig.3"
+      ]
+    },
+    {
+      "evidence_id": "evidence-linear-complexity-equation--f588b0bf4dec",
+      "title": "Linear Complexity Bound",
+      "excerpt": "The worst case complexity for p pixels, n nodes and m edges is defined as: O(n · Rs + min(n, p) · Rr + m · Re). Thus we are able to maintain a linear dependency towards the size of the input data. Moreover, the architecture of GPUs compensates for growing data sizes through parallelization. In practice, nearly constant render times can be achieved for graphs with up to ∼ 10^6 edges on common hardware.",
+      "overview": "The complexity expression is the article's formal performance argument. It separates costs for node accumulation, seed-point rectangle creation, and edge rendering, with the rectangle term capped by viewport pixels. This evidence grounds the scalability claim, although the practical constant-time behavior depends on GPU parallelism, viewport conditions, kernel size, and dataset distribution.",
+      "evidence_type": "equation",
+      "claim_refs": [
+        "5"
+      ],
+      "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+      "page_refs": [
+        "Eq.3",
+        "p.2489"
+      ]
+    },
+    {
+      "evidence_id": "evidence-rendering-time-table--1a3c468e1834",
+      "title": "Rendering Time Table",
+      "excerpt": "Table 1 reports rendering times in seconds at 1500x750 resolution. US air-traffic has 275 nodes and 1,925 edges with 0.3s overview times at 32px and 128px. Wiki-Vote has 8,436 nodes and 103,660 edges with 0.3s and 0.4s overview times. net150 has 43,517 nodes and 1,538,840 edges with 0.4s overview times at both kernel sizes. The 4.5M dataset has 99,965 nodes and 4,551,564 edges with 1.2s overview times and 2.1s to 2.5s bad-case times. Europe has 37,612,093 nodes and overview times of 0.2s at 32px and 0.5s at 128px.",
+      "overview": "The table provides concrete measured evidence for interactive performance across small, medium, and very large datasets. It supports claims that overview rendering can remain subsecond through roughly million-edge scales and that even a multi-million-edge case is close to interactive. It also shows limits: kernel size and bad-case viewports can increase time substantially, especially for random or very dense visible distributions.",
+      "evidence_type": "table_result",
+      "claim_refs": [
+        "6",
+        "8"
+      ],
+      "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+      "page_refs": [
+        "Table 1",
+        "p.2490"
+      ]
+    },
+    {
+      "evidence_id": "evidence-lago-interaction-controls--b7b17b48c1b6",
+      "title": "LaGO Interaction Controls",
+      "excerpt": "LaGO provides zoom and pan operations to support the interactive exploration of visualized graphs. Similar to related density based approaches the bandwidth parameter h is bound to the viewport to support semantic zooming. The interactive exploration leads to large variations of the visualized density values and fixed color mapping cannot address sparse and crowded viewports equally. We therefore provide an automatic normalization of the densities with the maximal value of the current viewport. LaGO therefore provides a detail on demand implementation that allows the interactive labeling of the node density field.",
+      "overview": "This evidence connects the rendering method to an exploratory software workflow. It shows that the implementation is not only a batch renderer: zooming, panning, bandwidth adjustment, normalization, color mapping, and label retrieval are treated as part of the graph-analysis interface. The evidence is descriptive rather than a controlled user-study result.",
+      "evidence_type": "observational_result",
+      "claim_refs": [
+        "7"
+      ],
+      "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+      "page_refs": [
+        "p.2492"
+      ]
+    },
+    {
+      "evidence_id": "evidence-application-example-patterns--c1b602c198f5",
+      "title": "Example Pattern Findings",
+      "excerpt": "The prominent flight hubs (Atlanta, Chicago, LA, San Francisco, East coast) appear immediately and strong connections like LA ⇔ San Francisco are marked by color and width. Figure 10 shows a US census data set with 545,882 weighted edges depicting county-to-county migration flow between 1995 and 2000, where the overview aggregates nearby clusters and allows observation of higher level patterns like the connection between New York and Florida. Figure 13 visualizes the Europe dataset with 37.6 million nodes that represent all tagged buildings from OpenStreetMap.",
+      "overview": "The example passages show the kinds of patterns the method exposes in practice: hubs and strong routes in air traffic, regional movement in migration data, structural clusters in Net50, and building-density patterns in OpenStreetMap. These examples support interpretability claims, but they are demonstrations rather than quantitative accuracy measurements.",
+      "evidence_type": "figure_result",
+      "claim_refs": [
+        "8"
+      ],
+      "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+      "page_refs": [
+        "Fig.7",
+        "Fig.10",
+        "Fig.13"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "1",
+      "dst_claim_ref": "0",
+      "rationale": "The seed-point node aggregation makes the interactive level-of-detail renderer feasible for large visible node sets."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "3",
+      "dst_claim_ref": "0",
+      "rationale": "Hill-climbed edge aggregation supplies the edge-level counterpart to density-based node aggregation."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "5",
+      "dst_claim_ref": "6",
+      "rationale": "The linear complexity bound explains why the measured overview timings remain low across larger datasets."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "7",
+      "dst_claim_ref": "8",
+      "rationale": "LaGO's interaction controls enable the example-driven exploration that reveals dataset-specific patterns."
+    }
+  ],
+  "summary": "The source presents an OpenGL-based level-of-detail renderer for large graph drawings. It combines density-based node aggregation, a two-pass seed-point method, and hill-climbed edge endpoint aggregation to produce interactive visual summaries without precomputed graph hierarchies or meshes. Performance evidence includes a formal linear-cost expression and measured rendering times across graph datasets, while application examples show use in air traffic, migration, random, Net50, and OpenStreetMap data.",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved from the source record; source_date_inference.date is null."
+    },
+    {
+      "code": "markdown_layout_noise",
+      "message": "The markdown extraction is marked usable, but two-column PDF layout introduces some interleaved text; claims were kept to passages with recoverable wording."
+    }
+  ],
+  "source_dossier": {
+    "summary_short": "This source presents an OpenGL level-of-detail renderer for large graph drawings. It combines density-based node aggregation with image-space edge cumulation so users can explore large graphs interactively without precomputed hierarchies. The evidence includes algorithm design, complexity analysis, rendering-time tables, and dataset examples.",
+    "summary_long": "This source addresses the practical problem of drawing graphs that fit into video memory but become unreadable as ordinary node-link diagrams because nodes and edges overplot. The authors propose a level-of-detail rendering pipeline that treats node groups as density fields and uses those density fields to guide edge aggregation. The node side adapts kernel-density rendering for graphics hardware, then introduces a seed-point optimization: nodes that land in the same pixel are accumulated first, and only one weighted kernel rectangle is rendered for that pixel. The edge side interprets the node accumulation field as a height field, moves edge endpoints toward local density maxima by hill climbing, and draws implicit aggregate edges between visual clusters. This creates a coupled visual metaphor in which dense node areas and the edges between them change together as the user zooms. The paper's strongest evidence is a combination of formal and empirical support. It gives a cost expression linear in node count, edge count, and the number of seed points bounded by pixels, then reports rendering times for datasets ranging from hundreds of edges to millions of edges and tens of millions of points. The LaGO prototype adds the interaction layer: zooming, panning, bandwidth-linked semantic zoom, normalization controls, color mapping, and detail-on-demand labeling. The examples show why the approach is useful: it exposes flight hubs, migration clusters, Net50 connectivity patterns, random-data non-patterns, and OpenStreetMap building-density structure. The limits are also clear. The method is display- and viewport-dependent, random or evenly distributed nodes can reduce the seed-point advantage, kernel bandwidth choices affect interpretation, and the examples are demonstrations rather than a controlled perceptual evaluation.",
+    "sections": [
+      {
+        "heading": "Central Argument",
+        "body": "The paper's core argument is that large graph drawings can remain interactive if the renderer summarizes both nodes and edges in image space. Rather than drawing every node and edge as a separate mark, it creates node density fields and derives edge aggregates from those fields, giving users an adjustable level-of-detail view that still operates directly on graph data.",
+        "grounding_claim_ids": [
+          "0",
+          "3",
+          "4"
+        ]
+      },
+      {
+        "heading": "Node Aggregation Path",
+        "body": "The node method begins with kernel-density rendering but avoids the cost of placing a kernel texture for every visible node. Its seed-point method first accumulates nodes into pixel-sized bins and then renders weighted kernel rectangles for occupied pixels. This preserves the density field for the viewport while reducing geometry and avoiding stored quadtree-style meta nodes.",
+        "grounding_claim_ids": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "heading": "Edge Aggregation Path",
+        "body": "Edges are aggregated by using the node accumulation field as a height field. Endpoint pixels climb toward local density maxima, so edges between the same source and target clusters collapse into shared visual aggregates while intra-cluster edges disappear. The result is an implicit edge summary tied closely to the node aggregation rather than a separately precomputed bundle hierarchy.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ]
+      },
+      {
+        "heading": "Performance Evidence",
+        "body": "The performance case combines an explicit complexity expression with measured GPU timings. The expression bounds rectangle work by min(nodes, pixels) and keeps edge rendering linear in edge count. Table 1 then shows subsecond overview times for several datasets through roughly million-edge scale, with slower but still interactive-ish times for more difficult multi-million-edge or bad-case views.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ]
+      },
+      {
+        "heading": "Interactive Interpretation",
+        "body": "The LaGO system turns the rendering technique into an exploration workflow. Zoom and pan change the viewport, the bandwidth parameter supports semantic zoom, normalization and scaling control density-to-color mapping, and click-based detail-on-demand labeling helps identify prominent cluster members. These controls matter because aggregation levels and density ranges vary strongly during exploration.",
+        "grounding_claim_ids": [
+          "7"
+        ]
+      },
+      {
+        "heading": "Example Findings",
+        "body": "The examples ground the technique in recognizable graph-analysis tasks. Air-traffic views highlight hubs and the Los Angeles to San Francisco connection; migration views show regional flows such as New York to Florida; Net50 exposes structured cross patterns and central peaks; random data avoids spurious patterns; and the OpenStreetMap example scales to 37.6 million building nodes.",
+        "grounding_claim_ids": [
+          "8"
+        ]
+      },
+      {
+        "heading": "Assumptions and Limits",
+        "body": "The method assumes the graph fits in video memory and that image-space aggregation is an acceptable representation of structure at the current viewport and bandwidth. It can be less advantageous when nearly every node occupies a distinct pixel, and its interpretive examples do not replace formal perceptual validation. The authors themselves identify dynamic kernel-size selection and user study as future work.",
+        "grounding_claim_ids": [
+          "1",
+          "5",
+          "6",
+          "8"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-strong-cavity-qed-coupling-supplies-a-physical-regime-in-which-individual-atoms--9807d4e35625",
+    "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772"
+  ],
+  "evidence_id": "evidence-microtoroid-coupling-metrics--08064195a004",
+  "evidence_type": "model_constraint",
+  "excerpt": "For silica microtoroidal resonators, projected critical photon and atom numbers were (n0, N0) \u2243 (2\u00d710\u22125, 10\u22126). Quality factors Q = 4\u00d710^8 at \u03bb = 1550 nm and Q \u2243 10^8 at \u03bb = 850 nm had been realized, with prospects for Q \u223c 10^10, and coupling efficiency into and out of the resonator could approach 0.99\u20130.999 while remaining in strong coupling.",
+  "overview": "The microtoroid data identify one candidate path beyond conventional Fabry-Perot cavities. The metrics matter because large-scale networks need many integrated nodes with high input-output efficiency; the numbers also remain partly projected, so they support feasibility rather than completed network operation.",
+  "page_refs": [
+    "Box 2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "title": "Microtoroid Coupling Metrics"
+}

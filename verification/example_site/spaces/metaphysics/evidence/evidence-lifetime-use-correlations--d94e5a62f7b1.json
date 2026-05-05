@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-greater-lifetime-psychedelic-use-correlates-with-stronger-baseline-panpsychist-b--a024d2968b54",
+    "claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c"
+  ],
+  "evidence_id": "evidence-lifetime-use-correlations--d94e5a62f7b1",
+  "evidence_type": "statistical_result",
+  "excerpt": "A significant positive correlation was found between previous psychedelic use and shifts away from the hard-materialism pole of the hard-materialism vs. hard-dualism spectrum at baseline (r = 0.223, p < 0.0001). Figure 2 reports that lifetime psychedelic use was positively correlated with panpsychist views and negatively correlated with hard materialistic views measured at baseline.",
+  "overview": "The cross-sectional baseline correlation gives convergent evidence that psychedelic exposure and metaphysical orientation vary together even before the prospective ceremony interval. It is not sufficient for causation, but it reinforces the direction of the prospective findings and specifically links past exposure to panpsychist and anti-materialist endorsement.",
+  "page_refs": [
+    "Fig. 1",
+    "Fig. 2",
+    "pp.3-4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "title": "Lifetime Use Correlations"
+}

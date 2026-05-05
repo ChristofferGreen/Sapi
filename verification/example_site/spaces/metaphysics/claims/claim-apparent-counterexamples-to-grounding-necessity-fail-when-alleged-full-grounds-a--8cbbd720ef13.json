@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:08:29Z",
+  "claim_id": "claim-apparent-counterexamples-to-grounding-necessity-fail-when-alleged-full-grounds-a--8cbbd720ef13",
+  "evidence_excerpts": [
+    "Dancy-style, universal-fact, and widowhood cases need extra explanatorily relevant facts; the rose-mode case mistakes a non-ground for a ground."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Counterexamples Misidentify Grounds",
+  "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "Apparent counterexamples to grounding necessity fail when alleged full grounds are reclassified as partial grounds requiring additional explanatorily relevant facts or as non-grounds."
+}

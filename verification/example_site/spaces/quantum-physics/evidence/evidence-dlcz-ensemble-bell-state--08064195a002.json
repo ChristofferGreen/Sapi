@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-dlcz-protocol-creates-heralded-entanglement-between-atomic-ensembles-by-inte--aa516185d3b2"
+  ],
+  "evidence_id": "evidence-dlcz-ensemble-bell-state--08064195a002",
+  "evidence_type": "equation",
+  "excerpt": "In the ideal case and to lowest order in p, a photoelectric detection event at either detector projects the ensembles into |\u03a8L,R\u27e9 = 1/\u221a2 [|0a\u27e9L|1a\u27e9R \u00b1 ei\u03b71|1a\u27e9L|0a\u27e9R], with the sign set by whether D1 or D2 records the event and \u03b71 determined by the channel phase difference.",
+  "overview": "This equation is the source's formal core for measurement-induced ensemble entanglement. The detector click erases which-ensemble information, leaving one collective excitation coherently shared between remote ensembles; the phase-stability condition marks a practical limit on the idealized expression.",
+  "page_refs": [
+    "Eq. 2",
+    "Fig. 3(a)"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "title": "DLCZ Heralded Ensemble State"
+}

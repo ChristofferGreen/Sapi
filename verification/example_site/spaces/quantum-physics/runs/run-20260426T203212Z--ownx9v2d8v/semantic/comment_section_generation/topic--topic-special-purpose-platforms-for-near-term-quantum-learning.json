@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like the way this page treats special-purpose hardware as a real research path without pretending it replaces fault-tolerant machines. Annealers, photonic chips, and Boltzmann-style models look most convincing when they are used to test specific sampling or learning primitives, not when they are sold as universal shortcuts.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Grounded in the page's cautious framing and clearly distinguishes testbeds from universal machines.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The photonic VQE example is a good anchor here because it shows what near-term specificity can buy. The chip did not need to run a deep phase-estimation circuit; it prepared trial states and measured terms, while the classical optimizer handled the rest. That division feels closer to a practical platform story than a broad quantum advantage claim.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately connects the photonic VQE source to the topic's special-purpose platform argument.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The shared primitive across these examples seems to be controlled access to a hard-to-classically-handle distribution. Quantum Boltzmann machines emphasize thermalization and sampling, Sycamore emphasizes random-circuit samples, and VQE depends on repeated expectation estimates. The hard question is whether those primitives survive noise, loading costs, and classical comparison baselines.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Strong synthesis across the QML, Sycamore, and VQE evidence with appropriate caveats.",
+        "score": 25
+      }
+    },
+    {
+      "body": "I agree with the emphasis on classical baselines. A special-purpose platform can be scientifically valuable even when it is not commercially decisive, but the advantage claim has to be tied to the full workflow: preparation, sampling or measurement, readout, and validation against mature classical methods.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Relevant reply that reinforces the complete-workflow benchmark standard from the sources.",
+        "score": 21
+      }
+    },
+    {
+      "body": "Preskill's NISQ framing is useful because it gives these platforms room to matter before they become products. A noisy device may still teach us about many-body dynamics, sampling behavior, or hardware-specific ansatz design, as long as the claim stays scoped to what the experiment actually demonstrates.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Captures the NISQ-era scientific-value argument while keeping the scope limited.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "topic:topic-special-purpose-platforms-for-near-term-quantum-learning",
+  "requested_count": 5
+}

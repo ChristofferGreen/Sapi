@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18"
+  ],
+  "evidence_id": "evidence-raymarching-distance-field-procedure--d92c44e3a1fd",
+  "evidence_type": "formal_argument",
+  "excerpt": "Une technique permet m\u00eame de recr\u00e9er de la profondeur dans le fragment shader et donc d'afficher \u00e0 nouveau de la 3D : le raymarching. ... Il s'agit de d\u00e9crire l'espace selon des fonctions de distances en un point donn\u00e9 ... Ensuite, pour chaque pixel de l'image, on lance un rayon sur lequel on va 'marcher' pas \u00e0 pas ... Chaque rayon va donc, \u00e0 un moment du parcours de la sc\u00e8ne, rencontrer un objet d\u00e9crit dans la fonction de distance (appel\u00e9e commun\u00e9ment SDF pour Signed Distance Field).",
+  "overview": "The raymarching description provides a stepwise technical explanation: define space with distance functions, cast a ray for each pixel, and advance until the ray reaches an SDF-described object. It supports the depth-reconstruction claim and clarifies why the source links raymarching to complex real-time forms, while remaining an introductory account rather than a mathematical proof.",
+  "page_refs": [
+    "Fig.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "title": "Raymarching Distance Field Procedure"
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:56:22Z",
+  "claim_id": "claim-hierarchical-agglomerative-clustering-with-full-linkage-and-euclidean-distances--759b1a2656e8",
+  "evidence_excerpts": [
+    "The edge distance is defined over uniformly spaced samples along the edges, d(e_i,e_j)=sqrt(sum_k ||e_ik-e_jk||^2), with N in [50,100], and the authors report that full-linkage HBA gives the best results."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Sampling clusters similar edges",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "text": "Hierarchical agglomerative clustering with full linkage and Euclidean distances between uniformly sampled edge points yields clusters of geometrically close edges that follow graph structure."
+}

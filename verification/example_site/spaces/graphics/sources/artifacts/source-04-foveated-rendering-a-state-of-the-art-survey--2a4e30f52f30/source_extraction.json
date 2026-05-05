@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30/source.pdf",
+    "source_markdown": "sources/artifacts/source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "8b359edbf5320ba88edb4c8208fa9eaef5a9989866b73e4b8095828c5d104756",
+  "markdown_char_count": 191396,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "9ef50e12162fff5090012662b8fd203197f947625ae242d1fbb7a96db13cce83",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

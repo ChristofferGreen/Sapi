@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T14:49:12Z",
+  "claim_id": "claim-neuroimaging-requires-caution--201770958900",
+  "evidence_excerpts": [
+    "Representative pictures from fMRI and other neuroimaging methods do not clearly convey the complex chain of biological and computational steps that lead to inferences about brain structure and function.",
+    "Many neuroimaging studies have used cross-sectional designs, precluding possible inferences about underlying cause-and-effect relationships."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Neuroimaging requires caution",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "text": "Neuroimaging evidence on meditation can suggest modest brain differences, but group averages, cross-sectional designs, cardiorespiratory artifacts, head motion, and interpretive oversimplification limit causal and practical conclusions."
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-memory-based-sense-of-personal-identity-depends-on-at-least-two-separable-co--f9eaee4ce165",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "The dissociation between episodic content and ownership motivates the two-component account of identity sense.",
+  "relation_file_id": "rel-172f39172b3b9ba1f5693b562742d85345f2340609e8153459f4f3e6c5b12e79",
+  "relation_id": "supports:claim-episodic-recollection-can-preserve-temporally-and-spatially-situated-autobiograp--43867278649d->claim-the-memory-based-sense-of-personal-identity-depends-on-at-least-two-separable-co--f9eaee4ce165",
+  "relation_type": "supports",
+  "src_claim_id": "claim-episodic-recollection-can-preserve-temporally-and-spatially-situated-autobiograp--43867278649d",
+  "src_claim_ref": "0",
+  "status": "open"
+}

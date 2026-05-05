@@ -1,0 +1,308 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c/front_page.png",
+    "source_extraction": "sources/artifacts/source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c/source_extraction.json",
+    "source_file": "sources/artifacts/source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c/source.pdf",
+    "source_markdown": "sources/artifacts/source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c/source.md",
+    "source_provenance": "sources/artifacts/source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c/source_provenance.md"
+  },
+  "authors": [
+    "Ozan Ersoy",
+    "Christophe Hurter",
+    "Fernando V Paulovich",
+    "Gabriel Cantareira",
+    "Alexandru C Telea"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What I like about this approach is that the skeleton is not just a visual metaphor. By inflating each edge cluster into a shape, the method gives itself a geometric object whose centerline really can guide the bundled edges while keeping node positions fixed.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-maya-santoro--qjp9ykuf8m",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-maya-santoro--qjp9ykuf8m",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Grounded in the source's core skeleton and endpoint-preserving mechanics, with a clear interpretive point.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-maya-santoro--qjp9ykuf8m",
+        "thread_state_key": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-maya-santoro--qjp9ykuf8m"
+      },
+      {
+        "body": "The repeated reclustering step feels crucial. A single global clustering pass would probably make the usual hairball look tidier, but the progressive thresholds explain why the paper can form smaller reliable bundles before allowing them to merge into larger routes.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-eli-okafor--vo55ta7ar0",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-eli-okafor--vo55ta7ar0",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately highlights progressive bundling and explains its value without overstating the result.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-eli-okafor--vo55ta7ar0",
+        "thread_state_key": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-eli-okafor--vo55ta7ar0"
+      },
+      {
+        "body": "The warning about information loss should not be treated as a footnote. These views are useful for seeing coarse corridors, but once individual edge identity and exact direction are obscured, the visualization needs to be paired with interaction or filtering for detailed analysis.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-lina-kovac--1r2tkxolx4",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-lina-kovac--1r2tkxolx4",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the paper's stated limitations and adds a practical analysis implication.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-lina-kovac--1r2tkxolx4",
+        "thread_state_key": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-lina-kovac--1r2tkxolx4"
+      },
+      {
+        "body": "Agreed, and that limitation is partly why the cushion shading and smoothing controls matter. They do not recover the lost topology, but they can make overlapping bundles easier to follow when the goal is overview rather than exact path tracing.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-rory-chen--haegb0ehho",
+        "parent_comment_uid": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-lina-kovac--1r2tkxolx4",
+        "permalink": "#comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-rory-chen--haegb0ehho",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Relevant reply that connects visual controls to the thread's limitation point, though less detailed than the root comment.",
+          "score": 18
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 18,
+          "upvotes": 30
+        },
+        "thread_expansion_key": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-rory-chen--haegb0ehho",
+        "thread_state_key": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-rory-chen--haegb0ehho"
+      },
+      {
+        "body": "The GPU-heavy framing also seems important for judging the contribution. Distance transforms, skeletonization, path selection, and attraction are all image-space operations here, so the reported seconds-scale runtimes are tied to that implementation choice rather than just the abstract bundling idea.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-samira-haddad--0xnscs618i",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-samira-haddad--0xnscs618i",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Well aligned with the implementation and performance evidence, with a careful qualification about runtime claims.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-samira-haddad--0xnscs618i",
+        "thread_state_key": "comment-source-source-03-skeleton-based-edge-bundling-for-graph-visualization-1a3dfa0e6b4c-persona-samira-haddad--0xnscs618i"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c"
+  },
+  "date": null,
+  "display_title": "Skeleton-Guided Edge Bundling for Graph Visualization",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[1].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "12 pp 2364-2373. \u27e8 \u27e9. \u27e8hal-01021607\u27e9",
+      "url": "https://doi.org/10.1109/tvcg.2011.233"
+    }
+  ],
+  "ingested_at": "2026-04-26T16:49:30Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://enac.hal.science/hal-01021607v1",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1109/tvcg.2011.233",
+      "linked_source_ids": [],
+      "title": "12 pp 2364-2373. \u27e8 \u27e9. \u27e8hal-01021607\u27e9",
+      "url": null,
+      "year": 2011
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 1 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The paper argues that the skeleton of an inflated edge-cluster shape is a natural bundling guide because skeletons are locally centered within elongated shapes. Once similar edges are clustered, their surrounding distance-field shape captures a shared corridor, and its skeleton provides the central path along which those edges can be drawn.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ],
+        "heading": "Core Argument"
+      },
+      {
+        "body": "The first technical step compares uniformly sampled edge trajectories and uses hierarchical agglomerative clustering to find spatially close, same-direction edge groups. Each cluster drawing is then inflated by a distance threshold into a compact shape, making skeletonization possible even though the original input consists of graph edges rather than filled regions.",
+        "grounding_claim_ids": [
+          "1",
+          "0"
+        ],
+        "heading": "Clustering And Shape Construction"
+      },
+      {
+        "body": "The attraction formula moves sampled edge points toward skeleton feature-transform locations, with an arc-length weighting that leaves endpoints fixed and moves middle points most strongly. This is essential for graph drawings because nodes must remain at their original positions while edges bend into shared bundles.",
+        "grounding_claim_ids": [
+          "2"
+        ],
+        "heading": "Attraction Mechanics"
+      },
+      {
+        "body": "A direct feature-transform advection field can create sharp kinks near discontinuities. The paper addresses this by assigning each edge to a skeleton path through its endpoint feature points and remapping special off-path attraction cases onto that path, making the attraction smoother and more stable.",
+        "grounding_claim_ids": [
+          "3"
+        ],
+        "heading": "Robustness Measures"
+      },
+      {
+        "body": "SBEB is not a one-shot operation: it reclusters repeatedly as edges move closer together. A high initial similarity threshold creates reliable fine-scale bundles, then decreasing thresholds allow those already coherent bundles to merge into larger structures without immediately grouping unrelated crossing edges.",
+        "grounding_claim_ids": [
+          "4"
+        ],
+        "heading": "Progressive Bundling"
+      },
+      {
+        "body": "The implementation treats shapes, skeletons, distance transforms, and attraction largely as image-space operations. Reported table measurements show millisecond-scale CUDA primitives and total GPU times of a few to tens of seconds across tested datasets, supporting the claim that hardware acceleration is central to the method's practicality.",
+        "grounding_claim_ids": [
+          "5"
+        ],
+        "heading": "Implementation And Performance"
+      },
+      {
+        "body": "The paper gives users postprocessing controls over smoothing, relaxation, and cushion shading. These controls matter because skeleton-guided layouts can look sharply organic or smoother and more force-directed-like, and shaded profiles help users follow overlapping bundles without changing the computed screen-space thickness.",
+        "grounding_claim_ids": [
+          "6"
+        ],
+        "heading": "Visual Control"
+      },
+      {
+        "body": "The authors explicitly caution that bundling destroys information by overdraw, loss of individual-edge identity, and direction distortion. The method should therefore be interpreted as a tool for overview and coarse connectivity analysis, especially when graph simplification is unavailable or unsuitable.",
+        "grounding_claim_ids": [
+          "7"
+        ],
+        "heading": "Limits And Interpretation"
+      }
+    ],
+    "summary_long": "Ersoy, Hurter, Paulovich, Cantareira, and Telea propose skeleton-based edge bundling for visualizing large general graphs whose node positions are already known. The central idea is to turn groups of geometrically similar edges into thin image-space shapes and then use each shape's medial-axis skeleton as the centerline toward which the edges should be attracted. This reframes bundling as a sequence of edge clustering, distance-transform construction, skeleton extraction, skeleton-path selection, and endpoint-preserving edge advection. The paper's reasoning path is mathematical and procedural: sampled-edge distances create coherent clusters; distance fields inflate cluster drawings into shapes; skeletons identify local centers of those shapes; feature transforms provide attraction directions; and a regularization step prevents singular attraction artifacts from becoming visible kinks. The implementation emphasizes graphics hardware, using CUDA distance and feature transforms, hole filling, skeletonization, path computation, and independent edge attraction to achieve seconds-scale performance on several graph examples. The result is a method that can produce organic, branching bundles or smoother force-directed-like curves depending on smoothing and relaxation choices. Its practical interpretation is deliberately limited: the visual output helps users see coarse routes, topic-to-topic citation structure, air traffic corridors, or migration-like patterns, but it does not preserve individual edge identity or exact direction. The paper is therefore strongest as a layout and interaction technique for structural overview, not as a lossless representation of graph topology.",
+    "summary_short": "This source introduces skeleton-based edge bundling, which uses medial axes of inflated edge clusters as graph-layout guides. It combines sampled-edge clustering, distance-field skeletons, endpoint-preserving attraction, GPU acceleration, and visual postprocessing to reveal coarse connectivity while obscuring individual edge detail."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "source_kind": "file",
+  "source_locator": "03-skeleton-based-edge-bundling-for-graph-visualization.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Ozan Ersoy",
+      "Christophe Hurter",
+      "Fernando V Paulovich",
+      "Gabriel Cantareira",
+      "Alexandru C Telea"
+    ],
+    "display_title": "Skeleton-Guided Edge Bundling for Graph Visualization"
+  },
+  "source_type": "file",
+  "summary": "Skeleton-based edge bundling constructs bundled layouts for general graphs by clustering geometrically similar edges, inflating each cluster into a distance-field shape, extracting that shape's skeleton, and attracting edges toward skeleton paths. The method is implemented with image-space GPU operations and is presented as a fast, controllable way to reveal coarse connectivity structure while accepting the information loss inherent in edge bundling.",
+  "title": "03-skeleton-based-edge-bundling-for-graph-visualization",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved from the source record; source_date_inference.date is null."
+    }
+  ]
+}

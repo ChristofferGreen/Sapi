@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-quantity-of-consciousness-available-to-a-system-can-be-measured-by-the-value--a2c2f914c389",
+    "claim-a-complex-is-a-subset-of-elements-with-greater-than-zero-that-is-not-included-wi--f99811f20a12"
+  ],
+  "evidence_id": "evidence-minimum-bipartition-phi--91f0ab6c3d54",
+  "evidence_type": "formal_argument",
+  "excerpt": "The methodological note explains that every subset S is evaluated across all bipartitions, the minimum information bipartition MIB(S) is the bipartition where normalized effective information reaches a minimum, and the corresponding value is \u03a6(S). Complexes are then subsets with \u03a6>0 that are not included within a subset having higher \u03a6, and the complex with the maximum \u03a6(S) is the main complex.",
+  "overview": "This is the operational rule connecting the theory's phenomenological commitments to a computable quantity. It establishes why \u03a6 is tied to the weakest informational link: if a subset can be decomposed across a low- or zero-information partition, it cannot function as one integrated subject. The rule also explains why the theory treats subject boundaries as emergent from integration rather than anatomical labels.",
+  "page_refs": [
+    "p.5",
+    "Fig.1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Minimum Bipartition Defines \u03a6"
+}

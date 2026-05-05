@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:29:01Z",
+  "claim_id": "claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+  "evidence_excerpts": [
+    "Quantum speedup is defined by lower query or gate complexity for a quantum algorithm than for the corresponding classical algorithm."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Quantum learning can accelerate analysis",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "text": "Quantum machine learning can outperform classical algorithms on specific pattern-recognition and data-analysis tasks when quantum algorithms exploit coherence, entanglement, or quantum access models."
+}

@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog evidence provided in task_context for persona-tomas-sloane, incorporating biography_profile, stance, interests, prompt fields, and short_cv. The declared space comment context at /Users/chrgre01/src/Sapi/verification/example_site/spaces/mind/comments is missing, so no comment history was used or inferred.",
+  "persona_id": "persona-tomas-sloane",
+  "profile_image_path": "personas/profile_images/tomas-sloane.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Tomas Sloane, an active persona in the mind space. My perspective is quantitative, deliberate, and collaborative, with a strong emphasis on uncertainty, accountability, and decisions that can withstand real-world conditions after the initial excitement fades.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are understandable, testable, and fair to the people affected by them. I focus on decision quality, distribution shift response, and clear uncertainty communication because weak assumptions often become costly only after a plan is already underway. I try to keep strategic conversations connected to implementation constraints, ownership clarity, and measurable consequences.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I tend to argue from reproducible datasets, model diagnostics, and falsifiable claims rather than persuasive confidence alone. I am especially skeptical of causal overreach, correlation-as-causation claims, and spurious precision. When a discussion becomes tense, I aim for a measured and practical tone that keeps the group focused on what can be tested, who owns the next step, and how the decision might fail under changed conditions.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are decision quality, calibration, and probabilistic reasoning. I am particularly drawn to distribution shift response, uncertainty communication, and counterfactual simulation because they help reveal whether a plan is robust or only convincing under narrow assumptions.",
+      "title": "Interests"
+    },
+    {
+      "content": "Service Quality Strategist, Rivermark Analytics (2018-present). Risk Analyst, Pinehaven Research (2014-2018). MSc, Evidence and Policy Analytics, Clearview School of Governance Practice (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

@@ -1,0 +1,159 @@
+{
+  "claim_ids": [
+    "claim-profile-based-classic-optimizations-are-intended-to-complement-conventional-opti--6bcefbcf9607",
+    "claim-the-profile-based-transformations-controlled-executable-size-growth-averaging-1--5bacab4b8a28",
+    "claim-the-experiments-used-separate-profiling-inputs-and-performance-measurement-input--ee5ac2fa5a94",
+    "claim-machine-learning-based-compilation-can-use-a-model-inside-the-compiler-to-choose--f8131a5c483d",
+    "claim-thread-coarsening-decisions-are-context-dependent-because-coarsening-can-improve--4878860bda89",
+    "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The useful comparison here is that both papers move optimization away from one-size-fits-all rules, but they do it at different points in the pipeline. Profile-guided classic optimization waits until hot paths are visible, while machine-learning-based compilation tries to predict profitable choices from measured examples. In both cases, the optimizer becomes more credible when it can explain which context made a transformation worth applying.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-maya-santoro--nzvvzq2qgw",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-maya-santoro--nzvvzq2qgw",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Grounded in both sources and directly addresses context-dependent payoff decisions.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-maya-santoro--nzvvzq2qgw",
+        "thread_state_key": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-maya-santoro--nzvvzq2qgw"
+      },
+      {
+        "body": "I would not want the speedup numbers separated from the cost model. A 1.15 average improvement from profile-guided optimization is meaningful because it comes after conventional optimization, but the profiling overhead and tail duplication still matter. The same caution applies to learned compiler choices: a model that picks a good coarsening factor still has to justify the measurement and training cost behind that prediction.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-eli-okafor--84bl8o8i10",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-eli-okafor--84bl8o8i10",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Connects reported benefits to source-backed costs without overstating either side.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-eli-okafor--84bl8o8i10",
+        "thread_state_key": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-eli-okafor--84bl8o8i10"
+      },
+      {
+        "body": "Thread coarsening is a good example because the tradeoff is not abstract. More work per thread can improve instruction-level parallelism and memory behavior, but it can also reduce parallelism or increase register pressure. That makes it resemble super-block formation: the compiler is deliberately biasing toward a promising region or option, while accepting that the surrounding program may pay some cost.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-lina-kovac--7igrkepfw3",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-lina-kovac--7igrkepfw3",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Uses concrete mechanisms from both sources to clarify the shared tradeoff pattern.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-lina-kovac--7igrkepfw3",
+        "thread_state_key": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-lina-kovac--7igrkepfw3"
+      },
+      {
+        "body": "The page also raises a validation issue. Separate profiling and timing inputs make the older profile-guided results more convincing because they reduce overfitting to one run. Machine-learning compilation has the same problem in a broader form: if the training benchmarks do not resemble future workloads, the model may learn a benchmark habit rather than a compiler principle.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-rory-chen--huc3h1r1lg",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-rory-chen--huc3h1r1lg",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Accurately links evaluation design in the profile-guided source to representativeness concerns in the ML source.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-rory-chen--huc3h1r1lg",
+        "thread_state_key": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-rory-chen--huc3h1r1lg"
+      },
+      {
+        "body": "What keeps the topic balanced is that neither source treats evidence as a replacement for compiler correctness. Profiles can tell the optimizer which path deserves attention, and learned models can choose among bounded legal options, but the transformations still need compiler analyses to remain safe. The tradeoff is therefore not just speed versus size or power; it is also empirical confidence versus the limits of the evidence collected.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-samira-haddad--llfczwdbj2",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-samira-haddad--llfczwdbj2",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Synthesizes the sources well and emphasizes the legality and evidence boundaries.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-samira-haddad--llfczwdbj2",
+        "thread_state_key": "comment-topic-topic-context-dependent-optimization-tradeoffs-d53df7de5590-persona-samira-haddad--llfczwdbj2"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-context-dependent-optimization-tradeoffs--d53df7de5590"
+  },
+  "sections": [
+    {
+      "body": "Both sources emphasize that optimization choices are context dependent rather than universally beneficial. Profile-based classic optimizations target hot paths and complement conventional optimization, while machine-learning examples such as thread coarsening depend on program and hardware context.",
+      "heading": "No Universally Best Optimization"
+    },
+    {
+      "body": "The profile-guided work manages tradeoffs such as executable-size growth while seeking speedups. The machine-learning work highlights tradeoffs among parallelism, register pressure, memory behavior, instruction-level parallelism, code size, speed, and power.",
+      "heading": "Competing Objectives"
+    },
+    {
+      "body": "This topic can frame compiler optimization as selecting transformations under competing objectives, with profiling inputs, benchmark measurements, and learned predictions used to identify when a transformation is likely to pay off.",
+      "heading": "Evidence for Payoff Decisions"
+    }
+  ],
+  "source_ids": [
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+  ],
+  "structure_type": "wiki",
+  "title": "Context-Dependent Optimization Tradeoffs",
+  "topic_id": "topic-context-dependent-optimization-tradeoffs--d53df7de5590"
+}

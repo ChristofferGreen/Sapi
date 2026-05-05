@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "Classifying 90 reports demonstrates that the taxonomy can organize a broad literature sample.",
+  "relation_file_id": "rel-ea28c69fe258e44f10879799141d9c4023b75b8e704175bdccc00f749971dafc",
+  "relation_id": "supports:claim-the-survey-classifies-90-published-foveated-rendering-reports-from-1990-to-2021--d0734ae4812f->claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-survey-classifies-90-published-foveated-rendering-reports-from-1990-to-2021--d0734ae4812f",
+  "src_claim_ref": "6",
+  "status": "open"
+}

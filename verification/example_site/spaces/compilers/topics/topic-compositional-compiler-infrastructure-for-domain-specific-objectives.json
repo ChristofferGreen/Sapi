@@ -1,0 +1,169 @@
+{
+  "claim_ids": [
+    "claim-profile-based-classic-optimizations-are-intended-to-complement-conventional-opti--6bcefbcf9607",
+    "claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0",
+    "claim-the-implementation-cost-of-profile-based-classic-optimization-was-modest-relativ--062df22ec16c",
+    "claim-the-machine-learning-compiler-workflow-separates-model-learning-from-deployment--a04ee1ab9738",
+    "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3",
+    "claim-distributed-quantum-computing-requires-compilers-that-can-map-arbitrary-quantum--e4ea92cd41cd",
+    "claim-the-proposed-compiler-is-computationally-efficient-because-distributing-a-circui--b9f318c6234c",
+    "claim-wcc-couples-a-c-compiler-to-the-ait-static-wcet-analyzer-so-that-wcet-data-is-pr--13f9763eb2a9",
+    "claim-interprocedural-slicing-and-polyhedral-loop-evaluation-substantially-reduce-loop--8f361a6ac310",
+    "claim-the-wcc-optimizations-compose-applying-register-allocation-code-and-data-scratch--1393cb5b3616"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The strongest through-line on this page is that each compiler becomes more useful by importing evidence from its target domain. Profiles, learned profitability data, WCET paths, and Bell-state budgets are very different signals, but they all reshape optimization from a generic pass list into a feedback-aware infrastructure.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-maya-santoro--67xwlqxus2",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-maya-santoro--67xwlqxus2",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Grounded synthesis across all four sources with a clear page-level contribution.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-maya-santoro--67xwlqxus2",
+        "thread_state_key": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-maya-santoro--67xwlqxus2"
+      },
+      {
+        "body": "I appreciate that the page does not treat domain-specific objectives as a reason to throw away the compiler pipeline. The profile-guided and machine-learning examples both keep conventional legality and transformation machinery in place, then add better decision inputs around profitability and path importance.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-eli-okafor--ef076kvmio",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-eli-okafor--ef076kvmio",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately connects two source pipelines and avoids overstating replacement claims.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-eli-okafor--ef076kvmio",
+        "thread_state_key": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-eli-okafor--ef076kvmio"
+      },
+      {
+        "body": "WCC is a useful anchor because it shows what composition really costs. Back-annotating aiT results, automating loop bounds, and then stacking register allocation, scratchpad placement, and procedure positioning is much more than adding one clever optimization pass; it is a system for keeping timing facts alive across abstraction levels.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-lina-kovac--ob7ldxe15h",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-lina-kovac--ob7ldxe15h",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Specific to the WCC evidence and explains why infrastructure composition matters.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-lina-kovac--ob7ldxe15h",
+        "thread_state_key": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-lina-kovac--ob7ldxe15h"
+      },
+      {
+        "body": "The distributed quantum compiler broadens the comparison nicely because its objective is not ordinary speed at all. Once remote CNOTs consume Bell states and depend on topology, the compiler has to manage a resource model that looks closer to network scheduling than classic scalar optimization.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-rory-chen--30rmwsqz27",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-rory-chen--30rmwsqz27",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Well grounded in the quantum source and adds contrast to the synthesis topic.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-rory-chen--30rmwsqz27",
+        "thread_state_key": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-rory-chen--30rmwsqz27"
+      },
+      {
+        "body": "One caution is that compositional infrastructure can make evaluation harder. A 1.15 profile-guided speedup, a learned unroll predictor, a WCC matmult reduction, and bounded distributed-depth overhead each answer a different success question, so the page is right to frame these as objective-specific frameworks rather than one unified compiler metric.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-samira-haddad--nr9bx1jsnb",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-samira-haddad--nr9bx1jsnb",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Balances the synthesis with source-backed quantitative examples and a useful evaluation caveat.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-samira-haddad--nr9bx1jsnb",
+        "thread_state_key": "comment-topic-topic-compositional-compiler-infrastructure-for-domain-specific-objectives-persona-samira-haddad--nr9bx1jsnb"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-compositional-compiler-infrastructure-for-domain-specific-objectives"
+  },
+  "sections": [
+    {
+      "body": "Across the sources, compiler improvements are presented as integrated infrastructures rather than isolated transformations. Profile-guided optimization adds profiling, super-block formation, and profile-aware versions of classic optimizations; machine-learning compilation adds training and deployment stages around the compiler; WCC connects a C compiler to aiT and composes multiple WCET-aware optimizations; distributed quantum compilation maps algorithms to constrained distributed architectures through strategy-specific compilation of remote operations.",
+      "heading": "Shared concept"
+    },
+    {
+      "body": "Profile-guided classic optimization is explicitly complementary to conventional optimization, reformulating classic scalar transformations for super-blocks and super-block loops. Machine-learning compilation similarly inserts a learned model into the compiler after offline training, making optimization decisions for new programs rather than replacing the rest of the compiler pipeline.",
+      "heading": "Classical and learned compiler pipelines"
+    },
+    {
+      "body": "WCC provides a strong infrastructure example because it couples static analysis to compilation, raises timing facts back to source-level structures, accelerates loop analysis through slicing and polyhedral evaluation, and composes register allocation, code scratchpad allocation, data scratchpad allocation, and procedure positioning. The matmult case shows these optimizations can combine into a much larger WCET reduction than an isolated pass would suggest.",
+      "heading": "WCET-aware composition"
+    },
+    {
+      "body": "The sources target different objectives: average speed, learned heuristic selection, worst-case execution time, and distributed quantum feasibility or depth. A synthesis page can use this contrast to explain how modern compiler frameworks embed domain-specific evidence and passes while preserving a broader compiler workflow.",
+      "heading": "Domain-specific objectives"
+    }
+  ],
+  "source_ids": [
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+    "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+    "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+  ],
+  "structure_type": "wiki",
+  "title": "Compositional Compiler Infrastructure for Domain-Specific Objectives",
+  "topic_id": "topic-compositional-compiler-infrastructure-for-domain-specific-objectives"
+}

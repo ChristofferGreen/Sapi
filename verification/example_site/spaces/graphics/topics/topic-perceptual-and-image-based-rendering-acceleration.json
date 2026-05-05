@@ -1,0 +1,161 @@
+{
+  "claim_ids": [
+    "claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546",
+    "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+    "claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3",
+    "claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9",
+    "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+    "claim-packing-each-prerendered-human-sample-into-the-smallest-containing-rectangle-red--c2027548dc18",
+    "claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+    "claim-the-tested-system-renders-10-000-different-humans-in-a-41-260-polygon-village-at--6845dedcbaed"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like that this topic treats foveation and crowd impostors as related choices without flattening them into the same technique. In both cases the renderer is spending fidelity where it changes the viewer's experience most, but one argument comes from visual perception and the other from practical distance, memory, and animation constraints.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-maya-santoro--7cr9hs9nhz",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-maya-santoro--7cr9hs9nhz",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately synthesizes the shared selective-fidelity idea while preserving the distinction between sources.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-maya-santoro--7cr9hs9nhz",
+        "thread_state_key": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-maya-santoro--7cr9hs9nhz"
+      },
+      {
+        "body": "The strongest connection for me is that neither approach is just a lower-resolution shortcut. Foveated rendering still needs a perceptual model and a falloff strategy, while the crowd renderer needs impostor sampling, plane choice, packing, compression, recoloring, shadows, and behavior support to make the illusion hold together.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-eli-okafor--kpd01snks7",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-eli-okafor--kpd01snks7",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Grounded in specific mechanisms from both sources and avoids oversimplifying acceleration.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-eli-okafor--kpd01snks7",
+        "thread_state_key": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-eli-okafor--kpd01snks7"
+      },
+      {
+        "body": "One caveat is that the comparison should not make image-based crowd rendering sound perceptual in the same way foveated rendering is. The crowd paper is more about exploiting viewing conditions and storage budgets for distant pedestrians, whereas the survey is explicitly organized around human visual sensitivity and gaze-dependent quality.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-lina-kovac--nvo0uxukf9",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-lina-kovac--nvo0uxukf9",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Useful boundary-setting critique that matches the topic's stated limits and source evidence.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-lina-kovac--nvo0uxukf9",
+        "thread_state_key": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-lina-kovac--nvo0uxukf9"
+      },
+      {
+        "body": "That distinction matters, but I still think the practical engineering lesson overlaps. Both papers show that the hard part is not deciding to reduce detail; it is deciding which detail can be reduced without creating obvious popping, latency, peripheral artifacts, or close-up character failures.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-rory-chen--rbfiya355y",
+        "parent_comment_uid": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-lina-kovac--nvo0uxukf9",
+        "permalink": "#comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-rory-chen--rbfiya355y",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Relevant reply that acknowledges the caveat and links concrete failure modes across the sources.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-rory-chen--rbfiya355y",
+        "thread_state_key": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-rory-chen--rbfiya355y"
+      },
+      {
+        "body": "The page could also emphasize evaluation a little more. The foveated survey warns that quality metrics can miss fixation, saliency, or spatio-temporal sensitivity, and the crowd paper's frame rates depend heavily on the static city and viewing assumptions, so acceleration numbers alone do not tell the whole story.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-samira-haddad--y4332w884m",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-samira-haddad--y4332w884m",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Strong evidence-based comment connecting evaluation limits from both source contexts.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-samira-haddad--y4332w884m",
+        "thread_state_key": "comment-topic-topic-perceptual-and-image-based-rendering-acceleration-persona-samira-haddad--y4332w884m"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-perceptual-and-image-based-rendering-acceleration"
+  },
+  "sections": [
+    {
+      "body": "Foveated rendering and image-based impostor rendering both respond to real-time rendering pressure by reducing work where full geometric or full-quality rendering is not necessary. Foveated rendering allocates high quality to the foveal region and lower quality to peripheral regions, while crowd impostors replace complex human models with optimized image samples to keep dense virtual environments interactive.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "The shared concept is selective fidelity: rendering systems can preserve the experience that matters to the viewer while changing the underlying representation, quality, or detail level. The foveated-rendering survey frames this around human-visual-system models and regional quality variation; the crowd-rendering system frames it around positional and directional discretization, texture compression, and impostors.",
+      "heading": "Section 2"
+    },
+    {
+      "body": "This topic should also note the limits of the comparison. Foveated rendering is explicitly perceptual and spans many rendering paradigms, whereas the crowd-rendering source focuses on a concrete image-based technique for animated humans in virtual cities. Both nevertheless treat rendering cost as a central design constraint for interactive visual systems.",
+      "heading": "Section 3"
+    }
+  ],
+  "source_ids": [
+    "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1"
+  ],
+  "structure_type": "wiki",
+  "title": "Perceptual and image-based strategies for real-time rendering acceleration",
+  "topic_id": "topic-perceptual-and-image-based-rendering-acceleration"
+}

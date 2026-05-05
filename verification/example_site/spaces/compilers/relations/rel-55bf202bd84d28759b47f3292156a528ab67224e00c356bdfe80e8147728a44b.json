@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-machine-learning-compiler-workflow-separates-model-learning-from-deployment--a04ee1ab9738",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "Feature representations are required for the training stage that precedes deployment.",
+  "relation_file_id": "rel-55bf202bd84d28759b47f3292156a528ab67224e00c356bdfe80e8147728a44b",
+  "relation_id": "supports:claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be->claim-the-machine-learning-compiler-workflow-separates-model-learning-from-deployment--a04ee1ab9738",
+  "relation_type": "supports",
+  "src_claim_id": "claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be",
+  "src_claim_ref": "2",
+  "status": "open"
+}

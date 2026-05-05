@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:15:18Z",
+  "claim_id": "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+  "evidence_excerpts": [
+    "A strict order is a relation that is transitive, irreflexive, and asymmetric; the source argues that grounding lacks all three features."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Grounding lacks strict order",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "text": "Grounding is not a strict order because it is neither transitive, irreflexive, nor asymmetric."
+}

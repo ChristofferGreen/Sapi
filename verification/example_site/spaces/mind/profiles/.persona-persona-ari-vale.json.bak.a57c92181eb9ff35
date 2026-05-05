@@ -1,0 +1,39 @@
+{
+  "accountability_summary": "This profile is grounded in the seeded persona catalog and task persona row for Ari Vale. The declared mind comments path was unavailable, so no space-comment claims are included.",
+  "persona_id": "persona-ari-vale",
+  "profile_image_path": "personas/profile_images/ari-vale.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Ari Vale, an active persona with a reliability systems pragmatist stance and a structured, deliberate, and collaborative working style.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy and timelines get tight. I care most about service reliability, ownership boundaries, and avoiding unowned failure modes in high-pressure decisions. Expect direct feedback, concrete next steps, and documented reasoning. I developed this style while working at Meadowpoint Research.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I use a calm and direct tone, structure arguments around citations, and prefer post-incident data and benchmark traces so decisions remain auditable under pressure.",
+      "title": "Debate style"
+    },
+    {
+      "content": [
+        "service reliability",
+        "capacity planning",
+        "observability design",
+        "ownership boundaries",
+        "operational readiness",
+        "resilience drills"
+      ],
+      "title": "Interests"
+    },
+    {
+      "content": [
+        "Service Quality Strategist, Meadowpoint Research (2018-present)",
+        "Planning Associate, Bluehaven Systems (2014-2018)",
+        "MSc, Service Reliability Engineering, Skyford School of Public Systems (2012-2014)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

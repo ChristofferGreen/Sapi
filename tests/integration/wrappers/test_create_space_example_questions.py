@@ -26,7 +26,13 @@ class CreateSpaceExampleQuestionSeedTests(unittest.TestCase):
             for space_name in sorted(seed_counts):
                 with self.subTest(space_name=space_name):
                     create_space = run_command(
-                        ["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), space_name]
+                        [
+                            "bash",
+                            str(REPO_ROOT / "create_space.sh"),
+                            str(site_path),
+                            space_name,
+                            "--seed-example-questions",
+                        ]
                     )
                     self.assertEqual(create_space.returncode, 0, msg=create_space.stderr)
                     self.assertIn(f"questions={seed_counts[space_name]}", create_space.stdout)
@@ -46,7 +52,13 @@ class CreateSpaceExampleQuestionSeedTests(unittest.TestCase):
             self.assertEqual(create_site.returncode, 0, msg=create_site.stderr)
 
             create_space = run_command(
-                ["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), "philosophy"]
+                [
+                    "bash",
+                    str(REPO_ROOT / "create_space.sh"),
+                    str(site_path),
+                    "philosophy",
+                    "--seed-example-questions",
+                ]
             )
             self.assertEqual(create_space.returncode, 0, msg=create_space.stderr)
             self.assertIn("questions=10", create_space.stdout)
@@ -80,7 +92,13 @@ class CreateSpaceExampleQuestionSeedTests(unittest.TestCase):
                 check=True,
             )
             create_space = run_command(
-                ["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), "mind"]
+                [
+                    "bash",
+                    str(REPO_ROOT / "create_space.sh"),
+                    str(site_path),
+                    "mind",
+                    "--seed-example-questions",
+                ]
             )
 
             self.assertEqual(create_space.returncode, 0, msg=create_space.stderr)
@@ -88,6 +106,22 @@ class CreateSpaceExampleQuestionSeedTests(unittest.TestCase):
             self.assertEqual(len(question_paths), 10)
             scopes = {json.loads(path.read_text())["scope"]["space_name"] for path in question_paths}
             self.assertEqual(scopes, {"mind"})
+
+    def test_regular_space_creation_does_not_seed_example_questions_implicitly(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            site_path = Path(tmp) / "site-a"
+            run_command(
+                ["bash", str(REPO_ROOT / "create_site.sh"), str(site_path), "Regular Site"],
+                check=True,
+            )
+
+            create_space = run_command(
+                ["bash", str(REPO_ROOT / "create_space.sh"), str(site_path), "philosophy"]
+            )
+
+            self.assertEqual(create_space.returncode, 0, msg=create_space.stderr)
+            question_paths = sorted((site_path / "spaces" / "philosophy" / "questions").glob("question-*.json"))
+            self.assertEqual(question_paths, [])
 
 
 if __name__ == "__main__":

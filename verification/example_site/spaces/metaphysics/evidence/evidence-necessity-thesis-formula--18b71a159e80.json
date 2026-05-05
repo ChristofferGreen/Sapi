@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-the-conjunction-of--dbb969101dbd"
+  ],
+  "evidence_id": "evidence-necessity-thesis-formula--18b71a159e80",
+  "evidence_type": "formal_argument",
+  "excerpt": "necessity: if [p] is fully grounded in D, then \u25a1(\u2227D \u2192 p). The thesis concerns full grounds and the modal entailment of the grounded proposition by the full ground propositions.",
+  "overview": "This formula is the article\u2019s target proposition. It fixes the relevant sense of necessary grounding as modal entailment from full grounds, rather than as a claim that the grounding relation itself or some grounding relation must recur in every possible world.",
+  "page_refs": [
+    "p.466"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Necessity Thesis Formula"
+}

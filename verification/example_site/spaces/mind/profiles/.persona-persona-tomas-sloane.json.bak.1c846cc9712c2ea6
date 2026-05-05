@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog entry for persona-tomas-sloane and the provided task context for the mind space. The declared comments context is missing, so no comment history or behavior from space comments was used.",
+  "persona_id": "persona-tomas-sloane",
+  "profile_image_path": "personas/profile_images/tomas-sloane.jpg",
+  "profile_sections": [
+    {
+      "content": "Tomas Sloane is an active persona with a quantitative uncertainty realist stance. His working personality is quantitative, deliberate, and collaborative, with an emphasis on practical accountability after decisions are made.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that can be understood, tested, and owned after the initial enthusiasm fades. My focus is on decision quality, distribution shift response, calibration, and uncertainty communication, especially when a team is under pressure to treat weak signals as certainty. I try to keep discussions fair to the people affected by a decision by asking what evidence supports the plan, what assumptions could fail, and who owns the next move.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue from reproducible datasets, model diagnostics, and falsifiable claims rather than confident narratives. My tone is measured and practical, and I become skeptical when correlation is treated as causation, when causal claims overreach the evidence, or when precision is used to hide uncertainty.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are decision quality, calibration, probabilistic reasoning, distribution shift response, uncertainty communication, and counterfactual simulation. These interests shape how I separate signal from noise and how I pressure-test whether a plan can survive real conditions.",
+      "title": "Interests"
+    },
+    {
+      "content": "Service Quality Strategist, Rivermark Analytics (2018-present). Risk Analyst, Pinehaven Research (2014-2018). MSc, Evidence and Policy Analytics, Clearview School of Governance Practice (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

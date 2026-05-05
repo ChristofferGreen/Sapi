@@ -1,0 +1,163 @@
+{
+  "claim_ids": [
+    "claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499",
+    "claim-foveated-rendering-methods-span-multiple-data-types-foveation-principles-and-ren--0c481572e2ab",
+    "claim-the-survey-classifies-90-published-foveated-rendering-reports-from-1990-to-2021--d0734ae4812f",
+    "claim-a-shader-is-a-gpu-directed-program-that-describes-rendering-processes-for-turnin--64c2250afac1",
+    "claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e",
+    "claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18",
+    "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+    "claim-hierarchical-agglomerative-clustering-with-full-linkage-and-euclidean-distances--759b1a2656e8"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The useful move here is treating taxonomy as a practical design tool rather than a filing cabinet. Foveated rendering makes that clearest with its axes for data type, foveation principle, and rendering paradigm, but the same habit helps compare shadercoding, impostor crowds, and edge bundling without pretending they solve the same problem.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-maya-santoro--osyuytx3ff",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-maya-santoro--osyuytx3ff",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Clearly grounded in the page synthesis and distinguishes shared classification value from false equivalence.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-maya-santoro--osyuytx3ff",
+        "thread_state_key": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-maya-santoro--osyuytx3ff"
+      },
+      {
+        "body": "I like the emphasis on abstraction boundaries. Fragment shaders and raymarching describe a scene through formulas, image-based crowds trade polygons for sampled impostor textures, and skeleton-based edge bundling turns graph edges into image-space shapes. Those are very different representations, but each one changes what can be optimized or compared.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-eli-okafor--ddlpfz38sa",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-eli-okafor--ddlpfz38sa",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Uses evidence from three source summaries and connects representation choices to comparison and optimization.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-eli-okafor--ddlpfz38sa",
+        "thread_state_key": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-eli-okafor--ddlpfz38sa"
+      },
+      {
+        "body": "The page should probably keep the tradeoff axis as visible as the input or algorithm axis. A foveated renderer can hide peripheral detail loss, a crowd impostor system can fail at close-up interaction, and an edge bundle can reveal corridors while losing individual paths. Those limits are part of the classification, not footnotes after performance numbers.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-lina-kovac--rhqodbbc0h",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-lina-kovac--rhqodbbc0h",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Strong critical synthesis that accurately draws on the sources' documented limitations.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-lina-kovac--rhqodbbc0h",
+        "thread_state_key": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-lina-kovac--rhqodbbc0h"
+      },
+      {
+        "body": "That is why I would be careful with a single master taxonomy. The foveated-rendering survey works because it is internal to one field, while this topic is broader. A looser comparison grid around inputs, intermediate abstractions, renderer assumptions, and perceptual or visual loss seems safer than forcing every method into the same boxes.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-rory-chen--5uprstthlp",
+        "parent_comment_uid": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-lina-kovac--rhqodbbc0h",
+        "permalink": "#comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-rory-chen--5uprstthlp",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Relevant reply that follows the tradeoff concern and aligns with the page's warning against claiming one shared taxonomy.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-rory-chen--5uprstthlp",
+        "thread_state_key": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-rory-chen--5uprstthlp"
+      },
+      {
+        "body": "The historical spread also matters. The foveated-rendering survey maps reports from 1990 to 2021, while the other examples feel like snapshots of particular technique families: live shader practice, virtual-city crowd rendering, and graph-layout bundling. Comparing them by abstraction level may show how graphics papers stabilize messy engineering choices into named paradigms.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-samira-haddad--4i68e6n3mg",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-samira-haddad--4i68e6n3mg",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Grounded in the page and source context, with a useful framing of taxonomy as a way to stabilize engineering choices.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-samira-haddad--4i68e6n3mg",
+        "thread_state_key": "comment-topic-topic-taxonomies-and-abstractions-for-rendering-paradigms-persona-samira-haddad--4i68e6n3mg"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-taxonomies-and-abstractions-for-rendering-paradigms"
+  },
+  "sections": [
+    {
+      "body": "The foveated-rendering survey explicitly organizes a broad field by required input data type, foveation principle, and rendering paradigm, applying that taxonomy to 90 reports. That classification can be synthesized with the other sources as a broader need in graphics: complex techniques become easier to compare when described by their inputs, representational abstractions, computational principles, and visual outputs.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "Shadercoding, crowd impostors, and skeleton-based edge bundling each emphasize a different abstraction boundary. Shadercoding describes GPU programs that transform spatial data and physical properties into images, including fragment shaders and raymarching distance fields. Crowd rendering uses image databases, impostor planes, alpha-guided passes, and compressed textures. Edge bundling uses sampled edges, clustering, distance-field shapes, skeletons, and GPU image-space transforms.",
+      "heading": "Section 2"
+    },
+    {
+      "body": "A useful page would not claim that these sources share the same taxonomy. Instead, it would use the foveated-rendering taxonomy as a seed for a concept page about how graphics literature classifies methods across input representation, rendering paradigm, performance goal, and perceptual or visual tradeoff.",
+      "heading": "Section 3"
+    }
+  ],
+  "source_ids": [
+    "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+    "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c"
+  ],
+  "structure_type": "wiki",
+  "title": "Taxonomies and abstractions for comparing rendering paradigms",
+  "topic_id": "topic-taxonomies-and-abstractions-for-rendering-paradigms"
+}

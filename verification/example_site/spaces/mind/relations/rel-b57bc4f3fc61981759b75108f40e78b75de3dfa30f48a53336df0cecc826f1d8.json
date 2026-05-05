@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-clinical-evidence-remains-preliminary--117717456958",
+  "dst_claim_ref": "3",
+  "last_evaluated_run_id": null,
+  "rationale": "The recommendation for stronger study design follows from the weaknesses in clinical intervention methodology.",
+  "relation_file_id": "rel-b57bc4f3fc61981759b75108f40e78b75de3dfa30f48a53336df0cecc826f1d8",
+  "relation_id": "derived_from:claim-research-needs-prescriptive-reform--79c0d54db997->claim-clinical-evidence-remains-preliminary--117717456958",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-research-needs-prescriptive-reform--79c0d54db997",
+  "src_claim_ref": "7",
+  "status": "open"
+}

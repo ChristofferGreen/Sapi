@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-the-conjunction-of--dbb969101dbd",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The integrated proof directly establishes the article\u2019s necessity thesis for full grounding.",
+  "relation_file_id": "rel-1887e471d0c6bca41ab4d303b82973be0280997bb7312352e6ded8b488e7839c",
+  "relation_id": "supports:claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869->claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-the-conjunction-of--dbb969101dbd",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869",
+  "src_claim_ref": "4",
+  "status": "open"
+}

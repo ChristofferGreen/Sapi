@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-truthmaking-and-alethic-fact-grounding-are-non-asymmetric-because-distinct-propo--9d116dfbb4b5",
+    "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b"
+  ],
+  "evidence_id": "evidence-mutual-proposition-grounding--e5f6a7b8c9d0",
+  "evidence_type": "formal_argument",
+  "excerpt": "Let C = <D exists> and D = <C exists>; D truthmakes C and C truthmakes D. Let E = <F is true> and F = <E is true>; the fact that E is true grounds the fact that F is true, and conversely.",
+  "overview": "These paired constructions supply non-reflexive failures of asymmetry. They matter because asymmetry is not defeated only by self-grounding; the source also claims there can be distinct relata standing in grounding-like relations in both directions.",
+  "page_refs": [
+    "pp.16-17"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "title": "Mutual Proposition Grounding"
+}

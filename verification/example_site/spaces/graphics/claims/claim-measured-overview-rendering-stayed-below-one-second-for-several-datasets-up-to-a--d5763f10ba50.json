@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:15:35Z",
+  "claim_id": "claim-measured-overview-rendering-stayed-below-one-second-for-several-datasets-up-to-a--d5763f10ba50",
+  "evidence_excerpts": [
+    "Table 1 reports overview GPU times at 1500x750 resolution: Wiki-Vote with 103,660 edges took 0.3s at 32px and 0.4s at 128px; net150 with 1,538,840 edges took 0.4s at both kernel sizes; the 4.5M dataset with 4,551,564 edges took 1.2s at both kernel sizes."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Overview rendering stays fast",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "text": "Measured overview rendering stayed below one second for several datasets up to about 1.5 million edges, while a 4.55 million-edge dataset required about 1.2 seconds for overview rendering."
+}

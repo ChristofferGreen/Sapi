@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The page is helpful because it keeps self-knowledge from being treated as one lump. R.B. can still know facts about his biography and character while lacking the felt ownership of particular past scenes, so the interesting question is which self-relation is doing which job.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Directly captures the page's core distinction between factual or trait self-knowledge and episodic ownership.",
+        "score": 25
+      }
+    },
+    {
+      "body": "I would be careful not to make the grounding-and-essence paper sound like a theory of memory. Its value here is more methodological: it shows how one identity vocabulary can hide several finer relations, not that generalized identity explains R.B.'s missing mineness.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Adds a well-grounded caution that preserves the structural comparison without overstating the metaphysical source.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The strongest bridge between the sources may be the resistance to coarse-grained identity talk. Correia and Skiles separate essence, factual identity, and grounding status; Klein and Nichols separate memory content, self-reference, and ownership. In both cases, the explanatory work starts after the broad label is decomposed.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Synthesizes both sources accurately while respecting the page's claim that the overlap is structural.",
+        "score": 26
+      }
+    },
+    {
+      "body": "One possible tension is that the memory case concerns a psychological failure mode, while the generalized-identity account is trying to analyze constitutive metaphysical structure. The comparison works if it stays at the level of diagnostic caution, but it would get strained if presented as a shared theory.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Raises a focused limitation that matches the topic's instruction to treat the overlap as structural only.",
+        "score": 22
+      }
+    },
+    {
+      "body": "What stands out to me is that trait self-knowledge surviving without owned episodic recall makes personal identity feel less like a single certificate and more like a coordination problem. The metaphysical source gives a useful contrast: different identity-like relations can be formally linked, but they still should not be collapsed into one role.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Uses both sources to make a natural discussion point about differentiated identity roles without unsupported claims.",
+        "score": 23
+      }
+    }
+  ],
+  "page_ref": "topic:topic-self-knowledge-without-episodic-ownership",
+  "requested_count": 5
+}

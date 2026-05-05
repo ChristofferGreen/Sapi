@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+  "dst_claim_ref": "8",
+  "last_evaluated_run_id": null,
+  "rationale": "The future research agenda follows from treating compiler optimization as an empirical learning problem.",
+  "relation_file_id": "rel-84961ca1fbd972e0a5f7698758e77e2e6e99bdf350ff7dd9110f64822df4f8c6",
+  "relation_id": "derived_from:claim-future-research-in-machine-learning-compilation-extends-beyond-choosing-optimiza--faf587f1fc17->claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-future-research-in-machine-learning-compilation-extends-beyond-choosing-optimiza--faf587f1fc17",
+  "src_claim_ref": "9",
+  "status": "open"
+}

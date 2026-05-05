@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-cerebellar-and-similarly-modular-neural-architectures-can-contain-many-neurons-a--b77ed5672f9b"
+  ],
+  "evidence_id": "evidence-cerebellar-modules-low-phi--e081b4c72a9d",
+  "evidence_type": "figure_result",
+  "excerpt": "The source notes that the cerebellum contains more neurons than the cerebral cortex and many synapses, yet lesions or ablations suggest minimal direct contribution to conscious experience. Figure 4a models a cerebellum-like organization as three strongly interconnected modules with minimal connections among modules; the analysis reveals three separate low-\u03a6 complexes, each with \u03a6 = 20 bits.",
+  "overview": "This evidence supports the theory's explanation of why computational power and neuron count are insufficient for consciousness. Modular architectures can execute sophisticated specialized routines while failing to form a large integrated complex. The result also clarifies the theory's practical interpretation: direct conscious contribution depends on causal integration pattern, not anatomical size alone.",
+  "page_refs": [
+    "pp.10-12",
+    "Fig.4a"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Cerebellar Modules Low \u03a6"
+}

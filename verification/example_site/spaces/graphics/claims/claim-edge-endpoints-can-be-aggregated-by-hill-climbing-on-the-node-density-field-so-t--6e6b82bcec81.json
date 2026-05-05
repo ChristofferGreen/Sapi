@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:15:35Z",
+  "claim_id": "claim-edge-endpoints-can-be-aggregated-by-hill-climbing-on-the-node-density-field-so-t--6e6b82bcec81",
+  "evidence_excerpts": [
+    "We interpret the node density field as height field and use a hill climbing algorithm to move starting and end points of the edges to the highest point of their visual cluster (the local maximum). The edges whose start points fall into the same cluster and whose end points share another cluster are implicitly aggregated. As result, inner-cluster connections are vanished while inter-cluster connections are emphasized."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Hill climbing aggregates edges",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "text": "Edge endpoints can be aggregated by hill-climbing on the node density field so that inter-cluster connections are emphasized and inner-cluster connections vanish."
+}

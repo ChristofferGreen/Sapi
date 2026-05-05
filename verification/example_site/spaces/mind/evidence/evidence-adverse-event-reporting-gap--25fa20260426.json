@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-adverse-effects-are-undermeasured--25fa20260426"
+  ],
+  "evidence_id": "evidence-adverse-event-reporting-gap--25fa20260426",
+  "evidence_type": "statistical_result",
+  "excerpt": "Meditation-related experiences serious or distressing enough to warrant additional treatment or medical attention have been reported in more than 20 published case reports or observational studies, including psychosis, mania, depersonalization, anxiety, panic, traumatic-memory reexperiencing, and clinical deterioration. Less than 25% of meditation trials actively assess adverse events, compared to 100% of pharmacology trials.",
+  "overview": "The case-report count and trial-monitoring comparison are the paper\u2019s strongest safety evidence. They do not establish population incidence, but they directly undermine claims that meditation is risk-free and show why passive reporting is inadequate for estimating harms.",
+  "page_refs": [
+    "pp. 47-48"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Adverse Event Reporting Gap"
+}

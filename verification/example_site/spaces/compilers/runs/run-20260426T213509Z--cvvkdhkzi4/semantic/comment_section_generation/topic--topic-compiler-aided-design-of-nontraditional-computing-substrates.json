@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "What stands out across these two papers is that compilation stops being a purely symbolic rewrite problem. The DNA workflow has to surface concentrations, outlier gates, and sequence artifacts, while the distributed quantum workflow has to budget Bell states and remote CNOT placement. In both cases, the compiler is only useful because it makes the substrate's annoyances explicit.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in both source contexts and connects the page's shared concept without overstating equivalence.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I would be careful about treating the two examples as the same kind of validation. The DNA paper closes the loop with a physical six-layer, 78-species circuit and fluorescence readout, whereas the distributed quantum paper is mainly analytical and compiler-evaluation work under a deliberately restrictive line topology.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately distinguishes the evidence types and uses specific facts from both sources.",
+        "score": 25
+      }
+    },
+    {
+      "body": "The common design lesson seems to be that a compiler for a nontraditional substrate needs a model of failure modes, not just a target instruction set. Unpurified oligos create concentration and leak problems; networked QPUs create scarce entanglement and communication bottlenecks. Those are different physics, but they both have to become compiler-visible constraints.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Synthesizes the page concept clearly while staying tied to the documented limitations of both substrates.",
+        "score": 26
+      }
+    },
+    {
+      "body": "The comparison also shows why 'compiler-aided' can mean very different levels of automation. Seesaw compilation still relies on calibration, outlier adjustment, and 24-hour output interpretation, so it is not plug-and-play. The quantum compiler similarly gives bounded distribution strategies rather than a guarantee that every network topology behaves well.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Useful reply that adds caveats from both sources and follows the parent comment's failure-mode theme.",
+        "score": 23
+      }
+    },
+    {
+      "body": "I like the page framing because it keeps the abstraction honest. These systems are compelling precisely because the compiler output has to meet a messy material reality: DNA strands with synthesis variation on one side, and distributed quantum operations constrained by topology and Bell-state consumption on the other.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Natural and on-topic, with accurate high-level grounding, though less specific than the strongest comments.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "topic:topic-compiler-aided-design-of-nontraditional-computing-substrates",
+  "requested_count": 5
+}

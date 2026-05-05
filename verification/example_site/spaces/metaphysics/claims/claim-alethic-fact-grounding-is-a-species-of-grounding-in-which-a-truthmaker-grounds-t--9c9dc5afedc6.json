@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:15:18Z",
+  "claim_id": "claim-alethic-fact-grounding-is-a-species-of-grounding-in-which-a-truthmaker-grounds-t--9c9dc5afedc6",
+  "evidence_excerpts": [
+    "Whenever an entity is a truthmaker of a proposition, that entity is the alethic-fact ground of the fact that the proposition is true."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Truthmakers ground truth-facts",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "text": "Alethic-fact grounding is a species of grounding in which a truthmaker grounds the fact that the truthmade proposition is true."
+}

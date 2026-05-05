@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-sustained-focal-alpha-increases-above-pre-cue-baseline-during-rapid-bilateral-st--8699d621dccc"
+  ],
+  "evidence_id": "evidence-bilateral-stimulation-alpha--8e33fa92c0d5",
+  "evidence_type": "observational_result",
+  "excerpt": "In the Kelly et al. task, rapid letter streams were presented to both hemifields at rates from 9.45 to 17.01 Hz, with each stimulus lasting 11 ms. After a central arrow cue, alpha power ipsilateral to the cued direction increased above pre-cue baseline, no contralateral decreases were observed, and bilateral stimulation continued throughout the trial.",
+  "overview": "This is the review's key answer to the idling objection. By maintaining bilateral visual stimulation, the design reduces the chance that alpha asymmetry simply reflects recovery from cue-induced desynchronization. The observed above-baseline alpha increase therefore supports active suppression of the ignored stream.",
+  "page_refs": [
+    "Figure 4",
+    "p.7"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "title": "Bilateral Stream Baseline Test"
+}

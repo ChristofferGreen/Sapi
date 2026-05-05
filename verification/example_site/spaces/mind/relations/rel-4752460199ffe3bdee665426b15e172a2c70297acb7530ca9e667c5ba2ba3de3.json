@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-mindfulness-can-be-modeled-as-systematic-mental-training-that-reduces-biased-sel--6f2cabe951a3",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The proposed component mechanisms explain how the three S-ART capacities are cultivated and integrated.",
+  "relation_file_id": "rel-4752460199ffe3bdee665426b15e172a2c70297acb7530ca9e667c5ba2ba3de3",
+  "relation_id": "supports:claim-intention-motivation-attention-regulation-emotion-regulation-extinction-and-reco--002095abdbf2->claim-mindfulness-can-be-modeled-as-systematic-mental-training-that-reduces-biased-sel--6f2cabe951a3",
+  "relation_type": "supports",
+  "src_claim_id": "claim-intention-motivation-attention-regulation-emotion-regulation-extinction-and-reco--002095abdbf2",
+  "src_claim_ref": "5",
+  "status": "open"
+}

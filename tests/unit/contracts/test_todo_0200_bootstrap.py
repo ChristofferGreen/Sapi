@@ -53,7 +53,7 @@ class Todo0200BootstrapTests(unittest.TestCase):
     def test_wrapper_usage_signatures_match_design_contract(self) -> None:
         expected_usage = {
             "create_site.sh": "Usage: create_site.sh <site_path> <site_name>",
-            "create_space.sh": "Usage: create_space.sh <site_path> <space_name>",
+            "create_space.sh": "Usage: create_space.sh <site_path> <space_name> [--seed-example-questions]",
             "create_subspaces.sh": "Usage: create_subspaces.sh <site_path> <subspaces_tsv>",
             "ingest.sh": "Usage: ingest.sh <site_path> <space_name> <source_path_or_url> [--revises-source-id <source_id>] [--force] [--verbose]",
             "create_comments.sh": "Usage: create_comments.sh <site_path> <space_name> --count <n> [--verbose] [--comment-user ...] [--comment-page ...] [--comment-seed ...] [--comment-evidence-mode ...]",

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-entanglement-swapping-augments-distributed-processor-connectivity-by-enabling-re--b0cac39f5fb5"
+  ],
+  "evidence_id": "evidence-entanglement-swapping-connectivity--91b4ef03c6a2",
+  "evidence_type": "formal_argument",
+  "excerpt": "Entanglement swapping enhances the network connectivity through virtual quantum links. The number of additional interactions via entanglement swapping scales linearly with the number of available processors when only two communication qubits are available at each intermediate processor. If this constraint is relaxed, the number of additional interactions via entanglement swapping scales more than linearly.",
+  "overview": "This figure-backed reasoning explains the benefit side of the distributed architecture: processors that are not adjacent can still interact through virtual links. It also scopes the result by tying the scaling to communication-qubit availability and by noting the associated EPR cost.",
+  "page_refs": [
+    "Fig. 6"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "title": "Entanglement Swapping Connectivity Gain"
+}

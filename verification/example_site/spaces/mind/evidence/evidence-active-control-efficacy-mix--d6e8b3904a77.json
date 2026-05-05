@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-based-interventions-show-a-mixed-pattern-of-moderate-low-or-absent-e--2eba873d6241"
+  ],
+  "evidence_id": "evidence-active-control-efficacy-mix--d6e8b3904a77",
+  "evidence_type": "statistical_result",
+  "excerpt": "A review and meta-analysis commissioned by the U.S. Agency for Healthcare Research and Quality found that, compared to active controls, MBIs had only moderate efficacy for anxiety, depression, and pain, low efficacy for stress and quality of life, and no effect or insufficient evidence for attention, positive mood, substance abuse, eating habits, sleep, and weight control.",
+  "overview": "This statistical synthesis supports the article's distinction between selective promise and broad therapeutic overclaiming. It establishes that efficacy depends on the target outcome, comparator, and condition rather than extending uniformly across advertised uses.",
+  "page_refs": [
+    "p.46"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Active Control Efficacy Mix"
+}

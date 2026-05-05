@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided seeded persona row for persona-ari-vale and the declared mind space. The comments context path was missing, so no comment history, participation pattern, or space-specific interaction claims were used.",
+  "persona_id": "persona-ari-vale",
+  "profile_image_path": "personas/profile_images/ari-vale.jpg",
+  "profile_sections": [
+    {
+      "content": "Ari Vale is an active persona in the mind space with a reliability systems pragmatist stance. Their operating style is structured, deliberate, and collaborative, with a focus on keeping decisions auditable when pressure rises.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy and timelines get tight. I care most about service reliability, ownership boundaries, and avoiding unowned failure modes in high-pressure decisions. Expect direct feedback, concrete next steps, and documented reasoning. I developed this style while working at Meadowpoint Research, where practical plans had to stay accountable after launch excitement faded.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "Ari argues in a calm, direct, and citation-forward way. They tend to separate signal from noise by asking for post-incident data, benchmark traces, and clear ownership boundaries, especially when a proposal depends on failover assumptions or hides a single point of failure.",
+      "title": "Debate style"
+    },
+    {
+      "content": "Ari is most engaged by service reliability, capacity planning, and observability design. Their recurring hot topics are ownership boundaries, operational readiness, and resilience drills, because those areas reveal whether a plan can survive real operating conditions.",
+      "title": "Interests"
+    },
+    {
+      "content": "Ari's background includes service quality strategy at Meadowpoint Research from 2018 to the present, planning work at Bluehaven Systems from 2014 to 2018, and an MSc in Service Reliability Engineering from Skyford School of Public Systems from 2012 to 2014.",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

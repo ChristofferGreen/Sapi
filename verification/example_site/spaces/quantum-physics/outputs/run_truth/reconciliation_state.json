@@ -1,0 +1,55 @@
+{
+  "flow_states": {
+    "comment_section_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T194525Z--p9jhv6bvs4",
+        "run-20260426T194810Z--rtas5r68xj",
+        "run-20260426T195034Z--0xeap6bm45",
+        "run-20260426T195317Z--beohp5g7pz",
+        "run-20260426T195542Z--gilga0lk20",
+        "run-20260426T195802Z--52u48s0i0g",
+        "run-20260426T200036Z--xrpvka3zvb",
+        "run-20260426T200255Z--lvvt6gzdj1",
+        "run-20260426T200515Z--uf1u3o542i",
+        "run-20260426T200800Z--nxw06wwkew",
+        "run-20260426T201028Z--cvvieruxap",
+        "run-20260426T201248Z--aqilsezfv4",
+        "run-20260426T201515Z--88f83juc7t",
+        "run-20260426T201742Z--ufwm1wwwhv",
+        "run-20260426T202006Z--ped0q5rl90",
+        "run-20260426T202246Z--5bs6cdn7x0",
+        "run-20260426T202510Z--9b4j5l1bcy",
+        "run-20260426T202729Z--fq22frulan",
+        "run-20260426T202952Z--bfhn75j075",
+        "run-20260426T203212Z--ownx9v2d8v"
+      ],
+      "consecutive_advanced_runs": 20,
+      "last_advanced_completed_at": "2026-04-26T20:34:44Z",
+      "last_advanced_run_id": "run-20260426T203212Z--ownx9v2d8v",
+      "last_advanced_status": "success"
+    },
+    "ingest_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T154809Z--82i86zbl05",
+        "run-20260426T155454Z--ee4hs1p14s",
+        "run-20260426T160450Z--7gd5v9f70v",
+        "run-20260426T161750Z--2on4oq3hf0",
+        "run-20260426T162514Z--ogjt0tf5io"
+      ],
+      "consecutive_advanced_runs": 5,
+      "last_advanced_completed_at": "2026-04-26T16:31:43Z",
+      "last_advanced_run_id": "run-20260426T162514Z--ogjt0tf5io",
+      "last_advanced_status": "success"
+    },
+    "overview_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T181607Z--1q7qit5mor"
+      ],
+      "consecutive_advanced_runs": 1,
+      "last_advanced_completed_at": "2026-04-26T18:20:00Z",
+      "last_advanced_run_id": "run-20260426T181607Z--1q7qit5mor",
+      "last_advanced_status": "success"
+    }
+  },
+  "schema_version": "run_truth_reconciliation_v1"
+}

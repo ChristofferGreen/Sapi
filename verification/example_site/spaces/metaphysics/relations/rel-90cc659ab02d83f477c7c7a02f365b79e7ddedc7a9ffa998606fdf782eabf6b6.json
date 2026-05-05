@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The contrastive-grounding reply fails to preserve strict orderhood.",
+  "relation_file_id": "rel-90cc659ab02d83f477c7c7a02f365b79e7ddedc7a9ffa998606fdf782eabf6b6",
+  "relation_id": "supports:claim-schaffer-s-contrastive-or-differential-formulation-of-grounding-still-fails-to-m--7fd859e88bdc->claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b",
+  "relation_type": "supports",
+  "src_claim_id": "claim-schaffer-s-contrastive-or-differential-formulation-of-grounding-still-fails-to-m--7fd859e88bdc",
+  "src_claim_ref": "9",
+  "status": "open"
+}

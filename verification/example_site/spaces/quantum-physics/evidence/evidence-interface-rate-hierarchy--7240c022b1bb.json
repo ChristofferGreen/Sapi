@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-large-quantum-networks-require-reversible-interconnects-that-convert-quantum-sta--03b0b3a11218"
+  ],
+  "evidence_id": "evidence-interface-rate-hierarchy--7240c022b1bb",
+  "evidence_type": "model_constraint",
+  "excerpt": "Desiderata for a quantum interface include that \u03c7(t) should be user-controlled for clocking states to and from the quantum memory, that the physical processes should be robust in the face of imperfections, and that the bandwidth rate \u03ba should be large compared to parasitic losses \u03b3 while both are small compared to coherent coupling, \u03c7 >> \u03ba >> \u03b3.",
+  "overview": "The rate hierarchy states the operating condition the source treats as necessary for useful light-matter interfaces. It connects abstract network goals to a concrete physical design constraint: coherent coupling must dominate useful input-output bandwidth, and parasitic loss must be smaller still.",
+  "page_refs": [
+    "Fig. 1(b)"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "title": "Interface Rate Hierarchy"
+}

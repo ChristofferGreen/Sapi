@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-proposed-compiler-is-computationally-efficient-because-distributing-a-circui--b9f318c6234c"
+  ],
+  "evidence_id": "evidence-compiler-complexity-bound--6d9f30b2e8ac",
+  "evidence_type": "formal_argument",
+  "excerpt": "The compiler reads the circuit from left to right while updating the front layer, so its computational complexity is O(d), where d is the depth of the circuit. Applying a remote CNOT has a computational complexity of O(n), with n being the number of QPUs. Given that we need at most n/4 swaps, the computational complexity of Algorithm 2 turns out to be O(n2). The overall computational complexity of distributing a circuit is, therefore, O(dn2).",
+  "overview": "This formal complexity argument supports the efficiency claim. It ties the proposed front-layer workflow to a polynomial bound rather than only reporting empirical behavior, although the bound is expressed for the modeled compiler and architecture assumptions.",
+  "page_refs": [
+    "Algorithm 2",
+    "Algorithm 3",
+    "Algorithm 4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "title": "Compiler Complexity Bound"
+}

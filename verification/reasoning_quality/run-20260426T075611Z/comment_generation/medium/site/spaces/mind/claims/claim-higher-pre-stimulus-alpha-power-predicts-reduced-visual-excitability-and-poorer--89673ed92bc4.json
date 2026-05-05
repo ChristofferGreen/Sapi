@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T08:02:42Z",
+  "claim_id": "claim-higher-pre-stimulus-alpha-power-predicts-reduced-visual-excitability-and-poorer--89673ed92bc4",
+  "evidence_excerpts": [
+    "Detection and discrimination of centrally presented near-threshold visual stimuli have been shown to be inversely related to the amplitude of alpha preceding stimulus onset.",
+    "Phosphene threshold was positively correlated with resting power in the alpha band across individuals. That is, more intense stimulation was required to evoke visual percepts in individuals with greater alpha levels."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Higher alpha lowers excitability",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Higher pre-stimulus alpha power predicts reduced visual excitability and poorer near-threshold perceptual performance."
+}

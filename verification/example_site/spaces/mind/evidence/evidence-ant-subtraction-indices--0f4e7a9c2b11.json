@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-training-can-improve-attention-related-behavior-by-changing-specific--f9e8e6ee54d7",
+    "claim-the-attention-network-test-separates-alerting-orienting-and-conflict-monitoring--08b2302acb19"
+  ],
+  "evidence_id": "evidence-ant-subtraction-indices--0f4e7a9c2b11",
+  "evidence_type": "formal_argument",
+  "excerpt": "All analyses were performed on RT scores for correct trials only and accuracy scores. Alerting was indexed by subtracting performance measures on double-cue trials from those on no-cue trials. Orienting was indexed by subtracting performance measures on spatial-cue trials from those on center-cue trials. Conflict monitoring was indexed by subtracting performance measures on congruent target trials from those on incongruent target trials.",
+  "overview": "This methods passage defines the measurement structure used for all main claims. It shows that the study did not treat attention as a single undifferentiated outcome, but mapped behavioral response-time and accuracy differences onto alerting, orienting, and conflict-monitoring subsystems. The definitions also limit interpretation to ANT-derived behavioral indices rather than direct neural measurements.",
+  "page_refs": [
+    "p.112"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "title": "ANT Difference Scores"
+}

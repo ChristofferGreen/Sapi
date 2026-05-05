@@ -1,0 +1,11 @@
+step=000-create-site
+started_at=2026-04-26T07:42:46Z
+cwd=/Users/chrgre01/src/Sapi
+command=bash /Users/chrgre01/src/Sapi/create_site.sh /Users/chrgre01/src/Sapi/verification/example_site Example\ Site 
+
+attempt=1/10
+timeout_secs=1200
+attempt_started_at=2026-04-26T07:42:46Z
+Initialized site scaffold at /Users/chrgre01/src/Sapi/verification/example_site
+attempt_exit_status=0
+

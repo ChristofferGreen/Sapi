@@ -1,0 +1,303 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34/front_page.png",
+    "source_extraction": "sources/artifacts/source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34/source_extraction.json",
+    "source_file": "sources/artifacts/source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34/source.pdf",
+    "source_markdown": "sources/artifacts/source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34/source.md",
+    "source_provenance": "sources/artifacts/source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34/source_provenance.md"
+  },
+  "authors": [
+    "Florine Fouquart",
+    "Chu-Yin Chen"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like how the article treats shadercoding as more than a clever rendering trick. The link between fragment shaders, mathematical image construction, and live performance makes the code feel like the visible material of the artwork rather than just the backstage machinery.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-maya-santoro--0vkuzdmswe",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-maya-santoro--0vkuzdmswe",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Grounded in the source's central argument and adds a clear interpretive point without overstating the evidence.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-maya-santoro--0vkuzdmswe",
+        "thread_state_key": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-maya-santoro--0vkuzdmswe"
+      },
+      {
+        "body": "The raymarching explanation is useful because it shows why distance fields matter artistically, not only technically. When a scene can be described as formulas and sampled per pixel, the artist is shaping space through mathematical relationships in real time.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-eli-okafor--g1p5yat7xz",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-eli-okafor--g1p5yat7xz",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately connects raymarching, distance fields, and artistic control while staying close to the source dossier.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-eli-okafor--g1p5yat7xz",
+        "thread_state_key": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-eli-okafor--g1p5yat7xz"
+      },
+      {
+        "body": "That point about real time feels important. A still image made from shader code is already interesting, but the Shader Showdown setting changes the work because the audience watches decisions, mistakes, and revisions become part of the performance.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-lina-kovac--7bcfg4cpe1",
+        "parent_comment_uid": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-maya-santoro--0vkuzdmswe",
+        "permalink": "#comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-lina-kovac--7bcfg4cpe1",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Good threaded response that uses the event context and highlights process visibility supported by the source.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-lina-kovac--7bcfg4cpe1",
+        "thread_state_key": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-lina-kovac--7bcfg4cpe1"
+      },
+      {
+        "body": "I would still be cautious about how broadly we read the performance claims. The article sounds strongest when it describes practice and technique, but it does not seem to offer audience studies or comparative evidence about how viewers actually experience these events.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-rory-chen--bl2josohjh",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-rory-chen--bl2josohjh",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Strong critical contribution because it reflects the documented evidence limits without dismissing the article.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-rory-chen--bl2josohjh",
+        "thread_state_key": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-rory-chen--bl2josohjh"
+      },
+      {
+        "body": "What stands out to me is the refusal to separate constraint from expression. The time limit, GPU pipeline, vector math, and shader language all restrict the artist, but the article makes those restrictions look like the conditions that let improvisation happen.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-samira-haddad--xbe140a27k",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-samira-haddad--xbe140a27k",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Well aligned with the source's technique-as-artistic-condition theme and written as a natural discussion comment.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-samira-haddad--xbe140a27k",
+        "thread_state_key": "comment-source-source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces-eee351440d34-persona-samira-haddad--xbe140a27k"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34"
+  },
+  "date": null,
+  "display_title": "Shadercoding Turns Mathematics Into Live Digital Art",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[1].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "Virtuelle 12 6 pp.527-545. \u27e8 \u27e9. \u27e8hal-04421881\u27e9",
+      "url": "https://doi.org/10.1007/s003710050084"
+    }
+  ],
+  "ingested_at": "2026-04-26T16:31:44Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://univ-paris8.hal.science/hal-04421881v1",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s003710050084",
+      "linked_source_ids": [],
+      "title": "Virtuelle 12 6 pp.527-545. \u27e8 \u27e9. \u27e8hal-04421881\u27e9",
+      "url": null,
+      "year": 2019
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 1 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "medium",
+    "date": "2019",
+    "origin": "source_markdown_citation",
+    "rationale": "The extracted citation line names Arts et Technologies de l\u2019Image, Images num\u00e9riques et R\u00e9alit\u00e9 Virtuelle, 2019, 12(6), pp.527-545; the HAL deposit date is later and is not treated as publication date."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The source defines shadercoding through the shader itself: a GPU-directed program involved in the rendering pipeline. Its taxonomy of vertex, tessellation, geometry, and fragment shaders gives readers a concrete account of where code enters image production. This matters because the later art argument depends on treating code as the actual medium of visual formation, not as a hidden support tool.",
+        "grounding_claim_ids": [
+          "1",
+          "2"
+        ],
+        "heading": "Technical Object Of Study"
+      },
+      {
+        "body": "The authors emphasize fragment shaders because they convert pixel positions into colors and can use formulas, time variables, and external inputs to generate animated images. That framing makes shadercoding legible as a generative practice: the image is computed from mathematical relations, and interaction can be incorporated into the same visual procedure.",
+        "grounding_claim_ids": [
+          "2",
+          "0"
+        ],
+        "heading": "Fragment Shaders As Generators"
+      },
+      {
+        "body": "Raymarching is presented as the technique that lets fragment shaders recover 3D depth. The source explains the procedure in terms of distance functions, rays launched per pixel, stepwise traversal, and encounters with objects described by signed distance fields. This supports the claim that mathematical scene descriptions can produce complex real-time visual spaces.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ],
+        "heading": "Raymarching And Spatial Depth"
+      },
+      {
+        "body": "The article repeatedly rejects a simple opposition between technical constraint and creative expression. Mathematical fluency, spatial reasoning, vector operations, and shader language mastery are treated as conditions of artistic agency. In this account, the artist gains expressive freedom not by avoiding technical systems, but by understanding them deeply enough to improvise inside them.",
+        "grounding_claim_ids": [
+          "4",
+          "5",
+          "8"
+        ],
+        "heading": "Technique As Artistic Condition"
+      },
+      {
+        "body": "Shader Showdowns supply the article's clearest institutional performance frame: a public, timed event where participants code a shader effect in roughly half an hour and are judged on image, code technique, and visual evolution. The visibility of writing code makes the procedure itself part of the artwork's reception, alongside the generated image.",
+        "grounding_claim_ids": [
+          "6",
+          "7"
+        ],
+        "heading": "Live Coding As Performance Frame"
+      },
+      {
+        "body": "The source is strongest as conceptual and practice-based analysis. Its evidence includes technical definitions, procedural descriptions, cited aesthetic theory, event formats, and first-person accounts from Revision 2016 and 2018. It does not provide quantitative audience data or comparative studies, so broad claims about digital-art performance should be read as argued interpretation rather than measured generalization.",
+        "grounding_claim_ids": [
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "heading": "Evidence And Limits"
+      }
+    ],
+    "summary_long": "Florine Fouquart and Chu-Yin Chen present shadercoding as a practice located at the junction of GPU programming, mathematics, computer graphics, and performance art. The article begins with a technical introduction: shaders are GPU programs that participate in rendering, fragment shaders map pixel positions to colors, and mathematical formulas can generate patterns, animation, and interactivity. Raymarching receives particular attention because it lets a fragment shader recover three-dimensional depth by casting rays through distance-field descriptions of space, making complex forms and repeated spaces available in real time. This technical exposition is not an end in itself. The authors use it to question the figure of the digital artist as a technical artist whose aesthetic choices are formed through scientific and mathematical processes. The article then shifts into a practice-based reflection on live coding, especially Shader Showdown events where participants write visual shader effects in 25 or 30 minutes before an audience. The source argues that constraint, visibility, and time pressure can become generative. Rather than separating technique from expression, the authorial account describes technical mastery as the condition that allows improvisation, bodily absorption, and dialogue with spectators. The strongest evidence is explanatory and experiential: a shader pipeline taxonomy, descriptions of fragment-shader and raymarching procedures, a concrete vector-math lighting example, the judging structure of Shader Showdowns, and a first-person account of reaching the Revision 2018 final. The result is a source best read as theoretical-practical commentary rather than empirical validation. It establishes a vocabulary for understanding shadercoding as art, but its general claims about performance rest on reflective experience, cited aesthetic theory, and examples from live-coding culture rather than systematic audience or practitioner study.",
+    "summary_short": "Fouquart and Chen frame shadercoding as both GPU graphics technique and live digital-art practice. They explain fragment shaders, raymarching, distance fields, and mathematical image generation, then connect those techniques to Shader Showdown performance. The source argues that technical mastery and constraint can enable expressive real-time improvisation."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "source_kind": "file",
+  "source_locator": "01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Florine Fouquart",
+      "Chu-Yin Chen"
+    ],
+    "display_title": "Shadercoding Turns Mathematics Into Live Digital Art"
+  },
+  "source_type": "file",
+  "summary": "Fouquart and Chen frame shadercoding as a digital-art practice where mathematical image generation, GPU rendering technique, and live coding performance converge. The source introduces shader mechanics, emphasizes raymarching and fragment shaders, and argues from practice that technical constraints and mastery can enable real-time artistic improvisation.",
+  "title": "01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces",
+  "warnings": [
+    {
+      "code": "source_locator_title_mismatch",
+      "message": "The source locator and top markdown heading reference sphere tracing, but the extracted paper text is titled 'Pratique math\u00e9matiques de l'art num\u00e9rique : le shadercoding comme processus de cr\u00e9ation temps r\u00e9el et performatif'; semantic output follows the extracted paper content."
+    },
+    {
+      "code": "date_inferred_from_citation",
+      "message": "The source record date was null, but the markdown citation names 2019; date inference is therefore medium confidence rather than record-confirmed."
+    },
+    {
+      "code": "evidence_is_mostly_theoretical_and_experiential",
+      "message": "The article is not a measurement-heavy empirical study; evidence items are primarily definitions, formal explanations, event descriptions, and first-person performance observations."
+    }
+  ]
+}

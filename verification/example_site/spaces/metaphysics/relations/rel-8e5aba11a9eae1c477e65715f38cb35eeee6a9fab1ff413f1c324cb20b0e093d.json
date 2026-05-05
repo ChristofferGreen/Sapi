@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "The essence principle supplies the essential-truth bridge from cognitive insignificance to entailment.",
+  "relation_file_id": "rel-8e5aba11a9eae1c477e65715f38cb35eeee6a9fab1ff413f1c324cb20b0e093d",
+  "relation_id": "supports:claim-connecting-questions-lack-cognitive-significance-only-when-fine-style-essential--f96bc70d5d2d->claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869",
+  "relation_type": "supports",
+  "src_claim_id": "claim-connecting-questions-lack-cognitive-significance-only-when-fine-style-essential--f96bc70d5d2d",
+  "src_claim_ref": "3",
+  "status": "open"
+}

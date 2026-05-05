@@ -1,0 +1,277 @@
+{
+  "claims": [
+    {
+      "evidence_excerpts": [
+        "Dans un contexte o\u00f9 l'art num\u00e9rique est de plus en plus pr\u00e9sent, il convient de questionner certains de ses aspects, notamment celui du profil de l'artiste technique. Pour se faire, cet article propose une introduction th\u00e9orique au shadercoding, une discipline m\u00ealant programmation, math\u00e9matiques et graphisme, mais \u00e9galement une r\u00e9flexion sur la performance d'art num\u00e9rique au travers de cette pratique, dans des \u00e9v\u00e9nements de programmation en temps-r\u00e9el."
+      ],
+      "short_title": "Shadercoding blends code and art",
+      "text": "Shadercoding blends programming, mathematics, and graphics into a digital-art practice that can be theorized technically and performatively."
+    },
+    {
+      "evidence_excerpts": [
+        "Le shadercoding d\u00e9signe l'action de coder un shader. Celui-ci est un programme s'adressant directement \u00e0 la carte graphique, aussi appel\u00e9 GPU pour Graphic Processing Unit, de l'ordinateur sur lequel il est ex\u00e9cut\u00e9. Il d\u00e9crit chaque \u00e9tape du rendu, c'est-\u00e0-dire chaque processus qui vont permettre \u00e0 la machine d'afficher une image en fonction des informations des points dans l'espace 3D et de leurs propri\u00e9t\u00e9s physiques."
+      ],
+      "short_title": "Shaders direct GPU rendering",
+      "text": "A shader is a GPU-directed program that describes rendering processes for turning 3D spatial data and physical properties into an image."
+    },
+    {
+      "evidence_excerpts": [
+        "Pour r\u00e9sumer, celui-ci va prendre en entr\u00e9e la position d'un \u00ab point num\u00e9rique \u00bb de l'espace 2D, appel\u00e9 pixel, et va retourner une couleur pour le pixel correspondant. ... Mais la propri\u00e9t\u00e9 premi\u00e8re du fragment shader peut aussi permettre de g\u00e9n\u00e9rer, \u00e0 l'aide de formules math\u00e9matiques, des motifs ou patterns particuliers. Ceux-ci peuvent \u00eatre anim\u00e9s avec des variables \u00e9voluant dans le temps ou selon d'autres informations externes."
+      ],
+      "short_title": "Fragment shaders generate patterns",
+      "text": "Fragment shaders map two-dimensional pixel positions to colors and can generate animated mathematical patterns responsive to time or external inputs."
+    },
+    {
+      "evidence_excerpts": [
+        "Une technique permet m\u00eame de recr\u00e9er de la profondeur dans le fragment shader et donc d'afficher \u00e0 nouveau de la 3D : le raymarching. ... Il s'agit de d\u00e9crire l'espace selon des fonctions de distances en un point donn\u00e9 ... Ensuite, pour chaque pixel de l'image, on lance un rayon sur lequel on va 'marcher' pas \u00e0 pas ... rencontrer un objet d\u00e9crit dans la fonction de distance (appel\u00e9e commun\u00e9ment SDF pour Signed Distance Field)."
+      ],
+      "short_title": "Raymarching recreates shader depth",
+      "text": "Raymarching can recreate three-dimensional depth inside a fragment shader by marching a ray through a distance-field description until it reaches an object."
+    },
+    {
+      "evidence_excerpts": [
+        "Un shader se d\u00e9crit donc \u00e0 l'aide de ph\u00e9nom\u00e8nes physiques et math\u00e9matiques parfois complexes, faisant appel aux matrices et leurs transform\u00e9es, ou encore aux vecteurs et aux diff\u00e9rentes op\u00e9rations possibles entre eux. Il faut alors avoir une base de connaissances scientifiques et techniques relativement pouss\u00e9e, si l'on souhaite coder ses propres shaders."
+      ],
+      "short_title": "Shadercraft requires mathematical fluency",
+      "text": "Creating original shaders requires substantial mathematical and technical fluency in functions, vectors, matrices, and spatial reasoning."
+    },
+    {
+      "evidence_excerpts": [
+        "Ces propos d'Alain nous montre une autre voie de la pratique de l'art num\u00e9rique : les contraintes peuvent \u00eatre cr\u00e9atrices. Ce qui nous est impos\u00e9 peut nous diriger dans notre cr\u00e9ativit\u00e9. La technicit\u00e9 derri\u00e8re le shadercoding peut donc \u00eatre cr\u00e9atrice, elle peut \u00eatre un moteur de celle-ci."
+      ],
+      "short_title": "Constraints drive shader creativity",
+      "text": "Mathematical and technical constraints in shadercoding can become creative motors rather than merely limiting conditions."
+    },
+    {
+      "evidence_excerpts": [
+        "Plus commun\u00e9ment appel\u00e9 Shader Showdown, il s'agit de coder son effet visuel \u00e0 l'aide d'un shader en 25 ou 30 minutes devant un public. Suite \u00e0 cette \u00e9preuve, les participants seront jug\u00e9s par les spectateurs sur diff\u00e9rents crit\u00e8res : l'image finale produite, la technicit\u00e9 du code mais \u00e9galement l'\u00e9volution de l'effet au cours de l'\u00e9preuve."
+      ],
+      "short_title": "Showdowns stage shader performance",
+      "text": "Shader Showdowns turn shadercoding into a timed public performance evaluated through the final image, code technique, and visual evolution during the event."
+    },
+    {
+      "evidence_excerpts": [
+        "Tout cela \u00e9tait possible aussi car j'avais de la marge pour improviser et \u00eatre impulsive du fait de ma ma\u00eetrise du langage et de la technicit\u00e9 de cette programmation. J'avais trouv\u00e9 le moyen technique me correspondant et me permettant de \u00ab faire na\u00eetre une \u0153uvre \u00bb, par la communion entre le code (la technique), l'image et l'\u00e9change."
+      ],
+      "short_title": "Mastery enables live improvisation",
+      "text": "Mastered shadercoding can support real-time artistic improvisation that fuses code, image, performer, and audience into a live digital performance."
+    },
+    {
+      "evidence_excerpts": [
+        "L'artiste num\u00e9rique veut exprimer une sensation, un v\u00e9cu, cr\u00e9er du sensible au travers de machines logiques, r\u00e9fl\u00e9chissant \u00e0 base de 0 et de 1. Une r\u00e9flexion logique et technique en amont est donc toujours n\u00e9cessaire pour r\u00e9aliser une \u0153uvre num\u00e9rique."
+      ],
+      "short_title": "Digital art bridges calculation",
+      "text": "Digital art practice must negotiate the tension between scientific-technical processes and the desire to produce sensible artistic experience."
+    }
+  ],
+  "evidence_items": [
+    {
+      "claim_refs": [
+        "0"
+      ],
+      "evidence_id": "evidence-shadercoding-field-definition--a41f2c93d8b7",
+      "evidence_type": "formal_argument",
+      "excerpt": "Dans un contexte o\u00f9 l'art num\u00e9rique est de plus en plus pr\u00e9sent, il convient de questionner certains de ses aspects, notamment celui du profil de l'artiste technique. Pour se faire, cet article propose une introduction th\u00e9orique au shadercoding, une discipline m\u00ealant programmation, math\u00e9matiques et graphisme, mais \u00e9galement une r\u00e9flexion sur la performance d'art num\u00e9rique au travers de cette pratique, dans des \u00e9v\u00e9nements de programmation en temps-r\u00e9el.",
+      "overview": "This abstract passage establishes the source's central frame: shadercoding is not treated only as software technique, but as a hybrid field connecting code, mathematics, graphics, and live digital-art performance. It grounds the broad interpretive claim while remaining limited to the authors' theoretical and practice-based framing rather than an empirical survey.",
+      "page_refs": [
+        "R\u00e9sum\u00e9"
+      ],
+      "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+      "title": "Shadercoding Field Definition"
+    },
+    {
+      "claim_refs": [
+        "1"
+      ],
+      "evidence_id": "evidence-gpu-rendering-stage-taxonomy--c05d92a76e31",
+      "evidence_type": "formal_argument",
+      "excerpt": "Il existe 4 grands types de shader, repr\u00e9sentant chacun une \u00e9tape du rendu de l'image finale : Vertex shader > D\u00e9crit la position des points dans l'espace 3D; Tessellation shader > Assemble les points en formant des triangles; Geometry shader > Ajoute de nouveaux points et de la d\u00e9finition suppl\u00e9mentaire aux triangles pr\u00e9c\u00e9dents si besoin; Fragment (ou pixel) shader > Intervient apr\u00e8s la rast\u00e9risation, donne une couleur au pixel en fonction de sa position sur la grille de projection.",
+      "overview": "The four-part taxonomy gives a concrete technical scaffold for the article's account of shadercoding. It supports the claim that shaders are GPU rendering programs by naming the rendering stages and their respective roles. The evidence is explanatory rather than experimental, and its scope is an introductory model of the graphics pipeline.",
+      "page_refs": [
+        "Fig.1"
+      ],
+      "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+      "title": "GPU Rendering Stage Taxonomy"
+    },
+    {
+      "claim_refs": [
+        "2"
+      ],
+      "evidence_id": "evidence-fragment-shader-pixel-mapping--b7e1ac49f620",
+      "evidence_type": "formal_argument",
+      "excerpt": "Pour r\u00e9sumer, celui-ci va prendre en entr\u00e9e la position d'un \u00ab point num\u00e9rique \u00bb de l'espace 2D, appel\u00e9 pixel, et va retourner une couleur pour le pixel correspondant. ... la propri\u00e9t\u00e9 premi\u00e8re du fragment shader peut aussi permettre de g\u00e9n\u00e9rer, \u00e0 l'aide de formules math\u00e9matiques, des motifs ou patterns particuliers. Ceux-ci peuvent \u00eatre anim\u00e9s avec des variables \u00e9voluant dans le temps ou selon d'autres informations externes, qui peuvent provenir d'interfaces homme-machine telles qu'un clavier, une souris, une leap motion ou une kinect.",
+      "overview": "This passage is the clearest artifact for the generative mechanics of fragment shaders: pixel coordinates are mapped to color, while formulas and inputs can animate the result. It grounds the claim about mathematical patterns and interactivity without asserting that every fragment shader is artistic or interactive.",
+      "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+      "title": "Fragment Shader Pixel Mapping"
+    },
+    {
+      "claim_refs": [
+        "3"
+      ],
+      "evidence_id": "evidence-raymarching-distance-field-procedure--d92c44e3a1fd",
+      "evidence_type": "formal_argument",
+      "excerpt": "Une technique permet m\u00eame de recr\u00e9er de la profondeur dans le fragment shader et donc d'afficher \u00e0 nouveau de la 3D : le raymarching. ... Il s'agit de d\u00e9crire l'espace selon des fonctions de distances en un point donn\u00e9 ... Ensuite, pour chaque pixel de l'image, on lance un rayon sur lequel on va 'marcher' pas \u00e0 pas ... Chaque rayon va donc, \u00e0 un moment du parcours de la sc\u00e8ne, rencontrer un objet d\u00e9crit dans la fonction de distance (appel\u00e9e commun\u00e9ment SDF pour Signed Distance Field).",
+      "overview": "The raymarching description provides a stepwise technical explanation: define space with distance functions, cast a ray for each pixel, and advance until the ray reaches an SDF-described object. It supports the depth-reconstruction claim and clarifies why the source links raymarching to complex real-time forms, while remaining an introductory account rather than a mathematical proof.",
+      "page_refs": [
+        "Fig.2"
+      ],
+      "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+      "title": "Raymarching Distance Field Procedure"
+    },
+    {
+      "claim_refs": [
+        "4",
+        "8"
+      ],
+      "evidence_id": "evidence-vector-math-lighting-example--4f8e16b2c9ad",
+      "evidence_type": "formal_argument",
+      "excerpt": "Manipuler un shader requiert donc une certaine aisance math\u00e9matique et technique. ... savoir qu'un produit scalaire entre deux vecteurs orthonorm\u00e9s retourne l'angle entre ces deux vecteurs, ce qui va nous permettre de repr\u00e9senter le rebond de lumi\u00e8re sur une surface, en faisant le produit scalaire du vecteur normal au point et de la direction de la source lumineuse.",
+      "overview": "This example links a specific mathematical operation, the dot product, to a visual rendering effect. It concretizes the article's broader claim about technical fluency: shadercoding expertise is not abstract prestige but practical knowledge used to manipulate light, space, and image behavior.",
+      "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+      "title": "Vector Math Lighting Example"
+    },
+    {
+      "claim_refs": [
+        "5",
+        "6"
+      ],
+      "evidence_id": "evidence-live-showdown-judging-criteria--e6b33a4c0189",
+      "evidence_type": "observational_result",
+      "excerpt": "Plus commun\u00e9ment appel\u00e9 Shader Showdown, il s'agit de coder son effet visuel \u00e0 l'aide d'un shader en 25 ou 30 minutes devant un public. Suite \u00e0 cette \u00e9preuve, les participants seront jug\u00e9s par les spectateurs sur diff\u00e9rents crit\u00e8res : l'image finale produite, la technicit\u00e9 du code mais \u00e9galement l'\u00e9volution de l'effet au cours de l'\u00e9preuve. Ce dernier crit\u00e8re peut \u00eatre particuli\u00e8rement important car, comme son nom l'indique, il est question ici de show, de spectacle \u00e0 la fois technique et artistique.",
+      "overview": "The timed format and judging criteria make the performative status of shadercoding auditable: audience, duration, code visibility, evolving effect, and technical-artistic spectacle all matter. The passage supports claims about live performance conditions and also shows the specific limits of the argument: it describes Shader Showdown conventions, not all shadercoding contexts.",
+      "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+      "title": "Live Showdown Judging Criteria"
+    },
+    {
+      "claim_refs": [
+        "7"
+      ],
+      "evidence_id": "evidence-revision-performance-experience--f3a9d2756c4b",
+      "evidence_type": "observational_result",
+      "excerpt": "En mars 2018, apr\u00e8s deux ans de pratiques et de petits tournois amicaux sur Paris, je me suis retrouv\u00e9e propuls\u00e9e sur la m\u00eame sc\u00e8ne ... J'ai pu participer au Shader Showdown de la Revision 2018 et aller jusqu'\u00e0 la finale. ... Tout cela \u00e9tait possible aussi car j'avais de la marge pour improviser et \u00eatre impulsive du fait de ma ma\u00eetrise du langage et de la technicit\u00e9 de cette programmation. J'avais trouv\u00e9 le moyen technique me correspondant et me permettant de \u00ab faire na\u00eetre une \u0153uvre \u00bb, par la communion entre le code (la technique), l'image et l'\u00e9change.",
+      "overview": "This first-person account supplies the source's main practice-based evidence for shadercoding as performance art. It matters because the article's strongest artistic conclusion rests on lived performance, audience interaction, and technical mastery enabling improvisation. The evidence is experiential rather than controlled or generalizable.",
+      "page_refs": [
+        "Revision 2018"
+      ],
+      "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+      "title": "Revision Performance Experience"
+    }
+  ],
+  "relations": [
+    {
+      "dst_claim_ref": "0",
+      "rationale": "The fragment-shader account explains one technical basis for shadercoding as a mathematical graphic practice.",
+      "relation_type": "supports",
+      "src_claim_ref": "2"
+    },
+    {
+      "dst_claim_ref": "0",
+      "rationale": "Raymarching shows how shadercoding connects mathematical space descriptions to real-time visual production.",
+      "relation_type": "supports",
+      "src_claim_ref": "3"
+    },
+    {
+      "dst_claim_ref": "8",
+      "rationale": "The need for mathematical fluency grounds the article's tension between calculation and sensible artistic expression.",
+      "relation_type": "supports",
+      "src_claim_ref": "4"
+    },
+    {
+      "dst_claim_ref": "7",
+      "rationale": "The claim that constraints can create supports the account of improvised live performance through technical mastery.",
+      "relation_type": "supports",
+      "src_claim_ref": "5"
+    },
+    {
+      "dst_claim_ref": "7",
+      "rationale": "The Shader Showdown format supplies the public, timed setting in which the performance-art claim is made.",
+      "relation_type": "supports",
+      "src_claim_ref": "6"
+    }
+  ],
+  "source": {
+    "authors": [
+      "Florine Fouquart",
+      "Chu-Yin Chen"
+    ],
+    "display_title": "Shadercoding Turns Mathematics Into Live Digital Art"
+  },
+  "source_date_inference": {
+    "confidence": "medium",
+    "date": "2019",
+    "origin": "source_markdown_citation",
+    "rationale": "The extracted citation line names Arts et Technologies de l\u2019Image, Images num\u00e9riques et R\u00e9alit\u00e9 Virtuelle, 2019, 12(6), pp.527-545; the HAL deposit date is later and is not treated as publication date."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The source defines shadercoding through the shader itself: a GPU-directed program involved in the rendering pipeline. Its taxonomy of vertex, tessellation, geometry, and fragment shaders gives readers a concrete account of where code enters image production. This matters because the later art argument depends on treating code as the actual medium of visual formation, not as a hidden support tool.",
+        "grounding_claim_ids": [
+          "1",
+          "2"
+        ],
+        "heading": "Technical Object Of Study"
+      },
+      {
+        "body": "The authors emphasize fragment shaders because they convert pixel positions into colors and can use formulas, time variables, and external inputs to generate animated images. That framing makes shadercoding legible as a generative practice: the image is computed from mathematical relations, and interaction can be incorporated into the same visual procedure.",
+        "grounding_claim_ids": [
+          "2",
+          "0"
+        ],
+        "heading": "Fragment Shaders As Generators"
+      },
+      {
+        "body": "Raymarching is presented as the technique that lets fragment shaders recover 3D depth. The source explains the procedure in terms of distance functions, rays launched per pixel, stepwise traversal, and encounters with objects described by signed distance fields. This supports the claim that mathematical scene descriptions can produce complex real-time visual spaces.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ],
+        "heading": "Raymarching And Spatial Depth"
+      },
+      {
+        "body": "The article repeatedly rejects a simple opposition between technical constraint and creative expression. Mathematical fluency, spatial reasoning, vector operations, and shader language mastery are treated as conditions of artistic agency. In this account, the artist gains expressive freedom not by avoiding technical systems, but by understanding them deeply enough to improvise inside them.",
+        "grounding_claim_ids": [
+          "4",
+          "5",
+          "8"
+        ],
+        "heading": "Technique As Artistic Condition"
+      },
+      {
+        "body": "Shader Showdowns supply the article's clearest institutional performance frame: a public, timed event where participants code a shader effect in roughly half an hour and are judged on image, code technique, and visual evolution. The visibility of writing code makes the procedure itself part of the artwork's reception, alongside the generated image.",
+        "grounding_claim_ids": [
+          "6",
+          "7"
+        ],
+        "heading": "Live Coding As Performance Frame"
+      },
+      {
+        "body": "The source is strongest as conceptual and practice-based analysis. Its evidence includes technical definitions, procedural descriptions, cited aesthetic theory, event formats, and first-person accounts from Revision 2016 and 2018. It does not provide quantitative audience data or comparative studies, so broad claims about digital-art performance should be read as argued interpretation rather than measured generalization.",
+        "grounding_claim_ids": [
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "heading": "Evidence And Limits"
+      }
+    ],
+    "summary_long": "Florine Fouquart and Chu-Yin Chen present shadercoding as a practice located at the junction of GPU programming, mathematics, computer graphics, and performance art. The article begins with a technical introduction: shaders are GPU programs that participate in rendering, fragment shaders map pixel positions to colors, and mathematical formulas can generate patterns, animation, and interactivity. Raymarching receives particular attention because it lets a fragment shader recover three-dimensional depth by casting rays through distance-field descriptions of space, making complex forms and repeated spaces available in real time. This technical exposition is not an end in itself. The authors use it to question the figure of the digital artist as a technical artist whose aesthetic choices are formed through scientific and mathematical processes. The article then shifts into a practice-based reflection on live coding, especially Shader Showdown events where participants write visual shader effects in 25 or 30 minutes before an audience. The source argues that constraint, visibility, and time pressure can become generative. Rather than separating technique from expression, the authorial account describes technical mastery as the condition that allows improvisation, bodily absorption, and dialogue with spectators. The strongest evidence is explanatory and experiential: a shader pipeline taxonomy, descriptions of fragment-shader and raymarching procedures, a concrete vector-math lighting example, the judging structure of Shader Showdowns, and a first-person account of reaching the Revision 2018 final. The result is a source best read as theoretical-practical commentary rather than empirical validation. It establishes a vocabulary for understanding shadercoding as art, but its general claims about performance rest on reflective experience, cited aesthetic theory, and examples from live-coding culture rather than systematic audience or practitioner study.",
+    "summary_short": "Fouquart and Chen frame shadercoding as both GPU graphics technique and live digital-art practice. They explain fragment shaders, raymarching, distance fields, and mathematical image generation, then connect those techniques to Shader Showdown performance. The source argues that technical mastery and constraint can enable expressive real-time improvisation."
+  },
+  "summary": "Fouquart and Chen frame shadercoding as a digital-art practice where mathematical image generation, GPU rendering technique, and live coding performance converge. The source introduces shader mechanics, emphasizes raymarching and fragment shaders, and argues from practice that technical constraints and mastery can enable real-time artistic improvisation.",
+  "warnings": [
+    {
+      "code": "source_locator_title_mismatch",
+      "message": "The source locator and top markdown heading reference sphere tracing, but the extracted paper text is titled 'Pratique math\u00e9matiques de l'art num\u00e9rique : le shadercoding comme processus de cr\u00e9ation temps r\u00e9el et performatif'; semantic output follows the extracted paper content."
+    },
+    {
+      "code": "date_inferred_from_citation",
+      "message": "The source record date was null, but the markdown citation names 2019; date inference is therefore medium confidence rather than record-confirmed."
+    },
+    {
+      "code": "evidence_is_mostly_theoretical_and_experiential",
+      "message": "The article is not a measurement-heavy empirical study; evidence items are primarily definitions, formal explanations, event descriptions, and first-person performance observations."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:56:22Z",
+  "claim_id": "claim-repeated-reclustering-with-decreasing-similarity-thresholds-creates-bottom-up-bu--0f90a7b7b684",
+  "evidence_excerpts": [
+    "The paper starts with a high similarity threshold, decreases delta and reclusters every three to five iterations, producing fewer and larger clusters once earlier iterations have already made edges locally elongated and partially bundled."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Iterative reclustering coarsens bundles",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "text": "Repeated reclustering with decreasing similarity thresholds creates bottom-up bundling in which fine local bundles merge into coarser structures."
+}

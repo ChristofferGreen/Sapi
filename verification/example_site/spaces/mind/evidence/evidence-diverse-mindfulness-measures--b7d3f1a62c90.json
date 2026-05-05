@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-lacks-a-universally-accepted-technical-definition-so-empirical-findi--b873cbc87071",
+    "claim-existing-mindfulness-self-report-measures-have-unresolved-construct-validity-lim--65891880856d",
+    "claim-research-on-mindfulness-should-shift-from-seeking-one-unitary-mindfulness-measur--210f23dc10a0"
+  ],
+  "evidence_id": "evidence-diverse-mindfulness-measures--b7d3f1a62c90",
+  "evidence_type": "table_result",
+  "excerpt": "Table 1 lists mindfulness measures with different contexts and factor structures: the Freiburg Mindfulness Inventory from Buddhist theory with one general factor, the Mindful Attention and Awareness Scale from self-determination theory with attentiveness and awareness, the Kentucky Inventory of Mindfulness Skills from dialectical behavior therapy with observing, describing, awareness, and acceptance, and the Five Facet Mindfulness Questionnaire with nonreactivity, observing, awareness, describing, and nonjudging.",
+  "overview": "The table gives concrete evidence for semantic and measurement heterogeneity. Different instruments build mindfulness from different theoretical traditions and factor structures, so scores cannot safely be treated as a single transparent measure of one construct without further validation.",
+  "page_refs": [
+    "Table 1",
+    "p.39"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Diverse Mindfulness Measures"
+}

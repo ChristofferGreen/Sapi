@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767"
+  ],
+  "evidence_id": "evidence-hybrid-optimization-uncertainty--1608035aa002",
+  "evidence_type": "formal_argument",
+  "excerpt": "The emerging paradigm for solving optimization problems using near-term quantum technology is a kind of hybrid quantum-classical algorithm. In this scheme, we use a quantum processor to prepare an n-qubit state, then measure all the qubits and process the measurement outcomes using a classical optimizer. Will NISQ technology running QAOA or VQE be able to outperform classical algorithms that find approximate solutions to the same problems? Nobody knows, but we\u2019re going to try it and see how well we can do.",
+  "overview": "This evidence identifies QAOA and VQE as serious NISQ-era experiments while explicitly refusing to claim proven advantage. It supports a practical interpretation: near-term value may come through empirical testbeds and algorithm discovery rather than guaranteed speedups.",
+  "page_refs": [
+    "p.8"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "title": "Hybrid Optimization Uncertainty"
+}

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-outlier-gates-expose-synthesis-variation--367a566abb69"
+  ],
+  "evidence_id": "evidence-outlier-gate-ratios--d0e184d4f09af",
+  "evidence_type": "measurement",
+  "excerpt": "With a gate calibration experiment shown in Fig. 4b, we measured that g18,53/a18,53 = 0.8x for one gate and g22,53/a22,53 = 0.44x for another. The output wires of the two upstream OR gates were significantly different from each other.",
+  "overview": "The contrasting gate ratios document a specific failure mode in composing unpurified parts: nominally comparable gates can release signals at materially different effective concentrations. This evidence motivates the outlier-identification step and constrains the overall conclusion, because successful construction depends on detecting and compensating for such sequence- or synthesis-dependent variation.",
+  "page_refs": [
+    "Fig.4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "title": "Outlier Gate Ratios"
+}

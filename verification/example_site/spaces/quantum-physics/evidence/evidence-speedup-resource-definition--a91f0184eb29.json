@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-quantum-machine-learning-can-outperform-classical-algorithms-on-specific-pattern--ade088c638d0",
+    "claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90"
+  ],
+  "evidence_id": "evidence-speedup-resource-definition--a91f0184eb29",
+  "evidence_type": "formal_argument",
+  "excerpt": "Quantum speedup is evaluated through query complexity and gate complexity: a speedup exists when a quantum algorithm needs fewer information-source queries or fewer elementary operations than the classical alternative.",
+  "overview": "This formal resource criterion grounds the review's claims about quantum machine learning advantages. It keeps the discussion tied to algorithmic costs rather than vague statements that quantum computers are faster, while also exposing why real-device benchmarking remains necessary.",
+  "page_refs": [
+    "Box 1",
+    "pp.2-4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "title": "Quantum Speedup Resource Test"
+}

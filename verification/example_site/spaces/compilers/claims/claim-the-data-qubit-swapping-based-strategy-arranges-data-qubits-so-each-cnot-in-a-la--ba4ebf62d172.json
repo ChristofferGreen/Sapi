@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:45:24Z",
+  "claim_id": "claim-the-data-qubit-swapping-based-strategy-arranges-data-qubits-so-each-cnot-in-a-la--ba4ebf62d172",
+  "evidence_excerpts": [
+    "The objective is to arrange (i.e., to swap) the data qubits within the quantum processors so that eventually each CNOT of the original layer operates on qubits stored at neighbor processors within the network topology.",
+    "Theorem 1: Let us consider the ith layer of an arbitrary n-qubit quantum circuit. The depth of the corresponding compiled quantum circuit, obtained through the data-qubit-swapping-based strategy, does not exceed the following depth: n/4 dqs + dqs'."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Data swapping lowers asymptotic overhead",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "text": "The data-qubit-swapping-based strategy arranges data qubits so each CNOT in a layer operates on neighboring processors, and its compiled per-layer depth does not exceed n/4 dqs plus dqs prime."
+}

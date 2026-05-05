@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:32:25Z",
+  "claim_id": "claim-participants-with-no-prior-psychedelic-experience-showed-larger-shifts-away-from--056a417d978d",
+  "evidence_excerpts": [
+    "Their first psychedelic experience ... significant changes found at 4 weeks (t(52) = 3.85, p = 0.001, d = 0.53, 95% CI [0.21, 0.66]) and 6 months (t(52) = 5.32, p < 0.0001, d = 0.73, 95% CI [0.36, 0.80])."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Naive users shift more",
+  "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "text": "Participants with no prior psychedelic experience showed larger shifts away from physicalism than the full observational sample."
+}

@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T13:44:42Z",
+  "claim_id": "claim-mindfulness-research-should-adopt-preregistration-open-science-replication-caref--5f747418bb67",
+  "evidence_excerpts": [
+    "The conclusion recommends nuanced terminology for distinct mental and physical states and behaviors associated with mindfulness, preregistered experiments, open-science replications, uniform and better controlled clinical applications, warnings about generalization to clinical practice, and modest reporting of contemplative-neuroscience findings.",
+    "The source says no amount of sophisticated statistical prowess can correct results from faulty or confounded methods."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Rigor should increase",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "text": "Mindfulness research should adopt preregistration, open-science replication, careful terminology, stronger controls, systematic adverse-event assessment, and modest reporting of neuroimaging results."
+}

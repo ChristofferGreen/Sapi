@@ -1,0 +1,19 @@
+{
+  "claim_ids": [
+    "claim-future-mindfulness-research-should-replace-generic-labels-with-precise-descripti--0291ee9277c4",
+    "claim-the-clinical-evidence-base-for-mindfulness-based-interventions-remains-insuffici--fd5df4ed74a7",
+    "claim-meditation-related-adverse-effects-are-under-assessed-in-current-trials-so-claim--ce66cec14da3",
+    "claim-contemplative-neuroscience-findings-about-mindfulness-are-vulnerable-to-oversimp--944ad1b9ad23",
+    "claim-mindfulness-research-should-adopt-preregistration-open-science-replication-caref--5f747418bb67"
+  ],
+  "evidence_id": "evidence-prescriptive-rigor-agenda--b7e35a0d2f49",
+  "evidence_type": "formal_argument",
+  "excerpt": "In conclusion, the authors call for clarifying the meanings of mindfulness, adopting nuanced terminology for distinct mental and physical states and behaviors, developing questionnaires with more specific terms, conforming to lessons from the replication crisis through preregistered experiments and open-science replications, seeking more uniform and better controlled clinical applications, warning about generalization to clinical practice, addressing potential adverse effects, and reporting contemplative-neuroscience findings with due modesty.",
+  "overview": "This concluding agenda integrates the article's main critiques into concrete priorities. It establishes the source's constructive orientation: the remedy for mindfulness hype is not abandonment of contemplative science, but better definitions, better controls, transparent replication, systematic safety work, and restrained public communication.",
+  "page_refs": [
+    "pp.51-52"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Prescriptive Rigor Agenda"
+}

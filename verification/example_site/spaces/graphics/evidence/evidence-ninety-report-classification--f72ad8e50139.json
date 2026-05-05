@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-survey-classifies-90-published-foveated-rendering-reports-from-1990-to-2021--d0734ae4812f"
+  ],
+  "evidence_id": "evidence-ninety-report-classification--f72ad8e50139",
+  "evidence_type": "table_result",
+  "excerpt": "Table 3 is introduced as a summary of foveated rendering technique implementations and the surrounding text says it classifies 90 published reports from 1990 to 2021 according to the three taxonomy dimensions, while also marking surveys, patents, and cutting-edge equipment.",
+  "overview": "This evidence shows that the taxonomy is applied to a substantial body of literature rather than left as a conceptual proposal. The count and date range support the survey's claim to broad historical coverage across early and more recent foveated rendering work.",
+  "page_refs": [
+    "Table 3",
+    "pp.204-207"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "title": "Ninety Reports Classified"
+}

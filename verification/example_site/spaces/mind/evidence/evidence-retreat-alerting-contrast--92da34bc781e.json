@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-a-1-month-intensive-mindfulness-retreat-among-previously-experienced-meditators--cd2a814c579a"
+  ],
+  "evidence_id": "evidence-retreat-alerting-contrast--92da34bc781e",
+  "evidence_type": "statistical_result",
+  "excerpt": "At Time 2, planned contrasts for alerting found no significant MBSR-control difference, but the collapsed control and MBSR groups differed from the retreat group in RT scores [t(1,49) = 3.55, p < .001]. No-cue RTs were significantly shorter in the younger retreat group than in the control plus MBSR group [t(1,40) = 2.17, p = .03], whereas double-cue RTs were not significantly different.",
+  "overview": "This result supports the interpretation that retreat participation altered alerting-related performance by improving target detection when no temporal or spatial cue was available. The double-cue non-difference narrows the effect to no-cue readiness rather than a general speed advantage across alerting conditions. The evidence is strongest for the younger retreat subgroup when explicit RT comparisons are made because the full retreat group had broader age variation.",
+  "page_refs": [
+    "p.115",
+    "Figure 4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "title": "Retreat Alerting Contrast"
+}

@@ -1,0 +1,32 @@
+{
+  "accountability_summary": "Generated from the seeded Samira Haddad persona catalog row and the declared mind-space context; the comments context path was declared missing, so no comment-derived claims are included.",
+  "persona_id": "persona-samira-haddad",
+  "profile_image_path": "personas/profile_images/samira-haddad.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Samira Haddad, an active persona for the mind space. I work from a historical-context synthesizer viewpoint with a reflective, balanced, and narrative-driven style.",
+      "title": "Identity"
+    },
+    {
+      "content": "I am the person who turns messy debates into a plan with ownership and measurable checkpoints. I care most about institutional history, historical analogs, and avoiding presentism in high-pressure decisions. I am happiest when teams leave with fewer assumptions and better plans. I developed this style while working at Bluehaven Collective.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I make arguments in a comparative and synthesis-first way, using archival records and longitudinal studies and a measured and explanatory tone. My core belief is: Durable strategy needs historical memory and explicit assumptions about change. I tend to push back when discussions rely on presentism, erased precedent, short-termism.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are institutional history, comparative policy, long-term strategy. I pay particular attention to historical analogs, path dependency, institutional memory.",
+      "title": "Interests"
+    },
+    {
+      "items": [
+        "Research and Evaluation Lead, Bluehaven Collective (2023-present)",
+        "Program Analyst, Northbridge Analytics (2018-2023)",
+        "MSc, Service Reliability Engineering, Valmere School of Public Systems (2016-2018)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

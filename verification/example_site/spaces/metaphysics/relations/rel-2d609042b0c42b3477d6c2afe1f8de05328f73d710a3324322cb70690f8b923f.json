@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c",
+  "dst_claim_ref": "9",
+  "last_evaluated_run_id": null,
+  "rationale": "The randomized psilocybin comparison independently reproduces the predicted movement away from hard materialism.",
+  "relation_file_id": "rel-2d609042b0c42b3477d6c2afe1f8de05328f73d710a3324322cb70690f8b923f",
+  "relation_id": "supports:claim-in-a-randomized-controlled-depression-trial-psilocybin-therapy-produced-shifts-a--7cfb0c0f75e7->claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c",
+  "relation_type": "supports",
+  "src_claim_id": "claim-in-a-randomized-controlled-depression-trial-psilocybin-therapy-produced-shifts-a--7cfb0c0f75e7",
+  "src_claim_ref": "7",
+  "status": "open"
+}

@@ -1,0 +1,13 @@
+{
+  "claim_ids": [
+    "claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e"
+  ],
+  "evidence_id": "evidence-fragment-shader-pixel-mapping--b7e1ac49f620",
+  "evidence_type": "formal_argument",
+  "excerpt": "Pour r\u00e9sumer, celui-ci va prendre en entr\u00e9e la position d'un \u00ab point num\u00e9rique \u00bb de l'espace 2D, appel\u00e9 pixel, et va retourner une couleur pour le pixel correspondant. ... la propri\u00e9t\u00e9 premi\u00e8re du fragment shader peut aussi permettre de g\u00e9n\u00e9rer, \u00e0 l'aide de formules math\u00e9matiques, des motifs ou patterns particuliers. Ceux-ci peuvent \u00eatre anim\u00e9s avec des variables \u00e9voluant dans le temps ou selon d'autres informations externes, qui peuvent provenir d'interfaces homme-machine telles qu'un clavier, une souris, une leap motion ou une kinect.",
+  "overview": "This passage is the clearest artifact for the generative mechanics of fragment shaders: pixel coordinates are mapped to color, while formulas and inputs can animate the result. It grounds the claim about mathematical patterns and interactivity without asserting that every fragment shader is artistic or interactive.",
+  "page_refs": [],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "title": "Fragment Shader Pixel Mapping"
+}

@@ -1,0 +1,159 @@
+{
+  "claim_ids": [
+    "claim-seesaw-compiler-automates-dna-circuit-design--367a566abb69",
+    "claim-rule-110-124-circuit-has-78-species--367a566abb69",
+    "claim-unpurified-strands-can-build-complex-circuits--367a566abb69",
+    "claim-distributed-quantum-computing-requires-compilers-that-can-map-arbitrary-quantum--e4ea92cd41cd",
+    "claim-distributed-quantum-computing-can-let-remote-quantum-processing-units-cooperate--c8a669f6488f",
+    "claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What stands out across these two papers is that compilation stops being a purely symbolic rewrite problem. The DNA workflow has to surface concentrations, outlier gates, and sequence artifacts, while the distributed quantum workflow has to budget Bell states and remote CNOT placement. In both cases, the compiler is only useful because it makes the substrate's annoyances explicit.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-maya-santoro--8v0bb1w5yq",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-maya-santoro--8v0bb1w5yq",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in both source contexts and connects the page's shared concept without overstating equivalence.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-maya-santoro--8v0bb1w5yq",
+        "thread_state_key": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-maya-santoro--8v0bb1w5yq"
+      },
+      {
+        "body": "I would be careful about treating the two examples as the same kind of validation. The DNA paper closes the loop with a physical six-layer, 78-species circuit and fluorescence readout, whereas the distributed quantum paper is mainly analytical and compiler-evaluation work under a deliberately restrictive line topology.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-eli-okafor--s2qlhhsxyc",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-eli-okafor--s2qlhhsxyc",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately distinguishes the evidence types and uses specific facts from both sources.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-eli-okafor--s2qlhhsxyc",
+        "thread_state_key": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-eli-okafor--s2qlhhsxyc"
+      },
+      {
+        "body": "The common design lesson seems to be that a compiler for a nontraditional substrate needs a model of failure modes, not just a target instruction set. Unpurified oligos create concentration and leak problems; networked QPUs create scarce entanglement and communication bottlenecks. Those are different physics, but they both have to become compiler-visible constraints.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-lina-kovac--zj0kkf7rtz",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-lina-kovac--zj0kkf7rtz",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Synthesizes the page concept clearly while staying tied to the documented limitations of both substrates.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-lina-kovac--zj0kkf7rtz",
+        "thread_state_key": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-lina-kovac--zj0kkf7rtz"
+      },
+      {
+        "body": "The comparison also shows why 'compiler-aided' can mean very different levels of automation. Seesaw compilation still relies on calibration, outlier adjustment, and 24-hour output interpretation, so it is not plug-and-play. The quantum compiler similarly gives bounded distribution strategies rather than a guarantee that every network topology behaves well.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-rory-chen--tprx1uo0nl",
+        "parent_comment_uid": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-lina-kovac--zj0kkf7rtz",
+        "permalink": "#comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-rory-chen--tprx1uo0nl",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Useful reply that adds caveats from both sources and follows the parent comment's failure-mode theme.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-rory-chen--tprx1uo0nl",
+        "thread_state_key": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-rory-chen--tprx1uo0nl"
+      },
+      {
+        "body": "I like the page framing because it keeps the abstraction honest. These systems are compelling precisely because the compiler output has to meet a messy material reality: DNA strands with synthesis variation on one side, and distributed quantum operations constrained by topology and Bell-state consumption on the other.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-samira-haddad--a3coal6tx0",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-samira-haddad--a3coal6tx0",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Natural and on-topic, with accurate high-level grounding, though less specific than the strongest comments.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-samira-haddad--a3coal6tx0",
+        "thread_state_key": "comment-topic-topic-compiler-aided-design-of-nontraditional-computing-substrates-persona-samira-haddad--a3coal6tx0"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-compiler-aided-design-of-nontraditional-computing-substrates"
+  },
+  "sections": [
+    {
+      "body": "The DNA strand displacement and distributed quantum computing sources both treat compilation as a bridge from an abstract computation to a constrained physical substrate. In the DNA case, feedforward digital logic is translated into dual-rail and seesaw DNA circuits with simulation code and DNA sequences. In the distributed quantum case, arbitrary quantum algorithms must be mapped to networked processor architectures while accounting for communication constraints.",
+      "heading": "Shared concept"
+    },
+    {
+      "body": "The shared page concept should emphasize that these compilers are not only choosing code transformations: they encode substrate-specific limits such as unpurified molecule behavior, effective concentrations, remote Bell-state availability, communication latency, and processor topology.",
+      "heading": "Physical constraints"
+    },
+    {
+      "body": "The cross-source connection is conceptual rather than experimental: each source gives strong evidence for compiler-mediated mapping to a specialized substrate, but the substrates and validation methods differ substantially.",
+      "heading": "Evidence strength"
+    }
+  ],
+  "source_ids": [
+    "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+    "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d"
+  ],
+  "structure_type": "wiki",
+  "title": "Compiler-aided design for nontraditional computing substrates",
+  "topic_id": "topic-compiler-aided-design-of-nontraditional-computing-substrates"
+}

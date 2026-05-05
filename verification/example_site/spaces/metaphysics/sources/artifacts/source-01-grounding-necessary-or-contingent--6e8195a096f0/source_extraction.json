@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-01-grounding-necessary-or-contingent--6e8195a096f0/source.pdf",
+    "source_markdown": "sources/artifacts/source-01-grounding-necessary-or-contingent--6e8195a096f0/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "18b71a159e804a14b623135ed5af4b9900976ed9b455b983fa2c83944fff6c3d",
+  "markdown_char_count": 69317,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "7b9efe7e7b79b337abb60d77334f7d5e472eb046fd4b905711f5d605ad054d13",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

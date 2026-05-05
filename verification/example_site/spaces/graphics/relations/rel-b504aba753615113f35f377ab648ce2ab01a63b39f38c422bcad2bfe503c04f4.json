@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Iterative coarsening makes skeleton-guided bundling work at multiple structural scales.",
+  "relation_file_id": "rel-b504aba753615113f35f377ab648ce2ab01a63b39f38c422bcad2bfe503c04f4",
+  "relation_id": "supports:claim-repeated-reclustering-with-decreasing-similarity-thresholds-creates-bottom-up-bu--0f90a7b7b684->claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+  "relation_type": "supports",
+  "src_claim_id": "claim-repeated-reclustering-with-decreasing-similarity-thresholds-creates-bottom-up-bu--0f90a7b7b684",
+  "src_claim_ref": "4",
+  "status": "open"
+}

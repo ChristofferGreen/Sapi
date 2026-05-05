@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T07:50:34Z",
+  "claim_id": "claim-a-complex-is-a-subset-of-elements-with-greater-than-zero-that-is-not-included-wi--f99811f20a12",
+  "evidence_excerpts": [
+    "Complexes are identified by evaluating subsets and discarding those included in larger subsets with higher \u03a6."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Complexes bound subjectivity",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "text": "A complex is a subset of elements with \u03a6 greater than zero that is not included within a larger subset having higher \u03a6; the main complex is the complex with maximum \u03a6."
+}

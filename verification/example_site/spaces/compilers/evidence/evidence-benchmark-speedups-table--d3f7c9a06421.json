@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-on-the-benchmark-suite-profile-based-super-block-optimizations-averaged-a-1-15-s--e5d7486c0e56",
+    "claim-the-experiments-used-separate-profiling-inputs-and-performance-measurement-input--ee5ac2fa5a94",
+    "claim-the-major-effectiveness-mechanisms-are-eliminating-entries-into-the-middle-of-tr--4bc0ff5e21b0"
+  ],
+  "evidence_id": "evidence-benchmark-speedups-table--d3f7c9a06421",
+  "evidence_type": "table_result",
+  "excerpt": "Table 5 reports speedups over globally optimized code for profile-based optimization: cccp 1.04, cmp 1.42, compress 1.11, eqn 1.25, eqntott 1.16, espresso 1.03, grep 1.21, lex 1.01, mpla 1.18, tbl 1.03, wc 1.32, xlisp 1.16, yacc 1.08, with average 1.15 and standard deviation 0.12.",
+  "overview": "The table is the strongest empirical support for the performance claim. It compares profile-based super-block optimization against the authors' own globally optimized baseline across multiple non-numeric C programs. The average improvement is meaningful, though the per-program spread shows that benefit depends on workload structure and available hot-path opportunities.",
+  "page_refs": [
+    "Table 5",
+    "p.42"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "title": "Benchmark Speedup Results"
+}

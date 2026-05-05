@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-clinical-evidence-remains-preliminary--117717456958",
+    "claim-therapeutic-benefits-are-condition-specific--201401200700"
+  ],
+  "evidence_id": "evidence-active-control-efficacy-profile--117717456959",
+  "evidence_type": "statistical_result",
+  "excerpt": "In a review and meta-analysis commissioned by the U.S. Agency for Healthcare Research and Quality, mindfulness-based interventions compared to active controls had only moderate efficacy for anxiety, depression, and pain; low efficacy for stress and quality of life; and no effect or insufficient evidence for attention, positive mood, substance abuse, eating habits, sleep, and weight control.",
+  "overview": "This evidence item qualifies popular therapeutic claims by separating domains with moderate evidence from domains with weak or absent evidence. It supports a condition-specific interpretation: mindfulness interventions may be useful in some contexts, but the source rejects broad claims of strong or universal clinical efficacy.",
+  "page_refs": [
+    "p. 46"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Mixed Active-Control Efficacy"
+}

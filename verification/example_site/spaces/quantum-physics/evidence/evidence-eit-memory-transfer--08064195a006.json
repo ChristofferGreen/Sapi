@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-electromagnetically-induced-transparency-enables-deterministic-reversible-mappin--b76e4e96d4f0"
+  ],
+  "evidence_id": "evidence-eit-memory-transfer--08064195a006",
+  "evidence_type": "observational_result",
+  "excerpt": "Deterministic mapping of quantum states of light to and from atomic ensembles is possible by way of electromagnetically induced transparency. The cited work demonstrated storage and retrieval of classical pulses, extended the process to single photons, achieved entanglement between two ensembles coupled to a cavity mode, and realized reversible mapping of photonic entanglement into and out of pairs of quantum memories.",
+  "overview": "This evidence establishes the source's second route to reversible interfaces: ensemble memories using EIT rather than single atoms in cavities. It gathers a progression from classical pulse storage to single-photon and entanglement transfer, while relying on cited experimental achievements rather than a single new measurement in this review-like source.",
+  "page_refs": [
+    "Atomic ensembles section",
+    "Fig. 1(d)"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "title": "EIT Memory Transfer Results"
+}

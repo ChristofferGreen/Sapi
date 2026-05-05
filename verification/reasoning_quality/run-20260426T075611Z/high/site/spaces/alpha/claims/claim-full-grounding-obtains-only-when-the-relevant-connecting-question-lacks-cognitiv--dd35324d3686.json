@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T08:12:33Z",
+  "claim_id": "claim-full-grounding-obtains-only-when-the-relevant-connecting-question-lacks-cognitiv--dd35324d3686",
+  "evidence_excerpts": [
+    "significance: [p] is (fully) grounded in D only if the connecting questions with respect to [p] and D lack cognitive significance."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Grounding excludes significant questions",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "Full grounding obtains only when the relevant connecting question lacks cognitive significance."
+}

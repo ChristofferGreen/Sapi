@@ -1,0 +1,23 @@
+{
+  "flow_states": {
+    "comment_section_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T081323Z--700fnfv4ly"
+      ],
+      "consecutive_advanced_runs": 1,
+      "last_advanced_completed_at": "2026-04-26T08:15:38Z",
+      "last_advanced_run_id": "run-20260426T081323Z--700fnfv4ly",
+      "last_advanced_status": "success"
+    },
+    "ingest_pipeline": {
+      "advanced_run_ids": [
+        "run-20260426T074258Z--0i4txletqz"
+      ],
+      "consecutive_advanced_runs": 1,
+      "last_advanced_completed_at": "2026-04-26T07:52:41Z",
+      "last_advanced_run_id": "run-20260426T074258Z--0i4txletqz",
+      "last_advanced_status": "success"
+    }
+  },
+  "schema_version": "run_truth_reconciliation_v1"
+}

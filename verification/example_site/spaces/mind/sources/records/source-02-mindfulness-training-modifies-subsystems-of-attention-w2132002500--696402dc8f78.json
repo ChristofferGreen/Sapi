@@ -1,0 +1,275 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78/front_page.png",
+    "source_extraction": "sources/artifacts/source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78/source_extraction.json",
+    "source_file": "sources/artifacts/source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78/source.pdf",
+    "source_markdown": "sources/artifacts/source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78/source.md",
+    "source_provenance": "sources/artifacts/source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78/source_provenance.md"
+  },
+  "authors": [
+    "Amishi P. Jha",
+    "Jason Krompinger",
+    "Michael J. Baime"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like that the paper avoids treating mindfulness as one blanket attention boost. Separating alerting, orienting, and conflict monitoring makes the MBSR and retreat findings feel more interpretable, especially since the two training contexts were so different.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-maya-santoro--xy7ujl4jv9",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-maya-santoro--xy7ujl4jv9",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately reflects the subsystem framing and training-context distinction without overstating causality.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-maya-santoro--xy7ujl4jv9",
+        "thread_state_key": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-maya-santoro--xy7ujl4jv9"
+      },
+      {
+        "body": "The orienting result for the novice MBSR group is the part I find easiest to connect to everyday practice. Repeatedly noticing distraction and returning to the breath sounds very close to training voluntary selection of where attention goes.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-eli-okafor--x9fs955yoc",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-eli-okafor--x9fs955yoc",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Makes a source-grounded interpretation of the MBSR orienting result while keeping the claim modest.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-eli-okafor--x9fs955yoc",
+        "thread_state_key": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-eli-okafor--x9fs955yoc"
+      },
+      {
+        "body": "One caveat that stands out is how much the retreat group differs from the MBSR group before the intervention even starts. Prior experience, age range, and daily practice dose are all tangled together, so I would hesitate to read the alerting effect as a clean retreat-only causal result.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-lina-kovac--vgrn22mrvb",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-lina-kovac--vgrn22mrvb",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the study limitations and clearly distinguishes association from causal inference.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-lina-kovac--vgrn22mrvb",
+        "thread_state_key": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-lina-kovac--vgrn22mrvb"
+      },
+      {
+        "body": "That caveat also matters for the conflict monitoring result. The experienced meditators looked different at baseline, but by the second test the group difference disappeared, which makes the repeated Attention Network Test exposure hard to ignore.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-rory-chen--z7vmzws1pf",
+        "parent_comment_uid": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-lina-kovac--vgrn22mrvb",
+        "permalink": "#comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-rory-chen--z7vmzws1pf",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Useful reply that connects the limitation thread to the reported baseline and Time 2 conflict-monitoring pattern.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-rory-chen--z7vmzws1pf",
+        "thread_state_key": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-rory-chen--z7vmzws1pf"
+      },
+      {
+        "body": "For me the most useful takeaway is design-oriented: future mindfulness studies should match the training question to a specific attention subsystem and use active controls. Otherwise it is too easy to turn these preliminary behavioral findings into a broader claim than the data can carry.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-samira-haddad--v1556lg2qm",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-samira-haddad--v1556lg2qm",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Synthesizes the practical meaning and limitations into a balanced recommendation supported by the source context.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-samira-haddad--v1556lg2qm",
+        "thread_state_key": "comment-source-source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500-696402dc8f78-persona-samira-haddad--v1556lg2qm"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78"
+  },
+  "date": null,
+  "display_title": "Mindfulness Training Modifies Subsystems of Attention",
+  "external_related_links": [],
+  "ingested_at": "2026-04-26T11:04:56Z",
+  "linked_source_ids": [],
+  "references": [],
+  "related_link_enrichment": {
+    "skip_reason": "no_curated_links_found",
+    "sources": [],
+    "status": "skipped",
+    "warnings": []
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "medium",
+    "date": "2007",
+    "origin": "source markdown header",
+    "rationale": "The extracted article header states Cognitive, Affective, & Behavioral Neuroscience, 2007, 7(2), 109-119; no month or day was recovered."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The paper argues that mindfulness training should be evaluated at the level of attentional subsystems. Instead of asking whether meditation generally improves attention, the authors separate alerting, orienting, and conflict monitoring and show that different mindfulness histories are associated with different ANT outcomes. This framing supports a targeted interpretation of training effects rather than a single global-benefit narrative.",
+        "grounding_claim_ids": [
+          "0",
+          "5"
+        ],
+        "heading": "Central Argument"
+      },
+      {
+        "body": "The study contrasts a structured MBSR course, an intensive residential retreat, and a no-training control group. MBSR participants were meditation-naive and practiced concentrative exercises over 8 weeks, while retreat participants had months to years of prior experience and practiced for 10-12 hours per day during the retreat. These design differences are central to the interpretation because training type, intensity, and prior experience vary together.",
+        "grounding_claim_ids": [
+          "1",
+          "2",
+          "6",
+          "7"
+        ],
+        "heading": "Training Design"
+      },
+      {
+        "body": "The MBSR result is the clearest post-training dorsal-system finding. At Time 2, orienting response-time difference scores differed significantly by group, and planned contrasts showed that MBSR participants differed from both controls and retreat participants. The authors interpret the pattern as improved endogenous orienting, plausibly linked to repeated practice in engaging and returning attention to a chosen focus such as the breath.",
+        "grounding_claim_ids": [
+          "1"
+        ],
+        "heading": "Orienting Evidence"
+      },
+      {
+        "body": "The retreat result points to a different attentional change. Experienced meditators after retreat showed a smaller alerting score than the combined MBSR and control participants, driven by faster no-cue detection rather than a general double-cue speed advantage. The correlation between prior meditation experience and smaller alerting scores reinforces the authors' interpretation that receptive attentional readiness may emerge with extensive practice.",
+        "grounding_claim_ids": [
+          "2",
+          "6"
+        ],
+        "heading": "Alerting Evidence"
+      },
+      {
+        "body": "Conflict monitoring shows a baseline expertise signal but not a clean post-training group difference. Experienced retreat participants had reduced flanker interference at Time 1 relative to meditation-naive participants, but group differences disappeared at Time 2. The authors suggest that repeated exposure to the ANT may improve conflict monitoring in controls and mask any additional meditation-related change.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ],
+        "heading": "Conflict Monitoring"
+      },
+      {
+        "body": "The findings are suggestive rather than definitive. The groups were small, the retreat group had broad age and experience variation, intervention dose differed sharply between MBSR and retreat, and the control condition did not match expectancy or training contact. Because the measures are behavioral, the paper can show subsystem-specific performance changes but cannot directly identify neural mechanisms.",
+        "grounding_claim_ids": [
+          "7"
+        ],
+        "heading": "Interpretive Limits"
+      },
+      {
+        "body": "For readers, the practical takeaway is that mindfulness practice may train attention in different ways depending on stage and context. Structured novice training appears most related to voluntary orienting, while intensive practice among experienced meditators appears more related to alert readiness without cues. The study encourages more precise designs that match interventions to specific attentional targets and include active controls.",
+        "grounding_claim_ids": [
+          "0",
+          "1",
+          "2",
+          "7"
+        ],
+        "heading": "Practical Meaning"
+      }
+    ],
+    "summary_long": "Mindfulness Training Modifies Subsystems of Attention asks whether mindfulness training affects attention as a set of separable behavioral systems rather than as a broad, undifferentiated capacity. Jha, Krompinger, and Baime compare three groups: meditation-naive participants enrolled in an 8-week mindfulness-based stress reduction course, experienced meditators entering a 1-month intensive retreat, and meditation-naive controls receiving no mindfulness training. All groups completed the Attention Network Test at two time points. The ANT lets the authors estimate alerting, orienting, and conflict monitoring through response-time and accuracy differences across cue and target conditions. The paper's strongest source-specific claim is that different training contexts map onto different subsystems. At baseline, the experienced retreat participants show less conflict interference than the meditation-naive groups, consistent with prior concentrative practice improving voluntary conflict-related selection. After training, the MBSR group shows a significantly larger orienting score than both the control and retreat groups, which the authors interpret as improved endogenous orienting after structured concentrative practice. The retreat group, by contrast, shows a smaller alerting score and faster no-cue detection than the combined control and MBSR groups; months of prior meditation experience also correlate with smaller alerting scores. The authors interpret this as a possible emergence of receptive attention or readiness for unexpected events. The evidence is important because it links mindfulness training to specific behavioral indices rather than relying on self-report or broad clinical outcomes. However, the causal claims are bounded. The retreat group differed in prior experience and age range, the intervention doses were not matched, the control group was passive rather than an active training control, and repeated ANT exposure improved overall response times. The discussion therefore frames the study as a provocative early demonstration that mindfulness can entrain attention in specific ways, not as a definitive mechanism or a complete clinical prescription.",
+    "summary_short": "This study tests whether mindfulness training changes separable attention subsystems measured by the ANT. Novice MBSR participants improved orienting, experienced retreat participants showed stronger no-cue alerting readiness, and prior meditation experience aligned with better baseline conflict monitoring. The authors treat the causal interpretation as preliminary."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "source_kind": "file",
+  "source_locator": "02-mindfulness-training-modifies-subsystems-of-attention--w2132002500.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Amishi P. Jha",
+      "Jason Krompinger",
+      "Michael J. Baime"
+    ],
+    "display_title": "Mindfulness Training Modifies Subsystems of Attention"
+  },
+  "source_type": "file",
+  "summary": "Jha, Krompinger, and Baime report that mindfulness training changes ANT-measured attention subsystems in different ways depending on training history. Novice MBSR participants showed improved orienting after an 8-week course, experienced retreat participants showed altered alerting and faster no-cue detection after a 1-month retreat, and experienced meditators already showed reduced conflict interference at baseline. The findings are behavioral and preliminary, with important limits from group size, prior-experience differences, task repetition, and lack of active-training controls.",
+  "title": "02-mindfulness-training-modifies-subsystems-of-attention--w2132002500",
+  "warnings": [
+    {
+      "code": "source_record_title_placeholder",
+      "message": "The source record display_title is Untitled Source, but the extracted article header identifies the paper title and authors."
+    },
+    {
+      "code": "publication_date_year_only",
+      "message": "Only the publication year 2007 was inferred from the article header; no month or day was recovered."
+    },
+    {
+      "code": "ocr_symbol_normalization",
+      "message": "The pdftotext markdown contains degraded comparison/equality glyphs in statistical expressions; evidence excerpts normalize obviously intended symbols where the surrounding text supports the reading."
+    }
+  ]
+}

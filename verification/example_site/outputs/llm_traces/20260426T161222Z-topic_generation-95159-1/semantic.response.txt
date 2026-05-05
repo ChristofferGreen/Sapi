@@ -1,0 +1,105 @@
+{
+  "topics": [
+    {
+      "topic_id": "topic-quantum-advantage-and-verification-limits",
+      "title": "Quantum advantage under verification and noise limits",
+      "structure_type": "wiki",
+      "sections": [
+        "This topic connects NISQ-era expectations, Sycamore random-circuit sampling, and quantum-network verification around a shared problem: quantum systems can enter classically hard state spaces before they become easy to validate or use fault-tolerantly.",
+        "Preskill frames 50-to-hundreds of noisy qubits as beyond brute-force simulation but limited by gate errors and shallow practical circuit depth; the Sycamore source reports a task-specific random-circuit speedup while relying on cross-entropy benchmarking, elided circuits, and fidelity modeling rather than full direct verification.",
+        "The quantum-network source extends the same verification tension from processors to distributed nodes: quantum connectivity gives linked nodes an exponentially larger shared state space, while full density-matrix characterization becomes impractical as networks grow. A useful page should therefore emphasize both the evidential strength of task-specific benchmarks and the unresolved challenge of scalable certification."
+      ],
+      "claim_ids": [
+        "claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+        "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+        "claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb",
+        "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+        "claim-linear-cross-entropy-benchmarking-provides-a-fidelity-measure-by-comparing-exper--4abac38b173d",
+        "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279",
+        "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+        "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+        "claim-quantum-connectivity-gives-linked-nodes-a-state-space-that-scales-exponentially--50cc8b700a70",
+        "claim-full-density-matrix-characterization-becomes-an-impractical-verification-strateg--65a0be3566e1"
+      ],
+      "source_ids": [
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+        "source-03-the-quantum-internet--cd7f6b2f11e2"
+      ]
+    },
+    {
+      "topic_id": "topic-coherent-interfaces-for-scaling-quantum-systems",
+      "title": "Coherent interfaces for scaling quantum systems",
+      "structure_type": "wiki",
+      "sections": [
+        "This topic synthesizes the hardware-facing requirement shared by quantum computing and quantum networking sources: useful scaling depends not only on more qubits, but on preserving coherence while operations, measurements, and interfaces become larger and more complex.",
+        "The NISQ and Sycamore sources quantify this pressure through gate and readout errors, circuit depth, predicted fidelity, and the importance of lowering two-qubit gate errors. The quantum-internet source describes the networking analogue: reversible light-matter interconnects, strong cavity-QED coupling, dark-state mappings, controlled cavity pulses, and EIT-based ensemble memories must move quantum states between stationary and flying systems without destroying entanglement.",
+        "A concept page can compare local processor scaling with network scaling: both need error-aware physical mechanisms, but networked systems add conversion between matter and light, heterogeneous nodes, and entanglement-preserving interfaces as first-class design constraints."
+      ],
+      "claim_ids": [
+        "claim-lower-gate-error-rates-matter-both-because-they-allow-larger-uncorrected-nisq-ci--043e58605f51",
+        "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de",
+        "claim-the-largest-random-circuits-combined-53-qubits-1-113-single-qubit-gates-430-two--c8ece98aae87",
+        "claim-large-quantum-networks-require-reversible-interconnects-that-convert-quantum-sta--03b0b3a11218",
+        "claim-strong-cavity-qed-coupling-supplies-a-physical-regime-in-which-individual-atoms--9807d4e35625",
+        "claim-dark-state-adiabatic-control-can-reversibly-map-a-single-photon-optical-field-in--55c6ef7fe1ba",
+        "claim-controlled-cavity-pulses-can-generate-entanglement-first-between-an-atom-and-an--ee045e1c7175",
+        "claim-electromagnetically-induced-transparency-enables-deterministic-reversible-mappin--b76e4e96d4f0"
+      ],
+      "source_ids": [
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+        "source-03-the-quantum-internet--cd7f6b2f11e2"
+      ]
+    },
+    {
+      "topic_id": "topic-entanglement-as-resource-and-bottleneck",
+      "title": "Entanglement as both resource and bottleneck",
+      "structure_type": "wiki",
+      "sections": [
+        "This topic treats entanglement as the common resource behind quantum advantage claims, many-body NISQ exploration, random-circuit hardness, and quantum-network protocols, while also noting that entanglement makes control, verification, and scaling difficult.",
+        "Preskill identifies highly entangled quantum dynamics as a natural arena for meaningful quantum advantage and describes NISQ devices as tools for exploring many-body physics. Sycamore uses random circuits whose unstructured output distributions become exponentially harder to simulate as qubits and cycles grow. Kimble's quantum-internet discussion shifts from entanglement inside one processor to entanglement distributed across matter-light interfaces and atomic ensembles, including DLCZ heralding and stored ensemble entanglement.",
+        "The synthesis should avoid implying that all entanglement is equally useful: the evidence supports entanglement as necessary for hard quantum behavior and network connectivity, but also shows that practical value depends on fidelity, controllability, memory retrieval, and verification methods."
+      ],
+      "claim_ids": [
+        "claim-highly-entangled-quantum-dynamics-is-the-most-natural-arena-for-meaningful-quant--3b6f2f5ba268",
+        "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+        "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+        "claim-the-sycamore-superconducting-processor-created-random-circuit-quantum-states-on--2b4eeabd4063",
+        "claim-the-dlcz-protocol-creates-heralded-entanglement-between-atomic-ensembles-by-inte--aa516185d3b2",
+        "claim-atomic-ensemble-experiments-had-achieved-stored-heralded-entanglement-high-retri--7d38956d9ede",
+        "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772"
+      ],
+      "source_ids": [
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+        "source-03-the-quantum-internet--cd7f6b2f11e2"
+      ]
+    },
+    {
+      "topic_id": "topic-near-term-demonstrations-versus-fault-tolerant-systems",
+      "title": "Near-term demonstrations versus fault-tolerant quantum systems",
+      "structure_type": "wiki",
+      "sections": [
+        "This topic compares demonstrated or plausible near-term quantum capabilities with the longer path to robust, scalable systems. It is supported across all three sources, but the strength of evidence differs by domain: Sycamore reports a concrete task-specific sampling demonstration, while NISQ algorithms and large quantum networks remain more conditional roadmaps.",
+        "The NISQ source distinguishes experimental value and heuristic testbeds from transformative fault-tolerant applications, emphasizing error-correction overhead and unresolved performance of QAOA/VQE against mature classical methods. The Sycamore source reports random-circuit sampling speedup but explicitly leaves Shor-style factoring and other applications dependent on fault-tolerant logical qubits. The quantum-internet source surveys primitive but real demonstrations while noting that repeaters, local processing, error-corrected teleportation, and scalable verification remain ambitious goals.",
+        "A page on this concept can help prevent overclaiming: near-term devices can be scientifically important and sometimes classically hard, yet the evidence does not support broad claims that they already deliver general-purpose, fault-tolerant quantum computing or fully scalable quantum networking."
+      ],
+      "claim_ids": [
+        "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+        "claim-quantum-computers-are-not-expected-to-efficiently-solve-hard-np-hard-combinatori--0d5f718c4d47",
+        "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+        "claim-noise-resilient-circuit-design-can-extend-nisq-computational-reach-but-it-may-tr--aed4bcfeaa39",
+        "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+        "claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686",
+        "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772",
+        "claim-atomic-ensemble-experiments-had-achieved-stored-heralded-entanglement-high-retri--7d38956d9ede"
+      ],
+      "source_ids": [
+        "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+        "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+        "source-03-the-quantum-internet--cd7f6b2f11e2"
+      ]
+    }
+  ]
+}

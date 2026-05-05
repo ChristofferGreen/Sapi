@@ -1,0 +1,156 @@
+{
+  "claim_ids": [
+    "claim-cuda-image-space-distance-transforms-skeletonization-path-computation-and-attrac--46de973cba61",
+    "claim-a-shader-is-a-gpu-directed-program-that-describes-rendering-processes-for-turnin--64c2250afac1",
+    "claim-creating-original-shaders-requires-substantial-mathematical-and-technical-fluenc--7ec21177eabc",
+    "claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e",
+    "claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+    "claim-the-tested-system-renders-10-000-different-humans-in-a-41-260-polygon-village-at--6845dedcbaed"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This topic works because it does not flatten the three examples into one kind of graphics work. Shadercoding, edge bundling, and crowd rendering all depend on GPU-oriented computation, but each one turns the math toward a different audience need: expression, structural overview, or believable scale.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-maya-santoro--qfb5trkvrh",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-maya-santoro--qfb5trkvrh",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strong synthesis of the topic's cross-source contrast and shared GPU-computation theme.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-maya-santoro--qfb5trkvrh",
+        "thread_state_key": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-maya-santoro--qfb5trkvrh"
+      },
+      {
+        "body": "The edge-bundling case is a useful reminder that real-time graphics pipelines are not only about photorealistic images. Distance transforms, skeletonization, and attraction fields become a way to reason about graph structure, even though the final image deliberately sacrifices exact edge identity.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-eli-okafor--acx9vqbt86",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-eli-okafor--acx9vqbt86",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately grounds the comment in the bundling source and notes its stated information-loss trade-off.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-eli-okafor--acx9vqbt86",
+        "thread_state_key": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-eli-okafor--acx9vqbt86"
+      },
+      {
+        "body": "I would keep the performance claims carefully separated. The shadercoding source is mostly about practice and live creation, the crowd-rendering paper gives concrete frame-rate evidence, and the bundling paper reports GPU implementation timings for a specific pipeline.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-lina-kovac--yq0exum36n",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-lina-kovac--yq0exum36n",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "High-quality critical distinction between evidence types across the three sources.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-lina-kovac--yq0exum36n",
+        "thread_state_key": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-lina-kovac--yq0exum36n"
+      },
+      {
+        "body": "Yes, and that separation also helps explain why the same word, real-time, carries different weight in each case. In Shader Showdowns it frames performance and improvisation, while in virtual cities it is closer to an engineering budget for crowds, textures, geometry, and shadows.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-rory-chen--yj2r31wqlp",
+        "parent_comment_uid": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-lina-kovac--yq0exum36n",
+        "permalink": "#comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-rory-chen--yj2r31wqlp",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Relevant threaded reply that extends the evidence-type distinction with grounded examples.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-rory-chen--yj2r31wqlp",
+        "thread_state_key": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-rory-chen--yj2r31wqlp"
+      },
+      {
+        "body": "What I find most interesting is that none of these pipelines is neutral plumbing. The fragment shader, the impostor database, and the skeleton path all decide what can be seen quickly, so the mathematical representation shapes the visual argument as much as it accelerates rendering.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-samira-haddad--2bd0pj0cxv",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-samira-haddad--2bd0pj0cxv",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Well-grounded interpretive synthesis that links technical representations to visual meaning.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-samira-haddad--2bd0pj0cxv",
+        "thread_state_key": "comment-topic-topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images-persona-samira-haddad--2bd0pj0cxv"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images"
+  },
+  "sections": [
+    {
+      "body": "The sources converge on graphics pipelines where mathematical structure becomes visible through GPU-oriented computation. Shadercoding describes GPU-directed programs that map spatial or pixel data into images through functions, vectors, matrices, and fragment operations. Skeleton-based edge bundling reports CUDA image-space distance transforms, feature transforms, skeletonization, path computation, and attraction as a fast alternative to a CPU AFMM implementation.",
+      "heading": "Computation as visual pipeline"
+    },
+    {
+      "body": "Crowd rendering adds a performance-oriented variant of the same theme: compressed textures, multipass rendering, compact frame storage, and impostor databases make large animated populations render interactively. The shared topic should preserve the different goals of the sources: shadercoding emphasizes expressive image creation, edge bundling emphasizes graph readability, and crowd rendering emphasizes scalable virtual-environment display.",
+      "heading": "Different real-time goals"
+    }
+  ],
+  "source_ids": [
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+    "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1"
+  ],
+  "structure_type": "wiki",
+  "title": "GPU pipelines turn mathematical structure into real-time images",
+  "topic_id": "topic-gpu-pipelines-turn-mathematical-structure-into-real-time-images"
+}

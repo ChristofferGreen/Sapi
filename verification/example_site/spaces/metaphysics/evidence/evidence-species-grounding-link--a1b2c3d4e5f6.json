@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf",
+    "claim-alethic-fact-grounding-is-a-species-of-grounding-in-which-a-truthmaker-grounds-t--9c9dc5afedc6",
+    "claim-grounding-is-not-a-strict-order-because-it-is-neither-transitive-irreflexive-nor--0dc6a102d51b"
+  ],
+  "evidence_id": "evidence-species-grounding-link--a1b2c3d4e5f6",
+  "evidence_type": "formal_argument",
+  "excerpt": "Truthmaking is presented as the relation between a true proposition and what makes it true, and alethic-fact grounding as the relation in which a truthmaker grounds the fact that the proposition it truthmakes is true.",
+  "overview": "This formal setup matters because the paper's conclusion about grounding depends on treating truthmaking and alethic-fact grounding as cases of the broader grounding relation. If either species lacks a strict-order feature, grounding as the genus cannot be a strict order in that respect.",
+  "page_refs": [
+    "pp.3-5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "title": "Truthmaking Grounds Truth Facts"
+}

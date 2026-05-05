@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:12:22Z",
+  "claim_id": "claim-strong-cavity-qed-coupling-supplies-a-physical-regime-in-which-individual-atoms--9807d4e35625",
+  "evidence_excerpts": [
+    "Experiments in cavity QED explore strong coupling with g > (\u03b3, \u03ba), where \u03b3 is the atomic decay rate to modes other than the cavity mode and \u03ba is the decay rate of the cavity mode itself.",
+    "The number of photons required to saturate the intracavity atom is n0 \u223c \u03b3\u00b2/g\u00b2, and the number of atoms required to affect the intracavity field is N0 \u223c \u03ba\u03b3/g\u00b2; strong coupling explores the regime (n0, N0) << 1."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Strong coupling enables interfaces",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "text": "Strong cavity-QED coupling supplies a physical regime in which individual atoms and photons can interact coherently enough to function as quantum-network nodes and interfaces."
+}

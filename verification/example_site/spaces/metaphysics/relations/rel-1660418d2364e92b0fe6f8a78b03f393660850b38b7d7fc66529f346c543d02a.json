@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-sense-of-numerical-personal-identity-is-a-contingent-feature-of-episodic-mem--b672a3618f23",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "R.B.'s retained cognitive abilities narrow the deficit to ownership rather than episodic recall as a whole.",
+  "relation_file_id": "rel-1660418d2364e92b0fe6f8a78b03f393660850b38b7d7fc66529f346c543d02a",
+  "relation_id": "supports:claim-r-b-retained-factual-self-knowledge-trait-self-knowledge-voluntary-scene-recall--fc36edde2153->claim-the-sense-of-numerical-personal-identity-is-a-contingent-feature-of-episodic-mem--b672a3618f23",
+  "relation_type": "supports",
+  "src_claim_id": "claim-r-b-retained-factual-self-knowledge-trait-self-knowledge-voluntary-scene-recall--fc36edde2153",
+  "src_claim_ref": "3",
+  "status": "open"
+}

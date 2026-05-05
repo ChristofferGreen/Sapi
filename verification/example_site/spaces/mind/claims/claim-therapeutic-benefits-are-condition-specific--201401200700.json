@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T14:49:12Z",
+  "claim_id": "claim-therapeutic-benefits-are-condition-specific--201401200700",
+  "evidence_excerpts": [
+    "MBCT may be modestly helpful for some individuals with residual symptoms of depression, and some guidelines endorse MBCT for preventing relapse in remitted patients with three or more previous depressive episodes.",
+    "Head-to-head comparisons of MBIs to other evidence-based practices have resulted in mixed findings, and direct comparisons of MBIs to empirically established treatments are limited."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Benefits are condition specific",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "text": "Mindfulness-based therapies may help some people and conditions, particularly some depression-related contexts, but they should not be treated as broadly superior to established treatments."
+}

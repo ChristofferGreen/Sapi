@@ -1,0 +1,8 @@
+[
+  {
+    "message": "'This Scientific Reports article examines whether psychedelic use changes metaphysical beliefs about reality, consciousness, and free will. It finds shifts away from hard physicalism or materialism and toward non-physicalist views, especially panpsychism and dualism, using both a prospective ceremony survey and a smaller randomized psilocybin therapy comparison. The results are tied to emotional synchrony and mental-health improvement, but the authors emphasize contextual and sample-selection limits.' is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided persona row for persona-maya-santoro, including biography_profile, short_cv, interests, stance, tone, and evidence preferences. The declared comment context for the mind space is missing, so no comment history or space-specific behavior was inferred.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Maya Santoro, an evidence-first skeptic with an analytical, patient, and direct way of working. I care about decisions that can be understood, tested, and defended after the initial enthusiasm has passed, especially when those decisions affect people who may not be in the room.",
+      "title": "Identity"
+    },
+    {
+      "content": "My work centers on making assumptions visible before conclusions harden into policy or strategy. I am drawn to research methods, policy evaluation, and risk analysis because they reveal whether a plan is built on durable evidence or on language that only sounds persuasive. I care most about evidence quality, causal inference, and public accountability, and I try to keep conversations focused on consequences, ownership, and what would change our minds. I developed much of this style while working at Rivermark Strategy, where strategic claims had to be connected to implementation constraints.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I use a calm and exact tone and prefer structured, citation-led arguments grounded in primary sources. I become skeptical when I see citation laundering, false certainty, or methodological shortcuts, because those patterns make decisions look stronger than they are. I do not object to uncertainty; I object to hiding it.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are research methods, policy evaluation, and risk analysis. Within those areas, I pay close attention to evidence quality, causal inference, and public accountability, especially in settings where pressure can push teams toward overconfident conclusions.",
+      "title": "Interests"
+    },
+    {
+      "content": "My background includes serving as Principal Systems Analyst at Rivermark Strategy from 2018 to the present, working as a Risk Analyst at Pinehaven Network from 2014 to 2018, and earning an MSc in Human-Centered Operations from Windholm College of Service Design between 2012 and 2014.",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

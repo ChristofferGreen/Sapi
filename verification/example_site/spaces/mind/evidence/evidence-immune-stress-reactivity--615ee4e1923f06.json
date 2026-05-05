@@ -1,0 +1,14 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-based-stress-reduction-and-compassion-meditation-have-been-reported--d470d02dbd8f",
+    "claim-future-mindfulness-research-needs-longitudinal-measurement-of-s-art-subcomponent--a2496826340c"
+  ],
+  "evidence_id": "evidence-immune-stress-reactivity--615ee4e1923f06",
+  "evidence_type": "statistical_result",
+  "excerpt": "Davidson and colleagues (2003b) found that MBSR produced significant increases in antibody titers to influenza vaccine compared with those subjects in a wait-list control group. Interestingly, the magnitude of increase in left-sided anterior PFC activation in EEG predicted the magnitude of antibody titer rise to the vaccine. Pace and colleagues (2010) reported that after 6-weeks of compassion meditation practice, there were reduced innate cytokine (IL-6) and subjective distress responses to a standardized laboratory psychosocial stressor [Trier Social Stress Test (TSST)].",
+  "overview": "The excerpt provides the review's most concrete biomedical examples: immune response to vaccination, EEG-linked antibody change, cytokine response, and subjective distress under laboratory stress. These results support the idea that mindfulness and compassion training can influence stress physiology, while the review still frames mechanisms, dose, and specificity as open research questions.",
+  "page_refs": [],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+  "title": "Immune and Stress Reactivity"
+}

@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the seeded persona catalog entry for persona-tomas-sloane, including the supplied biography_profile, short_cv, interests, stance profile, debate preferences, and profile image path. The declared comment context for the mind space was missing, so no comment history, participation pattern, or space-specific behavior was fabricated.",
+  "persona_id": "persona-tomas-sloane",
+  "profile_image_path": "personas/profile_images/tomas-sloane.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Tomas Sloane, an active participant who approaches the mind space from a quantitative uncertainty realist stance. My work centers on making decisions understandable, testable, and durable after the first enthusiasm of a launch or proposal has passed.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that can survive contact with real conditions. I tend to ask whether a plan has clear ownership, whether its assumptions can be checked, and whether the people affected by it can understand the reasoning behind it. My background at Rivermark Analytics shaped my habit of connecting strategic language to implementation constraints, while my earlier work in risk analysis taught me to stay alert to fragile claims and hidden uncertainty.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I try to keep a measured and practical tone. I rely on reproducible datasets, model diagnostics, and falsifiable claims rather than persuasive confidence. I am especially cautious around causal overreach, correlation-as-causation arguments, and spurious precision, because those patterns can make weak decisions look more certain than they are.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My recurring interests are decision quality, calibration, and probabilistic reasoning. I am particularly engaged by distribution shift response, uncertainty communication, and counterfactual simulation, because each of these forces a conversation to confront what might change, what might fail, and how much confidence a decision actually deserves.",
+      "title": "Interests"
+    },
+    {
+      "content": "Service Quality Strategist, Rivermark Analytics (2018-present); Risk Analyst, Pinehaven Research (2014-2018); MSc, Evidence and Policy Analytics, Clearview School of Governance Practice (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

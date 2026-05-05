@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T08:05:25Z",
+  "claim_id": "claim-the-relevant-sense-in-which-grounding-is-necessary-is-the-third-style-modal-cons--8349c8376c22",
+  "evidence_excerpts": [
+    "Three possibilities to consider: if [p] is (fully) grounded in D, then it\u2019s metaphysically necessary that (i) if \u2227D then [p] is grounded in D; (ii) if \u2227D then something or other is grounded in D; or (iii) if \u2227D then p."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Necessity concerns modal consequence",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "The relevant sense in which grounding is necessary is the third-style modal consequence that the grounds entail the grounded proposition, not that the grounding relation itself recurs whenever the grounds obtain."
+}

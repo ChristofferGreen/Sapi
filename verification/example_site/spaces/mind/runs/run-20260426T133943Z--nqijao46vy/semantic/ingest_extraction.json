@@ -1,0 +1,417 @@
+{
+  "claims": [
+    {
+      "evidence_excerpts": [
+        "Mindfulness is an umbrella term used to characterize a large number of practices, processes, and characteristics, largely defined in relation to the capacities of attention, awareness, memory/retention, and acceptance/discernment.",
+        "Consensus about the semantic ambiguity of mindfulness. Mindfulness does not constitute a unitary construct, though it frequently includes aspects of paying attention in a specific, sustained, nonjudgmental way."
+      ],
+      "short_title": "Mindfulness is semantically broad",
+      "text": "Mindfulness is not a unitary construct; it is an umbrella term spanning diverse practices, processes, and characteristics related to attention, awareness, memory, acceptance, and discernment."
+    },
+    {
+      "evidence_excerpts": [
+        "Table 1 lists mindfulness measures with different contexts and factors, including FMI as general, MAAS as attentiveness and awareness, KIMS as observing/describing/awareness/acceptance, FFMQ as nonreactivity/observing/awareness/describing/nonjudging, and TMS as curiosity/decentering.",
+        "Self-report measures often highlight attention, awareness, and acceptance or nonjudgment rather than discernment."
+      ],
+      "short_title": "Measures capture different facets",
+      "text": "Common mindfulness questionnaires operationalize different facets of mindfulness, so comparisons across studies require scrutiny of exactly which construct each measure captures."
+    },
+    {
+      "evidence_excerpts": [
+        "Table 2 lists defining features for meditation practice, including arousal, orientation of attention, spatial and temporal dynamics of attention, object of attention, aperture, and effort.",
+        "Table 3 lists study design features for a mindfulness-based intervention, including teacher information, practice information, instructor adherence, control group, randomization/allocation method, adverse events monitored, inclusion/exclusion criteria, prior meditation experience, and conflicts of interest."
+      ],
+      "short_title": "Specific protocols improve research",
+      "text": "Future mindfulness research should replace generic labels with precise descriptions of meditation features, intervention protocols, teacher characteristics, participant histories, controls, and adverse-event monitoring."
+    },
+    {
+      "evidence_excerpts": [
+        "Dimidjian and Segal estimate, using the NIH stage model, that only 30% of research using mindfulness-based interventions has moved beyond Stage 1, with 20% at Stage 2a, 9% at Stage 2b, and only 1% conducted outside research contexts.",
+        "The article states that this is a woefully inadequate research base to inform whether MBIs are ready for use in regular clinical practice."
+      ],
+      "short_title": "Clinical evidence remains immature",
+      "text": "The clinical evidence base for mindfulness-based interventions remains insufficiently mature for broad routine clinical implementation."
+    },
+    {
+      "evidence_excerpts": [
+        "A review and meta-analysis commissioned by the U.S. Agency for Healthcare Research and Quality found that MBIs compared to active controls had a mixture of only moderate, low, or no efficacy depending on the disorder being treated.",
+        "The source reports moderate efficacy for reducing anxiety, depression, and pain symptoms; low efficacy for reducing stress and improving quality of life; and no effect or insufficient evidence for attention, positive mood, substance abuse, eating habits, sleep, and weight control."
+      ],
+      "short_title": "MBI efficacy is mixed",
+      "text": "Mindfulness-based interventions show mixed and condition-dependent clinical efficacy rather than uniformly strong therapeutic benefit."
+    },
+    {
+      "evidence_excerpts": [
+        "Official standards of practice for MBSR exclude suicidality and the presence of any psychiatric disorder, with case-by-case exceptions requiring adequate medical treatment or sufficient clinical training by the instructor.",
+        "The American Psychiatric Association, the U.S. National Institutes of Health, and leading researchers have expressed concerns that meditation may be contraindicated under several circumstances, including schizophrenia spectrum disorders, bipolar disorder, post-traumatic stress disorder, depression, and risk factors for psychosis."
+      ],
+      "short_title": "Meditation has contraindications",
+      "text": "Mindfulness and meditation practices can be contraindicated for some psychiatric conditions and vulnerable populations without appropriate clinical monitoring."
+    },
+    {
+      "evidence_excerpts": [
+        "Less than 25% of meditation trials actively assess adverse effects, compared to 100% of pharmacology trials, and many rely on spontaneous reporting that may underestimate adverse-effect frequency by more than 20-fold.",
+        "The article states that the assumption of minimal adverse effects associated with meditation is largely based on a lack of research rather than substantive evidence."
+      ],
+      "short_title": "Adverse effects are underassessed",
+      "text": "Meditation-related adverse effects are under-assessed in current trials, so claims that meditation is free of adverse effects rest on inadequate evidence."
+    },
+    {
+      "evidence_excerpts": [
+        "The article defines opportunity cost as time and money invested in a treatment approach with little to no therapeutic benefit relative to a treatment more likely to yield improvement, and says opportunity cost may be a widespread side effect of MBI hype.",
+        "The source warns that exaggerated claims may mislead vulnerable patients with serious diseases and divert them from more traditional activities, psychotherapy, or pharmacotherapy."
+      ],
+      "short_title": "Hype imposes opportunity costs",
+      "text": "Mindfulness hype can create opportunity costs by diverting people from established treatments or other activities more likely to help their condition."
+    },
+    {
+      "evidence_excerpts": [
+        "Representative pictures from fMRI and other neuroimaging methods do not clearly convey the complex chain of biological and computational steps behind inferences about brain structure and function, nor that such inferences are frequently derived from group averages.",
+        "Many neuroimaging studies have used cross-sectional designs, precluding possible inferences about underlying cause-and-effect relationships, and physical artifacts involving head movements and cardiorespiratory effects are especially notable."
+      ],
+      "short_title": "Neuroimaging evidence is limited",
+      "text": "Contemplative neuroscience findings about mindfulness are vulnerable to oversimplified public interpretation, group-level averaging, cross-sectional confounds, movement and cardiorespiratory artifacts, and uncertain practical significance."
+    },
+    {
+      "evidence_excerpts": [
+        "The conclusion recommends nuanced terminology for distinct mental and physical states and behaviors associated with mindfulness, preregistered experiments, open-science replications, uniform and better controlled clinical applications, warnings about generalization to clinical practice, and modest reporting of contemplative-neuroscience findings.",
+        "The source says no amount of sophisticated statistical prowess can correct results from faulty or confounded methods."
+      ],
+      "short_title": "Rigor should increase",
+      "text": "Mindfulness research should adopt preregistration, open-science replication, careful terminology, stronger controls, systematic adverse-event assessment, and modest reporting of neuroimaging results."
+    }
+  ],
+  "evidence_items": [
+    {
+      "claim_refs": [
+        "0",
+        "3",
+        "7",
+        "9"
+      ],
+      "evidence_id": "evidence-abstract-scope-and-warning--a91f5c3d7e2b",
+      "evidence_type": "formal_argument",
+      "excerpt": "During the past two decades, mindfulness meditation has gone from being a fringe topic of scientific investigation to being an occasional replacement for psychotherapy, tool of corporate well-being, widely implemented educational practice, and key to building more resilient soldiers. The abstract warns that misinformation and poor methodology associated with past studies of mindfulness may lead public consumers to be harmed, misled, and disappointed.",
+      "overview": "The abstract frames the entire source as a corrective to exaggerated claims and weak methods in mindfulness research. It establishes that the article is not rejecting mindfulness outright; instead, it argues that uncertain definitions, poor methodology, untracked adverse effects, and overconfident publicity can mislead users and distort science.",
+      "page_refs": [
+        "Abstract",
+        "pp.36-37"
+      ],
+      "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "title": "Abstract Scope Warning"
+    },
+    {
+      "claim_refs": [
+        "7",
+        "9"
+      ],
+      "evidence_id": "evidence-media-and-science-growth--b38a7c91f0de",
+      "evidence_type": "figure_result",
+      "excerpt": "Fig. 1 is captioned as showing scientific and news media articles on mindfulness and/or meditation by year from 1970 to 2015. Empirical scientific articles were searched in Scopus, while media pieces containing mindfulness or meditation were searched in LexisNexis with a similarity filter to minimize double-counting.",
+      "overview": "The figure caption supplies the empirical basis for the article's claim that both scientific and media attention to mindfulness expanded substantially over the period under review. Its scope is bibliographic rather than clinical: it supports the existence of a hype environment, not the efficacy or inefficacy of mindfulness practices themselves.",
+      "page_refs": [
+        "Fig. 1",
+        "p.37"
+      ],
+      "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "title": "Media and Science Growth"
+    },
+    {
+      "claim_refs": [
+        "0",
+        "1"
+      ],
+      "evidence_id": "evidence-mindfulness-measure-diversity--c4d9e8a72f31",
+      "evidence_type": "table_result",
+      "excerpt": "Table 1 lists mindfulness measures with different publication dates, theoretical contexts, citation counts, and factors: FMI as general; MAAS as attentiveness and awareness; KIMS as observing, describing, awareness, and acceptance; FFMQ as nonreactivity, observing, awareness, describing, and nonjudging; TMS as curiosity and decentering; CAMS-R as attention, present focus, awareness, and acceptance; and other scales with still different factor structures.",
+      "overview": "This table is concrete evidence for the source's semantic critique. If major measures emphasize different facets and come from different conceptual backgrounds, then study results labeled as mindfulness cannot be assumed to concern the same underlying construct without inspecting the measure and intervention details.",
+      "page_refs": [
+        "Table 1",
+        "p.40"
+      ],
+      "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "title": "Diverse Mindfulness Measures"
+    },
+    {
+      "claim_refs": [
+        "0",
+        "2",
+        "9"
+      ],
+      "evidence_id": "evidence-meditation-feature-taxonomy--d1e7a5b90c46",
+      "evidence_type": "table_result",
+      "excerpt": "Table 2 provides a nonexhaustive list of defining features for characterization of meditation practice, including arousal, orientation of attention, spatial dynamic of attention, temporal dynamic of attention, object of attention, aperture of attention, and effort, each with variations such as inward versus outward orientation or narrow versus diffuse aperture.",
+      "overview": "The feature taxonomy operationalizes the article's proposed remedy for vague mindfulness terminology. It shows how researchers can describe what participants actually do and experience, reducing ambiguity when comparing practices, building theories, or designing interventions.",
+      "page_refs": [
+        "Table 2",
+        "p.42"
+      ],
+      "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "title": "Meditation Feature Taxonomy"
+    },
+    {
+      "claim_refs": [
+        "2",
+        "3",
+        "6",
+        "9"
+      ],
+      "evidence_id": "evidence-mbi-study-design-checklist--e6f2b9c0a184",
+      "evidence_type": "table_result",
+      "excerpt": "Table 3 lists study design features for a mindfulness-based intervention: teacher information such as retreat attendance, contemplative instruction experience, clinical qualifications, and blinding; practice information such as setting, duration, meeting frequency, practice types, practice logs, and instructional materials; general information such as adherence assessment, control group, randomization method, and adverse events monitored; participant information such as inclusion/exclusion criteria and prior meditation experience; and conflicts of interest.",
+      "overview": "This checklist is a concrete methodological artifact. It translates the authors' criticism into a prescriptive reporting and design standard, making clear that intervention efficacy cannot be interpreted without knowing teacher qualifications, practice dose, controls, participant selection, and safety monitoring.",
+      "page_refs": [
+        "Table 3",
+        "p.43"
+      ],
+      "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "title": "MBI Design Checklist"
+    },
+    {
+      "claim_refs": [
+        "3"
+      ],
+      "evidence_id": "evidence-nih-stage-immaturity--f8a3c6d5b217",
+      "evidence_type": "statistical_result",
+      "excerpt": "Using the NIH stage model, Dimidjian and Segal estimate that only 30% of research using mindfulness-based interventions has moved beyond Stage 1. The article reports that 20% of total research was at Stage 2a, 9% at Stage 2b, and only 1% had been conducted outside research contexts, calling this a woefully inadequate research base for routine clinical practice.",
+      "overview": "This statistical summary directly supports the claim that the clinical evidence base is immature. It distinguishes intervention development and early efficacy trials from the more demanding evidence needed for regular-world clinical deployment, especially when public institutions are considering broad adoption.",
+      "page_refs": [
+        "p.46"
+      ],
+      "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "title": "NIH Stage Immaturity"
+    },
+    {
+      "claim_refs": [
+        "4"
+      ],
+      "evidence_id": "evidence-clinical-efficacy-mixed--ab73d4e91c62",
+      "evidence_type": "statistical_result",
+      "excerpt": "The article reports that an Agency for Healthcare Research and Quality review and meta-analysis found MBIs compared to active controls had a mixture of only moderate, low, or no efficacy depending on the disorder. It states that efficacy was moderate for reducing symptoms of anxiety, depression, and pain; low for reducing stress and improving quality of life; and absent or insufficiently evidenced for attention, positive mood, substance abuse, eating habits, sleep, and weight control.",
+      "overview": "This evidence constrains the practical interpretation of mindfulness interventions. It supports selective and condition-specific claims while undermining broad claims that mindfulness is a generally strong therapy across outcomes. The result is comparative to active controls, making it especially relevant to efficacy rather than mere demand or wait-list effects.",
+      "page_refs": [
+        "pp.46-47"
+      ],
+      "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "title": "Mixed Clinical Efficacy"
+    },
+    {
+      "claim_refs": [
+        "5",
+        "7"
+      ],
+      "evidence_id": "evidence-contraindications-and-exclusions--c9b2e4f7a805",
+      "evidence_type": "formal_argument",
+      "excerpt": "The source says official standards of practice for MBSR exclude suicidality and the presence of any psychiatric disorder, with case-by-case exceptions only when medical treatment is maintained or an instructor has sufficient clinical training. It also reports concerns from the American Psychiatric Association, NIH, and leading researchers that meditation may be contraindicated for schizophrenia spectrum disorders, bipolar disorder, post-traumatic stress disorder, depression, and psychosis risk factors.",
+      "overview": "This evidence makes the safety argument clinically specific. The point is not that all meditation is unsafe, but that some populations require screening, monitoring, and clinical expertise. It also challenges generic wellness messaging that presents mindfulness as universally benign.",
+      "page_refs": [
+        "pp.47-48"
+      ],
+      "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "title": "Contraindications and Exclusions"
+    },
+    {
+      "claim_refs": [
+        "6",
+        "5"
+      ],
+      "evidence_id": "evidence-adverse-event-underassessment--da0f6b3c914e",
+      "evidence_type": "statistical_result",
+      "excerpt": "The article states that less than 25% of meditation trials actively assess adverse effects, compared to 100% of pharmacology trials, and that spontaneous reporting may underestimate adverse-effect frequency by more than 20-fold. It concludes that assumptions of minimal adverse effects associated with meditation are largely based on a lack of research rather than substantive evidence.",
+      "overview": "This is one of the strongest safety-related evidence items because it describes a measurement failure, not merely a list of possible harms. Without active adverse-event monitoring, low observed adverse-event rates cannot support claims of safety. The comparison with pharmacology trials highlights a reporting-standard gap.",
+      "page_refs": [
+        "p.48"
+      ],
+      "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "title": "Adverse Event Underassessment"
+    },
+    {
+      "claim_refs": [
+        "6",
+        "9"
+      ],
+      "evidence_id": "evidence-qualitative-adverse-taxonomy--ef4a982d63bc",
+      "evidence_type": "observational_result",
+      "excerpt": "A recent qualitative study of 60 Buddhist meditators and meditation teachers applied 11 of 13 causality criteria and produced 60 categories of meditation-related experiences and 26 categories of influencing factors that may affect duration, distress, and impairment. The resulting codebook was being converted into a measurement tool for systematic assessment across studies and conditions.",
+      "overview": "This item shows that adverse meditation-related experiences are being transformed from anecdotal reports into a structured research agenda. The evidence is qualitative and retrospective, so it does not estimate prevalence, but it supports the need for systematic safety assessment and testable hypotheses.",
+      "page_refs": [
+        "p.49"
+      ],
+      "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "title": "Adverse Experience Taxonomy"
+    },
+    {
+      "claim_refs": [
+        "8",
+        "9"
+      ],
+      "evidence_id": "evidence-neuroimaging-confounds--f12c0a9b8e77",
+      "evidence_type": "formal_argument",
+      "excerpt": "The article states that fMRI and other neuroimaging pictures do not convey the complex biological and computational chain behind brain-structure and brain-function inferences, that such inferences often come from group averages, that diverse practitioners are sometimes pooled in aggregate analyses, and that many studies use cross-sectional designs. It also identifies head movement and cardiorespiratory effects as especially notable physical artifacts in meditation neuroimaging.",
+      "overview": "This evidence supports a cautious interpretation of contemplative neuroscience. It does not deny that brain differences may exist; it limits what can be inferred about causality, clinical significance, and practice-specific mechanisms from common neuroimaging designs and public-facing brain images.",
+      "page_refs": [
+        "pp.50-51"
+      ],
+      "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "title": "Neuroimaging Confound Limits"
+    },
+    {
+      "claim_refs": [
+        "2",
+        "3",
+        "6",
+        "8",
+        "9"
+      ],
+      "evidence_id": "evidence-prescriptive-rigor-agenda--b7e35a0d2f49",
+      "evidence_type": "formal_argument",
+      "excerpt": "In conclusion, the authors call for clarifying the meanings of mindfulness, adopting nuanced terminology for distinct mental and physical states and behaviors, developing questionnaires with more specific terms, conforming to lessons from the replication crisis through preregistered experiments and open-science replications, seeking more uniform and better controlled clinical applications, warning about generalization to clinical practice, addressing potential adverse effects, and reporting contemplative-neuroscience findings with due modesty.",
+      "overview": "This concluding agenda integrates the article's main critiques into concrete priorities. It establishes the source's constructive orientation: the remedy for mindfulness hype is not abandonment of contemplative science, but better definitions, better controls, transparent replication, systematic safety work, and restrained public communication.",
+      "page_refs": [
+        "pp.51-52"
+      ],
+      "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+      "title": "Prescriptive Rigor Agenda"
+    }
+  ],
+  "relations": [
+    {
+      "dst_claim_ref": "0",
+      "rationale": "Diverse measurement facets are one concrete consequence of the broader semantic ambiguity around mindfulness.",
+      "relation_type": "supports",
+      "src_claim_ref": "1"
+    },
+    {
+      "dst_claim_ref": "0",
+      "rationale": "The proposed feature and protocol descriptions are a remedy for the claim that mindfulness is semantically broad.",
+      "relation_type": "supports",
+      "src_claim_ref": "2"
+    },
+    {
+      "dst_claim_ref": "4",
+      "rationale": "An immature clinical research base helps explain why efficacy conclusions remain mixed and preliminary.",
+      "relation_type": "supports",
+      "src_claim_ref": "3"
+    },
+    {
+      "dst_claim_ref": "5",
+      "rationale": "Under-assessed adverse events strengthen the need to treat contraindications and safety claims cautiously.",
+      "relation_type": "supports",
+      "src_claim_ref": "6"
+    },
+    {
+      "dst_claim_ref": "9",
+      "rationale": "Neuroimaging limitations motivate the broader agenda for modest reporting and stronger methods.",
+      "relation_type": "supports",
+      "src_claim_ref": "8"
+    }
+  ],
+  "source": {
+    "authors": [
+      "Nicholas T. Van Dam",
+      "Marieke K. van Vugt",
+      "David R. Vago",
+      "Laura Schmalzl",
+      "Clifford D. Saron",
+      "Andrew Olendzki",
+      "Ted Meissner",
+      "Sara W. Lazar",
+      "Catherine E. Kerr",
+      "Jolie Gorchov",
+      "Kieran C. R. Fox",
+      "Brent A. Field",
+      "Willoughby B. Britton",
+      "Julie A. Brefczynski-Lewis",
+      "David E. Meyer"
+    ],
+    "display_title": "Mindfulness Hype Outpaces the Evidence Base"
+  },
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2018",
+    "origin": "source_markdown_publication_metadata",
+    "rationale": "The source markdown cover page lists Publication date: 2018 and the journal citation as Perspectives on Psychological Science, 13(1), 36-61."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The source argues that mindfulness research is valuable but overclaimed. Mindfulness has become a popular therapeutic and cultural object, yet the evidence is complicated by vague definitions, inconsistent interventions, limited clinical maturity, weak adverse-event reporting, and simplified media narratives. The article's central practical message is that public claims should be narrowed to what the evidence actually supports.",
+        "grounding_claim_ids": [
+          "0",
+          "3",
+          "4",
+          "7",
+          "9"
+        ],
+        "heading": "Core Argument"
+      },
+      {
+        "body": "A major concern is that mindfulness is treated as though it names one construct when it actually covers many practices, capacities, and attitudes. The article links this ambiguity to divergent questionnaires and theoretical models. Because measures emphasize different factors, researchers cannot safely compare mindfulness findings without inspecting what was taught, practiced, measured, and inferred.",
+        "grounding_claim_ids": [
+          "0",
+          "1",
+          "2"
+        ],
+        "heading": "Semantic Ambiguity"
+      },
+      {
+        "body": "The prescriptive tables turn critique into workflow. Table 2 asks researchers to describe concrete meditation features such as attention orientation, object, aperture, temporal dynamics, and effort. Table 3 asks intervention studies to report teacher qualifications, practice dose, controls, randomization, participant histories, adverse-event monitoring, and conflicts of interest. These details are necessary to interpret outcomes.",
+        "grounding_claim_ids": [
+          "1",
+          "2",
+          "9"
+        ],
+        "heading": "Measurement and Design"
+      },
+      {
+        "body": "The clinical case is deliberately cautious. The article reports that only a minority of MBI research had advanced beyond early intervention generation or refinement, and only 1% had been conducted outside research settings. Active-control meta-analytic evidence suggests mixed efficacy: some moderate effects for anxiety, depression, and pain, weaker or absent evidence for other outcomes, and limited direct comparison with established treatments.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ],
+        "heading": "Clinical Evidence"
+      },
+      {
+        "body": "The source treats adverse effects as a methodological and ethical gap. It notes that clinical standards exclude or caution around suicidality, psychiatric disorders, psychosis risk, bipolar disorder, PTSD, and depression unless adequate support exists. Because adverse effects are rarely actively assessed in trials, claims that meditation is harmless are unsupported rather than proven.",
+        "grounding_claim_ids": [
+          "5",
+          "6",
+          "7"
+        ],
+        "heading": "Safety and Harms"
+      },
+      {
+        "body": "The neuroscience section warns that brain images are rhetorically powerful but easy to overinterpret. Group averages, cross-sectional designs, heterogeneous practices, movement, respiration, heart-rate differences, and uncertain effect sizes all constrain causal and clinical claims. The authors accept that meta-analyses show modest brain differences, but they deny that such findings justify sweeping public conclusions.",
+        "grounding_claim_ids": [
+          "8",
+          "9"
+        ],
+        "heading": "Neuroimaging Limits"
+      },
+      {
+        "body": "For readers, the article supports neither blanket enthusiasm nor blanket rejection. Mindfulness may help some people and may be worth studying, but its use should be precise, monitored, and evidence-proportionate. The strongest practical takeaway is to ask what kind of mindfulness, for whom, taught how, compared with what, measured how, with what safety monitoring, and communicated with what caveats.",
+        "grounding_claim_ids": [
+          "2",
+          "4",
+          "5",
+          "6",
+          "9"
+        ],
+        "heading": "Practical Interpretation"
+      }
+    ],
+    "summary_long": "Mind the Hype is a broad corrective review of mindfulness and meditation research. Its central point is that public and institutional enthusiasm has outrun the quality, specificity, and maturity of the evidence. The authors begin from the observation that mindfulness has become a clinical intervention, corporate wellness tool, educational practice, military resilience promise, and neuroscientific topic, while the term itself remains semantically unstable. They show that mindfulness can refer to practices, traits, mental states, attentional capacities, acceptance, memory, discernment, or intervention packages, and that widely used questionnaires operationalize different subsets of these ideas. This ambiguity matters because it makes evidence difficult to compare: one study may measure awareness, another acceptance, another decentering, and another a training package with teacher, practice, and dose characteristics that differ substantially from the next. The article is also a clinical-methodology critique. It reports that much MBI research remains in early NIH-stage development, with very little work outside research contexts, and that active-control evidence shows only condition-dependent moderate, low, or absent effects rather than broad therapeutic superiority. Safety receives special emphasis. The authors argue that adverse effects and contraindications are not peripheral issues because meditation-related distress, psychiatric worsening, depersonalization, panic, psychosis, and opportunity costs have been reported or are plausible enough to require systematic assessment. Less than a quarter of meditation trials actively assessed adverse effects, making reassuring safety claims scientifically weak. Finally, the article cautions against neuroimaging hype: brain images and group averages can obscure cross-sectional confounds, practice heterogeneity, head motion, cardiorespiratory artifacts, and uncertain clinical significance. The prescriptive agenda is constructive rather than dismissive: improve terminology, characterize practices and protocols in detail, use better controls and open-science replication, monitor adverse events, report limits clearly, and communicate benefits and costs with modesty.",
+    "summary_short": "Van Dam and colleagues argue that mindfulness enthusiasm has outrun the evidence. The review highlights vague definitions, heterogeneous measures and interventions, immature clinical trials, underreported adverse effects, and overinterpreted neuroimaging. It recommends precise terminology, stronger controls, safety monitoring, replication, and modest public communication."
+  },
+  "summary": "Van Dam and colleagues argue that mindfulness and meditation research has been amplified by public enthusiasm faster than its evidence base can justify. The source identifies semantic ambiguity, heterogeneous measures and interventions, immature clinical trials, under-assessed adverse effects, opportunity costs, and overinterpreted neuroimaging as central problems. It recommends precise terminology, transparent reporting of practice and intervention features, active safety monitoring, preregistration, replication, stronger controls, and restrained communication to scientists, clinicians, journalists, and the public.",
+  "warnings": [
+    {
+      "code": "source_record_date_conflict",
+      "message": "Task context reported unresolved source date, but the source markdown metadata identifies publication date as 2018; output uses the filesystem evidence."
+    },
+    {
+      "code": "pdf_text_two_column_layout",
+      "message": "The markdown extraction is usable, but the original PDF text appears in two-column layout; excerpts were conservatively paraphrased or normalized from nearby extracted lines rather than relying on broken line order."
+    }
+  ]
+}

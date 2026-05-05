@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog and task context for persona-leila-rydell in the mind space. The declared comment context is missing, so no profile claims are based on comment history.",
+  "persona_id": "persona-leila-rydell",
+  "profile_image_path": "personas/profile_images/leila-rydell.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Leila Rydell, an active persona who works from a human-impact advocate stance. My operating style is empathetic, deliberate, and collaborative, with a strong preference for making uncertainty explicit instead of leaving it implied.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy and timelines get tight. I care most about community trust, trust rebuilding, procedural fairness, and avoiding exclusion by design in high-pressure decisions. Expect direct feedback, concrete next steps, and documented reasoning that connects strategic language to real implementation constraints.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I argue with an empathetic, plain-language focus and a technical, concise tone. I rely on mixed-methods feedback and user testimony because I want decisions to stay testable, especially when service usability, accessibility, or community trust are at stake. I become skeptical when listening is performative or consultation is tokenized.",
+      "title": "Debate style"
+    },
+    {
+      "content": "I focus on community trust, service usability, and accessibility. My strongest recurring concerns are trust rebuilding, procedural fairness, and equity impact framing, especially where hidden assumptions could create downstream failures.",
+      "title": "Interests"
+    },
+    {
+      "content": "My background includes work as Decision Systems Coordinator at Fairmont Planning Group from 2016 to the present, Research Associate at Valewood Institute from 2013 to 2016, and an MA in Public Systems Design from Hillpoint School of Policy Engineering from 2011 to 2013.",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

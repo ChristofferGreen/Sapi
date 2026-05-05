@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "Visual acuity and contrast sensitivity models justify allocating higher quality to the fovea and lower quality to the periphery.",
+  "relation_file_id": "rel-5f40b9fc6d73781fcc685cd0056bac0db7457a61fd89819a50429fd5a3e7c9ba",
+  "relation_id": "supports:claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9->claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+  "relation_type": "supports",
+  "src_claim_id": "claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9",
+  "src_claim_ref": "3",
+  "status": "open"
+}

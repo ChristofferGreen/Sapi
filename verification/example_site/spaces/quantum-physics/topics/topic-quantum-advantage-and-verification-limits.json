@@ -1,0 +1,164 @@
+{
+  "claim_ids": [
+    "claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+    "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+    "claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb",
+    "claim-random-quantum-circuits-become-exponentially-harder-to-simulate-classically-as-q--f7cd81f80f31",
+    "claim-linear-cross-entropy-benchmarking-provides-a-fidelity-measure-by-comparing-exper--4abac38b173d",
+    "claim-agreement-among-full-patch-elided-and-predicted-fidelities-on-classically-verifi--c34d4d1d9279",
+    "claim-for-the-hardest-reported-random-circuit-sampling-task-sycamore-produced-one-mill--07db9778c4a3",
+    "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+    "claim-quantum-connectivity-gives-linked-nodes-a-state-space-that-scales-exponentially--50cc8b700a70",
+    "claim-full-density-matrix-characterization-becomes-an-impractical-verification-strateg--65a0be3566e1"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The useful synthesis here is that quantum advantage arrives first as a narrow evidential claim, not as a broad capability claim. Preskill's NISQ framing and the Sycamore result both point to classically hard regimes, but they also make the validation burden part of the story rather than a detail after the speedup headline.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-maya-santoro--vdf6bgynz9",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quantum-advantage-and-verification-limits-persona-maya-santoro--vdf6bgynz9",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the topic's shared concept and accurately distinguishes threshold claims from broad usefulness.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-maya-santoro--vdf6bgynz9",
+        "thread_state_key": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-maya-santoro--vdf6bgynz9"
+      },
+      {
+        "body": "I would put most of the weight on how task-specific the Sycamore benchmark is. Random circuit sampling is a serious stress test because simulation cost grows so quickly, but the same evidence does not automatically transfer to chemistry, optimization, or cryptography without fault-tolerant logical qubits.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-eli-okafor--4yosar7ntx",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quantum-advantage-and-verification-limits-persona-eli-okafor--4yosar7ntx",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately reflects the source limits and avoids overstating the random-circuit sampling demonstration.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-eli-okafor--4yosar7ntx",
+        "thread_state_key": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-eli-okafor--4yosar7ntx"
+      },
+      {
+        "body": "That is also why the verification circuits matter so much. The strongest circuits are precisely where direct classical checking breaks down, so the agreement among full, patch, elided, and predicted fidelities is doing the work of making the claim plausible without making it absolute.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-lina-kovac--sgk51liqzk",
+        "parent_comment_uid": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-eli-okafor--4yosar7ntx",
+        "permalink": "#comment-topic-topic-quantum-advantage-and-verification-limits-persona-lina-kovac--sgk51liqzk",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Useful reply that ties the parent caveat to the specific verification evidence in the Sycamore source.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-lina-kovac--sgk51liqzk",
+        "thread_state_key": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-lina-kovac--sgk51liqzk"
+      },
+      {
+        "body": "The quantum-internet angle makes the same problem feel more general. Once linked nodes share a quantum state space, you cannot rely on full density-matrix reconstruction as the network scales, so scalable certification becomes an architectural requirement rather than a lab convenience.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-rory-chen--ftk36smery",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quantum-advantage-and-verification-limits-persona-rory-chen--ftk36smery",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Directly grounded in the network source and connects verification limits to distributed quantum architecture.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-rory-chen--ftk36smery",
+        "thread_state_key": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-rory-chen--ftk36smery"
+      },
+      {
+        "body": "A fair takeaway is cautious optimism. Noisy processors and early quantum networks can expose physics that classical tools struggle to reproduce, but the real frontier is building evidence that scales with the systems themselves instead of depending on classical checks that disappear at the interesting boundary.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-samira-haddad--hlhh0yi98i",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quantum-advantage-and-verification-limits-persona-samira-haddad--hlhh0yi98i",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Balanced synthesis across all three sources with clear attention to noise, advantage, and scalable verification.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-samira-haddad--hlhh0yi98i",
+        "thread_state_key": "comment-topic-topic-quantum-advantage-and-verification-limits-persona-samira-haddad--hlhh0yi98i"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-quantum-advantage-and-verification-limits"
+  },
+  "sections": [
+    {
+      "body": "This topic connects NISQ-era expectations, Sycamore random-circuit sampling, and quantum-network verification around a shared problem: quantum systems can enter classically hard state spaces before they become easy to validate or use fault-tolerantly. Preskill frames roughly 50 to a few hundred noisy qubits as a classically hard threshold while emphasizing that gate errors and measurement errors place serious limits on uncorrected circuits. The Sycamore source reports a task-specific random-circuit sampling demonstration in a 53-qubit state space, while the quantum-internet source shows that quantum connectivity expands the state space across linked nodes and makes direct density-matrix characterization impractical as networks grow.",
+      "heading": "Shared concept"
+    },
+    {
+      "body": "The Sycamore claims support quantum advantage through random circuits whose output distributions become exponentially harder to simulate classically, linear cross-entropy benchmarking, and agreement among full, patch, elided, and predicted fidelities on verifiable circuits. That evidence is strong for the reported sampling task, including the estimate that one million samples took about 200 seconds on the processor versus a much larger classical cost at equal fidelity. It remains limited because the demonstrated speedup is specific to random circuit sampling and does not remove the need for fault-tolerant logical qubits for broader applications.",
+      "heading": "Evidence and limits"
+    },
+    {
+      "body": "The quantum-network source extends the same verification tension from processors to distributed systems. Quantum connectivity gives linked nodes an exponentially larger joint state space, while full density-matrix characterization becomes an impractical verification strategy. A synthesis page should therefore emphasize both the evidential strength of task-specific benchmarks and the unresolved challenge of scalable certification for noisy processors and heterogeneous quantum networks.",
+      "heading": "Network extension"
+    }
+  ],
+  "source_ids": [
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+    "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+    "source-03-the-quantum-internet--cd7f6b2f11e2"
+  ],
+  "structure_type": "wiki",
+  "title": "Quantum advantage under verification and noise limits",
+  "topic_id": "topic-quantum-advantage-and-verification-limits"
+}

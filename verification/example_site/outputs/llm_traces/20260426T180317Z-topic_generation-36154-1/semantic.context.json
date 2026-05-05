@@ -1,0 +1,15 @@
+{
+  "context_by_path": {
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources"
+  },
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims"
+  ],
+  "flow_key": "topic_generation",
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/runs/run-20260426T175808Z--a8di4sg2ro/semantic/topic_generation.json",
+  "repair_context": null,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json",
+  "version": "v1"
+}

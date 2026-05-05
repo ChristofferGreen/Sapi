@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-the-machine-learning-compiler-workflow-separates-model-learning-from-deployment--a04ee1ab9738",
+    "claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+    "claim-thread-coarsening-decisions-are-context-dependent-because-coarsening-can-improve--4878860bda89",
+    "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c"
+  ],
+  "evidence_id": "evidence-opencl-coarsening-training-set--c3a94e5f0d2b",
+  "evidence_type": "measurement",
+  "excerpt": "For the work presented in [15], 16 OpenCL benchmarks were used to generate training data. To find out which of the six coarsening factors performs best for a given OpenCL kernel on a specific GPU architecture, we can apply each of the six factors to an OpenCL kernel and records its execution time.",
+  "overview": "This protocol shows how the survey expects compiler-learning data to be produced: enumerate candidate decisions, measure performance, and label each training example with the best option for the target architecture. The evidence grounds the empirical nature of the approach and its dependence on representative benchmarks and repeated measurement.",
+  "page_refs": [
+    "p.4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "title": "Coarsening Training Protocol"
+}

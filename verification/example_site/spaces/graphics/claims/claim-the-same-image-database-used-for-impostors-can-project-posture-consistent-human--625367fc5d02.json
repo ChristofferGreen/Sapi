@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:44:00Z",
+  "claim_id": "claim-the-same-image-database-used-for-impostors-can-project-posture-consistent-human--625367fc5d02",
+  "evidence_excerpts": [
+    "Using the impostor approach, we can also compute and display the moving humans\u2019 shadows.",
+    "With the cost of only one additional polygon corresponding to the projection of the impostor polygon on the ground, we create a shadow corresponding to the human posture."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Impostors project human shadows",
+  "source_id": "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+  "text": "The same image database used for impostors can project posture-consistent human shadows onto the ground at the cost of one additional polygon."
+}

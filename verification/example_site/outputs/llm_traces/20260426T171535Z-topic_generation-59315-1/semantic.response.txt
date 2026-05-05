@@ -1,0 +1,80 @@
+{
+  "topics": [
+    {
+      "topic_id": "topic-image-space-gpu-aggregation-for-real-time-scale",
+      "title": "Image-space GPU aggregation for real-time visual scale",
+      "structure_type": "wiki",
+      "sections": [
+        "Several sources describe real-time graphics pipelines that trade exact per-element rendering for perceptually or analytically useful aggregation. In large graph rendering, density-based node aggregation, edge cumulation, pixel-bin seed points, and a two-pass accumulation field reduce work while preserving the density field for a viewport.",
+        "The shared concept is not a single algorithm but a design pattern: move expensive structure into screen-space or image-space representations that fit GPU rendering workflows. This pattern appears in OpenGL graph level-of-detail rendering, image-based crowd impostors, CUDA-assisted edge bundling, and foveated rendering's regional quality allocation.",
+        "The evidence supports a topic focused on scale management, with caveats that each source optimizes a different visual object: graph nodes and edges, animated crowds, bundled connectivity, or perceptual display regions."
+      ],
+      "claim_ids": [
+        "claim-straight-line-graph-drawings-can-be-rendered-interactively-with-adjustable-level--d4a598a6ca79",
+        "claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006",
+        "claim-a-two-pass-accumulation-field-method-fits-directly-into-the-opengl-pipeline-and--bf684a8c9b90",
+        "claim-the-edge-aggregation-approach-operates-in-image-space-and-does-not-require-preco--da4e8cd6122f",
+        "claim-the-rendering-complexity-remains-linear-in-input-size-with-seed-point-rectangle--8a6cf3a6542e",
+        "claim-measured-overview-rendering-stayed-below-one-second-for-several-datasets-up-to-a--d5763f10ba50",
+        "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+        "claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+        "claim-cuda-image-space-distance-transforms-skeletonization-path-computation-and-attrac--46de973cba61",
+        "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892"
+      ],
+      "source_ids": [
+        "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+        "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+        "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+        "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30"
+      ]
+    },
+    {
+      "topic_id": "topic-fields-and-local-maxima-as-visual-structure-guides",
+      "title": "Fields and local structure as guides for visual aggregation",
+      "structure_type": "wiki",
+      "sections": [
+        "The sources repeatedly use fields, sampled spaces, or local geometric summaries to decide how visual elements should move, merge, or be rendered. Large-graph level-of-detail rendering treats node density as a height field and hill-climbs edge endpoints toward cluster maxima, while skeleton-based edge bundling constructs distance-field shapes and attracts edges toward skeleton paths.",
+        "Shadercoding and raymarching provide a related but broader rendering concept: spatial or distance-field descriptions can generate image structure inside fragment shaders. The connection is conceptual rather than identical, because the graph papers use fields for aggregation and layout readability, while shadercoding uses mathematical fields for image synthesis.",
+        "This topic can synthesize how spatial abstractions turn raw geometry or graph data into controllable visual structure."
+      ],
+      "claim_ids": [
+        "claim-edge-endpoints-can-be-aggregated-by-hill-climbing-on-the-node-density-field-so-t--6e6b82bcec81",
+        "claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006",
+        "claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+        "claim-the-attraction-rule-moves-interior-edge-points-toward-feature-transform-location--8607f298987e",
+        "claim-restricting-attraction-to-skeleton-paths-passing-through-endpoint-feature-points--86df6a0326fa",
+        "claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18",
+        "claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e"
+      ],
+      "source_ids": [
+        "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+        "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+        "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34"
+      ]
+    },
+    {
+      "topic_id": "topic-interactive-visual-summaries-and-detail-on-demand",
+      "title": "Interactive visual summaries and detail on demand",
+      "structure_type": "wiki",
+      "sections": [
+        "Large visual datasets are made useful by combining overview summaries with interaction mechanisms that let users recover selected detail. LaGO supports zooming, panning, normalization controls, color mapping, and detail-on-demand labels, and its examples show recognizable patterns in flights, migration, Net50, and OpenStreetMap data.",
+        "This connects to skeleton-based edge bundling's coarse-scale connectivity focus and to foveated rendering's principle of allocating quality unevenly according to perceptual need. In each case, the visualization is intentionally not uniform: it emphasizes structures likely to matter while accepting some loss or reduction elsewhere.",
+        "The topic should frame these systems as interactive summary interfaces, not as lossless data displays. The evidence explicitly warns that bundling can obscure individual edges, and foveation similarly depends on perceptual assumptions."
+      ],
+      "claim_ids": [
+        "claim-the-lago-implementation-supports-interactive-zooming-panning-normalization-contr--0c65d7666097",
+        "claim-the-visualization-examples-reveal-interpretable-patterns-in-real-graph-datasets--6f7b292bd09e",
+        "claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5",
+        "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963",
+        "claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3",
+        "claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9",
+        "claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499"
+      ],
+      "source_ids": [
+        "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+        "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+        "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30"
+      ]
+    }
+  ]
+}

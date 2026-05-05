@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:34:43Z",
+  "claim_id": "claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be",
+  "evidence_excerpts": [
+    "Machine learning relies on a set of quantifiable properties, or features, to characterise the programs. There are many different features that can be used. These include the static data structures extracted from the program source code or the compiler intermediate representation ... dynamic profiling information ... or a combination of the both."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Features encode program behavior",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "text": "Program features provide the quantifiable representation that allows learning algorithms to reason about source code, intermediate representation, runtime profiles, or combinations of those properties."
+}

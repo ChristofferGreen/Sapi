@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-dreamless-sleep-deep-anesthesia-and-related-unconscious-states-reduce-consciousn--936bb0dc7b63"
+  ],
+  "evidence_id": "evidence-slow-wave-bistability--d6b10ea7c542",
+  "evidence_type": "observational_result",
+  "excerpt": "During slow-wave sleep, the source reports that cortical neurons engage in slow oscillations around 1 Hz with depolarized and hyperpolarized phases. It argues that reduced readiness to respond during hyperpolarization reduces consciousness. It also reports simulations in which waking-mode thalamocortical perturbations yield specific responses, whereas sleep-mode networks become bistable and different perturbations are quickly washed out into stereotyped depolarized or hyperpolarized phases.",
+  "overview": "This evidence connects altered consciousness to dynamics rather than anatomy. The same connectivity can support different levels of consciousness when physiological parameters alter whether perturbations produce differentiated causal effects. The point is especially important for sleep, anesthesia, and seizures: neural activity can remain substantial, but low differentiation and low response readiness can still reduce integrated information.",
+  "page_refs": [
+    "pp.16-17"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Slow-Wave Bistability Lowers \u03a6"
+}

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-grounding-and-essence-can-both-be-analyzed-in-terms-of-generalized-identity-yiel--e2abdab353f9"
+  ],
+  "evidence_id": "evidence-abstract-unification-thesis--e857615fb05e",
+  "evidence_type": "formal_argument",
+  "excerpt": "We develop a unified and uniform account of grounding and essence, one which understands them both in terms of a generalized notion of identity examined in recent work by Fabrice Correia, Cian Dorr, Agust\u00edn Rayo, and others. We argue that the account comports with antecedently plausible principles governing grounding, essence, and identity taken individually, and illuminates how the three interact.",
+  "overview": "The abstract states the paper\u2019s central formal ambition: grounding and essence are not treated as independent primitive notions, but as two applications of generalized identity. This evidence grounds the overall unification claim while leaving detailed adequacy arguments to later definitions and comparisons.",
+  "page_refs": [
+    "p.1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "title": "Unified Identity Account"
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:15:18Z",
+  "claim_id": "claim-schaffer-s-contrastive-or-differential-formulation-of-grounding-still-fails-to-m--7fd859e88bdc",
+  "evidence_excerpts": [
+    "The fact that B is true rather than not true grounds itself, and E-is-true-rather-than-not-true and F-is-true-rather-than-not-true ground each other."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Differential grounding remains non-strict",
+  "source_id": "source-02-grounding-is-not-a-strict-order--7c76f525b4e3",
+  "text": "Schaffer's contrastive or differential formulation of grounding still fails to make grounding a strict order because the same examples violate differential irreflexivity and differential asymmetry."
+}

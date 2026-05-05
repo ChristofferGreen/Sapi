@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T15:32:25Z",
+  "claim_id": "claim-psychedelic-use-is-associated-with-significant-shifts-away-from-hard-physicalist--b7e61a4e9b3c",
+  "evidence_excerpts": [
+    "Pooling scores for the NPB factor, analyses revealed a significant shift away from physicalism at 4 weeks compared with baseline (t(121) = 3.66, p = 0.001, d = 0.33, 95% CI [0.12, 0.39]).",
+    "The Non-Physicalist Beliefs factor included positive loadings for beliefs in supernatural realms, non-natural unifying principles, panpsychism, dualism, and solipsism/idealism, while materialism and naturalism loaded negatively."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Psychedelics reduce hard materialism",
+  "source_id": "source-04-psychedelics-alter-metaphysical-beliefs--0d1ce18240f0",
+  "text": "Psychedelic use is associated with significant shifts away from hard physicalist or materialist metaphysical beliefs and toward non-physicalist positions such as panpsychism, dualism, and non-naturalism."
+}

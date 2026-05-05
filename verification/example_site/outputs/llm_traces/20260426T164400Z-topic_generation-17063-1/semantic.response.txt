@@ -1,0 +1,70 @@
+{
+  "topics": [
+    {
+      "topic_id": "topic-real-time-graphics-as-performance-medium",
+      "title": "Real-time graphics as a performance medium",
+      "structure_type": "wiki",
+      "sections": [
+        "Both sources treat real-time rendering as more than offline image production: shadercoding becomes a timed public or improvisational performance, while image-based crowd rendering is judged by whether dense animated scenes remain interactive.",
+        "The shared concept is performance under live constraints. The shadercoding source emphasizes code, image, performer, and audience; the crowd-rendering source emphasizes frame-rate evidence for thousands of moving humans in a virtual city.",
+        "A topic page should keep the domains distinct: one source concerns artistic live coding, while the other concerns rendering-system engineering, but both rely on technical control to sustain real-time visual experience."
+      ],
+      "claim_ids": [
+        "claim-shadercoding-blends-programming-mathematics-and-graphics-into-a-digital-art-prac--ba3619b7f801",
+        "claim-mastered-shadercoding-can-support-real-time-artistic-improvisation-that-fuses-co--51c4a707f8d0",
+        "claim-shader-showdowns-turn-shadercoding-into-a-timed-public-performance-evaluated-thr--a575bceeaf8e",
+        "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+        "claim-the-tested-system-renders-10-000-different-humans-in-a-41-260-polygon-village-at--6845dedcbaed"
+      ],
+      "source_ids": [
+        "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+        "source-02-image-based-crowd-rendering--565ae2b0e3a1"
+      ]
+    },
+    {
+      "topic_id": "topic-spatial-abstractions-for-interactive-images",
+      "title": "Spatial abstractions for interactive images",
+      "structure_type": "wiki",
+      "sections": [
+        "The sources share a concern with replacing full physical or geometric complexity with computable spatial abstractions that can still produce convincing images in real time.",
+        "In shadercoding, fragment shaders map pixel positions to colors and raymarching reconstructs depth by stepping through distance fields. In crowd rendering, impostors, directional discretization, PCA-adjusted planes, tile grids, and projected shadows approximate people, motion constraints, and lighting cues.",
+        "The synthesis is strongest at the level of technique rather than purpose: one source uses mathematical fields and pixels for digital-art imagery, while the other uses image samples and spatial discretization for scalable animated crowds."
+      ],
+      "claim_ids": [
+        "claim-a-shader-is-a-gpu-directed-program-that-describes-rendering-processes-for-turnin--64c2250afac1",
+        "claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e",
+        "claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18",
+        "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+        "claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e",
+        "claim-a-regular-grid-of-environment-tiles-can-support-both-collision-behavior-and-shad--202b441327e8",
+        "claim-the-same-image-database-used-for-impostors-can-project-posture-consistent-human--625367fc5d02"
+      ],
+      "source_ids": [
+        "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+        "source-02-image-based-crowd-rendering--565ae2b0e3a1"
+      ]
+    },
+    {
+      "topic_id": "topic-technical-constraints-as-visual-generators",
+      "title": "Technical constraints as visual generators",
+      "structure_type": "wiki",
+      "sections": [
+        "Both sources frame technical limits as productive rather than merely restrictive. Shadercoding treats mathematical and programming constraints as conditions for artistic creation; crowd rendering turns memory, texture, and model-complexity limits into concrete rendering strategies.",
+        "The crowd-rendering evidence is operational: sample packing, OpenGL texture compression, compact animation-frame storage, and alpha-channel multipass recoloring reduce memory pressure while preserving or expanding visual variety.",
+        "The shadercoding evidence is conceptual and practice-oriented: mathematical fluency enables original shaders, and mastered technical constraints can become creative motors for digital art. A topic should avoid claiming the crowd-rendering paper makes an artistic argument, but can compare how constraints shape image-making in both cases."
+      ],
+      "claim_ids": [
+        "claim-creating-original-shaders-requires-substantial-mathematical-and-technical-fluenc--7ec21177eabc",
+        "claim-digital-art-practice-must-negotiate-the-tension-between-scientific-technical-pro--0ddadf7f5e3d",
+        "claim-mathematical-and-technical-constraints-in-shadercoding-can-become-creative-motor--5b703448e7f5",
+        "claim-packing-each-prerendered-human-sample-into-the-smallest-containing-rectangle-red--c2027548dc18",
+        "claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+        "claim-alpha-channel-multipass-rendering-can-recolor-significant-body-regions-such-as-c--265615107527"
+      ],
+      "source_ids": [
+        "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+        "source-02-image-based-crowd-rendering--565ae2b0e3a1"
+      ]
+    }
+  ]
+}

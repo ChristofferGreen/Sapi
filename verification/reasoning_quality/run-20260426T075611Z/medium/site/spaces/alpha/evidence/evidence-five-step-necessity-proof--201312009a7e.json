@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-it-is-metaphysicall--2de4b0891870",
+    "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--50bf5a84b4af",
+    "claim-when-the-connecting-questions-for-p-and-d-lack-cognitive-significance-fine-style--10ca110e3a81",
+    "claim-the-argument-for-grounding-necessity-combines-full-grounding-the-significance-pr--6cd6bef0130d"
+  ],
+  "evidence_id": "evidence-five-step-necessity-proof--201312009a7e",
+  "evidence_type": "proof_step",
+  "excerpt": "(1) Suppose that [p] is (fully) grounded in D. (2) By (1) and significance, the connecting question \u2018Why should [p] obtain given that each member of D obtains?\u2019 lacks cognitive significance. (3) By (2) and essence, there are essential truths about [p], D, the plurality consisting of [p] and D, or the entities they involve according to which \u2227D \u2192 p. (4) The essential truths are metaphysically necessary. (5) By (3) and (4), \u4290(\u2227D \u2192 p).",
+  "overview": "This proof step assembles the article\u2019s core reasoning in explicit form. Full grounding triggers the significance condition; lack of cognitive significance is explained by essential truths; essential truths are metaphysically necessary; therefore the full grounds metaphysically necessitate the grounded proposition. The conclusion depends on both substantive principles, not on defining full grounding modally.",
+  "page_refs": [
+    "p.467"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Five Step Necessity Proof"
+}

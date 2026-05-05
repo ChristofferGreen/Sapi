@@ -1,0 +1,322 @@
+{
+  "source_date_inference": {
+    "date": "2014-07-23",
+    "confidence": "high",
+    "origin": "source_markdown_header",
+    "rationale": "The extracted source header states: Received 9 Dec 2013, Accepted 27 May 2014, Published 23 Jul 2014."
+  },
+  "source": {
+    "display_title": "Photonic Variational Solver for Molecular Energies",
+    "authors": [
+      "Alberto Peruzzo",
+      "Jarrod McClean",
+      "Peter Shadbolt",
+      "Man-Hong Yung",
+      "Xiao-Qi Zhou",
+      "Peter J. Love",
+      "Alán Aspuru-Guzik",
+      "Jeremy L. O’Brien"
+    ],
+    "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+    "doi": "10.1038/ncomms5213",
+    "published_date": "2014-07-23",
+    "journal": "Nature Communications"
+  },
+  "claims": [
+    {
+      "text": "Hamiltonian expectation values for a broad class of physical systems reduce to sums of Pauli-product expectation values measured on a quantum state.",
+      "short_title": "Hamiltonians decompose into Pauli expectations",
+      "evidence_excerpts": [
+        "Any Hamiltonian may be written as a sum of one- and multi-subsystem Pauli terms, and by linearity the expectation value becomes a weighted sum of corresponding Pauli-product expectation values.",
+        "The paper states that Hamiltonians with polynomially many terms include electronic-structure Hamiltonians, quantum Ising models, Heisenberg models, tensor-product approximable matrices, and more general k-sparse Hamiltonians."
+      ]
+    },
+    {
+      "text": "Quantum expectation estimation reduces coherent-evolution demands relative to phase estimation by replacing one long coherent evolution with many short expectation-value measurements.",
+      "short_title": "QEE reduces coherent evolution",
+      "evidence_excerpts": [
+        "The approach gives O(1) coherence time for a single measurement after state preparation, while requiring O(|hmax|^2 M p^-2) repetitions to estimate a Hamiltonian term to precision p.",
+        "The source contrasts this with standard quantum phase estimation, where O(p^-1) successive applications of e^-iHt determine the coherent runtime."
+      ]
+    },
+    {
+      "text": "The quantum variational eigensolver prepares approximate ground states by using quantum expectation estimation inside a classical minimization of the Rayleigh-Ritz quotient.",
+      "short_title": "QVE minimizes Rayleigh Ritz energy",
+      "evidence_excerpts": [
+        "Figure 1 describes quantum modules passing expectation values to a CPU, which computes the Hamiltonian expectation and feeds new state parameters back to the quantum processing unit.",
+        "The text states that varying experimental state-preparation parameters and computing the Rayleigh-Ritz quotient using QEE as a subroutine can prepare unknown eigenvectors."
+      ]
+    },
+    {
+      "text": "Unitary coupled-cluster ansatz states can be represented with polynomially many reduced cluster terms and are efficiently preparable on quantum hardware despite lacking a known efficient classical implementation.",
+      "short_title": "UCC states favor quantum preparation",
+      "evidence_excerpts": [
+        "For fixed excitation level k, the reduced cluster operator contains O(N^k(M-N)^k) terms, and after Jordan-Wigner transformation the preparation problem becomes simulation of a Hamiltonian that is a polynomial sum of Pauli products.",
+        "The paper states that no efficient classical implementation of this ansatz has been developed even for low-order cluster operators, while the state may be prepared efficiently on a quantum device."
+      ]
+    },
+    {
+      "text": "The demonstrated integrated photonic processor prepares and measures arbitrary two-qubit pure states using voltage-controlled phase shifters, one CNOT gate, photon-pair inputs, and detector count rates.",
+      "short_title": "Photonic chip prepares two qubits",
+      "evidence_excerpts": [
+        "Figure 2 reports quantum-state preparation and Pauli-basis measurement on a photonic chip using thermal phase shifters, one CNOT gate, spontaneous-parametric-downconversion photon pairs, and detectors D1-D4.",
+        "The text states that state preparation and measurement in the Pauli basis is achieved by setting eight voltage-driven phase shifters and counting photon detection events with silicon single-photon detectors."
+      ]
+    },
+    {
+      "text": "The photonic variational eigensolver experimentally recovered the He-H+ bond-dissociation curve, finding an equilibrium bond length of 92.3±0.1 pm and a ground-state electronic energy of -2.865±0.008 MJ mol^-1 after correction.",
+      "short_title": "QVE resolves He-H+ energy",
+      "evidence_excerpts": [
+        "The paper reports that, after correcting computed energies for experimental errors, the equilibrium bond length was R = 92.3±0.1 pm with ground-state electronic energy E = -2.865±0.008 MJ mol^-1.",
+        "More than 96% of the experimental data are reported to fall within chemical accuracy relative to theoretical values."
+      ]
+    },
+    {
+      "text": "For the demonstrated 4x4 Hamiltonian, the quantum expectation-estimation approach uses fewer entangling-gate resources than phase estimation, requiring one CNOT gate instead of at least twelve.",
+      "short_title": "QEE reduces CNOT requirements",
+      "evidence_excerpts": [
+        "The discussion states that a QPE circuit for a 4x4 Hamiltonian such as the one demonstrated would require at least 12 CNOT gates, while the reported method requires one.",
+        "The paper attributes this resource saving to replacing a serial sequence of controlled operations with parallelizable short coherent calculations and repeated state preparations."
+      ]
+    },
+    {
+      "text": "Experimental energy estimates are limited by photon-source impurity, photon distinguishability, circuit imperfections, coupling imbalance, and increasing degeneracy-related difficulty at larger bond separations.",
+      "short_title": "Noise shifts measured energies",
+      "evidence_excerpts": [
+        "The systematic-error section reports a constant reproducible shift of 50 kJ mol^-1 in measured expectation values relative to theoretical energy, attributed to source, circuit, calibration, and coupling effects.",
+        "The paper notes that error magnitude increases with R because the first and second excited states become degenerate, making classical minimization harder and increasing estimation variance."
+      ]
+    },
+    {
+      "text": "Nelder-Mead direct search was more robust than gradient descent for the noisy photonic optimization landscape and converged to the global minimum in most runs.",
+      "short_title": "Nelder Mead handles photon noise",
+      "evidence_excerpts": [
+        "The methods section says gradient descent could not converge to the ground state under experimental conditions, mainly because of Poissonian source noise and accidental detection counts, while Nelder-Mead converged to the global minimum in most optimization runs."
+      ]
+    },
+    {
+      "text": "Device ansatz strategies can provide variationally optimal solutions for the available quantum resources even when the ansatz differs from traditional chemistry-motivated forms.",
+      "short_title": "Device ansatz optimizes resources",
+      "evidence_excerpts": [
+        "The discussion proposes constructing the device first, defining its preparable states as a device ansatz, and obtaining a variationally optimal solution for the available quantum resources with circuit depth fixed by qubit coherence time."
+      ]
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "evidence-pauli-expectation-decomposition--9f2c2b7a1a31",
+      "title": "Pauli Expectation Decomposition",
+      "excerpt": "Any Hamiltonian may be written as a sum of Pauli terms, H = sum h_i^a sigma_i^a + sum h_ij^ab sigma_i^a sigma_j^b + ..., and by exploiting linearity the expectation value becomes <H> = sum h_i^a <sigma_i^a> + sum h_ij^ab <sigma_i^a sigma_j^b> + .... The authors state that Hamiltonians with polynomially many terms include electronic-structure, Ising, Heisenberg, tensor-product, and k-sparse Hamiltonians.",
+      "overview": "This equation is the formal hinge of the algorithm. It turns an eigenvalue problem for a large Hermitian operator into a set of experimentally accessible expectation measurements, provided the Hamiltonian has a polynomial-size Pauli decomposition. The evidence establishes the measurement primitive but not by itself the quality of state preparation or convergence.",
+      "evidence_type": "equation",
+      "claim_refs": [
+        "0",
+        "1"
+      ],
+      "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+      "page_refs": [
+        "Eq.1",
+        "Eq.2",
+        "p.2"
+      ]
+    },
+    {
+      "evidence_id": "evidence-qve-feedback-architecture--a4c87d91e6b5",
+      "title": "Hybrid Feedback Architecture",
+      "excerpt": "Figure 1 describes QEE quantum modules that receive prepared states, compute expectation values <H_i>, pass those values to a CPU, and let a classical minimization algorithm compute <H> and determine new state parameters that are fed back to the quantum processing unit.",
+      "overview": "The figure caption gives the concrete control-flow evidence for the hybrid algorithm: the quantum processor estimates measurable terms and the classical processor performs aggregation and optimization. This supports the claim that QVE is not a standalone quantum circuit but a closed-loop quantum-classical variational procedure.",
+      "evidence_type": "figure_result",
+      "claim_refs": [
+        "2"
+      ],
+      "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+      "page_refs": [
+        "Fig.1",
+        "p.3"
+      ]
+    },
+    {
+      "evidence_id": "evidence-unitary-cluster-polynomial-form--d52f0c3ab48e",
+      "title": "Unitary Cluster Ansatz Form",
+      "excerpt": "The source defines |C> = exp(T - T†)|Phi_ref>, T = T1 + T2 + ... + TN, and states that for fixed excitation level k the reduced cluster operator contains O(N^k(M-N)^k) terms. After Jordan-Wigner transformation, the preparation reduces to quantum simulation of a Hamiltonian that is a polynomial sum of Pauli products.",
+      "overview": "This formal argument explains why chemistry-motivated ansatz preparation can be plausible on quantum hardware while remaining hard for known classical methods. It grounds the scalability discussion in the structure of coupled-cluster operators rather than only in the small photonic demonstration.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "3"
+      ],
+      "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+      "page_refs": [
+        "Eq.4",
+        "Eq.5",
+        "Eq.8",
+        "p.3"
+      ]
+    },
+    {
+      "evidence_id": "evidence-photonic-qpu-chip-design--6e91f4b0c2ad",
+      "title": "Photonic QPU Chip Design",
+      "excerpt": "Figure 2 reports that quantum-state preparation and measurement of <psi|sigma_i tensor sigma_j|psi> are performed using a photonic chip. Photon pairs from spontaneous parametric downconversion encode |00>, the state is prepared with thermal phase shifters and one CNOT gate, measured by photon detectors, and detector count rates are passed to the CPU optimizer.",
+      "overview": "This figure-level evidence ties the algorithm to an implemented physical processor. It establishes which photonic elements perform state preparation, measurement, and feedback, while also delimiting the demonstration to arbitrary two-qubit pure states rather than a large molecular register.",
+      "evidence_type": "figure_result",
+      "claim_refs": [
+        "4"
+      ],
+      "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+      "page_refs": [
+        "Fig.2",
+        "p.4"
+      ]
+    },
+    {
+      "evidence_id": "evidence-hehplus-dissociation-measurement--3b7e5a9c0d44",
+      "title": "He-H+ Dissociation Result",
+      "excerpt": "Repeating the procedure for several nuclear separations R gives the bond dissociation curve. After correcting computed energies for experimental errors, the equilibrium bond length was R = 92.3±0.1 pm, with corresponding ground-state electronic energy E = -2.865±0.008 MJ mol^-1. More than 96% of the experimental data are within chemical accuracy with respect to theoretical values.",
+      "overview": "This is the main quantitative result. It shows that the hybrid photonic solver produced a chemically meaningful molecular curve for a minimal-basis He-H+ problem, while the need for systematic-error correction and comparison to a full-configuration-interaction curve limits the result to a proof of feasibility.",
+      "evidence_type": "measurement",
+      "claim_refs": [
+        "5"
+      ],
+      "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+      "page_refs": [
+        "Fig.4",
+        "p.4",
+        "p.5"
+      ]
+    },
+    {
+      "evidence_id": "evidence-cnot-resource-comparison--71ac9e2f6d80",
+      "title": "CNOT Resource Comparison",
+      "excerpt": "The discussion states that, for a 4x4 Hamiltonian such as the one demonstrated, the corresponding quantum phase-estimation circuit would require at least 12 CNOT gates, while the reported method requires only one. The resource saving is purchased by polynomial repetitions of state preparation rather than a single copy.",
+      "overview": "This comparison gives a concrete resource contrast between the proposed method and QPE for the demonstrated instance. It supports the claim of reduced coherent circuit depth, while preserving the tradeoff that total repetitions increase with precision and measurement statistics.",
+      "evidence_type": "model_constraint",
+      "claim_refs": [
+        "1",
+        "6"
+      ],
+      "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+      "page_refs": [
+        "p.5"
+      ]
+    },
+    {
+      "evidence_id": "evidence-photonic-error-budget--c0d3a8b64f21",
+      "title": "Photonic Error Budget",
+      "excerpt": "The methods report a constant reproducible shift of 50 kJ mol^-1 in measured expectation value relative to theoretical energy. Contributing effects include higher-order photon-number terms, photon distinguishability, circuit imperfections, phase-shifter calibration errors, and unbalanced input-output coupling. The mean count rate was about 2,000-4,000 twofold events per measurement.",
+      "overview": "The error discussion is important because it marks the boundary between algorithmic feasibility and experimental precision. It shows that the reported chemical result depends on correction for identifiable photonic imperfections, and that statistical uncertainty is tied directly to photon count rates.",
+      "evidence_type": "measurement",
+      "claim_refs": [
+        "7",
+        "8"
+      ],
+      "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+      "page_refs": [
+        "Methods",
+        "p.6"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "derived_from",
+      "src_claim_ref": "2",
+      "dst_claim_ref": "0",
+      "rationale": "QVE uses QEE's Pauli-expectation estimation as the measurement subroutine inside its variational loop."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "4",
+      "dst_claim_ref": "5",
+      "rationale": "The two-qubit photonic processor supplies the implemented platform used to measure the He-H+ dissociation curve."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "6",
+      "dst_claim_ref": "1",
+      "rationale": "The CNOT comparison is a concrete instance of the broader coherent-resource reduction claim."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "7",
+      "dst_claim_ref": "5",
+      "rationale": "The reported molecular energy result is qualified by the measured systematic and statistical error budget."
+    },
+    {
+      "relation_type": "similar",
+      "src_claim_ref": "3",
+      "dst_claim_ref": "9",
+      "rationale": "Both claims concern ansatz choice as the bridge between available quantum hardware and useful variational states."
+    }
+  ],
+  "summary": "The source introduces and experimentally demonstrates a hybrid quantum-classical variational eigenvalue solver on an integrated photonic processor. Its central result is a proof-of-principle He-H+ molecular-energy calculation that trades QPE-style long coherent evolution for repeated short expectation-value measurements and classical optimization.",
+  "warnings": [
+    {
+      "code": "source_record_placeholder_title",
+      "message": "The source record display title was 'Untitled Source'; the paper title, authors, DOI, and publication date were recovered from the extracted source markdown."
+    },
+    {
+      "code": "pdf_text_two_column_layout",
+      "message": "The pdftotext markdown is usable but contains two-column interleaving in several passages, so equations and figure captions were interpreted conservatively from nearby text."
+    }
+  ],
+  "source_dossier": {
+    "summary_short": "Peruzzo and collaborators present an early experimental variational quantum eigensolver implemented with integrated photonics. The work replaces phase-estimation-style long coherent evolution with repeated short Pauli measurements plus classical feedback, then demonstrates the method on the minimal-basis He-H+ ground-state energy curve.",
+    "summary_long": "This Nature Communications article is a proof-of-principle demonstration of a hybrid variational eigenvalue solver, now recognizable as an early VQE-style architecture. The paper begins from the bottleneck that quantum phase estimation can estimate eigenvalues efficiently but demands long coherent controlled evolutions, which were far beyond near-term photonic hardware. Its alternative decomposes Hamiltonian expectation values into sums of Pauli-product measurements, estimates those terms on a quantum processing unit, and lets a classical optimizer choose the next state-preparation parameters. The quantum processor therefore supplies expectation values and state preparation, while the CPU performs aggregation and feedback. The experimental platform is a reconfigurable integrated photonic chip using downconversion photon pairs, voltage-controlled phase shifters, one CNOT gate, and photon-counting measurements. With this apparatus, the authors compute the ground state of a 4x4 full-configuration-interaction Hamiltonian for He-H+ at multiple bond lengths. After correcting systematic errors, they report an equilibrium bond length of 92.3±0.1 pm and ground-state electronic energy of -2.865±0.008 MJ mol^-1, with more than 96% of data points within chemical accuracy relative to the theoretical curve. The source is careful about limitations: the result depends on repeated state preparations, finite photon count rates, systematic photonic imperfections, and a small molecular problem. Its broader significance is architectural rather than chemical scale. It shows that useful eigenvalue experiments can be organized around shallow quantum circuits and classical optimization, opening a route for near-term processors that cannot sustain full phase-estimation circuits.",
+    "sections": [
+      {
+        "heading": "Core Algorithm",
+        "body": "The central algorithmic move is to estimate <H> through a Pauli decomposition rather than through a long coherent phase-estimation circuit. For Hamiltonians with polynomially many terms, the QPU measures term expectations and the CPU adds weighted results. This establishes the measurement primitive behind the variational solver, while retaining a precision cost in repeated measurements.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ]
+      },
+      {
+        "heading": "Variational Feedback Loop",
+        "body": "QVE wraps QEE in a Rayleigh-Ritz minimization loop. The quantum device prepares a parameterized trial state and estimates the Hamiltonian expectation; the classical optimizer then updates the state parameters. The endpoint is not only an energy estimate but also a parameter prescription for reconstructing the approximate eigenstate.",
+        "grounding_claim_ids": [
+          "2",
+          "8"
+        ]
+      },
+      {
+        "heading": "Ansatz Significance",
+        "body": "The paper connects the small demonstration to chemistry by discussing unitary coupled cluster and device-defined ansatz families. The UCC argument matters because fixed excitation level gives polynomially many terms after transformation, while the device-ansatz view admits circuits tailored to available hardware and coherence depth.",
+        "grounding_claim_ids": [
+          "3",
+          "9"
+        ]
+      },
+      {
+        "heading": "Photonic Implementation",
+        "body": "The experiment uses an integrated photonic processor rather than an abstract circuit simulation. Photon pairs encode the two-qubit input, phase shifters set state and measurement parameters, a CNOT supplies entangling capability, and detector counts feed the CPU. This grounds the feasibility claim in real optical hardware with identifiable strengths and imperfections.",
+        "grounding_claim_ids": [
+          "4",
+          "7"
+        ]
+      },
+      {
+        "heading": "Molecular Demonstration",
+        "body": "The main experimental target is the He-H+ dissociation curve in a minimal basis. The reported corrected minimum at 92.3±0.1 pm and -2.865±0.008 MJ mol^-1 shows that the feedback loop can locate a chemically meaningful ground-state curve for a four-dimensional Hamiltonian, though not yet at industrial chemical scale.",
+        "grounding_claim_ids": [
+          "5"
+        ]
+      },
+      {
+        "heading": "Resource Tradeoff",
+        "body": "The method saves coherent gate depth by replacing a serial QPE process with short coherent measurements and repeated preparations. The paper’s 4x4 comparison, one CNOT versus at least twelve for QPE, illustrates the benefit. The non-free part of the trade is extra repetitions and sensitivity to variation across preparations.",
+        "grounding_claim_ids": [
+          "1",
+          "6"
+        ]
+      },
+      {
+        "heading": "Experimental Limits",
+        "body": "The authors explicitly identify sources of error: photon distinguishability, higher-order photon components, imperfect beamsplitters and phase calibration, coupling imbalance, and increased optimization difficulty at larger separations. These details keep the result from being overread as scalable chemistry, but they also identify clear hardware-improvement paths.",
+        "grounding_claim_ids": [
+          "7",
+          "8"
+        ]
+      }
+    ]
+  }
+}

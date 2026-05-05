@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-05-quantum-machine-learning--a91f0184eb29/source.pdf",
+    "source_markdown": "sources/artifacts/source-05-quantum-machine-learning--a91f0184eb29/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "f6d77381228b86d8609e7205129b39b1a7f7820db133b46b7dc0e4119846b69d",
+  "markdown_char_count": 71436,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "b02951ea7fc54cc94c899fd05c7ccb6ad8685397e0fa4e69e0d76317895977a9",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

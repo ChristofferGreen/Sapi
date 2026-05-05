@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-full-grounding-obtains-only-where-the-relevant-connecting-question-lacks-cogniti--6faa18372d32",
+    "claim-because-essential-truths-are-metaphysically-necessary-the-significance-and-essen--91a2b8cae171"
+  ],
+  "evidence_id": "evidence-significance-principle--a7e502b87698",
+  "evidence_type": "formal_argument",
+  "excerpt": "significance: [p] is (fully) grounded in D only if the connecting questions with respect to [p] and D lack cognitive significance.",
+  "overview": "The significance principle supplies the first substantive premise in the argument. It links metaphysical grounding to a general epistemic condition: if a connecting question remains cognitively significant even under full information about the relevant natures, the alleged full grounding relation is not present.",
+  "page_refs": [
+    "p.467"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Significance Constraint"
+}

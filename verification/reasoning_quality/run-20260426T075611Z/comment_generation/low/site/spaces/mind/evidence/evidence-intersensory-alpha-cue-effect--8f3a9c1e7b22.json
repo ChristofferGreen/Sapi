@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-during-intersensory-attention-preparing-for-an-auditory-task-produces-larger-par--8344f207b273",
+    "claim-alpha-band-oscillations-in-the-8-14-hz-range-operate-as-an-attentional-suppressi--792aae8300bb"
+  ],
+  "evidence_id": "evidence-intersensory-alpha-cue-effect--8f3a9c1e7b22",
+  "evidence_type": "figure_result",
+  "excerpt": "Participants viewed a cue word (BEEP or FLASH) before a compound audio-visual target. Band-pass filtered 8-14 Hz waveforms revealed greater alpha activity in the 300 ms before target onset when attention was cued to the auditory modality; the text reports significantly larger 8-14 Hz activity over parieto-occipital cortex for BEEP than FLASH cues.",
+  "overview": "This intersensory cueing result supplies a concrete EEG pattern for the review's gating hypothesis. When vision is task-irrelevant and audition is relevant, parieto-occipital alpha rises before the target arrives, matching the prediction that visual cortex can be pre-emptively suppressed. The effect is bounded by the original task design and supports anticipatory gating rather than a direct measurement of single-neuron inhibition.",
+  "page_refs": [
+    "Figure 1",
+    "p.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "title": "Auditory Cue Alpha Increase"
+}

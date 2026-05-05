@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "Thread coarsening is an example of a bounded optimization choice where direct prediction can be useful.",
+  "relation_file_id": "rel-d16b82fe3af6f1c9394334648ba467454b0400f7ef91dc7152caa2eb54e0452d",
+  "relation_id": "supports:claim-thread-coarsening-decisions-are-context-dependent-because-coarsening-can-improve--4878860bda89->claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3",
+  "relation_type": "supports",
+  "src_claim_id": "claim-thread-coarsening-decisions-are-context-dependent-because-coarsening-can-improve--4878860bda89",
+  "src_claim_ref": "4",
+  "status": "open"
+}

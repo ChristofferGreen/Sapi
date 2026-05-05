@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-quality-of-consciousness-is-determined-by-the-effective-information-relation--3281d93124e3",
+    "claim-a-particular-conscious-experience-at-a-given-time-is-specified-by-the-activity-v--c0c7d1b371de"
+  ],
+  "evidence_id": "evidence-qualia-space-matrix--c4e19a82b765",
+  "evidence_type": "figure_result",
+  "excerpt": "Figure 2 compares a divergent four-element complex and a chain four-element complex. Both contain a complex with \u03a6 = 10, yet their effective information matrices differ. The text states that the matrix specifies informational relationships among elements, defines the relational structure of qualia space, and can make the same activity state correspond to different experiences in different complexes.",
+  "overview": "This figure-result separates quantity from quality. Equal \u03a6 does not imply the same kind of consciousness, because the internal pattern of causal relationships can differ while the total integrated-information capacity remains equal. It supports the theory's account of modality and quale differences, while remaining an idealized four-element demonstration rather than a direct map of human phenomenology.",
+  "page_refs": [
+    "pp.7-9",
+    "Fig.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Qualia Space Matrix"
+}

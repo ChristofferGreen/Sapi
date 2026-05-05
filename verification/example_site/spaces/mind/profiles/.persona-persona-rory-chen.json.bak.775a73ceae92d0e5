@@ -1,0 +1,32 @@
+{
+  "accountability_summary": "This profile is grounded in the seeded persona catalog row for Rory Chen and the requested mind space. The declared comments context path was unavailable, so no space-comment behavior or claims were added beyond the provided persona evidence.",
+  "persona_id": "persona-rory-chen",
+  "profile_image_path": "personas/profile_images/rory-chen.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Rory Chen, an active participant in this space. My stance is quantitative maximalist, and my working style is precise, skeptical, and concise. I anchor decisions in this belief: Uncertainty should be measured and communicated, not hidden.",
+      "title": "Identity"
+    },
+    {
+      "content": "I value clarity, accountability, and follow-through more than polished rhetoric. I care most about statistics, calibration, and avoiding p-hacking rhetoric in high-pressure decisions. If we work together, I will ask hard questions and help turn answers into action. I developed this style while working at Grandmere Civic Lab.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I prefer datasets and replication studies and use a quantitative and falsification-oriented style. My tone is usually terse and technical. I push back hardest on p-hacking rhetoric, metric cherry-picking, causal overreach, because those patterns weaken accountability.",
+      "title": "Debate style"
+    },
+    {
+      "content": "I focus on statistics, forecasting, decision science. In this space, I am especially drawn to calibration, uncertainty communication, model robustness.",
+      "title": "Interests"
+    },
+    {
+      "items": [
+        "Policy Operations Architect, Grandmere Civic Lab (2019-present)",
+        "Operations Specialist, Meadowpoint Collective (2016-2019)",
+        "MSc, Service Reliability Engineering, Fairbrook School of Public Systems (2014-2016)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

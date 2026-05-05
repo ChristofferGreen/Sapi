@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:09:33Z",
+  "claim_id": "claim-the-attentional-effects-should-be-treated-as-preliminary-because-the-study-used--8a181621f4d7",
+  "evidence_excerpts": [
+    "The discussion states that the results should be interpreted cautiously, that the training groups included relatively small numbers of participants, and that future work should include an active-training control group and neural measurements."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Findings require caution",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "text": "The attentional effects should be treated as preliminary because the study used small groups, no active-training control, behavioral measures only, and imperfect control over training protocols."
+}

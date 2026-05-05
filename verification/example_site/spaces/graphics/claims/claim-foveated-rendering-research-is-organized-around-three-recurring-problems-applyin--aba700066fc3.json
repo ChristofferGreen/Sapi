@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:05:42Z",
+  "claim_id": "claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3",
+  "evidence_excerpts": [
+    "The paper identifies three challenges: use the perceptual model of the human visual system to guide foveated rendering, render different regions with different qualities, and integrate foveated rendering into existing rendering paradigms."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Foveation requires three decisions",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "text": "Foveated rendering research is organized around three recurring problems: applying human-visual-system perceptual models, rendering regions at different qualities, and integrating foveation into rendering paradigms."
+}

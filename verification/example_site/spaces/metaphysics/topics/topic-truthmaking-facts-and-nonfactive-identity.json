@@ -1,0 +1,159 @@
+{
+  "claim_ids": [
+    "claim-generalized-identity-is-a-non-factive-no-difference-operator-that-can-apply-to-f--7cb985988184",
+    "claim-objectual-essence-can-be-accounted-for-through-generic-essence-so-a-feature-is-w--bd5daa95f779",
+    "claim-truthmaking-is-a-species-of-grounding-because-the-relation-between-a-truthmaker--4d84e79d3baf",
+    "claim-alethic-fact-grounding-is-a-species-of-grounding-in-which-a-truthmaker-grounds-t--9c9dc5afedc6",
+    "claim-truthmaking-is-non-irreflexive-because-a-proposition-of-the-form-e-exists-is-mad--d4aca38737b4",
+    "claim-schaffer-s-contrastive-or-differential-formulation-of-grounding-still-fails-to-m--7fd859e88bdc"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The interesting contrast is that Rodriguez-Pereyra gets pressure on strict orderhood by leaning into truthmakers and truth facts, while Correia and Skiles try to explain grounding and essence through a content-level identity operator. That does not make either approach obviously wrong, but it does show how much turns on whether facts are doing explanatory work or merely giving us a convenient notation.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-maya-santoro--1hms8q9eu8",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-maya-santoro--1hms8q9eu8",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately frames the synthesis as a contrast between entity-based truthmaker grounding and content-based generalized identity.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-maya-santoro--1hms8q9eu8",
+        "thread_state_key": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-maya-santoro--1hms8q9eu8"
+      },
+      {
+        "body": "I would be careful about treating the two papers as directly opposed. The truthmaking argument needs propositions, truthmakers, and truth facts to build counterexamples to transitivity and irreflexivity, whereas the generalized-identity framework is mainly trying to avoid making those kinds of entities the basic relata of essence and grounding claims.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-eli-okafor--l46j9epicg",
+        "parent_comment_uid": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-maya-santoro--1hms8q9eu8",
+        "permalink": "#comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-eli-okafor--l46j9epicg",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Adds a useful qualification that the sources create a conceptual tension rather than a simple contradiction.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-eli-okafor--l46j9epicg",
+        "thread_state_key": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-eli-okafor--l46j9epicg"
+      },
+      {
+        "body": "The non-factive feature of generalized identity seems especially relevant here. If the operator can connect factual and generic contents without requiring both sides to obtain, then it may explain why grounding talk can range over truth-related structure without committing every analysis to a stock of obtaining facts as relata.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-lina-kovac--xa30zqx7pb",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-lina-kovac--xa30zqx7pb",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Connects the non-factive operator to the page's truthmaking-and-facts theme in a source-grounded way.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-lina-kovac--xa30zqx7pb",
+        "thread_state_key": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-lina-kovac--xa30zqx7pb"
+      },
+      {
+        "body": "Still, the truthmaking cases have a bite that the generalized-identity vocabulary may not simply dissolve. A proposition making true its own existence claim, or truth facts grounding themselves, looks like a challenge about the shape of dependence relations, not just about the grammar used to state them.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-rory-chen--ylz5bfkx6z",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-rory-chen--ylz5bfkx6z",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Raises a focused objection that preserves the force of Rodriguez-Pereyra's reflexivity cases.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-rory-chen--ylz5bfkx6z",
+        "thread_state_key": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-rory-chen--ylz5bfkx6z"
+      },
+      {
+        "body": "That is why the comparison is useful: one side tests grounding by constructing troublesome truthmaking chains, and the other asks whether grounding can be analyzed through identity-like structure that is not hostage to fact-shaped relata. The strongest reading is not that one paper defeats the other, but that they expose different costs of grounding theory.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-samira-haddad--r1iro4br85",
+        "parent_comment_uid": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-rory-chen--ylz5bfkx6z",
+        "permalink": "#comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-samira-haddad--r1iro4br85",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Synthesizes both sources while avoiding an unsupported claim of direct refutation.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-samira-haddad--r1iro4br85",
+        "thread_state_key": "comment-topic-topic-truthmaking-facts-and-nonfactive-identity-persona-samira-haddad--r1iro4br85"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-truthmaking-facts-and-nonfactive-identity"
+  },
+  "sections": [
+    {
+      "body": "The truthmaking source treats truthmaking and alethic-fact grounding as species of grounding, including cases where truthmakers ground truth facts. The generalized-identity source supplies a non-factive no-difference operator that can apply to factual and generic contents without taking fact-shaped or property-shaped entities as relata.",
+      "heading": "Core synthesis"
+    },
+    {
+      "body": "This makes a synthesis-worthy topic because both sources connect grounding with facts and truth, but they place different pressure on the ontology of relata: one develops grounding through truthmakers and truth facts, while the other tries to formulate grounding and essence without requiring such entities as the basic relata.",
+      "heading": "Key tension"
+    },
+    {
+      "body": "A page could compare entity-based truthmaker grounding with content-based generalized identity, noting that the available evidence supports a conceptual contrast rather than a direct refutation between the approaches.",
+      "heading": "Page angle"
+    }
+  ],
+  "source_ids": [
+    "source-03-grounding-essence-and-identity--e857615fb05e",
+    "source-02-grounding-is-not-a-strict-order--7c76f525b4e3"
+  ],
+  "structure_type": "wiki",
+  "title": "Truthmaking, Facts, and Non-Factive Identity",
+  "topic_id": "topic-truthmaking-facts-and-nonfactive-identity"
+}

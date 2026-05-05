@@ -1825,6 +1825,7 @@ def _render_question_page(
         measurement_by_id[measurement_id]
         for measurement_id in question.measurement_ids
         if measurement_id in measurement_by_id
+        and measurement_by_id[measurement_id].get("question_id") == question.question_id
     ]
     stats = (
         f"{len(linked_sources)} source{'s' if len(linked_sources) != 1 else ''}, "

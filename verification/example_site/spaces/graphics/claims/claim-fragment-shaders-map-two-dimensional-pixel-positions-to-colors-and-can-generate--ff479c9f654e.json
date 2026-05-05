@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:36:26Z",
+  "claim_id": "claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e",
+  "evidence_excerpts": [
+    "Pour r\u00e9sumer, celui-ci va prendre en entr\u00e9e la position d'un \u00ab point num\u00e9rique \u00bb de l'espace 2D, appel\u00e9 pixel, et va retourner une couleur pour le pixel correspondant. ... Mais la propri\u00e9t\u00e9 premi\u00e8re du fragment shader peut aussi permettre de g\u00e9n\u00e9rer, \u00e0 l'aide de formules math\u00e9matiques, des motifs ou patterns particuliers. Ceux-ci peuvent \u00eatre anim\u00e9s avec des variables \u00e9voluant dans le temps ou selon d'autres informations externes."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Fragment shaders generate patterns",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "text": "Fragment shaders map two-dimensional pixel positions to colors and can generate animated mathematical patterns responsive to time or external inputs."
+}

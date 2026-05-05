@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-alethic-fact-grounding-is-a-species-of-grounding-in-which-a-truthmaker-grounds-t--9c9dc5afedc6",
+  "dst_claim_ref": "2",
+  "last_evaluated_run_id": null,
+  "rationale": "The self-grounding construction depends on the alethic-fact grounding framework.",
+  "relation_file_id": "rel-ce4b5bf87c2a7b9e4f6f1214655f6481ac78f22972477510a6912dee161f07d2",
+  "relation_id": "derived_from:claim-alethic-fact-grounding-is-non-irreflexive-because-if-proposition-b-is-true-and-s--0f3a01a46967->claim-alethic-fact-grounding-is-a-species-of-grounding-in-which-a-truthmaker-grounds-t--9c9dc5afedc6",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-alethic-fact-grounding-is-non-irreflexive-because-if-proposition-b-is-true-and-s--0f3a01a46967",
+  "src_claim_ref": "6",
+  "status": "open"
+}

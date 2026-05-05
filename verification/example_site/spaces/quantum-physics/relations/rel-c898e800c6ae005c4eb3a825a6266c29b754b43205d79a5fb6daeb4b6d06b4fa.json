@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The two-qubit error and thousand-gate estimates explain why NISQ scale does not by itself produce deep reliable computation.",
+  "relation_file_id": "rel-c898e800c6ae005c4eb3a825a6266c29b754b43205d79a5fb6daeb4b6d06b4fa",
+  "relation_id": "supports:claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82->claim-nisq-computers-with-roughly-50-to-a-few-hundred-qubits-mark-a-classically-hard-s--2d5ec194bedf",
+  "relation_type": "supports",
+  "src_claim_id": "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+  "src_claim_ref": "2",
+  "status": "open"
+}

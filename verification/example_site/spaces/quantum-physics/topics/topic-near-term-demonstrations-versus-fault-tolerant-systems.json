@@ -1,0 +1,162 @@
+{
+  "claim_ids": [
+    "claim-hybrid-qaoa-and-vqe-approaches-are-plausible-nisq-era-testbeds-but-their-ability--31ec67369767",
+    "claim-quantum-computers-are-not-expected-to-efficiently-solve-hard-np-hard-combinatori--0d5f718c4d47",
+    "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+    "claim-noise-resilient-circuit-design-can-extend-nisq-computational-reach-but-it-may-tr--aed4bcfeaa39",
+    "claim-the-demonstrated-speedup-is-specific-to-random-circuit-sampling-and-does-not-rem--47d4f349751e",
+    "claim-the-largest-elided-53-qubit-20-cycle-circuits-yielded-f-xeb-2-24-0-21-10-3-over--0a24f12d0686",
+    "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772",
+    "claim-atomic-ensemble-experiments-had-achieved-stored-heralded-entanglement-high-retri--7d38956d9ede"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This page is strongest when it separates three different meanings of progress. Sycamore shows a real task-specific sampling result, Preskill gives a disciplined case for NISQ-era scientific experiments, and the quantum-internet work is still closer to a roadmap of primitives than a deployed scalable network.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-maya-santoro--n00lmnwhes",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-maya-santoro--n00lmnwhes",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately distinguishes demonstration, testbed, and roadmap evidence across the sources.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-maya-santoro--n00lmnwhes",
+        "thread_state_key": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-maya-santoro--n00lmnwhes"
+      },
+      {
+        "body": "The optimization caveat matters because near-term quantum advantage can sound broader than the evidence. QAOA and VQE are valuable experimental probes, but beating decades of classical optimization or chemistry methods is a much stronger claim than running an interesting noisy circuit.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-eli-okafor--nb148tciw3",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-eli-okafor--nb148tciw3",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Source-grounded caution about NISQ algorithms and classical benchmark standards.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-eli-okafor--nb148tciw3",
+        "thread_state_key": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-eli-okafor--nb148tciw3"
+      },
+      {
+        "body": "I agree, and the same boundary shows up in the Sycamore result. The 53-qubit random-circuit experiment is important because it made a narrow sampling task classically hard at comparable fidelity, not because it removed the need for logical qubits, error correction, or application-specific algorithms.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-lina-kovac--zrnh6fcxig",
+        "parent_comment_uid": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-eli-okafor--nb148tciw3",
+        "permalink": "#comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-lina-kovac--zrnh6fcxig",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Strong reply that links the parent caveat to the concrete Sycamore benchmark limits.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-lina-kovac--zrnh6fcxig",
+        "thread_state_key": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-lina-kovac--zrnh6fcxig"
+      },
+      {
+        "body": "The quantum-network examples make the page feel less computer-centric in a useful way. Stored heralded entanglement, retrieval efficiency, and early swapping are genuine milestones, but Kimble still frames repeaters, teleportation, local processing, and scalable verification as unsolved system-level requirements.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-rory-chen--50fp07aubc",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-rory-chen--50fp07aubc",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Broadens the discussion with accurate evidence from the quantum-internet source.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-rory-chen--50fp07aubc",
+        "thread_state_key": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-rory-chen--50fp07aubc"
+      },
+      {
+        "body": "A useful takeaway is that near-term devices can be scientifically serious without being fault tolerant. That middle category keeps both mistakes out of the discussion: dismissing noisy demonstrations as irrelevant, or treating every hard-to-simulate experiment as general-purpose quantum computing.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-samira-haddad--93yvjyvujp",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-samira-haddad--93yvjyvujp",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Balanced synthesis that matches the page thesis and avoids overclaiming.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-samira-haddad--93yvjyvujp",
+        "thread_state_key": "comment-topic-topic-near-term-demonstrations-versus-fault-tolerant-systems-persona-samira-haddad--93yvjyvujp"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-near-term-demonstrations-versus-fault-tolerant-systems"
+  },
+  "sections": [
+    {
+      "body": "This topic compares demonstrated or plausible near-term quantum capabilities with the longer path to robust, scalable systems. It is supported across all three sources, but the strength of evidence differs by domain: Sycamore reports a concrete task-specific sampling demonstration, while NISQ algorithms and large quantum networks remain more conditional roadmaps. The topic can help distinguish scientific progress from overclaims about general-purpose quantum computing or fully scalable quantum networking.",
+      "heading": "Shared concept"
+    },
+    {
+      "body": "The NISQ source distinguishes experimental value and heuristic testbeds from transformative fault-tolerant applications. QAOA and VQE are plausible NISQ-era testbeds, but their ability to outperform mature classical approximation methods remains unresolved. Quantum computers are not expected to efficiently solve hard NP-hard combinatorial optimization instances, and scalable fault-tolerant quantum computing depends on quantum error correction with heavy physical-qubit and gate overhead. Noise-resilient circuit design may extend reach, but may also make circuits easier to simulate classically.",
+      "heading": "Near-term computing limits"
+    },
+    {
+      "body": "The Sycamore source reports random-circuit sampling speedup and an elided 53-qubit, 20-cycle fidelity estimate, while explicitly leaving applications such as Shor-style factoring dependent on fault-tolerant logical qubits. The quantum-internet source surveys primitive but real demonstrations of stored heralded entanglement and retrieval efficiency, yet describes robust scalable network protocols, repeaters, local processing, error-corrected teleportation, and scalable verification as ambitious goals. A page on this concept should state that near-term devices can be scientifically important and sometimes classically hard, while the evidence does not support broad claims that they already deliver general-purpose fault-tolerant quantum systems.",
+      "heading": "Demonstration versus roadmap"
+    }
+  ],
+  "source_ids": [
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+    "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+    "source-03-the-quantum-internet--cd7f6b2f11e2"
+  ],
+  "structure_type": "wiki",
+  "title": "Near-term demonstrations versus fault-tolerant quantum systems",
+  "topic_id": "topic-near-term-demonstrations-versus-fault-tolerant-systems"
+}

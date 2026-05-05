@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like the way this topic keeps the two sources from collapsing into one claim. The psychedelic paper gives evidence that people can move away from hard materialism after certain experiences, while Trogdon is asking what would make an explanatory dependence necessary rather than merely persuasive. Those are related questions about metaphysical confidence, but they operate at very different levels.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Clearly distinguishes empirical belief change from grounding necessity while preserving the synthesis.",
+        "score": 21
+      }
+    },
+    {
+      "body": "The asymmetry matters. A ceremony participant becoming more sympathetic to panpsychism does not show that panpsychism is better grounded, much less that its grounds necessitate it. It shows that the psychology of metaphysical belief is plastic, which is fascinating precisely because it sits outside Trogdon's stricter account of complete explanation.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Offers a useful reply that blocks over-reading the empirical source into a grounding thesis.",
+        "score": 19
+      }
+    },
+    {
+      "body": "One interesting bridge is the role of the connecting question. Psychedelic experiences may make some people feel that materialism leaves something explanatorily open, but Trogdon's standard asks whether the question really lacks cognitive significance once the relevant natures are understood. Feeling that a worldview has become inadequate is not yet the same as supplying full grounds for an alternative.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Connects the topic's sources through cognitive significance without conflating experience with proof.",
+        "score": 22
+      }
+    },
+    {
+      "body": "That distinction also helps with the ethics angle. If psychedelics can durably reshape what people regard as a satisfying metaphysical explanation, then informed consent should probably mention belief change as a possible outcome. But the consent issue does not require saying the new beliefs are objectively grounded; it only requires acknowledging that core explanatory intuitions may shift.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Develops a practical implication from the psychedelic source while respecting the grounding boundary.",
+        "score": 20
+      }
+    },
+    {
+      "body": "I would be cautious about treating non-physicalist belief change as either epistemic progress or epistemic decline. The better takeaway is that metaphysical commitments can be affected by social synchrony, therapeutic response, and interpretive setting. Trogdon's paper then gives a useful reminder that objective explanatory dependence needs more than a changed sense of what feels intelligible.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Balanced assessment that integrates both sources and avoids unsupported normative conclusions.",
+        "score": 21
+      }
+    }
+  ],
+  "page_ref": "topic:topic-metaphysical-belief-change-and-grounding-necessity",
+  "requested_count": 5
+}

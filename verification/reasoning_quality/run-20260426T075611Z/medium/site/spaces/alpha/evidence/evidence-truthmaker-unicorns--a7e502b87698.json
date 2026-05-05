@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-the-truth-of-grounding-necessity-would-make-maximalist-truthmaker-theories-for-n--8a5e9b8ad94e"
+  ],
+  "evidence_id": "evidence-truthmaker-unicorns--a7e502b87698",
+  "evidence_type": "formal_argument",
+  "excerpt": "If necessity is true, however, the potential truthmakers for <there are no unicorns> become increasingly baroque, appealing to entities such as totality propositions and absences. Hence, while maximalism is on fairly firm ground with respect to negative existential truths provided that necessity is false, if necessity is instead true this might not be the case.",
+  "overview": "The negative-existential example shows why the modal status of grounding matters outside the internal theory of grounding. If truthmaking is analyzed through full grounding, then grounding necessity restricts acceptable truthmakers to entities or facts whose existence entails the truth made true. That makes familiar candidates for negative existentials more controversial.",
+  "page_refs": [
+    "pp.466-467"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Truthmaker Constraint Example"
+}

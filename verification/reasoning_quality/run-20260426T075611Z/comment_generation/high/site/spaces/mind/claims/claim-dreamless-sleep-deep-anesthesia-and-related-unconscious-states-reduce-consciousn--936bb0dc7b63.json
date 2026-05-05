@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T07:50:34Z",
+  "claim_id": "claim-dreamless-sleep-deep-anesthesia-and-related-unconscious-states-reduce-consciousn--936bb0dc7b63",
+  "evidence_excerpts": [
+    "During slow-wave sleep, cortical neurons engage in roughly 1 Hz slow oscillations and model networks enter stereotyped bistable responses rather than differentiated perturbation responses."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Sleep reduces differentiation",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "text": "Dreamless sleep, deep anesthesia, and related unconscious states reduce consciousness by reducing response readiness or response differentiation even when anatomical connectivity and substantial neural activity remain present."
+}

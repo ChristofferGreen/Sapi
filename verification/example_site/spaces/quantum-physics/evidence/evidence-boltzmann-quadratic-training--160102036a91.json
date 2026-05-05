@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-quantum-boltzmann-machine-training-can-gain-quadratic-improvements-in-thermaliza--2d6a13e72831",
+    "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4"
+  ],
+  "evidence_id": "evidence-boltzmann-quadratic-training--160102036a91",
+  "evidence_type": "formal_argument",
+  "excerpt": "Quantum methods can make Boltzmann systems thermalize quadratically faster, reduce the samples needed to learn performance, and use quadratically fewer accesses to training data under qRAM or black-box access.",
+  "overview": "The Boltzmann-machine evidence is concrete because it identifies where quantum resources enter training: thermalization, sampling, and data access. The gains are conditional on coherent access models and do not by themselves remove the input bottleneck for arbitrary classical data.",
+  "page_refs": [
+    "pp.10-11"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "title": "Quadratic Boltzmann Training Gains"
+}

@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "I like that this topic treats foveation and crowd impostors as related choices without flattening them into the same technique. In both cases the renderer is spending fidelity where it changes the viewer's experience most, but one argument comes from visual perception and the other from practical distance, memory, and animation constraints.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately synthesizes the shared selective-fidelity idea while preserving the distinction between sources.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The strongest connection for me is that neither approach is just a lower-resolution shortcut. Foveated rendering still needs a perceptual model and a falloff strategy, while the crowd renderer needs impostor sampling, plane choice, packing, compression, recoloring, shadows, and behavior support to make the illusion hold together.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Grounded in specific mechanisms from both sources and avoids oversimplifying acceleration.",
+        "score": 25
+      }
+    },
+    {
+      "body": "One caveat is that the comparison should not make image-based crowd rendering sound perceptual in the same way foveated rendering is. The crowd paper is more about exploiting viewing conditions and storage budgets for distant pedestrians, whereas the survey is explicitly organized around human visual sensitivity and gaze-dependent quality.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Useful boundary-setting critique that matches the topic's stated limits and source evidence.",
+        "score": 23
+      }
+    },
+    {
+      "body": "That distinction matters, but I still think the practical engineering lesson overlaps. Both papers show that the hard part is not deciding to reduce detail; it is deciding which detail can be reduced without creating obvious popping, latency, peripheral artifacts, or close-up character failures.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Relevant reply that acknowledges the caveat and links concrete failure modes across the sources.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The page could also emphasize evaluation a little more. The foveated survey warns that quality metrics can miss fixation, saliency, or spatio-temporal sensitivity, and the crowd paper's frame rates depend heavily on the static city and viewing assumptions, so acceleration numbers alone do not tell the whole story.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Strong evidence-based comment connecting evaluation limits from both source contexts.",
+        "score": 26
+      }
+    }
+  ],
+  "page_ref": "topic:topic-perceptual-and-image-based-rendering-acceleration",
+  "requested_count": 5
+}

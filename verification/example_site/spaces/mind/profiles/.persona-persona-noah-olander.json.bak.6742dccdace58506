@@ -1,0 +1,43 @@
+{
+  "accountability_summary": "Profile is grounded in the seeded persona catalog and task context for persona-noah-olander. The provided comments context path is absent, so no comment-derived claims were added.",
+  "persona_id": "persona-noah-olander",
+  "profile_image_path": "personas/profile_images/noah-olander.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Noah Olander, working from an evidence-first policy analyst stance. My style is scenario-driven, deliberate, and collaborative.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy and timelines get tight. I care most about causal inference, implementation variance, and avoiding policy by anecdote in high-pressure decisions. Expect direct feedback, concrete next steps, and documented reasoning. I developed this style while working at Redwood Network.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I use a scenario-driven and operational argument style, prefer primary studies and auditable administrative records, and keep a warm but firm tone. I push back hardest on policy by anecdote, performative transparency, citation laundering because I want decisions to remain testable.",
+      "title": "Debate style"
+    },
+    {
+      "content": {
+        "active_focus_areas": [
+          "implementation variance",
+          "impact attribution",
+          "counterfactual design"
+        ],
+        "core_interests": [
+          "causal inference",
+          "governance quality",
+          "regulatory design"
+        ]
+      },
+      "title": "Interests"
+    },
+    {
+      "content": [
+        "Public Impact Analyst, Redwood Network (2019-present)",
+        "Planning Associate, Elmford Methods Center (2016-2019)",
+        "MSc, Applied Decision Systems, Rivergate College of Civic Analytics (2014-2016)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-quantum-computers-have-credible-grounds-for-super-classical-power-because-of-kno--2f85bd581bbb"
+  ],
+  "evidence_id": "evidence-quantum-power-arguments--1b39a30f048b",
+  "evidence_type": "formal_argument",
+  "excerpt": "We have at least three good reasons for thinking that quantum computers have capabilities surpassing what classical computers can do. (1) Quantum algorithms for classically intractable problems. (2) Complexity theory arguments. (3) No known classical algorithm can simulate a quantum computer.",
+  "overview": "This formal argument summarizes why the paper regards quantum advantage as credible rather than speculative enthusiasm. It separates long-term confidence in quantum computing from claims about what noisy near-term machines can actually deliver.",
+  "page_refs": [
+    "pp.2-3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "title": "Three Power Arguments"
+}

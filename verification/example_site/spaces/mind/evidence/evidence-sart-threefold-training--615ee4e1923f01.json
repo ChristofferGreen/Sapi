@@ -1,0 +1,14 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-can-be-modeled-as-systematic-mental-training-that-reduces-biased-sel--6f2cabe951a3",
+    "claim-s-art-treats-mindfulness-as-a-multidimensional-skillset-rather-than-a-single-uni--019ffda0022f"
+  ],
+  "evidence_id": "evidence-sart-threefold-training--615ee4e1923f01",
+  "evidence_type": "formal_argument",
+  "excerpt": "Within this framework, mindfulness is described to reduce such biases through specific forms of mental training that develop meta-awareness of self (self-awareness), an ability to effectively manage or alter one\u2019s responses and impulses (self-regulation), and the development of a positive relationship between self and other that transcends self-focused needs and increases prosocial characteristics (self-transcendence).",
+  "overview": "This passage is the core formal argument for the review's S-ART framework. It defines mindfulness not by a single attentional operation but by three functional capacities that jointly transform self-processing. The excerpt matters because later neurobiological and clinical claims are organized around these three capacities rather than around a generic mindfulness label.",
+  "page_refs": [],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f",
+  "title": "Threefold S-ART Training Claim"
+}

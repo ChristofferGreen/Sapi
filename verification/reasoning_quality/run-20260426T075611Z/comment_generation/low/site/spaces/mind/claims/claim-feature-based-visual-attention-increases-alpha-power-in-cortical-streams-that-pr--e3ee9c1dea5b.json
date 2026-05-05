@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T08:02:42Z",
+  "claim_id": "claim-feature-based-visual-attention-increases-alpha-power-in-cortical-streams-that-pr--e3ee9c1dea5b",
+  "evidence_excerpts": [
+    "Such sources located in putative dorsal stream regions showed increased power in the alpha band when motion was irrelevant, whereas sources located in ventral regions showed increased alpha power when color was irrelevant.",
+    "Components with higher alpha power for attention to color are generally localized to putative dorsal visual stream regions, whereas components with higher alpha power for attention to motion are generally localized to putative ventral visual stream regions."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Feature alpha marks irrelevance",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Feature-based visual attention increases alpha power in cortical streams that process the currently irrelevant feature."
+}

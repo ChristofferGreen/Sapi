@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-contemplative-neuroscience-findings-about-mindfulness-are-vulnerable-to-oversimp--944ad1b9ad23",
+    "claim-mindfulness-research-should-adopt-preregistration-open-science-replication-caref--5f747418bb67"
+  ],
+  "evidence_id": "evidence-neuroimaging-confounds--f12c0a9b8e77",
+  "evidence_type": "formal_argument",
+  "excerpt": "The article states that fMRI and other neuroimaging pictures do not convey the complex biological and computational chain behind brain-structure and brain-function inferences, that such inferences often come from group averages, that diverse practitioners are sometimes pooled in aggregate analyses, and that many studies use cross-sectional designs. It also identifies head movement and cardiorespiratory effects as especially notable physical artifacts in meditation neuroimaging.",
+  "overview": "This evidence supports a cautious interpretation of contemplative neuroscience. It does not deny that brain differences may exist; it limits what can be inferred about causality, clinical significance, and practice-specific mechanisms from common neuroimaging designs and public-facing brain images.",
+  "page_refs": [
+    "pp.50-51"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Neuroimaging Confound Limits"
+}

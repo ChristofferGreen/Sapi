@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T18:03:17Z",
+  "claim_id": "claim-unpurified-strands-can-build-complex-circuits--367a566abb69",
+  "evidence_excerpts": [
+    "Here we demonstrate the use of circuit design software, combined with the use of unpurified strands and simplified experimental procedures, for creating a complex DNA strand displacement circuit that consists of 78 distinct species."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Unpurified strands support circuits",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "text": "Unpurified DNA strands can be used to construct complex DNA strand displacement circuits when circuit design software is combined with simplified experimental procedures."
+}

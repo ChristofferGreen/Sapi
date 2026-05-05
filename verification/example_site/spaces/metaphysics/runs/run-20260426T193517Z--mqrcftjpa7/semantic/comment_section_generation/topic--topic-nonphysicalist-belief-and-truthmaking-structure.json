@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "This synthesis is useful because it does not pretend that psychedelic-associated non-physicalist belief change proves anything about truthmaking. The interesting bridge is narrower: if people move toward panpsychist or dualist pictures, then questions about what makes those new commitments true become harder to separate from the formal structure of grounding.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately preserves the synthesis boundary while connecting belief change to truthmaking structure.",
+        "score": 21
+      }
+    },
+    {
+      "body": "I like the caution there. The psychedelic study gives evidence about shifts away from hard materialism, including in the psilocybin trial comparison, but it does not tell us that the resulting metaphysical beliefs are better grounded. A therapy-induced openness to panpsychism is still separate from an argument that panpsychism has adequate truthmakers.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Strong reply that distinguishes psychological belief movement from metaphysical justification.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The Rodriguez-Pereyra source adds a nice complication. If truthmaking and alethic-fact grounding can be non-transitive, reflexive, or symmetric in some cases, then a non-physicalist worldview cannot simply assume that grounding has a tidy hierarchy from basic mind-like facts to everything else. The order structure itself is under pressure.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Faithfully applies the strict-order challenge to the topic without overstating either source.",
+        "score": 24
+      }
+    },
+    {
+      "body": "That may be exactly where the two papers talk past each other productively. One is about how people come to inhabit less materialist outlooks, especially after intense social and clinical contexts. The other is about whether grounding relations have the formal discipline many metaphysicians expect. The shared issue is not experience versus logic, but whether metaphysical confidence outruns the structure that could support it.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Offers a nuanced synthesis of experiential belief change and formal grounding constraints.",
+        "score": 20
+      }
+    },
+    {
+      "body": "The ethical angle from the psychedelic paper also matters for this page. If guided experiences can make non-physicalist interpretations feel more compelling, participants may need warning that the change is not just emotional or therapeutic. It can alter which explanations they treat as truthmaking, even when the philosophical case remains unsettled.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Grounds an ethical implication in the source while acknowledging unresolved philosophical support.",
+        "score": 19
+      }
+    }
+  ],
+  "page_ref": "topic:topic-nonphysicalist-belief-and-truthmaking-structure",
+  "requested_count": 5
+}

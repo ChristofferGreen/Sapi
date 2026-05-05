@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:36:26Z",
+  "claim_id": "claim-creating-original-shaders-requires-substantial-mathematical-and-technical-fluenc--7ec21177eabc",
+  "evidence_excerpts": [
+    "Un shader se d\u00e9crit donc \u00e0 l'aide de ph\u00e9nom\u00e8nes physiques et math\u00e9matiques parfois complexes, faisant appel aux matrices et leurs transform\u00e9es, ou encore aux vecteurs et aux diff\u00e9rentes op\u00e9rations possibles entre eux. Il faut alors avoir une base de connaissances scientifiques et techniques relativement pouss\u00e9e, si l'on souhaite coder ses propres shaders."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Shadercraft requires mathematical fluency",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "text": "Creating original shaders requires substantial mathematical and technical fluency in functions, vectors, matrices, and spatial reasoning."
+}

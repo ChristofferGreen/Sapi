@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-mindfulness-research-should-adopt-preregistration-open-science-replication-caref--5f747418bb67",
+  "dst_claim_ref": "9",
+  "last_evaluated_run_id": null,
+  "rationale": "Neuroimaging limitations motivate the broader agenda for modest reporting and stronger methods.",
+  "relation_file_id": "rel-26dc7335e5cf2add18b2ae401420adcca4a78fbf8cda29ece7411bf120a5263a",
+  "relation_id": "supports:claim-contemplative-neuroscience-findings-about-mindfulness-are-vulnerable-to-oversimp--944ad1b9ad23->claim-mindfulness-research-should-adopt-preregistration-open-science-replication-caref--5f747418bb67",
+  "relation_type": "supports",
+  "src_claim_id": "claim-contemplative-neuroscience-findings-about-mindfulness-are-vulnerable-to-oversimp--944ad1b9ad23",
+  "src_claim_ref": "8",
+  "status": "open"
+}

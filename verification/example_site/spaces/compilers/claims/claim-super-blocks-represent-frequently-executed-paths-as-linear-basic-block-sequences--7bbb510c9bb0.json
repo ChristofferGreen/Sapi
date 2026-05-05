@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:27:45Z",
+  "claim_id": "claim-super-blocks-represent-frequently-executed-paths-as-linear-basic-block-sequences--7bbb510c9bb0",
+  "evidence_excerpts": [
+    "A super-block has the following features. (1) It is a linear sequence of basic blocks B(i),i = l..n, where n > 1. (2) It can be entered only from B( 1). (3) The program control may leave the super-block from any basic block."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Super-blocks isolate hot paths",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "text": "Super-blocks represent frequently executed paths as linear basic-block sequences that can only be entered at the first block but may exit from any block."
+}

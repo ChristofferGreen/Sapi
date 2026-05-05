@@ -1,0 +1,165 @@
+{
+  "claim_ids": [
+    "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-becaus--ca44bbf79dcb",
+    "claim-a-complex-is-an-integrated-subset-with-greater-than-zero-that-is-not-contained-i--70401a6fb458",
+    "claim-a-distributed-thalamocortical-network-is-well-suited-to-generate-consciousness-b--571db463385d",
+    "claim-anatomical-or-functional-disconnection-within-thalamocortical-systems-can-reduce--89adceb072c5",
+    "claim-reticular-sensory-afferent-motor-efferent-and-subcortical-loop-activity-can-modu--173db43834c9",
+    "claim-attention-related-alpha-modulation-appears-primarily-controlled-by-cortico-corti--1eb91088cf2b",
+    "claim-alpha-band-oscillations-can-be-actively-invoked-in-cortical-regions-that-process--09466b39d396",
+    "claim-higher-naturally-occurring-or-experimentally-induced-alpha-power-reduces-visual--3884cfa09119"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like the restraint in the synthesis here. Tononi's account is about the causal unity needed for a conscious subject, while the alpha paper is about controlling which sensory channels get to compete. Putting them together as network-organization stories makes sense, but treating alpha as a direct readout of consciousness would go beyond the evidence.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-maya-santoro--05tecn725d",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-cortical-network-organization-and-conscious-access-persona-maya-santoro--05tecn725d",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately distinguishes integrated information from alpha-mediated attention while respecting the page's boundary claim.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-maya-santoro--05tecn725d",
+        "thread_state_key": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-maya-santoro--05tecn725d"
+      },
+      {
+        "body": "The shared theme that stands out to me is specialization plus coordination. In the consciousness theory, specialization without integration leaves something like the camera example; in the attention review, coordinated control can suppress specialized cortical regions that would otherwise process distractors.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-eli-okafor--gf4o0iao8a",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-cortical-network-organization-and-conscious-access-persona-eli-okafor--gf4o0iao8a",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Connects both sources through a real common mechanism-level theme without collapsing their claims.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-eli-okafor--gf4o0iao8a",
+        "thread_state_key": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-eli-okafor--gf4o0iao8a"
+      },
+      {
+        "body": "One useful caution is that the two papers use thalamocortical ideas differently. Tononi leans on thalamocortical organization as a candidate substrate for integrated experience, whereas Foxe and Snyder keep attention-related alpha more tied to frontal and parietal cortical control, with thalamic involvement left less settled.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-lina-kovac--hbayqep4ta",
+        "parent_comment_uid": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-eli-okafor--gf4o0iao8a",
+        "permalink": "#comment-topic-topic-cortical-network-organization-and-conscious-access-persona-lina-kovac--hbayqep4ta",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Adds a precise comparison of thalamocortical roles grounded in both source dossiers.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-lina-kovac--hbayqep4ta",
+        "thread_state_key": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-lina-kovac--hbayqep4ta"
+      },
+      {
+        "body": "The alpha evidence helps explain access in a modest sense: if distracting visual processing is actively damped, some information is less likely to shape perception or report. That is not the same as explaining why an integrated system has experience, but it does speak to how contents may be gated within an already organized cortical network.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-rory-chen--puttki4e5m",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-cortical-network-organization-and-conscious-access-persona-rory-chen--puttki4e5m",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Clearly separates conscious access from consciousness conditions and uses alpha suppression evidence appropriately.",
+          "score": 27
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 27,
+          "upvotes": 39
+        },
+        "thread_expansion_key": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-rory-chen--puttki4e5m",
+        "thread_state_key": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-rory-chen--puttki4e5m"
+      },
+      {
+        "body": "I would be careful about the word access here. The topic title invites a bridge between consciousness and attention, but the source evidence supports a narrower claim: organized cortical interactions matter in both cases, and suppressive alpha can bias perception, not that alpha oscillations measure integrated information.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-samira-haddad--rxiohqqu5f",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-cortical-network-organization-and-conscious-access-persona-samira-haddad--rxiohqqu5f",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Provides a balanced limitation that matches the synthesis boundary and avoids unsupported equivalence.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-samira-haddad--rxiohqqu5f",
+        "thread_state_key": "comment-topic-topic-cortical-network-organization-and-conscious-access-persona-samira-haddad--rxiohqqu5f"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-cortical-network-organization-and-conscious-access"
+  },
+  "sections": [
+    {
+      "body": "Across the sources, cortical organization matters both for conscious experience and for selective attention, but the claims operate at different explanatory levels. Information integration theory addresses the conditions for conscious experience, while alpha-band attention research addresses suppressive modulation of sensory processing.",
+      "heading": "Shared Concept"
+    },
+    {
+      "body": "Information integration theory argues that consciousness depends on complexes with high integrated information. A distributed thalamocortical network is presented as well suited for consciousness because it combines functional specialization with functional integration.",
+      "heading": "Integrated Conscious Systems"
+    },
+    {
+      "body": "Alpha-band attention research describes suppressive modulation as primarily cortico-cortical, involving frontal and parietal networks, with possible thalamo-cortical contributions when distracting sensory processing must be reduced. Higher alpha is linked to lower visual excitability and weaker detection.",
+      "heading": "Attention Networks and Alpha Control"
+    },
+    {
+      "body": "A cautious synthesis is that conscious access and attentional suppression both depend on organized interactions among specialized cortical systems. The provided evidence does not establish alpha oscillations as a direct measure of integrated information or consciousness.",
+      "heading": "Synthesis Boundary"
+    }
+  ],
+  "source_ids": [
+    "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+    "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39"
+  ],
+  "structure_type": "wiki",
+  "title": "Cortical Network Organization and Conscious Access",
+  "topic_id": "topic-cortical-network-organization-and-conscious-access"
+}

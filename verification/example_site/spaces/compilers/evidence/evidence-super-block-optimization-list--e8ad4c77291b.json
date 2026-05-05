@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-classic-scalar-optimizations-can-be-reformulated-to-operate-on-super-blocks-and--79ce55378df0"
+  ],
+  "evidence_id": "evidence-super-block-optimization-list--e8ad4c77291b",
+  "evidence_type": "table_result",
+  "excerpt": "Table 2 lists super-block code optimizations: constant propagation, copy propagation, constant combining, common subexpression elimination, redundant store elimination, redundant load elimination, dead code removal, loop invariant code removal, loop induction variable elimination, and global variable migration. The non-loop based code optimizations work on a single super-block at a time. The loop based code optimizations work on a single super-block loop at a time.",
+  "overview": "This table grounds the breadth of the reformulation. The paper is not limited to one isolated transformation; it extends a family of classic scalar optimizations to profile-selected regions. The scope distinction also explains why the approach can preserve familiar optimization logic while changing the region of analysis to a hot path or hot loop path.",
+  "page_refs": [
+    "Table 2",
+    "p.23"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "title": "Super-Block Optimization Inventory"
+}

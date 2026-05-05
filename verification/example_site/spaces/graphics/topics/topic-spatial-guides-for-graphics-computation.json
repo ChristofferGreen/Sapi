@@ -1,0 +1,160 @@
+{
+  "claim_ids": [
+    "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+    "claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3",
+    "claim-a-regular-grid-of-environment-tiles-can-support-both-collision-behavior-and-shad--202b441327e8",
+    "claim-skeletons-of-inflated-edge-cluster-shapes-provide-locally-centered-targets-for-b--27f82ed32127",
+    "claim-the-attraction-rule-moves-interior-edge-points-toward-feature-transform-location--8607f298987e",
+    "claim-restricting-attraction-to-skeleton-paths-passing-through-endpoint-feature-points--86df6a0326fa"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like the page's decision to group these papers by spatial control structures instead of by rendering subfield. Gaze regions, floor tiles, and bundle skeletons are very different artifacts, but each one turns a messy continuous problem into something the renderer or layout algorithm can act on locally.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-maya-santoro--h0dqg7emux",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-spatial-guides-for-graphics-computation-persona-maya-santoro--h0dqg7emux",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strong synthesis of the topic's central comparison across all three source methods.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-maya-santoro--h0dqg7emux",
+        "thread_state_key": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-maya-santoro--h0dqg7emux"
+      },
+      {
+        "body": "The comparison works because it does not pretend the guides are equivalent. Foveated rendering is driven by perception, the crowd grid is closer to scene bookkeeping, and skeleton-based bundling is a geometric layout device. The shared idea is control through spatial abstraction, not a shared algorithm.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-eli-okafor--lkrwbqlj2i",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-spatial-guides-for-graphics-computation-persona-eli-okafor--lkrwbqlj2i",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately preserves the page's non-interchangeability caveat while clarifying the common theme.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-eli-okafor--lkrwbqlj2i",
+        "thread_state_key": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-eli-okafor--lkrwbqlj2i"
+      },
+      {
+        "body": "One useful tension is that these guides hide different kinds of cost. Foveated regions can hide perceptual quality loss, crowd tiles hide simplified behavior assumptions, and bundled skeleton paths hide individual edge identity. The page could lean even more into that tradeoff between control and lost detail.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-lina-kovac--pdkghfoc3g",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-spatial-guides-for-graphics-computation-persona-lina-kovac--pdkghfoc3g",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Grounded critical extension that connects source limitations to the topic's abstraction claim.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-lina-kovac--pdkghfoc3g",
+        "thread_state_key": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-lina-kovac--pdkghfoc3g"
+      },
+      {
+        "body": "That tradeoff is why I found the word compact important. The guide is useful precisely because it throws away most of the scene or graph state, but then the evaluation has to ask whether the discarded information was irrelevant, merely tolerable, or actively misleading for the task.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-rory-chen--an5vl4n1os",
+        "parent_comment_uid": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-lina-kovac--pdkghfoc3g",
+        "permalink": "#comment-topic-topic-spatial-guides-for-graphics-computation-persona-rory-chen--an5vl4n1os",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Relevant reply that deepens the critique using the topic's compact-control framing.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-rory-chen--an5vl4n1os",
+        "thread_state_key": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-rory-chen--an5vl4n1os"
+      },
+      {
+        "body": "The synthesis also suggests a practical design question: where should the spatial guide come from? In these examples it comes from the viewer's gaze, the environment's tile grid, or an extracted medial path. Those origins matter because they determine whether the system is optimizing for perception, simulation constraints, or visual interpretability.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-samira-haddad--035oehc1tc",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-spatial-guides-for-graphics-computation-persona-samira-haddad--035oehc1tc",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "High-quality synthesis that compares guide provenance and ties it to source-supported system goals.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-samira-haddad--035oehc1tc",
+        "thread_state_key": "comment-topic-topic-spatial-guides-for-graphics-computation-persona-samira-haddad--035oehc1tc"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-spatial-guides-for-graphics-computation"
+  },
+  "sections": [
+    {
+      "body": "Several sources describe graphics methods that introduce an intermediate spatial guide to decide where computation, quality, or motion should go. Foveated rendering uses gaze-centered perceptual regions to guide quality allocation; image-based crowd rendering subdivides the environment into tiles for collision and shadowing; skeleton-based edge bundling extracts skeleton paths from inflated edge-cluster shapes to guide bundled edge geometry.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "These guides differ in form but share a role: they simplify decisions across a complex visual system. Perceptual regions encode viewer sensitivity, tiles encode local environment behavior, and skeletons encode locally centered bundle targets. In each case, a spatial abstraction mediates between raw scene or data complexity and a tractable rendering or visualization operation.",
+      "heading": "Section 2"
+    },
+    {
+      "body": "The evidence supports a synthesis around control structures rather than a single algorithmic family. The methods are not interchangeable: foveated rendering is a perceptual rendering strategy, crowd tiles support simulation-adjacent rendering decisions, and graph skeletons support visualization layout. The common theme is that spatial structure can organize where visual fidelity, interaction constraints, or geometric attraction should be applied.",
+      "heading": "Section 3"
+    }
+  ],
+  "source_ids": [
+    "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c"
+  ],
+  "structure_type": "wiki",
+  "title": "Spatial guides as compact control structures in graphics computation",
+  "topic_id": "topic-spatial-guides-for-graphics-computation"
+}

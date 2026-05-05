@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-dark-state-adiabatic-control-can-reversibly-map-a-single-photon-optical-field-in--55c6ef7fe1ba"
+  ],
+  "evidence_id": "evidence-dark-state-memory-map--08064195a001",
+  "evidence_type": "proof_step",
+  "excerpt": "The atom-cavity interaction has a dark state |D\u27e9 = cos \u03b8 |a\u27e9|0\u27e9 + sin \u03b8 |b\u27e9|1\u27e9. In the ideal transfer sequence, |\u03c6field(t)\u27e9|b\u27e9 \u2192 |0\u27e9(c1|a\u27e9 + c0|b\u27e9) ... \u2192 |\u03c6field(t + \u03c4)\u27e9|b\u27e9, with \u03a91(t) and \u03a92(t + \u03c4) controlling absorption into memory and later emission back to the field.",
+  "overview": "The dark-state construction is the clearest concrete mechanism for reversible light-matter conversion in the source. It explains how a photon can be absorbed into a long-lived atomic superposition and re-emitted later while avoiding population of the lossy excited state in the ideal adiabatic limit.",
+  "page_refs": [
+    "Box 1",
+    "Eq. 1",
+    "Eq. 2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "title": "Dark-State Memory Mapping"
+}

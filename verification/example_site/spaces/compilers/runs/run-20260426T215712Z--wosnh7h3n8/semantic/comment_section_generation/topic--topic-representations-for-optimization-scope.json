@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The page makes a useful cross-cutting point: representations are where a compiler decides what can be optimized at all. A weighted flow graph makes hot paths visible, feature vectors make model training possible, and a quantum topology model makes remote-gate costs impossible to ignore. Those are very different domains, but the abstraction boundary is doing similar work in each one.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in all three source contexts and directly advances the synthesis page's core theme.",
+        "score": 25
+      }
+    },
+    {
+      "body": "I would put a little more stress on the non-neutrality of these choices. Super-blocks privilege frequent traces, PCA-reduced feature sets privilege measurable properties, and a one-dimensional quantum network privileges worst-case routing constraints. Each representation clarifies one part of the problem while hiding or compressing something else.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Adds a nuanced tradeoff about representational loss while staying faithful to the cited examples.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The super-block example is a good anchor because it shows representation changing both profitability and legality conditions. Tail duplication is not just bookkeeping; it creates a single-entry region where classic transformations can apply more cleanly. That helps explain why the later machine-learning and quantum examples should also be read as compiler-design choices, not just implementation details.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Provides a precise source-backed mechanism and connects it productively to the synthesis argument.",
+        "score": 26
+      }
+    },
+    {
+      "body": "The machine-learning case is a nice counterpoint to the profile-guided one. Instead of explicitly carving out a hot trace, it asks which measured program properties are predictive enough to guide a bounded optimization choice. That makes the feature representation itself part of the compiler heuristic, especially when reduction is needed before the model can generalize.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Accurately contrasts two representation strategies and uses the feature-reduction evidence well.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The distributed quantum compiler example keeps the page from sounding too CPU-centric. Once Bell states, communication qubits, and network topology are represented in the compiler, remote CNOT placement becomes an optimization problem rather than a late hardware afterthought. That broadens the page's claim from classic performance tuning to resource-aware compilation generally.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Grounded in the quantum source and useful for broadening the synthesis without overclaiming.",
+        "score": 24
+      }
+    }
+  ],
+  "page_ref": "topic:topic-representations-for-optimization-scope",
+  "requested_count": 5
+}

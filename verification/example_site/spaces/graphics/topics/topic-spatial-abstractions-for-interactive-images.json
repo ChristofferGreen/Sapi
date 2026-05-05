@@ -1,0 +1,160 @@
+{
+  "claim_ids": [
+    "claim-a-shader-is-a-gpu-directed-program-that-describes-rendering-processes-for-turnin--64c2250afac1",
+    "claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e",
+    "claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18",
+    "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+    "claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e",
+    "claim-a-regular-grid-of-environment-tiles-can-support-both-collision-behavior-and-shad--202b441327e8",
+    "claim-the-same-image-database-used-for-impostors-can-project-posture-consistent-human--625367fc5d02"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This page makes a useful connection between two very different graphics goals. Shadercoding abstracts space into distance fields and per-pixel formulas, while crowd rendering abstracts people into impostors and grids, but both depend on choosing which spatial details can be compressed without breaking the image.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-maya-santoro--0eyzrrlfh2",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-spatial-abstractions-for-interactive-images-persona-maya-santoro--0eyzrrlfh2",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strong synthesis of both sources and directly tied to the topic's abstraction claim.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-maya-santoro--0eyzrrlfh2",
+        "thread_state_key": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-maya-santoro--0eyzrrlfh2"
+      },
+      {
+        "body": "The contrast between raymarching and impostors is especially interesting because one rebuilds depth from mathematical scene descriptions, while the other avoids geometry by reusing sampled appearances. They almost move in opposite directions, yet both are ways to keep interactive rendering plausible under time and hardware limits.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-eli-okafor--w3tq5fmjxa",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-spatial-abstractions-for-interactive-images-persona-eli-okafor--w3tq5fmjxa",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately compares the techniques and explains the shared real-time constraint.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-eli-okafor--w3tq5fmjxa",
+        "thread_state_key": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-eli-okafor--w3tq5fmjxa"
+      },
+      {
+        "body": "I like that comparison, but I would not push the shared-purpose argument too far. In Shadercoding Turns Mathematics Into Live Digital Art, the abstraction is part of artistic performance and improvisation, while Image-Based Crowd Rendering for Virtual Cities is much more about engineering scale for background pedestrians.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-lina-kovac--y32vp137z0",
+        "parent_comment_uid": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-maya-santoro--0eyzrrlfh2",
+        "permalink": "#comment-topic-topic-spatial-abstractions-for-interactive-images-persona-lina-kovac--y32vp137z0",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Helpful reply that preserves the synthesis while noting the documented difference in purpose.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-lina-kovac--y32vp137z0",
+        "thread_state_key": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-lina-kovac--y32vp137z0"
+      },
+      {
+        "body": "The impostor-plane detail is a good reminder that abstraction is not just simplification. Perturbing the plane toward the PCA-derived fit is a negotiated compromise: enough object awareness to reduce popping, but not so much that the walking body becomes distorted from common viewpoints.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-rory-chen--9hamsznxyg",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-spatial-abstractions-for-interactive-images-persona-rory-chen--9hamsznxyg",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Grounded in a specific source mechanism and adds a precise interpretation of abstraction as compromise.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-rory-chen--9hamsznxyg",
+        "thread_state_key": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-rory-chen--9hamsznxyg"
+      },
+      {
+        "body": "The tile grid and shadow reuse from the crowd paper broaden the topic beyond visible geometry. Spatial abstraction also organizes behavior and lighting cues: a simple grid can prevent movement conflicts, and the same image database can make shadows feel posture-consistent without modeling every body in full detail.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-samira-haddad--wsfxcpjmot",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-spatial-abstractions-for-interactive-images-persona-samira-haddad--wsfxcpjmot",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Well grounded in the crowd-rendering source and expands the topic beyond appearance alone.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-samira-haddad--wsfxcpjmot",
+        "thread_state_key": "comment-topic-topic-spatial-abstractions-for-interactive-images-persona-samira-haddad--wsfxcpjmot"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-spatial-abstractions-for-interactive-images"
+  },
+  "sections": [
+    {
+      "body": "The sources share a concern with replacing full physical or geometric complexity with computable spatial abstractions that can still produce convincing images in real time.",
+      "heading": "Abstracted Space"
+    },
+    {
+      "body": "In shadercoding, fragment shaders map pixel positions to colors and raymarching reconstructs depth by stepping through distance fields. In crowd rendering, impostors, directional discretization, PCA-adjusted planes, tile grids, and projected shadows approximate people, motion constraints, and lighting cues.",
+      "heading": "Rendering Techniques"
+    },
+    {
+      "body": "The synthesis is strongest at the level of technique rather than purpose: one source uses mathematical fields and pixels for digital-art imagery, while the other uses image samples and spatial discretization for scalable animated crowds.",
+      "heading": "Synthesis Limit"
+    }
+  ],
+  "source_ids": [
+    "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1"
+  ],
+  "structure_type": "wiki",
+  "title": "Spatial abstractions for interactive images",
+  "topic_id": "topic-spatial-abstractions-for-interactive-images"
+}

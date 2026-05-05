@@ -1,0 +1,334 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e/front_page.png",
+    "source_extraction": "sources/artifacts/source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e/source_extraction.json",
+    "source_file": "sources/artifacts/source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e/source.pdf",
+    "source_markdown": "sources/artifacts/source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e/source.md",
+    "source_provenance": "sources/artifacts/source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e/source_provenance.md"
+  },
+  "authors": [
+    "Heiko Falk",
+    "Paul Lokuciejewski"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "What stands out to me in WCC Compiler Reduces Worst-Case Execution Times is the decision to make WCET analysis an input to optimization rather than a post-build audit. That changes the compiler's objective from local speedups to changes that actually move the worst-case path, which seems like the key conceptual shift.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-maya-santoro--puwwc2qtxz",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-maya-santoro--puwwc2qtxz",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately identifies the paper's central contribution and explains its significance clearly.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-maya-santoro--puwwc2qtxz",
+        "thread_state_key": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-maya-santoro--puwwc2qtxz"
+      },
+      {
+        "body": "The back-annotation piece feels underrated. If assembly-level aiT facts cannot be mapped back to ICD-C structures reliably, the higher-level optimizations would be flying blind. I like that the paper treats mismatched basic blocks as a real engineering problem instead of assuming a clean one-to-one mapping.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-eli-okafor--761dn8kmbz",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-eli-okafor--761dn8kmbz",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Grounded in the source's bridge between analyzer output and source-level transformations.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-eli-okafor--761dn8kmbz",
+        "thread_state_key": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-eli-okafor--761dn8kmbz"
+      },
+      {
+        "body": "The reported loop-bound results are impressive, especially 707 loops with 99% analyzability and 96% exactness. For hard real-time work, automating that many flow facts matters almost as much as the later optimizations, because manual loop annotations are exactly where safety and productivity can both suffer.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-lina-kovac--zatsr477ky",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-lina-kovac--zatsr477ky",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Uses specific evidence and connects it to real-time development concerns.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-lina-kovac--zatsr477ky",
+        "thread_state_key": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-lina-kovac--zatsr477ky"
+      },
+      {
+        "body": "I would be cautious about generalizing the speedups beyond the WCC, aiT, and TriCore setting. The matmult reduction from 775,720 to 227,794 cycles is a strong demonstration of composition, but the result depends on the target architecture, benchmark behavior, and the analyzer/compiler integration being mature.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-rory-chen--b3jh1mt0xx",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-rory-chen--b3jh1mt0xx",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Balances strong quantitative evidence with the source's stated scope limitations.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-rory-chen--b3jh1mt0xx",
+        "thread_state_key": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-rory-chen--b3jh1mt0xx"
+      },
+      {
+        "body": "The register-allocation result is a good example of optimizing the right thing for real-time systems. Avoiding spills on the worst-case execution path may increase text size, but that trade-off is sensible when the contract is about a safe upper bound rather than average throughput.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-samira-haddad--l7w4cocq2d",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-samira-haddad--l7w4cocq2d",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Clearly reflects the WCET-aware register allocation trade-off described in the source.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-samira-haddad--l7w4cocq2d",
+        "thread_state_key": "comment-source-source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times-5aee9841160e-persona-samira-haddad--l7w4cocq2d"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+  },
+  "date": null,
+  "display_title": "WCC Compiler Reduces Worst-Case Execution Times",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[3].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "DOI",
+      "url": "https://doi.org/10.1007/s11241-010-9101-x"
+    }
+  ],
+  "ingested_at": "2026-04-26T17:50:43Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "WCET-aware Compilation",
+      "url": "http://ls12-www.cs.tu-dortmund.de/research/activities/wcc",
+      "year": 2010
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "AbsInt Angewandte Informatik GmbH aiT: worst-case execution time analyzers",
+      "url": "http://www",
+      "year": 2010
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Informatik Centrum Dortmund e. V. 2010b ICD-C compiler framework",
+      "url": "http://www.icd.de/es/icd-c",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s11241-010-9101-x",
+      "linked_source_ids": [],
+      "title": "DOI",
+      "url": null,
+      "year": null
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 3 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2010-07-22",
+    "origin": "source.md front matter",
+    "rationale": "The extracted markdown states \u201cPublished online: 22 July 2010\u201d immediately below the authors."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The paper\u2019s motivating claim is that hard real-time development cannot rely on average-case compiler optimization or late manual timing checks. WCET reduction is path-sensitive: optimizing a block or a noncritical path may not reduce the global bound. This makes the compiler\u2019s lack of timing knowledge a root cause rather than a minor tooling gap.",
+        "grounding_claim_ids": [
+          "0"
+        ],
+        "heading": "Problem and Motivation"
+      },
+      {
+        "body": "WCC addresses the tooling gap by embedding aiT into compilation. The compiler converts its low-level representation into CRL2, invokes aiT without making the user manage analyzer setup, and imports value, loop-bound, cache, pipeline, and path-analysis results. This turns WCET analysis from a separate post-build activity into an optimization input.",
+        "grounding_claim_ids": [
+          "1"
+        ],
+        "heading": "Compiler-Analyzer Integration"
+      },
+      {
+        "body": "A central architectural move is back-annotation from assembly-level structures to source-level ICD-C structures. The paper treats this mapping carefully because basic blocks do not always correspond one-to-one across IRs. Once mapped, WCC can expose WCEP membership, edge execution frequencies, cache misses, code size, and spill-code data to high-level transformations.",
+        "grounding_claim_ids": [
+          "2"
+        ],
+        "heading": "Back-Annotation as Bridge"
+      },
+      {
+        "body": "Static WCET analysis needs safe loop iteration bounds, and manually supplying them is tedious and error-prone. WCC\u2019s loop analyzer substantially automates this part: the reported benchmark table covers 707 loops with 99% analyzability and 96% exactness. Slicing and polyhedral evaluation then address analysis cost, with major runtime reductions on examples such as fft and matmul.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ],
+        "heading": "Flow Facts and Loop Bounds"
+      },
+      {
+        "body": "Procedure cloning and positioning show why WCET information is useful above assembly level. Cloning specializes functions so data-dependent loop bounds become constant in important call contexts, improving WCET precision but increasing code size. Positioning reorders functions using WCET-derived call frequencies to improve instruction-cache behavior without relying on potentially unrepresentative profiling inputs.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ],
+        "heading": "Source-Level Optimizations"
+      },
+      {
+        "body": "The scratchpad-memory results show the value of assembly-level optimization guided by WCET data. The code allocator chooses beneficial basic-block regions for fast program SPM, while the data allocator chooses frequently accessed variables for fast data SPM. Reported average reductions are substantial, and the code-size or solver overhead is described as negligible in the evaluated setting.",
+        "grounding_claim_ids": [
+          "7",
+          "8"
+        ],
+        "heading": "Memory Allocation Optimizations"
+      },
+      {
+        "body": "The register allocator deliberately protects the WCEP from spill code, even if that can increase total text size. Across 46 benchmarks it reduces WCET by 31.2% on average versus traditional graph coloring. The matmult sequence then demonstrates practical composition: register allocation, scratchpad allocation, and procedure positioning together cut the reported WCET by more than 70%.",
+        "grounding_claim_ids": [
+          "9",
+          "10"
+        ],
+        "heading": "Register Allocation and Composition"
+      },
+      {
+        "body": "The paper\u2019s strongest claims are grounded in a specific toolchain and target: WCC, aiT, and Infineon TriCore processors. The results therefore support the feasibility and effectiveness of this integrated architecture, but they should not be read as architecture-independent speedups. Several optimizations also involve trade-offs, especially analysis time and code-size growth.",
+        "grounding_claim_ids": [
+          "1",
+          "5",
+          "7",
+          "8",
+          "9"
+        ],
+        "heading": "Assumptions and Limits"
+      }
+    ],
+    "summary_long": "Falk and Lokuciejewski frame WCC as a response to a practical real-time-systems problem: ordinary compilers optimize primarily for average-case behavior, while industrial real-time workflows often disable optimizations and perform WCET analysis only after code generation. The paper argues that this separation is both costly and technically weak, because WCET reduction depends on knowing the worst-case execution path and on understanding how local changes affect global timing. WCC therefore integrates the aiT static WCET analyzer into the compiler, translates low-level compiler IR into aiT\u2019s CRL2 format, invokes aiT transparently, imports timing results, and back-annotates those results to source-level ICD-C structures. This infrastructure supports automated loop-bound analysis, source-level optimizations such as procedure cloning and positioning, and assembly-level optimizations such as scratchpad allocation and WCET-aware register allocation. The evidence base is largely benchmark-driven. The loop analyzer handles 707 loops across 96 benchmarks with 99% analyzability and 96% exactness, while slicing and polyhedral evaluation reduce analysis time sharply on selected examples. Procedure cloning can reduce WCET estimates dramatically when call contexts make loop bounds constant, though the paper is candid about code-size expansion. Procedure positioning improves cache behavior using WCET-derived call frequencies. ILP-based code and data scratchpad allocation reduce WCET by prioritizing regions and variables with high worst-case benefit. Register allocation avoids spill code on the WCEP and gives the largest average reduction among the reported individual optimizations. The final matmult experiment shows that several optimizations can compose, reducing WCET from 775,720 cycles to 227,794 cycles. The main limitation is that the results are tied to the WCC/TriCore/aiT environment and to benchmark suites, but the paper provides a coherent architecture and quantitative evidence for WCET-aware compilation as a system-level approach.",
+    "summary_short": "This source presents WCC, a C compiler framework designed to optimize hard real-time software for worst-case execution time rather than average-case speed. Its central idea is to integrate static WCET analysis into compilation, lift timing information across compiler abstraction levels, and use that information to drive source-level and assembly-level optimizations."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "source_kind": "file",
+  "source_locator": "04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Heiko Falk",
+      "Paul Lokuciejewski"
+    ],
+    "display_title": "WCC Compiler Reduces Worst-Case Execution Times",
+    "doi": "10.1007/s11241-010-9101-x",
+    "publication_venue": "Real-Time Systems",
+    "record_display_title": "Untitled Source",
+    "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+  },
+  "source_type": "file",
+  "summary": "Falk and Lokuciejewski describe WCC, a WCET-aware C compiler that integrates static timing analysis into compilation and uses the resulting WCEP, loop-bound, cache, scratchpad, and register-allocation information to reduce worst-case execution times. The paper combines infrastructure claims with benchmark evidence for loop analysis, procedure cloning and positioning, scratchpad allocation, register allocation, and a composed matmult case study.",
+  "title": "04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times",
+  "warnings": [
+    {
+      "code": "source_record_title_was_placeholder",
+      "message": "The task_context source record display title was \u201cUntitled Source\u201d; title, authors, DOI, and publication date were recovered from source.md."
+    },
+    {
+      "code": "markdown_extraction_used",
+      "message": "source_extraction.json reported usable markdown with no warnings, so the binary PDF was not opened for layout recovery."
+    }
+  ]
+}

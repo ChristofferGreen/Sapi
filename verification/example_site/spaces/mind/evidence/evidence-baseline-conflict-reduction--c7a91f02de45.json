@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-participants-with-prior-concentrative-meditation-experience-show-reduced-conflic--7b44607a9505"
+  ],
+  "evidence_id": "evidence-baseline-conflict-reduction--c7a91f02de45",
+  "evidence_type": "statistical_result",
+  "excerpt": "At Time 1, the first contrast between the MBSR group and the control group revealed no significant conflict-monitoring difference. The second contrast, comparing the collapsed meditation-naive groups with the retreat group, revealed a significant difference for RT [t(1,49) = 2.22, p = .03] and accuracy [t(1,49) = 5.62, p < .001], with reduced flanker interference for retreat participants.",
+  "overview": "This statistical result supports the claim that prior meditation experience was associated with better baseline conflict monitoring. Because the retreat group was already experienced before the formal study intervention, the result is evidence about prior concentrative meditation experience rather than a randomized post-training effect. It helps separate baseline expertise from changes observed after MBSR or retreat participation.",
+  "page_refs": [
+    "p.113",
+    "Figure 2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "title": "Baseline Conflict Reduction"
+}

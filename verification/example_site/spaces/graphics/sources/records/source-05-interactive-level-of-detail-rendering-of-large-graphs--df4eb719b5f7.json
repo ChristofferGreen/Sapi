@@ -1,0 +1,383 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7/front_page.png",
+    "source_extraction": "sources/artifacts/source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7/source_extraction.json",
+    "source_file": "sources/artifacts/source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7/source.pdf",
+    "source_markdown": "sources/artifacts/source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7/source.md",
+    "source_provenance": "sources/artifacts/source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7/source_provenance.md"
+  },
+  "authors": [
+    "Michael Zinsmaier",
+    "Ulrik Brandes",
+    "Oliver Deussen",
+    "Hendrik Strobelt"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like that the paper treats level of detail as an image-space problem instead of building a separate graph hierarchy. The seed-point idea sounds especially practical: when many nodes land in the same pixel, it avoids spending work on marks the viewer cannot distinguish anyway.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-maya-santoro--7lqa8ukrby",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-maya-santoro--7lqa8ukrby",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Accurately identifies the image-space and seed-point contributions with clear relevance to the source.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-maya-santoro--7lqa8ukrby",
+        "thread_state_key": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-maya-santoro--7lqa8ukrby"
+      },
+      {
+        "body": "The edge aggregation is the part I would want to inspect most closely. Moving endpoints uphill on the node-density field gives a nice coupling between dense regions and their connections, but it also means the picture depends heavily on viewport and bandwidth choices.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-eli-okafor--nyk5op6cr6",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-eli-okafor--nyk5op6cr6",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Balanced comment that connects the edge method to a documented limitation.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-eli-okafor--nyk5op6cr6",
+        "thread_state_key": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-eli-okafor--nyk5op6cr6"
+      },
+      {
+        "body": "The performance evidence seems strongest when the overview is genuinely many-to-one at the pixel level. If nearly every node occupies a separate pixel, the seed-point optimization would lose much of its advantage, which makes the method feel tied to dense overview use cases rather than all graph views.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-lina-kovac--y02nh4yq2a",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-lina-kovac--y02nh4yq2a",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Grounded in the stated performance model and limitation about distinct pixel occupancy.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-lina-kovac--y02nh4yq2a",
+        "thread_state_key": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-lina-kovac--y02nh4yq2a"
+      },
+      {
+        "body": "The LaGO controls matter more than they first appear. Zooming, bandwidth-linked semantic zoom, normalization, and detail-on-demand labels are what keep the density image from becoming just a pretty heatmap with too little explanatory context.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-rory-chen--eu1niqt9q8",
+        "parent_comment_uid": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-maya-santoro--7lqa8ukrby",
+        "permalink": "#comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-rory-chen--eu1niqt9q8",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Useful reply that ties interaction controls to interpretability without overstating the paper's claims.",
+          "score": 18
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 18,
+          "upvotes": 30
+        },
+        "thread_expansion_key": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-rory-chen--eu1niqt9q8",
+        "thread_state_key": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-rory-chen--eu1niqt9q8"
+      },
+      {
+        "body": "I appreciate the examples across air traffic, migration, Net50, random data, and OpenStreetMap because they show both pattern-finding and sanity checking. Still, I would treat them as demonstrations until there is the kind of perceptual user study the authors list as future work.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-samira-haddad--tk4h2lswgh",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-samira-haddad--tk4h2lswgh",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Strongly grounded assessment that recognizes example breadth and the lack of formal validation.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-samira-haddad--tk4h2lswgh",
+        "thread_state_key": "comment-source-source-05-interactive-level-of-detail-rendering-of-large-graphs-df4eb719b5f7-persona-samira-haddad--tk4h2lswgh"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7"
+  },
+  "date": null,
+  "display_title": "Interactive Level-of-Detail Rendering for Large Graphs",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[5].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "ence pages 1\u201312. Springer Berlin / Heidelberg",
+      "url": "https://doi.org/10.1007/978-3-"
+    },
+    {
+      "confidence": "medium",
+      "domain": "dx.doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[6].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "http://dx.doi.org/",
+      "url": "http://dx.doi.org/10.1109/TVCG.2012.238"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_doi",
+        "source_field": "references[6].doi"
+      },
+      "quality_status": "trusted",
+      "rationale": "Derived from a DOI found in the source references.",
+      "title": "http://dx.doi.org/",
+      "url": "https://doi.org/10.1109/tvcg.2012.238"
+    }
+  ],
+  "ingested_at": "2026-04-26T17:11:22Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "URL",
+      "url": "http://nbn-resolving.de/urn:nbn:de:bsz:352-246910",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "1 Openstreetmap. / Jul . ctytoctyflow/ June 2012",
+      "url": "http://openstreetmap.de",
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "/",
+      "url": "http://www.census.gov/population/www/cen2000",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "2 Sparse matrix collection. / 28 R. van Liere and W. de Leeuw. Graphsplatting: Visualizing graphs as",
+      "url": "http://www.cise.ufl.edu",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "3 Us airtraf\ufb01c dataset. / Jan Graphics 9 2 :206\u2013212 Apr",
+      "url": "http://www.transtats.bts.gov",
+      "year": 2003
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/978-3-",
+      "linked_source_ids": [],
+      "title": "ence pages 1\u201312. Springer Berlin / Heidelberg",
+      "url": null,
+      "year": 2004
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1109/tvcg.2012.238",
+      "linked_source_ids": [],
+      "title": "http://dx.doi.org/",
+      "url": "http://dx.doi.org/10.1109/TVCG.2012.238",
+      "year": 2012
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 5 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The paper's core argument is that large graph drawings can remain interactive if the renderer summarizes both nodes and edges in image space. Rather than drawing every node and edge as a separate mark, it creates node density fields and derives edge aggregates from those fields, giving users an adjustable level-of-detail view that still operates directly on graph data.",
+        "grounding_claim_ids": [
+          "0",
+          "3",
+          "4"
+        ],
+        "heading": "Central Argument"
+      },
+      {
+        "body": "The node method begins with kernel-density rendering but avoids the cost of placing a kernel texture for every visible node. Its seed-point method first accumulates nodes into pixel-sized bins and then renders weighted kernel rectangles for occupied pixels. This preserves the density field for the viewport while reducing geometry and avoiding stored quadtree-style meta nodes.",
+        "grounding_claim_ids": [
+          "1",
+          "2"
+        ],
+        "heading": "Node Aggregation Path"
+      },
+      {
+        "body": "Edges are aggregated by using the node accumulation field as a height field. Endpoint pixels climb toward local density maxima, so edges between the same source and target clusters collapse into shared visual aggregates while intra-cluster edges disappear. The result is an implicit edge summary tied closely to the node aggregation rather than a separately precomputed bundle hierarchy.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ],
+        "heading": "Edge Aggregation Path"
+      },
+      {
+        "body": "The performance case combines an explicit complexity expression with measured GPU timings. The expression bounds rectangle work by min(nodes, pixels) and keeps edge rendering linear in edge count. Table 1 then shows subsecond overview times for several datasets through roughly million-edge scale, with slower but still interactive-ish times for more difficult multi-million-edge or bad-case views.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ],
+        "heading": "Performance Evidence"
+      },
+      {
+        "body": "The LaGO system turns the rendering technique into an exploration workflow. Zoom and pan change the viewport, the bandwidth parameter supports semantic zoom, normalization and scaling control density-to-color mapping, and click-based detail-on-demand labeling helps identify prominent cluster members. These controls matter because aggregation levels and density ranges vary strongly during exploration.",
+        "grounding_claim_ids": [
+          "7"
+        ],
+        "heading": "Interactive Interpretation"
+      },
+      {
+        "body": "The examples ground the technique in recognizable graph-analysis tasks. Air-traffic views highlight hubs and the Los Angeles to San Francisco connection; migration views show regional flows such as New York to Florida; Net50 exposes structured cross patterns and central peaks; random data avoids spurious patterns; and the OpenStreetMap example scales to 37.6 million building nodes.",
+        "grounding_claim_ids": [
+          "8"
+        ],
+        "heading": "Example Findings"
+      },
+      {
+        "body": "The method assumes the graph fits in video memory and that image-space aggregation is an acceptable representation of structure at the current viewport and bandwidth. It can be less advantageous when nearly every node occupies a distinct pixel, and its interpretive examples do not replace formal perceptual validation. The authors themselves identify dynamic kernel-size selection and user study as future work.",
+        "grounding_claim_ids": [
+          "1",
+          "5",
+          "6",
+          "8"
+        ],
+        "heading": "Assumptions and Limits"
+      }
+    ],
+    "summary_long": "This source addresses the practical problem of drawing graphs that fit into video memory but become unreadable as ordinary node-link diagrams because nodes and edges overplot. The authors propose a level-of-detail rendering pipeline that treats node groups as density fields and uses those density fields to guide edge aggregation. The node side adapts kernel-density rendering for graphics hardware, then introduces a seed-point optimization: nodes that land in the same pixel are accumulated first, and only one weighted kernel rectangle is rendered for that pixel. The edge side interprets the node accumulation field as a height field, moves edge endpoints toward local density maxima by hill climbing, and draws implicit aggregate edges between visual clusters. This creates a coupled visual metaphor in which dense node areas and the edges between them change together as the user zooms. The paper's strongest evidence is a combination of formal and empirical support. It gives a cost expression linear in node count, edge count, and the number of seed points bounded by pixels, then reports rendering times for datasets ranging from hundreds of edges to millions of edges and tens of millions of points. The LaGO prototype adds the interaction layer: zooming, panning, bandwidth-linked semantic zoom, normalization controls, color mapping, and detail-on-demand labeling. The examples show why the approach is useful: it exposes flight hubs, migration clusters, Net50 connectivity patterns, random-data non-patterns, and OpenStreetMap building-density structure. The limits are also clear. The method is display- and viewport-dependent, random or evenly distributed nodes can reduce the seed-point advantage, kernel bandwidth choices affect interpretation, and the examples are demonstrations rather than a controlled perceptual evaluation.",
+    "summary_short": "This source presents an OpenGL level-of-detail renderer for large graph drawings. It combines density-based node aggregation with image-space edge cumulation so users can explore large graphs interactively without precomputed hierarchies. The evidence includes algorithm design, complexity analysis, rendering-time tables, and dataset examples."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "source_kind": "file",
+  "source_locator": "05-interactive-level-of-detail-rendering-of-large-graphs.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Michael Zinsmaier",
+      "Ulrik Brandes",
+      "Oliver Deussen",
+      "Hendrik Strobelt"
+    ],
+    "display_title": "Interactive Level-of-Detail Rendering for Large Graphs",
+    "record_display_title": "Untitled Source",
+    "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+    "venue_note": "IEEE Transactions on Visualization and Computer Graphics 18(12), pages 2486-2495"
+  },
+  "source_type": "file",
+  "summary": "The source presents an OpenGL-based level-of-detail renderer for large graph drawings. It combines density-based node aggregation, a two-pass seed-point method, and hill-climbed edge endpoint aggregation to produce interactive visual summaries without precomputed graph hierarchies or meshes. Performance evidence includes a formal linear-cost expression and measured rendering times across graph datasets, while application examples show use in air traffic, migration, random, Net50, and OpenStreetMap data.",
+  "title": "05-interactive-level-of-detail-rendering-of-large-graphs",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved from the source record; source_date_inference.date is null."
+    },
+    {
+      "code": "markdown_layout_noise",
+      "message": "The markdown extraction is marked usable, but two-column PDF layout introduces some interleaved text; claims were kept to passages with recoverable wording."
+    }
+  ]
+}

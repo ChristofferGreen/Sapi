@@ -1,0 +1,144 @@
+=== semantic invocation ===
+flow_key: topic_generation
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260426T163844Z--hlmvvvvg9j/semantic/topic_generation.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims
+
+=== generation spec ===
+flow_key: topic_generation
+version: v1
+schema_path: schemas/topic_generation.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/topic_generation.json
+context_paths:
+  - <space_root>/sources
+  - <space_root>/claims
+---
+## Task
+Generate one strict JSON object for topic generation at `output_json_path`.
+Return a `topics` array containing 0..n concept-centric topic candidates.
+
+## Context Interpretation Rules
+- Use only evidence available under `context_paths`.
+- If support is weak/ambiguous, reflect that in section content rather than inventing facts.
+- Do not invent canonical IDs outside schema contracts.
+- Prefer topics that synthesize shared concepts across multiple sources.
+- If there is no clear cross-source concept worth a page, return an empty array (`"topics": []`).
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "topics": [
+    {
+      "topic_id": "",
+      "title": "",
+      "structure_type": "wiki",
+      "sections": [],
+      "claim_ids": [],
+      "source_ids": []
+    }
+  ]
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources"
+}
+
+=== repair context ===
+{
+  "previous_invalid_json": "{\n  \"topics\": [\n    {\n      \"claim_ids\": [\n        \"claim-shadercoding-blends-programming-mathematics-and-graphics-into-a-digital-art-prac--ba3619b7f801\",\n        \"claim-mastered-shadercoding-can-support-real-time-artistic-improvisation-that-fuses-co--51c4a707f8d0\",\n        \"claim-shader-showdowns-turn-shadercoding-into-a-timed-public-performance-evaluated-thr--a575bceeaf8e\",\n        \"claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034\",\n        \"claim-the-tested-system-renders-10-000-different-humans-in-a-41-260-polygon-village-at--6845dedcbaed\"\n      ],\n      \"sections\": [\n        \"Both sources treat real-time rendering as more than offline image production: shadercoding becomes a timed public or improvisational performance, while image-based crowd rendering is judged by whether dense animated scenes remain interactive.\",\n        \"The shared concept is performance under live constraints. The shadercoding source emphasizes code, image, performer, and audience; the crowd-rendering source emphasizes frame-rate evidence for thousands of moving humans in a virtual city.\",\n        \"A topic page should keep the domains distinct: one source concerns artistic live coding, while the other concerns rendering-system engineering, but both rely on technical control to sustain real-time visual experience.\"\n      ],\n      \"source_ids\": [\n        \"source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34\",\n        \"source-02-image-based-crowd-rendering--565ae2b0e3a1\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Real-time graphics as a performance medium\",\n      \"topic_id\": \"topic-real-time-graphics-as-performance-medium\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-a-shader-is-a-gpu-directed-program-that-describes-rendering-processes-for-turnin--64c2250afac1\",\n        \"claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e\",\n        \"claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18\",\n        \"claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034\",\n        \"claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e\",\n        \"claim-a-regular-grid-of-environment-tiles-can-support-both-collision-behavior-and-shad--202b441327e8\",\n        \"claim-the-same-image-database-used-for-impostors-can-project-posture-consistent-human--625367fc5d02\"\n      ],\n      \"sections\": [\n        \"The sources share a concern with replacing full physical or geometric complexity with computable spatial abstractions that can still produce convincing images in real time.\",\n        \"In shadercoding, fragment shaders map pixel positions to colors and raymarching reconstructs depth by stepping through distance fields. In crowd rendering, impostors, directional discretization, PCA-adjusted planes, tile grids, and projected shadows approximate people, motion constraints, and lighting cues.\",\n        \"The synthesis is strongest at the level of technique rather than purpose: one source uses mathematical fields and pixels for digital-art imagery, while the other uses image samples and spatial discretization for scalable animated crowds.\"\n      ],\n      \"source_ids\": [\n        \"source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34\",\n        \"source-02-image-based-crowd-rendering--565ae2b0e3a1\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Spatial abstractions for interactive images\",\n      \"topic_id\": \"topic-spatial-abstractions-for-interactive-images\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-creating-original-shaders-requires-substantial-mathematical-and-technical-fluenc--7ec21177eabc\",\n        \"claim-digital-art-practice-must-negotiate-the-tension-between-scientific-technical-pro--0ddadf7f5e3d\",\n        \"claim-mathematical-and-technical-constraints-in-shadercoding-can-become-creative-motor--5b703448e7f5\",\n        \"claim-packing-each-prerendered-human-sample-into-the-smallest-containing-rectangle-red--c2027548dc18\",\n        \"claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a\",\n        \"claim-alpha-channel-multipass-rendering-can-recolor-significant-body-regions-such-as-c--265615107527\"\n      ],\n      \"sections\": [\n        \"Both sources frame technical limits as productive rather than merely restrictive. Shadercoding treats mathematical and programming constraints as conditions for artistic creation; crowd rendering turns memory, texture, and model-complexity limits into concrete rendering strategies.\",\n        \"The crowd-rendering evidence is operational: sample packing, OpenGL texture compression, compact animation-frame storage, and alpha-channel multipass recoloring reduce memory pressure while preserving or expanding visual variety.\",\n        \"The shadercoding evidence is conceptual and practice-oriented: mathematical fluency enables original shaders, and mastered technical constraints can become creative motors for digital art. A topic should avoid claiming the crowd-rendering paper makes an artistic argument, but can compare how constraints shape image-making in both cases.\"\n      ],\n      \"source_ids\": [\n        \"source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34\",\n        \"source-02-image-based-crowd-rendering--565ae2b0e3a1\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Technical constraints as visual generators\",\n      \"topic_id\": \"topic-technical-constraints-as-visual-generators\"\n    }\n  ]\n}",
+  "require_complete_replacement_json": true,
+  "validation_errors": [
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/0/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/1/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/2/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Normalization error: topic_generation semantic output requires at least one section with non-empty body.",
+      "path": "/topics",
+      "validator": "post_schema_contract",
+      "validator_value": "topic_generation_normalizer"
+    }
+  ]
+}

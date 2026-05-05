@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499",
+    "claim-foveated-rendering-methods-span-multiple-data-types-foveation-principles-and-ren--0c481572e2ab"
+  ],
+  "evidence_id": "evidence-taxonomy-dimensions--e6c4f913a0d2",
+  "evidence_type": "table_result",
+  "excerpt": "The taxonomy section states that current foveated rendering methods are classified according to required input data type, foveation principle, and rendering paradigm; Table 2 then enumerates elements for those dimensions, including image/video, volume data, geometric meshes, point cloud, hologram data, light field, multi-resolution principles, LoD, and multiple rendering paradigms.",
+  "overview": "This table evidence supports the survey's core organizing contribution. It makes the taxonomy operational by listing dimensions and categories that can be used to compare prior work and to guide new method design across data representations and renderer architectures.",
+  "page_refs": [
+    "Table 2",
+    "pp.202-204"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "title": "Three-Dimensional Taxonomy Table"
+}

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-seesaw-compiler-automates-dna-circuit-design--367a566abb69"
+  ],
+  "evidence_id": "evidence-compiler-translation-pipeline--d0e184d4f09a",
+  "evidence_type": "formal_argument",
+  "excerpt": "A feedforward digital logic circuit is first translated into an equivalent dual-rail logic circuit and then translated into an equivalent seesaw DNA circuit. Visual DSD code and Mathematica code are generated for analysing and simulating the seesaw DNA circuit, and DNA sequences are generated for constructing the circuit.",
+  "overview": "The figure caption gives a concrete formal workflow for the compiler rather than a generic software claim. It matters because the paper\u2019s experimental construction depends on automated movement from high-level logic to molecular species, simulation artifacts, and constructible DNA sequences. The evidence does not prove all compiler outputs are correct in general, but it grounds the claimed design path for the demonstrated circuit.",
+  "page_refs": [
+    "Fig.1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-compiler-aided-systematic-construction-of-large-scale-dna-strand-displacement-circuits--367a566abb69",
+  "title": "Compiler Translation Pipeline"
+}

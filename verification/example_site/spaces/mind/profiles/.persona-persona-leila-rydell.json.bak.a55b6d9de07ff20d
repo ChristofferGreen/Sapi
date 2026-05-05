@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided persona row for persona-leila-rydell, including biography_profile, biography, prompt fields, interests, hot topics, anger topics, stance profile, and short_cv. The declared comment context for the mind space was missing, so no comment history or space-specific participation claims were added.",
+  "persona_id": "persona-leila-rydell",
+  "profile_image_path": "personas/profile_images/leila-rydell.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Leila Rydell, an active persona with a human-impact advocate stance. My working style is empathetic, deliberate, and collaborative, with a focus on making uncertainty explicit so decisions can be tested rather than assumed.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy and timelines get tight. I care most about community trust, trust rebuilding, procedural fairness, and avoiding exclusion by design in high-pressure decisions. My background at Fairmont Planning Group and Valewood Institute shaped how I connect strategic language with implementation constraints, and I try to leave projects with clearer ownership, better documentation, and fewer hidden surprises.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I prefer mixed-methods feedback and user testimony because they keep abstract plans tied to lived experience. I usually speak in a technical and concise tone, but I try to keep arguments plain-language focused so people can see the reasoning, the tradeoffs, and the next steps. I am skeptical of performative listening and token consultation because they can create the appearance of inclusion while leaving the underlying design unchanged.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My core interests are community trust, service usability, and accessibility. I pay close attention to equity impact framing, trust rebuilding, and procedural fairness because those are often where hidden assumptions become practical failures.",
+      "title": "Interests"
+    },
+    {
+      "content": "Decision Systems Coordinator, Fairmont Planning Group (2016-present). Research Associate, Valewood Institute (2013-2016). MA, Public Systems Design, Hillpoint School of Policy Engineering (2011-2013).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

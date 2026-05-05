@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "This topic works because it treats overview as a starting point rather than a final answer. LaGO's zooming, normalization, and detail-on-demand labels are doing real interpretive work: they let a dense graph become readable without pretending the summary is the original graph.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the topic's LaGO interaction claims and clearly links overview to recoverable detail.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The comparison between graph summaries and foveated rendering is helpful. Both approaches spend fidelity where it is most likely to matter, but the reason is different: LaGO follows visual density and interaction, while foveated rendering follows perceptual limits around gaze.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately contrasts the two selective-fidelity mechanisms without collapsing them into the same technique.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I would keep the warning about loss front and center. Skeleton-based edge bundling can reveal coarse corridors, but once individual edges and directions are obscured, the visualization should be read as an analysis aid, not evidence of exact paths.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Well supported by the source limitations on bundling and directly relevant to the topic's interpretation limits.",
+        "score": 25
+      }
+    },
+    {
+      "body": "Yes, and the same caution applies to the interaction controls themselves. Smoothing, relaxation, cushion shading, color mapping, and bandwidth choices can make structure easier to follow, but they also shape what viewers notice first.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "A relevant reply that extends the limitation thread using documented visual-control choices.",
+        "score": 20
+      }
+    },
+    {
+      "body": "The strongest framing is probably that these are interactive summary interfaces. The flight, migration, Net50, and OpenStreetMap examples show why summaries are useful, while the foveated-rendering survey reminds us that selective quality still depends on assumptions about task, display, and perception.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Synthesizes all three source areas and preserves the distinction between usefulness and assumptions.",
+        "score": 24
+      }
+    }
+  ],
+  "page_ref": "topic:topic-interactive-visual-summaries-and-detail-on-demand",
+  "requested_count": 5
+}

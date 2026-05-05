@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:36:26Z",
+  "claim_id": "claim-mathematical-and-technical-constraints-in-shadercoding-can-become-creative-motor--5b703448e7f5",
+  "evidence_excerpts": [
+    "Ces propos d'Alain nous montre une autre voie de la pratique de l'art num\u00e9rique : les contraintes peuvent \u00eatre cr\u00e9atrices. Ce qui nous est impos\u00e9 peut nous diriger dans notre cr\u00e9ativit\u00e9. La technicit\u00e9 derri\u00e8re le shadercoding peut donc \u00eatre cr\u00e9atrice, elle peut \u00eatre un moteur de celle-ci."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Constraints drive shader creativity",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "text": "Mathematical and technical constraints in shadercoding can become creative motors rather than merely limiting conditions."
+}

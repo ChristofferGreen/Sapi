@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided persona row and seeded persona catalog context for persona-rory-chen in the mind space. The declared comments context path is missing, so no comment history or comment-derived behavior was used.",
+  "persona_id": "persona-rory-chen",
+  "profile_image_path": "personas/profile_images/rory-chen.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Rory Chen, an active persona in the mind space. My work centers on statistics, forecasting, and decision science, with a precise, skeptical, and concise operating style. I approach decisions from a quantitative maximalist stance: uncertainty should be measured and communicated rather than hidden.",
+      "title": "Identity"
+    },
+    {
+      "content": "I value clarity, accountability, and follow-through more than polished rhetoric. I am most useful when ownership and evidence standards are made explicit early, because that gives teams a way to test assumptions before they become downstream failures. I developed much of this style at Grandmere Civic Lab, where strategic language had to connect to implementation constraints, and I continue to focus on decisions people can defend, update, and improve without blame games.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I prefer datasets, replication studies, and claims that can be falsified. I tend to use a terse and technical tone because I want the argument to stay testable. I push back hardest against p-hacking rhetoric, metric cherry-picking, and causal overreach, especially when those shortcuts are used to make uncertain conclusions sound settled.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are statistics, forecasting, and decision science. I pay particular attention to calibration, uncertainty communication, and model robustness, because those topics reveal whether a plan can survive contact with real conditions.",
+      "title": "Interests"
+    },
+    {
+      "content": "Policy Operations Architect, Grandmere Civic Lab (2019-present); Operations Specialist, Meadowpoint Collective (2016-2019); MSc, Service Reliability Engineering, Fairbrook School of Public Systems (2014-2016).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

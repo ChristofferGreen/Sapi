@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "This synthesis works because it separates mechanism from decision policy. The profile-guided work shows exactly how hot paths become compiler-friendly through weighted flow graphs, trace selection, and tail duplication. The machine-learning survey then answers a different question: how might a compiler learn when those legal mechanisms are worth using for a new program and target?",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Clearly ties both sources together while preserving the distinction between transformation machinery and learned selection.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The important caution is that learned optimization policies do not remove the need for compiler structure. A model can predict a promising unroll factor or coarsening factor, but the compiler still has to know whether a transformation is legal and how to apply it safely. That makes the older super-block machinery feel less obsolete than it first appears.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Grounded in the machine-learning source's legality limits and usefully connects them to the profile-guided mechanism.",
+        "score": 23
+      }
+    },
+    {
+      "body": "I would like to see the page emphasize that profiles play two roles across the sources. In the classic optimization report, profile counts directly reshape the flow graph and pick hot traces. In the machine-learning survey, measurements become training labels or features for future decisions. Both are empirical, but one changes the representation immediately while the other trains a policy for later choices.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Adds a precise synthesis point about profiles as representation data versus learning data.",
+        "score": 25
+      }
+    },
+    {
+      "body": "There is a useful cost story here too. Tail duplication gave the profile-guided compiler cleaner single-entry regions, but it also risked code growth and required thresholds to keep expansion modest. Learned policies could help decide when that cost is justified, yet their own training cost and benchmark representativeness become the new constraint.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Balances costs from both sources and frames a concrete reason learned policies could complement hot-path mechanisms.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The strongest takeaway for me is that compiler optimization becomes more auditable when the policy and the mechanism are kept visible. Hot-path construction explains what the compiler is allowed to transform, while learned prediction explains why one option may be profitable on a particular program and machine. Blending them is attractive only if both sides remain inspectable.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Offers a natural high-level conclusion supported by both sources, though it is slightly more interpretive than evidentiary.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "topic:topic-from-hot-path-mechanisms-to-learned-optimization-policies--5d71ef3606c7",
+  "requested_count": 5
+}

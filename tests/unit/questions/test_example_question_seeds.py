@@ -34,6 +34,7 @@ class ExampleQuestionSeedTests(unittest.TestCase):
 
         self.assertIn("tests/example/prepared_questions.tsv", create_space_text)
         self.assertIn("create_questions.sh", create_space_text)
+        self.assertIn("--seed-example-questions", runner_text)
         self.assertNotIn("003-seed-prepared-questions", runner_text)
         self.assertNotIn("QUESTIONS_TSV", runner_text)
 

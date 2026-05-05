@@ -1,0 +1,253 @@
+{
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2012-10-25",
+    "origin": "source_markdown_front_matter",
+    "rationale": "The extracted first page states 'published: 25 October 2012' for the Frontiers in Human Neuroscience review article."
+  },
+  "source": {
+    "display_title": "Mindfulness as Self-Awareness, Regulation, and Transcendence",
+    "authors": [
+      "David R. Vago",
+      "David A. Silbersweig"
+    ]
+  },
+  "claims": [
+    {
+      "text": "Mindfulness can be modeled as systematic mental training that reduces biased self-processing by developing self-awareness, self-regulation, and self-transcendence.",
+      "short_title": "Mindfulness reduces self-bias",
+      "evidence_excerpts": [
+        "Within this framework, mindfulness is described to reduce such biases through specific forms of mental training that develop meta-awareness of self (self-awareness), an ability to effectively manage or alter one’s responses and impulses (self-regulation), and the development of a positive relationship between self and other that transcends self-focused needs and increases prosocial characteristics (self-transcendence)."
+      ]
+    },
+    {
+      "text": "S-ART treats mindfulness as a multidimensional skillset rather than a single unitary cognitive capacity.",
+      "short_title": "Mindfulness is multidimensional",
+      "evidence_excerpts": [
+        "Thus, rather than reducing mindfulness down to a unitary dimension, the S-ART describes mindfulness in a broader framework of perceptual, physiological, cognitive, emotional, and behavioral component processes."
+      ]
+    },
+    {
+      "text": "Biased narrative self-processing can reify dysfunctional self-schemas through affect-biased attention, rumination, and repeated maladaptive interpretation.",
+      "short_title": "Narrative bias reifies schemas",
+      "evidence_excerpts": [
+        "The model of a psychopathological self-schema is depicted in Figure 1 in which habitual negative beliefs about the self (including their personal world and future), become reified through the continuous reinforcement of a feedback loop of affect-biased attention influencing subjective and behavioral symptoms and vice-versa."
+      ]
+    },
+    {
+      "text": "S-ART distinguishes experiential enactive, experiential phenomenological, and narrative self-processing systems as targets of mindfulness-related modulation.",
+      "short_title": "Self-processing has three systems",
+      "evidence_excerpts": [
+        "The networks identified in the S-ART framework elaborates upon past conceptualizations of self and distinguishes between two functional aspects of self-specifying processes, (1) non-conscious sensory-affective-motor processing, referred to here as the experiential enactive self (EES); (2) an agentic, self-as-subject acting as awareness in the present moment, referred to as an experiential phenomenological self (EPS). The S-ART also distinguishes between self-specifying processes and self-related processes, which refer to the evaluative self-as-object, reflecting the autobiographical narrative reconstructed from the past or projected into the future."
+      ]
+    },
+    {
+      "text": "Mindfulness-based meditation is proposed to modulate self-specifying and narrative self networks through an integrative fronto-parietal control network.",
+      "short_title": "Fronto-parietal control integrates self",
+      "evidence_excerpts": [
+        "The development of S-ART through meditation is proposed to modulate self-specifying and narrative self-networks through an integrative fronto-parietal control network."
+      ]
+    },
+    {
+      "text": "Intention, motivation, attention regulation, emotion regulation, extinction and reconsolidation, prosociality, non-attachment, and decentering are proposed as interdependent mechanisms supporting S-ART.",
+      "short_title": "Multiple mechanisms support S-ART",
+      "evidence_excerpts": [
+        "These mechanisms include intention and motivation, attention and emotion regulation, extinction and reconsolidation, prosociality, non-attachment, and de-centering."
+      ]
+    },
+    {
+      "text": "Short mindfulness interventions have been reported to improve clinical symptoms, executive function, and white matter connectivity, although dosage and quality questions remain unresolved.",
+      "short_title": "Brief training can change outcomes",
+      "evidence_excerpts": [
+        "In fact, there have been reported improvements in clinical symptoms and executive function in short-term training of specific mindfulness-based practices as short as three 20 min sessions (Zeidan et al., 2010) and changes in white matter connectivity after 11 h of training (Tang et al., 2010)."
+      ]
+    },
+    {
+      "text": "Meditation practice is associated with physiological profiles of relaxed alertness, including reduced sympathetic markers and increased parasympathetic activity.",
+      "short_title": "Meditation shifts physiology",
+      "evidence_excerpts": [
+        "Studies comparing experienced meditators to controls or short-term meditators have demonstrated a particular physiological profile across styles of practice suggestive of an alert, but hypometabolic state in which there is decreased sympathetic nervous system activity, and increased parasympathetic activity."
+      ]
+    },
+    {
+      "text": "Mindfulness-based stress reduction and compassion meditation have been reported to influence immune and stress-reactivity markers.",
+      "short_title": "Practice alters stress markers",
+      "evidence_excerpts": [
+        "Davidson and colleagues (2003b) found that MBSR produced significant increases in antibody titers to influenza vaccine compared with those subjects in a wait-list control group.",
+        "Pace and colleagues (2010) reported that after 6-weeks of compassion meditation practice, there were reduced innate cytokine (IL-6) and subjective distress responses to a standardized laboratory psychosocial stressor [Trier Social Stress Test (TSST)]."
+      ]
+    },
+    {
+      "text": "Future mindfulness research needs longitudinal measurement of S-ART subcomponents, dose effects, practice quality, and possible adverse effects.",
+      "short_title": "Research needs longitudinal rigor",
+      "evidence_excerpts": [
+        "It is likely that future research in the contemplative sciences will provide a developmental trajectory of different S-ART-specific subcomponents and individual differences across duration and frequency of practice.",
+        "It is also critical that the emerging field examine the adverse effects of long-term practice—effects that typically go unnoticed in clinical trials, but are more prevalent in longer retreats and in practitioners that may or may not have a predisposition toward developing psychopathology."
+      ]
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "evidence-sart-threefold-training--615ee4e1923f01",
+      "title": "Threefold S-ART Training Claim",
+      "excerpt": "Within this framework, mindfulness is described to reduce such biases through specific forms of mental training that develop meta-awareness of self (self-awareness), an ability to effectively manage or alter one’s responses and impulses (self-regulation), and the development of a positive relationship between self and other that transcends self-focused needs and increases prosocial characteristics (self-transcendence).",
+      "overview": "This passage is the core formal argument for the review's S-ART framework. It defines mindfulness not by a single attentional operation but by three functional capacities that jointly transform self-processing. The excerpt matters because later neurobiological and clinical claims are organized around these three capacities rather than around a generic mindfulness label.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "0",
+        "1"
+      ],
+      "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+    },
+    {
+      "evidence_id": "evidence-dysfunctional-self-schema-loop--615ee4e1923f02",
+      "title": "Dysfunctional Self-Schema Loop",
+      "excerpt": "The model of a psychopathological self-schema is depicted in Figure 1 in which habitual negative beliefs about the self (including their personal world and future), become reified through the continuous reinforcement of a feedback loop of affect-biased attention influencing subjective and behavioral symptoms and vice-versa.",
+      "overview": "This figure-linked statement supplies the review's main causal target: a feedback loop in which negative self-beliefs, attention bias, symptoms, and behavior reinforce one another. It grounds the claim that mindfulness practice is meant to interrupt biased narrative self-processing, while remaining a conceptual model rather than a direct experimental result in this article.",
+      "evidence_type": "figure_result",
+      "claim_refs": [
+        "2"
+      ],
+      "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+    },
+    {
+      "evidence_id": "evidence-self-system-parcellation--615ee4e1923f03",
+      "title": "Three Self-Processing Systems",
+      "excerpt": "The networks identified in the S-ART framework elaborates upon past conceptualizations of self and distinguishes between two functional aspects of self-specifying processes, (1) non-conscious sensory-affective-motor processing, referred to here as the experiential enactive self (EES); (2) an agentic, self-as-subject acting as awareness in the present moment, referred to as an experiential phenomenological self (EPS). The S-ART also distinguishes between self-specifying processes and self-related processes, which refer to the evaluative self-as-object, reflecting the autobiographical narrative reconstructed from the past or projected into the future.",
+      "overview": "The excerpt provides the taxonomic structure that lets the paper connect phenomenology to neural systems. EES, EPS, and narrative self-processing are not presented as a complete theory of self, but as a practical parcellation for identifying where mindfulness training might change perception, agency, and autobiographical evaluation.",
+      "evidence_type": "formal_argument",
+      "claim_refs": [
+        "3",
+        "4"
+      ],
+      "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+    },
+    {
+      "evidence_id": "evidence-brief-training-outcomes--615ee4e1923f04",
+      "title": "Brief Training Outcome Reports",
+      "excerpt": "In fact, there have been reported improvements in clinical symptoms and executive function in short-term training of specific mindfulness-based practices as short as three 20 min sessions (Zeidan et al., 2010) and changes in white matter connectivity after 11 h of training (Tang et al., 2010).",
+      "overview": "This review passage summarizes empirical findings used to motivate the plausibility of practice-dependent change even after short interventions. It supports the claim that mindfulness practices can alter behavioral and neural outcomes, but the source treats these reports as part of an emerging evidence base rather than as final dose-response proof.",
+      "evidence_type": "observational_result",
+      "claim_refs": [
+        "6",
+        "9"
+      ],
+      "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+    },
+    {
+      "evidence_id": "evidence-hypometabolic-alert-profile--615ee4e1923f05",
+      "title": "Alert Hypometabolic Physiology",
+      "excerpt": "Studies comparing experienced meditators to controls or short-term meditators have demonstrated a particular physiological profile across styles of practice suggestive of an alert, but hypometabolic state in which there is decreased sympathetic nervous system activity, and increased parasympathetic activity. Across meditation styles, electromyography has revealed muscle relaxation in spite of the upright, unsupported posture. Skin conductivity, along with oxygen consumption, heart rate, blood pressure, cortisol, muscle tone, urinary vanillyl mandelic acid (VMA) (a catecholamine metabolite), and rate of breathing all decrease during meditation.",
+      "overview": "This is a concrete synthesis of physiological measures rather than a general theoretical statement. It supports the self-regulation arm of S-ART by identifying autonomic, metabolic, muscular, endocrine, and respiratory markers that move toward relaxed alertness during meditation. The evidence is cross-study and practice-general, so it should be interpreted as a convergent pattern rather than a single controlled experiment.",
+      "evidence_type": "measurement",
+      "claim_refs": [
+        "7"
+      ],
+      "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+    },
+    {
+      "evidence_id": "evidence-immune-stress-reactivity--615ee4e1923f06",
+      "title": "Immune and Stress Reactivity",
+      "excerpt": "Davidson and colleagues (2003b) found that MBSR produced significant increases in antibody titers to influenza vaccine compared with those subjects in a wait-list control group. Interestingly, the magnitude of increase in left-sided anterior PFC activation in EEG predicted the magnitude of antibody titer rise to the vaccine. Pace and colleagues (2010) reported that after 6-weeks of compassion meditation practice, there were reduced innate cytokine (IL-6) and subjective distress responses to a standardized laboratory psychosocial stressor [Trier Social Stress Test (TSST)].",
+      "overview": "The excerpt provides the review's most concrete biomedical examples: immune response to vaccination, EEG-linked antibody change, cytokine response, and subjective distress under laboratory stress. These results support the idea that mindfulness and compassion training can influence stress physiology, while the review still frames mechanisms, dose, and specificity as open research questions.",
+      "evidence_type": "statistical_result",
+      "claim_refs": [
+        "8",
+        "9"
+      ],
+      "source_id": "source-05-self-awareness-self-regulation-and-self-transcendence-s-art-a-framework-for-unde-w2005022581--615ee4e1923f"
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "5",
+      "dst_claim_ref": "0",
+      "rationale": "The proposed component mechanisms explain how the three S-ART capacities are cultivated and integrated."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "2",
+      "dst_claim_ref": "0",
+      "rationale": "The dysfunctional narrative self model identifies the bias cycle that S-ART training is meant to reduce."
+    },
+    {
+      "relation_type": "derived_from",
+      "src_claim_ref": "4",
+      "dst_claim_ref": "3",
+      "rationale": "The proposed fronto-parietal integration claim depends on the paper's parcellation of self-processing systems."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "8",
+      "dst_claim_ref": "7",
+      "rationale": "Immune and stress-reactivity findings provide concrete examples of meditation-related physiological regulation."
+    },
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "9",
+      "dst_claim_ref": "1",
+      "rationale": "The call for longitudinal, component-level research follows from treating mindfulness as a multidimensional construct."
+    }
+  ],
+  "summary": "Vago and Silbersweig propose S-ART as a neurobiological framework for mindfulness, organizing practice-related change around self-awareness, self-regulation, and self-transcendence. The review argues that mindfulness practices can reduce biased narrative self-processing through interdependent mechanisms including attention and emotion regulation, extinction and reconsolidation, prosociality, non-attachment, and decentering, while calling for more precise longitudinal research on dose, practice quality, component mechanisms, and adverse effects.",
+  "warnings": [
+    "The source record reported an unresolved publication date, but the extracted source markdown front matter states 'published: 25 October 2012'.",
+    "The markdown extraction is marked usable, but the layout-preserved text interleaves two-column material; excerpts were selected from coherent passages and should be checked against the PDF for page-perfect quotation.",
+    "The article is a narrative review and theoretical framework, so several claims are formal arguments or synthesized evidence rather than direct experimental results produced by this source."
+  ],
+  "source_dossier": {
+    "summary_short": "Vago and Silbersweig propose S-ART as a framework for mindfulness built around self-awareness, self-regulation, and self-transcendence. The review links meditation practice to biased self-processing, neurocognitive control, body regulation, prosociality, and a research agenda for testing specific mechanisms rather than treating mindfulness as a black box.",
+    "summary_long": "Vago and Silbersweig's article is a theory-building review that tries to make mindfulness scientifically tractable without flattening it into one vague attentional skill. The central move is the S-ART framework: mindfulness training develops self-awareness, self-regulation, and self-transcendence, and these capacities reduce biased self-processing. The authors argue that suffering and psychopathology often involve distorted narrative self-schemas, affect-biased attention, and rumination. Mindfulness practices are therefore framed as methods for noticing and modifying the conditions that create these distortions. The review connects this psychological argument to a neurobiological model of self-processing. It distinguishes embodied, present-centered, and autobiographical forms of self-related processing, then proposes that mindfulness-based practice can modulate self-specifying and narrative self networks through integrative fronto-parietal control. The framework is broad: it includes intention and motivation, attention regulation, emotion regulation, extinction and reconsolidation, prosociality, non-attachment, and decentering. Empirical support is synthesized rather than newly generated. The article cites reports of brief training effects, physiological changes during meditation, immune and stress-reactivity findings, and network-level hypotheses. It also emphasizes limits. The authors warn that mindfulness research needs more precise operational definitions, objective measures of practice quality, longitudinal designs, dose-response evidence, and attention to adverse effects, especially in long-term or intensive practice contexts. The result is not a settled mechanistic proof, but a detailed map for decomposing mindfulness into testable components and for connecting contemplative practice to self-processing, clinical change, and brain-body regulation.",
+    "sections": [
+      {
+        "heading": "Central Argument",
+        "body": "The article's main argument is that mindfulness is best understood as training in self-awareness, self-regulation, and self-transcendence rather than as one generic mental state. This reframing lets the authors connect meditation practice to biased self-processing, clinical symptoms, and prosocial change without relying on a single overloaded definition of mindfulness.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ]
+      },
+      {
+        "heading": "Model of Suffering",
+        "body": "The paper treats suffering and psychopathology as partly maintained by distorted narrative self-processing. Habitual negative beliefs, affect-biased attention, rumination, and symptoms reinforce one another until a self-schema becomes reified. Mindfulness matters because it is proposed to expose and loosen this loop rather than merely suppress symptoms.",
+        "grounding_claim_ids": [
+          "2"
+        ]
+      },
+      {
+        "heading": "Neurocognitive Architecture",
+        "body": "S-ART separates self-processing into embodied enactive, present phenomenological, and autobiographical narrative modes. That taxonomy supports the claim that mindfulness may alter relationships among self-specifying and narrative systems through fronto-parietal control, while preserving the article's caution that this is a simplified scaffold rather than a complete account of selfhood.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ]
+      },
+      {
+        "heading": "Mechanism Pathway",
+        "body": "The framework's mechanism list is deliberately plural. Intention, motivation, attention regulation, emotion regulation, extinction, reconsolidation, prosociality, non-attachment, and decentering are presented as interdependent processes strengthened by practice. This is why the review resists reducing mindfulness to attention alone or to a uniform clinical ingredient.",
+        "grounding_claim_ids": [
+          "5",
+          "1"
+        ]
+      },
+      {
+        "heading": "Empirical Anchors",
+        "body": "Although the article is a review, it anchors the framework in concrete empirical reports: brief training effects on symptoms, executive function, and white matter connectivity; physiological signatures of relaxed alertness; and immune or stress-reactivity findings after MBSR or compassion practice. These examples make the framework biologically plausible without settling causal specificity.",
+        "grounding_claim_ids": [
+          "6",
+          "7",
+          "8"
+        ]
+      },
+      {
+        "heading": "Limits and Research Needs",
+        "body": "The authors repeatedly signal that the field needs stronger methods. They call for longitudinal tracking of S-ART components, better measures of practice duration and quality, objective standards for expertise, and explicit study of adverse effects. The practical interpretation is that mindfulness research should decompose practices into mechanisms before making broad therapeutic claims.",
+        "grounding_claim_ids": [
+          "9",
+          "1"
+        ]
+      }
+    ]
+  }
+}

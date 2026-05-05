@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T15:52:46Z",
+  "claim_id": "claim-nisq-devices-are-best-understood-as-experimental-tools-for-exploring-many-body-q--fde7f9646dbb",
+  "evidence_excerpts": [
+    "Physicists are excited about this NISQ technology, which gives us new tools for exploring the physics of many entangled particles.",
+    "NISQ is not likely to change the world all by itself. Instead, the primary goal for near-term quantum platforms should be to pave the way for bigger payoffs."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "NISQ enables quantum exploration",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "text": "NISQ devices are best understood as experimental tools for exploring many-body quantum physics and as stepping stones toward more powerful quantum technologies, not as near-term world-changing machines."
+}

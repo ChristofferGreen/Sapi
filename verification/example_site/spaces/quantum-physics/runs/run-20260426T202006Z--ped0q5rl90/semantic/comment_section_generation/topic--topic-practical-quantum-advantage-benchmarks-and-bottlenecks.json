@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The topic works because it separates three claims that often get blended together: a subroutine can be asymptotically faster, a device can beat classical simulation on a benchmark, and a user can get an end-to-end practical advantage. The sources make the first two plausible in selected cases, but they keep forcing the third one through data access, readout, and classical-baseline costs.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strong synthesis of the topic's benchmark-versus-workflow distinction across the sources.",
+        "score": 24
+      }
+    },
+    {
+      "body": "Sycamore is a useful anchor here precisely because it is narrow. Random-circuit sampling shows that a real noisy processor can enter a classically hard regime, but it does not answer whether quantum machine-learning speedups survive loading classical data, extracting usable outputs, or competing with optimized heuristics.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately links the Sycamore benchmark to the QML input-output caveats without overclaiming.",
+        "score": 23
+      }
+    },
+    {
+      "body": "I would put even more weight on the access model. HHL, qPCA, and related linear-algebra routines can be impressive if the right quantum state is already available, but the practical question is whether preparing that state and measuring the needed answer cost less than the classical method being displaced.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Highlights a central source constraint and states the practical comparison clearly.",
+        "score": 25
+      }
+    },
+    {
+      "body": "That is also where NISQ expectations matter. QAOA and VQE are worth testing because hardware can reveal behavior theory misses, but the comparison has to be against mature optimization and chemistry methods, not toy baselines chosen because a shallow circuit can beat them.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Grounded in Preskill's cautions about hybrid algorithms and benchmark quality.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The most convincing path seems to be quantum data rather than ordinary classical records. If the data already come from a quantum device or many-body system, the loading problem is less artificial, and expectation values or principal components may be useful without demanding a full classical reconstruction.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Uses the QML source's quantum-data advantage while keeping the claim appropriately scoped.",
+        "score": 21
+      }
+    }
+  ],
+  "page_ref": "topic:topic-practical-quantum-advantage-benchmarks-and-bottlenecks",
+  "requested_count": 5
+}

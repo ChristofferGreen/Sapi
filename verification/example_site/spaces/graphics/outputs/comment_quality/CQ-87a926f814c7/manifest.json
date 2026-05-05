@@ -1,0 +1,109 @@
+{
+  "aggregates": {
+    "dimensions": {
+      "argument_quality": 0.6,
+      "human_likeness": 0.85,
+      "novelty": 1.0,
+      "persona_consistency": 1.0,
+      "relevance": 1.0
+    },
+    "overall": 0.89
+  },
+  "as_of": "2026-04-26T20:55:49Z",
+  "benchmark_path": "sapi/benchmarks/comment_quality_benchmark_v1.json",
+  "dimensions": [
+    "persona_consistency",
+    "novelty",
+    "relevance",
+    "argument_quality",
+    "human_likeness"
+  ],
+  "evaluation_id": "CQ-87a926f814c7",
+  "fail_reasons": [],
+  "pass": true,
+  "row_count": 5,
+  "row_scores": [
+    {
+      "comment_uid": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-maya-santoro--y29cnw5m6f",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "topic:topic-image-space-gpu-aggregation-for-real-time-scale",
+      "persona_id": "persona-maya-santoro",
+      "row_index": 1
+    },
+    {
+      "comment_uid": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-eli-okafor--7y41noynwq",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "topic:topic-image-space-gpu-aggregation-for-real-time-scale",
+      "persona_id": "persona-eli-okafor",
+      "row_index": 2
+    },
+    {
+      "comment_uid": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-lina-kovac--onxms5193y",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "topic:topic-image-space-gpu-aggregation-for-real-time-scale",
+      "persona_id": "persona-lina-kovac",
+      "row_index": 3
+    },
+    {
+      "comment_uid": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-rory-chen--tlgmjeyxgk",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "topic:topic-image-space-gpu-aggregation-for-real-time-scale",
+      "persona_id": "persona-rory-chen",
+      "row_index": 4
+    },
+    {
+      "comment_uid": "comment-topic-topic-image-space-gpu-aggregation-for-real-time-scale-persona-samira-haddad--fhxf6vbla6",
+      "dimension_scores": {
+        "argument_quality": 0.6,
+        "human_likeness": 0.85,
+        "novelty": 1.0,
+        "persona_consistency": 1.0,
+        "relevance": 1.0
+      },
+      "overall": 0.89,
+      "page_ref": "topic:topic-image-space-gpu-aggregation-for-real-time-scale",
+      "persona_id": "persona-samira-haddad",
+      "row_index": 5
+    }
+  ],
+  "schema_version": "comment_section_quality_eval_manifest_v1",
+  "snapshot_path": null,
+  "thresholds": {
+    "dimension_mins": {
+      "argument_quality": 0.55,
+      "human_likeness": 0.55,
+      "novelty": 0.5,
+      "persona_consistency": 0.5,
+      "relevance": 0.55
+    },
+    "overall_min": 0.62
+  }
+}

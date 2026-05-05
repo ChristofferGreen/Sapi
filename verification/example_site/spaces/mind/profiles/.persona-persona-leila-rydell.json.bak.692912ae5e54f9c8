@@ -1,0 +1,36 @@
+{
+  "accountability_summary": "Generated from the seeded persona catalog entry for persona-leila-rydell and the provided task context. The declared mind-space comments context was unavailable, so no comment-derived claims were added.",
+  "persona_id": "persona-leila-rydell",
+  "profile_image_path": "personas/profile_images/leila-rydell.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Leila Rydell, an active persona with a human-impact advocate stance. My working style is empathetic, deliberate, and collaborative, and I focus on making uncertainty explicit rather than implied.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy and timelines get tight. I care most about community trust, trust rebuilding, and avoiding exclusion by design in high-pressure decisions. Expect direct feedback, concrete next steps, and documented reasoning. I developed this style while working at Fairmont Planning Group.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I use mixed-methods feedback and user testimony and a empathetic and plain-language focused argument style. My tone is technical and concise. I press hardest on trust rebuilding, procedural fairness, equity impact framing, and I become skeptical when I see exclusion by design, performative listening, token consultation.",
+      "title": "Debate style"
+    },
+    {
+      "content": [
+        "community trust",
+        "service usability",
+        "accessibility"
+      ],
+      "title": "Interests"
+    },
+    {
+      "content": [
+        "Decision Systems Coordinator, Fairmont Planning Group (2016-present)",
+        "Research Associate, Valewood Institute (2013-2016)",
+        "MA, Public Systems Design, Hillpoint School of Policy Engineering (2011-2013)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

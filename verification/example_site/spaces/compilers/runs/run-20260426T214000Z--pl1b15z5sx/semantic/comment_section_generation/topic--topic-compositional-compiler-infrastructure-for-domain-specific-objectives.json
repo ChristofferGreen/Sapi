@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The strongest through-line on this page is that each compiler becomes more useful by importing evidence from its target domain. Profiles, learned profitability data, WCET paths, and Bell-state budgets are very different signals, but they all reshape optimization from a generic pass list into a feedback-aware infrastructure.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Grounded synthesis across all four sources with a clear page-level contribution.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I appreciate that the page does not treat domain-specific objectives as a reason to throw away the compiler pipeline. The profile-guided and machine-learning examples both keep conventional legality and transformation machinery in place, then add better decision inputs around profitability and path importance.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately connects two source pipelines and avoids overstating replacement claims.",
+        "score": 23
+      }
+    },
+    {
+      "body": "WCC is a useful anchor because it shows what composition really costs. Back-annotating aiT results, automating loop bounds, and then stacking register allocation, scratchpad placement, and procedure positioning is much more than adding one clever optimization pass; it is a system for keeping timing facts alive across abstraction levels.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Specific to the WCC evidence and explains why infrastructure composition matters.",
+        "score": 25
+      }
+    },
+    {
+      "body": "The distributed quantum compiler broadens the comparison nicely because its objective is not ordinary speed at all. Once remote CNOTs consume Bell states and depend on topology, the compiler has to manage a resource model that looks closer to network scheduling than classic scalar optimization.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Well grounded in the quantum source and adds contrast to the synthesis topic.",
+        "score": 22
+      }
+    },
+    {
+      "body": "One caution is that compositional infrastructure can make evaluation harder. A 1.15 profile-guided speedup, a learned unroll predictor, a WCC matmult reduction, and bounded distributed-depth overhead each answer a different success question, so the page is right to frame these as objective-specific frameworks rather than one unified compiler metric.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Balances the synthesis with source-backed quantitative examples and a useful evaluation caveat.",
+        "score": 24
+      }
+    }
+  ],
+  "page_ref": "topic:topic-compositional-compiler-infrastructure-for-domain-specific-objectives",
+  "requested_count": 5
+}

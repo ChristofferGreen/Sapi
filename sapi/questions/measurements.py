@@ -11,7 +11,7 @@ from typing import Any, Callable
 
 from sapi.contracts.ids import format_timestamp_rfc3339_utc
 from sapi.contracts.semantic_specs import resolve_semantic_invocation_spec
-from sapi.core.pipeline_runtime import track_path_for_write
+from sapi.core.pipeline_runtime import track_path_for_delete, track_path_for_write
 from sapi.core.transactions import ArtifactTransaction
 from sapi.llm.client import LlmClient
 from sapi.llm.semantic_executor import (
@@ -321,9 +321,19 @@ def _write_measurement_payload(
             **item,
         }
         measurement_path = space_root / "measurements" / f"{measurement_id}.json"
+        _require_measurement_file_owned_by_question(
+            measurement_path=measurement_path,
+            question_id=question.question_id,
+        )
         track_path_for_write(measurement_path, transaction=transaction)
         measurement_path.write_text(json.dumps(canonical_payload, indent=2, sort_keys=True) + "\n")
 
+    _delete_stale_question_measurements(
+        space_root=space_root,
+        question=question,
+        refreshed_measurement_ids=measurement_ids,
+        transaction=transaction,
+    )
     _write_measurement_metadata(
         space_root=space_root,
         question=question,
@@ -337,6 +347,44 @@ def _write_measurement_payload(
         status=status,
     )
     return measurement_ids, len(chart_groups)
+
+
+def _delete_stale_question_measurements(
+    *,
+    space_root: Path,
+    question: PreparedQuestion,
+    refreshed_measurement_ids: list[str],
+    transaction: ArtifactTransaction,
+) -> None:
+    refreshed = set(refreshed_measurement_ids)
+    for measurement_id in question.measurement_ids:
+        if measurement_id in refreshed:
+            continue
+        measurement_path = space_root / "measurements" / f"{measurement_id}.json"
+        _require_measurement_file_owned_by_question(
+            measurement_path=measurement_path,
+            question_id=question.question_id,
+        )
+        track_path_for_delete(measurement_path, transaction=transaction)
+
+
+def _require_measurement_file_owned_by_question(
+    *,
+    measurement_path: Path,
+    question_id: str,
+) -> None:
+    if not measurement_path.exists():
+        return
+    try:
+        payload = _read_json_object(measurement_path)
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
+        raise ValueError(f"{measurement_path}: existing measurement file is not valid JSON.") from exc
+    observed_question_id = payload.get("question_id")
+    if observed_question_id != question_id:
+        raise ValueError(
+            f"{measurement_path}: existing measurement belongs to question_id "
+            f"{observed_question_id!r}, not {question_id!r}."
+        )
 
 
 def _write_measurement_metadata(

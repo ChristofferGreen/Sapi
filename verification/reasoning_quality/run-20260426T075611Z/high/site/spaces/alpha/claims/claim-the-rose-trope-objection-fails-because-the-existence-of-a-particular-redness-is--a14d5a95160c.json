@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T08:12:33Z",
+  "claim_id": "claim-the-rose-trope-objection-fails-because-the-existence-of-a-particular-redness-is--a14d5a95160c",
+  "evidence_excerpts": [
+    "the existence of the particular redness isn\u2019t even partially grounded in the existence of the rose",
+    "the existence of the particular redness is fully grounded in the fact that the rose is a particular shade of red"
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Rose existence is nonground",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "The rose trope objection fails because the existence of a particular redness is not grounded in the rose\u2019s existence but in the rose\u2019s being a particular shade of red."
+}

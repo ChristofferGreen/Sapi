@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:22:07Z",
+  "claim_id": "claim-if-being-f-grounds-being-g-then-the-fact-that-being-f-necessitates-being-g-can-b--685ae4dcbfb4",
+  "evidence_excerpts": [
+    "if being F grounds being G, our account implies that being G just is being F or H for some given H, and which on our account gives the (or a) full essence of being G. It then follows that necessarily, a thing is G iff it is F or H, which entails by straightforward modal reasoning that necessarily, a thing is F only if it\u2019s also G, as desired."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Grounding yields necessitation",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "text": "If being F grounds being G, then the fact that being F necessitates being G can be derived from what it is to be G."
+}

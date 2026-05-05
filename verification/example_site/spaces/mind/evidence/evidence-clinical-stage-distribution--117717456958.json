@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-clinical-evidence-remains-preliminary--117717456958"
+  ],
+  "evidence_id": "evidence-clinical-stage-distribution--117717456958",
+  "evidence_type": "statistical_result",
+  "excerpt": "Dimidjian and Segal estimate, using the NIH stage model for clinical science, that only 30% of research using mindfulness-based interventions has moved beyond Stage 1. The majority beyond Stage 1 was Stage 2a, compared to wait-list control or treatment as usual; 9% of the total was Stage 2b, compared to active control; only 1% was conducted outside research contexts.",
+  "overview": "These proportions are concrete methodological evidence for the paper\u2019s caution about clinical rollout. They show that the intervention literature was dominated by early refinement or weak comparison designs, with very little evidence from active-control or real-world implementation contexts.",
+  "page_refs": [
+    "p. 45"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Early Clinical Stage Distribution"
+}

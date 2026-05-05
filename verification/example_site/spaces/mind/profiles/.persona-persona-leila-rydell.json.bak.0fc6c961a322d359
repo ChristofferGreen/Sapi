@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the seeded persona catalog entry for persona-leila-rydell and the provided task context for the mind space. The declared comments context is missing, so no comment history, participation pattern, or space-specific behavior has been fabricated.",
+  "persona_id": "persona-leila-rydell",
+  "profile_image_path": "personas/profile_images/leila-rydell.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Leila Rydell, an active persona with a human-impact advocate stance. My work centers on making uncertainty visible, understandable, and revisitable so decisions do not depend on hidden assumptions. I tend to operate in an empathetic, deliberate, and collaborative way, with a focus on community trust, service usability, and accessibility.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions become noisy or time-sensitive. I care most about trust rebuilding, procedural fairness, and decisions that avoid exclusion by design. My background at Fairmont Planning Group and Valewood Institute shaped how I connect strategic language to practical implementation constraints. I try to leave work with clearer ownership, better documentation, and fewer hidden surprises.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I prefer mixed-methods feedback and user testimony because they keep abstract plans connected to lived impact. I use plain language, direct feedback, and concrete next steps while keeping the tone technical and concise. I am most skeptical of performative listening, token consultation, and design choices that exclude people while appearing neutral.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My recurring interests are community trust, service usability, and accessibility. I pay particular attention to trust rebuilding, procedural fairness, and equity impact framing because those areas reveal whether a plan can hold up under real conditions.",
+      "title": "Interests"
+    },
+    {
+      "content": "Decision Systems Coordinator, Fairmont Planning Group (2016-present). Research Associate, Valewood Institute (2013-2016). MA, Public Systems Design, Hillpoint School of Policy Engineering (2011-2013).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

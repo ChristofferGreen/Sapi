@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-s-art-treats-mindfulness-as-a-multidimensional-skillset-rather-than-a-single-uni--019ffda0022f",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "The call for longitudinal, component-level research follows from treating mindfulness as a multidimensional construct.",
+  "relation_file_id": "rel-2b412e696aedefa90d58fee27caac8c4dd5c9b236089df69494f2e0b1b8b29ee",
+  "relation_id": "supports:claim-future-mindfulness-research-needs-longitudinal-measurement-of-s-art-subcomponent--a2496826340c->claim-s-art-treats-mindfulness-as-a-multidimensional-skillset-rather-than-a-single-uni--019ffda0022f",
+  "relation_type": "supports",
+  "src_claim_id": "claim-future-mindfulness-research-needs-longitudinal-measurement-of-s-art-subcomponent--a2496826340c",
+  "src_claim_ref": "9",
+  "status": "open"
+}

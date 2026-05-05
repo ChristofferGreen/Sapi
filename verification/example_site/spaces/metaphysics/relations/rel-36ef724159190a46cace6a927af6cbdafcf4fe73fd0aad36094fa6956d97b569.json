@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "The significance principle supplies the first substantive premise in the proof that grounding is necessary.",
+  "relation_file_id": "rel-36ef724159190a46cace6a927af6cbdafcf4fe73fd0aad36094fa6956d97b569",
+  "relation_id": "supports:claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124->claim-the-conjunction-of-the-significance-principle-the-essence-principle-and-the-meta--4f212a9f1869",
+  "relation_type": "supports",
+  "src_claim_id": "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124",
+  "src_claim_ref": "2",
+  "status": "open"
+}

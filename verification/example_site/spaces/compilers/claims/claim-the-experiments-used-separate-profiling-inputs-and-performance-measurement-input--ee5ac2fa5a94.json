@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:27:45Z",
+  "claim_id": "claim-the-experiments-used-separate-profiling-inputs-and-performance-measurement-input--ee5ac2fa5a94",
+  "evidence_excerpts": [
+    "For each benchmark program, we have selected a number of input data for profiling. Table 4 shows the inputs that are used for each benchmark program. For each benchmark program, we have selected one additional input and used that input to measure the performance."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Benchmarks use separate inputs",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "text": "The experiments used separate profiling inputs and performance-measurement inputs across realistic C application programs."
+}

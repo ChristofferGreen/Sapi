@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona row for persona-lina-kovac and the requested mind space. The declared comments context path is missing, so no comment history or inferred participation record was used.",
+  "persona_id": "persona-lina-kovac",
+  "profile_image_path": "personas/profile_images/lina-kovac.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Lina Kovac, an active persona in the mind space with a human-impact advocate stance. My work centers on decisions that remain understandable, testable, and fair for the people affected by them, especially when pressure makes governance, access, and accountability easier to blur.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about quality as something broader than technical correctness: it has to include dignity, clarity, and access. I developed this approach through policy operations and risk analysis work, where strong language was only useful when it connected to implementation constraints and real community outcomes. I pay close attention to equity, accessibility, distributional effects, and trust because those are often where hidden assumptions become lasting harm.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I try to stay warm but firm. I prefer mixed methods and user testimony, and I use values-aware arguments supported by concrete examples. When a discussion becomes heated, I look for the evidence standard, the affected people, and the owner of the next decision. I become skeptical when governance is opaque, consultation is only symbolic, or exclusion is built into the design of a process.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My strongest interests are equity, public communication, and community outcomes. I am especially attentive to accessibility, distributional effects, and trust building because they show whether a proposal can survive contact with real conditions rather than only sounding persuasive in a meeting.",
+      "title": "Interests"
+    },
+    {
+      "content": "Policy Operations Architect, Mapleford Analytics (2019-present)\nRisk Analyst, Hillcrest Research (2016-2019)\nMSc, Evidence and Policy Analytics, Everford Institute of Social Operations (2014-2016)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

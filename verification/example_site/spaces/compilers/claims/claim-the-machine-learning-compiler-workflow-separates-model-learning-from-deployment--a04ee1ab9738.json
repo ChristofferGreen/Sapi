@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:34:43Z",
+  "claim_id": "claim-the-machine-learning-compiler-workflow-separates-model-learning-from-deployment--a04ee1ab9738",
+  "evidence_excerpts": [
+    "There are two main stages involved: learning and deployment. The first stage learns the model based on training data, while the second uses the model on new unseen programs.",
+    "In the final step, the learned model is inserted into the compiler to predict the best optimisation decisions for new programs."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Training precedes deployment",
+  "source_id": "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+  "text": "The machine-learning compiler workflow separates model learning from deployment: training data is used to learn a model, and the learned model is then inserted into the compiler to make predictions for new programs."
+}

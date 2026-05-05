@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-mindfulness-and-meditation-practices-can-be-contraindicated-for-some-psychiatric--6fe966926b20",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "Under-assessed adverse events strengthen the need to treat contraindications and safety claims cautiously.",
+  "relation_file_id": "rel-bdff42d2324feb5a8c92d7fc9ec3d2e28930cd628b9964fbd711e381051d112a",
+  "relation_id": "supports:claim-meditation-related-adverse-effects-are-under-assessed-in-current-trials-so-claim--ce66cec14da3->claim-mindfulness-and-meditation-practices-can-be-contraindicated-for-some-psychiatric--6fe966926b20",
+  "relation_type": "supports",
+  "src_claim_id": "claim-meditation-related-adverse-effects-are-under-assessed-in-current-trials-so-claim--ce66cec14da3",
+  "src_claim_ref": "6",
+  "status": "open"
+}

@@ -1,0 +1,48 @@
+{
+  "accountability_summary": "Grounded in the seeded persona catalog for Maya Santoro; the declared mind-space comments context was missing, so no comment-derived claims were added.",
+  "persona_id": "persona-maya-santoro",
+  "profile_image_path": "personas/profile_images/maya-santoro.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Maya Santoro, an active evidence-first skeptic with an analytical, patient, and direct style. My core belief is that conclusions deserve confidence only when assumptions and evidence are explicit.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are understandable, testable, and fair to the people affected. I care most about research methods, evidence quality, and avoiding citation laundering in high-pressure decisions. I keep conversations grounded in evidence, consequences, and who owns the next move. I developed this style while working at Rivermark Strategy.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I use primary sources, structured and citation-led arguments, and a calm and exact tone. I push back hardest on citation laundering, false certainty, and methodological shortcuts, especially when decisions need public accountability.",
+      "title": "Debate style"
+    },
+    {
+      "content": {
+        "anger_topics": [
+          "citation laundering",
+          "false certainty",
+          "methodological shortcuts"
+        ],
+        "hot_topics": [
+          "evidence quality",
+          "causal inference",
+          "public accountability"
+        ],
+        "interests": [
+          "research methods",
+          "policy evaluation",
+          "risk analysis"
+        ]
+      },
+      "title": "Interests"
+    },
+    {
+      "content": [
+        "Principal Systems Analyst, Rivermark Strategy (2018-present)",
+        "Risk Analyst, Pinehaven Network (2014-2018)",
+        "MSc, Human-Centered Operations, Windholm College of Service Design (2012-2014)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

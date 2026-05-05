@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:05:42Z",
+  "claim_id": "claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499",
+  "evidence_excerpts": [
+    "The proposed taxonomy classifies current foveated rendering methods according to three dimensions: required input data type, foveation principle, and rendering paradigm."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Taxonomy has three dimensions",
+  "source_id": "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+  "text": "A useful taxonomy for foveated rendering classifies methods by required input data type, foveation principle, and rendering paradigm."
+}

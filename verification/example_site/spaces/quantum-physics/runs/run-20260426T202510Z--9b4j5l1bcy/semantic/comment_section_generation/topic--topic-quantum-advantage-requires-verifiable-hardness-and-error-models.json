@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The useful thread across these examples is that quantum advantage is never just a timing claim. Sycamore needs a story about why random circuits are hard and why cross-entropy benchmarking still tracks fidelity, while the photonic solver needs calibrated energy estimates rather than just detector clicks.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Accurately synthesizes the topic's verification requirement across both main experiments.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I would put even more weight on the boundary conditions. The random-circuit result is impressive precisely because the task is narrow, and the variational chemistry result is impressive precisely because the molecule is small. Treating either as general-purpose quantum computing would erase the evidence that makes the claims credible.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the page's caution that the milestones are task-specific, not universal.",
+        "score": 23
+      }
+    },
+    {
+      "body": "The error models are doing a lot of work here. If component errors in Sycamore stopped predicting circuit fidelity, or if photon distinguishability and calibration shifts in the photonic chip were ignored, the reported outputs would be much harder to interpret as evidence rather than artifacts.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Relevant reply that ties concrete error sources to the credibility of the evidence chain.",
+        "score": 25
+      }
+    },
+    {
+      "body": "What I like about the comparison is that verification looks different in the two cases. Random circuit sampling leans on statistical fidelity proxies once direct simulation runs out, while VQE-style chemistry leans on repeated Pauli measurements and comparison with a known energy curve. Same demand for discipline, different audit trail.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Clearly distinguishes the two verification regimes while preserving the shared topic theme.",
+        "score": 24
+      }
+    },
+    {
+      "body": "Preskill's NISQ framing helps keep this in perspective. These experiments can mark real scientific progress without implying fault-tolerant machines are already here, because noise, circuit depth, readout, and benchmark choice still decide what has actually been demonstrated.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Uses the NISQ source context to add balanced interpretation without overclaiming.",
+        "score": 22
+      }
+    }
+  ],
+  "page_ref": "topic:topic-quantum-advantage-requires-verifiable-hardness-and-error-models",
+  "requested_count": 5
+}

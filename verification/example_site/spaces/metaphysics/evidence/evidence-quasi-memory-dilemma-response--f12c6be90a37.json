@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-r-b-s-unowned-recollections-provide-an-existence-proof-for-apparent-memory-conte--6a14bce7e1a3",
+    "claim-quasi-memory-accounts-must-specify-which-form-of-self-representation-is-required--4b048f888bc8"
+  ],
+  "evidence_id": "evidence-quasi-memory-dilemma-response--f12c6be90a37",
+  "evidence_type": "formal_argument",
+  "excerpt": "R.B.\u2019s recollections provide an existence proof for a kind of memory that navigates between the horns of Schechtman\u2019s dilemma. In R.B., the \u2018mineness\u2019 of episodic recollection is separated from the content. The notion of quasi-memory is supposed to undergird a theory of personal identity, but which (if any) of these self-representations is required in order for a candidate quasi-memory to count as being \u2018caused in the normal way\u2019 ?",
+  "overview": "This formal-philosophical evidence links the neurological case to the quasi-memory debate. R.B. is used to challenge the claim that apparent memory must either be delusional or presuppose identity, while also forcing quasi-memory theorists to define which self-representation matters.",
+  "page_refs": [
+    "pp.694-695"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-05-memory-and-the-sense-of-personal-identity--a1fbe0966ca4",
+  "title": "Quasi-Memory Dilemma Response"
+}

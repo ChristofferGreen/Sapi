@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:22:12Z",
+  "claim_id": "claim-alpha-mediated-biasing-extends-beyond-vision-appearing-in-auditory-and-tactile-s--2cd546facc83",
+  "evidence_excerpts": [
+    "Auditory spatial attention studies found alpha-band increases over parietal cortex ipsilateral to the cued direction, and tactile studies found increases over somatosensory cortex ipsilateral to the cued direction."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Alpha bias spans senses",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "text": "Alpha-mediated biasing extends beyond vision, appearing in auditory and tactile spatial attention with increases over cortical regions ipsilateral to the cued direction."
+}

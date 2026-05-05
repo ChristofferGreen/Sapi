@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-mindfulness-definition-is-ambiguous--4f220365d6f4",
+    "claim-self-report-measures-lack-validity--56550542660a"
+  ],
+  "evidence_id": "evidence-mindfulness-measures-table--4f220365d6f4",
+  "evidence_type": "table_result",
+  "excerpt": "Table 1 lists mindfulness measures with different contexts and factors: FMI from Buddhist theory with one general factor; MAAS from self-determination theory with attentiveness and awareness; KIMS from dialectical behavior therapy with observing, describing, awareness, and acceptance; FFMQ with nonreactivity, observing, awareness, describing, and nonjudging; TMS with curiosity and decentering; CAMS-R with attention, present focus, awareness, and acceptance.",
+  "overview": "The table functions as concrete evidence that mindfulness is not measured as a single settled construct. Multiple instruments use different theoretical backgrounds and factor structures, making it risky to treat questionnaire scores as interchangeable evidence for a common mental capacity or intervention mechanism.",
+  "page_refs": [
+    "Table 1",
+    "p. 39"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Divergent Mindfulness Measures"
+}

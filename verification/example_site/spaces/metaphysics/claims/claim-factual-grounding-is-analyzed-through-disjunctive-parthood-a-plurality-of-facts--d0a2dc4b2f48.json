@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:22:07Z",
+  "claim_id": "claim-factual-grounding-is-analyzed-through-disjunctive-parthood-a-plurality-of-facts--d0a2dc4b2f48",
+  "evidence_excerpts": [
+    "FACTUAL-GROUNDING p1, p2, \u2026 < q iff: (i) p1 \u00d9 p2 \u00d9 \u2026 \u2291\u2228 q; and (ii) neither q \u2291\u2227\u2228 p1, nor q \u2291\u2227\u2228 p2, nor \u2026"
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Grounding uses disjunctive parthood",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "text": "Factual grounding is analyzed through disjunctive parthood: a plurality of facts grounds q exactly when their conjunction is a disjunctive part of q and q is not a relevant conjunctive-disjunctive part of any ground."
+}

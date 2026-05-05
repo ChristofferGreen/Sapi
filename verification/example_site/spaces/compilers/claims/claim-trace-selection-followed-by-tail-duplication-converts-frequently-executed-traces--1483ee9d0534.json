@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:27:45Z",
+  "claim_id": "claim-trace-selection-followed-by-tail-duplication-converts-frequently-executed-traces--1483ee9d0534",
+  "evidence_excerpts": [
+    "The formation of super-blocks is a two step procedure: (1) trace selection and (2) tail duplication. Trace selection identifies basic blocks that tend to execute in a sequence and groups them into a trace.",
+    "After trace selection, each trace is converted into a super-block by duplicating the tail part of the trace, in order to ensure that the program control can only enter at the top basic block."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Tail duplication forms super-blocks",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "text": "Trace selection followed by tail duplication converts frequently executed traces into super-blocks by removing control-flow entries into the middle of a trace."
+}

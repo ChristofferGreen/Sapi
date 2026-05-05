@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:55:13Z",
+  "claim_id": "claim-wcet-aware-register-allocation-lowers-wcet-by-avoiding-spill-code-on-the-wcep-ev--a21ac879b656",
+  "evidence_excerpts": [
+    "Across 46 benchmarks, WCET-aware register allocation achieves an average WCET of 68.8% of traditional graph coloring, reducing WCET by 31.2%, while text size increases by 29.8% on average."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Register allocation protects WCEP",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "text": "WCET-aware register allocation lowers WCET by avoiding spill code on the WCEP, even when this increases total spill code or text size outside the critical path."
+}

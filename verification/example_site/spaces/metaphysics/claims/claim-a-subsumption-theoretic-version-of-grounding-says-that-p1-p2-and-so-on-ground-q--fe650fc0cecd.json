@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T15:22:07Z",
+  "claim_id": "claim-a-subsumption-theoretic-version-of-grounding-says-that-p1-p2-and-so-on-ground-q--fe650fc0cecd",
+  "evidence_excerpts": [
+    "Say that p is quasi-subsumed by q (in symbols: p \u2272 q) iff there is some r such that p \u2227 r \u2264 q. Replacing \u2291\u2228 with \u2264 in our original account of grounding, and \u2291\u2227\u2228 with \u2272, delivers the following subsumption-theoretic analogue: (18) p1, p2, \u2026 < q iff: (i) p1 \u00d9 p 2 \u00d9 \u2026 \u2264 q; and (ii) neither q \u2272 p1, nor q \u2272 p2, nor \u2026"
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Subsumption refines grounding",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "text": "A subsumption-theoretic version of grounding says that p1, p2, and so on ground q exactly when their conjunction is subsumed by q while q is not quasi-subsumed by any of them."
+}

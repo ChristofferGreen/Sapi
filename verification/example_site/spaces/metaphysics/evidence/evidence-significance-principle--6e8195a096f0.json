@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-a-fact-p-is-fully-grounded-in-d-only-if-the-connecting-question-asking-why-p-obt--ea3a1a698124",
+    "claim-the-epistemic-constraint-on-grounding-does-not-undermine-grounding-objectivity-b--87922d9890f9",
+    "claim-paradigm-grounding-cases-support-the-significance-principle-because-their-connec--28555377f52b"
+  ],
+  "evidence_id": "evidence-significance-principle--6e8195a096f0",
+  "evidence_type": "model_constraint",
+  "excerpt": "significance: [p] is fully grounded in D only if the connecting questions with respect to [p] and D lack cognitive significance.",
+  "overview": "This principle supplies the epistemic constraint on grounding. It says that genuine full grounding excludes an in-principle explanatory gap of the relevant connecting-question kind, while leaving ordinary subject-relative ignorance out of the grounding fact itself.",
+  "page_refs": [
+    "pp.467, 472"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Significance Principle"
+}

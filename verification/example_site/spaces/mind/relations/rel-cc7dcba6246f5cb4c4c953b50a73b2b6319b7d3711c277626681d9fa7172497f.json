@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-mindfulness-hype-exceeds-evidence--96cb023af909",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "Undermeasured adverse effects raise the stakes of public hype and overconfident implementation.",
+  "relation_file_id": "rel-cc7dcba6246f5cb4c4c953b50a73b2b6319b7d3711c277626681d9fa7172497f",
+  "relation_id": "supports:claim-adverse-effects-are-undermeasured--25fa20260426->claim-mindfulness-hype-exceeds-evidence--96cb023af909",
+  "relation_type": "supports",
+  "src_claim_id": "claim-adverse-effects-are-undermeasured--25fa20260426",
+  "src_claim_ref": "5",
+  "status": "open"
+}

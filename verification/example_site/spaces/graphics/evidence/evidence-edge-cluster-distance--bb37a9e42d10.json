@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-hierarchical-agglomerative-clustering-with-full-linkage-and-euclidean-distances--759b1a2656e8",
+    "claim-repeated-reclustering-with-decreasing-similarity-thresholds-creates-bottom-up-bu--0f90a7b7b684"
+  ],
+  "evidence_id": "evidence-edge-cluster-distance--bb37a9e42d10",
+  "evidence_type": "equation",
+  "excerpt": "The clustering section defines d(e_i,e_j)=sqrt(sum_{k=1..N} ||e_ik-e_jk||^2) over uniformly spaced edge samples, with N in [50,100], and reports that hierarchical bottom-up agglomerative clustering with full linkage and this Euclidean distance gives the best results.",
+  "overview": "This equation-level evidence explains how the method obtains elongated, coherent edge groups before skeletonization. Because the metric compares full sampled trajectories rather than only endpoints, it supports bundling curved or spatially similar edges, but it also means cluster quality depends on the initial layout and sampling resolution.",
+  "page_refs": [
+    "Eq. 1",
+    "Sec. 2.1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "title": "Sampled Edge Distance"
+}

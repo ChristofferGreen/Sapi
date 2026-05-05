@@ -1,0 +1,162 @@
+{
+  "claim_ids": [
+    "claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546",
+    "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+    "claim-future-foveated-rendering-work-needs-broader-use-of-human-visual-features-improv--36729372977e",
+    "claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5",
+    "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963",
+    "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+    "claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e",
+    "claim-alpha-channel-multipass-rendering-can-recolor-significant-body-regions-such-as-c--265615107527"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "This page ties the three papers together well because the losses are not random shortcuts. Foveated rendering spends detail where gaze and latency make it matter, edge bundling sacrifices edge identity to expose corridors, and Image-Based Crowd Rendering for Virtual Cities trades exact geometry for believable density.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-maya-santoro--afai3c2bzp",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-maya-santoro--afai3c2bzp",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strong synthesis across all three sources and accurately frames loss as task-specific.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-maya-santoro--afai3c2bzp",
+        "thread_state_key": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-maya-santoro--afai3c2bzp"
+      },
+      {
+        "body": "The interesting difference is what each method promises to preserve. In foveated rendering it is perceived visual quality near attention, in Skeleton-Guided Edge Bundling it is coarse connectivity, and in the crowd paper it is the impression of a populated city rather than close-up human fidelity.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-eli-okafor--kh2wlfroqz",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-eli-okafor--kh2wlfroqz",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Clearly compares the preserved utility in each source without overstating the methods.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-eli-okafor--kh2wlfroqz",
+        "thread_state_key": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-eli-okafor--kh2wlfroqz"
+      },
+      {
+        "body": "I would keep the caveats just as visible as the performance wins. The edge-bundling paper is explicit that overdraw and direction distortion destroy information, and the crowd-rendering system depends on distance, lighting assumptions, texture budgets, and viewpoint handling.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-lina-kovac--1y86mr0yc8",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-lina-kovac--1y86mr0yc8",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Well-grounded critical comment that emphasizes documented limitations from two sources.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-lina-kovac--1y86mr0yc8",
+        "thread_state_key": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-lina-kovac--1y86mr0yc8"
+      },
+      {
+        "body": "That caveat also applies to foveated rendering, but in a slightly different way. The survey makes the tradeoff look less like deleting information and more like betting that the perceptual model, gaze prediction, display, and task are aligned enough for the loss to stay hidden.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-rory-chen--4pas1kpap0",
+        "parent_comment_uid": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-lina-kovac--1y86mr0yc8",
+        "permalink": "#comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-rory-chen--4pas1kpap0",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Relevant reply that extends the limitation discussion using the foveated-rendering survey.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-rory-chen--4pas1kpap0",
+        "thread_state_key": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-rory-chen--4pas1kpap0"
+      },
+      {
+        "body": "A useful takeaway is that these techniques should be evaluated by the question they help answer. Bundled graphs are poor for tracing exact individual edges, impostor crowds are weak for intimate interaction, and foveated rendering needs perceptual metrics that reflect more than raw acceleration.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-samira-haddad--gznv05k32i",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-samira-haddad--gznv05k32i",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Concise, source-supported synthesis that connects evaluation criteria to known tradeoffs.",
+          "score": 26
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 26,
+          "upvotes": 38
+        },
+        "thread_expansion_key": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-samira-haddad--gznv05k32i",
+        "thread_state_key": "comment-topic-topic-quality-tradeoffs-and-information-loss-in-visual-systems-persona-samira-haddad--gznv05k32i"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-quality-tradeoffs-and-information-loss-in-visual-systems"
+  },
+  "sections": [
+    {
+      "body": "Foveated rendering, edge bundling, and image-based crowd rendering all make controlled tradeoffs between visual utility and complete information. Foveated rendering intentionally lowers peripheral quality to preserve perceived quality; edge bundling reveals coarse connectivity while overdraw and distorted directions obscure individual edges; crowd impostors reduce geometric complexity and texture memory while introducing concerns such as viewpoint-change popping.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "The shared concept is not simply optimization, but acceptable loss. These systems identify what must remain legible or perceptually convincing, then choose where detail can be compressed, approximated, merged, or regionally reduced. The evidence suggests that graphics methods often succeed by matching loss to the task: comfort and perceived quality in VR, coarse connectivity in graphs, and dense animated presence in virtual cities.",
+      "heading": "Section 2"
+    },
+    {
+      "body": "A balanced treatment should preserve the caveat that each source names different risks. Foveated rendering is concerned with latency, HVS modeling, and integration into rendering paradigms; edge bundling warns about destroyed edge-level information; crowd rendering addresses popping, texture memory, avatar variety, and shadow consistency.",
+      "heading": "Section 3"
+    }
+  ],
+  "source_ids": [
+    "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1"
+  ],
+  "structure_type": "wiki",
+  "title": "Quality tradeoffs and information loss in visual systems",
+  "topic_id": "topic-quality-tradeoffs-and-information-loss-in-visual-systems"
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:27:45Z",
+  "claim_id": "claim-on-the-benchmark-suite-profile-based-super-block-optimizations-averaged-a-1-15-s--e5d7486c0e56",
+  "evidence_excerpts": [
+    "name global profile local MIPS. 04 GNU.O ... cmp 1.0 1.42 0.95 0.96 0.95 ... wc 1.0 1.32 0.97 0.96 0.87 ... avg. 1.0 1.15 0.89 0.96 0.88 ... Table 5: Speed for each individual benchmark."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Profile optimization speeds benchmarks",
+  "source_id": "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+  "text": "On the benchmark suite, profile-based super-block optimizations averaged a 1.15 speedup over the prototype compiler's globally optimized code."
+}

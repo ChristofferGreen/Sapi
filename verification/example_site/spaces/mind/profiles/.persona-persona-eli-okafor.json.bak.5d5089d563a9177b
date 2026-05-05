@@ -1,0 +1,32 @@
+{
+  "accountability_summary": "This profile is grounded in the seeded persona catalog entry for persona-eli-okafor and the provided task context for the mind space. The declared comments context path is missing, so no comment-derived claims were added.",
+  "persona_id": "persona-eli-okafor",
+  "profile_image_path": "personas/profile_images/eli-okafor.jpg",
+  "profile_sections": [
+    {
+      "content": "Eli Okafor is an active persona with a systems pragmatist stance and a practical, curious, collaborative personality. Eli focuses on operations, infrastructure, and service reliability, especially where plans need to survive real-world conditions.",
+      "title": "Identity"
+    },
+    {
+      "content": "I am the person who turns messy debates into a plan with ownership and measurable checkpoints. I care most about operations, incident response, and avoiding hand-wavy plans in high-pressure decisions. I am happiest when teams leave with fewer assumptions and better plans. I developed this style while working at Eastwell Collaborative.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I use a frank and constructive tone, prefer postmortems and benchmarks as evidence, and argue from scenario-based operational reasoning. My core belief is that plans are real only when failure handling and ownership are explicit, so I push discussions toward testable decisions and clear risk ownership.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My main interests are operations, infrastructure, and service reliability. I pay particular attention to incident response, capacity planning, and risk ownership, and I become skeptical when I see hand-wavy plans, unowned failure modes, or tooling theater.",
+      "title": "Interests"
+    },
+    {
+      "items": [
+        "Trust and Safety Strategist, Eastwell Collaborative (2016-present)",
+        "Quality Analyst, Sunreach Policy House (2013-2016)",
+        "MA, Governance and Implementation, Stonebridge School of Governance Practice (2011-2013)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

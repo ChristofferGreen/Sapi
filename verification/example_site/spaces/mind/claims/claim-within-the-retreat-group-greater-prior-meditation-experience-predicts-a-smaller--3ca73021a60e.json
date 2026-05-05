@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:09:33Z",
+  "claim_id": "claim-within-the-retreat-group-greater-prior-meditation-experience-predicts-a-smaller--3ca73021a60e",
+  "evidence_excerpts": [
+    "The correlation value (R = -.52) was significant (t = 2.4, p = .03), indicating a significant reduction in alerting score with increased meditation experience in the retreat group."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Experience predicts alerting",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "text": "Within the retreat group, greater prior meditation experience predicts a smaller Time 2 alerting score, consistent with a more readied attentional state."
+}

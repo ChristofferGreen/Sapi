@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:56:22Z",
+  "claim_id": "claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5",
+  "evidence_excerpts": [
+    "The limitations section states that any bundling inherently destroys information because edges are overdrawn, cannot be identified separately, and edge directions are distorted, so it should be used for coarse-scale connectivity patterns."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Bundling trades detail for structure",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "text": "Skeleton-based edge bundling is most appropriate for coarse-scale connectivity exploration because bundling overdraws individual edges and distorts edge directions."
+}

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-consciousness-corresponds-to-a-system-s-capacity-to-integrate-information-combin--26bb48bfe4b5"
+  ],
+  "evidence_id": "evidence-photodiode-camera-contrast--7b3a41d09e2f",
+  "evidence_type": "formal_argument",
+  "excerpt": "The source contrasts a photodiode, a megapixel camera, and a brain. A camera sensor could differentiate among an immense number of states, but because the photodiodes do not causally interact, the chip can be decomposed into independent elements and no information is integrated among them. Brain elements, by contrast, are mutually causally dependent, and disconnecting the elements underlying consciousness has disastrous effects.",
+  "overview": "This thought experiment is the core formal motivation for identifying consciousness with integrated information rather than sheer state count. It establishes the distinction between many independent bits of information and a unified system whose states matter because they are causally interdependent. Its scope is conceptual rather than empirical: it supports the theory's criterion but does not by itself measure \u03a6 in a biological system.",
+  "page_refs": [
+    "pp.2-3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Photodiode And Camera Contrast"
+}

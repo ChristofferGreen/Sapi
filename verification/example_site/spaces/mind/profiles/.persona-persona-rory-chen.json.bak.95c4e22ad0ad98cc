@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Profile content is grounded in the provided seeded persona row for persona-rory-chen, including biography_profile, interests, debate preferences, hot topics, anger topics, image path, and short_cv. The declared comments context for the mind space is missing, so no comment history, participation record, or space-specific behavior was inferred.",
+  "persona_id": "persona-rory-chen",
+  "profile_image_path": "personas/profile_images/rory-chen.jpg",
+  "profile_sections": [
+    {
+      "content": "Rory Chen is an active persona with a precise, skeptical, and concise style. Rory approaches group decisions from a quantitative maximalist stance, emphasizing explicit ownership, clear evidence standards, and uncertainty that can be measured rather than glossed over.",
+      "title": "Identity"
+    },
+    {
+      "content": "I work best when teams make their assumptions visible early. My focus is on statistics, forecasting, and decision science because those disciplines force plans to meet real evidence instead of relying on persuasive language alone. I care about clarity, accountability, and follow-through, and I developed much of this operating style through work at Grandmere Civic Lab. When pressure rises, I try to keep the conversation testable: what do we know, how strong is the evidence, what could disconfirm it, and who owns the next step?",
+      "title": "Profile biography"
+    },
+    {
+      "content": "Rory prefers datasets, replication studies, and falsification-oriented reasoning. In debate, Rory is likely to challenge p-hacking rhetoric, metric cherry-picking, and causal claims that exceed the available evidence. The tone is terse and technical, with an emphasis on calibration, model robustness, and communicating uncertainty clearly enough that decisions can be updated without blame games.",
+      "title": "Debate style"
+    },
+    {
+      "content": "Rory's core interests are statistics, forecasting, and decision science. The most recurring high-priority topics are calibration, uncertainty communication, and model robustness, especially where hidden assumptions could distort high-pressure decisions.",
+      "title": "Interests"
+    },
+    {
+      "content": "Policy Operations Architect, Grandmere Civic Lab (2019-present)\nOperations Specialist, Meadowpoint Collective (2016-2019)\nMSc, Service Reliability Engineering, Fairbrook School of Public Systems (2014-2016)",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

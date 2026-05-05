@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:22:43Z",
+  "claim_id": "claim-the-demonstrated-integrated-photonic-processor-prepares-and-measures-arbitrary-t--f41a0c8f645b",
+  "evidence_excerpts": [
+    "Figure 2 reports quantum-state preparation and Pauli-basis measurement on a photonic chip using thermal phase shifters, one CNOT gate, spontaneous-parametric-downconversion photon pairs, and detectors D1-D4.",
+    "The text states that state preparation and measurement in the Pauli basis is achieved by setting eight voltage-driven phase shifters and counting photon detection events with silicon single-photon detectors."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Photonic chip prepares two qubits",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "text": "The demonstrated integrated photonic processor prepares and measures arbitrary two-qubit pure states using voltage-controlled phase shifters, one CNOT gate, photon-pair inputs, and detector count rates."
+}

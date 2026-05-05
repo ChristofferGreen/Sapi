@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-the-attraction-rule-moves-interior-edge-points-toward-feature-transform-location--8607f298987e",
+    "claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5"
+  ],
+  "evidence_id": "evidence-attraction-endpoint-preservation--d9256b38aaf4",
+  "evidence_type": "equation",
+  "excerpt": "The attraction rule is x_new = [1 - alpha phi(lambda(x)/lambda(e_ei))]x + alpha phi(lambda(x)/lambda(e_ei))FT_S(x), where phi(t)=[2 min(t,1-t)]^K. The text states that edge endpoints do not move, nearby points move less, and points near the middle move most.",
+  "overview": "This evidence directly supports the claim that SBEB bends edges into bundles without moving graph nodes. The rule provides controllable tightness through alpha and curvature behavior through K, but repeated application can still distort edge direction as a cost of bundling.",
+  "page_refs": [
+    "Eq. 7",
+    "Eq. 8",
+    "Sec. 2.4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+  "title": "Endpoint-Preserving Attraction Rule"
+}

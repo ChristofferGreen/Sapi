@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:15:35Z",
+  "claim_id": "claim-a-two-pass-accumulation-field-method-fits-directly-into-the-opengl-pipeline-and--bf684a8c9b90",
+  "evidence_excerpts": [
+    "Therefore we propose the Seed Point Method, a technique that uses two render-passes: one to merge the nodes in their pixel-sized bins and one to create the actual density field. In the first pass the node coordinates xi are mapped to pixel positions xi' of an Accumulation Field. The Accumulation Field is a frame buffer object (FBO) in screen resolution."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Two passes avoid hierarchies",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "text": "A two-pass accumulation-field method fits directly into the OpenGL pipeline and avoids extra point-hierarchy storage for node aggregation."
+}

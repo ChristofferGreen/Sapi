@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:33:52Z",
+  "claim_id": "claim-the-clinical-evidence-base-for-mindfulness-based-interventions-is-too-immature-t--464dc35b525d",
+  "evidence_excerpts": [
+    "Only 30% of research using mindfulness-based interventions has moved beyond Stage 1; 9% of the total has been conducted at Stage 2b, and only 1% has been conducted outside research contexts."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Clinical evidence remains immature",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "text": "The clinical evidence base for mindfulness-based interventions is too immature to justify broad real-world implementation without stronger controls and later-stage research."
+}

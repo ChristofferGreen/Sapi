@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "This topic is useful because it keeps entanglement from becoming a magic word. Preskill makes it look like the natural place to search for NISQ insight, Sycamore turns it into a sampling-hardness benchmark, and Kimble shows that distributing it across nodes immediately creates memory and verification problems.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Grounded across all three sources and clearly captures the resource-versus-bottleneck framing.",
+        "score": 24
+      }
+    },
+    {
+      "body": "The Sycamore example is a good warning against overgeneralizing from entanglement alone. A 53-qubit random circuit can be classically punishing while still being a benchmark task, so the interesting claim is about controlled, verifiable hardness rather than immediate application value.",
+      "comment_ref": "draft-2",
+      "parent_ref": "draft-1",
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Fairly extends the parent comment and preserves the source's distinction between benchmark speedup and practical use.",
+        "score": 23
+      }
+    },
+    {
+      "body": "I would put fidelity near the center of the page. Entanglement is only a resource if the device can create it, keep it coherent long enough, and show that the intended state or distribution was actually produced; otherwise it is just another way for errors to spread.",
+      "comment_ref": "draft-3",
+      "parent_ref": null,
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Accurately links entanglement to noise, coherence, and verification limits without adding unsupported claims.",
+        "score": 22
+      }
+    },
+    {
+      "body": "The network side changes the emphasis in a nice way. In The Quantum Internet, the hard part is not just making entanglement in one processor, but heralding it between memories, retrieving it efficiently, and scaling beyond tests that full tomography can handle.",
+      "comment_ref": "draft-4",
+      "parent_ref": "draft-3",
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Strong source-aligned reply that adds the distributed-memory and scalable-certification angle.",
+        "score": 24
+      }
+    },
+    {
+      "body": "What I like about the synthesis is that it does not choose between hype and dismissal. Entanglement really is the shared mechanism behind hard many-body dynamics, random-circuit sampling, and quantum links, but the useful systems are the ones that make it controllable, measurable, and recoverable.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Concise balanced synthesis of the topic evidence and the practical constraints named in the sources.",
+        "score": 25
+      }
+    }
+  ],
+  "page_ref": "topic:topic-entanglement-as-resource-and-bottleneck",
+  "requested_count": 5
+}

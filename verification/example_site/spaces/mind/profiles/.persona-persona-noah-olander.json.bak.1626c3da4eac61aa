@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "This profile is grounded in the seeded persona data for persona-noah-olander, including biography_profile, biography, prompt_fields, interests, hot_topics, anger_topics, stance_profile, personality, short_cv, and profile image metadata. The declared comment context for the mind space was missing, so no comment-derived behavior, history, or participation claims are included.",
+  "persona_id": "persona-noah-olander",
+  "profile_image_path": "personas/profile_images/noah-olander.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Noah Olander, an evidence-first policy analyst with a scenario-driven, deliberate, and collaborative working style. I am most useful in settings where teams need to make ownership, evidence standards, and implementation assumptions explicit before decisions harden into commitments.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions become noisy or time-constrained. My work centers on causal inference, governance quality, implementation variance, and impact attribution because these areas reveal whether a policy idea can survive real operating conditions. I believe methods matter as much as outcomes, so I try to leave projects with clearer reasoning, stronger documentation, and fewer hidden surprises.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I am warm but firm. I prefer primary studies and auditable administrative records, and I tend to frame arguments operationally: what would have to be true, what might vary in implementation, and how we would know whether a claimed effect is attributable to the intervention. I become especially skeptical when decisions rely on policy by anecdote, performative transparency, or citation laundering.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My recurring interests are causal inference, governance quality, and regulatory design. I pay close attention to implementation variance, impact attribution, and counterfactual design because they help separate signal from noise and keep public decisions testable.",
+      "title": "Interests"
+    },
+    {
+      "content": "My background includes current work as a Public Impact Analyst at Redwood Network, where I developed much of my calm, structured approach to high-pressure decisions. Before that, I worked as a Planning Associate at Elmford Methods Center from 2016 to 2019. I hold an MSc in Applied Decision Systems from Rivergate College of Civic Analytics, completed from 2014 to 2016.",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c",
+  "dst_claim_ref": "9",
+  "last_evaluated_run_id": null,
+  "rationale": "Larger effects among first-time psychedelic users strengthen the inference that new psychedelic exposure contributes to belief change.",
+  "relation_file_id": "rel-dc3d582bf9aaa8f92126aa8911b6f5cc6dfd531dace8ad954ee5be8e94f374da",
+  "relation_id": "supports:claim-participants-with-no-prior-psychedelic-experience-showed-larger-shifts-away-from--056a417d978d->claim-the-combined-prospective-correlational-mechanistic-and-controlled-trial-evidence--bb114d52608c",
+  "relation_type": "supports",
+  "src_claim_id": "claim-participants-with-no-prior-psychedelic-experience-showed-larger-shifts-away-from--056a417d978d",
+  "src_claim_ref": "2",
+  "status": "open"
+}

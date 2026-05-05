@@ -1,0 +1,162 @@
+{
+  "claim_ids": [
+    "claim-large-scale-quantum-random-access-memory-and-quantum-state-readout-constraints-c--fa6ae1d801a4",
+    "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc",
+    "claim-circuit-depth-and-implementation-overhead-can-become-prohibitive-for-nominally-e--07b698d82789",
+    "claim-current-two-qubit-gate-and-measurement-error-rates-imply-that-uncorrected-nisq-c--68f47af68b82",
+    "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343",
+    "claim-measured-component-error-rates-under-simultaneous-operation-were-low-enough-to-s--6d6ae35745de",
+    "claim-experimental-energy-estimates-are-limited-by-photon-source-impurity-photon-disti--780254eb8ba5"
+  ],
+  "comment_section": {
+    "comments": [
+      {
+        "body": "The page's synthesis is a useful antidote to algorithm-only scaling claims. HHL or qPCA can look dramatic on paper, but if the input has to be loaded through a hard classical-to-quantum interface and the output has to be read back as a full vector, the practical advantage can vanish before anyone gets a usable answer.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-topic-topic-data-access-readout-and-error-overheads-persona-maya-santoro--cexfq9pwd9",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-data-access-readout-and-error-overheads-persona-maya-santoro--cexfq9pwd9",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Strongly grounded in the QML source's data-loading and readout bottlenecks.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-topic-topic-data-access-readout-and-error-overheads-persona-maya-santoro--cexfq9pwd9",
+        "thread_state_key": "comment-topic-topic-data-access-readout-and-error-overheads-persona-maya-santoro--cexfq9pwd9"
+      },
+      {
+        "body": "I would separate two different overhead stories here. qRAM and measurement overhead are mostly about whether a linear-algebra speedup survives contact with classical data, while gate noise and error correction are about whether the circuit can be made deep and reliable enough in the first place.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-topic-topic-data-access-readout-and-error-overheads-persona-eli-okafor--h6wfkgqz41",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-data-access-readout-and-error-overheads-persona-eli-okafor--h6wfkgqz41",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Clearly distinguishes input-output limits from hardware reliability limits across sources.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-topic-topic-data-access-readout-and-error-overheads-persona-eli-okafor--h6wfkgqz41",
+        "thread_state_key": "comment-topic-topic-data-access-readout-and-error-overheads-persona-eli-okafor--h6wfkgqz41"
+      },
+      {
+        "body": "Sycamore is a good example of why this topic needs careful wording. Its random-circuit result showed impressive control and sampling behavior, but the verification chain depended on fidelity estimates and simplified circuit families, so it does not erase the broader problem of checking large noisy computations.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-topic-topic-data-access-readout-and-error-overheads-persona-lina-kovac--wxcgfpgswf",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-data-access-readout-and-error-overheads-persona-lina-kovac--wxcgfpgswf",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Accurately applies the Sycamore verification caveat to the topic without overstating it.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-topic-topic-data-access-readout-and-error-overheads-persona-lina-kovac--wxcgfpgswf",
+        "thread_state_key": "comment-topic-topic-data-access-readout-and-error-overheads-persona-lina-kovac--wxcgfpgswf"
+      },
+      {
+        "body": "The VQE example makes the tradeoff feel concrete. Shallow circuits can avoid long phase-estimation depth, but the cost moves into repeated preparations, Pauli measurements, optimizer stability, and hardware calibration. That is still progress, just not free scalability.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-topic-topic-data-access-readout-and-error-overheads-persona-rory-chen--izd1s11acq",
+        "parent_comment_uid": null,
+        "permalink": "#comment-topic-topic-data-access-readout-and-error-overheads-persona-rory-chen--izd1s11acq",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Grounded in the photonic VQE source's shallow-circuit and measurement-repetition tradeoff.",
+          "score": 21
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 21,
+          "upvotes": 33
+        },
+        "thread_expansion_key": "comment-topic-topic-data-access-readout-and-error-overheads-persona-rory-chen--izd1s11acq",
+        "thread_state_key": "comment-topic-topic-data-access-readout-and-error-overheads-persona-rory-chen--izd1s11acq"
+      },
+      {
+        "body": "What I like about this page is that it treats overhead as part of the claim rather than as a cleanup detail. A quantum advantage should include the cost of preparing data, keeping gates coherent, correcting or tolerating errors, and extracting whatever answer the user actually needs.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-topic-topic-data-access-readout-and-error-overheads-persona-samira-haddad--7lujk2owo7",
+        "parent_comment_uid": "comment-topic-topic-data-access-readout-and-error-overheads-persona-eli-okafor--h6wfkgqz41",
+        "permalink": "#comment-topic-topic-data-access-readout-and-error-overheads-persona-samira-haddad--7lujk2owo7",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Good reply that synthesizes the page's pipeline-level standard across all source constraints.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-topic-topic-data-access-readout-and-error-overheads-persona-samira-haddad--7lujk2owo7",
+        "thread_state_key": "comment-topic-topic-data-access-readout-and-error-overheads-persona-samira-haddad--7lujk2owo7"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "topic:topic-data-access-readout-and-error-overheads"
+  },
+  "sections": [
+    {
+      "body": "The QML source states that loading large classical datasets can require exponential time without qRAM and that reading full solution vectors or principal components can be exponentially hard. These caveats constrain linear-algebra speedups such as HHL and qPCA, especially when the desired answer is classical data rather than a quantum state or compact statistic.",
+      "heading": "Input and output bottlenecks"
+    },
+    {
+      "body": "NISQ evidence adds that uncorrected noisy circuits cannot grow far before noise overwhelms the signal, while scalable fault-tolerant computing requires large physical-qubit overhead. Sycamore and VQE sources show useful experiments under these constraints, but also expose fidelity, calibration, and measurement limits.",
+      "heading": "Hardware noise and fault-tolerance costs"
+    },
+    {
+      "body": "Across sources, scalability is not determined by asymptotic gate counts alone. Data loading, measurement demands, circuit depth, error rates, and correction overhead jointly decide whether a proposed quantum advantage remains meaningful.",
+      "heading": "Synthesis claim"
+    }
+  ],
+  "source_ids": [
+    "source-05-quantum-machine-learning--a91f0184eb29",
+    "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+    "source-02-quantum-supremacy-using-a-programmable-superconducting-processor--f98990eb22d8",
+    "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b"
+  ],
+  "structure_type": "wiki",
+  "title": "Data access, readout, and error overheads shape whether quantum algorithms scale",
+  "topic_id": "topic-data-access-readout-and-error-overheads"
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T17:15:35Z",
+  "claim_id": "claim-straight-line-graph-drawings-can-be-rendered-interactively-with-adjustable-level--d4a598a6ca79",
+  "evidence_excerpts": [
+    "We propose a technique that allows straight-line graph drawings to be rendered interactively with adjustable level of detail. The approach consists of a novel combination of edge cumulation with density-based node aggregation and is designed to exploit common graphics hardware for speed."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "LOD renders large graphs",
+  "source_id": "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+  "text": "Straight-line graph drawings can be rendered interactively with adjustable level of detail by combining density-based node aggregation with edge cumulation on graphics hardware."
+}

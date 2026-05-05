@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T08:12:33Z",
+  "claim_id": "claim-fine-style-essential-truths-are-metaphysically-necessary-so-essential-truths-of--ba393a6a4604",
+  "evidence_excerpts": [
+    "If p is an essential truth with respect to entity e, then p is true regardless of what the world might be like; the truth of p doesn\u2019t turn on how things turn out.",
+    "The essential truths are metaphysically necessary."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Essence entails modal necessity",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "Fine-style essential truths are metaphysically necessary, so essential truths of the form \u2227D \u2192 p support the modal necessity of grounding entailment."
+}

@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:12:22Z",
+  "claim_id": "claim-scalable-quantum-networks-are-likely-to-be-heterogeneous-systems-that-combine-ca--dfe53fef0772",
+  "evidence_excerpts": [
+    "The current state of the art is primitive relative to that required for robust and scalable implementation of sophisticated network protocols; quantum memories, local quantum processing, quantum repeaters, and error-corrected teleportation remain ambitious goals.",
+    "Quantum networks will evolve as heterogeneous entities, and a critical task is the development of unambiguous procedures for entanglement verification."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Heterogeneous networks need verification",
+  "source_id": "source-03-the-quantum-internet--cd7f6b2f11e2",
+  "text": "Scalable quantum networks are likely to be heterogeneous systems that combine cavity-QED nodes, ensemble memories, repeaters, local processing, error-corrected teleportation, and stronger entanglement-verification procedures."
+}

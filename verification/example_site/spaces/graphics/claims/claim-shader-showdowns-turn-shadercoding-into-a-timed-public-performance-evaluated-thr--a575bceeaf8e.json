@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:36:26Z",
+  "claim_id": "claim-shader-showdowns-turn-shadercoding-into-a-timed-public-performance-evaluated-thr--a575bceeaf8e",
+  "evidence_excerpts": [
+    "Plus commun\u00e9ment appel\u00e9 Shader Showdown, il s'agit de coder son effet visuel \u00e0 l'aide d'un shader en 25 ou 30 minutes devant un public. Suite \u00e0 cette \u00e9preuve, les participants seront jug\u00e9s par les spectateurs sur diff\u00e9rents crit\u00e8res : l'image finale produite, la technicit\u00e9 du code mais \u00e9galement l'\u00e9volution de l'effet au cours de l'\u00e9preuve."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Showdowns stage shader performance",
+  "source_id": "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+  "text": "Shader Showdowns turn shadercoding into a timed public performance evaluated through the final image, code technique, and visual evolution during the event."
+}

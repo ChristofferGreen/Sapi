@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-03-compiler-design-for-distributed-quantum-computing--64a02810764d/source.pdf",
+    "source_markdown": "sources/artifacts/source-03-compiler-design-for-distributed-quantum-computing--64a02810764d/source.md"
+  },
+  "converter_name": "pdftotext",
+  "converter_version": null,
+  "input_sha256": "2aad8ed0017f796b3144792f3e6050f660c00c8283ae9113f75dd542ad08ff45",
+  "markdown_char_count": 126614,
+  "options": {
+    "input_format": "pdf",
+    "layout": "preserve"
+  },
+  "output_sha256": "d58dd10f9701c7f8caebcc2334ea422cdeaa5199ef702f9228de2d70ab9ebf05",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

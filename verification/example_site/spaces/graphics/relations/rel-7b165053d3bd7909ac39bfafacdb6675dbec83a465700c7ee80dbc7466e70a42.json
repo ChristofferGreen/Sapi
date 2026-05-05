@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The reported ten-thousand-avatar benchmark provides empirical support for the overall real-time crowd-rendering claim.",
+  "relation_file_id": "rel-7b165053d3bd7909ac39bfafacdb6675dbec83a465700c7ee80dbc7466e70a42",
+  "relation_id": "supports:claim-the-tested-system-renders-10-000-different-humans-in-a-41-260-polygon-village-at--6845dedcbaed->claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-tested-system-renders-10-000-different-humans-in-a-41-260-polygon-village-at--6845dedcbaed",
+  "src_claim_ref": "7",
+  "status": "open"
+}

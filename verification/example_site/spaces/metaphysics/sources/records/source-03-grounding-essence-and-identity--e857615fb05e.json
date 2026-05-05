@@ -1,0 +1,297 @@
+{
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-03-grounding-essence-and-identity--e857615fb05e",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-03-grounding-essence-and-identity--e857615fb05e/front_page.png",
+    "source_extraction": "sources/artifacts/source-03-grounding-essence-and-identity--e857615fb05e/source_extraction.json",
+    "source_file": "sources/artifacts/source-03-grounding-essence-and-identity--e857615fb05e/source.pdf",
+    "source_markdown": "sources/artifacts/source-03-grounding-essence-and-identity--e857615fb05e/source.md",
+    "source_provenance": "sources/artifacts/source-03-grounding-essence-and-identity--e857615fb05e/source_provenance.md"
+  },
+  "authors": [
+    "Fabrice Correia",
+    "Alexander Skiles"
+  ],
+  "citation_count": null,
+  "citation_count_as_of": null,
+  "citation_count_confidence": "unknown",
+  "citation_count_provider": "unknown",
+  "comment_section": {
+    "comments": [
+      {
+        "body": "I like how Correia and Skiles make generalized identity do work on both sides of the grounding/essence divide. The interesting pressure point for me is whether the identity-like principles are doing explanatory work, or whether they simply rename the constitutive connections that Fine treats as primitive.",
+        "comment_no": "pc-001",
+        "comment_uid": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-maya-santoro--veow2vl1oh",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-maya-santoro--veow2vl1oh",
+        "persona_id": "persona-maya-santoro",
+        "score_assessment": {
+          "rationale": "Engages the central unification claim and raises a relevant comparison with Fine without overstating the source.",
+          "score": 22
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 22,
+          "upvotes": 34
+        },
+        "thread_expansion_key": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-maya-santoro--veow2vl1oh",
+        "thread_state_key": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-maya-santoro--veow2vl1oh"
+      },
+      {
+        "body": "The non-factive reading of generalized identity seems crucial here. If the operator required both sides to be true or instantiated, it would be much harder to use it for generic essence claims rather than just for ordinary facts already in place.",
+        "comment_no": "pc-002",
+        "comment_uid": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-eli-okafor--3adkd4mjnp",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-eli-okafor--3adkd4mjnp",
+        "persona_id": "persona-eli-okafor",
+        "score_assessment": {
+          "rationale": "Accurately identifies a key technical feature and connects it to the paper's treatment of generic essence.",
+          "score": 24
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 24,
+          "upvotes": 36
+        },
+        "thread_expansion_key": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-eli-okafor--3adkd4mjnp",
+        "thread_state_key": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-eli-okafor--3adkd4mjnp"
+      },
+      {
+        "body": "The Socrates-plus-primes example is a useful reminder that necessity is too coarse-grained for essence. Even if two conditions travel together modally, their grounding structure can still show that one belongs to what the thing is and the other is just an accidental necessary companion.",
+        "comment_no": "pc-003",
+        "comment_uid": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-lina-kovac--88740fqysa",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-lina-kovac--88740fqysa",
+        "persona_id": "persona-lina-kovac",
+        "score_assessment": {
+          "rationale": "Clearly captures the source's anti-modal-reduction point using the example described in the dossier.",
+          "score": 25
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 25,
+          "upvotes": 37
+        },
+        "thread_expansion_key": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-lina-kovac--88740fqysa",
+        "thread_state_key": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-lina-kovac--88740fqysa"
+      },
+      {
+        "body": "I am not fully convinced by the move from disjunctive parthood to grounding. The exclusion condition helps, but I still wonder whether relevance is being secured by the formal machinery itself or imported later through the subsumption formulation.",
+        "comment_no": "pc-004",
+        "comment_uid": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-rory-chen--e19jrwl6y5",
+        "parent_comment_uid": null,
+        "permalink": "#comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-rory-chen--e19jrwl6y5",
+        "persona_id": "persona-rory-chen",
+        "score_assessment": {
+          "rationale": "Raises a focused worry about the grounding analysis while acknowledging the role of exclusion and subsumption.",
+          "score": 20
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 20,
+          "upvotes": 32
+        },
+        "thread_expansion_key": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-rory-chen--e19jrwl6y5",
+        "thread_state_key": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-rory-chen--e19jrwl6y5"
+      },
+      {
+        "body": "That worry seems fair, but the subsumption version may be the authors' answer: grounds are not just pieces in a disjunction, they have to constitute wholly relevant ways for the grounded fact to obtain. The account is strongest when that relevance constraint is treated as metaphysical structure rather than as a pragmatic filter.",
+        "comment_no": "pc-005",
+        "comment_uid": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-samira-haddad--1m0k7gycsp",
+        "parent_comment_uid": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-rory-chen--e19jrwl6y5",
+        "permalink": "#comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-samira-haddad--1m0k7gycsp",
+        "persona_id": "persona-samira-haddad",
+        "score_assessment": {
+          "rationale": "Responds directly to the prior comment and accurately uses the source's relevance-focused subsumption account.",
+          "score": 23
+        },
+        "social_vote": {
+          "downvotes": 12,
+          "score": 23,
+          "upvotes": 35
+        },
+        "thread_expansion_key": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-samira-haddad--1m0k7gycsp",
+        "thread_state_key": "comment-source-source-03-grounding-essence-and-identity-e857615fb05e-persona-samira-haddad--1m0k7gycsp"
+      }
+    ],
+    "moderator_outcomes": {
+      "guardrail_checks": {
+        "anti_repetition": {
+          "failed": 0,
+          "passed": 5
+        },
+        "claim_citation": {
+          "failed": 0,
+          "passed": 0
+        },
+        "strongest_opposing_point_ack": {
+          "failed": 0,
+          "passed": 0
+        }
+      },
+      "moderator_check": "- Moderator Check: claim_citation=pass; anti_repetition=pass; strongest_opposing_point_ack=pass",
+      "outcome_sections": {
+        "Consensus": [
+          "Support and challenge signals are currently balanced."
+        ],
+        "Missing Evidence Priorities": [
+          "No immediate evidence-priority gaps detected."
+        ],
+        "Open Disagreements": [
+          "Open disagreements remain balanced across positions."
+        ]
+      }
+    },
+    "page_ref": "source:source-03-grounding-essence-and-identity--e857615fb05e"
+  },
+  "date": null,
+  "display_title": "Grounding and Essence as Generalized Identity",
+  "external_related_links": [],
+  "ingested_at": "2026-04-26T15:17:52Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "/",
+      "url": "http://plato.stanford.edu/archives/spr2016/entries/grounding",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "/",
+      "url": "http://plato.stanford.edu/archives/sum2016/entries/essential-accidental",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "phy URL /",
+      "url": "http://plato.stanford.edu/entries/facts",
+      "year": null
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": "no_curated_links_found",
+    "sources": [
+      "references"
+    ],
+    "status": "skipped",
+    "warnings": [
+      "Skipped 3 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The paper\u2019s governing claim is that grounding and essence can be analyzed by one identity-like notion rather than by separate primitives. Generalized identity supplies the common form: it can state what it is for something to be a certain way, and it can also support analyses of explanatory dependence. This gives the framework its intended unity and explains why the source repeatedly moves between essence, grounding, and identity rather than treating them as isolated topics.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ],
+        "heading": "Central Unification"
+      },
+      {
+        "body": "Generalized identity is not ordinary objectual identity in disguise. The authors use an operator that connects open or closed sentences and read it non-factively, so the truth of a generalized identity does not require both sides to be instantiated or true. Its no-difference behavior, including symmetry and transitivity, is crucial because later definitions rely on substituting identity-equivalent contents while avoiding opaque contexts such as belief reports.",
+        "grounding_claim_ids": [
+          "1",
+          "7"
+        ],
+        "heading": "Generalized Identity"
+      },
+      {
+        "body": "The essence account distinguishes full from partial essence. Full generic essence is directly identified with generalized identity, while partial essence is explained through conjunctive structure: something is partly what G is when it appears as a conjunct in what it is to be G. This lets the authors preserve the intuition that essence is more than necessity while also explaining why essentialist claims can resemble real definitions.",
+        "grounding_claim_ids": [
+          "2",
+          "3",
+          "4"
+        ],
+        "heading": "Essence Analysis"
+      },
+      {
+        "body": "Grounding is initially characterized through disjunctive parthood: a plurality grounds q when its conjunction is a disjunctive part of q, subject to an exclusion condition preventing q from being contained in the grounds in the wrong way. The later subsumption formulation sharpens this by connecting grounds to wholly relevant ways for the grounded fact to obtain, making relevance part of the metaphysical structure rather than an afterthought.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ],
+        "heading": "Grounding Analysis"
+      },
+      {
+        "body": "One payoff is that ground-theoretic status is preserved under factual identity, because generalized identity is governed by identity-like structural principles. Another is that grounding implies an essence-based necessitation pattern: if being F grounds being G, then being G is being F or some H, which yields the modal result that F necessitates G. The necessity is derived from essence, not merely stipulated.",
+        "grounding_claim_ids": [
+          "7",
+          "8"
+        ],
+        "heading": "Preservation And Necessitation"
+      },
+      {
+        "body": "The paper resists reducing essence to necessity. The Socrates-plus-infinitely-many-primes example shows that necessary entailment and equivalence can hold even where essential structure is absent, because the augmented condition is tied to arithmetic in a way bare Socrates is not. Grounding structure therefore helps separate genuinely essential conditions from merely necessary companions.",
+        "grounding_claim_ids": [
+          "9"
+        ],
+        "heading": "Limits Of Modality"
+      },
+      {
+        "body": "The authors position their proposal against Fine\u2019s unification of grounding and essence. Their main complaint is not that Fine cannot be supplemented, but that his primitive constitutive relations leave important explanatory links underdescribed. By contrast, generalized identity lets the authors derive several constraints, including asymmetries between grounding and essence, from a more uniform formal base.",
+        "grounding_claim_ids": [
+          "0",
+          "6",
+          "8",
+          "9"
+        ],
+        "heading": "Comparison With Fine"
+      }
+    ],
+    "summary_long": "This source develops a metaphysical framework in which grounding and essence are analyzed through generalized identity, a non-objectual identity-like operator expressed by the idiom 'For ... is for ...'. Correia and Skiles begin from the thought that grounding and essence are both Aristotelian notions often treated as closely related but not clearly unified. Their proposal is to use generalized identity as the common machinery: it can relate factual and generic contents without requiring ordinary entities such as facts or properties as relata, and it is governed by identity-like principles such as reflexivity, symmetry, transitivity, and restricted Leibniz-style substitutivity. On the essence side, full generic essence is identified with generalized identity: being F is what it is to be G in full exactly when for a thing to be G is for it to be F. Partial generic essence is then modeled by conjunctive parthood: F is partially what it is to be G when being G is being both F and some H. Objectual essence is routed through the generic essence of being identical to the object. On the grounding side, the authors first analyze factual grounding using disjunctive parthood and then present a subsumption-theoretic analogue that emphasizes relevance: the grounds must collectively constitute a way for q to obtain, while q must not be quasi-subsumed by the grounds in the wrong direction. These definitions allow them to explain why grounding status is preserved under factual identity and why grounding often carries an essence-based necessitation pattern. The account also distinguishes essence from mere modal necessity. Necessary equivalence does not guarantee essence when the relevant conditions differ in grounding structure, as in the Socrates-plus-primes example. The paper\u2019s comparison with Fine is therefore not simply terminological; it argues that generalized identity offers a more transparent and uniform explanation of the constitutive relations Fine leaves comparatively primitive.",
+    "summary_short": "Fabrice Correia and Alexander Skiles propose that grounding and essence can be unified through generalized identity. Their account treats essence through full and partial generic identity, and grounding through disjunctive parthood and subsumption. The paper\u2019s main payoff is an explanation of how grounding, essence, and identity constrain one another without reducing essence to mere necessity."
+  },
+  "source_extraction": {
+    "converter_name": "pdftotext",
+    "converter_version": null,
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "source_kind": "file",
+  "source_locator": "03-grounding-essence-and-identity.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Fabrice Correia",
+      "Alexander Skiles"
+    ],
+    "display_title": "Grounding and Essence as Generalized Identity"
+  },
+  "source_type": "file",
+  "summary": "Correia and Skiles argue that generalized identity can provide a unified analysis of grounding and essence. Full and partial essence are modeled through generic identity and conjunctive parthood, while grounding is modeled through disjunctive parthood and subsumption. The resulting framework aims to explain why grounding implies certain essence-based necessitation patterns without collapsing essence into mere modal equivalence.",
+  "title": "03-grounding-essence-and-identity",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved; continuing with date=null."
+    }
+  ]
+}

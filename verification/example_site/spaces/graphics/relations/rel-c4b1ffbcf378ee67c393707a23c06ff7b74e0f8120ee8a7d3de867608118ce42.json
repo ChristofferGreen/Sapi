@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-mastered-shadercoding-can-support-real-time-artistic-improvisation-that-fuses-co--51c4a707f8d0",
+  "dst_claim_ref": "7",
+  "last_evaluated_run_id": null,
+  "rationale": "The claim that constraints can create supports the account of improvised live performance through technical mastery.",
+  "relation_file_id": "rel-c4b1ffbcf378ee67c393707a23c06ff7b74e0f8120ee8a7d3de867608118ce42",
+  "relation_id": "supports:claim-mathematical-and-technical-constraints-in-shadercoding-can-become-creative-motor--5b703448e7f5->claim-mastered-shadercoding-can-support-real-time-artistic-improvisation-that-fuses-co--51c4a707f8d0",
+  "relation_type": "supports",
+  "src_claim_id": "claim-mathematical-and-technical-constraints-in-shadercoding-can-become-creative-motor--5b703448e7f5",
+  "src_claim_ref": "5",
+  "status": "open"
+}

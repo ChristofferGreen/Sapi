@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de",
+    "claim-wcet-aware-procedure-cloning-improves-wcet-estimates-by-specializing-functions-w--808a9c5da846",
+    "claim-wcet-centric-procedure-positioning-reduces-instruction-cache-conflict-misses-by--47eeb6643a90"
+  ],
+  "evidence_id": "evidence-back-annotation-data-list--c02d9e5a8f71",
+  "evidence_type": "model_constraint",
+  "excerpt": "The transformed back-annotation data are listed as WCET for the entire program, functions, and basic blocks; whether an ICD-C block lies on the WCEP; worst-case execution frequency per CFG edge; feasibility of blocks and edges; I-cache misses per basic block; code size; and spill code per assembly-level basic block.",
+  "overview": "The inventory identifies the exact timing and structural facts lifted from low-level analysis into source-level ICD-C. This matters because high-level transformations such as cloning and positioning can only be WCET-aware if these optimization inputs are available at their abstraction level.",
+  "page_refs": [
+    "Sect. 6.2",
+    "p.274"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e",
+  "title": "Back-Annotation Data Inventory"
+}

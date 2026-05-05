@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T08:01:29Z",
+  "claim_id": "claim-because-essential-truths-are-metaphysically-necessary-the-significance-and-essen--91a2b8cae171",
+  "evidence_excerpts": [
+    "(3) By (2) and essence, there are essential truths about [p], D, the plurality consisting of [p] and D, or the entities they involve according to which \u2227D \u2192 p. (4) The essential truths are metaphysically necessary. (5) By (3) and (4), 0(\u2227D \u2192 p)."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Essence yields necessity",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "Because essential truths are metaphysically necessary, the significance and essence principles together imply the modal necessity of full grounding."
+}

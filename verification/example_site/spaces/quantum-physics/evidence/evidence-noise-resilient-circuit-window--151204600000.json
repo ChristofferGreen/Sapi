@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-noise-resilient-circuit-design-can-extend-nisq-computational-reach-but-it-may-tr--aed4bcfeaa39",
+    "claim-scalable-fault-tolerant-quantum-computing-depends-on-quantum-error-correction-bu--cf48bc246343"
+  ],
+  "evidence_id": "evidence-noise-resilient-circuit-window--151204600000",
+  "evidence_type": "model_constraint",
+  "excerpt": "Because of the high overhead cost of quantum error correction, NISQ devices will not make use of it in the near term. Nevertheless, methods for mitigating the effects of noise may be an important consideration during the NISQ era. There is a substantial opportunity for experimentalists and theorists, working together over the next few years, to find better ways of making quantum circuits noise resilient, and so extend the computational reach of NISQ technology. We should be wary, though, of a potential tradeoff \u2014 making a quantum circuit more noise resilient may also make it easier to simulate classically.",
+  "overview": "This passage gives a concrete design path for NISQ algorithms: tolerate or mitigate noise rather than rely on full error correction. It also constrains that optimism by noting that noise resilience may remove exactly the complexity that makes a circuit hard for classical computers.",
+  "page_refs": [
+    "p.9"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-quantum-computing-in-the-nisq-era-and-beyond--2ce59b8ba8bb",
+  "title": "Noise-Resilient Circuit Window"
+}

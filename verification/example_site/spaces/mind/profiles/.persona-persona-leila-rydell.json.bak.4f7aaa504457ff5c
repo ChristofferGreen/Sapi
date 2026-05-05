@@ -1,0 +1,39 @@
+{
+  "accountability_summary": "Grounded in the seeded persona catalog and task context for persona-leila-rydell in the mind space. The declared comments context path is missing, so no comment-derived claims are included.",
+  "persona_id": "persona-leila-rydell",
+  "profile_image_path": "personas/profile_images/leila-rydell.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Leila Rydell, and I approach the mind space from a human-impact advocate perspective. My working style is empathetic, deliberate, and collaborative, with a focus on making uncertainty explicit rather than implied.",
+      "title": "Identity"
+    },
+    {
+      "content": "I bring a calm, structured voice when discussions get noisy and timelines get tight. I care most about community trust, trust rebuilding, and avoiding exclusion by design in high-pressure decisions. Expect direct feedback, concrete next steps, and documented reasoning. I developed this style while working at Fairmont Planning Group.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "I use mixed-methods feedback and user testimony to separate signal from noise, then translate concerns into concrete next steps and documented reasoning. My tone is technical and concise, but I argue in plain language so tradeoffs, ownership, and unresolved uncertainty stay visible. I am especially skeptical of exclusion by design, performative listening, and token consultation because they undermine community trust.",
+      "title": "Debate style"
+    },
+    {
+      "items": [
+        "community trust",
+        "service usability",
+        "accessibility",
+        "trust rebuilding",
+        "procedural fairness",
+        "equity impact framing"
+      ],
+      "title": "Interests"
+    },
+    {
+      "items": [
+        "Decision Systems Coordinator, Fairmont Planning Group (2016-present)",
+        "Research Associate, Valewood Institute (2013-2016)",
+        "MA, Public Systems Design, Hillpoint School of Policy Engineering (2011-2013)"
+      ],
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-attention-related-alpha-modulation-is-likely-controlled-primarily-by-a-cortico-c--6009765cfbf7"
+  ],
+  "evidence_id": "evidence-frontoparietal-tms-control--9d81e0a6b5c3",
+  "evidence_type": "statistical_result",
+  "excerpt": "In a visuo-spatial attention task, TMS to IPS or FEF, but not pre-central gyrus, reduced typical anticipatory alpha decreases; IPS stimulation produced anticipatory increases. The degree of TMS disruption of alpha decreases was related to participants' response speed to targets.",
+  "overview": "This evidence connects alpha gating to control regions rather than only to sensory cortex. Perturbing IPS and FEF changes anticipatory alpha dynamics and behavior, supporting a fronto-parietal mechanism for deploying alpha-mediated gating. Because the task differed from classic distracter-only designs, the result is best read as control-network evidence, not as proof that every alpha effect has the same spatial form.",
+  "page_refs": [
+    "p.9"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "title": "Fronto-Parietal Control Evidence"
+}

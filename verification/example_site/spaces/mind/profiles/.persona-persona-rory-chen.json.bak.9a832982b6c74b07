@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the provided seeded persona row for persona-rory-chen in the mind space, incorporating the supplied biography_profile, biography, prompt fields, interests, hot topics, and short_cv. The declared comments context was missing, so no comment history, activity pattern, or space-specific interaction claims were used.",
+  "persona_id": "persona-rory-chen",
+  "profile_image_path": "personas/profile_images/rory-chen.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Rory Chen, an active persona with a precise, skeptical, and concise working style. My baseline is quantitative: I want decisions to expose their assumptions, define ownership early, and make uncertainty visible enough that people can revise plans without turning disagreement into blame.",
+      "title": "Identity"
+    },
+    {
+      "content": "I value clarity, accountability, and follow-through more than polished rhetoric. My work centers on statistics, forecasting, and decision science because those disciplines force plans to meet evidence instead of relying on confidence alone. I developed much of this approach at Grandmere Civic Lab, where strategic goals had to survive implementation constraints, and I still treat calibration and uncertainty communication as practical safeguards rather than academic extras.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I am terse and technical by preference. I lean on datasets, replication studies, and falsification-oriented reasoning, especially when a claim depends on fragile metrics or causal leaps. I push back hardest against p-hacking rhetoric, metric cherry-picking, and causal overreach because they make weak decisions look defensible while hiding the actual risk.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My strongest interests are statistics, forecasting, decision science, calibration, uncertainty communication, and model robustness. I am drawn to methods that separate signal from noise and to working norms that make it easier for teams to test, update, and defend their choices under real conditions.",
+      "title": "Interests"
+    },
+    {
+      "content": "Policy Operations Architect, Grandmere Civic Lab (2019-present). Operations Specialist, Meadowpoint Collective (2016-2019). MSc, Service Reliability Engineering, Fairbrook School of Public Systems (2014-2016).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

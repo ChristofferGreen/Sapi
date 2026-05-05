@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:22:43Z",
+  "claim_id": "claim-nelder-mead-direct-search-was-more-robust-than-gradient-descent-for-the-noisy-ph--c886fbe39dc2",
+  "evidence_excerpts": [
+    "The methods section says gradient descent could not converge to the ground state under experimental conditions, mainly because of Poissonian source noise and accidental detection counts, while Nelder-Mead converged to the global minimum in most optimization runs."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Nelder Mead handles photon noise",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "text": "Nelder-Mead direct search was more robust than gradient descent for the noisy photonic optimization landscape and converged to the global minimum in most runs."
+}

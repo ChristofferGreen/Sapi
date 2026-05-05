@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T16:29:01Z",
+  "claim_id": "claim-the-near-term-viability-of-quantum-machine-learning-depends-on-solving-input-out--0091df09ad90",
+  "evidence_excerpts": [
+    "The review distills four caveats for future work: input problem, output problem, costing problem, and benchmarking problem."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Viability needs practical benchmarks",
+  "source_id": "source-05-quantum-machine-learning--a91f0184eb29",
+  "text": "The near-term viability of quantum machine learning depends on solving input, output, costing, and benchmarking problems rather than only proving asymptotic speedups."
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "HHL is one of the linear-algebra primitives that underwrite quantum machine learning speedup claims.",
+  "relation_file_id": "rel-c98f52f0f751ecaede28701759ec2266df9efdc834d3a31e27b3bba6326ffd35",
+  "relation_id": "derived_from:claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc->claim-quantum-basic-linear-algebra-subroutines-provide-exponential-speedups-for-fourie--009e83ff60b6",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-the-hhl-linear-system-algorithm-can-output-a-quantum-state-proportional-to-a-sol--9531ddbd1acc",
+  "src_claim_ref": "3",
+  "status": "open"
+}

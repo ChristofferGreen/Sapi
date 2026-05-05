@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-ground-theoretic-status-is-preserved-under-factual-identity-because-the-proposed--4aecebbdb4a2"
+  ],
+  "evidence_id": "evidence-grounding-status-preservation--f1e2d3c4b5a6",
+  "evidence_type": "proof_step",
+  "excerpt": "given that generalized identity is symmetric and transitive, and that the rules R3 and R4 are truth-preserving, FACTUAL-GROUNDING entails that ground-theoretic status is preserved under factual identity. More precisely: (17) a. If p, p1, p2 \u2026 ground q and p \u00ba p* , then p*, p1, p2, \u2026 ground q. b. If p1, p2, \u2026 ground q and q \u00ba q*, then p1, p2, \u2026 ground q*.",
+  "overview": "This proof-like passage shows a payoff of using identity rather than an unrelated explanatory primitive. Grounding status survives substitution by factual identity, but the result applies to a worldly conception of grounding rather than to every representation-sensitive explanatory context.",
+  "page_refs": [
+    "p.20"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-grounding-essence-and-identity--e857615fb05e",
+  "title": "Grounding Identity Preservation"
+}

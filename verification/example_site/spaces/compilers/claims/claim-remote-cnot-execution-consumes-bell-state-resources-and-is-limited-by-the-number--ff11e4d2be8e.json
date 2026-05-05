@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T17:45:24Z",
+  "claim_id": "claim-remote-cnot-execution-consumes-bell-state-resources-and-is-limited-by-the-number--ff11e4d2be8e",
+  "evidence_excerpts": [
+    "For each remote CNOT, a Bell state is consumed and a new Bell state must be distributed between the remote processors through the quantum link before another remote CNOT can be executed.",
+    "The number of remote CNOTs that can be executed simultaneously between two processors is limited by the number of communication qubits jointly available at each processor."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Remote CNOTs consume Bell states",
+  "source_id": "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+  "text": "Remote CNOT execution consumes Bell-state resources and is limited by the number of available communication qubits, creating a tradeoff between communication capacity and data-qubit capacity."
+}

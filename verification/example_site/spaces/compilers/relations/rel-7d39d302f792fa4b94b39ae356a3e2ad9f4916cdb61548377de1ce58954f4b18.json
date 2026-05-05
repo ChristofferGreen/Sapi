@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d",
+  "dst_claim_ref": "3",
+  "last_evaluated_run_id": null,
+  "rationale": "Bell-state consumption and communication-qubit limits are the resource dynamics that require distributed coupling maps to become temporal rather than static.",
+  "relation_file_id": "rel-7d39d302f792fa4b94b39ae356a3e2ad9f4916cdb61548377de1ce58954f4b18",
+  "relation_id": "supports:claim-remote-cnot-execution-consumes-bell-state-resources-and-is-limited-by-the-number--ff11e4d2be8e->claim-distributed-quantum-compilers-must-model-temporal-coupling-map-dynamics-because--0883f72a302d",
+  "relation_type": "supports",
+  "src_claim_id": "claim-remote-cnot-execution-consumes-bell-state-resources-and-is-limited-by-the-number--ff11e4d2be8e",
+  "src_claim_ref": "2",
+  "status": "open"
+}

@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-it-is-metaphysicall--2de4b0891870",
+    "claim-the-relevant-sense-in-which-grounding-is-necessary-is-the-third-style-modal-cons--8349c8376c22"
+  ],
+  "evidence_id": "evidence-necessity-thesis--18b71a159e80",
+  "evidence_type": "formal_argument",
+  "excerpt": "Where \u2018\u4290\u2019 formalizes metaphysical necessity, consider, then, the following thesis: necessity: if [p] is (fully) grounded in D, then \u4290(\u2227D \u2192 p).",
+  "overview": "This formal statement fixes the paper\u2019s target thesis. It identifies the relevant modal consequence of full grounding: the propositions corresponding to a full ground must metaphysically necessitate the proposition corresponding to what is grounded. The formula also limits the claim to full grounds rather than partial explanatory factors.",
+  "page_refs": [
+    "p.466"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "title": "Necessity Thesis Formula"
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T08:05:25Z",
+  "claim_id": "claim-if-a-fact-p-is-fully-grounded-in-a-plurality-of-facts-d-then-it-is-metaphysicall--2de4b0891870",
+  "evidence_excerpts": [
+    "necessity: if [p] is (fully) grounded in D, then \u4290(\u2227D \u2192 p)."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Full grounds entail p",
+  "source_id": "source-grounding-necessary-or-contingent--6e8195a096f0",
+  "text": "If a fact [p] is fully grounded in a plurality of facts D, then it is metaphysically necessary that the conjunction of the propositions corresponding to D entails p."
+}

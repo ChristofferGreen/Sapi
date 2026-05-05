@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-feature-based-visual-attention-increases-alpha-power-in-dorsal-or-ventral-stream--0c7646ad3b93"
+  ],
+  "evidence_id": "evidence-feature-stream-alpha--d2b18fc7a901",
+  "evidence_type": "figure_result",
+  "excerpt": "The feature-based attention study used ICA on 8-15 Hz band-pass filtered single trials and found alpha-reactive components during the preparatory cue-S2 interval. Components with higher alpha power for attention to color were generally localized to putative dorsal visual stream regions, while components with higher alpha power for attention to motion were generally localized to putative ventral visual stream regions.",
+  "overview": "This evidence extends the suppression account from locations to feature-processing systems. The dorsal and ventral stream dissociation matters because it shows that alpha increases are not only spatial markers; they can also appear in cortical systems responsible for processing an irrelevant feature dimension.",
+  "page_refs": [
+    "Figure 3",
+    "pp.5-6"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-03-the-role-of-alpha-band-brain-oscillations-as-a-sensory-suppression-mechanism-dur-w2005105933--7b6b7d5bc8b9",
+  "title": "Feature Stream Alpha Separation"
+}

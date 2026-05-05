@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-04-26T11:09:33Z",
+  "claim_id": "claim-an-8-week-mindfulness-based-stress-reduction-course-improves-endogenous-orientin--f7bde69b7431",
+  "evidence_excerpts": [
+    "An ANOVA for the RT difference scores of the orienting component revealed a significant factor of group [F(2,48) = 10.13, p < .001]. A series of contrasts revealed that the MBSR group differed from the control group and the retreat group."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "MBSR improves orienting",
+  "source_id": "source-02-mindfulness-training-modifies-subsystems-of-attention-w2132002500--696402dc8f78",
+  "text": "An 8-week mindfulness-based stress reduction course improves endogenous orienting relative to control and retreat groups at post-training testing."
+}

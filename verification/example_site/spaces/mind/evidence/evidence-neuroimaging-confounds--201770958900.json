@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-neuroimaging-requires-caution--201770958900",
+    "claim-research-needs-prescriptive-reform--79c0d54db997"
+  ],
+  "evidence_id": "evidence-neuroimaging-confounds--201770958900",
+  "evidence_type": "formal_argument",
+  "excerpt": "The source identifies neuroimaging limits including group-average inference, pooling diverse practitioners, cross-sectional designs that preclude cause-and-effect conclusions, head movement, cardiorespiratory effects, vein-drain artifacts, and difficulty estimating practical significance of observed structural or functional brain changes.",
+  "overview": "This evidence item grounds the paper\u2019s warning that meditation brain images are not self-interpreting proof of clinical benefit or causal neural change. The source acknowledges modest meta-analytic findings while arguing that artifacts and design limits must be handled before practical conclusions are imported into treatment or public messaging.",
+  "page_refs": [
+    "pp. 50-51"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-04-mind-the-hype-a-critical-evaluation-and-prescriptive-agenda-for-research-on-mind-w2761197918--79c0d54db997",
+  "title": "Neuroimaging Confound Limits"
+}

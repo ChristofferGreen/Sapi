@@ -8,6 +8,7 @@ from pathlib import Path
 from tests.conftest import create_deterministic_mock_llm_fixture
 
 from sapi.core.transactions import ArtifactTransaction
+from sapi.llm.semantic_executor import SemanticFlowError
 from sapi.questions.measurements import (
     build_question_measurement_context,
     refresh_question_measurements,
@@ -161,6 +162,7 @@ class QuestionMeasurementTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "spaces" / "alpha"
             _write_linked_artifacts(space_root)
+            _write_measurement_record(space_root=space_root, question_id="question-protein-intake")
             question_path = write_prepared_question_record(
                 space_root=space_root,
                 space_name="alpha",
@@ -168,6 +170,7 @@ class QuestionMeasurementTests(unittest.TestCase):
                     linked_source_ids=[SOURCE_ID],
                     claim_ids=[CLAIM_ID],
                     evidence_ids=[EVIDENCE_ID],
+                    measurement_ids=[MEASUREMENT_ID],
                 ),
             )
             payload = _measurement_payload("question-protein-intake")
@@ -193,6 +196,38 @@ class QuestionMeasurementTests(unittest.TestCase):
                 updated["freshness"]["question_measurement_extraction"]["warnings"],
                 ["No numeric measurement was explicit."],
             )
+            self.assertFalse((space_root / "measurements" / f"{MEASUREMENT_ID}.json").exists())
+
+    def test_measurement_refresh_rejects_foreign_measurement_id_collision(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            _write_linked_artifacts(space_root)
+            _write_measurement_record(space_root=space_root, question_id="question-other")
+            write_prepared_question_record(
+                space_root=space_root,
+                space_name="alpha",
+                payload=_question_payload(
+                    linked_source_ids=[SOURCE_ID],
+                    claim_ids=[CLAIM_ID],
+                    evidence_ids=[EVIDENCE_ID],
+                ),
+            )
+            fixture = create_deterministic_mock_llm_fixture(
+                mode="valid",
+                valid_payload=_measurement_payload("question-protein-intake"),
+            )
+
+            with self.assertRaisesRegex(ValueError, "belongs to question_id 'question-other'"):
+                run_question_measurement_extraction_and_update(
+                    space_root=space_root,
+                    question_id="question-protein-intake",
+                    run_id="run-20260501T120000Z--abcdefghij",
+                    llm_client=fixture,
+                    transaction=ArtifactTransaction(),
+                )
+
+            measurement = json.loads((space_root / "measurements" / f"{MEASUREMENT_ID}.json").read_text())
+            self.assertEqual(measurement["question_id"], "question-other")
 
     def test_measurement_extraction_rejects_unlinked_and_incompatible_rows(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -245,12 +280,43 @@ class QuestionMeasurementTests(unittest.TestCase):
                     transaction=ArtifactTransaction(),
                 )
 
+    def test_measurement_extraction_repair_exhausts_when_numeric_value_is_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            _write_linked_artifacts(space_root)
+            write_prepared_question_record(
+                space_root=space_root,
+                space_name="alpha",
+                payload=_question_payload(
+                    linked_source_ids=[SOURCE_ID],
+                    claim_ids=[CLAIM_ID],
+                    evidence_ids=[EVIDENCE_ID],
+                ),
+            )
+            payload = _measurement_payload("question-protein-intake")
+            del payload["measurements"][0]["value"]  # type: ignore[index]
+            fixture = create_deterministic_mock_llm_fixture(
+                mode="repair_exhausted",
+                invalid_output=json.dumps(payload),
+            )
+
+            with self.assertRaisesRegex(SemanticFlowError, "question_measurement_extraction"):
+                run_question_measurement_extraction_and_update(
+                    space_root=space_root,
+                    question_id="question-protein-intake",
+                    run_id="run-20260501T120000Z--abcdefghij",
+                    llm_client=fixture,
+                    transaction=ArtifactTransaction(),
+                )
+            self.assertEqual(fixture.call_count, 4)
+
 
 def _question_payload(
     *,
     linked_source_ids: list[str] | None = None,
     claim_ids: list[str] | None = None,
     evidence_ids: list[str] | None = None,
+    measurement_ids: list[str] | None = None,
 ) -> dict[str, object]:
     return {
         "schema_version": "prepared_question_v1",
@@ -262,7 +328,7 @@ def _question_payload(
         "linked_source_ids": linked_source_ids or [],
         "claim_ids": claim_ids or [],
         "evidence_ids": evidence_ids or [],
-        "measurement_ids": [],
+        "measurement_ids": measurement_ids or [],
         "synthesis": {},
         "freshness": {},
         "warnings": [],
@@ -324,6 +390,24 @@ def _write_linked_artifacts(space_root: Path) -> None:
     evidence_path.write_text(
         json.dumps(
             {"evidence_id": EVIDENCE_ID, "source_id": SOURCE_ID, "excerpt": "Protein intake 1.6-2.2 g/kg/day."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n"
+    )
+
+
+def _write_measurement_record(*, space_root: Path, question_id: str) -> None:
+    measurement_path = space_root / "measurements" / f"{MEASUREMENT_ID}.json"
+    measurement_path.parent.mkdir(parents=True, exist_ok=True)
+    payload = _measurement_payload("question-protein-intake")["measurements"][0]  # type: ignore[index]
+    measurement_path.write_text(
+        json.dumps(
+            {
+                "schema_version": "question_measurement_v1",
+                "question_id": question_id,
+                **payload,
+            },
             indent=2,
             sort_keys=True,
         )

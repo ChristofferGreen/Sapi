@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-04-26T16:22:43Z",
+  "claim_id": "claim-hamiltonian-expectation-values-for-a-broad-class-of-physical-systems-reduce-to-s--ed045d2a43b4",
+  "evidence_excerpts": [
+    "Any Hamiltonian may be written as a sum of one- and multi-subsystem Pauli terms, and by linearity the expectation value becomes a weighted sum of corresponding Pauli-product expectation values.",
+    "The paper states that Hamiltonians with polynomially many terms include electronic-structure Hamiltonians, quantum Ising models, Heisenberg models, tensor-product approximable matrices, and more general k-sparse Hamiltonians."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Hamiltonians decompose into Pauli expectations",
+  "source_id": "source-04-a-variational-eigenvalue-solver-on-a-photonic-quantum-processor--4678297edf5b",
+  "text": "Hamiltonian expectation values for a broad class of physical systems reduce to sums of Pauli-product expectation values measured on a quantum state."
+}

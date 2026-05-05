@@ -89,6 +89,30 @@ class SiteSnapshotGoldenTests(unittest.TestCase):
                 GOLDEN_PREPARED_QUESTION_DETAIL_CONTENT.read_text(),
             )
 
+    def test_prepared_question_measurements_render_table_without_chart_when_no_group_is_compatible(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            site_path = bootstrap_site_and_space(Path(tmp), "alpha")
+            space_root = site_path / "spaces" / "alpha"
+            _write_prepared_question_golden_fixture(space_root, chart_groups=[])
+            result = run_command(
+                [
+                    "python3",
+                    str(REPO_ROOT / "scripts" / "build_site.py"),
+                    "--registry-path",
+                    str(site_path / "spaces.toml"),
+                    "alpha",
+                ]
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            question_detail = (
+                space_root / "site" / "questions" / "question-protein-intake.html"
+            ).read_text()
+            content = _content_card(question_detail)
+            self.assertIn("question-measurement-table", content)
+            self.assertIn("No compatible measurement group is available for charting.", content)
+            self.assertNotIn("question-measurement-chart", content)
+
 
 def _write_json(path: Path, payload: dict[str, object]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -101,7 +125,11 @@ def _content_card(html: str) -> str:
     return html[start:end] + "\n"
 
 
-def _write_prepared_question_golden_fixture(space_root: Path) -> None:
+def _write_prepared_question_golden_fixture(
+    space_root: Path,
+    *,
+    chart_groups: list[dict[str, object]] | None = None,
+) -> None:
     source_id = "source-protein--123456789abc"
     claim_id = "claim-protein-intake--123456789abc"
     evidence_id = "evidence-protein-intake--123456789abc"
@@ -159,6 +187,17 @@ def _write_prepared_question_golden_fixture(space_root: Path) -> None:
             "uncertainty": "range depends on training context",
         },
     )
+    if chart_groups is None:
+        chart_groups = [
+            {
+                "chart_group_id": "chart-protein-intake",
+                "measure_name": "protein intake",
+                "unit": "g/kg/day",
+                "population": "resistance-trained adults",
+                "outcome": "muscle hypertrophy",
+                "measurement_ids": [measurement_id],
+            }
+        ]
     write_prepared_question_record(
         space_root=space_root,
         space_name="alpha",
@@ -212,16 +251,7 @@ def _write_prepared_question_golden_fixture(space_root: Path) -> None:
                     ),
                     "refreshed_at": "2026-05-01T12:00:00Z",
                     "measurement_ids": [measurement_id],
-                    "chart_groups": [
-                        {
-                            "chart_group_id": "chart-protein-intake",
-                            "measure_name": "protein intake",
-                            "unit": "g/kg/day",
-                            "population": "resistance-trained adults",
-                            "outcome": "muscle hypertrophy",
-                            "measurement_ids": [measurement_id],
-                        }
-                    ],
+                    "chart_groups": chart_groups,
                     "warnings": [],
                 },
             },

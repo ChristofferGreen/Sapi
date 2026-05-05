@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-quantity-of-consciousness-available-to-a-system-can-be-measured-by-the-value--a2c2f914c389",
+    "claim-a-complex-is-a-subset-of-elements-with-greater-than-zero-that-is-not-included-wi--f99811f20a12"
+  ],
+  "evidence_id": "evidence-effective-information-equation--2d6c98a40f13",
+  "evidence_type": "equation",
+  "excerpt": "For a bipartition of a subset into A and B, the source defines effective information in both directions and writes EI(A\u2194B) as EI(A\u2192B) + EI(B\u2192A). It states that EI(A\u2192B) is high when connections from A to B are strong and specialized so that different outputs from A induce different firing patterns in B, and low or zero when outputs have scarce or invariant effects.",
+  "overview": "This definition supplies the causal measurement primitive for the theory. It matters because the proposed measure does not merely ask whether two parts are statistically related; it asks how much differentiated causal effect one part can have on the other under maximal perturbation. That makes the later definition of \u03a6 a model constraint on integrated causal capacity, not a generic correlation measure.",
+  "page_refs": [
+    "pp.4-5",
+    "Fig.1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Effective Information Equation"
+}

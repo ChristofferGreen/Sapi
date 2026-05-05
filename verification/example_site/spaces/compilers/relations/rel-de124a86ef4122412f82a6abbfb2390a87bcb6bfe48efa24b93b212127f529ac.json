@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-on-the-benchmark-suite-profile-based-super-block-optimizations-averaged-a-1-15-s--e5d7486c0e56",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "The identified mechanisms explain why the measured performance improvements can arise.",
+  "relation_file_id": "rel-de124a86ef4122412f82a6abbfb2390a87bcb6bfe48efa24b93b212127f529ac",
+  "relation_id": "supports:claim-the-major-effectiveness-mechanisms-are-eliminating-entries-into-the-middle-of-tr--4bc0ff5e21b0->claim-on-the-benchmark-suite-profile-based-super-block-optimizations-averaged-a-1-15-s--e5d7486c0e56",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-major-effectiveness-mechanisms-are-eliminating-entries-into-the-middle-of-tr--4bc0ff5e21b0",
+  "src_claim_ref": "11",
+  "status": "open"
+}

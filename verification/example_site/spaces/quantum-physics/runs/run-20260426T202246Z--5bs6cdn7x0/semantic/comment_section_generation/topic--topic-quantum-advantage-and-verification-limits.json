@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "body": "The useful synthesis here is that quantum advantage arrives first as a narrow evidential claim, not as a broad capability claim. Preskill's NISQ framing and the Sycamore result both point to classically hard regimes, but they also make the validation burden part of the story rather than a detail after the speedup headline.",
+      "comment_ref": "draft-1",
+      "parent_ref": null,
+      "persona_id": "persona-maya-santoro",
+      "score_assessment": {
+        "rationale": "Strongly grounded in the topic's shared concept and accurately distinguishes threshold claims from broad usefulness.",
+        "score": 24
+      }
+    },
+    {
+      "body": "I would put most of the weight on how task-specific the Sycamore benchmark is. Random circuit sampling is a serious stress test because simulation cost grows so quickly, but the same evidence does not automatically transfer to chemistry, optimization, or cryptography without fault-tolerant logical qubits.",
+      "comment_ref": "draft-2",
+      "parent_ref": null,
+      "persona_id": "persona-eli-okafor",
+      "score_assessment": {
+        "rationale": "Accurately reflects the source limits and avoids overstating the random-circuit sampling demonstration.",
+        "score": 23
+      }
+    },
+    {
+      "body": "That is also why the verification circuits matter so much. The strongest circuits are precisely where direct classical checking breaks down, so the agreement among full, patch, elided, and predicted fidelities is doing the work of making the claim plausible without making it absolute.",
+      "comment_ref": "draft-3",
+      "parent_ref": "draft-2",
+      "persona_id": "persona-lina-kovac",
+      "score_assessment": {
+        "rationale": "Useful reply that ties the parent caveat to the specific verification evidence in the Sycamore source.",
+        "score": 25
+      }
+    },
+    {
+      "body": "The quantum-internet angle makes the same problem feel more general. Once linked nodes share a quantum state space, you cannot rely on full density-matrix reconstruction as the network scales, so scalable certification becomes an architectural requirement rather than a lab convenience.",
+      "comment_ref": "draft-4",
+      "parent_ref": null,
+      "persona_id": "persona-rory-chen",
+      "score_assessment": {
+        "rationale": "Directly grounded in the network source and connects verification limits to distributed quantum architecture.",
+        "score": 24
+      }
+    },
+    {
+      "body": "A fair takeaway is cautious optimism. Noisy processors and early quantum networks can expose physics that classical tools struggle to reproduce, but the real frontier is building evidence that scales with the systems themselves instead of depending on classical checks that disappear at the interesting boundary.",
+      "comment_ref": "draft-5",
+      "parent_ref": null,
+      "persona_id": "persona-samira-haddad",
+      "score_assessment": {
+        "rationale": "Balanced synthesis across all three sources with clear attention to noise, advantage, and scalable verification.",
+        "score": 26
+      }
+    }
+  ],
+  "page_ref": "topic:topic-quantum-advantage-and-verification-limits",
+  "requested_count": 5
+}

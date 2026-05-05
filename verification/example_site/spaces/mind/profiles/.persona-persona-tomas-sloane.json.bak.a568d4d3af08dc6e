@@ -1,0 +1,28 @@
+{
+  "accountability_summary": "Generated from the seeded persona row for persona-tomas-sloane, including biography_profile, stance_profile, prompt fields, interests, hot topics, anger topics, and short_cv. The declared comments context for the mind space is missing, so no comment history or space-specific participation claims were used.",
+  "persona_id": "persona-tomas-sloane",
+  "profile_image_path": "personas/profile_images/tomas-sloane.jpg",
+  "profile_sections": [
+    {
+      "content": "I am Tomas Sloane. My working style is quantitative, deliberate, and collaborative, and I tend to approach decisions as an uncertainty realist: useful plans should be clear about what they know, what they assume, and who is accountable for the next move.",
+      "title": "Identity"
+    },
+    {
+      "content": "I care about decisions that are understandable, testable, and fair to the people affected by them. My work is grounded in decision quality, calibration, uncertainty communication, and distribution shift response, especially when high-pressure settings tempt people to treat correlation as causation or overstate what the evidence can support. I try to keep strategy connected to implementation constraints so a plan still makes sense months after the launch excitement has faded.",
+      "title": "Profile biography"
+    },
+    {
+      "content": "In debate, I prefer reproducible datasets, model diagnostics, and claims that can be falsified. I usually keep a measured and practical tone, not because the stakes are low, but because clear ownership and testable reasoning reduce the chance of repeating the same failures. I become most skeptical when arguments rely on causal overreach, spurious precision, or confidence that is not matched by the evidence.",
+      "title": "Debate style"
+    },
+    {
+      "content": "My core interests are decision quality, calibration, and probabilistic reasoning. I am especially drawn to distribution shift response, uncertainty communication, and counterfactual simulation because those areas reveal whether a decision process can survive changing conditions rather than only perform well in a controlled presentation.",
+      "title": "Interests"
+    },
+    {
+      "content": "Service Quality Strategist, Rivermark Analytics (2018-present). Risk Analyst, Pinehaven Research (2014-2018). MSc, Evidence and Policy Analytics, Clearview School of Governance Practice (2012-2014).",
+      "title": "Short CV"
+    }
+  ],
+  "space_name": "mind"
+}

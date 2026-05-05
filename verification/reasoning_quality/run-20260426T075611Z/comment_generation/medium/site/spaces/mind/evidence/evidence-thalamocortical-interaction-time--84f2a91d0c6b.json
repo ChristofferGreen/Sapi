@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-conscious-experience-requires-time-for-effective-thalamocortical-interactions-to--752e5ba21622"
+  ],
+  "evidence_id": "evidence-thalamocortical-interaction-time--84f2a91d0c6b",
+  "evidence_type": "model_constraint",
+  "excerpt": "The source says conscious sensory experience can take 100\u2013200 milliseconds to develop, low-intensity cortical stimulation may need up to 500 milliseconds to produce a conscious sensation, and visual cortical firing predicts conscious detection after about 80\u2013100 milliseconds. In a model with nine segregated visual areas, functionally specialized neurons in several areas required at least 80 milliseconds to interact constructively and produce a specific correlated firing pattern.",
+  "overview": "This evidence gives a temporal constraint on information integration. It supports the claim that consciousness is not tied to the first local response to a stimulus but to the later period when effective interactions among distributed cortical elements can build. The evidence combines psychophysics, stimulation, recordings, and large-scale modeling, so it is stronger as converging timing support than as a single direct measurement of \u03a6.",
+  "page_refs": [
+    "pp.17-18"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-01-an-information-integration-theory-of-consciousness-w2114900706--09db8f102f39",
+  "title": "Thalamocortical Interaction Time"
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-visualization-examples-reveal-interpretable-patterns-in-real-graph-datasets--6f7b292bd09e",
+  "dst_claim_ref": "8",
+  "last_evaluated_run_id": null,
+  "rationale": "LaGO's interaction controls enable the example-driven exploration that reveals dataset-specific patterns.",
+  "relation_file_id": "rel-1a40e0d335dbaaadbe38de433293b0d658059ebbc1a295b4ae0082db1e9e16e7",
+  "relation_id": "supports:claim-the-lago-implementation-supports-interactive-zooming-panning-normalization-contr--0c65d7666097->claim-the-visualization-examples-reveal-interpretable-patterns-in-real-graph-datasets--6f7b292bd09e",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-lago-implementation-supports-interactive-zooming-panning-normalization-contr--0c65d7666097",
+  "src_claim_ref": "7",
+  "status": "open"
+}
