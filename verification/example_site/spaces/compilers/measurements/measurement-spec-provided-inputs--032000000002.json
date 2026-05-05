@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-workloads-extend-beyond-spec-inputs--d4e5f6a7b8c9",
+  "comparator": "116 total inputs",
+  "evidence_id": "evidence-spec-plus-additional-inputs--c409e7a11b8f",
+  "measure_name": "SPEC-provided input count",
+  "measurement_id": "measurement-spec-provided-inputs--032000000002",
+  "outcome": "standard input coverage within workload",
+  "population": "SPEC CINT2000 benchmark inputs within the study workload",
+  "question_id": "question-profile-guided-optimization",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "uncertainty": "reported count; source extraction marked usable",
+  "unit": "inputs",
+  "value": 32,
+  "value_max": null
+}

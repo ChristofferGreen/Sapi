@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7",
+    "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0"
+  ],
+  "evidence_id": "evidence-log-vector-difference-metric--8c2e91a4d0f7",
+  "evidence_type": "equation",
+  "excerpt": "Aestimo converts every optimization log for a given program and optimization into a same-length vector, with positive non-zero values for affirmative decisions and 0 for non-affirmative or absent choices. The difference metric is delta(v_i, v_j) = |v_i - v_j|^2; where decisions are 0s and 1s, this is the Hamming distance. The alignment metric compares a log vector against the combined total vector for all logs to measure agreement with the collective choices.",
+  "overview": "These equations and definitions make decision sensitivity auditable rather than anecdotal. They let the study distinguish cases where different training inputs lead to the same compile-time choices from cases where input choice changes the compiler's transformation decisions. The metrics do not measure runtime quality directly, so their evidentiary scope is compile-time decision variation.",
+  "page_refs": [
+    "Section 2.4",
+    "Table 1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "title": "Optimization-log vector metrics"
+}

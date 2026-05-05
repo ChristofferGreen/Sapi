@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T10:48:40Z",
+  "claim_id": "claim-ansor-automatically-generates-high-performance-tensor-programs-for-deep-neural-n--2274faed5f9d",
+  "evidence_excerpts": [
+    "Ansor uses Relay operator fusion to convert DNNs from ONNX or TensorFlow PB into partitioned small subgraphs, then generates tensor programs for those subgraphs."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Ansor automates tensor programs",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "text": "Ansor automatically generates high-performance tensor programs for deep neural network subgraphs from high-level computation definitions."
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T10:24:41Z",
+  "claim_id": "claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7",
+  "evidence_excerpts": [
+    "The difference metric is defined as the squared length of the difference vector between two log vectors; when decisions are recorded as 0s and 1s, it is the Hamming distance between the vectors."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Metrics quantify decision variation",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "text": "Difference and alignment metrics quantify how much training-input selection changes compile-time optimization decisions by converting optimization logs into comparable decision vectors."
+}

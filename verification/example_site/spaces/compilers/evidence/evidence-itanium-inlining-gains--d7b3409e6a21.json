@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+    "claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1"
+  ],
+  "evidence_id": "evidence-itanium-inlining-gains--d7b3409e6a21",
+  "evidence_type": "figure_result",
+  "excerpt": "In the Itanium evaluation, the paper reports that FDO if-conversion has little effect on performance, while feedback-directed inlining has performance benefits. FDO inlining improves performance by 6% on average on Itanium. The best-case FDO inlining performance is slower than static in only 6 out of 116 cases, and the fastest FDO inlining binaries are more than 10% faster than static in 41 cases.",
+  "overview": "This result separates two transformations: if-conversion is weak in the reported Itanium results, while inlining shows meaningful benefit. The 6% average and 41 large-gain cases substantiate the claim that feedback-directed inlining can help, but the same section notes disappointing Itanium2 behavior, so the result is processor and compiler-context dependent.",
+  "page_refs": [
+    "Section 3",
+    "Figures 6-7"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "title": "Itanium FDO inlining gains"
+}

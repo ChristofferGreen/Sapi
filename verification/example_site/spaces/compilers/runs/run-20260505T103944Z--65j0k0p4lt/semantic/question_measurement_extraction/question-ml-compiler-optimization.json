@@ -1,0 +1,109 @@
+{
+  "chart_groups": [],
+  "measurements": [
+    {
+      "claim_id": "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3",
+      "comparator": "",
+      "evidence_id": "evidence-cost-model-accuracy--1d4f8a6b9c20",
+      "measure_name": "programs measured for cost-model evaluation",
+      "measurement_id": "measurement-cost-model-programs-measured--839fb7edb551",
+      "outcome": "cost-model evaluation dataset size",
+      "population": "ResNet-50 tuning on Intel CPU",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "reported as the measured program count used in the evaluation",
+      "unit": "programs",
+      "value": 25000,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3",
+      "comparator": "random split from 25,000 measured programs",
+      "evidence_id": "evidence-cost-model-accuracy--1d4f8a6b9c20",
+      "measure_name": "training programs for cost-model evaluation",
+      "measurement_id": "measurement-cost-model-training-programs--839fb7edb551",
+      "outcome": "cost-model training set size",
+      "population": "ResNet-50 tuning on Intel CPU",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "reported as the randomly selected training count",
+      "unit": "programs",
+      "value": 20000,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3",
+      "comparator": "random split from 25,000 measured programs",
+      "evidence_id": "evidence-cost-model-accuracy--1d4f8a6b9c20",
+      "measure_name": "testing programs for cost-model evaluation",
+      "measurement_id": "measurement-cost-model-testing-programs--839fb7edb551",
+      "outcome": "cost-model test set size",
+      "population": "ResNet-50 tuning on Intel CPU",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "reported as the randomly selected test count",
+      "unit": "programs",
+      "value": 5000,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3",
+      "comparator": "",
+      "evidence_id": "evidence-cost-model-accuracy--1d4f8a6b9c20",
+      "measure_name": "RMSE",
+      "measurement_id": "measurement-cost-model-rmse--839fb7edb551",
+      "outcome": "cost-model throughput prediction error",
+      "population": "5,000-program test set from ResNet-50 tuning on Intel CPU",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "reported for the held-out test set in Figure 11 and Section 7.5",
+      "unit": "RMSE",
+      "value": 0.079,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3",
+      "comparator": "",
+      "evidence_id": "evidence-cost-model-accuracy--1d4f8a6b9c20",
+      "measure_name": "R2 correlation",
+      "measurement_id": "measurement-cost-model-r2--839fb7edb551",
+      "outcome": "cost-model throughput prediction correlation",
+      "population": "5,000-program test set from ResNet-50 tuning on Intel CPU",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "reported for the held-out test set in Figure 11 and Section 7.5",
+      "unit": "R2",
+      "value": 0.958,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3",
+      "comparator": "",
+      "evidence_id": "evidence-cost-model-accuracy--1d4f8a6b9c20",
+      "measure_name": "pairwise comparison accuracy",
+      "measurement_id": "measurement-cost-model-pairwise-accuracy--839fb7edb551",
+      "outcome": "cost-model ability to rank program pairs",
+      "population": "5,000-program test set from ResNet-50 tuning on Intel CPU",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "reported for the held-out test set in Figure 11 and Section 7.5",
+      "unit": "accuracy fraction",
+      "value": 0.851,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3",
+      "comparator": "",
+      "evidence_id": "evidence-cost-model-accuracy--1d4f8a6b9c20",
+      "measure_name": "recall@30",
+      "measurement_id": "measurement-cost-model-recall-at-30--839fb7edb551",
+      "outcome": "cost-model recall for top-30 programs",
+      "population": "5,000-program test set from ResNet-50 tuning on Intel CPU",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "reported for the held-out test set in Figure 11 and Section 7.5",
+      "unit": "recall fraction",
+      "value": 0.624,
+      "value_max": null
+    }
+  ],
+  "question_id": "question-ml-compiler-optimization",
+  "schema_version": "question_measurement_extraction_v1",
+  "warnings": [
+    "The complete-program fine-tuning evidence states that learned-cost-model queries are orders of magnitude faster than hardware measurement and can evaluate thousands of programs in seconds, but it does not provide exact numeric values suitable for measurement rows.",
+    "Chart groups were omitted because the extracted rows use different measures, units, or outcome semantics."
+  ]
+}

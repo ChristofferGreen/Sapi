@@ -33,11 +33,13 @@
         "run-20260426T173010Z--jes3tesplg",
         "run-20260426T174034Z--a48ivfove6",
         "run-20260426T175043Z--pnjz3vub7p",
-        "run-20260426T175808Z--a8di4sg2ro"
+        "run-20260426T175808Z--a8di4sg2ro",
+        "run-20260505T101456Z--0dngk7ufw6",
+        "run-20260505T103944Z--65j0k0p4lt"
       ],
-      "consecutive_advanced_runs": 5,
-      "last_advanced_completed_at": "2026-04-26T18:06:33Z",
-      "last_advanced_run_id": "run-20260426T175808Z--a8di4sg2ro",
+      "consecutive_advanced_runs": 7,
+      "last_advanced_completed_at": "2026-05-05T11:09:43Z",
+      "last_advanced_run_id": "run-20260505T103944Z--65j0k0p4lt",
       "last_advanced_status": "success"
     },
     "overview_pipeline": {

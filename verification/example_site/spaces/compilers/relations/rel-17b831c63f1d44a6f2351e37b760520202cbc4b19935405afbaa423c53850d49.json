@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "Complete-program sampling and fine-tuning make the enlarged search space practically searchable.",
+  "relation_file_id": "rel-17b831c63f1d44a6f2351e37b760520202cbc4b19935405afbaa423c53850d49",
+  "relation_id": "supports:claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814->claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6",
+  "relation_type": "supports",
+  "src_claim_id": "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814",
+  "src_claim_ref": "2",
+  "status": "open"
+}

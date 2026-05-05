@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T10:24:41Z",
+  "claim_id": "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+  "evidence_excerpts": [
+    "The abstract reports that training input selection affects compiler decisions for inlining and if-conversion, and that the choice of training and testing inputs can have a significant impact on measured performance."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Training inputs affect FDO",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "text": "Training input selection affects both the compiler decisions made for feedback-directed inlining and if-conversion and the measured performance of the resulting binaries."
+}

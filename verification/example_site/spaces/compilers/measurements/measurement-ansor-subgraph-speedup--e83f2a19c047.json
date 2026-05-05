@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-ansor-outperforms-existing-search-frameworks-and-manual-libraries-on-single-oper--6b650490cda3",
+  "comparator": "manual libraries and other search frameworks",
+  "evidence_id": "evidence-operator-subgraph-speedups--e83f2a19c047",
+  "measure_name": "Ansor speedup",
+  "measurement_id": "measurement-ansor-subgraph-speedup--e83f2a19c047",
+  "outcome": "performance versus manual libraries and other search frameworks",
+  "population": "subgraph benchmarks across Intel CPU and NVIDIA GPU cases",
+  "question_id": "question-autotuning",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "uncertainty": "range reported across selected subgraph benchmark cases",
+  "unit": "x",
+  "value": 1.1,
+  "value_max": 14.2
+}

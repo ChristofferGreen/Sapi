@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814",
+  "dst_claim_ref": "2",
+  "last_evaluated_run_id": null,
+  "rationale": "The reported ranking and prediction metrics support the use of the learned cost model during evolutionary fine-tuning.",
+  "relation_file_id": "rel-608ec85b7106512c4ae36eb84ebace62edef95e7a90347d0a4724ee502452054",
+  "relation_id": "supports:claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3->claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814",
+  "relation_type": "supports",
+  "src_claim_id": "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3",
+  "src_claim_ref": "8",
+  "status": "open"
+}

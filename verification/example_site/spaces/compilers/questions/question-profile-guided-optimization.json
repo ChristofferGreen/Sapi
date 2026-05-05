@@ -1,0 +1,322 @@
+{
+  "claim_ids": [
+    "claim-aestimo-isolates-individual-fdo-transformations--a1b2c3d4e5f6",
+    "claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7",
+    "claim-aestimo-compares-workload-runtime-effects--c3d4e5f6a7b8",
+    "claim-workloads-extend-beyond-spec-inputs--d4e5f6a7b8c9",
+    "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+    "claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1",
+    "claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2",
+    "claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3",
+    "claim-resubstitution-does-not-predict-best-bzip2-performance--c9d0e1f2a3b4",
+    "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5"
+  ],
+  "display_order": 1,
+  "evidence_ids": [
+    "evidence-aestimo-forced-decision-recompile--4f19a8c32b7e",
+    "evidence-log-vector-difference-metric--8c2e91a4d0f7",
+    "evidence-workload-five-run-evaluation--a61b93f0c42d",
+    "evidence-spec-plus-additional-inputs--c409e7a11b8f",
+    "evidence-itanium-inlining-gains--d7b3409e6a21",
+    "evidence-bzip2-inlining-metric-tables--0f6e2c99aa54",
+    "evidence-bzip2-training-performance-range--b4a75e0f3d18",
+    "evidence-bzip2-resubstitution-ranks--e52d196cc9b0"
+  ],
+  "freshness": {
+    "question_measurement_extraction": {
+      "chart_groups": [],
+      "input_signature": "sha256:671be99044b248a1c2f39e223cab7a3ddb78dd4ba279ee96069901f8e4a92a6a",
+      "measurement_ids": [
+        "measurement-workload-total-inputs--116000000001",
+        "measurement-spec-provided-inputs--032000000002",
+        "measurement-runtime-evaluation-repetitions--005000000003",
+        "measurement-itanium-inlining-average-gain--006000000004",
+        "measurement-itanium-inlining-slower-cases--006000000005",
+        "measurement-itanium-inlining-slower-denominator--116000000006",
+        "measurement-itanium-inlining-large-gain-cases--041000000007",
+        "measurement-itanium-inlining-large-gain-threshold--010000000008",
+        "measurement-bzip2-combined-training-gain--008000000009",
+        "measurement-bzip2-xml-training-gain--00200000000a",
+        "measurement-bzip2-bestcase-gain-range--00400000000b",
+        "measurement-bzip2-full-comparison-callsites--14640000000c",
+        "measurement-bzip2-yes-consensus-choices--00000000000d",
+        "measurement-bzip2-full-no-consensus-choices--83500000000e",
+        "measurement-bzip2-alignment-cut-threshold--04500000000f",
+        "measurement-bzip2-highcut-callsites--183000000010",
+        "measurement-bzip2-highcut-no-consensus-choices--015000000011",
+        "measurement-bzip2-lowcut-callsites--146400000012",
+        "measurement-bzip2-lowcut-no-consensus-choices--545000000013"
+      ],
+      "refreshed_at": "2026-05-05T10:29:23Z",
+      "run_id": "run-20260505T101456Z--0dngk7ufw6",
+      "semantic_output_path": "runs/run-20260505T101456Z--0dngk7ufw6/semantic/question_measurement_extraction/question-profile-guided-optimization.json",
+      "status": "refreshed",
+      "warnings": [
+        "Source record warns that markdown table and two-column layout extraction is noisy; bzip2 table measurements are limited to numeric values already surfaced in linked evidence excerpts.",
+        "Some reported performance values are approximate because the linked evidence uses phrases such as about 6%, about 8%, only 2%, and about 4% to about 13%.",
+        "Dropped incompatible question measurement chart groups (5)."
+      ]
+    },
+    "question_measurement_extraction_checks": [
+      {
+        "checked_at": "2026-05-05T10:29:23Z",
+        "input_signature": "sha256:671be99044b248a1c2f39e223cab7a3ddb78dd4ba279ee96069901f8e4a92a6a",
+        "measurement_ids": [
+          "measurement-workload-total-inputs--116000000001",
+          "measurement-spec-provided-inputs--032000000002",
+          "measurement-runtime-evaluation-repetitions--005000000003",
+          "measurement-itanium-inlining-average-gain--006000000004",
+          "measurement-itanium-inlining-slower-cases--006000000005",
+          "measurement-itanium-inlining-slower-denominator--116000000006",
+          "measurement-itanium-inlining-large-gain-cases--041000000007",
+          "measurement-itanium-inlining-large-gain-threshold--010000000008",
+          "measurement-bzip2-combined-training-gain--008000000009",
+          "measurement-bzip2-xml-training-gain--00200000000a",
+          "measurement-bzip2-bestcase-gain-range--00400000000b",
+          "measurement-bzip2-full-comparison-callsites--14640000000c",
+          "measurement-bzip2-yes-consensus-choices--00000000000d",
+          "measurement-bzip2-full-no-consensus-choices--83500000000e",
+          "measurement-bzip2-alignment-cut-threshold--04500000000f",
+          "measurement-bzip2-highcut-callsites--183000000010",
+          "measurement-bzip2-highcut-no-consensus-choices--015000000011",
+          "measurement-bzip2-lowcut-callsites--146400000012",
+          "measurement-bzip2-lowcut-no-consensus-choices--545000000013"
+        ],
+        "run_id": "run-20260505T101456Z--0dngk7ufw6",
+        "semantic_output_path": "runs/run-20260505T101456Z--0dngk7ufw6/semantic/question_measurement_extraction/question-profile-guided-optimization.json",
+        "status": "refreshed"
+      }
+    ],
+    "question_relevance_mappings": [
+      {
+        "rationale": "The source directly evaluates profile-guided and feedback-directed optimization reliability across training and evaluation workloads, showing that input choice changes compiler decisions and runtime outcomes and that single-input evaluation can be misleading.",
+        "relevance": "high",
+        "run_id": "run-20260505T101456Z--0dngk7ufw6",
+        "semantic_output_path": "runs/run-20260505T101456Z--0dngk7ufw6/semantic/question_relevance_mapping.json",
+        "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+      }
+    ],
+    "question_synthesis": {
+      "input_signature": "sha256:cd1b1e07b1dd640ec1ee539dd4a289e34ba4e955f2a33033fc88a963af80b39e",
+      "refreshed_at": "2026-05-05T10:31:46Z",
+      "run_id": "run-20260505T101456Z--0dngk7ufw6",
+      "semantic_output_path": "runs/run-20260505T101456Z--0dngk7ufw6/semantic/question_synthesis/question-profile-guided-optimization.json",
+      "status": "refreshed"
+    },
+    "question_synthesis_checks": [
+      {
+        "checked_at": "2026-05-05T10:31:46Z",
+        "input_signature": "sha256:cd1b1e07b1dd640ec1ee539dd4a289e34ba4e955f2a33033fc88a963af80b39e",
+        "run_id": "run-20260505T101456Z--0dngk7ufw6",
+        "semantic_output_path": "runs/run-20260505T101456Z--0dngk7ufw6/semantic/question_synthesis/question-profile-guided-optimization.json",
+        "status": "refreshed"
+      }
+    ]
+  },
+  "linked_source_ids": [
+    "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+  ],
+  "measurement_ids": [
+    "measurement-workload-total-inputs--116000000001",
+    "measurement-spec-provided-inputs--032000000002",
+    "measurement-runtime-evaluation-repetitions--005000000003",
+    "measurement-itanium-inlining-average-gain--006000000004",
+    "measurement-itanium-inlining-slower-cases--006000000005",
+    "measurement-itanium-inlining-slower-denominator--116000000006",
+    "measurement-itanium-inlining-large-gain-cases--041000000007",
+    "measurement-itanium-inlining-large-gain-threshold--010000000008",
+    "measurement-bzip2-combined-training-gain--008000000009",
+    "measurement-bzip2-xml-training-gain--00200000000a",
+    "measurement-bzip2-bestcase-gain-range--00400000000b",
+    "measurement-bzip2-full-comparison-callsites--14640000000c",
+    "measurement-bzip2-yes-consensus-choices--00000000000d",
+    "measurement-bzip2-full-no-consensus-choices--83500000000e",
+    "measurement-bzip2-alignment-cut-threshold--04500000000f",
+    "measurement-bzip2-highcut-callsites--183000000010",
+    "measurement-bzip2-highcut-no-consensus-choices--015000000011",
+    "measurement-bzip2-lowcut-callsites--146400000012",
+    "measurement-bzip2-lowcut-no-consensus-choices--545000000013"
+  ],
+  "question": "How reliable is profile-guided optimization across workloads?",
+  "question_id": "question-profile-guided-optimization",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "compilers"
+  },
+  "status": "active",
+  "synthesis": {
+    "citation_anchors": [
+      {
+        "anchor_id": "anchor-aestimo-method",
+        "claim_ids": [
+          "claim-aestimo-isolates-individual-fdo-transformations--a1b2c3d4e5f6",
+          "claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7",
+          "claim-aestimo-compares-workload-runtime-effects--c3d4e5f6a7b8"
+        ],
+        "evidence_ids": [
+          "evidence-aestimo-forced-decision-recompile--4f19a8c32b7e",
+          "evidence-log-vector-difference-metric--8c2e91a4d0f7",
+          "evidence-workload-five-run-evaluation--a61b93f0c42d"
+        ],
+        "label": "[S1]",
+        "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+      },
+      {
+        "anchor_id": "anchor-workload-breadth",
+        "claim_ids": [
+          "claim-workloads-extend-beyond-spec-inputs--d4e5f6a7b8c9",
+          "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5"
+        ],
+        "evidence_ids": [
+          "evidence-spec-plus-additional-inputs--c409e7a11b8f"
+        ],
+        "label": "[S2]",
+        "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+      },
+      {
+        "anchor_id": "anchor-itanium-inlining",
+        "claim_ids": [
+          "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+          "claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1"
+        ],
+        "evidence_ids": [
+          "evidence-itanium-inlining-gains--d7b3409e6a21"
+        ],
+        "label": "[S3]",
+        "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+      },
+      {
+        "anchor_id": "anchor-bzip2-sensitivity",
+        "claim_ids": [
+          "claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2",
+          "claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3",
+          "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5"
+        ],
+        "evidence_ids": [
+          "evidence-bzip2-inlining-metric-tables--0f6e2c99aa54",
+          "evidence-bzip2-training-performance-range--b4a75e0f3d18"
+        ],
+        "label": "[S4]",
+        "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+      },
+      {
+        "anchor_id": "anchor-resubstitution-ranking",
+        "claim_ids": [
+          "claim-resubstitution-does-not-predict-best-bzip2-performance--c9d0e1f2a3b4"
+        ],
+        "evidence_ids": [
+          "evidence-bzip2-resubstitution-ranks--e52d196cc9b0"
+        ],
+        "label": "[S5]",
+        "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+      }
+    ],
+    "conclusions": [
+      {
+        "claim_ids": [
+          "claim-aestimo-isolates-individual-fdo-transformations--a1b2c3d4e5f6",
+          "claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7",
+          "claim-aestimo-compares-workload-runtime-effects--c3d4e5f6a7b8"
+        ],
+        "evidence_ids": [
+          "evidence-aestimo-forced-decision-recompile--4f19a8c32b7e",
+          "evidence-log-vector-difference-metric--8c2e91a4d0f7",
+          "evidence-workload-five-run-evaluation--a61b93f0c42d"
+        ],
+        "source_ids": [
+          "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+        ],
+        "support": "strong",
+        "text": "Aestimo provides a credible evaluation method for workload sensitivity by isolating individual feedback-directed transformations, comparing optimization-log decision vectors, and running each generated binary across every workload input five times against a static baseline."
+      },
+      {
+        "claim_ids": [
+          "claim-workloads-extend-beyond-spec-inputs--d4e5f6a7b8c9",
+          "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5"
+        ],
+        "evidence_ids": [
+          "evidence-spec-plus-additional-inputs--c409e7a11b8f"
+        ],
+        "source_ids": [
+          "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+        ],
+        "support": "strong",
+        "text": "The study's workload design strengthens the conclusion that reliability must be judged across many inputs, because it uses 116 total inputs, only 32 of which are SPEC-provided, rather than relying only on the standard benchmark input sets."
+      },
+      {
+        "claim_ids": [
+          "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+          "claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1"
+        ],
+        "evidence_ids": [
+          "evidence-itanium-inlining-gains--d7b3409e6a21"
+        ],
+        "source_ids": [
+          "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+        ],
+        "support": "moderate",
+        "text": "Feedback-directed inlining shows meaningful potential but not uniform reliability: on Itanium it improves performance by about 6 percent on average, is slower than static in only 6 of 116 best-case cases, and exceeds a 10 percent gain in 41 cases."
+      },
+      {
+        "claim_ids": [
+          "claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2",
+          "claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3",
+          "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5"
+        ],
+        "evidence_ids": [
+          "evidence-bzip2-inlining-metric-tables--0f6e2c99aa54",
+          "evidence-bzip2-training-performance-range--b4a75e0f3d18"
+        ],
+        "source_ids": [
+          "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+        ],
+        "support": "strong",
+        "text": "Across bzip2 workloads, reliability is limited by training-input sensitivity: inlining decisions split sharply by alignment group, no callsite has universal yes consensus, and measured performance varies from about 2 percent gain for xml training to about 8 percent for combined training, with best-case gains ranging about 4 to 13 percent."
+      },
+      {
+        "claim_ids": [
+          "claim-resubstitution-does-not-predict-best-bzip2-performance--c9d0e1f2a3b4"
+        ],
+        "evidence_ids": [
+          "evidence-bzip2-resubstitution-ranks--e52d196cc9b0"
+        ],
+        "source_ids": [
+          "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+        ],
+        "support": "moderate",
+        "text": "Same-input feedback quality does not reliably predict the fastest bzip2 binary in this ORC study, because resubstitution ranks are distributed across the possible range rather than consistently near the top."
+      }
+    ],
+    "disagreements": [
+      {
+        "claim_ids": [
+          "claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1",
+          "claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2",
+          "claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3",
+          "claim-resubstitution-does-not-predict-best-bzip2-performance--c9d0e1f2a3b4",
+          "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5"
+        ],
+        "evidence_ids": [
+          "evidence-itanium-inlining-gains--d7b3409e6a21",
+          "evidence-bzip2-inlining-metric-tables--0f6e2c99aa54",
+          "evidence-bzip2-training-performance-range--b4a75e0f3d18",
+          "evidence-bzip2-resubstitution-ranks--e52d196cc9b0"
+        ],
+        "source_ids": [
+          "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+        ],
+        "text": "The evidence is internally mixed: feedback-directed inlining can deliver meaningful Itanium gains, but bzip2 decision divergence, training-input performance spread, and weak resubstitution ranking show that those gains are not reliably predicted by a single training or evaluation input."
+      }
+    ],
+    "question_id": "question-profile-guided-optimization",
+    "schema_version": "question_synthesis_v1",
+    "short_answer": "Profile-guided optimization is only moderately reliable across workloads in the linked evidence: feedback-directed inlining can improve performance, especially on Itanium, but training-input choice materially changes compiler decisions and runtime results, so single-input evaluation is unreliable.",
+    "uncertainty": "The evidence comes from one source and is specific to the ORC compiler, SPEC CINT2000-derived workloads, and reported Itanium and Itanium2 contexts. It supports the methodological conclusion that workload breadth matters, but it should not be generalized as a universal measure of all modern profile-guided optimization systems. Some extracted numerical values are approximate, and the source record warns that markdown table and two-column extraction is noisy.",
+    "warnings": [
+      "Only one linked source is available, so cross-paper agreement cannot be assessed.",
+      "The linked source record warns that markdown table and two-column layout extraction is noisy; numerical statements are limited to values surfaced in linked evidence.",
+      "Some performance values are approximate because the linked evidence uses phrases such as about 6 percent, about 8 percent, only 2 percent, and about 4 to 13 percent."
+    ]
+  },
+  "warnings": []
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T10:24:41Z",
+  "claim_id": "claim-workloads-extend-beyond-spec-inputs--d4e5f6a7b8c9",
+  "evidence_excerpts": [
+    "The workload selection section states that the study uses all SPEC inputs plus additional inputs chosen to represent typical benchmark workloads, and that in total 116 inputs are used, of which only 32 are provided by SPEC."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Workloads exceed SPEC inputs",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "text": "The study's workloads extend beyond the standard SPEC CINT2000 inputs by adding representative application inputs, yielding 116 total inputs of which only 32 were provided by SPEC."
+}

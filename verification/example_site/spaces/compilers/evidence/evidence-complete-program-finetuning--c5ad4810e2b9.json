@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814",
+    "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6"
+  ],
+  "evidence_id": "evidence-complete-program-finetuning--c5ad4810e2b9",
+  "evidence_type": "formal_argument",
+  "excerpt": "Ansor samples complete programs from the search space and fine-tunes them with evolutionary search and a learned cost model. The paper states that querying the learned cost model is orders of magnitude faster than actual measurement, allowing thousands of programs to be evaluated in seconds before selected programs are compiled and measured on hardware.",
+  "overview": "This evidence supports the claim that Ansor avoids relying on partial-program ranking. It describes the practical search loop: sample valid complete candidates, score many candidates cheaply with a model, measure promising candidates, and retrain from profiling data. That sequence is central to why the paper argues Ansor can explore a larger search space without being dominated by measurement cost.",
+  "page_refs": [
+    "Section 5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "title": "Complete-Program Fine-Tuning Loop"
+}

@@ -1,0 +1,35 @@
+{
+  "claim_ids": [
+    "claim-aestimo-compares-workload-runtime-effects--c3d4e5f6a7b8",
+    "claim-workloads-extend-beyond-spec-inputs--d4e5f6a7b8c9",
+    "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+    "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5",
+    "claim-resubstitution-does-not-predict-best-bzip2-performance--c9d0e1f2a3b4",
+    "claim-the-experiments-used-separate-profiling-inputs-and-performance-measurement-input--ee5ac2fa5a94",
+    "claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e",
+    "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+    "claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26"
+  ],
+  "sections": [
+    {
+      "body": "A synthesis page could compare how compiler optimization systems use empirical evidence from workloads, profiles, or training data rather than static heuristics alone.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "Aestimo provides the sharpest warning: training inputs change FDO decisions and measured performance, workload-wide evaluation is needed, and single-input evaluation can be unreliable. Profile-guided classic optimization and machine-learning compilation make related evidence-based arguments, but with different mechanisms: hot-path execution profiles and learned models trained from representative program data.",
+      "heading": "Section 2"
+    },
+    {
+      "body": "The section should preserve the ambiguity that better feedback is not automatically better performance, since the bzip2 resubstitution result did not reliably predict the fastest FDO binary.",
+      "heading": "Section 3"
+    }
+  ],
+  "source_ids": [
+    "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+  ],
+  "structure_type": "wiki",
+  "title": "Empirical workload-sensitive compiler optimization",
+  "topic_id": "topic-empirical-workload-sensitive-compiler-optimization"
+}

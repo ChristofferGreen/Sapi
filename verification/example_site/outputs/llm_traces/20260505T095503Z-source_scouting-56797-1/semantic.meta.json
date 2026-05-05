@@ -1,0 +1,17 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-05-05T09:58:39Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions/question-profile-guided-optimization.json"
+  ],
+  "flow_key": "source_scouting",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/compilers/questions/question-profile-guided-optimization/runs/run-20260505T095503Z--w5kkbqs8gq/source_scouting.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/source_scouting.v1.schema.json",
+  "started_at": "2026-05-05T09:55:03Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260505T095503Z-source_scouting-56797-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": true,
+  "validation_errors": []
+}

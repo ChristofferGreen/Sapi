@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-ansor-outperforms-existing-search-frameworks-and-manual-libraries-on-single-oper--6b650490cda3",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "Finding programs outside prior search spaces explains the measured operator and subgraph performance gains.",
+  "relation_file_id": "rel-4fe05b25dc8ad8af50c8c84391173e8d05e64b0af1658367788f511ff0a382f3",
+  "relation_id": "supports:claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6->claim-ansor-outperforms-existing-search-frameworks-and-manual-libraries-on-single-oper--6b650490cda3",
+  "relation_type": "supports",
+  "src_claim_id": "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6",
+  "src_claim_ref": "4",
+  "status": "open"
+}

@@ -1,0 +1,17 @@
+{
+  "claim_ids": [],
+  "display_order": 6,
+  "evidence_ids": [],
+  "freshness": {},
+  "linked_source_ids": [],
+  "measurement_ids": [],
+  "question": "How should compilers preserve correctness during aggressive optimization?",
+  "question_id": "question-optimization-correctness",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "compilers"
+  },
+  "status": "active",
+  "synthesis": {},
+  "warnings": []
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Itanium FDO inlining gains</title><link rel="stylesheet" href="../assets/site.css"></head><body class="site-shell site-with-global-menubar">
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="../../../../site/index.html">Example Site</a><nav class="site-space-nav" aria-label="Spaces"><details class="site-space-nav-item"><summary class="site-space-nav-summary current">Computer Science / Compilers</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../computer-science/site/index.html">Computer Science</a><a class="site-space-nav-link current" href="../index.html">Compilers</a><a class="site-space-nav-link" href="../../../graphics/site/index.html">Graphics</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Philosophy</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../philosophy/site/index.html">Philosophy</a><a class="site-space-nav-link" href="../../../mind/site/index.html">Mind</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Physics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../physics/site/index.html">Physics</a><a class="site-space-nav-link" href="../../../metaphysics/site/index.html">Metaphysics</a><a class="site-space-nav-link" href="../../../quantum-physics/site/index.html">Quantum Physics</a></div></details></nav><nav class="site-tabs"><a class="site-tab" href="../new/index.html">New</a> <a class="site-tab" href="../index.html">Home</a> <a class="site-tab" href="../questions/index.html">Questions</a> <a class="site-tab" href="../overview/index.html" aria-label="Overview for compilers">Overview</a> <a class="site-tab" href="../sources/index.html">Sources</a> <a class="site-tab" href="../topics/index.html">Topics</a> <a class="site-tab" href="../users/index.html">Users</a> <a class="site-tab current" href="index.html">Evidence</a> <a class="site-tab" href="../claims/index.html">Claims</a></nav></div></header><main class="site-main site-space-main">
+<header class="site-topbar"><form class="top-search" action="../search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
+<section class="content-card"><h1>Itanium FDO inlining gains</h1>
+<section class="source-related-grid">
+<article class="source-related-card">
+<h2>Evidence Excerpt</h2>
+<p>In the Itanium evaluation, the paper reports that FDO if-conversion has little effect on performance, while feedback-directed inlining has performance benefits. FDO inlining improves performance by 6% on average on Itanium. The best-case FDO inlining performance is slower than static in only 6 out of 116 cases, and the fastest FDO inlining binaries are more than 10% faster than static in 41 cases.</p>
+<p class="meta">Page references: Section 3, Figures 6-7</p>
+<p class="meta">Type: figure_result</p>
+<p>This result separates two transformations: if-conversion is weak in the reported Itanium results, while inlining shows meaningful benefit. The 6% average and 41 large-gain cases substantiate the claim that feedback-directed inlining can help, but the same section notes disappointing Itanium2 behavior, so the result is processor and compiler-context dependent.</p>
+</article>
+<article class="source-related-card">
+<h2>Linked Claims</h2>
+<ul class="source-related-list">
+<li><a href="../claims/claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0.html">Training inputs affect FDO</a></li>
+<li><a href="../claims/claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1.html">Itanium inlining improves performance</a></li>
+</ul>
+</article>
+<article class="source-related-card">
+<h2>Primary Source</h2>
+<p><a href="../sources/source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12.html">Aestimo: A Feedback-Directed Optimization Evaluation Tool</a></p>
+</article>
+</section>
+<section class="source-related-card">
+<h2>Topic Pages Using This Evidence</h2>
+<ul class="source-related-list">
+<li><a href="../topics/topic-context-dependent-optimization-tradeoffs.html">Context-dependent optimization tradeoffs</a></li>
+<li><a href="../topics/topic-empirical-models-guide-optimization-decisions.html">Empirical Models Guide Compiler Optimization Decisions</a></li>
+<li><a href="../topics/topic-empirical-workload-sensitive-compiler-optimization.html">Empirical workload-sensitive compiler optimization</a></li>
+</ul>
+</section>
+<p><a href="index.html">Back to evidence index</a></p>
+</section>
+
+</main>
+<script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>

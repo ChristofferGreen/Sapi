@@ -1,0 +1,8 @@
+[
+  {
+    "message": "'Aestimo evaluates feedback-directed optimization by asking whether training and testing inputs change the decisions made by individual compiler transformations and the performance of the resulting binaries. The paper introduces log-based difference and alignment metrics, then applies them to ORC inlining and if-conversion experiments over a larger-than-SPEC input workload. Its central result is that input choice can materially change both compiler behavior and reported speedups.' is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

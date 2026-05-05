@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5",
+  "dst_claim_ref": "9",
+  "last_evaluated_run_id": null,
+  "rationale": "The bzip2 performance spread shows why evaluating an optimization with only one input can mislead.",
+  "relation_file_id": "rel-e69008f30359395264e4a66d04e54c6d6df156aa62838f7e7316f5ab9040c0dc",
+  "relation_id": "supports:claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3->claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5",
+  "relation_type": "supports",
+  "src_claim_id": "claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3",
+  "src_claim_ref": "7",
+  "status": "open"
+}

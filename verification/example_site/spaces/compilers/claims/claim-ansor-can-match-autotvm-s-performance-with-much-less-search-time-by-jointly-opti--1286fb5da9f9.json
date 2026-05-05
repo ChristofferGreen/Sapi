@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-05-05T10:48:40Z",
+  "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+  "evidence_excerpts": [
+    "Table 3 reports that Ansor matches AutoTVM on Intel CPU with fewer measurements, such as 21,220 versus 6,403 for ResNet-50 and 31,272 versus 1,892 for MobileNet-V2.",
+    "Table 3 reports wall-clock time reductions including 39,250 seconds versus 4,540 seconds for ResNet-50 and 58,468 seconds versus 660 seconds for MobileNet-V2."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Scheduling reduces search time",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "text": "Ansor can match AutoTVM's performance with much less search time by jointly optimizing subgraphs and prioritizing important ones."
+}

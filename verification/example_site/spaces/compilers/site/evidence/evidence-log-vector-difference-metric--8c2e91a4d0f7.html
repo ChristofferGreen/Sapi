@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Optimization-log vector metrics</title><link rel="stylesheet" href="../assets/site.css"></head><body class="site-shell site-with-global-menubar">
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="../../../../site/index.html">Example Site</a><nav class="site-space-nav" aria-label="Spaces"><details class="site-space-nav-item"><summary class="site-space-nav-summary current">Computer Science / Compilers</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../computer-science/site/index.html">Computer Science</a><a class="site-space-nav-link current" href="../index.html">Compilers</a><a class="site-space-nav-link" href="../../../graphics/site/index.html">Graphics</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Philosophy</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../philosophy/site/index.html">Philosophy</a><a class="site-space-nav-link" href="../../../mind/site/index.html">Mind</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Physics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../physics/site/index.html">Physics</a><a class="site-space-nav-link" href="../../../metaphysics/site/index.html">Metaphysics</a><a class="site-space-nav-link" href="../../../quantum-physics/site/index.html">Quantum Physics</a></div></details></nav><nav class="site-tabs"><a class="site-tab" href="../new/index.html">New</a> <a class="site-tab" href="../index.html">Home</a> <a class="site-tab" href="../questions/index.html">Questions</a> <a class="site-tab" href="../overview/index.html" aria-label="Overview for compilers">Overview</a> <a class="site-tab" href="../sources/index.html">Sources</a> <a class="site-tab" href="../topics/index.html">Topics</a> <a class="site-tab" href="../users/index.html">Users</a> <a class="site-tab current" href="index.html">Evidence</a> <a class="site-tab" href="../claims/index.html">Claims</a></nav></div></header><main class="site-main site-space-main">
+<header class="site-topbar"><form class="top-search" action="../search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
+<section class="content-card"><h1>Optimization-log vector metrics</h1>
+<section class="source-related-grid">
+<article class="source-related-card">
+<h2>Evidence Excerpt</h2>
+<p>Aestimo converts every optimization log for a given program and optimization into a same-length vector, with positive non-zero values for affirmative decisions and 0 for non-affirmative or absent choices. The difference metric is delta(v_i, v_j) = |v_i - v_j|^2; where decisions are 0s and 1s, this is the Hamming distance. The alignment metric compares a log vector against the combined total vector for all logs to measure agreement with the collective choices.</p>
+<p class="meta">Page references: Section 2.4, Table 1</p>
+<p class="meta">Type: equation</p>
+<p>These equations and definitions make decision sensitivity auditable rather than anecdotal. They let the study distinguish cases where different training inputs lead to the same compile-time choices from cases where input choice changes the compiler&#x27;s transformation decisions. The metrics do not measure runtime quality directly, so their evidentiary scope is compile-time decision variation.</p>
+</article>
+<article class="source-related-card">
+<h2>Linked Claims</h2>
+<ul class="source-related-list">
+<li><a href="../claims/claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7.html">Metrics quantify decision variation</a></li>
+<li><a href="../claims/claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0.html">Training inputs affect FDO</a></li>
+</ul>
+</article>
+<article class="source-related-card">
+<h2>Primary Source</h2>
+<p><a href="../sources/source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12.html">Aestimo: A Feedback-Directed Optimization Evaluation Tool</a></p>
+</article>
+</section>
+<section class="source-related-card">
+<h2>Topic Pages Using This Evidence</h2>
+<ul class="source-related-list">
+<li><a href="../topics/topic-empirical-models-guide-optimization-decisions.html">Empirical Models Guide Compiler Optimization Decisions</a></li>
+<li><a href="../topics/topic-empirical-workload-sensitive-compiler-optimization.html">Empirical workload-sensitive compiler optimization</a></li>
+<li><a href="../topics/topic-observable-decision-representations-for-compiler-analysis.html">Observable decision representations for compiler analysis</a></li>
+</ul>
+</section>
+<p><a href="index.html">Back to evidence index</a></p>
+</section>
+
+</main>
+<script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>

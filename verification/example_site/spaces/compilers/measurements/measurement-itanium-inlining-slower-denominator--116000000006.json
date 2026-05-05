@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1",
+  "comparator": "6 slower-than-static cases",
+  "evidence_id": "evidence-itanium-inlining-gains--d7b3409e6a21",
+  "measure_name": "best-case FDO inlining evaluation cases",
+  "measurement_id": "measurement-itanium-inlining-slower-denominator--116000000006",
+  "outcome": "case denominator for slower-than-static count",
+  "population": "Itanium best-case FDO inlining evaluation",
+  "question_id": "question-profile-guided-optimization",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "uncertainty": "reported denominator",
+  "unit": "cases",
+  "value": 116,
+  "value_max": null
+}

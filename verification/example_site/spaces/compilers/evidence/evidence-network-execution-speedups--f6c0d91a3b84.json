@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-ansor-improves-end-to-end-dnn-execution-performance-on-intel-cpu-arm-cpu-and-nvi--eb3581a5275a"
+  ],
+  "evidence_id": "evidence-network-execution-speedups--f6c0d91a3b84",
+  "evidence_type": "statistical_result",
+  "excerpt": "Figure 9 reports network inference performance on Intel CPU, NVIDIA GPU, and ARM CPU. The text states that Ansor matches or outperforms AutoTVM in all cases with 1.0x to 21.8x speedup, and improves DNN execution over the best alternative by up to 3.8x on Intel CPU, 2.6x on ARM CPU, and 1.7x on NVIDIA GPU.",
+  "overview": "This evidence raises the claim from kernels to complete neural networks. It matters because a tensor-program generator can improve isolated operators without improving model-level performance; Figure 9 and the accompanying text show that Ansor's generated programs translate into end-to-end inference gains on several DNN families and hardware platforms.",
+  "page_refs": [
+    "Figure 9",
+    "Section 7.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "title": "End-to-End Network Gains"
+}

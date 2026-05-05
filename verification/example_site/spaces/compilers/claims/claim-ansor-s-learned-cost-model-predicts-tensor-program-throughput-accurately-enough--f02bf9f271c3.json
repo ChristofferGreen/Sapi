@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-05-05T10:48:40Z",
+  "claim_id": "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3",
+  "evidence_excerpts": [
+    "The cost-model evaluation uses 25,000 programs measured during ResNet-50 tuning on Intel CPU, with 20,000 for training and 5,000 for testing.",
+    "The model reports 0.079 RMSE, 0.958 R2 correlation, 0.851 pairwise comparison accuracy, and 0.624 recall@30 on the test set."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Cost model predicts throughput",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "text": "Ansor's learned cost model predicts tensor-program throughput accurately enough to guide search on the evaluated ResNet-50 dataset."
+}

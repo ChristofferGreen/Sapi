@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12/source.pdf",
+    "source_markdown": "sources/artifacts/source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12/source.md"
+  },
+  "converter_name": "markitdown",
+  "converter_version": "0.1.5",
+  "input_sha256": "c96a3cb35bd8e0815c5f1a1e35791790b02dbbb982ed3290012d9992258a3487",
+  "markdown_char_count": 95632,
+  "options": {
+    "input_format": "pdf"
+  },
+  "output_sha256": "112109dd55a30c9e6d6df63049f6bb7245cbc28e9912a980ecc2ec8bf515c277",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

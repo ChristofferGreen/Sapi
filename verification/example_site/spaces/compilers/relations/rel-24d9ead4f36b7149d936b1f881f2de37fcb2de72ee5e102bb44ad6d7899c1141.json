@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "A broader hierarchical sketch-and-annotation space is the mechanism that allows Ansor to reach programs outside prior template and early-pruned spaces.",
+  "relation_file_id": "rel-24d9ead4f36b7149d936b1f881f2de37fcb2de72ee5e102bb44ad6d7899c1141",
+  "relation_id": "supports:claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d->claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6",
+  "relation_type": "supports",
+  "src_claim_id": "claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d",
+  "src_claim_ref": "1",
+  "status": "open"
+}

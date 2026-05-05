@@ -256,6 +256,10 @@ def update_candidate_status(
         if import_status not in _ALLOWED_IMPORT_STATUS:
             raise ValueError(f"Invalid import_status: {import_status}")
         candidate["import_status"] = import_status
+        if import_status in {"not_imported", "importing", "imported", "duplicate"}:
+            candidate["failure_reason"] = None
+        if import_status in {"not_imported", "importing", "imported"}:
+            candidate["skip_reason"] = None
     if operator_status is not None:
         if operator_status not in _ALLOWED_OPERATOR_STATUS:
             raise ValueError(f"Invalid operator_status: {operator_status}")

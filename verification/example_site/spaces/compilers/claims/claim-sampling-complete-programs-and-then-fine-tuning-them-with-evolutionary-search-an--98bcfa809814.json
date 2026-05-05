@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-05-05T10:48:40Z",
+  "claim_id": "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814",
+  "evidence_excerpts": [
+    "Ansor samples complete programs from the space and performs fine-tuning on complete programs, avoiding inaccurate estimation of incomplete programs.",
+    "Evolutionary search uses sampled programs and high-quality previous programs as the initial population, applies mutation and crossover, and uses the learned cost model to predict fitness."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Complete programs improve tuning",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "text": "Sampling complete programs and then fine-tuning them with evolutionary search and a learned cost model avoids inaccurate estimates of incomplete programs."
+}

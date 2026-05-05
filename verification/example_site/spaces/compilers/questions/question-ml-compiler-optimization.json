@@ -1,0 +1,188 @@
+{
+  "claim_ids": [
+    "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814",
+    "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"
+  ],
+  "display_order": 2,
+  "evidence_ids": [
+    "evidence-complete-program-finetuning--c5ad4810e2b9",
+    "evidence-cost-model-accuracy--1d4f8a6b9c20"
+  ],
+  "freshness": {
+    "question_measurement_extraction": {
+      "chart_groups": [],
+      "input_signature": "sha256:d2d2a2910f3416a598459e4abb22b10c638f913cbcfa91819142e02c10da50aa",
+      "measurement_ids": [
+        "measurement-cost-model-programs-measured--839fb7edb551",
+        "measurement-cost-model-training-programs--839fb7edb551",
+        "measurement-cost-model-testing-programs--839fb7edb551",
+        "measurement-cost-model-rmse--839fb7edb551",
+        "measurement-cost-model-r2--839fb7edb551",
+        "measurement-cost-model-pairwise-accuracy--839fb7edb551",
+        "measurement-cost-model-recall-at-30--839fb7edb551"
+      ],
+      "refreshed_at": "2026-05-05T10:53:38Z",
+      "run_id": "run-20260505T103944Z--65j0k0p4lt",
+      "semantic_output_path": "runs/run-20260505T103944Z--65j0k0p4lt/semantic/question_measurement_extraction/question-ml-compiler-optimization.json",
+      "status": "refreshed",
+      "warnings": [
+        "The complete-program fine-tuning evidence states that learned-cost-model queries are orders of magnitude faster than hardware measurement and can evaluate thousands of programs in seconds, but it does not provide exact numeric values suitable for measurement rows.",
+        "Chart groups were omitted because the extracted rows use different measures, units, or outcome semantics."
+      ]
+    },
+    "question_measurement_extraction_checks": [
+      {
+        "checked_at": "2026-05-05T10:53:38Z",
+        "input_signature": "sha256:d2d2a2910f3416a598459e4abb22b10c638f913cbcfa91819142e02c10da50aa",
+        "measurement_ids": [
+          "measurement-cost-model-programs-measured--839fb7edb551",
+          "measurement-cost-model-training-programs--839fb7edb551",
+          "measurement-cost-model-testing-programs--839fb7edb551",
+          "measurement-cost-model-rmse--839fb7edb551",
+          "measurement-cost-model-r2--839fb7edb551",
+          "measurement-cost-model-pairwise-accuracy--839fb7edb551",
+          "measurement-cost-model-recall-at-30--839fb7edb551"
+        ],
+        "run_id": "run-20260505T103944Z--65j0k0p4lt",
+        "semantic_output_path": "runs/run-20260505T103944Z--65j0k0p4lt/semantic/question_measurement_extraction/question-ml-compiler-optimization.json",
+        "status": "refreshed"
+      }
+    ],
+    "question_relevance_mappings": [
+      {
+        "rationale": "The source directly shows machine learning improving compiler optimization decisions through a learned cost model that ranks tensor-program candidates during evolutionary search, reducing the need for expensive hardware measurement while guiding candidate selection.",
+        "relevance": "high",
+        "run_id": "run-20260505T103944Z--65j0k0p4lt",
+        "semantic_output_path": "runs/run-20260505T103944Z--65j0k0p4lt/semantic/question_relevance_mapping.json",
+        "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      }
+    ],
+    "question_synthesis": {
+      "input_signature": "sha256:418d1e67ec89484bd4d7de1a28c88a931e08c8c69379d52ec4980f6d3ff5200f",
+      "refreshed_at": "2026-05-05T10:55:53Z",
+      "run_id": "run-20260505T103944Z--65j0k0p4lt",
+      "semantic_output_path": "runs/run-20260505T103944Z--65j0k0p4lt/semantic/question_synthesis/question-ml-compiler-optimization.json",
+      "status": "refreshed"
+    },
+    "question_synthesis_checks": [
+      {
+        "checked_at": "2026-05-05T10:55:53Z",
+        "input_signature": "sha256:418d1e67ec89484bd4d7de1a28c88a931e08c8c69379d52ec4980f6d3ff5200f",
+        "run_id": "run-20260505T103944Z--65j0k0p4lt",
+        "semantic_output_path": "runs/run-20260505T103944Z--65j0k0p4lt/semantic/question_synthesis/question-ml-compiler-optimization.json",
+        "status": "refreshed"
+      }
+    ]
+  },
+  "linked_source_ids": [
+    "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+  ],
+  "measurement_ids": [
+    "measurement-cost-model-programs-measured--839fb7edb551",
+    "measurement-cost-model-training-programs--839fb7edb551",
+    "measurement-cost-model-testing-programs--839fb7edb551",
+    "measurement-cost-model-rmse--839fb7edb551",
+    "measurement-cost-model-r2--839fb7edb551",
+    "measurement-cost-model-pairwise-accuracy--839fb7edb551",
+    "measurement-cost-model-recall-at-30--839fb7edb551"
+  ],
+  "question": "Where does machine learning improve compiler optimization decisions?",
+  "question_id": "question-ml-compiler-optimization",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "compilers"
+  },
+  "status": "active",
+  "synthesis": {
+    "citation_anchors": [
+      {
+        "anchor_id": "anchor-ansor-search-ranking",
+        "claim_ids": [
+          "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814",
+          "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"
+        ],
+        "evidence_ids": [
+          "evidence-complete-program-finetuning--c5ad4810e2b9",
+          "evidence-cost-model-accuracy--1d4f8a6b9c20"
+        ],
+        "label": "[S1]",
+        "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      },
+      {
+        "anchor_id": "anchor-cost-model-metrics",
+        "claim_ids": [
+          "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"
+        ],
+        "evidence_ids": [
+          "evidence-cost-model-accuracy--1d4f8a6b9c20"
+        ],
+        "label": "[S2]",
+        "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      },
+      {
+        "anchor_id": "anchor-complete-program-finetuning",
+        "claim_ids": [
+          "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814"
+        ],
+        "evidence_ids": [
+          "evidence-complete-program-finetuning--c5ad4810e2b9"
+        ],
+        "label": "[S3]",
+        "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      }
+    ],
+    "conclusions": [
+      {
+        "claim_ids": [
+          "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814",
+          "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"
+        ],
+        "evidence_ids": [
+          "evidence-complete-program-finetuning--c5ad4810e2b9",
+          "evidence-cost-model-accuracy--1d4f8a6b9c20"
+        ],
+        "source_ids": [
+          "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+        ],
+        "support": "moderate",
+        "text": "Machine learning improves the candidate-selection step of compiler optimization in Ansor by predicting the fitness or throughput of complete tensor programs during evolutionary search, so the search can score many candidates before choosing programs for expensive hardware measurement."
+      },
+      {
+        "claim_ids": [
+          "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"
+        ],
+        "evidence_ids": [
+          "evidence-cost-model-accuracy--1d4f8a6b9c20"
+        ],
+        "source_ids": [
+          "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+        ],
+        "support": "strong",
+        "text": "The linked accuracy evidence supports the claim that Ansor's learned cost model was useful for ranking candidates in the reported ResNet-50 tuning experiment on Intel CPU: it used 20,000 measured programs for training and 5,000 for testing, with 0.079 RMSE, 0.958 R2, 0.851 pairwise comparison accuracy, and 0.624 recall@30."
+      },
+      {
+        "claim_ids": [
+          "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814"
+        ],
+        "evidence_ids": [
+          "evidence-complete-program-finetuning--c5ad4810e2b9"
+        ],
+        "source_ids": [
+          "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+        ],
+        "support": "moderate",
+        "text": "The evidence also indicates that Ansor uses machine learning after generating complete valid programs, rather than relying on estimates of incomplete programs, which supports better optimization decisions within its search loop."
+      }
+    ],
+    "disagreements": [],
+    "question_id": "question-ml-compiler-optimization",
+    "schema_version": "question_synthesis_v1",
+    "short_answer": "In the linked Ansor evidence, machine learning improves compiler optimization decisions by acting as a learned cost model inside tensor-program search: it cheaply ranks complete candidate programs during evolutionary search, helping decide which candidates are promising enough to compile and measure on hardware.",
+    "uncertainty": "The synthesis is based on one linked source about Ansor. The strongest quantitative evidence is limited to a ResNet-50 tuning dataset on Intel CPU, and the linked evidence does not establish that the same cost-model accuracy or search benefit holds across all compiler domains, hardware targets, sparse workloads, dynamic shapes, or optimization frameworks.",
+    "warnings": [
+      "Only one linked source is available, so no cross-source agreement or disagreement can be assessed.",
+      "The linked complete-program fine-tuning evidence states that learned-cost-model queries are much faster than hardware measurement, but it does not provide exact numeric speed values for that claim."
+    ]
+  },
+  "warnings": []
+}

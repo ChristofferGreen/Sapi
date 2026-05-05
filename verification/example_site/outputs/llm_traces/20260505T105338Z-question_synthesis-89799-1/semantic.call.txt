@@ -1,0 +1,83 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: question_synthesis
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/question_synthesis.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/runs/run-20260505T103944Z--65j0k0p4lt/semantic/question_synthesis/question-ml-compiler-optimization.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions/question-ml-compiler-optimization.json
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/evidence
+
+=== generation spec ===
+flow_key: question_synthesis
+version: v1
+schema_path: schemas/question_synthesis.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/question_synthesis/<question_id>.json
+context_paths:
+  - <space_root>/questions/<question_id>.json
+  - <space_root>/sources/records
+  - <space_root>/claims
+  - <space_root>/evidence
+---
+## Task
+Generate one strict JSON object that synthesizes the current evidence linked to one prepared question.
+
+## Context Interpretation Rules
+- Treat `<space_root>/questions/<question_id>.json` as the authoritative question record.
+- Use only linked source, claim, and evidence IDs that resolve in the supplied context.
+- Distinguish conclusions from uncertainty, disagreements, and missing evidence.
+- If no sources are linked yet, return an empty evidence-anchor set and a warning that no source
+  context is available.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- Do not invent source, claim, evidence, measurement, or citation anchor IDs.
+- Do not state stronger conclusions than the cited evidence supports.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "schema_version": "question_synthesis_v1",
+  "question_id": "question-protein-intake",
+  "short_answer": "Current evidence supports a daily protein target near the high end of common athletic ranges.",
+  "conclusions": [
+    {
+      "text": "Higher intake is most relevant when resistance training is present.",
+      "support": "moderate",
+      "source_ids": ["source-protein-intake--123456789abc"],
+      "claim_ids": ["claim-protein-dose--123456789abc"],
+      "evidence_ids": ["evidence-protein-dose-response--123456789abc"]
+    }
+  ],
+  "uncertainty": "Population, training status, and energy balance may change the estimate.",
+  "disagreements": [],
+  "citation_anchors": [
+    {
+      "anchor_id": "anchor-protein-dose",
+      "label": "[S1]",
+      "source_id": "source-protein-intake--123456789abc",
+      "claim_ids": ["claim-protein-dose--123456789abc"],
+      "evidence_ids": ["evidence-protein-dose-response--123456789abc"]
+    }
+  ],
+  "warnings": []
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/evidence": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/evidence",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions/question-ml-compiler-optimization.json": "file:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions/question-ml-compiler-optimization.json",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records"
+}
+
+=== llm output ===
+{"schema_version":"question_synthesis_v1","question_id":"question-ml-compiler-optimization","short_answer":"In the linked Ansor evidence, machine learning improves compiler optimization decisions by acting as a learned cost model inside tensor-program search: it cheaply ranks complete candidate programs during evolutionary search, helping decide which candidates are promising enough to compile and measure on hardware.","conclusions":[{"text":"Machine learning improves the candidate-selection step of compiler optimization in Ansor by predicting the fitness or throughput of complete tensor programs during evolutionary search, so the search can score many candidates before choosing programs for expensive hardware measurement.","support":"moderate","source_ids":["source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"],"claim_ids":["claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814","claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"],"evidence_ids":["evidence-complete-program-finetuning--c5ad4810e2b9","evidence-cost-model-accuracy--1d4f8a6b9c20"]},{"text":"The linked accuracy evidence supports the claim that Ansor's learned cost model was useful for ranking candidates in the reported ResNet-50 tuning experiment on Intel CPU: it used 20,000 measured programs for training and 5,000 for testing, with 0.079 RMSE, 0.958 R2, 0.851 pairwise comparison accuracy, and 0.624 recall@30.","support":"strong","source_ids":["source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"],"claim_ids":["claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"],"evidence_ids":["evidence-cost-model-accuracy--1d4f8a6b9c20"]},{"text":"The evidence also indicates that Ansor uses machine learning after generating complete valid programs, rather than relying on estimates of incomplete programs, which supports better optimization decisions within its search loop.","support":"moderate","source_ids":["source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"],"claim_ids":["claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814"],"evidence_ids":["evidence-complete-program-finetuning--c5ad4810e2b9"]}],"uncertainty":"The synthesis is based on one linked source about Ansor. The strongest quantitative evidence is limited to a ResNet-50 tuning dataset on Intel CPU, and the linked evidence does not establish that the same cost-model accuracy or search benefit holds across all compiler domains, hardware targets, sparse workloads, dynamic shapes, or optimization frameworks.","disagreements":[],"citation_anchors":[{"anchor_id":"anchor-ansor-search-ranking","label":"[S1]","source_id":"source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551","claim_ids":["claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814","claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"],"evidence_ids":["evidence-complete-program-finetuning--c5ad4810e2b9","evidence-cost-model-accuracy--1d4f8a6b9c20"]},{"anchor_id":"anchor-cost-model-metrics","label":"[S2]","source_id":"source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551","claim_ids":["claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"],"evidence_ids":["evidence-cost-model-accuracy--1d4f8a6b9c20"]},{"anchor_id":"anchor-complete-program-finetuning","label":"[S3]","source_id":"source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551","claim_ids":["claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814"],"evidence_ids":["evidence-complete-program-finetuning--c5ad4810e2b9"]}],"warnings":["Only one linked source is available, so no cross-source agreement or disagreement can be assessed.","The linked complete-program fine-tuning evidence states that learned-cost-model queries are much faster than hardware measurement, but it does not provide exact numeric speed values for that claim."]}

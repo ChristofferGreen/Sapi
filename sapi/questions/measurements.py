@@ -163,6 +163,8 @@ def run_question_measurement_extraction_and_update(
         max_repair_loops=max_repair_loops,
         trace_ctx=trace_ctx,
     )
+    semantic_output = _sanitize_question_measurement_output(semantic_output)
+    resolved.output_json_path.write_text(json.dumps(semantic_output, indent=2, sort_keys=True) + "\n")
     transaction.mark_create(resolved.output_json_path)
     _validate_question_measurement_output(payload=semantic_output, question=question)
     measurement_ids, chart_group_count = _write_measurement_payload(
@@ -544,6 +546,60 @@ def _validate_question_measurement_output(
                         f"question_measurement_extraction.chart_groups[{index}] has incompatible "
                         f"{field} for measurement {measurement_id!r}."
                     )
+
+
+def _sanitize_question_measurement_output(payload: dict[str, Any]) -> dict[str, Any]:
+    measurements = payload.get("measurements")
+    chart_groups = payload.get("chart_groups")
+    warnings = payload.get("warnings")
+    if not isinstance(measurements, list) or not isinstance(chart_groups, list):
+        return payload
+
+    by_measurement_id = {
+        item.get("measurement_id"): item
+        for item in measurements
+        if isinstance(item, dict) and isinstance(item.get("measurement_id"), str)
+    }
+    compatible_groups: list[Any] = []
+    dropped_count = 0
+    for group in chart_groups:
+        if not isinstance(group, dict) or not _question_measurement_chart_group_compatible(
+            group=group,
+            by_measurement_id=by_measurement_id,
+        ):
+            dropped_count += 1
+            continue
+        compatible_groups.append(group)
+    if dropped_count == 0:
+        return payload
+
+    normalized_warnings = list(warnings) if isinstance(warnings, list) else []
+    normalized_warnings.append(
+        "Dropped incompatible question measurement chart group"
+        + ("." if dropped_count == 1 else f"s ({dropped_count}).")
+    )
+    sanitized = dict(payload)
+    sanitized["chart_groups"] = compatible_groups
+    sanitized["warnings"] = normalized_warnings
+    return sanitized
+
+
+def _question_measurement_chart_group_compatible(
+    *,
+    group: dict[str, Any],
+    by_measurement_id: dict[str, dict[str, Any]],
+) -> bool:
+    group_measurement_ids = group.get("measurement_ids")
+    if not isinstance(group_measurement_ids, list) or not group_measurement_ids:
+        return False
+    for measurement_id in group_measurement_ids:
+        measurement = by_measurement_id.get(measurement_id)
+        if measurement is None:
+            return False
+        for field in ("measure_name", "unit", "outcome", "population"):
+            if measurement.get(field) != group.get(field):
+                return False
+    return True
 
 
 def _has_extractable_context(context: QuestionMeasurementContext) -> bool:

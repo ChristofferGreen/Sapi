@@ -1,0 +1,35 @@
+{
+  "candidate_count": 2,
+  "candidate_ids": [
+    "candidate-ansor-generating-high-performance-tensor-programs-for-deep-learn--9815120a234d",
+    "candidate-end-to-end-deep-learning-of-optimization-heuristics--9bada56700e4"
+  ],
+  "completed_at": "2026-05-05T10:39:36Z",
+  "execution_mode": "live_llm",
+  "flow_key": "source_scouting_pipeline",
+  "lint_error_count": 0,
+  "lint_info_count": 0,
+  "lint_warning_count": 0,
+  "llm_attempt_count": 1,
+  "model_fingerprint": "gpt-5.5",
+  "provider_fingerprint": "codex",
+  "question_id": "question-ml-compiler-optimization",
+  "question_text": "Where does machine learning improve compiler optimization decisions?",
+  "reasoning_effort": "high",
+  "requested_count": 2,
+  "run_id": "run-20260505T103632Z--qt42tyfcl5",
+  "semantic_flow_invocation_counts": {
+    "source_scouting": 1
+  },
+  "semantic_flows": [
+    "source_scouting"
+  ],
+  "semantic_output_path": "/Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/compilers/questions/question-ml-compiler-optimization/runs/run-20260505T103632Z--qt42tyfcl5/source_scouting.json",
+  "space_name": "compilers",
+  "started_at": "2026-05-05T10:36:32Z",
+  "status": "success",
+  "toolchain_versions": {
+    "python": "3.12.12"
+  },
+  "warnings": []
+}

@@ -9,7 +9,13 @@ from sapi.core.runtime_flags import RuntimeFlagSnapshot
 from sapi.llm.semantic_executor import SemanticFlowError
 from sapi.questions.prepared_questions import PreparedQuestion
 from sapi.scouting.pipeline import run_source_scouting_and_store
-from sapi.scouting.store import append_scouted_candidates, candidate_queue, load_candidates, select_importable_candidates
+from sapi.scouting.store import (
+    append_scouted_candidates,
+    candidate_queue,
+    load_candidates,
+    select_importable_candidates,
+    update_candidate_status,
+)
 from tests.conftest import REPO_ROOT, create_deterministic_mock_llm_fixture
 
 
@@ -57,6 +63,35 @@ class SourceScoutingCandidateStoreTests(unittest.TestCase):
 
             self.assertEqual(len(written), 1)
             self.assertEqual(len(load_candidates(queue)), 1)
+
+    def test_successful_import_status_clears_stale_failure_reason(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            queue = candidate_queue(
+                site_path=Path(tmp) / "site",
+                space_name="alpha",
+                question_id="question-alpha",
+            )
+            candidate = append_scouted_candidates(
+                queue=queue,
+                semantic_payload=_semantic_payload(count=1),
+                run_id="run-001",
+                semantic_output_path=queue.runs_root / "run-001" / "source_scouting.json",
+                scouted_at="2026-05-05T00:00:00Z",
+            )[0]
+
+            update_candidate_status(
+                queue=queue,
+                candidate_id=candidate["candidate_id"],
+                import_status="failed",
+                failure_reason="transient validation failure",
+            )
+            updated = update_candidate_status(
+                queue=queue,
+                candidate_id=candidate["candidate_id"],
+                import_status="imported",
+            )
+
+            self.assertIsNone(updated["failure_reason"])
 
     def test_semantic_repair_attempt_count_is_recorded_in_run_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

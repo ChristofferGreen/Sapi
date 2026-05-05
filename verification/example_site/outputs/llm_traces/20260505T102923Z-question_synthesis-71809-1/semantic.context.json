@@ -1,0 +1,19 @@
+{
+  "context_by_path": {
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/evidence": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/evidence",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions/question-profile-guided-optimization.json": "file:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions/question-profile-guided-optimization.json",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records"
+  },
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions/question-profile-guided-optimization.json",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/evidence"
+  ],
+  "flow_key": "question_synthesis",
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/runs/run-20260505T101456Z--0dngk7ufw6/semantic/question_synthesis/question-profile-guided-optimization.json",
+  "repair_context": null,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/question_synthesis.v1.schema.json",
+  "version": "v1"
+}

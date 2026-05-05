@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2",
+  "comparator": "full log comparison",
+  "evidence_id": "evidence-bzip2-inlining-metric-tables--0f6e2c99aa54",
+  "measure_name": "bzip2 alignment cut threshold",
+  "measurement_id": "measurement-bzip2-alignment-cut-threshold--04500000000f",
+  "outcome": "split between high-cut and low-cut alignment groups",
+  "population": "bzip2 inlining logs on Itanium",
+  "question_id": "question-profile-guided-optimization",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "uncertainty": "reported cut threshold from Tables 2-4",
+  "unit": "percent",
+  "value": 45,
+  "value_max": null
+}

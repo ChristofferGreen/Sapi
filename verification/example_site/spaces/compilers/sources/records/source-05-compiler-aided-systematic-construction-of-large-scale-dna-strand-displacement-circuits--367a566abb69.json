@@ -162,19 +162,6 @@
   "external_related_links": [
     {
       "confidence": "medium",
-      "domain": "doi.org",
-      "link_type": "canonical_paper",
-      "provenance": {
-        "origin": "reference_doi",
-        "source_field": "references[11].doi"
-      },
-      "quality_status": "trusted",
-      "rationale": "Derived from a DOI found in the source references.",
-      "title": "Received 7 Aug | Accepted 21 Dec | Published 23 Feb 2017 OPEN",
-      "url": "https://doi.org/10.1038/ncomms14373"
-    },
-    {
-      "confidence": "medium",
       "domain": "arxiv.org",
       "link_type": "research_index",
       "provenance": {
@@ -198,19 +185,6 @@
       "rationale": "Captured from normalized source references.",
       "title": "pseudoknotted secondary structures. Preprint at /",
       "url": "https://arxiv.org/abs"
-    },
-    {
-      "confidence": "medium",
-      "domain": "arxiv.org",
-      "link_type": "research_index",
-      "provenance": {
-        "origin": "reference_arxiv",
-        "source_field": "references[10].arxiv"
-      },
-      "quality_status": "trusted",
-      "rationale": "Derived from an arXiv identifier found in the source references.",
-      "title": "Referenced arXiv entry",
-      "url": "https://arxiv.org/abs/1505.03738"
     }
   ],
   "ingested_at": "2026-04-26T17:58:08Z",

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-ansor-is-limited-to-static-known-shapes-dense-operators-and-backend-supported-pl--46669fe2761e",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The limitations qualify the scope of Ansor's automatic tensor-program generation claim.",
+  "relation_file_id": "rel-4b2eb7ff46d6a31ba90d32cd200234a0ada7b5fdef582482c5eb9e170f1d49a7",
+  "relation_id": "similar:claim-ansor-automatically-generates-high-performance-tensor-programs-for-deep-neural-n--2274faed5f9d|claim-ansor-is-limited-to-static-known-shapes-dense-operators-and-backend-supported-pl--46669fe2761e",
+  "relation_type": "similar",
+  "src_claim_id": "claim-ansor-automatically-generates-high-performance-tensor-programs-for-deep-neural-n--2274faed5f9d",
+  "src_claim_ref": "9",
+  "status": "open"
+}

@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-aestimo-compares-workload-runtime-effects--c3d4e5f6a7b8"
+  ],
+  "evidence_id": "evidence-workload-five-run-evaluation--a61b93f0c42d",
+  "evidence_type": "measurement",
+  "excerpt": "After the compilation process, Aestimo executes each FDO binary on each input of the program workload five times. It then analyzes program run times and optimization logs, calculating difference and alignment metrics. It reports arithmetic mean runtime improvement over the static binary and a geometric sum that normalizes each runtime against the corresponding static runtime before aggregation.",
+  "overview": "This evidence grounds the performance side of the tool. Aestimo is not only comparing compiler logs; it runs each generated binary across the whole workload and aggregates the results against a static baseline. The five-trial design and two aggregation methods give stronger evidence than a single run, although the paper still observes large trial-to-trial ranges in some figures.",
+  "page_refs": [
+    "Section 2.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "title": "Five-run workload evaluation"
+}

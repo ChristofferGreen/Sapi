@@ -1,0 +1,34 @@
+{
+  "claim_ids": [
+    "claim-aestimo-isolates-individual-fdo-transformations--a1b2c3d4e5f6",
+    "claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7",
+    "claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2",
+    "claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be",
+    "claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+    "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+    "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de"
+  ],
+  "sections": [
+    {
+      "body": "This topic would cover how compilers expose internal optimization decisions or program behavior as comparable representations: Aestimo log vectors, profile-weighted flow graphs, ML feature vectors, and WCC back-annotation data.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "Aestimo isolates individual FDO transformations by logging decisions for one optimization and recompiling with only those logged choices, then compares decision variation through difference and alignment metrics. The same general concept appears in other sources as quantifiable program features for learning, execution counts attached to control-flow graphs, and WCET data raised from assembly analysis back into source-level compiler structures.",
+      "heading": "Section 2"
+    },
+    {
+      "body": "The page should not imply these representations are interchangeable: Aestimo logs explain variation in FDO choices, ML features support prediction, and WCC annotations support worst-case timing optimization.",
+      "heading": "Section 3"
+    }
+  ],
+  "source_ids": [
+    "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+    "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+  ],
+  "structure_type": "wiki",
+  "title": "Observable decision representations for compiler analysis",
+  "topic_id": "topic-observable-decision-representations-for-compiler-analysis"
+}

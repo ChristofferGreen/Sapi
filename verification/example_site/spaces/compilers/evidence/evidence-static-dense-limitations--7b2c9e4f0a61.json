@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-ansor-is-limited-to-static-known-shapes-dense-operators-and-backend-supported-pl--46669fe2761e"
+  ],
+  "evidence_id": "evidence-static-dense-limitations--7b2c9e4f0a61",
+  "evidence_type": "model_constraint",
+  "excerpt": "The limitations section states that Ansor cannot optimize graphs with dynamic shapes because shapes must be static and known in advance for analysis, search-space construction, and measurement. It also states that Ansor only supports dense operators and relies on code generators such as LLVM and NVCC for platform-dependent optimizations, including instruction selection.",
+  "overview": "This evidence bounds the practical interpretation of the results. Ansor's gains apply to the dense, statically shaped workloads the system can analyze and measure. The limitation also clarifies why special mixed-precision or low-precision hardware instructions may not be fully exploited unless the backend code generator handles them well.",
+  "page_refs": [
+    "Section 9"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "title": "Static Dense Operator Limits"
+}

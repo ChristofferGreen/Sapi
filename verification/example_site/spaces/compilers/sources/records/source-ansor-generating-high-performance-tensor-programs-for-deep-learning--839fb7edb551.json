@@ -1,0 +1,363 @@
+{
+  "access_policy": {
+    "landing_url": null,
+    "operator_responsibility": null,
+    "public_download": true,
+    "public_source_view": true,
+    "reason": null,
+    "restricted": false
+  },
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551/front_page.png",
+    "source_extraction": "sources/artifacts/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551/source_extraction.json",
+    "source_file": "sources/artifacts/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551/source.pdf",
+    "source_markdown": "sources/artifacts/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551/source.md",
+    "source_provenance": "sources/artifacts/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551/source_provenance.md"
+  },
+  "authors": [
+    "Lianmin Zheng",
+    "Chengfan Jia",
+    "Minmin Sun",
+    "Zhao Wu",
+    "Cody Hao Yu",
+    "Ameer Haj-Ali",
+    "Yida Wang",
+    "Jun Yang",
+    "Danyang Zhuo",
+    "Koushik Sen",
+    "Joseph E. Gonzalez",
+    "Ion Stoica"
+  ],
+  "citation_count": 522.0,
+  "citation_count_as_of": "2026-05-05",
+  "citation_count_confidence": "high",
+  "citation_count_provider": "Semantic Scholar",
+  "date": null,
+  "display_title": "Ansor Broadens Tensor Program Search",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[15].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://arxiv.org/abs/ 2020",
+      "url": "https://arxiv.org/abs/2006.06762,2020"
+    },
+    {
+      "confidence": "high",
+      "domain": "www.usenix.org",
+      "link_type": "primary_source",
+      "provenance": {
+        "origin": "source_locator",
+        "source_field": "source_locator"
+      },
+      "quality_status": "contextual",
+      "rationale": "Original network location captured during ingest.",
+      "title": "Original source link",
+      "url": "https://www.usenix.org/system/files/osdi20-zheng.pdf"
+    }
+  ],
+  "ingested_at": "2026-05-05T10:39:53Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "on user-specified search space while Ansorconstructs the 3 /",
+      "url": "https://tvm.apache.org",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://www.usenix.org/conference/osdi20/presentation/zheng",
+      "year": null
+    },
+    {
+      "arxiv": "1410.0759",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "4 Jason Ansel Shoaib Kamil Kalyan Veeramachaneni arXivpreprint",
+      "url": null,
+      "year": 2014
+    },
+    {
+      "arxiv": "1502.03167",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "ternalcovariateshift. arXivpreprint 40 AlecRadford LukeMetz andSoumithChintala. Un",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "1511.06434",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "29 ZhihaoJia OdedPadon JamesThomas ToddWarsza",
+      "url": null,
+      "year": 2015
+    },
+    {
+      "arxiv": "1511.07122",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": 2015
+    },
+    {
+      "arxiv": "1512.01274",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "| | | | | | | | tems. | arXivpreprint . | | | | |",
+      "url": null,
+      "year": 2015
+    },
+    {
+      "arxiv": "1702.02181",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "| | | | | | | | tationgraphs. | | arXivpreprint . | | | | |",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": "1704.04861",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "| cations. | arXivpreprint . | | | | | | | | | | | | |",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": "1802.04730",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "preprint",
+      "url": null,
+      "year": 2018
+    },
+    {
+      "arxiv": "1810.04805",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "preprint",
+      "url": null,
+      "year": 2018
+    },
+    {
+      "arxiv": "1902.09574",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "2019",
+      "url": null,
+      "year": 1902
+    },
+    {
+      "arxiv": "1904.08368",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "| 2019. | | | | | | | compilation. | 2016. | | | | |",
+      "url": null,
+      "year": 1904
+    },
+    {
+      "arxiv": "2005.13685",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "anddatamining pages785\u2013794 . search. arXivpreprint 2020",
+      "url": null,
+      "year": 2016
+    },
+    {
+      "arxiv": "2006.03031",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "2020. approachforcnn modelinference on integratedgpus",
+      "url": null,
+      "year": 2006
+    },
+    {
+      "arxiv": "2006.06762",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "https://arxiv.org/abs/ 2020",
+      "url": "https://arxiv.org/abs/2006.06762,2020",
+      "year": 2006
+    },
+    {
+      "arxiv": "2008.11359",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "2020",
+      "url": null,
+      "year": 2008
+    },
+    {
+      "arxiv": "2009.10924",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "| 16 4 :1\u201326 . | | | | | | | preprint 2020. | | | | | |",
+      "url": null,
+      "year": 2019
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "references",
+      "source_locator"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 2 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The source frames tensor-program generation as a scalability problem for deep learning systems. Vendor libraries can be fast, but they require platform-specific engineering and may lag behind new operators. Template-guided search reduces manual kernel writing but still depends on human-designed spaces. Ansor's central claim is that an automatic compiler must construct a broader search space from the computation definition itself.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ],
+        "heading": "Compiler Problem"
+      },
+      {
+        "body": "Ansor separates the search problem into sketches and annotations. Sketches encode high-level loop and fusion structures generated by derivation rules, while annotations fill in low-level choices such as tile sizes and unrolling. This distinction is important because it keeps the high-level search enumerable while still representing many low-level combinations that would be infeasible to list manually.",
+        "grounding_claim_ids": [
+          "1",
+          "4"
+        ],
+        "heading": "Search-Space Design"
+      },
+      {
+        "body": "The paper avoids ranking incomplete programs as final candidates. Instead, Ansor samples complete valid programs, then uses evolutionary search to mutate, cross over, and refine them. The learned cost model makes this feasible by scoring many candidates faster than hardware measurement, while measurements from selected candidates continuously improve the model for the target platform.",
+        "grounding_claim_ids": [
+          "2",
+          "8"
+        ],
+        "heading": "Tuning Mechanism"
+      },
+      {
+        "body": "Ansor treats a DNN as many tunable subgraph tasks rather than one enormous graph. The task scheduler allocates measurement and tuning effort according to an approximate gradient of end-to-end cost. This means tuning effort can shift away from subgraphs that stop improving and toward subgraphs whose latency reductions are expected to matter most for the whole model.",
+        "grounding_claim_ids": [
+          "3",
+          "7"
+        ],
+        "heading": "Network-Level Scheduling"
+      },
+      {
+        "body": "The evaluation supports the design with several levels of benchmarks. Single-operator results show 1.1x to 22.5x gains over existing search frameworks, subgraph results show 1.1x to 14.2x gains, and network benchmarks show up to 3.8x, 2.6x, and 1.7x improvement on Intel CPU, ARM CPU, and NVIDIA GPU. These figures ground the claim that Ansor's larger space and scheduler translate into practical performance.",
+        "grounding_claim_ids": [
+          "5",
+          "6"
+        ],
+        "heading": "Empirical Results"
+      },
+      {
+        "body": "Ansor's gains are not limited to peak performance after exhaustive tuning. Table 3 shows that it can match AutoTVM with fewer measurements and less wall-clock time on Intel CPU network benchmarks. The evidence supports the practical value of scheduling and fine-tuning: the system spends less effort on unimportant subgraphs rather than assigning every subgraph a fixed budget.",
+        "grounding_claim_ids": [
+          "7",
+          "3"
+        ],
+        "heading": "Search Efficiency"
+      },
+      {
+        "body": "The paper is explicit that Ansor is not a universal tensor compiler. It requires static known shapes, handles dense operators rather than sparse ones, and relies on backend compilers for target-specific instruction use. These limits mean the reported results should be interpreted for statically shaped dense deep learning workloads, especially where manual templates or vendor kernels leave optimization opportunities.",
+        "grounding_claim_ids": [
+          "9"
+        ],
+        "heading": "Limits and Interpretation"
+      }
+    ],
+    "summary_long": "Ansor addresses a central compiler problem in deep learning systems: high-performance tensor kernels are needed for many operators and hardware targets, but vendor libraries and hand-written templates do not scale well to new operators, new shapes, and specialized accelerators. The paper argues that prior search-based systems are constrained either by manual templates, which leave many useful program structures unreachable, or by sequential construction strategies that prune incomplete programs using inaccurate estimates. Ansor's response is a hierarchical search space. It separates high-level program structures, called sketches, from low-level annotations such as tiling factors, vectorization, parallelism, and unrolling. Sketches are generated automatically from computation graphs using derivation rules for inlining, multi-level tiling, fusion, cache insertion, and reduction factorization. Complete programs sampled from those sketches are then improved by evolutionary search. A learned cost model ranks candidates cheaply, selected programs are measured on real hardware, and profiling data retrains the model. For complete DNNs, Ansor treats subgraph tuning as a resource allocation problem and uses a gradient-based task scheduler to spend time where additional tuning is expected to reduce end-to-end latency most. The paper's evidence is largely empirical: Ansor outperforms existing search frameworks by 1.1x to 22.5x on single operators, by 1.1x to 14.2x on subgraphs, and by up to 3.8x, 2.6x, and 1.7x on Intel CPU, ARM CPU, and NVIDIA GPU network benchmarks relative to the best alternatives. It also matches AutoTVM with substantially less search time in the reported Intel CPU experiments. The results support the paper's claim that broader search coverage plus better search allocation can matter as much as low-level code generation. The limitations are material: Ansor assumes static known shapes, supports dense operators, and relies on external code generators such as LLVM and NVCC for target-specific instruction selection.",
+    "summary_short": "Ansor automates tensor-program generation for deep learning by combining hierarchical sketches, complete-program search, learned cost modeling, and subgraph scheduling. The evaluation reports strong operator, subgraph, network, and search-time gains, with scope limited to static dense workloads and backend-supported instruction generation."
+  },
+  "source_extraction": {
+    "converter_name": "markitdown",
+    "converter_version": "0.1.5",
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "source_kind": "url",
+  "source_locator": "https://www.usenix.org/system/files/osdi20-zheng.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Lianmin Zheng",
+      "Chengfan Jia",
+      "Minmin Sun",
+      "Zhao Wu",
+      "Cody Hao Yu",
+      "Ameer Haj-Ali",
+      "Yida Wang",
+      "Jun Yang",
+      "Danyang Zhuo",
+      "Koushik Sen",
+      "Joseph E. Gonzalez",
+      "Ion Stoica"
+    ],
+    "display_title": "Ansor Broadens Tensor Program Search",
+    "original_title": "Ansor: Generating High-Performance Tensor Programs for Deep Learning",
+    "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+  },
+  "source_type": "url",
+  "summary": "Ansor is an automated tensor-program generation framework for deep learning that expands the searchable optimization space with hierarchical sketches, random annotation, evolutionary fine-tuning, a learned cost model, and gradient-based scheduling across DNN subgraphs. The paper reports substantial operator, subgraph, network, and search-time gains, while limiting the system to static dense workloads and backend-supported low-level code generation.",
+  "title": "Ansor: Generating High-Performance Tensor Programs for Deep Learning",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved from the source record; proceedings dates appear in the PDF front matter but source_date_inference remains date=null."
+    },
+    {
+      "code": "markdown_spacing_artifacts",
+      "message": "The source markdown is marked usable, but word spacing and table extraction are degraded in places; extracted numeric findings were kept to clearly readable benchmark passages."
+    }
+  ]
+}

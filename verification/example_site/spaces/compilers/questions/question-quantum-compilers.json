@@ -1,0 +1,17 @@
+{
+  "claim_ids": [],
+  "display_order": 3,
+  "evidence_ids": [],
+  "freshness": {},
+  "linked_source_ids": [],
+  "measurement_ids": [],
+  "question": "What makes distributed quantum compiler design difficult?",
+  "question_id": "question-quantum-compilers",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "compilers"
+  },
+  "status": "active",
+  "synthesis": {},
+  "warnings": []
+}

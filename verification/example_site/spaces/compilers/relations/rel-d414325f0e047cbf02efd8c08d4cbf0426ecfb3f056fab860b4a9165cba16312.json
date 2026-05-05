@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-ansor-improves-end-to-end-dnn-execution-performance-on-intel-cpu-arm-cpu-and-nvi--eb3581a5275a",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "Operator and subgraph throughput improvements provide the building blocks for end-to-end DNN execution gains.",
+  "relation_file_id": "rel-d414325f0e047cbf02efd8c08d4cbf0426ecfb3f056fab860b4a9165cba16312",
+  "relation_id": "supports:claim-ansor-outperforms-existing-search-frameworks-and-manual-libraries-on-single-oper--6b650490cda3->claim-ansor-improves-end-to-end-dnn-execution-performance-on-intel-cpu-arm-cpu-and-nvi--eb3581a5275a",
+  "relation_type": "supports",
+  "src_claim_id": "claim-ansor-outperforms-existing-search-frameworks-and-manual-libraries-on-single-oper--6b650490cda3",
+  "src_claim_ref": "5",
+  "status": "open"
+}

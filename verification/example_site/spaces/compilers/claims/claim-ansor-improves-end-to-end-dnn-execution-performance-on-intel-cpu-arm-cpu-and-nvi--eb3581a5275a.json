@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T10:48:40Z",
+  "claim_id": "claim-ansor-improves-end-to-end-dnn-execution-performance-on-intel-cpu-arm-cpu-and-nvi--eb3581a5275a",
+  "evidence_excerpts": [
+    "Compared with the best alternative, Ansor improves DNN execution performance on Intel CPU, ARM CPU, and NVIDIA GPU by up to 3.8x, 2.6x, and 1.7x, respectively."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Ansor improves DNN execution",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "text": "Ansor improves end-to-end DNN execution performance on Intel CPU, ARM CPU, and NVIDIA GPU by up to 3.8x, 2.6x, and 1.7x relative to the best evaluated alternatives."
+}

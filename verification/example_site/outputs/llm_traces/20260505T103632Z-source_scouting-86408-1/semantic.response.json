@@ -1,0 +1,99 @@
+{
+  "candidates": [
+    {
+      "authors": [
+        "Lianmin Zheng",
+        "Chengfan Jia",
+        "Minmin Sun",
+        "Zhao Wu",
+        "Cody Hao Yu",
+        "Ameer Haj-Ali",
+        "Yida Wang",
+        "Jun Yang",
+        "Danyang Zhuo",
+        "Koushik Sen",
+        "Joseph E. Gonzalez",
+        "Ion Stoica"
+      ],
+      "citation_signal": {
+        "as_of": "2026-05-05",
+        "confidence": "high",
+        "count": 522,
+        "provider": "Semantic Scholar"
+      },
+      "doi": null,
+      "landing_url": "https://www.usenix.org/conference/osdi20/presentation/zheng",
+      "pdf_url": "https://www.usenix.org/system/files/osdi20-zheng.pdf",
+      "public_access": {
+        "access_status": "public_pdf",
+        "evidence": "The USENIX landing page states that OSDI papers and proceedings are open access and provides a downloadable Zheng PDF.",
+        "has_public_pdf": true
+      },
+      "publication_year": 2020,
+      "ranking": {
+        "answer_fit_rationale": "Directly answers where ML improves compiler decisions: tensor program generation uses evolutionary search guided by a learned cost model and a task scheduler to choose high-performance implementations across hardware targets.",
+        "answer_fit_score": 5,
+        "citation_score": 5,
+        "interestingness_rationale": "It shows ML not just selecting a single pass parameter but steering a large compiler search space for deep-learning operators, making it useful for explaining modern learned autotuning and tensor compiler scheduling.",
+        "interestingness_score": 5,
+        "overall_rationale": "Best fit because it combines a top systems venue, strong citation signal, public PDF access, and concrete performance results across CPU, ARM CPU, and GPU targets.",
+        "overall_score": 20,
+        "rank": 1,
+        "venue_reputation_score": 5
+      },
+      "title": "Ansor: Generating High-Performance Tensor Programs for Deep Learning",
+      "venue": {
+        "name": "14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20)",
+        "publisher": "USENIX Association",
+        "reputation_rationale": "OSDI is a top-tier systems conference, and the USENIX landing page identifies the paper as part of the OSDI 20 proceedings.",
+        "type": "conference"
+      }
+    },
+    {
+      "authors": [
+        "Chris Cummins",
+        "Pavlos Petoumenos",
+        "Zheng Wang",
+        "Hugh Leather"
+      ],
+      "citation_signal": {
+        "as_of": "2026-05-05",
+        "confidence": "medium",
+        "count": 75,
+        "provider": "Scopus via Lancaster University research directory"
+      },
+      "doi": "10.1109/PACT.2017.24",
+      "landing_url": "https://research.lancaster-university.uk/en/publications/end-to-end-deep-learning-of-optimization-heuristics/",
+      "pdf_url": "https://research.lancaster-university.uk/files/172213592/pact17_paper47.pdf",
+      "public_access": {
+        "access_status": "public_pdf",
+        "evidence": "The Lancaster University record lists an accepted author manuscript PDF, 1 MB, under a CC BY-NC license.",
+        "has_public_pdf": true
+      },
+      "publication_year": 2017,
+      "ranking": {
+        "answer_fit_rationale": "Targets compiler optimization decisions explicitly, learning heuristics over raw code for heterogeneous device mapping and GPU thread coarsening, with reported gains over hand-crafted-feature models.",
+        "answer_fit_score": 5,
+        "citation_score": 4,
+        "interestingness_rationale": "Useful because it isolates the decision-making layer of compilation and demonstrates that representation learning can reduce manual feature engineering for compiler heuristics.",
+        "interestingness_score": 5,
+        "overall_rationale": "Strong second recommendation: it is highly aligned with the question, publicly accessible, and complements Ansor by covering general compiler heuristic learning rather than tensor-program search alone.",
+        "overall_score": 18,
+        "rank": 2,
+        "venue_reputation_score": 4
+      },
+      "title": "End-to-End Deep Learning of Optimization Heuristics",
+      "venue": {
+        "name": "26th International Conference on Parallel Architectures and Compilation Techniques (PACT 2017)",
+        "publisher": "IEEE",
+        "reputation_rationale": "PACT is a reputable peer-reviewed compiler and architecture conference; the university records list the paper in the 2017 PACT proceedings published by IEEE.",
+        "type": "conference"
+      }
+    }
+  ],
+  "question_id": "question-ml-compiler-optimization",
+  "question_text": "Where does machine learning improve compiler optimization decisions?",
+  "schema_version": "source_scouting_v1",
+  "space_name": "compilers",
+  "warnings": []
+}

@@ -1,0 +1,176 @@
+{
+  "claim_ids": [
+    "claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d",
+    "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6"
+  ],
+  "display_order": 7,
+  "evidence_ids": [
+    "evidence-hierarchical-derivation-rules--4b7e91c2a6d0"
+  ],
+  "freshness": {
+    "question_measurement_extraction": {
+      "chart_groups": [
+        {
+          "chart_group_id": "chart-ansor-ir-structure-counts",
+          "measure_name": "search-space representation levels",
+          "measurement_ids": [
+            "measurement-ansor-search-space-levels--839fb7edb551"
+          ],
+          "outcome": "separation of high-level sketches from low-level annotations",
+          "population": "Ansor tensor-program search-space representation",
+          "unit": "levels"
+        },
+        {
+          "chart_group_id": "chart-ansor-sketch-rules",
+          "measure_name": "listed sketch-generation derivation rules",
+          "measurement_ids": [
+            "measurement-ansor-sketch-derivation-rules--839fb7edb551"
+          ],
+          "outcome": "automatic construction of candidate high-level tensor-program structures",
+          "population": "CPU examples in Ansor Table 1",
+          "unit": "rules"
+        }
+      ],
+      "input_signature": "sha256:c173645a9cef6ad4bf70d18359bff90213eee890dfc61df3bdb837cd170d92ab",
+      "measurement_ids": [
+        "measurement-ansor-search-space-levels--839fb7edb551",
+        "measurement-ansor-sketch-derivation-rules--839fb7edb551"
+      ],
+      "refreshed_at": "2026-05-05T11:02:45Z",
+      "run_id": "run-20260505T103944Z--65j0k0p4lt",
+      "semantic_output_path": "runs/run-20260505T103944Z--65j0k0p4lt/semantic/question_measurement_extraction/question-ir-design.json",
+      "status": "refreshed",
+      "warnings": []
+    },
+    "question_measurement_extraction_checks": [
+      {
+        "checked_at": "2026-05-05T11:02:45Z",
+        "input_signature": "sha256:c173645a9cef6ad4bf70d18359bff90213eee890dfc61df3bdb837cd170d92ab",
+        "measurement_ids": [
+          "measurement-ansor-search-space-levels--839fb7edb551",
+          "measurement-ansor-sketch-derivation-rules--839fb7edb551"
+        ],
+        "run_id": "run-20260505T103944Z--65j0k0p4lt",
+        "semantic_output_path": "runs/run-20260505T103944Z--65j0k0p4lt/semantic/question_measurement_extraction/question-ir-design.json",
+        "status": "refreshed"
+      }
+    ],
+    "question_relevance_mappings": [
+      {
+        "rationale": "The source is relevant to compiler representation design because Ansor's sketch-and-annotation representation separates high-level program structures from low-level choices, making a large tensor-program search space enumerable and tunable. It is not primarily an intermediate-representation paper, so the match is limited.",
+        "relevance": "medium",
+        "run_id": "run-20260505T103944Z--65j0k0p4lt",
+        "semantic_output_path": "runs/run-20260505T103944Z--65j0k0p4lt/semantic/question_relevance_mapping.json",
+        "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      }
+    ],
+    "question_synthesis": {
+      "input_signature": "sha256:ca54f2857223ffc881bad91beb13c5f3f1bbc0c858cdf89f5798e06f65cb025d",
+      "refreshed_at": "2026-05-05T11:04:59Z",
+      "run_id": "run-20260505T103944Z--65j0k0p4lt",
+      "semantic_output_path": "runs/run-20260505T103944Z--65j0k0p4lt/semantic/question_synthesis/question-ir-design.json",
+      "status": "refreshed"
+    },
+    "question_synthesis_checks": [
+      {
+        "checked_at": "2026-05-05T11:04:59Z",
+        "input_signature": "sha256:ca54f2857223ffc881bad91beb13c5f3f1bbc0c858cdf89f5798e06f65cb025d",
+        "run_id": "run-20260505T103944Z--65j0k0p4lt",
+        "semantic_output_path": "runs/run-20260505T103944Z--65j0k0p4lt/semantic/question_synthesis/question-ir-design.json",
+        "status": "refreshed"
+      }
+    ]
+  },
+  "linked_source_ids": [
+    "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+  ],
+  "measurement_ids": [
+    "measurement-ansor-search-space-levels--839fb7edb551",
+    "measurement-ansor-sketch-derivation-rules--839fb7edb551"
+  ],
+  "question": "What properties make an intermediate representation effective?",
+  "question_id": "question-ir-design",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "compilers"
+  },
+  "status": "active",
+  "synthesis": {
+    "citation_anchors": [
+      {
+        "anchor_id": "anchor-sketch-annotation-separation",
+        "claim_ids": [
+          "claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d"
+        ],
+        "evidence_ids": [
+          "evidence-hierarchical-derivation-rules--4b7e91c2a6d0"
+        ],
+        "label": "[S1]",
+        "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      },
+      {
+        "anchor_id": "anchor-search-space-coverage",
+        "claim_ids": [
+          "claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d",
+          "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6"
+        ],
+        "evidence_ids": [
+          "evidence-hierarchical-derivation-rules--4b7e91c2a6d0"
+        ],
+        "label": "[S2]",
+        "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      }
+    ],
+    "conclusions": [
+      {
+        "claim_ids": [
+          "claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d"
+        ],
+        "evidence_ids": [
+          "evidence-hierarchical-derivation-rules--4b7e91c2a6d0"
+        ],
+        "source_ids": [
+          "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+        ],
+        "support": "strong",
+        "text": "For tensor-program search, a useful representation separates high-level program structure from low-level implementation decisions: Ansor uses sketches for structural choices and annotations for tile size, parallelism, unrolling, and vectorization."
+      },
+      {
+        "claim_ids": [
+          "claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d"
+        ],
+        "evidence_ids": [
+          "evidence-hierarchical-derivation-rules--4b7e91c2a6d0"
+        ],
+        "source_ids": [
+          "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+        ],
+        "support": "strong",
+        "text": "Explicit derivation rules make the representation operational: Ansor's listed rules construct candidate high-level structures from a computation graph instead of requiring a manual template for each operator."
+      },
+      {
+        "claim_ids": [
+          "claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d",
+          "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6"
+        ],
+        "evidence_ids": [
+          "evidence-hierarchical-derivation-rules--4b7e91c2a6d0"
+        ],
+        "source_ids": [
+          "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+        ],
+        "support": "moderate",
+        "text": "The evidence moderately supports the broader design lesson that an effective IR should broaden search coverage while preserving a tractable structure for enumeration and tuning."
+      }
+    ],
+    "disagreements": [],
+    "question_id": "question-ir-design",
+    "schema_version": "question_synthesis_v1",
+    "short_answer": "The linked evidence suggests that an effective compiler representation separates high-level structure from low-level tuning choices, makes candidate structures enumerable through explicit derivation rules, and expands the reachable optimization space beyond hand-written templates. This answer is limited because it is grounded in one Ansor source about tensor-program search rather than broad IR literature.",
+    "uncertainty": "The synthesis is based on one linked source and one evidence record. It supports properties of Ansor's tensor-program search representation, but does not establish a complete theory of effective intermediate representations across all compiler domains. The evidence also notes limits: the listed rules are CPU examples, while GPU support uses additional target-specific derivations.",
+    "warnings": [
+      "Only one linked source and one linked evidence record are available, so the answer should be treated as a limited synthesis rather than a comprehensive IR-design conclusion."
+    ]
+  },
+  "warnings": []
+}

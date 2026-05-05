@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-05-05T10:48:40Z",
+  "claim_id": "claim-ansor-s-task-scheduler-allocates-tuning-time-to-subgraphs-that-are-most-likely-t--93937c35fdc5",
+  "evidence_excerpts": [
+    "The task scheduler uses a scheduling algorithm based on gradient descent to allocate resources to subgraphs that are more likely to improve end-to-end DNN performance.",
+    "For single-DNN latency, Ansor prioritizes a subgraph with high initial latency and leaves it after many iterations without latency decrease because its gradient decreases."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Scheduling targets bottleneck subgraphs",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "text": "Ansor's task scheduler allocates tuning time to subgraphs that are most likely to improve end-to-end DNN performance."
+}

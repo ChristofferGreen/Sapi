@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T10:24:41Z",
+  "claim_id": "claim-resubstitution-does-not-predict-best-bzip2-performance--c9d0e1f2a3b4",
+  "evidence_excerpts": [
+    "Table 5 lists resubstitution ranks across bzip2 inputs; the text concludes that the ranks are fairly evenly distributed across the possible range and that there is no relationship between feedback-information quality and resulting binary performance."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Resubstitution fails reliable ranking",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "text": "Resubstitution does not reliably identify the best bzip2 FDO binary, indicating that ORC did not consistently turn more accurate same-input feedback into faster binaries in this study."
+}

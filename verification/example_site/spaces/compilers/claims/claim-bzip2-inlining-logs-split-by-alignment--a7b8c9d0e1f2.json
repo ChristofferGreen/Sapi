@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T10:24:41Z",
+  "claim_id": "claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2",
+  "evidence_excerpts": [
+    "Tables 2 through 4 show 1464 bzip2 callsites in the full log comparison, no choices with yes consensus, and after a 45% alignment cut only 15 FDO choices without consensus in the high-cut group but 545 FDO choices without consensus in the low-cut group."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "bzip2 logs diverge sharply",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "text": "For bzip2 on Itanium, inlining logs split into a high-alignment group with similar decisions and a low-alignment group with substantially different callsite choices and no universally inlined callsite."
+}

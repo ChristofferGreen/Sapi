@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "The Itanium inlining gains are one concrete performance consequence of the broader claim that training input selection affects FDO outcomes.",
+  "relation_file_id": "rel-3be1f3a861048485256dbd7414f54f270b6cbda44b53ce593e5cca8352fc7453",
+  "relation_id": "derived_from:claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1->claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1",
+  "src_claim_ref": "5",
+  "status": "open"
+}

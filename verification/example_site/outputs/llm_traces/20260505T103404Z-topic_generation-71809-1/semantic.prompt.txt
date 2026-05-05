@@ -1,0 +1,144 @@
+=== semantic invocation ===
+flow_key: topic_generation
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/runs/run-20260505T101456Z--0dngk7ufw6/semantic/topic_generation.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims
+
+=== generation spec ===
+flow_key: topic_generation
+version: v1
+schema_path: schemas/topic_generation.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/topic_generation.json
+context_paths:
+  - <space_root>/sources
+  - <space_root>/claims
+---
+## Task
+Generate one strict JSON object for topic generation at `output_json_path`.
+Return a `topics` array containing 0..n concept-centric topic candidates.
+
+## Context Interpretation Rules
+- Use only evidence available under `context_paths`.
+- If support is weak/ambiguous, reflect that in section content rather than inventing facts.
+- Do not invent canonical IDs outside schema contracts.
+- Prefer topics that synthesize shared concepts across multiple sources.
+- If there is no clear cross-source concept worth a page, return an empty array (`"topics": []`).
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "topics": [
+    {
+      "topic_id": "",
+      "title": "",
+      "structure_type": "wiki",
+      "sections": [],
+      "claim_ids": [],
+      "source_ids": []
+    }
+  ]
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources"
+}
+
+=== repair context ===
+{
+  "previous_invalid_json": "{\n  \"topics\": [\n    {\n      \"claim_ids\": [\n        \"claim-aestimo-compares-workload-runtime-effects--c3d4e5f6a7b8\",\n        \"claim-workloads-extend-beyond-spec-inputs--d4e5f6a7b8c9\",\n        \"claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0\",\n        \"claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5\",\n        \"claim-resubstitution-does-not-predict-best-bzip2-performance--c9d0e1f2a3b4\",\n        \"claim-the-experiments-used-separate-profiling-inputs-and-performance-measurement-input--ee5ac2fa5a94\",\n        \"claim-execution-profiles-integrated-into-an-optimizing-c-compiler-can-guide-classic-op--20be52b7603e\",\n        \"claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c\",\n        \"claim-machine-learning-based-compiler-optimization-is-limited-by-the-quality-represent--f9c7d385cc26\"\n      ],\n      \"sections\": [\n        \"A synthesis page could compare how compiler optimization systems use empirical evidence from workloads, profiles, or training data rather than static heuristics alone.\",\n        \"Aestimo provides the sharpest warning: training inputs change FDO decisions and measured performance, workload-wide evaluation is needed, and single-input evaluation can be unreliable. Profile-guided classic optimization and machine-learning compilation make related evidence-based arguments, but with different mechanisms: hot-path execution profiles and learned models trained from representative program data.\",\n        \"The section should preserve the ambiguity that better feedback is not automatically better performance, since the bzip2 resubstitution result did not reliably predict the fastest FDO binary.\"\n      ],\n      \"source_ids\": [\n        \"source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12\",\n        \"source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf\",\n        \"source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Empirical workload-sensitive compiler optimization\",\n      \"topic_id\": \"topic-empirical-workload-sensitive-compiler-optimization\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-aestimo-isolates-individual-fdo-transformations--a1b2c3d4e5f6\",\n        \"claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7\",\n        \"claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2\",\n        \"claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be\",\n        \"claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992\",\n        \"claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5\",\n        \"claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de\"\n      ],\n      \"sections\": [\n        \"This topic would cover how compilers expose internal optimization decisions or program behavior as comparable representations: Aestimo log vectors, profile-weighted flow graphs, ML feature vectors, and WCC back-annotation data.\",\n        \"Aestimo isolates individual FDO transformations by logging decisions for one optimization and recompiling with only those logged choices, then compares decision variation through difference and alignment metrics. The same general concept appears in other sources as quantifiable program features for learning, execution counts attached to control-flow graphs, and WCET data raised from assembly analysis back into source-level compiler structures.\",\n        \"The page should not imply these representations are interchangeable: Aestimo logs explain variation in FDO choices, ML features support prediction, and WCC annotations support worst-case timing optimization.\"\n      ],\n      \"source_ids\": [\n        \"source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12\",\n        \"source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf\",\n        \"source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d\",\n        \"source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Observable decision representations for compiler analysis\",\n      \"topic_id\": \"topic-observable-decision-representations-for-compiler-analysis\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3\",\n        \"claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1\",\n        \"claim-thread-coarsening-decisions-are-context-dependent-because-coarsening-can-improve--4878860bda89\",\n        \"claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3\",\n        \"claim-static-wcet-reduction-depends-on-optimizing-the-worst-case-execution-path-becaus--b6a70fae6e3d\",\n        \"claim-wcet-aware-register-allocation-lowers-wcet-by-avoiding-spill-code-on-the-wcep-ev--a21ac879b656\",\n        \"claim-remote-cnot-execution-consumes-bell-state-resources-and-is-limited-by-the-number--ff11e4d2be8e\",\n        \"claim-entanglement-swapping-augments-distributed-processor-connectivity-by-enabling-re--b0cac39f5fb5\"\n      ],\n      \"sections\": [\n        \"This topic would synthesize cases where an optimization is beneficial only under particular inputs, paths, hardware resources, or program contexts.\",\n        \"Aestimo's bzip2 case shows training input materially changes inlining performance, with combined training, xml training, and best-case per-input FDO producing different gains. Machine-learning compilation frames the same issue through context-dependent choices such as thread coarsening. WCC and distributed quantum compilation add timing and resource-sensitive examples, where optimizing the wrong path or consuming limited communication resources can blunt or reverse expected benefits.\",\n        \"The topic should emphasize conditionality rather than a universal ranking of optimizations, since the evidence spans conventional programs, WCET-oriented embedded compilation, and distributed quantum compilation.\"\n      ],\n      \"source_ids\": [\n        \"source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12\",\n        \"source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d\",\n        \"source-03-compiler-design-for-distributed-quantum-computing--64a02810764d\",\n        \"source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Context-dependent optimization tradeoffs\",\n      \"topic_id\": \"topic-context-dependent-optimization-tradeoffs\"\n    }\n  ]\n}",
+  "require_complete_replacement_json": true,
+  "validation_errors": [
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/0/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/0/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/1/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/1/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/0",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/1",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Each section must be an object.",
+      "path": "/topics/2/sections/2",
+      "validator": "type",
+      "validator_value": "object"
+    },
+    {
+      "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+      "path": "/topics/2/sections",
+      "validator": "section_body_contract",
+      "validator_value": "at_least_one_non_empty_body"
+    },
+    {
+      "message": "Normalization error: topic_generation semantic output requires at least one section with non-empty body.",
+      "path": "/topics",
+      "validator": "post_schema_contract",
+      "validator_value": "topic_generation_normalizer"
+    }
+  ]
+}

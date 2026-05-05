@@ -1,0 +1,19 @@
+{
+  "context_by_path": {
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/relations": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/relations",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/artifacts": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records"
+  },
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/relations"
+  ],
+  "flow_key": "ingest_extraction",
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/runs/run-20260505T103944Z--65j0k0p4lt/semantic/ingest_extraction.json",
+  "repair_context": null,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json",
+  "version": "v1"
+}

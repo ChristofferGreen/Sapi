@@ -1,0 +1,33 @@
+{
+  "claim_ids": [
+    "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3",
+    "claim-ansor-s-task-scheduler-allocates-tuning-time-to-subgraphs-that-are-most-likely-t--93937c35fdc5",
+    "claim-machine-learning-based-compilation-can-make-compiler-optimization-more-evidence--20aeeff3a32c",
+    "claim-supervised-learning-for-compiler-optimization-learns-correlations-between-progra--217abf25c992",
+    "claim-weighted-flow-graphs-expose-hot-paths-by-attaching-execution-counts-to-basic-blo--49c47f8431d5",
+    "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0"
+  ],
+  "sections": [
+    {
+      "body": "Ansor uses measured tensor programs, a learned cost model, and task scheduling to guide search toward high-throughput programs and subgraphs that matter for end-to-end DNN latency.",
+      "heading": "Tensor-program evidence in Ansor"
+    },
+    {
+      "body": "This concept generalizes across compiler work: machine-learning-based compilation learns from empirical program features, profile-guided classic optimization uses execution counts to focus transformations on hot paths, and Aestimo evaluates how training inputs alter feedback-directed decisions and performance.",
+      "heading": "Evidence across compiler optimization systems"
+    },
+    {
+      "body": "A useful synthesis would compare what each system treats as optimization evidence: tensor-program measurements, supervised feature labels, weighted flow-graph counts, and feedback-directed optimization logs.",
+      "heading": "Comparison focus"
+    }
+  ],
+  "source_ids": [
+    "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+  ],
+  "structure_type": "wiki",
+  "title": "Empirical Models Guide Compiler Optimization Decisions",
+  "topic_id": "topic-empirical-models-guide-optimization-decisions"
+}

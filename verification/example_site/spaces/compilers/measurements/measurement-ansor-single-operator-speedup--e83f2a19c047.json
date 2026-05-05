@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-ansor-outperforms-existing-search-frameworks-and-manual-libraries-on-single-oper--6b650490cda3",
+  "comparator": "existing search frameworks",
+  "evidence_id": "evidence-operator-subgraph-speedups--e83f2a19c047",
+  "measure_name": "Ansor speedup",
+  "measurement_id": "measurement-ansor-single-operator-speedup--e83f2a19c047",
+  "outcome": "performance versus existing search frameworks",
+  "population": "single-operator benchmarks across evaluated operator and batch-size settings",
+  "question_id": "question-autotuning",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "uncertainty": "range reported across selected single-operator benchmark settings",
+  "unit": "x",
+  "value": 1.1,
+  "value_max": 22.5
+}

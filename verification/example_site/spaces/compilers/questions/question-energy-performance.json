@@ -1,0 +1,17 @@
+{
+  "claim_ids": [],
+  "display_order": 10,
+  "evidence_ids": [],
+  "freshness": {},
+  "linked_source_ids": [],
+  "measurement_ids": [],
+  "question": "How should compilers trade off energy use against runtime performance?",
+  "question_id": "question-energy-performance",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "compilers"
+  },
+  "status": "active",
+  "synthesis": {},
+  "warnings": []
+}

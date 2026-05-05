@@ -1,0 +1,43 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: source_scouting
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/source_scouting.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/compilers/questions/question-profile-guided-optimization/runs/run-20260505T095503Z--w5kkbqs8gq/source_scouting.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions/question-profile-guided-optimization.json
+
+=== generation spec ===
+flow_key: source_scouting
+version: v1
+schema_path: schemas/source_scouting.v1.schema.json
+output_json_path: <site_path>/scouting/spaces/<space_name>/questions/<question_id>/runs/<run_id>/source_scouting.json
+context_paths:
+  - <space_root>/questions/<question_id>.json
+---
+## Task
+Generate one strict JSON object recommending high-quality papers to scout for one prepared question.
+
+## Scouting Criteria
+- Start from the prepared question in context and prioritize papers that clearly answer it.
+- Prefer reputable journals or venues and explain the venue-quality signal.
+- Include citation count with provider and `as_of` date. If unavailable, use `null` count and explain low confidence.
+- Prefer candidates with a public PDF. Set `public_access.has_public_pdf=false` when only a landing page or restricted source is available.
+- Include interestingness rationale: why this paper would improve the space beyond being merely relevant.
+
+## Boundary Rules
+- This is a recommendation sidecar. Do not emit canonical source, claim, relation, topic, or evidence artifacts.
+- Do not invent DOI, landing URL, PDF URL, citation provider, or access evidence. Use `null` for missing DOI/PDF.
+- If runtime web search is available, use it to verify candidates. If not, return only candidates whose identifiers and access status you can justify with high confidence.
+- Return JSON object only.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions/question-profile-guided-optimization.json": "file:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions/question-profile-guided-optimization.json"
+}
+
+=== llm output ===
+{"schema_version":"source_scouting_v1","space_name":"compilers","question_id":"question-profile-guided-optimization","question_text":"How reliable is profile-guided optimization across workloads?","candidates":[{"title":"Aestimo: A Feedback-Directed Optimization Evaluation Tool","authors":["Paul Berube","José Nelson Amaral"],"venue":{"name":"IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS)","type":"conference","publisher":"IEEE Computer Society","reputation_rationale":"ISPASS is a peer-reviewed IEEE venue focused on performance analysis methodology, making it a strong fit for empirical compiler-performance questions."},"publication_year":2006,"doi":"10.1109/ISPASS.2006.1620809","landing_url":"https://dblp.org/rec/conf/ispass/BerubeA06","pdf_url":"https://webdocs.cs.ualberta.ca/~amaral/papers/berube-ispass06.pdf","public_access":{"has_public_pdf":true,"access_status":"public_pdf","evidence":"A University of Alberta PDF was surfaced and inspected, and DBLP/IEEE metadata verifies the ISPASS 2006 publication and DOI."},"citation_signal":{"count":null,"provider":"runtime web search; DBLP/CiteSeerX/University of Alberta metadata available but no reliable citation-count provider surfaced","as_of":"2026-05-05","confidence":"low"},"ranking":{"rank":1,"answer_fit_score":5,"venue_reputation_score":4,"citation_score":1,"interestingness_score":5,"overall_score":15,"answer_fit_rationale":"The paper directly studies whether FDO/PGO results are sensitive to training and evaluation input choice, including impacts on compiler decisions and measured performance.","interestingness_rationale":"It provides an experimental methodology, not just a performance result, so it can anchor a nuanced answer about when PGO is reliable and when workload choice invalidates conclusions.","overall_rationale":"Best direct evidence for the question because it frames PGO reliability as an input-sensitivity problem and reports concrete compiler-transformation effects."}},{"title":"Workload Reduction for Multi-input Feedback-Directed Optimization","authors":["Paul Berube","José Nelson Amaral","Rayson Ho","Raúl Silvera"],"venue":{"name":"IEEE/ACM International Symposium on Code Generation and Optimization (CGO)","type":"conference","publisher":"IEEE Computer Society / ACM","reputation_rationale":"CGO is a leading peer-reviewed compiler optimization venue, and the 2009 proceedings report selective acceptance statistics."},"publication_year":2009,"doi":"10.1109/CGO.2009.23","landing_url":"https://dblp.org/rec/conf/cgo/BerubeAHS09","pdf_url":null,"public_access":{"has_public_pdf":false,"access_status":"restricted","evidence":"DBLP verifies the DOI and marks access as closed; the ACM-style proceedings page advertises full text but runtime evidence did not expose a stable public PDF URL."},"citation_signal":{"count":null,"provider":"runtime web search; DBLP/OpenAlex-linked metadata available but no reliable citation-count value surfaced","as_of":"2026-05-05","confidence":"low"},"ranking":{"rank":2,"answer_fit_score":5,"venue_reputation_score":5,"citation_score":1,"interestingness_score":4,"overall_score":15,"answer_fit_rationale":"The abstract explicitly states that FDO can be sensitive to both training-input selection and actual runtime input, then proposes cross-validation and representative workload reduction.","interestingness_rationale":"It goes beyond diagnosing unreliability by offering a compiler-centric way to select smaller representative workloads, useful for practical PGO processes.","overall_rationale":"A highly relevant CGO paper that complements Aestimo by turning workload sensitivity into a workload-selection methodology, though public PDF access was not verified."}}],"warnings":["Citation counts were not emitted because runtime search did not surface a reliable count provider for either candidate.","Only one candidate has a verified public PDF; the second is retained because it is highly relevant and from a reputable compiler venue."]}

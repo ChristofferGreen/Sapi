@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-aestimo-isolates-individual-fdo-transformations--a1b2c3d4e5f6"
+  ],
+  "evidence_id": "evidence-aestimo-forced-decision-recompile--4f19a8c32b7e",
+  "evidence_type": "formal_argument",
+  "excerpt": "When Aestimo is investigating an optimization P, a training run executes the instrumented binary on a training input, the benchmark is compiled using the generated profile data, and an optimization log L is emitted for P. The binary produced at this point is discarded. Aestimo recompiles statically using L to instruct the compiler to make the same decisions for P as it did during the full profile-guided compilation, so optimization decisions based on profile information are used only for P.",
+  "overview": "This is the paper's core methodological artifact. It explains how Aestimo separates the effect of one feedback-directed transformation from the rest of the compiler pipeline while still allowing normal cascading optimizations after the forced decision. The evidence establishes the isolation strategy but also implies a limitation: the measured impact is an estimate because optimization interactions remain complex.",
+  "page_refs": [
+    "Section 2.1",
+    "Figure 2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "title": "Forced-decision recompilation flow"
+}

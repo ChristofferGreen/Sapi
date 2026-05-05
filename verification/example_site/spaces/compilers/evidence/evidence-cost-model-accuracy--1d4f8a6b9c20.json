@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3",
+    "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814"
+  ],
+  "evidence_id": "evidence-cost-model-accuracy--1d4f8a6b9c20",
+  "evidence_type": "statistical_result",
+  "excerpt": "The cost-model evaluation uses 25,000 programs measured while tuning ResNet-50 on Intel CPU, randomly selecting 20,000 programs for training and 5,000 for testing. The model achieves 0.079 RMSE, 0.958 R2 correlation, 0.851 pairwise comparison accuracy, and 0.624 recall@30 for top-30 programs on the test set.",
+  "overview": "This evidence supports the cost-model claim with explicit dataset size and evaluation metrics. The model need not perfectly predict absolute throughput; the relevant evidence is that it can rank and identify promising programs well enough to guide evolutionary search. The scope is narrower than the whole system because the reported metrics are for one ResNet-50 tuning dataset on Intel CPU.",
+  "page_refs": [
+    "Figure 11",
+    "Section 7.5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "title": "Cost Model Accuracy Metrics"
+}

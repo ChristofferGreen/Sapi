@@ -1,0 +1,17 @@
+{
+  "claim_ids": [],
+  "display_order": 9,
+  "evidence_ids": [],
+  "freshness": {},
+  "linked_source_ids": [],
+  "measurement_ids": [],
+  "question": "How can optimized code remain debuggable?",
+  "question_id": "question-debuggability",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "compilers"
+  },
+  "status": "active",
+  "synthesis": {},
+  "warnings": []
+}

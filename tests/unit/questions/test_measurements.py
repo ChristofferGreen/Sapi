@@ -229,7 +229,7 @@ class QuestionMeasurementTests(unittest.TestCase):
             measurement = json.loads((space_root / "measurements" / f"{MEASUREMENT_ID}.json").read_text())
             self.assertEqual(measurement["question_id"], "question-other")
 
-    def test_measurement_extraction_rejects_unlinked_and_incompatible_rows(self) -> None:
+    def test_measurement_extraction_rejects_unlinked_rows_and_drops_incompatible_charts(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "spaces" / "alpha"
             _write_linked_artifacts(space_root)
@@ -271,14 +271,19 @@ class QuestionMeasurementTests(unittest.TestCase):
             payload["chart_groups"][0]["unit"] = "kg/day"  # type: ignore[index]
             fixture = create_deterministic_mock_llm_fixture(mode="valid", valid_payload=payload)
 
-            with self.assertRaisesRegex(ValueError, "incompatible unit"):
-                run_question_measurement_extraction_and_update(
-                    space_root=space_root,
-                    question_id="question-protein-intake",
-                    run_id="run-20260501T120000Z--abcdefghij",
-                    llm_client=fixture,
-                    transaction=ArtifactTransaction(),
-                )
+            result = run_question_measurement_extraction_and_update(
+                space_root=space_root,
+                question_id="question-protein-intake",
+                run_id="run-20260501T120000Z--abcdefghij",
+                llm_client=fixture,
+                transaction=ArtifactTransaction(),
+            )
+
+            self.assertEqual(result.chart_group_count, 0)
+            question = json.loads((space_root / "questions" / "question-protein-intake.json").read_text())
+            metadata = question["freshness"]["question_measurement_extraction"]
+            self.assertEqual(metadata["chart_groups"], [])
+            self.assertIn("Dropped incompatible question measurement chart group.", metadata["warnings"])
 
     def test_measurement_extraction_repair_exhausts_when_numeric_value_is_missing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

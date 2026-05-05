@@ -1,0 +1,56 @@
+{
+  "authors": [
+    "Chris Cummins",
+    "Pavlos Petoumenos",
+    "Zheng Wang",
+    "Hugh Leather"
+  ],
+  "candidate_id": "candidate-end-to-end-deep-learning-of-optimization-heuristics--9bada56700e4",
+  "citation_signal": {
+    "as_of": "2026-05-05",
+    "confidence": "medium",
+    "count": 75,
+    "provider": "Scopus via Lancaster University research directory"
+  },
+  "doi": "10.1109/PACT.2017.24",
+  "failure_reason": null,
+  "import_link": null,
+  "import_status": "not_imported",
+  "landing_url": "https://research.lancaster-university.uk/en/publications/end-to-end-deep-learning-of-optimization-heuristics/",
+  "operator_status": "candidate",
+  "pdf_url": "https://research.lancaster-university.uk/files/172213592/pact17_paper47.pdf",
+  "provenance": {
+    "scouted_at": "2026-05-05T10:36:32Z",
+    "scouting_run_id": "run-20260505T103632Z--qt42tyfcl5",
+    "semantic_output_path": "/Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/compilers/questions/question-ml-compiler-optimization/runs/run-20260505T103632Z--qt42tyfcl5/source_scouting.json"
+  },
+  "public_access": {
+    "access_status": "public_pdf",
+    "evidence": "The Lancaster University record lists an accepted author manuscript PDF, 1 MB, under a CC BY-NC license.",
+    "has_public_pdf": true
+  },
+  "publication_year": 2017,
+  "question_id": "question-ml-compiler-optimization",
+  "question_text": "Where does machine learning improve compiler optimization decisions?",
+  "ranking": {
+    "answer_fit_rationale": "Targets compiler optimization decisions explicitly, learning heuristics over raw code for heterogeneous device mapping and GPU thread coarsening, with reported gains over hand-crafted-feature models.",
+    "answer_fit_score": 5,
+    "citation_score": 4,
+    "interestingness_rationale": "Useful because it isolates the decision-making layer of compilation and demonstrates that representation learning can reduce manual feature engineering for compiler heuristics.",
+    "interestingness_score": 5,
+    "overall_rationale": "Strong second recommendation: it is highly aligned with the question, publicly accessible, and complements Ansor by covering general compiler heuristic learning rather than tensor-program search alone.",
+    "overall_score": 18,
+    "rank": 2,
+    "venue_reputation_score": 4
+  },
+  "schema_version": "source_scouting_candidate_v1",
+  "skip_reason": null,
+  "space_name": "compilers",
+  "title": "End-to-End Deep Learning of Optimization Heuristics",
+  "venue": {
+    "name": "26th International Conference on Parallel Architectures and Compilation Techniques (PACT 2017)",
+    "publisher": "IEEE",
+    "reputation_rationale": "PACT is a reputable peer-reviewed compiler and architecture conference; the university records list the paper in the 2017 PACT proceedings published by IEEE.",
+    "type": "conference"
+  }
+}

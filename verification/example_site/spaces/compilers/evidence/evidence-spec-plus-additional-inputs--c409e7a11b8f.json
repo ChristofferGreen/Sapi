@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-workloads-extend-beyond-spec-inputs--d4e5f6a7b8c9",
+    "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5"
+  ],
+  "evidence_id": "evidence-spec-plus-additional-inputs--c409e7a11b8f",
+  "evidence_type": "measurement",
+  "excerpt": "The workload selection section uses SPEC CINT2000 benchmarks and datasets, includes the SPEC test, train, and ref inputs, and adds inputs selected to represent typical benchmark workloads. It reports that inputs for bzip2 and gzip are selected as files in common formats, parser uses Project Gutenberg, web-page, and Reuters inputs, and in total 116 inputs are used, of which only 32 are provided by SPEC.",
+  "overview": "The expanded workload is critical to the paper's interpretation because it tests whether conclusions based on the small standard SPEC input sets generalize. The evidence shows that Aestimo deliberately stresses training and evaluation input sensitivity across a broader workload, making the reported variations harder to dismiss as artifacts of a tiny benchmark input set.",
+  "page_refs": [
+    "Section 2.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "title": "Expanded SPEC input workload"
+}

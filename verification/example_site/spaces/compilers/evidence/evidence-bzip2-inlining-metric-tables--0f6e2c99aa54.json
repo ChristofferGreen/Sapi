@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7",
+    "claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2"
+  ],
+  "evidence_id": "evidence-bzip2-inlining-metric-tables--0f6e2c99aa54",
+  "evidence_type": "table_result",
+  "excerpt": "Tables 2 through 4 report bzip2 inlining metrics on Itanium. The full comparison has 1464 callsites, 0 choices with yes consensus, 835 FDO choices with no consensus, and 629 FDO choices without consensus. After cutting at 45% alignment, the high-cut group has 183 callsites and only 15 FDO choices without consensus, while the low-cut group keeps 1464 callsites and 545 FDO choices without consensus.",
+  "overview": "These tables provide concrete evidence that bzip2 training inputs do not merely perturb a few decisions. The high-alignment inputs behave similarly, but the low-alignment group produces a much larger and more divergent callsite space. This supports the conclusion that some input groups drive different hot code regions and therefore different inlining decisions.",
+  "page_refs": [
+    "Tables 2-4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "title": "bzip2 inlining log divergence"
+}

@@ -1,0 +1,197 @@
+{
+  "chart_groups": [
+    {
+      "chart_group_id": "chart-workload-input-counts",
+      "measure_name": "workload input count",
+      "measurement_ids": [
+        "measurement-expanded-workload-total-inputs--d4c0a777981e01",
+        "measurement-spec-provided-inputs--d4c0a777981e02"
+      ],
+      "outcome": "experimental workload scope",
+      "population": "SPEC CINT2000 benchmarks and datasets used in the study",
+      "unit": "inputs"
+    },
+    {
+      "chart_group_id": "chart-bzip2-fdo-choice-consensus",
+      "measure_name": "FDO choices without consensus",
+      "measurement_ids": [
+        "measurement-bzip2-full-workload-no-consensus--a9f41c08d53303",
+        "measurement-bzip2-high-cut-no-consensus--a9f41c08d53305"
+      ],
+      "outcome": "training-input disagreement in FDO inlining decisions",
+      "population": "bzip2 on Itanium inlining logs",
+      "unit": "choices"
+    },
+    {
+      "chart_group_id": "chart-bzip2-fdo-speed-gain",
+      "measure_name": "FDO inlining performance gain",
+      "measurement_ids": [
+        "measurement-bzip2-combined-training-gain--e1c0f9428a6b01",
+        "measurement-bzip2-xml-training-gain--e1c0f9428a6b02",
+        "measurement-bzip2-best-case-fdo-gain-range--e1c0f9428a6b03"
+      ],
+      "outcome": "runtime performance gain",
+      "population": "bzip2 on Itanium",
+      "unit": "%"
+    }
+  ],
+  "measurements": [
+    {
+      "claim_id": "claim-aestimo-evaluates-fdo-sensitivity-by-compiling-and-executing-workload-specific-b--dcd495b19641",
+      "comparator": "",
+      "evidence_id": "evidence-five-run-workload-evaluation--b9164a03e27c",
+      "measure_name": "executions per FDO binary per workload input",
+      "measurement_id": "measurement-aestimo-executions-per-binary-input--b9164a03e27c01",
+      "outcome": "runtime measurement repetition for Aestimo evaluation",
+      "population": "each FDO binary on each input in the program workload",
+      "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+      "uncertainty": "reported as an exact execution count in the evidence excerpt",
+      "unit": "runs",
+      "value": 5,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-the-study-s-workload-is-broader-than-the-standard-spec-cint2000-inputs-because-i--0aba3d9039bb",
+      "comparator": "all SPEC inputs plus additional inputs",
+      "evidence_id": "evidence-workload-has-116-inputs--d4c0a777981e",
+      "measure_name": "workload input count",
+      "measurement_id": "measurement-expanded-workload-total-inputs--d4c0a777981e01",
+      "outcome": "experimental workload scope",
+      "population": "SPEC CINT2000 benchmarks and additional representative inputs",
+      "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+      "uncertainty": "reported as total input count in the evidence excerpt",
+      "unit": "inputs",
+      "value": 116,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-the-study-s-workload-is-broader-than-the-standard-spec-cint2000-inputs-because-i--0aba3d9039bb",
+      "comparator": "total workload inputs including additional representative inputs",
+      "evidence_id": "evidence-workload-has-116-inputs--d4c0a777981e",
+      "measure_name": "SPEC-provided input count",
+      "measurement_id": "measurement-spec-provided-inputs--d4c0a777981e02",
+      "outcome": "standard SPEC input coverage within experimental workload",
+      "population": "SPEC CINT2000 benchmark inputs in the study workload",
+      "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+      "uncertainty": "reported as SPEC-provided count in the evidence excerpt",
+      "unit": "inputs",
+      "value": 32,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-for-bzip2-on-itanium-fdo-inlining-logs-differ-substantially-across-training-inpu--45208b281013",
+      "comparator": "high-cut and low-cut log groups",
+      "evidence_id": "evidence-bzip2-log-consensus-table--a9f41c08d533",
+      "measure_name": "inlining callsite count",
+      "measurement_id": "measurement-bzip2-full-workload-callsites--a9f41c08d53301",
+      "outcome": "FDO inlining decision-space size",
+      "population": "bzip2 on Itanium, full workload inlining logs",
+      "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+      "uncertainty": "reported from Tables 2 through 4 in the evidence excerpt",
+      "unit": "callsites",
+      "value": 1464,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-for-bzip2-on-itanium-fdo-inlining-logs-differ-substantially-across-training-inpu--45208b281013",
+      "comparator": "FDO choices without consensus",
+      "evidence_id": "evidence-bzip2-log-consensus-table--a9f41c08d533",
+      "measure_name": "choices with yes consensus",
+      "measurement_id": "measurement-bzip2-full-workload-yes-consensus--a9f41c08d53302",
+      "outcome": "universally inlined callsites across training inputs",
+      "population": "bzip2 on Itanium, full workload inlining logs",
+      "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+      "uncertainty": "reported from Tables 2 through 4 in the evidence excerpt",
+      "unit": "choices",
+      "value": 0,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-for-bzip2-on-itanium-fdo-inlining-logs-differ-substantially-across-training-inpu--45208b281013",
+      "comparator": "choices with yes consensus",
+      "evidence_id": "evidence-bzip2-log-consensus-table--a9f41c08d533",
+      "measure_name": "FDO choices without consensus",
+      "measurement_id": "measurement-bzip2-full-workload-no-consensus--a9f41c08d53303",
+      "outcome": "training-input disagreement in FDO inlining decisions",
+      "population": "bzip2 on Itanium, full workload inlining logs",
+      "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+      "uncertainty": "reported from Tables 2 through 4 in the evidence excerpt",
+      "unit": "choices",
+      "value": 629,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-for-bzip2-on-itanium-fdo-inlining-logs-differ-substantially-across-training-inpu--45208b281013",
+      "comparator": "full workload and low-cut log group",
+      "evidence_id": "evidence-bzip2-log-consensus-table--a9f41c08d533",
+      "measure_name": "inlining callsite count",
+      "measurement_id": "measurement-bzip2-high-cut-callsites--a9f41c08d53304",
+      "outcome": "FDO inlining decision-space size after log cutting",
+      "population": "bzip2 on Itanium, high-cut inlining log group",
+      "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+      "uncertainty": "reported from Tables 2 through 4 in the evidence excerpt",
+      "unit": "callsites",
+      "value": 183,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-for-bzip2-on-itanium-fdo-inlining-logs-differ-substantially-across-training-inpu--45208b281013",
+      "comparator": "full workload and low-cut log group",
+      "evidence_id": "evidence-bzip2-log-consensus-table--a9f41c08d533",
+      "measure_name": "FDO choices without consensus",
+      "measurement_id": "measurement-bzip2-high-cut-no-consensus--a9f41c08d53305",
+      "outcome": "remaining training-input disagreement after log cutting",
+      "population": "bzip2 on Itanium, high-cut inlining log group",
+      "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+      "uncertainty": "reported from Tables 2 through 4 in the evidence excerpt",
+      "unit": "choices",
+      "value": 15,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-for-bzip2-on-itanium-the-selected-training-input-materially-affects-speed-traini--b1dc595ef212",
+      "comparator": "static optimization baseline",
+      "evidence_id": "evidence-bzip2-training-speed-range--e1c0f9428a6b",
+      "measure_name": "FDO inlining performance gain",
+      "measurement_id": "measurement-bzip2-combined-training-gain--e1c0f9428a6b01",
+      "outcome": "runtime performance gain",
+      "population": "bzip2 on Itanium trained on combined input",
+      "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+      "uncertainty": "reported as about 8% in the evidence excerpt",
+      "unit": "%",
+      "value": 8,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-for-bzip2-on-itanium-the-selected-training-input-materially-affects-speed-traini--b1dc595ef212",
+      "comparator": "static optimization baseline",
+      "evidence_id": "evidence-bzip2-training-speed-range--e1c0f9428a6b",
+      "measure_name": "FDO inlining performance gain",
+      "measurement_id": "measurement-bzip2-xml-training-gain--e1c0f9428a6b02",
+      "outcome": "runtime performance gain",
+      "population": "bzip2 on Itanium trained on xml input",
+      "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+      "uncertainty": "reported as only about 2% in the evidence excerpt",
+      "unit": "%",
+      "value": 2,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-for-bzip2-on-itanium-the-selected-training-input-materially-affects-speed-traini--b1dc595ef212",
+      "comparator": "static optimization baseline",
+      "evidence_id": "evidence-bzip2-training-speed-range--e1c0f9428a6b",
+      "measure_name": "best-case FDO inlining performance gain",
+      "measurement_id": "measurement-bzip2-best-case-fdo-gain-range--e1c0f9428a6b03",
+      "outcome": "runtime performance gain range",
+      "population": "bzip2 on Itanium best-case FDO inlining graph",
+      "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+      "uncertainty": "reported as minimum about 4% and maximum about 13% in the evidence excerpt",
+      "unit": "%",
+      "value": 4,
+      "value_max": 13
+    }
+  ],
+  "question_id": "question-profile-guided-optimization",
+  "schema_version": "question_measurement_extraction_v1",
+  "warnings": []
+}

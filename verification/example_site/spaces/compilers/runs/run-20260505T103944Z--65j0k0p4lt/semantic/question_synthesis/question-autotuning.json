@@ -1,0 +1,92 @@
+{
+  "citation_anchors": [
+    {
+      "anchor_id": "anchor-search-space-coverage",
+      "claim_ids": [
+        "claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d",
+        "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6"
+      ],
+      "evidence_ids": [
+        "evidence-hierarchical-derivation-rules--4b7e91c2a6d0"
+      ],
+      "label": "[S1]",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+    },
+    {
+      "anchor_id": "anchor-benchmark-speedups",
+      "claim_ids": [
+        "claim-ansor-outperforms-existing-search-frameworks-and-manual-libraries-on-single-oper--6b650490cda3",
+        "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6"
+      ],
+      "evidence_ids": [
+        "evidence-operator-subgraph-speedups--e83f2a19c047"
+      ],
+      "label": "[S2]",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+    },
+    {
+      "anchor_id": "anchor-search-efficiency",
+      "claim_ids": [
+        "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9"
+      ],
+      "evidence_ids": [
+        "evidence-search-time-savings--0a9b3e7d2f15"
+      ],
+      "label": "[S3]",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+    }
+  ],
+  "conclusions": [
+    {
+      "claim_ids": [
+        "claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d",
+        "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6"
+      ],
+      "evidence_ids": [
+        "evidence-hierarchical-derivation-rules--4b7e91c2a6d0"
+      ],
+      "source_ids": [
+        "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      ],
+      "support": "strong",
+      "text": "For the linked Ansor evidence, autotuning is most compelling when fixed templates or static search spaces miss high-performance tensor-program structures. Ansor's sketch-and-annotation design expands the search space, and the paper reports that many best programs it generated were outside existing search-framework spaces."
+    },
+    {
+      "claim_ids": [
+        "claim-ansor-outperforms-existing-search-frameworks-and-manual-libraries-on-single-oper--6b650490cda3",
+        "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6"
+      ],
+      "evidence_ids": [
+        "evidence-operator-subgraph-speedups--e83f2a19c047"
+      ],
+      "source_ids": [
+        "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      ],
+      "support": "strong",
+      "text": "The strongest linked performance case is for evaluated operator and subgraph workloads: Ansor is reported as best or tied for best across single-operator settings, with 1.1x to 22.5x gains over existing search frameworks, and 1.1x to 14.2x gains over manual libraries and other search frameworks on subgraphs."
+    },
+    {
+      "claim_ids": [
+        "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9"
+      ],
+      "evidence_ids": [
+        "evidence-search-time-savings--0a9b3e7d2f15"
+      ],
+      "source_ids": [
+        "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      ],
+      "support": "moderate",
+      "text": "Autotuning is also favored when search effort can be allocated across many subgraphs rather than spent uniformly. In the linked Intel CPU network benchmark, Ansor matched AutoTVM with substantially fewer measurements and lower reported wall-clock time for the listed models."
+    }
+  ],
+  "disagreements": [],
+  "question_id": "question-autotuning",
+  "schema_version": "question_synthesis_v1",
+  "short_answer": "Autotuning is better supported when static or manually bounded compiler strategies cannot cover the useful tensor-program search space, especially for statically shaped dense deep-learning workloads where broader program generation and measured tuning can find faster operator, subgraph, and network schedules with less wasted search effort.",
+  "uncertainty": "The answer is bounded by one linked source about Ansor. The evidence is strongest for statically shaped dense deep-learning tensor programs on the evaluated operators, subgraphs, hardware, and tuning budgets. It does not establish that autotuning always beats static compiler heuristics, sparse workloads, dynamic shapes, or mature vendor kernels outside the measured cases.",
+  "warnings": [
+    "Only one linked source is available, so independent replication or contrary evidence is not represented.",
+    "The linked evidence evaluates Ansor-style tensor-program autotuning, not every autotuning system or every form of static compiler heuristic.",
+    "Source markdown extraction is marked usable but has spacing and table-extraction artifacts; numeric findings are limited to clearly extracted benchmark passages."
+  ]
+}

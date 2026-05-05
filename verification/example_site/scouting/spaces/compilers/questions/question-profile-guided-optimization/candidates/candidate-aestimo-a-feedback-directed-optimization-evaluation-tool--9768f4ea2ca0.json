@@ -1,0 +1,58 @@
+{
+  "authors": [
+    "Paul Berube",
+    "Jos\u00e9 Nelson Amaral"
+  ],
+  "candidate_id": "candidate-aestimo-a-feedback-directed-optimization-evaluation-tool--9768f4ea2ca0",
+  "citation_signal": {
+    "as_of": "2026-05-05",
+    "confidence": "low",
+    "count": null,
+    "provider": "runtime web search; DBLP/CiteSeerX/University of Alberta metadata available but no reliable citation-count provider surfaced"
+  },
+  "doi": "10.1109/ISPASS.2006.1620809",
+  "failure_reason": null,
+  "import_link": {
+    "imported_at": "2026-05-05T10:36:21Z",
+    "run_id": "run-20260505T101456Z--0dngk7ufw6",
+    "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12"
+  },
+  "import_status": "imported",
+  "landing_url": "https://dblp.org/rec/conf/ispass/BerubeA06",
+  "operator_status": "candidate",
+  "pdf_url": "https://webdocs.cs.ualberta.ca/~amaral/papers/berube-ispass06.pdf",
+  "provenance": {
+    "scouted_at": "2026-05-05T09:55:03Z",
+    "scouting_run_id": "run-20260505T095503Z--w5kkbqs8gq",
+    "semantic_output_path": "/Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/compilers/questions/question-profile-guided-optimization/runs/run-20260505T095503Z--w5kkbqs8gq/source_scouting.json"
+  },
+  "public_access": {
+    "access_status": "public_pdf",
+    "evidence": "A University of Alberta PDF was surfaced and inspected, and DBLP/IEEE metadata verifies the ISPASS 2006 publication and DOI.",
+    "has_public_pdf": true
+  },
+  "publication_year": 2006,
+  "question_id": "question-profile-guided-optimization",
+  "question_text": "How reliable is profile-guided optimization across workloads?",
+  "ranking": {
+    "answer_fit_rationale": "The paper directly studies whether FDO/PGO results are sensitive to training and evaluation input choice, including impacts on compiler decisions and measured performance.",
+    "answer_fit_score": 5,
+    "citation_score": 1,
+    "interestingness_rationale": "It provides an experimental methodology, not just a performance result, so it can anchor a nuanced answer about when PGO is reliable and when workload choice invalidates conclusions.",
+    "interestingness_score": 5,
+    "overall_rationale": "Best direct evidence for the question because it frames PGO reliability as an input-sensitivity problem and reports concrete compiler-transformation effects.",
+    "overall_score": 15,
+    "rank": 1,
+    "venue_reputation_score": 4
+  },
+  "schema_version": "source_scouting_candidate_v1",
+  "skip_reason": null,
+  "space_name": "compilers",
+  "title": "Aestimo: A Feedback-Directed Optimization Evaluation Tool",
+  "venue": {
+    "name": "IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS)",
+    "publisher": "IEEE Computer Society",
+    "reputation_rationale": "ISPASS is a peer-reviewed IEEE venue focused on performance analysis methodology, making it a strong fit for empirical compiler-performance questions.",
+    "type": "conference"
+  }
+}

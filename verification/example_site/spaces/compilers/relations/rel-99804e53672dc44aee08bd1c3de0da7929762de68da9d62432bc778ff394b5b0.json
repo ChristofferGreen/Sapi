@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "Decision-vector metrics are the mechanism used to show that training inputs change compile-time FDO decisions.",
+  "relation_file_id": "rel-99804e53672dc44aee08bd1c3de0da7929762de68da9d62432bc778ff394b5b0",
+  "relation_id": "supports:claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7->claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+  "relation_type": "supports",
+  "src_claim_id": "claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7",
+  "src_claim_ref": "1",
+  "status": "open"
+}

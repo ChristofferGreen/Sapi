@@ -1,0 +1,16 @@
+{
+  "candidate_source_ids": [
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d"
+  ],
+  "certainty": false,
+  "decision": "new_source",
+  "evidence": [
+    "New source record title is \"Aestimo: A Feedback-Directed Optimization Evaluation Tool\" and canonical_identifier is \"10.1109/ISPASS.2006.1620809\".",
+    "Candidate record/source markdown identifies the candidate as \"Machine Learning in Compilers\" by Zheng Wang and Michael O'Boyle, with candidate display_title \"Machine Learning Makes Compiler Optimization Empirical\".",
+    "New source markdown identifies different authors, Paul Berube and Jose Nelson Amaral, and describes Aestimo as a feedback-directed optimization evaluation tool and case study.",
+    "Candidate markdown is a broad survey/introduction to machine learning in compilers, covering feature engineering, models, training, deployment, and many prior works.",
+    "The only candidate reason supplied is title token overlap; topical overlap in compiler optimization is insufficient evidence of a revision under the revision policy."
+  ],
+  "matched_source_id": null,
+  "rationale": "The newly ingested source is not certainly a revision of the provided candidate. The new source is an Aestimo paper by Paul Berube and Jose Nelson Amaral with canonical identifier 10.1109/ISPASS.2006.1620809, while the candidate is a distinct survey-style paper, Machine Learning in Compilers, by Zheng Wang and Michael O'Boyle with no matching canonical identifier in the record. The documents overlap topically in compiler optimization, but the titles, authorship, document purpose, and source identifiers do not support a revision relationship."
+}

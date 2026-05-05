@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5",
+  "dst_claim_ref": "9",
+  "last_evaluated_run_id": null,
+  "rationale": "The mixed resubstitution ranks reinforce that a single apparently natural input choice does not reliably identify the best FDO binary.",
+  "relation_file_id": "rel-62ade05b650fbb8a8dc4302946e6c0ac469c1fd055e6e2699888f0b7631df1bb",
+  "relation_id": "supports:claim-resubstitution-does-not-predict-best-bzip2-performance--c9d0e1f2a3b4->claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5",
+  "relation_type": "supports",
+  "src_claim_id": "claim-resubstitution-does-not-predict-best-bzip2-performance--c9d0e1f2a3b4",
+  "src_claim_ref": "8",
+  "status": "open"
+}

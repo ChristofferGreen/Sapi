@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+  "comparator": "AutoTVM measurements for the same network and target",
+  "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+  "measure_name": "Ansor measurements to match AutoTVM performance",
+  "measurement_id": "measurement-resnet50-ansor-measurements--0a9b3e7d2f15",
+  "outcome": "search effort to reach matched performance",
+  "population": "ResNet-50 on Intel CPU at batch size 1",
+  "question_id": "question-autotuning",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "uncertainty": "Table 3 reported value",
+  "unit": "measurements",
+  "value": 6403,
+  "value_max": null
+}

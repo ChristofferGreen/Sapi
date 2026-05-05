@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-05-05T10:48:40Z",
+  "claim_id": "claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d",
+  "evidence_excerpts": [
+    "The search space has two levels: sketches for high-level structures and annotations for low-level choices such as tile size, parallelism, and unrolling.",
+    "Table 1 lists derivation rules including Skip, AlwaysInline, Multi-levelTiling, Multi-levelTilingwithFusion, AddCacheStage, and ReductionFactorization."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Hierarchy broadens search coverage",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "text": "Ansor's two-level sketch-and-annotation representation expands tensor-program search coverage beyond manual templates and early-pruned sequential construction."
+}

@@ -1,0 +1,275 @@
+{
+  "access_policy": {
+    "landing_url": null,
+    "operator_responsibility": null,
+    "public_download": true,
+    "public_source_view": true,
+    "reason": null,
+    "restricted": false
+  },
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12/front_page.png",
+    "source_extraction": "sources/artifacts/source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12/source_extraction.json",
+    "source_file": "sources/artifacts/source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12/source.pdf",
+    "source_markdown": "sources/artifacts/source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12/source.md",
+    "source_provenance": "sources/artifacts/source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12/source_provenance.md"
+  },
+  "authors": [
+    "Paul Berube",
+    "Jose Nelson Amaral"
+  ],
+  "canonical_identifier": "10.1109/ISPASS.2006.1620809",
+  "citation_count": null,
+  "citation_count_as_of": "2026-05-05",
+  "citation_count_confidence": "low",
+  "citation_count_provider": "runtime web search; DBLP/CiteSeerX/University of Alberta metadata available but no reliable citation-count provider surfaced",
+  "date": null,
+  "display_title": "Aestimo: A Feedback-Directed Optimization Evaluation Tool",
+  "external_related_links": [
+    {
+      "confidence": "high",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "canonical_identifier",
+        "source_field": "canonical_identifier"
+      },
+      "quality_status": "trusted",
+      "rationale": "Canonical identifier for the ingested source.",
+      "title": "DOI landing page",
+      "url": "https://doi.org/10.1109/ispass.2006.1620809"
+    },
+    {
+      "confidence": "high",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "canonical_identifier",
+        "source_field": "canonical_identifier"
+      },
+      "quality_status": "trusted",
+      "rationale": "Canonical arXiv identifier for the ingested source.",
+      "title": "arXiv abstract",
+      "url": "https://arxiv.org/abs/2006.16208"
+    },
+    {
+      "confidence": "high",
+      "domain": "webdocs.cs.ualberta.ca",
+      "link_type": "primary_source",
+      "provenance": {
+        "origin": "source_locator",
+        "source_field": "source_locator"
+      },
+      "quality_status": "contextual",
+      "rationale": "Original network location captured during ingest.",
+      "title": "Original source link",
+      "url": "https://webdocs.cs.ualberta.ca/~amaral/papers/berube-ispass06.pdf"
+    }
+  ],
+  "ingested_at": "2026-05-05T10:14:59Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "| | | | | | | 198 . | | | | | |",
+      "url": "http://ipf-orc.sourceforge.net/.Latestrelease:ORC2.1,July",
+      "year": 2004
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "berube/compiler/fdo/ twoequal-lengthbinaryvectors",
+      "url": "http://www.cs.ualberta.ca/(cid:24",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "http://www.eecg.toronto.edu/ /",
+      "url": "http://www.daviddlewis.com/resources/testcollections",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "/ http://www.daviddlewis.com/resources/testcollections/",
+      "url": "http://www.eecg.toronto.edu",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "pages14 cid:150 23 November2004",
+      "url": "http://www.gutenberg.org/etext/11",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "| | | | | | | October2004. | . | | | | |",
+      "url": "http://www.gutenberg.org/etext/36",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "http://www.gutenberg.org/etext/5001",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "| | | | | | | 16 M. Krahulk | and J. | J. Holkins. | | | |",
+      "url": "http://www.penny-",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "| uationcorporation. | /. | | | | | | | | | | |",
+      "url": "http://www.spec.org",
+      "year": null
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "canonical_identifier",
+      "references",
+      "source_locator"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 9 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The central argument is that feedback-directed optimization cannot be evaluated reliably unless training and testing input sensitivity is measured directly. Aestimo treats input choice as an experimental variable, not a background detail, and asks whether different training inputs change compiler decisions and whether those changes affect runtime. This reframes FDO evaluation around transformation-level behavior rather than aggregate compiler outcomes.",
+        "grounding_claim_ids": [
+          "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+          "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5"
+        ],
+        "heading": "Core Argument"
+      },
+      {
+        "body": "Aestimo's strongest design choice is its forced-decision recompilation flow. It logs the decisions made for one profile-guided optimization, then recompiles so that only that optimization uses the logged profile-derived choices. This does not eliminate all optimization interactions, but it gives a practical way to estimate the contribution and sensitivity of individual transformations such as inlining and if-conversion.",
+        "grounding_claim_ids": [
+          "claim-aestimo-isolates-individual-fdo-transformations--a1b2c3d4e5f6"
+        ],
+        "heading": "Isolation Method"
+      },
+      {
+        "body": "The difference and alignment metrics convert optimization logs into vectors, making decision variation measurable. Difference captures pairwise disagreement, while alignment captures how strongly a log agrees with the collective decision pattern. The paper is careful about scope: these metrics show whether training inputs alter compiler choices, but they do not by themselves prove that a low- or high-alignment choice improves performance.",
+        "grounding_claim_ids": [
+          "claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7",
+          "claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2"
+        ],
+        "heading": "Decision Evidence"
+      },
+      {
+        "body": "The study expands beyond the standard SPEC input sets by adding files and datasets meant to represent typical uses of the benchmark programs. This matters because the paper's conclusions depend on seeing variation that the small default benchmark inputs could hide. The 116-input workload, with only 32 SPEC-provided inputs, makes the experiment more relevant to real FDO deployment scenarios.",
+        "grounding_claim_ids": [
+          "claim-workloads-extend-beyond-spec-inputs--d4e5f6a7b8c9"
+        ],
+        "heading": "Workload Breadth"
+      },
+      {
+        "body": "The headline performance result is mixed rather than uniformly pro-FDO. Feedback-directed inlining improves Itanium performance by about 6 percent on average and has many strong best-case wins, but if-conversion contributes little and Itanium2 behavior is disappointing. This makes the paper useful as an evaluation study: it shows where FDO has potential while refusing to generalize beyond the measured compiler, processor, and workload.",
+        "grounding_claim_ids": [
+          "claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1",
+          "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0"
+        ],
+        "heading": "Performance Findings"
+      },
+      {
+        "body": "The bzip2 inlining case study gives the paper its clearest empirical texture. Inputs split into high- and low-alignment groups, no callsite is universally inlined, and low-alignment inputs generate many divergent callsite choices. Performance also changes by training input: combined training is much stronger than xml, and the best training input differs across evaluation inputs. This directly supports the warning against single-input evaluation.",
+        "grounding_claim_ids": [
+          "claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2",
+          "claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3",
+          "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5"
+        ],
+        "heading": "bzip2 Case Study"
+      },
+      {
+        "body": "The results should be read as evidence about ORC and the studied workloads, not as a universal law of profile-guided optimization. The resubstitution results are especially important: same-input feedback should be favorable, but it does not consistently rank best for bzip2. That suggests the compiler's use of feedback is imperfect and that better FDO systems might behave differently, while preserving the broader methodological lesson about input sensitivity.",
+        "grounding_claim_ids": [
+          "claim-resubstitution-does-not-predict-best-bzip2-performance--c9d0e1f2a3b4",
+          "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5"
+        ],
+        "heading": "Limits And Interpretation"
+      }
+    ],
+    "summary_long": "This source addresses a methodological weakness in feedback-directed optimization research: many studies train and evaluate with one input, or with one training input and one evaluation input, even though profile-guided decisions depend on the runtime behavior seen during profiling. Aestimo is designed to make that sensitivity observable. Its compilation flow first creates profile-guided decisions for a selected optimization, records those decisions in an optimization log, discards the profiled binary, and then recompiles statically while forcing only that optimization to follow the logged decisions. This lets the study estimate the effect of individual transformations such as inlining and if-conversion without treating the entire FDO system as an indivisible black box. The paper also introduces two log metrics. Difference measures how many vectorized decisions diverge between logs, while alignment measures how closely one log agrees with the combined decision pattern across the workload. These metrics are deliberately separate from runtime quality: they reveal decision variation, not whether a decision is good. The performance study then runs each FDO binary on every workload input five times and compares arithmetic and normalized geometric summaries against static optimization. A major strength of the work is its expanded workload: it uses SPEC CINT2000 but adds many representative inputs, producing 116 inputs of which only 32 came from SPEC. In the ORC Itanium experiments, feedback-directed inlining shows average benefit, but if-conversion is weak and Itanium2 results are disappointing. The bzip2 case study is the clearest demonstration. Its inlining logs divide into high-alignment and low-alignment groups, with no universally inlined callsite and large disagreement among low-alignment inputs. Runtime results also vary by training input: combined training gives much larger gains than xml, and the fastest training input changes across evaluation inputs. Resubstitution, which should favor same-input feedback, does not reliably rank best. The practical conclusion is that FDO evaluations need workload breadth and transformation-level evidence; otherwise, input choice can dominate the reported result.",
+    "summary_short": "Aestimo evaluates how training input selection affects feedback-directed optimization decisions and performance. It isolates individual transformations, compares optimization logs with difference and alignment metrics, and uses ORC/SPEC CINT2000 experiments, especially bzip2, to show why single-input FDO evaluation can mislead."
+  },
+  "source_extraction": {
+    "converter_name": "markitdown",
+    "converter_version": "0.1.5",
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "source_kind": "url",
+  "source_locator": "https://webdocs.cs.ualberta.ca/~amaral/papers/berube-ispass06.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Paul Berube",
+      "Jose Nelson Amaral"
+    ],
+    "display_title": "Aestimo: A Feedback-Directed Optimization Evaluation Tool"
+  },
+  "source_type": "url",
+  "summary": "Aestimo evaluates how training and testing input choices affect feedback-directed optimization decisions and performance. The paper introduces log-vector metrics and workload-wide runtime evaluation, then uses ORC experiments on SPEC CINT2000 workloads to show that input choice materially changes inlining and if-conversion results, especially in the bzip2 case study.",
+  "title": "Aestimo: A Feedback-Directed Optimization Evaluation Tool",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved; continuing with date=null."
+    },
+    {
+      "code": "markdown_layout_noise",
+      "message": "The source markdown is marked usable, but table and two-column layout extraction is noisy; numerical evidence was taken only from legible extracted text and tables."
+    }
+  ]
+}

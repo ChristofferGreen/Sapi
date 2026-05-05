@@ -1,0 +1,11 @@
+{
+  "candidate_count": 2,
+  "candidate_ids": [
+    "candidate-ansor-generating-high-performance-tensor-programs-for-deep-learn--9815120a234d",
+    "candidate-end-to-end-deep-learning-of-optimization-heuristics--9bada56700e4"
+  ],
+  "question_id": "question-ml-compiler-optimization",
+  "schema_version": "source_scouting_queue_v1",
+  "space_name": "compilers",
+  "updated_at": "2026-05-05T11:09:43Z"
+}

@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3",
+    "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5"
+  ],
+  "evidence_id": "evidence-bzip2-training-performance-range--b4a75e0f3d18",
+  "evidence_type": "figure_result",
+  "excerpt": "The bzip2 case study states that, despite large runtime ranges between trials, training on the combined input results in performance gains of about 8%, while training on xml improves performance by only 2%. In the best-case comparison, performance on Itanium has a minimum improvement of about 4% and a maximum gain of about 13%, and the fastest training input differs across evaluation inputs.",
+  "overview": "This figure-derived evidence ties decision sensitivity to user-visible runtime outcomes. It shows that input selection changes measured performance enough to alter conclusions about an optimization. The evidence also motivates the paper's warning against single-input evaluation because different evaluation inputs can favor different trained binaries.",
+  "page_refs": [
+    "Figures 8-9"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "title": "bzip2 training-performance spread"
+}

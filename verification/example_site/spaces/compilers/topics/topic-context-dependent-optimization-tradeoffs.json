@@ -1,0 +1,35 @@
+{
+  "claim_ids": [
+    "claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3",
+    "claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1",
+    "claim-thread-coarsening-decisions-are-context-dependent-because-coarsening-can-improve--4878860bda89",
+    "claim-direct-prediction-of-the-best-compiler-option-is-practical-for-relatively-small--fe68da808ef3",
+    "claim-static-wcet-reduction-depends-on-optimizing-the-worst-case-execution-path-becaus--b6a70fae6e3d",
+    "claim-wcet-aware-register-allocation-lowers-wcet-by-avoiding-spill-code-on-the-wcep-ev--a21ac879b656",
+    "claim-remote-cnot-execution-consumes-bell-state-resources-and-is-limited-by-the-number--ff11e4d2be8e",
+    "claim-entanglement-swapping-augments-distributed-processor-connectivity-by-enabling-re--b0cac39f5fb5"
+  ],
+  "sections": [
+    {
+      "body": "This topic would synthesize cases where an optimization is beneficial only under particular inputs, paths, hardware resources, or program contexts.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "Aestimo's bzip2 case shows training input materially changes inlining performance, with combined training, xml training, and best-case per-input FDO producing different gains. Machine-learning compilation frames the same issue through context-dependent choices such as thread coarsening. WCC and distributed quantum compilation add timing and resource-sensitive examples, where optimizing the wrong path or consuming limited communication resources can blunt or reverse expected benefits.",
+      "heading": "Section 2"
+    },
+    {
+      "body": "The topic should emphasize conditionality rather than a universal ranking of optimizations, since the evidence spans conventional programs, WCET-oriented embedded compilation, and distributed quantum compilation.",
+      "heading": "Section 3"
+    }
+  ],
+  "source_ids": [
+    "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+    "source-03-compiler-design-for-distributed-quantum-computing--64a02810764d",
+    "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+  ],
+  "structure_type": "wiki",
+  "title": "Context-dependent optimization tradeoffs",
+  "topic_id": "topic-context-dependent-optimization-tradeoffs"
+}

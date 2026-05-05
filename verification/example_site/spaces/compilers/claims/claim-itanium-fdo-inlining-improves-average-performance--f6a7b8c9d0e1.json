@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T10:24:41Z",
+  "claim_id": "claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1",
+  "evidence_excerpts": [
+    "The evaluation section reports that FDO inlining improves performance by 6% on average on Itanium, is slower than static in only 6 out of 116 best-case cases, and is more than 10% faster than static in 41 cases."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Itanium inlining improves performance",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "text": "On the Itanium experiments, feedback-directed inlining improved performance by about 6 percent on average, with best-case FDO inlining slower than static in only 6 of 116 cases and more than 10 percent faster in 41 cases."
+}

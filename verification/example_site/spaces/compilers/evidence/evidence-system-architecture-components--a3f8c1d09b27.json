@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-ansor-automatically-generates-high-performance-tensor-programs-for-deep-neural-n--2274faed5f9d",
+    "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814",
+    "claim-ansor-s-task-scheduler-allocates-tuning-time-to-subgraphs-that-are-most-likely-t--93937c35fdc5"
+  ],
+  "evidence_id": "evidence-system-architecture-components--a3f8c1d09b27",
+  "evidence_type": "figure_result",
+  "excerpt": "Figure 4 describes Ansor's architecture: DNNs are partitioned into subgraphs, a program sampler performs sketch generation and random annotation, a performance tuner applies evolutionary search with a learned cost model, and a measurer returns execution-time data for Intel CPU, ARM CPU, NVIDIA GPU, and other targets.",
+  "overview": "This evidence establishes that Ansor is not a single optimization pass. Its argument depends on a coordinated pipeline: divide neural networks into tunable subgraphs, generate diverse complete tensor programs, refine them using a learned model, and use measurements to update future search. The excerpt grounds claims about automated tensor-program generation and the roles of the sampler, tuner, and scheduler.",
+  "page_refs": [
+    "Figure 4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "title": "Three-Component Ansor Architecture"
+}

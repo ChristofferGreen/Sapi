@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>bzip2 inlining log divergence</title><link rel="stylesheet" href="../assets/site.css"></head><body class="site-shell site-with-global-menubar">
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="../../../../site/index.html">Example Site</a><nav class="site-space-nav" aria-label="Spaces"><details class="site-space-nav-item"><summary class="site-space-nav-summary current">Computer Science / Compilers</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../computer-science/site/index.html">Computer Science</a><a class="site-space-nav-link current" href="../index.html">Compilers</a><a class="site-space-nav-link" href="../../../graphics/site/index.html">Graphics</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Philosophy</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../philosophy/site/index.html">Philosophy</a><a class="site-space-nav-link" href="../../../mind/site/index.html">Mind</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Physics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../physics/site/index.html">Physics</a><a class="site-space-nav-link" href="../../../metaphysics/site/index.html">Metaphysics</a><a class="site-space-nav-link" href="../../../quantum-physics/site/index.html">Quantum Physics</a></div></details></nav><nav class="site-tabs"><a class="site-tab" href="../new/index.html">New</a> <a class="site-tab" href="../index.html">Home</a> <a class="site-tab" href="../questions/index.html">Questions</a> <a class="site-tab" href="../overview/index.html" aria-label="Overview for compilers">Overview</a> <a class="site-tab" href="../sources/index.html">Sources</a> <a class="site-tab" href="../topics/index.html">Topics</a> <a class="site-tab" href="../users/index.html">Users</a> <a class="site-tab current" href="index.html">Evidence</a> <a class="site-tab" href="../claims/index.html">Claims</a></nav></div></header><main class="site-main site-space-main">
+<header class="site-topbar"><form class="top-search" action="../search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
+<section class="content-card"><h1>bzip2 inlining log divergence</h1>
+<section class="source-related-grid">
+<article class="source-related-card">
+<h2>Evidence Excerpt</h2>
+<p>Tables 2 through 4 report bzip2 inlining metrics on Itanium. The full comparison has 1464 callsites, 0 choices with yes consensus, 835 FDO choices with no consensus, and 629 FDO choices without consensus. After cutting at 45% alignment, the high-cut group has 183 callsites and only 15 FDO choices without consensus, while the low-cut group keeps 1464 callsites and 545 FDO choices without consensus.</p>
+<p class="meta">Page references: Tables 2-4</p>
+<p class="meta">Type: table_result</p>
+<p>These tables provide concrete evidence that bzip2 training inputs do not merely perturb a few decisions. The high-alignment inputs behave similarly, but the low-alignment group produces a much larger and more divergent callsite space. This supports the conclusion that some input groups drive different hot code regions and therefore different inlining decisions.</p>
+</article>
+<article class="source-related-card">
+<h2>Linked Claims</h2>
+<ul class="source-related-list">
+<li><a href="../claims/claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7.html">Metrics quantify decision variation</a></li>
+<li><a href="../claims/claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2.html">bzip2 logs diverge sharply</a></li>
+</ul>
+</article>
+<article class="source-related-card">
+<h2>Primary Source</h2>
+<p><a href="../sources/source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12.html">Aestimo: A Feedback-Directed Optimization Evaluation Tool</a></p>
+</article>
+</section>
+<section class="source-related-card">
+<h2>Topic Pages Using This Evidence</h2>
+<ul class="source-related-list">
+<li><a href="../topics/topic-observable-decision-representations-for-compiler-analysis.html">Observable decision representations for compiler analysis</a></li>
+</ul>
+</section>
+<p><a href="index.html">Back to evidence index</a></p>
+</section>
+
+</main>
+<script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>

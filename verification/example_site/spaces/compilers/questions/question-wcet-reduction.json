@@ -1,0 +1,17 @@
+{
+  "claim_ids": [],
+  "display_order": 4,
+  "evidence_ids": [],
+  "freshness": {},
+  "linked_source_ids": [],
+  "measurement_ids": [],
+  "question": "How can compiler frameworks reduce worst-case execution time?",
+  "question_id": "question-wcet-reduction",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "compilers"
+  },
+  "status": "active",
+  "synthesis": {},
+  "warnings": []
+}

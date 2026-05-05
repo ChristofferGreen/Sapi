@@ -154,60 +154,7 @@
   },
   "date": null,
   "display_title": "Machine Learning Makes Compiler Optimization Empirical",
-  "external_related_links": [
-    {
-      "confidence": "medium",
-      "domain": "arxiv.org",
-      "link_type": "research_index",
-      "provenance": {
-        "origin": "reference_arxiv",
-        "source_field": "references[4].arxiv"
-      },
-      "quality_status": "trusted",
-      "rationale": "Derived from an arXiv identifier found in the source references.",
-      "title": "115 H. D. Nguyen and F. Chamroukhi \u201cAn introduction to the practical iv",
-      "url": "https://arxiv.org/abs/1610.09543"
-    },
-    {
-      "confidence": "medium",
-      "domain": "arxiv.org",
-      "link_type": "research_index",
-      "provenance": {
-        "origin": "reference_arxiv",
-        "source_field": "references[5].arxiv"
-      },
-      "quality_status": "trusted",
-      "rationale": "Derived from an arXiv identifier found in the source references.",
-      "title": "s/ . 132 A. Bhattacharyya G. Kwasniewski and T. Hoefler \u201cUsing compiler",
-      "url": "https://arxiv.org/abs/1701.07274"
-    },
-    {
-      "confidence": "medium",
-      "domain": "arxiv.org",
-      "link_type": "research_index",
-      "provenance": {
-        "origin": "reference_arxiv",
-        "source_field": "references[3].arxiv"
-      },
-      "quality_status": "trusted",
-      "rationale": "Derived from an arXiv identifier found in the source references.",
-      "title": "techniques. He/she does not need to worry about how they morphology classification \u201d arXiv preprint",
-      "url": "https://arxiv.org/abs/1005.0390"
-    },
-    {
-      "confidence": "medium",
-      "domain": "arxiv.org",
-      "link_type": "research_index",
-      "provenance": {
-        "origin": "reference_arxiv",
-        "source_field": "references[6].arxiv"
-      },
-      "quality_status": "trusted",
-      "rationale": "Derived from an arXiv identifier found in the source references.",
-      "title": "towards more intelligent predictive modeling \u201d in 43rd International",
-      "url": "https://arxiv.org/abs/1707.03538"
-    }
-  ],
+  "external_related_links": [],
   "ingested_at": "2026-04-26T17:30:10Z",
   "linked_source_ids": [],
   "references": [
@@ -276,11 +223,11 @@
     }
   ],
   "related_link_enrichment": {
-    "skip_reason": null,
+    "skip_reason": "no_curated_links_found",
     "sources": [
       "references"
     ],
-    "status": "enriched",
+    "status": "skipped",
     "warnings": [
       "Skipped 3 unsupported external-link candidate(s)."
     ]

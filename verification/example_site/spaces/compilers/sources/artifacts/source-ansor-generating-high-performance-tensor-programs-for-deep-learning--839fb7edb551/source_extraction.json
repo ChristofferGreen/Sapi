@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551/source.pdf",
+    "source_markdown": "sources/artifacts/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551/source.md"
+  },
+  "converter_name": "markitdown",
+  "converter_version": "0.1.5",
+  "input_sha256": "73ef4169ed3856f016195bc28a7819e7040274e0af8fb90df2e92a964ea04232",
+  "markdown_char_count": 124583,
+  "options": {
+    "input_format": "pdf"
+  },
+  "output_sha256": "df57574450072e71bad471a91f5277ff0fc6c1b5512b091d5ac269f5f90a7790",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

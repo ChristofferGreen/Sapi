@@ -1,0 +1,8 @@
+[
+  {
+    "message": "'Ansor targets the problem of automatically generating fast tensor programs for deep neural networks across CPUs and GPUs. Its core contribution is a larger hierarchical search space, searched through complete-program sampling, evolutionary fine-tuning, learned cost modeling, and task scheduling. The evaluation reports strong speedups over existing search frameworks and libraries, with important limits around static shapes, dense operators, and backend instruction support.' is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

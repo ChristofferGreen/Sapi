@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3",
+  "comparator": "static binary",
+  "evidence_id": "evidence-bzip2-training-performance-range--b4a75e0f3d18",
+  "measure_name": "bzip2 best-case FDO performance improvement range",
+  "measurement_id": "measurement-bzip2-bestcase-gain-range--00400000000b",
+  "outcome": "best-case FDO performance improvement",
+  "population": "bzip2 on Itanium individual evaluation inputs",
+  "question_id": "question-profile-guided-optimization",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "uncertainty": "reported as minimum about 4% and maximum about 13%",
+  "unit": "percent",
+  "value": 4,
+  "value_max": 13
+}

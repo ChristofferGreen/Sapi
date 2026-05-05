@@ -1,0 +1,91 @@
+{
+  "citation_anchors": [
+    {
+      "anchor_id": "anchor-ansor-search-ranking",
+      "claim_ids": [
+        "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814",
+        "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"
+      ],
+      "evidence_ids": [
+        "evidence-complete-program-finetuning--c5ad4810e2b9",
+        "evidence-cost-model-accuracy--1d4f8a6b9c20"
+      ],
+      "label": "[S1]",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+    },
+    {
+      "anchor_id": "anchor-cost-model-metrics",
+      "claim_ids": [
+        "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"
+      ],
+      "evidence_ids": [
+        "evidence-cost-model-accuracy--1d4f8a6b9c20"
+      ],
+      "label": "[S2]",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+    },
+    {
+      "anchor_id": "anchor-complete-program-finetuning",
+      "claim_ids": [
+        "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814"
+      ],
+      "evidence_ids": [
+        "evidence-complete-program-finetuning--c5ad4810e2b9"
+      ],
+      "label": "[S3]",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+    }
+  ],
+  "conclusions": [
+    {
+      "claim_ids": [
+        "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814",
+        "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"
+      ],
+      "evidence_ids": [
+        "evidence-complete-program-finetuning--c5ad4810e2b9",
+        "evidence-cost-model-accuracy--1d4f8a6b9c20"
+      ],
+      "source_ids": [
+        "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      ],
+      "support": "moderate",
+      "text": "Machine learning improves the candidate-selection step of compiler optimization in Ansor by predicting the fitness or throughput of complete tensor programs during evolutionary search, so the search can score many candidates before choosing programs for expensive hardware measurement."
+    },
+    {
+      "claim_ids": [
+        "claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3"
+      ],
+      "evidence_ids": [
+        "evidence-cost-model-accuracy--1d4f8a6b9c20"
+      ],
+      "source_ids": [
+        "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      ],
+      "support": "strong",
+      "text": "The linked accuracy evidence supports the claim that Ansor's learned cost model was useful for ranking candidates in the reported ResNet-50 tuning experiment on Intel CPU: it used 20,000 measured programs for training and 5,000 for testing, with 0.079 RMSE, 0.958 R2, 0.851 pairwise comparison accuracy, and 0.624 recall@30."
+    },
+    {
+      "claim_ids": [
+        "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814"
+      ],
+      "evidence_ids": [
+        "evidence-complete-program-finetuning--c5ad4810e2b9"
+      ],
+      "source_ids": [
+        "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551"
+      ],
+      "support": "moderate",
+      "text": "The evidence also indicates that Ansor uses machine learning after generating complete valid programs, rather than relying on estimates of incomplete programs, which supports better optimization decisions within its search loop."
+    }
+  ],
+  "disagreements": [],
+  "question_id": "question-ml-compiler-optimization",
+  "schema_version": "question_synthesis_v1",
+  "short_answer": "In the linked Ansor evidence, machine learning improves compiler optimization decisions by acting as a learned cost model inside tensor-program search: it cheaply ranks complete candidate programs during evolutionary search, helping decide which candidates are promising enough to compile and measure on hardware.",
+  "uncertainty": "The synthesis is based on one linked source about Ansor. The strongest quantitative evidence is limited to a ResNet-50 tuning dataset on Intel CPU, and the linked evidence does not establish that the same cost-model accuracy or search benefit holds across all compiler domains, hardware targets, sparse workloads, dynamic shapes, or optimization frameworks.",
+  "warnings": [
+    "Only one linked source is available, so no cross-source agreement or disagreement can be assessed.",
+    "The linked complete-program fine-tuning evidence states that learned-cost-model queries are much faster than hardware measurement, but it does not provide exact numeric speed values for that claim."
+  ]
+}

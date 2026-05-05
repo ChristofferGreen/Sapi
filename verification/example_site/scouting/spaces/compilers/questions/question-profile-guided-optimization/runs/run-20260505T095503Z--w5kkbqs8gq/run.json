@@ -1,0 +1,38 @@
+{
+  "candidate_count": 2,
+  "candidate_ids": [
+    "candidate-aestimo-a-feedback-directed-optimization-evaluation-tool--9768f4ea2ca0",
+    "candidate-workload-reduction-for-multi-input-feedback-directed-optimizatio--41994e1b562a"
+  ],
+  "completed_at": "2026-05-05T09:58:39Z",
+  "execution_mode": "live_llm",
+  "flow_key": "source_scouting_pipeline",
+  "lint_error_count": 0,
+  "lint_info_count": 0,
+  "lint_warning_count": 0,
+  "llm_attempt_count": 1,
+  "model_fingerprint": "gpt-5.5",
+  "provider_fingerprint": "codex",
+  "question_id": "question-profile-guided-optimization",
+  "question_text": "How reliable is profile-guided optimization across workloads?",
+  "reasoning_effort": "high",
+  "requested_count": 2,
+  "run_id": "run-20260505T095503Z--w5kkbqs8gq",
+  "semantic_flow_invocation_counts": {
+    "source_scouting": 1
+  },
+  "semantic_flows": [
+    "source_scouting"
+  ],
+  "semantic_output_path": "/Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/compilers/questions/question-profile-guided-optimization/runs/run-20260505T095503Z--w5kkbqs8gq/source_scouting.json",
+  "space_name": "compilers",
+  "started_at": "2026-05-05T09:55:03Z",
+  "status": "success",
+  "toolchain_versions": {
+    "python": "3.12.12"
+  },
+  "warnings": [
+    "Citation counts were not emitted because runtime search did not surface a reliable count provider for either candidate.",
+    "Only one candidate has a verified public PDF; the second is retained because it is highly relevant and from a reputable compiler venue."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+  "dst_claim_ref": "7",
+  "last_evaluated_run_id": null,
+  "rationale": "The scheduler's bottleneck-focused allocation is the mechanism behind the reported search-time reductions.",
+  "relation_file_id": "rel-861cf5aba72ab205a346b0664f8eab2aedd5fe069dc37665f7e43f7a944a01d0",
+  "relation_id": "supports:claim-ansor-s-task-scheduler-allocates-tuning-time-to-subgraphs-that-are-most-likely-t--93937c35fdc5->claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+  "relation_type": "supports",
+  "src_claim_id": "claim-ansor-s-task-scheduler-allocates-tuning-time-to-subgraphs-that-are-most-likely-t--93937c35fdc5",
+  "src_claim_ref": "3",
+  "status": "open"
+}

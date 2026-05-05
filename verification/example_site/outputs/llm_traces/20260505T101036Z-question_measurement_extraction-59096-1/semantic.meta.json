@@ -1,0 +1,20 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-05-05T10:13:02Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions/question-profile-guided-optimization.json",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/evidence"
+  ],
+  "flow_key": "question_measurement_extraction",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/runs/run-20260505T095853Z--ponrx7uv0t/semantic/question_measurement_extraction/question-profile-guided-optimization.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/question_measurement_extraction.v1.schema.json",
+  "started_at": "2026-05-05T10:10:36Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260505T101036Z-question_measurement_extraction-59096-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": true,
+  "validation_errors": []
+}

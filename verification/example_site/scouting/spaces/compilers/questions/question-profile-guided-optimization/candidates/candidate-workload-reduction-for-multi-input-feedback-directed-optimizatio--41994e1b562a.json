@@ -1,0 +1,56 @@
+{
+  "authors": [
+    "Paul Berube",
+    "Jos\u00e9 Nelson Amaral",
+    "Rayson Ho",
+    "Ra\u00fal Silvera"
+  ],
+  "candidate_id": "candidate-workload-reduction-for-multi-input-feedback-directed-optimizatio--41994e1b562a",
+  "citation_signal": {
+    "as_of": "2026-05-05",
+    "confidence": "low",
+    "count": null,
+    "provider": "runtime web search; DBLP/OpenAlex-linked metadata available but no reliable citation-count value surfaced"
+  },
+  "doi": "10.1109/CGO.2009.23",
+  "failure_reason": null,
+  "import_link": null,
+  "import_status": "not_imported",
+  "landing_url": "https://dblp.org/rec/conf/cgo/BerubeAHS09",
+  "operator_status": "candidate",
+  "pdf_url": null,
+  "provenance": {
+    "scouted_at": "2026-05-05T09:55:03Z",
+    "scouting_run_id": "run-20260505T095503Z--w5kkbqs8gq",
+    "semantic_output_path": "/Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/compilers/questions/question-profile-guided-optimization/runs/run-20260505T095503Z--w5kkbqs8gq/source_scouting.json"
+  },
+  "public_access": {
+    "access_status": "restricted",
+    "evidence": "DBLP verifies the DOI and marks access as closed; the ACM-style proceedings page advertises full text but runtime evidence did not expose a stable public PDF URL.",
+    "has_public_pdf": false
+  },
+  "publication_year": 2009,
+  "question_id": "question-profile-guided-optimization",
+  "question_text": "How reliable is profile-guided optimization across workloads?",
+  "ranking": {
+    "answer_fit_rationale": "The abstract explicitly states that FDO can be sensitive to both training-input selection and actual runtime input, then proposes cross-validation and representative workload reduction.",
+    "answer_fit_score": 5,
+    "citation_score": 1,
+    "interestingness_rationale": "It goes beyond diagnosing unreliability by offering a compiler-centric way to select smaller representative workloads, useful for practical PGO processes.",
+    "interestingness_score": 4,
+    "overall_rationale": "A highly relevant CGO paper that complements Aestimo by turning workload sensitivity into a workload-selection methodology, though public PDF access was not verified.",
+    "overall_score": 15,
+    "rank": 2,
+    "venue_reputation_score": 5
+  },
+  "schema_version": "source_scouting_candidate_v1",
+  "skip_reason": null,
+  "space_name": "compilers",
+  "title": "Workload Reduction for Multi-input Feedback-Directed Optimization",
+  "venue": {
+    "name": "IEEE/ACM International Symposium on Code Generation and Optimization (CGO)",
+    "publisher": "IEEE Computer Society / ACM",
+    "reputation_rationale": "CGO is a leading peer-reviewed compiler optimization venue, and the 2009 proceedings report selective acceptance statistics.",
+    "type": "conference"
+  }
+}

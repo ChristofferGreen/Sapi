@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3",
+  "comparator": "static binary",
+  "evidence_id": "evidence-bzip2-training-performance-range--b4a75e0f3d18",
+  "measure_name": "bzip2 performance gain from xml training",
+  "measurement_id": "measurement-bzip2-xml-training-gain--00200000000a",
+  "outcome": "performance gain",
+  "population": "bzip2 on Itanium",
+  "question_id": "question-profile-guided-optimization",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "uncertainty": "reported as only 2%; figures had large runtime ranges between trials",
+  "unit": "percent",
+  "value": 2,
+  "value_max": null
+}

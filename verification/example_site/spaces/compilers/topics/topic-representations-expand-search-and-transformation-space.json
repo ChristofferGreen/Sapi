@@ -1,0 +1,34 @@
+{
+  "claim_ids": [
+    "claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d",
+    "claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814",
+    "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6",
+    "claim-super-blocks-represent-frequently-executed-paths-as-linear-basic-block-sequences--7bbb510c9bb0",
+    "claim-trace-selection-followed-by-tail-duplication-converts-frequently-executed-traces--1483ee9d0534",
+    "claim-program-features-provide-the-quantifiable-representation-that-allows-learning-al--a254f7b701be",
+    "claim-wcc-s-back-annotation-raises-assembly-level-wcet-information-to-source-level-icd--fc00d3acd6de"
+  ],
+  "sections": [
+    {
+      "body": "Ansor broadens tensor-program search with a two-level sketch-and-annotation representation, complete-program sampling, evolutionary fine-tuning, and a learned cost model, allowing it to find programs outside existing search-framework spaces.",
+      "heading": "Ansor's search representation"
+    },
+    {
+      "body": "Other compiler systems likewise depend on representation choices: super-blocks convert hot traces into linear optimization regions, machine-learning compilers rely on quantifiable program features, and WCC raises assembly-level WCET facts back to source-level structures for optimization.",
+      "heading": "Representation choices in other compilers"
+    },
+    {
+      "body": "The shared concept is that better intermediate representations do not merely store program facts; they determine which transformations, predictions, and search paths become practical.",
+      "heading": "Synthesis angle"
+    }
+  ],
+  "source_ids": [
+    "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+    "source-01-using-profile-information-to-assist-classic-code-optimizations--219edcf6f0cf",
+    "source-02-machine-learning-in-compiler-optimization--5fbaa9c3f69d",
+    "source-04-a-compiler-framework-for-the-reduction-of-worst-case-execution-times--5aee9841160e"
+  ],
+  "structure_type": "wiki",
+  "title": "Representations Expand the Compiler Search Space",
+  "topic_id": "topic-representations-expand-search-and-transformation-space"
+}

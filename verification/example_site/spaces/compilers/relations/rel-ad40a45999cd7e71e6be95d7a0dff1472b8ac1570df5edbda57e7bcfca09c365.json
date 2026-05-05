@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+  "dst_claim_ref": "4",
+  "last_evaluated_run_id": null,
+  "rationale": "The bzip2 inlining tables provide a detailed case where different training inputs produce different optimization decisions.",
+  "relation_file_id": "rel-ad40a45999cd7e71e6be95d7a0dff1472b8ac1570df5edbda57e7bcfca09c365",
+  "relation_id": "supports:claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2->claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0",
+  "relation_type": "supports",
+  "src_claim_id": "claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2",
+  "src_claim_ref": "6",
+  "status": "open"
+}

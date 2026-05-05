@@ -1,0 +1,19 @@
+{
+  "claim_ids": [
+    "claim-ansor-outperforms-existing-search-frameworks-and-manual-libraries-on-single-oper--6b650490cda3",
+    "claim-ansor-can-find-high-performance-tensor-programs-outside-the-search-spaces-covere--55b9a6e7dea6"
+  ],
+  "evidence_id": "evidence-operator-subgraph-speedups--e83f2a19c047",
+  "evidence_type": "statistical_result",
+  "excerpt": "Figure 6 reports that Ansor is best or tied for best in all single-operator and batch-size settings and outperforms existing search frameworks by 1.1x to 22.5x. Figure 8 reports that Ansor outperforms manual libraries and other search frameworks by 1.1x to 14.2x on subgraph benchmarks across Intel CPU and NVIDIA GPU cases.",
+  "overview": "These benchmark results are the main quantitative support for Ansor's operator-level and subgraph-level effectiveness. They connect the search-space design to measured throughput improvements and include comparisons against both search frameworks and vendor-backed libraries. The evidence is limited to the paper's selected operators, subgraphs, hardware, and tuning budgets.",
+  "page_refs": [
+    "Figure 6",
+    "Figure 8",
+    "Section 7.1",
+    "Section 7.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "title": "Operator and Subgraph Speedups"
+}

@@ -1,0 +1,72 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: question_relevance_mapping
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/question_relevance_mapping.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/runs/run-20260505T101456Z--0dngk7ufw6/semantic/question_relevance_mapping.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/evidence
+
+=== generation spec ===
+flow_key: question_relevance_mapping
+version: v1
+schema_path: schemas/question_relevance_mapping.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/question_relevance_mapping.json
+context_paths:
+  - <space_root>/questions
+  - <space_root>/sources/records
+  - <space_root>/claims
+  - <space_root>/evidence
+---
+## Task
+Generate one strict JSON object that maps a newly ingested source to zero or more existing prepared
+questions.
+
+## Context Interpretation Rules
+- Use only prepared questions present under `<space_root>/questions`.
+- Use only canonical `source_id`, `claim_id`, and `evidence_id` values present in context.
+- Do not create or suggest new questions in this flow.
+- Return an empty `question_matches` array when no active prepared question is relevant.
+- Prefer evidence-linked matches over title/keyword matches when evidence items are available.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- Every matched `question_id` must be an existing prepared question ID from context.
+- Every referenced source, claim, and evidence ID must be canonical and context-grounded.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "schema_version": "question_relevance_mapping_v1",
+  "source_id": "source-protein-intake--123456789abc",
+  "question_matches": [
+    {
+      "question_id": "question-protein-intake",
+      "relevance": "high",
+      "rationale": "The source directly evaluates protein dose and hypertrophy outcomes.",
+      "claim_ids": ["claim-protein-dose--123456789abc"],
+      "evidence_ids": ["evidence-protein-dose-response--123456789abc"]
+    }
+  ],
+  "warnings": []
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/evidence": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/evidence",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/questions",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/compilers/sources/records"
+}
+
+=== llm output ===
+{"schema_version":"question_relevance_mapping_v1","source_id":"source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12","question_matches":[{"question_id":"question-profile-guided-optimization","relevance":"high","rationale":"The source directly evaluates profile-guided and feedback-directed optimization reliability across training and evaluation workloads, showing that input choice changes compiler decisions and runtime outcomes and that single-input evaluation can be misleading.","claim_ids":["claim-aestimo-isolates-individual-fdo-transformations--a1b2c3d4e5f6","claim-log-metrics-quantify-decision-variation--b2c3d4e5f6a7","claim-aestimo-compares-workload-runtime-effects--c3d4e5f6a7b8","claim-workloads-extend-beyond-spec-inputs--d4e5f6a7b8c9","claim-training-inputs-change-fdo-outcomes--e5f6a7b8c9d0","claim-itanium-fdo-inlining-improves-average-performance--f6a7b8c9d0e1","claim-bzip2-inlining-logs-split-by-alignment--a7b8c9d0e1f2","claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3","claim-resubstitution-does-not-predict-best-bzip2-performance--c9d0e1f2a3b4","claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5"],"evidence_ids":["evidence-aestimo-forced-decision-recompile--4f19a8c32b7e","evidence-log-vector-difference-metric--8c2e91a4d0f7","evidence-workload-five-run-evaluation--a61b93f0c42d","evidence-spec-plus-additional-inputs--c409e7a11b8f","evidence-itanium-inlining-gains--d7b3409e6a21","evidence-bzip2-inlining-metric-tables--0f6e2c99aa54","evidence-bzip2-training-performance-range--b4a75e0f3d18","evidence-bzip2-resubstitution-ranks--e52d196cc9b0"]}],"warnings":[]}

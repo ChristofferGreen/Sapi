@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-workloads-extend-beyond-spec-inputs--d4e5f6a7b8c9",
+  "comparator": "SPEC-provided inputs only",
+  "evidence_id": "evidence-spec-plus-additional-inputs--c409e7a11b8f",
+  "measure_name": "workload input count",
+  "measurement_id": "measurement-workload-total-inputs--116000000001",
+  "outcome": "workload breadth for FDO evaluation",
+  "population": "SPEC CINT2000 benchmarks plus additional representative inputs",
+  "question_id": "question-profile-guided-optimization",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "uncertainty": "reported total; source date unavailable but source extraction marked usable",
+  "unit": "inputs",
+  "value": 116,
+  "value_max": null
+}

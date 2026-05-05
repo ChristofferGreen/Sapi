@@ -1,0 +1,294 @@
+{
+  "chart_groups": [
+    {
+      "chart_group_id": "chart-ansor-single-operator-speedup",
+      "measure_name": "Ansor speedup",
+      "measurement_ids": [
+        "measurement-ansor-single-operator-speedup--e83f2a19c047"
+      ],
+      "outcome": "performance versus existing search frameworks",
+      "population": "single-operator benchmarks across evaluated operator and batch-size settings",
+      "unit": "x"
+    },
+    {
+      "chart_group_id": "chart-ansor-subgraph-speedup",
+      "measure_name": "Ansor speedup",
+      "measurement_ids": [
+        "measurement-ansor-subgraph-speedup--e83f2a19c047"
+      ],
+      "outcome": "performance versus manual libraries and other search frameworks",
+      "population": "subgraph benchmarks across Intel CPU and NVIDIA GPU cases",
+      "unit": "x"
+    },
+    {
+      "chart_group_id": "chart-resnet50-measurements",
+      "measure_name": "measurements to match performance",
+      "measurement_ids": [
+        "measurement-resnet50-autotvm-measurements--0a9b3e7d2f15",
+        "measurement-resnet50-ansor-measurements--0a9b3e7d2f15"
+      ],
+      "outcome": "search effort to reach matched performance",
+      "population": "ResNet-50 on Intel CPU at batch size 1",
+      "unit": "measurements"
+    },
+    {
+      "chart_group_id": "chart-mobilenetv2-measurements",
+      "measure_name": "measurements to match performance",
+      "measurement_ids": [
+        "measurement-mobilenetv2-autotvm-measurements--0a9b3e7d2f15",
+        "measurement-mobilenetv2-ansor-measurements--0a9b3e7d2f15"
+      ],
+      "outcome": "search effort to reach matched performance",
+      "population": "MobileNet-V2 on Intel CPU at batch size 1",
+      "unit": "measurements"
+    },
+    {
+      "chart_group_id": "chart-dcgan-measurements",
+      "measure_name": "measurements to match performance",
+      "measurement_ids": [
+        "measurement-dcgan-autotvm-measurements--0a9b3e7d2f15",
+        "measurement-dcgan-ansor-measurements--0a9b3e7d2f15"
+      ],
+      "outcome": "search effort to reach matched performance",
+      "population": "DCGAN on Intel CPU at batch size 1",
+      "unit": "measurements"
+    },
+    {
+      "chart_group_id": "chart-bert-measurements",
+      "measure_name": "measurements to match performance",
+      "measurement_ids": [
+        "measurement-bert-autotvm-measurements--0a9b3e7d2f15",
+        "measurement-bert-ansor-measurements--0a9b3e7d2f15"
+      ],
+      "outcome": "search effort to reach matched performance",
+      "population": "BERT on Intel CPU at batch size 1",
+      "unit": "measurements"
+    },
+    {
+      "chart_group_id": "chart-resnet50-wallclock",
+      "measure_name": "wall-clock time to match performance",
+      "measurement_ids": [
+        "measurement-resnet50-autotvm-wallclock--0a9b3e7d2f15",
+        "measurement-resnet50-ansor-wallclock--0a9b3e7d2f15"
+      ],
+      "outcome": "search time to reach matched performance",
+      "population": "ResNet-50 on Intel CPU at batch size 1",
+      "unit": "seconds"
+    },
+    {
+      "chart_group_id": "chart-mobilenetv2-wallclock",
+      "measure_name": "wall-clock time to match performance",
+      "measurement_ids": [
+        "measurement-mobilenetv2-autotvm-wallclock--0a9b3e7d2f15",
+        "measurement-mobilenetv2-ansor-wallclock--0a9b3e7d2f15"
+      ],
+      "outcome": "search time to reach matched performance",
+      "population": "MobileNet-V2 on Intel CPU at batch size 1",
+      "unit": "seconds"
+    }
+  ],
+  "measurements": [
+    {
+      "claim_id": "claim-ansor-outperforms-existing-search-frameworks-and-manual-libraries-on-single-oper--6b650490cda3",
+      "comparator": "existing search frameworks",
+      "evidence_id": "evidence-operator-subgraph-speedups--e83f2a19c047",
+      "measure_name": "Ansor speedup",
+      "measurement_id": "measurement-ansor-single-operator-speedup--e83f2a19c047",
+      "outcome": "performance versus existing search frameworks",
+      "population": "single-operator benchmarks across evaluated operator and batch-size settings",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "range reported across selected single-operator benchmark settings",
+      "unit": "x",
+      "value": 1.1,
+      "value_max": 22.5
+    },
+    {
+      "claim_id": "claim-ansor-outperforms-existing-search-frameworks-and-manual-libraries-on-single-oper--6b650490cda3",
+      "comparator": "manual libraries and other search frameworks",
+      "evidence_id": "evidence-operator-subgraph-speedups--e83f2a19c047",
+      "measure_name": "Ansor speedup",
+      "measurement_id": "measurement-ansor-subgraph-speedup--e83f2a19c047",
+      "outcome": "performance versus manual libraries and other search frameworks",
+      "population": "subgraph benchmarks across Intel CPU and NVIDIA GPU cases",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "range reported across selected subgraph benchmark cases",
+      "unit": "x",
+      "value": 1.1,
+      "value_max": 14.2
+    },
+    {
+      "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+      "comparator": "Ansor measurements for the same network and target",
+      "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+      "measure_name": "AutoTVM measurements to match performance",
+      "measurement_id": "measurement-resnet50-autotvm-measurements--0a9b3e7d2f15",
+      "outcome": "search effort to reach matched performance",
+      "population": "ResNet-50 on Intel CPU at batch size 1",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "Table 3 reported value",
+      "unit": "measurements",
+      "value": 21220,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+      "comparator": "AutoTVM measurements for the same network and target",
+      "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+      "measure_name": "Ansor measurements to match AutoTVM performance",
+      "measurement_id": "measurement-resnet50-ansor-measurements--0a9b3e7d2f15",
+      "outcome": "search effort to reach matched performance",
+      "population": "ResNet-50 on Intel CPU at batch size 1",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "Table 3 reported value",
+      "unit": "measurements",
+      "value": 6403,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+      "comparator": "Ansor measurements for the same network and target",
+      "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+      "measure_name": "AutoTVM measurements to match performance",
+      "measurement_id": "measurement-mobilenetv2-autotvm-measurements--0a9b3e7d2f15",
+      "outcome": "search effort to reach matched performance",
+      "population": "MobileNet-V2 on Intel CPU at batch size 1",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "Table 3 reported value",
+      "unit": "measurements",
+      "value": 31272,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+      "comparator": "AutoTVM measurements for the same network and target",
+      "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+      "measure_name": "Ansor measurements to match AutoTVM performance",
+      "measurement_id": "measurement-mobilenetv2-ansor-measurements--0a9b3e7d2f15",
+      "outcome": "search effort to reach matched performance",
+      "population": "MobileNet-V2 on Intel CPU at batch size 1",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "Table 3 reported value",
+      "unit": "measurements",
+      "value": 1892,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+      "comparator": "Ansor measurements for the same network and target",
+      "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+      "measure_name": "AutoTVM measurements to match performance",
+      "measurement_id": "measurement-dcgan-autotvm-measurements--0a9b3e7d2f15",
+      "outcome": "search effort to reach matched performance",
+      "population": "DCGAN on Intel CPU at batch size 1",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "Table 3 reported value",
+      "unit": "measurements",
+      "value": 3003,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+      "comparator": "AutoTVM measurements for the same network and target",
+      "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+      "measure_name": "Ansor measurements to match AutoTVM performance",
+      "measurement_id": "measurement-dcgan-ansor-measurements--0a9b3e7d2f15",
+      "outcome": "search effort to reach matched performance",
+      "population": "DCGAN on Intel CPU at batch size 1",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "Table 3 reported value",
+      "unit": "measurements",
+      "value": 298,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+      "comparator": "Ansor measurements for the same network and target",
+      "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+      "measure_name": "AutoTVM measurements to match performance",
+      "measurement_id": "measurement-bert-autotvm-measurements--0a9b3e7d2f15",
+      "outcome": "search effort to reach matched performance",
+      "population": "BERT on Intel CPU at batch size 1",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "Table 3 reported value",
+      "unit": "measurements",
+      "value": 6220,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+      "comparator": "AutoTVM measurements for the same network and target",
+      "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+      "measure_name": "Ansor measurements to match AutoTVM performance",
+      "measurement_id": "measurement-bert-ansor-measurements--0a9b3e7d2f15",
+      "outcome": "search effort to reach matched performance",
+      "population": "BERT on Intel CPU at batch size 1",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "Table 3 reported value",
+      "unit": "measurements",
+      "value": 496,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+      "comparator": "Ansor wall-clock time for the same network and target",
+      "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+      "measure_name": "AutoTVM wall-clock time to match performance",
+      "measurement_id": "measurement-resnet50-autotvm-wallclock--0a9b3e7d2f15",
+      "outcome": "search time to reach matched performance",
+      "population": "ResNet-50 on Intel CPU at batch size 1",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "Table 3 reported value",
+      "unit": "seconds",
+      "value": 39250,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+      "comparator": "AutoTVM wall-clock time for the same network and target",
+      "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+      "measure_name": "Ansor wall-clock time to match AutoTVM performance",
+      "measurement_id": "measurement-resnet50-ansor-wallclock--0a9b3e7d2f15",
+      "outcome": "search time to reach matched performance",
+      "population": "ResNet-50 on Intel CPU at batch size 1",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "Table 3 reported value",
+      "unit": "seconds",
+      "value": 4540,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+      "comparator": "Ansor wall-clock time for the same network and target",
+      "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+      "measure_name": "AutoTVM wall-clock time to match performance",
+      "measurement_id": "measurement-mobilenetv2-autotvm-wallclock--0a9b3e7d2f15",
+      "outcome": "search time to reach matched performance",
+      "population": "MobileNet-V2 on Intel CPU at batch size 1",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "Table 3 reported value",
+      "unit": "seconds",
+      "value": 58468,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9",
+      "comparator": "AutoTVM wall-clock time for the same network and target",
+      "evidence_id": "evidence-search-time-savings--0a9b3e7d2f15",
+      "measure_name": "Ansor wall-clock time to match AutoTVM performance",
+      "measurement_id": "measurement-mobilenetv2-ansor-wallclock--0a9b3e7d2f15",
+      "outcome": "search time to reach matched performance",
+      "population": "MobileNet-V2 on Intel CPU at batch size 1",
+      "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+      "uncertainty": "Table 3 reported value",
+      "unit": "seconds",
+      "value": 660,
+      "value_max": null
+    }
+  ],
+  "question_id": "question-autotuning",
+  "schema_version": "question_measurement_extraction_v1",
+  "warnings": [
+    "Hierarchical derivation-rule evidence is qualitative/table-structural and contains no numeric measurement rows suitable for extraction.",
+    "Wall-clock time values were explicitly available only for ResNet-50 and MobileNet-V2 in the linked evidence excerpt."
+  ]
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AutoTVM Matching Time Table</title><link rel="stylesheet" href="../assets/site.css"></head><body class="site-shell site-with-global-menubar">
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="../../../../site/index.html">Example Site</a><nav class="site-space-nav" aria-label="Spaces"><details class="site-space-nav-item"><summary class="site-space-nav-summary current">Computer Science / Compilers</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../computer-science/site/index.html">Computer Science</a><a class="site-space-nav-link current" href="../index.html">Compilers</a><a class="site-space-nav-link" href="../../../graphics/site/index.html">Graphics</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Philosophy</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../philosophy/site/index.html">Philosophy</a><a class="site-space-nav-link" href="../../../mind/site/index.html">Mind</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Physics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../physics/site/index.html">Physics</a><a class="site-space-nav-link" href="../../../metaphysics/site/index.html">Metaphysics</a><a class="site-space-nav-link" href="../../../quantum-physics/site/index.html">Quantum Physics</a></div></details></nav><nav class="site-tabs"><a class="site-tab" href="../new/index.html">New</a> <a class="site-tab" href="../index.html">Home</a> <a class="site-tab" href="../questions/index.html">Questions</a> <a class="site-tab" href="../overview/index.html" aria-label="Overview for compilers">Overview</a> <a class="site-tab" href="../sources/index.html">Sources</a> <a class="site-tab" href="../topics/index.html">Topics</a> <a class="site-tab" href="../users/index.html">Users</a> <a class="site-tab current" href="index.html">Evidence</a> <a class="site-tab" href="../claims/index.html">Claims</a></nav></div></header><main class="site-main site-space-main">
+<header class="site-topbar"><form class="top-search" action="../search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
+<section class="content-card"><h1>AutoTVM Matching Time Table</h1>
+<section class="source-related-grid">
+<article class="source-related-card">
+<h2>Evidence Excerpt</h2>
+<p>Table 3 lists measurements and wall-clock time for Ansor to match AutoTVM on Intel CPU at batch size 1: ResNet-50 uses 21,220 AutoTVM measurements versus 6,403 Ansor measurements, MobileNet-V2 uses 31,272 versus 1,892, DCGAN uses 3,003 versus 298, and BERT uses 6,220 versus 496. Wall-clock examples include 39,250 seconds versus 4,540 for ResNet-50 and 58,468 seconds versus 660 for MobileNet-V2.</p>
+<p class="meta">Page references: Table 3, Section 7.4</p>
+<p class="meta">Type: table_result</p>
+<p>This table is concrete evidence for the search-efficiency claim. It separates measurement count from wall-clock time, showing that the advantage is not only a benchmarking artifact. The paper attributes the savings to the task scheduler, fine-tuning, and broader coverage of useful optimizations; the evidence is specific to matching AutoTVM on the Intel CPU network benchmark.</p>
+</article>
+<article class="source-related-card">
+<h2>Linked Claims</h2>
+<ul class="source-related-list">
+<li><a href="../claims/claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9.html">Scheduling reduces search time</a></li>
+<li><a href="../claims/claim-ansor-s-task-scheduler-allocates-tuning-time-to-subgraphs-that-are-most-likely-t--93937c35fdc5.html">Scheduling targets bottleneck subgraphs</a></li>
+</ul>
+</article>
+<article class="source-related-card">
+<h2>Primary Source</h2>
+<p><a href="../sources/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551.html">Ansor Broadens Tensor Program Search</a></p>
+</article>
+</section>
+<section class="source-related-card">
+<h2>Topic Pages Using This Evidence</h2>
+<ul class="source-related-list">
+<li><a href="../topics/topic-empirical-models-guide-optimization-decisions.html">Empirical Models Guide Compiler Optimization Decisions</a></li>
+<li><a href="../topics/topic-workload-aware-evaluation-of-optimization-benefits.html">Workload-Aware Evaluation of Optimization Benefits</a></li>
+</ul>
+</section>
+<p><a href="index.html">Back to evidence index</a></p>
+</section>
+
+</main>
+<script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>

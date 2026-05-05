@@ -1,0 +1,11 @@
+{
+  "candidate_count": 2,
+  "candidate_ids": [
+    "candidate-aestimo-a-feedback-directed-optimization-evaluation-tool--9768f4ea2ca0",
+    "candidate-workload-reduction-for-multi-input-feedback-directed-optimizatio--41994e1b562a"
+  ],
+  "question_id": "question-profile-guided-optimization",
+  "schema_version": "source_scouting_queue_v1",
+  "space_name": "compilers",
+  "updated_at": "2026-05-05T11:10:44Z"
+}

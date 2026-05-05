@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-ansor-s-task-scheduler-allocates-tuning-time-to-subgraphs-that-are-most-likely-t--93937c35fdc5",
+    "claim-ansor-can-match-autotvm-s-performance-with-much-less-search-time-by-jointly-opti--1286fb5da9f9"
+  ],
+  "evidence_id": "evidence-gradient-task-scheduler--d0be72a19f63",
+  "evidence_type": "equation",
+  "excerpt": "The task scheduler formulates tuning as minimizing an end-to-end cost function over subgraph latencies, approximates the gradient for each task, and allocates the next resource unit to the task with the largest absolute gradient. The text explains that Ansor initially favors high-latency subgraphs, then moves away when continued tuning stops reducing latency.",
+  "overview": "This is evidence for the scheduler claim because it gives the mechanism, not just the outcome. The scheduler treats tuning time as a resource allocation problem across many subgraphs and uses observed improvement history to focus on bottlenecks. The scope is strongest for workloads partitioned into repeated or similar static subgraphs, where latency improvements can be observed and compared.",
+  "page_refs": [
+    "Section 6.1",
+    "Section 6.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "title": "Gradient-Based Task Allocation"
+}

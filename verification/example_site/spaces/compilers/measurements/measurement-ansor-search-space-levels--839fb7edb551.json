@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-ansor-s-two-level-sketch-and-annotation-representation-expands-tensor-program-se--99c86cd5cc6d",
+  "comparator": "manual templates and early-pruned sequential construction",
+  "evidence_id": "evidence-hierarchical-derivation-rules--4b7e91c2a6d0",
+  "measure_name": "search-space representation levels",
+  "measurement_id": "measurement-ansor-search-space-levels--839fb7edb551",
+  "outcome": "separation of high-level sketches from low-level annotations",
+  "population": "Ansor tensor-program search-space representation",
+  "question_id": "question-ir-design",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "uncertainty": "The linked claim and evidence explicitly describe a two-level sketch-and-annotation representation; this is a structural count, not a benchmark result.",
+  "unit": "levels",
+  "value": 2,
+  "value_max": null
+}

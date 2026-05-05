@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T10:24:41Z",
+  "claim_id": "claim-bzip2-performance-varies-by-training-input--b8c9d0e1f2a3",
+  "evidence_excerpts": [
+    "The bzip2 case study reports that training on the combined input results in performance gains of about 8%, training on xml improves performance by only 2%, and best-case FDO performance for individual inputs has a minimum improvement of about 4% and a maximum gain of about 13%."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "bzip2 performance varies by input",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "text": "For bzip2 on Itanium, the training input materially changes inlining performance, with combined training giving about an 8 percent gain, xml training about a 2 percent gain, and best-case per-input FDO gains ranging roughly from 4 to 13 percent."
+}

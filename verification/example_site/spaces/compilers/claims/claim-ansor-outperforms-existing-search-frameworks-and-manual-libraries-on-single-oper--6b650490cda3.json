@@ -1,0 +1,12 @@
+{
+  "added_at": "2026-05-05T10:48:40Z",
+  "claim_id": "claim-ansor-outperforms-existing-search-frameworks-and-manual-libraries-on-single-oper--6b650490cda3",
+  "evidence_excerpts": [
+    "On single-operator benchmarks, Ansor performs best or equally best in all operator and batch-size settings and outperforms existing search frameworks by 1.1x to 22.5x.",
+    "On subgraph benchmarks, Ansor outperforms manual libraries and other search frameworks by 1.1x to 14.2x."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Benchmarks favor Ansor",
+  "source_id": "source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551",
+  "text": "Ansor outperforms existing search frameworks and manual libraries on single-operator and subgraph benchmarks across evaluated cases."
+}

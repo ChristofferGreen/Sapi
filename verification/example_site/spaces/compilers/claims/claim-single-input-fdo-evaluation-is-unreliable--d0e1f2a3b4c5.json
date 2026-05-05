@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T10:24:41Z",
+  "claim_id": "claim-single-input-fdo-evaluation-is-unreliable--d0e1f2a3b4c5",
+  "evidence_excerpts": [
+    "The bzip2 best-case comparison records different fastest training inputs beside evaluation inputs and states that using a single input for performance evaluation of code transformations is liable to produce unreliable results."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Single-input evaluation is unreliable",
+  "source_id": "source-aestimo-a-feedback-directed-optimization-evaluation-tool--e1d344900b12",
+  "text": "Single-input performance evaluation of feedback-directed code transformations is unreliable because different evaluation inputs can prefer different training inputs."
+}
