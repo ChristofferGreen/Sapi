@@ -1371,6 +1371,7 @@ def _render_source_dossier_section(
     source_claim_ids: list[str],
     claim_records: dict[str, dict[str, Any]],
 ) -> str:
+    summary_short = str(dossier.get("summary_short") or "").strip()
     summary_long = str(dossier.get("summary_long") or "").strip()
     sections = dossier.get("sections")
     section_rows: list[str] = []
@@ -1409,21 +1410,48 @@ def _render_source_dossier_section(
                 + "</article>"
             )
 
-    if not summary_long and not section_rows:
+    if not summary_short and not summary_long and not section_rows:
         return ""
 
-    summary_rows = "".join(
-        f"<p>{escape(paragraph.strip())}</p>"
-        for paragraph in summary_long.split("\n\n")
-        if paragraph.strip()
+    summary_rows = _render_source_dossier_summary_rows(
+        summary_short=summary_short,
+        summary_long=summary_long,
+        has_structured_sections=bool(section_rows),
     )
+    summary_class = "source-dossier-lead-block" if section_rows else "source-dossier-long"
     return (
         "<section class=\"source-dossier\">"
         "<h2>Overview and Commentary</h2>"
-        + (f"<div class=\"source-dossier-long\">{summary_rows}</div>" if summary_rows else "")
+        + (f"<div class=\"{summary_class}\">{summary_rows}</div>" if summary_rows else "")
         + ("<div class=\"source-dossier-sections\">" + "".join(section_rows) + "</div>" if section_rows else "")
         + "</section>\n"
     )
+
+
+def _render_source_dossier_summary_rows(
+    *,
+    summary_short: str,
+    summary_long: str,
+    has_structured_sections: bool,
+) -> str:
+    if has_structured_sections and summary_short:
+        return f"<p class=\"source-dossier-lead\">{escape(summary_short)}</p>"
+
+    source_text = summary_long or summary_short
+    paragraphs = [paragraph.strip() for paragraph in source_text.split("\n\n") if paragraph.strip()]
+    if len(paragraphs) == 1:
+        paragraphs = _split_source_dossier_long_paragraph(paragraphs[0])
+    return "".join(f"<p>{escape(paragraph)}</p>" for paragraph in paragraphs)
+
+
+def _split_source_dossier_long_paragraph(paragraph: str) -> list[str]:
+    sentences = split_sentences(paragraph)
+    if len(sentences) <= 3:
+        return [paragraph]
+    chunks: list[str] = []
+    for index in range(0, len(sentences), 3):
+        chunks.append(" ".join(sentences[index : index + 3]).strip())
+    return [chunk for chunk in chunks if chunk]
 
 
 def _resolve_section_claim_ids(

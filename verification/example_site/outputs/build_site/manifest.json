@@ -215,7 +215,7 @@
         "assets/persona_profiles/persona-yara-serrin.jpg": "ff2bdec2a89245aafbc214ae4ba2704d70b227497f78e5da854446fa1874bbdf",
         "assets/persona_profiles/persona-zane-delmar.jpg": "4b67d4b25ab2a87712a5c5760ac745367cced176c21702c890f3c87e5ed9e23d",
         "assets/persona_profiles/persona-zane-mansouri.jpg": "6460a31a547c90c2b23b03ace8af6fe6c82082dbf79213fd17d282207608e573",
-        "assets/site.css": "372277a4ccbaf9958caf23677d452ceb3c422ae6ff658f82a76ad97dd1e5effb",
+        "assets/site.css": "86b01605b51f841d3563fb481ead61b447d4f40dadfb126c4aa5afa2662f731d",
         "authors/author-aaron-lefohn.html": "3ea05ddde98c29eb47680ffd0c3897178c995268db7210dcd77e78b584d48e34",
         "authors/author-akshay-jindal.html": "443b0485a16a272b5baee61d462dc449936565c2b666e8ba83cae59297edbd6c",
         "authors/author-alexandru-c-telea.html": "4164a9bd11ba20f86249936236cd49c5d7af35781f7da50cfcacd9936e5cbaaf",
@@ -423,14 +423,14 @@
         "sources/by-title-desc/index.html": "b405d4b22968b73716fa9c1382186cef4b67412a03434d7ae432002c0d5e2198",
         "sources/by-title/index.html": "43cf7bc3aa910afd9760115c2fb3cb6cf5ce4bb38104c000683760f171ba609d",
         "sources/index.html": "1b44a3ec53c3e779e814638b7dab4dcb3bc7ce9b2312fc51d73ab0d6d3774ffc",
-        "sources/source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34.html": "1acf0a52285e3dc993613a3be7eac630a4fe4a217daad9a7230642a4d2590166",
-        "sources/source-02-image-based-crowd-rendering--565ae2b0e3a1.html": "2edd874848b2134a5a073f6631edc25ce66bbd475c9b7ab418fe8416becd5f81",
-        "sources/source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c.html": "781dc268b73de11855ed330e329632bd3a16233e7489050b19d93dcb313b9342",
-        "sources/source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30.html": "c15d29508d0967aed5d5f91dcc68e8018dee44fe7034e8ef22ebffdf05831d9a",
-        "sources/source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7.html": "ba25fb30bcd6d95df8426413b03a6b017007e33aaa20056e3091e125b5312bcc",
-        "sources/source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68.html": "1ede6ff483a4c4a806230f3611a9e0b00e37bc6cf9704e3e5cd61295a7825ca5",
-        "sources/source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a.html": "e8176bfab2a1ee79091e3a21a06a6556c6decb6f4ff354cfe24cca7781a5b409",
-        "sources/source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e.html": "59e252e18ddeba7755febb6b76d22dedd6614464fbf51a92a7e4295ce87c2a58",
+        "sources/source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34.html": "d470d2efa618605a31f5e9ec887dc4d23a3e3d60e5af1bbfbf37bacc0c313a3b",
+        "sources/source-02-image-based-crowd-rendering--565ae2b0e3a1.html": "8d5b3ef57e55aecb58264eaf83ea9c1b29a01e7dc29202ae960a2172b7563353",
+        "sources/source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c.html": "887870896f87b60a0eda52f18a416c923ae8c118be31018f3451131780347bd9",
+        "sources/source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30.html": "38c8b3b33c3a9b158cabd720616e8e1cd4a67aae8f0cc97a0a4d2e14214eb012",
+        "sources/source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7.html": "7f4b97ecf6ac182a0c033d5f6b74bce5964fa8e149fa7953d9ec426cffdf47f3",
+        "sources/source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68.html": "aa624ef43a348f38afff845abcb17c6a1ada4de52c7b623b1d3f8e4c75f0356e",
+        "sources/source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a.html": "f9d8e0291e203afd2c4e1731906b45574b48f8707dd4c4e5075df1853c3a6ff3",
+        "sources/source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e.html": "a2abc8c00cbcb8fc90a860d5e4f6baa1e39db8d40fc7b19ea94af7bee991f522",
         "topics/by-claims-asc/index.html": "c6d293c883d9de9c8030a7f088dfc8ef43124dec894efa551005bb81e049e77b",
         "topics/by-claims/index.html": "268f74d68d3a439880df09fe4ce8832d20431288e72135546a9bf032def30a2d",
         "topics/by-date-asc/index.html": "a264a69f338b4d2210e47b8450101f7c46df9a46e18f498d2062aabd8b95dcad",
@@ -1139,14 +1139,14 @@
   ],
   "stylesheet_assets": [
     {
-      "bytes": 34456,
+      "bytes": 34547,
       "path": "/Users/chrgre01/src/Sapi/verification/example_site/site/assets/site.css",
-      "sha256": "372277a4ccbaf9958caf23677d452ceb3c422ae6ff658f82a76ad97dd1e5effb"
+      "sha256": "86b01605b51f841d3563fb481ead61b447d4f40dadfb126c4aa5afa2662f731d"
     },
     {
-      "bytes": 34456,
+      "bytes": 34547,
       "path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/site/assets/site.css",
-      "sha256": "372277a4ccbaf9958caf23677d452ceb3c422ae6ff658f82a76ad97dd1e5effb"
+      "sha256": "86b01605b51f841d3563fb481ead61b447d4f40dadfb126c4aa5afa2662f731d"
     }
   ],
   "toolchain_versions": {

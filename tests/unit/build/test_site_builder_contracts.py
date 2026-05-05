@@ -2434,7 +2434,10 @@ class SiteBuilderContractTests(unittest.TestCase):
             source_page = (alpha_space_root / "site" / "sources" / "source-dossier.html").read_text()
             self.assertIn("Overview and Commentary", source_page)
             self.assertIn("Explicit short dossier summary for readers.", source_page)
-            self.assertIn("This explicit dossier is authored for source-page reading.", source_page)
+            self.assertIn("class=\"source-dossier-lead-block\"", source_page)
+            self.assertIn("class=\"source-dossier-lead\"", source_page)
+            self.assertNotIn("class=\"source-dossier-long\"", source_page)
+            self.assertNotIn("This explicit dossier is authored for source-page reading.", source_page)
             self.assertIn("What to Scrutinize", source_page)
 
     def test_source_detail_renders_revision_history_for_source_family(self) -> None:

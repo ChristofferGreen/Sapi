@@ -1056,6 +1056,14 @@
     line-height: 1.72;
   }
 
+  .source-dossier-lead {
+    margin: 0;
+    max-width: 78ch;
+    color: #10395f;
+    font-size: 1rem;
+    line-height: 1.62;
+  }
+
   .source-dossier-sections {
     display: grid;
     gap: 0.6rem;
