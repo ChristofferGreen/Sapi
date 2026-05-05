@@ -119,6 +119,18 @@ SPEC_CONTRACT = {
             "warnings",
         ],
     },
+    "source_scouting": {
+        "spec": "ai_flows/generation_specs/source_scouting.v1.md",
+        "schema": "schemas/source_scouting.v1.schema.json",
+        "required_keys": [
+            "schema_version",
+            "space_name",
+            "question_id",
+            "question_text",
+            "candidates",
+            "warnings",
+        ],
+    },
 }
 
 

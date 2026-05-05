@@ -22,6 +22,7 @@
   "question_synthesis_status": "not_run",
   "reasoning_effort": "high",
   "relations_changed": 0,
+  "restricted_source_mode": false,
   "rollback_skipped": false,
   "run_id": "<run_id>",
   "semantic_flow_invocation_counts": {
@@ -32,6 +33,14 @@
     "ingest_extraction",
     "topic_generation"
   ],
+  "source_access_policy": {
+    "landing_url": null,
+    "operator_responsibility": null,
+    "public_download": true,
+    "public_source_view": true,
+    "reason": null,
+    "restricted": false
+  },
   "source_ids": [
     "<source_id>"
   ],

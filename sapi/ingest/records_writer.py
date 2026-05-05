@@ -584,6 +584,7 @@ def ingest_source_artifacts_and_record(
     citation_count_as_of: str | None = None,
     citation_count_provider: str | None = None,
     citation_count_confidence: str | None = None,
+    access_policy: dict[str, Any] | None = None,
 ) -> SourceIngestResult:
     """Acquire one source input and persist managed artifacts + canonical source record."""
     raw_input = _require_non_empty(source_path_or_url, "source_path_or_url")
@@ -657,6 +658,7 @@ def ingest_source_artifacts_and_record(
         citation_count_as_of=citation_count_as_of,
         citation_count_provider=citation_count_provider,
         citation_count_confidence=citation_count_confidence,
+        access_policy=access_policy,
     )
     record_path = space_root / "sources" / "records" / f"{source_id}.json"
     record_path.parent.mkdir(parents=True, exist_ok=True)
@@ -792,6 +794,7 @@ def _build_source_record_payload(
     citation_count_as_of: str | None,
     citation_count_provider: str | None,
     citation_count_confidence: str | None,
+    access_policy: dict[str, Any] | None,
 ) -> dict[str, Any]:
     metadata_extensions = _resolve_source_metadata_extensions(
         article_kind=article_kind,
@@ -827,6 +830,7 @@ def _build_source_record_payload(
             "quality_status": source_extraction.get("quality_status"),
             "warnings": list(source_extraction.get("warnings") or []),
         },
+        "access_policy": _normalize_access_policy(access_policy),
         "source_extraction": {
             "converter_name": source_extraction.get("converter_name"),
             "converter_version": source_extraction.get("converter_version"),
@@ -848,6 +852,37 @@ def _build_source_record_payload(
     if canonical_identifier is not None:
         record["canonical_identifier"] = canonical_identifier
     return record
+
+
+def _normalize_access_policy(access_policy: dict[str, Any] | None) -> dict[str, Any]:
+    if access_policy is None:
+        return {
+            "restricted": False,
+            "public_download": True,
+            "public_source_view": True,
+            "reason": None,
+            "landing_url": None,
+            "operator_responsibility": None,
+        }
+    required_booleans = ("restricted", "public_download", "public_source_view")
+    for key in required_booleans:
+        if not isinstance(access_policy.get(key), bool):
+            raise ValueError(f"access_policy.{key} must be boolean.")
+    return {
+        "restricted": bool(access_policy["restricted"]),
+        "public_download": bool(access_policy["public_download"]),
+        "public_source_view": bool(access_policy["public_source_view"]),
+        "reason": _optional_clean_string(access_policy.get("reason")),
+        "landing_url": _optional_clean_string(access_policy.get("landing_url")),
+        "operator_responsibility": _optional_clean_string(access_policy.get("operator_responsibility")),
+    }
+
+
+def _optional_clean_string(raw: Any) -> str | None:
+    if raw is None:
+        return None
+    value = str(raw).strip()
+    return value or None
 
 
 def _read_url(url: str) -> tuple[bytes, str | None]:

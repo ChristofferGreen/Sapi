@@ -28,6 +28,8 @@ tests/
       test_query_mode_preflight.py
     overview/
       test_overview_pipeline.py
+    scouting/
+      test_candidate_store.py
   integration/
     failure/
       test_semantic_repair_exhaustion_rollback.py
@@ -41,6 +43,7 @@ tests/
       test_comments_pipeline.py
       test_profiles_pipeline.py
       test_overview_pipeline.py
+      test_source_scouting_pipeline.py
     build/
       test_build_determinism.py
       test_site_new_refresh_policy.py
@@ -51,6 +54,7 @@ tests/
       test_bootstrap_registry_exception.py
       test_generate_overview_wrapper.py
       test_evaluate_source_harness.py
+      test_source_scouting_wrappers.py
   golden/
     test_site_snapshot.py
     test_query_snapshot.py
@@ -112,6 +116,11 @@ tests/
     `tests/unit/questions/test_prepared_questions.py`, `tests/unit/questions/test_relevance_mapping.py`,
     `tests/unit/questions/test_synthesis.py`, `tests/unit/questions/test_measurements.py`,
     `tests/unit/questions/test_linting.py`, `tests/unit/questions/test_example_question_seeds.py`
+- [x] Source-scouting sidecar contracts cover candidate queue validation, duplicate DOI/URL handling,
+  deterministic import selection, semantic repair/exhaustion behavior, and restricted-source rendering policy.
+  - Modules: `tests/unit/scouting/test_candidate_store.py`,
+    `tests/unit/build/test_restricted_source_rendering.py`,
+    `tests/unit/contracts/test_example_runner_scouting_contract.py`
 
 ### Tier 2: Failure-Semantics Integration Tests
 
@@ -124,6 +133,9 @@ tests/
 - [x] Prepared-question semantic failures, including relevance mapping, measurement extraction, and
   synthesis, roll back source/claim/evidence/question writes in default ingest mode.
   - Module: `tests/integration/failure/test_semantic_repair_exhaustion_rollback.py`
+- [x] Failed scouting/import invocations do not create canonical `sources/`, `claims`, `relations`, or
+  `topics` artifacts outside successful canonical ingest wrapper calls.
+  - Module: `tests/integration/pipelines/test_source_scouting_pipeline.py`
 
 ### Tier 3: Pipeline Integration Tests (mock LLM, deterministic)
 
@@ -164,6 +176,10 @@ tests/
     `tests/integration/wrappers/test_create_space_example_questions.py`,
     `tests/integration/pipelines/test_ingest_pipeline.py`,
     `tests/integration/pipelines/test_ingest_source_only.py`
+- [x] Source-scouting workflows scout from a prepared question, import selected public candidates
+  through `ingest.sh`, update sidecar import status, and hide restricted source files/text in rendered output.
+  - Modules: `tests/integration/pipelines/test_source_scouting_pipeline.py`,
+    `tests/integration/wrappers/test_source_scouting_wrappers.py`
 
 ### Tier 4: Build/Projection Determinism Tests
 

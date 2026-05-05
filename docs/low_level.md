@@ -109,6 +109,9 @@ sapi/
     history.py
   questions/
     prepared_questions.py
+  scouting/
+    store.py
+    pipeline.py
   overview/
     overview_pipeline.py
   build/
@@ -121,6 +124,8 @@ sapi/
 
 scripts/
   ingest_source.py
+  scout_sources.py
+  import_scouted_sources.py
   query.py
   create_comments.py
   generate_profiles.py
@@ -147,6 +152,10 @@ Topology ownership note (resolved stubs):
 - `scripts/create_prepared_questions.py` owns the non-semantic operator/bootstrap entrypoint for
   prepared-question authoring from approved TSV seed data. It must go through registry resolution and
   the shared question writer rather than writing ad hoc JSON.
+- `sapi/scouting/store.py` owns sidecar candidate validation, queue manifests, duplicate DOI/URL
+  checks, deterministic import selection, and status transitions under `<site_path>/scouting/...`.
+- `sapi/scouting/pipeline.py` owns `source_scouting` semantic-flow invocation and sidecar run metadata.
+  It must not write canonical `sources/`, `claims/`, `relations/`, or `topics/`.
 
 ## 4. Core Data Types
 
@@ -168,6 +177,7 @@ SemanticFlowKey = Literal[
     "question_relevance_mapping",
     "question_synthesis",
     "question_measurement_extraction",
+    "source_scouting",
 ]
 
 PipelineFlowKey = Literal[
@@ -176,6 +186,8 @@ PipelineFlowKey = Literal[
     "comment_section_pipeline",
     "persona_profile_pipeline",
     "overview_pipeline",
+    "question_pipeline",
+    "source_scouting_pipeline",
 ]
 
 RunStatus = Literal["pending", "success", "success_with_warnings", "failed", "aborted"]
@@ -767,6 +779,8 @@ Wrapper to script mapping:
 - `create_space.sh` -> bootstraps registered spaces and invokes `create_questions.sh` for checked-in
   example seed rows matching the created space name only when `--seed-example-questions` is supplied
 - `refresh_questions.sh` -> `scripts/refresh_questions.py`
+- `scout_sources.sh` -> `scripts/scout_sources.py`
+- `import_scouted_sources.sh` -> `scripts/import_scouted_sources.py`
 - `query.sh` -> `scripts/query.py`
 - `create_comments.sh` -> `scripts/create_comments.py`
 - `generate_profiles.sh` -> `scripts/generate_profiles.py`
@@ -779,6 +793,10 @@ Workflow-key alignment:
   records and never generates question text deterministically
 - `refresh_questions.sh` -> workflow key `refresh_questions`; writes `question_pipeline`
   run records and supports selected/all/stale-only prepared-question refresh
+- `scout_sources.sh` -> workflow key `source_scouting`; writes sidecar semantic output, queue
+  records, and run metadata under `<site_path>/scouting/...`
+- `import_scouted_sources.sh` -> no semantic workflow key; selects eligible sidecar candidates and
+  invokes canonical `ingest.sh` for each imported paper
 - `query.sh` -> workflow key `query`
 - `create_comments.sh` -> workflow key `create_comments`
 - `generate_profiles.sh` -> workflow key `generate_profiles`
@@ -788,6 +806,9 @@ Workflow-key alignment:
 Wrapper behavior:
 - always inject `--registry-path <site_path>/spaces.toml` for registry-backed non-bootstrap scripts
 - fail fast on removed non-canonical aliases instead of normalizing them
+- `ingest.sh --restricted-source` requires a real local PDF and persists canonical `access_policy`
+- scouting/import failures must not mutate canonical sources, claims, relations, or topics except
+  through successful canonical ingest wrapper invocations
 
 Required fail-fast behavior:
 - ingest: `--force` is canonical and passed through (no alias)

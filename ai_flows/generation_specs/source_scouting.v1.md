@@ -1,0 +1,25 @@
+flow_key: source_scouting
+version: v1
+schema_path: schemas/source_scouting.v1.schema.json
+output_json_path: <site_path>/scouting/spaces/<space_name>/questions/<question_id>/runs/<run_id>/source_scouting.json
+context_paths:
+  - <space_root>/questions/<question_id>.json
+---
+## Task
+Generate one strict JSON object recommending high-quality papers to scout for one prepared question.
+
+## Scouting Criteria
+- Start from the prepared question in context and prioritize papers that clearly answer it.
+- Prefer reputable journals or venues and explain the venue-quality signal.
+- Include citation count with provider and `as_of` date. If unavailable, use `null` count and explain low confidence.
+- Prefer candidates with a public PDF. Set `public_access.has_public_pdf=false` when only a landing page or restricted source is available.
+- Include interestingness rationale: why this paper would improve the space beyond being merely relevant.
+
+## Boundary Rules
+- This is a recommendation sidecar. Do not emit canonical source, claim, relation, topic, or evidence artifacts.
+- Do not invent DOI, landing URL, PDF URL, citation provider, or access evidence. Use `null` for missing DOI/PDF.
+- If runtime web search is available, use it to verify candidates. If not, return only candidates whose identifiers and access status you can justify with high confidence.
+- Return JSON object only.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.

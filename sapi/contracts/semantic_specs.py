@@ -129,6 +129,14 @@ FLOW_MAP: dict[str, SemanticSpecMapEntry] = {
             "<space_root>/runs/<run_id>/semantic/question_measurement_extraction/<question_id>.json"
         ),
     ),
+    "source_scouting": SemanticSpecMapEntry(
+        flow_key="source_scouting",
+        spec_relpath="ai_flows/generation_specs/source_scouting.v1.md",
+        schema_relpath="schemas/source_scouting.v1.schema.json",
+        output_json_path_template=(
+            "<site_path>/scouting/spaces/<space_name>/questions/<question_id>/runs/<run_id>/source_scouting.json"
+        ),
+    ),
 }
 
 

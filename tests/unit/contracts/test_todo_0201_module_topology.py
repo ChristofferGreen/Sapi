@@ -18,6 +18,7 @@ class Todo0201ModuleTopologyTests(unittest.TestCase):
             "sapi/comments",
             "sapi/profiles",
             "sapi/overview",
+            "sapi/scouting",
             "sapi/build",
             "sapi/lint",
         ]
@@ -54,6 +55,8 @@ class Todo0201ModuleTopologyTests(unittest.TestCase):
             "sapi/profiles/profiles_pipeline.py",
             "sapi/profiles/history.py",
             "sapi/overview/overview_pipeline.py",
+            "sapi/scouting/store.py",
+            "sapi/scouting/pipeline.py",
             "sapi/build/projection.py",
             "sapi/build/site_builder.py",
             "sapi/build/projection_index.py",
@@ -73,6 +76,8 @@ class Todo0201ModuleTopologyTests(unittest.TestCase):
             "scripts/build_site.py",
             "scripts/lint.py",
             "scripts/evaluate_source.py",
+            "scripts/scout_sources.py",
+            "scripts/import_scouted_sources.py",
         ]
 
         for rel in wrapper_target_scripts:
@@ -94,6 +99,7 @@ class Todo0201ModuleTopologyTests(unittest.TestCase):
             "comments",
             "profiles",
             "overview",
+            "scouting",
             "build",
             "lint",
         ]:
@@ -110,6 +116,8 @@ class Todo0201ModuleTopologyTests(unittest.TestCase):
             "regenerate_web.sh -> scripts/build_site.py",
             "validate.sh -> scripts/lint.py",
             "evaluate_source.sh -> scripts/evaluate_source.py",
+            "scout_sources.sh -> scripts/scout_sources.py",
+            "import_scouted_sources.sh -> scripts/import_scouted_sources.py",
         ]:
             self.assertIn(mapping, scripts_init)
 

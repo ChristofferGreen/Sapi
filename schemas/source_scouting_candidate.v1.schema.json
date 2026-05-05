@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "source_scouting_candidate.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "candidate_id",
+    "space_name",
+    "question_id",
+    "question_text",
+    "title",
+    "authors",
+    "venue",
+    "publication_year",
+    "doi",
+    "landing_url",
+    "pdf_url",
+    "public_access",
+    "citation_signal",
+    "ranking",
+    "operator_status",
+    "import_status",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {"const": "source_scouting_candidate_v1"},
+    "candidate_id": {"type": "string", "pattern": "^candidate-[a-z0-9]+(?:-[a-z0-9]+)*--[0-9a-f]{12}$"},
+    "space_name": {"type": "string", "minLength": 1},
+    "question_id": {"type": "string", "pattern": "^question-[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "question_text": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "authors": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "venue": {"type": "object"},
+    "publication_year": {"type": ["integer", "null"]},
+    "doi": {"type": ["string", "null"]},
+    "landing_url": {"type": "string", "minLength": 1},
+    "pdf_url": {"type": ["string", "null"]},
+    "public_access": {"type": "object"},
+    "citation_signal": {"type": "object"},
+    "ranking": {"type": "object"},
+    "operator_status": {"enum": ["candidate", "selected", "hidden", "rejected"]},
+    "import_status": {"enum": ["not_imported", "importing", "imported", "skipped", "failed", "duplicate"]},
+    "import_link": {
+      "type": ["object", "null"],
+      "properties": {
+        "source_id": {"type": "string"},
+        "run_id": {"type": "string"},
+        "imported_at": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "skip_reason": {"type": ["string", "null"]},
+    "failure_reason": {"type": ["string", "null"]},
+    "provenance": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["scouted_at", "scouting_run_id", "semantic_output_path"],
+      "properties": {
+        "scouted_at": {"type": "string"},
+        "scouting_run_id": {"type": "string"},
+        "semantic_output_path": {"type": "string"}
+      }
+    }
+  }
+}

@@ -21,6 +21,7 @@ SemanticFlowKey = Literal[
     "question_relevance_mapping",
     "question_synthesis",
     "question_measurement_extraction",
+    "source_scouting",
 ]
 
 PipelineFlowKey = Literal[
@@ -30,6 +31,7 @@ PipelineFlowKey = Literal[
     "persona_profile_pipeline",
     "overview_pipeline",
     "question_pipeline",
+    "source_scouting_pipeline",
 ]
 
 RunStatus = Literal["pending", "success", "success_with_warnings", "failed", "aborted"]
@@ -45,6 +47,7 @@ _SEMANTIC_FLOW_KEYS: set[str] = {
     "question_relevance_mapping",
     "question_synthesis",
     "question_measurement_extraction",
+    "source_scouting",
 }
 
 _REQUIRED_BASE_FRONTMATTER_KEYS: tuple[str, ...] = (
@@ -112,6 +115,8 @@ class IngestRunFields:
     question_measurements_changed: int = 0
     question_synthesis_status: str = "not_run"
     question_syntheses_changed: int = 0
+    restricted_source_mode: bool = False
+    source_access_policy: dict[str, object] | None = None
 
 
 @dataclass

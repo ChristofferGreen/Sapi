@@ -43,6 +43,8 @@ class SliceAGatesTests(unittest.TestCase):
                 "deferred_build_reason": None,
                 "force_mode": False,
                 "rollback_skipped": False,
+                "restricted_source_mode": False,
+                "source_access_policy": _public_source_access_policy(),
             }
         )
         self.assertEqual(validate_ingest_run_frontmatter(frontmatter), [])
@@ -68,6 +70,8 @@ class SliceAGatesTests(unittest.TestCase):
                 "deferred_build_reason": None,
                 "force_mode": False,
                 "rollback_skipped": False,
+                "restricted_source_mode": False,
+                "source_access_policy": _public_source_access_policy(),
             }
         )
         self.assertEqual(validate_ingest_run_frontmatter(frontmatter), [])
@@ -103,6 +107,8 @@ class SliceAGatesTests(unittest.TestCase):
                     "deferred_build_reason": "operator_requested_build_deferred",
                     "force_mode": False,
                     "rollback_skipped": False,
+                    "restricted_source_mode": False,
+                    "source_access_policy": _public_source_access_policy(),
                 },
             )
             _write_run_markdown(
@@ -153,6 +159,17 @@ def _base_frontmatter(
         "lint_error_count": 0,
         "lint_warning_count": 0,
         "lint_info_count": 0,
+    }
+
+
+def _public_source_access_policy() -> dict[str, object]:
+    return {
+        "restricted": False,
+        "public_download": True,
+        "public_source_view": True,
+        "reason": None,
+        "landing_url": None,
+        "operator_responsibility": None,
     }
 
 

@@ -505,6 +505,7 @@ def _write_source_pages(
     claim_records = _load_claim_records(space_root=output_root.parent)
     claim_option_title_by_id = load_claim_option_titles(space_root=output_root.parent)
     for source in sorted(projection.sources, key=lambda item: item["source_id"]):
+        _validate_source_access_policy(source)
         source_path = sources_dir / f"{source['source_id']}.html"
         stylesheet_href = _relative_href(
             from_file=source_path,
@@ -535,17 +536,10 @@ def _write_source_pages(
             candidate = str(source_dossier.get("summary_short") or "").strip()
             if candidate:
                 summary_short = candidate
-        source_preview_row = (
-            "<figure class=\"source-preview-figure\">"
-            + "<a class=\"source-preview-link\" href=\""
-            + escape(source_file_href if source_file_href else source_preview_href)
-            + "\">"
-            + "<img class=\"source-preview\" src=\""
-            + escape(source_preview_href)
-            + "\" alt=\"Preview for "
-            + escape(_source_display_title(source))
-            + "\" /></a>"
-            + "</figure>\n"
+        source_preview_row = _render_source_preview_row(
+            source=source,
+            source_file_href=source_file_href,
+            source_preview_href=source_preview_href,
         )
         related_topics_rows = (
             "\n".join(
@@ -888,6 +882,16 @@ def _source_metadata_rows(
 
     _append("Publication date", source.get("date"))
     _append("DOI", semantic.get("doi"))
+    access_policy = _source_access_policy(source)
+    landing_url = access_policy.get("landing_url")
+    if isinstance(landing_url, str) and landing_url.strip():
+        _append(
+            "Landing page",
+            f"<a href=\"{escape(landing_url.strip())}\">{escape(landing_url.strip())}</a>",
+            is_html=True,
+        )
+    if access_policy.get("restricted") is True:
+        _append("Access", "Restricted source file")
     _append("Article kind", source.get("article_kind"))
     _append("Source kind", source.get("source_kind"))
     _append("Media type", source.get("source_media_type"))
@@ -1027,10 +1031,18 @@ def _render_source_analysis_section(*, source: dict[str, Any]) -> str:
         )
     if not detail_rows and not warning_rows and not isinstance(artifacts, dict):
         return ""
+    summary_text = (
+        "Source-file and extracted source-text views are restricted; only extraction metadata is shown."
+        if not _source_public_view_allowed(source) or not _source_public_download_allowed(source)
+        else (
+            "Use the extracted markdown by default for analysis. Fall back to the original artifact "
+            "for tables, figures, and layout-sensitive content."
+        )
+    )
     return (
         "<section class=\"source-related-card\">"
         "<h2>Analysis Inputs</h2>"
-        "<p class=\"summary\">Use the extracted markdown by default for analysis. Fall back to the original artifact for tables, figures, and layout-sensitive content.</p>"
+        f"<p class=\"summary\">{escape(summary_text)}</p>"
         "<dl class=\"source-meta-grid\">"
         + "".join(detail_rows)
         + "</dl>"
@@ -1040,6 +1052,17 @@ def _render_source_analysis_section(*, source: dict[str, Any]) -> str:
 
 
 def _source_artifact_href(*, source: dict[str, Any], artifact_key: str) -> str | None:
+    if not _source_public_view_allowed(source) and artifact_key in {
+        "source_file",
+        "source_markdown",
+        "source_extraction",
+        "source_provenance",
+    }:
+        return None
+    if artifact_key == "source_file" and not _source_public_download_allowed(source):
+        return None
+    if artifact_key == "source_markdown" and not _source_public_view_allowed(source):
+        return None
     artifacts = source.get("artifacts")
     if not isinstance(artifacts, dict):
         return None
@@ -7044,6 +7067,8 @@ def _resolve_front_page_image_source_path(
     space_name: str,
     site_path: Path,
 ) -> tuple[Path | None, str]:
+    if not _source_public_view_allowed(source):
+        return None, ".svg"
     artifacts = source.get("artifacts")
     if not isinstance(artifacts, dict):
         return None, ".svg"
@@ -7081,6 +7106,8 @@ def _source_display_title(source: dict[str, Any]) -> str:
 
 
 def _source_file_href(*, source: dict[str, Any], space_name: str) -> str | None:
+    if not _source_public_download_allowed(source):
+        return None
     artifacts = source.get("artifacts")
     if not isinstance(artifacts, dict):
         return None
@@ -7093,6 +7120,65 @@ def _source_file_href(*, source: dict[str, Any], space_name: str) -> str | None:
     if not encoded_parts:
         return None
     return f"/spaces/{escape(space_name)}/" + "/".join(encoded_parts)
+
+
+def _render_source_preview_row(
+    *,
+    source: dict[str, Any],
+    source_file_href: str | None,
+    source_preview_href: str,
+) -> str:
+    if not _source_public_view_allowed(source):
+        return (
+            "<div class=\"source-preview-figure source-restricted-notice\">"
+            "<p class=\"meta-badge\">Restricted source</p>"
+            "<p class=\"summary\">Source file and extracted source text are hidden for this record.</p>"
+            "</div>\n"
+        )
+    return (
+        "<figure class=\"source-preview-figure\">"
+        + "<a class=\"source-preview-link\" href=\""
+        + escape(source_file_href if source_file_href else source_preview_href)
+        + "\">"
+        + "<img class=\"source-preview\" src=\""
+        + escape(source_preview_href)
+        + "\" alt=\"Preview for "
+        + escape(_source_display_title(source))
+        + "\" /></a>"
+        + "</figure>\n"
+    )
+
+
+def _source_access_policy(source: dict[str, Any]) -> dict[str, Any]:
+    raw = source.get("access_policy")
+    if not isinstance(raw, dict):
+        return {
+            "restricted": False,
+            "public_download": True,
+            "public_source_view": True,
+        }
+    return raw
+
+
+def _validate_source_access_policy(source: dict[str, Any]) -> None:
+    raw = source.get("access_policy")
+    if raw is None:
+        return
+    if not isinstance(raw, dict):
+        raise ValueError(f"Source access_policy must be an object: {source.get('source_id')}")
+    for key in ("public_download", "public_source_view"):
+        if not isinstance(raw.get(key), bool):
+            raise ValueError(
+                f"Source access_policy.{key} must be boolean: {source.get('source_id')}"
+            )
+
+
+def _source_public_download_allowed(source: dict[str, Any]) -> bool:
+    return _source_access_policy(source).get("public_download") is not False
+
+
+def _source_public_view_allowed(source: dict[str, Any]) -> bool:
+    return _source_access_policy(source).get("public_source_view") is not False
 
 
 def _write_source_preview_assets(

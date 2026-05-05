@@ -42,6 +42,7 @@ class SemanticInputEnvelopeContractTests(unittest.TestCase):
             "page_ref_key": "topic--topic-001",
             "overview_id": "space--alpha",
             "question_id": "question-alpha",
+            "space_name": "alpha",
         }
 
         for flow_key in FLOW_MAP:

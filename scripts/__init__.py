@@ -9,4 +9,6 @@ Wrapper-target entrypoints:
 - regenerate_web.sh -> scripts/build_site.py
 - validate.sh -> scripts/lint.py
 - evaluate_source.sh -> scripts/evaluate_source.py
+- scout_sources.sh -> scripts/scout_sources.py
+- import_scouted_sources.sh -> scripts/import_scouted_sources.py
 """

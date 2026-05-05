@@ -35,6 +35,8 @@ _INGEST_REQUIRED_FIELDS = (
     "deferred_build_reason",
     "force_mode",
     "rollback_skipped",
+    "restricted_source_mode",
+    "source_access_policy",
 )
 
 _QUERY_REQUIRED_FIELDS = (

@@ -2,6 +2,145 @@
 
 This file is append-only history for completed tasks moved out of `docs/todo.md`.
 
+## 2026-05-05
+
+- [x] TODO-0378: Define source-scouting and restricted-source contracts
+  - owner: ai
+  - created_at: 2026-05-05
+  - phase: Phase 4
+  - finished_at: 2026-05-05
+  - scope: Extend the design, low-level design, and testing-plan contracts for a source-scouting
+    sidecar plus an explicit restricted-source ingest policy.
+  - evidence: Documented the source-scouting sidecar boundary, ranking criteria, non-canonical
+    candidate semantics, restricted-source flag, access-policy metadata, hidden rendering behavior,
+    module ownership, wrapper mapping, and test coverage in README, design, low-level, and
+    testing-plan docs.
+
+- [x] TODO-0379: Add scouting schemas and generation specs
+  - owner: ai
+  - created_at: 2026-05-05
+  - phase: Phase 4
+  - finished_at: 2026-05-05
+  - depends_on: TODO-0378
+  - scope: Add checked-in JSON schemas and generation specs for source-scouting candidate output,
+    candidate queue records, and scouting run metadata outside canonical source records.
+  - evidence: Added `schemas/source_scouting.v1.schema.json`,
+    `schemas/source_scouting_candidate.v1.schema.json`, and
+    `ai_flows/generation_specs/source_scouting.v1.md`; registered `source_scouting` in the
+    authoritative flow map and updated spec/schema inventory plus invocation-envelope tests.
+
+- [x] TODO-0380: Implement scouting candidate store and loaders
+  - owner: ai
+  - created_at: 2026-05-05
+  - phase: Phase 4
+  - finished_at: 2026-05-05
+  - depends_on: TODO-0379
+  - scope: Add a sidecar persistence layer for per-space, per-question source-scouting candidates
+    that remains separate from canonical ingested knowledge artifacts.
+  - evidence: Added `sapi/scouting/store.py` with queue paths under `<site_path>/scouting/...`,
+    candidate validation, duplicate DOI/URL normalization, queue manifests, deterministic selection,
+    and status transitions; covered loading, duplicate handling, and selection ordering in unit tests.
+
+- [x] TODO-0381: Implement LLM paper-scouting semantic flow
+  - owner: ai
+  - created_at: 2026-05-05
+  - phase: Phase 4
+  - finished_at: 2026-05-05
+  - depends_on: TODO-0379, TODO-0380
+  - scope: Add a live LLM-backed source-scouting flow that starts from one prepared question,
+    searches for high-quality papers, and returns schema-valid ranked candidate records.
+  - evidence: Added `sapi/scouting/pipeline.py` with live Codex-backed and explicit mock clients,
+    schema-repair support through the shared semantic executor, attempt-count run metadata, and
+    deterministic post-processing that validates candidate provenance/ranking without inventing
+    rationale; unit tests cover repair success and repair exhaustion.
+
+- [x] TODO-0382: Add source-scouting wrappers and operator entrypoints
+  - owner: ai
+  - created_at: 2026-05-05
+  - phase: Phase 4
+  - finished_at: 2026-05-05
+  - depends_on: TODO-0380, TODO-0381
+  - scope: Expose the scouting sidecar through repo-root bash wrappers and Python entrypoints that
+    follow existing registry, runtime-flag, tracing, and run-envelope conventions.
+  - evidence: Added `scout_sources.sh` and `scripts/scout_sources.py` with registry resolution,
+    runtime flags, live default behavior, explicit `--mock-llm` mode, optional mock candidate plans,
+    verbose tracing, sidecar run metadata, and wrapper validation tests.
+
+- [x] TODO-0383: Implement scouted-source import bridge to ingest
+  - owner: ai
+  - created_at: 2026-05-05
+  - phase: Phase 4
+  - finished_at: 2026-05-05
+  - depends_on: TODO-0382
+  - scope: Add an import bridge that selects `n` eligible scouting candidates and invokes the
+    canonical ingest wrapper without making scouting itself a canonical-write ingest mode.
+  - evidence: Added `import_scouted_sources.sh` and `scripts/import_scouted_sources.py`; the bridge
+    selects ranked importable public candidates, suppresses duplicates, skips non-public candidates
+    unless restricted import is explicit, calls `ingest.sh`, and writes source/run import status back
+    to candidate records. Integration coverage verifies public import and failure non-mutation.
+
+- [x] TODO-0384: Add restricted-source ingest access policy
+  - owner: ai
+  - created_at: 2026-05-05
+  - phase: Phase 4
+  - finished_at: 2026-05-05
+  - depends_on: TODO-0378
+  - scope: Add an explicit ingest wrapper/entrypoint flag for operator-supplied non-public papers
+    and persist canonical access-policy metadata on source records and run envelopes.
+  - evidence: Added canonical `--restricted-source` with required reason/responsibility fields,
+    rejected unclear aliases, enforced real local PDF signatures for restricted sources, persisted
+    `access_policy` on source records and run frontmatter, and covered the behavior in wrapper and
+    restricted-ingest integration tests.
+
+- [x] TODO-0385: Hide restricted source artifacts in deterministic site rendering
+  - owner: ai
+  - created_at: 2026-05-05
+  - phase: Phase 4
+  - finished_at: 2026-05-05
+  - depends_on: TODO-0384
+  - scope: Teach deterministic projection and HTML rendering to honor canonical restricted-source
+    access metadata.
+  - evidence: Updated source rendering to validate access-policy booleans, suppress public PDF,
+    source markdown, extraction/provenance artifact, and front-page preview links when public view is
+    disabled, while preserving metadata/claims/evidence; added focused rendering and end-to-end tests.
+
+- [x] TODO-0386: Add scouting slice end-to-end verification gates
+  - owner: ai
+  - created_at: 2026-05-05
+  - phase: Cross-cutting
+  - finished_at: 2026-05-05
+  - depends_on: TODO-0382, TODO-0383, TODO-0385, TODO-0388
+  - scope: Add final slice-level verification that scouting and restricted-source workflows compose
+    across wrappers, import bridge, ingest, and deterministic rendering.
+  - evidence: Added mock end-to-end scouting/import coverage, restricted-source ingest/rendering
+    coverage, example-runner contract tests, failure non-mutation coverage, and updated the testing
+    plan with the new unit/integration/wrapper modules.
+
+- [x] TODO-0387: Document source-scouting operator workflow
+  - owner: ai
+  - created_at: 2026-05-05
+  - phase: Cross-cutting
+  - finished_at: 2026-05-05
+  - depends_on: TODO-0386
+  - scope: Add operator-facing docs for using source scouting as a sidecar queue, reviewing
+    candidates, importing selected papers, and ingesting restricted sources.
+  - evidence: README and design docs now describe prepared-question scouting, candidate review,
+    import bridge commands, restricted-source usage, hidden site output, and the fact that scouting
+    candidates are recommendations rather than canonical ingested knowledge artifacts.
+
+- [x] TODO-0388: Wire example-site runner through scouting import
+  - owner: ai
+  - created_at: 2026-05-05
+  - phase: Phase 4
+  - finished_at: 2026-05-05
+  - depends_on: TODO-0383
+  - scope: Update the bundled example-site setup flow so it uses the source-scouting wrappers to
+    find five candidate papers from a prepared question and imports those five through the bridge.
+  - evidence: Added `tests/example/scouting_plan.tsv`; updated `tests/example/run_example_site.sh`
+    with resumable `SCOUT_DONE`/`SCOUT_IMPORT_DONE` phases that call `scout_sources.sh --count 5`
+    and `import_scouted_sources.sh --count 5`, use deterministic mock scouting by default, allow
+    explicit live scouting via `SAPI_EXAMPLE_LIVE_SCOUTING=1`, and skip duplicate direct-ingest rows.
+
 ## 2026-05-01
 
 - [x] TODO-0376: Add prepared-question test and verification coverage

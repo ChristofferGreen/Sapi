@@ -2,7 +2,7 @@
 set -euo pipefail
 
 usage() {
-  echo "Usage: ingest.sh <site_path> <space_name> <source_path_or_url> [--revises-source-id <source_id>] [--force] [--verbose]" >&2
+  echo "Usage: ingest.sh <site_path> <space_name> <source_path_or_url> [--restricted-source --source-access-reason <reason> --operator-responsibility <text>] [--revises-source-id <source_id>] [--force] [--verbose]" >&2
 }
 
 if [[ $# -lt 3 ]]; then
@@ -22,6 +22,11 @@ normalized_args=()
 
 for arg in "$@"; do
   case "$arg" in
+    --allow-not-publicly-accessible|--allow-non-public|--non-public-source)
+      echo "Error: $arg is unclear; use --restricted-source with an explicit reason and operator responsibility." >&2
+      usage
+      exit 2
+      ;;
     --source-only|--query-only)
       echo "Error: $arg has been removed; ingest now always runs semantic extraction and topic generation." >&2
       usage

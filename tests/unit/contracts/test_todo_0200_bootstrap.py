@@ -40,6 +40,8 @@ class Todo0200BootstrapTests(unittest.TestCase):
             "regenerate_web.sh",
             "validate.sh",
             "evaluate_source.sh",
+            "scout_sources.sh",
+            "import_scouted_sources.sh",
         ]
         for rel in required_files:
             self.assertTrue((REPO_ROOT / rel).is_file(), rel)
@@ -55,13 +57,15 @@ class Todo0200BootstrapTests(unittest.TestCase):
             "create_site.sh": "Usage: create_site.sh <site_path> <site_name>",
             "create_space.sh": "Usage: create_space.sh <site_path> <space_name> [--seed-example-questions]",
             "create_subspaces.sh": "Usage: create_subspaces.sh <site_path> <subspaces_tsv>",
-            "ingest.sh": "Usage: ingest.sh <site_path> <space_name> <source_path_or_url> [--revises-source-id <source_id>] [--force] [--verbose]",
+            "ingest.sh": "Usage: ingest.sh <site_path> <space_name> <source_path_or_url> [--restricted-source --source-access-reason <reason> --operator-responsibility <text>] [--revises-source-id <source_id>] [--force] [--verbose]",
             "create_comments.sh": "Usage: create_comments.sh <site_path> <space_name> --count <n> [--verbose] [--comment-user ...] [--comment-page ...] [--comment-seed ...] [--comment-evidence-mode ...]",
             "generate_profiles.sh": "Usage: generate_profiles.sh <site_path> <space_name> [--persona-id <persona_id> ...] [--verbose]",
             "regenerate_web.sh": "Usage: regenerate_web.sh <site_path> [space_name] [--verbose]",
             "query.sh": "Usage: query.sh <site_path> <space_name> <question> [--verbose]",
             "validate.sh": "Usage: validate.sh <site_path> <space_name> [--workflow ...] [--run-id ...]",
             "evaluate_source.sh": "Usage: evaluate_source.sh <site_path> <space_name> <source_path_or_url> [--out <artifact_dir>] [--comments <n>] [--comment-user ...] [--comment-page ...] [--verbose]",
+            "scout_sources.sh": "Usage: scout_sources.sh <site_path> <space_name> <question_id> [--count n] [--mock-llm] [--mock-candidate-plan <path>] [--verbose]",
+            "import_scouted_sources.sh": "Usage: import_scouted_sources.sh <site_path> <space_name> [--count n] [--question-id id] [--mock-llm] [--verbose]",
         }
 
         for script_name, usage_line in expected_usage.items():

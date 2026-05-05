@@ -74,7 +74,9 @@ Canonical operator wrappers (target interface during reconstruction):
 - `create_space.sh <site_path> <space_name> [--seed-example-questions]`
 - `create_questions.sh <site_path> <questions_tsv> [space_name]`
 - `refresh_questions.sh <site_path> <space_name> [--question-id <id> ...] [--all] [--force] [--build-deferred] [--verbose]`
-- `ingest.sh <site_path> <space_name> <source_path_or_url> [--revises-source-id <source_id>] [--force] [--verbose]`
+- `scout_sources.sh <site_path> <space_name> <question_id> [--count n] [--mock-llm] [--mock-candidate-plan <path>] [--verbose]`
+- `import_scouted_sources.sh <site_path> <space_name> [--count n] [--question-id id] [--mock-llm] [--verbose]`
+- `ingest.sh <site_path> <space_name> <source_path_or_url> [--restricted-source --source-access-reason <reason> --operator-responsibility <text>] [--revises-source-id <source_id>] [--force] [--verbose]`
 - `query.sh <site_path> <space_name> <question> [--verbose]`
 - `create_comments.sh <site_path> <space_name> --count <n> [--verbose] [...]`
 - `generate_profiles.sh <site_path> <space_name> [--persona-id <persona_id> ...] [--verbose]`
@@ -98,6 +100,18 @@ space creation does not import example fixtures unless that flag is supplied.
 Prepared-question synthesis can be refreshed directly with `refresh_questions.sh`. With no
 `--question-id`, it checks all active questions, skips current signatures by default, records a
 `question_pipeline` run, and rebuilds the selected space unless `--build-deferred` is supplied.
+
+Source scouting is a sidecar recommendation queue, not canonical ingest. Run
+`scout_sources.sh <site_path> <space_name> <question_id> --count 5` to ask the LLM to find candidate
+papers for one prepared question, then review
+`<site_path>/scouting/spaces/<space_name>/questions/<question_id>/candidates/`. Import selected public
+PDF candidates with `import_scouted_sources.sh <site_path> <space_name> --question-id <question_id> --count 5`;
+the bridge calls canonical `ingest.sh` and records import status back on candidate records.
+
+Use `ingest.sh --restricted-source --source-access-reason <reason> --operator-responsibility <text>`
+only when the operator has a real local PDF that is not publicly redistributable. Restricted source
+records keep bibliographic metadata and canonical claims visible, but public PDF/download and extracted
+source-text links are hidden in deterministic site output.
 
 Persona image generation utility:
 

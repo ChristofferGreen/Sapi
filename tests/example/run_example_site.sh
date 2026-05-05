@@ -22,6 +22,7 @@ LOG_DIR="$STATE_DIR/logs"
 STATUS_FILE="$STATE_DIR/status.env"
 SUBSPACES_TSV="$SCRIPT_DIR/subspaces.tsv"
 INGEST_PLAN_TSV="$SCRIPT_DIR/ingest_plan.tsv"
+SCOUTING_PLAN_TSV="$SCRIPT_DIR/scouting_plan.tsv"
 COMMENT_COUNT=5
 STEP_TIMEOUT_SECS=1200
 STEP_MAX_ATTEMPTS=10
@@ -29,6 +30,8 @@ STEP_MAX_ATTEMPTS=10
 mkdir -p "$STATE_DIR" "$LOG_DIR"
 
 BOOTSTRAP_DONE=0
+SCOUT_DONE=0
+SCOUT_IMPORT_DONE=0
 INGEST_INDEX=0
 OVERVIEW_INDEX=0
 COMMENT_INDEX=0
@@ -42,6 +45,8 @@ write_status() {
   local tmp="${STATUS_FILE}.tmp"
   cat > "$tmp" <<EOF
 BOOTSTRAP_DONE=$BOOTSTRAP_DONE
+SCOUT_DONE=$SCOUT_DONE
+SCOUT_IMPORT_DONE=$SCOUT_IMPORT_DONE
 INGEST_INDEX=$INGEST_INDEX
 OVERVIEW_INDEX=$OVERVIEW_INDEX
 COMMENT_INDEX=$COMMENT_INDEX
@@ -63,6 +68,8 @@ load_status() {
     : "${STEP_ATTEMPT:=0}"
     : "${STEP_TIMEOUT_SECS:=1200}"
     : "${STEP_MAX_ATTEMPTS:=10}"
+    : "${SCOUT_DONE:=0}"
+    : "${SCOUT_IMPORT_DONE:=0}"
   else
     write_status
   fi
@@ -245,6 +252,71 @@ load_tsv_rows() {
   grep -v '^[[:space:]]*#' "$tsv_path" | sed '/^[[:space:]]*$/d'
 }
 
+scouting_config_row() {
+  load_tsv_rows "$SCOUTING_PLAN_TSV" | head -n 1
+}
+
+run_scouting_import() {
+  local row
+  row="$(scouting_config_row)"
+  if [[ -z "$row" ]]; then
+    log "missing scouting plan row: $SCOUTING_PLAN_TSV"
+    exit 2
+  fi
+  IFS=$'\t' read -r scout_space scout_question _rank _title _pdf_path _doi _landing_url _venue _citation_count <<< "$row"
+  if [[ -z "${scout_space:-}" || -z "${scout_question:-}" ]]; then
+    log "invalid scouting plan row: $SCOUTING_PLAN_TSV"
+    exit 2
+  fi
+
+  if [[ $SCOUT_DONE -eq 0 ]]; then
+    local scout_args=()
+    if [[ "${SAPI_EXAMPLE_LIVE_SCOUTING:-0}" != "1" ]]; then
+      scout_args+=(--mock-llm --mock-candidate-plan "$SCOUTING_PLAN_TSV")
+    fi
+    run_step "scout-${scout_space}-${scout_question}" \
+      bash "$REPO_ROOT/scout_sources.sh" \
+        "$SITE_PATH" \
+        "$scout_space" \
+        "$scout_question" \
+        --count 5 \
+        --verbose \
+        "${scout_args[@]}"
+    SCOUT_DONE=1
+    write_status
+  fi
+
+  if [[ $SCOUT_IMPORT_DONE -eq 0 ]]; then
+    local import_args=()
+    if [[ "${SAPI_EXAMPLE_LIVE_SCOUTING:-0}" != "1" ]]; then
+      import_args+=(--mock-llm)
+    fi
+    run_step "import-scouted-${scout_space}-${scout_question}" \
+      bash "$REPO_ROOT/import_scouted_sources.sh" \
+        "$SITE_PATH" \
+        "$scout_space" \
+        --question-id "$scout_question" \
+        --count 5 \
+        --verbose \
+        "${import_args[@]}"
+    SCOUT_IMPORT_DONE=1
+    write_status
+  fi
+}
+
+is_scouted_ingest_row() {
+  local space_slug="$1"
+  local pdf_relpath="$2"
+  local row row_space _row_question _rank _title row_pdf _doi _landing_url _venue _citation_count
+  while IFS= read -r row; do
+    IFS=$'\t' read -r row_space _row_question _rank _title row_pdf _doi _landing_url _venue _citation_count <<< "$row"
+    if [[ "$row_space" == "$space_slug" && "$row_pdf" == "$pdf_relpath" ]]; then
+      return 0
+    fi
+  done < <(load_tsv_rows "$SCOUTING_PLAN_TSV")
+  return 1
+}
+
 collect_comment_page_rows() {
   local space_slug="$1"
   local space_root="$SITE_PATH/spaces/$space_slug"
@@ -295,11 +367,19 @@ if [[ $BOOTSTRAP_DONE -eq 0 ]]; then
   bootstrap_site
 fi
 
+run_scouting_import
+
 mapfile -t INGEST_ROWS < <(load_tsv_rows "$INGEST_PLAN_TSV")
 mapfile -t SUBSPACE_ROWS < <(load_tsv_rows "$SUBSPACES_TSV")
 
 while [[ $INGEST_INDEX -lt ${#INGEST_ROWS[@]} ]]; do
   IFS=$'\t' read -r step_id space_slug pdf_relpath <<< "${INGEST_ROWS[$INGEST_INDEX]}"
+  if is_scouted_ingest_row "$space_slug" "$pdf_relpath"; then
+    log "skipping direct ingest for scouted source $step_id/$space_slug"
+    INGEST_INDEX=$((INGEST_INDEX + 1))
+    write_status
+    continue
+  fi
   pdf_path="$SCRIPT_DIR/$pdf_relpath"
   if [[ ! -f "$pdf_path" ]]; then
     log "missing PDF for ingest step $step_id: $pdf_path"

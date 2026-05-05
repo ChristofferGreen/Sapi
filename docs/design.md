@@ -202,6 +202,30 @@ Prepared-question product rules:
 - deterministic rendering MAY project question records into HTML pages, tables, and charts, but MUST
   NOT invent answer prose, conclusions, disagreements, or uncertainty text.
 
+Source-scouting sidecar rules:
+- source scouting starts from one active prepared question and writes only under
+  `<site_path>/scouting/spaces/<space_name>/questions/<question_id>/`.
+- candidate ranking MUST include answer fit, reputable journal/venue rationale, citation count with
+  provider/as-of metadata, public PDF availability, and interestingness rationale.
+- scouting candidates are recommendations, not canonical source/claim/relation/topic artifacts.
+  Canonical knowledge writes occur only when `import_scouted_sources.sh` calls `ingest.sh`.
+- deterministic post-processing may validate candidate identifiers, DOI/URL/PDF provenance, duplicate
+  candidates, access status, and ranking fields, but MUST NOT invent semantic rationale.
+- import skips candidates without public PDFs unless a restricted-source import is explicitly allowed
+  and the operator supplies a real local PDF.
+
+Restricted-source ingest rules:
+- the canonical flag is `--restricted-source`; unclear aliases such as
+  `--allow-not-publicly-accessible` MUST fail fast.
+- restricted-source ingest requires a real local PDF with a valid PDF signature and explicit
+  operator-provided reason/responsibility metadata.
+- source records persist `access_policy` with `restricted`, `public_download`,
+  `public_source_view`, `reason`, `landing_url`, and `operator_responsibility`.
+- deterministic site output hides PDF/download links, raw source artifact links, extracted
+  source-text links, and front-page source previews when the policy disables public download/view.
+- bibliographic metadata, DOI/landing-page links, canonical claims, evidence, topics, and provenance
+  may remain visible according to the policy.
+
 Identity model:
 - `persona_id` is the only stable identity key for attribution and links.
 - canonical stored identity field is `persona_id`.
@@ -287,6 +311,7 @@ Flow map (authoritative defaults):
 | `question_relevance_mapping` | `ai_flows/generation_specs/question_relevance_mapping.v1.md` | `schemas/question_relevance_mapping.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/question_relevance_mapping.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `question_synthesis` | `ai_flows/generation_specs/question_synthesis.v1.md` | `schemas/question_synthesis.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/question_synthesis/<question_id>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 | `question_measurement_extraction` | `ai_flows/generation_specs/question_measurement_extraction.v1.md` | `schemas/question_measurement_extraction.v1.schema.json` | `<space_root>/runs/<run_id>/semantic/question_measurement_extraction/<question_id>.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
+| `source_scouting` | `ai_flows/generation_specs/source_scouting.v1.md` | `schemas/source_scouting.v1.schema.json` | `<site_path>/scouting/spaces/<space_name>/questions/<question_id>/runs/<run_id>/source_scouting.json` | pinned to `v1`; incompatible schema/output changes require `v2` spec+schema files |
 
 Canonical-write note (normative):
 - flow-map `output_json_path` values are semantic-output paths for the LLM invocation.
@@ -298,7 +323,7 @@ Discovery and pinning rules:
 - spec/schema version pairing is immutable per major version (`<flow_key>.v1.md` MUST reference `<flow_key>.v1.schema.json`).
 - backward-compatible prompt wording/context improvements MAY update an existing major version file.
 - incompatible schema shape/output-path contract changes MUST create new major-version files and update this flow map explicitly.
-- path templates MAY contain runtime tokens (for example `<space_root>`, `<run_id>`, `<query_id>`, `<topic_id>`, `<persona_id>`, `<page_ref_key>`, `<overview_id>`, `<question_id>`); tokens MUST be resolved to absolute paths before LLM invocation and validation.
+- path templates MAY contain runtime tokens (for example `<site_path>`, `<space_root>`, `<run_id>`, `<query_id>`, `<topic_id>`, `<persona_id>`, `<page_ref_key>`, `<overview_id>`, `<space_name>`, `<question_id>`); tokens MUST be resolved to absolute paths before LLM invocation and validation.
 - for comment-section semantic outputs, `<page_ref_key>` MUST be a deterministic filesystem-safe key derived from the canonical `page_ref` (for example `<page_type>--<page_id>`).
 
 Canonical-only naming policy (normative):
@@ -818,6 +843,8 @@ Prepared question refresh:
 - bootstrap wrappers (`create_site.sh`, `create_space.sh`) are the only commands allowed to run without an operator-supplied `--registry-path`; they MUST initialize/use `<site_path>/spaces.toml` directly.
 - wrapper argument normalization for `ingest.sh`:
   - canonical rollback-override flag is `--force` (no alias)
+  - canonical restricted-access flag is `--restricted-source`; unclear aliases such as
+    `--allow-not-publicly-accessible` MUST fail fast with usage error
   - removed flags `--source-only` and `--query-only` MUST fail fast with usage error
 - wrapper argument normalization for `create_comments.sh`:
   - canonical wrapper flags are `--count`, `--comment-user`, and `--comment-page`
@@ -829,6 +856,8 @@ Recovered mapping examples:
 - `create_comments.sh <site_path> <space_name> --count <n> ...` -> `scripts/create_comments.py <space_name> --count <n> ... --registry-path <site_path>/spaces.toml`
 - `generate_profiles.sh <site_path> <space_name> ...` -> `scripts/generate_profiles.py <space_name> ... --registry-path <site_path>/spaces.toml`
 - `evaluate_source.sh <site_path> <space_name> <source> ...` -> `scripts/evaluate_source.py <space_name> <source> ... --registry-path <site_path>/spaces.toml`
+- `scout_sources.sh <site_path> <space_name> <question_id> ...` -> `scripts/scout_sources.py <space_name> <question_id> ... --registry-path <site_path>/spaces.toml`
+- `import_scouted_sources.sh <site_path> <space_name> ...` -> `scripts/import_scouted_sources.py <space_name> ... --registry-path <site_path>/spaces.toml`
 
 Canonical wrapper/script/workflow-key map (normative):
 
@@ -836,6 +865,8 @@ Canonical wrapper/script/workflow-key map (normative):
 | --- | --- | --- |
 | `ingest.sh` | `scripts/ingest_source.py` | `ingest_source` |
 | `refresh_questions.sh` | `scripts/refresh_questions.py` | `refresh_questions` |
+| `scout_sources.sh` | `scripts/scout_sources.py` | `source_scouting` |
+| `import_scouted_sources.sh` | `scripts/import_scouted_sources.py` | bridge only; calls `ingest.sh` |
 | `query.sh` | `scripts/query.py` | `query` |
 | `create_comments.sh` | `scripts/create_comments.py` | `create_comments` |
 | `generate_profiles.sh` | `scripts/generate_profiles.py` | `generate_profiles` |
@@ -1893,7 +1924,7 @@ Canonical run-record metadata (normative base envelope for committed runs):
   - lint totals (`lint_error_count`, `lint_warning_count`, `lint_info_count`)
 - run-record `flow_key` namespace is command/pipeline oriented and distinct from generation-spec semantic `flow_key` values.
 - `flow_key` allowed values: `ingest_pipeline`, `query_pipeline`, `comment_section_pipeline`, `persona_profile_pipeline`, `overview_pipeline`, `question_pipeline`
-- `semantic_flows` values MUST be an ordered unique subset of canonical semantic flow keys from: `ingest_extraction`, `topic_generation`, `source_revision_detection`, `query_synthesis`, `comment_section_generation`, `persona_profile_generation`, `space_overview_generation`, `question_relevance_mapping`, `question_synthesis`, `question_measurement_extraction`
+- `semantic_flows` values MUST be an ordered unique subset of canonical semantic flow keys from: `ingest_extraction`, `topic_generation`, `source_revision_detection`, `query_synthesis`, `comment_section_generation`, `persona_profile_generation`, `space_overview_generation`, `question_relevance_mapping`, `question_synthesis`, `question_measurement_extraction`, `source_scouting`
 - `semantic_flow_invocation_counts` keys MUST be canonical semantic flow keys and values MUST be positive integers; every key in `semantic_flows` MUST appear in this map.
 - flow-specific frontmatter extensions:
   - ingest pipeline: `ingest_scope`, `source_ids`, nullable `parent_run_id`, changed sets (`claims_changed`, `relations_changed`, `topic_pages_changed`, `question_matches_changed`, `question_measurements_changed`, `question_syntheses_changed`), question mapping/measurement/synthesis statuses (`question_mapping_status`, `question_measurement_status`, `question_synthesis_status`), optional deferred-build flags (`build_deferred`, `deferred_build_reason`), optional force-mode flags (`force_mode`, `rollback_skipped`)

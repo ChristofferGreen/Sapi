@@ -102,6 +102,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--citation-count-as-of")
     parser.add_argument("--citation-count-provider")
     parser.add_argument("--citation-count-confidence")
+    parser.add_argument("--restricted-source", action="store_true")
+    parser.add_argument("--source-access-reason")
+    parser.add_argument("--source-landing-url")
+    parser.add_argument("--operator-responsibility")
     parser.add_argument("--enable-comment-enrichment", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--comment-count", type=int, help=argparse.SUPPRESS)
     parser.add_argument("--comment-page", action="append", default=[], help=argparse.SUPPRESS)
@@ -167,6 +171,7 @@ def main() -> int:
             require_source_date=args.require_source_date,
         )
         validate_runtime_flag_arguments(args)
+        source_access_policy = _build_source_access_policy(args)
         runtime_flags = snapshot_runtime_flags(args)
         runtime_policy = evaluate_semantic_runtime_policy(
             mock_llm=runtime_flags.mock_llm,
@@ -200,6 +205,7 @@ def main() -> int:
                 citation_count_as_of=args.citation_count_as_of,
                 citation_count_provider=args.citation_count_provider,
                 citation_count_confidence=args.citation_count_confidence,
+                access_policy=source_access_policy,
             )
             _track_source_ingest_writes_for_rollback(
                 transaction=transaction,
@@ -494,6 +500,7 @@ def main() -> int:
                 deferred_build_reason=deferred_build_reason,
                 force_mode=bool(args.force),
                 rollback_skipped=bool(args.force),
+                source_access_policy=_safe_source_access_policy(result),
             )
             lint_summary = apply_lint_gate_to_run_base(
                 base=base,
@@ -560,6 +567,7 @@ def main() -> int:
         deferred_build_reason=deferred_build_reason,
         force_mode=False,
         rollback_skipped=False,
+        source_access_policy=_safe_source_access_policy(result),
     )
     if ingest_semantic_plan is not None:
         ingest_semantic_plan = plan_ingest_semantic_execution(
@@ -747,6 +755,7 @@ def _make_ingest_flow_fields(
     deferred_build_reason: str | None,
     force_mode: bool,
     rollback_skipped: bool,
+    source_access_policy: dict[str, object] | None = None,
 ) -> IngestRunFields:
     claims_changed = 0
     relations_changed = 0
@@ -788,7 +797,68 @@ def _make_ingest_flow_fields(
         question_measurements_changed=question_measurements_changed,
         question_synthesis_status=question_synthesis_status,
         question_syntheses_changed=question_syntheses_changed,
+        restricted_source_mode=bool(
+            isinstance(source_access_policy, dict) and source_access_policy.get("restricted") is True
+        ),
+        source_access_policy=source_access_policy,
     )
+
+
+def _safe_source_access_policy(result: SourceIngestResult | None) -> dict[str, object] | None:
+    if result is None or not result.record_path.is_file():
+        return None
+    try:
+        payload = json.loads(result.record_path.read_text())
+    except Exception:
+        return None
+    if not isinstance(payload, dict):
+        return None
+    access_policy = payload.get("access_policy")
+    if isinstance(access_policy, dict):
+        return dict(access_policy)
+    return None
+
+
+def _build_source_access_policy(args: argparse.Namespace) -> dict[str, object]:
+    if not args.restricted_source:
+        if args.source_access_reason or args.source_landing_url or args.operator_responsibility:
+            raise ValueError("Source access-policy detail flags require --restricted-source.")
+        return {
+            "restricted": False,
+            "public_download": True,
+            "public_source_view": True,
+            "reason": None,
+            "landing_url": None,
+            "operator_responsibility": None,
+        }
+    _reject_restricted_source_placeholder(source_path_or_url=args.source_path_or_url)
+    reason = str(args.source_access_reason or "").strip()
+    responsibility = str(args.operator_responsibility or "").strip()
+    if not reason:
+        raise ValueError("--restricted-source requires --source-access-reason.")
+    if not responsibility:
+        raise ValueError("--restricted-source requires --operator-responsibility.")
+    return {
+        "restricted": True,
+        "public_download": False,
+        "public_source_view": False,
+        "reason": reason,
+        "landing_url": str(args.source_landing_url).strip() if args.source_landing_url else None,
+        "operator_responsibility": responsibility,
+    }
+
+
+def _reject_restricted_source_placeholder(*, source_path_or_url: str) -> None:
+    source_path = Path(source_path_or_url).expanduser()
+    if not source_path.is_absolute():
+        source_path = (Path.cwd() / source_path).resolve()
+    if not source_path.is_file():
+        raise ValueError("--restricted-source requires a local PDF file.")
+    if source_path.suffix.lower() != ".pdf":
+        raise ValueError("--restricted-source requires a local real journal-article PDF.")
+    body = source_path.read_bytes()
+    if not body.lstrip().startswith(b"%PDF-"):
+        raise ValueError("--restricted-source input must start with the PDF signature `%PDF-`.")
 
 
 def _summarize_question_measurement_status(results: list[QuestionMeasurementResult]) -> str:
