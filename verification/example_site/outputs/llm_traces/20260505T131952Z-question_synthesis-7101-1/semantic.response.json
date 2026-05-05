@@ -1,0 +1,161 @@
+{
+  "citation_anchors": [
+    {
+      "anchor_id": "anchor-amortized-running-average",
+      "claim_ids": [
+        "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca"
+      ],
+      "evidence_ids": [
+        "evidence-amortized-running-average--f8b42c719a5e"
+      ],
+      "label": "[S1]",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+    },
+    {
+      "anchor_id": "anchor-reprojection-resampling-blur",
+      "claim_ids": [
+        "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d",
+        "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca"
+      ],
+      "evidence_ids": [
+        "evidence-reprojection-resampling-blur--5aa91bd02c64"
+      ],
+      "label": "[S2]",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+    },
+    {
+      "anchor_id": "anchor-perceptual-temporal-effects",
+      "claim_ids": [
+        "claim-perceptual-temporal-coherence-can-enrich-rendered-content-by-exploiting-visual-i--b796e0540b6f"
+      ],
+      "evidence_ids": [
+        "evidence-perceptual-temporal-effects--b5fa2d180c7e"
+      ],
+      "label": "[S3]",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+    }
+  ],
+  "conclusions": [
+    {
+      "claim_ids": [
+        "claim-perceived-motion-quality-can-be-modeled-as-a-function-of-refresh-rate-image-reso--519bf0074d7b"
+      ],
+      "evidence_ids": [
+        "evidence-quality-sum-equation--c9d85a7e4b32"
+      ],
+      "source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      ],
+      "support": "strong",
+      "text": "For motion-adaptive rendering, perceptual error should be measured as a quality difference in perceptual units, using rendering conditions such as refresh rate, image resolution, object velocity, and motion predictability, then decomposing the visible error into blur and judder components."
+    },
+    {
+      "claim_ids": [
+        "claim-motion-blur-in-the-model-comes-from-hold-type-display-blur-imperfect-eye-trackin--f4a63ca14b95",
+        "claim-perceived-motion-quality-can-be-modeled-as-a-function-of-refresh-rate-image-reso--519bf0074d7b"
+      ],
+      "evidence_ids": [
+        "evidence-three-blur-equations--f0a4d62e5c19"
+      ],
+      "source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      ],
+      "support": "strong",
+      "text": "A useful perceptual-error measurement should distinguish different blur sources rather than collapse them into one spatial error score, because hold-type display blur, eye-motion blur, and finite-resolution blur have different physical causes and different relationships to refresh rate, velocity, predictability, and pixels per degree."
+    },
+    {
+      "claim_ids": [
+        "claim-motion-predictability-affects-smooth-pursuit-eye-motion-with-unpredictable-motio--c0bac233757d",
+        "claim-perceived-motion-quality-can-be-modeled-as-a-function-of-refresh-rate-image-reso--519bf0074d7b"
+      ],
+      "evidence_ids": [
+        "evidence-eye-tracking-predictability--8de27c14a6bf"
+      ],
+      "source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      ],
+      "support": "strong",
+      "text": "Motion predictability should be part of perceptual-error measurement for moving imagery, because the same display and object motion can produce different retinal blur: unpredictable motion caused more correction saccades and larger tracking delay than predictable motion in the linked eye-tracking evidence."
+    },
+    {
+      "claim_ids": [
+        "claim-judder-is-perceptually-important-at-50-hz-and-60-hz-but-becomes-negligible-at-72--123662905a6e",
+        "claim-perceived-motion-quality-can-be-modeled-as-a-function-of-refresh-rate-image-reso--519bf0074d7b",
+        "claim-the-full-visual-model-using-parallel-blur-judder-and-predictability-provides-the--872618cdc255"
+      ],
+      "evidence_ids": [
+        "evidence-judder-threshold-results--4ac9e735d2b8"
+      ],
+      "source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      ],
+      "support": "strong",
+      "text": "Judder should be measured separately from blur when evaluating temporal quality, especially around lower refresh rates, because the isolated-judder experiment found detectable judder at 50 Hz and 60 Hz but negligible discrimination at 72 Hz and 83 Hz, with a fitted judder model RMSE of 0.1074 JND."
+    },
+    {
+      "claim_ids": [
+        "claim-the-full-visual-model-using-parallel-blur-judder-and-predictability-provides-the--872618cdc255",
+        "claim-perceived-motion-quality-can-be-modeled-as-a-function-of-refresh-rate-image-reso--519bf0074d7b"
+      ],
+      "evidence_ids": [
+        "evidence-ablation-rmse-table--d72b5f1c0e99"
+      ],
+      "source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      ],
+      "support": "strong",
+      "text": "The best-supported metric is multi-component rather than single-artifact: the ablation evidence reports the best training fit when parallel blur, judder, and predictability are all enabled, while judder alone fits poorly."
+    },
+    {
+      "claim_ids": [
+        "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca"
+      ],
+      "evidence_ids": [
+        "evidence-amortized-running-average--f8b42c719a5e"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "strong",
+      "text": "For temporal accumulation and amortized sampling, perceptual error should not be inferred from noise reduction alone; the same smoothing that reduces sampling variance also creates temporal lag or blur from older-frame contributions."
+    },
+    {
+      "claim_ids": [
+        "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d",
+        "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca"
+      ],
+      "evidence_ids": [
+        "evidence-reprojection-resampling-blur--5aa91bd02c64"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "moderate",
+      "text": "For reprojection-based reuse, perceptual error should include spatial degradation from repeated resampling, especially attenuation or misplacement of high-frequency detail and accumulated blur under motion."
+    },
+    {
+      "claim_ids": [
+        "claim-perceptual-temporal-coherence-can-enrich-rendered-content-by-exploiting-visual-i--b796e0540b6f"
+      ],
+      "evidence_ids": [
+        "evidence-perceptual-temporal-effects--b5fa2d180c7e"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "weak",
+      "text": "Perceptual measurement should allow for human temporal integration, because rapid temporal changes may be perceived as stable or richer apparent content rather than frame-by-frame error, but the linked evidence is qualitative and does not provide a scoring method."
+    }
+  ],
+  "disagreements": [],
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_synthesis_v1",
+  "short_answer": "Perceptual error in graphics algorithms should be measured against visible quality, not raw algorithmic difference alone. The strongest linked evidence supports JND-scaled models that decompose motion quality into blur, judder, resolution, velocity, and motion predictability, while temporal-reuse algorithms also need explicit checks for variance reduction, lag, and accumulated resampling blur.",
+  "uncertainty": "The strongest evidence is scoped to high-refresh LCD motion-quality modeling and temporal reuse artifacts. It supports measuring visible error with JND-scaled blur, judder, predictability, variance, lag, and accumulated blur terms, but it does not establish one universal perceptual-error metric for all graphics algorithms, all display types, HDR, VR, flicker, ghosting, or content-aware rendering.",
+  "warnings": [
+    "The linked perceptual temporal effects evidence is qualitative and contains no extractable numeric perceptual-error measurement.",
+    "The repeated resampling blur evidence gives symbolic formulas involving n and v but no concrete numeric values suitable for a measurement row.",
+    "The motion-quality model source is strongest for high-refresh LCD real-time graphics and does not validate HDR, VR, low-persistence displays, flicker, ghosting, or content-aware rendering.",
+    "No pre-existing citation anchor IDs were provided for the newly linked motion-quality source, so citation anchors are limited to the existing anchors from the prior synthesis."
+  ]
+}

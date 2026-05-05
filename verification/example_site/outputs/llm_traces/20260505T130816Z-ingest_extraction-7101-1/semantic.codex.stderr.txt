@@ -1,0 +1,8 @@
+[
+  {
+    "message": "'This paper proposes a perceptual model for deciding how to trade rendering resolution against refresh rate when GPU or bandwidth budgets are limited. It argues that motion velocity and predictability determine whether a viewer benefits more from sharper spatial detail or smoother temporal sampling. The authors fit the model with psychophysical and eye-tracking experiments, then validate a real-time adaptive rendering algorithm called MARRR against fixed rendering policies.' is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

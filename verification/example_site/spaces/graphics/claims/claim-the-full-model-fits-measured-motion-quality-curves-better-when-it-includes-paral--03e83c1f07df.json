@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T14:01:56Z",
+  "claim_id": "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df",
+  "evidence_excerpts": [
+    "The ablation study reports that best predictions are provided when all model features are enabled, with RMSE=0.31, while judder alone gives poor fits above 0.51 RMSE."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Full model fits best",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "text": "The full model fits measured motion-quality curves better when it includes parallel blur, judder, and separate handling of predictable and unpredictable motion."
+}

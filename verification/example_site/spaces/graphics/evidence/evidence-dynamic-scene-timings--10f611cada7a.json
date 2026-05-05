@@ -1,0 +1,15 @@
+{
+  "claim_ids": [
+    "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c"
+  ],
+  "evidence_id": "evidence-dynamic-scene-timings--10f611cada7a",
+  "evidence_type": "figure_result",
+  "excerpt": "Figure 1 reports a Zero Day frame with 11,000 dynamic emissive triangles rendered in 15 ms and an Amusement Park view with 3.4 million dynamic emissive triangles rendered in 50 ms, both at 1920 x 1080 resolution.",
+  "overview": "These timing and scene-size measurements anchor the paper's main practical claim: ReSTIR is not only a theoretical sampling method but a GPU implementation capable of real-time direct lighting in scenes with thousands to millions of dynamic emitters. The evidence is scene-specific and does not by itself establish performance for all hardware or content.",
+  "page_refs": [
+    "Fig. 1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "title": "Dynamic Scene Timing Results"
+}

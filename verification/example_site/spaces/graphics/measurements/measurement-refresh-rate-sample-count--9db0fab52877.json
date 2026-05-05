@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26",
+  "comparator": "none stated",
+  "evidence_id": "evidence-motion-quality-range--9db0fab52877",
+  "measure_name": "refresh-rate condition count",
+  "measurement_id": "measurement-refresh-rate-sample-count--9db0fab52877",
+  "outcome": "coverage of refresh-rate conditions for subjective quality measurement",
+  "population": "motion-quality experiment animations from 50 Hz to 165 Hz",
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "uncertainty": "conditions were spaced in 5 Hz steps across the stated range",
+  "unit": "conditions",
+  "value": 23,
+  "value_max": null
+}

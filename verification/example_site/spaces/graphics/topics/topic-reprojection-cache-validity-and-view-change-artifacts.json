@@ -1,0 +1,32 @@
+{
+  "claim_ids": [
+    "claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52",
+    "claim-forward-reprojection-can-map-cached-pixels-directly-into-the-target-frame-withou--7c9205493d0f",
+    "claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11",
+    "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063",
+    "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d",
+    "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+    "claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e"
+  ],
+  "sections": [
+    {
+      "body": "Temporal reuse is limited by whether cached frame data still corresponds to the same visible surface point. Reverse reprojection tests previous-frame positions and depth or identity agreement, while forward reprojection maps cached pixels into the target frame but must handle motion vectors, scattering, occlusion, and holes.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "The same broader problem appears in image-based impostor rendering: precomputed visual samples can accelerate dense crowds, but view changes introduce popping unless the impostor plane is adjusted. Both sources treat reuse of prior or simplified visual representations as useful only when geometric and visibility mismatch are controlled.",
+      "heading": "Section 2"
+    },
+    {
+      "body": "Failure modes include disoccluded regions with missing previous data, stale cache entries after shading changes, and repeated resampling that blurs or misplaces high frequencies. These limits make refresh, recomputation, fading, hole filling, and artifact-aware representation choices central to practical reuse.",
+      "heading": "Section 3"
+    }
+  ],
+  "source_ids": [
+    "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1"
+  ],
+  "structure_type": "wiki",
+  "title": "Cache Validity and View-Change Artifacts",
+  "topic_id": "topic-reprojection-cache-validity-and-view-change-artifacts"
+}

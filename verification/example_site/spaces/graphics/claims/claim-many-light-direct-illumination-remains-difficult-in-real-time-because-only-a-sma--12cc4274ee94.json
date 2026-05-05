@@ -1,0 +1,9 @@
+{
+  "added_at": "2026-05-05T13:38:06Z",
+  "claim_id": "claim-many-light-direct-illumination-remains-difficult-in-real-time-because-only-a-sma--12cc4274ee94",
+  "evidence_excerpts": [],
+  "schema_version": "claim_record_v1",
+  "short_title": "Many lights challenge real-time",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "text": "Many-light direct illumination remains difficult in real time because only a small number of rays can be traced per pixel while important lights depend on visibility, material response, geometry, and emitter power."
+}

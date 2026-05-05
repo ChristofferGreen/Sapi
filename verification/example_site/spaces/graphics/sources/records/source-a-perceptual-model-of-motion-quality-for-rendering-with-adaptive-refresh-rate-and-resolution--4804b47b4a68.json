@@ -1,0 +1,897 @@
+{
+  "access_policy": {
+    "landing_url": null,
+    "operator_responsibility": null,
+    "public_download": true,
+    "public_source_view": true,
+    "reason": null,
+    "restricted": false
+  },
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68/front_page.png",
+    "source_extraction": "sources/artifacts/source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68/source_extraction.json",
+    "source_file": "sources/artifacts/source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68/source.pdf",
+    "source_markdown": "sources/artifacts/source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68/source.md",
+    "source_provenance": "sources/artifacts/source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68/source_provenance.md"
+  },
+  "authors": [
+    "Gyorgy Denes",
+    "Akshay Jindal",
+    "Aliaksei Mikhailiuk",
+    "Rafa\u0142 K. Mantiuk"
+  ],
+  "canonical_identifier": "10.1145/3386569.3392411",
+  "citation_count": 32.0,
+  "citation_count_as_of": "2026-05-05",
+  "citation_count_confidence": "medium",
+  "citation_count_provider": "Mendeley catalog",
+  "date": null,
+  "display_title": "A Perceptual Model of Motion Quality for Rendering with Adaptive Refresh-Rate and Resolution",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[7].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "108\u015b113. https://doi.org/",
+      "url": "https://doi.org/10.1016/j.neulet.2006.02.074"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[12].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "1701\u015b1710. https://doi.org/",
+      "url": "https://doi.org/10.1109/CVPR.2018.00183"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[25].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "1\u015b11. https://doi.org/",
+      "url": "https://doi.org/10.1145/2897824.2925879"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[15].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "2072\u015b2082. https://doi.org/",
+      "url": "https://doi.org/10.1109/TVCG.2019.2898741"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[10].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "273\u015b286. https://doi.org/",
+      "url": "https://doi.org/10.1037/h0070288"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[16].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "363\u015b374. https://doi.org/",
+      "url": "https://doi.org/10.1111/cgf.13302"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[6].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Applied Ergonomics. Vol. 18. Chapter 6 340. https://doi.org/",
+      "url": "https://doi.org/10.1016/0003-6870(87"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[24].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Article 161 Dec. 12 pages. https://doi.org/",
+      "url": "https://doi.org/10.1145/1882261.1866187"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[1].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "cations. Physiological Reviews 32 3 jul 349\u015b378. /",
+      "url": "https://doi.org/10.1152"
+    },
+    {
+      "confidence": "high",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "canonical_identifier",
+        "source_field": "canonical_identifier"
+      },
+      "quality_status": "trusted",
+      "rationale": "Canonical identifier for the ingested source.",
+      "title": "DOI landing page",
+      "url": "https://doi.org/10.1145/3386569.3392411"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[28].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "eye movements. Journal of vision . https://doi.org/",
+      "url": "https://doi.org/10.1167/15.15.11"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[17].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Forum 31 8 2378\u015b2408. https://doi.org/",
+      "url": "https://doi.org/10.1111/j.1467-8659.2012.03075.x"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[11].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.1109/AERO.2016.7500674"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[14].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.1109/THFE2.1962.4503342"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[20].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.1117/12.320110"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[34].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.5594/JMI.2017.2749919"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[13].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "ICIP . IEEE 2435\u015b2439. https://doi.org/",
+      "url": "https://doi.org/10.1109/ICIP.2016.7532796"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[33].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Journal 124 7 October 62\u015b70. https://doi.org/",
+      "url": "https://doi.org/10.5594/j18616"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[18].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Journal of Physiology 180 3 oct 569\u015b591. https://doi.org/",
+      "url": "https://doi.org/10.1113/jphysiol"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[0].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Journal of the Optical Society of America 69 10 oct 1340",
+      "url": "https://doi.org/10"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[21].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Miyake and D. Rene Rasmussen Eds. . 231\u015b238. https://doi.org/",
+      "url": "https://doi.org/10.1117/12.537476"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[29].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "of the Optical Society of America A . https://doi.org/",
+      "url": "https://doi.org/10.1364/josaa.3.000300"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[32].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "of Visibility. SMPTE Motion Imaging Journal . https://doi.org/",
+      "url": "https://doi.org/10.5594/j18266xy"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[30].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Papers 37 1 14. https://doi.org/",
+      "url": "https://doi.org/10.1889/1.2433276"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[22].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Pappas Eds. . 724015. https://doi.org/",
+      "url": "https://doi.org/10.1117/12.811757"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[19].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Physiology . https://doi.org/",
+      "url": "https://doi.org/10.1113/jphysiol.1964.sp007485"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[31].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "the Society for Information Display 15 1 61. https://doi.org/",
+      "url": "https://doi.org/10.1889/1.2451560"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[9].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Vision Research 76 jan 31\u015b42. https://doi.org/",
+      "url": "https://doi.org/10.1016/j.visres.2012.10.012"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[27].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "York New York USA 535\u015b542. https://doi.org/",
+      "url": "https://doi.org/10.1145/985692.985760"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[23].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "\u201909. ACM Press New York New York USA 42. https://doi.org/",
+      "url": "https://doi.org/10.1145/1536513"
+    },
+    {
+      "confidence": "high",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "canonical_identifier",
+        "source_field": "canonical_identifier"
+      },
+      "quality_status": "trusted",
+      "rationale": "Canonical arXiv identifier for the ingested source.",
+      "title": "arXiv abstract",
+      "url": "https://arxiv.org/abs/6569.33924"
+    },
+    {
+      "confidence": "high",
+      "domain": "www.cl.cam.ac.uk",
+      "link_type": "primary_source",
+      "provenance": {
+        "origin": "source_locator",
+        "source_field": "source_locator"
+      },
+      "quality_status": "contextual",
+      "rationale": "Original network location captured during ingest.",
+      "title": "Original source link",
+      "url": "https://www.cl.cam.ac.uk/research/rainbow/projects/motion_quality_model/denes20_comp.pdf"
+    }
+  ],
+  "ingested_at": "2026-05-05T13:55:59Z",
+  "linked_source_ids": [
+    "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+    "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+  ],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Journal of the Optical Society of America 69 10 oct 1340",
+      "url": "https://doi.org/10",
+      "year": 1979
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "cations. Physiological Reviews 32 3 jul 349\u015b378. /",
+      "url": "https://doi.org/10.1152",
+      "year": 1952
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "1Project web page",
+      "url": "https://www.cl.cam.ac.uk/research/rainbow/projects/motion_",
+      "year": null
+    },
+    {
+      "arxiv": "1712.03686v2",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "pairwise comparison experiments",
+      "url": null,
+      "year": 2017
+    },
+    {
+      "arxiv": "2004.05691",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Passing and Information Gain Maximization. cs.LG/",
+      "url": null,
+      "year": 2004
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1007/s00530-007-0081-1",
+      "linked_source_ids": [],
+      "title": "//doi.org/",
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/0003-6870(87",
+      "linked_source_ids": [],
+      "title": "Applied Ergonomics. Vol. 18. Chapter 6 340. https://doi.org/",
+      "url": "https://doi.org/10.1016/0003-6870(87",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.neulet.2006.02.074",
+      "linked_source_ids": [],
+      "title": "108\u015b113. https://doi.org/",
+      "url": "https://doi.org/10.1016/j.neulet.2006.02.074",
+      "year": 2006
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.neuron.2010.03.027",
+      "linked_source_ids": [],
+      "title": "//doi.org/",
+      "url": null,
+      "year": 2010
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1016/j.visres.2012.10.012",
+      "linked_source_ids": [],
+      "title": "Vision Research 76 jan 31\u015b42. https://doi.org/",
+      "url": "https://doi.org/10.1016/j.visres.2012.10.012",
+      "year": 2013
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1037/h0070288",
+      "linked_source_ids": [],
+      "title": "273\u015b286. https://doi.org/",
+      "url": "https://doi.org/10.1037/h0070288",
+      "year": null
+    },
+    {
+      "arxiv": "2016.75006",
+      "authors": [],
+      "doi": "10.1109/aero.2016.7500674",
+      "linked_source_ids": [],
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.1109/AERO.2016.7500674",
+      "year": 2016
+    },
+    {
+      "arxiv": "2018.00183",
+      "authors": [],
+      "doi": "10.1109/cvpr.2018.00183",
+      "linked_source_ids": [],
+      "title": "1701\u015b1710. https://doi.org/",
+      "url": "https://doi.org/10.1109/CVPR.2018.00183",
+      "year": 2018
+    },
+    {
+      "arxiv": "2016.75327",
+      "authors": [],
+      "doi": "10.1109/icip.2016.7532796",
+      "linked_source_ids": [],
+      "title": "ICIP . IEEE 2435\u015b2439. https://doi.org/",
+      "url": "https://doi.org/10.1109/ICIP.2016.7532796",
+      "year": 2016
+    },
+    {
+      "arxiv": "1962.45033",
+      "authors": [],
+      "doi": "10.1109/thfe2.1962.4503342",
+      "linked_source_ids": [],
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.1109/THFE2.1962.4503342",
+      "year": 1962
+    },
+    {
+      "arxiv": "2019.28987",
+      "authors": [],
+      "doi": "10.1109/tvcg.2019.2898741",
+      "linked_source_ids": [],
+      "title": "2072\u015b2082. https://doi.org/",
+      "url": "https://doi.org/10.1109/TVCG.2019.2898741",
+      "year": 2019
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1111/cgf.13302",
+      "linked_source_ids": [],
+      "title": "363\u015b374. https://doi.org/",
+      "url": "https://doi.org/10.1111/cgf.13302",
+      "year": null
+    },
+    {
+      "arxiv": "8659.2012",
+      "authors": [],
+      "doi": "10.1111/j.1467-8659.2012.03075.x",
+      "linked_source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "title": "Forum 31 8 2378\u015b2408. https://doi.org/",
+      "url": "https://doi.org/10.1111/j.1467-8659.2012.03075.x",
+      "year": 2012
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1113/jphysiol",
+      "linked_source_ids": [],
+      "title": "Journal of Physiology 180 3 oct 569\u015b591. https://doi.org/",
+      "url": "https://doi.org/10.1113/jphysiol",
+      "year": 1965
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1113/jphysiol.1964.sp007485",
+      "linked_source_ids": [],
+      "title": "Physiology . https://doi.org/",
+      "url": "https://doi.org/10.1113/jphysiol.1964.sp007485",
+      "year": 1964
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1117/12.320110",
+      "linked_source_ids": [],
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.1117/12.320110",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1117/12.537476",
+      "linked_source_ids": [],
+      "title": "Miyake and D. Rene Rasmussen Eds. . 231\u015b238. https://doi.org/",
+      "url": "https://doi.org/10.1117/12.537476",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1117/12.811757",
+      "linked_source_ids": [],
+      "title": "Pappas Eds. . 724015. https://doi.org/",
+      "url": "https://doi.org/10.1117/12.811757",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1145/1536513",
+      "linked_source_ids": [],
+      "title": "\u201909. ACM Press New York New York USA 42. https://doi.org/",
+      "url": "https://doi.org/10.1145/1536513",
+      "year": null
+    },
+    {
+      "arxiv": "2261.18661",
+      "authors": [],
+      "doi": "10.1145/1882261.1866187",
+      "linked_source_ids": [],
+      "title": "Article 161 Dec. 12 pages. https://doi.org/",
+      "url": "https://doi.org/10.1145/1882261.1866187",
+      "year": 2010
+    },
+    {
+      "arxiv": "7824.29258",
+      "authors": [],
+      "doi": "10.1145/2897824.2925879",
+      "linked_source_ids": [],
+      "title": "1\u015b11. https://doi.org/",
+      "url": "https://doi.org/10.1145/2897824.2925879",
+      "year": null
+    },
+    {
+      "arxiv": "6569.33924",
+      "authors": [],
+      "doi": "10.1145/3386569.3392411",
+      "linked_source_ids": [
+        "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+      ],
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.1145/3386569.3392411",
+      "year": null
+    },
+    {
+      "arxiv": "5692.98576",
+      "authors": [],
+      "doi": "10.1145/985692.985760",
+      "linked_source_ids": [],
+      "title": "York New York USA 535\u015b542. https://doi.org/",
+      "url": "https://doi.org/10.1145/985692.985760",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1167/15.15.11",
+      "linked_source_ids": [],
+      "title": "eye movements. Journal of vision . https://doi.org/",
+      "url": "https://doi.org/10.1167/15.15.11",
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1364/josaa.3.000300",
+      "linked_source_ids": [],
+      "title": "of the Optical Society of America A . https://doi.org/",
+      "url": "https://doi.org/10.1364/josaa.3.000300",
+      "year": 2008
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1889/1.2433276",
+      "linked_source_ids": [],
+      "title": "Papers 37 1 14. https://doi.org/",
+      "url": "https://doi.org/10.1889/1.2433276",
+      "year": 2006
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1889/1.2451560",
+      "linked_source_ids": [],
+      "title": "the Society for Information Display 15 1 61. https://doi.org/",
+      "url": "https://doi.org/10.1889/1.2451560",
+      "year": 2007
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.5594/j18266xy",
+      "linked_source_ids": [],
+      "title": "of Visibility. SMPTE Motion Imaging Journal . https://doi.org/",
+      "url": "https://doi.org/10.5594/j18266xy",
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.5594/j18616",
+      "linked_source_ids": [],
+      "title": "Journal 124 7 October 62\u015b70. https://doi.org/",
+      "url": "https://doi.org/10.5594/j18616",
+      "year": 2015
+    },
+    {
+      "arxiv": "2017.27499",
+      "authors": [],
+      "doi": "10.5594/jmi.2017.2749919",
+      "linked_source_ids": [],
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.5594/JMI.2017.2749919",
+      "year": 2017
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "canonical_identifier",
+      "references",
+      "source_locator"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 1 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2020-07",
+    "origin": "source_markdown_acm_reference",
+    "rationale": "The Markdown extraction includes the ACM reference line identifying publication in ACM Transactions on Graphics 39(4), Article 133, July 2020, and a 2020 ACM copyright/DOI block."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The paper's core argument is that adaptive rendering should not choose between resolution and refresh rate with a static rule. Perceived quality depends on how fast objects move, whether the eye can predict that motion, and which artifacts become visible under the current budget. This leads to a model-based optimizer rather than a fixed refresh-rate or fixed-resolution policy.",
+        "grounding_claim_ids": [
+          "0",
+          "7"
+        ],
+        "heading": "Core Argument"
+      },
+      {
+        "body": "The model is deliberately interpretable. It predicts quality difference in JND units from refresh rate, resolution, velocity, and predictability, then decomposes the perceptual loss into motion-parallel blur, orthogonal blur, and judder. Hold-type display behavior, imperfect eye pursuit, and resolution reduction are first converted into blur terms; judder is handled through an aliasing and spatio-temporal contrast-sensitivity model.",
+        "grounding_claim_ids": [
+          "1"
+        ],
+        "heading": "Model Structure"
+      },
+      {
+        "body": "The first experiment supplies the main quality scale. Participants compared animations across 23 refresh rates from 50 Hz to 165 Hz, with multiple velocities and motion types. The results support the main perceptual pattern: higher refresh rates improve quality, but the improvement becomes harder to see above about 100 Hz, and lower velocities are preferred because they create less blur and are easier to inspect.",
+        "grounding_claim_ids": [
+          "2",
+          "3"
+        ],
+        "heading": "Psychophysical Evidence"
+      },
+      {
+        "body": "The eye-tracking experiment gives the model a physiological reason to distinguish predictable from unpredictable motion. Above 27.5 Hz, refresh rate did not materially affect smooth pursuit, but motion predictability did. Unpredictable motion caused more frequent correction saccades and much larger tracking delay, which increases retinal blur and changes the preferred rendering configuration.",
+        "grounding_claim_ids": [
+          "4"
+        ],
+        "heading": "Eye Motion and Predictability"
+      },
+      {
+        "body": "The isolated-judder experiment separates non-smooth motion from blur by artificially matching blur between low-refresh and high-refresh presentations. Observers detected judder at 50 Hz and 60 Hz but not at 72 Hz and 83 Hz. This makes judder a targeted low-refresh component instead of a generic penalty applied equally across the full display range.",
+        "grounding_claim_ids": [
+          "5"
+        ],
+        "heading": "Judder Calibration"
+      },
+      {
+        "body": "The ablation study shows why the complete model matters. Parallel blur alone captures some broad trends but misses important velocity differences, while judder alone fits poorly. The best reported fit occurs when parallel blur, judder, and predictable-versus-unpredictable separation are all enabled, indicating that the model's components are complementary.",
+        "grounding_claim_ids": [
+          "6"
+        ],
+        "heading": "Fit and Ablation"
+      },
+      {
+        "body": "MARRR applies the model by optimizing refresh rate and resolution under a fixed pixel budget, with lookup tables used for real-time operation. The validation experiments show that observers generally prefer the adaptive result over constant-rate baselines in panorama and game settings, though unpredictable motion and display-control latency expose practical limits in current G-Sync style hardware.",
+        "grounding_claim_ids": [
+          "7"
+        ],
+        "heading": "Rendering Application"
+      },
+      {
+        "body": "The paper is careful about scope. It is calibrated and validated on high-persistence LCD monitors, assumes foveal motion is the main driver, and omits flicker, ghosting, HDR behavior, low-persistence VR displays, and content-aware artifact models. Those limits do not invalidate the core result, but they constrain where the model can be applied without further validation.",
+        "grounding_claim_ids": [
+          "0",
+          "1",
+          "7"
+        ],
+        "heading": "Scope and Limits"
+      }
+    ],
+    "summary_long": "The source addresses a practical rendering problem: modern displays can support high spatial resolution and high refresh rate, but GPUs and transmission links often cannot deliver both at once. Instead of fixing resolution and varying refresh rate, or fixing refresh rate and varying resolution, the paper models which trade-off should look best for the current motion. Its central contribution is a perceptual model that predicts JND-scaled quality differences from refresh rate, image resolution, object velocity, and whether motion is predictable for smooth pursuit eye movement. The model decomposes quality loss into motion-parallel blur, motion-orthogonal blur, and judder. Those components are grounded in visual-system assumptions, equations for hold-type blur, eye-motion blur, resolution blur, and contrast-sensitivity energy, then fitted to psychophysical data. The empirical program is substantial: one experiment measures motion quality from 50 Hz to 165 Hz using pairwise comparisons and active sampling; another measures eye pursuit behavior for predictable and unpredictable motion; a third isolates judder by matching blur across smooth and juddery conditions. The fitted model explains why high refresh rates help but show diminishing perceptual returns above about 100 Hz, why higher velocities demand more temporal resolution, and why unpredictable motion needs separate treatment. The paper then turns the model into MARRR, a motion-adaptive resolution and refresh-rate renderer that uses precomputed lookup tables rather than solving an optimization per frame. Controlled panorama and sandbox game validations show general preference for MARRR over fixed-resolution/fixed-refresh baselines, especially for predictable user-driven motion. The scope is explicit: the work targets high-persistence LCD displays, leaves flicker, ghosting, HDR, low-persistence VR displays, and richer content-aware adaptation for future work, and depends on display synchronization interfaces that were imperfect in the experiments.",
+    "summary_short": "This paper builds a perceptual model for adaptive rendering on variable-refresh displays. It argues that the best resolution-refresh trade-off depends on object velocity and motion predictability, then validates a model-driven renderer against constant-rate alternatives."
+  },
+  "source_extraction": {
+    "converter_name": "markitdown",
+    "converter_version": "0.1.5",
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "source_kind": "url",
+  "source_locator": "https://www.cl.cam.ac.uk/research/rainbow/projects/motion_quality_model/denes20_comp.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Gyorgy Denes",
+      "Akshay Jindal",
+      "Aliaksei Mikhailiuk",
+      "Rafa\u0142 K. Mantiuk"
+    ],
+    "display_title": "A Perceptual Model of Motion Quality for Rendering with Adaptive Refresh-Rate and Resolution"
+  },
+  "source_type": "url",
+  "summary": "Denes, Jindal, Mikhailiuk, and Mantiuk develop and validate a perceptual model for choosing resolution and refresh rate in adaptive rendering. The source combines psychophysical comparisons, eye-tracking measurements, judder-isolation experiments, model fitting, and real-time validation to show that motion velocity and predictability should guide refresh-rate/resolution trade-offs under limited rendering budgets.",
+  "title": "A Perceptual Model of Motion Quality for Rendering with Adaptive Refresh-Rate and Resolution",
+  "warnings": [
+    "The source record date field was null, but the extracted source Markdown includes an ACM publication date of July 2020.",
+    "The Markdown extraction is marked usable, so the PDF binary was not inspected for additional layout fidelity.",
+    "Some reference metadata in the source record appears degraded, but core title, authors, DOI, abstract, experiments, equations, and results were recoverable from source.md."
+  ]
+}

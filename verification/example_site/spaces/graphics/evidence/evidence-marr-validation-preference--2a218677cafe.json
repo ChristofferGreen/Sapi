@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8"
+  ],
+  "evidence_id": "evidence-marr-validation-preference--2a218677cafe",
+  "evidence_type": "statistical_result",
+  "excerpt": "In the controlled validation, MARRR was preferred overall to fixed rates from the prior approach, with consistently significant preference for predictable user-induced motion and selection probability above 70%. In the game validation, MARRR was also preferred overall to fixed-refresh rendering.",
+  "overview": "This evidence connects the perceptual model to practical rendering control. It shows that optimizing resolution and refresh rate from measured motion can improve viewer preference, although unpredictable-motion and high-refresh comparisons remained noisier because of display synchronization limits.",
+  "page_refs": [
+    "Section 7.4.4",
+    "Section 7.5.5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "title": "MARRR Preference Validation"
+}

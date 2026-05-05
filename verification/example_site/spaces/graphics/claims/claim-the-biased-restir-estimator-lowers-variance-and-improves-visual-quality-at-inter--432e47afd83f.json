@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T13:38:06Z",
+  "claim_id": "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+  "evidence_excerpts": [
+    "The results section reports that the biased method has less variance but can show energy loss around shadow boundaries, sharp highlights, and complex geometry."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Biased reuse darkens discontinuities",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "text": "The biased ReSTIR estimator lowers variance and improves visual quality at interactive render times, but it can lose energy and darken regions near geometric, visibility, or shading discontinuities."
+}

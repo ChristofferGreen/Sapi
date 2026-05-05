@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+  "comparator": "ambient-occlusion shader without caching only the static-piece contribution",
+  "evidence_id": "evidence-application-speedups--c40e1f73b82a",
+  "measure_name": "speedup",
+  "measurement_id": "measurement-static-ao-speedup--8c4d2e7f9a1b",
+  "outcome": "reduced ambient-occlusion shader cost",
+  "population": "chessboard ambient-occlusion shader caching only the static-piece contribution",
+  "question_id": "question-real-time-constraints",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "uncertainty": "reported as 8x speedup for the static-piece contribution; broader scene/error details not provided in linked evidence",
+  "unit": "x",
+  "value": 8,
+  "value_max": null
+}

@@ -1,0 +1,66 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: source_revision_detection
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/source_revision_detection.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T132908Z--eyk7m66iy9/semantic/source_revision_detection.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts
+
+=== generation spec ===
+flow_key: source_revision_detection
+version: v1
+schema_path: schemas/source_revision_detection.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/source_revision_detection.json
+context_paths:
+  - <space_root>/sources/records
+  - <space_root>/sources/artifacts
+---
+## Task
+Generate one strict JSON object that decides whether the newly ingested source is certainly a new
+revision of exactly one provided candidate source.
+
+## Context Interpretation Rules
+- Use only evidence available under `context_paths` and `task_context`.
+- Candidate source IDs are bounded by `task_context`; do not search for or invent other candidate IDs.
+- Default to inspecting `source.md` and `source_extraction.json` for the new source and candidate sources.
+- Inspect the original PDF/binary only when markdown quality metadata is degraded, unusable, or insufficient
+  for a confident revision decision.
+- A revision decision requires strong evidence that the documents are different versions of the same
+  underlying work, such as matching canonical identifier, title/authorship plus revision/version markers,
+  or near-identical body text with clear update signals.
+- Similar topic, shared authors, citation relationship, or topical overlap alone is not enough.
+- If certainty is not high, return `decision: "new_source"` or `decision: "uncertain"` with
+  `certainty: false`.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- Do not invent source IDs.
+- Use `matched_source_id: null` unless `decision` is `revision` and `certainty` is `true`.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "decision": "uncertain",
+  "certainty": false,
+  "matched_source_id": null,
+  "candidate_source_ids": ["source-example--0123456789ab"],
+  "rationale": "The sources discuss the same topic, but no version marker or shared identifier proves a revision.",
+  "evidence": ["Both sources discuss the same subject, but titles and identifiers differ."]
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+}
+
+=== llm output ===
+{"decision":"new_source","certainty":true,"matched_source_id":null,"candidate_source_ids":["source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e","source-02-image-based-crowd-rendering--565ae2b0e3a1","source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c","source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7"],"rationale":"The newly ingested source is a distinct 2020 ACM Transactions on Graphics paper on ReSTIR for real-time ray tracing with dynamic direct lighting, with DOI 10.1145/3386569.3392481 and authors Bitterli, Wyman, Pharr, Shirley, Lefohn, and Jarosz. The provided candidates are different works with different titles, authors, identifiers, years, and technical scope, and none shows version or revision markers tying it to the new source.","evidence":["New source source.md title is \"Spatiotemporal Reservoir Resampling for Real-Time Ray Tracing with Dynamic Direct Lighting\" and lists DOI https://doi.org/10.1145/3386569.3392481.","The closest candidate source.md is \"Temporal Coherence Methods in Real-Time Rendering\" with DOI 10.1111/j.1467-8659.2012.03075.x, Computer Graphics Forum volume 31 from 2012, and authors Daniel Scherzer, Lei Yang, Oliver Mattausch, Diego Nehab, Pedro V. Sander, Michael Wimmer, and Elmar Eisemann.","The new source abstract introduces ReSTIR for rendering direct lighting from millions of dynamic light sources using reservoir resampling; the temporal-coherence candidate is a survey about exploiting temporal coherence, reprojection, and reuse across frames for performance optimization.","Candidate \"Image-Based Crowd Rendering for Virtual Cities\" concerns image-based rendering of animated crowds and virtual cities, not ReSTIR, ray tracing, or the same author/title/identifier set.","Candidate \"Skeleton-Guided Edge Bundling for Graph Visualization\" concerns graph edge bundling with skeletons and has DOI 10.1109/TVCG.2011.233, which is unrelated to the new source DOI and subject.","Candidate \"Interactive Level-of-Detail Rendering for Large Graphs\" concerns large graph visualization and level-of-detail rendering, not the new ReSTIR paper."]}

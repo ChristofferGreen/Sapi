@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T13:38:06Z",
+  "claim_id": "claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb",
+  "evidence_excerpts": [
+    "The limitations section says reuse is less effective near disocclusions, lighting discontinuities, high geometric complexity, and fast moving lights, and that image buffers limit the method to the primary hit point."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Image-space reuse limits scope",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "text": "The method depends on useful spatial or temporal correlation and on image-space reservoirs, so performance degrades near disocclusions, fast lighting changes, high geometric complexity, and beyond first-hit direct lighting."
+}

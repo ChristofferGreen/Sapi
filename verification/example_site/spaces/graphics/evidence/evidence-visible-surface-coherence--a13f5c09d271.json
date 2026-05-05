@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-real-time-rendering-sequences-exhibit-substantial-spatio-temporal-coherence-and--1377a0a7dbf4",
+    "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4"
+  ],
+  "evidence_id": "evidence-visible-surface-coherence--a13f5c09d271",
+  "evidence_type": "figure_result",
+  "excerpt": "Figure 2 plots the percentage of surface points that remain visible from one frame to the next for the Parthenon, Heroine, and Ninja sequences. The text reports that fractions of 90% and higher are typical for these game-like scenes, making many previously visible points available for reuse.",
+  "overview": "This figure result grounds the survey's central premise: adjacent real-time frames often differ only modestly at the visible-surface level. The measurement does not prove all scenes are highly coherent, but it shows why reusing shaded data can be practical for common camera-motion and animated-scene workloads.",
+  "page_refs": [
+    "p.2379",
+    "Fig.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "title": "Visible Surface Persistence"
+}

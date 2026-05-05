@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "The isolated-judder threshold result constrains the judder component used in the full fitted model.",
+  "relation_file_id": "rel-99044b80b0817dea15f5fc36bf8fecbe5ee93e8a6d4c901be570f18eecbe4083",
+  "relation_id": "supports:claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7->claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df",
+  "relation_type": "supports",
+  "src_claim_id": "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+  "src_claim_ref": "5",
+  "status": "open"
+}

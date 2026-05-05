@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T12:49:32Z",
+  "claim_id": "claim-forward-reprojection-can-map-cached-pixels-directly-into-the-target-frame-withou--7c9205493d0f",
+  "evidence_excerpts": [
+    "The forward reprojection section says processing the cache directly has the advantage that it does not require processing scene geometry for the new frame, but it requires a forward motion vector and can leave holes."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Forward reprojection trades geometry",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "text": "Forward reprojection can map cached pixels directly into the target frame without processing current scene geometry, but it depends on motion vectors and must address scattering, occlusion, and holes."
+}

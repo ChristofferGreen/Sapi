@@ -16,8 +16,12 @@
   },
   "doi": "10.1145/3386569.3392481",
   "failure_reason": null,
-  "import_link": null,
-  "import_status": "not_imported",
+  "import_link": {
+    "imported_at": "2026-05-05T13:52:00Z",
+    "run_id": "run-20260505T132908Z--eyk7m66iy9",
+    "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+  },
+  "import_status": "imported",
   "landing_url": "https://research.nvidia.com/labs/rtr/publication/bitterli2020spatiotemporal/",
   "operator_status": "candidate",
   "pdf_url": "https://research.nvidia.com/sites/default/files/pubs/2020-07_Spatiotemporal-reservoir-resampling/ReSTIR.pdf",

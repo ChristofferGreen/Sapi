@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+  "comparator": "current-frame-only sampling",
+  "evidence_id": "evidence-amortized-running-average--f8b42c719a5e",
+  "measure_name": "non-trivial history contribution duration",
+  "measurement_id": "measurement-history-contribution-duration--f8b42c719a5e",
+  "outcome": "temporal lag from persistent older-frame contributions",
+  "population": "amortized sampling running estimate for a reprojected pixel with alpha = 2/5",
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "uncertainty": "reported as about 10 frames, not an exact hard cutoff",
+  "unit": "frames",
+  "value": 10,
+  "value_max": null
+}

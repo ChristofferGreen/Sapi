@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e/source.pdf",
+    "source_markdown": "sources/artifacts/source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e/source.md"
+  },
+  "converter_name": "markitdown",
+  "converter_version": "0.1.5",
+  "input_sha256": "57dff5775505c4501592a3183e6f84d1e170370a09e3f9c8904b347c50655c34",
+  "markdown_char_count": 221064,
+  "options": {
+    "input_format": "pdf"
+  },
+  "output_sha256": "76b1bf11ca8959b9c91859fc7477685d09d0dd71453f49b754fb767c093e2f87",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T13:38:06Z",
+  "claim_id": "claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e",
+  "evidence_excerpts": [
+    "The analysis shows the traditional RIS weight underestimates the inverse PDF when some candidate PDFs are zero; MIS weights m(xz)=pz(xz)/sum_i pi(xz) restore an unbiased estimator."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "MIS preserves unbiased reuse",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "text": "A modified RIS weight using candidate-PDF multiple importance weights can remove bias introduced by mixing samples from different pixel distributions, though visibility-aware unbiased reuse costs extra rays."
+}

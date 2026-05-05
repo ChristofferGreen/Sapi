@@ -1,0 +1,2124 @@
+{
+  "access_policy": {
+    "landing_url": null,
+    "operator_responsibility": null,
+    "public_download": true,
+    "public_source_view": true,
+    "reason": null,
+    "restricted": false
+  },
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a/front_page.png",
+    "source_extraction": "sources/artifacts/source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a/source_extraction.json",
+    "source_file": "sources/artifacts/source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a/source.pdf",
+    "source_markdown": "sources/artifacts/source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a/source.md",
+    "source_provenance": "sources/artifacts/source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a/source_provenance.md"
+  },
+  "authors": [
+    "Benedikt Bitterli",
+    "Chris Wyman",
+    "Matt Pharr",
+    "Peter Shirley",
+    "Aaron Lefohn",
+    "Wojciech Jarosz"
+  ],
+  "canonical_identifier": "10.1145/3386569.3392481",
+  "citation_count": 108.0,
+  "citation_count_as_of": "2026-05-05",
+  "citation_count_confidence": "medium",
+  "citation_count_provider": "OUCI",
+  "date": null,
+  "display_title": "ReSTIR Makes Dynamic Direct Lighting Real-Time",
+  "external_related_links": [
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[22].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "1",
+      "url": "https://doi.org/10/c82v5c"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[50].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "1",
+      "url": "https://doi.org/10/gbb6n4"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[14].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "1087\u20131096",
+      "url": "https://doi.org/10/bg8nww"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[43].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "1104",
+      "url": "https://doi.org/10/fb55mk"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[6].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "112",
+      "url": "https://doi.org/10/b33qt2"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[38].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "121:1\u2013121:11",
+      "url": "https://doi.org/10/f7m2hp"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[39].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "122:12",
+      "url": "https://doi.org/10/f7mtzn"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[54].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "125:12",
+      "url": "https://doi.org/10/gd52ss"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[36].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "170:1\u2013170:14",
+      "url": "https://doi.org/10/f6km7m"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[81].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "1\u20132",
+      "url": "https://doi.org/10/ggjbxt"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[29].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "1\u201336",
+      "url": "https://doi.org/10/ddgbgg"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[40].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "209:13",
+      "url": "https://doi.org/10/f7wrcs"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[20].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "228\u2013236",
+      "url": "https://doi.org/10/bvgz69"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[56].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "278:1\u2013278:11",
+      "url": "https://doi.org/10/gf2r3t"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[48].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "29 4 July 66:1\u201366:13",
+      "url": "https://doi.org/10/frf4mq"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[18].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "30 4 July 1",
+      "url": "https://doi.org/10/bpthww"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[28].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "315\u2013324",
+      "url": "https://doi.org/10/d6pbj2"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[55].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "326\u2013335",
+      "url": "https://doi.org/10/gf2hcr"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[46].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "33:1\u201333:10",
+      "url": "https://doi.org/10/fm6c2w"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[59].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "38 4 July 37:1\u201337:14",
+      "url": "https://doi.org/10/gf5jbj"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[8].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "4423 Aug. 270\u2013271",
+      "url": "https://doi.org/10/b4t29s"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[27].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "490\u2013530",
+      "url": "https://doi.org/10/d4fhj8"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[73].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "5 June 138:1\u2013138:14",
+      "url": "https://doi.org/10/ggd8dj"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[25].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "550\u2013561",
+      "url": "https://doi.org/10/csf2sw"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[37].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "667\u2013681",
+      "url": "https://doi.org/10/f7k6kj"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[44].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "69 3 Dec. 653\u2013656",
+      "url": "https://doi.org/10/fd87zs"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[78].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "and Wolfgang Heidrich Eds. . Eurographics Association",
+      "url": "https://doi.org/10/ggh89j"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[68].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Article 51 July 10 pages",
+      "url": "https://doi.org/10/gfzv9n"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[63].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Canada 2:1\u20132:11",
+      "url": "https://doi.org/10/gfznb7"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[5].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Cem Yuksel. . Stochastic Lightcuts. In Proc. HPG. 27\u201332. /",
+      "url": "https://doi.org/10.2312"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[13].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "CGF 21 3 Sept. 531\u2013540",
+      "url": "https://doi.org/10/bfrsqn"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[45].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "CGF 23 3 291\u2013299",
+      "url": "https://doi.org/10/fksq8m"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[58].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Connections. Proc. SIGGRAPH 38 4 July 36:1\u201336:12",
+      "url": "https://doi.org/10/gf5jbg"
+    },
+    {
+      "confidence": "high",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "canonical_identifier",
+        "source_field": "canonical_identifier"
+      },
+      "quality_status": "trusted",
+      "rationale": "Canonical identifier for the ingested source.",
+      "title": "DOI landing page",
+      "url": "https://doi.org/10.1145/3386569.3392481"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[79].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Eurographics Association",
+      "url": "https://doi.org/10/ggh89m"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[66].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Eurographics Association Nicosia Cyprus 127\u2013138",
+      "url": "https://doi.org/10/gfzqhz"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[34].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Feb. 88\u2013104",
+      "url": "https://doi.org/10/f5twgd"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[51].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Graphics 31 5 Aug. 125:1\u2013125:21",
+      "url": "https://doi.org/10/gbbrkb"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[75].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "H. Rushmeier Eds. . Springer-Verlag 35\u201346",
+      "url": "https://doi.org/10/ggdx9g"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[91].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.1145/3306346.3323041"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[90].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "IEEE TVCG 12 3 May 353\u2013364. https://doi.org/",
+      "url": "https://doi.org/10.1109/TVCG.2006.41"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[61].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "In ACM SIGGRAPH Courses",
+      "url": "https://doi.org/10/gfz2ck"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[64].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "In Proc. EGWR. Springer-Verlag 145\u2013167",
+      "url": "https://doi.org/10/gfznbh"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[80].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Interactive Techniques 1 2 Aug. 25:1\u201325:17",
+      "url": "https://doi.org/10/ggh89v"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[19].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "J. Amer. Statist. Assoc. 54 287 Sept. 594\u2013612",
+      "url": "https://doi.org/10/bqcrjk"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[52].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "July 95:1\u201395:12",
+      "url": "https://doi.org/10/gbdghd"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[41].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "June 107\u2013117",
+      "url": "https://doi.org/10/f842kc"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[3].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Light-Transport Simulation. Proc. EGSR 36 4 June 91\u2013100. /",
+      "url": "https://doi.org"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[26].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "March 7:1\u20137:11",
+      "url": "https://doi.org/10/cwnw78"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[9].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Math. 6 1 Dec. 261\u2013268",
+      "url": "https://doi.org/10/b6nf5f"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[32].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "NY USA",
+      "url": "https://doi.org/10/djqr"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[11].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "of Applied Mathematics 23 1 Jan. 1\u201331",
+      "url": "https://doi.org/10/b8jdpn"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[24].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "on Graphics 5 1 Jan. 51\u201372",
+      "url": "https://doi.org/10/cqwhcc"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[76].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Proc. I3D 2 1 June 8:1\u20138:17",
+      "url": "https://doi.org/10/ggdzbp"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[7].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Proc. SIGGRAPH 24 3 July 1186\u20131195",
+      "url": "https://doi.org/10/b3xtrn"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[35].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Proc. SIGGRAPH 33 4 Aug. 101:1\u2013101:11",
+      "url": "https://doi.org/10/f6c2cp"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[53].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Proc. SIGGRAPH 36 4 July 98:1\u201398:12",
+      "url": "https://doi.org/10/gbxhcv"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[17].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Proc. SIGGRAPH Asia 29 6 Dec. 143:1\u2013143:8",
+      "url": "https://doi.org/10/bmktxb"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[10].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/b7zrhm"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[12].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/bbfdms"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[15].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/bjsfsx"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[21].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/bwz228"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[30].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/dffp"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[33].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/dk6rt5"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[42].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/f96zx3"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[47].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/fqch2z"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[60].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/gfjwjc"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[62].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/gfzczq"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[65].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/gfzndq"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[67].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/gfzsmz"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[69].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/gfzwbh"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[70].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/gfzwbn"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[71].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/ggd8dg"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[72].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/ggd8dh"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[77].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/ggfg6x"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[82].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Referenced external link",
+      "url": "https://doi.org/10/ggjbxw"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[57].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Rendering in Games Part I ACM SIGGRAPH Courses",
+      "url": "https://doi.org/10/gf3s6n"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[4].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Reusing. Proc. SIGGRAPH Asia 36 6 Nov. 229:1\u2013229:9. /",
+      "url": "https://doi.org/10"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[31].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "SIGGRAPH 24 3 Aug. 1098\u20131107",
+      "url": "https://doi.org/10/dhp5d3"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[49].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Springer-Verlag Vienna 21\u201330",
+      "url": "https://doi.org/10/fzc6t9"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[74].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Using Paths. In Proc. EGWR. Eurographics Association",
+      "url": "https://doi.org/10/ggdwkn"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[16].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Vol. 31. ACM Press 65\u201376",
+      "url": "https://doi.org/10/bkjqj4"
+    },
+    {
+      "confidence": "medium",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[23].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Vol. 4706. Springer-Verlag Berlin Heidelberg 741\u2013750",
+      "url": "https://doi.org/10/cggpq7"
+    },
+    {
+      "confidence": "high",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "canonical_identifier",
+        "source_field": "canonical_identifier"
+      },
+      "quality_status": "trusted",
+      "rationale": "Canonical arXiv identifier for the ingested source.",
+      "title": "arXiv abstract",
+      "url": "https://arxiv.org/abs/6569.33924"
+    },
+    {
+      "confidence": "medium",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[89].url"
+      },
+      "quality_status": "trusted",
+      "rationale": "Captured from normalized source references.",
+      "title": "Space Filtering. CoRR abs/ 2019 . /",
+      "url": "http://arxiv.org/abs"
+    },
+    {
+      "confidence": "high",
+      "domain": "research.nvidia.com",
+      "link_type": "primary_source",
+      "provenance": {
+        "origin": "source_locator",
+        "source_field": "source_locator"
+      },
+      "quality_status": "contextual",
+      "rationale": "Original network location captured during ingest.",
+      "title": "Original source link",
+      "url": "https://research.nvidia.com/sites/default/files/pubs/2020-07_Spatiotemporal-reservoir-resampling/ReSTIR.pdf"
+    },
+    {
+      "confidence": "medium",
+      "domain": "github.com",
+      "link_type": "repository",
+      "provenance": {
+        "origin": "reference_url",
+        "source_field": "references[83].url"
+      },
+      "quality_status": "contextual",
+      "rationale": "Captured from normalized source references.",
+      "title": "/",
+      "url": "https://github.com"
+    }
+  ],
+  "ingested_at": "2026-05-05T13:29:22Z",
+  "linked_source_ids": [
+    "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+  ],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "/",
+      "url": "https://devblogs.nvidia.com/path-tracing-quake-ii",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "NVIDIA Research. . NVIDIA\u00ae OptiX\u2122 AI-Accelerated Denoiser",
+      "url": "https://developer",
+      "year": 2017
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Polynomial Rendering. Proc. SIGGRAPH 35 4 July 40:1\u201340:10",
+      "url": "https://doi",
+      "year": 2016
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Light-Transport Simulation. Proc. EGSR 36 4 June 91\u2013100. /",
+      "url": "https://doi.org",
+      "year": 2017
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Reusing. Proc. SIGGRAPH Asia 36 6 Nov. 229:1\u2013229:9. /",
+      "url": "https://doi.org/10",
+      "year": 2017
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Cem Yuksel. . Stochastic Lightcuts. In Proc. HPG. 27\u201332. /",
+      "url": "https://doi.org/10.2312",
+      "year": 2019
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "112",
+      "url": "https://doi.org/10/b33qt2",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Proc. SIGGRAPH 24 3 July 1186\u20131195",
+      "url": "https://doi.org/10/b3xtrn",
+      "year": 2005
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "4423 Aug. 270\u2013271",
+      "url": "https://doi.org/10/b4t29s",
+      "year": 1954
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Math. 6 1 Dec. 261\u2013268",
+      "url": "https://doi.org/10/b6nf5f",
+      "year": 1964
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/b7zrhm",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "of Applied Mathematics 23 1 Jan. 1\u201331",
+      "url": "https://doi.org/10/b8jdpn",
+      "year": 1979
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/bbfdms",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "CGF 21 3 Sept. 531\u2013540",
+      "url": "https://doi.org/10/bfrsqn",
+      "year": 2002
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "1087\u20131096",
+      "url": "https://doi.org/10/bg8nww",
+      "year": 2008
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/bjsfsx",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Vol. 31. ACM Press 65\u201376",
+      "url": "https://doi.org/10/bkjqj4",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Proc. SIGGRAPH Asia 29 6 Dec. 143:1\u2013143:8",
+      "url": "https://doi.org/10/bmktxb",
+      "year": 2010
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "30 4 July 1",
+      "url": "https://doi.org/10/bpthww",
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "J. Amer. Statist. Assoc. 54 287 Sept. 594\u2013612",
+      "url": "https://doi.org/10/bqcrjk",
+      "year": 1959
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "228\u2013236",
+      "url": "https://doi.org/10/bvgz69",
+      "year": 1966
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/bwz228",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "1",
+      "url": "https://doi.org/10/c82v5c",
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Vol. 4706. Springer-Verlag Berlin Heidelberg 741\u2013750",
+      "url": "https://doi.org/10/cggpq7",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "on Graphics 5 1 Jan. 51\u201372",
+      "url": "https://doi.org/10/cqwhcc",
+      "year": 1986
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "550\u2013561",
+      "url": "https://doi.org/10/csf2sw",
+      "year": 2005
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "March 7:1\u20137:11",
+      "url": "https://doi.org/10/cwnw78",
+      "year": 2008
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "490\u2013530",
+      "url": "https://doi.org/10/d4fhj8",
+      "year": 2005
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "315\u2013324",
+      "url": "https://doi.org/10/d6pbj2",
+      "year": 2011
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "1\u201336",
+      "url": "https://doi.org/10/ddgbgg",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/dffp",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "SIGGRAPH 24 3 Aug. 1098\u20131107",
+      "url": "https://doi.org/10/dhp5d3",
+      "year": 2005
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "NY USA",
+      "url": "https://doi.org/10/djqr",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/dk6rt5",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Feb. 88\u2013104",
+      "url": "https://doi.org/10/f5twgd",
+      "year": 2014
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Proc. SIGGRAPH 33 4 Aug. 101:1\u2013101:11",
+      "url": "https://doi.org/10/f6c2cp",
+      "year": 2014
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "170:1\u2013170:14",
+      "url": "https://doi.org/10/f6km7m",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "667\u2013681",
+      "url": "https://doi.org/10/f7k6kj",
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "121:1\u2013121:11",
+      "url": "https://doi.org/10/f7m2hp",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "122:12",
+      "url": "https://doi.org/10/f7mtzn",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "209:13",
+      "url": "https://doi.org/10/f7wrcs",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "June 107\u2013117",
+      "url": "https://doi.org/10/f842kc",
+      "year": 2016
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/f96zx3",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "1104",
+      "url": "https://doi.org/10/fb55mk",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "69 3 Dec. 653\u2013656",
+      "url": "https://doi.org/10/fd87zs",
+      "year": 1982
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "CGF 23 3 291\u2013299",
+      "url": "https://doi.org/10/fksq8m",
+      "year": 2004
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "33:1\u201333:10",
+      "url": "https://doi.org/10/fm6c2w",
+      "year": 2008
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/fqch2z",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "29 4 July 66:1\u201366:13",
+      "url": "https://doi.org/10/frf4mq",
+      "year": 2010
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Springer-Verlag Vienna 21\u201330",
+      "url": "https://doi.org/10/fzc6t9",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "1",
+      "url": "https://doi.org/10/gbb6n4",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Graphics 31 5 Aug. 125:1\u2013125:21",
+      "url": "https://doi.org/10/gbbrkb",
+      "year": 2012
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "July 95:1\u201395:12",
+      "url": "https://doi.org/10/gbdghd",
+      "year": 2013
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Proc. SIGGRAPH 36 4 July 98:1\u201398:12",
+      "url": "https://doi.org/10/gbxhcv",
+      "year": 2017
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "125:12",
+      "url": "https://doi.org/10/gd52ss",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "326\u2013335",
+      "url": "https://doi.org/10/gf2hcr",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "278:1\u2013278:11",
+      "url": "https://doi.org/10/gf2r3t",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Rendering in Games Part I ACM SIGGRAPH Courses",
+      "url": "https://doi.org/10/gf3s6n",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Connections. Proc. SIGGRAPH 38 4 July 36:1\u201336:12",
+      "url": "https://doi.org/10/gf5jbg",
+      "year": 2019
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "38 4 July 37:1\u201337:14",
+      "url": "https://doi.org/10/gf5jbj",
+      "year": 2019
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/gfjwjc",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "In ACM SIGGRAPH Courses",
+      "url": "https://doi.org/10/gfz2ck",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/gfzczq",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Canada 2:1\u20132:11",
+      "url": "https://doi.org/10/gfznb7",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "In Proc. EGWR. Springer-Verlag 145\u2013167",
+      "url": "https://doi.org/10/gfznbh",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/gfzndq",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Eurographics Association Nicosia Cyprus 127\u2013138",
+      "url": "https://doi.org/10/gfzqhz",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/gfzsmz",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Article 51 July 10 pages",
+      "url": "https://doi.org/10/gfzv9n",
+      "year": 2012
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/gfzwbh",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/gfzwbn",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/ggd8dg",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/ggd8dh",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "5 June 138:1\u2013138:14",
+      "url": "https://doi.org/10/ggd8dj",
+      "year": 2019
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Using Paths. In Proc. EGWR. Eurographics Association",
+      "url": "https://doi.org/10/ggdwkn",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "H. Rushmeier Eds. . Springer-Verlag 35\u201346",
+      "url": "https://doi.org/10/ggdx9g",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Proc. I3D 2 1 June 8:1\u20138:17",
+      "url": "https://doi.org/10/ggdzbp",
+      "year": 2019
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/ggfg6x",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "and Wolfgang Heidrich Eds. . Eurographics Association",
+      "url": "https://doi.org/10/ggh89j",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Eurographics Association",
+      "url": "https://doi.org/10/ggh89m",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Interactive Techniques 1 2 Aug. 25:1\u201325:17",
+      "url": "https://doi.org/10/ggh89v",
+      "year": 2018
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "1\u20132",
+      "url": "https://doi.org/10/ggjbxt",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://doi.org/10/ggjbxw",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "/",
+      "url": "https://github.com",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://hdl.handle.net/2097/23084",
+      "year": 2097
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Brigham Young University",
+      "url": "https://scholarsarchive.byu.edu/etd/663",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Mike Winkelmann. . Short Films by Beeple",
+      "url": "https://www.beeple-crap.com/films",
+      "year": 2015
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "https://www.jstor.org/stable/25051590",
+      "year": null
+    },
+    {
+      "arxiv": "1012.0256",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": null,
+      "year": null
+    },
+    {
+      "arxiv": "1902.05942",
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "Space Filtering. CoRR abs/ 2019 . /",
+      "url": "http://arxiv.org/abs",
+      "year": 1902
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": "10.1109/tvcg.2006.41",
+      "linked_source_ids": [],
+      "title": "IEEE TVCG 12 3 May 353\u2013364. https://doi.org/",
+      "url": "https://doi.org/10.1109/TVCG.2006.41",
+      "year": 2006
+    },
+    {
+      "arxiv": "6346.33230",
+      "authors": [],
+      "doi": "10.1145/3306346.3323041",
+      "linked_source_ids": [],
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.1145/3306346.3323041",
+      "year": null
+    },
+    {
+      "arxiv": "6569.33924",
+      "authors": [],
+      "doi": "10.1145/3386569.3392481",
+      "linked_source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      ],
+      "title": "https://doi.org/",
+      "url": "https://doi.org/10.1145/3386569.3392481",
+      "year": 2020
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "canonical_identifier",
+      "references",
+      "source_locator"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 7 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "high",
+    "date": "2020-07",
+    "origin": "source_markdown",
+    "rationale": "The ACM reference and page footer in the extracted source state publication date: July 2020."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The source targets one-bounce direct lighting from many dynamic emissive surfaces under real-time ray budgets. It treats the problem as hard even for offline renderers because important lights depend jointly on visibility, BSDF response, geometry, and emitted power, while interactive applications cannot afford exhaustive shadow rays or heavy per-frame structures.",
+        "grounding_claim_ids": [
+          "0"
+        ],
+        "heading": "Problem Setting"
+      },
+      {
+        "body": "ReSTIR uses weighted reservoir sampling to keep a compact state per pixel: a selected light sample, accumulated weight information, and the number of candidates represented. Reservoirs can then be combined without recovering their original streams, letting spatial neighbors and previous frames contribute candidate information at low storage cost.",
+        "grounding_claim_ids": [
+          "1",
+          "2"
+        ],
+        "heading": "Reservoir Reuse Mechanism"
+      },
+      {
+        "body": "The paper is explicit that naive spatiotemporal reuse mixes different pixel distributions and can introduce bias. Its analysis shows how modified RIS weights and MIS-style balancing can preserve unbiasedness, but the practical unbiased path can require extra visibility tests. The biased path is cheaper and lower variance but may darken difficult boundaries.",
+        "grounding_claim_ids": [
+          "3",
+          "4"
+        ],
+        "heading": "Biased And Unbiased Modes"
+      },
+      {
+        "body": "The reported measurements connect the math to GPU rendering. The abstract gives equal-error speedups of 6x-60x for the unbiased estimator and 35x-65x for the biased estimator, while figure captions report real-time images at 1920 x 1080 with 11,000 and 3.4 million dynamic emissive triangles.",
+        "grounding_claim_ids": [
+          "5"
+        ],
+        "heading": "Performance Evidence"
+      },
+      {
+        "body": "ReSTIR is positioned as complementary to denoising rather than a replacement for it. The paper argues that denoisers cannot restore features missing from their input samples, so improving sample quality inside the renderer can make the denoiser's later reconstruction task better conditioned.",
+        "grounding_claim_ids": [
+          "6"
+        ],
+        "heading": "Denoising Interpretation"
+      },
+      {
+        "body": "The approach relies on spatial and temporal sample relevance. It is less effective around disocclusions, lighting discontinuities, fast moving lights, and high geometric complexity. Because the implementation stores reservoirs in image buffers, its demonstrated scope is primary-hit direct lighting rather than arbitrary deeper-path global illumination.",
+        "grounding_claim_ids": [
+          "7"
+        ],
+        "heading": "Assumptions And Limits"
+      }
+    ],
+    "summary_long": "This paper introduces ReSTIR, Reservoir-based Spatio-Temporal Importance Resampling, for real-time ray-traced direct lighting with many dynamic emitters. The core problem is that a renderer cannot trace shadow rays to all lights, and in real-time settings it may only afford a few rays per pixel. ReSTIR addresses that constraint by generating a small set of per-pixel light candidates, resampling them with a target distribution based on unshadowed path contribution, and storing only the selected sample, its weight, and the effective candidate count in a reservoir. The key algorithmic move is that reservoirs can be combined as if their original candidate streams had been concatenated, which lets nearby pixels and prior frames share useful sampling information without storing every candidate. This turns spatial and temporal coherence into better sampling PDFs inside the renderer rather than post-process filtering of colors. The paper also analyzes why naive reuse across pixels can introduce bias: neighboring pixels may have different target distributions, visibility, normals, and supports. It derives an unbiased correction using modified RIS weights and multiple-importance-style candidate-PDF weights, but notes that visibility-aware unbiased reuse can require additional shadow rays. As a result, the implementation offers both biased and unbiased variants. The biased version is faster and often lower variance at interactive budgets, but it can darken difficult regions such as shadow boundaries, highlights, or complex geometry. The reported results are substantial: the abstract claims equal-error speedups of 6x-60x for the unbiased estimator and 35x-65x for the biased estimator, and figures show scenes with 11,000 to 3.4 million dynamic emissive triangles rendered at 1920 x 1080 in tens of milliseconds. The method is strongest as a first-hit direct-lighting technique in scenes where neighboring pixels and previous frames provide relevant samples. It is weaker near disocclusions, fast moving lights, lighting discontinuities, and cases where image-space correlation breaks down; extending it beyond primary-hit direct lighting remains future work.",
+    "summary_short": "ReSTIR treats real-time many-light direct illumination as a reservoir resampling problem. It stores compact per-pixel reservoirs, reuses selected candidates across neighbors and prior frames, and offers biased and unbiased modes. The result is fast GPU rendering with clear limits around discontinuities, weak correlation, and first-hit image-space scope."
+  },
+  "source_extraction": {
+    "converter_name": "markitdown",
+    "converter_version": "0.1.5",
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "source_kind": "url",
+  "source_locator": "https://research.nvidia.com/sites/default/files/pubs/2020-07_Spatiotemporal-reservoir-resampling/ReSTIR.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Benedikt Bitterli",
+      "Chris Wyman",
+      "Matt Pharr",
+      "Peter Shirley",
+      "Aaron Lefohn",
+      "Wojciech Jarosz"
+    ],
+    "display_title": "ReSTIR Makes Dynamic Direct Lighting Real-Time"
+  },
+  "source_type": "url",
+  "summary": "ReSTIR is a reservoir-based Monte Carlo method for real-time direct lighting from many dynamic emitters. It reuses light samples across pixels and frames, offers biased and unbiased variants, and reports large equal-error speedups on GPU scenes with thousands to millions of emissive triangles. Its main tradeoffs are bias and darkening in the cheaper mode, extra ray cost in the unbiased mode, and reduced benefit where image-space spatiotemporal correlation is weak.",
+  "title": "Spatiotemporal Reservoir Resampling for Real-Time Ray Tracing with Dynamic Direct Lighting",
+  "warnings": [
+    {
+      "code": "source_record_date_missing",
+      "message": "The source record date was null, but source.md includes ACM publication date evidence for July 2020."
+    },
+    {
+      "code": "markdown_only_analysis",
+      "message": "The extraction metadata marked source.md usable, so the binary PDF was not inspected."
+    }
+  ]
+}

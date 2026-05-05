@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T12:49:32Z",
+  "claim_id": "claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11",
+  "evidence_excerpts": [
+    "The disocclusion section states that reprojection is a nonlinear warp that may leave newly disoccluded regions incorrectly shaded or blank, and that forward reprojection usually requires approximate hole filling."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Disocclusion requires hole filling",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "text": "Disoccluded regions constrain temporal reuse because previous-frame data may be absent; practical systems must reshade these regions or fill holes approximately."
+}

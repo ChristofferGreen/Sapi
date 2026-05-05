@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-perceptual-temporal-coherence-can-enrich-rendered-content-by-exploiting-visual-i--b796e0540b6f"
+  ],
+  "evidence_id": "evidence-perceptual-temporal-effects--b5fa2d180c7e",
+  "evidence_type": "observational_result",
+  "excerpt": "The temporal perception section describes using temporal effects in an inverse manner to produce richer content. It gives examples such as DLP projectors displaying colour channels in rapid succession so the eye integrates them into a full-colour image, frame-rate control for fractional colours on LCD screens, and apparent resolution enhancement through smooth-pursuit eye motion.",
+  "overview": "This evidence extends the survey beyond computational cache reuse. It shows that temporal coherence can be perceptual: fast-changing signals may be integrated by the human visual system into stable or richer apparent content. The scope is more speculative than the core reprojection material but relevant to future rendering systems.",
+  "page_refs": [
+    "pp.2402-2403",
+    "Sec.5.12"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "title": "Perceptual Temporal Effects"
+}

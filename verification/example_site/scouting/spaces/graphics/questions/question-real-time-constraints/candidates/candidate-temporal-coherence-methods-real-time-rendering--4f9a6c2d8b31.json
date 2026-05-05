@@ -17,8 +17,12 @@
   },
   "doi": "10.1111/j.1467-8659.2012.03075.x",
   "failure_reason": null,
-  "import_link": null,
-  "import_status": "not_imported",
+  "import_link": {
+    "imported_at": "2026-05-05T13:05:27Z",
+    "run_id": "run-20260505T123937Z--8pub4fb3rr",
+    "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+  },
+  "import_status": "imported",
   "landing_url": "https://www.cg.tuwien.ac.at/research/publications/2012/SCHERZER-2012-TCM/",
   "operator_status": "candidate",
   "pdf_url": "https://cse.hkust.edu.hk/~psander/docs/tempcoj.pdf",

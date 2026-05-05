@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-restir-samples-one-bounce-direct-lighting-by-repeatedly-resampling-light-candida--59804a49ba1a",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "Reservoir combination is the mechanism that makes ReSTIR's spatial and temporal light-candidate reuse practical.",
+  "relation_file_id": "rel-dc6542cb5b14cd532948e320acd93180a894588c4ba008f9289969cd901b924b",
+  "relation_id": "supports:claim-reservoir-sampling-makes-spatiotemporal-reuse-practical-because-a-pixel-can-comb--9c5dc3907b13->claim-restir-samples-one-bounce-direct-lighting-by-repeatedly-resampling-light-candida--59804a49ba1a",
+  "relation_type": "supports",
+  "src_claim_id": "claim-reservoir-sampling-makes-spatiotemporal-reuse-practical-because-a-pixel-can-comb--9c5dc3907b13",
+  "src_claim_ref": "2",
+  "status": "open"
+}

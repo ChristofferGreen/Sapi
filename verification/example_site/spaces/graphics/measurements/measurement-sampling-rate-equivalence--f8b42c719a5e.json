@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+  "comparator": "single-frame sampling without temporal amortization",
+  "evidence_id": "evidence-amortized-running-average--f8b42c719a5e",
+  "measure_name": "equivalent sampling rate increase",
+  "measurement_id": "measurement-sampling-rate-equivalence--f8b42c719a5e",
+  "outcome": "sampling-rate equivalence from reduced variance",
+  "population": "amortized sampling running estimate for a reprojected pixel with alpha = 2/5",
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "uncertainty": "described as roughly equivalent to increasing the sampling rate by a factor of four",
+  "unit": "factor",
+  "value": 4,
+  "value_max": null
+}

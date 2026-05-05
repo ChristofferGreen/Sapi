@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+    "claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120"
+  ],
+  "evidence_id": "evidence-quality-component-equation--22767f63d459",
+  "evidence_type": "equation",
+  "excerpt": "The model defines \u0394Q(fA, RA, fB, RB, v, \u03c4) as a weighted sum of motion-parallel blur \u0394QP, orthogonal blur \u0394QO, and judder \u0394QJ, with inputs for refresh rate, resolution, velocity, and motion predictability.",
+  "overview": "This formal decomposition is the paper's main modeling move. It turns adaptive rendering into a perceptual optimization problem by separating the artifacts caused by finite refresh rate, reduced resolution, imperfect eye pursuit, and temporal sampling.",
+  "page_refs": [
+    "Eq.2",
+    "Eq.3",
+    "Section 5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "title": "Weighted Quality Decomposition"
+}

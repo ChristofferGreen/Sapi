@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+  "dst_claim_ref": "6",
+  "last_evaluated_run_id": null,
+  "rationale": "Accumulated resampling blur is one reason amortized sampling must balance history length against responsiveness.",
+  "relation_file_id": "rel-eb77af4cee7fb3ad9523e41997e520d69f56a48eb30024d85cda2ee70aa8c9c8",
+  "relation_id": "supports:claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d->claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+  "relation_type": "supports",
+  "src_claim_id": "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d",
+  "src_claim_ref": "8",
+  "status": "open"
+}

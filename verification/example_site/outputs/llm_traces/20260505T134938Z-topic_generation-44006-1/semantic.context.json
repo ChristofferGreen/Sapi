@@ -1,0 +1,122 @@
+{
+  "context_by_path": {
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources"
+  },
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims"
+  ],
+  "flow_key": "topic_generation",
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T132908Z--eyk7m66iy9/semantic/topic_generation.json",
+  "repair_context": {
+    "previous_invalid_json": "{\n  \"topics\": [\n    {\n      \"claim_ids\": [\n        \"claim-restir-samples-one-bounce-direct-lighting-by-repeatedly-resampling-light-candida--59804a49ba1a\",\n        \"claim-reservoir-sampling-makes-spatiotemporal-reuse-practical-because-a-pixel-can-comb--9c5dc3907b13\",\n        \"claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb\",\n        \"claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4\",\n        \"claim-real-time-rendering-sequences-exhibit-substantial-spatio-temporal-coherence-and--1377a0a7dbf4\",\n        \"claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52\",\n        \"claim-forward-reprojection-can-map-cached-pixels-directly-into-the-target-frame-withou--7c9205493d0f\",\n        \"claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063\",\n        \"claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11\"\n      ],\n      \"sections\": [\n        \"Frame-to-frame and neighborhood reuse appears as a shared acceleration strategy: ReSTIR reuses selected direct-light samples across spatial neighbors and prior frames, while temporal-coherence methods reuse intermediate or final shading information across adjacent frames.\",\n        \"The shared constraint is that reuse works best when spatial or temporal correlation is strong; disocclusions, fast changes, unstable shading, and accumulated resampling error require validation, refresh, reshading, or fallback computation.\",\n        \"This topic can compare reservoir combination, reverse and forward reprojection, amortized sampling, cache refresh, and the limits imposed by holes, stale values, and discontinuities.\"\n      ],\n      \"source_ids\": [\n        \"source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a\",\n        \"source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Spatiotemporal Reuse for Real-Time Rendering\",\n      \"topic_id\": \"topic-spatiotemporal-reuse-for-real-time-rendering\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-many-light-direct-illumination-remains-difficult-in-real-time-because-only-a-sma--12cc4274ee94\",\n        \"claim-improving-the-quality-of-direct-light-samples-before-denoising-can-make-existing--0ab0ee7ef42b\",\n        \"claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c\",\n        \"claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892\",\n        \"claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9\",\n        \"claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3\",\n        \"claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546\"\n      ],\n      \"sections\": [\n        \"Several sources treat real-time rendering as a problem of spending limited computation where it matters most. ReSTIR improves many-light direct illumination by raising direct-light sample quality before denoising, while foveated rendering allocates high quality to the foveal region and lower quality to the periphery.\",\n        \"The evidence supports a synthesis around quality budgets: statistical estimators, perceptual models, and rendering paradigms all choose where approximation is acceptable and where missing detail, latency, or discontinuities become visible.\",\n        \"The topic should keep the comparison bounded: ReSTIR's evidence concerns light-sample selection and estimator behavior, while foveated rendering's evidence concerns human-visual-system models and regional quality variation.\"\n      ],\n      \"source_ids\": [\n        \"source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a\",\n        \"source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Sample Quality and Perceptual Quality Allocation\",\n      \"topic_id\": \"topic-sample-quality-and-perceptual-quality-allocation\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-reservoir-sampling-makes-spatiotemporal-reuse-practical-because-a-pixel-can-comb--9c5dc3907b13\",\n        \"claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb\",\n        \"claim-a-two-pass-accumulation-field-method-fits-directly-into-the-opengl-pipeline-and--bf684a8c9b90\",\n        \"claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006\",\n        \"claim-the-edge-aggregation-approach-operates-in-image-space-and-does-not-require-preco--da4e8cd6122f\",\n        \"claim-straight-line-graph-drawings-can-be-rendered-interactively-with-adjustable-level--d4a598a6ca79\",\n        \"claim-cuda-image-space-distance-transforms-skeletonization-path-computation-and-attrac--46de973cba61\"\n      ],\n      \"sections\": [\n        \"ReSTIR, large-graph level-of-detail rendering, and skeleton-based edge bundling all use image-space or GPU-friendly aggregation to make large rendering or visualization problems interactive.\",\n        \"The shared concept is not a single algorithm but a design pattern: compress many candidates, nodes, or edges into compact screen-space summaries, then operate on those summaries instead of carrying full explicit structure through every step.\",\n        \"A useful page could contrast reservoirs, accumulation fields, pixel-bin seed points, density fields, and CUDA image-space transforms, while noting that each method has different information-loss and correlation assumptions.\"\n      ],\n      \"source_ids\": [\n        \"source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a\",\n        \"source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7\",\n        \"source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Image-Space GPU Aggregation\",\n      \"topic_id\": \"topic-image-space-gpu-aggregation\"\n    },\n    {\n      \"claim_ids\": [\n        \"claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f\",\n        \"claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e\",\n        \"claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d\",\n        \"claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11\",\n        \"claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e\",\n        \"claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5\",\n        \"claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963\"\n      ],\n      \"sections\": [\n        \"The sources repeatedly show that real-time graphics methods gain speed by accepting controlled approximation, then managing the artifacts that approximation creates.\",\n        \"ReSTIR has biased and unbiased variants, including a candidate-PDF MIS correction for one bias source and visual risks near visibility, geometry, or shading discontinuities. Temporal reuse can accumulate blur or fail around disocclusions, while image-based crowd rendering and graph bundling manage popping, texture storage, overdraw, and direction distortion.\",\n        \"This topic should emphasize evidence-backed trade-offs rather than treating artifacts as implementation details: approximation changes what information is preserved, what must be recomputed, and what users can reliably interpret.\"\n      ],\n      \"source_ids\": [\n        \"source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a\",\n        \"source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e\",\n        \"source-02-image-based-crowd-rendering--565ae2b0e3a1\",\n        \"source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c\"\n      ],\n      \"structure_type\": \"wiki\",\n      \"title\": \"Bias, Artifacts, and Approximation Boundaries\",\n      \"topic_id\": \"topic-bias-artifacts-and-approximation-boundaries\"\n    }\n  ]\n}",
+    "require_complete_replacement_json": true,
+    "validation_errors": [
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/0/sections/0",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/0/sections/1",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/0/sections/2",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+        "path": "/topics/0/sections",
+        "validator": "section_body_contract",
+        "validator_value": "at_least_one_non_empty_body"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/1/sections/0",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/1/sections/1",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/1/sections/2",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+        "path": "/topics/1/sections",
+        "validator": "section_body_contract",
+        "validator_value": "at_least_one_non_empty_body"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/2/sections/0",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/2/sections/1",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/2/sections/2",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+        "path": "/topics/2/sections",
+        "validator": "section_body_contract",
+        "validator_value": "at_least_one_non_empty_body"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/3/sections/0",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/3/sections/1",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Each section must be an object.",
+        "path": "/topics/3/sections/2",
+        "validator": "type",
+        "validator_value": "object"
+      },
+      {
+        "message": "Section/body contract violation: each topic requires at least one section with non-empty body text.",
+        "path": "/topics/3/sections",
+        "validator": "section_body_contract",
+        "validator_value": "at_least_one_non_empty_body"
+      },
+      {
+        "message": "Normalization error: topic_generation semantic output requires at least one section with non-empty body.",
+        "path": "/topics",
+        "validator": "post_schema_contract",
+        "validator_value": "topic_generation_normalizer"
+      }
+    ]
+  },
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json",
+  "version": "v1"
+}

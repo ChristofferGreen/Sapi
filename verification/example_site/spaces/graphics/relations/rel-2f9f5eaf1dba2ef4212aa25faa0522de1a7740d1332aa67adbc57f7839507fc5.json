@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52",
+  "dst_claim_ref": "2",
+  "last_evaluated_run_id": null,
+  "rationale": "Forward and reverse reprojection are alternative mappings for carrying shaded data across frames.",
+  "relation_file_id": "rel-2f9f5eaf1dba2ef4212aa25faa0522de1a7740d1332aa67adbc57f7839507fc5",
+  "relation_id": "similar:claim-forward-reprojection-can-map-cached-pixels-directly-into-the-target-frame-withou--7c9205493d0f|claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52",
+  "relation_type": "similar",
+  "src_claim_id": "claim-forward-reprojection-can-map-cached-pixels-directly-into-the-target-frame-withou--7c9205493d0f",
+  "src_claim_ref": "3",
+  "status": "open"
+}

@@ -1,0 +1,83 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: question_synthesis
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/question_synthesis.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T123937Z--8pub4fb3rr/semantic/question_synthesis/question-real-time-constraints.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence
+
+=== generation spec ===
+flow_key: question_synthesis
+version: v1
+schema_path: schemas/question_synthesis.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/question_synthesis/<question_id>.json
+context_paths:
+  - <space_root>/questions/<question_id>.json
+  - <space_root>/sources/records
+  - <space_root>/claims
+  - <space_root>/evidence
+---
+## Task
+Generate one strict JSON object that synthesizes the current evidence linked to one prepared question.
+
+## Context Interpretation Rules
+- Treat `<space_root>/questions/<question_id>.json` as the authoritative question record.
+- Use only linked source, claim, and evidence IDs that resolve in the supplied context.
+- Distinguish conclusions from uncertainty, disagreements, and missing evidence.
+- If no sources are linked yet, return an empty evidence-anchor set and a warning that no source
+  context is available.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- Do not invent source, claim, evidence, measurement, or citation anchor IDs.
+- Do not state stronger conclusions than the cited evidence supports.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "schema_version": "question_synthesis_v1",
+  "question_id": "question-protein-intake",
+  "short_answer": "Current evidence supports a daily protein target near the high end of common athletic ranges.",
+  "conclusions": [
+    {
+      "text": "Higher intake is most relevant when resistance training is present.",
+      "support": "moderate",
+      "source_ids": ["source-protein-intake--123456789abc"],
+      "claim_ids": ["claim-protein-dose--123456789abc"],
+      "evidence_ids": ["evidence-protein-dose-response--123456789abc"]
+    }
+  ],
+  "uncertainty": "Population, training status, and energy balance may change the estimate.",
+  "disagreements": [],
+  "citation_anchors": [
+    {
+      "anchor_id": "anchor-protein-dose",
+      "label": "[S1]",
+      "source_id": "source-protein-intake--123456789abc",
+      "claim_ids": ["claim-protein-dose--123456789abc"],
+      "evidence_ids": ["evidence-protein-dose-response--123456789abc"]
+    }
+  ],
+  "warnings": []
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json": "file:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+}
+
+=== llm output ===
+{"schema_version":"question_synthesis_v1","question_id":"question-real-time-constraints","short_answer":"The main tradeoff is whether temporal reuse saves enough real-time rendering work to justify its validation, refresh, and error-management costs. Evidence supports reuse when cached values are expensive and stable, but shows that stale or overly broad caching can create visible errors even when speedups are large.","conclusions":[{"text":"Temporal coherence can reduce frame cost by reusing intermediate or final shading results from prior frames, so it directly addresses real-time rendering constraints when adjacent frames contain persistent visible content.","support":"moderate","source_ids":["source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"],"claim_ids":["claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4"],"evidence_ids":["evidence-application-speedups--c40e1f73b82a"]},{"text":"The strongest reuse targets are computations that are both expensive and stable under expected camera, lighting, time, and interaction changes; the linked model evidence treats this as an empirical optimization over error tolerance, refresh period, cache-hit and cache-miss cost, and expected input variation.","support":"strong","source_ids":["source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"],"claim_ids":["claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301","claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063"],"evidence_ids":["evidence-target-selection-models--0c62d7e4ab91"]},{"text":"Measured examples show the performance-quality boundary: a reflection shader cache can deliver a 2.1x improvement at acceptable error, static ambient-occlusion caching can yield an 8x speedup, while caching broader ambient-occlusion work can exceed 15x speedups but introduce visible errors.","support":"strong","source_ids":["source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"],"claim_ids":["claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4","claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"],"evidence_ids":["evidence-application-speedups--c40e1f73b82a"]},{"text":"Temporal coherence is not limited to one shader cache technique; the taxonomy evidence supports it as a cross-cutting design principle across shader acceleration, multipass effects, anti-aliasing, shadows, global illumination, upsampling, frame interpolation, level of detail, streaming, visibility culling, and temporal perception.","support":"moderate","source_ids":["source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"],"claim_ids":["claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8"],"evidence_ids":["evidence-temporal-coherence-taxonomy--91e7c4b8fa03"]}],"uncertainty":"The linked evidence comes from one survey source and selected examples, so it supports qualitative tradeoff guidance better than a universal numeric rule. Applicability depends on scene dynamics, shader structure, cache validation cost, refresh strategy, disocclusion behavior, resampling artifacts, and each renderer's acceptable error threshold.","disagreements":[],"citation_anchors":[{"anchor_id":"anchor-temporal-reuse-speedups","label":"[S1]","source_id":"source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e","claim_ids":["claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4","claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"],"evidence_ids":["evidence-application-speedups--c40e1f73b82a"]},{"anchor_id":"anchor-target-selection-refresh","label":"[S2]","source_id":"source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e","claim_ids":["claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301","claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063"],"evidence_ids":["evidence-target-selection-models--0c62d7e4ab91"]},{"anchor_id":"anchor-temporal-coherence-taxonomy","label":"[S3]","source_id":"source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e","claim_ids":["claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8"],"evidence_ids":["evidence-temporal-coherence-taxonomy--91e7c4b8fa03"]}],"warnings":["Only one linked source is available, so the synthesis cannot compare independent studies or conflicting empirical results.","The source record has no resolved publication date and notes usable markdown extraction with spacing and table-layout artifacts."]}

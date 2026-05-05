@@ -1,0 +1,27 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-05-05T13:35:41Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/relations"
+  ],
+  "flow_key": "ingest_extraction",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T132908Z--eyk7m66iy9/semantic/ingest_extraction.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json",
+  "started_at": "2026-05-05T13:31:51Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260505T133151Z-ingest_extraction-44006-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": false,
+  "validation_errors": [
+    {
+      "message": "'ReSTIR reframes real-time many-light direct illumination as a reservoir resampling problem. It stores compact per-pixel reservoirs, reuses selected light candidates across neighboring pixels and previous frames, and provides both a cheaper biased estimator and a more expensive unbiased correction. The paper reports large equal-error speedups and real-time GPU renderings in scenes with up to millions of dynamic emissive triangles, while acknowledging limits around discontinuities and first-hit image-space scope.' is too long",
+      "path": "/source_dossier/summary_short",
+      "validator": "maxLength",
+      "validator_value": 420
+    }
+  ]
+}

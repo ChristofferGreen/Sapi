@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+    "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+    "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8"
+  ],
+  "evidence_id": "evidence-application-speedups--c40e1f73b82a",
+  "evidence_type": "statistical_result",
+  "excerpt": "The pixel shader acceleration examples report a 2.1x performance improvement for a reflection shader using reverse reprojection caching at acceptable error, an 8x speedup for a chessboard ambient-occlusion shader when caching only the static-piece contribution, and visible errors but 15x or larger speedups when caching more of the ambient-occlusion computation.",
+  "overview": "These statistical examples give concrete scale to the survey's performance argument. They also show that the useful cache boundary depends on scene semantics: static ambient-occlusion terms cache well, while strongly view-dependent computations become stale quickly and must be limited or refreshed.",
+  "page_refs": [
+    "pp.2387-2388",
+    "Fig.10"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "title": "Application Speedup Examples"
+}

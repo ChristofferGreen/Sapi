@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-restir-samples-one-bounce-direct-lighting-by-repeatedly-resampling-light-candida--59804a49ba1a",
+    "claim-reservoir-sampling-makes-spatiotemporal-reuse-practical-because-a-pixel-can-comb--9c5dc3907b13"
+  ],
+  "evidence_id": "evidence-reservoir-combination--a1ae1233eecd",
+  "evidence_type": "formal_argument",
+  "excerpt": "The algorithm treats each reservoir's selected sample as a fresh sample with weight equal to the accumulated weight sum, producing a result equivalent to sampling over the combined input streams while requiring only reservoir state access.",
+  "overview": "This formal algorithmic observation explains why ReSTIR can reuse candidates across pixels and frames without storing every candidate. It establishes the core mechanism behind the method's low memory footprint and effective candidate-count amplification.",
+  "page_refs": [
+    "Sec. 3.2",
+    "Alg. 4"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "title": "Reservoir Combination Argument"
+}

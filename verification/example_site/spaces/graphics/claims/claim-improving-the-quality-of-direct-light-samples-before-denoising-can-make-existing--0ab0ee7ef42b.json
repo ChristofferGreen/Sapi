@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T13:38:06Z",
+  "claim_id": "claim-improving-the-quality-of-direct-light-samples-before-denoising-can-make-existing--0ab0ee7ef42b",
+  "evidence_excerpts": [
+    "Figure 2 states that denoisers cannot reconstruct missing features and that improved sampling quality lets existing denoisers produce better results."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Better samples improve denoising",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "text": "Improving the quality of direct-light samples before denoising can make existing denoisers more effective because denoisers cannot reconstruct image features absent from their input samples."
+}

@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+  "comparator": "state-of-the-art methods compared in the paper",
+  "evidence_id": "evidence-equal-error-speedups--338656933924",
+  "measure_name": "equal-error speedup",
+  "measurement_id": "measurement-restir-unbiased-equal-error-speedup--6a60f338656933924",
+  "outcome": "faster equal-error rendering",
+  "population": "unbiased ReSTIR estimator for tested many-light direct illumination scenes",
+  "question_id": "question-real-time-constraints",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "uncertainty": "abstract reports a 6x-60x equal-error speedup; result is relative to the paper's comparison methods, error metric, tested scenes, GPU implementations, and direct-lighting task",
+  "unit": "x",
+  "value": 6,
+  "value_max": 60
+}

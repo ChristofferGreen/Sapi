@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T12:49:32Z",
+  "claim_id": "claim-real-time-rendering-sequences-exhibit-substantial-spatio-temporal-coherence-and--1377a0a7dbf4",
+  "evidence_excerpts": [
+    "Figure 2 plots the fraction of points that remain visible from one frame to the next and reports that fractions of 90% and higher are typical for the illustrated game-like sequences."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Frames preserve visible points",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "text": "Real-time rendering sequences exhibit substantial spatio-temporal coherence, and game-like scenes often keep more than 90 percent of visible surface points visible from one frame to the next."
+}

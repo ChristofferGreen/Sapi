@@ -1,0 +1,21 @@
+{
+  "claim_ids": [
+    "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+    "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063"
+  ],
+  "evidence_id": "evidence-target-selection-models--0c62d7e4ab91",
+  "evidence_type": "model_constraint",
+  "excerpt": "The semi-automatic target identification method analyzes shader source code, renders training sequences, gathers error and performance data, models expected reuse error as e_hat(f_m,n) = alpha_m(1 - exp(-lambda_m(n-1))), and models pixel rendering cost from measured cache-hit and cache-miss times. The system then selects the shader component with the greatest performance improvement below a target error threshold.",
+  "overview": "This evidence grounds the claim that temporal reuse target selection is a measurable optimization problem, not a fixed recipe. The method links expected input variation, refresh period, error tolerance, and rendering cost, showing why expensive and stable intermediate computations are best suited for reuse.",
+  "page_refs": [
+    "pp.2385-2386",
+    "Eq.4",
+    "Eq.5",
+    "Eq.6",
+    "Fig.7",
+    "Fig.8"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "title": "Reuse Target Selection Models"
+}

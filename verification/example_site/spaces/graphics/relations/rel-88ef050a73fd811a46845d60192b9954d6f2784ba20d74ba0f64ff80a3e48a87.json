@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The eye-tracking evidence explains why predictability must be one of the model inputs.",
+  "relation_file_id": "rel-88ef050a73fd811a46845d60192b9954d6f2784ba20d74ba0f64ff80a3e48a87",
+  "relation_id": "supports:claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1->claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+  "relation_type": "supports",
+  "src_claim_id": "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+  "src_claim_ref": "4",
+  "status": "open"
+}

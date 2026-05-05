@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+  "comparator": "not provided in linked evidence",
+  "evidence_id": "evidence-dynamic-scene-timings--10f611cada7a",
+  "measure_name": "frame render time",
+  "measurement_id": "measurement-zero-day-frame-time--11000d1510f611cada7a",
+  "outcome": "real-time direct lighting frame rendering",
+  "population": "Zero Day frame with 11,000 dynamic emissive triangles at 1920 x 1080 resolution",
+  "question_id": "question-real-time-constraints",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "uncertainty": "Figure 1 scene-specific timing; does not establish performance for all hardware or content",
+  "unit": "ms",
+  "value": 15,
+  "value_max": null
+}

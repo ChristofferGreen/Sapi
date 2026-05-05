@@ -1,0 +1,72 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: question_relevance_mapping
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/question_relevance_mapping.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T132908Z--eyk7m66iy9/semantic/question_relevance_mapping.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence
+
+=== generation spec ===
+flow_key: question_relevance_mapping
+version: v1
+schema_path: schemas/question_relevance_mapping.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/question_relevance_mapping.json
+context_paths:
+  - <space_root>/questions
+  - <space_root>/sources/records
+  - <space_root>/claims
+  - <space_root>/evidence
+---
+## Task
+Generate one strict JSON object that maps a newly ingested source to zero or more existing prepared
+questions.
+
+## Context Interpretation Rules
+- Use only prepared questions present under `<space_root>/questions`.
+- Use only canonical `source_id`, `claim_id`, and `evidence_id` values present in context.
+- Do not create or suggest new questions in this flow.
+- Return an empty `question_matches` array when no active prepared question is relevant.
+- Prefer evidence-linked matches over title/keyword matches when evidence items are available.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- Every matched `question_id` must be an existing prepared question ID from context.
+- Every referenced source, claim, and evidence ID must be canonical and context-grounded.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "schema_version": "question_relevance_mapping_v1",
+  "source_id": "source-protein-intake--123456789abc",
+  "question_matches": [
+    {
+      "question_id": "question-protein-intake",
+      "relevance": "high",
+      "rationale": "The source directly evaluates protein dose and hypertrophy outcomes.",
+      "claim_ids": ["claim-protein-dose--123456789abc"],
+      "evidence_ids": ["evidence-protein-dose-response--123456789abc"]
+    }
+  ],
+  "warnings": []
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+}
+
+=== llm output ===
+{"schema_version":"question_relevance_mapping_v1","source_id":"source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a","question_matches":[{"question_id":"question-real-time-constraints","relevance":"high","rationale":"The source directly addresses real-time rendering tradeoffs under tight ray budgets, including biased versus unbiased sampling, equal-error speedups, additional visibility-ray costs, denoising interactions, and failure cases where spatial or temporal reuse is weak.","claim_ids":["claim-many-light-direct-illumination-remains-difficult-in-real-time-because-only-a-sma--12cc4274ee94","claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f","claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e","claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c","claim-improving-the-quality-of-direct-light-samples-before-denoising-can-make-existing--0ab0ee7ef42b","claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb"],"evidence_ids":["evidence-dynamic-scene-timings--10f611cada7a","evidence-equal-error-speedups--338656933924","evidence-ris-bias-correction--d863b310516c","evidence-interactive-error-curves--3392481a2020","evidence-image-space-limits--f03158bd267b"]}],"warnings":[]}

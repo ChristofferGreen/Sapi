@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T14:01:56Z",
+  "claim_id": "claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120",
+  "evidence_excerpts": [
+    "The model approximates quality difference as a weighted sum of blur in the direction of motion, blur orthogonal to motion, and judder or non-smoothness."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Blur and judder explain quality",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "text": "A motion-quality model can explain refresh-rate and resolution trade-offs by combining motion-parallel blur, motion-orthogonal blur, and judder components in JND units."
+}

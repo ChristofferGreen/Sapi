@@ -1,0 +1,127 @@
+{
+  "topics": [
+    {
+      "claim_ids": [
+        "claim-real-time-rendering-sequences-exhibit-substantial-spatio-temporal-coherence-and--1377a0a7dbf4",
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+        "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8",
+        "claim-perceptual-temporal-coherence-can-enrich-rendered-content-by-exploiting-visual-i--b796e0540b6f",
+        "claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546",
+        "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+        "claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3",
+        "claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9"
+      ],
+      "sections": [
+        {
+          "body": "Real-time rendering systems can reduce cost by exploiting coherence across adjacent frames or across the human visual field instead of recomputing uniform full-quality results everywhere. Temporal coherence reuses previous-frame information when values remain stable, while foveated rendering allocates higher quality near the fovea and lower quality in the periphery under perceptual constraints."
+        },
+        {
+          "body": "The shared concept is conditional reuse: both approaches depend on identifying where lower computation remains visually acceptable. Temporal methods emphasize stability across camera, lighting, time, and interaction changes; foveated methods emphasize human-visual-system models, regional quality differences, and integration into rendering paradigms."
+        },
+        {
+          "body": "The evidence is strongest for temporal rendering and foveated rendering. The connection to other rendering systems should be framed as an optimization pattern rather than a single unified algorithm."
+        }
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+        "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30"
+      ],
+      "structure_type": "wiki",
+      "title": "Temporal and Perceptual Quality Allocation in Real-Time Rendering",
+      "topic_id": "topic-temporal-perceptual-quality-allocation"
+    },
+    {
+      "claim_ids": [
+        "claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52",
+        "claim-forward-reprojection-can-map-cached-pixels-directly-into-the-target-frame-withou--7c9205493d0f",
+        "claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11",
+        "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063",
+        "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d",
+        "claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034",
+        "claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e"
+      ],
+      "sections": [
+        {
+          "body": "Temporal reuse is limited by whether cached frame data still corresponds to the same visible surface point. Reverse reprojection tests previous-frame positions and depth or identity agreement, while forward reprojection maps cached pixels into the target frame but must handle motion vectors, scattering, occlusion, and holes."
+        },
+        {
+          "body": "The same broader problem appears in image-based impostor rendering: precomputed visual samples can accelerate dense crowds, but view changes introduce popping unless the impostor plane is adjusted. Both sources treat reuse of prior or simplified visual representations as useful only when geometric and visibility mismatch are controlled."
+        },
+        {
+          "body": "Failure modes include disoccluded regions with missing previous data, stale cache entries after shading changes, and repeated resampling that blurs or misplaces high frequencies. These limits make refresh, recomputation, fading, hole filling, and artifact-aware representation choices central to practical reuse."
+        }
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+        "source-02-image-based-crowd-rendering--565ae2b0e3a1"
+      ],
+      "structure_type": "wiki",
+      "title": "Cache Validity and View-Change Artifacts",
+      "topic_id": "topic-reprojection-cache-validity-and-view-change-artifacts"
+    },
+    {
+      "claim_ids": [
+        "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+        "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8",
+        "claim-a-two-pass-accumulation-field-method-fits-directly-into-the-opengl-pipeline-and--bf684a8c9b90",
+        "claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006",
+        "claim-edge-endpoints-can-be-aggregated-by-hill-climbing-on-the-node-density-field-so-t--6e6b82bcec81",
+        "claim-the-edge-aggregation-approach-operates-in-image-space-and-does-not-require-preco--da4e8cd6122f",
+        "claim-the-rendering-complexity-remains-linear-in-input-size-with-seed-point-rectangle--8a6cf3a6542e"
+      ],
+      "sections": [
+        {
+          "body": "Several sources describe rendering strategies that make large or expensive visual computations tractable by spreading, merging, or reusing work. Amortized temporal sampling smooths a reprojected running average to reduce variance over time, while graph level-of-detail rendering merges node work into pixel bins and aggregates edges or endpoints in image space."
+        },
+        {
+          "body": "The common concept is controlled loss or approximation in service of interactive rendering. Temporal amortization trades noise reduction against lag or blur; graph aggregation trades individual detail for density fields, cluster-level connectivity, and scalable overview rendering."
+        },
+        {
+          "body": "This topic is synthesis-worthy because both sources use screen-space or frame-buffer-oriented computation to avoid work proportional to every original sample at full fidelity. The supporting evidence is strongest when framed around performance and approximation trade-offs, not identical algorithms."
+        }
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+        "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7"
+      ],
+      "structure_type": "wiki",
+      "title": "Amortized and Aggregated Rendering Work",
+      "topic_id": "topic-amortized-and-aggregated-rendering-work"
+    },
+    {
+      "claim_ids": [
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+        "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8",
+        "claim-a-shader-is-a-gpu-directed-program-that-describes-rendering-processes-for-turnin--64c2250afac1",
+        "claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e",
+        "claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18",
+        "claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+        "claim-cuda-image-space-distance-transforms-skeletonization-path-computation-and-attrac--46de973cba61",
+        "claim-a-two-pass-accumulation-field-method-fits-directly-into-the-opengl-pipeline-and--bf684a8c9b90"
+      ],
+      "sections": [
+        {
+          "body": "The sources repeatedly use GPU-compatible representations to preserve interactivity under scale: shader programs map spatial data to pixels, temporal techniques reuse frame-buffer information, crowd rendering compresses impostor textures, and graph visualization uses OpenGL accumulation fields or CUDA image-space transforms."
+        },
+        {
+          "body": "The shared concept is not a single data structure but a design orientation: move expensive rendering or visualization work into representations that graphics hardware can process efficiently, such as shaders, frame buffers, compressed textures, image-space distance fields, and screen-resolution accumulation fields."
+        },
+        {
+          "body": "The evidence spans creative shadercoding, real-time rendering surveys, dense crowd impostors, skeleton-based edge bundling, and graph level-of-detail. Because the sources differ in domain, section content should emphasize recurring representation choices and trade-offs rather than claiming a unified pipeline."
+        }
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+        "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+        "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+        "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+        "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7"
+      ],
+      "structure_type": "wiki",
+      "title": "GPU-Centered Representations for Interactive Scale",
+      "topic_id": "topic-gpu-centered-representations-for-interactive-scale"
+    }
+  ]
+}

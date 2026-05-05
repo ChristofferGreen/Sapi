@@ -1,0 +1,66 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: source_revision_detection
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/source_revision_detection.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T123937Z--8pub4fb3rr/semantic/source_revision_detection.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts
+
+=== generation spec ===
+flow_key: source_revision_detection
+version: v1
+schema_path: schemas/source_revision_detection.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/source_revision_detection.json
+context_paths:
+  - <space_root>/sources/records
+  - <space_root>/sources/artifacts
+---
+## Task
+Generate one strict JSON object that decides whether the newly ingested source is certainly a new
+revision of exactly one provided candidate source.
+
+## Context Interpretation Rules
+- Use only evidence available under `context_paths` and `task_context`.
+- Candidate source IDs are bounded by `task_context`; do not search for or invent other candidate IDs.
+- Default to inspecting `source.md` and `source_extraction.json` for the new source and candidate sources.
+- Inspect the original PDF/binary only when markdown quality metadata is degraded, unusable, or insufficient
+  for a confident revision decision.
+- A revision decision requires strong evidence that the documents are different versions of the same
+  underlying work, such as matching canonical identifier, title/authorship plus revision/version markers,
+  or near-identical body text with clear update signals.
+- Similar topic, shared authors, citation relationship, or topical overlap alone is not enough.
+- If certainty is not high, return `decision: "new_source"` or `decision: "uncertain"` with
+  `certainty: false`.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- Do not invent source IDs.
+- Use `matched_source_id: null` unless `decision` is `revision` and `certainty` is `true`.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "decision": "uncertain",
+  "certainty": false,
+  "matched_source_id": null,
+  "candidate_source_ids": ["source-example--0123456789ab"],
+  "rationale": "The sources discuss the same topic, but no version marker or shared identifier proves a revision.",
+  "evidence": ["Both sources discuss the same subject, but titles and identifiers differ."]
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+}
+
+=== llm output ===
+{"decision":"new_source","certainty":true,"matched_source_id":null,"candidate_source_ids":["source-02-image-based-crowd-rendering--565ae2b0e3a1","source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30","source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7"],"rationale":"The new source is a distinct paper titled \"Temporal Coherence Methods in Real-Time Rendering\" with DOI 10.1111/j.1467-8659.2012.03075.x and authors Scherzer, Yang, Mattausch, Nehab, Sander, Wimmer, and Eisemann. The three bounded candidates have different titles, authors, topics, and available identifiers, and the usable markdown/extraction metadata provides no version markers, shared canonical identifier, or near-identical body text indicating a revision relationship.","evidence":["The new source markdown identifies \"Temporal Coherence Methods in Real-Time Rendering\" and DOI 10.1111/j.1467-8659.2012.03075.x, with an abstract about exploiting temporal coherence in real-time rendering.","Candidate source-02-image-based-crowd-rendering--565ae2b0e3a1 is titled \"Image-Based Crowd Rendering\" and discusses image-based rendering for real-time animated crowds in virtual cities, not temporal coherence methods.","Candidate source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30 is titled \"Foveated rendering: A state-of-the-art survey\" with DOI 10.1007/s41095-022-0306-4 and authors Lili Wang, Xuehuai Shi, and Yi Liu.","Candidate source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7 is titled \"Interactive Level-of-Detail Rendering of Large Graphs\" with DOI 10.1109/TVCG.2012.238 and authors Michael Zinsmaier, Ulrik Brandes, Oliver Deussen, and Hendrik Strobelt.","All inspected source_extraction.json files report quality_status \"usable\" and status \"success\", so the markdown evidence is sufficient without inspecting PDFs."]}

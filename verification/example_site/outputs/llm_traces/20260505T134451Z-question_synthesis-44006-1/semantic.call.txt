@@ -1,0 +1,83 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: question_synthesis
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/question_synthesis.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T132908Z--eyk7m66iy9/semantic/question_synthesis/question-real-time-constraints.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence
+
+=== generation spec ===
+flow_key: question_synthesis
+version: v1
+schema_path: schemas/question_synthesis.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/question_synthesis/<question_id>.json
+context_paths:
+  - <space_root>/questions/<question_id>.json
+  - <space_root>/sources/records
+  - <space_root>/claims
+  - <space_root>/evidence
+---
+## Task
+Generate one strict JSON object that synthesizes the current evidence linked to one prepared question.
+
+## Context Interpretation Rules
+- Treat `<space_root>/questions/<question_id>.json` as the authoritative question record.
+- Use only linked source, claim, and evidence IDs that resolve in the supplied context.
+- Distinguish conclusions from uncertainty, disagreements, and missing evidence.
+- If no sources are linked yet, return an empty evidence-anchor set and a warning that no source
+  context is available.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- Do not invent source, claim, evidence, measurement, or citation anchor IDs.
+- Do not state stronger conclusions than the cited evidence supports.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "schema_version": "question_synthesis_v1",
+  "question_id": "question-protein-intake",
+  "short_answer": "Current evidence supports a daily protein target near the high end of common athletic ranges.",
+  "conclusions": [
+    {
+      "text": "Higher intake is most relevant when resistance training is present.",
+      "support": "moderate",
+      "source_ids": ["source-protein-intake--123456789abc"],
+      "claim_ids": ["claim-protein-dose--123456789abc"],
+      "evidence_ids": ["evidence-protein-dose-response--123456789abc"]
+    }
+  ],
+  "uncertainty": "Population, training status, and energy balance may change the estimate.",
+  "disagreements": [],
+  "citation_anchors": [
+    {
+      "anchor_id": "anchor-protein-dose",
+      "label": "[S1]",
+      "source_id": "source-protein-intake--123456789abc",
+      "claim_ids": ["claim-protein-dose--123456789abc"],
+      "evidence_ids": ["evidence-protein-dose-response--123456789abc"]
+    }
+  ],
+  "warnings": []
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json": "file:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+}
+
+=== llm output ===
+{"schema_version":"question_synthesis_v1","question_id":"question-real-time-constraints","short_answer":"The strongest evidence says real-time rendering systems are governed by a performance-quality-validity tradeoff: reuse and resampling can save substantial work, but only when the reused data remains relevant, validation and refresh costs stay below the saved computation, and bias, staleness, disocclusion, and image-space limits are acceptable for the target visual error budget.","conclusions":[{"text":"Temporal coherence can reduce real-time rendering cost by carrying intermediate or final shading information across frames, but the benefit depends on selecting expensive, stable quantities rather than cheap or highly view-dependent values.","support":"strong","source_ids":["source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"],"claim_ids":["claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4","claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"],"evidence_ids":["evidence-target-selection-models--0c62d7e4ab91","evidence-application-speedups--c40e1f73b82a"]},{"text":"Cache refresh and validation are central costs, not implementation details: stale cached values, changing shading conditions, and resampling error force systems to balance speedup against noise, discontinuities, branch cost, and visible artifacts.","support":"strong","source_ids":["source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"],"claim_ids":["claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063","claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"],"evidence_ids":["evidence-target-selection-models--0c62d7e4ab91"]},{"text":"Measured temporal-coherence examples show the scale of the tradeoff: reported speedups range from 2.1x for a reflection shader and 8x for static ambient-occlusion caching to 15x or larger for broader ambient-occlusion reuse, but the broader reuse case introduces visible errors.","support":"strong","source_ids":["source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"],"claim_ids":["claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4","claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"],"evidence_ids":["evidence-application-speedups--c40e1f73b82a"]},{"text":"For many-light direct illumination, ReSTIR evidence supports a different but related tradeoff: spatiotemporal reservoir reuse can achieve large equal-error speedups and real-time scene timings, but the cheaper biased estimator can lose energy near visibility, geometry, or shading discontinuities.","support":"strong","source_ids":["source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"],"claim_ids":["claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c","claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f"],"evidence_ids":["evidence-equal-error-speedups--338656933924","evidence-dynamic-scene-timings--10f611cada7a","evidence-interactive-error-curves--3392481a2020"]},{"text":"Unbiased reuse is possible when candidate-PDF multiple-importance weights correct mixed pixel distributions, but the context indicates this path is more costly because visibility-aware unbiased reuse can require additional rays.","support":"moderate","source_ids":["source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"],"claim_ids":["claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e","claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f"],"evidence_ids":["evidence-ris-bias-correction--d863b310516c","evidence-interactive-error-curves--3392481a2020"]},{"text":"The methods are broad but not universal: temporal coherence applies across many rendering tasks, while image-space reservoir reuse is constrained by spatial and temporal correlation, disocclusions, fast lighting changes, high geometric complexity, and primary-hit direct-lighting scope.","support":"moderate","source_ids":["source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e","source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"],"claim_ids":["claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8","claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb"],"evidence_ids":["evidence-temporal-coherence-taxonomy--91e7c4b8fa03","evidence-image-space-limits--f03158bd267b"]}],"uncertainty":"The evidence supports qualitative design guidance and several reported speedup ranges, but it does not define a universal frame-time rule. Applicability depends on the renderer, hardware, scene dynamics, target error metric, denoising pipeline, refresh policy, validation cost, disocclusion behavior, lighting changes, and whether the task fits image-space first-hit reuse.","disagreements":[],"citation_anchors":[{"anchor_id":"anchor-temporal-targets","label":"[S1]","source_id":"source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e","claim_ids":["claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4","claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"],"evidence_ids":["evidence-target-selection-models--0c62d7e4ab91","evidence-application-speedups--c40e1f73b82a"]},{"anchor_id":"anchor-refresh-staleness","label":"[S2]","source_id":"source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e","claim_ids":["claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063","claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"],"evidence_ids":["evidence-target-selection-models--0c62d7e4ab91"]},{"anchor_id":"anchor-temporal-taxonomy","label":"[S3]","source_id":"source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e","claim_ids":["claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8"],"evidence_ids":["evidence-temporal-coherence-taxonomy--91e7c4b8fa03"]},{"anchor_id":"anchor-restir-performance","label":"[S4]","source_id":"source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a","claim_ids":["claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c"],"evidence_ids":["evidence-equal-error-speedups--338656933924","evidence-dynamic-scene-timings--10f611cada7a"]},{"anchor_id":"anchor-restir-bias","label":"[S5]","source_id":"source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a","claim_ids":["claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f","claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e"],"evidence_ids":["evidence-interactive-error-curves--3392481a2020","evidence-ris-bias-correction--d863b310516c"]},{"anchor_id":"anchor-restir-limits","label":"[S6]","source_id":"source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a","claim_ids":["claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb"],"evidence_ids":["evidence-image-space-limits--f03158bd267b"]}],"warnings":["Some linked claims, including the denoising and many-light problem-setting claims, have no separate linked evidence record in the allowed evidence set, so they are not used as primary conclusion support.","The ReSTIR speedups and timings are scene-, implementation-, and metric-specific; they should not be treated as universal performance guarantees.","One source record has unresolved publication date metadata, and both sources rely on usable markdown extraction rather than direct PDF inspection in this context."]}

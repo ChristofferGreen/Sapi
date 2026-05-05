@@ -1,0 +1,234 @@
+{
+  "access_policy": {
+    "landing_url": null,
+    "operator_responsibility": null,
+    "public_download": true,
+    "public_source_view": true,
+    "reason": null,
+    "restricted": false
+  },
+  "analysis_policy": {
+    "fallback_artifacts": [
+      "source_file"
+    ],
+    "preferred_artifact": "source_markdown",
+    "quality_status": "usable",
+    "warnings": []
+  },
+  "article_kind": null,
+  "artifact_root": "sources/artifacts/source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "artifacts": {
+    "front_page_image": "sources/artifacts/source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e/front_page.png",
+    "source_extraction": "sources/artifacts/source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e/source_extraction.json",
+    "source_file": "sources/artifacts/source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e/source.pdf",
+    "source_markdown": "sources/artifacts/source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e/source.md",
+    "source_provenance": "sources/artifacts/source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e/source_provenance.md"
+  },
+  "authors": [
+    "Daniel Scherzer",
+    "Lei Yang",
+    "Oliver Mattausch",
+    "Diego Nehab",
+    "Pedro V. Sander",
+    "Michael Wimmer",
+    "Elmar Eisemann"
+  ],
+  "canonical_identifier": "10.1111/j.1467-8659.2012.03075.x",
+  "citation_count": 47.0,
+  "citation_count_as_of": "2026-05-05",
+  "citation_count_confidence": "medium",
+  "citation_count_provider": "Scopus via HKUST Research Portal",
+  "date": null,
+  "display_title": "Temporal Coherence Methods in Real-Time Rendering",
+  "external_related_links": [
+    {
+      "confidence": "high",
+      "domain": "doi.org",
+      "link_type": "canonical_paper",
+      "provenance": {
+        "origin": "canonical_identifier",
+        "source_field": "canonical_identifier"
+      },
+      "quality_status": "trusted",
+      "rationale": "Canonical identifier for the ingested source.",
+      "title": "DOI landing page",
+      "url": "https://doi.org/10.1111/j.1467-8659.2012.03075.x"
+    },
+    {
+      "confidence": "high",
+      "domain": "arxiv.org",
+      "link_type": "research_index",
+      "provenance": {
+        "origin": "canonical_identifier",
+        "source_field": "canonical_identifier"
+      },
+      "quality_status": "trusted",
+      "rationale": "Canonical arXiv identifier for the ingested source.",
+      "title": "arXiv abstract",
+      "url": "https://arxiv.org/abs/8659.2012"
+    },
+    {
+      "confidence": "high",
+      "domain": "cse.hkust.edu.hk",
+      "link_type": "primary_source",
+      "provenance": {
+        "origin": "source_locator",
+        "source_field": "source_locator"
+      },
+      "quality_status": "contextual",
+      "rationale": "Original network location captured during ingest.",
+      "title": "Original source link",
+      "url": "https://cse.hkust.edu.hk/~psander/docs/tempcoj.pdf"
+    }
+  ],
+  "ingested_at": "2026-05-05T12:39:52Z",
+  "linked_source_ids": [],
+  "references": [
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": "motionsharpeningphenomenoninvideosequences.IE",
+      "url": "http://www.cs.cmu.edu/ph",
+      "year": null
+    },
+    {
+      "arxiv": null,
+      "authors": [],
+      "doi": null,
+      "linked_source_ids": [],
+      "title": null,
+      "url": "http://www.xbitlabs.com/articles/monitors/display/lcd-",
+      "year": null
+    },
+    {
+      "arxiv": "8659.2011",
+      "authors": [],
+      "doi": "10.1111/j.1467-8659.2011.02063.x",
+      "linked_source_ids": [],
+      "title": "\u20131930. . hancement via intrinsic relighting. ACM Transactions",
+      "url": null,
+      "year": 1921
+    },
+    {
+      "arxiv": "8659.2012",
+      "authors": [],
+      "doi": "10.1111/j.1467-8659.2012.03075.x",
+      "linked_source_ids": [],
+      "title": "COMPUTERGRAPHICS forum",
+      "url": null,
+      "year": 2012
+    }
+  ],
+  "related_link_enrichment": {
+    "skip_reason": null,
+    "sources": [
+      "canonical_identifier",
+      "references",
+      "source_locator"
+    ],
+    "status": "enriched",
+    "warnings": [
+      "Skipped 2 unsupported external-link candidate(s)."
+    ]
+  },
+  "schema_version": "source_record_v1",
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "unknown",
+    "rationale": null
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The survey's core argument is that high frame rates and repeated scene structure create exploitable redundancy. If most visible surface points and shaded attributes persist across adjacent frames, a renderer can reuse earlier computation and spend the saved budget on better quality, higher frame rate, or lower-spec hardware support. This is grounded by measured visibility persistence rather than only intuition.",
+        "grounding_claim_ids": [
+          "0",
+          "1"
+        ],
+        "heading": "Core Argument"
+      },
+      {
+        "body": "The main technical path is reprojection. Reverse reprojection validates a current pixel against cached previous-frame data through depth or identity checks; forward reprojection pushes cached samples toward the current frame and can bypass current geometry processing. Together they form complementary strategies for carrying information across time, with different costs and failure modes.",
+        "grounding_claim_ids": [
+          "2",
+          "3"
+        ],
+        "heading": "Reprojection Path"
+      },
+      {
+        "body": "The paper repeatedly emphasizes that temporal reuse needs safeguards. Disoccluded regions may have no valid prior samples, cached values can become stale as shading or scene parameters change, and repeated bilinear resampling can blur or misplace high-frequency detail. These are not incidental artifacts; they define the practical boundary between useful reuse and visible error.",
+        "grounding_claim_ids": [
+          "4",
+          "5",
+          "8"
+        ],
+        "heading": "Failure Modes"
+      },
+      {
+        "body": "Amortized sampling shows the quantitative promise and cost of temporal reuse. A running average can reduce variance dramatically while computing few new samples per frame, but the same smoothing factor determines how long obsolete samples continue to influence the image. The result is a controlled trade-off between noise reduction, lag, and blur.",
+        "grounding_claim_ids": [
+          "6",
+          "8"
+        ],
+        "heading": "Sampling Trade-Off"
+      },
+      {
+        "body": "A useful reuse target is expensive enough to justify lookup overhead and stable enough that history remains relevant under expected motion, lighting, and interaction. The source's semi-automatic target identification discussion turns this into an empirical modeling problem, using training runs to estimate error and rendering cost for candidate cached shader values.",
+        "grounding_claim_ids": [
+          "7",
+          "5"
+        ],
+        "heading": "Target Selection"
+      },
+      {
+        "body": "The survey is broader than a single caching algorithm. Its taxonomy and examples connect temporal coherence to shader acceleration, multipass effects, anti-aliasing, shadows, global illumination, upsampling, frame interpolation, non-photorealistic rendering, LOD, streaming, visibility culling, and perception. The common pattern is reusing or integrating temporally adjacent information under task-specific validity rules.",
+        "grounding_claim_ids": [
+          "9",
+          "10"
+        ],
+        "heading": "Application Scope"
+      }
+    ],
+    "summary_long": "The source frames temporal coherence as a response to a persistent pressure in real-time rendering: richer shading, higher resolution, and higher frame rates all demand more computation than a frame budget can comfortably provide. The key observation is that adjacent frames in many real-time sequences are highly redundant. Surface points often remain visible and their shaded attributes often change slowly, so the renderer can carry forward useful work from earlier frames. The survey first grounds this claim with visibility measurements, then builds the main algorithmic vocabulary around reprojection. Reverse reprojection starts from a current pixel, maps it to a previous-frame location, and reuses cached data only if depth or related tests show that the same surface point was visible before. Forward reprojection instead pushes cached pixels into the new frame, which can avoid processing current geometry but creates scattering, visibility, and hole-filling problems. The paper then treats temporal reuse as an engineering trade-off rather than a free optimization. Caches become stale, disocclusions expose regions with no history, bilinear resampling progressively blurs high frequencies, and some computations are too cheap or too view-dependent to cache profitably. Refresh schedules, amortized sampling filters, error/performance models, and confidence metrics are presented as ways to manage those trade-offs. The second half broadens the discussion from the core reprojection machinery to applications. Temporal coherence can accelerate pixel shaders, accumulate anti-aliasing samples, improve shadow and ambient-occlusion quality, stabilize global illumination, synthesize intermediate frames, support non-photorealistic stroke coherence, smooth LOD transitions, reduce streaming bandwidth, and reduce visibility-query overhead. The source's practical lesson is that temporal coherence is most valuable when it is matched to stable, expensive intermediate quantities and paired with validation and refresh policies that bound error. Its limits are equally important: motion, lighting changes, disocclusion, repeated resampling, and perceptual artifacts can all turn reuse into visible error unless the renderer detects and manages them.",
+    "summary_short": "Temporal Coherence Methods in Real-Time Rendering surveys how adjacent interactive frames can reuse rendering work through reprojection, cache validation, refresh, and amortized sampling. It treats temporal coherence as a broad design principle for shader acceleration, anti-aliasing, shadows, global illumination, upsampling, frame interpolation, LOD, streaming, visibility culling, and perceptual effects."
+  },
+  "source_extraction": {
+    "converter_name": "markitdown",
+    "converter_version": "0.1.5",
+    "quality_status": "usable",
+    "status": "success",
+    "warnings": []
+  },
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "source_kind": "url",
+  "source_locator": "https://cse.hkust.edu.hk/~psander/docs/tempcoj.pdf",
+  "source_media_type": "application/pdf",
+  "source_semantic": {
+    "authors": [
+      "Daniel Scherzer",
+      "Lei Yang",
+      "Oliver Mattausch",
+      "Diego Nehab",
+      "Pedro V. Sander",
+      "Michael Wimmer",
+      "Elmar Eisemann"
+    ],
+    "display_title": "Temporal Coherence Methods in Real-Time Rendering"
+  },
+  "source_type": "url",
+  "summary": "This survey explains temporal coherence as a practical way to reuse rendering information across adjacent frames. It formalizes reverse and forward reprojection, analyzes quality and performance trade-offs, and surveys applications from shader acceleration and shadows to global illumination, upsampling, frame interpolation, LOD, streaming, visibility culling, and perceptual effects.",
+  "title": "Temporal Coherence Methods in Real-Time Rendering",
+  "warnings": [
+    {
+      "code": "missing_publication_date",
+      "message": "Publication date could not be resolved from the provided source record; source_date_inference.date is null."
+    },
+    {
+      "code": "markdown_spacing_artifacts",
+      "message": "The markdown extraction is marked usable, but some lines contain missing spaces and table-layout artifacts; claims are grounded in repeated section context and clear extracted equations, figures, and captions."
+    }
+  ]
+}

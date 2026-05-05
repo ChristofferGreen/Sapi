@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+  "comparator": "measured judder-detection data",
+  "evidence_id": "evidence-judder-threshold-result--3835854abc12",
+  "measure_name": "judder model RMSE",
+  "measurement_id": "measurement-judder-model-rmse--3835854abc12",
+  "outcome": "root mean squared error of judder model fit",
+  "population": "fitted isolated-judder model",
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "uncertainty": "reported as fitted judder model RMSE",
+  "unit": "JND",
+  "value": 0.1074,
+  "value_max": null
+}

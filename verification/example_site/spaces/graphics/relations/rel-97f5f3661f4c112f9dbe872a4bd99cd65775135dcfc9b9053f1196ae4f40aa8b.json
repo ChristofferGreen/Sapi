@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-forward-reprojection-can-map-cached-pixels-directly-into-the-target-frame-withou--7c9205493d0f",
+  "dst_claim_ref": "3",
+  "last_evaluated_run_id": null,
+  "rationale": "Disocclusion and hole handling are explicit practical constraints on forward reprojection.",
+  "relation_file_id": "rel-97f5f3661f4c112f9dbe872a4bd99cd65775135dcfc9b9053f1196ae4f40aa8b",
+  "relation_id": "supports:claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11->claim-forward-reprojection-can-map-cached-pixels-directly-into-the-target-frame-withou--7c9205493d0f",
+  "relation_type": "supports",
+  "src_claim_id": "claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11",
+  "src_claim_ref": "4",
+  "status": "open"
+}

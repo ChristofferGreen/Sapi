@@ -1,0 +1,72 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: question_relevance_mapping
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/question_relevance_mapping.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T130527Z--lhhnzw5dhw/semantic/question_relevance_mapping.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence
+
+=== generation spec ===
+flow_key: question_relevance_mapping
+version: v1
+schema_path: schemas/question_relevance_mapping.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/question_relevance_mapping.json
+context_paths:
+  - <space_root>/questions
+  - <space_root>/sources/records
+  - <space_root>/claims
+  - <space_root>/evidence
+---
+## Task
+Generate one strict JSON object that maps a newly ingested source to zero or more existing prepared
+questions.
+
+## Context Interpretation Rules
+- Use only prepared questions present under `<space_root>/questions`.
+- Use only canonical `source_id`, `claim_id`, and `evidence_id` values present in context.
+- Do not create or suggest new questions in this flow.
+- Return an empty `question_matches` array when no active prepared question is relevant.
+- Prefer evidence-linked matches over title/keyword matches when evidence items are available.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- Every matched `question_id` must be an existing prepared question ID from context.
+- Every referenced source, claim, and evidence ID must be canonical and context-grounded.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "schema_version": "question_relevance_mapping_v1",
+  "source_id": "source-protein-intake--123456789abc",
+  "question_matches": [
+    {
+      "question_id": "question-protein-intake",
+      "relevance": "high",
+      "rationale": "The source directly evaluates protein dose and hypertrophy outcomes.",
+      "claim_ids": ["claim-protein-dose--123456789abc"],
+      "evidence_ids": ["evidence-protein-dose-response--123456789abc"]
+    }
+  ],
+  "warnings": []
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+}
+
+=== llm output ===
+{"schema_version":"question_relevance_mapping_v1","source_id":"source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68","question_matches":[{"question_id":"question-perceptual-error","relevance":"high","rationale":"The source directly builds and validates a perceptual quality model in JND-scaled units, decomposing visible error into blur and judder terms and measuring how motion predictability changes perceived degradation.","claim_ids":["claim-perceived-motion-quality-can-be-modeled-as-a-function-of-refresh-rate-image-reso--519bf0074d7b","claim-motion-blur-in-the-model-comes-from-hold-type-display-blur-imperfect-eye-trackin--f4a63ca14b95","claim-motion-predictability-affects-smooth-pursuit-eye-motion-with-unpredictable-motio--c0bac233757d","claim-judder-is-perceptually-important-at-50-hz-and-60-hz-but-becomes-negligible-at-72--123662905a6e","claim-the-full-visual-model-using-parallel-blur-judder-and-predictability-provides-the--872618cdc255"],"evidence_ids":["evidence-quality-sum-equation--c9d85a7e4b32","evidence-three-blur-equations--f0a4d62e5c19","evidence-eye-tracking-predictability--8de27c14a6bf","evidence-judder-threshold-results--4ac9e735d2b8","evidence-ablation-rmse-table--d72b5f1c0e99"]},{"question_id":"question-real-time-constraints","relevance":"high","rationale":"The source directly addresses real-time rendering under constrained GPU or bandwidth budgets, showing how adaptive refresh-rate and resolution choices can outperform fixed policies while preserving perceived motion quality.","claim_ids":["claim-rendering-under-limited-gpu-or-bandwidth-budgets-requires-a-content-dependent-tr--e658c0af1a81","claim-higher-refresh-rates-improve-perceived-motion-quality-but-the-quality-gain-becom--e1004ece29f7","claim-a-motion-adaptive-resolution-and-refresh-rate-algorithm-can-use-the-model-to-sel--3317d727422b","claim-controlled-validation-favored-marrr-over-constant-resolution-and-constant-refres--d9eadcb46b3c","claim-video-game-validation-also-favored-marrr-over-fixed-refresh-rate-rendering-with--a58508d90d32"],"evidence_ids":["evidence-refresh-gains-diminish--b61e4f3a90c7","evidence-marrr-optimization-formula--e41a9307bd6c","evidence-controlled-marrr-preference--a69c3e4d8f25","evidence-game-marrr-preference--f8d7ac31b064"]},{"question_id":"question-gpu-memory-bandwidth","relevance":"medium","rationale":"The source is relevant to bandwidth-constrained rendering because it frames adaptive resolution and refresh rate as a response to limited GPU performance budgets and transmission bandwidth, though it does not specifically diagnose memory bandwidth versus compute bottlenecks.","claim_ids":["claim-rendering-under-limited-gpu-or-bandwidth-budgets-requires-a-content-dependent-tr--e658c0af1a81","claim-a-motion-adaptive-resolution-and-refresh-rate-algorithm-can-use-the-model-to-sel--3317d727422b","claim-video-game-validation-also-favored-marrr-over-fixed-refresh-rate-rendering-with--a58508d90d32"],"evidence_ids":["evidence-pairwise-refresh-rate-study--a3f91c08d4e2","evidence-marrr-optimization-formula--e41a9307bd6c","evidence-game-marrr-preference--f8d7ac31b064"]}],"warnings":[]}

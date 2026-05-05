@@ -1,0 +1,34 @@
+{
+  "claim_ids": [
+    "claim-restir-samples-one-bounce-direct-lighting-by-repeatedly-resampling-light-candida--59804a49ba1a",
+    "claim-reservoir-sampling-makes-spatiotemporal-reuse-practical-because-a-pixel-can-comb--9c5dc3907b13",
+    "claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb",
+    "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+    "claim-real-time-rendering-sequences-exhibit-substantial-spatio-temporal-coherence-and--1377a0a7dbf4",
+    "claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52",
+    "claim-forward-reprojection-can-map-cached-pixels-directly-into-the-target-frame-withou--7c9205493d0f",
+    "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063",
+    "claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11"
+  ],
+  "sections": [
+    {
+      "body": "Frame-to-frame and neighborhood reuse appears as a shared acceleration strategy: ReSTIR reuses selected direct-light samples across spatial neighbors and prior frames, while temporal-coherence methods reuse intermediate or final shading information across adjacent frames.",
+      "heading": "Shared reuse strategy"
+    },
+    {
+      "body": "The shared constraint is that reuse works best when spatial or temporal correlation is strong. Disocclusions, fast changes, unstable shading, and accumulated resampling error require validation, refresh, reshading, or fallback computation.",
+      "heading": "Reuse constraints"
+    },
+    {
+      "body": "This topic can compare reservoir combination, reverse and forward reprojection, amortized sampling, cache refresh, and the limits imposed by holes, stale values, and discontinuities.",
+      "heading": "Comparison scope"
+    }
+  ],
+  "source_ids": [
+    "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+    "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+  ],
+  "structure_type": "wiki",
+  "title": "Spatiotemporal Reuse for Real-Time Rendering",
+  "topic_id": "topic-spatiotemporal-reuse-for-real-time-rendering"
+}

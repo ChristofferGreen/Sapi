@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df",
+  "comparator": "full model train RMSE 0.31 and test RMSE 0.38",
+  "evidence_id": "evidence-model-fit-ablation--1f83564def09",
+  "measure_name": "model fit RMSE lower bound",
+  "measurement_id": "measurement-judder-only-rmse-lower-bound--1f83564def09",
+  "outcome": "poorer fit to measured motion-quality curves",
+  "population": "ablation table judder-only variants",
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "uncertainty": "excerpt states judder-only variants exceed 0.51 RMSE, so the row records the stated lower bound",
+  "unit": "RMSE",
+  "value": 0.51,
+  "value_max": null
+}

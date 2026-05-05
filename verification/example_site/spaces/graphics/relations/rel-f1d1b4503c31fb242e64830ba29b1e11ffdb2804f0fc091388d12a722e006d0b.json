@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+  "dst_claim_ref": "0",
+  "last_evaluated_run_id": null,
+  "rationale": "The adaptive-rendering result follows from treating perceived motion quality as a joint function of display settings and motion properties.",
+  "relation_file_id": "rel-f1d1b4503c31fb242e64830ba29b1e11ffdb2804f0fc091388d12a722e006d0b",
+  "relation_id": "derived_from:claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8->claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+  "relation_type": "derived_from",
+  "src_claim_id": "claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8",
+  "src_claim_ref": "7",
+  "status": "open"
+}

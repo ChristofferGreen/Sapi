@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T12:49:32Z",
+  "claim_id": "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063",
+  "evidence_excerpts": [
+    "The cache refresh section gives the update condition (t+i) mod n = 0 for pixel groups and compares tiled, random, and interleaved refresh strategies."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Refresh controls cache staleness",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "text": "Cached temporal data must be refreshed because reused values become stale through shading changes and resampling error, so refresh strategies trade coherence, noise, discontinuities, and GPU branch costs."
+}

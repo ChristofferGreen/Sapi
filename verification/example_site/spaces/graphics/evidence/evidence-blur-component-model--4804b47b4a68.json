@@ -1,0 +1,21 @@
+{
+  "claim_ids": [
+    "claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120",
+    "claim-higher-object-velocities-reduce-perceived-quality-at-a-fixed-refresh-rate-becaus--8ff6f99488fa",
+    "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1"
+  ],
+  "evidence_id": "evidence-blur-component-model--4804b47b4a68",
+  "evidence_type": "equation",
+  "excerpt": "Hold-type display blur is modeled as bD = v/f, eye-motion blur as bE = pa v + pb, and resolution blur as bR = 1/R. These are converted into Gaussian standard deviations and combined into motion-parallel and orthogonal blur terms.",
+  "overview": "These equations make the model interpretable: speed and refresh rate control display blur, eye pursuit contributes a predictability-sensitive term, and image resolution controls spatial blur. The formulas explain why the optimal resolution-refresh trade-off changes with object motion.",
+  "page_refs": [
+    "Eq.4",
+    "Eq.5",
+    "Eq.6",
+    "Eq.10",
+    "Eq.11"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "title": "Blur Component Formulas"
+}

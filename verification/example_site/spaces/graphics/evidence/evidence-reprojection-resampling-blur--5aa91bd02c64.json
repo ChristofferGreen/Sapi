@@ -1,0 +1,21 @@
+{
+  "claim_ids": [
+    "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d",
+    "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca"
+  ],
+  "evidence_id": "evidence-reprojection-resampling-blur--5aa91bd02c64",
+  "evidence_type": "equation",
+  "excerpt": "For constant panning motion, the survey rewrites reprojection as discrete convolution f_{t->t+1} = f_t * k_v with k_v = [v, 1-v]. Repeating the operation convolves the kernel with itself; interpreting k_v as a Bernoulli distribution gives accumulated variance sigma_n^2 = n v(1-v). The text states that bilinear resampling attenuates and misplaces high frequencies.",
+  "overview": "This derivation explains a fundamental quality limit of temporal reuse. Even if the cached value is semantically valid, repeated resampling can degrade signal content. The evidence supports periodic recomputation, improved filters, or temporal fade-out as necessary safeguards.",
+  "page_refs": [
+    "pp.2386-2387",
+    "Eq.7",
+    "Eq.8",
+    "Eq.9",
+    "Eq.10",
+    "Fig.9"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "title": "Repeated Resampling Blur"
+}

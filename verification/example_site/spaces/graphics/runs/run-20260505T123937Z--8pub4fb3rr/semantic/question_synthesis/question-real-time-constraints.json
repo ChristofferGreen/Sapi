@@ -1,0 +1,104 @@
+{
+  "citation_anchors": [
+    {
+      "anchor_id": "anchor-temporal-reuse-speedups",
+      "claim_ids": [
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+      ],
+      "evidence_ids": [
+        "evidence-application-speedups--c40e1f73b82a"
+      ],
+      "label": "[S1]",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+    },
+    {
+      "anchor_id": "anchor-target-selection-refresh",
+      "claim_ids": [
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+        "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063"
+      ],
+      "evidence_ids": [
+        "evidence-target-selection-models--0c62d7e4ab91"
+      ],
+      "label": "[S2]",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+    },
+    {
+      "anchor_id": "anchor-temporal-coherence-taxonomy",
+      "claim_ids": [
+        "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8"
+      ],
+      "evidence_ids": [
+        "evidence-temporal-coherence-taxonomy--91e7c4b8fa03"
+      ],
+      "label": "[S3]",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+    }
+  ],
+  "conclusions": [
+    {
+      "claim_ids": [
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4"
+      ],
+      "evidence_ids": [
+        "evidence-application-speedups--c40e1f73b82a"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "moderate",
+      "text": "Temporal coherence can reduce frame cost by reusing intermediate or final shading results from prior frames, so it directly addresses real-time rendering constraints when adjacent frames contain persistent visible content."
+    },
+    {
+      "claim_ids": [
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+        "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063"
+      ],
+      "evidence_ids": [
+        "evidence-target-selection-models--0c62d7e4ab91"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "strong",
+      "text": "The strongest reuse targets are computations that are both expensive and stable under expected camera, lighting, time, and interaction changes; the linked model evidence treats this as an empirical optimization over error tolerance, refresh period, cache-hit and cache-miss cost, and expected input variation."
+    },
+    {
+      "claim_ids": [
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+      ],
+      "evidence_ids": [
+        "evidence-application-speedups--c40e1f73b82a"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "strong",
+      "text": "Measured examples show the performance-quality boundary: a reflection shader cache can deliver a 2.1x improvement at acceptable error, static ambient-occlusion caching can yield an 8x speedup, while caching broader ambient-occlusion work can exceed 15x speedups but introduce visible errors."
+    },
+    {
+      "claim_ids": [
+        "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8"
+      ],
+      "evidence_ids": [
+        "evidence-temporal-coherence-taxonomy--91e7c4b8fa03"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "moderate",
+      "text": "Temporal coherence is not limited to one shader cache technique; the taxonomy evidence supports it as a cross-cutting design principle across shader acceleration, multipass effects, anti-aliasing, shadows, global illumination, upsampling, frame interpolation, level of detail, streaming, visibility culling, and temporal perception."
+    }
+  ],
+  "disagreements": [],
+  "question_id": "question-real-time-constraints",
+  "schema_version": "question_synthesis_v1",
+  "short_answer": "The main tradeoff is whether temporal reuse saves enough real-time rendering work to justify its validation, refresh, and error-management costs. Evidence supports reuse when cached values are expensive and stable, but shows that stale or overly broad caching can create visible errors even when speedups are large.",
+  "uncertainty": "The linked evidence comes from one survey source and selected examples, so it supports qualitative tradeoff guidance better than a universal numeric rule. Applicability depends on scene dynamics, shader structure, cache validation cost, refresh strategy, disocclusion behavior, resampling artifacts, and each renderer's acceptable error threshold.",
+  "warnings": [
+    "Only one linked source is available, so the synthesis cannot compare independent studies or conflicting empirical results.",
+    "The source record has no resolved publication date and notes usable markdown extraction with spacing and table-layout artifacts."
+  ]
+}

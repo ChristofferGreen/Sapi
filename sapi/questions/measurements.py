@@ -164,6 +164,11 @@ def run_question_measurement_extraction_and_update(
         trace_ctx=trace_ctx,
     )
     semantic_output = _sanitize_question_measurement_output(semantic_output)
+    semantic_output = _remap_foreign_measurement_id_collisions(
+        payload=semantic_output,
+        space_root=space_root,
+        question=question,
+    )
     resolved.output_json_path.write_text(json.dumps(semantic_output, indent=2, sort_keys=True) + "\n")
     transaction.mark_create(resolved.output_json_path)
     _validate_question_measurement_output(payload=semantic_output, question=question)
@@ -387,6 +392,125 @@ def _require_measurement_file_owned_by_question(
             f"{measurement_path}: existing measurement belongs to question_id "
             f"{observed_question_id!r}, not {question_id!r}."
         )
+
+
+def _remap_foreign_measurement_id_collisions(
+    *,
+    payload: dict[str, Any],
+    space_root: Path,
+    question: PreparedQuestion,
+) -> dict[str, Any]:
+    measurements = payload.get("measurements")
+    if not isinstance(measurements, list):
+        return payload
+
+    remapped_ids: dict[str, str] = {}
+    used_ids = {
+        item.get("measurement_id")
+        for item in measurements
+        if isinstance(item, dict) and isinstance(item.get("measurement_id"), str)
+    }
+    rewritten_measurements: list[Any] = []
+    for item in measurements:
+        if not isinstance(item, dict):
+            rewritten_measurements.append(item)
+            continue
+        measurement_id = item.get("measurement_id")
+        if not isinstance(measurement_id, str):
+            rewritten_measurements.append(item)
+            continue
+        replacement_id = _replacement_measurement_id_for_question(
+            measurement_id=measurement_id,
+            space_root=space_root,
+            question_id=question.question_id,
+            used_ids=used_ids,
+        )
+        if replacement_id != measurement_id:
+            remapped_ids[measurement_id] = replacement_id
+            used_ids.add(replacement_id)
+            rewritten = dict(item)
+            rewritten["measurement_id"] = replacement_id
+            rewritten_measurements.append(rewritten)
+        else:
+            rewritten_measurements.append(item)
+
+    if not remapped_ids:
+        return payload
+
+    rewritten_payload = dict(payload)
+    rewritten_payload["measurements"] = rewritten_measurements
+    rewritten_payload["chart_groups"] = _rewrite_chart_group_measurement_ids(
+        chart_groups=payload.get("chart_groups"),
+        remapped_ids=remapped_ids,
+    )
+    warnings = payload.get("warnings")
+    warning_values = [str(warning) for warning in warnings] if isinstance(warnings, list) else []
+    warning_values.append(
+        "Remapped measurement IDs that collided with existing measurements owned by other questions."
+    )
+    rewritten_payload["warnings"] = warning_values
+    return rewritten_payload
+
+
+def _replacement_measurement_id_for_question(
+    *,
+    measurement_id: str,
+    space_root: Path,
+    question_id: str,
+    used_ids: set[object],
+) -> str:
+    measurement_path = space_root / "measurements" / f"{measurement_id}.json"
+    if not measurement_path.exists():
+        return measurement_id
+    try:
+        payload = _read_json_object(measurement_path)
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
+        raise ValueError(f"{measurement_path}: existing measurement file is not valid JSON.") from exc
+    if payload.get("question_id") == question_id:
+        return measurement_id
+
+    if "--" not in measurement_id:
+        return measurement_id
+    stem = measurement_id.rsplit("--", 1)[0]
+    attempt = 0
+    while True:
+        salt = f"{measurement_id}\n{question_id}\n{attempt}".encode("utf-8")
+        replacement_id = f"{stem}--{hashlib.sha256(salt).hexdigest()[:12]}"
+        replacement_path = space_root / "measurements" / f"{replacement_id}.json"
+        if replacement_id not in used_ids and not replacement_path.exists():
+            return replacement_id
+        if replacement_path.exists():
+            try:
+                replacement_payload = _read_json_object(replacement_path)
+            except (OSError, json.JSONDecodeError, ValueError) as exc:
+                raise ValueError(f"{replacement_path}: existing measurement file is not valid JSON.") from exc
+            if replacement_payload.get("question_id") == question_id:
+                return replacement_id
+        attempt += 1
+
+
+def _rewrite_chart_group_measurement_ids(
+    *,
+    chart_groups: Any,
+    remapped_ids: dict[str, str],
+) -> Any:
+    if not isinstance(chart_groups, list):
+        return chart_groups
+    rewritten_groups: list[Any] = []
+    for group in chart_groups:
+        if not isinstance(group, dict):
+            rewritten_groups.append(group)
+            continue
+        measurement_ids = group.get("measurement_ids")
+        if not isinstance(measurement_ids, list):
+            rewritten_groups.append(group)
+            continue
+        rewritten = dict(group)
+        rewritten["measurement_ids"] = [
+            remapped_ids.get(measurement_id, measurement_id) for measurement_id in measurement_ids
+        ]
+        rewritten_groups.append(rewritten)
+    return rewritten_groups
 
 
 def _write_measurement_metadata(

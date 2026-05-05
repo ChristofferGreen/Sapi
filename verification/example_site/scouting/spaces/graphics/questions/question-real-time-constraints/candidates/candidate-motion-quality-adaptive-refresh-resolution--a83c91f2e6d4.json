@@ -14,8 +14,12 @@
   },
   "doi": "10.1145/3386569.3392411",
   "failure_reason": null,
-  "import_link": null,
-  "import_status": "not_imported",
+  "import_link": {
+    "imported_at": "2026-05-05T14:18:32Z",
+    "run_id": "run-20260505T135543Z--bqwyazjijt",
+    "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+  },
+  "import_status": "imported",
   "landing_url": "https://www.cl.cam.ac.uk/research/rainbow/projects/motion_quality_model/",
   "operator_status": "candidate",
   "pdf_url": "https://www.cl.cam.ac.uk/research/rainbow/projects/motion_quality_model/denes20_comp.pdf",

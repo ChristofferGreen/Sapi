@@ -159,19 +159,6 @@
   "external_related_links": [
     {
       "confidence": "medium",
-      "domain": "doi.org",
-      "link_type": "canonical_paper",
-      "provenance": {
-        "origin": "reference_doi",
-        "source_field": "references[5].doi"
-      },
-      "quality_status": "trusted",
-      "rationale": "Derived from a DOI found in the source references.",
-      "title": "ence pages 1\u201312. Springer Berlin / Heidelberg",
-      "url": "https://doi.org/10.1007/978-3-"
-    },
-    {
-      "confidence": "medium",
       "domain": "dx.doi.org",
       "link_type": "canonical_paper",
       "provenance": {
@@ -182,19 +169,6 @@
       "rationale": "Captured from normalized source references.",
       "title": "http://dx.doi.org/",
       "url": "http://dx.doi.org/10.1109/TVCG.2012.238"
-    },
-    {
-      "confidence": "medium",
-      "domain": "doi.org",
-      "link_type": "canonical_paper",
-      "provenance": {
-        "origin": "reference_doi",
-        "source_field": "references[6].doi"
-      },
-      "quality_status": "trusted",
-      "rationale": "Derived from a DOI found in the source references.",
-      "title": "http://dx.doi.org/",
-      "url": "https://doi.org/10.1109/tvcg.2012.238"
     }
   ],
   "ingested_at": "2026-04-26T17:11:22Z",

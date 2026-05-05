@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "The taxonomy shows that the reuse principle recurs across many real-time rendering applications.",
+  "relation_file_id": "rel-d8b4e9079fc3d3bd5650c036f93274d520126e13b106be56528eec0ad7625948",
+  "relation_id": "supports:claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8->claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+  "relation_type": "supports",
+  "src_claim_id": "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8",
+  "src_claim_ref": "9",
+  "status": "open"
+}

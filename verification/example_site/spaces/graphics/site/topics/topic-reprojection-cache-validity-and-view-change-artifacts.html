@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cache Validity and View-Change Artifacts</title><link rel="stylesheet" href="../assets/site.css"></head><body class="site-shell site-with-global-menubar">
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="../../../../site/index.html">Example Site</a><nav class="site-space-nav" aria-label="Spaces"><details class="site-space-nav-item"><summary class="site-space-nav-summary current">Computer Science / Graphics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../computer-science/site/index.html">Computer Science</a><a class="site-space-nav-link" href="../../../compilers/site/index.html">Compilers</a><a class="site-space-nav-link current" href="../index.html">Graphics</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Philosophy</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../philosophy/site/index.html">Philosophy</a><a class="site-space-nav-link" href="../../../mind/site/index.html">Mind</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Physics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../physics/site/index.html">Physics</a><a class="site-space-nav-link" href="../../../metaphysics/site/index.html">Metaphysics</a><a class="site-space-nav-link" href="../../../quantum-physics/site/index.html">Quantum Physics</a></div></details></nav><nav class="site-tabs"><a class="site-tab" href="../new/index.html">New</a> <a class="site-tab" href="../index.html">Home</a> <a class="site-tab" href="../questions/index.html">Questions</a> <a class="site-tab" href="../overview/index.html" aria-label="Overview for graphics">Overview</a> <a class="site-tab" href="../sources/index.html">Sources</a> <a class="site-tab current" href="index.html">Topics</a> <a class="site-tab" href="../users/index.html">Users</a> <a class="site-tab" href="../evidence/index.html">Evidence</a> <a class="site-tab" href="../claims/index.html">Claims</a></nav></div></header><main class="site-main site-space-main">
+<header class="site-topbar"><form class="top-search" action="../search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
+<section class="content-card topic-content-card"><article class="topic-article"><h1>Cache Validity and View-Change Artifacts</h1>
+<p class="topic-structure" data-structure-type="wiki">Structure: wiki</p>
+<h2 class="topic-section-heading">Section 1</h2><p class="topic-section-body">Temporal reuse is limited by whether cached frame data still corresponds to the same visible surface point. Reverse reprojection tests previous-frame positions and depth or identity agreement, while forward reprojection maps cached pixels into the target frame but must handle motion vectors, scattering, occlusion, and holes.</p>
+<h2 class="topic-section-heading">Section 2</h2><p class="topic-section-body">The same broader problem appears in image-based impostor rendering: precomputed visual samples can accelerate dense crowds, but view changes introduce popping unless the impostor plane is adjusted. Both sources treat reuse of prior or simplified visual representations as useful only when geometric and visibility mismatch are controlled.</p>
+<h2 class="topic-section-heading">Section 3</h2><p class="topic-section-body">Failure modes include disoccluded regions with missing previous data, stale cache entries after shading changes, and repeated resampling that blurs or misplaces high frequencies. These limits make refresh, recomputation, fading, hole filling, and artifact-aware representation choices central to practical reuse.</p></article><section class="source-related-card"><h2>Claims Used by This Topic</h2><ul class="source-related-list"><li><a href="../claims/claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063.html">Refresh controls cache staleness</a><p class="summary">Cached temporal data must be refreshed because reused values become stale through shading changes and resampling error, so refresh strategies trade coherence, noise, discontinuities, and GPU branch costs.</p></li>
+<li><a href="../claims/claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11.html">Disocclusion requires hole filling</a><p class="summary">Disoccluded regions constrain temporal reuse because previous-frame data may be absent; practical systems must reshade these regions or fill holes approximately.</p></li>
+<li><a href="../claims/claim-forward-reprojection-can-map-cached-pixels-directly-into-the-target-frame-withou--7c9205493d0f.html">Forward reprojection trades geometry</a><p class="summary">Forward reprojection can map cached pixels directly into the target frame without processing current scene geometry, but it depends on motion vectors and must address scattering, occlusion, and holes.</p></li>
+<li><a href="../claims/claim-image-based-impostor-rendering-with-positional-and-directional-discretization-ca--3b5de902e034.html">Impostors enable real-time crowds</a><p class="summary">Image-based impostor rendering with positional and directional discretization can display dense animated crowds in large virtual urban environments at interactive rates.</p></li>
+<li><a href="../claims/claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e.html">PCA planes reduce popping</a><p class="summary">Perturbing an impostor plane toward a PCA-derived best-fitting plane reduces viewpoint-change popping for walking human impostors while limiting newly introduced distortions.</p></li>
+<li><a href="../claims/claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d.html">Resampling accumulates blur</a><p class="summary">Repeated reprojection resampling can attenuate and misplace high frequencies, so temporal reuse needs periodic recomputation, better filtering, or fading of older frames to avoid accumulated blur.</p></li>
+<li><a href="../claims/claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52.html">Reverse reprojection validates reuse</a><p class="summary">Reverse reprojection caching validates reuse by mapping a current pixel to its previous-frame position and accepting the cached value only when depth or identity tests indicate the same surface point.</p></li></ul><p><a href="../claims/index.html">Browse all claims</a></p></section><section class="source-related-card"><h2>Evidence Used by This Topic</h2><ul class="source-related-list"><li><a href="../evidence/evidence-cache-refresh-condition--d96a00fc5e3b.html">Periodic Cache Refresh</a><p class="summary">For periodic refresh, the survey gives the condition (t+i) mod n = 0, where i is the group ID of the pixel and t is a global clock. It compares tiled refresh, random refresh,...</p></li>
+<li><a href="../evidence/evidence-forward-reprojection-constraints--c2f7a9e44b10.html">Forward Reprojection Constraints</a><p class="summary">Forward reprojection processes the cache and maps every cached pixel to its new position, avoiding processing of scene geometry for the new frame. The same section notes that...</p></li>
+<li><a href="../evidence/evidence-pca-impostor-plane--3f1a9c0d2b4e.html">PCA-Perturbed Impostor Plane</a><p class="summary">To apply this idea, we had to project back in the 3D space the points visible in the impostor image to get 3D visible samples of the object. We applied a Principal Component...</p></li>
+<li><a href="../evidence/evidence-reprojection-resampling-blur--5aa91bd02c64.html">Repeated Resampling Blur</a><p class="summary">For constant panning motion, the survey rewrites reprojection as discrete convolution f_{t-&gt;t+1} = f_t * k_v with k_v = [v, 1-v]. Repeating the operation convolves the kernel...</p></li>
+<li><a href="../evidence/evidence-reverse-cache-hit-test--b4e908c32a7d.html">Reverse Cache Hit Test</a><p class="summary">The reverse reprojection cache stores pixel data f_t and a screen-space depth buffer d_t. For a current pixel p, the reprojection operator pi_t-1(p) maps the generating scene...</p></li>
+<li><a href="../evidence/evidence-target-selection-models--0c62d7e4ab91.html">Reuse Target Selection Models</a><p class="summary">The semi-automatic target identification method analyzes shader source code, renders training sequences, gathers error and performance data, models expected reuse error as...</p></li>
+<li><a href="../evidence/evidence-ten-thousand-results--9c8b7a6d5e4f.html">Ten-Thousand Avatar Benchmark</a><p class="summary">For the results in Figures 8 and 9, we displayed 2,000 avatars for each of four types of humans and 1,000 for each of the two last type, thus displaying 10,000 different...</p></li></ul><p><a href="../evidence/index.html">Browse all evidence</a></p></section><section class="comment-thread"><h2>Comment Thread</h2><p class="comment-empty">No comments yet for this page.</p></section><script>
+(function(){
+  var pickers=Array.prototype.slice.call(document.querySelectorAll('.sentence-claim-picker'));
+  if(!pickers.length){return;}
+  function cardFor(picker){
+    if(!picker){return null;}
+    return picker.querySelector('.sentence-claim-card');
+  }
+  function clearPosition(picker){
+    if(!picker){return;}
+    picker.removeAttribute('data-align');
+    var card=cardFor(picker);
+    if(card){card.style.transform='';}
+  }
+  function positionCard(picker){
+    if(!picker||!picker.hasAttribute('data-open')){return;}
+    var card=cardFor(picker);
+    if(!card){return;}
+    clearPosition(picker);
+    var viewportWidth=window.innerWidth||document.documentElement.clientWidth||0;
+    var gutter=12;
+    var availableWidth=Math.max(260,viewportWidth-(gutter*2));
+    var targetWidth=Math.min(860,availableWidth);
+    card.style.maxWidth=targetWidth+'px';
+    var rect=card.getBoundingClientRect();
+    if(rect.right>viewportWidth-gutter){
+      picker.setAttribute('data-align','right');
+      rect=card.getBoundingClientRect();
+    }
+    var shiftX=0;
+    if(rect.right>viewportWidth-gutter){shiftX=viewportWidth-gutter-rect.right;}
+    if(rect.left<gutter){shiftX=shiftX+(gutter-rect.left);}
+    if(shiftX!==0){card.style.transform='translateX('+shiftX+'px)';}
+  }
+  function setOpen(picker,open){
+    if(!picker){return;}
+    if(open){
+      picker.setAttribute('data-open','true');
+      positionCard(picker);
+    }
+    else{
+      picker.removeAttribute('data-open');
+      clearPosition(picker);
+    }
+    var trigger=picker.querySelector('.sentence-claim-summary');
+    if(trigger){trigger.setAttribute('aria-expanded',open?'true':'false');}
+  }
+  function closeAll(exceptPicker){
+    pickers.forEach(function(picker){
+      if(exceptPicker&&picker===exceptPicker){return;}
+      setOpen(picker,false);
+    });
+  }
+  function eventWithinPicker(event){
+    var target=event&&event.target;
+    if(!target){return false;}
+    if(target.closest){return !!target.closest('.sentence-claim-picker');}
+    if(target.parentElement&&target.parentElement.closest){
+      return !!target.parentElement.closest('.sentence-claim-picker');
+    }
+    return false;
+  }
+  pickers.forEach(function(picker){
+    var trigger=picker.querySelector('.sentence-claim-summary');
+    if(!trigger){return;}
+    trigger.addEventListener('click',function(event){
+      event.preventDefault();
+      event.stopPropagation();
+      var alreadyOpen=picker.hasAttribute('data-open');
+      closeAll(picker);
+      setOpen(picker,!alreadyOpen);
+    });
+    trigger.addEventListener('keydown',function(event){
+      if(event.key!=='Enter'&&event.key!==' '){return;}
+      event.preventDefault();
+      event.stopPropagation();
+      var alreadyOpen=picker.hasAttribute('data-open');
+      closeAll(picker);
+      setOpen(picker,!alreadyOpen);
+    });
+  });
+  window.addEventListener('resize',function(){
+    pickers.forEach(function(picker){
+      if(picker.hasAttribute('data-open')){positionCard(picker);}
+    });
+  });
+  document.addEventListener('click',function(event){
+    if(eventWithinPicker(event)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown',function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script>
+</section>
+
+</main>
+<script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>

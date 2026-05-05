@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "The biased variant's lower variance explains why it produces strong interactive-time error reductions despite possible darkening.",
+  "relation_file_id": "rel-bbc5a12c5d233553820323be6510d7a078dddebf30a57b6fb6bac3ca9f0326a1",
+  "relation_id": "supports:claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f->claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+  "relation_type": "supports",
+  "src_claim_id": "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+  "src_claim_ref": "3",
+  "status": "open"
+}

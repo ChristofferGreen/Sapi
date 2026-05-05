@@ -1,0 +1,32 @@
+{
+  "claim_ids": [
+    "claim-many-light-direct-illumination-remains-difficult-in-real-time-because-only-a-sma--12cc4274ee94",
+    "claim-improving-the-quality-of-direct-light-samples-before-denoising-can-make-existing--0ab0ee7ef42b",
+    "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+    "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+    "claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9",
+    "claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3",
+    "claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546"
+  ],
+  "sections": [
+    {
+      "body": "Several sources treat real-time rendering as a problem of spending limited computation where it matters most. ReSTIR improves many-light direct illumination by raising direct-light sample quality before denoising, while foveated rendering allocates high quality to the foveal region and lower quality to the periphery.",
+      "heading": "Quality budgets"
+    },
+    {
+      "body": "The evidence supports a synthesis around quality budgets: statistical estimators, perceptual models, and rendering paradigms all choose where approximation is acceptable and where missing detail, latency, or discontinuities become visible.",
+      "heading": "Shared synthesis"
+    },
+    {
+      "body": "The comparison should remain bounded: ReSTIR's evidence concerns light-sample selection and estimator behavior, while foveated rendering's evidence concerns human-visual-system models and regional quality variation.",
+      "heading": "Boundaries"
+    }
+  ],
+  "source_ids": [
+    "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+    "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30"
+  ],
+  "structure_type": "wiki",
+  "title": "Sample Quality and Perceptual Quality Allocation",
+  "topic_id": "topic-sample-quality-and-perceptual-quality-allocation"
+}

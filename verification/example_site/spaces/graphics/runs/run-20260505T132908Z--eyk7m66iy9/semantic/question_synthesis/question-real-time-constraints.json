@@ -1,0 +1,178 @@
+{
+  "citation_anchors": [
+    {
+      "anchor_id": "anchor-temporal-targets",
+      "claim_ids": [
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+      ],
+      "evidence_ids": [
+        "evidence-target-selection-models--0c62d7e4ab91",
+        "evidence-application-speedups--c40e1f73b82a"
+      ],
+      "label": "[S1]",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+    },
+    {
+      "anchor_id": "anchor-refresh-staleness",
+      "claim_ids": [
+        "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063",
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+      ],
+      "evidence_ids": [
+        "evidence-target-selection-models--0c62d7e4ab91"
+      ],
+      "label": "[S2]",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+    },
+    {
+      "anchor_id": "anchor-temporal-taxonomy",
+      "claim_ids": [
+        "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8"
+      ],
+      "evidence_ids": [
+        "evidence-temporal-coherence-taxonomy--91e7c4b8fa03"
+      ],
+      "label": "[S3]",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+    },
+    {
+      "anchor_id": "anchor-restir-performance",
+      "claim_ids": [
+        "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c"
+      ],
+      "evidence_ids": [
+        "evidence-equal-error-speedups--338656933924",
+        "evidence-dynamic-scene-timings--10f611cada7a"
+      ],
+      "label": "[S4]",
+      "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+    },
+    {
+      "anchor_id": "anchor-restir-bias",
+      "claim_ids": [
+        "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+        "claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e"
+      ],
+      "evidence_ids": [
+        "evidence-interactive-error-curves--3392481a2020",
+        "evidence-ris-bias-correction--d863b310516c"
+      ],
+      "label": "[S5]",
+      "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+    },
+    {
+      "anchor_id": "anchor-restir-limits",
+      "claim_ids": [
+        "claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb"
+      ],
+      "evidence_ids": [
+        "evidence-image-space-limits--f03158bd267b"
+      ],
+      "label": "[S6]",
+      "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+    }
+  ],
+  "conclusions": [
+    {
+      "claim_ids": [
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+      ],
+      "evidence_ids": [
+        "evidence-target-selection-models--0c62d7e4ab91",
+        "evidence-application-speedups--c40e1f73b82a"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "strong",
+      "text": "Temporal coherence can reduce real-time rendering cost by carrying intermediate or final shading information across frames, but the benefit depends on selecting expensive, stable quantities rather than cheap or highly view-dependent values."
+    },
+    {
+      "claim_ids": [
+        "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063",
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+      ],
+      "evidence_ids": [
+        "evidence-target-selection-models--0c62d7e4ab91"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "strong",
+      "text": "Cache refresh and validation are central costs, not implementation details: stale cached values, changing shading conditions, and resampling error force systems to balance speedup against noise, discontinuities, branch cost, and visible artifacts."
+    },
+    {
+      "claim_ids": [
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+      ],
+      "evidence_ids": [
+        "evidence-application-speedups--c40e1f73b82a"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "strong",
+      "text": "Measured temporal-coherence examples show the scale of the tradeoff: reported speedups range from 2.1x for a reflection shader and 8x for static ambient-occlusion caching to 15x or larger for broader ambient-occlusion reuse, but the broader reuse case introduces visible errors."
+    },
+    {
+      "claim_ids": [
+        "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+        "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f"
+      ],
+      "evidence_ids": [
+        "evidence-equal-error-speedups--338656933924",
+        "evidence-dynamic-scene-timings--10f611cada7a",
+        "evidence-interactive-error-curves--3392481a2020"
+      ],
+      "source_ids": [
+        "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+      ],
+      "support": "strong",
+      "text": "For many-light direct illumination, ReSTIR evidence supports a different but related tradeoff: spatiotemporal reservoir reuse can achieve large equal-error speedups and real-time scene timings, but the cheaper biased estimator can lose energy near visibility, geometry, or shading discontinuities."
+    },
+    {
+      "claim_ids": [
+        "claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e",
+        "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f"
+      ],
+      "evidence_ids": [
+        "evidence-ris-bias-correction--d863b310516c",
+        "evidence-interactive-error-curves--3392481a2020"
+      ],
+      "source_ids": [
+        "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+      ],
+      "support": "moderate",
+      "text": "Unbiased reuse is possible when candidate-PDF multiple-importance weights correct mixed pixel distributions, but the context indicates this path is more costly because visibility-aware unbiased reuse can require additional rays."
+    },
+    {
+      "claim_ids": [
+        "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8",
+        "claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb"
+      ],
+      "evidence_ids": [
+        "evidence-temporal-coherence-taxonomy--91e7c4b8fa03",
+        "evidence-image-space-limits--f03158bd267b"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+        "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+      ],
+      "support": "moderate",
+      "text": "The methods are broad but not universal: temporal coherence applies across many rendering tasks, while image-space reservoir reuse is constrained by spatial and temporal correlation, disocclusions, fast lighting changes, high geometric complexity, and primary-hit direct-lighting scope."
+    }
+  ],
+  "disagreements": [],
+  "question_id": "question-real-time-constraints",
+  "schema_version": "question_synthesis_v1",
+  "short_answer": "The strongest evidence says real-time rendering systems are governed by a performance-quality-validity tradeoff: reuse and resampling can save substantial work, but only when the reused data remains relevant, validation and refresh costs stay below the saved computation, and bias, staleness, disocclusion, and image-space limits are acceptable for the target visual error budget.",
+  "uncertainty": "The evidence supports qualitative design guidance and several reported speedup ranges, but it does not define a universal frame-time rule. Applicability depends on the renderer, hardware, scene dynamics, target error metric, denoising pipeline, refresh policy, validation cost, disocclusion behavior, lighting changes, and whether the task fits image-space first-hit reuse.",
+  "warnings": [
+    "Some linked claims, including the denoising and many-light problem-setting claims, have no separate linked evidence record in the allowed evidence set, so they are not used as primary conclusion support.",
+    "The ReSTIR speedups and timings are scene-, implementation-, and metric-specific; they should not be treated as universal performance guarantees.",
+    "One source record has unresolved publication date metadata, and both sources rely on usable markdown extraction rather than direct PDF inspection in this context."
+  ]
+}

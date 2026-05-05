@@ -1,0 +1,19 @@
+{
+  "claim_ids": [
+    "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+    "claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e"
+  ],
+  "evidence_id": "evidence-ris-bias-correction--d863b310516c",
+  "evidence_type": "proof_step",
+  "excerpt": "The derivation gives E[W(x,z) | xz=y] = 1/p(y) * |Z(y)|/M for mixed candidate PDFs, then replaces the uniform 1/M factor with weights m(xz) whose nonzero-PDF sum is one.",
+  "overview": "This proof step identifies why naive reuse across different pixel distributions can be biased and how the estimator can be corrected. It is central to the distinction between ReSTIR's cheaper biased mode and its more expensive unbiased mode.",
+  "page_refs": [
+    "Sec. 4.2",
+    "Sec. 4.3",
+    "Eq. 19",
+    "Eq. 22"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "title": "RIS Bias Correction Derivation"
+}

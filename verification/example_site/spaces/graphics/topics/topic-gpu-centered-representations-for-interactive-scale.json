@@ -1,0 +1,36 @@
+{
+  "claim_ids": [
+    "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+    "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8",
+    "claim-a-shader-is-a-gpu-directed-program-that-describes-rendering-processes-for-turnin--64c2250afac1",
+    "claim-fragment-shaders-map-two-dimensional-pixel-positions-to-colors-and-can-generate--ff479c9f654e",
+    "claim-raymarching-can-recreate-three-dimensional-depth-inside-a-fragment-shader-by-mar--eb7e615f4e18",
+    "claim-opengl-compressed-textures-and-compact-frame-storage-allow-ten-human-types-with--0cc37130330a",
+    "claim-cuda-image-space-distance-transforms-skeletonization-path-computation-and-attrac--46de973cba61",
+    "claim-a-two-pass-accumulation-field-method-fits-directly-into-the-opengl-pipeline-and--bf684a8c9b90"
+  ],
+  "sections": [
+    {
+      "body": "The sources repeatedly use GPU-compatible representations to preserve interactivity under scale: shader programs map spatial data to pixels, temporal techniques reuse frame-buffer information, crowd rendering compresses impostor textures, and graph visualization uses OpenGL accumulation fields or CUDA image-space transforms.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "The shared concept is not a single data structure but a design orientation: move expensive rendering or visualization work into representations that graphics hardware can process efficiently, such as shaders, frame buffers, compressed textures, image-space distance fields, and screen-resolution accumulation fields.",
+      "heading": "Section 2"
+    },
+    {
+      "body": "The evidence spans creative shadercoding, real-time rendering surveys, dense crowd impostors, skeleton-based edge bundling, and graph level-of-detail. Because the sources differ in domain, section content should emphasize recurring representation choices and trade-offs rather than claiming a unified pipeline.",
+      "heading": "Section 3"
+    }
+  ],
+  "source_ids": [
+    "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+    "source-01-sphere-tracing-a-geometric-method-for-the-antialiased-ray-tracing-of-implicit-surfaces--eee351440d34",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+    "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7"
+  ],
+  "structure_type": "wiki",
+  "title": "GPU-Centered Representations for Interactive Scale",
+  "topic_id": "topic-gpu-centered-representations-for-interactive-scale"
+}

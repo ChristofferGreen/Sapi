@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "The measured persistence of visible surface points explains why reusing previous-frame shading can reduce work.",
+  "relation_file_id": "rel-1ba08c0553f9e68f88940d196d0ea53fb0581f1a1fb27314c5d65f48eb3e37d0",
+  "relation_id": "supports:claim-real-time-rendering-sequences-exhibit-substantial-spatio-temporal-coherence-and--1377a0a7dbf4->claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+  "relation_type": "supports",
+  "src_claim_id": "claim-real-time-rendering-sequences-exhibit-substantial-spatio-temporal-coherence-and--1377a0a7dbf4",
+  "src_claim_ref": "0",
+  "status": "open"
+}

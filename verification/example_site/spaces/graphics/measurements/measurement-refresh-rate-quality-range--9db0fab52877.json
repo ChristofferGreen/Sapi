@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26",
+  "comparator": "pairwise comparisons across refresh rates",
+  "evidence_id": "evidence-motion-quality-range--9db0fab52877",
+  "measure_name": "tested refresh-rate range",
+  "measurement_id": "measurement-refresh-rate-quality-range--9db0fab52877",
+  "outcome": "subjective JND-scaled motion-quality sampling range",
+  "population": "motion-quality experiment animations shown at 23 refresh rates in 5 Hz steps",
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "uncertainty": "range is an experimental sampling band rather than a perceptual threshold",
+  "unit": "Hz",
+  "value": 50,
+  "value_max": 165
+}

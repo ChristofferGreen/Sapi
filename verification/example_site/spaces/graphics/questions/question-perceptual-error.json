@@ -1,10 +1,219 @@
 {
-  "claim_ids": [],
+  "claim_ids": [
+    "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+    "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d",
+    "claim-perceptual-temporal-coherence-can-enrich-rendered-content-by-exploiting-visual-i--b796e0540b6f",
+    "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+    "claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120",
+    "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26",
+    "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+    "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+    "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df"
+  ],
   "display_order": 7,
-  "evidence_ids": [],
-  "freshness": {},
-  "linked_source_ids": [],
-  "measurement_ids": [],
+  "evidence_ids": [
+    "evidence-amortized-running-average--f8b42c719a5e",
+    "evidence-reprojection-resampling-blur--5aa91bd02c64",
+    "evidence-perceptual-temporal-effects--b5fa2d180c7e",
+    "evidence-motion-quality-range--9db0fab52877",
+    "evidence-quality-component-equation--22767f63d459",
+    "evidence-blur-component-model--4804b47b4a68",
+    "evidence-eye-tracking-results--0a312f05b7c1",
+    "evidence-judder-threshold-result--3835854abc12",
+    "evidence-model-fit-ablation--1f83564def09"
+  ],
+  "freshness": {
+    "question_measurement_extraction": {
+      "chart_groups": [
+        {
+          "chart_group_id": "chart-amortized-sampling-variance",
+          "measure_name": "variance ratio",
+          "measurement_ids": [
+            "measurement-variance-ratio-alpha-two-fifths--f8b42c719a5e"
+          ],
+          "outcome": "sampling variance relative to original per-frame sample variance",
+          "population": "amortized sampling running estimate for a reprojected pixel with alpha = 2/5",
+          "unit": "ratio"
+        },
+        {
+          "chart_group_id": "chart-amortized-sampling-rate",
+          "measure_name": "equivalent sampling rate increase",
+          "measurement_ids": [
+            "measurement-sampling-rate-equivalence--f8b42c719a5e"
+          ],
+          "outcome": "sampling-rate equivalence from reduced variance",
+          "population": "amortized sampling running estimate for a reprojected pixel with alpha = 2/5",
+          "unit": "factor"
+        },
+        {
+          "chart_group_id": "chart-amortized-sampling-lag",
+          "measure_name": "non-trivial history contribution duration",
+          "measurement_ids": [
+            "measurement-history-contribution-duration--f8b42c719a5e"
+          ],
+          "outcome": "temporal lag from persistent older-frame contributions",
+          "population": "amortized sampling running estimate for a reprojected pixel with alpha = 2/5",
+          "unit": "frames"
+        },
+        {
+          "chart_group_id": "chart-motion-quality-refresh-range",
+          "measure_name": "tested refresh-rate range",
+          "measurement_ids": [
+            "measurement-refresh-rate-quality-range--9db0fab52877"
+          ],
+          "outcome": "subjective JND-scaled motion-quality sampling range",
+          "population": "motion-quality experiment animations shown at 23 refresh rates in 5 Hz steps",
+          "unit": "Hz"
+        },
+        {
+          "chart_group_id": "chart-motion-quality-dataset-size",
+          "measure_name": "pairwise comparison count",
+          "measurement_ids": [
+            "measurement-pairwise-comparisons-total--9db0fab52877"
+          ],
+          "outcome": "subjective pairwise-comparison dataset size",
+          "population": "motion-quality experiment across all participants",
+          "unit": "comparisons"
+        }
+      ],
+      "input_signature": "sha256:99dab516f2e148a2bca5937a8ffdad872e8c548a9bc7fe934f94e113a5c913d5",
+      "measurement_ids": [
+        "measurement-variance-ratio-alpha-two-fifths--f8b42c719a5e",
+        "measurement-sampling-rate-equivalence--f8b42c719a5e",
+        "measurement-history-contribution-duration--f8b42c719a5e",
+        "measurement-refresh-rate-quality-range--9db0fab52877",
+        "measurement-refresh-rate-sample-count--9db0fab52877",
+        "measurement-participant-count-quality-experiment--9db0fab52877",
+        "measurement-pairwise-comparisons-total--9db0fab52877",
+        "measurement-saccade-rate-unpredictable--0a312f05b7c1",
+        "measurement-saccade-rate-predictable--0a312f05b7c1",
+        "measurement-tracking-delay-unpredictable--0a312f05b7c1",
+        "measurement-tracking-delay-predictable--0a312f05b7c1",
+        "measurement-spem-refresh-rate-unaffected-above--0a312f05b7c1",
+        "measurement-judder-detectable-refresh-rate-range--3835854abc12",
+        "measurement-judder-nondiscriminable-refresh-rate-range--3835854abc12",
+        "measurement-judder-model-rmse--3835854abc12",
+        "measurement-full-model-train-rmse--1f83564def09",
+        "measurement-full-model-test-rmse--1f83564def09",
+        "measurement-judder-only-rmse-lower-bound--1f83564def09"
+      ],
+      "refreshed_at": "2026-05-05T14:06:45Z",
+      "run_id": "run-20260505T135543Z--bqwyazjijt",
+      "semantic_output_path": "runs/run-20260505T135543Z--bqwyazjijt/semantic/question_measurement_extraction/question-perceptual-error.json",
+      "status": "refreshed",
+      "warnings": [
+        "The blur component model and weighted quality decomposition provide symbolic formulas but no concrete numeric rows suitable for extraction beyond separately reported fitted or experimental measurements.",
+        "The perceptual temporal effects evidence is qualitative and contains no extractable numeric perceptual-error measurement.",
+        "The repeated resampling blur evidence gives symbolic formulas involving n and v but no concrete numeric values suitable for a measurement row.",
+        "The judder-only RMSE row records a stated lower bound because the evidence says variants exceed 0.51 RMSE rather than giving each exact variant value.",
+        "Dropped incompatible question measurement chart groups (4)."
+      ]
+    },
+    "question_measurement_extraction_checks": [
+      {
+        "checked_at": "2026-05-05T12:58:18Z",
+        "input_signature": "sha256:78019dd7bbd3986f49d19fbfdf7fe9d85bbbccc836747ccb6f6e618c136c0407",
+        "measurement_ids": [
+          "measurement-variance-ratio-alpha-two-fifths--f8b42c719a5e",
+          "measurement-sampling-rate-equivalence--f8b42c719a5e",
+          "measurement-history-contribution-duration--f8b42c719a5e"
+        ],
+        "run_id": "run-20260505T123937Z--8pub4fb3rr",
+        "semantic_output_path": "runs/run-20260505T123937Z--8pub4fb3rr/semantic/question_measurement_extraction/question-perceptual-error.json",
+        "status": "refreshed"
+      },
+      {
+        "checked_at": "2026-05-05T14:06:45Z",
+        "input_signature": "sha256:99dab516f2e148a2bca5937a8ffdad872e8c548a9bc7fe934f94e113a5c913d5",
+        "measurement_ids": [
+          "measurement-variance-ratio-alpha-two-fifths--f8b42c719a5e",
+          "measurement-sampling-rate-equivalence--f8b42c719a5e",
+          "measurement-history-contribution-duration--f8b42c719a5e",
+          "measurement-refresh-rate-quality-range--9db0fab52877",
+          "measurement-refresh-rate-sample-count--9db0fab52877",
+          "measurement-participant-count-quality-experiment--9db0fab52877",
+          "measurement-pairwise-comparisons-total--9db0fab52877",
+          "measurement-saccade-rate-unpredictable--0a312f05b7c1",
+          "measurement-saccade-rate-predictable--0a312f05b7c1",
+          "measurement-tracking-delay-unpredictable--0a312f05b7c1",
+          "measurement-tracking-delay-predictable--0a312f05b7c1",
+          "measurement-spem-refresh-rate-unaffected-above--0a312f05b7c1",
+          "measurement-judder-detectable-refresh-rate-range--3835854abc12",
+          "measurement-judder-nondiscriminable-refresh-rate-range--3835854abc12",
+          "measurement-judder-model-rmse--3835854abc12",
+          "measurement-full-model-train-rmse--1f83564def09",
+          "measurement-full-model-test-rmse--1f83564def09",
+          "measurement-judder-only-rmse-lower-bound--1f83564def09"
+        ],
+        "run_id": "run-20260505T135543Z--bqwyazjijt",
+        "semantic_output_path": "runs/run-20260505T135543Z--bqwyazjijt/semantic/question_measurement_extraction/question-perceptual-error.json",
+        "status": "refreshed"
+      }
+    ],
+    "question_relevance_mappings": [
+      {
+        "rationale": "The source helps answer perceptual-error questions where temporal reuse is involved because it links reuse error, refresh periods, reprojection blur, temporal lag, and visual integration over time to visible rendering artifacts, though it is broader than perceptual error measurement alone.",
+        "relevance": "medium",
+        "run_id": "run-20260505T123937Z--8pub4fb3rr",
+        "semantic_output_path": "runs/run-20260505T123937Z--8pub4fb3rr/semantic/question_relevance_mapping.json",
+        "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      },
+      {
+        "rationale": "The source directly models perceptual rendering error in JND units and validates the model with psychophysical comparisons, eye tracking, judder thresholds, and ablation results, making it highly relevant to measuring perceptual error in graphics algorithms.",
+        "relevance": "high",
+        "run_id": "run-20260505T135543Z--bqwyazjijt",
+        "semantic_output_path": "runs/run-20260505T135543Z--bqwyazjijt/semantic/question_relevance_mapping.json",
+        "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      }
+    ],
+    "question_synthesis": {
+      "input_signature": "sha256:53301975081d9fb587eb703583b0e7d70463ae85fc990563848c2162227ff514",
+      "refreshed_at": "2026-05-05T14:09:09Z",
+      "run_id": "run-20260505T135543Z--bqwyazjijt",
+      "semantic_output_path": "runs/run-20260505T135543Z--bqwyazjijt/semantic/question_synthesis/question-perceptual-error.json",
+      "status": "refreshed"
+    },
+    "question_synthesis_checks": [
+      {
+        "checked_at": "2026-05-05T13:00:32Z",
+        "input_signature": "sha256:b7f75ae52ade5d3c474dfb4f275840b02a130eb73e528a0c35cd45e350c846f5",
+        "run_id": "run-20260505T123937Z--8pub4fb3rr",
+        "semantic_output_path": "runs/run-20260505T123937Z--8pub4fb3rr/semantic/question_synthesis/question-perceptual-error.json",
+        "status": "refreshed"
+      },
+      {
+        "checked_at": "2026-05-05T14:09:09Z",
+        "input_signature": "sha256:53301975081d9fb587eb703583b0e7d70463ae85fc990563848c2162227ff514",
+        "run_id": "run-20260505T135543Z--bqwyazjijt",
+        "semantic_output_path": "runs/run-20260505T135543Z--bqwyazjijt/semantic/question_synthesis/question-perceptual-error.json",
+        "status": "refreshed"
+      }
+    ]
+  },
+  "linked_source_ids": [
+    "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+    "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+  ],
+  "measurement_ids": [
+    "measurement-variance-ratio-alpha-two-fifths--f8b42c719a5e",
+    "measurement-sampling-rate-equivalence--f8b42c719a5e",
+    "measurement-history-contribution-duration--f8b42c719a5e",
+    "measurement-refresh-rate-quality-range--9db0fab52877",
+    "measurement-refresh-rate-sample-count--9db0fab52877",
+    "measurement-participant-count-quality-experiment--9db0fab52877",
+    "measurement-pairwise-comparisons-total--9db0fab52877",
+    "measurement-saccade-rate-unpredictable--0a312f05b7c1",
+    "measurement-saccade-rate-predictable--0a312f05b7c1",
+    "measurement-tracking-delay-unpredictable--0a312f05b7c1",
+    "measurement-tracking-delay-predictable--0a312f05b7c1",
+    "measurement-spem-refresh-rate-unaffected-above--0a312f05b7c1",
+    "measurement-judder-detectable-refresh-rate-range--3835854abc12",
+    "measurement-judder-nondiscriminable-refresh-rate-range--3835854abc12",
+    "measurement-judder-model-rmse--3835854abc12",
+    "measurement-full-model-train-rmse--1f83564def09",
+    "measurement-full-model-test-rmse--1f83564def09",
+    "measurement-judder-only-rmse-lower-bound--1f83564def09"
+  ],
   "question": "How should perceptual error be measured in graphics algorithms?",
   "question_id": "question-perceptual-error",
   "schema_version": "prepared_question_v1",
@@ -12,6 +221,179 @@
     "space_name": "graphics"
   },
   "status": "active",
-  "synthesis": {},
+  "synthesis": {
+    "citation_anchors": [
+      {
+        "anchor_id": "anchor-quality-decomposition",
+        "claim_ids": [
+          "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+          "claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120"
+        ],
+        "evidence_ids": [
+          "evidence-quality-component-equation--22767f63d459",
+          "evidence-blur-component-model--4804b47b4a68"
+        ],
+        "label": "[S1]",
+        "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      },
+      {
+        "anchor_id": "anchor-motion-quality-range",
+        "claim_ids": [
+          "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26"
+        ],
+        "evidence_ids": [
+          "evidence-motion-quality-range--9db0fab52877"
+        ],
+        "label": "[S2]",
+        "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      },
+      {
+        "anchor_id": "anchor-eye-pursuit",
+        "claim_ids": [
+          "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+          "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92"
+        ],
+        "evidence_ids": [
+          "evidence-eye-tracking-results--0a312f05b7c1"
+        ],
+        "label": "[S3]",
+        "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      },
+      {
+        "anchor_id": "anchor-judder-and-fit",
+        "claim_ids": [
+          "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+          "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df"
+        ],
+        "evidence_ids": [
+          "evidence-judder-threshold-result--3835854abc12",
+          "evidence-model-fit-ablation--1f83564def09"
+        ],
+        "label": "[S4]",
+        "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      },
+      {
+        "anchor_id": "anchor-temporal-reuse-artifacts",
+        "claim_ids": [
+          "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+          "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d"
+        ],
+        "evidence_ids": [
+          "evidence-amortized-running-average--f8b42c719a5e",
+          "evidence-reprojection-resampling-blur--5aa91bd02c64"
+        ],
+        "label": "[S5]",
+        "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      },
+      {
+        "anchor_id": "anchor-perceptual-temporal-effects",
+        "claim_ids": [
+          "claim-perceptual-temporal-coherence-can-enrich-rendered-content-by-exploiting-visual-i--b796e0540b6f"
+        ],
+        "evidence_ids": [
+          "evidence-perceptual-temporal-effects--b5fa2d180c7e"
+        ],
+        "label": "[S6]",
+        "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      }
+    ],
+    "conclusions": [
+      {
+        "claim_ids": [
+          "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+          "claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120"
+        ],
+        "evidence_ids": [
+          "evidence-quality-component-equation--22767f63d459",
+          "evidence-blur-component-model--4804b47b4a68"
+        ],
+        "source_ids": [
+          "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+        ],
+        "support": "strong",
+        "text": "For adaptive rendering, perceptual error is best treated as a JND-scaled quality difference whose inputs include refresh rate, image resolution, object velocity, and motion predictability, with artifact terms for motion-parallel blur, orthogonal blur, and judder."
+      },
+      {
+        "claim_ids": [
+          "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26"
+        ],
+        "evidence_ids": [
+          "evidence-motion-quality-range--9db0fab52877"
+        ],
+        "source_ids": [
+          "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+        ],
+        "support": "strong",
+        "text": "Subjective pairwise-comparison experiments provide the most direct calibration target in the linked evidence: quality was measured across 23 refresh rates from 50 Hz to 165 Hz, showing that higher refresh rates improve perceived motion quality but with diminishing observable gains above roughly 100 Hz."
+      },
+      {
+        "claim_ids": [
+          "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+          "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92"
+        ],
+        "evidence_ids": [
+          "evidence-eye-tracking-results--0a312f05b7c1"
+        ],
+        "source_ids": [
+          "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+        ],
+        "support": "strong",
+        "text": "Motion predictability should be measured or modeled because eye-tracking data show that predictable and unpredictable motion produce materially different pursuit behavior, with unpredictable motion causing more saccades and larger tracking delay despite refresh rates above 27.5 Hz not affecting smooth pursuit in that experiment."
+      },
+      {
+        "claim_ids": [
+          "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+          "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df"
+        ],
+        "evidence_ids": [
+          "evidence-judder-threshold-result--3835854abc12",
+          "evidence-model-fit-ablation--1f83564def09"
+        ],
+        "source_ids": [
+          "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+        ],
+        "support": "strong",
+        "text": "Judder should be measured as a distinct low-refresh perceptual artifact rather than folded into blur alone, because observers detected isolated judder at 50 Hz and 60 Hz but not at 72 Hz and 83 Hz, and the full model fit measured quality curves better than judder-only variants."
+      },
+      {
+        "claim_ids": [
+          "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+          "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d"
+        ],
+        "evidence_ids": [
+          "evidence-amortized-running-average--f8b42c719a5e",
+          "evidence-reprojection-resampling-blur--5aa91bd02c64"
+        ],
+        "source_ids": [
+          "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+        ],
+        "support": "moderate",
+        "text": "For temporal accumulation and reprojection-based reuse, perceptual error measurement should include not only variance reduction but also temporal lag, accumulated blur, and high-frequency attenuation or misplacement from repeated resampling."
+      },
+      {
+        "claim_ids": [
+          "claim-perceptual-temporal-coherence-can-enrich-rendered-content-by-exploiting-visual-i--b796e0540b6f"
+        ],
+        "evidence_ids": [
+          "evidence-perceptual-temporal-effects--b5fa2d180c7e"
+        ],
+        "source_ids": [
+          "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+        ],
+        "support": "weak",
+        "text": "Human temporal integration can make rapid temporal signals appear stable or richer, so perceptual scoring should not assume that every frame-level difference is equally visible, but the linked evidence for this point is qualitative and does not define a concrete metric."
+      }
+    ],
+    "disagreements": [],
+    "question_id": "question-perceptual-error",
+    "schema_version": "question_synthesis_v1",
+    "short_answer": "Perceptual error in graphics algorithms should be measured against human-visible quality, not only signal error or sample variance. The strongest linked evidence supports JND-scaled psychophysical measurements that decompose error into motion-parallel blur, orthogonal blur, judder, refresh rate, resolution, velocity, and motion predictability, while temporal-reuse algorithms also need explicit checks for lag, accumulated blur, and high-frequency loss.",
+    "uncertainty": "The evidence is strongest for motion-quality modeling on high-persistence LCD displays and for temporal-reuse artifacts. It does not establish one universal perceptual-error metric for all graphics algorithms, scene content, display technologies, HDR, flicker, ghosting, VR low-persistence displays, or content-aware artifacts. Some temporal-coherence evidence is symbolic or qualitative rather than psychophysically validated.",
+    "warnings": [
+      "No direct disagreement was found among the linked sources; they address complementary parts of perceptual error rather than competing metrics.",
+      "The linked motion-quality model is validated for a specific display and task scope, so its JND-scaled components should not be treated as universal without further validation.",
+      "The temporal-coherence evidence gives useful equations and qualitative perceptual examples, but some parts lack concrete numeric perceptual-error measurements."
+    ]
+  },
   "warnings": []
 }

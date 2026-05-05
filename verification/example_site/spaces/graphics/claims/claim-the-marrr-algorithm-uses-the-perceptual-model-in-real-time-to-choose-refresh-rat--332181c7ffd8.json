@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T14:01:56Z",
+  "claim_id": "claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8",
+  "evidence_excerpts": [
+    "The application formulates an optimization over resolution and refresh rate under a pixel budget, precomputes lookup tables, and reports user preference for MARRR over fixed refresh-rate rendering in controlled and game experiments."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "MARRR improves adaptive rendering",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "text": "The MARRR algorithm uses the perceptual model in real time to choose refresh rate and resolution under a rendering budget, and validation experiments generally prefer it over constant-rate baselines."
+}

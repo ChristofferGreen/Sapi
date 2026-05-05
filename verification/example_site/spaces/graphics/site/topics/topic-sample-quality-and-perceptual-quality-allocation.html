@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sample Quality and Perceptual Quality Allocation</title><link rel="stylesheet" href="../assets/site.css"></head><body class="site-shell site-with-global-menubar">
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="../../../../site/index.html">Example Site</a><nav class="site-space-nav" aria-label="Spaces"><details class="site-space-nav-item"><summary class="site-space-nav-summary current">Computer Science / Graphics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../computer-science/site/index.html">Computer Science</a><a class="site-space-nav-link" href="../../../compilers/site/index.html">Compilers</a><a class="site-space-nav-link current" href="../index.html">Graphics</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Philosophy</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../philosophy/site/index.html">Philosophy</a><a class="site-space-nav-link" href="../../../mind/site/index.html">Mind</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Physics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../physics/site/index.html">Physics</a><a class="site-space-nav-link" href="../../../metaphysics/site/index.html">Metaphysics</a><a class="site-space-nav-link" href="../../../quantum-physics/site/index.html">Quantum Physics</a></div></details></nav><nav class="site-tabs"><a class="site-tab" href="../new/index.html">New</a> <a class="site-tab" href="../index.html">Home</a> <a class="site-tab" href="../questions/index.html">Questions</a> <a class="site-tab" href="../overview/index.html" aria-label="Overview for graphics">Overview</a> <a class="site-tab" href="../sources/index.html">Sources</a> <a class="site-tab current" href="index.html">Topics</a> <a class="site-tab" href="../users/index.html">Users</a> <a class="site-tab" href="../evidence/index.html">Evidence</a> <a class="site-tab" href="../claims/index.html">Claims</a></nav></div></header><main class="site-main site-space-main">
+<header class="site-topbar"><form class="top-search" action="../search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
+<section class="content-card topic-content-card"><article class="topic-article"><h1>Sample Quality and Perceptual Quality Allocation</h1>
+<p class="topic-structure" data-structure-type="wiki">Structure: wiki</p>
+<h2 class="topic-section-heading">Boundaries</h2><p class="topic-section-body">The comparison should remain bounded: ReSTIR&#x27;s evidence concerns light-sample selection and estimator behavior, while foveated rendering&#x27;s evidence concerns human-visual-system models and regional quality variation.</p>
+<h2 class="topic-section-heading">Quality budgets</h2><p class="topic-section-body">Several sources treat real-time rendering as a problem of spending limited computation where it matters most. ReSTIR improves many-light direct illumination by raising direct-light sample quality before denoising, while foveated rendering allocates high quality to the foveal region and lower quality to the periphery.</p>
+<h2 class="topic-section-heading">Shared synthesis</h2><p class="topic-section-body">The evidence supports a synthesis around quality budgets: statistical estimators, perceptual models, and rendering paradigms all choose where approximation is acceptable and where missing detail, latency, or discontinuities become visible.</p></article><section class="source-related-card"><h2>Claims Used by This Topic</h2><ul class="source-related-list"><li><a href="../claims/claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546.html">VR latency causes discomfort</a><p class="summary">Complex VR scenes exceed the efficient real-time rendering capacity of current devices, and delayed rendering can make displayed content inconsistent with user interaction, causing discomfort.</p></li>
+<li><a href="../claims/claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892.html">Foveation preserves perceived quality</a><p class="summary">Foveated rendering can accelerate rendering by giving the foveal region high quality and the peripheral region lower quality while preserving perceived visual quality.</p></li>
+<li><a href="../claims/claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3.html">Foveation requires three decisions</a><p class="summary">Foveated rendering research is organized around three recurring problems: applying human-visual-system perceptual models, rendering regions at different qualities, and integrating foveation into rendering paradigms.</p></li>
+<li><a href="../claims/claim-improving-the-quality-of-direct-light-samples-before-denoising-can-make-existing--0ab0ee7ef42b.html">Better samples improve denoising</a><p class="summary">Improving the quality of direct-light samples before denoising can make existing denoisers more effective because denoisers cannot reconstruct image features absent from their input samples.</p></li>
+<li><a href="../claims/claim-many-light-direct-illumination-remains-difficult-in-real-time-because-only-a-sma--12cc4274ee94.html">Many lights challenge real-time</a><p class="summary">Many-light direct illumination remains difficult in real time because only a small number of rays can be traced per pixel while important lights depend on visibility, material response, geometry, and emitter power.</p></li>
+<li><a href="../claims/claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c.html">ReSTIR accelerates equal-error rendering</a><p class="summary">ReSTIR achieves substantially faster equal-error rendering than the compared state-of-the-art many-light method, including reported 6x-60x speedups for the unbiased estimator and 35x-65x for the biased estimator.</p></li>
+<li><a href="../claims/claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9.html">HVS models guide foveation</a><p class="summary">Visual acuity models and contrast sensitivity models are the two representative perceptual-model families used to guide foveated rendering quality allocation.</p></li></ul><p><a href="../claims/index.html">Browse all claims</a></p></section><section class="source-related-card"><h2>Evidence Used by This Topic</h2><ul class="source-related-list"><li><a href="../evidence/evidence-dynamic-scene-timings--10f611cada7a.html">Dynamic Scene Timing Results</a><p class="summary">Figure 1 reports a Zero Day frame with 11,000 dynamic emissive triangles rendered in 15 ms and an Amusement Park view with 3.4 million dynamic emissive triangles rendered in...</p></li>
+<li><a href="../evidence/evidence-equal-error-speedups--338656933924.html">Equal-Error Speedup Claims</a><p class="summary">The abstract reports that the unbiased estimator reaches equal error 6x-60x faster than state-of-the-art methods, while the biased estimator is 35x-65x faster but has some...</p></li>
+<li><a href="../evidence/evidence-fovea-periphery-allocation--b84d6e218c03.html">Fovea-Periphery Quality Allocation</a><p class="summary">The survey explains that approximately half of optic nerve fibers are distributed in the fovea and the rest across the periphery, then describes foveated rendering as...</p></li>
+<li><a href="../evidence/evidence-hvs-model-families--d92f3a7706bc.html">Visual Acuity and CSF Models</a><p class="summary">The survey identifies visual acuity and contrast sensitivity as representative perceptual models for foveated rendering; it further divides visual acuity models into fall-off,...</p></li>
+<li><a href="../evidence/evidence-interactive-error-curves--3392481a2020.html">Interactive Error Curve Results</a><p class="summary">Figure 11 compares RMAE over render time for MIS, Moreau et al.&#x27;s light BVH, streaming RIS, biased spatiotemporal reuse, unbiased spatiotemporal reuse, and biased spatial-only...</p></li>
+<li><a href="../evidence/evidence-three-foveation-challenges--c05ab729f41d.html">Three Foveation Challenges</a><p class="summary">The paper states that three challenges must be addressed in foveated rendering: using human-visual-system perceptual models, rendering different regions with different...</p></li>
+<li><a href="../evidence/evidence-vr-latency-threshold--a13f0c2d9b4e.html">VR Latency Tolerance Constraint</a><p class="summary">The introduction reports that rendering overhead continues to increase in VR because of diversified surface materials, more dynamic objects, and more complex physical...</p></li></ul><p><a href="../evidence/index.html">Browse all evidence</a></p></section><article class="source-related-card"><h2>External Related Links</h2><ul class="source-related-list"><li><a href="https://github.com">/</a><p class="summary">Captured from normalized source references.</p><p class="meta">repository | github.com | contextual | medium confidence | from reference url | via <a href="../sources/source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a.html">ReSTIR Makes Dynamic Direct Lighting Real-Time</a></p></li></ul></article>
+<section class="comment-thread"><h2>Comment Thread</h2><p class="comment-empty">No comments yet for this page.</p></section><script>
+(function(){
+  var pickers=Array.prototype.slice.call(document.querySelectorAll('.sentence-claim-picker'));
+  if(!pickers.length){return;}
+  function cardFor(picker){
+    if(!picker){return null;}
+    return picker.querySelector('.sentence-claim-card');
+  }
+  function clearPosition(picker){
+    if(!picker){return;}
+    picker.removeAttribute('data-align');
+    var card=cardFor(picker);
+    if(card){card.style.transform='';}
+  }
+  function positionCard(picker){
+    if(!picker||!picker.hasAttribute('data-open')){return;}
+    var card=cardFor(picker);
+    if(!card){return;}
+    clearPosition(picker);
+    var viewportWidth=window.innerWidth||document.documentElement.clientWidth||0;
+    var gutter=12;
+    var availableWidth=Math.max(260,viewportWidth-(gutter*2));
+    var targetWidth=Math.min(860,availableWidth);
+    card.style.maxWidth=targetWidth+'px';
+    var rect=card.getBoundingClientRect();
+    if(rect.right>viewportWidth-gutter){
+      picker.setAttribute('data-align','right');
+      rect=card.getBoundingClientRect();
+    }
+    var shiftX=0;
+    if(rect.right>viewportWidth-gutter){shiftX=viewportWidth-gutter-rect.right;}
+    if(rect.left<gutter){shiftX=shiftX+(gutter-rect.left);}
+    if(shiftX!==0){card.style.transform='translateX('+shiftX+'px)';}
+  }
+  function setOpen(picker,open){
+    if(!picker){return;}
+    if(open){
+      picker.setAttribute('data-open','true');
+      positionCard(picker);
+    }
+    else{
+      picker.removeAttribute('data-open');
+      clearPosition(picker);
+    }
+    var trigger=picker.querySelector('.sentence-claim-summary');
+    if(trigger){trigger.setAttribute('aria-expanded',open?'true':'false');}
+  }
+  function closeAll(exceptPicker){
+    pickers.forEach(function(picker){
+      if(exceptPicker&&picker===exceptPicker){return;}
+      setOpen(picker,false);
+    });
+  }
+  function eventWithinPicker(event){
+    var target=event&&event.target;
+    if(!target){return false;}
+    if(target.closest){return !!target.closest('.sentence-claim-picker');}
+    if(target.parentElement&&target.parentElement.closest){
+      return !!target.parentElement.closest('.sentence-claim-picker');
+    }
+    return false;
+  }
+  pickers.forEach(function(picker){
+    var trigger=picker.querySelector('.sentence-claim-summary');
+    if(!trigger){return;}
+    trigger.addEventListener('click',function(event){
+      event.preventDefault();
+      event.stopPropagation();
+      var alreadyOpen=picker.hasAttribute('data-open');
+      closeAll(picker);
+      setOpen(picker,!alreadyOpen);
+    });
+    trigger.addEventListener('keydown',function(event){
+      if(event.key!=='Enter'&&event.key!==' '){return;}
+      event.preventDefault();
+      event.stopPropagation();
+      var alreadyOpen=picker.hasAttribute('data-open');
+      closeAll(picker);
+      setOpen(picker,!alreadyOpen);
+    });
+  });
+  window.addEventListener('resize',function(){
+    pickers.forEach(function(picker){
+      if(picker.hasAttribute('data-open')){positionCard(picker);}
+    });
+  });
+  document.addEventListener('click',function(event){
+    if(eventWithinPicker(event)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown',function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script>
+</section>
+
+</main>
+<script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>

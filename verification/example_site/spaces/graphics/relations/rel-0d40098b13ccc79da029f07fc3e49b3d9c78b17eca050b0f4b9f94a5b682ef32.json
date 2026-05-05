@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "Reverse reprojection gives a concrete mechanism for reusing prior shaded values safely.",
+  "relation_file_id": "rel-0d40098b13ccc79da029f07fc3e49b3d9c78b17eca050b0f4b9f94a5b682ef32",
+  "relation_id": "supports:claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52->claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+  "relation_type": "supports",
+  "src_claim_id": "claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52",
+  "src_claim_ref": "2",
+  "status": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T13:38:06Z",
+  "claim_id": "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+  "evidence_excerpts": [
+    "The abstract reports equal-error 6x-60x faster for the unbiased estimator and 35x-65x faster for the biased estimator, with up to 3.4 million dynamic emissive triangles under 50 ms."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "ReSTIR accelerates equal-error rendering",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "text": "ReSTIR achieves substantially faster equal-error rendering than the compared state-of-the-art many-light method, including reported 6x-60x speedups for the unbiased estimator and 35x-65x for the biased estimator."
+}

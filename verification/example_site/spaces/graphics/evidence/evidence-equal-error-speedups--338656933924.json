@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+    "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c"
+  ],
+  "evidence_id": "evidence-equal-error-speedups--338656933924",
+  "evidence_type": "statistical_result",
+  "excerpt": "The abstract reports that the unbiased estimator reaches equal error 6x-60x faster than state-of-the-art methods, while the biased estimator is 35x-65x faster but has some energy loss.",
+  "overview": "This result directly supports the paper's performance claim and separates the unbiased and biased variants. The speedups are relative to the paper's comparison methods and error metric, so they should be read in the context of the tested scenes, GPU implementations, and direct-lighting task.",
+  "page_refs": [
+    "Abstract"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "title": "Equal-Error Speedup Claims"
+}

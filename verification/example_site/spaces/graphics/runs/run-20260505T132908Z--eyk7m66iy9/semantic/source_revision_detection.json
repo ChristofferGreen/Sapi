@@ -1,0 +1,20 @@
+{
+  "candidate_source_ids": [
+    "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+    "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7"
+  ],
+  "certainty": true,
+  "decision": "new_source",
+  "evidence": [
+    "New source source.md title is \"Spatiotemporal Reservoir Resampling for Real-Time Ray Tracing with Dynamic Direct Lighting\" and lists DOI https://doi.org/10.1145/3386569.3392481.",
+    "The closest candidate source.md is \"Temporal Coherence Methods in Real-Time Rendering\" with DOI 10.1111/j.1467-8659.2012.03075.x, Computer Graphics Forum volume 31 from 2012, and authors Daniel Scherzer, Lei Yang, Oliver Mattausch, Diego Nehab, Pedro V. Sander, Michael Wimmer, and Elmar Eisemann.",
+    "The new source abstract introduces ReSTIR for rendering direct lighting from millions of dynamic light sources using reservoir resampling; the temporal-coherence candidate is a survey about exploiting temporal coherence, reprojection, and reuse across frames for performance optimization.",
+    "Candidate \"Image-Based Crowd Rendering for Virtual Cities\" concerns image-based rendering of animated crowds and virtual cities, not ReSTIR, ray tracing, or the same author/title/identifier set.",
+    "Candidate \"Skeleton-Guided Edge Bundling for Graph Visualization\" concerns graph edge bundling with skeletons and has DOI 10.1109/TVCG.2011.233, which is unrelated to the new source DOI and subject.",
+    "Candidate \"Interactive Level-of-Detail Rendering for Large Graphs\" concerns large graph visualization and level-of-detail rendering, not the new ReSTIR paper."
+  ],
+  "matched_source_id": null,
+  "rationale": "The newly ingested source is a distinct 2020 ACM Transactions on Graphics paper on ReSTIR for real-time ray tracing with dynamic direct lighting, with DOI 10.1145/3386569.3392481 and authors Bitterli, Wyman, Pharr, Shirley, Lefohn, and Jarosz. The provided candidates are different works with different titles, authors, identifiers, years, and technical scope, and none shows version or revision markers tying it to the new source."
+}

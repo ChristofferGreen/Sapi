@@ -1,0 +1,34 @@
+{
+  "claim_ids": [
+    "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+    "claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e",
+    "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d",
+    "claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11",
+    "claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e",
+    "claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5",
+    "claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963"
+  ],
+  "sections": [
+    {
+      "body": "The sources repeatedly show that real-time graphics methods gain speed by accepting controlled approximation, then managing the artifacts that approximation creates.",
+      "heading": "Controlled approximation"
+    },
+    {
+      "body": "ReSTIR has biased and unbiased variants, including a candidate-PDF MIS correction for one bias source and visual risks near visibility, geometry, or shading discontinuities. Temporal reuse can accumulate blur or fail around disocclusions, while image-based crowd rendering and graph bundling manage popping, texture storage, overdraw, and direction distortion.",
+      "heading": "Artifact evidence"
+    },
+    {
+      "body": "This topic should emphasize evidence-backed trade-offs rather than treating artifacts as implementation details: approximation changes what information is preserved, what must be recomputed, and what users can reliably interpret.",
+      "heading": "Interpretation risk"
+    }
+  ],
+  "source_ids": [
+    "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+    "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c"
+  ],
+  "structure_type": "wiki",
+  "title": "Bias, Artifacts, and Approximation Boundaries",
+  "topic_id": "topic-bias-artifacts-and-approximation-boundaries"
+}

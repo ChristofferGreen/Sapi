@@ -1,0 +1,72 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: question_relevance_mapping
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/question_relevance_mapping.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T123937Z--8pub4fb3rr/semantic/question_relevance_mapping.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence
+
+=== generation spec ===
+flow_key: question_relevance_mapping
+version: v1
+schema_path: schemas/question_relevance_mapping.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/question_relevance_mapping.json
+context_paths:
+  - <space_root>/questions
+  - <space_root>/sources/records
+  - <space_root>/claims
+  - <space_root>/evidence
+---
+## Task
+Generate one strict JSON object that maps a newly ingested source to zero or more existing prepared
+questions.
+
+## Context Interpretation Rules
+- Use only prepared questions present under `<space_root>/questions`.
+- Use only canonical `source_id`, `claim_id`, and `evidence_id` values present in context.
+- Do not create or suggest new questions in this flow.
+- Return an empty `question_matches` array when no active prepared question is relevant.
+- Prefer evidence-linked matches over title/keyword matches when evidence items are available.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- Every matched `question_id` must be an existing prepared question ID from context.
+- Every referenced source, claim, and evidence ID must be canonical and context-grounded.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "schema_version": "question_relevance_mapping_v1",
+  "source_id": "source-protein-intake--123456789abc",
+  "question_matches": [
+    {
+      "question_id": "question-protein-intake",
+      "relevance": "high",
+      "rationale": "The source directly evaluates protein dose and hypertrophy outcomes.",
+      "claim_ids": ["claim-protein-dose--123456789abc"],
+      "evidence_ids": ["evidence-protein-dose-response--123456789abc"]
+    }
+  ],
+  "warnings": []
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+}
+
+=== llm output ===
+{"schema_version":"question_relevance_mapping_v1","source_id":"source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e","question_matches":[{"question_id":"question-real-time-constraints","relevance":"high","rationale":"The source directly analyzes real-time rendering tradeoffs: reusing temporally coherent intermediate or final shading results can reduce frame cost, but cache validation, refresh, disocclusion handling, resampling blur, target stability, and observed speedups determine when the optimization is acceptable.","claim_ids":["claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4","claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063","claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301","claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8"],"evidence_ids":["evidence-target-selection-models--0c62d7e4ab91","evidence-temporal-coherence-taxonomy--91e7c4b8fa03","evidence-application-speedups--c40e1f73b82a"]},{"question_id":"question-perceptual-error","relevance":"medium","rationale":"The source helps answer perceptual-error questions where temporal reuse is involved because it links reuse error, refresh periods, reprojection blur, temporal lag, and visual integration over time to visible rendering artifacts, though it is broader than perceptual error measurement alone.","claim_ids":["claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca","claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d","claim-perceptual-temporal-coherence-can-enrich-rendered-content-by-exploiting-visual-i--b796e0540b6f"],"evidence_ids":["evidence-amortized-running-average--f8b42c719a5e","evidence-reprojection-resampling-blur--5aa91bd02c64","evidence-perceptual-temporal-effects--b5fa2d180c7e"]}],"warnings":[]}

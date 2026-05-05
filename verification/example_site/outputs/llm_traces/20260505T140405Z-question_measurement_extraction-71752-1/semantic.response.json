@@ -1,0 +1,361 @@
+{
+  "chart_groups": [
+    {
+      "chart_group_id": "chart-amortized-sampling-variance",
+      "measure_name": "variance ratio",
+      "measurement_ids": [
+        "measurement-variance-ratio-alpha-two-fifths--f8b42c719a5e"
+      ],
+      "outcome": "sampling variance relative to original per-frame sample variance",
+      "population": "amortized sampling running estimate for a reprojected pixel with alpha = 2/5",
+      "unit": "ratio"
+    },
+    {
+      "chart_group_id": "chart-amortized-sampling-rate",
+      "measure_name": "equivalent sampling rate increase",
+      "measurement_ids": [
+        "measurement-sampling-rate-equivalence--f8b42c719a5e"
+      ],
+      "outcome": "sampling-rate equivalence from reduced variance",
+      "population": "amortized sampling running estimate for a reprojected pixel with alpha = 2/5",
+      "unit": "factor"
+    },
+    {
+      "chart_group_id": "chart-amortized-sampling-lag",
+      "measure_name": "non-trivial history contribution duration",
+      "measurement_ids": [
+        "measurement-history-contribution-duration--f8b42c719a5e"
+      ],
+      "outcome": "temporal lag from persistent older-frame contributions",
+      "population": "amortized sampling running estimate for a reprojected pixel with alpha = 2/5",
+      "unit": "frames"
+    },
+    {
+      "chart_group_id": "chart-motion-quality-refresh-range",
+      "measure_name": "tested refresh-rate range",
+      "measurement_ids": [
+        "measurement-refresh-rate-quality-range--9db0fab52877"
+      ],
+      "outcome": "subjective JND-scaled motion-quality sampling range",
+      "population": "motion-quality experiment animations shown at 23 refresh rates in 5 Hz steps",
+      "unit": "Hz"
+    },
+    {
+      "chart_group_id": "chart-motion-quality-dataset-size",
+      "measure_name": "pairwise comparison count",
+      "measurement_ids": [
+        "measurement-pairwise-comparisons-total--9db0fab52877"
+      ],
+      "outcome": "subjective pairwise-comparison dataset size",
+      "population": "motion-quality experiment across all participants",
+      "unit": "comparisons"
+    },
+    {
+      "chart_group_id": "chart-eye-tracking-saccade-rate",
+      "measure_name": "saccade rate",
+      "measurement_ids": [
+        "measurement-saccade-rate-unpredictable--0a312f05b7c1",
+        "measurement-saccade-rate-predictable--0a312f05b7c1"
+      ],
+      "outcome": "correction saccade frequency by motion predictability",
+      "population": "eye-tracking experiment participants viewing motion stimuli above 27.5 Hz",
+      "unit": "saccades per second"
+    },
+    {
+      "chart_group_id": "chart-eye-tracking-delay",
+      "measure_name": "tracking delay",
+      "measurement_ids": [
+        "measurement-tracking-delay-unpredictable--0a312f05b7c1",
+        "measurement-tracking-delay-predictable--0a312f05b7c1"
+      ],
+      "outcome": "eye-tracking delay by motion predictability",
+      "population": "eye-tracking experiment participants viewing motion stimuli above 27.5 Hz",
+      "unit": "seconds"
+    },
+    {
+      "chart_group_id": "chart-judder-refresh-thresholds",
+      "measure_name": "judder refresh-rate band",
+      "measurement_ids": [
+        "measurement-judder-detectable-refresh-rate-range--3835854abc12",
+        "measurement-judder-nondiscriminable-refresh-rate-range--3835854abc12"
+      ],
+      "outcome": "judder discrimination result by refresh-rate band",
+      "population": "isolated-judder experiment with predictable and unpredictable motion",
+      "unit": "Hz"
+    },
+    {
+      "chart_group_id": "chart-model-fit-rmse",
+      "measure_name": "model fit RMSE",
+      "measurement_ids": [
+        "measurement-full-model-train-rmse--1f83564def09",
+        "measurement-full-model-test-rmse--1f83564def09",
+        "measurement-judder-only-rmse-lower-bound--1f83564def09"
+      ],
+      "outcome": "fit to measured motion-quality curves",
+      "population": "ablation table model variants",
+      "unit": "RMSE"
+    }
+  ],
+  "measurements": [
+    {
+      "claim_id": "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+      "comparator": "original sample variance Var(s_t(p))",
+      "evidence_id": "evidence-amortized-running-average--f8b42c719a5e",
+      "measure_name": "variance ratio",
+      "measurement_id": "measurement-variance-ratio-alpha-two-fifths--f8b42c719a5e",
+      "outcome": "sampling variance relative to original per-frame sample variance",
+      "population": "amortized sampling running estimate for a reprojected pixel with alpha = 2/5",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+      "uncertainty": "reported as the limiting variance ratio for alpha = 2/5; depends on the smoothing factor alpha",
+      "unit": "ratio",
+      "value": 0.25,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+      "comparator": "single-frame sampling without temporal amortization",
+      "evidence_id": "evidence-amortized-running-average--f8b42c719a5e",
+      "measure_name": "equivalent sampling rate increase",
+      "measurement_id": "measurement-sampling-rate-equivalence--f8b42c719a5e",
+      "outcome": "sampling-rate equivalence from reduced variance",
+      "population": "amortized sampling running estimate for a reprojected pixel with alpha = 2/5",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+      "uncertainty": "described as roughly equivalent to increasing the sampling rate by a factor of four",
+      "unit": "factor",
+      "value": 4,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+      "comparator": "current-frame-only sampling",
+      "evidence_id": "evidence-amortized-running-average--f8b42c719a5e",
+      "measure_name": "non-trivial history contribution duration",
+      "measurement_id": "measurement-history-contribution-duration--f8b42c719a5e",
+      "outcome": "temporal lag from persistent older-frame contributions",
+      "population": "amortized sampling running estimate for a reprojected pixel with alpha = 2/5",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+      "uncertainty": "reported as about 10 frames, not an exact hard cutoff",
+      "unit": "frames",
+      "value": 10,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26",
+      "comparator": "pairwise comparisons across refresh rates",
+      "evidence_id": "evidence-motion-quality-range--9db0fab52877",
+      "measure_name": "tested refresh-rate range",
+      "measurement_id": "measurement-refresh-rate-quality-range--9db0fab52877",
+      "outcome": "subjective JND-scaled motion-quality sampling range",
+      "population": "motion-quality experiment animations shown at 23 refresh rates in 5 Hz steps",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "range is an experimental sampling band rather than a perceptual threshold",
+      "unit": "Hz",
+      "value": 50,
+      "value_max": 165
+    },
+    {
+      "claim_id": "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26",
+      "comparator": "none stated",
+      "evidence_id": "evidence-motion-quality-range--9db0fab52877",
+      "measure_name": "refresh-rate condition count",
+      "measurement_id": "measurement-refresh-rate-sample-count--9db0fab52877",
+      "outcome": "coverage of refresh-rate conditions for subjective quality measurement",
+      "population": "motion-quality experiment animations from 50 Hz to 165 Hz",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "conditions were spaced in 5 Hz steps across the stated range",
+      "unit": "conditions",
+      "value": 23,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26",
+      "comparator": "none stated",
+      "evidence_id": "evidence-motion-quality-range--9db0fab52877",
+      "measure_name": "participant count",
+      "measurement_id": "measurement-participant-count-quality-experiment--9db0fab52877",
+      "outcome": "subjective pairwise-comparison dataset size",
+      "population": "motion-quality experiment",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "participant count is reported for the central motion-quality experiment",
+      "unit": "participants",
+      "value": 11,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26",
+      "comparator": "600 pairwise comparisons per participant",
+      "evidence_id": "evidence-motion-quality-range--9db0fab52877",
+      "measure_name": "pairwise comparison count",
+      "measurement_id": "measurement-pairwise-comparisons-total--9db0fab52877",
+      "outcome": "subjective pairwise-comparison dataset size",
+      "population": "motion-quality experiment across all participants",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "total is reported across all eleven participants",
+      "unit": "comparisons",
+      "value": 6600,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+      "comparator": "1.56 saccades per second for predictable motion",
+      "evidence_id": "evidence-eye-tracking-results--0a312f05b7c1",
+      "measure_name": "saccade rate",
+      "measurement_id": "measurement-saccade-rate-unpredictable--0a312f05b7c1",
+      "outcome": "correction saccade frequency for unpredictable motion",
+      "population": "eye-tracking experiment participants viewing motion stimuli above 27.5 Hz",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "reported as differing by motion type; SPEM was not affected by refresh rates above 27.5 Hz",
+      "unit": "saccades per second",
+      "value": 4.89,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+      "comparator": "4.89 saccades per second for unpredictable motion",
+      "evidence_id": "evidence-eye-tracking-results--0a312f05b7c1",
+      "measure_name": "saccade rate",
+      "measurement_id": "measurement-saccade-rate-predictable--0a312f05b7c1",
+      "outcome": "correction saccade frequency for predictable motion",
+      "population": "eye-tracking experiment participants viewing motion stimuli above 27.5 Hz",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "reported as differing by motion type; SPEM was not affected by refresh rates above 27.5 Hz",
+      "unit": "saccades per second",
+      "value": 1.56,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+      "comparator": "0.004 seconds for predictable motion",
+      "evidence_id": "evidence-eye-tracking-results--0a312f05b7c1",
+      "measure_name": "tracking delay",
+      "measurement_id": "measurement-tracking-delay-unpredictable--0a312f05b7c1",
+      "outcome": "eye-tracking delay for unpredictable motion",
+      "population": "eye-tracking experiment participants viewing motion stimuli above 27.5 Hz",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "reported as differing by motion type; SPEM was not affected by refresh rates above 27.5 Hz",
+      "unit": "seconds",
+      "value": 0.092,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+      "comparator": "0.092 seconds for unpredictable motion",
+      "evidence_id": "evidence-eye-tracking-results--0a312f05b7c1",
+      "measure_name": "tracking delay",
+      "measurement_id": "measurement-tracking-delay-predictable--0a312f05b7c1",
+      "outcome": "eye-tracking delay for predictable motion",
+      "population": "eye-tracking experiment participants viewing motion stimuli above 27.5 Hz",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "reported as differing by motion type; SPEM was not affected by refresh rates above 27.5 Hz",
+      "unit": "seconds",
+      "value": 0.004,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+      "comparator": "motion predictability effects",
+      "evidence_id": "evidence-eye-tracking-results--0a312f05b7c1",
+      "measure_name": "SPEM refresh-rate unaffected threshold",
+      "measurement_id": "measurement-spem-refresh-rate-unaffected-above--0a312f05b7c1",
+      "outcome": "refresh-rate level above which SPEM was not affected",
+      "population": "eye-tracking experiment smooth-pursuit eye movement measurements",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "reported as not affected by refresh rates above 27.5 Hz, not as a general display-quality threshold",
+      "unit": "Hz",
+      "value": 27.5,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+      "comparator": "72 Hz and 83 Hz conditions where observers could not discriminate juddery from non-juddery animations",
+      "evidence_id": "evidence-judder-threshold-result--3835854abc12",
+      "measure_name": "judder detectable refresh-rate range",
+      "measurement_id": "measurement-judder-detectable-refresh-rate-range--3835854abc12",
+      "outcome": "judder detectable in animations",
+      "population": "isolated-judder experiment with predictable and unpredictable motion",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "reported for the isolated-judder experiment with blur matched across smooth and juddery conditions",
+      "unit": "Hz",
+      "value": 50,
+      "value_max": 60
+    },
+    {
+      "claim_id": "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+      "comparator": "50 Hz and 60 Hz conditions where judder was detectable",
+      "evidence_id": "evidence-judder-threshold-result--3835854abc12",
+      "measure_name": "judder nondiscriminable refresh-rate range",
+      "measurement_id": "measurement-judder-nondiscriminable-refresh-rate-range--3835854abc12",
+      "outcome": "juddery animations not discriminable from non-juddery animations",
+      "population": "isolated-judder experiment with predictable and unpredictable motion",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "reported for the isolated-judder experiment with blur matched across smooth and juddery conditions",
+      "unit": "Hz",
+      "value": 72,
+      "value_max": 83
+    },
+    {
+      "claim_id": "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+      "comparator": "measured judder-detection data",
+      "evidence_id": "evidence-judder-threshold-result--3835854abc12",
+      "measure_name": "judder model RMSE",
+      "measurement_id": "measurement-judder-model-rmse--3835854abc12",
+      "outcome": "root mean squared error of judder model fit",
+      "population": "fitted isolated-judder model",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "reported as fitted judder model RMSE",
+      "unit": "JND",
+      "value": 0.1074,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df",
+      "comparator": "judder-only variants exceeding 0.51 RMSE",
+      "evidence_id": "evidence-model-fit-ablation--1f83564def09",
+      "measure_name": "model fit RMSE",
+      "measurement_id": "measurement-full-model-train-rmse--1f83564def09",
+      "outcome": "train RMSE for measured motion-quality curves",
+      "population": "ablation table full model with parallel blur, judder, and predictability separation",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "reported in ablation table; RMSE scale follows the paper's motion-quality model output",
+      "unit": "RMSE",
+      "value": 0.31,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df",
+      "comparator": "judder-only variants exceeding 0.51 RMSE",
+      "evidence_id": "evidence-model-fit-ablation--1f83564def09",
+      "measure_name": "model fit RMSE",
+      "measurement_id": "measurement-full-model-test-rmse--1f83564def09",
+      "outcome": "test RMSE for measured motion-quality curves",
+      "population": "ablation table full model with parallel blur, judder, and predictability separation",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "reported in ablation table; RMSE scale follows the paper's motion-quality model output",
+      "unit": "RMSE",
+      "value": 0.38,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df",
+      "comparator": "full model train RMSE 0.31 and test RMSE 0.38",
+      "evidence_id": "evidence-model-fit-ablation--1f83564def09",
+      "measure_name": "model fit RMSE lower bound",
+      "measurement_id": "measurement-judder-only-rmse-lower-bound--1f83564def09",
+      "outcome": "poorer fit to measured motion-quality curves",
+      "population": "ablation table judder-only variants",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "excerpt states judder-only variants exceed 0.51 RMSE, so the row records the stated lower bound",
+      "unit": "RMSE",
+      "value": 0.51,
+      "value_max": null
+    }
+  ],
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_measurement_extraction_v1",
+  "warnings": [
+    "The blur component model and weighted quality decomposition provide symbolic formulas but no concrete numeric rows suitable for extraction beyond separately reported fitted or experimental measurements.",
+    "The perceptual temporal effects evidence is qualitative and contains no extractable numeric perceptual-error measurement.",
+    "The repeated resampling blur evidence gives symbolic formulas involving n and v but no concrete numeric values suitable for a measurement row.",
+    "The judder-only RMSE row records a stated lower bound because the evidence says variants exceed 0.51 RMSE rather than giving each exact variant value."
+  ]
+}

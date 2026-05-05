@@ -1,0 +1,30 @@
+{
+  "claim_ids": [
+    "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df",
+    "claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8",
+    "claim-reservoir-sampling-makes-spatiotemporal-reuse-practical-because-a-pixel-can-comb--9c5dc3907b13",
+    "claim-restir-samples-one-bounce-direct-lighting-by-repeatedly-resampling-light-candida--59804a49ba1a",
+    "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+    "claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb",
+    "claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499",
+    "claim-future-foveated-rendering-work-needs-broader-use-of-human-visual-features-improv--36729372977e"
+  ],
+  "sections": [
+    {
+      "body": "A concept page could compare rendering systems that use explicit models to choose practical approximations under real-time constraints. The motion-quality work uses a fitted perceptual model for refresh-rate and resolution selection; ReSTIR uses reservoir sampling and biased or unbiased estimators to trade variance, cost, and correctness; foveated rendering uses perceptual models and taxonomies to organize quality allocation across rendering paradigms.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "The common concept is controlled approximation: each method accelerates rendering by modeling which samples, pixels, regions, or display states matter most. The sources also show that model-driven choices have failure modes, such as poor motion predictability, bias near discontinuities, weak spatiotemporal correlation, or incomplete perceptual metrics.",
+      "heading": "Section 2"
+    }
+  ],
+  "source_ids": [
+    "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+    "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+    "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30"
+  ],
+  "structure_type": "wiki",
+  "title": "Model-Driven Real-Time Rendering Tradeoffs",
+  "topic_id": "topic-model-driven-real-time-rendering-tradeoffs"
+}

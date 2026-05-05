@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T14:01:56Z",
+  "claim_id": "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+  "evidence_excerpts": [
+    "The judder experiment reports that observers could detect judder at 50 Hz and 60 Hz, but could not discriminate the animations at 72 Hz and 83 Hz."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Judder fades above 72Hz",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "text": "Judder is detectable at 50 Hz and 60 Hz but becomes negligible at 72 Hz and higher refresh rates in the isolated-judder experiment."
+}

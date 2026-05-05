@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063"
+  ],
+  "evidence_id": "evidence-cache-refresh-condition--d96a00fc5e3b",
+  "evidence_type": "equation",
+  "excerpt": "For periodic refresh, the survey gives the condition (t+i) mod n = 0, where i is the group ID of the pixel and t is a global clock. It compares tiled refresh, random refresh, and uniformly distributed interleaving, noting that tiled refresh has excellent coherence but may create tile-boundary discontinuities, while random refresh trades discontinuities for high-frequency noise.",
+  "overview": "The refresh equation and strategy comparison show why temporal caches are not simply reused forever. The evidence grounds the claim that staleness must be managed, and that the refresh policy affects visible artifacts as well as GPU execution behavior.",
+  "page_refs": [
+    "pp.2383-2384",
+    "Eq.1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "title": "Periodic Cache Refresh"
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T14:01:56Z",
+  "claim_id": "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+  "evidence_excerpts": [
+    "The eye-tracking results report that SPEM is not affected by refresh rates above 27.5 Hz but is affected by predictable versus unpredictable motion, with 4.89 versus 1.56 saccades per second and 0.092 s versus 0.004 s tracking delay."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Predictability affects pursuit accuracy",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "text": "Eye-tracking data show that smooth pursuit is not affected by refresh rates above 27.5 Hz but is strongly affected by whether motion is predictable or unpredictable."
+}

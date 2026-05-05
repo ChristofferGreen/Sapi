@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8"
+  ],
+  "evidence_id": "evidence-temporal-coherence-taxonomy--91e7c4b8fa03",
+  "evidence_type": "table_result",
+  "excerpt": "Table 1 organizes existing real-time temporal coherence approaches by application and technique. Its rows include pixel shader acceleration, multi-pass effects, shading anti-aliasing, shadows, global illumination, spatio-temporal upsampling, frame interpolation, non-photorealistic rendering, level of detail, streaming, online visibility culling, and temporal perception; its columns include reverse reprojection, forward reprojection, disocclusion handling, cache refresh, amortized sampling, target identification, reprojection error, object-space, and post-processing methods.",
+  "overview": "This table result supports the source's breadth claim. Temporal coherence is presented as a cross-cutting rendering principle with multiple implementation families, rather than as a single algorithm tied only to pixel shaders or reprojection caches.",
+  "page_refs": [
+    "p.2387",
+    "Table 1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "title": "Temporal Coherence Taxonomy"
+}

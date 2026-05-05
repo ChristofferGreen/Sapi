@@ -1,0 +1,213 @@
+{
+  "citation_anchors": [
+    {
+      "anchor_id": "anchor-temporal-reuse-speedups",
+      "claim_ids": [
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+      ],
+      "evidence_ids": [
+        "evidence-application-speedups--c40e1f73b82a"
+      ],
+      "label": "[S1]",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+    },
+    {
+      "anchor_id": "anchor-target-selection-refresh",
+      "claim_ids": [
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+        "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063"
+      ],
+      "evidence_ids": [
+        "evidence-target-selection-models--0c62d7e4ab91"
+      ],
+      "label": "[S2]",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+    },
+    {
+      "anchor_id": "anchor-temporal-coherence-taxonomy",
+      "claim_ids": [
+        "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8"
+      ],
+      "evidence_ids": [
+        "evidence-temporal-coherence-taxonomy--91e7c4b8fa03"
+      ],
+      "label": "[S3]",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+    },
+    {
+      "anchor_id": "anchor-refresh-resolution-tradeoff",
+      "claim_ids": [
+        "claim-rendering-under-limited-gpu-or-bandwidth-budgets-requires-a-content-dependent-tr--e658c0af1a81",
+        "claim-higher-refresh-rates-improve-perceived-motion-quality-but-the-quality-gain-becom--e1004ece29f7"
+      ],
+      "evidence_ids": [
+        "evidence-refresh-gains-diminish--b61e4f3a90c7"
+      ],
+      "label": "[S4]",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+    },
+    {
+      "anchor_id": "anchor-marrr-optimization",
+      "claim_ids": [
+        "claim-a-motion-adaptive-resolution-and-refresh-rate-algorithm-can-use-the-model-to-sel--3317d727422b",
+        "claim-rendering-under-limited-gpu-or-bandwidth-budgets-requires-a-content-dependent-tr--e658c0af1a81"
+      ],
+      "evidence_ids": [
+        "evidence-marrr-optimization-formula--e41a9307bd6c"
+      ],
+      "label": "[S5]",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+    },
+    {
+      "anchor_id": "anchor-marrr-validation",
+      "claim_ids": [
+        "claim-controlled-validation-favored-marrr-over-constant-resolution-and-constant-refres--d9eadcb46b3c",
+        "claim-video-game-validation-also-favored-marrr-over-fixed-refresh-rate-rendering-with--a58508d90d32",
+        "claim-a-motion-adaptive-resolution-and-refresh-rate-algorithm-can-use-the-model-to-sel--3317d727422b"
+      ],
+      "evidence_ids": [
+        "evidence-controlled-marrr-preference--a69c3e4d8f25",
+        "evidence-game-marrr-preference--f8d7ac31b064"
+      ],
+      "label": "[S6]",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+    }
+  ],
+  "conclusions": [
+    {
+      "claim_ids": [
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4"
+      ],
+      "evidence_ids": [
+        "evidence-application-speedups--c40e1f73b82a"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "moderate",
+      "text": "Temporal coherence directly addresses frame-budget pressure by reusing intermediate or final shading results from nearby frames, but its benefit depends on whether adjacent frames preserve enough valid visual information."
+    },
+    {
+      "claim_ids": [
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+        "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063"
+      ],
+      "evidence_ids": [
+        "evidence-target-selection-models--0c62d7e4ab91"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "strong",
+      "text": "The strongest reuse targets are expensive computations that remain stable under expected camera, lighting, time, and interaction variation; refresh period, error tolerance, cache-hit cost, and cache-miss cost define whether reuse is worthwhile."
+    },
+    {
+      "claim_ids": [
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+      ],
+      "evidence_ids": [
+        "evidence-application-speedups--c40e1f73b82a"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "strong",
+      "text": "Measured temporal-reuse examples show the speed-quality boundary: reported speedups range from 2.1x to 8x for acceptable or semantically stable reuse, while broader ambient-occlusion caching can exceed 15x but produce visible errors."
+    },
+    {
+      "claim_ids": [
+        "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8"
+      ],
+      "evidence_ids": [
+        "evidence-temporal-coherence-taxonomy--91e7c4b8fa03"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "support": "moderate",
+      "text": "Temporal coherence is a broad rendering design principle rather than a single cache trick, with linked taxonomy evidence spanning shader acceleration, multipass effects, anti-aliasing, shadows, global illumination, upsampling, frame interpolation, level of detail, streaming, visibility culling, and temporal perception."
+    },
+    {
+      "claim_ids": [
+        "claim-rendering-under-limited-gpu-or-bandwidth-budgets-requires-a-content-dependent-tr--e658c0af1a81",
+        "claim-higher-refresh-rates-improve-perceived-motion-quality-but-the-quality-gain-becom--e1004ece29f7"
+      ],
+      "evidence_ids": [
+        "evidence-refresh-gains-diminish--b61e4f3a90c7"
+      ],
+      "source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      ],
+      "support": "strong",
+      "text": "Under limited GPU or bandwidth budgets, refresh rate and spatial resolution should be treated as a motion-dependent perceptual tradeoff: refresh-rate gains diminish above roughly 100 Hz, velocity changes perceived motion quality, and fixed-resolution or fixed-refresh policies can be suboptimal."
+    },
+    {
+      "claim_ids": [
+        "claim-a-motion-adaptive-resolution-and-refresh-rate-algorithm-can-use-the-model-to-sel--3317d727422b",
+        "claim-rendering-under-limited-gpu-or-bandwidth-budgets-requires-a-content-dependent-tr--e658c0af1a81"
+      ],
+      "evidence_ids": [
+        "evidence-marrr-optimization-formula--e41a9307bd6c"
+      ],
+      "source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      ],
+      "support": "strong",
+      "text": "MARRR operationalizes the resolution-refresh tradeoff by selecting refresh rate and rendering resolution under a fixed pixel budget and minimum refresh-rate constraint, using a precomputed lookup over budget and motion velocity."
+    },
+    {
+      "claim_ids": [
+        "claim-controlled-validation-favored-marrr-over-constant-resolution-and-constant-refres--d9eadcb46b3c",
+        "claim-video-game-validation-also-favored-marrr-over-fixed-refresh-rate-rendering-with--a58508d90d32",
+        "claim-a-motion-adaptive-resolution-and-refresh-rate-algorithm-can-use-the-model-to-sel--3317d727422b"
+      ],
+      "evidence_ids": [
+        "evidence-controlled-marrr-preference--a69c3e4d8f25",
+        "evidence-game-marrr-preference--f8d7ac31b064"
+      ],
+      "source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      ],
+      "support": "moderate",
+      "text": "Validation evidence generally favors adaptive rendering over fixed policies, especially for predictable user-induced motion and against low fixed refresh rates, but the support is empirical and scenario-dependent rather than universal."
+    }
+  ],
+  "disagreements": [
+    {
+      "claim_ids": [
+        "claim-video-game-validation-also-favored-marrr-over-fixed-refresh-rate-rendering-with--a58508d90d32"
+      ],
+      "evidence_ids": [
+        "evidence-game-marrr-preference--f8d7ac31b064"
+      ],
+      "source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      ],
+      "text": "The game validation mostly favored MARRR, but one FPS 60 Hz comparison was not statistically significant, so the evidence does not show that adaptive refresh-rate and resolution selection always beats a fixed 60 Hz policy in every game condition."
+    },
+    {
+      "claim_ids": [
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+        "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+      ],
+      "evidence_ids": [
+        "evidence-application-speedups--c40e1f73b82a"
+      ],
+      "source_ids": [
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "text": "Temporal reuse can produce large performance gains, but the same evidence reports visible errors when too much view-dependent ambient-occlusion computation is cached, creating a tradeoff rather than a one-way improvement."
+    }
+  ],
+  "question_id": "question-real-time-constraints",
+  "schema_version": "question_synthesis_v1",
+  "short_answer": "The most important real-time rendering tradeoffs are budget allocation, temporal stability, and perceptual quality. Evidence supports reusing prior-frame work when values are expensive and stable, but reuse must be bounded by validation, refresh, disocclusion, and error controls. A second source shows that under GPU or bandwidth limits, refresh rate and resolution should be adapted to motion rather than fixed mechanically.",
+  "uncertainty": "The evidence supports qualitative design guidance more strongly than a universal numeric rule. Applicability depends on scene motion, shader structure, value stability, disocclusion behavior, resampling artifacts, cache validation cost, refresh policy, display characteristics, rendering budget, and acceptable perceptual error. The adaptive refresh-rate evidence is strongest for the tested high-refresh LCD conditions and may not transfer directly to HDR, VR, low-persistence displays, or content-aware rendering without further validation.",
+  "warnings": [
+    "The synthesis uses two linked sources and seven linked evidence records; it should not be read as a complete survey of all real-time rendering constraints.",
+    "Both source records have unresolved normalized publication dates, and the source metadata notes usable but imperfect PDF-to-markdown extraction artifacts.",
+    "One linked MARRR evidence record references an additional model claim not included in the allowed prepared-question claim set, so this synthesis uses only the allowed linked claims."
+  ]
+}

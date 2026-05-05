@@ -1,0 +1,33 @@
+{
+  "claim_ids": [
+    "claim-reservoir-sampling-makes-spatiotemporal-reuse-practical-because-a-pixel-can-comb--9c5dc3907b13",
+    "claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb",
+    "claim-a-two-pass-accumulation-field-method-fits-directly-into-the-opengl-pipeline-and--bf684a8c9b90",
+    "claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006",
+    "claim-the-edge-aggregation-approach-operates-in-image-space-and-does-not-require-preco--da4e8cd6122f",
+    "claim-straight-line-graph-drawings-can-be-rendered-interactively-with-adjustable-level--d4a598a6ca79",
+    "claim-cuda-image-space-distance-transforms-skeletonization-path-computation-and-attrac--46de973cba61"
+  ],
+  "sections": [
+    {
+      "body": "ReSTIR, large-graph level-of-detail rendering, and skeleton-based edge bundling all use image-space or GPU-friendly aggregation to make large rendering or visualization problems interactive.",
+      "heading": "Aggregation pattern"
+    },
+    {
+      "body": "The shared concept is not a single algorithm but a design pattern: compress many candidates, nodes, or edges into compact screen-space summaries, then operate on those summaries instead of carrying full explicit structure through every step.",
+      "heading": "Compact summaries"
+    },
+    {
+      "body": "A useful page could contrast reservoirs, accumulation fields, pixel-bin seed points, density fields, and CUDA image-space transforms, while noting that each method has different information-loss and correlation assumptions.",
+      "heading": "Method contrasts"
+    }
+  ],
+  "source_ids": [
+    "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+    "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c"
+  ],
+  "structure_type": "wiki",
+  "title": "Image-Space GPU Aggregation",
+  "topic_id": "topic-image-space-gpu-aggregation"
+}

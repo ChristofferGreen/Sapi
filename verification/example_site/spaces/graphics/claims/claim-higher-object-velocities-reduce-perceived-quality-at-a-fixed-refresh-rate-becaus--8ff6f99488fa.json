@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T14:01:56Z",
+  "claim_id": "claim-higher-object-velocities-reduce-perceived-quality-at-a-fixed-refresh-rate-becaus--8ff6f99488fa",
+  "evidence_excerpts": [
+    "The results state that there is a clear preference for lower velocities because higher velocities produce more motion blur at a fixed refresh rate and content is easier to see at lower velocities."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Velocity lowers perceived quality",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "text": "Higher object velocities reduce perceived quality at a fixed refresh rate because they increase motion blur and make content harder to inspect."
+}

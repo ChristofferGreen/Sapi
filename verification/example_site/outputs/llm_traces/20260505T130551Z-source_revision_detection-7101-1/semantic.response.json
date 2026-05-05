@@ -1,0 +1,20 @@
+{
+  "candidate_source_ids": [
+    "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+    "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7",
+    "source-02-image-based-crowd-rendering--565ae2b0e3a1",
+    "source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c",
+    "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+  ],
+  "certainty": false,
+  "decision": "new_source",
+  "evidence": [
+    "New source source.md title is \"A Perceptual Model of Motion Quality for Rendering with Adaptive Refresh-Rate and Resolution\" and lists Gyorgy Denes, Akshay Jindal, Aliaksei Mikhailiuk, and Rafal K. Mantiuk as authors.",
+    "New source source.md and task context identify DOI https://doi.org/10.1145/3386569.3392411 and ACM Trans. Graph. 39, 4, Article 133, July 2020.",
+    "Candidate source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e has DOI 10.1111/j.1467-8659.2012.03075.x, title \"Temporal Coherence Methods in Real-Time Rendering\", and authors Daniel Scherzer, Lei Yang, Oliver Mattausch, Diego Nehab, Pedro V. Sander, Michael Wimmer, and Elmar Eisemann.",
+    "Other candidates have different titles and subject matter: foveated rendering survey, interactive level-of-detail rendering of large graphs, image-based crowd rendering, and skeleton-based edge bundling for graph visualization.",
+    "All inspected source_extraction metadata for the new source and closest DOI-bearing candidate reports usable markdown, so no PDF fallback was needed for revision confidence."
+  ],
+  "matched_source_id": null,
+  "rationale": "The new source is a distinct ACM Transactions on Graphics 2020 article by Gyorgy Denes, Akshay Jindal, Aliaksei Mikhailiuk, and Rafal K. Mantiuk with DOI 10.1145/3386569.3392411. None of the provided candidates share that title, author set, DOI, or clear version/revision markers. The closest topical candidate, Temporal Coherence Methods in Real-Time Rendering, has a different DOI, authorship, venue/year, and survey focus, so topical overlap in rendering performance is not enough to classify the new source as a revision."
+}

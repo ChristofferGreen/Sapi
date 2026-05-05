@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T12:49:32Z",
+  "claim_id": "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8",
+  "evidence_excerpts": [
+    "Table 1 indexes existing temporal coherence approaches by application rows and technique columns, covering pixel shaders, multipass effects, anti-aliasing, shadows, global illumination, upsampling, frame interpolation, NPR, LOD, streaming, online visibility culling, and temporal perception."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Coherence spans rendering tasks",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "text": "Temporal coherence is useful across many real-time rendering tasks, including pixel shader acceleration, multipass effects, anti-aliasing, shadows, global illumination, upsampling, frame interpolation, non-photorealistic rendering, level of detail, streaming, and visibility culling."
+}

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+  "dst_claim_ref": "5",
+  "last_evaluated_run_id": null,
+  "rationale": "Better input samples can improve downstream denoising and contribute to the reported quality advantage.",
+  "relation_file_id": "rel-4cc4c6ca844ef664e4281c0d778efc3b476ab85ab5bf63f02f04f2a73ffd8d2e",
+  "relation_id": "supports:claim-improving-the-quality-of-direct-light-samples-before-denoising-can-make-existing--0ab0ee7ef42b->claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+  "relation_type": "supports",
+  "src_claim_id": "claim-improving-the-quality-of-direct-light-samples-before-denoising-can-make-existing--0ab0ee7ef42b",
+  "src_claim_ref": "6",
+  "status": "open"
+}

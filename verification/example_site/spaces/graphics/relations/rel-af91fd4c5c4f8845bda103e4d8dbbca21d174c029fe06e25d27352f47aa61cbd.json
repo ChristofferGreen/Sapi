@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-restir-samples-one-bounce-direct-lighting-by-repeatedly-resampling-light-candida--59804a49ba1a",
+  "dst_claim_ref": "1",
+  "last_evaluated_run_id": null,
+  "rationale": "The unbiased weighting analysis justifies reuse across reservoirs drawn from different pixel distributions.",
+  "relation_file_id": "rel-af91fd4c5c4f8845bda103e4d8dbbca21d174c029fe06e25d27352f47aa61cbd",
+  "relation_id": "supports:claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e->claim-restir-samples-one-bounce-direct-lighting-by-repeatedly-resampling-light-candida--59804a49ba1a",
+  "relation_type": "supports",
+  "src_claim_id": "claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e",
+  "src_claim_ref": "4",
+  "status": "open"
+}

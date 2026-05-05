@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26",
+    "claim-higher-object-velocities-reduce-perceived-quality-at-a-fixed-refresh-rate-becaus--8ff6f99488fa"
+  ],
+  "evidence_id": "evidence-motion-quality-range--9db0fab52877",
+  "evidence_type": "measurement",
+  "excerpt": "The motion-quality experiment showed animations at 23 refresh rates from 50 Hz to 165 Hz in 5 Hz steps. Eleven participants performed 600 pairwise comparisons each, producing 6600 comparisons across all participants.",
+  "overview": "This is the central measurement basis for the paper: it gives the model empirical JND-scaled quality data over the refresh-rate band relevant to high-refresh gaming monitors. It supports claims about diminishing returns, velocity effects, and the need for a model rather than a single critical refresh threshold.",
+  "page_refs": [
+    "Section 4.1"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "title": "50-165 Hz Quality Sampling"
+}

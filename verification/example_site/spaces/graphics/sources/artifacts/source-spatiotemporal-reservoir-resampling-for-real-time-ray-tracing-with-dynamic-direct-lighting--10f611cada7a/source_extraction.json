@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "source_file": "sources/artifacts/source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a/source.pdf",
+    "source_markdown": "sources/artifacts/source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a/source.md"
+  },
+  "converter_name": "markitdown",
+  "converter_version": "0.1.5",
+  "input_sha256": "a1ae1233eecd4f82cc9502900de08012e9a0c233fb8014f53f20c2e9814f243d",
+  "markdown_char_count": 101890,
+  "options": {
+    "input_format": "pdf"
+  },
+  "output_sha256": "d863b310516c125b0ffb27020e9a712ab02f03158bd267ba099c67b48db8663f",
+  "quality_status": "usable",
+  "schema_version": "source_extraction_v1",
+  "status": "success",
+  "warnings": []
+}

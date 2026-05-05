@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Repeated Resampling Blur</title><link rel="stylesheet" href="../assets/site.css"></head><body class="site-shell site-with-global-menubar">
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="../../../../site/index.html">Example Site</a><nav class="site-space-nav" aria-label="Spaces"><details class="site-space-nav-item"><summary class="site-space-nav-summary current">Computer Science / Graphics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../computer-science/site/index.html">Computer Science</a><a class="site-space-nav-link" href="../../../compilers/site/index.html">Compilers</a><a class="site-space-nav-link current" href="../index.html">Graphics</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Philosophy</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../philosophy/site/index.html">Philosophy</a><a class="site-space-nav-link" href="../../../mind/site/index.html">Mind</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Physics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../physics/site/index.html">Physics</a><a class="site-space-nav-link" href="../../../metaphysics/site/index.html">Metaphysics</a><a class="site-space-nav-link" href="../../../quantum-physics/site/index.html">Quantum Physics</a></div></details></nav><nav class="site-tabs"><a class="site-tab" href="../new/index.html">New</a> <a class="site-tab" href="../index.html">Home</a> <a class="site-tab" href="../questions/index.html">Questions</a> <a class="site-tab" href="../overview/index.html" aria-label="Overview for graphics">Overview</a> <a class="site-tab" href="../sources/index.html">Sources</a> <a class="site-tab" href="../topics/index.html">Topics</a> <a class="site-tab" href="../users/index.html">Users</a> <a class="site-tab current" href="index.html">Evidence</a> <a class="site-tab" href="../claims/index.html">Claims</a></nav></div></header><main class="site-main site-space-main">
+<header class="site-topbar"><form class="top-search" action="../search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
+<section class="content-card"><h1>Repeated Resampling Blur</h1>
+<section class="source-related-grid">
+<article class="source-related-card">
+<h2>Evidence Excerpt</h2>
+<p>For constant panning motion, the survey rewrites reprojection as discrete convolution f_{t-&gt;t+1} = f_t * k_v with k_v = [v, 1-v]. Repeating the operation convolves the kernel with itself; interpreting k_v as a Bernoulli distribution gives accumulated variance sigma_n^2 = n v(1-v). The text states that bilinear resampling attenuates and misplaces high frequencies.</p>
+<p class="meta">Page references: pp.2386-2387, Eq.7, Eq.8, Eq.9, Eq.10, Fig.9</p>
+<p class="meta">Type: equation</p>
+<p>This derivation explains a fundamental quality limit of temporal reuse. Even if the cached value is semantically valid, repeated resampling can degrade signal content. The evidence supports periodic recomputation, improved filters, or temporal fade-out as necessary safeguards.</p>
+</article>
+<article class="source-related-card">
+<h2>Linked Claims</h2>
+<ul class="source-related-list">
+<li><a href="../claims/claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d.html">Resampling accumulates blur</a></li>
+<li><a href="../claims/claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca.html">Amortization trades variance lag</a></li>
+</ul>
+</article>
+<article class="source-related-card">
+<h2>Primary Source</h2>
+<p><a href="../sources/source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e.html">Temporal Coherence Methods in Real-Time Rendering</a></p>
+</article>
+</section>
+<section class="source-related-card">
+<h2>Topic Pages Using This Evidence</h2>
+<ul class="source-related-list">
+<li><a href="../topics/topic-amortized-and-aggregated-rendering-work.html">Amortized and Aggregated Rendering Work</a></li>
+<li><a href="../topics/topic-bias-artifacts-and-approximation-boundaries.html">Bias, Artifacts, and Approximation Boundaries</a></li>
+<li><a href="../topics/topic-reprojection-cache-validity-and-view-change-artifacts.html">Cache Validity and View-Change Artifacts</a></li>
+<li><a href="../topics/topic-temporal-stability-artifacts-and-frame-to-frame-reuse.html">Temporal Stability, Artifacts, and Frame-to-Frame Reuse</a></li>
+</ul>
+</section>
+<p><a href="index.html">Back to evidence index</a></p>
+</section>
+
+</main>
+<script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>

@@ -1,0 +1,33 @@
+{
+  "claim_ids": [
+    "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+    "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+    "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8",
+    "claim-a-two-pass-accumulation-field-method-fits-directly-into-the-opengl-pipeline-and--bf684a8c9b90",
+    "claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006",
+    "claim-edge-endpoints-can-be-aggregated-by-hill-climbing-on-the-node-density-field-so-t--6e6b82bcec81",
+    "claim-the-edge-aggregation-approach-operates-in-image-space-and-does-not-require-preco--da4e8cd6122f",
+    "claim-the-rendering-complexity-remains-linear-in-input-size-with-seed-point-rectangle--8a6cf3a6542e"
+  ],
+  "sections": [
+    {
+      "body": "Several sources describe rendering strategies that make large or expensive visual computations tractable by spreading, merging, or reusing work. Amortized temporal sampling smooths a reprojected running average to reduce variance over time, while graph level-of-detail rendering merges node work into pixel bins and aggregates edges or endpoints in image space.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "The common concept is controlled loss or approximation in service of interactive rendering. Temporal amortization trades noise reduction against lag or blur; graph aggregation trades individual detail for density fields, cluster-level connectivity, and scalable overview rendering.",
+      "heading": "Section 2"
+    },
+    {
+      "body": "This topic is synthesis-worthy because both sources use screen-space or frame-buffer-oriented computation to avoid work proportional to every original sample at full fidelity. The supporting evidence is strongest when framed around performance and approximation trade-offs, not identical algorithms.",
+      "heading": "Section 3"
+    }
+  ],
+  "source_ids": [
+    "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+    "source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7"
+  ],
+  "structure_type": "wiki",
+  "title": "Amortized and Aggregated Rendering Work",
+  "topic_id": "topic-amortized-and-aggregated-rendering-work"
+}

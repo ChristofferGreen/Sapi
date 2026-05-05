@@ -1,0 +1,27 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-05-05T13:12:35Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/relations"
+  ],
+  "flow_key": "ingest_extraction",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T130527Z--lhhnzw5dhw/semantic/ingest_extraction.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json",
+  "started_at": "2026-05-05T13:08:16Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260505T130816Z-ingest_extraction-7101-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": false,
+  "validation_errors": [
+    {
+      "message": "'This paper proposes a perceptual model for deciding how to trade rendering resolution against refresh rate when GPU or bandwidth budgets are limited. It argues that motion velocity and predictability determine whether a viewer benefits more from sharper spatial detail or smoother temporal sampling. The authors fit the model with psychophysical and eye-tracking experiments, then validate a real-time adaptive rendering algorithm called MARRR against fixed rendering policies.' is too long",
+      "path": "/source_dossier/summary_short",
+      "validator": "maxLength",
+      "validator_value": 420
+    }
+  ]
+}

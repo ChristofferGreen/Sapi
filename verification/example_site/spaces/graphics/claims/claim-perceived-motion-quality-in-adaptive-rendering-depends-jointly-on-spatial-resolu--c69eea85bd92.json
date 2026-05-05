@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T14:01:56Z",
+  "claim_id": "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+  "evidence_excerpts": [
+    "The model defines quality difference as a function of display refresh rate, image resolution, motion velocity, and predictability of motion."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Motion quality is joint",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "text": "Perceived motion quality in adaptive rendering depends jointly on spatial resolution, refresh rate, object velocity, and motion predictability rather than on resolution or refresh rate alone."
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T12:49:32Z",
+  "claim_id": "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d",
+  "evidence_excerpts": [
+    "The reprojection error analysis models constant panning as convolution with a resampling kernel and states that bilinear resampling attenuates and misplaces high frequencies; repeated resampling grows blur variance."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Resampling accumulates blur",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "text": "Repeated reprojection resampling can attenuate and misplace high frequencies, so temporal reuse needs periodic recomputation, better filtering, or fading of older frames to avoid accumulated blur."
+}

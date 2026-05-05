@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8",
+  "comparator": "fixed rates from the prior approach",
+  "evidence_id": "evidence-marr-validation-preference--2a218677cafe",
+  "measure_name": "selection probability",
+  "measurement_id": "measurement-marr-validation-selection-probability--2a218677cafe",
+  "outcome": "preference for MARRR over fixed rates from the prior approach",
+  "population": "controlled MARRR validation for predictable user-induced motion",
+  "question_id": "question-real-time-constraints",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "uncertainty": "linked evidence reports selection probability above 70% with consistently significant preference; exact value and upper bound are not provided",
+  "unit": "percent",
+  "value": 70,
+  "value_max": null
+}

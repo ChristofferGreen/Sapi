@@ -168,32 +168,6 @@
       "rationale": "Captured from normalized source references.",
       "title": "https://doi.org/ Vol. 9 No. 2 June 195\u2013228",
       "url": "https://doi.org/10.1007/s41095-022-0306-4"
-    },
-    {
-      "confidence": "medium",
-      "domain": "arxiv.org",
-      "link_type": "research_index",
-      "provenance": {
-        "origin": "reference_arxiv",
-        "source_field": "references[6].arxiv"
-      },
-      "quality_status": "trusted",
-      "rationale": "Derived from an arXiv identifier found in the source references.",
-      "title": "Majercik Z. et al. Foveated AR. ACM Transactions arXiv preprint",
-      "url": "https://arxiv.org/abs/2108.03499"
-    },
-    {
-      "confidence": "medium",
-      "domain": "arxiv.org",
-      "link_type": "research_index",
-      "provenance": {
-        "origin": "reference_arxiv",
-        "source_field": "references[5].arxiv"
-      },
-      "quality_status": "trusted",
-      "rationale": "Derived from an arXiv identifier found in the source references.",
-      "title": "on procedural task training. In: Virtual Augmented perceptual systems. arXiv preprint",
-      "url": "https://arxiv.org/abs/2006.07991"
     }
   ],
   "ingested_at": "2026-04-26T17:01:11Z",

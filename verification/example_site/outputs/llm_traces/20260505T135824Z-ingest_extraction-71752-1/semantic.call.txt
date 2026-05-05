@@ -1,0 +1,155 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: ingest_extraction
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/ingest_extraction.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T135543Z--bqwyazjijt/semantic/ingest_extraction.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/relations
+
+=== generation spec ===
+flow_key: ingest_extraction
+version: v1
+schema_path: schemas/ingest_extraction.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/ingest_extraction.json
+context_paths:
+  - <space_root>/sources/records
+  - <space_root>/sources/artifacts
+  - <space_root>/claims
+  - <space_root>/relations
+---
+## Task
+Generate one strict JSON object for ingest extraction at `output_json_path`.
+
+## Context Interpretation Rules
+- Treat `context_paths` as the only evidence scope for this generation.
+- For source reading, prefer `sources/artifacts/<source_id>/source.md` as the default analysis input.
+- Inspect `sources/artifacts/<source_id>/source_extraction.json` before trusting the markdown fully.
+- Use the original binary artifact only for fidelity-sensitive checks such as tables, figures, equations, or layout recovery when the extraction metadata says markdown quality is degraded or unusable.
+- If context is missing or ambiguous, keep values conservative and place details in `warnings`.
+- Do not invent canonical IDs beyond schema-allowed fields.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- `source.display_title` is required and MUST be a high-quality post-style title for UI display.
+  - target length: `4..12` words (`12..120` chars) for high-quality outputs
+  - schema lower bound is `4` chars for compatibility with short canonical titles; still prefer `12+`
+  - summarize the central claim/theme of the source
+  - avoid raw filenames, slugs, IDs, URLs, hashes, and boilerplate metadata fragments
+  - keep wording readable and specific (not clickbait, not generic placeholders)
+  - no trailing punctuation
+- `source.authors` SHOULD be included whenever the paper names identifiable authors.
+  - output an ordered JSON array of human author names as they appear on the paper
+  - do not emit placeholders like `unknown`, `the authors`, `editorial synthesis`, or organization names unless the paper truly credits only an organization
+  - if author names cannot be recovered with confidence, prefer omitting `source.authors` over guessing
+- `source_dossier` is required and MUST be included:
+  - `summary_short`: reader-facing abstract (2-4 sentences)
+  - `summary_long`: substantive overview/commentary so readers can understand the source without opening the PDF
+    - target depth: `~900..4000` chars (minimum schema requirement is 900)
+  - `sections`: 5..8 section objects with `heading`, `body`, and `grounding_claim_ids`
+    - each section body should be detailed (`~140..800` chars)
+  - section writing should cover: argument, evidence/reasoning path, assumptions/limits, and practical interpretation
+  - every section SHOULD cite relevant `claim_id` values in `grounding_claim_ids` when claim evidence exists
+  - avoid generic filler; write source-specific commentary grounded in extracted claims
+- `evidence_items` is required and MUST be the canonical evidence output for this flow:
+  - output `0..n` evidence items; emit an empty array if no concrete evidence artifacts exist
+  - each item MUST include:
+    - `evidence_id` in canonical slug+hash format (`evidence-<slug>--<hex>`)
+    - `title` (clear reader-facing label, target `3..8` words)
+    - `excerpt` (concrete evidence artifact text from source content)
+    - `overview` (why the evidence matters, what it establishes, and scope limits)
+    - `evidence_type` enum value
+    - `claim_refs` with one or more references to extracted claims (index, claim_key, or claim_id)
+    - `source_id` matching the ingested source
+  - evidence quality bar:
+    - acceptable evidence: measurements/statistics, theorem or proof steps, equations/derivations, table/figure findings, formal argument fragments
+    - reject low-information paraphrases and publication-process narration (`the paper claims...`, `the article argues...`)
+    - each evidence item should be independently meaningful and auditable
+  - do not emit synthetic evidence IDs/titles by truncation rules; author high-quality IDs/titles directly
+- each claim object SHOULD include `short_title` for UI claim-link labels:
+  - MUST be authored by the LLM from claim semantics (not a mechanical truncation of claim text)
+  - MUST be `3..7` words
+  - SHOULD follow compact truth-apt proposition style (`X is Y`, `X implies Y`, `X constrains Y`)
+  - MUST avoid lead-ins like `the paper claims`, `the article argues`, `authors show`
+  - MUST be a concise label, not a full sentence/parapraph
+- claim `text` MUST be a truth-apt proposition attributed to the source content itself
+  - avoid meta narration about the publication process (`the paper presents`, `the article gives`)
+  - when the source uses reporting lead-ins, rewrite to the underlying proposition
+- claim `evidence_excerpts` (or alias `evidence`) MAY be included as claim-local mirrors of `evidence_items` excerpts:
+  - acceptable: measurement values/statistics, theorem/proof steps, equations, formal derivations, table/figure findings
+  - avoid repeating the claim text itself or generic narrative summaries (`the paper claims...`)
+  - if no concrete evidence artifact is available, prefer an empty list over low-quality filler
+- `relations` MAY be empty, but when relation objects are emitted they MUST use the canonical relation shape:
+  - `relation_type`: one of `supports`, `derived_from`, `falsifies`, `contradictory`, `similar`
+  - `src_claim_ref` and `dst_claim_ref`: references to extracted claims by index, `claim_key`, or `claim_id`
+  - use `src_claim_id`/`dst_claim_id` only when you already know canonical claim IDs from context
+  - do not emit generic `type`, `src`, or `dst` keys; those are invalid for this schema
+  - optional `rationale` may explain the relation in one concise sentence
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "source_date_inference": null,
+  "source": {
+    "display_title": "",
+    "authors": ["Author One", "Author Two"]
+  },
+  "claims": [
+    {
+      "text": "",
+      "short_title": ""
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "",
+      "title": "",
+      "excerpt": "",
+      "overview": "",
+      "evidence_type": "formal_argument",
+      "claim_refs": ["0"],
+      "source_id": ""
+    }
+  ],
+  "relations": [
+    {
+      "relation_type": "supports",
+      "src_claim_ref": "0",
+      "dst_claim_ref": "1",
+      "rationale": ""
+    }
+  ],
+  "summary": "",
+  "warnings": [],
+  "source_dossier": {
+    "summary_short": "",
+    "summary_long": "",
+    "sections": [
+      {
+        "heading": "",
+        "body": "",
+        "grounding_claim_ids": []
+      }
+    ]
+  }
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/relations": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/relations",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+}
+
+=== llm output ===
+{"source_date_inference":{"date":"2020-07","confidence":"high","origin":"source_markdown_acm_reference","rationale":"The Markdown extraction includes the ACM reference line identifying publication in ACM Transactions on Graphics 39(4), Article 133, July 2020, and a 2020 ACM copyright/DOI block."},"source":{"display_title":"A Perceptual Model of Motion Quality for Rendering with Adaptive Refresh-Rate and Resolution","authors":["Gyorgy Denes","Akshay Jindal","Aliaksei Mikhailiuk","Rafał K. Mantiuk"]},"claims":[{"text":"Perceived motion quality in adaptive rendering depends jointly on spatial resolution, refresh rate, object velocity, and motion predictability rather than on resolution or refresh rate alone.","short_title":"Motion quality is joint","evidence_excerpts":["The model defines quality difference as a function of display refresh rate, image resolution, motion velocity, and predictability of motion."]},{"text":"A motion-quality model can explain refresh-rate and resolution trade-offs by combining motion-parallel blur, motion-orthogonal blur, and judder components in JND units.","short_title":"Blur and judder explain quality","evidence_excerpts":["The model approximates quality difference as a weighted sum of blur in the direction of motion, blur orthogonal to motion, and judder or non-smoothness."]},{"text":"Subjective motion-quality measurements from 50 Hz to 165 Hz show that higher refresh rates improve perceived quality, but gains become harder to observe above roughly 100 Hz.","short_title":"Refresh gains diminish above 100Hz","evidence_excerpts":["Every animation was shown at one of 23 refresh rates from 50 Hz to 165 Hz, and the results report that higher refresh rates imply less-perceivable motion artifacts while differences above 100 Hz are increasingly difficult to observe."]},{"text":"Higher object velocities reduce perceived quality at a fixed refresh rate because they increase motion blur and make content harder to inspect.","short_title":"Velocity lowers perceived quality","evidence_excerpts":["The results state that there is a clear preference for lower velocities because higher velocities produce more motion blur at a fixed refresh rate and content is easier to see at lower velocities."]},{"text":"Eye-tracking data show that smooth pursuit is not affected by refresh rates above 27.5 Hz but is strongly affected by whether motion is predictable or unpredictable.","short_title":"Predictability affects pursuit accuracy","evidence_excerpts":["The eye-tracking results report that SPEM is not affected by refresh rates above 27.5 Hz but is affected by predictable versus unpredictable motion, with 4.89 versus 1.56 saccades per second and 0.092 s versus 0.004 s tracking delay."]},{"text":"Judder is detectable at 50 Hz and 60 Hz but becomes negligible at 72 Hz and higher refresh rates in the isolated-judder experiment.","short_title":"Judder fades above 72Hz","evidence_excerpts":["The judder experiment reports that observers could detect judder at 50 Hz and 60 Hz, but could not discriminate the animations at 72 Hz and 83 Hz."]},{"text":"The full model fits measured motion-quality curves better when it includes parallel blur, judder, and separate handling of predictable and unpredictable motion.","short_title":"Full model fits best","evidence_excerpts":["The ablation study reports that best predictions are provided when all model features are enabled, with RMSE=0.31, while judder alone gives poor fits above 0.51 RMSE."]},{"text":"The MARRR algorithm uses the perceptual model in real time to choose refresh rate and resolution under a rendering budget, and validation experiments generally prefer it over constant-rate baselines.","short_title":"MARRR improves adaptive rendering","evidence_excerpts":["The application formulates an optimization over resolution and refresh rate under a pixel budget, precomputes lookup tables, and reports user preference for MARRR over fixed refresh-rate rendering in controlled and game experiments."]}],"evidence_items":[{"evidence_id":"evidence-motion-quality-range--9db0fab52877","title":"50-165 Hz Quality Sampling","excerpt":"The motion-quality experiment showed animations at 23 refresh rates from 50 Hz to 165 Hz in 5 Hz steps. Eleven participants performed 600 pairwise comparisons each, producing 6600 comparisons across all participants.","overview":"This is the central measurement basis for the paper: it gives the model empirical JND-scaled quality data over the refresh-rate band relevant to high-refresh gaming monitors. It supports claims about diminishing returns, velocity effects, and the need for a model rather than a single critical refresh threshold.","evidence_type":"measurement","claim_refs":["2","3"],"source_id":"source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68","page_refs":["Section 4.1"]},{"evidence_id":"evidence-quality-component-equation--22767f63d459","title":"Weighted Quality Decomposition","excerpt":"The model defines ΔQ(fA, RA, fB, RB, v, τ) as a weighted sum of motion-parallel blur ΔQP, orthogonal blur ΔQO, and judder ΔQJ, with inputs for refresh rate, resolution, velocity, and motion predictability.","overview":"This formal decomposition is the paper's main modeling move. It turns adaptive rendering into a perceptual optimization problem by separating the artifacts caused by finite refresh rate, reduced resolution, imperfect eye pursuit, and temporal sampling.","evidence_type":"equation","claim_refs":["0","1"],"source_id":"source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68","page_refs":["Eq.2","Eq.3","Section 5"]},{"evidence_id":"evidence-blur-component-model--4804b47b4a68","title":"Blur Component Formulas","excerpt":"Hold-type display blur is modeled as bD = v/f, eye-motion blur as bE = pa v + pb, and resolution blur as bR = 1/R. These are converted into Gaussian standard deviations and combined into motion-parallel and orthogonal blur terms.","overview":"These equations make the model interpretable: speed and refresh rate control display blur, eye pursuit contributes a predictability-sensitive term, and image resolution controls spatial blur. The formulas explain why the optimal resolution-refresh trade-off changes with object motion.","evidence_type":"equation","claim_refs":["1","3","4"],"source_id":"source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68","page_refs":["Eq.4","Eq.5","Eq.6","Eq.10","Eq.11"]},{"evidence_id":"evidence-eye-tracking-results--0a312f05b7c1","title":"Eye Pursuit Measurements","excerpt":"In the eye-tracking experiment, SPEM was not affected by refresh rates above 27.5 Hz but differed by motion type: unpredictable motion produced 4.89 saccades per second versus 1.56 for predictable motion, and tracking delay was 0.092 s versus 0.004 s.","overview":"This measurement justifies treating predictability as a model input rather than as a narrative qualifier. It shows that unpredictable motion materially changes retinal blur and therefore changes the correct refresh-rate/resolution choice.","evidence_type":"measurement","claim_refs":["0","4"],"source_id":"source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68","page_refs":["Section 6.1.5"]},{"evidence_id":"evidence-judder-threshold-result--3835854abc12","title":"Judder Detection Thresholds","excerpt":"The isolated-judder experiment found that judder was detectable for predictable and unpredictable motion at 50 Hz and 60 Hz, while observers could not discriminate juddery from non-juddery animations at 72 Hz and 83 Hz. The fitted judder model had RMSE 0.1074 JND.","overview":"This result bounds when judder matters in the model. It supports the claim that the perceptual cost of low refresh rates is not uniform across the 50-165 Hz range and that above the low-70 Hz band blur and resolution effects can dominate.","evidence_type":"statistical_result","claim_refs":["5","6"],"source_id":"source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68","page_refs":["Section 6.2.4","Section 6.2.5"]},{"evidence_id":"evidence-model-fit-ablation--1f83564def09","title":"Ablation RMSE Comparison","excerpt":"The ablation table reports RMSE values for combinations of model features. The full model with parallel blur, judder, and predictability separation reaches train RMSE 0.31 and test RMSE 0.38, while judder-only variants exceed 0.51 RMSE.","overview":"The ablation evidence shows that the model's explanatory parts are not interchangeable. Parallel blur captures broad trends, judder explains low-refresh artifacts, and predictability improves fit; the complete combination is needed for the best match to measured quality curves.","evidence_type":"table_result","claim_refs":["6"],"source_id":"source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68","page_refs":["Table 4","Section 6.5"]},{"evidence_id":"evidence-marr-validation-preference--2a218677cafe","title":"MARRR Preference Validation","excerpt":"In the controlled validation, MARRR was preferred overall to fixed rates from the prior approach, with consistently significant preference for predictable user-induced motion and selection probability above 70%. In the game validation, MARRR was also preferred overall to fixed-refresh rendering.","overview":"This evidence connects the perceptual model to practical rendering control. It shows that optimizing resolution and refresh rate from measured motion can improve viewer preference, although unpredictable-motion and high-refresh comparisons remained noisier because of display synchronization limits.","evidence_type":"statistical_result","claim_refs":["7"],"source_id":"source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68","page_refs":["Section 7.4.4","Section 7.5.5"]}],"relations":[{"relation_type":"supports","src_claim_ref":"1","dst_claim_ref":"7","rationale":"The decomposition into blur and judder provides the perceptual objective that MARRR optimizes under a rendering budget."},{"relation_type":"supports","src_claim_ref":"4","dst_claim_ref":"0","rationale":"The eye-tracking evidence explains why predictability must be one of the model inputs."},{"relation_type":"supports","src_claim_ref":"5","dst_claim_ref":"6","rationale":"The isolated-judder threshold result constrains the judder component used in the full fitted model."},{"relation_type":"derived_from","src_claim_ref":"7","dst_claim_ref":"0","rationale":"The adaptive-rendering result follows from treating perceived motion quality as a joint function of display settings and motion properties."}],"summary":"Denes, Jindal, Mikhailiuk, and Mantiuk develop and validate a perceptual model for choosing resolution and refresh rate in adaptive rendering. The source combines psychophysical comparisons, eye-tracking measurements, judder-isolation experiments, model fitting, and real-time validation to show that motion velocity and predictability should guide refresh-rate/resolution trade-offs under limited rendering budgets.","warnings":["The source record date field was null, but the extracted source Markdown includes an ACM publication date of July 2020.","The Markdown extraction is marked usable, so the PDF binary was not inspected for additional layout fidelity.","Some reference metadata in the source record appears degraded, but core title, authors, DOI, abstract, experiments, equations, and results were recoverable from source.md."],"source_dossier":{"summary_short":"This paper builds a perceptual model for adaptive rendering on variable-refresh displays. It argues that the best resolution-refresh trade-off depends on object velocity and motion predictability, then validates a model-driven renderer against constant-rate alternatives.","summary_long":"The source addresses a practical rendering problem: modern displays can support high spatial resolution and high refresh rate, but GPUs and transmission links often cannot deliver both at once. Instead of fixing resolution and varying refresh rate, or fixing refresh rate and varying resolution, the paper models which trade-off should look best for the current motion. Its central contribution is a perceptual model that predicts JND-scaled quality differences from refresh rate, image resolution, object velocity, and whether motion is predictable for smooth pursuit eye movement. The model decomposes quality loss into motion-parallel blur, motion-orthogonal blur, and judder. Those components are grounded in visual-system assumptions, equations for hold-type blur, eye-motion blur, resolution blur, and contrast-sensitivity energy, then fitted to psychophysical data. The empirical program is substantial: one experiment measures motion quality from 50 Hz to 165 Hz using pairwise comparisons and active sampling; another measures eye pursuit behavior for predictable and unpredictable motion; a third isolates judder by matching blur across smooth and juddery conditions. The fitted model explains why high refresh rates help but show diminishing perceptual returns above about 100 Hz, why higher velocities demand more temporal resolution, and why unpredictable motion needs separate treatment. The paper then turns the model into MARRR, a motion-adaptive resolution and refresh-rate renderer that uses precomputed lookup tables rather than solving an optimization per frame. Controlled panorama and sandbox game validations show general preference for MARRR over fixed-resolution/fixed-refresh baselines, especially for predictable user-driven motion. The scope is explicit: the work targets high-persistence LCD displays, leaves flicker, ghosting, HDR, low-persistence VR displays, and richer content-aware adaptation for future work, and depends on display synchronization interfaces that were imperfect in the experiments.","sections":[{"heading":"Core Argument","body":"The paper's core argument is that adaptive rendering should not choose between resolution and refresh rate with a static rule. Perceived quality depends on how fast objects move, whether the eye can predict that motion, and which artifacts become visible under the current budget. This leads to a model-based optimizer rather than a fixed refresh-rate or fixed-resolution policy.","grounding_claim_ids":["0","7"]},{"heading":"Model Structure","body":"The model is deliberately interpretable. It predicts quality difference in JND units from refresh rate, resolution, velocity, and predictability, then decomposes the perceptual loss into motion-parallel blur, orthogonal blur, and judder. Hold-type display behavior, imperfect eye pursuit, and resolution reduction are first converted into blur terms; judder is handled through an aliasing and spatio-temporal contrast-sensitivity model.","grounding_claim_ids":["1"]},{"heading":"Psychophysical Evidence","body":"The first experiment supplies the main quality scale. Participants compared animations across 23 refresh rates from 50 Hz to 165 Hz, with multiple velocities and motion types. The results support the main perceptual pattern: higher refresh rates improve quality, but the improvement becomes harder to see above about 100 Hz, and lower velocities are preferred because they create less blur and are easier to inspect.","grounding_claim_ids":["2","3"]},{"heading":"Eye Motion and Predictability","body":"The eye-tracking experiment gives the model a physiological reason to distinguish predictable from unpredictable motion. Above 27.5 Hz, refresh rate did not materially affect smooth pursuit, but motion predictability did. Unpredictable motion caused more frequent correction saccades and much larger tracking delay, which increases retinal blur and changes the preferred rendering configuration.","grounding_claim_ids":["4"]},{"heading":"Judder Calibration","body":"The isolated-judder experiment separates non-smooth motion from blur by artificially matching blur between low-refresh and high-refresh presentations. Observers detected judder at 50 Hz and 60 Hz but not at 72 Hz and 83 Hz. This makes judder a targeted low-refresh component instead of a generic penalty applied equally across the full display range.","grounding_claim_ids":["5"]},{"heading":"Fit and Ablation","body":"The ablation study shows why the complete model matters. Parallel blur alone captures some broad trends but misses important velocity differences, while judder alone fits poorly. The best reported fit occurs when parallel blur, judder, and predictable-versus-unpredictable separation are all enabled, indicating that the model's components are complementary.","grounding_claim_ids":["6"]},{"heading":"Rendering Application","body":"MARRR applies the model by optimizing refresh rate and resolution under a fixed pixel budget, with lookup tables used for real-time operation. The validation experiments show that observers generally prefer the adaptive result over constant-rate baselines in panorama and game settings, though unpredictable motion and display-control latency expose practical limits in current G-Sync style hardware.","grounding_claim_ids":["7"]},{"heading":"Scope and Limits","body":"The paper is careful about scope. It is calibrated and validated on high-persistence LCD monitors, assumes foveal motion is the main driver, and omits flicker, ghosting, HDR behavior, low-persistence VR displays, and content-aware artifact models. Those limits do not invalidate the core result, but they constrain where the model can be applied without further validation.","grounding_claim_ids":["0","1","7"]}]}}

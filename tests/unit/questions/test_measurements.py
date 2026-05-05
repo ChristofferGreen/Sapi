@@ -198,12 +198,12 @@ class QuestionMeasurementTests(unittest.TestCase):
             )
             self.assertFalse((space_root / "measurements" / f"{MEASUREMENT_ID}.json").exists())
 
-    def test_measurement_refresh_rejects_foreign_measurement_id_collision(self) -> None:
+    def test_measurement_refresh_remaps_foreign_measurement_id_collision(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "spaces" / "alpha"
             _write_linked_artifacts(space_root)
             _write_measurement_record(space_root=space_root, question_id="question-other")
-            write_prepared_question_record(
+            question_path = write_prepared_question_record(
                 space_root=space_root,
                 space_name="alpha",
                 payload=_question_payload(
@@ -216,18 +216,34 @@ class QuestionMeasurementTests(unittest.TestCase):
                 mode="valid",
                 valid_payload=_measurement_payload("question-protein-intake"),
             )
+            transaction = ArtifactTransaction()
 
-            with self.assertRaisesRegex(ValueError, "belongs to question_id 'question-other'"):
-                run_question_measurement_extraction_and_update(
-                    space_root=space_root,
-                    question_id="question-protein-intake",
-                    run_id="run-20260501T120000Z--abcdefghij",
-                    llm_client=fixture,
-                    transaction=ArtifactTransaction(),
-                )
+            result = run_question_measurement_extraction_and_update(
+                space_root=space_root,
+                question_id="question-protein-intake",
+                run_id="run-20260501T120000Z--abcdefghij",
+                llm_client=fixture,
+                transaction=transaction,
+            )
+            transaction.commit()
 
             measurement = json.loads((space_root / "measurements" / f"{MEASUREMENT_ID}.json").read_text())
             self.assertEqual(measurement["question_id"], "question-other")
+            self.assertEqual(len(result.measurement_ids), 1)
+            remapped_id = result.measurement_ids[0]
+            self.assertNotEqual(remapped_id, MEASUREMENT_ID)
+            self.assertTrue(remapped_id.startswith("measurement-protein-intake--"))
+            remapped_measurement = json.loads((space_root / "measurements" / f"{remapped_id}.json").read_text())
+            self.assertEqual(remapped_measurement["question_id"], "question-protein-intake")
+            updated = json.loads(question_path.read_text())
+            self.assertEqual(updated["measurement_ids"], [remapped_id])
+            self.assertIn(
+                "Remapped measurement IDs that collided with existing measurements owned by other questions.",
+                updated["freshness"]["question_measurement_extraction"]["warnings"],
+            )
+            semantic_output = json.loads(result.semantic_output_path.read_text())
+            self.assertEqual(semantic_output["measurements"][0]["measurement_id"], remapped_id)
+            self.assertEqual(semantic_output["chart_groups"][0]["measurement_ids"], [remapped_id])
 
     def test_measurement_extraction_rejects_unlinked_rows_and_drops_incompatible_charts(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

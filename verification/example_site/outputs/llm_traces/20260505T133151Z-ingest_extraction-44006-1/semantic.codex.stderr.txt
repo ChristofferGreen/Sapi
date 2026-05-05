@@ -1,0 +1,8 @@
+[
+  {
+    "message": "'ReSTIR reframes real-time many-light direct illumination as a reservoir resampling problem. It stores compact per-pixel reservoirs, reuses selected light candidates across neighboring pixels and previous frames, and provides both a cheaper biased estimator and a more expensive unbiased correction. The paper reports large equal-error speedups and real-time GPU renderings in scenes with up to millions of dynamic emissive triangles, while acknowledging limits around discontinuities and first-hit image-space scope.' is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

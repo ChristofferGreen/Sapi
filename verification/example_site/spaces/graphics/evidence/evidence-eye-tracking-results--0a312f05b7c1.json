@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+    "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1"
+  ],
+  "evidence_id": "evidence-eye-tracking-results--0a312f05b7c1",
+  "evidence_type": "measurement",
+  "excerpt": "In the eye-tracking experiment, SPEM was not affected by refresh rates above 27.5 Hz but differed by motion type: unpredictable motion produced 4.89 saccades per second versus 1.56 for predictable motion, and tracking delay was 0.092 s versus 0.004 s.",
+  "overview": "This measurement justifies treating predictability as a model input rather than as a narrative qualifier. It shows that unpredictable motion materially changes retinal blur and therefore changes the correct refresh-rate/resolution choice.",
+  "page_refs": [
+    "Section 6.1.5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "title": "Eye Pursuit Measurements"
+}

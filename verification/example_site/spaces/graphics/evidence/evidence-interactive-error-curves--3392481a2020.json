@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+    "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c"
+  ],
+  "evidence_id": "evidence-interactive-error-curves--3392481a2020",
+  "evidence_type": "figure_result",
+  "excerpt": "Figure 11 compares RMAE over render time for MIS, Moreau et al.'s light BVH, streaming RIS, biased spatiotemporal reuse, unbiased spatiotemporal reuse, and biased spatial-only reuse; the text reports that biased spatiotemporal reuse has the lowest error at interactive render times.",
+  "overview": "The error-curve comparison supports the claim that ReSTIR's reuse is useful beyond isolated image examples. It also clarifies the tradeoff: the biased version tends to win at interactive budgets, while bias can dominate at longer render times and the unbiased version can eventually become preferable.",
+  "page_refs": [
+    "Fig. 11",
+    "Sec. 6"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "title": "Interactive Error Curve Results"
+}

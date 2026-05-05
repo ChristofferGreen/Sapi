@@ -1,0 +1,79 @@
+=== semantic invocation ===
+flow_key: question_synthesis
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/question_synthesis.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T130527Z--lhhnzw5dhw/semantic/question_synthesis/question-real-time-constraints.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence
+
+=== generation spec ===
+flow_key: question_synthesis
+version: v1
+schema_path: schemas/question_synthesis.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/question_synthesis/<question_id>.json
+context_paths:
+  - <space_root>/questions/<question_id>.json
+  - <space_root>/sources/records
+  - <space_root>/claims
+  - <space_root>/evidence
+---
+## Task
+Generate one strict JSON object that synthesizes the current evidence linked to one prepared question.
+
+## Context Interpretation Rules
+- Treat `<space_root>/questions/<question_id>.json` as the authoritative question record.
+- Use only linked source, claim, and evidence IDs that resolve in the supplied context.
+- Distinguish conclusions from uncertainty, disagreements, and missing evidence.
+- If no sources are linked yet, return an empty evidence-anchor set and a warning that no source
+  context is available.
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+- Do not invent source, claim, evidence, measurement, or citation anchor IDs.
+- Do not state stronger conclusions than the cited evidence supports.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "schema_version": "question_synthesis_v1",
+  "question_id": "question-protein-intake",
+  "short_answer": "Current evidence supports a daily protein target near the high end of common athletic ranges.",
+  "conclusions": [
+    {
+      "text": "Higher intake is most relevant when resistance training is present.",
+      "support": "moderate",
+      "source_ids": ["source-protein-intake--123456789abc"],
+      "claim_ids": ["claim-protein-dose--123456789abc"],
+      "evidence_ids": ["evidence-protein-dose-response--123456789abc"]
+    }
+  ],
+  "uncertainty": "Population, training status, and energy balance may change the estimate.",
+  "disagreements": [],
+  "citation_anchors": [
+    {
+      "anchor_id": "anchor-protein-dose",
+      "label": "[S1]",
+      "source_id": "source-protein-intake--123456789abc",
+      "claim_ids": ["claim-protein-dose--123456789abc"],
+      "evidence_ids": ["evidence-protein-dose-response--123456789abc"]
+    }
+  ],
+  "warnings": []
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json": "file:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+}

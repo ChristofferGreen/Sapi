@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T13:38:06Z",
+  "claim_id": "claim-reservoir-sampling-makes-spatiotemporal-reuse-practical-because-a-pixel-can-comb--9c5dc3907b13",
+  "evidence_excerpts": [
+    "Combining k reservoirs runs in O(k) time and is mathematically equivalent to reservoir sampling on the concatenated input streams."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Reservoirs amplify candidate counts",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "text": "Reservoir sampling makes spatiotemporal reuse practical because a pixel can combine selected samples and weight sums from neighboring reservoirs without storing each candidate stream."
+}

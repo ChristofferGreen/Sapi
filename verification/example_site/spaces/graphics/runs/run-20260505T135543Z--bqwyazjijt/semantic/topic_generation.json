@@ -1,0 +1,86 @@
+{
+  "topics": [
+    {
+      "claim_ids": [
+        "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+        "claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120",
+        "claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8",
+        "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+        "claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3",
+        "claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9",
+        "claim-perceptual-temporal-coherence-can-enrich-rendered-content-by-exploiting-visual-i--b796e0540b6f"
+      ],
+      "sections": [
+        {
+          "body": "A concept page could synthesize methods that spend rendering work where viewers are most sensitive. The motion-quality model allocates resolution and refresh rate using spatial resolution, refresh rate, velocity, predictability, blur, and judder; foveated rendering allocates spatial quality using visual-acuity and contrast-sensitivity limits in the human visual system."
+        },
+        {
+          "body": "The shared idea is not simply lowering quality to save time, but predicting which degradations remain perceptually acceptable. Evidence is strongest for motion-adaptive refresh/resolution and foveated regional quality, while links to broader perceptual temporal coherence are more general."
+        }
+      ],
+      "source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+        "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30",
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "structure_type": "wiki",
+      "title": "Perceptual Quality Allocation Under Rendering Budgets",
+      "topic_id": "topic-perceptual-quality-allocation-under-rendering-budgets"
+    },
+    {
+      "claim_ids": [
+        "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26",
+        "claim-higher-object-velocities-reduce-perceived-quality-at-a-fixed-refresh-rate-becaus--8ff6f99488fa",
+        "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+        "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+        "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+        "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+        "claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11",
+        "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d"
+      ],
+      "sections": [
+        {
+          "body": "A concept page could connect perceptual motion artifacts with the technical limits of reusing frame data. The motion-quality evidence identifies refresh-rate thresholds, velocity effects, judder, and predictability; temporal-coherence techniques explain how reprojection, cached values, disocclusion, and repeated resampling can create blur, holes, lag, or stale shading."
+        },
+        {
+          "body": "The synthesis is that real-time rendering systems must manage both measured human sensitivity to motion and the numerical artifacts of temporal reuse. Support is cross-source but not identical: the motion-quality paper measures perceived artifacts, while the temporal-coherence survey explains rendering mechanisms that can produce or mitigate temporal artifacts."
+        }
+      ],
+      "source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+        "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      ],
+      "structure_type": "wiki",
+      "title": "Temporal Stability, Artifacts, and Frame-to-Frame Reuse",
+      "topic_id": "topic-temporal-stability-artifacts-and-frame-to-frame-reuse"
+    },
+    {
+      "claim_ids": [
+        "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df",
+        "claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8",
+        "claim-reservoir-sampling-makes-spatiotemporal-reuse-practical-because-a-pixel-can-comb--9c5dc3907b13",
+        "claim-restir-samples-one-bounce-direct-lighting-by-repeatedly-resampling-light-candida--59804a49ba1a",
+        "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+        "claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb",
+        "claim-a-useful-taxonomy-for-foveated-rendering-classifies-methods-by-required-input-da--a46ce25de499",
+        "claim-future-foveated-rendering-work-needs-broader-use-of-human-visual-features-improv--36729372977e"
+      ],
+      "sections": [
+        {
+          "body": "A concept page could compare rendering systems that use explicit models to choose practical approximations under real-time constraints. The motion-quality work uses a fitted perceptual model for refresh-rate and resolution selection; ReSTIR uses reservoir sampling and biased or unbiased estimators to trade variance, cost, and correctness; foveated rendering uses perceptual models and taxonomies to organize quality allocation across rendering paradigms."
+        },
+        {
+          "body": "The common concept is controlled approximation: each method accelerates rendering by modeling which samples, pixels, regions, or display states matter most. The sources also show that model-driven choices have failure modes, such as poor motion predictability, bias near discontinuities, weak spatiotemporal correlation, or incomplete perceptual metrics."
+        }
+      ],
+      "source_ids": [
+        "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+        "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+        "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30"
+      ],
+      "structure_type": "wiki",
+      "title": "Model-Driven Real-Time Rendering Tradeoffs",
+      "topic_id": "topic-model-driven-real-time-rendering-tradeoffs"
+    }
+  ]
+}

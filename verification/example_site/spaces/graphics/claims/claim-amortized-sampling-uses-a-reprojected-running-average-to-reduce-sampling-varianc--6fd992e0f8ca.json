@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T12:49:32Z",
+  "claim_id": "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+  "evidence_excerpts": [
+    "The amortized sampling section gives f_t(p) <- alpha s_t(p) + (1-alpha) f_t-1(pi_t-1(p)) and reports Var(f_t(p))/Var(s_t(p)) = alpha/(2-alpha)."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Amortization trades variance lag",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "text": "Amortized sampling uses a reprojected running average to reduce sampling variance, but the smoothing factor creates a trade-off between noise reduction and temporal lag or blur."
+}

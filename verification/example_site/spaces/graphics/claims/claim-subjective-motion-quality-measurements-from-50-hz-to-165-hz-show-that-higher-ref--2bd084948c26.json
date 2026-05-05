@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T14:01:56Z",
+  "claim_id": "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26",
+  "evidence_excerpts": [
+    "Every animation was shown at one of 23 refresh rates from 50 Hz to 165 Hz, and the results report that higher refresh rates imply less-perceivable motion artifacts while differences above 100 Hz are increasingly difficult to observe."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Refresh gains diminish above 100Hz",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "text": "Subjective motion-quality measurements from 50 Hz to 165 Hz show that higher refresh rates improve perceived quality, but gains become harder to observe above roughly 100 Hz."
+}

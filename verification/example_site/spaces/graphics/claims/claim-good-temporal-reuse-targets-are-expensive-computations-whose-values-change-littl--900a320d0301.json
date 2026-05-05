@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T12:49:32Z",
+  "claim_id": "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+  "evidence_excerpts": [
+    "The quality and performance section states that good targets for reuse change little under expected input variation and that reuse may not help when recomputing a value is cheap."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Stable targets enable reuse",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "text": "Good temporal reuse targets are expensive computations whose values change little under expected camera, lighting, time, and interaction variation; cheap or unstable values may not yield a benefit."
+}

@@ -1,0 +1,19 @@
+{
+  "context_by_path": {
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-perceptual-error.json": "file:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-perceptual-error.json",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+  },
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-perceptual-error.json",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence"
+  ],
+  "flow_key": "question_measurement_extraction",
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T135543Z--bqwyazjijt/semantic/question_measurement_extraction/question-perceptual-error.json",
+  "repair_context": null,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/question_measurement_extraction.v1.schema.json",
+  "version": "v1"
+}

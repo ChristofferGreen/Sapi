@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T12:49:32Z",
+  "claim_id": "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+  "evidence_excerpts": [
+    "The introduction states that high temporal coherence lets rendering reuse information computed during one frame, including intermediate results or final colours, to help render following frames."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Coherence amortizes shading work",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "text": "Temporal coherence can reduce rendering cost by reusing intermediate or final shading information from previous frames instead of recomputing every frame from scratch."
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T13:38:06Z",
+  "claim_id": "claim-restir-samples-one-bounce-direct-lighting-by-repeatedly-resampling-light-candida--59804a49ba1a",
+  "evidence_excerpts": [
+    "The algorithm first generates independent per-pixel candidates, tests the selected candidates for visibility, combines reservoirs from the previous frame, performs spatial reuse, and then shades the pixel."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "ReSTIR reuses light candidates",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "text": "ReSTIR samples one-bounce direct lighting by repeatedly resampling light candidates and reusing useful samples across spatial neighbors and prior frames."
+}

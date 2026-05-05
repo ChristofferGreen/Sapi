@@ -1,0 +1,20 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-05-05T13:29:08Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-gpu-memory-bandwidth.json",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence"
+  ],
+  "flow_key": "question_measurement_extraction",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T130527Z--lhhnzw5dhw/semantic/question_measurement_extraction/question-gpu-memory-bandwidth.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/question_measurement_extraction.v1.schema.json",
+  "started_at": "2026-05-05T13:26:59Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260505T132659Z-question_measurement_extraction-7101-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": true,
+  "validation_errors": []
+}

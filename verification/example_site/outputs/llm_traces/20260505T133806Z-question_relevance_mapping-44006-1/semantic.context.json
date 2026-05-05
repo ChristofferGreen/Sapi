@@ -1,0 +1,19 @@
+{
+  "context_by_path": {
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+  },
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/evidence"
+  ],
+  "flow_key": "question_relevance_mapping",
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T132908Z--eyk7m66iy9/semantic/question_relevance_mapping.json",
+  "repair_context": null,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/question_relevance_mapping.v1.schema.json",
+  "version": "v1"
+}

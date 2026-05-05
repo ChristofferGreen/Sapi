@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-forward-reprojection-can-map-cached-pixels-directly-into-the-target-frame-withou--7c9205493d0f",
+    "claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11"
+  ],
+  "evidence_id": "evidence-forward-reprojection-constraints--c2f7a9e44b10",
+  "evidence_type": "formal_argument",
+  "excerpt": "Forward reprojection processes the cache and maps every cached pixel to its new position, avoiding processing of scene geometry for the new frame. The same section notes that this requires a forward motion vector, involves scattering that does not map well to conventional graphics pipelines, can be slow, and may leave holes that require filtering or support-size expansion.",
+  "overview": "This evidence explains both the appeal and the limits of forward reprojection. It can decouple reuse from current-frame geometry processing, which matters for some workloads, but it shifts the problem toward motion-vector quality, visibility resolution, parallel scattering, and hole management.",
+  "page_refs": [
+    "p.2382",
+    "Sec.3.2"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "title": "Forward Reprojection Constraints"
+}

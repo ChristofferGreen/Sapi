@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+  "comparator": "rendering without the reported temporal caching optimization",
+  "evidence_id": "evidence-application-speedups--c40e1f73b82a",
+  "measure_name": "performance improvement",
+  "measurement_id": "measurement-reflection-shader-speedup--2f1a9c8d4e6b",
+  "outcome": "reduced rendering cost at acceptable error",
+  "population": "reflection shader using reverse reprojection caching",
+  "question_id": "question-real-time-constraints",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "uncertainty": "reported as 2.1x performance improvement at acceptable error; detailed error threshold not provided in linked evidence",
+  "unit": "x",
+  "value": 2.1,
+  "value_max": null
+}

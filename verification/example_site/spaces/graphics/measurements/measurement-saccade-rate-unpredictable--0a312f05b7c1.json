@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+  "comparator": "1.56 saccades per second for predictable motion",
+  "evidence_id": "evidence-eye-tracking-results--0a312f05b7c1",
+  "measure_name": "saccade rate",
+  "measurement_id": "measurement-saccade-rate-unpredictable--0a312f05b7c1",
+  "outcome": "correction saccade frequency for unpredictable motion",
+  "population": "eye-tracking experiment participants viewing motion stimuli above 27.5 Hz",
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "uncertainty": "reported as differing by motion type; SPEM was not affected by refresh rates above 27.5 Hz",
+  "unit": "saccades per second",
+  "value": 4.89,
+  "value_max": null
+}

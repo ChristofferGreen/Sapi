@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+  "comparator": "motion predictability effects",
+  "evidence_id": "evidence-eye-tracking-results--0a312f05b7c1",
+  "measure_name": "SPEM refresh-rate unaffected threshold",
+  "measurement_id": "measurement-spem-refresh-rate-unaffected-above--0a312f05b7c1",
+  "outcome": "refresh-rate level above which SPEM was not affected",
+  "population": "eye-tracking experiment smooth-pursuit eye movement measurements",
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "uncertainty": "reported as not affected by refresh rates above 27.5 Hz, not as a general display-quality threshold",
+  "unit": "Hz",
+  "value": 27.5,
+  "value_max": null
+}

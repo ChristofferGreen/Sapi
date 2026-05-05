@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df",
+  "comparator": "judder-only variants exceeding 0.51 RMSE",
+  "evidence_id": "evidence-model-fit-ablation--1f83564def09",
+  "measure_name": "model fit RMSE",
+  "measurement_id": "measurement-full-model-test-rmse--1f83564def09",
+  "outcome": "test RMSE for measured motion-quality curves",
+  "population": "ablation table full model with parallel blur, judder, and predictability separation",
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "uncertainty": "reported in ablation table; RMSE scale follows the paper's motion-quality model output",
+  "unit": "RMSE",
+  "value": 0.38,
+  "value_max": null
+}

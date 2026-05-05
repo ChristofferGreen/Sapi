@@ -1,0 +1,8 @@
+[
+  {
+    "message": "'Temporal Coherence Methods in Real-Time Rendering surveys how adjacent frames in interactive graphics can reuse shaded data rather than recomputing every pixel from scratch. Its central mechanism is reprojection, supported by cache validation, refresh, amortized sampling, and quality analysis. The paper treats temporal coherence as a broad design principle spanning shader acceleration, anti-aliasing, shadows, global illumination, upsampling, frame interpolation, LOD, streaming, visibility culling, and even perceptual display effects.' is too long",
+    "path": "/source_dossier/summary_short",
+    "validator": "maxLength",
+    "validator_value": 420
+  }
+]

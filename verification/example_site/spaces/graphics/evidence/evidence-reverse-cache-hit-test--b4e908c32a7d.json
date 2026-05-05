@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52",
+    "claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11"
+  ],
+  "evidence_id": "evidence-reverse-cache-hit-test--b4e908c32a7d",
+  "evidence_type": "formal_argument",
+  "excerpt": "The reverse reprojection cache stores pixel data f_t and a screen-space depth buffer d_t. For a current pixel p, the reprojection operator pi_t-1(p) maps the generating scene point to its previous-frame position. If the reprojected depth equals the stored previous depth within tolerance, the cached value can be reused; otherwise pi_t-1(p) is treated as empty, a cache miss.",
+  "overview": "This formal argument establishes the correctness guard behind reverse reprojection. Reuse is not merely copying an old pixel; it is conditioned on recovering the same surface point in the previous frame. The depth comparison also explains why disocclusions, object motion, and visibility changes become explicit cache misses.",
+  "page_refs": [
+    "pp.2381-2382",
+    "Fig.3"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "title": "Reverse Cache Hit Test"
+}

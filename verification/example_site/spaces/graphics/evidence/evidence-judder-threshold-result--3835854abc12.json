@@ -1,0 +1,17 @@
+{
+  "claim_ids": [
+    "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+    "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df"
+  ],
+  "evidence_id": "evidence-judder-threshold-result--3835854abc12",
+  "evidence_type": "statistical_result",
+  "excerpt": "The isolated-judder experiment found that judder was detectable for predictable and unpredictable motion at 50 Hz and 60 Hz, while observers could not discriminate juddery from non-juddery animations at 72 Hz and 83 Hz. The fitted judder model had RMSE 0.1074 JND.",
+  "overview": "This result bounds when judder matters in the model. It supports the claim that the perceptual cost of low refresh rates is not uniform across the 50-165 Hz range and that above the low-70 Hz band blur and resolution effects can dominate.",
+  "page_refs": [
+    "Section 6.2.4",
+    "Section 6.2.5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "title": "Judder Detection Thresholds"
+}

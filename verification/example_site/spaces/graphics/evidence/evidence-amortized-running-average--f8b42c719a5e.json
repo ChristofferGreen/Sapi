@@ -1,0 +1,18 @@
+{
+  "claim_ids": [
+    "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca"
+  ],
+  "evidence_id": "evidence-amortized-running-average--f8b42c719a5e",
+  "evidence_type": "equation",
+  "excerpt": "The amortized sampling section defines the running estimate f_t(p) <- alpha s_t(p) + (1-alpha) f_t-1(pi_t-1(p)). It further derives lim Var(f_t(p))/Var(s_t(p)) = alpha/(2-alpha). For alpha = 2/5, the variance is reduced to one quarter of the original, roughly equivalent to increasing the sampling rate by a factor of four, but non-trivial contributions may persist for about 10 frames.",
+  "overview": "This equation is the clearest quantitative evidence for the variance-lag trade-off. It shows why temporal accumulation can approximate many samples per pixel while computing few new samples each frame, and why the smoothing parameter must be chosen carefully to avoid sluggish response to changes.",
+  "page_refs": [
+    "p.2384",
+    "Eq.2",
+    "Eq.3",
+    "Fig.6"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "title": "Amortized Sampling Filter"
+}

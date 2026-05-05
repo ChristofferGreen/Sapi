@@ -157,21 +157,7 @@
   },
   "date": null,
   "display_title": "Skeleton-Guided Edge Bundling for Graph Visualization",
-  "external_related_links": [
-    {
-      "confidence": "medium",
-      "domain": "doi.org",
-      "link_type": "canonical_paper",
-      "provenance": {
-        "origin": "reference_doi",
-        "source_field": "references[1].doi"
-      },
-      "quality_status": "trusted",
-      "rationale": "Derived from a DOI found in the source references.",
-      "title": "12 pp 2364-2373. \u27e8 \u27e9. \u27e8hal-01021607\u27e9",
-      "url": "https://doi.org/10.1109/tvcg.2011.233"
-    }
-  ],
+  "external_related_links": [],
   "ingested_at": "2026-04-26T16:49:30Z",
   "linked_source_ids": [],
   "references": [
@@ -195,11 +181,11 @@
     }
   ],
   "related_link_enrichment": {
-    "skip_reason": null,
+    "skip_reason": "no_curated_links_found",
     "sources": [
       "references"
     ],
-    "status": "enriched",
+    "status": "skipped",
     "warnings": [
       "Skipped 1 unsupported external-link candidate(s)."
     ]

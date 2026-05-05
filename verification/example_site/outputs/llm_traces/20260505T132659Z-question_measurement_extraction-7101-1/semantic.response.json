@@ -1,0 +1,83 @@
+{
+  "chart_groups": [
+    {
+      "chart_group_id": "chart-game-fixed-refresh-rate-preference",
+      "measure_name": "fixed refresh-rate comparator",
+      "measurement_ids": [
+        "measurement-game-fixed-refresh-rate-comparator--f8d7ac31b064"
+      ],
+      "outcome": "MARRR preference over fixed-refresh-rate rendering",
+      "population": "Unity Viking Village sandbox game validation at 203 MP/s fixed bandwidth",
+      "unit": "Hz"
+    },
+    {
+      "chart_group_id": "chart-marrr-minimum-refresh-rate",
+      "measure_name": "minimum refresh rate constraint",
+      "measurement_ids": [
+        "measurement-marrr-minimum-refresh-rate--e41a9307bd6c"
+      ],
+      "outcome": "selection of refresh rate and rendering resolution under fixed rendering budget",
+      "population": "MARRR optimization over resolution and refresh rate under a pixel budget",
+      "unit": "Hz"
+    },
+    {
+      "chart_group_id": "chart-game-rendering-bandwidth",
+      "measure_name": "fixed rendering bandwidth",
+      "measurement_ids": [
+        "measurement-game-rendering-bandwidth--f8d7ac31b064"
+      ],
+      "outcome": "MARRR preference over fixed-refresh-rate rendering",
+      "population": "Unity Viking Village sandbox game validation",
+      "unit": "MP/s"
+    }
+  ],
+  "measurements": [
+    {
+      "claim_id": null,
+      "comparator": "fixed 30 Hz, 60 Hz, and 120 Hz rendering",
+      "evidence_id": "evidence-game-marrr-preference--f8d7ac31b064",
+      "measure_name": "fixed rendering bandwidth",
+      "measurement_id": "measurement-game-rendering-bandwidth--f8d7ac31b064",
+      "outcome": "MARRR preference over fixed-refresh-rate rendering",
+      "population": "Unity Viking Village sandbox game validation",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "overall preference for MARRR, especially against 30 Hz; FPS-60Hz result was not statistically significant",
+      "unit": "MP/s",
+      "value": 203,
+      "value_max": null
+    },
+    {
+      "claim_id": null,
+      "comparator": "fixed 30 Hz, 60 Hz, and 120 Hz rendering",
+      "evidence_id": "evidence-game-marrr-preference--f8d7ac31b064",
+      "measure_name": "fixed refresh-rate comparator",
+      "measurement_id": "measurement-game-fixed-refresh-rate-comparator--f8d7ac31b064",
+      "outcome": "MARRR preference over fixed-refresh-rate rendering",
+      "population": "Unity Viking Village sandbox game validation at 203 MP/s fixed bandwidth",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "overall preference for MARRR; FPS-60Hz comparison was not statistically significant",
+      "unit": "Hz",
+      "value": 30,
+      "value_max": 120
+    },
+    {
+      "claim_id": null,
+      "comparator": "lower refresh rates excluded by constraint f >= 50 Hz",
+      "evidence_id": "evidence-marrr-optimization-formula--e41a9307bd6c",
+      "measure_name": "minimum refresh rate constraint",
+      "measurement_id": "measurement-marrr-minimum-refresh-rate--e41a9307bd6c",
+      "outcome": "selection of refresh rate and rendering resolution under fixed rendering budget",
+      "population": "MARRR optimization over resolution and refresh rate under a pixel budget",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "formal optimization constraint, not a measured memory-bandwidth threshold",
+      "unit": "Hz",
+      "value": 50,
+      "value_max": null
+    }
+  ],
+  "question_id": "question-gpu-memory-bandwidth",
+  "schema_version": "question_measurement_extraction_v1",
+  "warnings": [
+    "The linked material concerns rendering pixel budgets, transmission bandwidth, and refresh-rate/resolution tradeoffs, but it does not provide numeric thresholds distinguishing memory-bandwidth limits from compute limits."
+  ]
+}

@@ -1,0 +1,62 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: topic_generation
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/topic_generation.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T132908Z--eyk7m66iy9/semantic/topic_generation.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims
+
+=== generation spec ===
+flow_key: topic_generation
+version: v1
+schema_path: schemas/topic_generation.v1.schema.json
+output_json_path: <space_root>/runs/<run_id>/semantic/topic_generation.json
+context_paths:
+  - <space_root>/sources
+  - <space_root>/claims
+---
+## Task
+Generate one strict JSON object for topic generation at `output_json_path`.
+Return a `topics` array containing 0..n concept-centric topic candidates.
+
+## Context Interpretation Rules
+- Use only evidence available under `context_paths`.
+- If support is weak/ambiguous, reflect that in section content rather than inventing facts.
+- Do not invent canonical IDs outside schema contracts.
+- Prefer topics that synthesize shared concepts across multiple sources.
+- If there is no clear cross-source concept worth a page, return an empty array (`"topics": []`).
+
+## Strict Output Rules
+- Return JSON object only.
+- Do not return markdown fences.
+- Do not include prose outside JSON.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+## Non-Normative Shape Sketch
+```json
+{
+  "topics": [
+    {
+      "topic_id": "",
+      "title": "",
+      "structure_type": "wiki",
+      "sections": [],
+      "claim_ids": [],
+      "source_ids": []
+    }
+  ]
+}
+```
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/claims",
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources"
+}
+
+=== llm output ===
+{"topics":[{"topic_id":"topic-spatiotemporal-reuse-for-real-time-rendering","title":"Spatiotemporal Reuse for Real-Time Rendering","structure_type":"wiki","sections":["Frame-to-frame and neighborhood reuse appears as a shared acceleration strategy: ReSTIR reuses selected direct-light samples across spatial neighbors and prior frames, while temporal-coherence methods reuse intermediate or final shading information across adjacent frames.","The shared constraint is that reuse works best when spatial or temporal correlation is strong; disocclusions, fast changes, unstable shading, and accumulated resampling error require validation, refresh, reshading, or fallback computation.","This topic can compare reservoir combination, reverse and forward reprojection, amortized sampling, cache refresh, and the limits imposed by holes, stale values, and discontinuities."],"claim_ids":["claim-restir-samples-one-bounce-direct-lighting-by-repeatedly-resampling-light-candida--59804a49ba1a","claim-reservoir-sampling-makes-spatiotemporal-reuse-practical-because-a-pixel-can-comb--9c5dc3907b13","claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb","claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4","claim-real-time-rendering-sequences-exhibit-substantial-spatio-temporal-coherence-and--1377a0a7dbf4","claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52","claim-forward-reprojection-can-map-cached-pixels-directly-into-the-target-frame-withou--7c9205493d0f","claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063","claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11"],"source_ids":["source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a","source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"]},{"topic_id":"topic-sample-quality-and-perceptual-quality-allocation","title":"Sample Quality and Perceptual Quality Allocation","structure_type":"wiki","sections":["Several sources treat real-time rendering as a problem of spending limited computation where it matters most. ReSTIR improves many-light direct illumination by raising direct-light sample quality before denoising, while foveated rendering allocates high quality to the foveal region and lower quality to the periphery.","The evidence supports a synthesis around quality budgets: statistical estimators, perceptual models, and rendering paradigms all choose where approximation is acceptable and where missing detail, latency, or discontinuities become visible.","The topic should keep the comparison bounded: ReSTIR's evidence concerns light-sample selection and estimator behavior, while foveated rendering's evidence concerns human-visual-system models and regional quality variation."],"claim_ids":["claim-many-light-direct-illumination-remains-difficult-in-real-time-because-only-a-sma--12cc4274ee94","claim-improving-the-quality-of-direct-light-samples-before-denoising-can-make-existing--0ab0ee7ef42b","claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c","claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892","claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9","claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3","claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546"],"source_ids":["source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a","source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30"]},{"topic_id":"topic-image-space-gpu-aggregation","title":"Image-Space GPU Aggregation","structure_type":"wiki","sections":["ReSTIR, large-graph level-of-detail rendering, and skeleton-based edge bundling all use image-space or GPU-friendly aggregation to make large rendering or visualization problems interactive.","The shared concept is not a single algorithm but a design pattern: compress many candidates, nodes, or edges into compact screen-space summaries, then operate on those summaries instead of carrying full explicit structure through every step.","A useful page could contrast reservoirs, accumulation fields, pixel-bin seed points, density fields, and CUDA image-space transforms, while noting that each method has different information-loss and correlation assumptions."],"claim_ids":["claim-reservoir-sampling-makes-spatiotemporal-reuse-practical-because-a-pixel-can-comb--9c5dc3907b13","claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb","claim-a-two-pass-accumulation-field-method-fits-directly-into-the-opengl-pipeline-and--bf684a8c9b90","claim-pixel-bin-seed-points-reduce-node-density-rendering-work-without-changing-the-de--a2f787a75006","claim-the-edge-aggregation-approach-operates-in-image-space-and-does-not-require-preco--da4e8cd6122f","claim-straight-line-graph-drawings-can-be-rendered-interactively-with-adjustable-level--d4a598a6ca79","claim-cuda-image-space-distance-transforms-skeletonization-path-computation-and-attrac--46de973cba61"],"source_ids":["source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a","source-05-interactive-level-of-detail-rendering-of-large-graphs--df4eb719b5f7","source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c"]},{"topic_id":"topic-bias-artifacts-and-approximation-boundaries","title":"Bias, Artifacts, and Approximation Boundaries","structure_type":"wiki","sections":["The sources repeatedly show that real-time graphics methods gain speed by accepting controlled approximation, then managing the artifacts that approximation creates.","ReSTIR has biased and unbiased variants, including a candidate-PDF MIS correction for one bias source and visual risks near visibility, geometry, or shading discontinuities. Temporal reuse can accumulate blur or fail around disocclusions, while image-based crowd rendering and graph bundling manage popping, texture storage, overdraw, and direction distortion.","This topic should emphasize evidence-backed trade-offs rather than treating artifacts as implementation details: approximation changes what information is preserved, what must be recomputed, and what users can reliably interpret."],"claim_ids":["claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f","claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e","claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d","claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11","claim-perturbing-an-impostor-plane-toward-a-pca-derived-best-fitting-plane-reduces-vie--e9f84568a82e","claim-skeleton-based-edge-bundling-is-most-appropriate-for-coarse-scale-connectivity-e--14fed4bbcde5","claim-smoothing-relaxation-and-cushion-shading-let-users-adjust-whether-bundles-appear--f208f3204963"],"source_ids":["source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a","source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e","source-02-image-based-crowd-rendering--565ae2b0e3a1","source-03-skeleton-based-edge-bundling-for-graph-visualization--1a3dfa0e6b4c"]}]}

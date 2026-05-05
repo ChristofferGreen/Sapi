@@ -1,0 +1,34 @@
+{
+  "claim_ids": [
+    "claim-real-time-rendering-sequences-exhibit-substantial-spatio-temporal-coherence-and--1377a0a7dbf4",
+    "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+    "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+    "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8",
+    "claim-perceptual-temporal-coherence-can-enrich-rendered-content-by-exploiting-visual-i--b796e0540b6f",
+    "claim-complex-vr-scenes-exceed-the-efficient-real-time-rendering-capacity-of-current-d--4b00d0d7a546",
+    "claim-foveated-rendering-can-accelerate-rendering-by-giving-the-foveal-region-high-qua--d710634b4892",
+    "claim-foveated-rendering-research-is-organized-around-three-recurring-problems-applyin--aba700066fc3",
+    "claim-visual-acuity-models-and-contrast-sensitivity-models-are-the-two-representative--544eac975fd9"
+  ],
+  "sections": [
+    {
+      "body": "Real-time rendering systems can reduce cost by exploiting coherence across adjacent frames or across the human visual field instead of recomputing uniform full-quality results everywhere. Temporal coherence reuses previous-frame information when values remain stable, while foveated rendering allocates higher quality near the fovea and lower quality in the periphery under perceptual constraints.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "The shared concept is conditional reuse: both approaches depend on identifying where lower computation remains visually acceptable. Temporal methods emphasize stability across camera, lighting, time, and interaction changes; foveated methods emphasize human-visual-system models, regional quality differences, and integration into rendering paradigms.",
+      "heading": "Section 2"
+    },
+    {
+      "body": "The evidence is strongest for temporal rendering and foveated rendering. The connection to other rendering systems should be framed as an optimization pattern rather than a single unified algorithm.",
+      "heading": "Section 3"
+    }
+  ],
+  "source_ids": [
+    "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+    "source-04-foveated-rendering-a-state-of-the-art-survey--2a4e30f52f30"
+  ],
+  "structure_type": "wiki",
+  "title": "Temporal and Perceptual Quality Allocation in Real-Time Rendering",
+  "topic_id": "topic-temporal-perceptual-quality-allocation"
+}

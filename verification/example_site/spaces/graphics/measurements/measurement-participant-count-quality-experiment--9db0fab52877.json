@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26",
+  "comparator": "none stated",
+  "evidence_id": "evidence-motion-quality-range--9db0fab52877",
+  "measure_name": "participant count",
+  "measurement_id": "measurement-participant-count-quality-experiment--9db0fab52877",
+  "outcome": "subjective pairwise-comparison dataset size",
+  "population": "motion-quality experiment",
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "uncertainty": "participant count is reported for the central motion-quality experiment",
+  "unit": "participants",
+  "value": 11,
+  "value_max": null
+}

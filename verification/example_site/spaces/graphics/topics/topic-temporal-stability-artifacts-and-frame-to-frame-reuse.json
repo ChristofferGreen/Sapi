@@ -1,0 +1,29 @@
+{
+  "claim_ids": [
+    "claim-subjective-motion-quality-measurements-from-50-hz-to-165-hz-show-that-higher-ref--2bd084948c26",
+    "claim-higher-object-velocities-reduce-perceived-quality-at-a-fixed-refresh-rate-becaus--8ff6f99488fa",
+    "claim-eye-tracking-data-show-that-smooth-pursuit-is-not-affected-by-refresh-rates-abov--744f132d95b1",
+    "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+    "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+    "claim-amortized-sampling-uses-a-reprojected-running-average-to-reduce-sampling-varianc--6fd992e0f8ca",
+    "claim-disoccluded-regions-constrain-temporal-reuse-because-previous-frame-data-may-be--0ee75e5f3c11",
+    "claim-repeated-reprojection-resampling-can-attenuate-and-misplace-high-frequencies-so--230119b28b4d"
+  ],
+  "sections": [
+    {
+      "body": "A concept page could connect perceptual motion artifacts with the technical limits of reusing frame data. The motion-quality evidence identifies refresh-rate thresholds, velocity effects, judder, and predictability; temporal-coherence techniques explain how reprojection, cached values, disocclusion, and repeated resampling can create blur, holes, lag, or stale shading.",
+      "heading": "Section 1"
+    },
+    {
+      "body": "The synthesis is that real-time rendering systems must manage both measured human sensitivity to motion and the numerical artifacts of temporal reuse. Support is cross-source but not identical: the motion-quality paper measures perceived artifacts, while the temporal-coherence survey explains rendering mechanisms that can produce or mitigate temporal artifacts.",
+      "heading": "Section 2"
+    }
+  ],
+  "source_ids": [
+    "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+    "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+  ],
+  "structure_type": "wiki",
+  "title": "Temporal Stability, Artifacts, and Frame-to-Frame Reuse",
+  "topic_id": "topic-temporal-stability-artifacts-and-frame-to-frame-reuse"
+}

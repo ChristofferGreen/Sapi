@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52",
+  "dst_claim_ref": "2",
+  "last_evaluated_run_id": null,
+  "rationale": "Refresh policies mitigate the staleness that can otherwise undermine reverse reprojection caches.",
+  "relation_file_id": "rel-afb97454e353d2e6935e3bc493e8d1b2afd00eb1ed509365478ebf6b0abd9aec",
+  "relation_id": "supports:claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063->claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52",
+  "relation_type": "supports",
+  "src_claim_id": "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063",
+  "src_claim_ref": "5",
+  "status": "open"
+}

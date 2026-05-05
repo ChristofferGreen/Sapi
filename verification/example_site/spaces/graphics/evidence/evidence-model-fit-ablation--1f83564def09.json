@@ -1,0 +1,16 @@
+{
+  "claim_ids": [
+    "claim-the-full-model-fits-measured-motion-quality-curves-better-when-it-includes-paral--03e83c1f07df"
+  ],
+  "evidence_id": "evidence-model-fit-ablation--1f83564def09",
+  "evidence_type": "table_result",
+  "excerpt": "The ablation table reports RMSE values for combinations of model features. The full model with parallel blur, judder, and predictability separation reaches train RMSE 0.31 and test RMSE 0.38, while judder-only variants exceed 0.51 RMSE.",
+  "overview": "The ablation evidence shows that the model's explanatory parts are not interchangeable. Parallel blur captures broad trends, judder explains low-refresh artifacts, and predictability improves fit; the complete combination is needed for the best match to measured quality curves.",
+  "page_refs": [
+    "Table 4",
+    "Section 6.5"
+  ],
+  "schema_version": "evidence_record_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "title": "Ablation RMSE Comparison"
+}

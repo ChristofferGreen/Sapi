@@ -1,0 +1,401 @@
+{
+  "claims": [
+    {
+      "evidence_excerpts": [
+        "Limited GPU performance budgets and transmission bandwidths mean that real-time rendering often has to compromise on the spatial resolution or temporal resolution (refresh rate). A common practice is to keep either the resolution or the refresh rate constant and dynamically control the other variable. But this strategy is non-optimal when the velocity of displayed content varies."
+      ],
+      "short_title": "motion governs rendering tradeoffs",
+      "text": "Rendering under limited GPU or bandwidth budgets requires a content-dependent tradeoff between spatial resolution and refresh rate rather than holding one variable constant."
+    },
+    {
+      "evidence_excerpts": [
+        "Formally, the model defines a content-independent quality difference between two rendering conditions as a function of refresh rate, image resolution, motion velocity, and predictability of motion, then approximates it as the weighted sum of motion-parallel blur, orthogonal blur, and judder."
+      ],
+      "short_title": "quality combines blur and judder",
+      "text": "Perceived motion quality can be modeled as a function of refresh rate, image resolution, object velocity, and motion predictability by combining motion-parallel blur, motion-orthogonal blur, and judder components."
+    },
+    {
+      "evidence_excerpts": [
+        "The model separates the effect of refresh rate and resolution into three blur components: display hold-type blur, eye motion blur, and spatial blur due to finite screen resolution. It gives bD = v/f, bE = pa v + pb, and bR = 1/R as the corresponding blur-width terms."
+      ],
+      "short_title": "blur has three sources",
+      "text": "Motion blur in the model comes from hold-type display blur, imperfect eye tracking, and finite screen resolution, with each blur source mapped into geometric blur widths."
+    },
+    {
+      "evidence_excerpts": [
+        "Figure 7 reports that higher refresh rates imply less-perceivable motion artifacts, but differences above 100 Hz are increasingly more difficult to observe. The same result section states that lower velocities are preferred because higher velocities produce more motion blur at a fixed refresh rate."
+      ],
+      "short_title": "refresh gains diminish above 100",
+      "text": "Higher refresh rates improve perceived motion quality, but the quality gain becomes increasingly difficult to observe above roughly 100 Hz and lower velocities are preferred at a fixed refresh rate."
+    },
+    {
+      "evidence_excerpts": [
+        "The eye-tracking results state that SPEM is not affected by refresh rates above 27.5 Hz, but is affected by motion predictability. Unpredictable motion produced more frequent saccades than predictable motion, 4.89 versus 1.56 saccades per second, and a larger delay, 0.092 seconds versus 0.004 seconds."
+      ],
+      "short_title": "predictability reduces eye blur",
+      "text": "Motion predictability affects smooth-pursuit eye motion, with unpredictable motion producing more correction saccades, larger tracking delay, and more eye-motion blur."
+    },
+    {
+      "evidence_excerpts": [
+        "The judder experiment reports that judder was detectable for both predictable and unpredictable motion at 50 Hz and 60 Hz, while at 72 Hz and 83 Hz observers could not discriminate between animations, indicating negligible judder quality impact at 72 Hz and higher refresh rates."
+      ],
+      "short_title": "judder fades above 72Hz",
+      "text": "Judder is perceptually important at 50 Hz and 60 Hz but becomes negligible at 72 Hz and higher refresh rates in the isolated-judder experiment."
+    },
+    {
+      "evidence_excerpts": [
+        "The ablation table reports the best training fit when parallel quality, judder, and predictability are all enabled, with RMSE = 0.31, while judder alone gives a poor fit with RMSE greater than 0.51."
+      ],
+      "short_title": "full model fits best",
+      "text": "The full visual model using parallel blur, judder, and predictability provides the best fit to measured quality curves among the reported ablations."
+    },
+    {
+      "evidence_excerpts": [
+        "The application section formulates MARRR as an optimization over resolution and refresh rate subject to a rendering-budget constraint and a minimum refresh rate of 50 Hz, with the optimum precomputed as a lookup table over budget and velocity."
+      ],
+      "short_title": "MARRR optimizes rendering parameters",
+      "text": "A motion-adaptive resolution and refresh-rate algorithm can use the model to select refresh rate and rendering resolution in real time under a fixed rendering budget."
+    },
+    {
+      "evidence_excerpts": [
+        "The controlled validation reports that including motion velocity produced an overall preference for MARRR over fixed rates, with a consistently significant difference for predictable motion and MARRR selected with over 70% probability."
+      ],
+      "short_title": "validation favors adaptive rendering",
+      "text": "Controlled validation favored MARRR over constant-resolution and constant-refresh-rate rendering, especially for predictable user-induced motion."
+    },
+    {
+      "evidence_excerpts": [
+        "The video-game validation states that MARRR showed an overall preference over fixed-refresh-rate rendering and consistently performed better across all conditions except FPS-60Hz, where results were not statistically significant."
+      ],
+      "short_title": "game validation mostly favors MARRR",
+      "text": "Video-game validation also favored MARRR over fixed refresh-rate rendering, with the exception of an FPS 60 Hz comparison that was not statistically significant."
+    },
+    {
+      "evidence_excerpts": [
+        "The limitations section states that the model was calibrated and tested only with high-persistence LCD monitors of standard brightness, excludes ghosting and flicker artifacts, and requires more data for HDR displays and VR headsets."
+      ],
+      "short_title": "model scope is limited",
+      "text": "The model is limited to high-persistence LCD conditions and does not model flicker, ghosting, low-persistence display behavior, HDR displays, VR headsets, or content-aware quality variation."
+    }
+  ],
+  "evidence_items": [
+    {
+      "claim_refs": [
+        "0",
+        "3",
+        "7"
+      ],
+      "evidence_id": "evidence-pairwise-refresh-rate-study--a3f91c08d4e2",
+      "evidence_type": "measurement",
+      "excerpt": "Experiment 1 used two G-Sync capable ASUS ROG Swift PG279Q 27-inch WQHD displays, 23 refresh rates from 50 Hz to 165 Hz at 5 Hz granularity, six motion/content conditions, and eleven participants. Each participant performed 600 pairwise comparisons, yielding 6600 comparisons across all participants.",
+      "overview": "This experiment supplies the main psychophysical quality scale used to fit and evaluate the motion-quality model. Its design is important because it samples the refresh-rate range of modern gaming displays, varies object velocity and predictability, and uses pairwise comparisons that can be converted into just-noticeable-difference units rather than relying on coarse opinion scores.",
+      "page_refs": [
+        "Sec. 4.1",
+        "Fig. 5",
+        "Fig. 6"
+      ],
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "title": "Pairwise Refresh-Rate Study"
+    },
+    {
+      "claim_refs": [
+        "0",
+        "3"
+      ],
+      "evidence_id": "evidence-refresh-gains-diminish--b61e4f3a90c7",
+      "evidence_type": "figure_result",
+      "excerpt": "The Experiment 1 results report that higher refresh rates imply less-perceivable motion artifacts, but differences above 100 Hz are increasingly more difficult to observe. They also report a clear preference for lower velocities because higher velocities produce more motion blur at a fixed refresh rate and content is easier to see at lower velocities.",
+      "overview": "This result grounds the core need for an adaptive strategy. It shows that refresh rate is valuable, but its value depends on velocity and is subject to diminishing returns. A fixed high-refresh or fixed-resolution policy therefore cannot capture all perceptual tradeoffs under a constrained rendering budget.",
+      "page_refs": [
+        "Sec. 4.2",
+        "Fig. 7",
+        "Fig. 8"
+      ],
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "title": "Diminishing Refresh-Rate Gains"
+    },
+    {
+      "claim_refs": [
+        "1",
+        "7"
+      ],
+      "evidence_id": "evidence-quality-sum-equation--c9d85a7e4b32",
+      "evidence_type": "equation",
+      "excerpt": "The model defines quality difference as Delta Q(fA, RA, fB, RB, v, tau), where f is refresh rate, R is image resolution in pixels per degree, v is motion velocity, and tau is predictable or unpredictable motion. It then approximates Delta Q as wP Delta QP + wO Delta QO + wJ Delta QJ.",
+      "overview": "This equation is the formal center of the paper. It turns rendering choices and motion conditions into a perceptual quality difference by decomposing artifacts into motion-parallel blur, motion-orthogonal blur, and judder. Because the result is in JND units, it can be used directly by an optimizer that compares alternative refresh-rate and resolution pairs.",
+      "page_refs": [
+        "Eq. 2",
+        "Eq. 3",
+        "Sec. 5"
+      ],
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "title": "Weighted Quality Model"
+    },
+    {
+      "claim_refs": [
+        "1",
+        "2"
+      ],
+      "evidence_id": "evidence-three-blur-equations--f0a4d62e5c19",
+      "evidence_type": "equation",
+      "excerpt": "The blur model separates display hold-type blur, eye-motion blur, and spatial-resolution blur. The source gives bD = v/f for hold-type blur, bE = pa v + pb for eye-motion blur, and bR = 1/R for spatial blur caused by finite resolution and bilinear upsampling.",
+      "overview": "These equations provide concrete mechanics for connecting display hardware and motion to perceived sharpness. They also explain why refresh rate and resolution are coupled: increasing refresh rate reduces hold-type blur, but under a fixed pixel budget it may require reducing resolution, which increases spatial blur.",
+      "page_refs": [
+        "Eq. 4",
+        "Eq. 5",
+        "Eq. 6"
+      ],
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "title": "Three Blur Components"
+    },
+    {
+      "claim_refs": [
+        "4",
+        "1"
+      ],
+      "evidence_id": "evidence-eye-tracking-predictability--8de27c14a6bf",
+      "evidence_type": "measurement",
+      "excerpt": "Experiment 2 reports that smooth-pursuit eye motion was not affected by refresh rates above 27.5 Hz, but was affected by motion predictability. Unpredictable motion produced 4.89 saccades per second compared with 1.56 for predictable motion, and tracking delay was 0.092 seconds compared with 0.004 seconds.",
+      "overview": "This measurement justifies treating predictable and unpredictable motion separately in the model. It shows that the same display refresh rate and object velocity can produce different retinal blur because eye tracking performs worse on unpredictable trajectories. That evidence supports the predictability parameter rather than treating motion speed alone as sufficient.",
+      "page_refs": [
+        "Sec. 6.1.5",
+        "Table 1",
+        "Fig. 13"
+      ],
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "title": "Predictability Changes Eye Tracking"
+    },
+    {
+      "claim_refs": [
+        "5",
+        "1",
+        "6"
+      ],
+      "evidence_id": "evidence-judder-threshold-results--4ac9e735d2b8",
+      "evidence_type": "statistical_result",
+      "excerpt": "Experiment 3 isolated judder from hold-type blur by comparing a low-refresh juddery animation to a double-refresh animation with matched blur. Observers detected judder at 50 Hz and 60 Hz for predictable and unpredictable motion, but could not discriminate between animations at 72 Hz and 83 Hz. The fitted judder model achieved RMSE 0.1074 JND.",
+      "overview": "This evidence isolates a component that would otherwise be confounded with blur. It establishes that judder can dominate low-refresh quality judgments, but that its role falls away by the low-70-Hz range in the tested conditions. The finding explains why the model includes a separate judder term and why refresh-rate allocation need not always prioritize eliminating judder above that region.",
+      "page_refs": [
+        "Sec. 6.2",
+        "Fig. 16",
+        "Table 2"
+      ],
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "title": "Judder Threshold Experiment"
+    },
+    {
+      "claim_refs": [
+        "6",
+        "1"
+      ],
+      "evidence_id": "evidence-ablation-rmse-table--d72b5f1c0e99",
+      "evidence_type": "table_result",
+      "excerpt": "The ablation study reports that the model using parallel blur, judder, and predictability achieves the best training fit, RMSE = 0.31. Judder alone gives a poor fit with RMSE greater than 0.51, while parallel quality alone captures some trends but cannot correctly distinguish varying object velocities.",
+      "overview": "The ablation table is the main evidence that the paper's decomposition is not merely ornamental. It shows that blur and judder explain different parts of the measured curves and that separating predictable from unpredictable motion improves model behavior. The result supports the full model architecture over simpler empirical or single-artifact alternatives.",
+      "page_refs": [
+        "Sec. 6.5",
+        "Table 4"
+      ],
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "title": "Ablation RMSE Comparison"
+    },
+    {
+      "claim_refs": [
+        "7",
+        "0",
+        "1"
+      ],
+      "evidence_id": "evidence-marrr-optimization-formula--e41a9307bd6c",
+      "evidence_type": "formal_argument",
+      "excerpt": "The MARRR application solves argmax over resolution R and refresh rate f of Delta Q(R, f, Rkappa, fkappa, v, tau), subject to R f Phi Theta <= B and f >= 50 Hz. The implementation precomputes the relation between pixel budget, velocity, and optimum refresh-rate/resolution as a lookup table.",
+      "overview": "This formal argument translates the perceptual model into a deployable rendering policy. It makes clear that MARRR is not simply increasing frame rate; it searches for the best perceptual compromise under a pixel budget, allowing resolution to decrease when motion makes refresh rate more valuable and allowing resolution to stay high when motion is slow.",
+      "page_refs": [
+        "Eq. 19",
+        "Sec. 7.1",
+        "Fig. 19"
+      ],
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "title": "MARRR Budget Optimization"
+    },
+    {
+      "claim_refs": [
+        "8",
+        "7"
+      ],
+      "evidence_id": "evidence-controlled-marrr-preference--a69c3e4d8f25",
+      "evidence_type": "statistical_result",
+      "excerpt": "In Experiment 4, nine participants compared MARRR against constant-resolution and constant-refresh-rate rendering at selected rendering budgets. The results indicate an overall preference for MARRR, with predictable user-induced motion showing consistently significant differences and MARRR picked with over 70 percent probability.",
+      "overview": "This validation connects the model's predictions to user preference in a controlled display setup. It supports the practical claim that velocity-aware adaptive rendering can look better than a fixed refresh-rate policy under constrained budgets, particularly when the motion is predictable because users control the camera or pan direction.",
+      "page_refs": [
+        "Sec. 7.4",
+        "Fig. 23"
+      ],
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "title": "Controlled MARRR Preference"
+    },
+    {
+      "claim_refs": [
+        "9",
+        "7"
+      ],
+      "evidence_id": "evidence-game-marrr-preference--f8d7ac31b064",
+      "evidence_type": "statistical_result",
+      "excerpt": "Experiment 5 used a Unity Viking Village sandbox game at a fixed bandwidth of 203 MP/s, comparing MARRR with fixed 30 Hz, 60 Hz, and 120 Hz rendering. The results report an overall preference for MARRR, especially against 30 Hz, and consistent improvement across conditions except FPS-60Hz, where the result was not statistically significant.",
+      "overview": "The game validation tests whether the model remains useful outside simple controlled panning stimuli. Its results suggest that the adaptive policy generalizes to richer real-time scenes, while also showing limits: complex content, eye-tracking noise, aliasing, and habituation to 60 Hz gameplay can reduce or obscure measured preference.",
+      "page_refs": [
+        "Sec. 7.5",
+        "Fig. 24",
+        "Fig. 25"
+      ],
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "title": "Game MARRR Preference"
+    }
+  ],
+  "relations": [
+    {
+      "dst_claim_ref": "1",
+      "rationale": "The three blur-source equations supply the blur side of the combined quality model.",
+      "relation_type": "supports",
+      "src_claim_ref": "2"
+    },
+    {
+      "dst_claim_ref": "1",
+      "rationale": "The isolated-judder results justify a separate judder term in the model.",
+      "relation_type": "supports",
+      "src_claim_ref": "5"
+    },
+    {
+      "dst_claim_ref": "1",
+      "rationale": "The eye-tracking evidence explains why predictability is an explicit model input.",
+      "relation_type": "supports",
+      "src_claim_ref": "4"
+    },
+    {
+      "dst_claim_ref": "1",
+      "rationale": "The ablation results show the full model fits measured quality better than reduced alternatives.",
+      "relation_type": "supports",
+      "src_claim_ref": "6"
+    },
+    {
+      "dst_claim_ref": "1",
+      "rationale": "MARRR derives its optimization objective from the perceptual quality model.",
+      "relation_type": "derived_from",
+      "src_claim_ref": "7"
+    },
+    {
+      "dst_claim_ref": "7",
+      "rationale": "The controlled validation supports using the model to adapt resolution and refresh rate.",
+      "relation_type": "supports",
+      "src_claim_ref": "8"
+    },
+    {
+      "dst_claim_ref": "7",
+      "rationale": "The game validation provides additional support for the adaptive rendering application.",
+      "relation_type": "supports",
+      "src_claim_ref": "9"
+    },
+    {
+      "dst_claim_ref": "1",
+      "rationale": "The limitations constrain how broadly the model claims should be interpreted.",
+      "relation_type": "supports",
+      "src_claim_ref": "10"
+    }
+  ],
+  "source": {
+    "authors": [
+      "Gyorgy Denes",
+      "Akshay Jindal",
+      "Aliaksei Mikhailiuk",
+      "Rafa\u0142 K. Mantiuk"
+    ],
+    "canonical_identifier": "10.1145/3386569.3392411",
+    "display_title": "Motion-Adaptive Rendering Balances Refresh Rate and Resolution",
+    "original_title": "A Perceptual Model of Motion Quality for Rendering with Adaptive Refresh-Rate and Resolution",
+    "publication_venue": "ACM Transactions on Graphics",
+    "publication_year": 2020,
+    "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+    "title": "A Perceptual Model of Motion Quality for Rendering with Adaptive Refresh-Rate and Resolution"
+  },
+  "source_date_inference": {
+    "confidence": "unknown",
+    "date": null,
+    "origin": "task_context",
+    "rationale": "The normalized source record did not resolve a publication date, although the extracted paper text identifies ACM Transactions on Graphics, Article 133, July 2020."
+  },
+  "source_dossier": {
+    "sections": [
+      {
+        "body": "The central argument is that rendering quality under limited resources should be selected perceptually, not mechanically. A fixed-resolution or fixed-refresh-rate strategy ignores the fact that the viewer's sensitivity changes with velocity and predictability. The paper's model turns these perceptual conditions into a quality difference so an adaptive renderer can choose the most valuable resolution and refresh-rate pair for the current motion.",
+        "grounding_claim_ids": [
+          "0",
+          "1",
+          "7"
+        ],
+        "heading": "Core Argument"
+      },
+      {
+        "body": "The empirical foundation begins with a pairwise quality experiment across 23 refresh rates from 50 Hz to 165 Hz, six content and motion conditions, and 6600 total comparisons. Those measurements establish the JND-scaled quality curves that the model is fitted to, showing both diminishing gains above about 100 Hz and a strong role for object velocity.",
+        "grounding_claim_ids": [
+          "3",
+          "0"
+        ],
+        "heading": "Experimental Basis"
+      },
+      {
+        "body": "The model decomposes perceived degradation into blur parallel to motion, blur orthogonal to motion, and judder. Hold-type display blur depends on velocity divided by refresh rate, eye-motion blur depends on fitted pursuit parameters, and resolution blur depends on pixels per degree. This decomposition explains why increasing refresh rate can help motion while reducing resolution can hurt spatial sharpness.",
+        "grounding_claim_ids": [
+          "1",
+          "2",
+          "5"
+        ],
+        "heading": "Model Mechanics"
+      },
+      {
+        "body": "Predictable and unpredictable motion are not treated as interchangeable. Eye-tracking measurements show that unpredictable motion produces more correction saccades and much larger tracking delay, increasing retinal blur. This is why the model separates predictable from unpredictable smooth-pursuit behavior instead of using velocity alone as the motion descriptor.",
+        "grounding_claim_ids": [
+          "4",
+          "1"
+        ],
+        "heading": "Predictability Matters"
+      },
+      {
+        "body": "The ablation study supports the full model structure: parallel blur, judder, and predictability together give the best reported training fit, while single-component alternatives miss important trends. The validation experiments then test whether the model's choices improve perceived quality, with controlled panning and game-like scenes generally favoring MARRR over fixed rendering policies.",
+        "grounding_claim_ids": [
+          "6",
+          "8",
+          "9"
+        ],
+        "heading": "Fit and Validation"
+      },
+      {
+        "body": "For a renderer, the practical lesson is not simply to maximize refresh rate. At low motion or high budgets, preserving resolution can be more valuable; at high motion, lowering resolution to buy refresh rate can improve perceived animation quality. MARRR implements this logic through a precomputed lookup table, making the perceptual model cheap enough for real-time use.",
+        "grounding_claim_ids": [
+          "7",
+          "0",
+          "8"
+        ],
+        "heading": "Practical Interpretation"
+      },
+      {
+        "body": "The source is explicit about limits. The model was calibrated and tested on high-persistence LCD monitors, excludes flicker and ghosting, and lacks validation for HDR, VR headsets, low-persistence displays, and content-aware rendering. Its conclusions are strongest for high-refresh LCD real-time graphics where motion velocity can be estimated reliably.",
+        "grounding_claim_ids": [
+          "10"
+        ],
+        "heading": "Limits and Scope"
+      }
+    ],
+    "summary_long": "The source addresses a concrete rendering problem created by modern high-resolution, high-refresh displays: many systems cannot afford to render every frame at both maximum spatial resolution and maximum refresh rate. The paper argues that the usual strategy of holding either refresh rate or resolution fixed is perceptually suboptimal because the best allocation depends on object motion. Slow or static content benefits from high spatial resolution, while faster motion often benefits from higher refresh rate even if resolution must be reduced. To operationalize that tradeoff, the authors build a content-independent perceptual model whose inputs are refresh rate, resolution, object velocity, and whether motion is predictable enough for smooth-pursuit eye motion. The model decomposes perceived quality loss into motion-parallel blur, motion-orthogonal blur, and judder, then fits these components to measured JND-scaled preference data. The evidence path is layered: an initial pairwise comparison study measures motion quality from 50 Hz to 165 Hz across velocities and content; an eye-tracking study estimates retinal blur for predictable and unpredictable motion; an isolated-judder experiment separates non-smooth motion from blur; and ablation results show that the complete model fits the data better than reduced variants. The practical output is MARRR, a motion-adaptive resolution and refresh-rate renderer that uses a precomputed lookup table to choose rendering parameters under a fixed pixel budget. Controlled and game-like validation experiments show overall preference for MARRR over constant-resolution and constant-refresh-rate rendering, particularly for predictable user-driven motion and against low fixed refresh rates. The work is deliberately scoped: it is calibrated on high-persistence LCD displays, does not model flicker or ghosting, and does not validate HDR, VR, low-persistence, or content-aware extensions. Within that scope, it provides a rigorous bridge between visual perception measurements and real-time graphics control.",
+    "summary_short": "This paper proposes a perceptual model for deciding how to trade rendering resolution against refresh rate when GPU or bandwidth budgets are limited. It argues that motion velocity and predictability determine whether a viewer benefits more from sharper spatial detail or smoother temporal sampling. The authors fit the model with psychophysical and eye-tracking experiments, then validate a real-time adaptive rendering algorithm called MARRR against fixed rendering policies."
+  },
+  "summary": "Denes, Jindal, Mikhailiuk, and Mantiuk model perceived motion quality as a tradeoff among refresh rate, resolution, velocity, and motion predictability. Their experiments measure blur, judder, and preference across high-refresh LCD conditions, then use the model to drive MARRR, an adaptive rendering policy that generally outperforms fixed refresh-rate and resolution choices under constrained rendering budgets.",
+  "warnings": [
+    {
+      "code": "missing_normalized_publication_date",
+      "message": "The source record carried date=null and the task_context source_date_inference was unknown; the extracted paper text identifies ACM Transactions on Graphics, Article 133, July 2020, but no normalized date was supplied by the record."
+    },
+    {
+      "code": "markdown_extraction_artifacts",
+      "message": "The source markdown is marked usable, but it contains PDF extraction artifacts and malformed glyphs in some references and figure text; claims avoid relying on corrupted reference metadata."
+    }
+  ]
+}

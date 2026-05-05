@@ -1,0 +1,16 @@
+{
+  "claim_id": "claim-judder-is-detectable-at-50-hz-and-60-hz-but-becomes-negligible-at-72-hz-and-high--d061571872c7",
+  "comparator": "72 Hz and 83 Hz conditions where observers could not discriminate juddery from non-juddery animations",
+  "evidence_id": "evidence-judder-threshold-result--3835854abc12",
+  "measure_name": "judder detectable refresh-rate range",
+  "measurement_id": "measurement-judder-detectable-refresh-rate-range--3835854abc12",
+  "outcome": "judder detectable in animations",
+  "population": "isolated-judder experiment with predictable and unpredictable motion",
+  "question_id": "question-perceptual-error",
+  "schema_version": "question_measurement_v1",
+  "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+  "uncertainty": "reported for the isolated-judder experiment with blur matched across smooth and juddery conditions",
+  "unit": "Hz",
+  "value": 50,
+  "value_max": 60
+}

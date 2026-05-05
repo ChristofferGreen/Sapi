@@ -1,10 +1,181 @@
 {
-  "claim_ids": [],
+  "claim_ids": [
+    "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+    "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063",
+    "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+    "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8",
+    "claim-many-light-direct-illumination-remains-difficult-in-real-time-because-only-a-sma--12cc4274ee94",
+    "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+    "claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e",
+    "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+    "claim-improving-the-quality-of-direct-light-samples-before-denoising-can-make-existing--0ab0ee7ef42b",
+    "claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb",
+    "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+    "claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120",
+    "claim-higher-object-velocities-reduce-perceived-quality-at-a-fixed-refresh-rate-becaus--8ff6f99488fa",
+    "claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8"
+  ],
   "display_order": 8,
-  "evidence_ids": [],
-  "freshness": {},
-  "linked_source_ids": [],
-  "measurement_ids": [],
+  "evidence_ids": [
+    "evidence-target-selection-models--0c62d7e4ab91",
+    "evidence-temporal-coherence-taxonomy--91e7c4b8fa03",
+    "evidence-application-speedups--c40e1f73b82a",
+    "evidence-dynamic-scene-timings--10f611cada7a",
+    "evidence-equal-error-speedups--338656933924",
+    "evidence-ris-bias-correction--d863b310516c",
+    "evidence-interactive-error-curves--3392481a2020",
+    "evidence-image-space-limits--f03158bd267b",
+    "evidence-quality-component-equation--22767f63d459",
+    "evidence-blur-component-model--4804b47b4a68",
+    "evidence-marr-validation-preference--2a218677cafe"
+  ],
+  "freshness": {
+    "question_measurement_extraction": {
+      "chart_groups": [],
+      "input_signature": "sha256:65c61296b4a302b5637d8c6361e68414d2182eac7e0e506c6b23544a4a0ab169",
+      "measurement_ids": [
+        "measurement-reflection-shader-speedup--2f1a9c8d4e6b",
+        "measurement-static-ao-speedup--8c4d2e7f9a1b",
+        "measurement-broader-ao-cache-speedup--15d0e3a6b8c2",
+        "measurement-restir-unbiased-equal-error-speedup--6a60f338656933924",
+        "measurement-restir-biased-equal-error-speedup--35a65b338656933924",
+        "measurement-zero-day-frame-time--11000d1510f611cada7a",
+        "measurement-amusement-park-frame-time--34f50d10f611cada7a",
+        "measurement-zero-day-dynamic-emissive-triangles--11000f10f611cada7a",
+        "measurement-amusement-park-dynamic-emissive-triangles--34d10f611cada7a",
+        "measurement-marr-validation-selection-probability--2a218677cafe"
+      ],
+      "refreshed_at": "2026-05-05T14:11:28Z",
+      "run_id": "run-20260505T135543Z--bqwyazjijt",
+      "semantic_output_path": "runs/run-20260505T135543Z--bqwyazjijt/semantic/question_measurement_extraction/question-real-time-constraints.json",
+      "status": "refreshed",
+      "warnings": [
+        "No chart groups were created because the extracted rows differ in shader/context, estimator mode, frame-time scenario, scene-size semantics, or validation-preference semantics despite some shared units.",
+        "Model equations, taxonomy entries, RIS proof steps, qualitative limits, and source-dossier narrative values were not converted into measurement rows unless the linked claim or evidence context provided explicit numeric values."
+      ]
+    },
+    "question_measurement_extraction_checks": [
+      {
+        "checked_at": "2026-05-05T12:53:52Z",
+        "input_signature": "sha256:28f95330e01bbe6922973ecf1a343e570bb1f8f6b0f598320d591b70d9f1721c",
+        "measurement_ids": [
+          "measurement-reflection-shader-speedup--2f1a9c8d4e6b",
+          "measurement-static-ao-speedup--8c4d2e7f9a1b",
+          "measurement-broader-ao-cache-speedup--15d0e3a6b8c2"
+        ],
+        "run_id": "run-20260505T123937Z--8pub4fb3rr",
+        "semantic_output_path": "runs/run-20260505T123937Z--8pub4fb3rr/semantic/question_measurement_extraction/question-real-time-constraints.json",
+        "status": "refreshed"
+      },
+      {
+        "checked_at": "2026-05-05T13:44:51Z",
+        "input_signature": "sha256:1b663046d2d4aa420c5b7e20b25897eb4837f88b98f12353afbaeb261486ae6e",
+        "measurement_ids": [
+          "measurement-reflection-shader-speedup--2f1a9c8d4e6b",
+          "measurement-static-ao-speedup--8c4d2e7f9a1b",
+          "measurement-broader-ao-cache-speedup--15d0e3a6b8c2",
+          "measurement-restir-unbiased-equal-error-speedup--6a60f338656933924",
+          "measurement-restir-biased-equal-error-speedup--35a65b338656933924",
+          "measurement-zero-day-frame-time--11000d1510f611cada7a",
+          "measurement-amusement-park-frame-time--34f50d10f611cada7a",
+          "measurement-zero-day-dynamic-emissive-triangles--11000f10f611cada7a",
+          "measurement-amusement-park-dynamic-emissive-triangles--34d10f611cada7a"
+        ],
+        "run_id": "run-20260505T132908Z--eyk7m66iy9",
+        "semantic_output_path": "runs/run-20260505T132908Z--eyk7m66iy9/semantic/question_measurement_extraction/question-real-time-constraints.json",
+        "status": "refreshed"
+      },
+      {
+        "checked_at": "2026-05-05T14:11:28Z",
+        "input_signature": "sha256:65c61296b4a302b5637d8c6361e68414d2182eac7e0e506c6b23544a4a0ab169",
+        "measurement_ids": [
+          "measurement-reflection-shader-speedup--2f1a9c8d4e6b",
+          "measurement-static-ao-speedup--8c4d2e7f9a1b",
+          "measurement-broader-ao-cache-speedup--15d0e3a6b8c2",
+          "measurement-restir-unbiased-equal-error-speedup--6a60f338656933924",
+          "measurement-restir-biased-equal-error-speedup--35a65b338656933924",
+          "measurement-zero-day-frame-time--11000d1510f611cada7a",
+          "measurement-amusement-park-frame-time--34f50d10f611cada7a",
+          "measurement-zero-day-dynamic-emissive-triangles--11000f10f611cada7a",
+          "measurement-amusement-park-dynamic-emissive-triangles--34d10f611cada7a",
+          "measurement-marr-validation-selection-probability--2a218677cafe"
+        ],
+        "run_id": "run-20260505T135543Z--bqwyazjijt",
+        "semantic_output_path": "runs/run-20260505T135543Z--bqwyazjijt/semantic/question_measurement_extraction/question-real-time-constraints.json",
+        "status": "refreshed"
+      }
+    ],
+    "question_relevance_mappings": [
+      {
+        "rationale": "The source directly analyzes real-time rendering tradeoffs: reusing temporally coherent intermediate or final shading results can reduce frame cost, but cache validation, refresh, disocclusion handling, resampling blur, target stability, and observed speedups determine when the optimization is acceptable.",
+        "relevance": "high",
+        "run_id": "run-20260505T123937Z--8pub4fb3rr",
+        "semantic_output_path": "runs/run-20260505T123937Z--8pub4fb3rr/semantic/question_relevance_mapping.json",
+        "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      },
+      {
+        "rationale": "The source directly addresses real-time rendering tradeoffs under tight ray budgets, including biased versus unbiased sampling, equal-error speedups, additional visibility-ray costs, denoising interactions, and failure cases where spatial or temporal reuse is weak.",
+        "relevance": "high",
+        "run_id": "run-20260505T132908Z--eyk7m66iy9",
+        "semantic_output_path": "runs/run-20260505T132908Z--eyk7m66iy9/semantic/question_relevance_mapping.json",
+        "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+      },
+      {
+        "rationale": "The source directly addresses real-time rendering tradeoffs by optimizing refresh rate and resolution under a fixed rendering budget, using lookup tables for real-time operation, and validating the adaptive renderer against constant-rate baselines.",
+        "relevance": "high",
+        "run_id": "run-20260505T135543Z--bqwyazjijt",
+        "semantic_output_path": "runs/run-20260505T135543Z--bqwyazjijt/semantic/question_relevance_mapping.json",
+        "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      }
+    ],
+    "question_synthesis": {
+      "input_signature": "sha256:d3a6a1b8b85967f990114d49624ee22f80b72bae0937f291bd331547e8fc58a9",
+      "refreshed_at": "2026-05-05T14:13:57Z",
+      "run_id": "run-20260505T135543Z--bqwyazjijt",
+      "semantic_output_path": "runs/run-20260505T135543Z--bqwyazjijt/semantic/question_synthesis/question-real-time-constraints.json",
+      "status": "refreshed"
+    },
+    "question_synthesis_checks": [
+      {
+        "checked_at": "2026-05-05T12:56:07Z",
+        "input_signature": "sha256:fe70bb135cf5b9bc17c0be34ddbd74040e5b115b6cbedc55a9dc75180999a63d",
+        "run_id": "run-20260505T123937Z--8pub4fb3rr",
+        "semantic_output_path": "runs/run-20260505T123937Z--8pub4fb3rr/semantic/question_synthesis/question-real-time-constraints.json",
+        "status": "refreshed"
+      },
+      {
+        "checked_at": "2026-05-05T13:47:16Z",
+        "input_signature": "sha256:a9169a7e37d1adc536ce3a2cd425170b9fd875f39848d62967907a4db9432032",
+        "run_id": "run-20260505T132908Z--eyk7m66iy9",
+        "semantic_output_path": "runs/run-20260505T132908Z--eyk7m66iy9/semantic/question_synthesis/question-real-time-constraints.json",
+        "status": "refreshed"
+      },
+      {
+        "checked_at": "2026-05-05T14:13:57Z",
+        "input_signature": "sha256:d3a6a1b8b85967f990114d49624ee22f80b72bae0937f291bd331547e8fc58a9",
+        "run_id": "run-20260505T135543Z--bqwyazjijt",
+        "semantic_output_path": "runs/run-20260505T135543Z--bqwyazjijt/semantic/question_synthesis/question-real-time-constraints.json",
+        "status": "refreshed"
+      }
+    ]
+  },
+  "linked_source_ids": [
+    "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+    "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+    "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+  ],
+  "measurement_ids": [
+    "measurement-reflection-shader-speedup--2f1a9c8d4e6b",
+    "measurement-static-ao-speedup--8c4d2e7f9a1b",
+    "measurement-broader-ao-cache-speedup--15d0e3a6b8c2",
+    "measurement-restir-unbiased-equal-error-speedup--6a60f338656933924",
+    "measurement-restir-biased-equal-error-speedup--35a65b338656933924",
+    "measurement-zero-day-frame-time--11000d1510f611cada7a",
+    "measurement-amusement-park-frame-time--34f50d10f611cada7a",
+    "measurement-zero-day-dynamic-emissive-triangles--11000f10f611cada7a",
+    "measurement-amusement-park-dynamic-emissive-triangles--34d10f611cada7a",
+    "measurement-marr-validation-selection-probability--2a218677cafe"
+  ],
   "question": "What tradeoffs matter most in real-time rendering systems?",
   "question_id": "question-real-time-constraints",
   "schema_version": "prepared_question_v1",
@@ -12,6 +183,247 @@
     "space_name": "graphics"
   },
   "status": "active",
-  "synthesis": {},
+  "synthesis": {
+    "citation_anchors": [
+      {
+        "anchor_id": "anchor-temporal-targets",
+        "claim_ids": [
+          "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+          "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+        ],
+        "evidence_ids": [
+          "evidence-target-selection-models--0c62d7e4ab91",
+          "evidence-application-speedups--c40e1f73b82a"
+        ],
+        "label": "[S1]",
+        "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      },
+      {
+        "anchor_id": "anchor-refresh-staleness",
+        "claim_ids": [
+          "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063",
+          "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+        ],
+        "evidence_ids": [
+          "evidence-target-selection-models--0c62d7e4ab91"
+        ],
+        "label": "[S2]",
+        "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      },
+      {
+        "anchor_id": "anchor-temporal-taxonomy",
+        "claim_ids": [
+          "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8"
+        ],
+        "evidence_ids": [
+          "evidence-temporal-coherence-taxonomy--91e7c4b8fa03"
+        ],
+        "label": "[S3]",
+        "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+      },
+      {
+        "anchor_id": "anchor-restir-performance",
+        "claim_ids": [
+          "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c"
+        ],
+        "evidence_ids": [
+          "evidence-equal-error-speedups--338656933924",
+          "evidence-dynamic-scene-timings--10f611cada7a"
+        ],
+        "label": "[S4]",
+        "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+      },
+      {
+        "anchor_id": "anchor-restir-bias",
+        "claim_ids": [
+          "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+          "claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e"
+        ],
+        "evidence_ids": [
+          "evidence-interactive-error-curves--3392481a2020",
+          "evidence-ris-bias-correction--d863b310516c"
+        ],
+        "label": "[S5]",
+        "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+      },
+      {
+        "anchor_id": "anchor-restir-limits",
+        "claim_ids": [
+          "claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb"
+        ],
+        "evidence_ids": [
+          "evidence-image-space-limits--f03158bd267b"
+        ],
+        "label": "[S6]",
+        "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+      },
+      {
+        "anchor_id": "anchor-motion-quality",
+        "claim_ids": [
+          "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+          "claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120"
+        ],
+        "evidence_ids": [
+          "evidence-quality-component-equation--22767f63d459"
+        ],
+        "label": "[S7]",
+        "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      },
+      {
+        "anchor_id": "anchor-motion-blur",
+        "claim_ids": [
+          "claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120",
+          "claim-higher-object-velocities-reduce-perceived-quality-at-a-fixed-refresh-rate-becaus--8ff6f99488fa"
+        ],
+        "evidence_ids": [
+          "evidence-blur-component-model--4804b47b4a68"
+        ],
+        "label": "[S8]",
+        "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      },
+      {
+        "anchor_id": "anchor-marrr-validation",
+        "claim_ids": [
+          "claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8"
+        ],
+        "evidence_ids": [
+          "evidence-marr-validation-preference--2a218677cafe"
+        ],
+        "label": "[S9]",
+        "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+      }
+    ],
+    "conclusions": [
+      {
+        "claim_ids": [
+          "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+          "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+        ],
+        "evidence_ids": [
+          "evidence-target-selection-models--0c62d7e4ab91",
+          "evidence-application-speedups--c40e1f73b82a"
+        ],
+        "source_ids": [
+          "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+        ],
+        "support": "strong",
+        "text": "Temporal coherence is a strong general optimization lever because adjacent frames often let systems reuse intermediate or final shading work, but the best targets are expensive computations whose values remain stable under expected camera, lighting, time, and interaction changes."
+      },
+      {
+        "claim_ids": [
+          "claim-cached-temporal-data-must-be-refreshed-because-reused-values-become-stale-throug--afd2fe58b063",
+          "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+        ],
+        "evidence_ids": [
+          "evidence-target-selection-models--0c62d7e4ab91"
+        ],
+        "source_ids": [
+          "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+        ],
+        "support": "strong",
+        "text": "Cache refresh and validation are first-order design costs: cached values become stale, and refresh policies trade speed against noise, discontinuities, branch costs, and visible resampling or shading errors."
+      },
+      {
+        "claim_ids": [
+          "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+          "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301"
+        ],
+        "evidence_ids": [
+          "evidence-application-speedups--c40e1f73b82a"
+        ],
+        "source_ids": [
+          "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e"
+        ],
+        "support": "strong",
+        "text": "Measured temporal-coherence examples show that the payoff can be large but content-dependent: reported speedups include 2.1x for reflection-shader caching, 8x for static ambient-occlusion caching, and 15x or larger for broader ambient-occlusion reuse, with the broader reuse case producing visible errors."
+      },
+      {
+        "claim_ids": [
+          "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c"
+        ],
+        "evidence_ids": [
+          "evidence-equal-error-speedups--338656933924",
+          "evidence-dynamic-scene-timings--10f611cada7a"
+        ],
+        "source_ids": [
+          "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+        ],
+        "support": "strong",
+        "text": "For many-light direct illumination, ReSTIR evidence supports spatiotemporal reservoir reuse as a high-impact real-time strategy: the allowed evidence reports 6x-60x equal-error speedups for the unbiased estimator, 35x-65x for the biased estimator, and 1920 x 1080 scene timings of 15 ms with 11,000 dynamic emissive triangles and 50 ms with 3.4 million dynamic emissive triangles."
+      },
+      {
+        "claim_ids": [
+          "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+          "claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e"
+        ],
+        "evidence_ids": [
+          "evidence-interactive-error-curves--3392481a2020",
+          "evidence-ris-bias-correction--d863b310516c"
+        ],
+        "source_ids": [
+          "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+        ],
+        "support": "moderate",
+        "text": "The ReSTIR evidence also shows the central bias-cost tradeoff: biased spatiotemporal reuse can lower error at interactive budgets, while unbiased reuse requires corrected candidate-PDF weighting and can impose extra visibility-aware sampling cost."
+      },
+      {
+        "claim_ids": [
+          "claim-temporal-coherence-is-useful-across-many-real-time-rendering-tasks-including-pix--313b6d6eefa8",
+          "claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb"
+        ],
+        "evidence_ids": [
+          "evidence-temporal-coherence-taxonomy--91e7c4b8fa03",
+          "evidence-image-space-limits--f03158bd267b"
+        ],
+        "source_ids": [
+          "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+          "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a"
+        ],
+        "support": "moderate",
+        "text": "Reuse methods are broad but not universal: temporal coherence spans many real-time rendering tasks, while image-space reservoir reuse is limited by spatial and temporal correlation, disocclusions, fast lighting changes, high geometric complexity, and the demonstrated first-hit direct-lighting scope."
+      },
+      {
+        "claim_ids": [
+          "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92",
+          "claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120",
+          "claim-higher-object-velocities-reduce-perceived-quality-at-a-fixed-refresh-rate-becaus--8ff6f99488fa"
+        ],
+        "evidence_ids": [
+          "evidence-quality-component-equation--22767f63d459",
+          "evidence-blur-component-model--4804b47b4a68"
+        ],
+        "source_ids": [
+          "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+        ],
+        "support": "strong",
+        "text": "Perceptual constraints add another tradeoff layer: adaptive rendering quality depends jointly on spatial resolution, refresh rate, object velocity, and motion predictability, with blur and judder components explaining why the preferred allocation changes with motion."
+      },
+      {
+        "claim_ids": [
+          "claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8",
+          "claim-perceived-motion-quality-in-adaptive-rendering-depends-jointly-on-spatial-resolu--c69eea85bd92"
+        ],
+        "evidence_ids": [
+          "evidence-marr-validation-preference--2a218677cafe",
+          "evidence-quality-component-equation--22767f63d459"
+        ],
+        "source_ids": [
+          "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68"
+        ],
+        "support": "strong",
+        "text": "Model-driven adaptive control can improve perceived quality under a fixed budget: MARRR uses the perceptual model to choose refresh rate and resolution in real time, and validation evidence reports overall preference for MARRR over fixed-rate baselines, with stronger results for predictable user-induced motion."
+      }
+    ],
+    "disagreements": [],
+    "question_id": "question-real-time-constraints",
+    "schema_version": "question_synthesis_v1",
+    "short_answer": "Current evidence supports a performance-quality-validity framing: real-time rendering systems gain budget by reusing, resampling, or adaptively allocating work, but the important tradeoffs are whether reused data remains valid, whether bias or staleness is visually acceptable, whether validation and refresh costs erase the savings, and whether perceptual quality is better served by resolution, refresh rate, or sampling quality under the current motion and scene conditions.",
+    "uncertainty": "The evidence gives strong qualitative guidance and several source-specific measurements, but it does not produce a universal frame-time or quality rule. Applicability depends on hardware, scene dynamics, display behavior, target error metric, denoising pipeline, refresh and validation policy, disocclusion behavior, lighting changes, motion predictability, and whether the task fits image-space or temporal-reuse assumptions.",
+    "warnings": [
+      "Some linked claims, including the denoising and many-light problem-setting claims, lack separate allowed evidence records, so they are not used as primary conclusion support.",
+      "The reported ReSTIR speedups, timings, and MARRR preference results are specific to the tested scenes, displays, hardware, implementations, and metrics; they should not be treated as universal guarantees.",
+      "One source record has unresolved publication date metadata, and the source records rely on usable markdown extraction rather than direct PDF inspection in this context."
+    ]
+  },
   "warnings": []
 }

@@ -1,0 +1,14 @@
+{
+  "below_040_streak": 0,
+  "contradiction_confidence_band": "unknown",
+  "dst_claim_id": "claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8",
+  "dst_claim_ref": "7",
+  "last_evaluated_run_id": null,
+  "rationale": "The decomposition into blur and judder provides the perceptual objective that MARRR optimizes under a rendering budget.",
+  "relation_file_id": "rel-8c9924fcbeb2323400d4164cdfcd8e6136db5ac78ef8dc0263c82860d152892a",
+  "relation_id": "supports:claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120->claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8",
+  "relation_type": "supports",
+  "src_claim_id": "claim-a-motion-quality-model-can-explain-refresh-rate-and-resolution-trade-offs-by-com--5c024cc97120",
+  "src_claim_ref": "1",
+  "status": "open"
+}

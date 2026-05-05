@@ -1,0 +1,27 @@
+{
+  "question_matches": [
+    {
+      "claim_ids": [
+        "claim-many-light-direct-illumination-remains-difficult-in-real-time-because-only-a-sma--12cc4274ee94",
+        "claim-the-biased-restir-estimator-lowers-variance-and-improves-visual-quality-at-inter--432e47afd83f",
+        "claim-a-modified-ris-weight-using-candidate-pdf-multiple-importance-weights-can-remove--907bd996132e",
+        "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+        "claim-improving-the-quality-of-direct-light-samples-before-denoising-can-make-existing--0ab0ee7ef42b",
+        "claim-the-method-depends-on-useful-spatial-or-temporal-correlation-and-on-image-space--6c16aa9149eb"
+      ],
+      "evidence_ids": [
+        "evidence-dynamic-scene-timings--10f611cada7a",
+        "evidence-equal-error-speedups--338656933924",
+        "evidence-ris-bias-correction--d863b310516c",
+        "evidence-interactive-error-curves--3392481a2020",
+        "evidence-image-space-limits--f03158bd267b"
+      ],
+      "question_id": "question-real-time-constraints",
+      "rationale": "The source directly addresses real-time rendering tradeoffs under tight ray budgets, including biased versus unbiased sampling, equal-error speedups, additional visibility-ray costs, denoising interactions, and failure cases where spatial or temporal reuse is weak.",
+      "relevance": "high"
+    }
+  ],
+  "schema_version": "question_relevance_mapping_v1",
+  "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+  "warnings": []
+}

@@ -1,0 +1,11 @@
+{
+  "added_at": "2026-05-05T12:49:32Z",
+  "claim_id": "claim-reverse-reprojection-caching-validates-reuse-by-mapping-a-current-pixel-to-its-p--c2a16d9b6f52",
+  "evidence_excerpts": [
+    "The reverse reprojection formulation stores frame-buffer data and depth, computes pi_t-1(p), and treats matching reprojected and stored depths as a cache hit; inconsistent depths are a cache miss."
+  ],
+  "schema_version": "claim_record_v1",
+  "short_title": "Reverse reprojection validates reuse",
+  "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+  "text": "Reverse reprojection caching validates reuse by mapping a current pixel to its previous-frame position and accepting the cached value only when depth or identity tests indicate the same surface point."
+}

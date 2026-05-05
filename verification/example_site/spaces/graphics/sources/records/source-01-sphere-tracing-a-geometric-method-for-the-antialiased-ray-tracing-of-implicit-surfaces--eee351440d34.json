@@ -154,21 +154,7 @@
   },
   "date": null,
   "display_title": "Shadercoding Turns Mathematics Into Live Digital Art",
-  "external_related_links": [
-    {
-      "confidence": "medium",
-      "domain": "doi.org",
-      "link_type": "canonical_paper",
-      "provenance": {
-        "origin": "reference_doi",
-        "source_field": "references[1].doi"
-      },
-      "quality_status": "trusted",
-      "rationale": "Derived from a DOI found in the source references.",
-      "title": "Virtuelle 12 6 pp.527-545. \u27e8 \u27e9. \u27e8hal-04421881\u27e9",
-      "url": "https://doi.org/10.1007/s003710050084"
-    }
-  ],
+  "external_related_links": [],
   "ingested_at": "2026-04-26T16:31:44Z",
   "linked_source_ids": [],
   "references": [
@@ -192,11 +178,11 @@
     }
   ],
   "related_link_enrichment": {
-    "skip_reason": null,
+    "skip_reason": "no_curated_links_found",
     "sources": [
       "references"
     ],
-    "status": "enriched",
+    "status": "skipped",
     "warnings": [
       "Skipped 1 unsupported external-link candidate(s)."
     ]

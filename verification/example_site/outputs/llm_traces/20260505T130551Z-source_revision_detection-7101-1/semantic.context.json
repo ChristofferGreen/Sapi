@@ -1,0 +1,15 @@
+{
+  "context_by_path": {
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records": "dir:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records"
+  },
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/records",
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/sources/artifacts"
+  ],
+  "flow_key": "source_revision_detection",
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/runs/run-20260505T130527Z--lhhnzw5dhw/semantic/source_revision_detection.json",
+  "repair_context": null,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/source_revision_detection.v1.schema.json",
+  "version": "v1"
+}
