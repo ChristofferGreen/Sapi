@@ -215,7 +215,7 @@
         "assets/persona_profiles/persona-yara-serrin.jpg": "ff2bdec2a89245aafbc214ae4ba2704d70b227497f78e5da854446fa1874bbdf",
         "assets/persona_profiles/persona-zane-delmar.jpg": "4b67d4b25ab2a87712a5c5760ac745367cced176c21702c890f3c87e5ed9e23d",
         "assets/persona_profiles/persona-zane-mansouri.jpg": "6460a31a547c90c2b23b03ace8af6fe6c82082dbf79213fd17d282207608e573",
-        "assets/site.css": "0ea6f98d7ee9edc4e9a08ef1e74e48ac7315f022ef1782b2b3429f0c32895d6f",
+        "assets/site.css": "372277a4ccbaf9958caf23677d452ceb3c422ae6ff658f82a76ad97dd1e5effb",
         "authors/author-aaron-lefohn.html": "3ea05ddde98c29eb47680ffd0c3897178c995268db7210dcd77e78b584d48e34",
         "authors/author-akshay-jindal.html": "443b0485a16a272b5baee61d462dc449936565c2b666e8ba83cae59297edbd6c",
         "authors/author-alexandru-c-telea.html": "4164a9bd11ba20f86249936236cd49c5d7af35781f7da50cfcacd9936e5cbaaf",
@@ -397,7 +397,7 @@
         "evidence/evidence-visible-surface-coherence--a13f5c09d271.html": "0bd6013f8f315a506b87c1bc6036b9fbb4fe33bb3c6dac40c7f9da20011080c7",
         "evidence/evidence-vr-latency-threshold--a13f0c2d9b4e.html": "b6a5ce11bf339316a332470c3378cebb22699071f670d68844773904abe4a372",
         "evidence/index.html": "bec4e842634748ebb7fda804e6fcb8fe9afe955c24b5b2c72f0afc4e2441fd30",
-        "index.html": "24bf30780ecba5a1bda0bd3118adb8d1946ddec15219ad7d67e3efea12f4a85f",
+        "index.html": "fa1bde3b43932272b44ab84d5a75a77c3f9b05c9ab48adbca7d7dd20596f5e8c",
         "new/by-date-asc/index.html": "df195576275e75e0da1ed7931bf0800be588beb3f63874fb2382abb6c577689f",
         "new/by-title-desc/index.html": "187292b14f319aab08056d6592a3f2e1aacfb79ae13f190342eb342dc77c4cde",
         "new/by-title/index.html": "2bb1511e132330715bca254559fb14c6991e79fbff90a8d975762c3ec696a7a7",
@@ -405,7 +405,7 @@
         "new/by-type/index.html": "92856d182bd06fd806911cd2d43cf37a65a9c8665b109d36bb56722f601bb914",
         "new/index.html": "097b8403e15158e907c128d7705ac91ad88d8c2c7a51e90535f4661f530c709b",
         "overview/index.html": "1b86854f44d7bea7303342a7b6d89ea692ae097707810883aa2acc8d6568954c",
-        "questions/index.html": "35ff22dbeccb9b4e6ccfc7366e7ea83fed3c51a736669f2f9e8302b20b9c857e",
+        "questions/index.html": "530d86d375c00ce9b42e0214c2ce836059569e210e72b239c7c9af30c3fc73fe",
         "questions/question-antialiasing-implicit-surfaces.html": "85007440b7550854ddb64c60047390d081cf14548c691e8bda6e1bdc9a4ce52d",
         "questions/question-crowd-rendering.html": "0915ce9950475fec43827bc98c03ba2130332bf6ab28c3fecaf589dd2096a29c",
         "questions/question-edge-bundling.html": "dd704a0ed329a6160f4b1df27c45b1ff8243a3a5431d8cc068d6f135f42e62ec",
@@ -1139,14 +1139,14 @@
   ],
   "stylesheet_assets": [
     {
-      "bytes": 33262,
+      "bytes": 34456,
       "path": "/Users/chrgre01/src/Sapi/verification/example_site/site/assets/site.css",
-      "sha256": "0ea6f98d7ee9edc4e9a08ef1e74e48ac7315f022ef1782b2b3429f0c32895d6f"
+      "sha256": "372277a4ccbaf9958caf23677d452ceb3c422ae6ff658f82a76ad97dd1e5effb"
     },
     {
-      "bytes": 33262,
+      "bytes": 34456,
       "path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/site/assets/site.css",
-      "sha256": "0ea6f98d7ee9edc4e9a08ef1e74e48ac7315f022ef1782b2b3429f0c32895d6f"
+      "sha256": "372277a4ccbaf9958caf23677d452ceb3c422ae6ff658f82a76ad97dd1e5effb"
     }
   ],
   "toolchain_versions": {

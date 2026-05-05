@@ -1643,7 +1643,10 @@ def _render_space_index(
             )
             for subspace_name, title in context.subspaces
         )
-        sections.append("<h2>Subspaces</h2>\n<ul class=\"feed-list\">\n" + subspace_rows + "\n</ul>\n")
+        sections.append(
+            "<h2 class=\"space-home-section-heading\">Subspaces</h2>\n"
+            "<ul class=\"feed-list\">\n" + subspace_rows + "\n</ul>\n"
+        )
     feed_entries = _space_feed_entries(
         space_name=space_name,
         projection=projection,
@@ -1658,7 +1661,10 @@ def _render_space_index(
         )
     )
     if source_rows:
-        sections.append("<h2>Sources</h2>\n<ul class=\"feed-list\">\n" + source_rows + "\n</ul>\n")
+        sections.append(
+            "<h2 class=\"space-home-section-heading\">Sources</h2>\n"
+            "<ul class=\"feed-list\">\n" + source_rows + "\n</ul>\n"
+        )
     topic_rows = "\n".join(
         _render_feed_row(entry)
         for entry in sorted(
@@ -1667,19 +1673,10 @@ def _render_space_index(
         )
     )
     if topic_rows:
-        sections.append("<h2>Topics</h2>\n<ul class=\"feed-list\">\n" + topic_rows + "\n</ul>\n")
-    evidence_rows = "\n".join(
-        (
-            "<li><a href=\"./evidence/"
-            + escape(record.evidence_id)
-            + ".html\">"
-            + escape(record.title)
-            + "</a></li>"
+        sections.append(
+            "<h2 class=\"space-home-section-heading\">Topics</h2>\n"
+            "<ul class=\"feed-list\">\n" + topic_rows + "\n</ul>\n"
         )
-        for record in evidence_records
-    )
-    if evidence_rows:
-        sections.append("<h2>Evidence</h2>\n<ul class=\"feed-list\">\n" + evidence_rows + "\n</ul>\n")
     if len(sections) == 2 and not active_questions:
         sections.append("<p>No sources, topics, evidence, or subspaces yet.</p>\n")
     body = "".join(sections)
@@ -1718,7 +1715,7 @@ def _render_space_home_overview_section(
     if overview.warnings:
         stats.append(f"{len(overview.warnings)} warning{'s' if len(overview.warnings) != 1 else ''}")
     return (
-        "<section class=\"source-related-card space-overview-card\">"
+        "<section class=\"space-overview-card\">"
         "<h2>Overview</h2>\n"
         + "<p class=\"space-overview-title\">"
         + escape(overview.title)
@@ -1750,18 +1747,62 @@ def _render_question_index_list(
     href_prefix: str,
 ) -> str:
     rows = "\n".join(
-        (
-            "<li><a href=\""
-            + escape(href_prefix + question.question_id + ".html")
-            + "\">"
-            + escape(question.question)
-            + "</a></li>"
-        )
+        _render_question_summary_row(question=question, href_prefix=href_prefix)
         for question in sorted(questions, key=lambda item: (item.display_order, item.question_id))
     )
     if not rows:
-        rows = "<li>No active prepared questions yet.</li>"
-    return "<ul class=\"feed-list question-list\">\n" + rows + "\n</ul>\n"
+        rows = "<li class=\"question-summary-empty\">No active prepared questions yet.</li>"
+    return "<ul class=\"question-summary-list question-list\">\n" + rows + "\n</ul>\n"
+
+
+def _render_question_summary_row(*, question: PreparedQuestion, href_prefix: str) -> str:
+    short_answer = _question_front_page_short_answer(question)
+    answer_html = (
+        "<p class=\"question-summary-answer\">"
+        + escape(short_answer)
+        + "</p>"
+        if short_answer
+        else ""
+    )
+    return (
+        "<li class=\"question-summary-row\">"
+        + "<a class=\"question-summary-title\" href=\""
+        + escape(href_prefix + question.question_id + ".html")
+        + "\">"
+        + escape(question.question)
+        + "</a>"
+        + "<p class=\"question-summary-meta\">"
+        + escape(_question_front_page_stats(question))
+        + "</p>"
+        + answer_html
+        + "</li>"
+    )
+
+
+def _question_front_page_stats(question: PreparedQuestion) -> str:
+    stats = [
+        _format_count(len(question.linked_source_ids), "source"),
+        _format_count(len(question.claim_ids), "claim"),
+        _format_count(len(question.evidence_ids), "evidence item"),
+    ]
+    if question.measurement_ids:
+        stats.append(_format_count(len(question.measurement_ids), "measurement"))
+    return " | ".join(stats)
+
+
+def _question_front_page_short_answer(question: PreparedQuestion) -> str:
+    value = question.synthesis.get("short_answer")
+    if not isinstance(value, str):
+        return ""
+    return truncate_text_for_ui(value, max_length=260)
+
+
+def _format_count(count: int, singular: str) -> str:
+    if singular.endswith("y"):
+        plural = singular[:-1] + "ies"
+    else:
+        plural = singular + "s"
+    return f"{count} {singular if count == 1 else plural}"
 
 
 def _write_question_pages(
