@@ -1,0 +1,17 @@
+{
+  "claim_ids": [],
+  "display_order": 6,
+  "evidence_ids": [],
+  "freshness": {},
+  "linked_source_ids": [],
+  "measurement_ids": [],
+  "question": "Which level-of-detail strategies work best for large graph visualization?",
+  "question_id": "question-level-of-detail",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "graphics"
+  },
+  "status": "active",
+  "synthesis": {},
+  "warnings": []
+}

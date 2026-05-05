@@ -1,0 +1,17 @@
+{
+  "claim_ids": [],
+  "display_order": 9,
+  "evidence_ids": [],
+  "freshness": {},
+  "linked_source_ids": [],
+  "measurement_ids": [],
+  "question": "How can rendering systems reduce visual clutter without hiding structure?",
+  "question_id": "question-visual-clutter",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "graphics"
+  },
+  "status": "active",
+  "synthesis": {},
+  "warnings": []
+}

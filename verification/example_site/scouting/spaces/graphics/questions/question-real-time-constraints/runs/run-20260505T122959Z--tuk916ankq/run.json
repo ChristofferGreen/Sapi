@@ -1,0 +1,38 @@
+{
+  "candidate_count": 3,
+  "candidate_ids": [
+    "candidate-temporal-coherence-methods-real-time-rendering--4f9a6c2d8b31",
+    "candidate-motion-quality-adaptive-refresh-resolution--a83c91f2e6d4",
+    "candidate-spatiotemporal-reservoir-resampling--0b7e5c4a9d12"
+  ],
+  "completed_at": "2026-05-05T12:33:52Z",
+  "execution_mode": "live_llm",
+  "flow_key": "source_scouting_pipeline",
+  "lint_error_count": 0,
+  "lint_info_count": 0,
+  "lint_warning_count": 0,
+  "llm_attempt_count": 1,
+  "model_fingerprint": "gpt-5.5",
+  "provider_fingerprint": "codex",
+  "question_id": "question-real-time-constraints",
+  "question_text": "What tradeoffs matter most in real-time rendering systems?",
+  "reasoning_effort": "high",
+  "requested_count": 3,
+  "run_id": "run-20260505T122959Z--tuk916ankq",
+  "semantic_flow_invocation_counts": {
+    "source_scouting": 1
+  },
+  "semantic_flows": [
+    "source_scouting"
+  ],
+  "semantic_output_path": "/Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/graphics/questions/question-real-time-constraints/runs/run-20260505T122959Z--tuk916ankq/source_scouting.json",
+  "space_name": "graphics",
+  "started_at": "2026-05-05T12:29:59Z",
+  "status": "success",
+  "toolchain_versions": {
+    "python": "3.12.12"
+  },
+  "warnings": [
+    "Citation counts are scouting signals from public index pages rather than canonical live citation-provider API responses."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "attempt": 1,
+  "completed_at": "2026-05-05T12:33:52Z",
+  "context_paths": [
+    "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json"
+  ],
+  "flow_key": "source_scouting",
+  "max_attempts": 4,
+  "output_json_path": "/Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/graphics/questions/question-real-time-constraints/runs/run-20260505T122959Z--tuk916ankq/source_scouting.json",
+  "repair_context_present": false,
+  "schema_path": "/Users/chrgre01/src/Sapi/schemas/source_scouting.v1.schema.json",
+  "started_at": "2026-05-05T12:29:59Z",
+  "trace_dir": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces/20260505T122959Z-source_scouting-71690-1",
+  "trace_root": "/Users/chrgre01/src/Sapi/verification/example_site/outputs/llm_traces",
+  "valid": true,
+  "validation_errors": []
+}

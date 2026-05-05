@@ -1,0 +1,59 @@
+{
+  "authors": [
+    "Daniel Scherzer",
+    "Lei Yang",
+    "Oliver Mattausch",
+    "Diego Nehab",
+    "Pedro V. Sander",
+    "Michael Wimmer",
+    "Elmar Eisemann"
+  ],
+  "candidate_id": "candidate-temporal-coherence-methods-real-time-rendering--4f9a6c2d8b31",
+  "citation_signal": {
+    "as_of": "2026-05-05",
+    "confidence": "medium",
+    "count": 47,
+    "provider": "Scopus via HKUST Research Portal"
+  },
+  "doi": "10.1111/j.1467-8659.2012.03075.x",
+  "failure_reason": null,
+  "import_link": null,
+  "import_status": "not_imported",
+  "landing_url": "https://www.cg.tuwien.ac.at/research/publications/2012/SCHERZER-2012-TCM/",
+  "operator_status": "candidate",
+  "pdf_url": "https://cse.hkust.edu.hk/~psander/docs/tempcoj.pdf",
+  "provenance": {
+    "scouted_at": "2026-05-05T12:29:59Z",
+    "scouting_run_id": "run-20260505T122959Z--tuk916ankq",
+    "semantic_output_path": "/Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/graphics/questions/question-real-time-constraints/runs/run-20260505T122959Z--tuk916ankq/source_scouting.json"
+  },
+  "public_access": {
+    "access_status": "public_pdf",
+    "evidence": "The TU Wien publication page records the Computer Graphics Forum article, and the HKUST-hosted PDF opens as the full paper with the same DOI and title.",
+    "has_public_pdf": true
+  },
+  "publication_year": 2012,
+  "question_id": "question-real-time-constraints",
+  "question_text": "What tradeoffs matter most in real-time rendering systems?",
+  "ranking": {
+    "answer_fit_rationale": "This is the strongest broad fit because it directly frames real-time rendering as balancing resolution, frame rate, shading complexity, reuse, artifacts, and hardware budget.",
+    "answer_fit_score": 5,
+    "citation_score": 3,
+    "interestingness_rationale": "It would improve the space by giving a cross-cutting vocabulary for temporal reuse, reprojection, amortization, and quality loss across many rendering subsystems.",
+    "interestingness_score": 5,
+    "overall_rationale": "Best starting scout source for answering the prepared question at a systems level, despite a moderate citation signal compared with newer SIGGRAPH papers.",
+    "overall_score": 17,
+    "rank": 1,
+    "venue_reputation_score": 4
+  },
+  "schema_version": "source_scouting_candidate_v1",
+  "skip_reason": null,
+  "space_name": "graphics",
+  "title": "Temporal Coherence Methods in Real-Time Rendering",
+  "venue": {
+    "name": "Computer Graphics Forum",
+    "publisher": "Wiley-Blackwell / Eurographics Association",
+    "reputation_rationale": "Computer Graphics Forum is a long-running peer-reviewed graphics journal associated with Eurographics, and this article is a broad survey rather than a narrow demo paper.",
+    "type": "journal"
+  }
+}

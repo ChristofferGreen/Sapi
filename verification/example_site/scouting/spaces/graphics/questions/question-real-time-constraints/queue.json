@@ -1,0 +1,12 @@
+{
+  "candidate_count": 3,
+  "candidate_ids": [
+    "candidate-temporal-coherence-methods-real-time-rendering--4f9a6c2d8b31",
+    "candidate-motion-quality-adaptive-refresh-resolution--a83c91f2e6d4",
+    "candidate-spatiotemporal-reservoir-resampling--0b7e5c4a9d12"
+  ],
+  "question_id": "question-real-time-constraints",
+  "schema_version": "source_scouting_queue_v1",
+  "space_name": "graphics",
+  "updated_at": "2026-05-05T12:33:52Z"
+}

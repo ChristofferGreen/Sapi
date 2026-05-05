@@ -1,0 +1,142 @@
+{
+  "candidates": [
+    {
+      "authors": [
+        "Daniel Scherzer",
+        "Lei Yang",
+        "Oliver Mattausch",
+        "Diego Nehab",
+        "Pedro V. Sander",
+        "Michael Wimmer",
+        "Elmar Eisemann"
+      ],
+      "candidate_id": "candidate-temporal-coherence-methods-real-time-rendering--4f9a6c2d8b31",
+      "citation_signal": {
+        "as_of": "2026-05-05",
+        "confidence": "medium",
+        "count": 47,
+        "provider": "Scopus via HKUST Research Portal"
+      },
+      "doi": "10.1111/j.1467-8659.2012.03075.x",
+      "landing_url": "https://www.cg.tuwien.ac.at/research/publications/2012/SCHERZER-2012-TCM/",
+      "pdf_url": "https://cse.hkust.edu.hk/~psander/docs/tempcoj.pdf",
+      "public_access": {
+        "access_status": "public_pdf",
+        "evidence": "The TU Wien publication page records the Computer Graphics Forum article, and the HKUST-hosted PDF opens as the full paper with the same DOI and title.",
+        "has_public_pdf": true
+      },
+      "publication_year": 2012,
+      "ranking": {
+        "answer_fit_rationale": "This is the strongest broad fit because it directly frames real-time rendering as balancing resolution, frame rate, shading complexity, reuse, artifacts, and hardware budget.",
+        "answer_fit_score": 5,
+        "citation_score": 3,
+        "interestingness_rationale": "It would improve the space by giving a cross-cutting vocabulary for temporal reuse, reprojection, amortization, and quality loss across many rendering subsystems.",
+        "interestingness_score": 5,
+        "overall_rationale": "Best starting scout source for answering the prepared question at a systems level, despite a moderate citation signal compared with newer SIGGRAPH papers.",
+        "overall_score": 17,
+        "rank": 1,
+        "venue_reputation_score": 4
+      },
+      "title": "Temporal Coherence Methods in Real-Time Rendering",
+      "venue": {
+        "name": "Computer Graphics Forum",
+        "publisher": "Wiley-Blackwell / Eurographics Association",
+        "reputation_rationale": "Computer Graphics Forum is a long-running peer-reviewed graphics journal associated with Eurographics, and this article is a broad survey rather than a narrow demo paper.",
+        "type": "journal"
+      }
+    },
+    {
+      "authors": [
+        "Gyorgy Denes",
+        "Akshay Jindal",
+        "Aliaksei Mikhailiuk",
+        "Rafal K. Mantiuk"
+      ],
+      "candidate_id": "candidate-motion-quality-adaptive-refresh-resolution--a83c91f2e6d4",
+      "citation_signal": {
+        "as_of": "2026-05-05",
+        "confidence": "medium",
+        "count": 32,
+        "provider": "Mendeley catalog"
+      },
+      "doi": "10.1145/3386569.3392411",
+      "landing_url": "https://www.cl.cam.ac.uk/research/rainbow/projects/motion_quality_model/",
+      "pdf_url": "https://www.cl.cam.ac.uk/research/rainbow/projects/motion_quality_model/denes20_comp.pdf",
+      "public_access": {
+        "access_status": "public_pdf",
+        "evidence": "The Cambridge project page provides public paper links, and the compressed PDF opens as the full ACM paper with DOI 10.1145/3386569.3392411.",
+        "has_public_pdf": true
+      },
+      "publication_year": 2020,
+      "ranking": {
+        "answer_fit_rationale": "The paper explicitly studies the tradeoff between spatial resolution and temporal resolution under GPU and bandwidth budgets, which is one of the clearest real-time rendering constraints.",
+        "answer_fit_score": 5,
+        "citation_score": 3,
+        "interestingness_rationale": "It adds a perceptual dimension: the best tradeoff depends on motion, predictability, blur, and judder rather than raw frame time alone.",
+        "interestingness_score": 4,
+        "overall_rationale": "A precise, high-quality source for the perceptual side of real-time rendering tradeoffs, with a smaller but credible citation signal.",
+        "overall_score": 17,
+        "rank": 2,
+        "venue_reputation_score": 5
+      },
+      "title": "A Perceptual Model of Motion Quality for Rendering with Adaptive Refresh-Rate and Resolution",
+      "venue": {
+        "name": "ACM Transactions on Graphics (SIGGRAPH 2020)",
+        "publisher": "Association for Computing Machinery",
+        "reputation_rationale": "ACM Transactions on Graphics, especially SIGGRAPH technical papers, is a flagship peer-reviewed venue for computer graphics research.",
+        "type": "journal"
+      }
+    },
+    {
+      "authors": [
+        "Benedikt Bitterli",
+        "Chris Wyman",
+        "Matt Pharr",
+        "Peter Shirley",
+        "Aaron Lefohn",
+        "Wojciech Jarosz"
+      ],
+      "candidate_id": "candidate-spatiotemporal-reservoir-resampling--0b7e5c4a9d12",
+      "citation_signal": {
+        "as_of": "2026-05-05",
+        "confidence": "medium",
+        "count": 108,
+        "provider": "OUCI"
+      },
+      "doi": "10.1145/3386569.3392481",
+      "landing_url": "https://research.nvidia.com/labs/rtr/publication/bitterli2020spatiotemporal/",
+      "pdf_url": "https://research.nvidia.com/sites/default/files/pubs/2020-07_Spatiotemporal-reservoir-resampling/ReSTIR.pdf",
+      "public_access": {
+        "access_status": "public_pdf",
+        "evidence": "The NVIDIA Research landing page includes a PDF link, and NVIDIA's publication page lists an uploaded Paper Preprint PDF for this article.",
+        "has_public_pdf": true
+      },
+      "publication_year": 2020,
+      "ranking": {
+        "answer_fit_rationale": "The paper is narrower than a survey, but it cleanly exposes modern tradeoffs among sampling cost, latency, noise, bias, temporal reuse, data structures, and dynamic lighting scale.",
+        "answer_fit_score": 4,
+        "citation_score": 4,
+        "interestingness_rationale": "It would add a concrete contemporary case study showing how real-time systems trade physical correctness for controlled bias and large speedups.",
+        "interestingness_score": 5,
+        "overall_rationale": "Highly reputable and influential as an exemplar of real-time ray tracing tradeoffs, though it should be paired with broader survey sources for a complete answer.",
+        "overall_score": 18,
+        "rank": 3,
+        "venue_reputation_score": 5
+      },
+      "title": "Spatiotemporal Reservoir Resampling for Real-Time Ray Tracing with Dynamic Direct Lighting",
+      "venue": {
+        "name": "ACM Transactions on Graphics (SIGGRAPH 2020)",
+        "publisher": "Association for Computing Machinery",
+        "reputation_rationale": "ACM Transactions on Graphics and SIGGRAPH are top-tier graphics publication venues, and the paper is a widely referenced real-time ray tracing contribution.",
+        "type": "journal"
+      }
+    }
+  ],
+  "question_id": "question-real-time-constraints",
+  "question_text": "What tradeoffs matter most in real-time rendering systems?",
+  "schema_version": "source_scouting_v1",
+  "space_name": "graphics",
+  "warnings": [
+    "Citation counts are scouting signals from public index pages rather than canonical live citation-provider API responses."
+  ]
+}

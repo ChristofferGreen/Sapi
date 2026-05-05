@@ -1,0 +1,43 @@
+=== llm prompt ===
+=== semantic invocation ===
+flow_key: source_scouting
+version: v1
+schema_path: /Users/chrgre01/src/Sapi/schemas/source_scouting.v1.schema.json
+output_json_path: /Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/graphics/questions/question-real-time-constraints/runs/run-20260505T122959Z--tuk916ankq/source_scouting.json
+context_paths:
+- /Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json
+
+=== generation spec ===
+flow_key: source_scouting
+version: v1
+schema_path: schemas/source_scouting.v1.schema.json
+output_json_path: <site_path>/scouting/spaces/<space_name>/questions/<question_id>/runs/<run_id>/source_scouting.json
+context_paths:
+  - <space_root>/questions/<question_id>.json
+---
+## Task
+Generate one strict JSON object recommending high-quality papers to scout for one prepared question.
+
+## Scouting Criteria
+- Start from the prepared question in context and prioritize papers that clearly answer it.
+- Prefer reputable journals or venues and explain the venue-quality signal.
+- Include citation count with provider and `as_of` date. If unavailable, use `null` count and explain low confidence.
+- Prefer candidates with a public PDF. Set `public_access.has_public_pdf=false` when only a landing page or restricted source is available.
+- Include interestingness rationale: why this paper would improve the space beyond being merely relevant.
+
+## Boundary Rules
+- This is a recommendation sidecar. Do not emit canonical source, claim, relation, topic, or evidence artifacts.
+- Do not invent DOI, landing URL, PDF URL, citation provider, or access evidence. Use `null` for missing DOI/PDF.
+- If runtime web search is available, use it to verify candidates. If not, return only candidates whose identifiers and access status you can justify with high confidence.
+- Return JSON object only.
+
+## Schema-Repair Instructions
+- If given prior invalid JSON and validation errors, return one complete corrected JSON replacement.
+
+=== context pointers ===
+{
+  "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json": "file:///Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/questions/question-real-time-constraints.json"
+}
+
+=== llm output ===
+{"schema_version":"source_scouting_v1","space_name":"graphics","question_id":"question-real-time-constraints","question_text":"What tradeoffs matter most in real-time rendering systems?","candidates":[{"candidate_id":"candidate-temporal-coherence-methods-real-time-rendering--4f9a6c2d8b31","title":"Temporal Coherence Methods in Real-Time Rendering","authors":["Daniel Scherzer","Lei Yang","Oliver Mattausch","Diego Nehab","Pedro V. Sander","Michael Wimmer","Elmar Eisemann"],"venue":{"name":"Computer Graphics Forum","type":"journal","publisher":"Wiley-Blackwell / Eurographics Association","reputation_rationale":"Computer Graphics Forum is a long-running peer-reviewed graphics journal associated with Eurographics, and this article is a broad survey rather than a narrow demo paper."},"publication_year":2012,"doi":"10.1111/j.1467-8659.2012.03075.x","landing_url":"https://www.cg.tuwien.ac.at/research/publications/2012/SCHERZER-2012-TCM/","pdf_url":"https://cse.hkust.edu.hk/~psander/docs/tempcoj.pdf","public_access":{"has_public_pdf":true,"access_status":"public_pdf","evidence":"The TU Wien publication page records the Computer Graphics Forum article, and the HKUST-hosted PDF opens as the full paper with the same DOI and title."},"citation_signal":{"count":47,"provider":"Scopus via HKUST Research Portal","as_of":"2026-05-05","confidence":"medium"},"ranking":{"rank":1,"answer_fit_score":5,"venue_reputation_score":4,"citation_score":3,"interestingness_score":5,"overall_score":17,"answer_fit_rationale":"This is the strongest broad fit because it directly frames real-time rendering as balancing resolution, frame rate, shading complexity, reuse, artifacts, and hardware budget.","interestingness_rationale":"It would improve the space by giving a cross-cutting vocabulary for temporal reuse, reprojection, amortization, and quality loss across many rendering subsystems.","overall_rationale":"Best starting scout source for answering the prepared question at a systems level, despite a moderate citation signal compared with newer SIGGRAPH papers."}},{"candidate_id":"candidate-motion-quality-adaptive-refresh-resolution--a83c91f2e6d4","title":"A Perceptual Model of Motion Quality for Rendering with Adaptive Refresh-Rate and Resolution","authors":["Gyorgy Denes","Akshay Jindal","Aliaksei Mikhailiuk","Rafal K. Mantiuk"],"venue":{"name":"ACM Transactions on Graphics (SIGGRAPH 2020)","type":"journal","publisher":"Association for Computing Machinery","reputation_rationale":"ACM Transactions on Graphics, especially SIGGRAPH technical papers, is a flagship peer-reviewed venue for computer graphics research."},"publication_year":2020,"doi":"10.1145/3386569.3392411","landing_url":"https://www.cl.cam.ac.uk/research/rainbow/projects/motion_quality_model/","pdf_url":"https://www.cl.cam.ac.uk/research/rainbow/projects/motion_quality_model/denes20_comp.pdf","public_access":{"has_public_pdf":true,"access_status":"public_pdf","evidence":"The Cambridge project page provides public paper links, and the compressed PDF opens as the full ACM paper with DOI 10.1145/3386569.3392411."},"citation_signal":{"count":32,"provider":"Mendeley catalog","as_of":"2026-05-05","confidence":"medium"},"ranking":{"rank":2,"answer_fit_score":5,"venue_reputation_score":5,"citation_score":3,"interestingness_score":4,"overall_score":17,"answer_fit_rationale":"The paper explicitly studies the tradeoff between spatial resolution and temporal resolution under GPU and bandwidth budgets, which is one of the clearest real-time rendering constraints.","interestingness_rationale":"It adds a perceptual dimension: the best tradeoff depends on motion, predictability, blur, and judder rather than raw frame time alone.","overall_rationale":"A precise, high-quality source for the perceptual side of real-time rendering tradeoffs, with a smaller but credible citation signal."}},{"candidate_id":"candidate-spatiotemporal-reservoir-resampling--0b7e5c4a9d12","title":"Spatiotemporal Reservoir Resampling for Real-Time Ray Tracing with Dynamic Direct Lighting","authors":["Benedikt Bitterli","Chris Wyman","Matt Pharr","Peter Shirley","Aaron Lefohn","Wojciech Jarosz"],"venue":{"name":"ACM Transactions on Graphics (SIGGRAPH 2020)","type":"journal","publisher":"Association for Computing Machinery","reputation_rationale":"ACM Transactions on Graphics and SIGGRAPH are top-tier graphics publication venues, and the paper is a widely referenced real-time ray tracing contribution."},"publication_year":2020,"doi":"10.1145/3386569.3392481","landing_url":"https://research.nvidia.com/labs/rtr/publication/bitterli2020spatiotemporal/","pdf_url":"https://research.nvidia.com/sites/default/files/pubs/2020-07_Spatiotemporal-reservoir-resampling/ReSTIR.pdf","public_access":{"has_public_pdf":true,"access_status":"public_pdf","evidence":"The NVIDIA Research landing page includes a PDF link, and NVIDIA's publication page lists an uploaded Paper Preprint PDF for this article."},"citation_signal":{"count":108,"provider":"OUCI","as_of":"2026-05-05","confidence":"medium"},"ranking":{"rank":3,"answer_fit_score":4,"venue_reputation_score":5,"citation_score":4,"interestingness_score":5,"overall_score":18,"answer_fit_rationale":"The paper is narrower than a survey, but it cleanly exposes modern tradeoffs among sampling cost, latency, noise, bias, temporal reuse, data structures, and dynamic lighting scale.","interestingness_rationale":"It would add a concrete contemporary case study showing how real-time systems trade physical correctness for controlled bias and large speedups.","overall_rationale":"Highly reputable and influential as an exemplar of real-time ray tracing tradeoffs, though it should be paired with broader survey sources for a complete answer."}}],"warnings":["Citation counts are scouting signals from public index pages rather than canonical live citation-provider API responses."]}

@@ -1,0 +1,17 @@
+{
+  "claim_ids": [],
+  "display_order": 8,
+  "evidence_ids": [],
+  "freshness": {},
+  "linked_source_ids": [],
+  "measurement_ids": [],
+  "question": "What tradeoffs matter most in real-time rendering systems?",
+  "question_id": "question-real-time-constraints",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "graphics"
+  },
+  "status": "active",
+  "synthesis": {},
+  "warnings": []
+}

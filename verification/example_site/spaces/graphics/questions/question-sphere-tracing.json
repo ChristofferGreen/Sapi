@@ -1,0 +1,17 @@
+{
+  "claim_ids": [],
+  "display_order": 1,
+  "evidence_ids": [],
+  "freshness": {},
+  "linked_source_ids": [],
+  "measurement_ids": [],
+  "question": "When is sphere tracing preferable to mesh-based rendering?",
+  "question_id": "question-sphere-tracing",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "graphics"
+  },
+  "status": "active",
+  "synthesis": {},
+  "warnings": []
+}

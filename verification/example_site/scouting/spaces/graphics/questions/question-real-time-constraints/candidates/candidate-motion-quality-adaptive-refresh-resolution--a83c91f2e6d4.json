@@ -1,0 +1,56 @@
+{
+  "authors": [
+    "Gyorgy Denes",
+    "Akshay Jindal",
+    "Aliaksei Mikhailiuk",
+    "Rafal K. Mantiuk"
+  ],
+  "candidate_id": "candidate-motion-quality-adaptive-refresh-resolution--a83c91f2e6d4",
+  "citation_signal": {
+    "as_of": "2026-05-05",
+    "confidence": "medium",
+    "count": 32,
+    "provider": "Mendeley catalog"
+  },
+  "doi": "10.1145/3386569.3392411",
+  "failure_reason": null,
+  "import_link": null,
+  "import_status": "not_imported",
+  "landing_url": "https://www.cl.cam.ac.uk/research/rainbow/projects/motion_quality_model/",
+  "operator_status": "candidate",
+  "pdf_url": "https://www.cl.cam.ac.uk/research/rainbow/projects/motion_quality_model/denes20_comp.pdf",
+  "provenance": {
+    "scouted_at": "2026-05-05T12:29:59Z",
+    "scouting_run_id": "run-20260505T122959Z--tuk916ankq",
+    "semantic_output_path": "/Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/graphics/questions/question-real-time-constraints/runs/run-20260505T122959Z--tuk916ankq/source_scouting.json"
+  },
+  "public_access": {
+    "access_status": "public_pdf",
+    "evidence": "The Cambridge project page provides public paper links, and the compressed PDF opens as the full ACM paper with DOI 10.1145/3386569.3392411.",
+    "has_public_pdf": true
+  },
+  "publication_year": 2020,
+  "question_id": "question-real-time-constraints",
+  "question_text": "What tradeoffs matter most in real-time rendering systems?",
+  "ranking": {
+    "answer_fit_rationale": "The paper explicitly studies the tradeoff between spatial resolution and temporal resolution under GPU and bandwidth budgets, which is one of the clearest real-time rendering constraints.",
+    "answer_fit_score": 5,
+    "citation_score": 3,
+    "interestingness_rationale": "It adds a perceptual dimension: the best tradeoff depends on motion, predictability, blur, and judder rather than raw frame time alone.",
+    "interestingness_score": 4,
+    "overall_rationale": "A precise, high-quality source for the perceptual side of real-time rendering tradeoffs, with a smaller but credible citation signal.",
+    "overall_score": 17,
+    "rank": 2,
+    "venue_reputation_score": 5
+  },
+  "schema_version": "source_scouting_candidate_v1",
+  "skip_reason": null,
+  "space_name": "graphics",
+  "title": "A Perceptual Model of Motion Quality for Rendering with Adaptive Refresh-Rate and Resolution",
+  "venue": {
+    "name": "ACM Transactions on Graphics (SIGGRAPH 2020)",
+    "publisher": "Association for Computing Machinery",
+    "reputation_rationale": "ACM Transactions on Graphics, especially SIGGRAPH technical papers, is a flagship peer-reviewed venue for computer graphics research.",
+    "type": "journal"
+  }
+}

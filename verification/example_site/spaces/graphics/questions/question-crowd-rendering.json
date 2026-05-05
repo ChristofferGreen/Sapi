@@ -1,0 +1,17 @@
+{
+  "claim_ids": [],
+  "display_order": 3,
+  "evidence_ids": [],
+  "freshness": {},
+  "linked_source_ids": [],
+  "measurement_ids": [],
+  "question": "What makes image-based crowd rendering convincing and efficient?",
+  "question_id": "question-crowd-rendering",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "graphics"
+  },
+  "status": "active",
+  "synthesis": {},
+  "warnings": []
+}

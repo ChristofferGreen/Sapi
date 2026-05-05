@@ -1,0 +1,58 @@
+{
+  "authors": [
+    "Benedikt Bitterli",
+    "Chris Wyman",
+    "Matt Pharr",
+    "Peter Shirley",
+    "Aaron Lefohn",
+    "Wojciech Jarosz"
+  ],
+  "candidate_id": "candidate-spatiotemporal-reservoir-resampling--0b7e5c4a9d12",
+  "citation_signal": {
+    "as_of": "2026-05-05",
+    "confidence": "medium",
+    "count": 108,
+    "provider": "OUCI"
+  },
+  "doi": "10.1145/3386569.3392481",
+  "failure_reason": null,
+  "import_link": null,
+  "import_status": "not_imported",
+  "landing_url": "https://research.nvidia.com/labs/rtr/publication/bitterli2020spatiotemporal/",
+  "operator_status": "candidate",
+  "pdf_url": "https://research.nvidia.com/sites/default/files/pubs/2020-07_Spatiotemporal-reservoir-resampling/ReSTIR.pdf",
+  "provenance": {
+    "scouted_at": "2026-05-05T12:29:59Z",
+    "scouting_run_id": "run-20260505T122959Z--tuk916ankq",
+    "semantic_output_path": "/Users/chrgre01/src/Sapi/verification/example_site/scouting/spaces/graphics/questions/question-real-time-constraints/runs/run-20260505T122959Z--tuk916ankq/source_scouting.json"
+  },
+  "public_access": {
+    "access_status": "public_pdf",
+    "evidence": "The NVIDIA Research landing page includes a PDF link, and NVIDIA's publication page lists an uploaded Paper Preprint PDF for this article.",
+    "has_public_pdf": true
+  },
+  "publication_year": 2020,
+  "question_id": "question-real-time-constraints",
+  "question_text": "What tradeoffs matter most in real-time rendering systems?",
+  "ranking": {
+    "answer_fit_rationale": "The paper is narrower than a survey, but it cleanly exposes modern tradeoffs among sampling cost, latency, noise, bias, temporal reuse, data structures, and dynamic lighting scale.",
+    "answer_fit_score": 4,
+    "citation_score": 4,
+    "interestingness_rationale": "It would add a concrete contemporary case study showing how real-time systems trade physical correctness for controlled bias and large speedups.",
+    "interestingness_score": 5,
+    "overall_rationale": "Highly reputable and influential as an exemplar of real-time ray tracing tradeoffs, though it should be paired with broader survey sources for a complete answer.",
+    "overall_score": 18,
+    "rank": 3,
+    "venue_reputation_score": 5
+  },
+  "schema_version": "source_scouting_candidate_v1",
+  "skip_reason": null,
+  "space_name": "graphics",
+  "title": "Spatiotemporal Reservoir Resampling for Real-Time Ray Tracing with Dynamic Direct Lighting",
+  "venue": {
+    "name": "ACM Transactions on Graphics (SIGGRAPH 2020)",
+    "publisher": "Association for Computing Machinery",
+    "reputation_rationale": "ACM Transactions on Graphics and SIGGRAPH are top-tier graphics publication venues, and the paper is a widely referenced real-time ray tracing contribution.",
+    "type": "journal"
+  }
+}

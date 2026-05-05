@@ -1,0 +1,17 @@
+{
+  "claim_ids": [],
+  "display_order": 7,
+  "evidence_ids": [],
+  "freshness": {},
+  "linked_source_ids": [],
+  "measurement_ids": [],
+  "question": "How should perceptual error be measured in graphics algorithms?",
+  "question_id": "question-perceptual-error",
+  "schema_version": "prepared_question_v1",
+  "scope": {
+    "space_name": "graphics"
+  },
+  "status": "active",
+  "synthesis": {},
+  "warnings": []
+}
