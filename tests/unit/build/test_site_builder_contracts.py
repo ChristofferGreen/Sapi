@@ -1298,8 +1298,9 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn('data-chart-group="chart-protein-intake"', active_detail_text)
             self.assertIn("1.6-2.2 g/kg/day", active_detail_text)
             self.assertIn("../evidence/evidence-protein-intake--123456789abc.html", active_detail_text)
-            self.assertIn("Synthesis status: refreshed", active_detail_text)
-            self.assertIn("Input signature: sha256:test", active_detail_text)
+            self.assertNotIn("<h2>Freshness</h2>", active_detail_text)
+            self.assertNotIn("Synthesis status: refreshed", active_detail_text)
+            self.assertNotIn("Input signature: sha256:test", active_detail_text)
 
             search_text = (alpha_space_root / "site" / "search" / "index.html").read_text()
             self.assertIn("question-protein-intake", search_text)

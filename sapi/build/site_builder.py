@@ -1945,7 +1945,6 @@ def _render_question_page(
             claim_option_title_by_id=claim_option_title_by_id,
         ),
         _render_question_evidence_section(linked_evidence),
-        _render_question_freshness_section(question),
     ]
     if question.warnings:
         warning_rows = "\n".join("<li>" + escape(warning) + "</li>" for warning in question.warnings)
@@ -2183,52 +2182,6 @@ def _measurement_link_label(measurement: dict[str, Any]) -> str:
             "<a href=\"../evidence/" + escape(evidence_id) + ".html\">" + escape(evidence_id) + "</a>"
         )
     return " / ".join(links) if links else escape(str(measurement.get("measurement_id", "")))
-
-
-def _render_question_freshness_section(question: PreparedQuestion) -> str:
-    rows: list[str] = []
-    synthesis = question.freshness.get("question_synthesis")
-    if isinstance(synthesis, dict):
-        status = synthesis.get("status")
-        run_id = synthesis.get("run_id")
-        refreshed_at = synthesis.get("refreshed_at")
-        input_signature = synthesis.get("input_signature")
-        if isinstance(status, str) and status.strip():
-            rows.append("Synthesis status: " + status.strip())
-        if isinstance(run_id, str) and run_id.strip():
-            rows.append("Synthesis run: " + run_id.strip())
-        if isinstance(refreshed_at, str) and refreshed_at.strip():
-            rows.append("Synthesis checked: " + refreshed_at.strip())
-        if isinstance(input_signature, str) and input_signature.strip():
-            rows.append("Input signature: " + input_signature.strip())
-    measurements = question.freshness.get("question_measurement_extraction")
-    if isinstance(measurements, dict):
-        status = measurements.get("status")
-        run_id = measurements.get("run_id")
-        refreshed_at = measurements.get("refreshed_at")
-        measurement_ids = measurements.get("measurement_ids")
-        if isinstance(status, str) and status.strip():
-            rows.append("Measurement status: " + status.strip())
-        if isinstance(run_id, str) and run_id.strip():
-            rows.append("Measurement run: " + run_id.strip())
-        if isinstance(refreshed_at, str) and refreshed_at.strip():
-            rows.append("Measurements checked: " + refreshed_at.strip())
-        if isinstance(measurement_ids, list):
-            rows.append(f"Measurements extracted: {len(measurement_ids)}")
-    mappings = question.freshness.get("question_relevance_mappings")
-    if isinstance(mappings, list):
-        mapping_count = len([item for item in mappings if isinstance(item, dict)])
-        if mapping_count:
-            rows.append(
-                f"Relevance mappings: {mapping_count} source{'s' if mapping_count != 1 else ''}"
-            )
-    if not rows:
-        return "<h2>Freshness</h2>\n<p>No freshness metadata has been recorded for this question yet.</p>\n"
-    return (
-        "<h2>Freshness</h2>\n<ul class=\"feed-list question-freshness-list\">\n"
-        + "\n".join("<li>" + escape(row) + "</li>" for row in rows)
-        + "\n</ul>\n"
-    )
 
 
 def _question_synthesis_list_item_text(item: Any) -> str:
