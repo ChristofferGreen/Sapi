@@ -2323,7 +2323,7 @@ def _render_question_claim_section(
     )
     return (
         "<h2 class=\"question-section-heading\">Claims</h2>\n"
-        "<ul class=\"feed-list\">\n"
+        "<ul class=\"question-link-list\">\n"
         + rows
         + "\n</ul>\n"
     )
@@ -2331,7 +2331,10 @@ def _render_question_claim_section(
 
 def _render_question_evidence_section(evidence_records: list[_EvidenceRecord]) -> str:
     if not evidence_records:
-        return "<h2>Evidence</h2>\n<p>No evidence has been linked to this question yet.</p>\n"
+        return (
+            "<h2 class=\"question-section-heading\">Evidence</h2>\n"
+            "<p>No evidence has been linked to this question yet.</p>\n"
+        )
     rows = "\n".join(
         (
             "<li><a href=\"../evidence/"
@@ -2342,7 +2345,12 @@ def _render_question_evidence_section(evidence_records: list[_EvidenceRecord]) -
         )
         for record in sorted(evidence_records, key=lambda item: item.evidence_id)
     )
-    return "<h2>Evidence</h2>\n<ul class=\"feed-list\">\n" + rows + "\n</ul>\n"
+    return (
+        "<h2 class=\"question-section-heading\">Evidence</h2>\n"
+        "<ul class=\"question-link-list\">\n"
+        + rows
+        + "\n</ul>\n"
+    )
 
 
 def _render_topic_page(

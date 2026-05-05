@@ -1291,6 +1291,8 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("Protein intake", active_detail_text)
             self.assertIn("Protein evidence", active_detail_text)
             self.assertIn('<h2 class="question-section-heading">Claims</h2>', active_detail_text)
+            self.assertIn('<h2 class="question-section-heading">Evidence</h2>', active_detail_text)
+            self.assertIn('class="question-link-list"', active_detail_text)
             self.assertIn("Current evidence supports a cautious protein conclusion.", active_detail_text)
             self.assertIn("Training status may change the target.", active_detail_text)
             self.assertIn('data-chart-group="chart-protein-intake"', active_detail_text)

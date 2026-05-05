@@ -718,6 +718,35 @@
     font-weight: 700;
   }
 
+  .question-link-list {
+    margin: 0.4rem 0 0;
+    padding: 0;
+    list-style: none;
+    columns: 2 18rem;
+    column-gap: 2rem;
+  }
+
+  .question-link-list > li {
+    break-inside: avoid;
+    margin: 0 0 0.38rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .question-link-list a {
+    display: inline;
+    color: #0b5f9d;
+    font-size: 0.92rem;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+
+  .question-link-list a:hover {
+    text-decoration: underline;
+  }
+
   .claims-sort-controls {
     margin-bottom: 0.62rem;
   }
