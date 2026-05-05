@@ -2591,6 +2591,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stderr)
 
             source_page = (alpha_space_root / "site" / "sources" / f"{source_id}.html").read_text()
+            self.assertIn("<dt>Citations</dt><dd>unknown</dd>", source_page)
             self.assertIn("Claims Referencing This Source", source_page)
             self.assertIn(
                 f"<a href=\"../claims/{claim_id}.html\">Pressure spikes cluster post-SSA</a>",

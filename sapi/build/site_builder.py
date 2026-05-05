@@ -898,13 +898,13 @@ def _source_metadata_rows(
     citation_count = source.get("citation_count")
     citation_as_of = source.get("citation_count_as_of")
     citation_provider = source.get("citation_count_provider")
-    if isinstance(citation_count, (int, float)):
-        citation_detail = str(citation_count)
+    citation_detail = _format_citation_count_for_ui(citation_count)
+    if citation_detail != "unknown":
         if isinstance(citation_as_of, str) and citation_as_of.strip():
             citation_detail += f" (as of {citation_as_of.strip()})"
         if isinstance(citation_provider, str) and citation_provider.strip():
             citation_detail += f" via {citation_provider.strip()}"
-        rows.append(("Citations", citation_detail, False))
+    rows.append(("Citations", citation_detail, False))
     return rows
 
 
