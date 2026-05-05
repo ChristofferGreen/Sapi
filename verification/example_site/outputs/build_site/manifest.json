@@ -215,7 +215,7 @@
         "assets/persona_profiles/persona-yara-serrin.jpg": "ff2bdec2a89245aafbc214ae4ba2704d70b227497f78e5da854446fa1874bbdf",
         "assets/persona_profiles/persona-zane-delmar.jpg": "4b67d4b25ab2a87712a5c5760ac745367cced176c21702c890f3c87e5ed9e23d",
         "assets/persona_profiles/persona-zane-mansouri.jpg": "6460a31a547c90c2b23b03ace8af6fe6c82082dbf79213fd17d282207608e573",
-        "assets/site.css": "86b01605b51f841d3563fb481ead61b447d4f40dadfb126c4aa5afa2662f731d",
+        "assets/site.css": "23c0ec35b095a7c7d719baa79c2b96c15210af7824b65f37bc5101d49fd60dfc",
         "authors/author-aaron-lefohn.html": "3ea05ddde98c29eb47680ffd0c3897178c995268db7210dcd77e78b584d48e34",
         "authors/author-akshay-jindal.html": "443b0485a16a272b5baee61d462dc449936565c2b666e8ba83cae59297edbd6c",
         "authors/author-alexandru-c-telea.html": "4164a9bd11ba20f86249936236cd49c5d7af35781f7da50cfcacd9936e5cbaaf",
@@ -406,16 +406,16 @@
         "new/index.html": "097b8403e15158e907c128d7705ac91ad88d8c2c7a51e90535f4661f530c709b",
         "overview/index.html": "1b86854f44d7bea7303342a7b6d89ea692ae097707810883aa2acc8d6568954c",
         "questions/index.html": "530d86d375c00ce9b42e0214c2ce836059569e210e72b239c7c9af30c3fc73fe",
-        "questions/question-antialiasing-implicit-surfaces.html": "85007440b7550854ddb64c60047390d081cf14548c691e8bda6e1bdc9a4ce52d",
-        "questions/question-crowd-rendering.html": "0915ce9950475fec43827bc98c03ba2130332bf6ab28c3fecaf589dd2096a29c",
-        "questions/question-edge-bundling.html": "dd704a0ed329a6160f4b1df27c45b1ff8243a3a5431d8cc068d6f135f42e62ec",
-        "questions/question-foveated-rendering.html": "a68a8f350965074f459b5f3118c87d62408ce813d0a9c5eea763ca8bad9e61e6",
-        "questions/question-gpu-memory-bandwidth.html": "25ca8fc98c6c6aeb6f1eaffae3a40fde3adaf3bc6a82dbc547366b9a6d34ef86",
-        "questions/question-level-of-detail.html": "497e931ec1aec482ebcf2e22a8fc9894ded81d7b54b30d4464d6925f2844dc22",
-        "questions/question-perceptual-error.html": "9b898c9ae5ef7f411444327fbf3a2e7e25434dbed0aa7aec866d240e043ec987",
-        "questions/question-real-time-constraints.html": "b54e5f7c1bb15450ef6cade9fb5bdd67580172347122b89f33abb347dcc080ca",
-        "questions/question-sphere-tracing.html": "394648467b79f458b8e4c612d19aeb65067f10b081ad2f944acc5913895b33ec",
-        "questions/question-visual-clutter.html": "ba039279b28dad23a48b6dce2c6963dc6b5b6bd6158df808640f2bc461b7db4a",
+        "questions/question-antialiasing-implicit-surfaces.html": "87b51c7744ec92edb51e2e1ce09ac2bff28bd4a06d81c4a0c7493e4b45709a8d",
+        "questions/question-crowd-rendering.html": "368d47ef315689bbb1223410c9c94d6cff38fee44ebaf8267d82634be8e1996e",
+        "questions/question-edge-bundling.html": "3731f8ffbf8eb84fca1427f7599079643ac4c7eb780cbcdd882e72aeebecfbdf",
+        "questions/question-foveated-rendering.html": "1026ba5d7de462e1c8211c3093ed7ffcbe7e1c9c96c6ba9d77c720ca9b8fd613",
+        "questions/question-gpu-memory-bandwidth.html": "095cadc9d67a117528c4da391b1f2db154a5649b7b4c5f54774a089f943bef9a",
+        "questions/question-level-of-detail.html": "e99519f6c41bb022fc03b19e3b82164dc7bf827fd35c710f4234d9d6c74e3648",
+        "questions/question-perceptual-error.html": "c4bce3b755334587619cd23add8b9eb1308d6ca4244e65db9f771ee902a439d9",
+        "questions/question-real-time-constraints.html": "bdef103444a44941ad5b7c1a898e3754299c65f4e210bf4198515792bc2db00a",
+        "questions/question-sphere-tracing.html": "98b07aa85ee81c8e20873ac4277f7d55e0197e9a5bbedb99f02b5fee1047b5b0",
+        "questions/question-visual-clutter.html": "9e6a3c97ef87583780670cee091eacebcab30f2bfba258001593ffcdb1488d08",
         "search/index.html": "022479336e8e4a61ca6d744a1a4893bb1e81871fe8ed84757a05397c401f0117",
         "sources/by-citation-count-asc/index.html": "eb8e34eee61a757911b56edfde74ab85939f17382ba7f1d855978a223ed4580d",
         "sources/by-citation-count/index.html": "0b27b6151fa85bae8ad6980c63f1e3d41f7fca8112d422d2dcfbd305632a6306",
@@ -1139,14 +1139,14 @@
   ],
   "stylesheet_assets": [
     {
-      "bytes": 34547,
+      "bytes": 35325,
       "path": "/Users/chrgre01/src/Sapi/verification/example_site/site/assets/site.css",
-      "sha256": "86b01605b51f841d3563fb481ead61b447d4f40dadfb126c4aa5afa2662f731d"
+      "sha256": "23c0ec35b095a7c7d719baa79c2b96c15210af7824b65f37bc5101d49fd60dfc"
     },
     {
-      "bytes": 34547,
+      "bytes": 35325,
       "path": "/Users/chrgre01/src/Sapi/verification/example_site/spaces/graphics/site/assets/site.css",
-      "sha256": "86b01605b51f841d3563fb481ead61b447d4f40dadfb126c4aa5afa2662f731d"
+      "sha256": "23c0ec35b095a7c7d719baa79c2b96c15210af7824b65f37bc5101d49fd60dfc"
     }
   ],
   "toolchain_versions": {

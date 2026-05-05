@@ -1280,9 +1280,17 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("What protein intake supports muscle growth?", question_index_text)
             self.assertNotIn("Which inactive question remains auditable?", question_index_text)
             self.assertTrue(inactive_detail_path.is_file())
+            self.assertIn('class="question-source-grid"', active_detail_text)
+            self.assertIn('class="question-source-card"', active_detail_text)
+            self.assertIn('class="question-source-thumb"', active_detail_text)
+            self.assertIn(
+                "../../../../site/assets/source_previews/source-protein--123456789abc.svg",
+                active_detail_text,
+            )
             self.assertIn("Protein Source", active_detail_text)
             self.assertIn("Protein intake", active_detail_text)
             self.assertIn("Protein evidence", active_detail_text)
+            self.assertIn('<h2 class="question-section-heading">Claims</h2>', active_detail_text)
             self.assertIn("Current evidence supports a cautious protein conclusion.", active_detail_text)
             self.assertIn("Training status may change the target.", active_detail_text)
             self.assertIn('data-chart-group="chart-protein-intake"', active_detail_text)

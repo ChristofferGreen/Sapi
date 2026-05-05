@@ -1886,6 +1886,7 @@ def _write_question_pages(
                 evidence_by_id=evidence_by_id,
                 measurement_by_id=measurement_by_id,
                 context=context,
+                site_path=output_root.parents[2],
                 stylesheet_href=_relative_href(
                     from_file=question_path,
                     to_file=output_root / "assets" / "site.css",
@@ -1906,6 +1907,7 @@ def _render_question_page(
     evidence_by_id: dict[str, _EvidenceRecord],
     measurement_by_id: dict[str, dict[str, Any]],
     context: _SpaceLayoutContext,
+    site_path: Path,
     stylesheet_href: str,
 ) -> str:
     linked_sources = [source_by_id[source_id] for source_id in question.linked_source_ids if source_id in source_by_id]
@@ -1933,7 +1935,11 @@ def _render_question_page(
         + "</p>\n",
         _render_question_synthesis_section(question),
         _render_question_measurement_section(question, linked_measurements),
-        _render_question_source_section(linked_sources),
+        _render_question_source_section(
+            linked_sources,
+            context=context,
+            site_path=site_path,
+        ),
         _render_question_claim_section(
             linked_claims,
             claim_option_title_by_id=claim_option_title_by_id,
@@ -2239,20 +2245,55 @@ def _question_synthesis_list_item_text(item: Any) -> str:
     return text.strip()
 
 
-def _render_question_source_section(sources: list[dict[str, Any]]) -> str:
+def _render_question_source_section(
+    sources: list[dict[str, Any]],
+    *,
+    context: _SpaceLayoutContext,
+    site_path: Path,
+) -> str:
     if not sources:
-        return "<h2>Sources</h2>\n<p>No sources have been linked to this question yet.</p>\n"
-    rows = "\n".join(
-        (
-            "<li><a href=\"../sources/"
-            + escape(str(source["source_id"]))
-            + ".html\">"
-            + escape(_source_display_title(source))
-            + "</a></li>"
+        return (
+            "<h2 class=\"question-section-heading\">Sources</h2>\n"
+            "<p>No sources have been linked to this question yet.</p>\n"
         )
+    cards = "\n".join(
+        _render_question_source_card(source=source, context=context, site_path=site_path)
         for source in sorted(sources, key=lambda item: str(item["source_id"]))
     )
-    return "<h2>Sources</h2>\n<ul class=\"feed-list\">\n" + rows + "\n</ul>\n"
+    return (
+        "<h2 class=\"question-section-heading\">Sources</h2>\n"
+        "<div class=\"question-source-grid\">\n"
+        + cards
+        + "\n</div>\n"
+    )
+
+
+def _render_question_source_card(
+    *,
+    source: dict[str, Any],
+    context: _SpaceLayoutContext,
+    site_path: Path,
+) -> str:
+    source_id = str(source["source_id"])
+    title = _source_display_title(source)
+    preview_href = _source_preview_site_href_for_source(
+        source=source,
+        space_name=context.space_name,
+        site_path=site_path,
+    )
+    return (
+        "<a class=\"question-source-card\" href=\"../sources/"
+        + escape(source_id)
+        + ".html\">"
+        + "<img class=\"question-source-thumb\" src=\""
+        + escape(preview_href)
+        + "\" alt=\"Preview for "
+        + escape(title)
+        + "\" loading=\"lazy\" />"
+        + "<span class=\"question-source-title\">"
+        + escape(title)
+        + "</span></a>"
+    )
 
 
 def _render_question_claim_section(
@@ -2261,7 +2302,10 @@ def _render_question_claim_section(
     claim_option_title_by_id: dict[str, str],
 ) -> str:
     if not claims:
-        return "<h2>Claims</h2>\n<p>No claims have been linked to this question yet.</p>\n"
+        return (
+            "<h2 class=\"question-section-heading\">Claims</h2>\n"
+            "<p>No claims have been linked to this question yet.</p>\n"
+        )
     rows = "\n".join(
         (
             "<li><a href=\"../claims/"
@@ -2277,7 +2321,12 @@ def _render_question_claim_section(
         )
         for claim in sorted(claims, key=lambda item: str(item["claim_id"]))
     )
-    return "<h2>Claims</h2>\n<ul class=\"feed-list\">\n" + rows + "\n</ul>\n"
+    return (
+        "<h2 class=\"question-section-heading\">Claims</h2>\n"
+        "<ul class=\"feed-list\">\n"
+        + rows
+        + "\n</ul>\n"
+    )
 
 
 def _render_question_evidence_section(evidence_records: list[_EvidenceRecord]) -> str:
