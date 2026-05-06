@@ -5420,6 +5420,13 @@ def _write_space_claim_pages(
             source_title_by_id=source_title_by_id,
             claim_source_id=str(claim_record.get("source_id") or "").strip(),
         )
+        usage_summary_rows, _ = _claim_usage_rows(
+            claim_id=claim_id,
+            projection=projection,
+            source_title_by_id=source_title_by_id,
+            claim_source_id=str(claim_record.get("source_id") or "").strip(),
+            include_kind_label=False,
+        )
         claim_evidence_records = evidence_by_claim_id.get(claim_id, [])
         evidence_rows = _claim_evidence_rows(
             claim_record=claim_record,
@@ -5509,6 +5516,7 @@ def _write_space_claim_pages(
                     + "<article class=\"source-related-card\">\n"
                     + "<h2>Overview and Interpretation</h2>\n"
                     + "".join(f"<p>{escape(paragraph)}</p>\n" for paragraph in overview)
+                    + _render_claim_usage_summary_links(usage_summary_rows)
                     + "</article>\n"
                     + "</section>\n"
                     + "<section class=\"source-related-grid\">\n"
@@ -6292,6 +6300,17 @@ def _claim_strength_stats(
         "citation_factor": citation_factor,
         "citation_factor_defaulted": citation_factor_defaulted,
     }
+
+
+def _render_claim_usage_summary_links(rows: list[str]) -> str:
+    if not rows:
+        return ""
+    return (
+        "<p class=\"meta\">Referenced pages</p>\n"
+        + "<ul class=\"claim-card-usage-list claim-card-usage-list-primary\">\n"
+        + "\n".join(rows)
+        + "\n</ul>\n"
+    )
 
 
 def _claim_overview_text(

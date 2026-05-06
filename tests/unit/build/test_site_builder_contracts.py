@@ -584,6 +584,8 @@ class SiteBuilderContractTests(unittest.TestCase):
                 "epistemic-only interpretation fails once preparation independence",
                 claim_page_text,
             )
+            self.assertIn("Referenced pages", claim_page_text)
+            self.assertIn("class=\"claim-card-usage-list claim-card-usage-list-primary\"", claim_page_text)
             self.assertIn("Pages Using This Claim", claim_page_text)
             self.assertIn("href=\"../topics/topic-claim-rich--aaaaaaaaaaaa.html\"", claim_page_text)
             self.assertIn("href=\"../sources/source-a.html\"", claim_page_text)
