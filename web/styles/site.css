@@ -1350,6 +1350,17 @@
     margin-bottom: 0.18rem;
   }
 
+  .claim-page-usage-list {
+    gap: 0.68rem;
+  }
+
+  .claim-page-usage-list li {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+  }
+
   .source-related-list li .summary {
     margin: 0.16rem 0 0;
     color: #153d63;

@@ -5523,7 +5523,7 @@ def _write_space_claim_pages(
                     + "<article class=\"source-related-card\">\n"
                     + "<h2>Pages Using This Claim</h2>\n"
                     + (
-                        "<ul class=\"source-related-list\">\n"
+                        "<ul class=\"source-related-list claim-page-usage-list\">\n"
                         + "\n".join(usage_rows)
                         + "\n</ul>\n"
                         if usage_rows
