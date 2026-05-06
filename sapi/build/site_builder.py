@@ -5610,6 +5610,7 @@ def _render_evidence_index_row(
     space_name: str,
     record: _EvidenceRecord,
     claim_option_title_by_id: dict[str, str],
+    claim_href_prefix: str,
     source_title_by_id: dict[str, str],
     source_preview_by_id: dict[str, str],
 ) -> str:
@@ -5652,6 +5653,7 @@ def _render_evidence_index_row(
         + _evidence_claim_links_html(
             record.claim_ids,
             claim_option_title_by_id=claim_option_title_by_id,
+            claim_href_prefix=claim_href_prefix,
         )
         + source_row
         + "<p class=\"summary\">"
@@ -5757,6 +5759,7 @@ def _write_space_evidence_pages(
                         space_name=context.space_name,
                         record=record,
                         claim_option_title_by_id=claim_option_title_by_id,
+                        claim_href_prefix=("../" * len(Path(sort_path).parts)) + "claims/",
                         source_title_by_id=source_title_by_id,
                         source_preview_by_id=source_preview_by_id,
                     )
@@ -6014,11 +6017,13 @@ def _evidence_claim_links_html(
     claim_ids: tuple[str, ...],
     *,
     claim_option_title_by_id: dict[str, str],
+    claim_href_prefix: str = "../claims/",
 ) -> str:
     if not claim_ids:
         return "(none)"
     links = [
-        "<a class=\"source-evidence-claim-chip\" href=\"../claims/"
+        "<a class=\"source-evidence-claim-chip\" href=\""
+        + escape(claim_href_prefix)
         + escape(claim_id)
         + ".html\">"
         + escape(
