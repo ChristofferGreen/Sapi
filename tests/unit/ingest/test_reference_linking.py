@@ -212,6 +212,47 @@ class ReferenceLinkingTests(unittest.TestCase):
         self.assertEqual(metadata["status"], "skipped")
         self.assertEqual(metadata["skip_reason"], "no_curated_links_found")
 
+    def test_reference_enrichment_does_not_promote_bare_repository_hosts(self) -> None:
+        links, metadata = _build_external_related_links(
+            {
+                "references": [
+                    {
+                        "title": "/",
+                        "url": "https://github.com/",
+                    },
+                    {
+                        "title": "Project repository",
+                        "url": "https://github.com/example/project",
+                    },
+                ]
+            }
+        )
+
+        self.assertEqual([link["url"] for link in links], ["https://github.com/example/project"])
+        self.assertEqual(metadata["status"], "enriched")
+
+    def test_reference_enrichment_relabels_specific_links_with_weak_titles(self) -> None:
+        links, metadata = _build_external_related_links(
+            {
+                "references": [
+                    {
+                        "title": "1",
+                        "url": "https://doi.org/10.1126/science.aag2302",
+                    },
+                    {
+                        "title": "/",
+                        "url": "https://github.com/example/project",
+                    },
+                ]
+            }
+        )
+
+        self.assertEqual(
+            [link["title"] for link in links],
+            ["DOI 10.1126/science.aag2302", "github.com/example/project"],
+        )
+        self.assertEqual(metadata["status"], "enriched")
+
 
 def _bootstrap_site_and_space(tmp_root: Path, space_name: str) -> Path:
     site_path = tmp_root / "site-a"

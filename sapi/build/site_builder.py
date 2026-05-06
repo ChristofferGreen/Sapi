@@ -1094,6 +1094,9 @@ def _collect_external_related_links(
             continue
         if allowed_link_types is not None and link_type not in allowed_link_types:
             continue
+        if _is_unusable_external_related_link(url=url, title=title, domain=domain, link_type=link_type):
+            continue
+        title = _external_related_link_display_title(url=url, title=title, domain=domain)
         normalized.append(
             {
                 "title": title,
@@ -1108,6 +1111,45 @@ def _collect_external_related_links(
             }
         )
     return normalized
+
+
+def _is_unusable_external_related_link(*, url: str, title: str, domain: str, link_type: str) -> bool:
+    parsed = urlsplit(url)
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+        return True
+    has_specific_target = bool(parsed.path.strip("/")) or bool(parsed.query) or bool(parsed.fragment)
+    if has_specific_target:
+        return False
+    normalized_domain = domain.strip().lower().removeprefix("www.")
+    host = parsed.netloc.strip().lower().removeprefix("www.")
+    normalized_title = title.strip().lower().strip("/")
+    if link_type == "repository" and host in {"github.com", "gitlab.com"}:
+        return True
+    return normalized_title in {"", host, normalized_domain}
+
+
+def _external_related_link_display_title(*, url: str, title: str, domain: str) -> str:
+    parsed = urlsplit(url)
+    host = (domain or parsed.netloc).strip().lower().removeprefix("www.")
+    normalized_title = title.strip()
+    weak_titles = {"", "/", url.strip(), parsed.netloc.strip(), host}
+    bibliography_index_title = normalized_title.strip("[]").isdigit()
+    if not bibliography_index_title and normalized_title.lower().strip("/") not in {
+        item.lower().strip("/") for item in weak_titles
+    }:
+        return normalized_title
+    path = parsed.path.strip("/")
+    if host == "doi.org" and path:
+        return f"DOI {path}"
+    if host == "arxiv.org" and path.startswith("abs/"):
+        return f"arXiv {path.removeprefix('abs/')}"
+    if host in {"github.com", "gitlab.com"} and path:
+        parts = path.split("/")
+        if len(parts) >= 2:
+            return f"{host}/{parts[0]}/{parts[1]}"
+    if path:
+        return f"{host}/{path}"
+    return host or normalized_title
 
 
 def _render_external_related_links_card(
@@ -1125,7 +1167,7 @@ def _render_external_related_links_card(
     return (
         "<article class=\"source-related-card\">"
         + f"<h2>{escape(heading)}</h2>"
-        + "<ul class=\"source-related-list\">"
+        + "<ul class=\"source-related-list external-related-list\">"
         + rows
         + "</ul>"
         + "</article>\n"

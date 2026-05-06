@@ -358,6 +358,10 @@ def _dedupe_and_sort_related_links(*, raw_candidates: list[dict[str, Any]], warn
         if url is None or title is None or domain is None or link_type is None or quality_status is None:
             skipped_candidates += 1
             continue
+        if _is_unusable_external_related_link(url=url, title=title, domain=domain, link_type=link_type):
+            skipped_candidates += 1
+            continue
+        title = _external_related_link_display_title(url=url, title=title, domain=domain)
         shaped = {
             "title": title,
             "url": url,
@@ -385,6 +389,45 @@ def _dedupe_and_sort_related_links(*, raw_candidates: list[dict[str, Any]], warn
     if skipped_candidates:
         warnings.append(f"Skipped {skipped_candidates} unsupported external-link candidate(s).")
     return sorted(by_url.values(), key=_related_link_sort_key)
+
+
+def _is_unusable_external_related_link(*, url: str, title: str, domain: str, link_type: str) -> bool:
+    parsed = urlparse(url)
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+        return True
+    has_specific_target = bool(parsed.path.strip("/")) or bool(parsed.query) or bool(parsed.fragment)
+    if has_specific_target:
+        return False
+    normalized_domain = domain.strip().lower().removeprefix("www.")
+    host = parsed.netloc.strip().lower().removeprefix("www.")
+    normalized_title = title.strip().lower().strip("/")
+    if link_type == "repository" and host in {"github.com", "gitlab.com"}:
+        return True
+    return normalized_title in {"", host, normalized_domain}
+
+
+def _external_related_link_display_title(*, url: str, title: str, domain: str) -> str:
+    parsed = urlparse(url)
+    host = (domain or parsed.netloc).strip().lower().removeprefix("www.")
+    normalized_title = title.strip()
+    weak_titles = {"", "/", url.strip(), parsed.netloc.strip(), host}
+    bibliography_index_title = normalized_title.strip("[]").isdigit()
+    if not bibliography_index_title and normalized_title.lower().strip("/") not in {
+        item.lower().strip("/") for item in weak_titles
+    }:
+        return normalized_title
+    path = parsed.path.strip("/")
+    if host == "doi.org" and path:
+        return f"DOI {path}"
+    if host == "arxiv.org" and path.startswith("abs/"):
+        return f"arXiv {path.removeprefix('abs/')}"
+    if host in {"github.com", "gitlab.com"} and path:
+        parts = path.split("/")
+        if len(parts) >= 2:
+            return f"{host}/{parts[0]}/{parts[1]}"
+    if path:
+        return f"{host}/{path}"
+    return host or normalized_title
 
 
 def _related_link_sort_key(row: dict[str, Any]) -> tuple[int, int, str, str]:

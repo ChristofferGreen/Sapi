@@ -2746,6 +2746,26 @@ class SiteBuilderContractTests(unittest.TestCase):
                         "rationale": "Captured from normalized source references.",
                         "provenance": {"origin": "reference_url", "source_field": "references[1].url"},
                     },
+                    {
+                        "title": "/",
+                        "url": "https://github.com",
+                        "domain": "github.com",
+                        "link_type": "repository",
+                        "quality_status": "contextual",
+                        "confidence": "medium",
+                        "rationale": "Captured from normalized source references.",
+                        "provenance": {"origin": "reference_url", "source_field": "references[2].url"},
+                    },
+                    {
+                        "title": "/",
+                        "url": "https://github.com/example/project",
+                        "domain": "github.com",
+                        "link_type": "repository",
+                        "quality_status": "contextual",
+                        "confidence": "medium",
+                        "rationale": "Captured from normalized source references.",
+                        "provenance": {"origin": "reference_url", "source_field": "references[3].url"},
+                    },
                 ],
                 related_link_enrichment={
                     "status": "enriched",
@@ -2795,20 +2815,26 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("Markdown quality", source_page)
             self.assertIn("markitdown (0.1.0)", source_page)
             self.assertIn("External Related Links", source_page)
+            self.assertIn("class=\"source-related-list external-related-list\"", source_page)
             self.assertIn("Referenced DOI landing page", source_page)
             self.assertIn("Wikipedia overview", source_page)
             self.assertIn("Logic discussion thread", source_page)
+            self.assertIn("github.com/example/project", source_page)
+            self.assertNotIn('href="https://github.com"', source_page)
+            self.assertNotIn(">/</a>", source_page)
             self.assertIn("from reference url", source_page)
 
             self.assertIn("External Related Links", topic_page)
             self.assertIn("Wikipedia overview", topic_page)
             self.assertNotIn("Referenced DOI landing page", topic_page)
+            self.assertNotIn('href="https://github.com"', topic_page)
             self.assertIn(f"../sources/{source_id}.html", topic_page)
             self.assertIn("via <a href=\"../sources/", topic_page)
 
             self.assertIn("External Related Links", claim_page)
             self.assertIn("Logic discussion thread", claim_page)
             self.assertNotIn("Referenced DOI landing page", claim_page)
+            self.assertNotIn('href="https://github.com"', claim_page)
             self.assertIn(f"../sources/{source_id}.html", claim_page)
 
     def test_space_and_subspace_homepages_render_overview_artifacts(self) -> None:
