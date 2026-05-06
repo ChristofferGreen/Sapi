@@ -7,6 +7,7 @@
   "outcome": "reduced ambient-occlusion shader cost",
   "population": "chessboard ambient-occlusion shader caching only the static-piece contribution",
   "question_id": "question-real-time-constraints",
+  "question_relevance": "This shows why stable, expensive subcomputations are especially attractive reuse targets under real-time budgets.",
   "schema_version": "question_measurement_v1",
   "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
   "uncertainty": "reported as 8x speedup for the static-piece contribution; broader scene/error details not provided in linked evidence",

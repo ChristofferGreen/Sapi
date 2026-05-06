@@ -439,10 +439,11 @@ Prepared-question implementation ownership:
   schema-output grounding checks, freshness metadata, explicit stale/selected refresh helpers, and
   transactional question-record mutation for `question_synthesis`.
 - measurement extraction and compatibility grouping belong in `sapi/questions/`; site rendering may
-  draw tables/charts from validated measurement records but must not infer missing numeric values.
+  draw tables/charts from validated measurement records but must not infer missing numeric values or
+  promote incidental numeric rows that lack a question-specific relevance rationale.
   `sapi/questions/measurements.py` owns the semantic invocation wrapper, linked-ID validation,
-  canonical `<space_root>/measurements/<measurement_id>.json` writes, freshness metadata, and
-  chart-group compatibility checks for `question_measurement_extraction`.
+  question-relevant row caps, canonical `<space_root>/measurements/<measurement_id>.json` writes,
+  freshness metadata, and chart-group compatibility checks for `question_measurement_extraction`.
 - deterministic question index/detail rendering belongs in `sapi/build/site_builder.py` and should read
   prepared-question records through the shared loader. Space `site/index.html` is question-led, active
   questions appear in the default index, inactive questions get deterministic detail pages for audit
@@ -517,8 +518,9 @@ Control flow:
    `question_mapping_status = no_active_questions` with `question_matches_changed = 0`
 11. for each mapped question whose canonical measurement input signature changed, run semantic flow
    `question_measurement_extraction`, validate that output references only linked canonical
-   source/claim/evidence IDs, and persist measurement rows plus freshness metadata back to the
-   question record
+   source/claim/evidence IDs, contains at most six key rows, and includes a question-specific
+   relevance rationale for every row; persist those measurement rows plus freshness metadata back
+   to the question record
 12. for each mapped question whose canonical synthesis input signature changed, run semantic flow
    `question_synthesis`, validate that output references only linked canonical source/claim/evidence
    IDs, and persist synthesis plus freshness metadata back to the question record

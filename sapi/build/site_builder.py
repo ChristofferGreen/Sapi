@@ -1920,6 +1920,7 @@ def _render_question_page(
         for measurement_id in question.measurement_ids
         if measurement_id in measurement_by_id
         and measurement_by_id[measurement_id].get("question_id") == question.question_id
+        and _question_measurement_is_interesting(measurement_by_id[measurement_id])
     ]
     stats = (
         f"{len(linked_sources)} source{'s' if len(linked_sources) != 1 else ''}, "
@@ -1994,7 +1995,7 @@ def _render_question_measurement_section(
     measurements: list[dict[str, Any]],
 ) -> str:
     if not measurements:
-        return "<h2>Measurements</h2>\n<p>No structured measurements have been extracted for this question yet.</p>\n"
+        return "<h2>Measurements</h2>\n<p>No key measurements have been extracted for this question yet.</p>\n"
     sorted_measurements = sorted(measurements, key=lambda item: str(item.get("measurement_id", "")))
     chart_groups = _compatible_question_measurement_chart_groups(
         question=question,
@@ -2010,7 +2011,7 @@ def _render_question_measurement_section(
         "<div class=\"question-measurement-table-wrap\">"
         "<table class=\"question-measurement-table\">"
         "<thead><tr>"
-        "<th>Measure</th><th>Value</th><th>Population</th><th>Outcome</th>"
+        "<th>Measure</th><th>Value</th><th>Why it matters</th><th>Population</th><th>Outcome</th>"
         "<th>Comparator</th><th>Uncertainty</th><th>Links</th>"
         "</tr></thead><tbody>"
     )
@@ -2079,6 +2080,11 @@ def _render_question_measurement_chart(
     )
 
 
+def _question_measurement_is_interesting(measurement: dict[str, Any]) -> bool:
+    question_relevance = measurement.get("question_relevance")
+    return isinstance(question_relevance, str) and bool(question_relevance.strip())
+
+
 def _render_question_measurement_row(measurement: dict[str, Any]) -> str:
     return (
         "<tr>"
@@ -2087,6 +2093,9 @@ def _render_question_measurement_row(measurement: dict[str, Any]) -> str:
         + "</td>"
         + "<td>"
         + escape(_measurement_value_text(measurement))
+        + "</td>"
+        + "<td>"
+        + escape(str(measurement.get("question_relevance", "")))
         + "</td>"
         + "<td>"
         + escape(str(measurement.get("population", "")))

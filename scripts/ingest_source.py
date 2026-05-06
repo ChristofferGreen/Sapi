@@ -1369,6 +1369,7 @@ class _MockQuestionMeasurementClient:
                     "outcome": "question-relevant outcome",
                     "comparator": "fixture comparator",
                     "uncertainty": "Mock mode does not estimate real uncertainty.",
+                    "question_relevance": "This mock row demonstrates a value that matters to the prepared question.",
                 }
             )
             chart_groups.append(
@@ -1596,9 +1597,12 @@ class _LiveQuestionMeasurementClient:
                     "allowed_claim_ids": [row.get("claim_id") for row in self._context.claims],
                     "allowed_evidence_ids": [row.get("evidence_id") for row in self._context.evidence],
                     "grounding_policy": (
-                        "Extract numeric measurements only when they are explicitly present in linked "
-                        "source, claim, or evidence context. Return empty arrays when values are absent "
-                        "or incompatible; do not estimate, normalize, or coerce values."
+                        "Extract only key numeric measurements that materially help answer the prepared "
+                        "question, and include question_relevance for every row. Omit incidental dataset "
+                        "sizes, hardware facts, timestamps, table dimensions, or source-level statistics "
+                        "unless they directly shape the answer. Return at most 6 rows. Return empty arrays "
+                        "when values are absent, low-value, or incompatible; do not estimate, normalize, "
+                        "or coerce values."
                     ),
                 },
                 "prepared_question": self._context.question,

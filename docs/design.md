@@ -984,9 +984,10 @@ Core steps:
    - failed question relevance mapping follows the same semantic retry and rollback policy as
      ingest extraction and MUST NOT leave partial question-link writes in default mode.
 7. for each question affected by relevance mapping, run `question_measurement_extraction` from
-   the prepared question plus linked source/claim/evidence context; persist schema-valid
-   measurement rows under `<space_root>/measurements/` and compatible chart groups in question
-   freshness metadata.
+   the prepared question plus linked source/claim/evidence context; persist only schema-valid
+   key measurement rows that include a `question_relevance` rationale and materially help answer
+   the prepared question under `<space_root>/measurements/`, plus compatible chart groups in
+   question freshness metadata.
 8. for each question affected by relevance mapping, run `question_synthesis` from the prepared
    question plus its canonical linked source/claim/evidence context; persist the schema-valid
    synthesis JSON and freshness signature back to the question record transactionally.

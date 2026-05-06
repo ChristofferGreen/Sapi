@@ -185,6 +185,7 @@ def _write_prepared_question_golden_fixture(
             "outcome": "muscle hypertrophy",
             "comparator": "lower intake",
             "uncertainty": "range depends on training context",
+            "question_relevance": "This range directly calibrates the answer for the prepared question.",
         },
     )
     if chart_groups is None:

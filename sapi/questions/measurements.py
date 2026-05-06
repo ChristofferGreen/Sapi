@@ -27,6 +27,9 @@ from sapi.questions.prepared_questions import (
 )
 
 
+MAX_QUESTION_MEASUREMENT_ROWS = 6
+
+
 @dataclass(frozen=True)
 class QuestionMeasurementContext:
     """Canonical context used to extract measurements for one prepared question."""
@@ -593,6 +596,11 @@ def _validate_question_measurement_output(
     measurements = payload.get("measurements")
     if not isinstance(measurements, list):
         raise ValueError("question_measurement_extraction.measurements must be an array.")
+    if len(measurements) > MAX_QUESTION_MEASUREMENT_ROWS:
+        raise ValueError(
+            "question_measurement_extraction.measurements must contain at most "
+            f"{MAX_QUESTION_MEASUREMENT_ROWS} question-relevant rows."
+        )
     by_measurement_id: dict[str, dict[str, Any]] = {}
     for index, item in enumerate(measurements):
         if not isinstance(item, dict):
@@ -603,6 +611,11 @@ def _validate_question_measurement_output(
         if measurement_id in by_measurement_id:
             raise ValueError(f"Duplicate measurement_id in question measurement output: {measurement_id}.")
         by_measurement_id[measurement_id] = item
+        question_relevance = item.get("question_relevance")
+        if not isinstance(question_relevance, str) or not question_relevance.strip():
+            raise ValueError(
+                f"question_measurement_extraction.measurements[{index}].question_relevance is required."
+            )
         source_id = item.get("source_id")
         if source_id not in linked_source_ids:
             raise ValueError(

@@ -7,6 +7,7 @@
   "outcome": "reduced rendering cost at acceptable error",
   "population": "reflection shader using reverse reprojection caching",
   "question_id": "question-real-time-constraints",
+  "question_relevance": "This calibrates the lower end of useful temporal reuse gains when cached history remains accurate enough.",
   "schema_version": "question_measurement_v1",
   "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
   "uncertainty": "reported as 2.1x performance improvement at acceptable error; detailed error threshold not provided in linked evidence",

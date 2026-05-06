@@ -7,6 +7,7 @@
   "outcome": "faster equal-error rendering with some energy loss",
   "population": "biased ReSTIR estimator for tested many-light direct illumination scenes",
   "question_id": "question-real-time-constraints",
+  "question_relevance": "This captures the central biased-versus-unbiased tradeoff: much higher speed at the cost of possible energy loss.",
   "schema_version": "question_measurement_v1",
   "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
   "uncertainty": "abstract reports a 35x-65x equal-error speedup for the biased estimator, but notes some energy loss; result is relative to the paper's comparison methods, error metric, tested scenes, GPU implementations, and direct-lighting task",

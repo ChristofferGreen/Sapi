@@ -7,6 +7,7 @@
   "outcome": "preference for MARRR over fixed rates from the prior approach",
   "population": "controlled MARRR validation for predictable user-induced motion",
   "question_id": "question-real-time-constraints",
+  "question_relevance": "This shows that adaptive resolution and refresh-rate choices can improve perceived quality, not only rendering throughput.",
   "schema_version": "question_measurement_v1",
   "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
   "uncertainty": "linked evidence reports selection probability above 70% with consistently significant preference; exact value and upper bound are not provided",

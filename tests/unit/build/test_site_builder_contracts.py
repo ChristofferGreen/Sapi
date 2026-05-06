@@ -1168,6 +1168,7 @@ class SiteBuilderContractTests(unittest.TestCase):
                         "outcome": "muscle hypertrophy",
                         "comparator": "lower intake",
                         "uncertainty": "range depends on context",
+                        "question_relevance": "This range directly calibrates the answer for the prepared question.",
                     },
                     indent=2,
                     sort_keys=True,

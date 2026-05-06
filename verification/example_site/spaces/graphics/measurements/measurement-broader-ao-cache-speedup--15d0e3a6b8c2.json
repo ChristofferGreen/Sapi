@@ -7,6 +7,7 @@
   "outcome": "higher speedup with visible errors",
   "population": "ambient-occlusion computation with more of the computation cached",
   "question_id": "question-real-time-constraints",
+  "question_relevance": "This directly exposes the speed versus artifact tradeoff that constrains aggressive temporal caching.",
   "schema_version": "question_measurement_v1",
   "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
   "uncertainty": "reported as 15x or larger speedups, with visible errors; upper bound not specified",

@@ -7,6 +7,7 @@
   "outcome": "faster equal-error rendering",
   "population": "unbiased ReSTIR estimator for tested many-light direct illumination scenes",
   "question_id": "question-real-time-constraints",
+  "question_relevance": "This quantifies the payoff available when correctness is preserved, while still depending on task and implementation scope.",
   "schema_version": "question_measurement_v1",
   "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
   "uncertainty": "abstract reports a 6x-60x equal-error speedup; result is relative to the paper's comparison methods, error metric, tested scenes, GPU implementations, and direct-lighting task",

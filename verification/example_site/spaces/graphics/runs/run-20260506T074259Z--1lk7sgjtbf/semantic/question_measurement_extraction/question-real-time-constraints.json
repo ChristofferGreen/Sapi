@@ -1,0 +1,101 @@
+{
+  "chart_groups": [],
+  "measurements": [
+    {
+      "claim_id": "claim-temporal-coherence-can-reduce-rendering-cost-by-reusing-intermediate-or-final-sh--c6fe285903d4",
+      "comparator": "rendering without the reported temporal caching optimization",
+      "evidence_id": "evidence-application-speedups--c40e1f73b82a",
+      "measure_name": "performance improvement",
+      "measurement_id": "measurement-reflection-shader-speedup--2f1a9c8d4e6b",
+      "outcome": "reduced rendering cost at acceptable error",
+      "population": "reflection shader using reverse reprojection caching",
+      "question_relevance": "This calibrates the lower end of useful temporal reuse gains when cached history remains accurate enough.",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+      "uncertainty": "reported as 2.1x performance improvement at acceptable error; detailed error threshold not provided in linked evidence",
+      "unit": "x",
+      "value": 2.1,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+      "comparator": "ambient-occlusion shader without caching only the static-piece contribution",
+      "evidence_id": "evidence-application-speedups--c40e1f73b82a",
+      "measure_name": "speedup",
+      "measurement_id": "measurement-static-ao-speedup--8c4d2e7f9a1b",
+      "outcome": "reduced ambient-occlusion shader cost",
+      "population": "chessboard ambient-occlusion shader caching only the static-piece contribution",
+      "question_relevance": "This shows why stable, expensive subcomputations are especially attractive reuse targets under real-time budgets.",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+      "uncertainty": "reported as 8x speedup for the static-piece contribution; broader scene/error details not provided in linked evidence",
+      "unit": "x",
+      "value": 8,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-good-temporal-reuse-targets-are-expensive-computations-whose-values-change-littl--900a320d0301",
+      "comparator": "ambient-occlusion computation with less temporal caching or recomputation",
+      "evidence_id": "evidence-application-speedups--c40e1f73b82a",
+      "measure_name": "speedup",
+      "measurement_id": "measurement-broader-ao-cache-speedup--15d0e3a6b8c2",
+      "outcome": "higher speedup with visible errors",
+      "population": "ambient-occlusion computation with more of the computation cached",
+      "question_relevance": "This directly exposes the speed versus artifact tradeoff that constrains aggressive temporal caching.",
+      "source_id": "source-temporal-coherence-methods-in-real-time-rendering--5281f89f599e",
+      "uncertainty": "reported as 15x or larger speedups, with visible errors; upper bound not specified",
+      "unit": "x",
+      "value": 15,
+      "value_max": null
+    },
+    {
+      "claim_id": "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+      "comparator": "state-of-the-art methods compared in the paper",
+      "evidence_id": "evidence-equal-error-speedups--338656933924",
+      "measure_name": "equal-error speedup",
+      "measurement_id": "measurement-restir-unbiased-equal-error-speedup--6a60f338656933924",
+      "outcome": "faster equal-error rendering",
+      "population": "unbiased ReSTIR estimator for tested many-light direct illumination scenes",
+      "question_relevance": "This quantifies the payoff available when correctness is preserved, while still depending on task and implementation scope.",
+      "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+      "uncertainty": "abstract reports a 6x-60x equal-error speedup; result is relative to the paper's comparison methods, error metric, tested scenes, GPU implementations, and direct-lighting task",
+      "unit": "x",
+      "value": 6,
+      "value_max": 60
+    },
+    {
+      "claim_id": "claim-restir-achieves-substantially-faster-equal-error-rendering-than-the-compared-sta--b6e0b7ff9f2c",
+      "comparator": "state-of-the-art methods compared in the paper",
+      "evidence_id": "evidence-equal-error-speedups--338656933924",
+      "measure_name": "equal-error speedup",
+      "measurement_id": "measurement-restir-biased-equal-error-speedup--35a65b338656933924",
+      "outcome": "faster equal-error rendering with some energy loss",
+      "population": "biased ReSTIR estimator for tested many-light direct illumination scenes",
+      "question_relevance": "This captures the central biased-versus-unbiased tradeoff: much higher speed at the cost of possible energy loss.",
+      "source_id": "source-spatiotemporal-reservoir-resampling-for-real-time-ray-tracing-with-dynamic-direct-lighting--10f611cada7a",
+      "uncertainty": "abstract reports a 35x-65x equal-error speedup for the biased estimator, but notes some energy loss; result is relative to the paper's comparison methods, error metric, tested scenes, GPU implementations, and direct-lighting task",
+      "unit": "x",
+      "value": 35,
+      "value_max": 65
+    },
+    {
+      "claim_id": "claim-the-marrr-algorithm-uses-the-perceptual-model-in-real-time-to-choose-refresh-rat--332181c7ffd8",
+      "comparator": "fixed rates from the prior approach",
+      "evidence_id": "evidence-marr-validation-preference--2a218677cafe",
+      "measure_name": "selection probability",
+      "measurement_id": "measurement-marr-validation-selection-probability--2a218677cafe",
+      "outcome": "preference for MARRR over fixed rates from the prior approach",
+      "population": "controlled MARRR validation for predictable user-induced motion",
+      "question_relevance": "This shows that adaptive resolution and refresh-rate choices can improve perceived quality, not only rendering throughput.",
+      "source_id": "source-a-perceptual-model-of-motion-quality-for-rendering-with-adaptive-refresh-rate-and-resolution--4804b47b4a68",
+      "uncertainty": "linked evidence reports selection probability above 70% with consistently significant preference; exact value and upper bound are not provided",
+      "unit": "percent",
+      "value": 70,
+      "value_max": null
+    }
+  ],
+  "question_id": "question-real-time-constraints",
+  "schema_version": "question_measurement_extraction_v1",
+  "warnings": [
+    "Only six rows were returned; lower-priority explicit measurements such as scene-specific ReSTIR frame times and dynamic-emitter counts were omitted to stay within the schema maximum.",
+    "No chart groups were created because the selected measurements differ in shader context, estimator mode, artifact semantics, or preference semantics despite some shared numeric units."
+  ]
+}

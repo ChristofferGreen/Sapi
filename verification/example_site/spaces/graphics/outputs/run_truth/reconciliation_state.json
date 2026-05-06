@@ -51,6 +51,15 @@
       "last_advanced_completed_at": "2026-04-26T18:23:50Z",
       "last_advanced_run_id": "run-20260426T182002Z--yvmzjqk5pt",
       "last_advanced_status": "success"
+    },
+    "question_pipeline": {
+      "advanced_run_ids": [
+        "run-20260506T074259Z--1lk7sgjtbf"
+      ],
+      "consecutive_advanced_runs": 1,
+      "last_advanced_completed_at": "2026-05-06T07:47:47Z",
+      "last_advanced_run_id": "run-20260506T074259Z--1lk7sgjtbf",
+      "last_advanced_status": "success"
     }
   },
   "schema_version": "run_truth_reconciliation_v1"

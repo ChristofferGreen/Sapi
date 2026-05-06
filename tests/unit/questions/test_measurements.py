@@ -60,6 +60,10 @@ class QuestionMeasurementTests(unittest.TestCase):
             self.assertEqual(measurement["source_id"], SOURCE_ID)
             self.assertEqual(measurement["claim_id"], CLAIM_ID)
             self.assertEqual(measurement["evidence_id"], EVIDENCE_ID)
+            self.assertEqual(
+                measurement["question_relevance"],
+                "This range directly calibrates the answer for the prepared question.",
+            )
             updated = json.loads(question_path.read_text())
             self.assertEqual(updated["measurement_ids"], [MEASUREMENT_ID])
             self.assertEqual(
@@ -301,6 +305,70 @@ class QuestionMeasurementTests(unittest.TestCase):
             self.assertEqual(metadata["chart_groups"], [])
             self.assertIn("Dropped incompatible question measurement chart group.", metadata["warnings"])
 
+    def test_measurement_extraction_rejects_missing_question_relevance(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            _write_linked_artifacts(space_root)
+            write_prepared_question_record(
+                space_root=space_root,
+                space_name="alpha",
+                payload=_question_payload(
+                    linked_source_ids=[SOURCE_ID],
+                    claim_ids=[CLAIM_ID],
+                    evidence_ids=[EVIDENCE_ID],
+                ),
+            )
+            payload = _measurement_payload("question-protein-intake")
+            payload["measurements"][0]["question_relevance"] = "   "  # type: ignore[index]
+            fixture = create_deterministic_mock_llm_fixture(mode="valid", valid_payload=payload)
+
+            with self.assertRaisesRegex(ValueError, "question_relevance"):
+                run_question_measurement_extraction_and_update(
+                    space_root=space_root,
+                    question_id="question-protein-intake",
+                    run_id="run-20260501T120000Z--abcdefghij",
+                    llm_client=fixture,
+                    transaction=ArtifactTransaction(),
+                )
+
+    def test_measurement_extraction_rejects_too_many_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            space_root = Path(tmp) / "spaces" / "alpha"
+            _write_linked_artifacts(space_root)
+            write_prepared_question_record(
+                space_root=space_root,
+                space_name="alpha",
+                payload=_question_payload(
+                    linked_source_ids=[SOURCE_ID],
+                    claim_ids=[CLAIM_ID],
+                    evidence_ids=[EVIDENCE_ID],
+                ),
+            )
+            payload = _measurement_payload("question-protein-intake")
+            seed_measurement = payload["measurements"][0]  # type: ignore[index]
+            payload["measurements"] = [
+                {
+                    **seed_measurement,
+                    "measurement_id": f"measurement-protein-intake-{index}--123456789abc",
+                    "value": 1.0 + index,
+                }
+                for index in range(7)
+            ]
+            payload["chart_groups"] = []
+            fixture = create_deterministic_mock_llm_fixture(
+                mode="repair_exhausted",
+                invalid_output=json.dumps(payload),
+            )
+
+            with self.assertRaisesRegex(SemanticFlowError, "question_measurement_extraction"):
+                run_question_measurement_extraction_and_update(
+                    space_root=space_root,
+                    question_id="question-protein-intake",
+                    run_id="run-20260501T120000Z--abcdefghij",
+                    llm_client=fixture,
+                    transaction=ArtifactTransaction(),
+                )
+
     def test_measurement_extraction_repair_exhausts_when_numeric_value_is_missing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             space_root = Path(tmp) / "spaces" / "alpha"
@@ -374,6 +442,7 @@ def _measurement_payload(question_id: str) -> dict[str, object]:
                 "outcome": "muscle hypertrophy",
                 "comparator": "lower intake",
                 "uncertainty": "range depends on training context",
+                "question_relevance": "This range directly calibrates the answer for the prepared question.",
             }
         ],
         "chart_groups": [
