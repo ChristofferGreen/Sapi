@@ -4,7 +4,7 @@
 <header class="site-topbar"><form class="top-search" action="../search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
 <section class="content-card"><p><a href="index.html">Back to questions</a></p>
 <h1>Where does machine learning improve compiler optimization decisions?</h1>
-<p class="meta">question-ml-compiler-optimization | status: active | 1 source, 2 claims, 2 evidence items, 7 measurements</p>
+<p class="meta">Active question | 1 source, 2 claims, 2 evidence items, 7 measurements</p>
 <h2>Current synthesis</h2>
 <p>In the linked Ansor evidence, machine learning improves compiler optimization decisions by acting as a learned cost model inside tensor-program search: it cheaply ranks complete candidate programs during evolutionary search, helping decide which candidates are promising enough to compile and measure on hardware.</p>
 <h3>Conclusions</h3>
@@ -18,31 +18,19 @@
 <h2>Measurements</h2>
 <div class="question-measurement-table-wrap"><table class="question-measurement-table"><thead><tr><th>Measure</th><th>Value</th><th>Population</th><th>Outcome</th><th>Comparator</th><th>Uncertainty</th><th>Links</th></tr></thead><tbody><tr><td>pairwise comparison accuracy</td><td>0.851 accuracy fraction</td><td>5,000-program test set from ResNet-50 tuning on Intel CPU</td><td>cost-model ability to rank program pairs</td><td></td><td>reported for the held-out test set in Figure 11 and Section 7.5</td><td><a href="../sources/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551.html">source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551</a> / <a href="../claims/claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3.html">claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3</a> / <a href="../evidence/evidence-cost-model-accuracy--1d4f8a6b9c20.html">evidence-cost-model-accuracy--1d4f8a6b9c20</a></td></tr><tr><td>programs measured for cost-model evaluation</td><td>25000 programs</td><td>ResNet-50 tuning on Intel CPU</td><td>cost-model evaluation dataset size</td><td></td><td>reported as the measured program count used in the evaluation</td><td><a href="../sources/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551.html">source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551</a> / <a href="../claims/claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3.html">claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3</a> / <a href="../evidence/evidence-cost-model-accuracy--1d4f8a6b9c20.html">evidence-cost-model-accuracy--1d4f8a6b9c20</a></td></tr><tr><td>R2 correlation</td><td>0.958 R2</td><td>5,000-program test set from ResNet-50 tuning on Intel CPU</td><td>cost-model throughput prediction correlation</td><td></td><td>reported for the held-out test set in Figure 11 and Section 7.5</td><td><a href="../sources/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551.html">source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551</a> / <a href="../claims/claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3.html">claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3</a> / <a href="../evidence/evidence-cost-model-accuracy--1d4f8a6b9c20.html">evidence-cost-model-accuracy--1d4f8a6b9c20</a></td></tr><tr><td>recall@30</td><td>0.624 recall fraction</td><td>5,000-program test set from ResNet-50 tuning on Intel CPU</td><td>cost-model recall for top-30 programs</td><td></td><td>reported for the held-out test set in Figure 11 and Section 7.5</td><td><a href="../sources/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551.html">source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551</a> / <a href="../claims/claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3.html">claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3</a> / <a href="../evidence/evidence-cost-model-accuracy--1d4f8a6b9c20.html">evidence-cost-model-accuracy--1d4f8a6b9c20</a></td></tr><tr><td>RMSE</td><td>0.079 RMSE</td><td>5,000-program test set from ResNet-50 tuning on Intel CPU</td><td>cost-model throughput prediction error</td><td></td><td>reported for the held-out test set in Figure 11 and Section 7.5</td><td><a href="../sources/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551.html">source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551</a> / <a href="../claims/claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3.html">claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3</a> / <a href="../evidence/evidence-cost-model-accuracy--1d4f8a6b9c20.html">evidence-cost-model-accuracy--1d4f8a6b9c20</a></td></tr><tr><td>testing programs for cost-model evaluation</td><td>5000 programs</td><td>ResNet-50 tuning on Intel CPU</td><td>cost-model test set size</td><td>random split from 25,000 measured programs</td><td>reported as the randomly selected test count</td><td><a href="../sources/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551.html">source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551</a> / <a href="../claims/claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3.html">claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3</a> / <a href="../evidence/evidence-cost-model-accuracy--1d4f8a6b9c20.html">evidence-cost-model-accuracy--1d4f8a6b9c20</a></td></tr><tr><td>training programs for cost-model evaluation</td><td>20000 programs</td><td>ResNet-50 tuning on Intel CPU</td><td>cost-model training set size</td><td>random split from 25,000 measured programs</td><td>reported as the randomly selected training count</td><td><a href="../sources/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551.html">source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551</a> / <a href="../claims/claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3.html">claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3</a> / <a href="../evidence/evidence-cost-model-accuracy--1d4f8a6b9c20.html">evidence-cost-model-accuracy--1d4f8a6b9c20</a></td></tr></tbody></table></div>
 <p class="meta">No compatible measurement group is available for charting.</p>
-<h2>Sources</h2>
-<ul class="feed-list">
-<li><a href="../sources/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551.html">Ansor Broadens Tensor Program Search</a></li>
-</ul>
-<h2>Claims</h2>
-<ul class="feed-list">
+<h2 class="question-section-heading">Sources</h2>
+<div class="question-source-grid">
+<a class="question-source-card" href="../sources/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551.html"><img class="question-source-thumb" src="../../../../site/assets/source_previews/source-ansor-generating-high-performance-tensor-programs-for-deep-learning--839fb7edb551.png" alt="Preview for Ansor Broadens Tensor Program Search" loading="lazy" /><span class="question-source-title">Ansor Broadens Tensor Program Search</span></a>
+</div>
+<h2 class="question-section-heading">Claims</h2>
+<ul class="question-link-list">
 <li><a href="../claims/claim-ansor-s-learned-cost-model-predicts-tensor-program-throughput-accurately-enough--f02bf9f271c3.html">Cost model predicts throughput</a></li>
 <li><a href="../claims/claim-sampling-complete-programs-and-then-fine-tuning-them-with-evolutionary-search-an--98bcfa809814.html">Complete programs improve tuning</a></li>
 </ul>
-<h2>Evidence</h2>
-<ul class="feed-list">
+<h2 class="question-section-heading">Evidence</h2>
+<ul class="question-link-list">
 <li><a href="../evidence/evidence-complete-program-finetuning--c5ad4810e2b9.html">Complete-Program Fine-Tuning Loop</a></li>
 <li><a href="../evidence/evidence-cost-model-accuracy--1d4f8a6b9c20.html">Cost Model Accuracy Metrics</a></li>
-</ul>
-<h2>Freshness</h2>
-<ul class="feed-list question-freshness-list">
-<li>Synthesis status: refreshed</li>
-<li>Synthesis run: run-20260505T103944Z--65j0k0p4lt</li>
-<li>Synthesis checked: 2026-05-05T10:55:53Z</li>
-<li>Input signature: sha256:418d1e67ec89484bd4d7de1a28c88a931e08c8c69379d52ec4980f6d3ff5200f</li>
-<li>Measurement status: refreshed</li>
-<li>Measurement run: run-20260505T103944Z--65j0k0p4lt</li>
-<li>Measurements checked: 2026-05-05T10:53:38Z</li>
-<li>Measurements extracted: 7</li>
-<li>Relevance mappings: 1 source</li>
 </ul>
 </section>
 

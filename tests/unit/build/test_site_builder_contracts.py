@@ -1280,6 +1280,11 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("What protein intake supports muscle growth?", question_index_text)
             self.assertNotIn("Which inactive question remains auditable?", question_index_text)
             self.assertTrue(inactive_detail_path.is_file())
+            self.assertIn(
+                "Active question | 1 source, 1 claim, 1 evidence item, 1 measurement",
+                active_detail_text,
+            )
+            self.assertNotIn("question-protein-intake | status:", active_detail_text)
             self.assertIn('class="question-source-grid"', active_detail_text)
             self.assertIn('class="question-source-card"', active_detail_text)
             self.assertIn('class="question-source-thumb"', active_detail_text)

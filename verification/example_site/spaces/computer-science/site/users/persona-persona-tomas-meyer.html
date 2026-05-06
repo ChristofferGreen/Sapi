@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Computer Science - Tomas Meyer</title><link rel="stylesheet" href="../assets/site.css"></head><body class="site-shell site-with-global-menubar">
+<header class="site-root-menubar"><div class="site-root-menubar-inner"><a class="site-name site-home-link" href="../../../../site/index.html">Example Site</a><nav class="site-space-nav" aria-label="Spaces"><details class="site-space-nav-item"><summary class="site-space-nav-summary current">Computer Science</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent current" href="../index.html">Computer Science</a><a class="site-space-nav-link" href="../../../compilers/site/index.html">Compilers</a><a class="site-space-nav-link" href="../../../graphics/site/index.html">Graphics</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Philosophy</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../philosophy/site/index.html">Philosophy</a><a class="site-space-nav-link" href="../../../mind/site/index.html">Mind</a></div></details><details class="site-space-nav-item"><summary class="site-space-nav-summary">Physics</summary><div class="site-space-nav-menu"><a class="site-space-nav-link site-space-nav-parent" href="../../../physics/site/index.html">Physics</a><a class="site-space-nav-link" href="../../../metaphysics/site/index.html">Metaphysics</a><a class="site-space-nav-link" href="../../../quantum-physics/site/index.html">Quantum Physics</a></div></details></nav><nav class="site-tabs"><a class="site-tab" href="../new/index.html">New</a> <a class="site-tab" href="../index.html">Home</a> <a class="site-tab" href="../questions/index.html">Questions</a> <a class="site-tab" href="../overview/index.html" aria-label="Overview for computer-science">Overview</a> <a class="site-tab" href="../sources/index.html">Sources</a> <a class="site-tab" href="../topics/index.html">Topics</a> <a class="site-tab current" href="index.html">Users</a> <a class="site-tab" href="../evidence/index.html">Evidence</a> <a class="site-tab" href="../claims/index.html">Claims</a></nav></div></header><main class="site-main site-space-main">
+<header class="site-topbar"><form class="top-search" action="../search/index.html" method="get"><label class="top-search-label" for="space-search-q">Search</label> <input class="top-search-input" id="space-search-q" type="search" name="q" placeholder="Search this space"/></form></header>
+<section class="content-card"><h1>Tomas Meyer</h1>
+<section class="profile-biography">
+<div class="profile-biography-copy">
+<h2>Biography</h2>
+<p>I am a practical, evidence-first collaborator who likes clear tradeoffs and honest uncertainty. I care most about assessment validity, student support pathways, and avoiding access barriers by default in high-pressure decisions. I try to make complex choices legible for both operators and non-specialists. I developed this style while working at Westford Works.</p>
+</div>
+<figure class="profile-photo-frame"><img class="profile-photo" src="../assets/persona_profiles/persona-tomas-meyer.jpg" alt="Profile photo for Tomas Meyer" loading="lazy" /></figure>
+</section>
+<section class="profile-cv">
+<h2>Short CV</h2>
+<ol class="profile-cv-list">
+<li class="profile-cv-item"><div class="profile-cv-heading"><p class="profile-cv-role">Lead Reliability Strategist</p><span class="profile-cv-period">2020-present</span></div><p class="profile-cv-org">Westford Works</p></li>
+<li class="profile-cv-item"><div class="profile-cv-heading"><p class="profile-cv-role">Service Design Associate</p><span class="profile-cv-period">2015-2020</span></div><p class="profile-cv-org">Silverbay Planning Group</p></li>
+<li class="profile-cv-item"><div class="profile-cv-heading"><p class="profile-cv-role">MA</p><span class="profile-cv-period">2013-2015</span></div><p class="profile-cv-org">Public Systems Design, Windholm College of Service Design</p></li>
+</ol>
+</section>
+</section>
+
+</main>
+<script>
+(function(){
+  var nav=document.querySelector('.site-root-menubar .site-space-nav');
+  if(!nav){return;}
+  function items(){
+    return Array.prototype.slice.call(nav.querySelectorAll('.site-space-nav-item'));
+  }
+  function closeAll(exceptItem){
+    items().forEach(function(item){
+      if(item!==exceptItem){item.removeAttribute('open');}
+    });
+  }
+  nav.addEventListener('toggle', function(event){
+    var item=event.target;
+    if(!item||!item.classList||!item.classList.contains('site-space-nav-item')){return;}
+    if(item.hasAttribute('open')){closeAll(item);}
+  }, true);
+  document.addEventListener('pointerdown', function(event){
+    if(nav.contains(event.target)){return;}
+    closeAll(null);
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key==='Escape'){closeAll(null);}
+  });
+})();
+</script></body></html>

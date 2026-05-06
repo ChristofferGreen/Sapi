@@ -1931,7 +1931,7 @@ def _render_question_page(
         "<p><a href=\"index.html\">Back to questions</a></p>\n",
         "<h1>" + escape(question.question) + "</h1>\n",
         "<p class=\"meta\">"
-        + escape(f"{question.question_id} | status: {question.status} | {stats}")
+        + escape(f"{question.status.capitalize()} question | {stats}")
         + "</p>\n",
         _render_question_synthesis_section(question),
         _render_question_measurement_section(question, linked_measurements),
