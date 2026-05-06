@@ -647,6 +647,8 @@ class SiteBuilderContractTests(unittest.TestCase):
             evidence_by_source = (space_root / "site" / "evidence" / "by-source" / "index.html").read_text()
             self.assertIn("class=\"source-preview-feed evidence-source-preview\"", evidence_by_source)
             self.assertIn("../../../../site/assets/source_previews/source-a.svg", evidence_by_source)
+            self.assertIn("Source: <a href=\"../../sources/source-a.html\">Source A</a>", evidence_by_source)
+            self.assertNotIn("source: <a href=\"../../sources/source-a.html\">Source A</a>", evidence_by_source)
             self.assertIn(f"href=\"../../claims/{claim_id}.html\"", evidence_by_source)
             self.assertNotIn(f"href=\"../claims/{claim_id}.html\"", evidence_by_source)
             evidence_by_claims = (space_root / "site" / "evidence" / "by-claims" / "index.html").read_text()
@@ -1124,7 +1126,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stderr)
 
             philosophy_home = (philosophy_root / "site" / "index.html").read_text()
-            self.assertIn("<h2>Subspaces</h2>", philosophy_home)
+            self.assertIn('<h2 class="space-home-section-heading">Subspaces</h2>', philosophy_home)
             self.assertIn('href="../../mind/site/index.html">Mind</a>', philosophy_home)
             self.assertNotIn("<h2>Sources</h2>", philosophy_home)
             self.assertNotIn("<h2>Topics</h2>", philosophy_home)
@@ -1375,8 +1377,8 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stderr)
 
             space_home = (alpha_space_root / "site" / "index.html").read_text()
-            self.assertIn("<h2>Sources</h2>", space_home)
-            self.assertIn("<h2>Topics</h2>", space_home)
+            self.assertIn('<h2 class="space-home-section-heading">Sources</h2>', space_home)
+            self.assertIn('<h2 class="space-home-section-heading">Topics</h2>', space_home)
             self.assertIn("class=\"feed-card\"", space_home)
             self.assertIn("class=\"feed-card-layout\"", space_home)
             self.assertIn("class=\"feed-card-head\"", space_home)

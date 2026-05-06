@@ -5630,7 +5630,7 @@ def _render_evidence_index_row(
         preview_href=source_preview_by_id.get(record.source_id, ""),
     )
     source_row = (
-        "<p class=\"meta evidence-source-meta\">source: <a href=\""
+        "<p class=\"meta evidence-source-meta\">Source: <a href=\""
         + source_href
         + "\">"
         + escape(source_title)
