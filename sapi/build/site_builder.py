@@ -5535,7 +5535,7 @@ def _write_space_claim_pages(
                     + "<section class=\"source-related-card\">\n"
                     + "<h2>Evidence Items</h2>\n"
                     + (
-                        "<ul class=\"source-related-list\">\n"
+                        "<ul class=\"source-related-list claim-page-evidence-list\">\n"
                         + "\n".join(evidence_rows)
                         + "\n</ul>\n"
                         if evidence_rows

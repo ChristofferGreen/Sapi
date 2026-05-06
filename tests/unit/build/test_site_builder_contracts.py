@@ -592,6 +592,7 @@ class SiteBuilderContractTests(unittest.TestCase):
             self.assertIn("href=\"../sources/source-a.html\"", claim_page_text)
             self.assertIn("Short dossier summary.", claim_page_text)
             self.assertIn("Evidence Items", claim_page_text)
+            self.assertIn("class=\"source-related-list claim-page-evidence-list\"", claim_page_text)
             self.assertIn("href=\"../evidence/", claim_page_text)
             self.assertIn("jointly", claim_page_text)
             self.assertNotIn("Strength and Support Stats", claim_page_text)
