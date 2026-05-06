@@ -383,7 +383,18 @@
     gap: 0.72rem;
   }
 
+  .evidence-card-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.72rem;
+  }
+
   .feed-card-copy {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .evidence-card-copy {
     min-width: 0;
     flex: 1;
   }
@@ -1040,6 +1051,14 @@
     border-radius: 8px;
     background: linear-gradient(180deg, #ffffff 0%, #eff5ff 100%);
     box-shadow: 0 6px 14px rgba(6, 22, 42, 0.1);
+  }
+
+  .evidence-source-preview {
+    width: 76px;
+  }
+
+  .evidence-source-meta {
+    margin-top: 0.36rem;
   }
 
   .source-actions {

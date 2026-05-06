@@ -5611,9 +5611,36 @@ def _render_evidence_index_row(
     record: _EvidenceRecord,
     claim_option_title_by_id: dict[str, str],
     source_title_by_id: dict[str, str],
+    source_preview_by_id: dict[str, str],
 ) -> str:
+    source_title = source_title_by_id.get(record.source_id, record.source_id)
+    source_href = (
+        "/spaces/"
+        + escape(space_name)
+        + "/site/sources/"
+        + escape(record.source_id)
+        + ".html"
+        if record.source_id
+        else ""
+    )
+    source_thumb = _render_evidence_source_preview_thumb(
+        source_href=source_href,
+        source_title=source_title,
+        preview_href=source_preview_by_id.get(record.source_id, ""),
+    )
+    source_row = (
+        "<p class=\"meta evidence-source-meta\">source: <a href=\""
+        + source_href
+        + "\">"
+        + escape(source_title)
+        + "</a></p>"
+        if record.source_id
+        else ""
+    )
     return (
-        "<li><a href=\""
+        "<li class=\"evidence-card\"><div class=\"evidence-card-layout\">"
+        + source_thumb
+        + "<div class=\"evidence-card-copy\"><a href=\""
         + "/spaces/"
         + escape(space_name)
         + "/site/evidence/"
@@ -5626,20 +5653,27 @@ def _render_evidence_index_row(
             record.claim_ids,
             claim_option_title_by_id=claim_option_title_by_id,
         )
-        + (
-            "<p class=\"meta\">source: <a href=\"/spaces/"
-            + escape(space_name)
-            + "/site/sources/"
-            + escape(record.source_id)
-            + ".html\">"
-            + escape(source_title_by_id.get(record.source_id, record.source_id))
-            + "</a></p>"
-            if record.source_id
-            else ""
-        )
+        + source_row
         + "<p class=\"summary\">"
         + escape(truncate_text_for_ui(record.excerpt, max_length=220))
-        + "</p></li>"
+        + "</p></div></div></li>"
+    )
+
+
+def _render_evidence_source_preview_thumb(*, source_href: str, source_title: str, preview_href: str) -> str:
+    if not source_href or not preview_href:
+        return ""
+    return (
+        "<a class=\"source-preview-feed-link evidence-source-preview-link\" href=\""
+        + source_href
+        + "\" aria-label=\"Open source: "
+        + escape(source_title)
+        + "\">"
+        + "<img class=\"source-preview-feed evidence-source-preview\" src=\""
+        + escape(preview_href)
+        + "\" alt=\"Preview for "
+        + escape(source_title)
+        + "\" /></a>"
     )
 
 
@@ -5689,6 +5723,16 @@ def _write_space_evidence_pages(
         for source in projection.sources
         if isinstance(source, dict) and source.get("source_id")
     }
+    site_path = output_root.parents[2]
+    source_preview_by_id = {
+        str(source.get("source_id")): _source_preview_site_href_for_source(
+            source=source,
+            space_name=context.space_name,
+            site_path=site_path,
+        )
+        for source in projection.sources
+        if isinstance(source, dict) and source.get("source_id")
+    }
     claim_option_title_by_id = load_claim_option_titles(space_root=output_root.parent)
     topic_title_by_id = {
         str(topic.get("topic_id")): str(topic.get("title") or topic.get("topic_id"))
@@ -5714,6 +5758,7 @@ def _write_space_evidence_pages(
                         record=record,
                         claim_option_title_by_id=claim_option_title_by_id,
                         source_title_by_id=source_title_by_id,
+                        source_preview_by_id=source_preview_by_id,
                     )
                     for record in sorted_records
                 )
